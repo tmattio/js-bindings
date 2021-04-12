@@ -1,0 +1,20 @@
+(library
+ (name lib_es5)
+ (libraries ojs)
+ (preprocess
+  (pps gen_js_api.ppx))
+ (modes byte))
+
+(rule
+ (targets ts2ocaml_baselib.ml)
+ (deps ts2ocaml_baselib.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps})))
+
+(rule
+ (targets lib_es5.ml)
+ (deps lib_es5.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps})))

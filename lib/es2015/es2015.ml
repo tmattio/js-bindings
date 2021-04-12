@@ -1,0 +1,9 @@
+include Es5
+include Es2015_core
+include Es2015_collection
+include Es2015_iterable
+include Es2015_generator
+include Es2015_promise
+include Es2015_proxy
+include Es2015_reflect
+include Es2015_symbol

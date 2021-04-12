@@ -1,0 +1,5 @@
+(library
+ (name es5)
+ (public_name es5)
+ (libraries js_of_ocaml ojs)
+ (modes byte))

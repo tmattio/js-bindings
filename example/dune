@@ -1,0 +1,4 @@
+(executable
+ (name promise)
+ (libraries es2015)
+ (modes js))
