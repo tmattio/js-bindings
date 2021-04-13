@@ -1,6 +1,6 @@
 # OCaml ECMAScript
 
-[![Actions Status](https://github.com/tmattio/es5/workflows/CI/badge.svg)](https://github.com/tmattio/es5/actions)
+[![Actions Status](https://github.com/tmattio/ocaml-ecmascript/workflows/CI/badge.svg)](https://github.com/tmattio/ocaml-ecmascript/actions)
 
 ECMAScript bindings for OCaml:
 
