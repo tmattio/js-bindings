@@ -1,0 +1,37 @@
+(library
+ (name es2019)
+ (public_name es2019)
+ (libraries js_of_ocaml ojs es2018)
+ (flags
+  (:standard
+   -w
+   ; Hide "no cmx file was found in path for module Ojs, and its interface was not compiled with -opaque"
+   -58)))
+
+(rule
+ (target es2019.ml)
+ (deps gen/es2019.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target es2019_object.ml)
+ (deps gen/es2019_object.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target es2019_string.ml)
+ (deps gen/es2019_string.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target es2019_symbol.ml)
+ (deps gen/es2019_symbol.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))

@@ -1,0 +1,14 @@
+lib/es5/gen/*.ml
+lib/es5/*.ml
+lib/es2015/gen/*.ml
+lib/es2015/*.ml
+lib/es2016/gen/*.ml
+lib/es2016/*.ml
+lib/es2017/gen/*.ml
+lib/es2017/*.ml
+lib/es2018/gen/*.ml
+lib/es2018/*.ml
+lib/es2019/gen/*.ml
+lib/es2019/*.ml
+lib/es2020/gen/*.ml
+lib/es2020/*.ml

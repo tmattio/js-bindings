@@ -254,10 +254,7 @@ module String : sig
 
   val endsWith : t -> searchString:string -> ?endPosition:float -> unit -> bool
 
-  val normalize
-    :  t
-    -> form:[ `L_s0_NFC | `L_s1_NFD | `L_s2_NFKC | `L_s3_NFKD ]
-    -> string
+  val normalize : t -> form:[ `NFC | `NFD | `NFKC | `NFKD ] -> string
 
   val normalize' : t -> ?form:string -> unit -> string
 

@@ -1,9 +1,6 @@
-[@@@ocaml.warning "-7-11-32-33-39"]
-
-[@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
-
 open Es5
 open Es2015_symbol
+open Es2015_collection
 
 module SymbolConstructor : sig
   include module type of struct
@@ -36,7 +33,7 @@ module IteratorReturnResult : sig
 
   val t_of_js : (Ojs.t -> 'TReturn) -> Ojs.t -> 'TReturn t
 
-  val get_done : 'TReturn t -> [ `L_b_true ]
+  val get_done : 'TReturn t -> [ `L_b_true [@js true] ]
 
   val set_done : 'TReturn t -> [ `L_b_true ] -> unit
 
@@ -117,11 +114,9 @@ module IterableIterator : sig
 end
 
 module Array : sig
-  type 'T t
-
-  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+  include module type of struct
+    include Array
+  end
 
   val entries : 'T t -> (float * 'T) IterableIterator.t
 
@@ -132,18 +127,30 @@ module Array : sig
   val to_ml : 'T t -> 'T list
 
   val of_ml : 'T list -> 'T t
+
+  (* Constructor *)
+
+  val from_iterable : iterable:('T Array.t, 'T Iterable.t) union2 -> 'T list
+
+  val from_iterable'
+    :  iterable:('T Array.t, 'T Iterable.t) union2
+    -> mapfn:(v:'T -> k:float -> 'U)
+    -> ?thisArg:any
+    -> unit
+    -> 'U list
 end
 
 module ArrayConstructor : sig
-  type t
+  include module type of struct
+    include ArrayConstructor
+  end
 
-  val t_to_js : t -> Ojs.t
+  val from_iterable
+    :  t
+    -> iterable:('T Array.t, 'T Iterable.t) union2
+    -> 'T list
 
-  val t_of_js : Ojs.t -> t
-
-  val from : t -> iterable:('T Array.t, 'T Iterable.t) union2 -> 'T list
-
-  val from'
+  val from_iterable'
     :  t
     -> iterable:('T Array.t, 'T Iterable.t) union2
     -> mapfn:(v:'T -> k:float -> 'U)
@@ -153,11 +160,9 @@ module ArrayConstructor : sig
 end
 
 module ReadonlyArray : sig
-  type 'T t
-
-  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+  include module type of struct
+    include ReadonlyArray
+  end
 
   val entries : 'T t -> (float * 'T) IterableIterator.t
 
@@ -171,33 +176,31 @@ module ReadonlyArray : sig
 end
 
 module IArguments : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include IArguments
+  end
 end
 
 module Map : sig
-  type ('K, 'V) t
-
-  val t_to_js : ('K -> Ojs.t) -> ('V -> Ojs.t) -> ('K, 'V) t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'K) -> (Ojs.t -> 'V) -> Ojs.t -> ('K, 'V) t
+  include module type of struct
+    include Map
+  end
 
   val entries : ('K, 'V) t -> ('K * 'V) IterableIterator.t
 
   val keys : ('K, 'V) t -> 'K IterableIterator.t
 
   val values : ('K, 'V) t -> 'V IterableIterator.t
+
+  (* Constructor *)
+
+  val create_iterable : iterable:('K * 'V) Iterable.t -> ('K, 'V) t
 end
 
 module ReadonlyMap : sig
-  type ('K, 'V) t
-
-  val t_to_js : ('K -> Ojs.t) -> ('V -> Ojs.t) -> ('K, 'V) t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'K) -> (Ojs.t -> 'V) -> Ojs.t -> ('K, 'V) t
+  include module type of struct
+    include ReadonlyMap
+  end
 
   val entries : ('K, 'V) t -> ('K * 'V) IterableIterator.t
 
@@ -207,53 +210,51 @@ module ReadonlyMap : sig
 end
 
 module MapConstructor : sig
-  type t
+  include module type of struct
+    include MapConstructor
+  end
 
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val create : t -> iterable:('K * 'V) Iterable.t -> ('K, 'V) Map.t
+  val create_iterable : t -> iterable:('K * 'V) Iterable.t -> ('K, 'V) Map.t
 end
 
 module WeakMap : sig
-  type ('K, 'V) t
+  include module type of struct
+    include WeakMap
+  end
 
-  val t_to_js : ('K -> Ojs.t) -> ('V -> Ojs.t) -> ('K, 'V) t -> Ojs.t
+  (* Constructor *)
 
-  val t_of_js : (Ojs.t -> 'K) -> (Ojs.t -> 'V) -> Ojs.t -> ('K, 'V) t
+  val create_iterable : iterable:('K * 'V) Iterable.t -> ('K, 'V) WeakMap.t
 end
 
 module WeakMapConstructor : sig
-  type t
+  include module type of struct
+    include WeakMapConstructor
+  end
 
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val create : t -> iterable:('K * 'V) Iterable.t -> ('K, 'V) WeakMap.t
+  val create_iterable : t -> iterable:('K * 'V) Iterable.t -> ('K, 'V) WeakMap.t
 end
 
 module Set : sig
-  type 'T t
-
-  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+  include module type of struct
+    include Set
+  end
 
   val entries : 'T t -> ('T * 'T) IterableIterator.t
 
   val keys : 'T t -> 'T IterableIterator.t
 
   val values : 'T t -> 'T IterableIterator.t
+
+  (* Constructor *)
+
+  val create_iterable : ?iterable:'T Iterable.t or_null -> unit -> 'T t
 end
 
 module ReadonlySet : sig
-  type 'T t
-
-  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+  include module type of struct
+    include ReadonlySet
+  end
 
   val entries : 'T t -> ('T * 'T) IterableIterator.t
 
@@ -263,39 +264,41 @@ module ReadonlySet : sig
 end
 
 module SetConstructor : sig
-  type t
+  include module type of struct
+    include SetConstructor
+  end
 
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val create : t -> ?iterable:'T Iterable.t or_null -> unit -> 'T Set.t
+  val create_iterable : t -> ?iterable:'T Iterable.t or_null -> unit -> 'T Set.t
 end
 
 module WeakSet : sig
-  type 'T t
+  include module type of struct
+    include WeakSet
+  end
 
-  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+  (* Constructor *)
 
-  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+  val create_iterable : iterable:'T Iterable.t -> 'T WeakSet.t
 end
 
 module WeakSetConstructor : sig
-  type t
+  include module type of struct
+    include WeakSetConstructor
+  end
 
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val create : t -> iterable:'T Iterable.t -> 'T WeakSet.t
+  val create_iterable : t -> iterable:'T Iterable.t -> 'T WeakSet.t
 end
 
 module Promise : sig
-  type 'T t
+  include module type of struct
+    include Promise
+  end
 
-  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+  (* Constructor *)
 
-  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+  val all_iterable : 'T Promise.t Iterable.t -> 'T list Promise.t
+
+  val race_iterable : 'T Promise.t Iterable.t -> 'T Promise.t
 end
 
 module PromiseConstructor : sig
@@ -305,23 +308,15 @@ module PromiseConstructor : sig
 
   val t_of_js : Ojs.t -> t
 
-  val all : t -> values:'T Promise.t Iterable.t -> 'T list Promise.t
+  val all_iterable : t -> 'T Promise.t Iterable.t -> 'T list Promise.t
 
-  val race
-    :  t
-    -> values:'T Iterable.t
-    -> (* FIXME: unknown type 'T extends Promise<infer U> ? U : T' *)
-       any Promise.t
-
-  val race' : t -> values:'T Promise.t Iterable.t -> 'T Promise.t
+  val race_iterable : t -> 'T Promise.t Iterable.t -> 'T Promise.t
 end
 
 module String : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include String
+  end
 
   val to_ml : t -> string
 
@@ -329,29 +324,36 @@ module String : sig
 end
 
 module Int8Array : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Int8Array
+  end
 
   val entries : t -> (float * float) IterableIterator.t
 
   val keys : t -> float IterableIterator.t
 
   val values : t -> float IterableIterator.t
+
+  (* Constructor *)
+
+  val create_iterable : float Iterable.t -> Int8Array.t
+
+  val from_iterable
+    :  array:float Iterable.t
+    -> ?mapfn:(v:float -> k:float -> float)
+    -> ?thisArg:any
+    -> unit
+    -> Int8Array.t
 end
 
 module Int8ArrayConstructor : sig
-  type t
+  include module type of struct
+    include Int8ArrayConstructor
+  end
 
-  val t_to_js : t -> Ojs.t
+  val create_iterable : t -> float Iterable.t -> Int8Array.t
 
-  val t_of_js : Ojs.t -> t
-
-  val create : t -> elements:float Iterable.t -> Int8Array.t
-
-  val from
+  val from_iterable
     :  t
     -> array:float Iterable.t
     -> ?mapfn:(v:float -> k:float -> float)
@@ -361,29 +363,36 @@ module Int8ArrayConstructor : sig
 end
 
 module Uint8Array : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Uint8Array
+  end
 
   val entries : t -> (float * float) IterableIterator.t
 
   val keys : t -> float IterableIterator.t
 
   val values : t -> float IterableIterator.t
+
+  (* Constructor *)
+
+  val create_iterable : float Iterable.t -> Uint8Array.t
+
+  val from_iterable
+    :  array:float Iterable.t
+    -> ?mapfn:(v:float -> k:float -> float)
+    -> ?thisArg:any
+    -> unit
+    -> Uint8Array.t
 end
 
 module Uint8ArrayConstructor : sig
-  type t
+  include module type of struct
+    include Uint8ArrayConstructor
+  end
 
-  val t_to_js : t -> Ojs.t
+  val create_iterable : t -> float Iterable.t -> Uint8Array.t
 
-  val t_of_js : Ojs.t -> t
-
-  val create : t -> elements:float Iterable.t -> Uint8Array.t
-
-  val from
+  val from_iterable
     :  t
     -> array:float Iterable.t
     -> ?mapfn:(v:float -> k:float -> float)
@@ -393,29 +402,36 @@ module Uint8ArrayConstructor : sig
 end
 
 module Uint8ClampedArray : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Uint8ClampedArray
+  end
 
   val entries : t -> (float * float) IterableIterator.t
 
   val keys : t -> float IterableIterator.t
 
   val values : t -> float IterableIterator.t
+
+  (* Constructor *)
+
+  val create_iterable : float Iterable.t -> Uint8ClampedArray.t
+
+  val from_iterable
+    :  array:float Iterable.t
+    -> ?mapfn:(v:float -> k:float -> float)
+    -> ?thisArg:any
+    -> unit
+    -> Uint8ClampedArray.t
 end
 
 module Uint8ClampedArrayConstructor : sig
-  type t
+  include module type of struct
+    include Uint8ClampedArrayConstructor
+  end
 
-  val t_to_js : t -> Ojs.t
+  val create_iterable : t -> float Iterable.t -> Uint8ClampedArray.t
 
-  val t_of_js : Ojs.t -> t
-
-  val create : t -> elements:float Iterable.t -> Uint8ClampedArray.t
-
-  val from
+  val from_iterable
     :  t
     -> array:float Iterable.t
     -> ?mapfn:(v:float -> k:float -> float)
@@ -425,29 +441,36 @@ module Uint8ClampedArrayConstructor : sig
 end
 
 module Int16Array : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Int16Array
+  end
 
   val entries : t -> (float * float) IterableIterator.t
 
   val keys : t -> float IterableIterator.t
 
   val values : t -> float IterableIterator.t
+
+  (* Constructor *)
+
+  val create_iterable : float Iterable.t -> Int16Array.t
+
+  val from_iterable
+    :  array:float Iterable.t
+    -> ?mapfn:(v:float -> k:float -> float)
+    -> ?thisArg:any
+    -> unit
+    -> Int16Array.t
 end
 
 module Int16ArrayConstructor : sig
-  type t
+  include module type of struct
+    include Int16ArrayConstructor
+  end
 
-  val t_to_js : t -> Ojs.t
+  val create_iterable : t -> float Iterable.t -> Int16Array.t
 
-  val t_of_js : Ojs.t -> t
-
-  val create : t -> elements:float Iterable.t -> Int16Array.t
-
-  val from
+  val from_iterable
     :  t
     -> array:float Iterable.t
     -> ?mapfn:(v:float -> k:float -> float)
@@ -457,29 +480,36 @@ module Int16ArrayConstructor : sig
 end
 
 module Uint16Array : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Uint16Array
+  end
 
   val entries : t -> (float * float) IterableIterator.t
 
   val keys : t -> float IterableIterator.t
 
   val values : t -> float IterableIterator.t
+
+  (* Constructor *)
+
+  val create_iterable : float Iterable.t -> Uint16Array.t
+
+  val from_iterable
+    :  array:float Iterable.t
+    -> ?mapfn:(v:float -> k:float -> float)
+    -> ?thisArg:any
+    -> unit
+    -> Uint16Array.t
 end
 
 module Uint16ArrayConstructor : sig
-  type t
+  include module type of struct
+    include Uint16ArrayConstructor
+  end
 
-  val t_to_js : t -> Ojs.t
+  val create_iterable : t -> float Iterable.t -> Uint16Array.t
 
-  val t_of_js : Ojs.t -> t
-
-  val create : t -> elements:float Iterable.t -> Uint16Array.t
-
-  val from
+  val from_iterable
     :  t
     -> array:float Iterable.t
     -> ?mapfn:(v:float -> k:float -> float)
@@ -489,29 +519,36 @@ module Uint16ArrayConstructor : sig
 end
 
 module Int32Array : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Int32Array
+  end
 
   val entries : t -> (float * float) IterableIterator.t
 
   val keys : t -> float IterableIterator.t
 
   val values : t -> float IterableIterator.t
+
+  (* Constructor *)
+
+  val create_iterable : float Iterable.t -> Int32Array.t
+
+  val from_iterable
+    :  array:float Iterable.t
+    -> ?mapfn:(v:float -> k:float -> float)
+    -> ?thisArg:any
+    -> unit
+    -> Int32Array.t
 end
 
 module Int32ArrayConstructor : sig
-  type t
+  include module type of struct
+    include Int32ArrayConstructor
+  end
 
-  val t_to_js : t -> Ojs.t
+  val create_iterable : t -> float Iterable.t -> Int32Array.t
 
-  val t_of_js : Ojs.t -> t
-
-  val create : t -> elements:float Iterable.t -> Int32Array.t
-
-  val from
+  val from_iterable
     :  t
     -> array:float Iterable.t
     -> ?mapfn:(v:float -> k:float -> float)
@@ -521,29 +558,36 @@ module Int32ArrayConstructor : sig
 end
 
 module Uint32Array : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Uint32Array
+  end
 
   val entries : t -> (float * float) IterableIterator.t
 
   val keys : t -> float IterableIterator.t
 
   val values : t -> float IterableIterator.t
+
+  (* Constructor *)
+
+  val create_iterable : float Iterable.t -> Uint32Array.t
+
+  val from_iterable
+    :  array:float Iterable.t
+    -> ?mapfn:(v:float -> k:float -> float)
+    -> ?thisArg:any
+    -> unit
+    -> Uint32Array.t
 end
 
 module Uint32ArrayConstructor : sig
-  type t
+  include module type of struct
+    include Uint32ArrayConstructor
+  end
 
-  val t_to_js : t -> Ojs.t
+  val create_iterable : t -> float Iterable.t -> Uint32Array.t
 
-  val t_of_js : Ojs.t -> t
-
-  val create : t -> elements:float Iterable.t -> Uint32Array.t
-
-  val from
+  val from_iterable
     :  t
     -> array:float Iterable.t
     -> ?mapfn:(v:float -> k:float -> float)
@@ -553,29 +597,36 @@ module Uint32ArrayConstructor : sig
 end
 
 module Float32Array : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Float32Array
+  end
 
   val entries : t -> (float * float) IterableIterator.t
 
   val keys : t -> float IterableIterator.t
 
   val values : t -> float IterableIterator.t
+
+  (* Constructor *)
+
+  val create_iterable : float Iterable.t -> Float32Array.t
+
+  val from_iterable
+    :  array:float Iterable.t
+    -> ?mapfn:(v:float -> k:float -> float)
+    -> ?thisArg:any
+    -> unit
+    -> Float32Array.t
 end
 
 module Float32ArrayConstructor : sig
-  type t
+  include module type of struct
+    include Float32ArrayConstructor
+  end
 
-  val t_to_js : t -> Ojs.t
+  val create_iterable : t -> float Iterable.t -> Float32Array.t
 
-  val t_of_js : Ojs.t -> t
-
-  val create : t -> elements:float Iterable.t -> Float32Array.t
-
-  val from
+  val from_iterable
     :  t
     -> array:float Iterable.t
     -> ?mapfn:(v:float -> k:float -> float)
@@ -585,29 +636,36 @@ module Float32ArrayConstructor : sig
 end
 
 module Float64Array : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Float64Array
+  end
 
   val entries : t -> (float * float) IterableIterator.t
 
   val keys : t -> float IterableIterator.t
 
   val values : t -> float IterableIterator.t
+
+  (* Constructor *)
+
+  val create_iterable : float Iterable.t -> Float64Array.t
+
+  val from_iterable
+    :  array:float Iterable.t
+    -> ?mapfn:(v:float -> k:float -> float)
+    -> ?thisArg:any
+    -> unit
+    -> Float64Array.t
 end
 
 module Float64ArrayConstructor : sig
-  type t
+  include module type of struct
+    include Float64ArrayConstructor
+  end
 
-  val t_to_js : t -> Ojs.t
+  val create_iterable : t -> float Iterable.t -> Float64Array.t
 
-  val t_of_js : Ojs.t -> t
-
-  val create : t -> elements:float Iterable.t -> Float64Array.t
-
-  val from
+  val from_iterable
     :  t
     -> array:float Iterable.t
     -> ?mapfn:(v:float -> k:float -> float)

@@ -1,0 +1,51 @@
+(library
+ (name es2017)
+ (public_name es2017)
+ (libraries js_of_ocaml ojs es2016)
+ (flags
+  (:standard
+   -w
+   ; Hide "no cmx file was found in path for module Ojs, and its interface was not compiled with -opaque"
+   -58)))
+
+(rule
+ (target es2017.ml)
+ (deps gen/es2017.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target es2017_intl.ml)
+ (deps gen/es2017_intl.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target es2017_object.ml)
+ (deps gen/es2017_object.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target es2017_sharedmemory.ml)
+ (deps gen/es2017_sharedmemory.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target es2017_string.ml)
+ (deps gen/es2017_string.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target es2017_typedarrays.ml)
+ (deps gen/es2017_typedarrays.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))

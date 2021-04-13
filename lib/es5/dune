@@ -3,3 +3,10 @@
  (public_name es5)
  (libraries js_of_ocaml ojs)
  (modes byte))
+
+(rule
+ (target es5.ml)
+ (deps gen/es5.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))

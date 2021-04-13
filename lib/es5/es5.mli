@@ -1598,111 +1598,80 @@ module DateTimeFormatOptions : sig
 
   val get_localeMatcher
     :  t
-    -> ([ `L_s2_best_fit [@js "best fit"] | `L_s4_lookup [@js "lookup"] ]
-       [@js.enum])
+    -> ([ `best_fit [@js "best fit"] | `lookup [@js "lookup"] ][@js.enum])
 
-  val set_localeMatcher
-    :  t
-    -> ([ `L_s2_best_fit | `L_s4_lookup ][@js.enum])
-    -> unit
+  val set_localeMatcher : t -> ([ `best_fit | `lookup ][@js.enum]) -> unit
 
   val get_weekday
     :  t
-    -> ([ `L_s3_long [@js "long"]
-        | `L_s5_narrow [@js "narrow"]
-        | `L_s7_short [@js "short"]
-        ]
+    -> ([ `long [@js "long"] | `narrow [@js "narrow"] | `short [@js "short"] ]
        [@js.enum])
 
-  val set_weekday
-    :  t
-    -> ([ `L_s3_long | `L_s5_narrow | `L_s7_short ][@js.enum])
-    -> unit
+  val set_weekday : t -> ([ `long | `narrow | `short ][@js.enum]) -> unit
 
   val get_era
     :  t
-    -> ([ `L_s3_long [@js "long"]
-        | `L_s5_narrow [@js "narrow"]
-        | `L_s7_short [@js "short"]
-        ]
+    -> ([ `long [@js "long"] | `narrow [@js "narrow"] | `short [@js "short"] ]
        [@js.enum])
 
-  val set_era
-    :  t
-    -> ([ `L_s3_long | `L_s5_narrow | `L_s7_short ][@js.enum])
-    -> unit
+  val set_era : t -> ([ `long | `narrow | `short ][@js.enum]) -> unit
 
   val get_year
     :  t
-    -> ([ `L_s0_2_digit [@js "2-digit"] | `L_s6_numeric [@js "numeric"] ]
-       [@js.enum])
+    -> ([ `two_digit [@js "2-digit"] | `numeric [@js "numeric"] ][@js.enum])
 
-  val set_year : t -> ([ `L_s0_2_digit | `L_s6_numeric ][@js.enum]) -> unit
+  val set_year : t -> ([ `two_digit | `numeric ][@js.enum]) -> unit
 
   val get_month
     :  t
-    -> ([ `L_s0_2_digit [@js "2-digit"]
-        | `L_s3_long [@js "long"]
-        | `L_s5_narrow [@js "narrow"]
-        | `L_s6_numeric [@js "numeric"]
-        | `L_s7_short [@js "short"]
+    -> ([ `two_digit [@js "2-digit"]
+        | `long [@js "long"]
+        | `narrow [@js "narrow"]
+        | `numeric [@js "numeric"]
+        | `short [@js "short"]
         ]
        [@js.enum])
 
   val set_month
     :  t
-    -> ([ `L_s0_2_digit
-        | `L_s3_long
-        | `L_s5_narrow
-        | `L_s6_numeric
-        | `L_s7_short
-        ]
-       [@js.enum])
+    -> ([ `two_digit | `long | `narrow | `numeric | `short ][@js.enum])
     -> unit
 
   val get_day
     :  t
-    -> ([ `L_s0_2_digit [@js "2-digit"] | `L_s6_numeric [@js "numeric"] ]
-       [@js.enum])
+    -> ([ `two_digit [@js "2-digit"] | `numeric [@js "numeric"] ][@js.enum])
 
-  val set_day : t -> ([ `L_s0_2_digit | `L_s6_numeric ][@js.enum]) -> unit
+  val set_day : t -> ([ `two_digit | `numeric ][@js.enum]) -> unit
 
   val get_hour
     :  t
-    -> ([ `L_s0_2_digit [@js "2-digit"] | `L_s6_numeric [@js "numeric"] ]
-       [@js.enum])
+    -> ([ `two_digit [@js "2-digit"] | `numeric [@js "numeric"] ][@js.enum])
 
-  val set_hour : t -> ([ `L_s0_2_digit | `L_s6_numeric ][@js.enum]) -> unit
+  val set_hour : t -> ([ `two_digit | `numeric ][@js.enum]) -> unit
 
   val get_minute
     :  t
-    -> ([ `L_s0_2_digit [@js "2-digit"] | `L_s6_numeric [@js "numeric"] ]
-       [@js.enum])
+    -> ([ `two_digit [@js "2-digit"] | `numeric [@js "numeric"] ][@js.enum])
 
-  val set_minute : t -> ([ `L_s0_2_digit | `L_s6_numeric ][@js.enum]) -> unit
+  val set_minute : t -> ([ `two_digit | `numeric ][@js.enum]) -> unit
 
   val get_second
     :  t
-    -> ([ `L_s0_2_digit [@js "2-digit"] | `L_s6_numeric [@js "numeric"] ]
-       [@js.enum])
+    -> ([ `two_digit [@js "2-digit"] | `numeric [@js "numeric"] ][@js.enum])
 
-  val set_second : t -> ([ `L_s0_2_digit | `L_s6_numeric ][@js.enum]) -> unit
+  val set_second : t -> ([ `two_digit | `numeric ][@js.enum]) -> unit
 
   val get_timeZoneName
     :  t
-    -> ([ `L_s3_long [@js "long"] | `L_s7_short [@js "short"] ][@js.enum])
+    -> ([ `long [@js "long"] | `short [@js "short"] ][@js.enum])
 
-  val set_timeZoneName : t -> ([ `L_s3_long | `L_s7_short ][@js.enum]) -> unit
+  val set_timeZoneName : t -> ([ `long | `short ][@js.enum]) -> unit
 
   val get_formatMatcher
     :  t
-    -> ([ `L_s1_basic [@js "basic"] | `L_s2_best_fit [@js "best fit"] ]
-       [@js.enum])
+    -> ([ `basic [@js "basic"] | `best_fit [@js "best fit"] ][@js.enum])
 
-  val set_formatMatcher
-    :  t
-    -> ([ `L_s1_basic | `L_s2_best_fit ][@js.enum])
-    -> unit
+  val set_formatMatcher : t -> ([ `basic | `best_fit ][@js.enum]) -> unit
 
   val get_hour12 : t -> bool
 

@@ -1,0 +1,13 @@
+(library
+ (name gen_vscode)
+ (libraries js_of_ocaml ojs es5)
+ (preprocess
+  (pps gen_js_api.ppx))
+ (modes byte))
+
+(rule
+ (targets vscode.ml)
+ (deps vscode.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps})))

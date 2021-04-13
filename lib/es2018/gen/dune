@@ -1,0 +1,34 @@
+(library
+ (name gen_es2018)
+ (libraries js_of_ocaml ojs es2017)
+ (preprocess
+  (pps gen_js_api.ppx))
+ (modes byte))
+
+(rule
+ (targets es2018_asyncgenerator.ml)
+ (deps es2018_asyncgenerator.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps})))
+
+(rule
+ (targets es2018_asynciterable.ml)
+ (deps es2018_asynciterable.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps})))
+
+(rule
+ (targets es2018.ml)
+ (deps es2018.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps})))
+
+(rule
+ (targets es2018_intl.ml)
+ (deps es2018_intl.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps})))

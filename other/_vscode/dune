@@ -1,0 +1,11 @@
+(library
+ (name vscode)
+ (libraries js_of_ocaml ojs es5)
+ (modes byte))
+
+(rule
+ (target vscode.ml)
+ (deps gen/vscode.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))

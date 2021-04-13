@@ -49,15 +49,11 @@ module GeneratorFunction : sig
 
   val t_of_js : Ojs.t -> t
 
-  val create : t -> args:any list -> (unknown, any, unknown) Generator.t
+  val create : string list -> t
 
-  val apply : t -> args:any list -> (unknown, any, unknown) Generator.t
+  val get_length : unit -> float
 
-  val get_length : t -> float
-
-  val get_name : t -> string
-
-  val get_prototype : t -> (unknown, any, unknown) Generator.t
+  val get_name : unit -> string
 end
 
 module GeneratorFunctionConstructor : sig
@@ -67,9 +63,9 @@ module GeneratorFunctionConstructor : sig
 
   val t_of_js : Ojs.t -> t
 
-  val create : t -> args:string list -> GeneratorFunction.t
+  val create : t -> string list -> GeneratorFunction.t
 
-  val apply : t -> args:string list -> GeneratorFunction.t
+  val apply : t -> string list -> GeneratorFunction.t
 
   val get_length : t -> float
 

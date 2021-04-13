@@ -7,3 +7,66 @@
    -w
    ; Hide "no cmx file was found in path for module Ojs, and its interface was not compiled with -opaque"
    -58)))
+
+(rule
+ (target es2015.ml)
+ (deps gen/es2015.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target es2015_collection.ml)
+ (deps gen/es2015_collection.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target es2015_core.ml)
+ (deps gen/es2015_core.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target es2015_generator.ml)
+ (deps gen/es2015_generator.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target es2015_iterable.ml)
+ (deps gen/es2015_iterable.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target es2015_promise.ml)
+ (deps gen/es2015_promise.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target es2015_proxy.ml)
+ (deps gen/es2015_proxy.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target es2015_reflect.ml)
+ (deps gen/es2015_reflect.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target es2015_symbol.ml)
+ (deps gen/es2015_symbol.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))

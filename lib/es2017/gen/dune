@@ -1,0 +1,48 @@
+(library
+ (name gen_es2017)
+ (libraries js_of_ocaml ojs es2016)
+ (preprocess
+  (pps gen_js_api.ppx))
+ (modes byte))
+
+(rule
+ (targets es2017.ml)
+ (deps es2017.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps})))
+
+(rule
+ (targets es2017_intl.ml)
+ (deps es2017_intl.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps})))
+
+(rule
+ (targets es2017_object.ml)
+ (deps es2017_object.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps})))
+
+(rule
+ (targets es2017_sharedmemory.ml)
+ (deps es2017_sharedmemory.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps})))
+
+(rule
+ (targets es2017_string.ml)
+ (deps es2017_string.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps})))
+
+(rule
+ (targets es2017_typedarrays.ml)
+ (deps es2017_typedarrays.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps})))
