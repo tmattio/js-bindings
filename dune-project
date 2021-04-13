@@ -100,6 +100,6 @@
    (>= 4.08.0))
   dune
   ojs
-  (es2020
+  (es2019
    (= :version))
   js_of_ocaml))
