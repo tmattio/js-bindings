@@ -1,18 +1,10 @@
-# OCaml ECMAScript
+# OCaml JavaScript bindings
 
-[![Actions Status](https://github.com/tmattio/ocaml-ecmascript/workflows/CI/badge.svg)](https://github.com/tmattio/ocaml-ecmascript/actions)
+[![Actions Status](https://github.com/tmattio/js-bindings/workflows/CI/badge.svg)](https://github.com/tmattio/js-bindings/actions)
 
-ECMAScript bindings for OCaml:
+High-quality JavaScript bindings for OCaml.
 
-- ES5
-- ES2015
-- ES2016
-- ES2017
-- ES2018
-- ES2019
-- ES2020
-
-And ESNext!? PR welcome 😉
+Want bindings for a library? Open an [issue](https://github.com/tmattio/js-bindings/issues)!
 
 The bindings have been generated using `ts2ocaml` from the TypeScript type definitions found in [https://github.com/Microsoft/TypeScript/tree/master/lib](https://github.com/Microsoft/TypeScript/tree/master/lib).
 
@@ -23,23 +15,14 @@ The generated bindings have then been manually modified to improve the API. Nota
 
 The bindings don't depend on any PPX (and in particular, they don't depend on `gen_js_api`). Instead, the generated bindings are promoted and the installable libraries copies the promoted files.
 
-## Installation
-
-### Using Opam
-
-```bash
-opam install es2020
-```
-
-### Using Esy
-
-```bash
-esy add @opam/es2020
-```
-
 ## To do
 
-- [ ] Finish moving constructor APIs to modules (see collection)
+- [ ] es2017
+- [ ] es2017
+- [ ] es2017
+- [ ] es2020
+- [ ] node
+- [ ] vscode
 
 ## Notes
 

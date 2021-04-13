@@ -5,9 +5,9 @@ description: "ECMAScript 2018 bindings for OCaml"
 maintainer: ["Thibaut Mattio"]
 authors: ["Thibaut Mattio"]
 license: "MIT"
-homepage: "https://github.com/tmattio/ocaml-ecmascript"
-doc: "https://tmattio.github.io/ocaml-ecmascript/"
-bug-reports: "https://github.com/tmattio/ocaml-ecmascript/issues"
+homepage: "https://github.com/tmattio/js-bindings"
+doc: "https://tmattio.github.io/js-bindings/"
+bug-reports: "https://github.com/tmattio/js-bindings/issues"
 depends: [
   "ocaml" {>= "4.08.0"}
   "dune"
@@ -29,4 +29,4 @@ build: [
     "@doc" {with-doc}
   ]
 ]
-dev-repo: "git+https://github.com/tmattio/ocaml-ecmascript.git"
+dev-repo: "git+https://github.com/tmattio/js-bindings.git"

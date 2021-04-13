@@ -1,11 +1,11 @@
 (lang dune 2.0)
 
-(name ocaml-ecmascript)
+(name js-bindings)
 
-(documentation "https://tmattio.github.io/ocaml-ecmascript/")
+(documentation "https://tmattio.github.io/js-bindings/")
 
 (source
- (github tmattio/ocaml-ecmascript))
+ (github tmattio/js-bindings))
 
 (license MIT)
 
@@ -101,5 +101,31 @@
   dune
   ojs
   (es2019
+   (= :version))
+  js_of_ocaml))
+
+(package
+ (name vscode)
+ (synopsis "VSCode bindings for OCaml")
+ (description "VSCode bindings for OCaml")
+ (depends
+  (ocaml
+   (>= 4.08.0))
+  dune
+  ojs
+  (es5
+   (= :version))
+  js_of_ocaml))
+
+(package
+ (name node)
+ (synopsis "Node bindings for OCaml")
+ (description "Node bindings for OCaml")
+ (depends
+  (ocaml
+   (>= 4.08.0))
+  dune
+  ojs
+  (es2020
    (= :version))
   js_of_ocaml))
