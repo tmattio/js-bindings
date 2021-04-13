@@ -1,5 +1,6 @@
 (library
  (name vscode)
+ (public_name vscode)
  (libraries js_of_ocaml ojs es5)
  (modes byte))
 
