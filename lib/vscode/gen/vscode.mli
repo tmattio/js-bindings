@@ -2770,11 +2770,9 @@ module Vscode : sig
   [@@js.scope "Range"]
 
   module Selection : sig
-    type t = vscode_Selection
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Range
+    end
 
     val get_anchor : t -> vscode_Position [@@js.get "anchor"]
 
@@ -2798,8 +2796,6 @@ module Vscode : sig
     val get_isReversed : t -> bool [@@js.get "isReversed"]
 
     val set_isReversed : t -> bool -> unit [@@js.set "isReversed"]
-
-    val cast : t -> vscode_Range [@@js.cast]
   end
   [@@js.scope "Selection"]
 
@@ -3188,11 +3184,9 @@ module Vscode : sig
   [@@js.scope "ThemableDecorationAttachmentRenderOptions"]
 
   module DecorationRenderOptions : sig
-    type t = vscode_DecorationRenderOptions
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include ThemableDecorationRenderOptions
+    end
 
     val get_isWholeLine : t -> bool [@@js.get "isWholeLine"]
 
@@ -3220,8 +3214,6 @@ module Vscode : sig
 
     val set_dark : t -> vscode_ThemableDecorationRenderOptions -> unit
       [@@js.set "dark"]
-
-    val cast : t -> vscode_ThemableDecorationRenderOptions [@@js.cast]
   end
   [@@js.scope "DecorationRenderOptions"]
 
@@ -3283,11 +3275,9 @@ module Vscode : sig
   [@@js.scope "ThemableDecorationInstanceRenderOptions"]
 
   module DecorationInstanceRenderOptions : sig
-    type t = vscode_DecorationInstanceRenderOptions
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include ThemableDecorationInstanceRenderOptions
+    end
 
     val get_light : t -> vscode_ThemableDecorationInstanceRenderOptions
       [@@js.get "light"]
@@ -3300,8 +3290,6 @@ module Vscode : sig
 
     val set_dark : t -> vscode_ThemableDecorationInstanceRenderOptions -> unit
       [@@js.set "dark"]
-
-    val cast : t -> vscode_ThemableDecorationInstanceRenderOptions [@@js.cast]
   end
   [@@js.scope "DecorationInstanceRenderOptions"]
 
@@ -3490,15 +3478,15 @@ module Vscode : sig
   [@@js.scope "CancellationTokenSource"]
 
   module CancellationError : sig
-    type t = vscode_CancellationError
+    include module type of struct
+      include Error
+    end
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
     val create : unit -> t [@@js.create]
-
-    val cast : t -> Error.t [@@js.cast]
   end
   [@@js.scope "CancellationError"]
 
@@ -3554,11 +3542,9 @@ module Vscode : sig
   [@@js.scope "EventEmitter"]
 
   module FileSystemWatcher : sig
-    type t = vscode_FileSystemWatcher
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Disposable
+    end
 
     val get_ignoreCreateEvents : t -> bool [@@js.get "ignoreCreateEvents"]
 
@@ -3589,8 +3575,6 @@ module Vscode : sig
 
     val set_onDidDelete : t -> vscode_Uri vscode_Event -> unit
       [@@js.set "onDidDelete"]
-
-    val cast : t -> vscode_Disposable [@@js.cast]
   end
   [@@js.scope "FileSystemWatcher"]
 
@@ -7258,11 +7242,9 @@ module Vscode : sig
   [@@js.scope "FileStat"]
 
   module FileSystemError : sig
-    type t = vscode_FileSystemError
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Error
+    end
 
     val fileNotFound : ?messageOrUri:vscode_Uri or_string -> unit -> t
       [@@js.global "FileNotFound"]
@@ -7285,8 +7267,6 @@ module Vscode : sig
     val create : ?messageOrUri:vscode_Uri or_string -> unit -> t [@@js.create]
 
     val get_code : t -> string [@@js.get "code"]
-
-    val cast : t -> Error.t [@@js.cast]
   end
   [@@js.scope "FileSystemError"]
 
@@ -7773,11 +7753,9 @@ module Vscode : sig
   [@@js.scope "CustomReadonlyEditorProvider"]
 
   module CustomEditorProvider : sig
-    type 'T t = 'T vscode_CustomEditorProvider
-
-    val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
-
-    val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+    include module type of struct
+      include CustomReadonlyEditorProvider
+    end
 
     val get_onDidChangeCustomDocument
       :  'T t
@@ -7816,7 +7794,9 @@ module Vscode : sig
       -> vscode_CustomDocumentBackup _Thenable
       [@@js.call "backupCustomDocument"]
 
-    val cast : 'T t -> 'T vscode_CustomReadonlyEditorProvider [@@js.cast]
+    include module type of struct
+      include CustomReadonlyEditorProvider
+    end
   end
   [@@js.scope "CustomEditorProvider"]
 
@@ -8343,7 +8323,11 @@ module Vscode : sig
   [@@js.scope "TreeViewVisibilityChangeEvent"]
 
   module TreeView : sig
-    type 'T t = 'T vscode_TreeView
+    include module type of struct
+      include Disposable
+    end
+
+    type 'T t = Disposable.t
 
     val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
@@ -8392,8 +8376,6 @@ module Vscode : sig
       -> unit
       -> unit _Thenable
       [@@js.call "reveal"]
-
-    val cast : 'T t -> vscode_Disposable [@@js.cast]
   end
   [@@js.scope "TreeView"]
 
@@ -8823,7 +8805,11 @@ module Vscode : sig
   [@@js.scope "QuickInput"]
 
   module QuickPick : sig
-    type 'T t = 'T vscode_QuickPick
+    include module type of struct
+      include QuickInput
+    end
+
+    type 'T t = QuickInput.t
 
     val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
@@ -8881,17 +8867,13 @@ module Vscode : sig
 
     val get_onDidChangeSelection : 'T t -> 'T list vscode_Event
       [@@js.get "onDidChangeSelection"]
-
-    val cast : 'T t -> vscode_QuickInput [@@js.cast]
   end
   [@@js.scope "QuickPick"]
 
   module InputBox : sig
-    type t = vscode_InputBox
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include QuickInput
+    end
 
     val get_value : t -> string [@@js.get "value"]
 
@@ -8928,8 +8910,6 @@ module Vscode : sig
 
     val set_validationMessage : t -> string or_undefined -> unit
       [@@js.set "validationMessage"]
-
-    val cast : t -> vscode_QuickInput [@@js.cast]
   end
   [@@js.scope "InputBox"]
 
@@ -9124,7 +9104,7 @@ module Vscode : sig
 
     val get_name : t -> string [@@js.get "name"]
 
-    val get_index : t -> float [@@js.get "index"]
+    val get_index : t -> int [@@js.get "index"]
   end
   [@@js.scope "WorkspaceFolder"]
 
@@ -9557,11 +9537,9 @@ module Vscode : sig
   [@@js.scope "SourceControlResourceThemableDecorations"]
 
   module SourceControlResourceDecorations : sig
-    type t = vscode_SourceControlResourceDecorations
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include SourceControlResourceThemableDecorations
+    end
 
     val get_strikeThrough : t -> bool [@@js.get "strikeThrough"]
 
@@ -9574,8 +9552,6 @@ module Vscode : sig
 
     val get_dark : t -> vscode_SourceControlResourceThemableDecorations
       [@@js.get "dark"]
-
-    val cast : t -> vscode_SourceControlResourceThemableDecorations [@@js.cast]
   end
   [@@js.scope "SourceControlResourceDecorations"]
 
@@ -9895,19 +9871,15 @@ module Vscode : sig
   [@@js.scope "DebugAdapterNamedPipeServer"]
 
   module DebugAdapter : sig
-    type t = vscode_DebugAdapter
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Disposable
+    end
 
     val get_onDidSendMessage : t -> vscode_DebugProtocolMessage vscode_Event
       [@@js.get "onDidSendMessage"]
 
     val handleMessage : t -> message:vscode_DebugProtocolMessage -> unit
       [@@js.call "handleMessage"]
-
-    val cast : t -> vscode_Disposable [@@js.cast]
   end
   [@@js.scope "DebugAdapter"]
 
@@ -10046,11 +10018,9 @@ module Vscode : sig
   [@@js.scope "Breakpoint"]
 
   module SourceBreakpoint : sig
-    type t = vscode_SourceBreakpoint
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Breakpoint
+    end
 
     val get_location : t -> vscode_Location [@@js.get "location"]
 
@@ -10063,17 +10033,13 @@ module Vscode : sig
       -> unit
       -> t
       [@@js.create]
-
-    val cast : t -> vscode_Breakpoint [@@js.cast]
   end
   [@@js.scope "SourceBreakpoint"]
 
   module FunctionBreakpoint : sig
-    type t = vscode_FunctionBreakpoint
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Breakpoint
+    end
 
     val get_functionName : t -> string [@@js.get "functionName"]
 
@@ -10087,7 +10053,9 @@ module Vscode : sig
       -> t
       [@@js.create]
 
-    val cast : t -> vscode_Breakpoint [@@js.cast]
+    include module type of struct
+      include Breakpoint
+    end
   end
   [@@js.scope "FunctionBreakpoint"]
 

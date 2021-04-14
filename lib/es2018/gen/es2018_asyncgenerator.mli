@@ -32,21 +32,9 @@ open AnonymousInterfaces
 open Types
 
 module AsyncGenerator : sig
-  type ('T, 'TReturn, 'TNext) t = ('T, 'TReturn, 'TNext) _AsyncGenerator
-
-  val t_to_js
-    :  ('T -> Ojs.t)
-    -> ('TReturn -> Ojs.t)
-    -> ('TNext -> Ojs.t)
-    -> ('T, 'TReturn, 'TNext) t
-    -> Ojs.t
-
-  val t_of_js
-    :  (Ojs.t -> 'T)
-    -> (Ojs.t -> 'TReturn)
-    -> (Ojs.t -> 'TNext)
-    -> Ojs.t
-    -> ('T, 'TReturn, 'TNext) t
+  include module type of struct
+    include AsyncIterator
+  end
 
   type ('T, 'TReturn) t_2 = ('T, 'TReturn, unknown) t
 
@@ -93,9 +81,6 @@ module AsyncGenerator : sig
     -> e:any
     -> ('T, 'TReturn) IteratorResult.t Promise.t
     [@@js.call "throw"]
-
-  val cast : ('T, 'TReturn, 'TNext) t -> ('T, 'TReturn, 'TNext) AsyncIterator.t
-    [@@js.cast]
 end
 [@@js.scope "AsyncGenerator"]
 
@@ -109,20 +94,20 @@ module AsyncGeneratorFunction : sig
   val create
     :  t
     -> args:(any list[@js.variadic])
-    -> (unknown, any, unknown) _AsyncGenerator
+    -> (unknown, any, unknown) AsyncGenerator.t
     [@@js.apply_newable]
 
   val apply
     :  t
     -> args:(any list[@js.variadic])
-    -> (unknown, any, unknown) _AsyncGenerator
+    -> (unknown, any, unknown) AsyncGenerator.t
     [@@js.apply]
 
   val get_length : t -> float [@@js.get "length"]
 
   val get_name : t -> string [@@js.get "name"]
 
-  val get_prototype : t -> (unknown, any, unknown) _AsyncGenerator
+  val get_prototype : t -> (unknown, any, unknown) AsyncGenerator.t
     [@@js.get "prototype"]
 end
 

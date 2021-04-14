@@ -4,56 +4,8 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type ('K, 'V) _Map = [ `Map of 'K * 'V ] intf
-    [@@js.custom
-      { of_js = (fun _K _V -> Obj.magic); to_js = (fun _K _V -> Obj.magic) }]
-
-    and _MapConstructor = [ `MapConstructor ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and ('K, 'V) _ReadonlyMap = [ `ReadonlyMap of 'K * 'V ] intf
-    [@@js.custom
-      { of_js = (fun _K _V -> Obj.magic); to_js = (fun _K _V -> Obj.magic) }]
-
-    and 'T _ReadonlySet = [ `ReadonlySet of 'T ] intf
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-
-    and 'T _Set = [ `Set of 'T ] intf
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-
-    and _SetConstructor = [ `SetConstructor ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and ('K, 'V) _WeakMap = [ `WeakMap of 'K * 'V ] intf
-    [@@js.custom
-      { of_js = (fun _K _V -> Obj.magic); to_js = (fun _K _V -> Obj.magic) }]
-
-    and _WeakMapConstructor = [ `WeakMapConstructor ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and 'T _WeakSet = [ `WeakSet of 'T ] intf
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-
-    and _WeakSetConstructor = [ `WeakSetConstructor ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module Map : sig
-  type ('K, 'V) t = ('K, 'V) _Map
+  type ('K, 'V) t
 
   val t_to_js : ('K -> Ojs.t) -> ('V -> Ojs.t) -> ('K, 'V) t -> Ojs.t
 
@@ -81,32 +33,32 @@ module Map : sig
 
   (* Constructor *)
 
-  val create : unit -> (any, any) _Map [@@js.new "Map"]
+  val create : unit -> (any, any) t [@@js.new "Map"]
 
-  val create' : ?entries:('K * 'V) list or_null -> unit -> ('K, 'V) _Map
+  val create' : ?entries:('K * 'V) list or_null -> unit -> ('K, 'V) t
     [@@js.new "Map"]
 end
 
 module MapConstructor : sig
-  type t = _MapConstructor
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val create : t -> (any, any) _Map [@@js.apply_newable]
+  val create : t -> (any, any) Map.t [@@js.apply_newable]
 
-  val create' : t -> ?entries:('K * 'V) list or_null -> unit -> ('K, 'V) _Map
+  val create' : t -> ?entries:('K * 'V) list or_null -> unit -> ('K, 'V) Map.t
     [@@js.apply_newable]
 
-  val get_prototype : t -> (any, any) _Map [@@js.get "prototype"]
+  val get_prototype : t -> (any, any) Map.t [@@js.get "prototype"]
 end
 [@@js.scope "MapConstructor"]
 
-val map : _MapConstructor [@@js.global "Map"]
+val map : MapConstructor.t [@@js.global "Map"]
 
 module ReadonlyMap : sig
-  type ('K, 'V) t = ('K, 'V) _ReadonlyMap
+  type ('K, 'V) t
 
   val t_to_js : ('K -> Ojs.t) -> ('V -> Ojs.t) -> ('K, 'V) t -> Ojs.t
 
@@ -129,7 +81,7 @@ end
 [@@js.scope "ReadonlyMap"]
 
 module WeakMap : sig
-  type ('K, 'V) t = ('K, 'V) _WeakMap
+  type ('K, 'V) t
 
   val t_to_js : ('K -> Ojs.t) -> ('V -> Ojs.t) -> ('K, 'V) t -> Ojs.t
 
@@ -145,28 +97,33 @@ module WeakMap : sig
 
   (* Constructor *)
 
-  val create : ?entries:('K * 'V) list or_null -> unit -> ('K, 'V) _WeakMap
+  val create : ?entries:('K * 'V) list or_null -> unit -> ('K, 'V) t
     [@@js.new "WeakMap"]
 end
 
 module WeakMapConstructor : sig
-  type t = _WeakMapConstructor
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val create : t -> ?entries:('K * 'V) list or_null -> unit -> ('K, 'V) _WeakMap
+  val create
+    :  t
+    -> ?entries:('K * 'V) list or_null
+    -> unit
+    -> ('K, 'V) WeakMap.t
     [@@js.apply_newable]
 
-  val get_prototype : t -> (untyped_object, any) _WeakMap [@@js.get "prototype"]
+  val get_prototype : t -> (untyped_object, any) WeakMap.t
+    [@@js.get "prototype"]
 end
 [@@js.scope "WeakMapConstructor"]
 
-val weakMap : _WeakMapConstructor [@@js.global "WeakMap"]
+val weakMap : WeakMapConstructor.t [@@js.global "WeakMap"]
 
 module Set : sig
-  type 'T t = 'T _Set
+  type 'T t
 
   val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
@@ -192,27 +149,27 @@ module Set : sig
 
   (* Constructor *)
 
-  val create : ?values:'T list or_null -> unit -> 'T _Set [@@js.new "Set"]
+  val create : ?values:'T list or_null -> unit -> 'T t [@@js.new "Set"]
 end
 
 module SetConstructor : sig
-  type t = _SetConstructor
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val create : t -> ?values:'T list or_null -> unit -> 'T _Set
+  val create : t -> ?values:'T list or_null -> unit -> 'T Set.t
     [@@js.apply_newable]
 
-  val get_prototype : t -> any _Set [@@js.get "prototype"]
+  val get_prototype : t -> any Set.t [@@js.get "prototype"]
 end
 [@@js.scope "SetConstructor"]
 
-val set_ : _SetConstructor [@@js.global "Set"]
+val set_ : SetConstructor.t [@@js.global "Set"]
 
 module ReadonlySet : sig
-  type 'T t = 'T _ReadonlySet
+  type 'T t
 
   val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
@@ -233,7 +190,7 @@ end
 [@@js.scope "ReadonlySet"]
 
 module WeakSet : sig
-  type 'T t = 'T _WeakSet
+  type 'T t
 
   val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
@@ -247,22 +204,21 @@ module WeakSet : sig
 
   (* Constructor *)
 
-  val create : ?values:'T list or_null -> unit -> 'T _WeakSet
-    [@@js.new "WeakSet"]
+  val create : ?values:'T list or_null -> unit -> 'T t [@@js.new "WeakSet"]
 end
 
 module WeakSetConstructor : sig
-  type t = _WeakSetConstructor
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val create : t -> ?values:'T list or_null -> unit -> 'T _WeakSet
+  val create : t -> ?values:'T list or_null -> unit -> 'T WeakSet.t
     [@@js.apply_newable]
 
-  val get_prototype : t -> untyped_object _WeakSet [@@js.get "prototype"]
+  val get_prototype : t -> untyped_object WeakSet.t [@@js.get "prototype"]
 end
 [@@js.scope "WeakSetConstructor"]
 
-val weakSet : _WeakSetConstructor [@@js.global "WeakSet"]
+val weakSet : WeakSetConstructor.t [@@js.global "WeakSet"]

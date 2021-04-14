@@ -281,26 +281,23 @@ module Iterable : sig
 end
 
 module IterableIterator : sig
-  type 'T t = 'T _IterableIterator
+  type 'T t = ('T, any, never or_undefined) Iterator.t
 
   val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
   val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
-
-  val cast : 'T t -> ('T, any, never or_undefined) _Iterator [@@js.cast]
 end
-[@@js.scope "IterableIterator"]
 
 module Array : sig
   include module type of struct
     include Array
   end
 
-  val entries : 'T t -> (float * 'T) _IterableIterator [@@js.call "entries"]
+  val entries : 'T t -> (float * 'T) IterableIterator.t [@@js.call "entries"]
 
-  val keys : 'T t -> float _IterableIterator [@@js.call "keys"]
+  val keys : 'T t -> float IterableIterator.t [@@js.call "keys"]
 
-  val values : 'T t -> 'T _IterableIterator [@@js.call "values"]
+  val values : 'T t -> 'T IterableIterator.t [@@js.call "values"]
 
   val to_ml : 'T t -> 'T list [@@js.cast]
 
@@ -344,11 +341,11 @@ module ReadonlyArray : sig
     include ReadonlyArray
   end
 
-  val entries : 'T t -> (float * 'T) _IterableIterator [@@js.call "entries"]
+  val entries : 'T t -> (float * 'T) IterableIterator.t [@@js.call "entries"]
 
-  val keys : 'T t -> float _IterableIterator [@@js.call "keys"]
+  val keys : 'T t -> float IterableIterator.t [@@js.call "keys"]
 
-  val values : 'T t -> 'T _IterableIterator [@@js.call "values"]
+  val values : 'T t -> 'T IterableIterator.t [@@js.call "values"]
 
   val to_ml : 'T t -> 'T list [@@js.cast]
 
@@ -367,11 +364,11 @@ module Map : sig
     include Map
   end
 
-  val entries : ('K, 'V) t -> ('K * 'V) _IterableIterator [@@js.call "entries"]
+  val entries : ('K, 'V) t -> ('K * 'V) IterableIterator.t [@@js.call "entries"]
 
-  val keys : ('K, 'V) t -> 'K _IterableIterator [@@js.call "keys"]
+  val keys : ('K, 'V) t -> 'K IterableIterator.t [@@js.call "keys"]
 
-  val values : ('K, 'V) t -> 'V _IterableIterator [@@js.call "values"]
+  val values : ('K, 'V) t -> 'V IterableIterator.t [@@js.call "values"]
 
   (* Constructor *)
 
@@ -384,11 +381,11 @@ module ReadonlyMap : sig
     include ReadonlyMap
   end
 
-  val entries : ('K, 'V) t -> ('K * 'V) _IterableIterator [@@js.call "entries"]
+  val entries : ('K, 'V) t -> ('K * 'V) IterableIterator.t [@@js.call "entries"]
 
-  val keys : ('K, 'V) t -> 'K _IterableIterator [@@js.call "keys"]
+  val keys : ('K, 'V) t -> 'K IterableIterator.t [@@js.call "keys"]
 
-  val values : ('K, 'V) t -> 'V _IterableIterator [@@js.call "values"]
+  val values : ('K, 'V) t -> 'V IterableIterator.t [@@js.call "values"]
 end
 [@@js.scope "ReadonlyMap"]
 
@@ -428,11 +425,11 @@ module Set : sig
     include Set
   end
 
-  val entries : 'T t -> ('T * 'T) _IterableIterator [@@js.call "entries"]
+  val entries : 'T t -> ('T * 'T) IterableIterator.t [@@js.call "entries"]
 
-  val keys : 'T t -> 'T _IterableIterator [@@js.call "keys"]
+  val keys : 'T t -> 'T IterableIterator.t [@@js.call "keys"]
 
-  val values : 'T t -> 'T _IterableIterator [@@js.call "values"]
+  val values : 'T t -> 'T IterableIterator.t [@@js.call "values"]
 
   (* Constructor *)
 
@@ -445,11 +442,11 @@ module ReadonlySet : sig
     include ReadonlySet
   end
 
-  val entries : 'T t -> ('T * 'T) _IterableIterator [@@js.call "entries"]
+  val entries : 'T t -> ('T * 'T) IterableIterator.t [@@js.call "entries"]
 
-  val keys : 'T t -> 'T _IterableIterator [@@js.call "keys"]
+  val keys : 'T t -> 'T IterableIterator.t [@@js.call "keys"]
 
-  val values : 'T t -> 'T _IterableIterator [@@js.call "values"]
+  val values : 'T t -> 'T IterableIterator.t [@@js.call "values"]
 end
 [@@js.scope "ReadonlySet"]
 
@@ -528,11 +525,11 @@ module Int8Array : sig
     include Int8Array
   end
 
-  val entries : t -> (float * float) _IterableIterator [@@js.call "entries"]
+  val entries : t -> (float * float) IterableIterator.t [@@js.call "entries"]
 
-  val keys : t -> float _IterableIterator [@@js.call "keys"]
+  val keys : t -> float IterableIterator.t [@@js.call "keys"]
 
-  val values : t -> float _IterableIterator [@@js.call "values"]
+  val values : t -> float IterableIterator.t [@@js.call "values"]
 
   (* Constructor *)
 
@@ -570,11 +567,11 @@ module Uint8Array : sig
     include Uint8Array
   end
 
-  val entries : t -> (float * float) _IterableIterator [@@js.call "entries"]
+  val entries : t -> (float * float) IterableIterator.t [@@js.call "entries"]
 
-  val keys : t -> float _IterableIterator [@@js.call "keys"]
+  val keys : t -> float IterableIterator.t [@@js.call "keys"]
 
-  val values : t -> float _IterableIterator [@@js.call "values"]
+  val values : t -> float IterableIterator.t [@@js.call "values"]
 
   (* Constructor *)
 
@@ -613,11 +610,11 @@ module Uint8ClampedArray : sig
     include Uint8ClampedArray
   end
 
-  val entries : t -> (float * float) _IterableIterator [@@js.call "entries"]
+  val entries : t -> (float * float) IterableIterator.t [@@js.call "entries"]
 
-  val keys : t -> float _IterableIterator [@@js.call "keys"]
+  val keys : t -> float IterableIterator.t [@@js.call "keys"]
 
-  val values : t -> float _IterableIterator [@@js.call "values"]
+  val values : t -> float IterableIterator.t [@@js.call "values"]
 
   (* Constructor *)
 
@@ -656,11 +653,11 @@ module Int16Array : sig
     include Int16Array
   end
 
-  val entries : t -> (float * float) _IterableIterator [@@js.call "entries"]
+  val entries : t -> (float * float) IterableIterator.t [@@js.call "entries"]
 
-  val keys : t -> float _IterableIterator [@@js.call "keys"]
+  val keys : t -> float IterableIterator.t [@@js.call "keys"]
 
-  val values : t -> float _IterableIterator [@@js.call "values"]
+  val values : t -> float IterableIterator.t [@@js.call "values"]
 
   (* Constructor *)
 
@@ -699,11 +696,11 @@ module Uint16Array : sig
     include Uint16Array
   end
 
-  val entries : t -> (float * float) _IterableIterator [@@js.call "entries"]
+  val entries : t -> (float * float) IterableIterator.t [@@js.call "entries"]
 
-  val keys : t -> float _IterableIterator [@@js.call "keys"]
+  val keys : t -> float IterableIterator.t [@@js.call "keys"]
 
-  val values : t -> float _IterableIterator [@@js.call "values"]
+  val values : t -> float IterableIterator.t [@@js.call "values"]
 
   (* Constructor *)
 
@@ -742,11 +739,11 @@ module Int32Array : sig
     include Int32Array
   end
 
-  val entries : t -> (float * float) _IterableIterator [@@js.call "entries"]
+  val entries : t -> (float * float) IterableIterator.t [@@js.call "entries"]
 
-  val keys : t -> float _IterableIterator [@@js.call "keys"]
+  val keys : t -> float IterableIterator.t [@@js.call "keys"]
 
-  val values : t -> float _IterableIterator [@@js.call "values"]
+  val values : t -> float IterableIterator.t [@@js.call "values"]
 
   (* Constructor *)
 
@@ -785,11 +782,11 @@ module Uint32Array : sig
     include Uint32Array
   end
 
-  val entries : t -> (float * float) _IterableIterator [@@js.call "entries"]
+  val entries : t -> (float * float) IterableIterator.t [@@js.call "entries"]
 
-  val keys : t -> float _IterableIterator [@@js.call "keys"]
+  val keys : t -> float IterableIterator.t [@@js.call "keys"]
 
-  val values : t -> float _IterableIterator [@@js.call "values"]
+  val values : t -> float IterableIterator.t [@@js.call "values"]
 
   (* Constructor *)
 
@@ -828,11 +825,11 @@ module Float32Array : sig
     include Float32Array
   end
 
-  val entries : t -> (float * float) _IterableIterator [@@js.call "entries"]
+  val entries : t -> (float * float) IterableIterator.t [@@js.call "entries"]
 
-  val keys : t -> float _IterableIterator [@@js.call "keys"]
+  val keys : t -> float IterableIterator.t [@@js.call "keys"]
 
-  val values : t -> float _IterableIterator [@@js.call "values"]
+  val values : t -> float IterableIterator.t [@@js.call "values"]
 
   (* Constructor *)
 
@@ -871,11 +868,11 @@ module Float64Array : sig
     include Float64Array
   end
 
-  val entries : t -> (float * float) _IterableIterator [@@js.call "entries"]
+  val entries : t -> (float * float) IterableIterator.t [@@js.call "entries"]
 
-  val keys : t -> float _IterableIterator [@@js.call "keys"]
+  val keys : t -> float IterableIterator.t [@@js.call "keys"]
 
-  val values : t -> float _IterableIterator [@@js.call "values"]
+  val values : t -> float IterableIterator.t [@@js.call "values"]
 
   (* Constructor *)
 

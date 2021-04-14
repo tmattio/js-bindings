@@ -641,6 +641,118 @@ module PropertyDescriptorMap : sig
   val set : t -> string -> PropertyDescriptor.t -> unit
 end
 
+module Partial : sig
+  type 'T t
+
+  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+
+  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+end
+
+module Required : sig
+  type 'T t
+
+  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+
+  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+end
+
+module Readonly : sig
+  type 'T t
+
+  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+
+  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+end
+
+module Pick : sig
+  type ('T, 'K) t
+
+  val t_to_js : ('T -> Ojs.t) -> ('K -> Ojs.t) -> ('T, 'K) t -> Ojs.t
+
+  val t_of_js : (Ojs.t -> 'T) -> (Ojs.t -> 'K) -> Ojs.t -> ('T, 'K) t
+end
+
+module Record : sig
+  type ('K, 'T) t
+
+  val t_to_js : ('K -> Ojs.t) -> ('T -> Ojs.t) -> ('K, 'T) t -> Ojs.t
+
+  val t_of_js : (Ojs.t -> 'K) -> (Ojs.t -> 'T) -> Ojs.t -> ('K, 'T) t
+end
+
+module Exclude : sig
+  type ('T, 'U) t
+
+  val t_to_js : ('T -> Ojs.t) -> ('U -> Ojs.t) -> ('T, 'U) t -> Ojs.t
+
+  val t_of_js : (Ojs.t -> 'T) -> (Ojs.t -> 'U) -> Ojs.t -> ('T, 'U) t
+end
+
+module Extract : sig
+  type ('T, 'U) t
+
+  val t_to_js : ('T -> Ojs.t) -> ('U -> Ojs.t) -> ('T, 'U) t -> Ojs.t
+
+  val t_of_js : (Ojs.t -> 'T) -> (Ojs.t -> 'U) -> Ojs.t -> ('T, 'U) t
+end
+
+module Omit : sig
+  type ('T, 'K) t
+
+  val t_to_js : ('T -> Ojs.t) -> ('K -> Ojs.t) -> ('T, 'K) t -> Ojs.t
+
+  val t_of_js : (Ojs.t -> 'T) -> (Ojs.t -> 'K) -> Ojs.t -> ('T, 'K) t
+end
+
+module NonNullable : sig
+  type 'T t
+
+  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+
+  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+end
+
+module Parameters : sig
+  type 'T t
+
+  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+
+  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+end
+
+module ConstructorParameters : sig
+  type 'T t
+
+  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+
+  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+end
+
+module ReturnType : sig
+  type 'T t
+
+  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+
+  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+end
+
+module InstanceType : sig
+  type 'T t
+
+  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+
+  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+end
+
+module ThisType : sig
+  type 'T t
+
+  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+
+  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+end
+
 module Function : sig
   type t
 
@@ -650,9 +762,19 @@ module Function : sig
 
   val apply_ : t -> this:t -> thisArg:any -> ?argArray:any -> unit -> any
 
-  val call : t -> this:t -> thisArg:any -> argArray:any list -> any
+  val call
+    :  t
+    -> this:t
+    -> thisArg:any
+    -> argArray:(any list[@js.variadic])
+    -> any
 
-  val bind : t -> this:t -> thisArg:any -> argArray:any list -> any
+  val bind
+    :  t
+    -> this:t
+    -> thisArg:any
+    -> argArray:(any list[@js.variadic])
+    -> any
 
   val toString : t -> string
 
@@ -672,396 +794,24 @@ module Function : sig
 
   (* Constructor *)
 
-  val create : string list -> t
+  val create : (string list[@js.variadic]) -> t
 end
 
-module ThisType : sig
-  type 'T t
-
-  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
-end
-
-module Readonly : sig
-  type 'T t
-
-  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
-end
-
-module ConcatArray : sig
-  type 'T t
-
-  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
-
-  val get_length : 'T t -> float
-
-  val get : 'T t -> float -> 'T
-
-  val join : 'T t -> ?separator:string -> unit -> string
-
-  val slice : 'T t -> ?start:float -> ?end_:float -> unit -> 'T list
-end
-
-module ReadonlyArray : sig
-  type 'T t
-
-  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
-
-  val get_length : 'T t -> float
-
-  val toString : 'T t -> string
-
-  val toLocaleString : 'T t -> string
-
-  val concat : 'T t -> 'T ConcatArray.t list -> 'T list
-
-  val concat' : 'T t -> ('T, 'T ConcatArray.t) union2 list -> 'T list
-
-  val join : 'T t -> ?separator:string -> unit -> string
-
-  val slice : 'T t -> ?start:float -> ?end_:float -> unit -> 'T list
-
-  val indexOf : 'T t -> searchElement:'T -> ?fromIndex:float -> unit -> float
-
-  val lastIndexOf
-    :  'T t
-    -> searchElement:'T
-    -> ?fromIndex:float
-    -> unit
-    -> float
-
-  val every
-    :  'T t
-    -> (value:'T -> index:float -> array:'T list -> bool)
-    -> ?thisArg:any
-    -> unit
-    -> bool
-
-  val every'
-    :  'T t
-    -> (value:'T -> index:float -> array:'T list -> unknown)
-    -> ?thisArg:any
-    -> unit
-    -> bool
-
-  val some
-    :  'T t
-    -> (value:'T -> index:float -> array:'T list -> unknown)
-    -> ?thisArg:any
-    -> unit
-    -> bool
-
-  val forEach
-    :  'T t
-    -> callbackfn:(value:'T -> index:float -> array:'T list -> unit)
-    -> ?thisArg:any
-    -> unit
-    -> unit
-
-  val map
-    :  'T t
-    -> callbackfn:(value:'T -> index:float -> array:'T list -> 'U)
-    -> ?thisArg:any
-    -> unit
-    -> 'U list
-
-  val filter
-    :  'T t
-    -> (value:'T -> index:float -> array:'T list -> bool)
-    -> ?thisArg:any
-    -> unit
-    -> 'S list
-
-  val filter'
-    :  'T t
-    -> (value:'T -> index:float -> array:'T list -> unknown)
-    -> ?thisArg:any
-    -> unit
-    -> 'T list
-
-  val reduce
-    :  'T t
-    -> callbackfn:
-         (previousValue:'T
-          -> currentValue:'T
-          -> currentIndex:float
-          -> array:'T list
-          -> 'T)
-    -> 'T
-
-  val reduce'
-    :  'T t
-    -> callbackfn:
-         (previousValue:'T
-          -> currentValue:'T
-          -> currentIndex:float
-          -> array:'T list
-          -> 'T)
-    -> initialValue:'T
-    -> 'T
-
-  val reduce''
-    :  'T t
-    -> callbackfn:
-         (previousValue:'U
-          -> currentValue:'T
-          -> currentIndex:float
-          -> array:'T list
-          -> 'U)
-    -> initialValue:'U
-    -> 'U
-
-  val reduceRight
-    :  'T t
-    -> callbackfn:
-         (previousValue:'T
-          -> currentValue:'T
-          -> currentIndex:float
-          -> array:'T list
-          -> 'T)
-    -> 'T
-
-  val reduceRight'
-    :  'T t
-    -> callbackfn:
-         (previousValue:'T
-          -> currentValue:'T
-          -> currentIndex:float
-          -> array:'T list
-          -> 'T)
-    -> initialValue:'T
-    -> 'T
-
-  val reduceRight''
-    :  'T t
-    -> callbackfn:
-         (previousValue:'U
-          -> currentValue:'T
-          -> currentIndex:float
-          -> array:'T list
-          -> 'U)
-    -> initialValue:'U
-    -> 'U
-
-  val get : 'T t -> float -> 'T
-
-  val to_ml : 'T t -> 'T list
-
-  val of_ml : 'T list -> 'T t
-end
-
-module Array : sig
-  type 'T t
-
-  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
-
-  val get_length : 'T t -> float
-
-  val set_length : 'T t -> float -> unit
-
-  val toString : 'T t -> string
-
-  val toLocaleString : 'T t -> string
-
-  val pop : 'T t -> 'T or_undefined
-
-  val push : 'T t -> 'T list -> float
-
-  val concat : 'T t -> 'T ConcatArray.t list -> 'T list
-
-  val concat' : 'T t -> ('T, 'T ConcatArray.t) union2 list -> 'T list
-
-  val join : 'T t -> ?separator:string -> unit -> string
-
-  val reverse : 'T t -> 'T list
-
-  val shift : 'T t -> 'T or_undefined
-
-  val slice : 'T t -> ?start:float -> ?end_:float -> unit -> 'T list
-
-  val sort : 'T t -> ?compareFn:(a:'T -> b:'T -> float) -> unit -> 'T t
-
-  val splice : 'T t -> start:float -> ?deleteCount:float -> unit -> 'T list
-
-  val splice' : 'T t -> start:float -> deleteCount:float -> 'T list -> 'T list
-
-  val unshift : 'T t -> 'T list -> float
-
-  val indexOf : 'T t -> searchElement:'T -> ?fromIndex:float -> unit -> float
-
-  val lastIndexOf
-    :  'T t
-    -> searchElement:'T
-    -> ?fromIndex:float
-    -> unit
-    -> float
-
-  val every
-    :  'T t
-    -> (value:'T -> index:float -> array:'T list -> bool)
-    -> ?thisArg:any
-    -> unit
-    -> bool
-
-  val every'
-    :  'T t
-    -> (value:'T -> index:float -> array:'T list -> unknown)
-    -> ?thisArg:any
-    -> unit
-    -> bool
-
-  val some
-    :  'T t
-    -> (value:'T -> index:float -> array:'T list -> unknown)
-    -> ?thisArg:any
-    -> unit
-    -> bool
-
-  val forEach
-    :  'T t
-    -> callbackfn:(value:'T -> index:float -> array:'T list -> unit)
-    -> ?thisArg:any
-    -> unit
-    -> unit
-
-  val map
-    :  'T t
-    -> callbackfn:(value:'T -> index:float -> array:'T list -> 'U)
-    -> ?thisArg:any
-    -> unit
-    -> 'U list
-
-  val filter
-    :  'T t
-    -> (value:'T -> index:float -> array:'T list -> bool)
-    -> ?thisArg:any
-    -> unit
-    -> 'S list
-
-  val filter'
-    :  'T t
-    -> (value:'T -> index:float -> array:'T list -> unknown)
-    -> ?thisArg:any
-    -> unit
-    -> 'T list
-
-  val reduce
-    :  'T t
-    -> callbackfn:
-         (previousValue:'T
-          -> currentValue:'T
-          -> currentIndex:float
-          -> array:'T list
-          -> 'T)
-    -> 'T
-
-  val reduce'
-    :  'T t
-    -> callbackfn:
-         (previousValue:'T
-          -> currentValue:'T
-          -> currentIndex:float
-          -> array:'T list
-          -> 'T)
-    -> initialValue:'T
-    -> 'T
-
-  val reduce''
-    :  'T t
-    -> callbackfn:
-         (previousValue:'U
-          -> currentValue:'T
-          -> currentIndex:float
-          -> array:'T list
-          -> 'U)
-    -> initialValue:'U
-    -> 'U
-
-  val reduceRight
-    :  'T t
-    -> callbackfn:
-         (previousValue:'T
-          -> currentValue:'T
-          -> currentIndex:float
-          -> array:'T list
-          -> 'T)
-    -> 'T
-
-  val reduceRight'
-    :  'T t
-    -> callbackfn:
-         (previousValue:'T
-          -> currentValue:'T
-          -> currentIndex:float
-          -> array:'T list
-          -> 'T)
-    -> initialValue:'T
-    -> 'T
-
-  val reduceRight''
-    :  'T t
-    -> callbackfn:
-         (previousValue:'U
-          -> currentValue:'T
-          -> currentIndex:float
-          -> array:'T list
-          -> 'U)
-    -> initialValue:'U
-    -> 'U
-
-  val get : 'T t -> float -> 'T
-
-  val set : 'T t -> float -> 'T -> unit
-
-  val to_ml : 'T t -> 'T list
-
-  val of_ml : 'T list -> 'T t
-
-  (* Constructor *)
-
-  val create : ?arrayLength:float -> unit -> any list
-
-  val create' : arrayLength:float -> 'T list
-
-  val create'' : 'T list -> 'T list
-
-  val isArray : any -> bool
-end
-
-module ArrayConstructor : sig
+module FunctionConstructor : sig
   type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val create : t -> ?arrayLength:float -> unit -> any list
+  val create : t -> (string list[@js.variadic]) -> Function.t
 
-  val create' : t -> arrayLength:float -> 'T list
+  val apply : t -> (string list[@js.variadic]) -> Function.t
 
-  val create'' : t -> 'T list -> 'T list
-
-  val apply : t -> ?arrayLength:float -> unit -> any list
-
-  val apply' : t -> arrayLength:float -> 'T list
-
-  val apply'' : t -> 'T list -> 'T list
-
-  val isArray : t -> any -> bool
-
-  val get_prototype : t -> any list
+  val get_prototype : t -> Function.t
 end
 
-val array : ArrayConstructor.t
+val function_ : FunctionConstructor.t
 
 module Object : sig
   type t
@@ -1205,22 +955,6 @@ end
 
 val object_ : ObjectConstructor.t
 
-module FunctionConstructor : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val create : t -> string list -> Function.t
-
-  val apply : t -> string list -> Function.t
-
-  val get_prototype : t -> Function.t
-end
-
-val function_ : FunctionConstructor.t
-
 module ThisParameterType : sig
   type 'T t
 
@@ -1238,26 +972,36 @@ module OmitThisParameter : sig
 end
 
 module CallableFunction : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Function
+  end
 
   val apply_ : t -> this:(this:'T -> 'R) -> thisArg:'T -> 'R
 
   val apply_all
     :  t
-    -> this:(this:'T -> args:any list -> 'R)
+    -> this:
+         (this:'T
+          -> args:
+               (* FIXME: type ''A' cannot be used for variadic argument *)
+               (any list[@js.variadic])
+          -> 'R)
     -> thisArg:'T
     -> args:'A
     -> 'R
 
   val call
     :  t
-    -> this:(this:'T -> args:any list -> 'R)
+    -> this:
+         (this:'T
+          -> args:
+               (* FIXME: type ''A' cannot be used for variadic argument *)
+               (any list[@js.variadic])
+          -> 'R)
     -> thisArg:'T
-    -> args:any list
+    -> args:
+         (* FIXME: type ''A' cannot be used for variadic argument *)
+         (any list[@js.variadic])
     -> 'R
 
   val bind
@@ -1268,24 +1012,26 @@ module CallableFunction : sig
 
   val bind_all
     :  t
-    -> this:(this:'T -> args:any list -> 'R)
+    -> this:
+         (this:'T
+          -> args:
+               (* FIXME: type ''A' cannot be used for variadic argument *)
+               (any list[@js.variadic])
+          -> 'R)
     -> thisArg:'T
-    -> args:any list
-    -> 'R
-
-  val cast : t -> Function.t
+    -> (args:
+          (* FIXME: type ''A' cannot be used for variadic argument *)
+          (any list[@js.variadic])
+        -> 'R
+       [@js.dummy])
 end
 
 module NewableFunction : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Function
+  end
 
   val bind : t -> this:'T -> thisArg:any -> 'T
-
-  val cast : t -> Function.t
 end
 
 module IArguments : sig
@@ -1308,397 +1054,800 @@ module IArguments : sig
   val set_callee : t -> Function.t -> unit
 end
 
-module CollatorOptions : sig
-  type t
+module Intl : sig
+  module CollatorOptions : sig
+    type t
 
-  val t_to_js : t -> Ojs.t
+    val t_to_js : t -> Ojs.t
 
-  val t_of_js : Ojs.t -> t
+    val t_of_js : Ojs.t -> t
 
-  val get_usage : t -> string
+    val get_usage : t -> string
 
-  val set_usage : t -> string -> unit
+    val set_usage : t -> string -> unit
 
-  val get_localeMatcher : t -> string
+    val get_localeMatcher : t -> string
 
-  val set_localeMatcher : t -> string -> unit
+    val set_localeMatcher : t -> string -> unit
 
-  val get_numeric : t -> bool
+    val get_numeric : t -> bool
 
-  val set_numeric : t -> bool -> unit
+    val set_numeric : t -> bool -> unit
 
-  val get_caseFirst : t -> string
+    val get_caseFirst : t -> string
 
-  val set_caseFirst : t -> string -> unit
+    val set_caseFirst : t -> string -> unit
 
-  val get_sensitivity : t -> string
+    val get_sensitivity : t -> string
 
-  val set_sensitivity : t -> string -> unit
+    val set_sensitivity : t -> string -> unit
 
-  val get_ignorePunctuation : t -> bool
+    val get_ignorePunctuation : t -> bool
 
-  val set_ignorePunctuation : t -> bool -> unit
+    val set_ignorePunctuation : t -> bool -> unit
+  end
+
+  module ResolvedCollatorOptions : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_locale : t -> string
+
+    val set_locale : t -> string -> unit
+
+    val get_usage : t -> string
+
+    val set_usage : t -> string -> unit
+
+    val get_sensitivity : t -> string
+
+    val set_sensitivity : t -> string -> unit
+
+    val get_ignorePunctuation : t -> bool
+
+    val set_ignorePunctuation : t -> bool -> unit
+
+    val get_collation : t -> string
+
+    val set_collation : t -> string -> unit
+
+    val get_caseFirst : t -> string
+
+    val set_caseFirst : t -> string -> unit
+
+    val get_numeric : t -> bool
+
+    val set_numeric : t -> bool -> unit
+  end
+
+  module Collator : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val compare : t -> x:string -> y:string -> float
+
+    val resolvedOptions : t -> ResolvedCollatorOptions.t
+  end
+
+  module NumberFormatOptions : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_localeMatcher : t -> string
+
+    val set_localeMatcher : t -> string -> unit
+
+    val get_style : t -> string
+
+    val set_style : t -> string -> unit
+
+    val get_currency : t -> string
+
+    val set_currency : t -> string -> unit
+
+    val get_currencyDisplay : t -> string
+
+    val set_currencyDisplay : t -> string -> unit
+
+    val get_currencySign : t -> string
+
+    val set_currencySign : t -> string -> unit
+
+    val get_useGrouping : t -> bool
+
+    val set_useGrouping : t -> bool -> unit
+
+    val get_minimumIntegerDigits : t -> float
+
+    val set_minimumIntegerDigits : t -> float -> unit
+
+    val get_minimumFractionDigits : t -> float
+
+    val set_minimumFractionDigits : t -> float -> unit
+
+    val get_maximumFractionDigits : t -> float
+
+    val set_maximumFractionDigits : t -> float -> unit
+
+    val get_minimumSignificantDigits : t -> float
+
+    val set_minimumSignificantDigits : t -> float -> unit
+
+    val get_maximumSignificantDigits : t -> float
+
+    val set_maximumSignificantDigits : t -> float -> unit
+  end
+
+  module ResolvedNumberFormatOptions : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_locale : t -> string
+
+    val set_locale : t -> string -> unit
+
+    val get_numberingSystem : t -> string
+
+    val set_numberingSystem : t -> string -> unit
+
+    val get_style : t -> string
+
+    val set_style : t -> string -> unit
+
+    val get_currency : t -> string
+
+    val set_currency : t -> string -> unit
+
+    val get_currencyDisplay : t -> string
+
+    val set_currencyDisplay : t -> string -> unit
+
+    val get_minimumIntegerDigits : t -> float
+
+    val set_minimumIntegerDigits : t -> float -> unit
+
+    val get_minimumFractionDigits : t -> float
+
+    val set_minimumFractionDigits : t -> float -> unit
+
+    val get_maximumFractionDigits : t -> float
+
+    val set_maximumFractionDigits : t -> float -> unit
+
+    val get_minimumSignificantDigits : t -> float
+
+    val set_minimumSignificantDigits : t -> float -> unit
+
+    val get_maximumSignificantDigits : t -> float
+
+    val set_maximumSignificantDigits : t -> float -> unit
+
+    val get_useGrouping : t -> bool
+
+    val set_useGrouping : t -> bool -> unit
+  end
+
+  module NumberFormat : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val format : t -> value:float -> string
+
+    val resolvedOptions : t -> ResolvedNumberFormatOptions.t
+  end
+
+  module DateTimeFormatOptions : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_localeMatcher
+      :  t
+      -> ([ `best_fit [@js "best fit"] | `lookup [@js "lookup"] ][@js.enum])
+
+    val set_localeMatcher : t -> ([ `best_fit | `lookup ][@js.enum]) -> unit
+
+    val get_weekday
+      :  t
+      -> ([ `long [@js "long"] | `narrow [@js "narrow"] | `short [@js "short"] ]
+         [@js.enum])
+
+    val set_weekday : t -> ([ `long | `narrow | `short ][@js.enum]) -> unit
+
+    val get_era
+      :  t
+      -> ([ `long [@js "long"] | `narrow [@js "narrow"] | `short [@js "short"] ]
+         [@js.enum])
+
+    val set_era : t -> ([ `long | `narrow | `short ][@js.enum]) -> unit
+
+    val get_year
+      :  t
+      -> ([ `two_digit [@js "2-digit"] | `numeric [@js "numeric"] ][@js.enum])
+
+    val set_year : t -> ([ `two_digit | `numeric ][@js.enum]) -> unit
+
+    val get_month
+      :  t
+      -> ([ `two_digit [@js "2-digit"]
+          | `long [@js "long"]
+          | `narrow [@js "narrow"]
+          | `numeric [@js "numeric"]
+          | `short [@js "short"]
+          ]
+         [@js.enum])
+
+    val set_month
+      :  t
+      -> ([ `two_digit | `long | `narrow | `numeric | `short ][@js.enum])
+      -> unit
+
+    val get_day
+      :  t
+      -> ([ `two_digit [@js "2-digit"] | `numeric [@js "numeric"] ][@js.enum])
+
+    val set_day : t -> ([ `two_digit | `numeric ][@js.enum]) -> unit
+
+    val get_hour
+      :  t
+      -> ([ `two_digit [@js "2-digit"] | `numeric [@js "numeric"] ][@js.enum])
+
+    val set_hour : t -> ([ `two_digit | `numeric ][@js.enum]) -> unit
+
+    val get_minute
+      :  t
+      -> ([ `two_digit [@js "2-digit"] | `numeric [@js "numeric"] ][@js.enum])
+
+    val set_minute : t -> ([ `two_digit | `numeric ][@js.enum]) -> unit
+
+    val get_second
+      :  t
+      -> ([ `two_digit [@js "2-digit"] | `numeric [@js "numeric"] ][@js.enum])
+
+    val set_second : t -> ([ `two_digit | `numeric ][@js.enum]) -> unit
+
+    val get_timeZoneName
+      :  t
+      -> ([ `long [@js "long"] | `short [@js "short"] ][@js.enum])
+
+    val set_timeZoneName : t -> ([ `long | `short ][@js.enum]) -> unit
+
+    val get_formatMatcher
+      :  t
+      -> ([ `basic [@js "basic"] | `best_fit [@js "best fit"] ][@js.enum])
+
+    val set_formatMatcher : t -> ([ `basic | `best_fit ][@js.enum]) -> unit
+
+    val get_hour12 : t -> bool
+
+    val set_hour12 : t -> bool -> unit
+
+    val get_timeZone : t -> string
+
+    val set_timeZone : t -> string -> unit
+  end
+
+  module ResolvedDateTimeFormatOptions : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_locale : t -> string
+
+    val set_locale : t -> string -> unit
+
+    val get_calendar : t -> string
+
+    val set_calendar : t -> string -> unit
+
+    val get_numberingSystem : t -> string
+
+    val set_numberingSystem : t -> string -> unit
+
+    val get_timeZone : t -> string
+
+    val set_timeZone : t -> string -> unit
+
+    val get_hour12 : t -> bool
+
+    val set_hour12 : t -> bool -> unit
+
+    val get_weekday : t -> string
+
+    val set_weekday : t -> string -> unit
+
+    val get_era : t -> string
+
+    val set_era : t -> string -> unit
+
+    val get_year : t -> string
+
+    val set_year : t -> string -> unit
+
+    val get_month : t -> string
+
+    val set_month : t -> string -> unit
+
+    val get_day : t -> string
+
+    val set_day : t -> string -> unit
+
+    val get_hour : t -> string
+
+    val set_hour : t -> string -> unit
+
+    val get_minute : t -> string
+
+    val set_minute : t -> string -> unit
+
+    val get_second : t -> string
+
+    val set_second : t -> string -> unit
+
+    val get_timeZoneName : t -> string
+
+    val set_timeZoneName : t -> string -> unit
+  end
 end
 
-module ResolvedCollatorOptions : sig
-  type t
+module ConcatArray : sig
+  type 'T t
 
-  val t_to_js : t -> Ojs.t
+  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
-  val t_of_js : Ojs.t -> t
+  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
 
-  val get_locale : t -> string
+  val get_length : 'T t -> float
 
-  val set_locale : t -> string -> unit
+  val get : 'T t -> float -> 'T
 
-  val get_usage : t -> string
+  val join : 'T t -> ?separator:string -> unit -> string
 
-  val set_usage : t -> string -> unit
-
-  val get_sensitivity : t -> string
-
-  val set_sensitivity : t -> string -> unit
-
-  val get_ignorePunctuation : t -> bool
-
-  val set_ignorePunctuation : t -> bool -> unit
-
-  val get_collation : t -> string
-
-  val set_collation : t -> string -> unit
-
-  val get_caseFirst : t -> string
-
-  val set_caseFirst : t -> string -> unit
-
-  val get_numeric : t -> bool
-
-  val set_numeric : t -> bool -> unit
+  val slice : 'T t -> ?start:float -> ?end_:float -> unit -> 'T list
 end
 
-module Collator : sig
-  type t
+module ReadonlyArray : sig
+  type 'T t
 
-  val t_to_js : t -> Ojs.t
+  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
-  val t_of_js : Ojs.t -> t
+  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
 
-  val compare : t -> x:string -> y:string -> float
+  val get_length : 'T t -> float
 
-  val resolvedOptions : t -> ResolvedCollatorOptions.t
-end
+  val toString : 'T t -> string
 
-module NumberFormatOptions : sig
-  type t
+  val toLocaleString : 'T t -> string
 
-  val t_to_js : t -> Ojs.t
+  val concat : 'T t -> ('T ConcatArray.t list[@js.variadic]) -> 'T list
 
-  val t_of_js : Ojs.t -> t
+  val concat'
+    :  'T t
+    -> (('T, 'T ConcatArray.t) union2 list[@js.variadic])
+    -> 'T list
 
-  val get_localeMatcher : t -> string
+  val join : 'T t -> ?separator:string -> unit -> string
 
-  val set_localeMatcher : t -> string -> unit
+  val slice : 'T t -> ?start:float -> ?end_:float -> unit -> 'T list
 
-  val get_style : t -> string
+  val indexOf : 'T t -> searchElement:'T -> ?fromIndex:float -> unit -> float
 
-  val set_style : t -> string -> unit
+  val lastIndexOf
+    :  'T t
+    -> searchElement:'T
+    -> ?fromIndex:float
+    -> unit
+    -> float
 
-  val get_currency : t -> string
+  val every
+    :  'T t
+    -> (value:'T -> index:float -> array:'T list -> bool)
+    -> ?thisArg:any
+    -> unit
+    -> bool
 
-  val set_currency : t -> string -> unit
+  val every'
+    :  'T t
+    -> (value:'T -> index:float -> array:'T list -> unknown)
+    -> ?thisArg:any
+    -> unit
+    -> bool
 
-  val get_currencyDisplay : t -> string
+  val some
+    :  'T t
+    -> (value:'T -> index:float -> array:'T list -> unknown)
+    -> ?thisArg:any
+    -> unit
+    -> bool
 
-  val set_currencyDisplay : t -> string -> unit
-
-  val get_currencySign : t -> string
-
-  val set_currencySign : t -> string -> unit
-
-  val get_useGrouping : t -> bool
-
-  val set_useGrouping : t -> bool -> unit
-
-  val get_minimumIntegerDigits : t -> float
-
-  val set_minimumIntegerDigits : t -> float -> unit
-
-  val get_minimumFractionDigits : t -> float
-
-  val set_minimumFractionDigits : t -> float -> unit
-
-  val get_maximumFractionDigits : t -> float
-
-  val set_maximumFractionDigits : t -> float -> unit
-
-  val get_minimumSignificantDigits : t -> float
-
-  val set_minimumSignificantDigits : t -> float -> unit
-
-  val get_maximumSignificantDigits : t -> float
-
-  val set_maximumSignificantDigits : t -> float -> unit
-end
-
-module ResolvedNumberFormatOptions : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val get_locale : t -> string
-
-  val set_locale : t -> string -> unit
-
-  val get_numberingSystem : t -> string
-
-  val set_numberingSystem : t -> string -> unit
-
-  val get_style : t -> string
-
-  val set_style : t -> string -> unit
-
-  val get_currency : t -> string
-
-  val set_currency : t -> string -> unit
-
-  val get_currencyDisplay : t -> string
-
-  val set_currencyDisplay : t -> string -> unit
-
-  val get_minimumIntegerDigits : t -> float
-
-  val set_minimumIntegerDigits : t -> float -> unit
-
-  val get_minimumFractionDigits : t -> float
-
-  val set_minimumFractionDigits : t -> float -> unit
-
-  val get_maximumFractionDigits : t -> float
-
-  val set_maximumFractionDigits : t -> float -> unit
-
-  val get_minimumSignificantDigits : t -> float
-
-  val set_minimumSignificantDigits : t -> float -> unit
-
-  val get_maximumSignificantDigits : t -> float
-
-  val set_maximumSignificantDigits : t -> float -> unit
-
-  val get_useGrouping : t -> bool
-
-  val set_useGrouping : t -> bool -> unit
-end
-
-module NumberFormat : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val format : t -> value:float -> string
-
-  val resolvedOptions : t -> ResolvedNumberFormatOptions.t
-end
-
-module DateTimeFormatOptions : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val get_localeMatcher
-    :  t
-    -> ([ `best_fit [@js "best fit"] | `lookup [@js "lookup"] ][@js.enum])
-
-  val set_localeMatcher : t -> ([ `best_fit | `lookup ][@js.enum]) -> unit
-
-  val get_weekday
-    :  t
-    -> ([ `long [@js "long"] | `narrow [@js "narrow"] | `short [@js "short"] ]
-       [@js.enum])
-
-  val set_weekday : t -> ([ `long | `narrow | `short ][@js.enum]) -> unit
-
-  val get_era
-    :  t
-    -> ([ `long [@js "long"] | `narrow [@js "narrow"] | `short [@js "short"] ]
-       [@js.enum])
-
-  val set_era : t -> ([ `long | `narrow | `short ][@js.enum]) -> unit
-
-  val get_year
-    :  t
-    -> ([ `two_digit [@js "2-digit"] | `numeric [@js "numeric"] ][@js.enum])
-
-  val set_year : t -> ([ `two_digit | `numeric ][@js.enum]) -> unit
-
-  val get_month
-    :  t
-    -> ([ `two_digit [@js "2-digit"]
-        | `long [@js "long"]
-        | `narrow [@js "narrow"]
-        | `numeric [@js "numeric"]
-        | `short [@js "short"]
-        ]
-       [@js.enum])
-
-  val set_month
-    :  t
-    -> ([ `two_digit | `long | `narrow | `numeric | `short ][@js.enum])
+  val forEach
+    :  'T t
+    -> callbackfn:(value:'T -> index:float -> array:'T list -> unit)
+    -> ?thisArg:any
+    -> unit
     -> unit
 
-  val get_day
-    :  t
-    -> ([ `two_digit [@js "2-digit"] | `numeric [@js "numeric"] ][@js.enum])
+  val map
+    :  'T t
+    -> callbackfn:(value:'T -> index:float -> array:'T list -> 'U)
+    -> ?thisArg:any
+    -> unit
+    -> 'U list
 
-  val set_day : t -> ([ `two_digit | `numeric ][@js.enum]) -> unit
+  val filter
+    :  'T t
+    -> (value:'T -> index:float -> array:'T list -> bool)
+    -> ?thisArg:any
+    -> unit
+    -> 'S list
 
-  val get_hour
-    :  t
-    -> ([ `two_digit [@js "2-digit"] | `numeric [@js "numeric"] ][@js.enum])
+  val filter'
+    :  'T t
+    -> (value:'T -> index:float -> array:'T list -> unknown)
+    -> ?thisArg:any
+    -> unit
+    -> 'T list
 
-  val set_hour : t -> ([ `two_digit | `numeric ][@js.enum]) -> unit
+  val reduce
+    :  'T t
+    -> callbackfn:
+         (previousValue:'T
+          -> currentValue:'T
+          -> currentIndex:float
+          -> array:'T list
+          -> 'T)
+    -> 'T
 
-  val get_minute
-    :  t
-    -> ([ `two_digit [@js "2-digit"] | `numeric [@js "numeric"] ][@js.enum])
+  val reduce'
+    :  'T t
+    -> callbackfn:
+         (previousValue:'T
+          -> currentValue:'T
+          -> currentIndex:float
+          -> array:'T list
+          -> 'T)
+    -> initialValue:'T
+    -> 'T
 
-  val set_minute : t -> ([ `two_digit | `numeric ][@js.enum]) -> unit
+  val reduce''
+    :  'T t
+    -> callbackfn:
+         (previousValue:'U
+          -> currentValue:'T
+          -> currentIndex:float
+          -> array:'T list
+          -> 'U)
+    -> initialValue:'U
+    -> 'U
 
-  val get_second
-    :  t
-    -> ([ `two_digit [@js "2-digit"] | `numeric [@js "numeric"] ][@js.enum])
+  val reduceRight
+    :  'T t
+    -> callbackfn:
+         (previousValue:'T
+          -> currentValue:'T
+          -> currentIndex:float
+          -> array:'T list
+          -> 'T)
+    -> 'T
 
-  val set_second : t -> ([ `two_digit | `numeric ][@js.enum]) -> unit
+  val reduceRight'
+    :  'T t
+    -> callbackfn:
+         (previousValue:'T
+          -> currentValue:'T
+          -> currentIndex:float
+          -> array:'T list
+          -> 'T)
+    -> initialValue:'T
+    -> 'T
 
-  val get_timeZoneName
-    :  t
-    -> ([ `long [@js "long"] | `short [@js "short"] ][@js.enum])
+  val reduceRight''
+    :  'T t
+    -> callbackfn:
+         (previousValue:'U
+          -> currentValue:'T
+          -> currentIndex:float
+          -> array:'T list
+          -> 'U)
+    -> initialValue:'U
+    -> 'U
 
-  val set_timeZoneName : t -> ([ `long | `short ][@js.enum]) -> unit
+  val get : 'T t -> float -> 'T
 
-  val get_formatMatcher
-    :  t
-    -> ([ `basic [@js "basic"] | `best_fit [@js "best fit"] ][@js.enum])
+  val to_ml : 'T t -> 'T list
 
-  val set_formatMatcher : t -> ([ `basic | `best_fit ][@js.enum]) -> unit
-
-  val get_hour12 : t -> bool
-
-  val set_hour12 : t -> bool -> unit
-
-  val get_timeZone : t -> string
-
-  val set_timeZone : t -> string -> unit
+  val of_ml : 'T list -> 'T t
 end
 
-module ResolvedDateTimeFormatOptions : sig
+module TemplateStringsArray : sig
+  include module type of struct
+    include ReadonlyArray
+  end
+
+  type t = string ReadonlyArray.t
+
+  val t_to_js : t -> Ojs.t
+
+  val t_of_js : Ojs.t -> t
+
+  val get_raw : t -> string list
+end
+
+module Array : sig
+  type 'T t
+
+  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+
+  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+
+  val get_length : 'T t -> float
+
+  val set_length : 'T t -> float -> unit
+
+  val toString : 'T t -> string
+
+  val toLocaleString : 'T t -> string
+
+  val pop : 'T t -> 'T or_undefined
+
+  val push : 'T t -> ('T list[@js.variadic]) -> float
+
+  val concat : 'T t -> ('T ConcatArray.t list[@js.variadic]) -> 'T list
+
+  val concat'
+    :  'T t
+    -> (('T, 'T ConcatArray.t) union2 list[@js.variadic])
+    -> 'T list
+
+  val join : 'T t -> ?separator:string -> unit -> string
+
+  val reverse : 'T t -> 'T list
+
+  val shift : 'T t -> 'T or_undefined
+
+  val slice : 'T t -> ?start:float -> ?end_:float -> unit -> 'T list
+
+  val sort : 'T t -> ?compareFn:(a:'T -> b:'T -> float) -> unit -> 'T t
+
+  val splice : 'T t -> start:float -> ?deleteCount:float -> unit -> 'T list
+
+  val splice'
+    :  'T t
+    -> start:float
+    -> deleteCount:float
+    -> ('T list[@js.variadic])
+    -> 'T list
+
+  val unshift : 'T t -> ('T list[@js.variadic]) -> float
+
+  val indexOf : 'T t -> searchElement:'T -> ?fromIndex:float -> unit -> float
+
+  val lastIndexOf
+    :  'T t
+    -> searchElement:'T
+    -> ?fromIndex:float
+    -> unit
+    -> float
+
+  val every
+    :  'T t
+    -> (value:'T -> index:float -> array:'T list -> bool)
+    -> ?thisArg:any
+    -> unit
+    -> bool
+
+  val every'
+    :  'T t
+    -> (value:'T -> index:float -> array:'T list -> unknown)
+    -> ?thisArg:any
+    -> unit
+    -> bool
+
+  val some
+    :  'T t
+    -> (value:'T -> index:float -> array:'T list -> unknown)
+    -> ?thisArg:any
+    -> unit
+    -> bool
+
+  val forEach
+    :  'T t
+    -> callbackfn:(value:'T -> index:float -> array:'T list -> unit)
+    -> ?thisArg:any
+    -> unit
+    -> unit
+
+  val map
+    :  'T t
+    -> callbackfn:(value:'T -> index:float -> array:'T list -> 'U)
+    -> ?thisArg:any
+    -> unit
+    -> 'U list
+
+  val filter
+    :  'T t
+    -> (value:'T -> index:float -> array:'T list -> bool)
+    -> ?thisArg:any
+    -> unit
+    -> 'S list
+
+  val filter'
+    :  'T t
+    -> (value:'T -> index:float -> array:'T list -> unknown)
+    -> ?thisArg:any
+    -> unit
+    -> 'T list
+
+  val reduce
+    :  'T t
+    -> callbackfn:
+         (previousValue:'T
+          -> currentValue:'T
+          -> currentIndex:float
+          -> array:'T list
+          -> 'T)
+    -> 'T
+
+  val reduce'
+    :  'T t
+    -> callbackfn:
+         (previousValue:'T
+          -> currentValue:'T
+          -> currentIndex:float
+          -> array:'T list
+          -> 'T)
+    -> initialValue:'T
+    -> 'T
+
+  val reduce''
+    :  'T t
+    -> callbackfn:
+         (previousValue:'U
+          -> currentValue:'T
+          -> currentIndex:float
+          -> array:'T list
+          -> 'U)
+    -> initialValue:'U
+    -> 'U
+
+  val reduceRight
+    :  'T t
+    -> callbackfn:
+         (previousValue:'T
+          -> currentValue:'T
+          -> currentIndex:float
+          -> array:'T list
+          -> 'T)
+    -> 'T
+
+  val reduceRight'
+    :  'T t
+    -> callbackfn:
+         (previousValue:'T
+          -> currentValue:'T
+          -> currentIndex:float
+          -> array:'T list
+          -> 'T)
+    -> initialValue:'T
+    -> 'T
+
+  val reduceRight''
+    :  'T t
+    -> callbackfn:
+         (previousValue:'U
+          -> currentValue:'T
+          -> currentIndex:float
+          -> array:'T list
+          -> 'U)
+    -> initialValue:'U
+    -> 'U
+
+  val get : 'T t -> float -> 'T
+
+  val set : 'T t -> float -> 'T -> unit
+
+  val to_ml : 'T t -> 'T list
+
+  val of_ml : 'T list -> 'T t
+
+  (* Constructor *)
+
+  val create : ?arrayLength:float -> unit -> any list
+
+  val create' : arrayLength:float -> 'T list
+
+  val create'' : ('T list[@js.variadic]) -> 'T list
+
+  val isArray : any -> bool
+end
+
+module ArrayConstructor : sig
   type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_locale : t -> string
+  val create : t -> ?arrayLength:float -> unit -> any list
 
-  val set_locale : t -> string -> unit
+  val create' : t -> arrayLength:float -> 'T list
 
-  val get_calendar : t -> string
+  val create'' : t -> ('T list[@js.variadic]) -> 'T list
 
-  val set_calendar : t -> string -> unit
+  val apply : t -> ?arrayLength:float -> unit -> any list
 
-  val get_numberingSystem : t -> string
+  val apply' : t -> arrayLength:float -> 'T list
 
-  val set_numberingSystem : t -> string -> unit
+  val apply'' : t -> ('T list[@js.variadic]) -> 'T list
 
-  val get_timeZone : t -> string
+  val isArray : t -> any -> bool
 
-  val set_timeZone : t -> string -> unit
-
-  val get_hour12 : t -> bool
-
-  val set_hour12 : t -> bool -> unit
-
-  val get_weekday : t -> string
-
-  val set_weekday : t -> string -> unit
-
-  val get_era : t -> string
-
-  val set_era : t -> string -> unit
-
-  val get_year : t -> string
-
-  val set_year : t -> string -> unit
-
-  val get_month : t -> string
-
-  val set_month : t -> string -> unit
-
-  val get_day : t -> string
-
-  val set_day : t -> string -> unit
-
-  val get_hour : t -> string
-
-  val set_hour : t -> string -> unit
-
-  val get_minute : t -> string
-
-  val set_minute : t -> string -> unit
-
-  val get_second : t -> string
-
-  val set_second : t -> string -> unit
-
-  val get_timeZoneName : t -> string
-
-  val set_timeZoneName : t -> string -> unit
+  val get_prototype : t -> any list
 end
+
+val array : ArrayConstructor.t
 
 module RegExpMatchArray : sig
-  type t
+  include module type of struct
+    include Array
+  end
+
+  type t = string Array.t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_index : t -> float
+  val get_index : t -> int
 
-  val set_index : t -> float -> unit
+  val set_index : t -> int -> unit
 
   val get_input : t -> string
 
   val set_input : t -> string -> unit
-
-  val cast : t -> string Array.t
 end
 
 module RegExpExecArray : sig
-  type t
+  include module type of struct
+    include Array
+  end
+
+  type t = string Array.t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_index : t -> float
+  val get_index : t -> int
 
-  val set_index : t -> float -> unit
+  val set_index : t -> int -> unit
 
   val get_input : t -> string
 
   val set_input : t -> string -> unit
-
-  val cast : t -> string Array.t
 end
 
 module RegExp : sig
-  type t = regexp
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1840,7 +1989,7 @@ module String : sig
     :  t
     -> that:string
     -> ?locales:string list or_string
-    -> ?options:CollatorOptions.t
+    -> ?options:Intl.CollatorOptions.t
     -> unit
     -> float
 
@@ -1850,7 +1999,7 @@ module String : sig
 
   val charCodeAt : t -> index:float -> float
 
-  val concat : t -> strings:string list -> string
+  val concat : t -> strings:(string list[@js.variadic]) -> string
 
   val indexOf : t -> searchString:string -> ?position:float -> unit -> float
 
@@ -1869,7 +2018,7 @@ module String : sig
   val replace'
     :  t
     -> searchValue:RegExp.t or_string
-    -> replacer:(substring:string -> args:any list -> string)
+    -> replacer:(substring:string -> args:(any list[@js.variadic]) -> string)
     -> string
 
   val search : t -> regexp:RegExp.t or_string -> float
@@ -1911,7 +2060,7 @@ module String : sig
 
   val create : ?value:any -> unit -> t
 
-  val fromCharCode : codes:float list -> string
+  val fromCharCode : codes:(float list[@js.variadic]) -> string
 end
 
 module StringConstructor : sig
@@ -1927,7 +2076,7 @@ module StringConstructor : sig
 
   val get_prototype : t -> String.t
 
-  val fromCharCode : t -> codes:float list -> string
+  val fromCharCode : t -> codes:(float list[@js.variadic]) -> string
 end
 
 val string : StringConstructor.t
@@ -1976,7 +2125,7 @@ module Number : sig
   val toLocaleString
     :  t
     -> ?locales:string list or_string
-    -> ?options:NumberFormatOptions.t
+    -> ?options:Intl.NumberFormatOptions.t
     -> unit
     -> string
 
@@ -2035,18 +2184,6 @@ end
 
 val number : NumberConstructor.t
 
-module TemplateStringsArray : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val get_raw : t -> string list
-
-  val cast : t -> string ReadonlyArray.t
-end
-
 module ImportMeta : sig
   type t
 
@@ -2092,9 +2229,9 @@ module Math : sig
 
   val log : float -> float
 
-  val max : float list -> float
+  val max : (float list[@js.variadic]) -> float
 
-  val min : float list -> float
+  val min : (float list[@js.variadic]) -> float
 
   val pow : x:float -> y:float -> float
 
@@ -2119,21 +2256,21 @@ module Date : sig
   val toLocaleString
     :  t
     -> ?locales:string list or_string
-    -> ?options:DateTimeFormatOptions.t
+    -> ?options:Intl.DateTimeFormatOptions.t
     -> unit
     -> string
 
   val toLocaleDateString
     :  t
     -> ?locales:string list or_string
-    -> ?options:DateTimeFormatOptions.t
+    -> ?options:Intl.DateTimeFormatOptions.t
     -> unit
     -> string
 
   val toLocaleTimeString
     :  t
     -> ?locales:string list or_string
-    -> ?options:DateTimeFormatOptions.t
+    -> ?options:Intl.DateTimeFormatOptions.t
     -> unit
     -> string
 
@@ -2370,13 +2507,9 @@ end
 val error : ErrorConstructor.t
 
 module EvalError : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val cast : t -> Error.t
+  include module type of struct
+    include Error
+  end
 
   (* Constructor *)
 
@@ -2384,7 +2517,9 @@ module EvalError : sig
 end
 
 module EvalErrorConstructor : sig
-  type t
+  include module type of struct
+    include ErrorConstructor
+  end
 
   val t_to_js : t -> Ojs.t
 
@@ -2395,20 +2530,14 @@ module EvalErrorConstructor : sig
   val apply : t -> ?message:string -> unit -> EvalError.t
 
   val get_prototype : t -> EvalError.t
-
-  val cast : t -> ErrorConstructor.t
 end
 
 val evalError : EvalErrorConstructor.t
 
 module RangeError : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val cast : t -> Error.t
+  include module type of struct
+    include Error
+  end
 
   (* Constructor *)
 
@@ -2416,7 +2545,9 @@ module RangeError : sig
 end
 
 module RangeErrorConstructor : sig
-  type t
+  include module type of struct
+    include ErrorConstructor
+  end
 
   val t_to_js : t -> Ojs.t
 
@@ -2427,20 +2558,14 @@ module RangeErrorConstructor : sig
   val apply : t -> ?message:string -> unit -> RangeError.t
 
   val get_prototype : t -> RangeError.t
-
-  val cast : t -> ErrorConstructor.t
 end
 
 val rangeError : RangeErrorConstructor.t
 
 module ReferenceError : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val cast : t -> Error.t
+  include module type of struct
+    include Error
+  end
 
   (* Constructor *)
 
@@ -2448,7 +2573,9 @@ module ReferenceError : sig
 end
 
 module ReferenceErrorConstructor : sig
-  type t
+  include module type of struct
+    include ErrorConstructor
+  end
 
   val t_to_js : t -> Ojs.t
 
@@ -2459,20 +2586,14 @@ module ReferenceErrorConstructor : sig
   val apply : t -> ?message:string -> unit -> ReferenceError.t
 
   val get_prototype : t -> ReferenceError.t
-
-  val cast : t -> ErrorConstructor.t
 end
 
 val referenceError : ReferenceErrorConstructor.t
 
 module SyntaxError : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val cast : t -> Error.t
+  include module type of struct
+    include Error
+  end
 
   (* Constructor *)
 
@@ -2480,31 +2601,23 @@ module SyntaxError : sig
 end
 
 module SyntaxErrorConstructor : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include ErrorConstructor
+  end
 
   val create : t -> ?message:string -> unit -> SyntaxError.t
 
   val apply : t -> ?message:string -> unit -> SyntaxError.t
 
   val get_prototype : t -> SyntaxError.t
-
-  val cast : t -> ErrorConstructor.t
 end
 
 val syntaxError : SyntaxErrorConstructor.t
 
 module TypeError : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val cast : t -> Error.t
+  include module type of struct
+    include Error
+  end
 
   (* Constructor *)
 
@@ -2512,31 +2625,23 @@ module TypeError : sig
 end
 
 module TypeErrorConstructor : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include ErrorConstructor
+  end
 
   val create : t -> ?message:string -> unit -> TypeError.t
 
   val apply : t -> ?message:string -> unit -> TypeError.t
 
   val get_prototype : t -> TypeError.t
-
-  val cast : t -> ErrorConstructor.t
 end
 
 val typeError : TypeErrorConstructor.t
 
 module URIError : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val cast : t -> Error.t
+  include module type of struct
+    include Error
+  end
 
   (* Constructor *)
 
@@ -2544,19 +2649,15 @@ module URIError : sig
 end
 
 module URIErrorConstructor : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include ErrorConstructor
+  end
 
   val create : t -> ?message:string -> unit -> URIError.t
 
   val apply : t -> ?message:string -> unit -> URIError.t
 
   val get_prototype : t -> URIError.t
-
-  val cast : t -> ErrorConstructor.t
 end
 
 val uriError : URIErrorConstructor.t
@@ -2682,100 +2783,6 @@ module Promise : sig
     -> 'TResult t
 
   val catch : 'T t -> ?onrejected:(any -> 'T t) -> unit -> 'T t
-end
-
-module Partial : sig
-  type 'T t
-
-  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
-end
-
-module Required : sig
-  type 'T t
-
-  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
-end
-
-module Pick : sig
-  type ('T, 'K) t
-
-  val t_to_js : ('T -> Ojs.t) -> ('K -> Ojs.t) -> ('T, 'K) t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'T) -> (Ojs.t -> 'K) -> Ojs.t -> ('T, 'K) t
-end
-
-module Record : sig
-  type ('K, 'T) t
-
-  val t_to_js : ('K -> Ojs.t) -> ('T -> Ojs.t) -> ('K, 'T) t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'K) -> (Ojs.t -> 'T) -> Ojs.t -> ('K, 'T) t
-end
-
-module Exclude : sig
-  type ('T, 'U) t
-
-  val t_to_js : ('T -> Ojs.t) -> ('U -> Ojs.t) -> ('T, 'U) t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'T) -> (Ojs.t -> 'U) -> Ojs.t -> ('T, 'U) t
-end
-
-module Extract : sig
-  type ('T, 'U) t
-
-  val t_to_js : ('T -> Ojs.t) -> ('U -> Ojs.t) -> ('T, 'U) t -> Ojs.t
-end
-
-module Omit : sig
-  type ('T, 'K) t
-
-  val t_to_js : ('T -> Ojs.t) -> ('K -> Ojs.t) -> ('T, 'K) t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'T) -> (Ojs.t -> 'K) -> Ojs.t -> ('T, 'K) t
-end
-
-module NonNullable : sig
-  type 'T t
-
-  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
-end
-
-module Parameters : sig
-  type 'T t
-
-  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
-end
-
-module ConstructorParameters : sig
-  type 'T t
-
-  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
-end
-
-module ReturnType : sig
-  type 'T t
-
-  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
-end
-
-module InstanceType : sig
-  type 'T t
-
-  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
-
-  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
 end
 
 module ArrayBuffer : sig
@@ -3133,7 +3140,7 @@ module Int8Array : sig
 
   val get_BYTES_PER_ELEMENT : float
 
-  val of_ : float list -> t
+  val of_ : (float list[@js.variadic]) -> t
 
   val from : array:float Array.t -> t
 
@@ -3166,9 +3173,7 @@ module Int8ArrayConstructor : sig
     -> unit
     -> Int8Array.t
 
-  val get_BYTES_PER_ELEMENT : t -> float
-
-  val of_ : t -> float list -> Int8Array.t
+  val of_ : t -> (float list[@js.variadic]) -> Int8Array.t
 
   val from : t -> array:float Array.t -> Int8Array.t
 
@@ -3361,7 +3366,7 @@ module Uint8Array : sig
 
   val get_BYTES_PER_ELEMENT : float
 
-  val of_ : float list -> t
+  val of_ : (float list[@js.variadic]) -> t
 
   val from : array:float Array.t -> t
 
@@ -3394,9 +3399,7 @@ module Uint8ArrayConstructor : sig
     -> unit
     -> Uint8Array.t
 
-  val get_BYTES_PER_ELEMENT : t -> float
-
-  val of_ : t -> float list -> Uint8Array.t
+  val of_ : t -> (float list[@js.variadic]) -> Uint8Array.t
 
   val from : t -> array:float Array.t -> Uint8Array.t
 
@@ -3589,7 +3592,7 @@ module Uint8ClampedArray : sig
 
   val get_BYTES_PER_ELEMENT : float
 
-  val of_ : float list -> t
+  val of_ : (float list[@js.variadic]) -> t
 
   val from : array:float Array.t -> t
 
@@ -3625,9 +3628,7 @@ module Uint8ClampedArrayConstructor : sig
     -> unit
     -> Uint8ClampedArray.t
 
-  val get_BYTES_PER_ELEMENT : t -> float
-
-  val of_ : t -> float list -> Uint8ClampedArray.t
+  val of_ : t -> (float list[@js.variadic]) -> Uint8ClampedArray.t
 
   val from : t -> array:float Array.t -> Uint8ClampedArray.t
 
@@ -3820,7 +3821,7 @@ module Int16Array : sig
 
   val get_BYTES_PER_ELEMENT : float
 
-  val of_ : float list -> t
+  val of_ : (float list[@js.variadic]) -> t
 
   val from : array:float Array.t -> t
 
@@ -3853,9 +3854,7 @@ module Int16ArrayConstructor : sig
     -> unit
     -> Int16Array.t
 
-  val get_BYTES_PER_ELEMENT : t -> float
-
-  val of_ : t -> float list -> Int16Array.t
+  val of_ : t -> (float list[@js.variadic]) -> Int16Array.t
 
   val from : t -> array:float Array.t -> Int16Array.t
 
@@ -4048,7 +4047,7 @@ module Uint16Array : sig
 
   val get_BYTES_PER_ELEMENT : float
 
-  val of_ : float list -> t
+  val of_ : (float list[@js.variadic]) -> t
 
   val from : array:float Array.t -> t
 
@@ -4084,9 +4083,7 @@ module Uint16ArrayConstructor : sig
     -> unit
     -> Uint16Array.t
 
-  val get_BYTES_PER_ELEMENT : t -> float
-
-  val of_ : t -> float list -> Uint16Array.t
+  val of_ : t -> (float list[@js.variadic]) -> Uint16Array.t
 
   val from : t -> array:float Array.t -> Uint16Array.t
 
@@ -4279,7 +4276,7 @@ module Int32Array : sig
 
   val get_BYTES_PER_ELEMENT : float
 
-  val of_ : float list -> t
+  val of_ : (float list[@js.variadic]) -> t
 
   val from : array:float Array.t -> t
 
@@ -4312,9 +4309,7 @@ module Int32ArrayConstructor : sig
     -> unit
     -> Int32Array.t
 
-  val get_BYTES_PER_ELEMENT : t -> float
-
-  val of_ : t -> float list -> Int32Array.t
+  val of_ : t -> (float list[@js.variadic]) -> Int32Array.t
 
   val from : t -> array:float Array.t -> Int32Array.t
 
@@ -4507,7 +4502,7 @@ module Uint32Array : sig
 
   val get_BYTES_PER_ELEMENT : float
 
-  val of_ : float list -> t
+  val of_ : (float list[@js.variadic]) -> t
 
   val from : array:float Array.t -> t
 
@@ -4543,9 +4538,7 @@ module Uint32ArrayConstructor : sig
     -> unit
     -> Uint32Array.t
 
-  val get_BYTES_PER_ELEMENT : t -> float
-
-  val of_ : t -> float list -> Uint32Array.t
+  val of_ : t -> (float list[@js.variadic]) -> Uint32Array.t
 
   val from : t -> array:float Array.t -> Uint32Array.t
 
@@ -4738,7 +4731,7 @@ module Float32Array : sig
 
   val get_BYTES_PER_ELEMENT : float
 
-  val of_ : float list -> t
+  val of_ : (float list[@js.variadic]) -> t
 
   val from : array:float Array.t -> t
 
@@ -4774,9 +4767,7 @@ module Float32ArrayConstructor : sig
     -> unit
     -> Float32Array.t
 
-  val get_BYTES_PER_ELEMENT : t -> float
-
-  val of_ : t -> float list -> Float32Array.t
+  val of_ : t -> (float list[@js.variadic]) -> Float32Array.t
 
   val from : t -> array:float Array.t -> Float32Array.t
 
@@ -4967,7 +4958,7 @@ module Float64Array : sig
 
   val get_BYTES_PER_ELEMENT : float
 
-  val of_ : float list -> t
+  val of_ : (float list[@js.variadic]) -> t
 
   val from : array:float Array.t -> t
 
@@ -5003,9 +4994,7 @@ module Float64ArrayConstructor : sig
     -> unit
     -> Float64Array.t
 
-  val get_BYTES_PER_ELEMENT : t -> float
-
-  val of_ : t -> float list -> Float64Array.t
+  val of_ : t -> (float list[@js.variadic]) -> Float64Array.t
 
   val from : t -> array:float Array.t -> Float64Array.t
 
@@ -5019,6 +5008,10 @@ module Float64ArrayConstructor : sig
 end
 
 val float64Array : Float64ArrayConstructor.t
+
+include module type of struct
+  include Intl
+end
 
 module DateTimeFormat : sig
   type t

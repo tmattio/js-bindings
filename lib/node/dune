@@ -2,11 +2,319 @@
  (name node)
  (public_name node)
  (libraries js_of_ocaml ojs es2020)
- (modes byte))
+ (modes byte)
+ (js_of_ocaml
+  (javascript_files node_stub.js))
+ (flags
+  (:standard
+   ; 16: Hide "[unerasable-optional-argument]): this optional argument cannot be erased."
+   -w
+   -16)))
 
 (rule
  (target node.ml)
  (deps gen/node.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target assert.ml)
+ (deps gen/assert.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target async_hooks.ml)
+ (deps gen/async_hooks.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target buffer.ml)
+ (deps gen/buffer.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target child_process.ml)
+ (deps gen/child_process.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target cluster.ml)
+ (deps gen/cluster.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target console.ml)
+ (deps gen/console.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target constants.ml)
+ (deps gen/constants.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target crypto.ml)
+ (deps gen/crypto.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target dgram.ml)
+ (deps gen/dgram.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target dns.ml)
+ (deps gen/dns.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target domain.ml)
+ (deps gen/domain.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target events.ml)
+ (deps gen/events.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target fs.ml)
+ (deps gen/fs.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target fs_promises.ml)
+ (deps gen/fs_promises.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target globals.ml)
+ (deps gen/globals.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target http.ml)
+ (deps gen/http.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target http2.ml)
+ (deps gen/http2.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target https.ml)
+ (deps gen/https.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target import.ml)
+ (deps gen/import.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target inspector.ml)
+ (deps gen/inspector.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target module.ml)
+ (deps gen/module.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target net.ml)
+ (deps gen/net.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target os.ml)
+ (deps gen/os.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target path.ml)
+ (deps gen/path.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target perf_hooks.ml)
+ (deps gen/perf_hooks.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target process.ml)
+ (deps gen/process.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target punycode.ml)
+ (deps gen/punycode.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target querystring.ml)
+ (deps gen/querystring.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target readline.ml)
+ (deps gen/readline.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target repl.ml)
+ (deps gen/repl.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target stream.ml)
+ (deps gen/stream.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target string_decoder.ml)
+ (deps gen/string_decoder.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target timers.ml)
+ (deps gen/timers.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target tls.ml)
+ (deps gen/tls.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target trace_events.ml)
+ (deps gen/trace_events.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target tty.ml)
+ (deps gen/tty.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target url.ml)
+ (deps gen/url.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target util.ml)
+ (deps gen/util.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target v8.ml)
+ (deps gen/v8.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target vm.ml)
+ (deps gen/vm.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target wasi.ml)
+ (deps gen/wasi.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target worker_threads.ml)
+ (deps gen/worker_threads.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target zlib.ml)
+ (deps gen/zlib.ml)
  (mode promote)
  (action
   (copy %{deps} %{target})))

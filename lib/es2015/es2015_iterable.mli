@@ -104,13 +104,11 @@ module Iterable : sig
 end
 
 module IterableIterator : sig
-  type 'T t
+  type 'T t = ('T, any, never or_undefined) Iterator.t
 
   val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
   val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
-
-  val cast : 'T t -> ('T, any, never or_undefined) Iterator.t
 end
 
 module Array : sig

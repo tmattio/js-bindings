@@ -2,21 +2,9 @@ open Es2017
 open Es2018_asynciterable
 
 module AsyncGenerator : sig
-  type ('T, 'TReturn, 'TNext) t
-
-  val t_to_js
-    :  ('T -> Ojs.t)
-    -> ('TReturn -> Ojs.t)
-    -> ('TNext -> Ojs.t)
-    -> ('T, 'TReturn, 'TNext) t
-    -> Ojs.t
-
-  val t_of_js
-    :  (Ojs.t -> 'T)
-    -> (Ojs.t -> 'TReturn)
-    -> (Ojs.t -> 'TNext)
-    -> Ojs.t
-    -> ('T, 'TReturn, 'TNext) t
+  include module type of struct
+    include AsyncIterator
+  end
 
   type ('T, 'TReturn) t_2 = ('T, 'TReturn, unknown) t
 
@@ -60,8 +48,6 @@ module AsyncGenerator : sig
     :  ('T, 'TReturn, 'TNext) t
     -> e:any
     -> ('T, 'TReturn) IteratorResult.t Promise.t
-
-  val cast : ('T, 'TReturn, 'TNext) t -> ('T, 'TReturn, 'TNext) AsyncIterator.t
 end
 
 module AsyncGeneratorFunction : sig

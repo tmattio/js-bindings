@@ -9,51 +9,10 @@ module Internal : sig
     type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
     [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
   end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type 'T _Array = [ `Array of 'T ] intf
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-
-    and _ArrayConstructor = [ `ArrayConstructor ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DateConstructor = [ `DateConstructor ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _Function = untyped_function
-
-    and _Math = [ `Math ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _NumberConstructor = [ `NumberConstructor ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ObjectConstructor = [ `ObjectConstructor ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and 'T _ReadonlyArray = [ `ReadonlyArray of 'T ] intf
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-
-    and _RegExp = regexp
-
-    and _RegExpConstructor = [ `RegExpConstructor ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _String = [ `String ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _StringConstructor = [ `StringConstructor ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
 end
 
 open Internal
 open AnonymousInterfaces
-open Types
 
 module Array : sig
   include module type of struct
@@ -307,13 +266,18 @@ module RegExpConstructor : sig
 
   val create
     :  t
-    -> pattern:_RegExp or_string
+    -> pattern:RegExp.t or_string
     -> ?flags:string
     -> unit
-    -> _RegExp
+    -> RegExp.t
     [@@js.apply_newable]
 
-  val apply : t -> pattern:_RegExp or_string -> ?flags:string -> unit -> _RegExp
+  val apply
+    :  t
+    -> pattern:RegExp.t or_string
+    -> ?flags:string
+    -> unit
+    -> RegExp.t
     [@@js.apply]
 end
 [@@js.scope "RegExpConstructor"]

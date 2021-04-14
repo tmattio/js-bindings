@@ -31,21 +31,9 @@ open AnonymousInterfaces
 open Types
 
 module Generator : sig
-  type ('T, 'TReturn, 'TNext) t = ('T, 'TReturn, 'TNext) _Generator
-
-  val t_to_js
-    :  ('T -> Ojs.t)
-    -> ('TReturn -> Ojs.t)
-    -> ('TNext -> Ojs.t)
-    -> ('T, 'TReturn, 'TNext) t
-    -> Ojs.t
-
-  val t_of_js
-    :  (Ojs.t -> 'T)
-    -> (Ojs.t -> 'TReturn)
-    -> (Ojs.t -> 'TNext)
-    -> Ojs.t
-    -> ('T, 'TReturn, 'TNext) t
+  include module type of struct
+    include Iterator
+  end
 
   type ('T, 'TReturn) t_2 = ('T, 'TReturn, unknown) t
 
@@ -92,9 +80,6 @@ module Generator : sig
     -> e:any
     -> ('T, 'TReturn) IteratorResult.t
     [@@js.call "throw"]
-
-  val cast : ('T, 'TReturn, 'TNext) t -> ('T, 'TReturn, 'TNext) Iterator.t
-    [@@js.cast]
 end
 [@@js.scope "Generator"]
 

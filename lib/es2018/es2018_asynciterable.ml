@@ -165,17 +165,16 @@ module AsyncIterable =
   end
 module AsyncIterableIterator =
   struct
-    type 'T t = 'T _AsyncIterableIterator
+    type 'T t = ('T, any, never or_undefined) AsyncIterator.t
     let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type __T) ->
       fun (__T_of_js : Ojs.t -> __T) ->
-        fun (x54 : Ojs.t) -> _AsyncIterableIterator_of_js __T_of_js x54
+        fun (x57 : Ojs.t) ->
+          AsyncIterator.t_of_js __T_of_js any_of_js
+            (fun (x60 : Ojs.t) -> or_undefined_of_js never_of_js x60) x57
     and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
       fun (__T_to_js : __T -> Ojs.t) ->
-        fun (x52 : __T _AsyncIterableIterator) ->
-          _AsyncIterableIterator_to_js __T_to_js x52
-    let (cast : 'T t -> ('T, any, never or_undefined) _AsyncIterator) =
-      fun (x56 : 'T t) ->
-        _AsyncIterator_of_js Obj.magic any_of_js
-          (fun (x60 : Ojs.t) -> or_undefined_of_js never_of_js x60)
-          (t_to_js Obj.magic x56)
+        fun (x52 : (__T, any, never or_undefined) AsyncIterator.t) ->
+          AsyncIterator.t_to_js __T_to_js any_to_js
+            (fun (x55 : never or_undefined) ->
+               or_undefined_to_js never_to_js x55) x52
   end

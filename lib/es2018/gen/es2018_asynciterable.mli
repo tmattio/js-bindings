@@ -96,12 +96,9 @@ module AsyncIterable : sig
 end
 
 module AsyncIterableIterator : sig
-  type 'T t = 'T _AsyncIterableIterator
+  type 'T t = ('T, any, never or_undefined) AsyncIterator.t
 
   val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
   val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
-
-  val cast : 'T t -> ('T, any, never or_undefined) _AsyncIterator [@@js.cast]
 end
-[@@js.scope "AsyncIterableIterator"]

@@ -449,38 +449,37 @@ module Iterable =
   end
 module IterableIterator =
   struct
-    type 'T t = 'T _IterableIterator
+    type 'T t = ('T, any, never or_undefined) Iterator.t
     let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type __T) ->
       fun (__T_of_js : Ojs.t -> __T) ->
-        fun (x91 : Ojs.t) -> _IterableIterator_of_js __T_of_js x91
+        fun (x94 : Ojs.t) ->
+          Iterator.t_of_js __T_of_js any_of_js
+            (fun (x97 : Ojs.t) -> or_undefined_of_js never_of_js x97) x94
     and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
       fun (__T_to_js : __T -> Ojs.t) ->
-        fun (x89 : __T _IterableIterator) ->
-          _IterableIterator_to_js __T_to_js x89
-    let (cast : 'T t -> ('T, any, never or_undefined) _Iterator) =
-      fun (x93 : 'T t) ->
-        _Iterator_of_js Obj.magic any_of_js
-          (fun (x97 : Ojs.t) -> or_undefined_of_js never_of_js x97)
-          (t_to_js Obj.magic x93)
+        fun (x89 : (__T, any, never or_undefined) Iterator.t) ->
+          Iterator.t_to_js __T_to_js any_to_js
+            (fun (x92 : never or_undefined) ->
+               or_undefined_to_js never_to_js x92) x89
   end
 module Array =
   struct
     include struct include Array end
-    let (entries : 'T t -> (float * 'T) _IterableIterator) =
+    let (entries : 'T t -> (float * 'T) IterableIterator.t) =
       fun (x99 : 'T t) ->
-        _IterableIterator_of_js
+        IterableIterator.t_of_js
           (fun (x101 : Ojs.t) ->
              let x102 = x101 in
              ((Ojs.float_of_js (Ojs.array_get x102 0)),
                (Obj.magic (Ojs.array_get x102 1))))
           (Ojs.call (t_to_js Obj.magic x99) "entries" [||])
-    let (keys : 'T t -> float _IterableIterator) =
+    let (keys : 'T t -> float IterableIterator.t) =
       fun (x103 : 'T t) ->
-        _IterableIterator_of_js Ojs.float_of_js
+        IterableIterator.t_of_js Ojs.float_of_js
           (Ojs.call (t_to_js Obj.magic x103) "keys" [||])
-    let (values : 'T t -> 'T _IterableIterator) =
+    let (values : 'T t -> 'T IterableIterator.t) =
       fun (x106 : 'T t) ->
-        _IterableIterator_of_js Obj.magic
+        IterableIterator.t_of_js Obj.magic
           (Ojs.call (t_to_js Obj.magic x106) "values" [||])
     let (to_ml : 'T t -> 'T list) =
       fun (x109 : 'T t) -> Ojs.list_of_js Obj.magic (t_to_js Obj.magic x109)
@@ -590,21 +589,21 @@ module ArrayConstructor =
 module ReadonlyArray =
   struct
     include struct include ReadonlyArray end
-    let (entries : 'T t -> (float * 'T) _IterableIterator) =
+    let (entries : 'T t -> (float * 'T) IterableIterator.t) =
       fun (x155 : 'T t) ->
-        _IterableIterator_of_js
+        IterableIterator.t_of_js
           (fun (x157 : Ojs.t) ->
              let x158 = x157 in
              ((Ojs.float_of_js (Ojs.array_get x158 0)),
                (Obj.magic (Ojs.array_get x158 1))))
           (Ojs.call (t_to_js Obj.magic x155) "entries" [||])
-    let (keys : 'T t -> float _IterableIterator) =
+    let (keys : 'T t -> float IterableIterator.t) =
       fun (x159 : 'T t) ->
-        _IterableIterator_of_js Ojs.float_of_js
+        IterableIterator.t_of_js Ojs.float_of_js
           (Ojs.call (t_to_js Obj.magic x159) "keys" [||])
-    let (values : 'T t -> 'T _IterableIterator) =
+    let (values : 'T t -> 'T IterableIterator.t) =
       fun (x162 : 'T t) ->
-        _IterableIterator_of_js Obj.magic
+        IterableIterator.t_of_js Obj.magic
           (Ojs.call (t_to_js Obj.magic x162) "values" [||])
     let (to_ml : 'T t -> 'T list) =
       fun (x165 : 'T t) -> Ojs.list_of_js Obj.magic (t_to_js Obj.magic x165)
@@ -616,21 +615,21 @@ module IArguments = struct include struct include IArguments end end
 module Map =
   struct
     include struct include Map end
-    let (entries : ('K, 'V) t -> ('K * 'V) _IterableIterator) =
+    let (entries : ('K, 'V) t -> ('K * 'V) IterableIterator.t) =
       fun (x171 : ('K, 'V) t) ->
-        _IterableIterator_of_js
+        IterableIterator.t_of_js
           (fun (x174 : Ojs.t) ->
              let x175 = x174 in
              ((Obj.magic (Ojs.array_get x175 0)),
                (Obj.magic (Ojs.array_get x175 1))))
           (Ojs.call (t_to_js Obj.magic Obj.magic x171) "entries" [||])
-    let (keys : ('K, 'V) t -> 'K _IterableIterator) =
+    let (keys : ('K, 'V) t -> 'K IterableIterator.t) =
       fun (x176 : ('K, 'V) t) ->
-        _IterableIterator_of_js Obj.magic
+        IterableIterator.t_of_js Obj.magic
           (Ojs.call (t_to_js Obj.magic Obj.magic x176) "keys" [||])
-    let (values : ('K, 'V) t -> 'V _IterableIterator) =
+    let (values : ('K, 'V) t -> 'V IterableIterator.t) =
       fun (x180 : ('K, 'V) t) ->
-        _IterableIterator_of_js Obj.magic
+        IterableIterator.t_of_js Obj.magic
           (Ojs.call (t_to_js Obj.magic Obj.magic x180) "values" [||])
     let (create_iterable : iterable:('K * 'V) _Iterable -> ('K, 'V) t) =
       fun ~iterable:(x184 : ('K * 'V) _Iterable) ->
@@ -647,21 +646,21 @@ module Map =
 module ReadonlyMap =
   struct
     include struct include ReadonlyMap end
-    let (entries : ('K, 'V) t -> ('K * 'V) _IterableIterator) =
+    let (entries : ('K, 'V) t -> ('K * 'V) IterableIterator.t) =
       fun (x191 : ('K, 'V) t) ->
-        _IterableIterator_of_js
+        IterableIterator.t_of_js
           (fun (x194 : Ojs.t) ->
              let x195 = x194 in
              ((Obj.magic (Ojs.array_get x195 0)),
                (Obj.magic (Ojs.array_get x195 1))))
           (Ojs.call (t_to_js Obj.magic Obj.magic x191) "entries" [||])
-    let (keys : ('K, 'V) t -> 'K _IterableIterator) =
+    let (keys : ('K, 'V) t -> 'K IterableIterator.t) =
       fun (x196 : ('K, 'V) t) ->
-        _IterableIterator_of_js Obj.magic
+        IterableIterator.t_of_js Obj.magic
           (Ojs.call (t_to_js Obj.magic Obj.magic x196) "keys" [||])
-    let (values : ('K, 'V) t -> 'V _IterableIterator) =
+    let (values : ('K, 'V) t -> 'V IterableIterator.t) =
       fun (x200 : ('K, 'V) t) ->
-        _IterableIterator_of_js Obj.magic
+        IterableIterator.t_of_js Obj.magic
           (Ojs.call (t_to_js Obj.magic Obj.magic x200) "values" [||])
   end
 module MapConstructor =
@@ -716,21 +715,21 @@ module WeakMapConstructor =
 module Set =
   struct
     include struct include Set end
-    let (entries : 'T t -> ('T * 'T) _IterableIterator) =
+    let (entries : 'T t -> ('T * 'T) IterableIterator.t) =
       fun (x227 : 'T t) ->
-        _IterableIterator_of_js
+        IterableIterator.t_of_js
           (fun (x229 : Ojs.t) ->
              let x230 = x229 in
              ((Obj.magic (Ojs.array_get x230 0)),
                (Obj.magic (Ojs.array_get x230 1))))
           (Ojs.call (t_to_js Obj.magic x227) "entries" [||])
-    let (keys : 'T t -> 'T _IterableIterator) =
+    let (keys : 'T t -> 'T IterableIterator.t) =
       fun (x231 : 'T t) ->
-        _IterableIterator_of_js Obj.magic
+        IterableIterator.t_of_js Obj.magic
           (Ojs.call (t_to_js Obj.magic x231) "keys" [||])
-    let (values : 'T t -> 'T _IterableIterator) =
+    let (values : 'T t -> 'T IterableIterator.t) =
       fun (x234 : 'T t) ->
-        _IterableIterator_of_js Obj.magic
+        IterableIterator.t_of_js Obj.magic
           (Ojs.call (t_to_js Obj.magic x234) "values" [||])
     let (create_iterable : ?iterable:'T _Iterable or_null -> unit -> 'T t) =
       fun ?iterable:(x237 : 'T _Iterable or_null option) ->
@@ -752,21 +751,21 @@ module Set =
 module ReadonlySet =
   struct
     include struct include ReadonlySet end
-    let (entries : 'T t -> ('T * 'T) _IterableIterator) =
+    let (entries : 'T t -> ('T * 'T) IterableIterator.t) =
       fun (x243 : 'T t) ->
-        _IterableIterator_of_js
+        IterableIterator.t_of_js
           (fun (x245 : Ojs.t) ->
              let x246 = x245 in
              ((Obj.magic (Ojs.array_get x246 0)),
                (Obj.magic (Ojs.array_get x246 1))))
           (Ojs.call (t_to_js Obj.magic x243) "entries" [||])
-    let (keys : 'T t -> 'T _IterableIterator) =
+    let (keys : 'T t -> 'T IterableIterator.t) =
       fun (x247 : 'T t) ->
-        _IterableIterator_of_js Obj.magic
+        IterableIterator.t_of_js Obj.magic
           (Ojs.call (t_to_js Obj.magic x247) "keys" [||])
-    let (values : 'T t -> 'T _IterableIterator) =
+    let (values : 'T t -> 'T IterableIterator.t) =
       fun (x250 : 'T t) ->
-        _IterableIterator_of_js Obj.magic
+        IterableIterator.t_of_js Obj.magic
           (Ojs.call (t_to_js Obj.magic x250) "values" [||])
   end
 module SetConstructor =
@@ -863,21 +862,21 @@ module String =
 module Int8Array =
   struct
     include struct include Int8Array end
-    let (entries : t -> (float * float) _IterableIterator) =
+    let (entries : t -> (float * float) IterableIterator.t) =
       fun (x291 : t) ->
-        _IterableIterator_of_js
+        IterableIterator.t_of_js
           (fun (x292 : Ojs.t) ->
              let x293 = x292 in
              ((Ojs.float_of_js (Ojs.array_get x293 0)),
                (Ojs.float_of_js (Ojs.array_get x293 1))))
           (Ojs.call (t_to_js x291) "entries" [||])
-    let (keys : t -> float _IterableIterator) =
+    let (keys : t -> float IterableIterator.t) =
       fun (x294 : t) ->
-        _IterableIterator_of_js Ojs.float_of_js
+        IterableIterator.t_of_js Ojs.float_of_js
           (Ojs.call (t_to_js x294) "keys" [||])
-    let (values : t -> float _IterableIterator) =
+    let (values : t -> float IterableIterator.t) =
       fun (x296 : t) ->
-        _IterableIterator_of_js Ojs.float_of_js
+        IterableIterator.t_of_js Ojs.float_of_js
           (Ojs.call (t_to_js x296) "values" [||])
     let (create_iterable : float _Iterable -> t) =
       fun (x298 : float _Iterable) ->
@@ -976,21 +975,21 @@ module Int8ArrayConstructor =
 module Uint8Array =
   struct
     include struct include Uint8Array end
-    let (entries : t -> (float * float) _IterableIterator) =
+    let (entries : t -> (float * float) IterableIterator.t) =
       fun (x324 : t) ->
-        _IterableIterator_of_js
+        IterableIterator.t_of_js
           (fun (x325 : Ojs.t) ->
              let x326 = x325 in
              ((Ojs.float_of_js (Ojs.array_get x326 0)),
                (Ojs.float_of_js (Ojs.array_get x326 1))))
           (Ojs.call (t_to_js x324) "entries" [||])
-    let (keys : t -> float _IterableIterator) =
+    let (keys : t -> float IterableIterator.t) =
       fun (x327 : t) ->
-        _IterableIterator_of_js Ojs.float_of_js
+        IterableIterator.t_of_js Ojs.float_of_js
           (Ojs.call (t_to_js x327) "keys" [||])
-    let (values : t -> float _IterableIterator) =
+    let (values : t -> float IterableIterator.t) =
       fun (x329 : t) ->
-        _IterableIterator_of_js Ojs.float_of_js
+        IterableIterator.t_of_js Ojs.float_of_js
           (Ojs.call (t_to_js x329) "values" [||])
     let (create_iterable : float _Iterable -> t) =
       fun (x331 : float _Iterable) ->
@@ -1089,21 +1088,21 @@ module Uint8ArrayConstructor =
 module Uint8ClampedArray =
   struct
     include struct include Uint8ClampedArray end
-    let (entries : t -> (float * float) _IterableIterator) =
+    let (entries : t -> (float * float) IterableIterator.t) =
       fun (x357 : t) ->
-        _IterableIterator_of_js
+        IterableIterator.t_of_js
           (fun (x358 : Ojs.t) ->
              let x359 = x358 in
              ((Ojs.float_of_js (Ojs.array_get x359 0)),
                (Ojs.float_of_js (Ojs.array_get x359 1))))
           (Ojs.call (t_to_js x357) "entries" [||])
-    let (keys : t -> float _IterableIterator) =
+    let (keys : t -> float IterableIterator.t) =
       fun (x360 : t) ->
-        _IterableIterator_of_js Ojs.float_of_js
+        IterableIterator.t_of_js Ojs.float_of_js
           (Ojs.call (t_to_js x360) "keys" [||])
-    let (values : t -> float _IterableIterator) =
+    let (values : t -> float IterableIterator.t) =
       fun (x362 : t) ->
-        _IterableIterator_of_js Ojs.float_of_js
+        IterableIterator.t_of_js Ojs.float_of_js
           (Ojs.call (t_to_js x362) "values" [||])
     let (create_iterable : float _Iterable -> t) =
       fun (x364 : float _Iterable) ->
@@ -1202,21 +1201,21 @@ module Uint8ClampedArrayConstructor =
 module Int16Array =
   struct
     include struct include Int16Array end
-    let (entries : t -> (float * float) _IterableIterator) =
+    let (entries : t -> (float * float) IterableIterator.t) =
       fun (x390 : t) ->
-        _IterableIterator_of_js
+        IterableIterator.t_of_js
           (fun (x391 : Ojs.t) ->
              let x392 = x391 in
              ((Ojs.float_of_js (Ojs.array_get x392 0)),
                (Ojs.float_of_js (Ojs.array_get x392 1))))
           (Ojs.call (t_to_js x390) "entries" [||])
-    let (keys : t -> float _IterableIterator) =
+    let (keys : t -> float IterableIterator.t) =
       fun (x393 : t) ->
-        _IterableIterator_of_js Ojs.float_of_js
+        IterableIterator.t_of_js Ojs.float_of_js
           (Ojs.call (t_to_js x393) "keys" [||])
-    let (values : t -> float _IterableIterator) =
+    let (values : t -> float IterableIterator.t) =
       fun (x395 : t) ->
-        _IterableIterator_of_js Ojs.float_of_js
+        IterableIterator.t_of_js Ojs.float_of_js
           (Ojs.call (t_to_js x395) "values" [||])
     let (create_iterable : float _Iterable -> t) =
       fun (x397 : float _Iterable) ->
@@ -1315,21 +1314,21 @@ module Int16ArrayConstructor =
 module Uint16Array =
   struct
     include struct include Uint16Array end
-    let (entries : t -> (float * float) _IterableIterator) =
+    let (entries : t -> (float * float) IterableIterator.t) =
       fun (x423 : t) ->
-        _IterableIterator_of_js
+        IterableIterator.t_of_js
           (fun (x424 : Ojs.t) ->
              let x425 = x424 in
              ((Ojs.float_of_js (Ojs.array_get x425 0)),
                (Ojs.float_of_js (Ojs.array_get x425 1))))
           (Ojs.call (t_to_js x423) "entries" [||])
-    let (keys : t -> float _IterableIterator) =
+    let (keys : t -> float IterableIterator.t) =
       fun (x426 : t) ->
-        _IterableIterator_of_js Ojs.float_of_js
+        IterableIterator.t_of_js Ojs.float_of_js
           (Ojs.call (t_to_js x426) "keys" [||])
-    let (values : t -> float _IterableIterator) =
+    let (values : t -> float IterableIterator.t) =
       fun (x428 : t) ->
-        _IterableIterator_of_js Ojs.float_of_js
+        IterableIterator.t_of_js Ojs.float_of_js
           (Ojs.call (t_to_js x428) "values" [||])
     let (create_iterable : float _Iterable -> t) =
       fun (x430 : float _Iterable) ->
@@ -1428,21 +1427,21 @@ module Uint16ArrayConstructor =
 module Int32Array =
   struct
     include struct include Int32Array end
-    let (entries : t -> (float * float) _IterableIterator) =
+    let (entries : t -> (float * float) IterableIterator.t) =
       fun (x456 : t) ->
-        _IterableIterator_of_js
+        IterableIterator.t_of_js
           (fun (x457 : Ojs.t) ->
              let x458 = x457 in
              ((Ojs.float_of_js (Ojs.array_get x458 0)),
                (Ojs.float_of_js (Ojs.array_get x458 1))))
           (Ojs.call (t_to_js x456) "entries" [||])
-    let (keys : t -> float _IterableIterator) =
+    let (keys : t -> float IterableIterator.t) =
       fun (x459 : t) ->
-        _IterableIterator_of_js Ojs.float_of_js
+        IterableIterator.t_of_js Ojs.float_of_js
           (Ojs.call (t_to_js x459) "keys" [||])
-    let (values : t -> float _IterableIterator) =
+    let (values : t -> float IterableIterator.t) =
       fun (x461 : t) ->
-        _IterableIterator_of_js Ojs.float_of_js
+        IterableIterator.t_of_js Ojs.float_of_js
           (Ojs.call (t_to_js x461) "values" [||])
     let (create_iterable : float _Iterable -> t) =
       fun (x463 : float _Iterable) ->
@@ -1541,21 +1540,21 @@ module Int32ArrayConstructor =
 module Uint32Array =
   struct
     include struct include Uint32Array end
-    let (entries : t -> (float * float) _IterableIterator) =
+    let (entries : t -> (float * float) IterableIterator.t) =
       fun (x489 : t) ->
-        _IterableIterator_of_js
+        IterableIterator.t_of_js
           (fun (x490 : Ojs.t) ->
              let x491 = x490 in
              ((Ojs.float_of_js (Ojs.array_get x491 0)),
                (Ojs.float_of_js (Ojs.array_get x491 1))))
           (Ojs.call (t_to_js x489) "entries" [||])
-    let (keys : t -> float _IterableIterator) =
+    let (keys : t -> float IterableIterator.t) =
       fun (x492 : t) ->
-        _IterableIterator_of_js Ojs.float_of_js
+        IterableIterator.t_of_js Ojs.float_of_js
           (Ojs.call (t_to_js x492) "keys" [||])
-    let (values : t -> float _IterableIterator) =
+    let (values : t -> float IterableIterator.t) =
       fun (x494 : t) ->
-        _IterableIterator_of_js Ojs.float_of_js
+        IterableIterator.t_of_js Ojs.float_of_js
           (Ojs.call (t_to_js x494) "values" [||])
     let (create_iterable : float _Iterable -> t) =
       fun (x496 : float _Iterable) ->
@@ -1654,21 +1653,21 @@ module Uint32ArrayConstructor =
 module Float32Array =
   struct
     include struct include Float32Array end
-    let (entries : t -> (float * float) _IterableIterator) =
+    let (entries : t -> (float * float) IterableIterator.t) =
       fun (x522 : t) ->
-        _IterableIterator_of_js
+        IterableIterator.t_of_js
           (fun (x523 : Ojs.t) ->
              let x524 = x523 in
              ((Ojs.float_of_js (Ojs.array_get x524 0)),
                (Ojs.float_of_js (Ojs.array_get x524 1))))
           (Ojs.call (t_to_js x522) "entries" [||])
-    let (keys : t -> float _IterableIterator) =
+    let (keys : t -> float IterableIterator.t) =
       fun (x525 : t) ->
-        _IterableIterator_of_js Ojs.float_of_js
+        IterableIterator.t_of_js Ojs.float_of_js
           (Ojs.call (t_to_js x525) "keys" [||])
-    let (values : t -> float _IterableIterator) =
+    let (values : t -> float IterableIterator.t) =
       fun (x527 : t) ->
-        _IterableIterator_of_js Ojs.float_of_js
+        IterableIterator.t_of_js Ojs.float_of_js
           (Ojs.call (t_to_js x527) "values" [||])
     let (create_iterable : float _Iterable -> t) =
       fun (x529 : float _Iterable) ->
@@ -1767,21 +1766,21 @@ module Float32ArrayConstructor =
 module Float64Array =
   struct
     include struct include Float64Array end
-    let (entries : t -> (float * float) _IterableIterator) =
+    let (entries : t -> (float * float) IterableIterator.t) =
       fun (x555 : t) ->
-        _IterableIterator_of_js
+        IterableIterator.t_of_js
           (fun (x556 : Ojs.t) ->
              let x557 = x556 in
              ((Ojs.float_of_js (Ojs.array_get x557 0)),
                (Ojs.float_of_js (Ojs.array_get x557 1))))
           (Ojs.call (t_to_js x555) "entries" [||])
-    let (keys : t -> float _IterableIterator) =
+    let (keys : t -> float IterableIterator.t) =
       fun (x558 : t) ->
-        _IterableIterator_of_js Ojs.float_of_js
+        IterableIterator.t_of_js Ojs.float_of_js
           (Ojs.call (t_to_js x558) "keys" [||])
-    let (values : t -> float _IterableIterator) =
+    let (values : t -> float IterableIterator.t) =
       fun (x560 : t) ->
-        _IterableIterator_of_js Ojs.float_of_js
+        IterableIterator.t_of_js Ojs.float_of_js
           (Ojs.call (t_to_js x560) "values" [||])
     let (create_iterable : float _Iterable -> t) =
       fun (x562 : float _Iterable) ->

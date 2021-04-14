@@ -6,21 +6,9 @@ open Es5
 open Es2015_iterable
 
 module Generator : sig
-  type ('T, 'TReturn, 'TNext) t
-
-  val t_to_js
-    :  ('T -> Ojs.t)
-    -> ('TReturn -> Ojs.t)
-    -> ('TNext -> Ojs.t)
-    -> ('T, 'TReturn, 'TNext) t
-    -> Ojs.t
-
-  val t_of_js
-    :  (Ojs.t -> 'T)
-    -> (Ojs.t -> 'TReturn)
-    -> (Ojs.t -> 'TNext)
-    -> Ojs.t
-    -> ('T, 'TReturn, 'TNext) t
+  include module type of struct
+    include Iterator
+  end
 
   val next
     :  ('T, 'TReturn, 'TNext) t
@@ -38,8 +26,6 @@ module Generator : sig
     :  ('T, 'TReturn, 'TNext) t
     -> e:any
     -> ('T, 'TReturn) IteratorResult.t
-
-  val cast : ('T, 'TReturn, 'TNext) t -> ('T, 'TReturn, 'TNext) Iterator.t
 end
 
 module GeneratorFunction : sig

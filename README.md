@@ -17,8 +17,11 @@ The bindings don't depend on any PPX (and in particular, they don't depend on `g
 
 ## To do
 
-- [ ] node
 - [ ] vscode
+- [ ] node
+    - [ ] Create the `on` functions
+    - [ ] Replace `cast` with `include module type of`
+    - [ ] investigate long function variants (`'''''`)
 
 ## Notes
 
@@ -35,6 +38,8 @@ ts2ocaml:
 - What's with all the `t_n`? Almost all of them are equal to `t` and have the same arity.
 - Do not add a labeled argument if there's only one argument, or when all of the other arguments are optional
 - `int` is probably a better default for `number`. Otherwise every accessors is generated with a `float`
+- Sometimes, there are multiple definitions with the same name in a file. `ts2ocaml` should merge them. This would probably help to create bindings spanning multiple files or projects (e.g. es2015 adding functions to string)
+- Use include module type of ... instead of the `cast` functions
 - Error when generating from `node/globals.d.ts`
  
     ```
