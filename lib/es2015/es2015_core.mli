@@ -11,21 +11,21 @@ module Array : sig
 
   val find
     :  'T t
-    -> predicate:(this:unit -> value:'T -> index:float -> obj:'T list -> bool)
+    -> (this:unit -> value:'T -> index:float -> obj:'T list -> bool)
     -> ?thisArg:any
     -> unit
     -> 'S or_undefined
 
   val find'
     :  'T t
-    -> predicate:(value:'T -> index:float -> obj:'T list -> unknown)
+    -> (value:'T -> index:float -> obj:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> 'T or_undefined
 
   val findIndex
     :  'T t
-    -> predicate:(value:'T -> index:float -> obj:'T list -> unknown)
+    -> (value:'T -> index:float -> obj:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> float
@@ -84,39 +84,39 @@ module Math : sig
     include Math
   end
 
-  val clz32 : t -> x:float -> float
+  val clz32 : float -> float
 
-  val imul : t -> x:float -> y:float -> float
+  val imul : x:float -> y:float -> float
 
-  val sign : t -> x:float -> float
+  val sign : float -> float
 
-  val log10 : t -> x:float -> float
+  val log10 : float -> float
 
-  val log2 : t -> x:float -> float
+  val log2 : float -> float
 
-  val log1p : t -> x:float -> float
+  val log1p : float -> float
 
-  val expm1 : t -> x:float -> float
+  val expm1 : float -> float
 
-  val cosh : t -> x:float -> float
+  val cosh : float -> float
 
-  val sinh : t -> x:float -> float
+  val sinh : float -> float
 
-  val tanh : t -> x:float -> float
+  val tanh : float -> float
 
-  val acosh : t -> x:float -> float
+  val acosh : float -> float
 
-  val asinh : t -> x:float -> float
+  val asinh : float -> float
 
-  val atanh : t -> x:float -> float
+  val atanh : float -> float
 
-  val hypot : t -> values:float list -> float
+  val hypot : values:float list -> float
 
-  val trunc : t -> x:float -> float
+  val trunc : float -> float
 
-  val fround : t -> x:float -> float
+  val fround : float -> float
 
-  val cbrt : t -> x:float -> float
+  val cbrt : float -> float
 end
 
 module NumberConstructor : sig
@@ -171,13 +171,13 @@ module ObjectConstructor : sig
 
   val assign''' : t -> target:untyped_object -> sources:any list -> any
 
-  val getOwnPropertySymbols : t -> o:any -> symbol list
+  val getOwnPropertySymbols : t -> any -> symbol list
 
-  val keys : t -> o:any -> string list
+  val keys : t -> any -> string list
 
   val is : t -> value1:any -> value2:any -> bool
 
-  val setPrototypeOf : t -> o:any -> proto:untyped_object or_null -> any
+  val setPrototypeOf : t -> any -> proto:untyped_object or_null -> any
 end
 
 module ReadonlyArray : sig
@@ -187,21 +187,21 @@ module ReadonlyArray : sig
 
   val find
     :  'T t
-    -> predicate:(this:unit -> value:'T -> index:float -> obj:'T list -> bool)
+    -> (this:unit -> value:'T -> index:float -> obj:'T list -> bool)
     -> ?thisArg:any
     -> unit
     -> 'S or_undefined
 
   val find'
     :  'T t
-    -> predicate:(value:'T -> index:float -> obj:'T list -> unknown)
+    -> (value:'T -> index:float -> obj:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> 'T or_undefined
 
   val findIndex
     :  'T t
-    -> predicate:(value:'T -> index:float -> obj:'T list -> unknown)
+    -> (value:'T -> index:float -> obj:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> float

@@ -496,11 +496,7 @@ module Tls : sig
       -> bool
       [@@js.call "emit"]
 
-    val emit''''
-      :  t
-      -> event:([ `keylog ][@js.enum])
-      -> line:Buffer.t_0
-      -> bool
+    val emit'''' : t -> event:([ `keylog ][@js.enum]) -> line:Buffer.t_0 -> bool
       [@@js.call "emit"]
 
     val on
@@ -667,9 +663,7 @@ module Tls : sig
 
     val set_requestCert : t -> bool -> unit [@@js.set "requestCert"]
 
-    val get_ALPNProtocols
-      :  t
-      -> (Uint8Array.t, Uint8Array.t or_string) or_array
+    val get_ALPNProtocols : t -> (Uint8Array.t, Uint8Array.t or_string) or_array
       [@@js.get "ALPNProtocols"]
 
     val set_ALPNProtocols

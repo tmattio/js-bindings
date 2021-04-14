@@ -41,8 +41,6 @@ module Domain : sig
 
         val t_of_js : Ojs.t -> t
 
-
-
         val run
           :  t
           -> fn:(args:(any list[@js.variadic]) -> 'T)

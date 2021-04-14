@@ -30,8 +30,7 @@ module Timers : sig
     [@@js.global "setTimeout"]
 
   module SetTimeout : sig
-    val __promisify__ : ms:float -> unit Promise.t
-      [@@js.global "__promisify__"]
+    val __promisify__ : ms:float -> unit Promise.t [@@js.global "__promisify__"]
 
     val __promisify__ : ms:float -> value:'T -> 'T Promise.t
       [@@js.global "__promisify__"]

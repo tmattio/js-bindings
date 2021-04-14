@@ -2,3 +2,8 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 include struct include Es2016 end
+include struct include Es2017_object end
+include struct include Es2017_sharedmemory end
+include struct include Es2017_string end
+include struct include Es2017_intl end
+include struct include Es2017_typedarrays end

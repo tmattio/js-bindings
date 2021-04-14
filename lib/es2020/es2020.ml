@@ -2,3 +2,9 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 include struct include Es2019 end
+include struct include Es2020_bigint end
+include struct include Es2020_promise end
+include struct include Es2020_sharedmemory end
+include struct include Es2020_string end
+include struct include Es2020_symbol_wellknown end
+include struct include Es2020_intl end

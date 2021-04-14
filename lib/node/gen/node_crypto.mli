@@ -438,8 +438,7 @@ module AnonymousInterface6 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_type : t -> ([ `pkcs8 [@js "pkcs8"] ][@js.enum])
-    [@@js.get "type"]
+  val get_type : t -> ([ `pkcs8 [@js "pkcs8"] ][@js.enum]) [@@js.get "type"]
 
   val set_type : t -> ([ `pkcs8 ][@js.enum]) -> unit [@@js.set "type"]
 end
@@ -472,8 +471,7 @@ module AnonymousInterface8 : sig
     -> ([ `pkcs1 [@js "pkcs1"] | `pkcs8 [@js "pkcs8"] ][@js.enum])
     [@@js.get "type"]
 
-  val set_type : t -> ([ `pkcs1 | `pkcs8 ][@js.enum]) -> unit
-    [@@js.set "type"]
+  val set_type : t -> ([ `pkcs1 | `pkcs8 ][@js.enum]) -> unit [@@js.set "type"]
 end
 
 module AnonymousInterface9 : sig
@@ -483,13 +481,10 @@ module AnonymousInterface9 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_type
-    :  t
-    -> ([ `pkcs1 [@js "pkcs1"] | `spki [@js "spki"] ][@js.enum])
+  val get_type : t -> ([ `pkcs1 [@js "pkcs1"] | `spki [@js "spki"] ][@js.enum])
     [@@js.get "type"]
 
-  val set_type : t -> ([ `pkcs1 | `spki ][@js.enum]) -> unit
-    [@@js.set "type"]
+  val set_type : t -> ([ `pkcs1 | `spki ][@js.enum]) -> unit [@@js.set "type"]
 
   val get_format : t -> 'PubF [@@js.get "format"]
 
@@ -503,13 +498,10 @@ module AnonymousInterface10 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_type
-    :  t
-    -> ([ `pkcs8 [@js "pkcs8"] | `sec1 [@js "sec1"] ][@js.enum])
+  val get_type : t -> ([ `pkcs8 [@js "pkcs8"] | `sec1 [@js "sec1"] ][@js.enum])
     [@@js.get "type"]
 
-  val set_type : t -> ([ `pkcs8 | `sec1 ][@js.enum]) -> unit
-    [@@js.set "type"]
+  val set_type : t -> ([ `pkcs8 | `sec1 ][@js.enum]) -> unit [@@js.set "type"]
 end
 
 module AnonymousInterface11 : sig
@@ -1276,17 +1268,11 @@ module Crypto : sig
 
     val get_type
       :  t
-      -> ([ `pkcs1 [@js "pkcs1"]
-          | `pkcs8 [@js "pkcs8"]
-          | `sec1 [@js "sec1"]
-          ]
+      -> ([ `pkcs1 [@js "pkcs1"] | `pkcs8 [@js "pkcs8"] | `sec1 [@js "sec1"] ]
          [@js.enum])
       [@@js.get "type"]
 
-    val set_type
-      :  t
-      -> ([ `pkcs1 | `pkcs8 | `sec1 ][@js.enum])
-      -> unit
+    val set_type : t -> ([ `pkcs1 | `pkcs8 | `sec1 ][@js.enum]) -> unit
       [@@js.set "type"]
 
     val get_passphrase : t -> Buffer.t_0 or_string [@@js.get "passphrase"]
@@ -1316,8 +1302,7 @@ module Crypto : sig
       -> ([ `pkcs1 [@js "pkcs1"] | `spki [@js "spki"] ][@js.enum])
       [@@js.get "type"]
 
-    val set_type : t -> ([ `pkcs1 | `spki ][@js.enum]) -> unit
-      [@@js.set "type"]
+    val set_type : t -> ([ `pkcs1 | `spki ][@js.enum]) -> unit [@@js.set "type"]
   end
   [@@js.scope "PublicKeyInput"]
 
@@ -1869,8 +1854,7 @@ module Crypto : sig
 
     val get_oaepLabel : t -> NodeJS.TypedArray.t [@@js.get "oaepLabel"]
 
-    val set_oaepLabel : t -> NodeJS.TypedArray.t -> unit
-      [@@js.set "oaepLabel"]
+    val set_oaepLabel : t -> NodeJS.TypedArray.t -> unit [@@js.set "oaepLabel"]
 
     val get_padding : t -> float [@@js.get "padding"]
 
@@ -1924,11 +1908,8 @@ module Crypto : sig
       :  key:crypto_BinaryLike
       -> curve:string
       -> ?inputEncoding:crypto_BinaryToTextEncoding
-      -> ?outputEncoding:
-           ([ `base64 | `hex | `latin1 ][@js.enum])
-      -> ?format:
-           ([ `compressed | `hybrid | `uncompressed ]
-           [@js.enum])
+      -> ?outputEncoding:([ `base64 | `hex | `latin1 ][@js.enum])
+      -> ?format:([ `compressed | `hybrid | `uncompressed ][@js.enum])
       -> unit
       -> Buffer.t_0 or_string
       [@@js.global "convertKey"]
@@ -2477,36 +2458,28 @@ module Crypto : sig
   val generateKeyPairSync
     :  type_:([ `rsa ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_RSAKeyPairOptions
+         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_RSAKeyPairOptions
     -> (string, string) crypto_KeyPairSyncResult
     [@@js.global "generateKeyPairSync"]
 
   val generateKeyPairSync
     :  type_:([ `rsa ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_RSAKeyPairOptions
+         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_RSAKeyPairOptions
     -> (string, Buffer.t_0) crypto_KeyPairSyncResult
     [@@js.global "generateKeyPairSync"]
 
   val generateKeyPairSync
     :  type_:([ `rsa ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_RSAKeyPairOptions
+         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_RSAKeyPairOptions
     -> (Buffer.t_0, string) crypto_KeyPairSyncResult
     [@@js.global "generateKeyPairSync"]
 
   val generateKeyPairSync
     :  type_:([ `rsa ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_RSAKeyPairOptions
+         (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_RSAKeyPairOptions
     -> (Buffer.t_0, Buffer.t_0) crypto_KeyPairSyncResult
     [@@js.global "generateKeyPairSync"]
 
@@ -2519,36 +2492,28 @@ module Crypto : sig
   val generateKeyPairSync
     :  type_:([ `dsa ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_DSAKeyPairOptions
+         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_DSAKeyPairOptions
     -> (string, string) crypto_KeyPairSyncResult
     [@@js.global "generateKeyPairSync"]
 
   val generateKeyPairSync
     :  type_:([ `dsa ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_DSAKeyPairOptions
+         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_DSAKeyPairOptions
     -> (string, Buffer.t_0) crypto_KeyPairSyncResult
     [@@js.global "generateKeyPairSync"]
 
   val generateKeyPairSync
     :  type_:([ `dsa ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_DSAKeyPairOptions
+         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_DSAKeyPairOptions
     -> (Buffer.t_0, string) crypto_KeyPairSyncResult
     [@@js.global "generateKeyPairSync"]
 
   val generateKeyPairSync
     :  type_:([ `dsa ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_DSAKeyPairOptions
+         (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_DSAKeyPairOptions
     -> (Buffer.t_0, Buffer.t_0) crypto_KeyPairSyncResult
     [@@js.global "generateKeyPairSync"]
 
@@ -2561,36 +2526,28 @@ module Crypto : sig
   val generateKeyPairSync
     :  type_:([ `ec ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_ECKeyPairOptions
+         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_ECKeyPairOptions
     -> (string, string) crypto_KeyPairSyncResult
     [@@js.global "generateKeyPairSync"]
 
   val generateKeyPairSync
     :  type_:([ `ec ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_ECKeyPairOptions
+         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_ECKeyPairOptions
     -> (string, Buffer.t_0) crypto_KeyPairSyncResult
     [@@js.global "generateKeyPairSync"]
 
   val generateKeyPairSync
     :  type_:([ `ec ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_ECKeyPairOptions
+         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_ECKeyPairOptions
     -> (Buffer.t_0, string) crypto_KeyPairSyncResult
     [@@js.global "generateKeyPairSync"]
 
   val generateKeyPairSync
     :  type_:([ `ec ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_ECKeyPairOptions
+         (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_ECKeyPairOptions
     -> (Buffer.t_0, Buffer.t_0) crypto_KeyPairSyncResult
     [@@js.global "generateKeyPairSync"]
 
@@ -2646,36 +2603,28 @@ module Crypto : sig
   val generateKeyPairSync
     :  type_:([ `ed448 ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_ED448KeyPairOptions
+         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_ED448KeyPairOptions
     -> (string, string) crypto_KeyPairSyncResult
     [@@js.global "generateKeyPairSync"]
 
   val generateKeyPairSync
     :  type_:([ `ed448 ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_ED448KeyPairOptions
+         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_ED448KeyPairOptions
     -> (string, Buffer.t_0) crypto_KeyPairSyncResult
     [@@js.global "generateKeyPairSync"]
 
   val generateKeyPairSync
     :  type_:([ `ed448 ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_ED448KeyPairOptions
+         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_ED448KeyPairOptions
     -> (Buffer.t_0, string) crypto_KeyPairSyncResult
     [@@js.global "generateKeyPairSync"]
 
   val generateKeyPairSync
     :  type_:([ `ed448 ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_ED448KeyPairOptions
+         (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_ED448KeyPairOptions
     -> (Buffer.t_0, Buffer.t_0) crypto_KeyPairSyncResult
     [@@js.global "generateKeyPairSync"]
 
@@ -2732,36 +2681,28 @@ module Crypto : sig
   val generateKeyPairSync
     :  type_:([ `x448 ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_X448KeyPairOptions
+         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_X448KeyPairOptions
     -> (string, string) crypto_KeyPairSyncResult
     [@@js.global "generateKeyPairSync"]
 
   val generateKeyPairSync
     :  type_:([ `x448 ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_X448KeyPairOptions
+         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_X448KeyPairOptions
     -> (string, Buffer.t_0) crypto_KeyPairSyncResult
     [@@js.global "generateKeyPairSync"]
 
   val generateKeyPairSync
     :  type_:([ `x448 ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_X448KeyPairOptions
+         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_X448KeyPairOptions
     -> (Buffer.t_0, string) crypto_KeyPairSyncResult
     [@@js.global "generateKeyPairSync"]
 
   val generateKeyPairSync
     :  type_:([ `x448 ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_X448KeyPairOptions
+         (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_X448KeyPairOptions
     -> (Buffer.t_0, Buffer.t_0) crypto_KeyPairSyncResult
     [@@js.global "generateKeyPairSync"]
 
@@ -2775,9 +2716,7 @@ module Crypto : sig
   val generateKeyPair
     :  type_:([ `rsa ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_RSAKeyPairOptions
+         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_RSAKeyPairOptions
     -> callback:
          (err:Error.t_0 or_null
           -> publicKey:string
@@ -2789,9 +2728,7 @@ module Crypto : sig
   val generateKeyPair
     :  type_:([ `rsa ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_RSAKeyPairOptions
+         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_RSAKeyPairOptions
     -> callback:
          (err:Error.t_0 or_null
           -> publicKey:string
@@ -2803,9 +2740,7 @@ module Crypto : sig
   val generateKeyPair
     :  type_:([ `rsa ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_RSAKeyPairOptions
+         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_RSAKeyPairOptions
     -> callback:
          (err:Error.t_0 or_null
           -> publicKey:Buffer.t_0
@@ -2817,9 +2752,7 @@ module Crypto : sig
   val generateKeyPair
     :  type_:([ `rsa ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_RSAKeyPairOptions
+         (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_RSAKeyPairOptions
     -> callback:
          (err:Error.t_0 or_null
           -> publicKey:Buffer.t_0
@@ -2842,9 +2775,7 @@ module Crypto : sig
   val generateKeyPair
     :  type_:([ `dsa ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_DSAKeyPairOptions
+         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_DSAKeyPairOptions
     -> callback:
          (err:Error.t_0 or_null
           -> publicKey:string
@@ -2856,9 +2787,7 @@ module Crypto : sig
   val generateKeyPair
     :  type_:([ `dsa ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_DSAKeyPairOptions
+         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_DSAKeyPairOptions
     -> callback:
          (err:Error.t_0 or_null
           -> publicKey:string
@@ -2870,9 +2799,7 @@ module Crypto : sig
   val generateKeyPair
     :  type_:([ `dsa ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_DSAKeyPairOptions
+         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_DSAKeyPairOptions
     -> callback:
          (err:Error.t_0 or_null
           -> publicKey:Buffer.t_0
@@ -2884,9 +2811,7 @@ module Crypto : sig
   val generateKeyPair
     :  type_:([ `dsa ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_DSAKeyPairOptions
+         (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_DSAKeyPairOptions
     -> callback:
          (err:Error.t_0 or_null
           -> publicKey:Buffer.t_0
@@ -2909,9 +2834,7 @@ module Crypto : sig
   val generateKeyPair
     :  type_:([ `ec ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_ECKeyPairOptions
+         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_ECKeyPairOptions
     -> callback:
          (err:Error.t_0 or_null
           -> publicKey:string
@@ -2923,9 +2846,7 @@ module Crypto : sig
   val generateKeyPair
     :  type_:([ `ec ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_ECKeyPairOptions
+         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_ECKeyPairOptions
     -> callback:
          (err:Error.t_0 or_null
           -> publicKey:string
@@ -2937,9 +2858,7 @@ module Crypto : sig
   val generateKeyPair
     :  type_:([ `ec ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_ECKeyPairOptions
+         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_ECKeyPairOptions
     -> callback:
          (err:Error.t_0 or_null
           -> publicKey:Buffer.t_0
@@ -2951,9 +2870,7 @@ module Crypto : sig
   val generateKeyPair
     :  type_:([ `ec ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_ECKeyPairOptions
+         (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_ECKeyPairOptions
     -> callback:
          (err:Error.t_0 or_null
           -> publicKey:Buffer.t_0
@@ -3043,9 +2960,7 @@ module Crypto : sig
   val generateKeyPair
     :  type_:([ `ed448 ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_ED448KeyPairOptions
+         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_ED448KeyPairOptions
     -> callback:
          (err:Error.t_0 or_null
           -> publicKey:string
@@ -3057,9 +2972,7 @@ module Crypto : sig
   val generateKeyPair
     :  type_:([ `ed448 ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_ED448KeyPairOptions
+         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_ED448KeyPairOptions
     -> callback:
          (err:Error.t_0 or_null
           -> publicKey:string
@@ -3071,9 +2984,7 @@ module Crypto : sig
   val generateKeyPair
     :  type_:([ `ed448 ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_ED448KeyPairOptions
+         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_ED448KeyPairOptions
     -> callback:
          (err:Error.t_0 or_null
           -> publicKey:Buffer.t_0
@@ -3085,9 +2996,7 @@ module Crypto : sig
   val generateKeyPair
     :  type_:([ `ed448 ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_ED448KeyPairOptions
+         (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_ED448KeyPairOptions
     -> callback:
          (err:Error.t_0 or_null
           -> publicKey:Buffer.t_0
@@ -3177,9 +3086,7 @@ module Crypto : sig
   val generateKeyPair
     :  type_:([ `x448 ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_X448KeyPairOptions
+         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_X448KeyPairOptions
     -> callback:
          (err:Error.t_0 or_null
           -> publicKey:string
@@ -3191,9 +3098,7 @@ module Crypto : sig
   val generateKeyPair
     :  type_:([ `x448 ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_X448KeyPairOptions
+         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_X448KeyPairOptions
     -> callback:
          (err:Error.t_0 or_null
           -> publicKey:string
@@ -3205,9 +3110,7 @@ module Crypto : sig
   val generateKeyPair
     :  type_:([ `x448 ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_X448KeyPairOptions
+         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_X448KeyPairOptions
     -> callback:
          (err:Error.t_0 or_null
           -> publicKey:Buffer.t_0
@@ -3219,9 +3122,7 @@ module Crypto : sig
   val generateKeyPair
     :  type_:([ `x448 ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_X448KeyPairOptions
+         (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_X448KeyPairOptions
     -> callback:
          (err:Error.t_0 or_null
           -> publicKey:Buffer.t_0
@@ -3245,36 +3146,28 @@ module Crypto : sig
     val __promisify__
       :  type_:([ `rsa ][@js.enum])
       -> options:
-           ( ([ `pem ][@js.enum])
-           , ([ `pem ][@js.enum]) )
-           crypto_RSAKeyPairOptions
+           (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_RSAKeyPairOptions
       -> anonymous_interface_5 Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `rsa ][@js.enum])
       -> options:
-           ( ([ `pem ][@js.enum])
-           , ([ `der ][@js.enum]) )
-           crypto_RSAKeyPairOptions
+           (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_RSAKeyPairOptions
       -> anonymous_interface_4 Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `rsa ][@js.enum])
       -> options:
-           ( ([ `der ][@js.enum])
-           , ([ `pem ][@js.enum]) )
-           crypto_RSAKeyPairOptions
+           (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_RSAKeyPairOptions
       -> anonymous_interface_3 Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `rsa ][@js.enum])
       -> options:
-           ( ([ `der ][@js.enum])
-           , ([ `der ][@js.enum]) )
-           crypto_RSAKeyPairOptions
+           (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_RSAKeyPairOptions
       -> anonymous_interface_2 Promise.t
       [@@js.global "__promisify__"]
 
@@ -3287,36 +3180,28 @@ module Crypto : sig
     val __promisify__
       :  type_:([ `dsa ][@js.enum])
       -> options:
-           ( ([ `pem ][@js.enum])
-           , ([ `pem ][@js.enum]) )
-           crypto_DSAKeyPairOptions
+           (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_DSAKeyPairOptions
       -> anonymous_interface_5 Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `dsa ][@js.enum])
       -> options:
-           ( ([ `pem ][@js.enum])
-           , ([ `der ][@js.enum]) )
-           crypto_DSAKeyPairOptions
+           (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_DSAKeyPairOptions
       -> anonymous_interface_4 Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `dsa ][@js.enum])
       -> options:
-           ( ([ `der ][@js.enum])
-           , ([ `pem ][@js.enum]) )
-           crypto_DSAKeyPairOptions
+           (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_DSAKeyPairOptions
       -> anonymous_interface_3 Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `dsa ][@js.enum])
       -> options:
-           ( ([ `der ][@js.enum])
-           , ([ `der ][@js.enum]) )
-           crypto_DSAKeyPairOptions
+           (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_DSAKeyPairOptions
       -> anonymous_interface_2 Promise.t
       [@@js.global "__promisify__"]
 
@@ -3329,36 +3214,28 @@ module Crypto : sig
     val __promisify__
       :  type_:([ `ec ][@js.enum])
       -> options:
-           ( ([ `pem ][@js.enum])
-           , ([ `pem ][@js.enum]) )
-           crypto_ECKeyPairOptions
+           (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_ECKeyPairOptions
       -> anonymous_interface_5 Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ec ][@js.enum])
       -> options:
-           ( ([ `pem ][@js.enum])
-           , ([ `der ][@js.enum]) )
-           crypto_ECKeyPairOptions
+           (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_ECKeyPairOptions
       -> anonymous_interface_4 Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ec ][@js.enum])
       -> options:
-           ( ([ `der ][@js.enum])
-           , ([ `pem ][@js.enum]) )
-           crypto_ECKeyPairOptions
+           (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_ECKeyPairOptions
       -> anonymous_interface_3 Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ec ][@js.enum])
       -> options:
-           ( ([ `der ][@js.enum])
-           , ([ `der ][@js.enum]) )
-           crypto_ECKeyPairOptions
+           (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_ECKeyPairOptions
       -> anonymous_interface_2 Promise.t
       [@@js.global "__promisify__"]
 

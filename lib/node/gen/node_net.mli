@@ -172,10 +172,7 @@ module Net : sig
     val get_buffer : t -> (Uint8Array.t, unit -> Uint8Array.t) union2
       [@@js.get "buffer"]
 
-    val set_buffer
-      :  t
-      -> (Uint8Array.t, unit -> Uint8Array.t) union2
-      -> unit
+    val set_buffer : t -> (Uint8Array.t, unit -> Uint8Array.t) union2 -> unit
       [@@js.set "buffer"]
 
     val callback : t -> bytesWritten:float -> buf:Uint8Array.t -> bool
@@ -456,27 +453,16 @@ module Net : sig
     val emit' : t -> event:([ `close ][@js.enum]) -> had_error:bool -> bool
       [@@js.call "emit"]
 
-    val emit'' : t -> event:([ `connect ][@js.enum]) -> bool
+    val emit'' : t -> event:([ `connect ][@js.enum]) -> bool [@@js.call "emit"]
+
+    val emit''' : t -> event:([ `data ][@js.enum]) -> data:Buffer.t_0 -> bool
       [@@js.call "emit"]
 
-    val emit'''
-      :  t
-      -> event:([ `data ][@js.enum])
-      -> data:Buffer.t_0
-      -> bool
-      [@@js.call "emit"]
+    val emit'''' : t -> event:([ `drain ][@js.enum]) -> bool [@@js.call "emit"]
 
-    val emit'''' : t -> event:([ `drain ][@js.enum]) -> bool
-      [@@js.call "emit"]
+    val emit''''' : t -> event:([ `end_ ][@js.enum]) -> bool [@@js.call "emit"]
 
-    val emit''''' : t -> event:([ `end_ ][@js.enum]) -> bool
-      [@@js.call "emit"]
-
-    val emit''''''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> err:Error.t_0
-      -> bool
+    val emit'''''' : t -> event:([ `error ][@js.enum]) -> err:Error.t_0 -> bool
       [@@js.call "emit"]
 
     val emit'''''''
@@ -990,8 +976,7 @@ module Net : sig
       -> bool
       [@@js.call "emit"]
 
-    val emit' : t -> event:([ `close ][@js.enum]) -> bool
-      [@@js.call "emit"]
+    val emit' : t -> event:([ `close ][@js.enum]) -> bool [@@js.call "emit"]
 
     val emit''
       :  t
@@ -1000,11 +985,7 @@ module Net : sig
       -> bool
       [@@js.call "emit"]
 
-    val emit'''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> err:Error.t_0
-      -> bool
+    val emit''' : t -> event:([ `error ][@js.enum]) -> err:Error.t_0 -> bool
       [@@js.call "emit"]
 
     val emit'''' : t -> event:([ `listening ][@js.enum]) -> bool
@@ -1017,11 +998,7 @@ module Net : sig
       -> t
       [@@js.call "on"]
 
-    val on'
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val on' : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "on"]
 
     val on''

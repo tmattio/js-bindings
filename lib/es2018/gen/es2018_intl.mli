@@ -213,3 +213,7 @@ module Intl : sig
   val pluralRules : anonymous_interface_0 [@@js.global "PluralRules"]
 end
 [@@js.scope "Intl"]
+
+include module type of struct
+  include Intl
+end

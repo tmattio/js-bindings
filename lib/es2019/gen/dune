@@ -13,6 +13,13 @@
   (run %{bin:gen_js_api} %{deps})))
 
 (rule
+ (targets es2019_array.ml)
+ (deps es2019_array.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps})))
+
+(rule
  (targets es2019_object.ml)
  (deps es2019_object.mli)
  (mode promote)

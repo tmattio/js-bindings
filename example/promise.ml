@@ -1,4 +1,4 @@
-open Es2015
+open Es2020
 
 let (_ : unit Promise.t) =
   let promise = Promise.create (fun ~resolve ~reject:_ -> resolve 1) in

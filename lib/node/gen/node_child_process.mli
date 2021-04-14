@@ -287,8 +287,7 @@ module Internal : sig
 
     and child_process_StdioNull =
       ( Stream.t_0
-      , ([ `ignore [@js "ignore"] | `inherit_ [@js "inherit"] ]
-        [@js.enum]) )
+      , ([ `ignore [@js "ignore"] | `inherit_ [@js "inherit"] ][@js.enum]) )
       or_enum
 
     and child_process_StdioOptions =
@@ -563,11 +562,7 @@ module Child_process : sig
     val emit'' : t -> event:([ `disconnect ][@js.enum]) -> bool
       [@@js.call "emit"]
 
-    val emit'''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> err:Error.t_0
-      -> bool
+    val emit''' : t -> event:([ `error ][@js.enum]) -> err:Error.t_0 -> bool
       [@@js.call "emit"]
 
     val emit''''
@@ -1949,9 +1944,7 @@ module Child_process : sig
 
     val get_encoding
       :  t
-      -> ( BufferEncoding.t_0
-         , ([ `buffer [@js "buffer"] ][@js.enum]) )
-         or_enum
+      -> (BufferEncoding.t_0, ([ `buffer [@js "buffer"] ][@js.enum])) or_enum
          or_null
       [@@js.get "encoding"]
 
@@ -2114,9 +2107,7 @@ module Child_process : sig
 
     val get_encoding
       :  t
-      -> ( BufferEncoding.t_0
-         , ([ `buffer [@js "buffer"] ][@js.enum]) )
-         or_enum
+      -> (BufferEncoding.t_0, ([ `buffer [@js "buffer"] ][@js.enum])) or_enum
          or_null
       [@@js.get "encoding"]
 

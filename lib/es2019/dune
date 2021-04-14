@@ -4,13 +4,21 @@
  (libraries js_of_ocaml ojs es2018)
  (flags
   (:standard
+   ; 58: Hide "no cmx file was found in path for module Ojs, and its interface was not compiled with -opaque"
+   ; 60: We hide some anonymous interfaces
    -w
-   ; Hide "no cmx file was found in path for module Ojs, and its interface was not compiled with -opaque"
-   -58)))
+   -58-60)))
 
 (rule
  (target es2019.ml)
  (deps gen/es2019.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target es2019_array.ml)
+ (deps gen/es2019_array.ml)
  (mode promote)
  (action
   (copy %{deps} %{target})))

@@ -18,55 +18,53 @@ open AnonymousInterfaces
 open Types
 module String =
   struct
-    type t = _String
-    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> _String_of_js x2
-    and t_to_js : t -> Ojs.t = fun (x1 : _String) -> _String_to_js x1
+    include struct include String end
     let (padStart :
       t -> maxLength:float -> ?fillString:string -> unit -> string) =
-      fun (x7 : t) ->
-        fun ~maxLength:(x3 : float) ->
-          fun ?fillString:(x4 : string option) ->
+      fun (x5 : t) ->
+        fun ~maxLength:(x1 : float) ->
+          fun ?fillString:(x2 : string option) ->
             fun () ->
               Ojs.string_of_js
-                (let x8 = t_to_js x7 in
-                 Ojs.call (Ojs.get_prop_ascii x8 "padStart") "apply"
-                   [|x8;((let x5 =
+                (let x6 = t_to_js x5 in
+                 Ojs.call (Ojs.get_prop_ascii x6 "padStart") "apply"
+                   [|x6;((let x3 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x5 "push" [|(Ojs.float_to_js x3)|]);
-                          (match x4 with
-                           | Some x6 ->
+                            (Ojs.call x3 "push" [|(Ojs.float_to_js x1)|]);
+                          (match x2 with
+                           | Some x4 ->
                                ignore
-                                 (Ojs.call x5 "push"
-                                    [|(Ojs.string_to_js x6)|])
+                                 (Ojs.call x3 "push"
+                                    [|(Ojs.string_to_js x4)|])
                            | None -> ());
-                          x5))|])
+                          x3))|])
     let (padEnd :
       t -> maxLength:float -> ?fillString:string -> unit -> string) =
-      fun (x13 : t) ->
-        fun ~maxLength:(x9 : float) ->
-          fun ?fillString:(x10 : string option) ->
+      fun (x11 : t) ->
+        fun ~maxLength:(x7 : float) ->
+          fun ?fillString:(x8 : string option) ->
             fun () ->
               Ojs.string_of_js
-                (let x14 = t_to_js x13 in
-                 Ojs.call (Ojs.get_prop_ascii x14 "padEnd") "apply"
-                   [|x14;((let x11 =
+                (let x12 = t_to_js x11 in
+                 Ojs.call (Ojs.get_prop_ascii x12 "padEnd") "apply"
+                   [|x12;((let x9 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x11 "push" [|(Ojs.float_to_js x9)|]);
-                           (match x10 with
-                            | Some x12 ->
+                             (Ojs.call x9 "push" [|(Ojs.float_to_js x7)|]);
+                           (match x8 with
+                            | Some x10 ->
                                 ignore
-                                  (Ojs.call x11 "push"
-                                     [|(Ojs.string_to_js x12)|])
+                                  (Ojs.call x9 "push"
+                                     [|(Ojs.string_to_js x10)|])
                             | None -> ());
-                           x11))|])
+                           x9))|])
     let (to_ml : t -> string) =
-      fun (x15 : t) -> Ojs.string_of_js (t_to_js x15)
+      fun (x13 : t) -> Ojs.string_of_js (t_to_js x13)
     let (of_ml : string -> t) =
-      fun (x16 : string) -> t_of_js (Ojs.string_to_js x16)
+      fun (x14 : string) -> t_of_js (Ojs.string_to_js x14)
   end

@@ -125,28 +125,42 @@ module PromiseSettledResult =
         fun (x32 : __T _PromiseSettledResult) ->
           _PromiseSettledResult_to_js __T_to_js x32
   end
+module Promise =
+  struct
+    include struct include Promise end
+    let (allSettled : 'T -> any Promise.t) =
+      fun (x36 : 'T) ->
+        Promise.t_of_js any_of_js
+          (Ojs.call (Ojs.get_prop_ascii Ojs.global "Promise") "allSettled"
+             [|(Obj.magic x36)|])
+    let (allSettled' :
+      'T Iterable.t -> any _PromiseSettledResult list Promise.t) =
+      fun (x38 : 'T Iterable.t) ->
+        Promise.t_of_js
+          (fun (x40 : Ojs.t) ->
+             Ojs.list_of_js
+               (fun (x41 : Ojs.t) ->
+                  _PromiseSettledResult_of_js any_of_js x41) x40)
+          (Ojs.call (Ojs.get_prop_ascii Ojs.global "Promise") "allSettled"
+             [|(Iterable.t_to_js Obj.magic x38)|])
+  end
 module PromiseConstructor =
   struct
-    type t = _PromiseConstructor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x37 : Ojs.t) -> _PromiseConstructor_of_js x37
-    and t_to_js : t -> Ojs.t =
-      fun (x36 : _PromiseConstructor) -> _PromiseConstructor_to_js x36
-    let (allSettled : t -> values:'T -> any Promise.t) =
-      fun (x39 : t) ->
-        fun ~values:(x38 : 'T) ->
+    include struct include PromiseConstructor end
+    let (allSettled : t -> 'T -> any Promise.t) =
+      fun (x44 : t) ->
+        fun (x43 : 'T) ->
           Promise.t_of_js any_of_js
-            (Ojs.call (t_to_js x39) "allSettled" [|(Obj.magic x38)|])
+            (Ojs.call (t_to_js x44) "allSettled" [|(Obj.magic x43)|])
     let (allSettled' :
-      t -> values:'T Iterable.t -> any _PromiseSettledResult list Promise.t)
-      =
-      fun (x43 : t) ->
-        fun ~values:(x41 : 'T Iterable.t) ->
+      t -> 'T Iterable.t -> any _PromiseSettledResult list Promise.t) =
+      fun (x48 : t) ->
+        fun (x46 : 'T Iterable.t) ->
           Promise.t_of_js
-            (fun (x44 : Ojs.t) ->
+            (fun (x49 : Ojs.t) ->
                Ojs.list_of_js
-                 (fun (x45 : Ojs.t) ->
-                    _PromiseSettledResult_of_js any_of_js x45) x44)
-            (Ojs.call (t_to_js x43) "allSettled"
-               [|(Iterable.t_to_js Obj.magic x41)|])
+                 (fun (x50 : Ojs.t) ->
+                    _PromiseSettledResult_of_js any_of_js x50) x49)
+            (Ojs.call (t_to_js x48) "allSettled"
+               [|(Iterable.t_to_js Obj.magic x46)|])
   end

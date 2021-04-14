@@ -48,8 +48,8 @@
   (run %{bin:gen_js_api} %{deps})))
 
 (rule
- (targets es2020_wellknown.ml)
- (deps es2020_wellknown.mli)
+ (targets es2020_symbol_wellknown.ml)
+ (deps es2020_symbol_wellknown.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps})))

@@ -19,121 +19,119 @@ open AnonymousInterfaces
 open Types
 module Atomics =
   struct
-    type t = _Atomics
-    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> _Atomics_of_js x2
-    and t_to_js : t -> Ojs.t = fun (x1 : _Atomics) -> _Atomics_to_js x1
+    include struct include Atomics end
     let (add :
       t ->
         typedArray:(BigInt64Array.t, BigUint64Array.t) union2 ->
           index:float -> value:bigint -> bigint)
       =
-      fun (x8 : t) ->
-        fun ~typedArray:(x3 : (BigInt64Array.t, BigUint64Array.t) union2) ->
-          fun ~index:(x6 : float) ->
-            fun ~value:(x7 : bigint) ->
+      fun (x6 : t) ->
+        fun ~typedArray:(x1 : (BigInt64Array.t, BigUint64Array.t) union2) ->
+          fun ~index:(x4 : float) ->
+            fun ~value:(x5 : bigint) ->
               bigint_of_js
-                (Ojs.call (t_to_js x8) "add"
+                (Ojs.call (t_to_js x6) "add"
                    [|(union2_to_js BigInt64Array.t_to_js
-                        BigUint64Array.t_to_js x3);(Ojs.float_to_js x6);(
-                     bigint_to_js x7)|])
+                        BigUint64Array.t_to_js x1);(Ojs.float_to_js x4);(
+                     bigint_to_js x5)|])
     let (and_ :
       t ->
         typedArray:(BigInt64Array.t, BigUint64Array.t) union2 ->
           index:float -> value:bigint -> bigint)
       =
-      fun (x14 : t) ->
-        fun ~typedArray:(x9 : (BigInt64Array.t, BigUint64Array.t) union2) ->
-          fun ~index:(x12 : float) ->
-            fun ~value:(x13 : bigint) ->
+      fun (x12 : t) ->
+        fun ~typedArray:(x7 : (BigInt64Array.t, BigUint64Array.t) union2) ->
+          fun ~index:(x10 : float) ->
+            fun ~value:(x11 : bigint) ->
               bigint_of_js
-                (Ojs.call (t_to_js x14) "and"
+                (Ojs.call (t_to_js x12) "and"
                    [|(union2_to_js BigInt64Array.t_to_js
-                        BigUint64Array.t_to_js x9);(Ojs.float_to_js x12);(
-                     bigint_to_js x13)|])
+                        BigUint64Array.t_to_js x7);(Ojs.float_to_js x10);(
+                     bigint_to_js x11)|])
     let (compareExchange :
       t ->
         typedArray:(BigInt64Array.t, BigUint64Array.t) union2 ->
           index:float ->
             expectedValue:bigint -> replacementValue:bigint -> bigint)
       =
-      fun (x21 : t) ->
-        fun ~typedArray:(x15 : (BigInt64Array.t, BigUint64Array.t) union2) ->
-          fun ~index:(x18 : float) ->
-            fun ~expectedValue:(x19 : bigint) ->
-              fun ~replacementValue:(x20 : bigint) ->
+      fun (x19 : t) ->
+        fun ~typedArray:(x13 : (BigInt64Array.t, BigUint64Array.t) union2) ->
+          fun ~index:(x16 : float) ->
+            fun ~expectedValue:(x17 : bigint) ->
+              fun ~replacementValue:(x18 : bigint) ->
                 bigint_of_js
-                  (Ojs.call (t_to_js x21) "compareExchange"
+                  (Ojs.call (t_to_js x19) "compareExchange"
                      [|(union2_to_js BigInt64Array.t_to_js
-                          BigUint64Array.t_to_js x15);(Ojs.float_to_js x18);(
-                       bigint_to_js x19);(bigint_to_js x20)|])
+                          BigUint64Array.t_to_js x13);(Ojs.float_to_js x16);(
+                       bigint_to_js x17);(bigint_to_js x18)|])
     let (exchange :
       t ->
         typedArray:(BigInt64Array.t, BigUint64Array.t) union2 ->
           index:float -> value:bigint -> bigint)
       =
-      fun (x27 : t) ->
-        fun ~typedArray:(x22 : (BigInt64Array.t, BigUint64Array.t) union2) ->
-          fun ~index:(x25 : float) ->
-            fun ~value:(x26 : bigint) ->
+      fun (x25 : t) ->
+        fun ~typedArray:(x20 : (BigInt64Array.t, BigUint64Array.t) union2) ->
+          fun ~index:(x23 : float) ->
+            fun ~value:(x24 : bigint) ->
               bigint_of_js
-                (Ojs.call (t_to_js x27) "exchange"
+                (Ojs.call (t_to_js x25) "exchange"
                    [|(union2_to_js BigInt64Array.t_to_js
-                        BigUint64Array.t_to_js x22);(Ojs.float_to_js x25);(
-                     bigint_to_js x26)|])
+                        BigUint64Array.t_to_js x20);(Ojs.float_to_js x23);(
+                     bigint_to_js x24)|])
     let (load :
       t ->
         typedArray:(BigInt64Array.t, BigUint64Array.t) union2 ->
           index:float -> bigint)
       =
-      fun (x32 : t) ->
-        fun ~typedArray:(x28 : (BigInt64Array.t, BigUint64Array.t) union2) ->
-          fun ~index:(x31 : float) ->
+      fun (x30 : t) ->
+        fun ~typedArray:(x26 : (BigInt64Array.t, BigUint64Array.t) union2) ->
+          fun ~index:(x29 : float) ->
             bigint_of_js
-              (Ojs.call (t_to_js x32) "load"
+              (Ojs.call (t_to_js x30) "load"
                  [|(union2_to_js BigInt64Array.t_to_js BigUint64Array.t_to_js
-                      x28);(Ojs.float_to_js x31)|])
+                      x26);(Ojs.float_to_js x29)|])
     let (or_ :
       t ->
         typedArray:(BigInt64Array.t, BigUint64Array.t) union2 ->
           index:float -> value:bigint -> bigint)
       =
-      fun (x38 : t) ->
-        fun ~typedArray:(x33 : (BigInt64Array.t, BigUint64Array.t) union2) ->
-          fun ~index:(x36 : float) ->
-            fun ~value:(x37 : bigint) ->
+      fun (x36 : t) ->
+        fun ~typedArray:(x31 : (BigInt64Array.t, BigUint64Array.t) union2) ->
+          fun ~index:(x34 : float) ->
+            fun ~value:(x35 : bigint) ->
               bigint_of_js
-                (Ojs.call (t_to_js x38) "or"
+                (Ojs.call (t_to_js x36) "or"
                    [|(union2_to_js BigInt64Array.t_to_js
-                        BigUint64Array.t_to_js x33);(Ojs.float_to_js x36);(
-                     bigint_to_js x37)|])
+                        BigUint64Array.t_to_js x31);(Ojs.float_to_js x34);(
+                     bigint_to_js x35)|])
     let (store :
       t ->
         typedArray:(BigInt64Array.t, BigUint64Array.t) union2 ->
           index:float -> value:bigint -> bigint)
       =
-      fun (x44 : t) ->
-        fun ~typedArray:(x39 : (BigInt64Array.t, BigUint64Array.t) union2) ->
-          fun ~index:(x42 : float) ->
-            fun ~value:(x43 : bigint) ->
+      fun (x42 : t) ->
+        fun ~typedArray:(x37 : (BigInt64Array.t, BigUint64Array.t) union2) ->
+          fun ~index:(x40 : float) ->
+            fun ~value:(x41 : bigint) ->
               bigint_of_js
-                (Ojs.call (t_to_js x44) "store"
+                (Ojs.call (t_to_js x42) "store"
                    [|(union2_to_js BigInt64Array.t_to_js
-                        BigUint64Array.t_to_js x39);(Ojs.float_to_js x42);(
-                     bigint_to_js x43)|])
+                        BigUint64Array.t_to_js x37);(Ojs.float_to_js x40);(
+                     bigint_to_js x41)|])
     let (sub :
       t ->
         typedArray:(BigInt64Array.t, BigUint64Array.t) union2 ->
           index:float -> value:bigint -> bigint)
       =
-      fun (x50 : t) ->
-        fun ~typedArray:(x45 : (BigInt64Array.t, BigUint64Array.t) union2) ->
-          fun ~index:(x48 : float) ->
-            fun ~value:(x49 : bigint) ->
+      fun (x48 : t) ->
+        fun ~typedArray:(x43 : (BigInt64Array.t, BigUint64Array.t) union2) ->
+          fun ~index:(x46 : float) ->
+            fun ~value:(x47 : bigint) ->
               bigint_of_js
-                (Ojs.call (t_to_js x50) "sub"
+                (Ojs.call (t_to_js x48) "sub"
                    [|(union2_to_js BigInt64Array.t_to_js
-                        BigUint64Array.t_to_js x45);(Ojs.float_to_js x48);(
-                     bigint_to_js x49)|])
+                        BigUint64Array.t_to_js x43);(Ojs.float_to_js x46);(
+                     bigint_to_js x47)|])
     let (wait :
       t ->
         typedArray:BigInt64Array.t ->
@@ -141,35 +139,35 @@ module Atomics =
             value:bigint ->
               ?timeout:float -> unit -> [ `not_equal  | `ok  | `timed_out ])
       =
-      fun (x57 : t) ->
-        fun ~typedArray:(x51 : BigInt64Array.t) ->
-          fun ~index:(x52 : float) ->
-            fun ~value:(x53 : bigint) ->
-              fun ?timeout:(x54 : float option) ->
+      fun (x55 : t) ->
+        fun ~typedArray:(x49 : BigInt64Array.t) ->
+          fun ~index:(x50 : float) ->
+            fun ~value:(x51 : bigint) ->
+              fun ?timeout:(x52 : float option) ->
                 fun () ->
-                  let x59 =
-                    let x58 = t_to_js x57 in
-                    Ojs.call (Ojs.get_prop_ascii x58 "wait") "apply"
-                      [|x58;((let x55 =
+                  let x57 =
+                    let x56 = t_to_js x55 in
+                    Ojs.call (Ojs.get_prop_ascii x56 "wait") "apply"
+                      [|x56;((let x53 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x55 "push"
-                                   [|(BigInt64Array.t_to_js x51)|]);
+                                (Ojs.call x53 "push"
+                                   [|(BigInt64Array.t_to_js x49)|]);
                               ignore
-                                (Ojs.call x55 "push"
-                                   [|(Ojs.float_to_js x52)|]);
+                                (Ojs.call x53 "push"
+                                   [|(Ojs.float_to_js x50)|]);
                               ignore
-                                (Ojs.call x55 "push" [|(bigint_to_js x53)|]);
-                              (match x54 with
-                               | Some x56 ->
+                                (Ojs.call x53 "push" [|(bigint_to_js x51)|]);
+                              (match x52 with
+                               | Some x54 ->
                                    ignore
-                                     (Ojs.call x55 "push"
-                                        [|(Ojs.float_to_js x56)|])
+                                     (Ojs.call x53 "push"
+                                        [|(Ojs.float_to_js x54)|])
                                | None -> ());
-                              x55))|] in
-                  match Ojs.string_of_js x59 with
+                              x53))|] in
+                  match Ojs.string_of_js x57 with
                   | "not-equal" -> `not_equal
                   | "ok" -> `ok
                   | "timed-out" -> `timed_out
@@ -179,42 +177,42 @@ module Atomics =
         typedArray:BigInt64Array.t ->
           index:float -> ?count:float -> unit -> float)
       =
-      fun (x65 : t) ->
-        fun ~typedArray:(x60 : BigInt64Array.t) ->
-          fun ~index:(x61 : float) ->
-            fun ?count:(x62 : float option) ->
+      fun (x63 : t) ->
+        fun ~typedArray:(x58 : BigInt64Array.t) ->
+          fun ~index:(x59 : float) ->
+            fun ?count:(x60 : float option) ->
               fun () ->
                 Ojs.float_of_js
-                  (let x66 = t_to_js x65 in
-                   Ojs.call (Ojs.get_prop_ascii x66 "notify") "apply"
-                     [|x66;((let x63 =
+                  (let x64 = t_to_js x63 in
+                   Ojs.call (Ojs.get_prop_ascii x64 "notify") "apply"
+                     [|x64;((let x61 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x63 "push"
-                                  [|(BigInt64Array.t_to_js x60)|]);
+                               (Ojs.call x61 "push"
+                                  [|(BigInt64Array.t_to_js x58)|]);
                              ignore
-                               (Ojs.call x63 "push" [|(Ojs.float_to_js x61)|]);
-                             (match x62 with
-                              | Some x64 ->
+                               (Ojs.call x61 "push" [|(Ojs.float_to_js x59)|]);
+                             (match x60 with
+                              | Some x62 ->
                                   ignore
-                                    (Ojs.call x63 "push"
-                                       [|(Ojs.float_to_js x64)|])
+                                    (Ojs.call x61 "push"
+                                       [|(Ojs.float_to_js x62)|])
                               | None -> ());
-                             x63))|])
+                             x61))|])
     let (xor :
       t ->
         typedArray:(BigInt64Array.t, BigUint64Array.t) union2 ->
           index:float -> value:bigint -> bigint)
       =
-      fun (x72 : t) ->
-        fun ~typedArray:(x67 : (BigInt64Array.t, BigUint64Array.t) union2) ->
-          fun ~index:(x70 : float) ->
-            fun ~value:(x71 : bigint) ->
+      fun (x70 : t) ->
+        fun ~typedArray:(x65 : (BigInt64Array.t, BigUint64Array.t) union2) ->
+          fun ~index:(x68 : float) ->
+            fun ~value:(x69 : bigint) ->
               bigint_of_js
-                (Ojs.call (t_to_js x72) "xor"
+                (Ojs.call (t_to_js x70) "xor"
                    [|(union2_to_js BigInt64Array.t_to_js
-                        BigUint64Array.t_to_js x67);(Ojs.float_to_js x70);(
-                     bigint_to_js x71)|])
+                        BigUint64Array.t_to_js x65);(Ojs.float_to_js x68);(
+                     bigint_to_js x69)|])
   end

@@ -178,8 +178,7 @@ module AnonymousInterface7 : sig
   val get_encoding : t -> ([ `buffer [@js "buffer"] ][@js.enum])
     [@@js.get "encoding"]
 
-  val set_encoding : t -> ([ `buffer ][@js.enum]) -> unit
-    [@@js.set "encoding"]
+  val set_encoding : t -> ([ `buffer ][@js.enum]) -> unit [@@js.set "encoding"]
 
   val get_withFileTypes : t -> ([ `L_b_false [@js false] ][@js.enum])
     [@@js.get "withFileTypes"]
@@ -482,11 +481,7 @@ module Node_fs_promises : sig
     -> unit Promise.t
     [@@js.global "rmdir"]
 
-  val rm
-    :  path:PathLike.t_0
-    -> ?options:RmOptions.t_0
-    -> unit
-    -> unit Promise.t
+  val rm : path:PathLike.t_0 -> ?options:RmOptions.t_0 -> unit -> unit Promise.t
     [@@js.global "rm"]
 
   val fdatasync : handle:node_fs_promises_FileHandle -> unit Promise.t
@@ -609,10 +604,7 @@ module Node_fs_promises : sig
     -> (BigIntStats.t_0, Stats.t_0) union2 Promise.t
     [@@js.global "stat"]
 
-  val link
-    :  existingPath:PathLike.t_0
-    -> newPath:PathLike.t_0
-    -> unit Promise.t
+  val link : existingPath:PathLike.t_0 -> newPath:PathLike.t_0 -> unit Promise.t
     [@@js.global "link"]
 
   val unlink : path:PathLike.t_0 -> unit Promise.t [@@js.global "unlink"]

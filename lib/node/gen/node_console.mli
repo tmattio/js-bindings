@@ -45,8 +45,6 @@ module Console : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_Console : t -> console_global_NodeJS_ConsoleConstructor
         [@@js.get "Console"]
 
@@ -158,8 +156,6 @@ module Console : sig
 
         val t_of_js : Ojs.t -> t
 
-
-
         val get_stdout : t -> WritableStream.t_0 [@@js.get "stdout"]
 
         val set_stdout : t -> WritableStream.t_0 -> unit [@@js.set "stdout"]
@@ -172,9 +168,7 @@ module Console : sig
 
         val set_ignoreErrors : t -> bool -> unit [@@js.set "ignoreErrors"]
 
-        val get_colorMode
-          :  t
-          -> ([ `auto [@js "auto"] ][@js.enum]) or_boolean
+        val get_colorMode : t -> ([ `auto [@js "auto"] ][@js.enum]) or_boolean
           [@@js.get "colorMode"]
 
         val set_colorMode : t -> ([ `auto ][@js.enum]) or_boolean -> unit
@@ -194,8 +188,6 @@ module Console : sig
         val t_to_js : t -> Ojs.t
 
         val t_of_js : Ojs.t -> t
-
-
 
         val get_prototype : t -> console_global_Console [@@js.get "prototype"]
 
@@ -225,8 +217,6 @@ module Console : sig
         val t_to_js : t -> Ojs.t
 
         val t_of_js : Ojs.t -> t
-
-
 
         val get_console : t -> console_global_Console [@@js.get "console"]
 

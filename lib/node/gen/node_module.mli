@@ -58,8 +58,6 @@ module Module : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_file : t -> string [@@js.get "file"]
 
       val set_file : t -> string -> unit [@@js.set "file"]
@@ -98,8 +96,6 @@ module Module : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_generatedLine : t -> float [@@js.get "generatedLine"]
 
       val set_generatedLine : t -> float -> unit [@@js.set "generatedLine"]
@@ -128,8 +124,6 @@ module Module : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_payload : t -> module_Module_SourceMapPayload [@@js.get "payload"]
 

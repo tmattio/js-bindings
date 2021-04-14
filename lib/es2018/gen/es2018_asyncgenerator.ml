@@ -205,9 +205,9 @@ module AsyncGeneratorFunctionConstructor =
     and t_to_js : t -> Ojs.t =
       fun (x92 : _AsyncGeneratorFunctionConstructor) ->
         _AsyncGeneratorFunctionConstructor_to_js x92
-    let (create : t -> args:string list -> _AsyncGeneratorFunction) =
+    let (create : t -> string list -> _AsyncGeneratorFunction) =
       fun (x97 : t) ->
-        fun ~args:(x94 : string list) ->
+        fun (x94 : string list) ->
           _AsyncGeneratorFunction_of_js
             (Ojs.new_obj_arr (t_to_js x97)
                (let x95 =
@@ -217,9 +217,9 @@ module AsyncGeneratorFunctionConstructor =
                      ignore (Ojs.call x95 "push" [|(Ojs.string_to_js x96)|]))
                   x94;
                 x95))
-    let (apply : t -> args:string list -> _AsyncGeneratorFunction) =
+    let (apply : t -> string list -> _AsyncGeneratorFunction) =
       fun (x101 : t) ->
-        fun ~args:(x98 : string list) ->
+        fun (x98 : string list) ->
           _AsyncGeneratorFunction_of_js
             (Ojs.call (t_to_js x101) "apply"
                [|Ojs.null;((let x99 =

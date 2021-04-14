@@ -165,11 +165,7 @@ module Worker_threads : sig
       -> bool
       [@@js.call "emit"]
 
-    val on
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val on : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "on"]
 
     val on'
@@ -193,11 +189,7 @@ module Worker_threads : sig
       -> t
       [@@js.call "on"]
 
-    val once
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val once : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "once"]
 
     val once'
@@ -305,11 +297,7 @@ module Worker_threads : sig
       -> t
       [@@js.call "removeListener"]
 
-    val off
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val off : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "off"]
 
     val off'
@@ -534,8 +522,7 @@ module Worker_threads : sig
       -> bool
       [@@js.call "emit"]
 
-    val emit'''' : t -> event:([ `online ][@js.enum]) -> bool
-      [@@js.call "emit"]
+    val emit'''' : t -> event:([ `online ][@js.enum]) -> bool [@@js.call "emit"]
 
     val emit'''''
       :  t

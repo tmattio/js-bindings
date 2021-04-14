@@ -151,6 +151,7 @@ module AnonymousInterface0 : sig
   type t = anonymous_interface_0
 
   val t_to_js : t -> Ojs.t
+
   val t_of_js : Ojs.t -> t
 
   val get_end : t -> bool [@@js.get "end"]
@@ -162,6 +163,7 @@ module AnonymousInterface1 : sig
   type t = anonymous_interface_1
 
   val t_to_js : t -> Ojs.t
+
   val t_of_js : Ojs.t -> t
 
   val get_paths : t -> string list [@@js.get "paths"]
@@ -173,10 +175,10 @@ module AnonymousInterface2 : sig
   type t = anonymous_interface_2
 
   val t_to_js : t -> Ojs.t
+
   val t_of_js : Ojs.t -> t
 
-  val get_type : t -> ([ `Buffer [@js "Buffer"] ][@js.enum])
-    [@@js.get "type"]
+  val get_type : t -> ([ `Buffer [@js "Buffer"] ][@js.enum]) [@@js.get "type"]
 
   val set_type : t -> ([ `Buffer ][@js.enum]) -> unit [@@js.set "type"]
 
@@ -189,6 +191,7 @@ module AnonymousInterface3 : sig
   type t = anonymous_interface_3
 
   val t_to_js : t -> Ojs.t
+
   val t_of_js : Ojs.t -> t
 
   val valueOf : t -> 'T [@@js.call "valueOf"]
@@ -198,6 +201,7 @@ module ErrorConstructor : sig
   type t = _ErrorConstructor
 
   val t_to_js : t -> Ojs.t
+
   val t_of_js : Ojs.t -> t
 
   val captureStackTrace
@@ -225,6 +229,7 @@ module String : sig
   type t = _String
 
   val t_to_js : t -> Ojs.t
+
   val t_of_js : Ojs.t -> t
 
   val trimLeft : t -> string [@@js.call "trimLeft"]
@@ -245,6 +250,7 @@ module ImportMeta : sig
   type t = _ImportMeta
 
   val t_to_js : t -> Ojs.t
+
   val t_of_js : Ojs.t -> t
 
   val get_url : t -> string [@@js.get "url"]
@@ -257,6 +263,7 @@ module NodeRequire : sig
   type t = _NodeRequire
 
   val t_to_js : t -> Ojs.t
+
   val t_of_js : Ojs.t -> t
 
   val cast : t -> _NodeJS_Require [@@js.cast]
@@ -267,6 +274,7 @@ module RequireResolve : sig
   type t = _RequireResolve
 
   val t_to_js : t -> Ojs.t
+
   val t_of_js : Ojs.t -> t
 
   val cast : t -> _NodeJS_RequireResolve [@@js.cast]
@@ -277,6 +285,7 @@ module NodeModule : sig
   type t = _NodeModule
 
   val t_to_js : t -> Ojs.t
+
   val t_of_js : Ojs.t -> t
 
   val cast : t -> _NodeJS_Module [@@js.cast]
@@ -348,6 +357,7 @@ module BufferEncoding : sig
   type t = _BufferEncoding
 
   val t_to_js : t -> Ojs.t
+
   val t_of_js : Ojs.t -> t
 end
 
@@ -357,14 +367,13 @@ module WithImplicitCoercion : sig
   val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
   val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
-
-
 end
 
 module Buffer : sig
   type t = _Buffer
 
   val t_to_js : t -> Ojs.t
+
   val t_of_js : Ojs.t -> t
 
   val create : str:string -> ?encoding:_BufferEncoding -> unit -> t
@@ -374,9 +383,7 @@ module Buffer : sig
 
   val create'' : array:Uint8Array.t -> t [@@js.create]
 
-  val create'''
-    :  arrayBuffer:(ArrayBuffer.t, SharedArrayBuffer.t) union2
-    -> t
+  val create''' : arrayBuffer:(ArrayBuffer.t, SharedArrayBuffer.t) union2 -> t
     [@@js.create]
 
   val create'''' : array:any list -> t [@@js.create]
@@ -399,7 +406,7 @@ module Buffer : sig
     -> t
     [@@js.global "from"]
 
-  val of_ : items:(float list[@js.variadic]) -> t [@@js.global "of"]
+  val of_ : (float list[@js.variadic]) -> t [@@js.global "of"]
 
   val isBuffer : obj:any -> bool [@@js.global "isBuffer"]
 
@@ -407,10 +414,7 @@ module Buffer : sig
 
   val byteLength
     :  string:
-         ( ArrayBuffer.t
-         , _NodeJS_ArrayBufferView
-         , SharedArrayBuffer.t )
-         union3
+         (ArrayBuffer.t, _NodeJS_ArrayBufferView, SharedArrayBuffer.t) union3
          or_string
     -> ?encoding:_BufferEncoding
     -> unit
@@ -500,16 +504,16 @@ module Buffer : sig
   val subarray : t -> ?begin_:float -> ?end_:float -> unit -> t
     [@@js.call "subarray"]
 
-  val writeBigInt64BE : t -> value:bigint -> ?offset:float -> unit -> float
+  val writeBigInt64BE : t -> bigint -> ?offset:float -> unit -> float
     [@@js.call "writeBigInt64BE"]
 
-  val writeBigInt64LE : t -> value:bigint -> ?offset:float -> unit -> float
+  val writeBigInt64LE : t -> bigint -> ?offset:float -> unit -> float
     [@@js.call "writeBigInt64LE"]
 
-  val writeBigUInt64BE : t -> value:bigint -> ?offset:float -> unit -> float
+  val writeBigUInt64BE : t -> bigint -> ?offset:float -> unit -> float
     [@@js.call "writeBigUInt64BE"]
 
-  val writeBigUInt64LE : t -> value:bigint -> ?offset:float -> unit -> float
+  val writeBigUInt64LE : t -> bigint -> ?offset:float -> unit -> float
     [@@js.call "writeBigUInt64LE"]
 
   val writeUIntLE
@@ -606,46 +610,46 @@ module Buffer : sig
 
   val swap64 : t -> t [@@js.call "swap64"]
 
-  val writeUInt8 : t -> value:float -> ?offset:float -> unit -> float
+  val writeUInt8 : t -> float -> ?offset:float -> unit -> float
     [@@js.call "writeUInt8"]
 
-  val writeUInt16LE : t -> value:float -> ?offset:float -> unit -> float
+  val writeUInt16LE : t -> float -> ?offset:float -> unit -> float
     [@@js.call "writeUInt16LE"]
 
-  val writeUInt16BE : t -> value:float -> ?offset:float -> unit -> float
+  val writeUInt16BE : t -> float -> ?offset:float -> unit -> float
     [@@js.call "writeUInt16BE"]
 
-  val writeUInt32LE : t -> value:float -> ?offset:float -> unit -> float
+  val writeUInt32LE : t -> float -> ?offset:float -> unit -> float
     [@@js.call "writeUInt32LE"]
 
-  val writeUInt32BE : t -> value:float -> ?offset:float -> unit -> float
+  val writeUInt32BE : t -> float -> ?offset:float -> unit -> float
     [@@js.call "writeUInt32BE"]
 
-  val writeInt8 : t -> value:float -> ?offset:float -> unit -> float
+  val writeInt8 : t -> float -> ?offset:float -> unit -> float
     [@@js.call "writeInt8"]
 
-  val writeInt16LE : t -> value:float -> ?offset:float -> unit -> float
+  val writeInt16LE : t -> float -> ?offset:float -> unit -> float
     [@@js.call "writeInt16LE"]
 
-  val writeInt16BE : t -> value:float -> ?offset:float -> unit -> float
+  val writeInt16BE : t -> float -> ?offset:float -> unit -> float
     [@@js.call "writeInt16BE"]
 
-  val writeInt32LE : t -> value:float -> ?offset:float -> unit -> float
+  val writeInt32LE : t -> float -> ?offset:float -> unit -> float
     [@@js.call "writeInt32LE"]
 
-  val writeInt32BE : t -> value:float -> ?offset:float -> unit -> float
+  val writeInt32BE : t -> float -> ?offset:float -> unit -> float
     [@@js.call "writeInt32BE"]
 
-  val writeFloatLE : t -> value:float -> ?offset:float -> unit -> float
+  val writeFloatLE : t -> float -> ?offset:float -> unit -> float
     [@@js.call "writeFloatLE"]
 
-  val writeFloatBE : t -> value:float -> ?offset:float -> unit -> float
+  val writeFloatBE : t -> float -> ?offset:float -> unit -> float
     [@@js.call "writeFloatBE"]
 
-  val writeDoubleLE : t -> value:float -> ?offset:float -> unit -> float
+  val writeDoubleLE : t -> float -> ?offset:float -> unit -> float
     [@@js.call "writeDoubleLE"]
 
-  val writeDoubleBE : t -> value:float -> ?offset:float -> unit -> float
+  val writeDoubleBE : t -> float -> ?offset:float -> unit -> float
     [@@js.call "writeDoubleBE"]
 
   val fill
@@ -711,14 +715,10 @@ module NodeJS : sig
 
     val get_getters
       :  t
-      -> ([ `get [@js "get"] | `set [@js "set"] ][@js.enum])
-         or_boolean
+      -> ([ `get [@js "get"] | `set [@js "set"] ][@js.enum]) or_boolean
       [@@js.get "getters"]
 
-    val set_getters
-      :  t
-      -> ([ `get | `set ][@js.enum]) or_boolean
-      -> unit
+    val set_getters : t -> ([ `get | `set ][@js.enum]) or_boolean -> unit
       [@@js.set "getters"]
 
     val get_showHidden : t -> bool [@@js.get "showHidden"]
@@ -894,7 +894,6 @@ module NodeJS : sig
       [@@js.call "unshift"]
 
     val wrap : t -> oldStream:t -> t [@@js.call "wrap"]
-
 
     val cast : t -> EventEmitter.t [@@js.cast]
   end

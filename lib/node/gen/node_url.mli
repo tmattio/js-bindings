@@ -362,7 +362,6 @@ module Url : sig
 
     val values : t -> string IterableIterator.t [@@js.call "values"]
 
-
     val cast : t -> (string * string) Iterable.t [@@js.cast]
   end
   [@@js.scope "URLSearchParams"]

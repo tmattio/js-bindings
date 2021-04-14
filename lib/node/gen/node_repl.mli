@@ -336,17 +336,14 @@ module Repl : sig
       -> bool
       [@@js.call "emit"]
 
-    val emit' : t -> event:([ `close ][@js.enum]) -> bool
-      [@@js.call "emit"]
+    val emit' : t -> event:([ `close ][@js.enum]) -> bool [@@js.call "emit"]
 
     val emit'' : t -> event:([ `line ][@js.enum]) -> input:string -> bool
       [@@js.call "emit"]
 
-    val emit''' : t -> event:([ `pause ][@js.enum]) -> bool
-      [@@js.call "emit"]
+    val emit''' : t -> event:([ `pause ][@js.enum]) -> bool [@@js.call "emit"]
 
-    val emit'''' : t -> event:([ `resume ][@js.enum]) -> bool
-      [@@js.call "emit"]
+    val emit'''' : t -> event:([ `resume ][@js.enum]) -> bool [@@js.call "emit"]
 
     val emit''''' : t -> event:([ `SIGCONT ][@js.enum]) -> bool
       [@@js.call "emit"]
@@ -374,11 +371,7 @@ module Repl : sig
       -> t
       [@@js.call "on"]
 
-    val on'
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val on' : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "on"]
 
     val on''

@@ -61,24 +61,29 @@ module SharedArrayBuffer =
                                  (Ojs.call x6 "push" [|(Ojs.float_to_js x7)|])
                            | None -> ());
                           x6))|])
+    let (create : byteLength:float -> _SharedArrayBuffer) =
+      fun ~byteLength:(x10 : float) ->
+        _SharedArrayBuffer_of_js
+          (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "SharedArrayBuffer")
+             [|(Ojs.float_to_js x10)|])
   end
 module SharedArrayBufferConstructor =
   struct
     type t = _SharedArrayBufferConstructor
     let rec t_of_js : Ojs.t -> t =
-      fun (x11 : Ojs.t) -> _SharedArrayBufferConstructor_of_js x11
+      fun (x12 : Ojs.t) -> _SharedArrayBufferConstructor_of_js x12
     and t_to_js : t -> Ojs.t =
-      fun (x10 : _SharedArrayBufferConstructor) ->
-        _SharedArrayBufferConstructor_to_js x10
+      fun (x11 : _SharedArrayBufferConstructor) ->
+        _SharedArrayBufferConstructor_to_js x11
     let (get_prototype : t -> _SharedArrayBuffer) =
-      fun (x12 : t) ->
+      fun (x13 : t) ->
         _SharedArrayBuffer_of_js
-          (Ojs.get_prop_ascii (t_to_js x12) "prototype")
+          (Ojs.get_prop_ascii (t_to_js x13) "prototype")
     let (create : t -> byteLength:float -> _SharedArrayBuffer) =
-      fun (x14 : t) ->
-        fun ~byteLength:(x13 : float) ->
+      fun (x15 : t) ->
+        fun ~byteLength:(x14 : float) ->
           _SharedArrayBuffer_of_js
-            (Ojs.new_obj (t_to_js x14) [|(Ojs.float_to_js x13)|])
+            (Ojs.new_obj (t_to_js x15) [|(Ojs.float_to_js x14)|])
   end
 let (sharedArrayBuffer : _SharedArrayBufferConstructor) =
   _SharedArrayBufferConstructor_of_js
@@ -87,64 +92,64 @@ module ArrayBufferTypes =
   struct
     type t = _ArrayBufferTypes
     let rec t_of_js : Ojs.t -> t =
-      fun (x16 : Ojs.t) -> _ArrayBufferTypes_of_js x16
+      fun (x17 : Ojs.t) -> _ArrayBufferTypes_of_js x17
     and t_to_js : t -> Ojs.t =
-      fun (x15 : _ArrayBufferTypes) -> _ArrayBufferTypes_to_js x15
+      fun (x16 : _ArrayBufferTypes) -> _ArrayBufferTypes_to_js x16
     let (get_SharedArrayBuffer : t -> _SharedArrayBuffer) =
-      fun (x17 : t) ->
-        _SharedArrayBuffer_of_js
-          (Ojs.get_prop_ascii (t_to_js x17) "SharedArrayBuffer")
-    let (set_SharedArrayBuffer : t -> _SharedArrayBuffer -> unit) =
       fun (x18 : t) ->
-        fun (x19 : _SharedArrayBuffer) ->
-          Ojs.set_prop_ascii (t_to_js x18) "SharedArrayBuffer"
-            (_SharedArrayBuffer_to_js x19)
+        _SharedArrayBuffer_of_js
+          (Ojs.get_prop_ascii (t_to_js x18) "SharedArrayBuffer")
+    let (set_SharedArrayBuffer : t -> _SharedArrayBuffer -> unit) =
+      fun (x19 : t) ->
+        fun (x20 : _SharedArrayBuffer) ->
+          Ojs.set_prop_ascii (t_to_js x19) "SharedArrayBuffer"
+            (_SharedArrayBuffer_to_js x20)
   end
 module Atomics =
   struct
     type t = _Atomics
-    let rec t_of_js : Ojs.t -> t = fun (x21 : Ojs.t) -> _Atomics_of_js x21
-    and t_to_js : t -> Ojs.t = fun (x20 : _Atomics) -> _Atomics_to_js x20
+    let rec t_of_js : Ojs.t -> t = fun (x22 : Ojs.t) -> _Atomics_of_js x22
+    and t_to_js : t -> Ojs.t = fun (x21 : _Atomics) -> _Atomics_to_js x21
     let (add :
       t ->
         typedArray:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
           Uint32Array.t, Uint8Array.t) union6 ->
           index:float -> value:float -> float)
       =
-      fun (x31 : t) ->
+      fun (x32 : t) ->
         fun
-          ~typedArray:(x22 :
+          ~typedArray:(x23 :
                         (Int16Array.t, Int32Array.t, Int8Array.t,
                           Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
           ->
-          fun ~index:(x29 : float) ->
-            fun ~value:(x30 : float) ->
+          fun ~index:(x30 : float) ->
+            fun ~value:(x31 : float) ->
               Ojs.float_of_js
-                (Ojs.call (t_to_js x31) "add"
+                (Ojs.call (t_to_js x32) "add"
                    [|(union6_to_js Int16Array.t_to_js Int32Array.t_to_js
                         Int8Array.t_to_js Uint16Array.t_to_js
-                        Uint32Array.t_to_js Uint8Array.t_to_js x22);(
-                     Ojs.float_to_js x29);(Ojs.float_to_js x30)|])
+                        Uint32Array.t_to_js Uint8Array.t_to_js x23);(
+                     Ojs.float_to_js x30);(Ojs.float_to_js x31)|])
     let (and_ :
       t ->
         typedArray:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
           Uint32Array.t, Uint8Array.t) union6 ->
           index:float -> value:float -> float)
       =
-      fun (x41 : t) ->
+      fun (x42 : t) ->
         fun
-          ~typedArray:(x32 :
+          ~typedArray:(x33 :
                         (Int16Array.t, Int32Array.t, Int8Array.t,
                           Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
           ->
-          fun ~index:(x39 : float) ->
-            fun ~value:(x40 : float) ->
+          fun ~index:(x40 : float) ->
+            fun ~value:(x41 : float) ->
               Ojs.float_of_js
-                (Ojs.call (t_to_js x41) "and"
+                (Ojs.call (t_to_js x42) "and"
                    [|(union6_to_js Int16Array.t_to_js Int32Array.t_to_js
                         Int8Array.t_to_js Uint16Array.t_to_js
-                        Uint32Array.t_to_js Uint8Array.t_to_js x32);(
-                     Ojs.float_to_js x39);(Ojs.float_to_js x40)|])
+                        Uint32Array.t_to_js Uint8Array.t_to_js x33);(
+                     Ojs.float_to_js x40);(Ojs.float_to_js x41)|])
     let (compareExchange :
       t ->
         typedArray:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
@@ -152,125 +157,125 @@ module Atomics =
           index:float ->
             expectedValue:float -> replacementValue:float -> float)
       =
-      fun (x52 : t) ->
+      fun (x53 : t) ->
         fun
-          ~typedArray:(x42 :
+          ~typedArray:(x43 :
                         (Int16Array.t, Int32Array.t, Int8Array.t,
                           Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
           ->
-          fun ~index:(x49 : float) ->
-            fun ~expectedValue:(x50 : float) ->
-              fun ~replacementValue:(x51 : float) ->
+          fun ~index:(x50 : float) ->
+            fun ~expectedValue:(x51 : float) ->
+              fun ~replacementValue:(x52 : float) ->
                 Ojs.float_of_js
-                  (Ojs.call (t_to_js x52) "compareExchange"
+                  (Ojs.call (t_to_js x53) "compareExchange"
                      [|(union6_to_js Int16Array.t_to_js Int32Array.t_to_js
                           Int8Array.t_to_js Uint16Array.t_to_js
-                          Uint32Array.t_to_js Uint8Array.t_to_js x42);(
-                       Ojs.float_to_js x49);(Ojs.float_to_js x50);(Ojs.float_to_js
-                                                                    x51)|])
+                          Uint32Array.t_to_js Uint8Array.t_to_js x43);(
+                       Ojs.float_to_js x50);(Ojs.float_to_js x51);(Ojs.float_to_js
+                                                                    x52)|])
     let (exchange :
       t ->
         typedArray:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
           Uint32Array.t, Uint8Array.t) union6 ->
           index:float -> value:float -> float)
       =
-      fun (x62 : t) ->
+      fun (x63 : t) ->
         fun
-          ~typedArray:(x53 :
+          ~typedArray:(x54 :
                         (Int16Array.t, Int32Array.t, Int8Array.t,
                           Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
           ->
-          fun ~index:(x60 : float) ->
-            fun ~value:(x61 : float) ->
+          fun ~index:(x61 : float) ->
+            fun ~value:(x62 : float) ->
               Ojs.float_of_js
-                (Ojs.call (t_to_js x62) "exchange"
+                (Ojs.call (t_to_js x63) "exchange"
                    [|(union6_to_js Int16Array.t_to_js Int32Array.t_to_js
                         Int8Array.t_to_js Uint16Array.t_to_js
-                        Uint32Array.t_to_js Uint8Array.t_to_js x53);(
-                     Ojs.float_to_js x60);(Ojs.float_to_js x61)|])
+                        Uint32Array.t_to_js Uint8Array.t_to_js x54);(
+                     Ojs.float_to_js x61);(Ojs.float_to_js x62)|])
     let (isLockFree : t -> size:float -> bool) =
-      fun (x64 : t) ->
-        fun ~size:(x63 : float) ->
+      fun (x65 : t) ->
+        fun ~size:(x64 : float) ->
           Ojs.bool_of_js
-            (Ojs.call (t_to_js x64) "isLockFree" [|(Ojs.float_to_js x63)|])
+            (Ojs.call (t_to_js x65) "isLockFree" [|(Ojs.float_to_js x64)|])
     let (load :
       t ->
         typedArray:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
           Uint32Array.t, Uint8Array.t) union6 -> index:float -> float)
       =
-      fun (x73 : t) ->
+      fun (x74 : t) ->
         fun
-          ~typedArray:(x65 :
+          ~typedArray:(x66 :
                         (Int16Array.t, Int32Array.t, Int8Array.t,
                           Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
           ->
-          fun ~index:(x72 : float) ->
+          fun ~index:(x73 : float) ->
             Ojs.float_of_js
-              (Ojs.call (t_to_js x73) "load"
+              (Ojs.call (t_to_js x74) "load"
                  [|(union6_to_js Int16Array.t_to_js Int32Array.t_to_js
                       Int8Array.t_to_js Uint16Array.t_to_js
-                      Uint32Array.t_to_js Uint8Array.t_to_js x65);(Ojs.float_to_js
-                                                                    x72)|])
+                      Uint32Array.t_to_js Uint8Array.t_to_js x66);(Ojs.float_to_js
+                                                                    x73)|])
     let (or_ :
       t ->
         typedArray:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
           Uint32Array.t, Uint8Array.t) union6 ->
           index:float -> value:float -> float)
       =
-      fun (x83 : t) ->
+      fun (x84 : t) ->
         fun
-          ~typedArray:(x74 :
+          ~typedArray:(x75 :
                         (Int16Array.t, Int32Array.t, Int8Array.t,
                           Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
           ->
-          fun ~index:(x81 : float) ->
-            fun ~value:(x82 : float) ->
+          fun ~index:(x82 : float) ->
+            fun ~value:(x83 : float) ->
               Ojs.float_of_js
-                (Ojs.call (t_to_js x83) "or"
+                (Ojs.call (t_to_js x84) "or"
                    [|(union6_to_js Int16Array.t_to_js Int32Array.t_to_js
                         Int8Array.t_to_js Uint16Array.t_to_js
-                        Uint32Array.t_to_js Uint8Array.t_to_js x74);(
-                     Ojs.float_to_js x81);(Ojs.float_to_js x82)|])
+                        Uint32Array.t_to_js Uint8Array.t_to_js x75);(
+                     Ojs.float_to_js x82);(Ojs.float_to_js x83)|])
     let (store :
       t ->
         typedArray:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
           Uint32Array.t, Uint8Array.t) union6 ->
           index:float -> value:float -> float)
       =
-      fun (x93 : t) ->
+      fun (x94 : t) ->
         fun
-          ~typedArray:(x84 :
+          ~typedArray:(x85 :
                         (Int16Array.t, Int32Array.t, Int8Array.t,
                           Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
           ->
-          fun ~index:(x91 : float) ->
-            fun ~value:(x92 : float) ->
+          fun ~index:(x92 : float) ->
+            fun ~value:(x93 : float) ->
               Ojs.float_of_js
-                (Ojs.call (t_to_js x93) "store"
+                (Ojs.call (t_to_js x94) "store"
                    [|(union6_to_js Int16Array.t_to_js Int32Array.t_to_js
                         Int8Array.t_to_js Uint16Array.t_to_js
-                        Uint32Array.t_to_js Uint8Array.t_to_js x84);(
-                     Ojs.float_to_js x91);(Ojs.float_to_js x92)|])
+                        Uint32Array.t_to_js Uint8Array.t_to_js x85);(
+                     Ojs.float_to_js x92);(Ojs.float_to_js x93)|])
     let (sub :
       t ->
         typedArray:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
           Uint32Array.t, Uint8Array.t) union6 ->
           index:float -> value:float -> float)
       =
-      fun (x103 : t) ->
+      fun (x104 : t) ->
         fun
-          ~typedArray:(x94 :
+          ~typedArray:(x95 :
                         (Int16Array.t, Int32Array.t, Int8Array.t,
                           Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
           ->
-          fun ~index:(x101 : float) ->
-            fun ~value:(x102 : float) ->
+          fun ~index:(x102 : float) ->
+            fun ~value:(x103 : float) ->
               Ojs.float_of_js
-                (Ojs.call (t_to_js x103) "sub"
+                (Ojs.call (t_to_js x104) "sub"
                    [|(union6_to_js Int16Array.t_to_js Int32Array.t_to_js
                         Int8Array.t_to_js Uint16Array.t_to_js
-                        Uint32Array.t_to_js Uint8Array.t_to_js x94);(
-                     Ojs.float_to_js x101);(Ojs.float_to_js x102)|])
+                        Uint32Array.t_to_js Uint8Array.t_to_js x95);(
+                     Ojs.float_to_js x102);(Ojs.float_to_js x103)|])
     let (wait :
       t ->
         typedArray:Int32Array.t ->
@@ -278,36 +283,36 @@ module Atomics =
             value:float ->
               ?timeout:float -> unit -> [ `not_equal  | `ok  | `timed_out ])
       =
-      fun (x110 : t) ->
-        fun ~typedArray:(x104 : Int32Array.t) ->
-          fun ~index:(x105 : float) ->
-            fun ~value:(x106 : float) ->
-              fun ?timeout:(x107 : float option) ->
+      fun (x111 : t) ->
+        fun ~typedArray:(x105 : Int32Array.t) ->
+          fun ~index:(x106 : float) ->
+            fun ~value:(x107 : float) ->
+              fun ?timeout:(x108 : float option) ->
                 fun () ->
-                  let x112 =
-                    let x111 = t_to_js x110 in
-                    Ojs.call (Ojs.get_prop_ascii x111 "wait") "apply"
-                      [|x111;((let x108 =
+                  let x113 =
+                    let x112 = t_to_js x111 in
+                    Ojs.call (Ojs.get_prop_ascii x112 "wait") "apply"
+                      [|x112;((let x109 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x108 "push"
-                                    [|(Int32Array.t_to_js x104)|]);
+                                 (Ojs.call x109 "push"
+                                    [|(Int32Array.t_to_js x105)|]);
                                ignore
-                                 (Ojs.call x108 "push"
-                                    [|(Ojs.float_to_js x105)|]);
-                               ignore
-                                 (Ojs.call x108 "push"
+                                 (Ojs.call x109 "push"
                                     [|(Ojs.float_to_js x106)|]);
-                               (match x107 with
-                                | Some x109 ->
+                               ignore
+                                 (Ojs.call x109 "push"
+                                    [|(Ojs.float_to_js x107)|]);
+                               (match x108 with
+                                | Some x110 ->
                                     ignore
-                                      (Ojs.call x108 "push"
-                                         [|(Ojs.float_to_js x109)|])
+                                      (Ojs.call x109 "push"
+                                         [|(Ojs.float_to_js x110)|])
                                 | None -> ());
-                               x108))|] in
-                  match Ojs.string_of_js x112 with
+                               x109))|] in
+                  match Ojs.string_of_js x113 with
                   | "not-equal" -> `not_equal
                   | "ok" -> `ok
                   | "timed-out" -> `timed_out
@@ -317,51 +322,51 @@ module Atomics =
         typedArray:Int32Array.t ->
           index:float -> ?count:float -> unit -> float)
       =
-      fun (x118 : t) ->
-        fun ~typedArray:(x113 : Int32Array.t) ->
-          fun ~index:(x114 : float) ->
-            fun ?count:(x115 : float option) ->
+      fun (x119 : t) ->
+        fun ~typedArray:(x114 : Int32Array.t) ->
+          fun ~index:(x115 : float) ->
+            fun ?count:(x116 : float option) ->
               fun () ->
                 Ojs.float_of_js
-                  (let x119 = t_to_js x118 in
-                   Ojs.call (Ojs.get_prop_ascii x119 "notify") "apply"
-                     [|x119;((let x116 =
+                  (let x120 = t_to_js x119 in
+                   Ojs.call (Ojs.get_prop_ascii x120 "notify") "apply"
+                     [|x120;((let x117 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x116 "push"
-                                   [|(Int32Array.t_to_js x113)|]);
+                                (Ojs.call x117 "push"
+                                   [|(Int32Array.t_to_js x114)|]);
                               ignore
-                                (Ojs.call x116 "push"
-                                   [|(Ojs.float_to_js x114)|]);
-                              (match x115 with
-                               | Some x117 ->
+                                (Ojs.call x117 "push"
+                                   [|(Ojs.float_to_js x115)|]);
+                              (match x116 with
+                               | Some x118 ->
                                    ignore
-                                     (Ojs.call x116 "push"
-                                        [|(Ojs.float_to_js x117)|])
+                                     (Ojs.call x117 "push"
+                                        [|(Ojs.float_to_js x118)|])
                                | None -> ());
-                              x116))|])
+                              x117))|])
     let (xor :
       t ->
         typedArray:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
           Uint32Array.t, Uint8Array.t) union6 ->
           index:float -> value:float -> float)
       =
-      fun (x129 : t) ->
+      fun (x130 : t) ->
         fun
-          ~typedArray:(x120 :
+          ~typedArray:(x121 :
                         (Int16Array.t, Int32Array.t, Int8Array.t,
                           Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
           ->
-          fun ~index:(x127 : float) ->
-            fun ~value:(x128 : float) ->
+          fun ~index:(x128 : float) ->
+            fun ~value:(x129 : float) ->
               Ojs.float_of_js
-                (Ojs.call (t_to_js x129) "xor"
+                (Ojs.call (t_to_js x130) "xor"
                    [|(union6_to_js Int16Array.t_to_js Int32Array.t_to_js
                         Int8Array.t_to_js Uint16Array.t_to_js
-                        Uint32Array.t_to_js Uint8Array.t_to_js x120);(
-                     Ojs.float_to_js x127);(Ojs.float_to_js x128)|])
+                        Uint32Array.t_to_js Uint8Array.t_to_js x121);(
+                     Ojs.float_to_js x128);(Ojs.float_to_js x129)|])
   end
 let (atomics : _Atomics) =
   _Atomics_of_js (Ojs.get_prop_ascii Ojs.global "Atomics")

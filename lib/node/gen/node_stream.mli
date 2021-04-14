@@ -171,8 +171,6 @@ module Stream : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val create : ?opts:stream_internal_ReadableOptions -> unit -> t
         [@@js.create]
 
@@ -186,8 +184,6 @@ module Stream : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_highWaterMark : t -> float [@@js.get "highWaterMark"]
 
@@ -224,8 +220,6 @@ module Stream : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val from
         :  iterable:(any AsyncIterable.t, any Iterable.t) union2
@@ -354,20 +348,14 @@ module Stream : sig
         -> t
         [@@js.call "addListener"]
 
-      val emit : t -> event:([ `close ][@js.enum]) -> bool
-        [@@js.call "emit"]
+      val emit : t -> event:([ `close ][@js.enum]) -> bool [@@js.call "emit"]
 
       val emit' : t -> event:([ `data ][@js.enum]) -> chunk:any -> bool
         [@@js.call "emit"]
 
-      val emit'' : t -> event:([ `end_ ][@js.enum]) -> bool
-        [@@js.call "emit"]
+      val emit'' : t -> event:([ `end_ ][@js.enum]) -> bool [@@js.call "emit"]
 
-      val emit'''
-        :  t
-        -> event:([ `error ][@js.enum])
-        -> err:Error.t_0
-        -> bool
+      val emit''' : t -> event:([ `error ][@js.enum]) -> err:Error.t_0 -> bool
         [@@js.call "emit"]
 
       val emit'''' : t -> event:([ `pause ][@js.enum]) -> bool
@@ -386,11 +374,7 @@ module Stream : sig
         -> bool
         [@@js.call "emit"]
 
-      val on
-        :  t
-        -> event:([ `close ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
+      val on : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
         [@@js.call "on"]
 
       val on'
@@ -666,7 +650,6 @@ module Stream : sig
         -> t
         [@@js.call "removeListener"]
 
-
       val cast : t -> stream_internal_Stream [@@js.cast]
 
       val cast' : t -> NodeJS.ReadableStream.t_0 [@@js.cast]
@@ -679,8 +662,6 @@ module Stream : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_highWaterMark : t -> float [@@js.get "highWaterMark"]
 
@@ -748,8 +729,6 @@ module Stream : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_writable : t -> bool [@@js.get "writable"]
 
@@ -890,17 +869,11 @@ module Stream : sig
         -> t
         [@@js.call "addListener"]
 
-      val emit : t -> event:([ `close ][@js.enum]) -> bool
-        [@@js.call "emit"]
+      val emit : t -> event:([ `close ][@js.enum]) -> bool [@@js.call "emit"]
 
-      val emit' : t -> event:([ `drain ][@js.enum]) -> bool
-        [@@js.call "emit"]
+      val emit' : t -> event:([ `drain ][@js.enum]) -> bool [@@js.call "emit"]
 
-      val emit''
-        :  t
-        -> event:([ `error ][@js.enum])
-        -> err:Error.t_0
-        -> bool
+      val emit'' : t -> event:([ `error ][@js.enum]) -> err:Error.t_0 -> bool
         [@@js.call "emit"]
 
       val emit''' : t -> event:([ `finish ][@js.enum]) -> bool
@@ -927,11 +900,7 @@ module Stream : sig
         -> bool
         [@@js.call "emit"]
 
-      val on
-        :  t
-        -> event:([ `close ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
+      val on : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
         [@@js.call "on"]
 
       val on'
@@ -1185,8 +1154,6 @@ module Stream : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_allowHalfOpen : t -> bool [@@js.get "allowHalfOpen"]
 
       val set_allowHalfOpen : t -> bool -> unit [@@js.set "allowHalfOpen"]
@@ -1264,8 +1231,6 @@ module Stream : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_writable : t -> bool [@@js.get "writable"]
 
@@ -1364,8 +1329,6 @@ module Stream : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val apply : t -> ?error:Error.t_0 or_null -> ?data:any -> unit -> unit
         [@@js.apply]
     end
@@ -1377,8 +1340,6 @@ module Stream : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val read : t -> this:stream_internal_Transform -> size:float -> unit
         [@@js.call "read"]
@@ -1442,8 +1403,6 @@ module Stream : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val create : ?opts:stream_internal_TransformOptions -> unit -> t
         [@@js.create]
 
@@ -1469,8 +1428,6 @@ module Stream : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val cast : t -> stream_internal_Transform [@@js.cast]
     end
     [@@js.scope "PassThrough"]
@@ -1481,8 +1438,6 @@ module Stream : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_error : t -> bool [@@js.get "error"]
 
@@ -1654,8 +1609,6 @@ module Stream : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val close : t -> unit [@@js.call "close"]
 

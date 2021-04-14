@@ -366,3 +366,4 @@ module Intl =
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "Intl")
            "PluralRules")
   end
+include struct include Intl end

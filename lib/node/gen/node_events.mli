@@ -180,8 +180,6 @@ module Events : sig
 
         val t_of_js : Ojs.t -> t
 
-
-
         val addListener
           :  t
           -> event:symbol or_string

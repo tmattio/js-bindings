@@ -42,33 +42,51 @@ module AnonymousInterface0 =
           fun (x7 : 'T) ->
             Ojs.set_prop (t_to_js x5) (Ojs.string_to_js x6) (Obj.magic x7)
   end
+module Object =
+  struct
+    include struct include Object end
+    let (fromEntries :
+      entries:(PropertyKey.t * 'T) Iterable.t -> anonymous_interface_0) =
+      fun ~entries:(x8 : (PropertyKey.t * 'T) Iterable.t) ->
+        anonymous_interface_0_of_js
+          (Ojs.call (Ojs.get_prop_ascii Ojs.global "Object") "fromEntries"
+             [|(Iterable.t_to_js
+                  (fun (x9 : (PropertyKey.t * 'T)) ->
+                     let (x10, x11) = x9 in
+                     let x12 = Ojs.array_make 2 in
+                     Ojs.array_set x12 0 (PropertyKey.t_to_js x10);
+                     Ojs.array_set x12 1 (Obj.magic x11);
+                     x12) x8)|])
+    let (fromEntries' : entries:any list Iterable.t -> any) =
+      fun ~entries:(x13 : any list Iterable.t) ->
+        any_of_js
+          (Ojs.call (Ojs.get_prop_ascii Ojs.global "Object") "fromEntries"
+             [|(Iterable.t_to_js
+                  (fun (x14 : any list) -> Ojs.list_to_js any_to_js x14) x13)|])
+  end
 module ObjectConstructor =
   struct
-    type t = _ObjectConstructor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x9 : Ojs.t) -> _ObjectConstructor_of_js x9
-    and t_to_js : t -> Ojs.t =
-      fun (x8 : _ObjectConstructor) -> _ObjectConstructor_to_js x8
+    include struct include ObjectConstructor end
     let (fromEntries :
       t -> entries:(PropertyKey.t * 'T) Iterable.t -> anonymous_interface_0)
       =
-      fun (x15 : t) ->
-        fun ~entries:(x10 : (PropertyKey.t * 'T) Iterable.t) ->
+      fun (x21 : t) ->
+        fun ~entries:(x16 : (PropertyKey.t * 'T) Iterable.t) ->
           anonymous_interface_0_of_js
-            (Ojs.call (t_to_js x15) "fromEntries"
+            (Ojs.call (t_to_js x21) "fromEntries"
                [|(Iterable.t_to_js
-                    (fun (x11 : (PropertyKey.t * 'T)) ->
-                       let (x12, x13) = x11 in
-                       let x14 = Ojs.array_make 2 in
-                       Ojs.array_set x14 0 (PropertyKey.t_to_js x12);
-                       Ojs.array_set x14 1 (Obj.magic x13);
-                       x14) x10)|])
+                    (fun (x17 : (PropertyKey.t * 'T)) ->
+                       let (x18, x19) = x17 in
+                       let x20 = Ojs.array_make 2 in
+                       Ojs.array_set x20 0 (PropertyKey.t_to_js x18);
+                       Ojs.array_set x20 1 (Obj.magic x19);
+                       x20) x16)|])
     let (fromEntries' : t -> entries:any list Iterable.t -> any) =
-      fun (x19 : t) ->
-        fun ~entries:(x16 : any list Iterable.t) ->
+      fun (x25 : t) ->
+        fun ~entries:(x22 : any list Iterable.t) ->
           any_of_js
-            (Ojs.call (t_to_js x19) "fromEntries"
+            (Ojs.call (t_to_js x25) "fromEntries"
                [|(Iterable.t_to_js
-                    (fun (x17 : any list) -> Ojs.list_to_js any_to_js x17)
-                    x16)|])
+                    (fun (x23 : any list) -> Ojs.list_to_js any_to_js x23)
+                    x22)|])
   end

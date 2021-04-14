@@ -4,9 +4,10 @@
  (libraries js_of_ocaml ojs es2017)
  (flags
   (:standard
+   ; 58: Hide "no cmx file was found in path for module Ojs, and its interface was not compiled with -opaque"
+   ; 60: We hide some anonymous interfaces
    -w
-   ; Hide "no cmx file was found in path for module Ojs, and its interface was not compiled with -opaque"
-   -58)))
+   -58-60)))
 
 (rule
  (target es2018_asyncgenerator.ml)
@@ -32,6 +33,20 @@
 (rule
  (target es2018_intl.ml)
  (deps gen/es2018_intl.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target es2018_promise.ml)
+ (deps gen/es2018_promise.ml)
+ (mode promote)
+ (action
+  (copy %{deps} %{target})))
+
+(rule
+ (target es2018_regexp.ml)
+ (deps gen/es2018_regexp.ml)
  (mode promote)
  (action
   (copy %{deps} %{target})))

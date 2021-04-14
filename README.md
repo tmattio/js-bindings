@@ -17,10 +17,6 @@ The bindings don't depend on any PPX (and in particular, they don't depend on `g
 
 ## To do
 
-- [ ] es2017
-- [ ] es2018
-- [ ] es2019
-- [ ] es2020
 - [ ] node
 - [ ] vscode
 
@@ -36,7 +32,9 @@ ts2ocaml:
 - Does not generate symbol for `lib.es2015.symbol.d.ts`
 - values should create modules e.g. in `lib.es2015.promise.d.ts`, `declare var Promise: PromiseConstructor;` should generate `module Promise = PromiseConstructor`
 - Generating comments would be amazing
-- What's with all the `t_n`?
+- What's with all the `t_n`? Almost all of them are equal to `t` and have the same arity.
+- Do not add a labeled argument if there's only one argument, or when all of the other arguments are optional
+- `int` is probably a better default for `number`. Otherwise every accessors is generated with a `float`
 - Error when generating from `node/globals.d.ts`
  
     ```

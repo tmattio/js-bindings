@@ -111,8 +111,7 @@ module Tty : sig
       -> bool
       [@@js.call "emit"]
 
-    val emit' : t -> event:([ `resize ][@js.enum]) -> bool
-      [@@js.call "emit"]
+    val emit' : t -> event:([ `resize ][@js.enum]) -> bool [@@js.call "emit"]
 
     val on
       :  t
@@ -121,11 +120,7 @@ module Tty : sig
       -> t
       [@@js.call "on"]
 
-    val on'
-      :  t
-      -> event:([ `resize ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val on' : t -> event:([ `resize ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "on"]
 
     val once

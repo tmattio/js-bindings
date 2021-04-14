@@ -212,11 +212,7 @@ module V8 : sig
 
     val releaseBuffer : t -> Buffer.t_0 [@@js.call "releaseBuffer"]
 
-    val transferArrayBuffer
-      :  t
-      -> id:float
-      -> arrayBuffer:ArrayBuffer.t
-      -> unit
+    val transferArrayBuffer : t -> id:float -> arrayBuffer:ArrayBuffer.t -> unit
       [@@js.call "transferArrayBuffer"]
 
     val writeUint32 : t -> value:float -> unit [@@js.call "writeUint32"]
@@ -255,11 +251,7 @@ module V8 : sig
 
     val readValue : t -> any [@@js.call "readValue"]
 
-    val transferArrayBuffer
-      :  t
-      -> id:float
-      -> arrayBuffer:ArrayBuffer.t
-      -> unit
+    val transferArrayBuffer : t -> id:float -> arrayBuffer:ArrayBuffer.t -> unit
       [@@js.call "transferArrayBuffer"]
 
     val getWireFormatVersion : t -> float [@@js.call "getWireFormatVersion"]
@@ -288,7 +280,6 @@ module V8 : sig
 
   val serialize : value:any -> Buffer.t_0 [@@js.global "serialize"]
 
-  val deserialize : data:NodeJS.TypedArray.t -> any
-    [@@js.global "deserialize"]
+  val deserialize : data:NodeJS.TypedArray.t -> any [@@js.global "deserialize"]
 end
 [@@js.scope "v8"]

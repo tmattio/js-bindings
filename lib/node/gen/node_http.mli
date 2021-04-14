@@ -941,11 +941,7 @@ module Http : sig
       -> t
       [@@js.call "addListener"]
 
-    val on
-      :  t
-      -> event:([ `abort ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val on : t -> event:([ `abort ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "on"]
 
     val on'
@@ -1054,11 +1050,7 @@ module Http : sig
       -> t
       [@@js.call "on"]
 
-    val once
-      :  t
-      -> event:([ `abort ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val once : t -> event:([ `abort ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "once"]
 
     val once'

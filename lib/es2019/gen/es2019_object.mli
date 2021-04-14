@@ -34,12 +34,24 @@ module AnonymousInterface0 : sig
   val set : t -> string -> 'T -> unit [@@js.index_set]
 end
 
+module Object : sig
+  include module type of struct
+    include Object
+  end
+
+  val fromEntries
+    :  entries:(PropertyKey.t * 'T) Iterable.t
+    -> anonymous_interface_0
+    [@@js.global "Object.fromEntries"]
+
+  val fromEntries' : entries:any list Iterable.t -> any
+    [@@js.global "Object.fromEntries"]
+end
+
 module ObjectConstructor : sig
-  type t = _ObjectConstructor
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include ObjectConstructor
+  end
 
   val fromEntries
     :  t

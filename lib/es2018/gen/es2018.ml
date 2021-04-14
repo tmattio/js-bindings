@@ -2,3 +2,8 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 include struct include Es2017 end
+include struct include Es2018_asynciterable end
+include struct include Es2018_asyncgenerator end
+include struct include Es2018_promise end
+include struct include Es2018_regexp end
+include struct include Es2018_intl end

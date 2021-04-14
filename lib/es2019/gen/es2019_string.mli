@@ -20,11 +20,9 @@ open AnonymousInterfaces
 open Types
 
 module String : sig
-  type t = _String
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include String
+  end
 
   val trimEnd : t -> string [@@js.call "trimEnd"]
 

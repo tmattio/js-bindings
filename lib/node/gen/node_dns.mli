@@ -384,8 +384,7 @@ module Dns : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_type : t -> ([ `AAAA [@js "AAAA"] ][@js.enum])
-      [@@js.get "type"]
+    val get_type : t -> ([ `AAAA [@js "AAAA"] ][@js.enum]) [@@js.get "type"]
 
     val set_type : t -> ([ `AAAA ][@js.enum]) -> unit [@@js.set "type"]
 
@@ -465,8 +464,7 @@ module Dns : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_type : t -> ([ `NAPTR [@js "NAPTR"] ][@js.enum])
-      [@@js.get "type"]
+    val get_type : t -> ([ `NAPTR [@js "NAPTR"] ][@js.enum]) [@@js.get "type"]
 
     val set_type : t -> ([ `NAPTR ][@js.enum]) -> unit [@@js.set "type"]
 
@@ -624,8 +622,7 @@ module Dns : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_type : t -> ([ `CNAME [@js "CNAME"] ][@js.enum])
-      [@@js.get "type"]
+    val get_type : t -> ([ `CNAME [@js "CNAME"] ][@js.enum]) [@@js.get "type"]
 
     val set_type : t -> ([ `CNAME ][@js.enum]) -> unit [@@js.set "type"]
 
@@ -785,9 +782,7 @@ module Dns : sig
   module Resolve : sig
     val __promisify__
       :  hostname:string
-      -> ?rrtype:
-           ([ `A | `AAAA | `CNAME | `NS | `PTR ]
-           [@js.enum])
+      -> ?rrtype:([ `A | `AAAA | `CNAME | `NS | `PTR ][@js.enum])
       -> unit
       -> string list Promise.t
       [@@js.global "__promisify__"]
@@ -1300,10 +1295,7 @@ module Dns : sig
   module Promises : sig
     val getServers : unit -> string list [@@js.global "getServers"]
 
-    val lookup
-      :  hostname:string
-      -> family:float
-      -> dns_LookupAddress Promise.t
+    val lookup : hostname:string -> family:float -> dns_LookupAddress Promise.t
       [@@js.global "lookup"]
 
     val lookup
@@ -1482,8 +1474,6 @@ module Dns : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val create : ?options:dns_ResolverOptions -> unit -> t [@@js.create]
 
       val cancel : t -> unit [@@js.call "cancel"]
@@ -1508,10 +1498,7 @@ module Dns : sig
       val resolveMx : t -> hostname:string -> dns_MxRecord list Promise.t
         [@@js.call "resolveMx"]
 
-      val resolveNaptr
-        :  t
-        -> hostname:string
-        -> dns_NaptrRecord list Promise.t
+      val resolveNaptr : t -> hostname:string -> dns_NaptrRecord list Promise.t
         [@@js.call "resolveNaptr"]
 
       val resolveNs : t -> hostname:string -> string list Promise.t

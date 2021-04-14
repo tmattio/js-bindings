@@ -62,7 +62,7 @@ module Array : sig
 
   val find
     :  'T t
-    -> predicate:(this:unit -> value:'T -> index:float -> obj:'T list -> bool)
+    -> (this:unit -> value:'T -> index:float -> obj:'T list -> bool)
     -> ?thisArg:any
     -> unit
     -> 'S or_undefined
@@ -70,7 +70,7 @@ module Array : sig
 
   val find'
     :  'T t
-    -> predicate:(value:'T -> index:float -> obj:'T list -> unknown)
+    -> (value:'T -> index:float -> obj:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> 'T or_undefined
@@ -78,7 +78,7 @@ module Array : sig
 
   val findIndex
     :  'T t
-    -> predicate:(value:'T -> index:float -> obj:'T list -> unknown)
+    -> (value:'T -> index:float -> obj:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> float
@@ -146,42 +146,41 @@ module Math : sig
     include Math
   end
 
-  val clz32 : t -> x:float -> float [@@js.call "clz32"]
+  val clz32 : float -> float [@@js.global "Math.clz32"]
 
-  val imul : t -> x:float -> y:float -> float [@@js.call "imul"]
+  val imul : x:float -> y:float -> float [@@js.global "Math.imul"]
 
-  val sign : t -> x:float -> float [@@js.call "sign"]
+  val sign : float -> float [@@js.global "Math.sign"]
 
-  val log10 : t -> x:float -> float [@@js.call "log10"]
+  val log10 : float -> float [@@js.global "Math.log10"]
 
-  val log2 : t -> x:float -> float [@@js.call "log2"]
+  val log2 : float -> float [@@js.global "Math.log2"]
 
-  val log1p : t -> x:float -> float [@@js.call "log1p"]
+  val log1p : float -> float [@@js.global "Math.log1p"]
 
-  val expm1 : t -> x:float -> float [@@js.call "expm1"]
+  val expm1 : float -> float [@@js.global "Math.expm1"]
 
-  val cosh : t -> x:float -> float [@@js.call "cosh"]
+  val cosh : float -> float [@@js.global "Math.cosh"]
 
-  val sinh : t -> x:float -> float [@@js.call "sinh"]
+  val sinh : float -> float [@@js.global "Math.sinh"]
 
-  val tanh : t -> x:float -> float [@@js.call "tanh"]
+  val tanh : float -> float [@@js.global "Math.tanh"]
 
-  val acosh : t -> x:float -> float [@@js.call "acosh"]
+  val acosh : float -> float [@@js.global "Math.acosh"]
 
-  val asinh : t -> x:float -> float [@@js.call "asinh"]
+  val asinh : float -> float [@@js.global "Math.asinh"]
 
-  val atanh : t -> x:float -> float [@@js.call "atanh"]
+  val atanh : float -> float [@@js.global "Math.atanh"]
 
-  val hypot : t -> values:(float list[@js.variadic]) -> float
-    [@@js.call "hypot"]
+  val hypot : values:(float list[@js.variadic]) -> float
+    [@@js.global "Math.hypot"]
 
-  val trunc : t -> x:float -> float [@@js.call "trunc"]
+  val trunc : float -> float [@@js.global "Math.trunc"]
 
-  val fround : t -> x:float -> float [@@js.call "fround"]
+  val fround : float -> float [@@js.global "Math.fround"]
 
-  val cbrt : t -> x:float -> float [@@js.call "cbrt"]
+  val cbrt : float -> float [@@js.global "Math.cbrt"]
 end
-[@@js.scope "Math"]
 
 module NumberConstructor : sig
   include module type of struct
@@ -241,14 +240,14 @@ module ObjectConstructor : sig
     -> any
     [@@js.call "assign"]
 
-  val getOwnPropertySymbols : t -> o:any -> symbol list
+  val getOwnPropertySymbols : t -> any -> symbol list
     [@@js.call "getOwnPropertySymbols"]
 
-  val keys : t -> o:any -> string list [@@js.call "keys"]
+  val keys : t -> any -> string list [@@js.call "keys"]
 
   val is : t -> value1:any -> value2:any -> bool [@@js.call "is"]
 
-  val setPrototypeOf : t -> o:any -> proto:untyped_object or_null -> any
+  val setPrototypeOf : t -> any -> proto:untyped_object or_null -> any
     [@@js.call "setPrototypeOf"]
 end
 [@@js.scope "ObjectConstructor"]
@@ -260,7 +259,7 @@ module ReadonlyArray : sig
 
   val find
     :  'T t
-    -> predicate:(this:unit -> value:'T -> index:float -> obj:'T list -> bool)
+    -> (this:unit -> value:'T -> index:float -> obj:'T list -> bool)
     -> ?thisArg:any
     -> unit
     -> 'S or_undefined
@@ -268,7 +267,7 @@ module ReadonlyArray : sig
 
   val find'
     :  'T t
-    -> predicate:(value:'T -> index:float -> obj:'T list -> unknown)
+    -> (value:'T -> index:float -> obj:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> 'T or_undefined
@@ -276,7 +275,7 @@ module ReadonlyArray : sig
 
   val findIndex
     :  'T t
-    -> predicate:(value:'T -> index:float -> obj:'T list -> unknown)
+    -> (value:'T -> index:float -> obj:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> float

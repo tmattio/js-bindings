@@ -728,8 +728,7 @@ module Util : sig
 
     val get_encoding : t -> string [@@js.get "encoding"]
 
-    val encode : t -> ?input:string -> unit -> Uint8Array.t
-      [@@js.call "encode"]
+    val encode : t -> ?input:string -> unit -> Uint8Array.t [@@js.call "encode"]
 
     val encodeInto
       :  t

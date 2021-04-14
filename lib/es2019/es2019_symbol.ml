@@ -20,11 +20,9 @@ open AnonymousInterfaces
 open Types
 module Symbol =
   struct
-    type t = _Symbol
-    let rec t_of_js : Ojs.t -> t = fun (x4 : Ojs.t) -> _Symbol_of_js x4
-    and t_to_js : t -> Ojs.t = fun (x3 : _Symbol) -> _Symbol_to_js x3
+    include struct include Symbol end
     let (get_description : t -> string or_undefined) =
-      fun (x5 : t) ->
+      fun (x3 : t) ->
         or_undefined_of_js Ojs.string_of_js
-          (Ojs.get_prop_ascii (t_to_js x5) "description")
+          (Ojs.get_prop_ascii (t_to_js x3) "description")
   end

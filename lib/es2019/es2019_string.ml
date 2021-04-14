@@ -18,21 +18,19 @@ open AnonymousInterfaces
 open Types
 module String =
   struct
-    type t = _String
-    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> _String_of_js x2
-    and t_to_js : t -> Ojs.t = fun (x1 : _String) -> _String_to_js x1
+    include struct include String end
     let (trimEnd : t -> string) =
-      fun (x3 : t) -> Ojs.string_of_js (Ojs.call (t_to_js x3) "trimEnd" [||])
+      fun (x1 : t) -> Ojs.string_of_js (Ojs.call (t_to_js x1) "trimEnd" [||])
     let (trimStart : t -> string) =
-      fun (x4 : t) ->
-        Ojs.string_of_js (Ojs.call (t_to_js x4) "trimStart" [||])
+      fun (x2 : t) ->
+        Ojs.string_of_js (Ojs.call (t_to_js x2) "trimStart" [||])
     let (trimLeft : t -> string) =
-      fun (x5 : t) ->
-        Ojs.string_of_js (Ojs.call (t_to_js x5) "trimLeft" [||])
+      fun (x3 : t) ->
+        Ojs.string_of_js (Ojs.call (t_to_js x3) "trimLeft" [||])
     let (trimRight : t -> string) =
-      fun (x6 : t) ->
-        Ojs.string_of_js (Ojs.call (t_to_js x6) "trimRight" [||])
-    let (to_ml : t -> string) = fun (x7 : t) -> Ojs.string_of_js (t_to_js x7)
+      fun (x4 : t) ->
+        Ojs.string_of_js (Ojs.call (t_to_js x4) "trimRight" [||])
+    let (to_ml : t -> string) = fun (x5 : t) -> Ojs.string_of_js (t_to_js x5)
     let (of_ml : string -> t) =
-      fun (x8 : string) -> t_of_js (Ojs.string_to_js x8)
+      fun (x6 : string) -> t_of_js (Ojs.string_to_js x6)
   end

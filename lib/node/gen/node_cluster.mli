@@ -97,14 +97,10 @@ module Cluster : sig
 
     val get_addressType
       :  t
-      -> ([ `udp4 [@js "udp4"] | `udp6 [@js "udp6"] ][@js.enum])
-         or_number
+      -> ([ `udp4 [@js "udp4"] | `udp6 [@js "udp6"] ][@js.enum]) or_number
       [@@js.get "addressType"]
 
-    val set_addressType
-      :  t
-      -> ([ `udp4 | `udp6 ][@js.enum]) or_number
-      -> unit
+    val set_addressType : t -> ([ `udp4 | `udp6 ][@js.enum]) or_number -> unit
       [@@js.set "addressType"]
   end
   [@@js.scope "Address"]
@@ -210,11 +206,7 @@ module Cluster : sig
     val emit' : t -> event:([ `disconnect ][@js.enum]) -> bool
       [@@js.call "emit"]
 
-    val emit''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> error:Error.t_0
-      -> bool
+    val emit'' : t -> event:([ `error ][@js.enum]) -> error:Error.t_0 -> bool
       [@@js.call "emit"]
 
     val emit'''
@@ -948,10 +940,7 @@ module Cluster : sig
   val emit : event:symbol or_string -> args:(any list[@js.variadic]) -> bool
     [@@js.global "emit"]
 
-  val emit
-    :  event:([ `disconnect ][@js.enum])
-    -> worker:cluster_Worker
-    -> bool
+  val emit : event:([ `disconnect ][@js.enum]) -> worker:cluster_Worker -> bool
     [@@js.global "emit"]
 
   val emit

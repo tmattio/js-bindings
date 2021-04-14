@@ -431,8 +431,6 @@ module Process : sig
 
         val t_of_js : Ojs.t -> t
 
-
-
         val cast : t -> Tty.ReadStream.t_0 [@@js.cast]
       end
       [@@js.scope "ReadStream"]
@@ -444,8 +442,6 @@ module Process : sig
 
         val t_of_js : Ojs.t -> t
 
-
-
         val cast : t -> Tty.WriteStream.t_0 [@@js.cast]
       end
       [@@js.scope "WriteStream"]
@@ -456,8 +452,6 @@ module Process : sig
         val t_to_js : t -> Ojs.t
 
         val t_of_js : Ojs.t -> t
-
-
 
         val get_rss : t -> float [@@js.get "rss"]
 
@@ -488,8 +482,6 @@ module Process : sig
 
         val t_of_js : Ojs.t -> t
 
-
-
         val get_user : t -> float [@@js.get "user"]
 
         val set_user : t -> float -> unit [@@js.set "user"]
@@ -506,8 +498,6 @@ module Process : sig
         val t_to_js : t -> Ojs.t
 
         val t_of_js : Ojs.t -> t
-
-
 
         val get_name : t -> string [@@js.get "name"]
 
@@ -537,8 +527,6 @@ module Process : sig
         val t_to_js : t -> Ojs.t
 
         val t_of_js : Ojs.t -> t
-
-
 
         val get_http_parser : t -> string [@@js.get "http_parser"]
 
@@ -582,8 +570,6 @@ module Process : sig
         val t_to_js : t -> Ojs.t
 
         val t_of_js : Ojs.t -> t
-
-
       end
 
       module Signals : sig
@@ -592,8 +578,6 @@ module Process : sig
         val t_to_js : t -> Ojs.t
 
         val t_of_js : Ojs.t -> t
-
-
       end
 
       module MultipleResolveType : sig
@@ -602,8 +586,6 @@ module Process : sig
         val t_to_js : t -> Ojs.t
 
         val t_of_js : Ojs.t -> t
-
-
       end
 
       module BeforeExitListener : sig
@@ -612,8 +594,6 @@ module Process : sig
         val t_to_js : t -> Ojs.t
 
         val t_of_js : Ojs.t -> t
-
-
 
         val apply : t -> code:float -> unit [@@js.apply]
       end
@@ -626,8 +606,6 @@ module Process : sig
 
         val t_of_js : Ojs.t -> t
 
-
-
         val apply : t -> unit [@@js.apply]
       end
       [@@js.scope "DisconnectListener"]
@@ -638,8 +616,6 @@ module Process : sig
         val t_to_js : t -> Ojs.t
 
         val t_of_js : Ojs.t -> t
-
-
 
         val apply : t -> code:float -> unit [@@js.apply]
       end
@@ -652,8 +628,6 @@ module Process : sig
 
         val t_of_js : Ojs.t -> t
 
-
-
         val apply : t -> promise:any Promise.t -> unit [@@js.apply]
       end
       [@@js.scope "RejectionHandledListener"]
@@ -665,8 +639,6 @@ module Process : sig
 
         val t_of_js : Ojs.t -> t
 
-
-
         val apply : t -> error:Error.t_0 -> unit [@@js.apply]
       end
       [@@js.scope "UncaughtExceptionListener"]
@@ -677,8 +649,6 @@ module Process : sig
         val t_to_js : t -> Ojs.t
 
         val t_of_js : Ojs.t -> t
-
-
 
         val apply
           :  t
@@ -696,8 +666,6 @@ module Process : sig
 
         val t_of_js : Ojs.t -> t
 
-
-
         val apply : t -> warning:Error.t_0 -> unit [@@js.apply]
       end
       [@@js.scope "WarningListener"]
@@ -708,8 +676,6 @@ module Process : sig
         val t_to_js : t -> Ojs.t
 
         val t_of_js : Ojs.t -> t
-
-
 
         val apply : t -> message:any -> sendHandle:any -> unit [@@js.apply]
       end
@@ -722,8 +688,6 @@ module Process : sig
 
         val t_of_js : Ojs.t -> t
 
-
-
         val apply : t -> signal:process_global_NodeJS_Signals -> unit
           [@@js.apply]
       end
@@ -735,8 +699,6 @@ module Process : sig
         val t_to_js : t -> Ojs.t
 
         val t_of_js : Ojs.t -> t
-
-
 
         val apply
           :  t
@@ -754,8 +716,6 @@ module Process : sig
 
         val t_of_js : Ojs.t -> t
 
-
-
         val apply
           :  t
           -> type_:symbol or_string
@@ -771,8 +731,6 @@ module Process : sig
         val t_to_js : t -> Ojs.t
 
         val t_of_js : Ojs.t -> t
-
-
 
         val apply
           :  t
@@ -791,8 +749,6 @@ module Process : sig
 
         val t_of_js : Ojs.t -> t
 
-
-
         val get_isTTY : t -> ([ `L_b_true [@js true] ][@js.enum])
           [@@js.get "isTTY"]
 
@@ -810,8 +766,6 @@ module Process : sig
 
         val t_of_js : Ojs.t -> t
 
-
-
         val cast : t -> string Dict.t_1 [@@js.cast]
       end
       [@@js.scope "ProcessEnv"]
@@ -822,8 +776,6 @@ module Process : sig
         val t_to_js : t -> Ojs.t
 
         val t_of_js : Ojs.t -> t
-
-
 
         val apply : t -> ?time:float * float -> unit -> float * float
           [@@js.apply]
@@ -838,8 +790,6 @@ module Process : sig
         val t_to_js : t -> Ojs.t
 
         val t_of_js : Ojs.t -> t
-
-
 
         val get_directory : t -> string [@@js.get "directory"]
 
@@ -894,8 +844,6 @@ module Process : sig
         val t_to_js : t -> Ojs.t
 
         val t_of_js : Ojs.t -> t
-
-
 
         val get_fsRead : t -> float [@@js.get "fsRead"]
 
@@ -976,8 +924,6 @@ module Process : sig
         val t_to_js : t -> Ojs.t
 
         val t_of_js : Ojs.t -> t
-
-
 
         val get_stdout
           :  t
@@ -1324,21 +1270,13 @@ module Process : sig
           -> t
           [@@js.call "addListener"]
 
-        val emit
-          :  t
-          -> event:([ `beforeExit ][@js.enum])
-          -> code:float
-          -> bool
+        val emit : t -> event:([ `beforeExit ][@js.enum]) -> code:float -> bool
           [@@js.call "emit"]
 
         val emit' : t -> event:([ `disconnect ][@js.enum]) -> bool
           [@@js.call "emit"]
 
-        val emit''
-          :  t
-          -> event:([ `exit ][@js.enum])
-          -> code:float
-          -> bool
+        val emit'' : t -> event:([ `exit ][@js.enum]) -> code:float -> bool
           [@@js.call "emit"]
 
         val emit'''
@@ -1874,8 +1812,6 @@ module Process : sig
         val t_to_js : t -> Ojs.t
 
         val t_of_js : Ojs.t -> t
-
-
 
         val get_process : t -> process_global_NodeJS_Process
           [@@js.get "process"]

@@ -125,7 +125,6 @@ module AsyncGeneratorFunction : sig
   val get_prototype : t -> (unknown, any, unknown) _AsyncGenerator
     [@@js.get "prototype"]
 end
-[@@js.scope "AsyncGeneratorFunction"]
 
 module AsyncGeneratorFunctionConstructor : sig
   type t = _AsyncGeneratorFunctionConstructor
@@ -134,10 +133,10 @@ module AsyncGeneratorFunctionConstructor : sig
 
   val t_of_js : Ojs.t -> t
 
-  val create : t -> args:(string list[@js.variadic]) -> _AsyncGeneratorFunction
+  val create : t -> (string list[@js.variadic]) -> _AsyncGeneratorFunction
     [@@js.apply_newable]
 
-  val apply : t -> args:(string list[@js.variadic]) -> _AsyncGeneratorFunction
+  val apply : t -> (string list[@js.variadic]) -> _AsyncGeneratorFunction
     [@@js.apply]
 
   val get_length : t -> float [@@js.get "length"]

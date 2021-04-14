@@ -1,4 +1,4 @@
 (executable
  (name promise)
- (libraries es2015)
+ (libraries es2020)
  (modes js))

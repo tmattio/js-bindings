@@ -1159,30 +1159,28 @@ val naN : float [@@js.global "NaN"]
 
 val infinity : float [@@js.global "Infinity"]
 
-val eval : x:string -> any [@@js.global "eval"]
+val eval : string -> any [@@js.global "eval"]
 
-val parseInt : s:string -> ?radix:float -> unit -> float
-  [@@js.global "parseInt"]
+val parseInt : string -> ?radix:float -> unit -> float [@@js.global "parseInt"]
 
 val parseFloat : string:string -> float [@@js.global "parseFloat"]
 
-val isNaN : number:float -> bool [@@js.global "isNaN"]
+val isNaN : float -> bool [@@js.global "isNaN"]
 
-val isFinite : number:float -> bool [@@js.global "isFinite"]
+val isFinite : float -> bool [@@js.global "isFinite"]
 
-val decodeURI : encodedURI:string -> string [@@js.global "decodeURI"]
+val decodeURI : string -> string [@@js.global "decodeURI"]
 
-val decodeURIComponent : encodedURIComponent:string -> string
-  [@@js.global "decodeURIComponent"]
+val decodeURIComponent : string -> string [@@js.global "decodeURIComponent"]
 
-val encodeURI : uri:string -> string [@@js.global "encodeURI"]
+val encodeURI : string -> string [@@js.global "encodeURI"]
 
-val encodeURIComponent : uriComponent:bool or_string or_number -> string
+val encodeURIComponent : bool or_string or_number -> string
   [@@js.global "encodeURIComponent"]
 
-val escape : string:string -> string [@@js.global "escape"]
+val escape : string -> string [@@js.global "escape"]
 
-val unescape : string:string -> string [@@js.global "unescape"]
+val unescape : string -> string [@@js.global "unescape"]
 
 module Symbol : sig
   type t = _Symbol
@@ -1230,7 +1228,7 @@ module PropertyDescriptor : sig
 
   val get_ : t -> any [@@js.call "get"]
 
-  val set_ : t -> v:any -> unit [@@js.call "set"]
+  val set_ : t -> any -> unit [@@js.call "set"]
 end
 [@@js.scope "PropertyDescriptor"]
 
@@ -1264,39 +1262,39 @@ module Object : sig
 
   val valueOf : t -> t [@@js.call "valueOf"]
 
-  val hasOwnProperty : t -> v:_PropertyKey -> bool [@@js.call "hasOwnProperty"]
+  val hasOwnProperty : t -> _PropertyKey -> bool [@@js.call "hasOwnProperty"]
 
-  val isPrototypeOf : t -> v:t -> bool [@@js.call "isPrototypeOf"]
+  val isPrototypeOf : t -> t -> bool [@@js.call "isPrototypeOf"]
 
-  val propertyIsEnumerable : t -> v:_PropertyKey -> bool
+  val propertyIsEnumerable : t -> _PropertyKey -> bool
     [@@js.call "propertyIsEnumerable"]
 
   (* Constructor *)
 
   val create : ?value:any -> unit -> _Object [@@js.new "Object"]
 
-  val getPrototypeOf : o:any -> any [@@js.global "Object.getPrototypeOf"]
+  val getPrototypeOf : any -> any [@@js.global "Object.getPrototypeOf"]
 
   val getOwnPropertyDescriptor
-    :  o:any
+    :  any
     -> p:_PropertyKey
     -> _PropertyDescriptor or_undefined
     [@@js.global "Object.getOwnPropertyDescriptor"]
 
-  val getOwnPropertyNames : o:any -> string list
+  val getOwnPropertyNames : any -> string list
     [@@js.global "Object.getOwnPropertyNames"]
 
-  val create_ : o:untyped_object or_null -> any [@@js.new "Object"]
+  val create_ : untyped_object or_null -> any [@@js.new "Object"]
 
   val create_'
-    :  o:untyped_object or_null
+    :  untyped_object or_null
     -> properties:(_PropertyDescriptorMap, any _ThisType) intersection2
     -> any
     [@@js.new "Object"]
 
   val defineProperty
     :  t
-    -> o:any
+    -> any
     -> p:_PropertyKey
     -> attributes:(_PropertyDescriptor, any _ThisType) intersection2
     -> any
@@ -1304,28 +1302,28 @@ module Object : sig
 
   val defineProperties
     :  t
-    -> o:any
+    -> any
     -> properties:(_PropertyDescriptorMap, any _ThisType) intersection2
     -> any
     [@@js.global "Object.defineProperties"]
 
-  val seal : o:'T -> 'T [@@js.global "Object.seal"]
+  val seal : 'T -> 'T [@@js.global "Object.seal"]
 
-  val freeze : a:'T list -> 'T list [@@js.global "Object.freeze"]
+  val freeze : 'T list -> 'T list [@@js.global "Object.freeze"]
 
-  val freeze' : f:'T -> 'T [@@js.global "Object.freeze"]
+  val freeze' : 'T -> 'T [@@js.global "Object.freeze"]
 
-  val freeze'' : o:'T -> 'T _Readonly [@@js.global "Object.freeze"]
+  val freeze'' : 'T -> 'T _Readonly [@@js.global "Object.freeze"]
 
-  val preventExtensions : o:'T -> 'T [@@js.global "Object.preventExtensions"]
+  val preventExtensions : 'T -> 'T [@@js.global "Object.preventExtensions"]
 
-  val isSealed : o:any -> bool [@@js.global "Object.isSealed"]
+  val isSealed : any -> bool [@@js.global "Object.isSealed"]
 
-  val isFrozen : o:any -> bool [@@js.global "Object.isFrozen"]
+  val isFrozen : any -> bool [@@js.global "Object.isFrozen"]
 
-  val isExtensible : o:any -> bool [@@js.global "Object.isExtensible"]
+  val isExtensible : any -> bool [@@js.global "Object.isExtensible"]
 
-  val keys : o:untyped_object -> string list [@@js.global "Object.keys"]
+  val keys : untyped_object -> string list [@@js.global "Object.keys"]
 end
 
 module ObjectConstructor : sig
@@ -1339,34 +1337,34 @@ module ObjectConstructor : sig
 
   val apply : t -> any [@@js.apply]
 
-  val apply' : t -> value:any -> any [@@js.apply]
+  val apply' : t -> any -> any [@@js.apply]
 
   val get_prototype : t -> _Object [@@js.get "prototype"]
 
-  val getPrototypeOf : t -> o:any -> any [@@js.call "getPrototypeOf"]
+  val getPrototypeOf : t -> any -> any [@@js.call "getPrototypeOf"]
 
   val getOwnPropertyDescriptor
     :  t
-    -> o:any
+    -> any
     -> p:_PropertyKey
     -> _PropertyDescriptor or_undefined
     [@@js.call "getOwnPropertyDescriptor"]
 
-  val getOwnPropertyNames : t -> o:any -> string list
+  val getOwnPropertyNames : t -> any -> string list
     [@@js.call "getOwnPropertyNames"]
 
-  val create_ : t -> o:untyped_object or_null -> any [@@js.call "create"]
+  val create_ : t -> untyped_object or_null -> any [@@js.call "create"]
 
   val create_'
     :  t
-    -> o:untyped_object or_null
+    -> untyped_object or_null
     -> properties:(_PropertyDescriptorMap, any _ThisType) intersection2
     -> any
     [@@js.call "create"]
 
   val defineProperty
     :  t
-    -> o:any
+    -> any
     -> p:_PropertyKey
     -> attributes:(_PropertyDescriptor, any _ThisType) intersection2
     -> any
@@ -1374,28 +1372,28 @@ module ObjectConstructor : sig
 
   val defineProperties
     :  t
-    -> o:any
+    -> any
     -> properties:(_PropertyDescriptorMap, any _ThisType) intersection2
     -> any
     [@@js.call "defineProperties"]
 
-  val seal : t -> o:'T -> 'T [@@js.call "seal"]
+  val seal : t -> 'T -> 'T [@@js.call "seal"]
 
-  val freeze : t -> a:'T list -> 'T list [@@js.call "freeze"]
+  val freeze : t -> 'T list -> 'T list [@@js.call "freeze"]
 
-  val freeze' : t -> f:'T -> 'T [@@js.call "freeze"]
+  val freeze' : t -> 'T -> 'T [@@js.call "freeze"]
 
-  val freeze'' : t -> o:'T -> 'T _Readonly [@@js.call "freeze"]
+  val freeze'' : t -> 'T -> 'T _Readonly [@@js.call "freeze"]
 
-  val preventExtensions : t -> o:'T -> 'T [@@js.call "preventExtensions"]
+  val preventExtensions : t -> 'T -> 'T [@@js.call "preventExtensions"]
 
-  val isSealed : t -> o:any -> bool [@@js.call "isSealed"]
+  val isSealed : t -> any -> bool [@@js.call "isSealed"]
 
-  val isFrozen : t -> o:any -> bool [@@js.call "isFrozen"]
+  val isFrozen : t -> any -> bool [@@js.call "isFrozen"]
 
-  val isExtensible : t -> o:any -> bool [@@js.call "isExtensible"]
+  val isExtensible : t -> any -> bool [@@js.call "isExtensible"]
 
-  val keys : t -> o:untyped_object -> string list [@@js.call "keys"]
+  val keys : t -> untyped_object -> string list [@@js.call "keys"]
 end
 [@@js.scope "ObjectConstructor"]
 
@@ -1445,8 +1443,7 @@ module Function : sig
 
   (* Constructor *)
 
-  val create : args:(string list[@js.variadic]) -> _Function
-    [@@js.new "Function"]
+  val create : (string list[@js.variadic]) -> _Function [@@js.new "Function"]
 end
 
 module FunctionConstructor : sig
@@ -1456,10 +1453,10 @@ module FunctionConstructor : sig
 
   val t_of_js : Ojs.t -> t
 
-  val create : t -> args:(string list[@js.variadic]) -> _Function
+  val create : t -> (string list[@js.variadic]) -> _Function
     [@@js.apply_newable]
 
-  val apply : t -> args:(string list[@js.variadic]) -> _Function [@@js.apply]
+  val apply : t -> (string list[@js.variadic]) -> _Function [@@js.apply]
 
   val get_prototype : t -> _Function [@@js.get "prototype"]
 end
@@ -1492,7 +1489,7 @@ module CallableFunction : sig
 
   val apply_ : t -> this:(this:'T -> 'R) -> thisArg:'T -> 'R [@@js.call "apply"]
 
-  val apply_'
+  val apply_all
     :  t
     -> this:
          (this:'T
@@ -1527,17 +1524,15 @@ module CallableFunction : sig
     -> 'T _OmitThisParameter
     [@@js.call "bind"]
 
-  val bind'
+  val bind_all
     :  t
     -> this:
          (this:'T
-          -> arg0:'A0
           -> args:
                (* FIXME: type ''A' cannot be used for variadic argument *)
                (any list[@js.variadic])
           -> 'R)
     -> thisArg:'T
-    -> arg0:'A0
     -> (args:
           (* FIXME: type ''A' cannot be used for variadic argument *)
           (any list[@js.variadic])
@@ -1545,75 +1540,6 @@ module CallableFunction : sig
        [@js.dummy])
     [@@js.call "bind"]
 
-  val bind''
-    :  t
-    -> this:
-         (this:'T
-          -> arg0:'A0
-          -> arg1:'A1
-          -> args:
-               (* FIXME: type ''A' cannot be used for variadic argument *)
-               (any list[@js.variadic])
-          -> 'R)
-    -> thisArg:'T
-    -> arg0:'A0
-    -> arg1:'A1
-    -> (args:
-          (* FIXME: type ''A' cannot be used for variadic argument *)
-          (any list[@js.variadic])
-        -> 'R
-       [@js.dummy])
-    [@@js.call "bind"]
-
-  val bind'''
-    :  t
-    -> this:
-         (this:'T
-          -> arg0:'A0
-          -> arg1:'A1
-          -> arg2:'A2
-          -> args:
-               (* FIXME: type ''A' cannot be used for variadic argument *)
-               (any list[@js.variadic])
-          -> 'R)
-    -> thisArg:'T
-    -> arg0:'A0
-    -> arg1:'A1
-    -> arg2:'A2
-    -> (args:
-          (* FIXME: type ''A' cannot be used for variadic argument *)
-          (any list[@js.variadic])
-        -> 'R
-       [@js.dummy])
-    [@@js.call "bind"]
-
-  val bind''''
-    :  t
-    -> this:
-         (this:'T
-          -> arg0:'A0
-          -> arg1:'A1
-          -> arg2:'A2
-          -> arg3:'A3
-          -> args:
-               (* FIXME: type ''A' cannot be used for variadic argument *)
-               (any list[@js.variadic])
-          -> 'R)
-    -> thisArg:'T
-    -> arg0:'A0
-    -> arg1:'A1
-    -> arg2:'A2
-    -> arg3:'A3
-    -> (args:
-          (* FIXME: type ''A' cannot be used for variadic argument *)
-          (any list[@js.variadic])
-        -> 'R
-       [@js.dummy])
-    [@@js.call "bind"]
-
-  (* val bind''''': t -> this:(this:'T -> args:('AX list [@js.variadic]) -> 'R)
-     -> thisArg:'T -> args:('AX list [@js.variadic]) -> (args':('AX list
-     [@js.variadic]) -> 'R [@js.dummy]) [@@js.call "bind"] *)
   val cast : t -> _Function [@@js.cast]
 end
 [@@js.scope "CallableFunction"]
@@ -1632,7 +1558,7 @@ module NewableFunction : sig
     :  t
     -> this:('A, 'T) anonymous_interface_10
     -> thisArg:'T
-    -> args:'A
+    -> 'A
     -> unit
     [@@js.call "apply"]
 
@@ -1640,9 +1566,8 @@ module NewableFunction : sig
     :  t
     -> this:('A, 'T) anonymous_interface_10
     -> thisArg:'T
-    -> args:
-         (* FIXME: type ''A' cannot be used for variadic argument *)
-         (any list[@js.variadic])
+    -> (* FIXME: type ''A' cannot be used for variadic argument *)
+       (any list[@js.variadic])
     -> unit
     [@@js.call "call"]
 
@@ -1690,7 +1615,7 @@ module NewableFunction : sig
     :  t
     -> this:('AX, 'R) anonymous_interface_11
     -> thisArg:any
-    -> args:('AX list[@js.variadic])
+    -> ('AX list[@js.variadic])
     -> ('AX, 'R) anonymous_interface_11
     [@@js.call "bind"]
 
@@ -1969,67 +1894,58 @@ module ImportMeta : sig
 end
 
 module Math : sig
-  type t = _Math
+  val get_E : float [@@js.global "Math.E"]
 
-  val t_to_js : t -> Ojs.t
+  val get_LN10 : float [@@js.global "Math.LN10"]
 
-  val t_of_js : Ojs.t -> t
+  val get_LN2 : float [@@js.global "Math.LN2"]
 
-  val get_E : t -> float [@@js.get "E"]
+  val get_LOG2E : float [@@js.global "Math.LOG2E"]
 
-  val get_LN10 : t -> float [@@js.get "LN10"]
+  val get_LOG10E : float [@@js.global "Math.LOG10E"]
 
-  val get_LN2 : t -> float [@@js.get "LN2"]
+  val get_PI : float [@@js.global "Math.PI"]
 
-  val get_LOG2E : t -> float [@@js.get "LOG2E"]
+  val get_SQRT1_2 : float [@@js.global "Math.SQRT1_2"]
 
-  val get_LOG10E : t -> float [@@js.get "LOG10E"]
+  val get_SQRT2 : float [@@js.global "Math.SQRT2"]
 
-  val get_PI : t -> float [@@js.get "PI"]
+  val abs : float -> float [@@js.global "Math.abs"]
 
-  val get_SQRT1_2 : t -> float [@@js.get "SQRT1_2"]
+  val acos : float -> float [@@js.global "Math.acos"]
 
-  val get_SQRT2 : t -> float [@@js.get "SQRT2"]
+  val asin : float -> float [@@js.global "Math.asin"]
 
-  val abs : t -> x:float -> float [@@js.call "abs"]
+  val atan : float -> float [@@js.global "Math.atan"]
 
-  val acos : t -> x:float -> float [@@js.call "acos"]
+  val atan2 : y:float -> x:float -> float [@@js.global "Math.atan2"]
 
-  val asin : t -> x:float -> float [@@js.call "asin"]
+  val ceil : float -> float [@@js.global "Math.ceil"]
 
-  val atan : t -> x:float -> float [@@js.call "atan"]
+  val cos : float -> float [@@js.global "Math.cos"]
 
-  val atan2 : t -> y:float -> x:float -> float [@@js.call "atan2"]
+  val exp : float -> float [@@js.global "Math.exp"]
 
-  val ceil : t -> x:float -> float [@@js.call "ceil"]
+  val floor : float -> float [@@js.global "Math.floor"]
 
-  val cos : t -> x:float -> float [@@js.call "cos"]
+  val log : float -> float [@@js.global "Math.log"]
 
-  val exp : t -> x:float -> float [@@js.call "exp"]
+  val max : (float list[@js.variadic]) -> float [@@js.global "Math.max"]
 
-  val floor : t -> x:float -> float [@@js.call "floor"]
+  val min : (float list[@js.variadic]) -> float [@@js.global "Math.min"]
 
-  val log : t -> x:float -> float [@@js.call "log"]
+  val pow : x:float -> y:float -> float [@@js.global "Math.pow"]
 
-  val max : t -> values:(float list[@js.variadic]) -> float [@@js.call "max"]
+  val random : float [@@js.global "Math.random"]
 
-  val min : t -> values:(float list[@js.variadic]) -> float [@@js.call "min"]
+  val round : float -> float [@@js.global "Math.round"]
 
-  val pow : t -> x:float -> y:float -> float [@@js.call "pow"]
+  val sin : float -> float [@@js.global "Math.sin"]
 
-  val random : t -> float [@@js.call "random"]
+  val sqrt : float -> float [@@js.global "Math.sqrt"]
 
-  val round : t -> x:float -> float [@@js.call "round"]
-
-  val sin : t -> x:float -> float [@@js.call "sin"]
-
-  val sqrt : t -> x:float -> float [@@js.call "sqrt"]
-
-  val tan : t -> x:float -> float [@@js.call "tan"]
+  val tan : float -> float [@@js.global "Math.tan"]
 end
-[@@js.scope "Math"]
-
-val math : _Math [@@js.global "Math"]
 
 module Date : sig
   type t = _Date
@@ -2189,7 +2105,7 @@ module Date : sig
 
   val create : unit -> _Date [@@js.new "Date"]
 
-  val create' : value:string or_number -> _Date [@@js.new "Date"]
+  val create' : string or_number -> _Date [@@js.new "Date"]
 
   val create''
     :  t
@@ -2204,7 +2120,7 @@ module Date : sig
     -> _Date
     [@@js.new "Date"]
 
-  val parse : s:string -> float [@@js.global "Date.parse"]
+  val parse : string -> float [@@js.global "Date.parse"]
 
   val utc
     :  year:float
@@ -2230,7 +2146,7 @@ module DateConstructor : sig
 
   val create : t -> _Date [@@js.apply_newable]
 
-  val create' : t -> value:string or_number -> _Date [@@js.apply_newable]
+  val create' : t -> string or_number -> _Date [@@js.apply_newable]
 
   val create''
     :  t
@@ -2249,7 +2165,7 @@ module DateConstructor : sig
 
   val get_prototype : t -> _Date [@@js.get "prototype"]
 
-  val parse : t -> s:string -> float [@@js.call "parse"]
+  val parse : t -> string -> float [@@js.call "parse"]
 
   val utc
     :  t
@@ -2693,14 +2609,14 @@ module JSON : sig
   val t_of_js : Ojs.t -> t
 
   val parse
-    :  text:string
+    :  string
     -> ?reviver:(this:any -> key:string -> value:any -> any)
     -> unit
     -> any
     [@@js.global "parse"]
 
   val stringify
-    :  value:any
+    :  any
     -> ?replacer:(this:any -> key:string -> value:any -> any)
     -> ?space:string or_number
     -> unit
@@ -2708,7 +2624,7 @@ module JSON : sig
     [@@js.global "stringify"]
 
   val stringify'
-    :  value:any
+    :  any
     -> ?replacer:string or_number list or_null
     -> ?space:string or_number
     -> unit
@@ -2730,12 +2646,12 @@ module ReadonlyArray : sig
 
   val toLocaleString : 'T t -> string [@@js.call "toLocaleString"]
 
-  val concat : 'T t -> items:('T _ConcatArray list[@js.variadic]) -> 'T list
+  val concat : 'T t -> ('T _ConcatArray list[@js.variadic]) -> 'T list
     [@@js.call "concat"]
 
   val concat'
     :  'T t
-    -> items:(('T, 'T _ConcatArray) union2 list[@js.variadic])
+    -> (('T, 'T _ConcatArray) union2 list[@js.variadic])
     -> 'T list
     [@@js.call "concat"]
 
@@ -2757,7 +2673,7 @@ module ReadonlyArray : sig
 
   val every
     :  'T t
-    -> predicate:(value:'T -> index:float -> array:'T list -> bool)
+    -> (value:'T -> index:float -> array:'T list -> bool)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -2765,7 +2681,7 @@ module ReadonlyArray : sig
 
   val every'
     :  'T t
-    -> predicate:(value:'T -> index:float -> array:'T list -> unknown)
+    -> (value:'T -> index:float -> array:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -2773,7 +2689,7 @@ module ReadonlyArray : sig
 
   val some
     :  'T t
-    -> predicate:(value:'T -> index:float -> array:'T list -> unknown)
+    -> (value:'T -> index:float -> array:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -2797,7 +2713,7 @@ module ReadonlyArray : sig
 
   val filter
     :  'T t
-    -> predicate:(value:'T -> index:float -> array:'T list -> bool)
+    -> (value:'T -> index:float -> array:'T list -> bool)
     -> ?thisArg:any
     -> unit
     -> 'S list
@@ -2805,7 +2721,7 @@ module ReadonlyArray : sig
 
   val filter'
     :  'T t
-    -> predicate:(value:'T -> index:float -> array:'T list -> unknown)
+    -> (value:'T -> index:float -> array:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> 'T list
@@ -2924,14 +2840,14 @@ module Array : sig
 
   val pop : 'T t -> 'T or_undefined [@@js.call "pop"]
 
-  val push : 'T t -> items:('T list[@js.variadic]) -> float [@@js.call "push"]
+  val push : 'T t -> ('T list[@js.variadic]) -> float [@@js.call "push"]
 
-  val concat : 'T t -> items:('T _ConcatArray list[@js.variadic]) -> 'T list
+  val concat : 'T t -> ('T _ConcatArray list[@js.variadic]) -> 'T list
     [@@js.call "concat"]
 
   val concat'
     :  'T t
-    -> items:(('T, 'T _ConcatArray) union2 list[@js.variadic])
+    -> (('T, 'T _ConcatArray) union2 list[@js.variadic])
     -> 'T list
     [@@js.call "concat"]
 
@@ -2954,12 +2870,11 @@ module Array : sig
     :  'T t
     -> start:float
     -> deleteCount:float
-    -> items:('T list[@js.variadic])
+    -> ('T list[@js.variadic])
     -> 'T list
     [@@js.call "splice"]
 
-  val unshift : 'T t -> items:('T list[@js.variadic]) -> float
-    [@@js.call "unshift"]
+  val unshift : 'T t -> ('T list[@js.variadic]) -> float [@@js.call "unshift"]
 
   val indexOf : 'T t -> searchElement:'T -> ?fromIndex:float -> unit -> float
     [@@js.call "indexOf"]
@@ -2974,7 +2889,7 @@ module Array : sig
 
   val every
     :  'T t
-    -> predicate:(value:'T -> index:float -> array:'T list -> bool)
+    -> (value:'T -> index:float -> array:'T list -> bool)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -2982,7 +2897,7 @@ module Array : sig
 
   val every'
     :  'T t
-    -> predicate:(value:'T -> index:float -> array:'T list -> unknown)
+    -> (value:'T -> index:float -> array:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -2990,7 +2905,7 @@ module Array : sig
 
   val some
     :  'T t
-    -> predicate:(value:'T -> index:float -> array:'T list -> unknown)
+    -> (value:'T -> index:float -> array:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -3014,7 +2929,7 @@ module Array : sig
 
   val filter
     :  'T t
-    -> predicate:(value:'T -> index:float -> array:'T list -> bool)
+    -> (value:'T -> index:float -> array:'T list -> bool)
     -> ?thisArg:any
     -> unit
     -> 'S list
@@ -3022,7 +2937,7 @@ module Array : sig
 
   val filter'
     :  'T t
-    -> predicate:(value:'T -> index:float -> array:'T list -> unknown)
+    -> (value:'T -> index:float -> array:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> 'T list
@@ -3112,9 +3027,9 @@ module Array : sig
 
   val create' : arrayLength:float -> 'T list [@@js.new "Array"]
 
-  val create'' : items:('T list[@js.variadic]) -> 'T list [@@js.new "Array"]
+  val create'' : ('T list[@js.variadic]) -> 'T list [@@js.new "Array"]
 
-  val isArray : arg:any -> bool [@@js.global "Array.isArray"]
+  val isArray : any -> bool [@@js.global "Array.isArray"]
 end
 
 module ArrayConstructor : sig
@@ -3128,16 +3043,15 @@ module ArrayConstructor : sig
 
   val create' : t -> arrayLength:float -> 'T list [@@js.apply_newable]
 
-  val create'' : t -> items:('T list[@js.variadic]) -> 'T list
-    [@@js.apply_newable]
+  val create'' : t -> ('T list[@js.variadic]) -> 'T list [@@js.apply_newable]
 
   val apply : t -> ?arrayLength:float -> unit -> any list [@@js.apply]
 
   val apply' : t -> arrayLength:float -> 'T list [@@js.apply]
 
-  val apply'' : t -> items:('T list[@js.variadic]) -> 'T list [@@js.apply]
+  val apply'' : t -> ('T list[@js.variadic]) -> 'T list [@@js.apply]
 
-  val isArray : t -> arg:any -> bool [@@js.call "isArray"]
+  val isArray : t -> any -> bool [@@js.call "isArray"]
 
   val get_prototype : t -> any list [@@js.get "prototype"]
 end
@@ -3378,7 +3292,7 @@ module ArrayBuffer : sig
 
   val create : byteLength:float -> _ArrayBuffer [@@js.new "ArrayBuffer"]
 
-  val isView : arg:any -> bool [@@js.global "ArrayBuffer.isView"]
+  val isView : any -> bool [@@js.global "ArrayBuffer.isView"]
 end
 
 module ArrayBufferTypes : sig
@@ -3405,7 +3319,7 @@ module ArrayBufferConstructor : sig
 
   val create : t -> byteLength:float -> _ArrayBuffer [@@js.apply_newable]
 
-  val isView : t -> arg:any -> bool [@@js.call "isView"]
+  val isView : t -> any -> bool [@@js.call "isView"]
 end
 [@@js.scope "ArrayBufferConstructor"]
 
@@ -3580,18 +3494,18 @@ module Int8Array : sig
 
   val every
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
     [@@js.call "every"]
 
-  val fill : t -> value:float -> ?start:float -> ?end_:float -> unit -> t
+  val fill : t -> float -> ?start:float -> ?end_:float -> unit -> t
     [@@js.call "fill"]
 
   val filter
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> any)
+    -> (value:float -> index:float -> array:t -> any)
     -> ?thisArg:any
     -> unit
     -> t
@@ -3599,7 +3513,7 @@ module Int8Array : sig
 
   val find
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float or_undefined
@@ -3607,7 +3521,7 @@ module Int8Array : sig
 
   val findIndex
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float
@@ -3723,7 +3637,7 @@ module Int8Array : sig
 
   val some
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -3762,7 +3676,7 @@ module Int8Array : sig
 
   val get_BYTES_PER_ELEMENT : float [@@js.global "Int8Array.BYTES_PER_ELEMENT"]
 
-  val of_ : items:(float list[@js.variadic]) -> _Int8Array
+  val of_ : (float list[@js.variadic]) -> _Int8Array
     [@@js.global "Int8Array.of"]
 
   val from : array:float _Array -> _Int8Array [@@js.global "Int8Array.from"]
@@ -3801,7 +3715,7 @@ module Int8ArrayConstructor : sig
 
   val get_BYTES_PER_ELEMENT : t -> float [@@js.get "BYTES_PER_ELEMENT"]
 
-  val of_ : t -> items:(float list[@js.variadic]) -> _Int8Array [@@js.call "of"]
+  val of_ : t -> (float list[@js.variadic]) -> _Int8Array [@@js.call "of"]
 
   val from : t -> array:float _Array -> _Int8Array [@@js.call "from"]
 
@@ -3838,7 +3752,7 @@ module Uint8Array : sig
 
   val every
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -3849,7 +3763,7 @@ module Uint8Array : sig
 
   val filter
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> any)
+    -> (value:float -> index:float -> array:t -> any)
     -> ?thisArg:any
     -> unit
     -> t
@@ -3857,7 +3771,7 @@ module Uint8Array : sig
 
   val find
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float or_undefined
@@ -3865,7 +3779,7 @@ module Uint8Array : sig
 
   val findIndex
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float
@@ -3981,7 +3895,7 @@ module Uint8Array : sig
 
   val some
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -4020,7 +3934,7 @@ module Uint8Array : sig
 
   val get_BYTES_PER_ELEMENT : float [@@js.global "Uint8Array.BYTES_PER_ELEMENT"]
 
-  val of_ : items:(float list[@js.variadic]) -> _Uint8Array
+  val of_ : (float list[@js.variadic]) -> _Uint8Array
     [@@js.global "Uint8Array.of"]
 
   val from : array:float _Array -> _Uint8Array [@@js.global "Uint8Array.from"]
@@ -4059,8 +3973,7 @@ module Uint8ArrayConstructor : sig
 
   val get_BYTES_PER_ELEMENT : t -> float [@@js.get "BYTES_PER_ELEMENT"]
 
-  val of_ : t -> items:(float list[@js.variadic]) -> _Uint8Array
-    [@@js.call "of"]
+  val of_ : t -> (float list[@js.variadic]) -> _Uint8Array [@@js.call "of"]
 
   val from : t -> array:float _Array -> _Uint8Array [@@js.call "from"]
 
@@ -4097,7 +4010,7 @@ module Uint8ClampedArray : sig
 
   val every
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -4108,7 +4021,7 @@ module Uint8ClampedArray : sig
 
   val filter
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> any)
+    -> (value:float -> index:float -> array:t -> any)
     -> ?thisArg:any
     -> unit
     -> t
@@ -4116,7 +4029,7 @@ module Uint8ClampedArray : sig
 
   val find
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float or_undefined
@@ -4124,7 +4037,7 @@ module Uint8ClampedArray : sig
 
   val findIndex
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float
@@ -4240,7 +4153,7 @@ module Uint8ClampedArray : sig
 
   val some
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -4280,7 +4193,7 @@ module Uint8ClampedArray : sig
   val get_BYTES_PER_ELEMENT : float
     [@@js.global "Uint8ClampedArray.BYTES_PER_ELEMENT"]
 
-  val of_ : items:(float list[@js.variadic]) -> _Uint8ClampedArray
+  val of_ : (float list[@js.variadic]) -> _Uint8ClampedArray
     [@@js.global "Uint8ClampedArray.of"]
 
   val from : array:float _Array -> _Uint8ClampedArray
@@ -4323,7 +4236,7 @@ module Uint8ClampedArrayConstructor : sig
 
   val get_BYTES_PER_ELEMENT : t -> float [@@js.get "BYTES_PER_ELEMENT"]
 
-  val of_ : t -> items:(float list[@js.variadic]) -> _Uint8ClampedArray
+  val of_ : t -> (float list[@js.variadic]) -> _Uint8ClampedArray
     [@@js.call "of"]
 
   val from : t -> array:float _Array -> _Uint8ClampedArray [@@js.call "from"]
@@ -4362,7 +4275,7 @@ module Int16Array : sig
 
   val every
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -4373,7 +4286,7 @@ module Int16Array : sig
 
   val filter
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> any)
+    -> (value:float -> index:float -> array:t -> any)
     -> ?thisArg:any
     -> unit
     -> t
@@ -4381,7 +4294,7 @@ module Int16Array : sig
 
   val find
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float or_undefined
@@ -4389,7 +4302,7 @@ module Int16Array : sig
 
   val findIndex
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float
@@ -4505,7 +4418,7 @@ module Int16Array : sig
 
   val some
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -4544,7 +4457,7 @@ module Int16Array : sig
 
   val get_BYTES_PER_ELEMENT : float [@@js.global "Int16Array.BYTES_PER_ELEMENT"]
 
-  val of_ : items:(float list[@js.variadic]) -> _Int16Array
+  val of_ : (float list[@js.variadic]) -> _Int16Array
     [@@js.global "Int16Array.of"]
 
   val from : array:float _Array -> _Int16Array [@@js.global "Int16Array.from"]
@@ -4583,8 +4496,7 @@ module Int16ArrayConstructor : sig
 
   val get_BYTES_PER_ELEMENT : t -> float [@@js.get "BYTES_PER_ELEMENT"]
 
-  val of_ : t -> items:(float list[@js.variadic]) -> _Int16Array
-    [@@js.call "of"]
+  val of_ : t -> (float list[@js.variadic]) -> _Int16Array [@@js.call "of"]
 
   val from : t -> array:float _Array -> _Int16Array [@@js.call "from"]
 
@@ -4621,7 +4533,7 @@ module Uint16Array : sig
 
   val every
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -4632,7 +4544,7 @@ module Uint16Array : sig
 
   val filter
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> any)
+    -> (value:float -> index:float -> array:t -> any)
     -> ?thisArg:any
     -> unit
     -> t
@@ -4640,7 +4552,7 @@ module Uint16Array : sig
 
   val find
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float or_undefined
@@ -4648,7 +4560,7 @@ module Uint16Array : sig
 
   val findIndex
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float
@@ -4764,7 +4676,7 @@ module Uint16Array : sig
 
   val some
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -4804,7 +4716,7 @@ module Uint16Array : sig
   val get_BYTES_PER_ELEMENT : float
     [@@js.global "Uint16Array.BYTES_PER_ELEMENT"]
 
-  val of_ : items:(float list[@js.variadic]) -> _Uint16Array
+  val of_ : (float list[@js.variadic]) -> _Uint16Array
     [@@js.global "Uint16Array.of"]
 
   val from : array:float _Array -> _Uint16Array [@@js.global "Uint16Array.from"]
@@ -4843,8 +4755,7 @@ module Uint16ArrayConstructor : sig
 
   val get_BYTES_PER_ELEMENT : t -> float [@@js.get "BYTES_PER_ELEMENT"]
 
-  val of_ : t -> items:(float list[@js.variadic]) -> _Uint16Array
-    [@@js.call "of"]
+  val of_ : t -> (float list[@js.variadic]) -> _Uint16Array [@@js.call "of"]
 
   val from : t -> array:float _Array -> _Uint16Array [@@js.call "from"]
 
@@ -4881,7 +4792,7 @@ module Int32Array : sig
 
   val every
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -4892,7 +4803,7 @@ module Int32Array : sig
 
   val filter
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> any)
+    -> (value:float -> index:float -> array:t -> any)
     -> ?thisArg:any
     -> unit
     -> t
@@ -4900,7 +4811,7 @@ module Int32Array : sig
 
   val find
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float or_undefined
@@ -4908,7 +4819,7 @@ module Int32Array : sig
 
   val findIndex
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float
@@ -5024,7 +4935,7 @@ module Int32Array : sig
 
   val some
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -5063,7 +4974,7 @@ module Int32Array : sig
 
   val get_BYTES_PER_ELEMENT : float [@@js.global "Int32Array.BYTES_PER_ELEMENT"]
 
-  val of_ : items:(float list[@js.variadic]) -> _Int32Array
+  val of_ : (float list[@js.variadic]) -> _Int32Array
     [@@js.global "Int32Array.of"]
 
   val from : array:float _Array -> _Int32Array [@@js.global "Int32Array.from"]
@@ -5102,8 +5013,7 @@ module Int32ArrayConstructor : sig
 
   val get_BYTES_PER_ELEMENT : t -> float [@@js.get "BYTES_PER_ELEMENT"]
 
-  val of_ : t -> items:(float list[@js.variadic]) -> _Int32Array
-    [@@js.call "of"]
+  val of_ : t -> (float list[@js.variadic]) -> _Int32Array [@@js.call "of"]
 
   val from : t -> array:float _Array -> _Int32Array [@@js.call "from"]
 
@@ -5140,7 +5050,7 @@ module Uint32Array : sig
 
   val every
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -5151,7 +5061,7 @@ module Uint32Array : sig
 
   val filter
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> any)
+    -> (value:float -> index:float -> array:t -> any)
     -> ?thisArg:any
     -> unit
     -> t
@@ -5159,7 +5069,7 @@ module Uint32Array : sig
 
   val find
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float or_undefined
@@ -5167,7 +5077,7 @@ module Uint32Array : sig
 
   val findIndex
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float
@@ -5283,7 +5193,7 @@ module Uint32Array : sig
 
   val some
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -5323,7 +5233,7 @@ module Uint32Array : sig
   val get_BYTES_PER_ELEMENT : float
     [@@js.global "Uint32Array.BYTES_PER_ELEMENT"]
 
-  val of_ : items:(float list[@js.variadic]) -> _Uint32Array
+  val of_ : (float list[@js.variadic]) -> _Uint32Array
     [@@js.global "Uint32Array.of"]
 
   val from : array:float _Array -> _Uint32Array [@@js.global "Uint32Array.from"]
@@ -5362,8 +5272,7 @@ module Uint32ArrayConstructor : sig
 
   val get_BYTES_PER_ELEMENT : t -> float [@@js.get "BYTES_PER_ELEMENT"]
 
-  val of_ : t -> items:(float list[@js.variadic]) -> _Uint32Array
-    [@@js.call "of"]
+  val of_ : t -> (float list[@js.variadic]) -> _Uint32Array [@@js.call "of"]
 
   val from : t -> array:float _Array -> _Uint32Array [@@js.call "from"]
 
@@ -5400,7 +5309,7 @@ module Float32Array : sig
 
   val every
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -5411,7 +5320,7 @@ module Float32Array : sig
 
   val filter
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> any)
+    -> (value:float -> index:float -> array:t -> any)
     -> ?thisArg:any
     -> unit
     -> t
@@ -5419,7 +5328,7 @@ module Float32Array : sig
 
   val find
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float or_undefined
@@ -5427,7 +5336,7 @@ module Float32Array : sig
 
   val findIndex
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float
@@ -5543,7 +5452,7 @@ module Float32Array : sig
 
   val some
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -5583,7 +5492,7 @@ module Float32Array : sig
   val get_BYTES_PER_ELEMENT : float
     [@@js.global "Float32Array.BYTES_PER_ELEMENT"]
 
-  val of_ : items:(float list[@js.variadic]) -> _Float32Array
+  val of_ : (float list[@js.variadic]) -> _Float32Array
     [@@js.global "Float32Array.of"]
 
   val from : array:float _Array -> _Float32Array
@@ -5623,8 +5532,7 @@ module Float32ArrayConstructor : sig
 
   val get_BYTES_PER_ELEMENT : t -> float [@@js.get "BYTES_PER_ELEMENT"]
 
-  val of_ : t -> items:(float list[@js.variadic]) -> _Float32Array
-    [@@js.call "of"]
+  val of_ : t -> (float list[@js.variadic]) -> _Float32Array [@@js.call "of"]
 
   val from : t -> array:float _Array -> _Float32Array [@@js.call "from"]
 
@@ -5661,7 +5569,7 @@ module Float64Array : sig
 
   val every
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -5672,7 +5580,7 @@ module Float64Array : sig
 
   val filter
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> any)
+    -> (value:float -> index:float -> array:t -> any)
     -> ?thisArg:any
     -> unit
     -> t
@@ -5680,7 +5588,7 @@ module Float64Array : sig
 
   val find
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float or_undefined
@@ -5688,7 +5596,7 @@ module Float64Array : sig
 
   val findIndex
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float
@@ -5804,7 +5712,7 @@ module Float64Array : sig
 
   val some
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -5842,7 +5750,7 @@ module Float64Array : sig
   val get_BYTES_PER_ELEMENT : float
     [@@js.global "Float64Array.BYTES_PER_ELEMENT"]
 
-  val of_ : items:(float list[@js.variadic]) -> _Float64Array
+  val of_ : (float list[@js.variadic]) -> _Float64Array
     [@@js.global "Float64Array.of"]
 
   val from : array:float _Array -> _Float64Array
@@ -5882,8 +5790,7 @@ module Float64ArrayConstructor : sig
 
   val get_BYTES_PER_ELEMENT : t -> float [@@js.get "BYTES_PER_ELEMENT"]
 
-  val of_ : t -> items:(float list[@js.variadic]) -> _Float64Array
-    [@@js.call "of"]
+  val of_ : t -> (float list[@js.variadic]) -> _Float64Array [@@js.call "of"]
 
   val from : t -> array:float _Array -> _Float64Array [@@js.call "from"]
 

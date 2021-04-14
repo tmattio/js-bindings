@@ -40,8 +40,6 @@ module Path : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_root : t -> string [@@js.get "root"]
 
       val set_root : t -> string -> unit [@@js.set "root"]
@@ -71,8 +69,6 @@ module Path : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_root : t -> string [@@js.get "root"]
 
       val set_root : t -> string -> unit [@@js.set "root"]
@@ -101,8 +97,6 @@ module Path : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val normalize : t -> p:string -> string [@@js.call "normalize"]
 

@@ -513,11 +513,9 @@ module Http2 : sig
       -> t
       [@@js.call "addListener"]
 
-    val emit : t -> event:([ `aborted ][@js.enum]) -> bool
-      [@@js.call "emit"]
+    val emit : t -> event:([ `aborted ][@js.enum]) -> bool [@@js.call "emit"]
 
-    val emit' : t -> event:([ `close ][@js.enum]) -> bool
-      [@@js.call "emit"]
+    val emit' : t -> event:([ `close ][@js.enum]) -> bool [@@js.call "emit"]
 
     val emit''
       :  t
@@ -526,17 +524,11 @@ module Http2 : sig
       -> bool
       [@@js.call "emit"]
 
-    val emit''' : t -> event:([ `drain ][@js.enum]) -> bool
-      [@@js.call "emit"]
+    val emit''' : t -> event:([ `drain ][@js.enum]) -> bool [@@js.call "emit"]
 
-    val emit'''' : t -> event:([ `end_ ][@js.enum]) -> bool
-      [@@js.call "emit"]
+    val emit'''' : t -> event:([ `end_ ][@js.enum]) -> bool [@@js.call "emit"]
 
-    val emit'''''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> err:Error.t_0
-      -> bool
+    val emit''''' : t -> event:([ `error ][@js.enum]) -> err:Error.t_0 -> bool
       [@@js.call "emit"]
 
     val emit'''''' : t -> event:([ `finish ][@js.enum]) -> bool
@@ -582,10 +574,7 @@ module Http2 : sig
       -> bool
       [@@js.call "emit"]
 
-    val emit'''''''''''''
-      :  t
-      -> event:([ `wantTrailers ][@js.enum])
-      -> bool
+    val emit''''''''''''' : t -> event:([ `wantTrailers ][@js.enum]) -> bool
       [@@js.call "emit"]
 
     val emit''''''''''''''
@@ -595,18 +584,10 @@ module Http2 : sig
       -> bool
       [@@js.call "emit"]
 
-    val on
-      :  t
-      -> event:([ `aborted ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val on : t -> event:([ `aborted ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "on"]
 
-    val on'
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val on' : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "on"]
 
     val on''
@@ -1073,8 +1054,7 @@ module Http2 : sig
       -> t
       [@@js.call "addListener"]
 
-    val emit : t -> event:([ `continue ][@js.enum]) -> bool
-      [@@js.call "emit"]
+    val emit : t -> event:([ `continue ][@js.enum]) -> bool [@@js.call "emit"]
 
     val emit'
       :  t
@@ -1680,8 +1660,7 @@ module Http2 : sig
       -> bool
       [@@js.call "emit"]
 
-    val emit''''' : t -> event:([ `ping ][@js.enum]) -> bool
-      [@@js.call "emit"]
+    val emit''''' : t -> event:([ `ping ][@js.enum]) -> bool [@@js.call "emit"]
 
     val emit''''''
       :  t
@@ -1700,11 +1679,7 @@ module Http2 : sig
       -> bool
       [@@js.call "emit"]
 
-    val on
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val on : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "on"]
 
     val on'
@@ -1767,11 +1742,7 @@ module Http2 : sig
       -> t
       [@@js.call "on"]
 
-    val once
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val once : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "once"]
 
     val once'
@@ -2549,8 +2520,7 @@ module Http2 : sig
 
     val get_protocol
       :  t
-      -> ([ `http_ [@js "http:"] | `https_ [@js "https:"] ]
-         [@js.enum])
+      -> ([ `http_ [@js "http:"] | `https_ [@js "https:"] ][@js.enum])
       [@@js.get "protocol"]
 
     val set_protocol : t -> ([ `http_ | `https_ ][@js.enum]) -> unit
@@ -3546,8 +3516,7 @@ module Http2 : sig
       -> bool
       [@@js.call "emit"]
 
-    val emit' : t -> event:([ `close ][@js.enum]) -> bool
-      [@@js.call "emit"]
+    val emit' : t -> event:([ `close ][@js.enum]) -> bool [@@js.call "emit"]
 
     val emit''
       :  t
@@ -3556,17 +3525,12 @@ module Http2 : sig
       -> bool
       [@@js.call "emit"]
 
-    val emit''' : t -> event:([ `end_ ][@js.enum]) -> bool
-      [@@js.call "emit"]
+    val emit''' : t -> event:([ `end_ ][@js.enum]) -> bool [@@js.call "emit"]
 
     val emit'''' : t -> event:([ `readable ][@js.enum]) -> bool
       [@@js.call "emit"]
 
-    val emit'''''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> err:Error.t_0
-      -> bool
+    val emit''''' : t -> event:([ `error ][@js.enum]) -> err:Error.t_0 -> bool
       [@@js.call "emit"]
 
     val emit''''''
@@ -3583,11 +3547,7 @@ module Http2 : sig
       -> t
       [@@js.call "on"]
 
-    val on'
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val on' : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "on"]
 
     val on''
@@ -3597,11 +3557,7 @@ module Http2 : sig
       -> t
       [@@js.call "on"]
 
-    val on'''
-      :  t
-      -> event:([ `end_ ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val on''' : t -> event:([ `end_ ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "on"]
 
     val on''''
@@ -3952,18 +3908,12 @@ module Http2 : sig
 
     val emit : t -> event:([ `close ][@js.enum]) -> bool [@@js.call "emit"]
 
-    val emit' : t -> event:([ `drain ][@js.enum]) -> bool
+    val emit' : t -> event:([ `drain ][@js.enum]) -> bool [@@js.call "emit"]
+
+    val emit'' : t -> event:([ `error ][@js.enum]) -> error:Error.t_0 -> bool
       [@@js.call "emit"]
 
-    val emit''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> error:Error.t_0
-      -> bool
-      [@@js.call "emit"]
-
-    val emit''' : t -> event:([ `finish ][@js.enum]) -> bool
-      [@@js.call "emit"]
+    val emit''' : t -> event:([ `finish ][@js.enum]) -> bool [@@js.call "emit"]
 
     val emit''''
       :  t
@@ -3986,18 +3936,10 @@ module Http2 : sig
       -> bool
       [@@js.call "emit"]
 
-    val on
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val on : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "on"]
 
-    val on'
-      :  t
-      -> event:([ `drain ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val on' : t -> event:([ `drain ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "on"]
 
     val on''
@@ -4035,11 +3977,7 @@ module Http2 : sig
       -> t
       [@@js.call "on"]
 
-    val once
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val once : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "once"]
 
     val once'

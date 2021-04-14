@@ -725,8 +725,8 @@ module Buffer =
                             (fun (x184 : float list) ->
                                Ojs.list_to_js Ojs.float_to_js x184) x182)
                        x181) x180)|])
-    let (of_ : items:float list -> t) =
-      fun ~items:(x186 : float list) ->
+    let (of_ : float list -> t) =
+      fun (x186 : float list) ->
         t_of_js
           (let x189 = Ojs.get_prop_ascii Ojs.global "Buffer" in
            Ojs.call (Ojs.get_prop_ascii x189 "of") "apply"
@@ -1139,10 +1139,9 @@ module Buffer =
                                       [|(Ojs.float_to_js x286)|])
                              | None -> ());
                             x285))|])
-    let (writeBigInt64BE :
-      t -> value:bigint -> ?offset:float -> unit -> float) =
+    let (writeBigInt64BE : t -> bigint -> ?offset:float -> unit -> float) =
       fun (x294 : t) ->
-        fun ~value:(x290 : bigint) ->
+        fun (x290 : bigint) ->
           fun ?offset:(x291 : float option) ->
             fun () ->
               Ojs.float_of_js
@@ -1161,10 +1160,9 @@ module Buffer =
                                       [|(Ojs.float_to_js x293)|])
                              | None -> ());
                             x292))|])
-    let (writeBigInt64LE :
-      t -> value:bigint -> ?offset:float -> unit -> float) =
+    let (writeBigInt64LE : t -> bigint -> ?offset:float -> unit -> float) =
       fun (x300 : t) ->
-        fun ~value:(x296 : bigint) ->
+        fun (x296 : bigint) ->
           fun ?offset:(x297 : float option) ->
             fun () ->
               Ojs.float_of_js
@@ -1183,10 +1181,9 @@ module Buffer =
                                       [|(Ojs.float_to_js x299)|])
                              | None -> ());
                             x298))|])
-    let (writeBigUInt64BE :
-      t -> value:bigint -> ?offset:float -> unit -> float) =
+    let (writeBigUInt64BE : t -> bigint -> ?offset:float -> unit -> float) =
       fun (x306 : t) ->
-        fun ~value:(x302 : bigint) ->
+        fun (x302 : bigint) ->
           fun ?offset:(x303 : float option) ->
             fun () ->
               Ojs.float_of_js
@@ -1206,10 +1203,9 @@ module Buffer =
                                       [|(Ojs.float_to_js x305)|])
                              | None -> ());
                             x304))|])
-    let (writeBigUInt64LE :
-      t -> value:bigint -> ?offset:float -> unit -> float) =
+    let (writeBigUInt64LE : t -> bigint -> ?offset:float -> unit -> float) =
       fun (x312 : t) ->
-        fun ~value:(x308 : bigint) ->
+        fun (x308 : bigint) ->
           fun ?offset:(x309 : float option) ->
             fun () ->
               Ojs.float_of_js
@@ -1629,9 +1625,9 @@ module Buffer =
       fun (x434 : t) -> t_of_js (Ojs.call (t_to_js x434) "swap32" [||])
     let (swap64 : t -> t) =
       fun (x435 : t) -> t_of_js (Ojs.call (t_to_js x435) "swap64" [||])
-    let (writeUInt8 : t -> value:float -> ?offset:float -> unit -> float) =
+    let (writeUInt8 : t -> float -> ?offset:float -> unit -> float) =
       fun (x440 : t) ->
-        fun ~value:(x436 : float) ->
+        fun (x436 : float) ->
           fun ?offset:(x437 : float option) ->
             fun () ->
               Ojs.float_of_js
@@ -1651,10 +1647,9 @@ module Buffer =
                                       [|(Ojs.float_to_js x439)|])
                              | None -> ());
                             x438))|])
-    let (writeUInt16LE : t -> value:float -> ?offset:float -> unit -> float)
-      =
+    let (writeUInt16LE : t -> float -> ?offset:float -> unit -> float) =
       fun (x446 : t) ->
-        fun ~value:(x442 : float) ->
+        fun (x442 : float) ->
           fun ?offset:(x443 : float option) ->
             fun () ->
               Ojs.float_of_js
@@ -1674,10 +1669,9 @@ module Buffer =
                                       [|(Ojs.float_to_js x445)|])
                              | None -> ());
                             x444))|])
-    let (writeUInt16BE : t -> value:float -> ?offset:float -> unit -> float)
-      =
+    let (writeUInt16BE : t -> float -> ?offset:float -> unit -> float) =
       fun (x452 : t) ->
-        fun ~value:(x448 : float) ->
+        fun (x448 : float) ->
           fun ?offset:(x449 : float option) ->
             fun () ->
               Ojs.float_of_js
@@ -1697,10 +1691,9 @@ module Buffer =
                                       [|(Ojs.float_to_js x451)|])
                              | None -> ());
                             x450))|])
-    let (writeUInt32LE : t -> value:float -> ?offset:float -> unit -> float)
-      =
+    let (writeUInt32LE : t -> float -> ?offset:float -> unit -> float) =
       fun (x458 : t) ->
-        fun ~value:(x454 : float) ->
+        fun (x454 : float) ->
           fun ?offset:(x455 : float option) ->
             fun () ->
               Ojs.float_of_js
@@ -1720,10 +1713,9 @@ module Buffer =
                                       [|(Ojs.float_to_js x457)|])
                              | None -> ());
                             x456))|])
-    let (writeUInt32BE : t -> value:float -> ?offset:float -> unit -> float)
-      =
+    let (writeUInt32BE : t -> float -> ?offset:float -> unit -> float) =
       fun (x464 : t) ->
-        fun ~value:(x460 : float) ->
+        fun (x460 : float) ->
           fun ?offset:(x461 : float option) ->
             fun () ->
               Ojs.float_of_js
@@ -1743,9 +1735,9 @@ module Buffer =
                                       [|(Ojs.float_to_js x463)|])
                              | None -> ());
                             x462))|])
-    let (writeInt8 : t -> value:float -> ?offset:float -> unit -> float) =
+    let (writeInt8 : t -> float -> ?offset:float -> unit -> float) =
       fun (x470 : t) ->
-        fun ~value:(x466 : float) ->
+        fun (x466 : float) ->
           fun ?offset:(x467 : float option) ->
             fun () ->
               Ojs.float_of_js
@@ -1765,9 +1757,9 @@ module Buffer =
                                       [|(Ojs.float_to_js x469)|])
                              | None -> ());
                             x468))|])
-    let (writeInt16LE : t -> value:float -> ?offset:float -> unit -> float) =
+    let (writeInt16LE : t -> float -> ?offset:float -> unit -> float) =
       fun (x476 : t) ->
-        fun ~value:(x472 : float) ->
+        fun (x472 : float) ->
           fun ?offset:(x473 : float option) ->
             fun () ->
               Ojs.float_of_js
@@ -1787,9 +1779,9 @@ module Buffer =
                                       [|(Ojs.float_to_js x475)|])
                              | None -> ());
                             x474))|])
-    let (writeInt16BE : t -> value:float -> ?offset:float -> unit -> float) =
+    let (writeInt16BE : t -> float -> ?offset:float -> unit -> float) =
       fun (x482 : t) ->
-        fun ~value:(x478 : float) ->
+        fun (x478 : float) ->
           fun ?offset:(x479 : float option) ->
             fun () ->
               Ojs.float_of_js
@@ -1809,9 +1801,9 @@ module Buffer =
                                       [|(Ojs.float_to_js x481)|])
                              | None -> ());
                             x480))|])
-    let (writeInt32LE : t -> value:float -> ?offset:float -> unit -> float) =
+    let (writeInt32LE : t -> float -> ?offset:float -> unit -> float) =
       fun (x488 : t) ->
-        fun ~value:(x484 : float) ->
+        fun (x484 : float) ->
           fun ?offset:(x485 : float option) ->
             fun () ->
               Ojs.float_of_js
@@ -1831,9 +1823,9 @@ module Buffer =
                                       [|(Ojs.float_to_js x487)|])
                              | None -> ());
                             x486))|])
-    let (writeInt32BE : t -> value:float -> ?offset:float -> unit -> float) =
+    let (writeInt32BE : t -> float -> ?offset:float -> unit -> float) =
       fun (x494 : t) ->
-        fun ~value:(x490 : float) ->
+        fun (x490 : float) ->
           fun ?offset:(x491 : float option) ->
             fun () ->
               Ojs.float_of_js
@@ -1853,9 +1845,9 @@ module Buffer =
                                       [|(Ojs.float_to_js x493)|])
                              | None -> ());
                             x492))|])
-    let (writeFloatLE : t -> value:float -> ?offset:float -> unit -> float) =
+    let (writeFloatLE : t -> float -> ?offset:float -> unit -> float) =
       fun (x500 : t) ->
-        fun ~value:(x496 : float) ->
+        fun (x496 : float) ->
           fun ?offset:(x497 : float option) ->
             fun () ->
               Ojs.float_of_js
@@ -1875,9 +1867,9 @@ module Buffer =
                                       [|(Ojs.float_to_js x499)|])
                              | None -> ());
                             x498))|])
-    let (writeFloatBE : t -> value:float -> ?offset:float -> unit -> float) =
+    let (writeFloatBE : t -> float -> ?offset:float -> unit -> float) =
       fun (x506 : t) ->
-        fun ~value:(x502 : float) ->
+        fun (x502 : float) ->
           fun ?offset:(x503 : float option) ->
             fun () ->
               Ojs.float_of_js
@@ -1897,10 +1889,9 @@ module Buffer =
                                       [|(Ojs.float_to_js x505)|])
                              | None -> ());
                             x504))|])
-    let (writeDoubleLE : t -> value:float -> ?offset:float -> unit -> float)
-      =
+    let (writeDoubleLE : t -> float -> ?offset:float -> unit -> float) =
       fun (x512 : t) ->
-        fun ~value:(x508 : float) ->
+        fun (x508 : float) ->
           fun ?offset:(x509 : float option) ->
             fun () ->
               Ojs.float_of_js
@@ -1920,10 +1911,9 @@ module Buffer =
                                       [|(Ojs.float_to_js x511)|])
                              | None -> ());
                             x510))|])
-    let (writeDoubleBE : t -> value:float -> ?offset:float -> unit -> float)
-      =
+    let (writeDoubleBE : t -> float -> ?offset:float -> unit -> float) =
       fun (x518 : t) ->
-        fun ~value:(x514 : float) ->
+        fun (x514 : float) ->
           fun ?offset:(x515 : float option) ->
             fun () ->
               Ojs.float_of_js

@@ -381,11 +381,9 @@ module Intl : sig
     [@@js.global "RelativeTimeFormat"]
 
   module NumberFormatOptions : sig
-    type t = _Intl_NumberFormatOptions
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include NumberFormatOptions
+    end
 
     val get_compactDisplay : t -> string [@@js.get "compactDisplay"]
 
@@ -439,11 +437,9 @@ module Intl : sig
   [@@js.scope "ResolvedNumberFormatOptions"]
 
   module DateTimeFormatOptions : sig
-    type t = _Intl_DateTimeFormatOptions
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include DateTimeFormatOptions
+    end
 
     val get_dateStyle
       :  t
@@ -524,3 +520,7 @@ module Intl : sig
   [@@js.scope "DateTimeFormatOptions"]
 end
 [@@js.scope "Intl"]
+
+include module type of struct
+  include Intl
+end

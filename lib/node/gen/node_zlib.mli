@@ -125,9 +125,7 @@ module Zlib : sig
 
     val set_strategy : t -> float -> unit [@@js.set "strategy"]
 
-    val get_dictionary
-      :  t
-      -> (ArrayBuffer.t, NodeJS.ArrayBufferView.t_0) union2
+    val get_dictionary : t -> (ArrayBuffer.t, NodeJS.ArrayBufferView.t_0) union2
       [@@js.get "dictionary"]
 
     val set_dictionary

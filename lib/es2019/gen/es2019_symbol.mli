@@ -19,11 +19,9 @@ open AnonymousInterfaces
 open Types
 
 module Symbol : sig
-  type t = _Symbol
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Symbol
+  end
 
   val get_description : t -> string or_undefined [@@js.get "description"]
 end

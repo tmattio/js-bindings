@@ -598,8 +598,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_name : t -> string [@@js.get "name"]
 
       val set_name : t -> string -> unit [@@js.set "name"]
@@ -617,8 +615,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_domains : t -> inspector_Schema_Domain list [@@js.get "domains"]
 
       val set_domains : t -> inspector_Schema_Domain list -> unit
@@ -635,8 +631,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
     end
 
     module RemoteObjectId : sig
@@ -645,8 +639,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
     end
 
     module UnserializableValue : sig
@@ -655,8 +647,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
     end
 
     module RemoteObject : sig
@@ -665,8 +655,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_type : t -> string [@@js.get "type"]
 
@@ -724,8 +712,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_header : t -> string [@@js.get "header"]
 
       val set_header : t -> string -> unit [@@js.set "header"]
@@ -764,8 +750,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_type : t -> string [@@js.get "type"]
 
       val set_type : t -> string -> unit [@@js.set "type"]
@@ -803,8 +787,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_name : t -> string [@@js.get "name"]
 
       val set_name : t -> string -> unit [@@js.set "name"]
@@ -836,8 +818,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_key : t -> inspector_Runtime_ObjectPreview [@@js.get "key"]
 
       val set_key : t -> inspector_Runtime_ObjectPreview -> unit
@@ -856,8 +836,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_name : t -> string [@@js.get "name"]
 
@@ -910,8 +888,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_name : t -> string [@@js.get "name"]
 
       val set_name : t -> string -> unit [@@js.set "name"]
@@ -929,8 +905,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_value : t -> any [@@js.get "value"]
 
@@ -959,8 +933,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
     end
 
     module ExecutionContextDescription : sig
@@ -969,8 +941,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_id : t -> inspector_Runtime_ExecutionContextId [@@js.get "id"]
 
@@ -997,8 +967,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_exceptionId : t -> float [@@js.get "exceptionId"]
 
@@ -1054,8 +1022,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
     end
 
     module CallFrame : sig
@@ -1064,8 +1030,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_functionName : t -> string [@@js.get "functionName"]
 
@@ -1097,8 +1061,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_description : t -> string [@@js.get "description"]
 
       val set_description : t -> string -> unit [@@js.set "description"]
@@ -1127,8 +1089,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
     end
 
     module StackTraceId : sig
@@ -1137,8 +1097,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_id : t -> string [@@js.get "id"]
 
@@ -1158,8 +1116,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_expression : t -> string [@@js.get "expression"]
 
@@ -1210,8 +1166,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_promiseObjectId : t -> inspector_Runtime_RemoteObjectId
         [@@js.get "promiseObjectId"]
 
@@ -1234,8 +1188,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_functionDeclaration : t -> string [@@js.get "functionDeclaration"]
 
@@ -1296,8 +1248,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_objectId : t -> inspector_Runtime_RemoteObjectId
         [@@js.get "objectId"]
 
@@ -1327,8 +1277,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_objectId : t -> inspector_Runtime_RemoteObjectId
         [@@js.get "objectId"]
 
@@ -1344,8 +1292,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_objectGroup : t -> string [@@js.get "objectGroup"]
 
       val set_objectGroup : t -> string -> unit [@@js.set "objectGroup"]
@@ -1359,8 +1305,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_enabled : t -> bool [@@js.get "enabled"]
 
       val set_enabled : t -> bool -> unit [@@js.set "enabled"]
@@ -1373,8 +1317,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_expression : t -> string [@@js.get "expression"]
 
@@ -1405,8 +1347,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_scriptId : t -> inspector_Runtime_ScriptId [@@js.get "scriptId"]
 
@@ -1457,8 +1397,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_prototypeObjectId : t -> inspector_Runtime_RemoteObjectId
         [@@js.get "prototypeObjectId"]
 
@@ -1473,8 +1411,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_executionContextId : t -> inspector_Runtime_ExecutionContextId
         [@@js.get "executionContextId"]
@@ -1493,8 +1429,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_result : t -> inspector_Runtime_RemoteObject [@@js.get "result"]
 
@@ -1516,8 +1450,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_result : t -> inspector_Runtime_RemoteObject [@@js.get "result"]
 
       val set_result : t -> inspector_Runtime_RemoteObject -> unit
@@ -1538,8 +1470,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_result : t -> inspector_Runtime_RemoteObject [@@js.get "result"]
 
       val set_result : t -> inspector_Runtime_RemoteObject -> unit
@@ -1559,8 +1489,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_result : t -> inspector_Runtime_PropertyDescriptor list
         [@@js.get "result"]
@@ -1594,8 +1522,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_scriptId : t -> inspector_Runtime_ScriptId [@@js.get "scriptId"]
 
       val set_scriptId : t -> inspector_Runtime_ScriptId -> unit
@@ -1615,8 +1541,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_result : t -> inspector_Runtime_RemoteObject [@@js.get "result"]
 
@@ -1638,8 +1562,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_objects : t -> inspector_Runtime_RemoteObject [@@js.get "objects"]
 
       val set_objects : t -> inspector_Runtime_RemoteObject -> unit
@@ -1654,8 +1576,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_names : t -> string list [@@js.get "names"]
 
       val set_names : t -> string list -> unit [@@js.set "names"]
@@ -1668,8 +1588,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_context : t -> inspector_Runtime_ExecutionContextDescription
         [@@js.get "context"]
@@ -1689,8 +1607,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_executionContextId : t -> inspector_Runtime_ExecutionContextId
         [@@js.get "executionContextId"]
 
@@ -1708,8 +1624,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_timestamp : t -> inspector_Runtime_Timestamp
         [@@js.get "timestamp"]
@@ -1732,8 +1646,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_reason : t -> string [@@js.get "reason"]
 
       val set_reason : t -> string -> unit [@@js.set "reason"]
@@ -1750,8 +1662,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_type : t -> string [@@js.get "type"]
 
@@ -1796,8 +1706,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_object : t -> inspector_Runtime_RemoteObject [@@js.get "object"]
 
       val set_object : t -> inspector_Runtime_RemoteObject -> unit
@@ -1818,8 +1726,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
     end
 
     module CallFrameId : sig
@@ -1828,8 +1734,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
     end
 
     module Location : sig
@@ -1838,8 +1742,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_scriptId : t -> inspector_Runtime_ScriptId [@@js.get "scriptId"]
 
@@ -1863,8 +1765,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_lineNumber : t -> float [@@js.get "lineNumber"]
 
       val set_lineNumber : t -> float -> unit [@@js.set "lineNumber"]
@@ -1881,8 +1781,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_callFrameId : t -> inspector_Debugger_CallFrameId
         [@@js.get "callFrameId"]
@@ -1935,8 +1833,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_type : t -> string [@@js.get "type"]
 
       val set_type : t -> string -> unit [@@js.set "type"]
@@ -1971,8 +1867,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_lineNumber : t -> float [@@js.get "lineNumber"]
 
       val set_lineNumber : t -> float -> unit [@@js.set "lineNumber"]
@@ -1989,8 +1883,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_scriptId : t -> inspector_Runtime_ScriptId [@@js.get "scriptId"]
 
@@ -2018,8 +1910,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_active : t -> bool [@@js.get "active"]
 
       val set_active : t -> bool -> unit [@@js.set "active"]
@@ -2033,8 +1923,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_skip : t -> bool [@@js.get "skip"]
 
       val set_skip : t -> bool -> unit [@@js.set "skip"]
@@ -2047,8 +1935,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_lineNumber : t -> float [@@js.get "lineNumber"]
 
@@ -2083,8 +1969,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_location : t -> inspector_Debugger_Location [@@js.get "location"]
 
       val set_location : t -> inspector_Debugger_Location -> unit
@@ -2103,8 +1987,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_breakpointId : t -> inspector_Debugger_BreakpointId
         [@@js.get "breakpointId"]
 
@@ -2119,8 +2001,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_start : t -> inspector_Debugger_Location [@@js.get "start"]
 
@@ -2145,8 +2025,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_location : t -> inspector_Debugger_Location [@@js.get "location"]
 
       val set_location : t -> inspector_Debugger_Location -> unit
@@ -2166,8 +2044,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_parentStackTraceId : t -> inspector_Runtime_StackTraceId
         [@@js.get "parentStackTraceId"]
 
@@ -2183,8 +2059,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_breakOnAsyncCall : t -> bool [@@js.get "breakOnAsyncCall"]
 
       val set_breakOnAsyncCall : t -> bool -> unit [@@js.set "breakOnAsyncCall"]
@@ -2197,8 +2071,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_stackTraceId : t -> inspector_Runtime_StackTraceId
         [@@js.get "stackTraceId"]
@@ -2214,8 +2086,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_scriptId : t -> inspector_Runtime_ScriptId [@@js.get "scriptId"]
 
@@ -2243,8 +2113,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_scriptId : t -> inspector_Runtime_ScriptId [@@js.get "scriptId"]
 
       val set_scriptId : t -> inspector_Runtime_ScriptId -> unit
@@ -2267,8 +2135,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_callFrameId : t -> inspector_Debugger_CallFrameId
         [@@js.get "callFrameId"]
 
@@ -2284,8 +2150,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_scriptId : t -> inspector_Runtime_ScriptId [@@js.get "scriptId"]
 
       val set_scriptId : t -> inspector_Runtime_ScriptId -> unit
@@ -2300,8 +2164,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_state : t -> string [@@js.get "state"]
 
       val set_state : t -> string -> unit [@@js.set "state"]
@@ -2314,8 +2176,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_callFrameId : t -> inspector_Debugger_CallFrameId
         [@@js.get "callFrameId"]
@@ -2363,8 +2223,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_scopeNumber : t -> float [@@js.get "scopeNumber"]
 
       val set_scopeNumber : t -> float -> unit [@@js.set "scopeNumber"]
@@ -2394,8 +2252,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_newValue : t -> inspector_Runtime_CallArgument
         [@@js.get "newValue"]
 
@@ -2411,8 +2267,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_maxDepth : t -> float [@@js.get "maxDepth"]
 
       val set_maxDepth : t -> float -> unit [@@js.set "maxDepth"]
@@ -2426,8 +2280,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_patterns : t -> string list [@@js.get "patterns"]
 
       val set_patterns : t -> string list -> unit [@@js.set "patterns"]
@@ -2440,8 +2292,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_scriptId : t -> inspector_Runtime_ScriptId [@@js.get "scriptId"]
 
@@ -2463,8 +2313,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_debuggerId : t -> inspector_Runtime_UniqueDebuggerId
         [@@js.get "debuggerId"]
 
@@ -2479,8 +2327,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_breakpointId : t -> inspector_Debugger_BreakpointId
         [@@js.get "breakpointId"]
@@ -2503,8 +2349,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_breakpointId : t -> inspector_Debugger_BreakpointId
         [@@js.get "breakpointId"]
 
@@ -2526,8 +2370,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_locations : t -> inspector_Debugger_BreakLocation list
         [@@js.get "locations"]
 
@@ -2542,8 +2384,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_stackTrace : t -> inspector_Runtime_StackTrace
         [@@js.get "stackTrace"]
@@ -2560,8 +2400,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_result : t -> inspector_Debugger_SearchMatch list
         [@@js.get "result"]
 
@@ -2576,8 +2414,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_callFrames : t -> inspector_Debugger_CallFrame list
         [@@js.get "callFrames"]
@@ -2616,8 +2452,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_callFrames : t -> inspector_Debugger_CallFrame list
         [@@js.get "callFrames"]
 
@@ -2645,8 +2479,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_scriptSource : t -> string [@@js.get "scriptSource"]
 
       val set_scriptSource : t -> string -> unit [@@js.set "scriptSource"]
@@ -2659,8 +2491,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_result : t -> inspector_Runtime_RemoteObject [@@js.get "result"]
 
@@ -2681,8 +2511,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_scriptId : t -> inspector_Runtime_ScriptId [@@js.get "scriptId"]
 
@@ -2763,8 +2591,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_scriptId : t -> inspector_Runtime_ScriptId [@@js.get "scriptId"]
 
       val set_scriptId : t -> inspector_Runtime_ScriptId -> unit
@@ -2840,8 +2666,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_breakpointId : t -> inspector_Debugger_BreakpointId
         [@@js.get "breakpointId"]
 
@@ -2861,8 +2685,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_callFrames : t -> inspector_Debugger_CallFrame list
         [@@js.get "callFrames"]
@@ -2916,8 +2738,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_source : t -> string [@@js.get "source"]
 
       val set_source : t -> string -> unit [@@js.set "source"]
@@ -2951,8 +2771,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_message : t -> inspector_Console_ConsoleMessage
         [@@js.get "message"]
 
@@ -2970,8 +2788,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_id : t -> float [@@js.get "id"]
 
@@ -3013,8 +2829,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_nodes : t -> inspector_Profiler_ProfileNode list
         [@@js.get "nodes"]
 
@@ -3046,8 +2860,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_line : t -> float [@@js.get "line"]
 
       val set_line : t -> float -> unit [@@js.set "line"]
@@ -3064,8 +2876,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_startOffset : t -> float [@@js.get "startOffset"]
 
@@ -3087,8 +2897,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_functionName : t -> string [@@js.get "functionName"]
 
@@ -3112,8 +2920,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_scriptId : t -> inspector_Runtime_ScriptId [@@js.get "scriptId"]
 
@@ -3139,8 +2945,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_name : t -> string [@@js.get "name"]
 
       val set_name : t -> string -> unit [@@js.set "name"]
@@ -3153,8 +2957,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_offset : t -> float [@@js.get "offset"]
 
@@ -3173,8 +2975,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_scriptId : t -> inspector_Runtime_ScriptId [@@js.get "scriptId"]
 
@@ -3200,8 +3000,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_interval : t -> float [@@js.get "interval"]
 
       val set_interval : t -> float -> unit [@@js.set "interval"]
@@ -3214,8 +3012,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_callCount : t -> bool [@@js.get "callCount"]
 
@@ -3234,8 +3030,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_profile : t -> inspector_Profiler_Profile [@@js.get "profile"]
 
       val set_profile : t -> inspector_Profiler_Profile -> unit
@@ -3249,8 +3043,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_result : t -> inspector_Profiler_ScriptCoverage list
         [@@js.get "result"]
@@ -3267,8 +3059,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_result : t -> inspector_Profiler_ScriptCoverage list
         [@@js.get "result"]
 
@@ -3284,8 +3074,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_result : t -> inspector_Profiler_ScriptTypeProfile list
         [@@js.get "result"]
 
@@ -3300,8 +3088,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_id : t -> string [@@js.get "id"]
 
@@ -3324,8 +3110,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_id : t -> string [@@js.get "id"]
 
@@ -3356,8 +3140,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
     end
 
     module SamplingHeapProfileNode : sig
@@ -3366,8 +3148,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_callFrame : t -> inspector_Runtime_CallFrame
         [@@js.get "callFrame"]
@@ -3392,8 +3172,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_head : t -> inspector_HeapProfiler_SamplingHeapProfileNode
         [@@js.get "head"]
 
@@ -3409,8 +3187,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_trackAllocations : t -> bool [@@js.get "trackAllocations"]
 
       val set_trackAllocations : t -> bool -> unit [@@js.set "trackAllocations"]
@@ -3423,8 +3199,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_reportProgress : t -> bool [@@js.get "reportProgress"]
 
@@ -3439,8 +3213,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_reportProgress : t -> bool [@@js.get "reportProgress"]
 
       val set_reportProgress : t -> bool -> unit [@@js.set "reportProgress"]
@@ -3453,8 +3225,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_objectId : t -> inspector_HeapProfiler_HeapSnapshotObjectId
         [@@js.get "objectId"]
@@ -3478,8 +3248,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_heapObjectId : t -> inspector_HeapProfiler_HeapSnapshotObjectId
         [@@js.get "heapObjectId"]
 
@@ -3498,8 +3266,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_objectId : t -> inspector_Runtime_RemoteObjectId
         [@@js.get "objectId"]
 
@@ -3515,8 +3281,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_samplingInterval : t -> float [@@js.get "samplingInterval"]
 
       val set_samplingInterval : t -> float -> unit
@@ -3531,8 +3295,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_result : t -> inspector_Runtime_RemoteObject [@@js.get "result"]
 
       val set_result : t -> inspector_Runtime_RemoteObject -> unit
@@ -3546,8 +3308,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_heapSnapshotObjectId
         :  t
@@ -3569,8 +3329,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_profile : t -> inspector_HeapProfiler_SamplingHeapProfile
         [@@js.get "profile"]
 
@@ -3585,8 +3343,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_profile : t -> inspector_HeapProfiler_SamplingHeapProfile
         [@@js.get "profile"]
@@ -3603,8 +3359,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_chunk : t -> string [@@js.get "chunk"]
 
       val set_chunk : t -> string -> unit [@@js.set "chunk"]
@@ -3617,8 +3371,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_done : t -> float [@@js.get "done"]
 
@@ -3641,8 +3393,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_lastSeenObjectId : t -> float [@@js.get "lastSeenObjectId"]
 
       val set_lastSeenObjectId : t -> float -> unit
@@ -3661,8 +3411,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_statsUpdate : t -> float list [@@js.get "statsUpdate"]
 
       val set_statsUpdate : t -> float list -> unit [@@js.set "statsUpdate"]
@@ -3678,8 +3426,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_recordMode : t -> string [@@js.get "recordMode"]
 
@@ -3700,8 +3446,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_traceConfig : t -> inspector_NodeTracing_TraceConfig
         [@@js.get "traceConfig"]
 
@@ -3717,8 +3461,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_categories : t -> string list [@@js.get "categories"]
 
       val set_categories : t -> string list -> unit [@@js.set "categories"]
@@ -3731,8 +3473,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_value : t -> anonymous_interface_0 list [@@js.get "value"]
 
@@ -3749,8 +3489,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
     end
 
     module SessionID : sig
@@ -3759,8 +3497,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
     end
 
     module WorkerInfo : sig
@@ -3769,8 +3505,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_workerId : t -> inspector_NodeWorker_WorkerID
         [@@js.get "workerId"]
@@ -3799,8 +3533,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_message : t -> string [@@js.get "message"]
 
       val set_message : t -> string -> unit [@@js.set "message"]
@@ -3820,8 +3552,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_waitForDebuggerOnStart : t -> bool
         [@@js.get "waitForDebuggerOnStart"]
 
@@ -3837,8 +3567,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_sessionId : t -> inspector_NodeWorker_SessionID
         [@@js.get "sessionId"]
 
@@ -3853,8 +3581,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_sessionId : t -> inspector_NodeWorker_SessionID
         [@@js.get "sessionId"]
@@ -3882,8 +3608,6 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-
-
       val get_sessionId : t -> inspector_NodeWorker_SessionID
         [@@js.get "sessionId"]
 
@@ -3898,8 +3622,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_sessionId : t -> inspector_NodeWorker_SessionID
         [@@js.get "sessionId"]
@@ -3922,8 +3644,6 @@ module Inspector : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
 
       val get_enabled : t -> bool [@@js.get "enabled"]
 
@@ -5143,8 +4863,7 @@ module Inspector : sig
 
     val post'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
-      -> method_:
-           ([ `NodeRuntime_notifyWhenWaitingForDisconnect ][@js.enum])
+      -> method_:([ `NodeRuntime_notifyWhenWaitingForDisconnect ][@js.enum])
       -> ?params:
            inspector_NodeRuntime_NotifyWhenWaitingForDisconnectParameterType
       -> ?callback:(err:Error.t_0 or_null -> unit)
@@ -5154,8 +4873,7 @@ module Inspector : sig
 
     val post''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
-      -> method_:
-           ([ `NodeRuntime_notifyWhenWaitingForDisconnect ][@js.enum])
+      -> method_:([ `NodeRuntime_notifyWhenWaitingForDisconnect ][@js.enum])
       -> ?callback:(err:Error.t_0 or_null -> unit)
       -> unit
       -> unit
@@ -5553,10 +5271,7 @@ module Inspector : sig
       -> bool
       [@@js.call "emit"]
 
-    val emit'''''''''''''
-      :  t
-      -> event:([ `Debugger_resumed ][@js.enum])
-      -> bool
+    val emit''''''''''''' : t -> event:([ `Debugger_resumed ][@js.enum]) -> bool
       [@@js.call "emit"]
 
     val emit''''''''''''''

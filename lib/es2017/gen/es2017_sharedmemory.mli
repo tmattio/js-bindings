@@ -38,8 +38,12 @@ module SharedArrayBuffer : sig
   val get_byteLength : t -> float [@@js.get "byteLength"]
 
   val slice : t -> begin_:float -> ?end_:float -> unit -> t [@@js.call "slice"]
+
+  (* Constructor *)
+
+  val create : byteLength:float -> _SharedArrayBuffer
+    [@@js.new "SharedArrayBuffer"]
 end
-[@@js.scope "SharedArrayBuffer"]
 
 module SharedArrayBufferConstructor : sig
   type t = _SharedArrayBufferConstructor

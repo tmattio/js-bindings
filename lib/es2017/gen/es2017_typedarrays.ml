@@ -59,99 +59,301 @@ module Internal =
 open Internal
 open AnonymousInterfaces
 open Types
+module Int8Array =
+  struct
+    include struct include Int8Array end
+    let (create : ?length:int -> unit -> Int8Array.t) =
+      fun ?length:(x1 : int option) ->
+        fun () ->
+          Int8Array.t_of_js
+            (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "Int8Array")
+               (let x2 =
+                  Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
+                (match x1 with
+                 | Some x3 ->
+                     ignore (Ojs.call x2 "push" [|(Ojs.int_to_js x3)|])
+                 | None -> ());
+                x2))
+  end
 module Int8ArrayConstructor =
   struct
-    type t = _Int8ArrayConstructor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> _Int8ArrayConstructor_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : _Int8ArrayConstructor) -> _Int8ArrayConstructor_to_js x1
-    let (create : t -> Int8Array.t) =
-      fun (x3 : t) -> Int8Array.t_of_js (Ojs.new_obj (t_to_js x3) [||])
+    include struct include Int8ArrayConstructor end
+    let (create : t -> ?length:int -> unit -> Int8Array.t) =
+      fun (x7 : t) ->
+        fun ?length:(x4 : int option) ->
+          fun () ->
+            Int8Array.t_of_js
+              (Ojs.new_obj_arr (t_to_js x7)
+                 (let x5 =
+                    Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
+                  (match x4 with
+                   | Some x6 ->
+                       ignore (Ojs.call x5 "push" [|(Ojs.int_to_js x6)|])
+                   | None -> ());
+                  x5))
+  end
+module Uint8Array =
+  struct
+    include struct include Uint8Array end
+    let (create : ?length:int -> unit -> Uint8Array.t) =
+      fun ?length:(x8 : int option) ->
+        fun () ->
+          Uint8Array.t_of_js
+            (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "Uint8Array")
+               (let x9 =
+                  Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
+                (match x8 with
+                 | Some x10 ->
+                     ignore (Ojs.call x9 "push" [|(Ojs.int_to_js x10)|])
+                 | None -> ());
+                x9))
   end
 module Uint8ArrayConstructor =
   struct
-    type t = _Uint8ArrayConstructor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x5 : Ojs.t) -> _Uint8ArrayConstructor_of_js x5
-    and t_to_js : t -> Ojs.t =
-      fun (x4 : _Uint8ArrayConstructor) -> _Uint8ArrayConstructor_to_js x4
-    let (create : t -> Uint8Array.t) =
-      fun (x6 : t) -> Uint8Array.t_of_js (Ojs.new_obj (t_to_js x6) [||])
+    include struct include Uint8ArrayConstructor end
+    let (create : t -> ?length:int -> unit -> Uint8Array.t) =
+      fun (x14 : t) ->
+        fun ?length:(x11 : int option) ->
+          fun () ->
+            Uint8Array.t_of_js
+              (Ojs.new_obj_arr (t_to_js x14)
+                 (let x12 =
+                    Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
+                  (match x11 with
+                   | Some x13 ->
+                       ignore (Ojs.call x12 "push" [|(Ojs.int_to_js x13)|])
+                   | None -> ());
+                  x12))
+  end
+module Uint8ClampedArray =
+  struct
+    include struct include Uint8ClampedArray end
+    let (create : ?length:int -> unit -> Uint8ClampedArray.t) =
+      fun ?length:(x15 : int option) ->
+        fun () ->
+          Uint8ClampedArray.t_of_js
+            (Ojs.new_obj_arr
+               (Ojs.get_prop_ascii Ojs.global "Uint8ClampedArray")
+               (let x16 =
+                  Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
+                (match x15 with
+                 | Some x17 ->
+                     ignore (Ojs.call x16 "push" [|(Ojs.int_to_js x17)|])
+                 | None -> ());
+                x16))
   end
 module Uint8ClampedArrayConstructor =
   struct
-    type t = _Uint8ClampedArrayConstructor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x8 : Ojs.t) -> _Uint8ClampedArrayConstructor_of_js x8
-    and t_to_js : t -> Ojs.t =
-      fun (x7 : _Uint8ClampedArrayConstructor) ->
-        _Uint8ClampedArrayConstructor_to_js x7
-    let (create : t -> Uint8ClampedArray.t) =
-      fun (x9 : t) ->
-        Uint8ClampedArray.t_of_js (Ojs.new_obj (t_to_js x9) [||])
+    include struct include Uint8ClampedArrayConstructor end
+    let (create : t -> ?length:int -> unit -> Uint8ClampedArray.t) =
+      fun (x21 : t) ->
+        fun ?length:(x18 : int option) ->
+          fun () ->
+            Uint8ClampedArray.t_of_js
+              (Ojs.new_obj_arr (t_to_js x21)
+                 (let x19 =
+                    Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
+                  (match x18 with
+                   | Some x20 ->
+                       ignore (Ojs.call x19 "push" [|(Ojs.int_to_js x20)|])
+                   | None -> ());
+                  x19))
+  end
+module Int16Array =
+  struct
+    include struct include Int16Array end
+    let (create : ?length:int -> unit -> Int16Array.t) =
+      fun ?length:(x22 : int option) ->
+        fun () ->
+          Int16Array.t_of_js
+            (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "Int16Array")
+               (let x23 =
+                  Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
+                (match x22 with
+                 | Some x24 ->
+                     ignore (Ojs.call x23 "push" [|(Ojs.int_to_js x24)|])
+                 | None -> ());
+                x23))
   end
 module Int16ArrayConstructor =
   struct
-    type t = _Int16ArrayConstructor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x11 : Ojs.t) -> _Int16ArrayConstructor_of_js x11
-    and t_to_js : t -> Ojs.t =
-      fun (x10 : _Int16ArrayConstructor) -> _Int16ArrayConstructor_to_js x10
-    let (create : t -> Int16Array.t) =
-      fun (x12 : t) -> Int16Array.t_of_js (Ojs.new_obj (t_to_js x12) [||])
+    include struct include Int16ArrayConstructor end
+    let (create : t -> ?length:int -> unit -> Int16Array.t) =
+      fun (x28 : t) ->
+        fun ?length:(x25 : int option) ->
+          fun () ->
+            Int16Array.t_of_js
+              (Ojs.new_obj_arr (t_to_js x28)
+                 (let x26 =
+                    Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
+                  (match x25 with
+                   | Some x27 ->
+                       ignore (Ojs.call x26 "push" [|(Ojs.int_to_js x27)|])
+                   | None -> ());
+                  x26))
+  end
+module Uint16Array =
+  struct
+    include struct include Uint16Array end
+    let (create : ?length:int -> unit -> Uint16Array.t) =
+      fun ?length:(x29 : int option) ->
+        fun () ->
+          Uint16Array.t_of_js
+            (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "Uint16Array")
+               (let x30 =
+                  Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
+                (match x29 with
+                 | Some x31 ->
+                     ignore (Ojs.call x30 "push" [|(Ojs.int_to_js x31)|])
+                 | None -> ());
+                x30))
   end
 module Uint16ArrayConstructor =
   struct
-    type t = _Uint16ArrayConstructor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x14 : Ojs.t) -> _Uint16ArrayConstructor_of_js x14
-    and t_to_js : t -> Ojs.t =
-      fun (x13 : _Uint16ArrayConstructor) ->
-        _Uint16ArrayConstructor_to_js x13
-    let (create : t -> Uint16Array.t) =
-      fun (x15 : t) -> Uint16Array.t_of_js (Ojs.new_obj (t_to_js x15) [||])
+    include struct include Uint16ArrayConstructor end
+    let (create : t -> ?length:int -> unit -> Uint16Array.t) =
+      fun (x35 : t) ->
+        fun ?length:(x32 : int option) ->
+          fun () ->
+            Uint16Array.t_of_js
+              (Ojs.new_obj_arr (t_to_js x35)
+                 (let x33 =
+                    Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
+                  (match x32 with
+                   | Some x34 ->
+                       ignore (Ojs.call x33 "push" [|(Ojs.int_to_js x34)|])
+                   | None -> ());
+                  x33))
+  end
+module Int32Array =
+  struct
+    include struct include Int32Array end
+    let (create : ?length:int -> unit -> Int32Array.t) =
+      fun ?length:(x36 : int option) ->
+        fun () ->
+          Int32Array.t_of_js
+            (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "Int32Array")
+               (let x37 =
+                  Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
+                (match x36 with
+                 | Some x38 ->
+                     ignore (Ojs.call x37 "push" [|(Ojs.int_to_js x38)|])
+                 | None -> ());
+                x37))
   end
 module Int32ArrayConstructor =
   struct
-    type t = _Int32ArrayConstructor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x17 : Ojs.t) -> _Int32ArrayConstructor_of_js x17
-    and t_to_js : t -> Ojs.t =
-      fun (x16 : _Int32ArrayConstructor) -> _Int32ArrayConstructor_to_js x16
-    let (create : t -> Int32Array.t) =
-      fun (x18 : t) -> Int32Array.t_of_js (Ojs.new_obj (t_to_js x18) [||])
+    include struct include Int32ArrayConstructor end
+    let (create : t -> ?length:int -> unit -> Int32Array.t) =
+      fun (x42 : t) ->
+        fun ?length:(x39 : int option) ->
+          fun () ->
+            Int32Array.t_of_js
+              (Ojs.new_obj_arr (t_to_js x42)
+                 (let x40 =
+                    Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
+                  (match x39 with
+                   | Some x41 ->
+                       ignore (Ojs.call x40 "push" [|(Ojs.int_to_js x41)|])
+                   | None -> ());
+                  x40))
+  end
+module Uint32Array =
+  struct
+    include struct include Uint32Array end
+    let (create : ?length:int -> unit -> Uint32Array.t) =
+      fun ?length:(x43 : int option) ->
+        fun () ->
+          Uint32Array.t_of_js
+            (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "Uint32Array")
+               (let x44 =
+                  Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
+                (match x43 with
+                 | Some x45 ->
+                     ignore (Ojs.call x44 "push" [|(Ojs.int_to_js x45)|])
+                 | None -> ());
+                x44))
   end
 module Uint32ArrayConstructor =
   struct
-    type t = _Uint32ArrayConstructor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x20 : Ojs.t) -> _Uint32ArrayConstructor_of_js x20
-    and t_to_js : t -> Ojs.t =
-      fun (x19 : _Uint32ArrayConstructor) ->
-        _Uint32ArrayConstructor_to_js x19
-    let (create : t -> Uint32Array.t) =
-      fun (x21 : t) -> Uint32Array.t_of_js (Ojs.new_obj (t_to_js x21) [||])
+    include struct include Uint32ArrayConstructor end
+    let (create : t -> ?length:int -> unit -> Uint32Array.t) =
+      fun (x49 : t) ->
+        fun ?length:(x46 : int option) ->
+          fun () ->
+            Uint32Array.t_of_js
+              (Ojs.new_obj_arr (t_to_js x49)
+                 (let x47 =
+                    Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
+                  (match x46 with
+                   | Some x48 ->
+                       ignore (Ojs.call x47 "push" [|(Ojs.int_to_js x48)|])
+                   | None -> ());
+                  x47))
+  end
+module Float32Array =
+  struct
+    include struct include Float32Array end
+    let (create : ?length:int -> unit -> Float32Array.t) =
+      fun ?length:(x50 : int option) ->
+        fun () ->
+          Float32Array.t_of_js
+            (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "Float32Array")
+               (let x51 =
+                  Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
+                (match x50 with
+                 | Some x52 ->
+                     ignore (Ojs.call x51 "push" [|(Ojs.int_to_js x52)|])
+                 | None -> ());
+                x51))
   end
 module Float32ArrayConstructor =
   struct
-    type t = _Float32ArrayConstructor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x23 : Ojs.t) -> _Float32ArrayConstructor_of_js x23
-    and t_to_js : t -> Ojs.t =
-      fun (x22 : _Float32ArrayConstructor) ->
-        _Float32ArrayConstructor_to_js x22
-    let (create : t -> Float32Array.t) =
-      fun (x24 : t) -> Float32Array.t_of_js (Ojs.new_obj (t_to_js x24) [||])
+    include struct include Float32ArrayConstructor end
+    let (create : t -> ?length:int -> unit -> Float32Array.t) =
+      fun (x56 : t) ->
+        fun ?length:(x53 : int option) ->
+          fun () ->
+            Float32Array.t_of_js
+              (Ojs.new_obj_arr (t_to_js x56)
+                 (let x54 =
+                    Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
+                  (match x53 with
+                   | Some x55 ->
+                       ignore (Ojs.call x54 "push" [|(Ojs.int_to_js x55)|])
+                   | None -> ());
+                  x54))
+  end
+module Float64Array =
+  struct
+    include struct include Float64Array end
+    let (create : ?length:int -> unit -> Float64Array.t) =
+      fun ?length:(x57 : int option) ->
+        fun () ->
+          Float64Array.t_of_js
+            (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "Float64Array")
+               (let x58 =
+                  Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
+                (match x57 with
+                 | Some x59 ->
+                     ignore (Ojs.call x58 "push" [|(Ojs.int_to_js x59)|])
+                 | None -> ());
+                x58))
   end
 module Float64ArrayConstructor =
   struct
-    type t = _Float64ArrayConstructor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x26 : Ojs.t) -> _Float64ArrayConstructor_of_js x26
-    and t_to_js : t -> Ojs.t =
-      fun (x25 : _Float64ArrayConstructor) ->
-        _Float64ArrayConstructor_to_js x25
-    let (create : t -> Float64Array.t) =
-      fun (x27 : t) -> Float64Array.t_of_js (Ojs.new_obj (t_to_js x27) [||])
+    include struct include Float64ArrayConstructor end
+    let (create : t -> ?length:int -> unit -> Float64Array.t) =
+      fun (x63 : t) ->
+        fun ?length:(x60 : int option) ->
+          fun () ->
+            Float64Array.t_of_js
+              (Ojs.new_obj_arr (t_to_js x63)
+                 (let x61 =
+                    Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
+                  (match x60 with
+                   | Some x62 ->
+                       ignore (Ojs.call x61 "push" [|(Ojs.int_to_js x62)|])
+                   | None -> ());
+                  x61))
   end

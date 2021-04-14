@@ -87,9 +87,7 @@ module Internal : sig
     [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
 
     and fs_BufferEncodingOption =
-      ( anonymous_interface_7
-      , ([ `buffer [@js "buffer"] ][@js.enum]) )
-      or_enum
+      (anonymous_interface_7, ([ `buffer [@js "buffer"] ][@js.enum])) or_enum
 
     and fs_Dir = [ `Fs_Dir ] intf
     [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
@@ -281,8 +279,7 @@ module AnonymousInterface7 : sig
   val get_encoding : t -> ([ `buffer [@js "buffer"] ][@js.enum])
     [@@js.get "encoding"]
 
-  val set_encoding : t -> ([ `buffer ][@js.enum]) -> unit
-    [@@js.set "encoding"]
+  val set_encoding : t -> ([ `buffer ][@js.enum]) -> unit [@@js.set "encoding"]
 end
 
 module AnonymousInterface8 : sig
@@ -295,8 +292,7 @@ module AnonymousInterface8 : sig
   val get_encoding : t -> ([ `buffer [@js "buffer"] ][@js.enum])
     [@@js.get "encoding"]
 
-  val set_encoding : t -> ([ `buffer ][@js.enum]) -> unit
-    [@@js.set "encoding"]
+  val set_encoding : t -> ([ `buffer ][@js.enum]) -> unit [@@js.set "encoding"]
 
   val get_persistent : t -> bool [@@js.get "persistent"]
 
@@ -317,8 +313,7 @@ module AnonymousInterface9 : sig
   val get_encoding : t -> ([ `buffer [@js "buffer"] ][@js.enum])
     [@@js.get "encoding"]
 
-  val set_encoding : t -> ([ `buffer ][@js.enum]) -> unit
-    [@@js.set "encoding"]
+  val set_encoding : t -> ([ `buffer ][@js.enum]) -> unit [@@js.set "encoding"]
 
   val get_withFileTypes : t -> ([ `L_b_false [@js false] ][@js.enum])
     [@@js.get "withFileTypes"]
@@ -1033,11 +1028,7 @@ module Fs : sig
       -> t
       [@@js.call "addListener"]
 
-    val on
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val on : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "on"]
 
     val on'
@@ -1047,11 +1038,7 @@ module Fs : sig
       -> t
       [@@js.call "on"]
 
-    val on''
-      :  t
-      -> event:([ `end_ ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val on'' : t -> event:([ `end_ ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "on"]
 
     val on'''
@@ -1103,11 +1090,7 @@ module Fs : sig
       -> t
       [@@js.call "on"]
 
-    val once
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val once : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "once"]
 
     val once'
@@ -1401,18 +1384,10 @@ module Fs : sig
       -> t
       [@@js.call "addListener"]
 
-    val on
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val on : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "on"]
 
-    val on'
-      :  t
-      -> event:([ `drain ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val on' : t -> event:([ `drain ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "on"]
 
     val on''
@@ -1464,11 +1439,7 @@ module Fs : sig
       -> t
       [@@js.call "on"]
 
-    val once
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val once : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "once"]
 
     val once'
@@ -1710,11 +1681,7 @@ module Fs : sig
     [@@js.global "ftruncate"]
 
   module Ftruncate : sig
-    val __promisify__
-      :  fd:float
-      -> ?len:float or_null
-      -> unit
-      -> unit Promise.t
+    val __promisify__ : fd:float -> ?len:float or_null -> unit -> unit Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "ftruncate"]
@@ -2129,8 +2096,6 @@ module Fs : sig
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-
     end
   end
   [@@js.scope "symlink"]
@@ -2732,8 +2697,7 @@ module Fs : sig
     [@@js.global "close"]
 
   module Close : sig
-    val __promisify__ : fd:float -> unit Promise.t
-      [@@js.global "__promisify__"]
+    val __promisify__ : fd:float -> unit Promise.t [@@js.global "__promisify__"]
   end
   [@@js.scope "close"]
 
@@ -2827,8 +2791,7 @@ module Fs : sig
     [@@js.global "fsync"]
 
   module Fsync : sig
-    val __promisify__ : fd:float -> unit Promise.t
-      [@@js.global "__promisify__"]
+    val __promisify__ : fd:float -> unit Promise.t [@@js.global "__promisify__"]
   end
   [@@js.scope "fsync"]
 
@@ -3208,9 +3171,7 @@ module Fs : sig
          (BufferEncoding.t_0, anonymous_interface_10) union2
          or_null_or_undefined
     -> ?listener:
-         (event:
-            ([ `change [@js "change"] | `rename [@js "rename"] ]
-            [@js.enum])
+         (event:([ `change [@js "change"] | `rename [@js "rename"] ][@js.enum])
           -> filename:string
           -> unit)
     -> unit
@@ -3221,9 +3182,7 @@ module Fs : sig
     :  filename:fs_PathLike
     -> options:(anonymous_interface_8, ([ `buffer ][@js.enum])) or_enum
     -> ?listener:
-         (event:
-            ([ `change [@js "change"] | `rename [@js "rename"] ]
-            [@js.enum])
+         (event:([ `change [@js "change"] | `rename [@js "rename"] ][@js.enum])
           -> filename:Buffer.t_0
           -> unit)
     -> unit
@@ -3234,9 +3193,7 @@ module Fs : sig
     :  filename:fs_PathLike
     -> options:anonymous_interface_10 or_string or_null
     -> ?listener:
-         (event:
-            ([ `change [@js "change"] | `rename [@js "rename"] ]
-            [@js.enum])
+         (event:([ `change [@js "change"] | `rename [@js "rename"] ][@js.enum])
           -> filename:Buffer.t_0 or_string
           -> unit)
     -> unit
@@ -3246,9 +3203,7 @@ module Fs : sig
   val watch
     :  filename:fs_PathLike
     -> ?listener:
-         (event:
-            ([ `change [@js "change"] | `rename [@js "rename"] ]
-            [@js.enum])
+         (event:([ `change [@js "change"] | `rename [@js "rename"] ][@js.enum])
           -> filename:string
           -> any)
     -> unit
@@ -3398,8 +3353,7 @@ module Fs : sig
     [@@js.global "fdatasync"]
 
   module Fdatasync : sig
-    val __promisify__ : fd:float -> unit Promise.t
-      [@@js.global "__promisify__"]
+    val __promisify__ : fd:float -> unit Promise.t [@@js.global "__promisify__"]
   end
   [@@js.scope "fdatasync"]
 

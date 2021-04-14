@@ -2,3 +2,7 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 include struct include Es2018 end
+include struct include Es2019_array end
+include struct include Es2019_object end
+include struct include Es2019_string end
+include struct include Es2019_symbol end

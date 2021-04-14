@@ -32,3 +32,17 @@
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps})))
+
+(rule
+ (targets es2018_promise.ml)
+ (deps es2018_promise.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps})))
+
+(rule
+ (targets es2018_regexp.ml)
+ (deps es2018_regexp.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps})))

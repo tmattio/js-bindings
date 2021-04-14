@@ -75,8 +75,7 @@ module AnonymousInterface1 : sig
   val get_encoding : t -> ([ `buffer [@js "buffer"] ][@js.enum])
     [@@js.get "encoding"]
 
-  val set_encoding : t -> ([ `buffer ][@js.enum]) -> unit
-    [@@js.set "encoding"]
+  val set_encoding : t -> ([ `buffer ][@js.enum]) -> unit [@@js.set "encoding"]
 end
 
 module AnonymousInterface2 : sig
@@ -169,8 +168,7 @@ module Os : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_family : t -> ([ `IPv4 [@js "IPv4"] ][@js.enum])
-      [@@js.get "family"]
+    val get_family : t -> ([ `IPv4 [@js "IPv4"] ][@js.enum]) [@@js.get "family"]
 
     val set_family : t -> ([ `IPv4 ][@js.enum]) -> unit [@@js.set "family"]
 
@@ -185,8 +183,7 @@ module Os : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_family : t -> ([ `IPv6 [@js "IPv6"] ][@js.enum])
-      [@@js.get "family"]
+    val get_family : t -> ([ `IPv6 [@js "IPv6"] ][@js.enum]) [@@js.get "family"]
 
     val set_family : t -> ([ `IPv6 ][@js.enum]) -> unit [@@js.set "family"]
 
@@ -273,7 +270,7 @@ module Os : sig
   module Constants : sig
     val uV_UDP_REUSEADDR : float [@@js.global "UV_UDP_REUSEADDR"]
 
-    module Signals : sig end 
+    module Signals : sig end
 
     val signals : os_SignalConstants [@@js.global "signals"]
 
@@ -581,9 +578,7 @@ module Os : sig
 
   val eOL : string [@@js.global "EOL"]
 
-  val endianness
-    :  unit
-    -> ([ `BE [@js "BE"] | `LE [@js "LE"] ][@js.enum])
+  val endianness : unit -> ([ `BE [@js "BE"] | `LE [@js "LE"] ][@js.enum])
     [@@js.global "endianness"]
 
   val getPriority : ?pid:float -> unit -> float [@@js.global "getPriority"]

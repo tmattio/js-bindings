@@ -380,17 +380,11 @@ module Dgram : sig
       -> bool
       [@@js.call "emit"]
 
-    val emit' : t -> event:([ `close ][@js.enum]) -> bool
-      [@@js.call "emit"]
+    val emit' : t -> event:([ `close ][@js.enum]) -> bool [@@js.call "emit"]
 
-    val emit'' : t -> event:([ `connect ][@js.enum]) -> bool
-      [@@js.call "emit"]
+    val emit'' : t -> event:([ `connect ][@js.enum]) -> bool [@@js.call "emit"]
 
-    val emit'''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> err:Error.t_0
-      -> bool
+    val emit''' : t -> event:([ `error ][@js.enum]) -> err:Error.t_0 -> bool
       [@@js.call "emit"]
 
     val emit'''' : t -> event:([ `listening ][@js.enum]) -> bool
@@ -411,11 +405,7 @@ module Dgram : sig
       -> t
       [@@js.call "on"]
 
-    val on'
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val on' : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
       [@@js.call "on"]
 
     val on''

@@ -559,27 +559,27 @@ val naN : float
 
 val infinity : float
 
-val eval : x:string -> any
+val eval : string -> any
 
-val parseInt : s:string -> ?radix:float -> unit -> float
+val parseInt : string -> ?radix:float -> unit -> float
 
 val parseFloat : string:string -> float
 
-val isNaN : number:float -> bool
+val isNaN : float -> bool
 
-val isFinite : number:float -> bool
+val isFinite : float -> bool
 
-val decodeURI : encodedURI:string -> string
+val decodeURI : string -> string
 
-val decodeURIComponent : encodedURIComponent:string -> string
+val decodeURIComponent : string -> string
 
-val encodeURI : uri:string -> string
+val encodeURI : string -> string
 
-val encodeURIComponent : uriComponent:bool or_string or_number -> string
+val encodeURIComponent : bool or_string or_number -> string
 
-val escape : string:string -> string
+val escape : string -> string
 
-val unescape : string:string -> string
+val unescape : string -> string
 
 module Symbol : sig
   type t
@@ -626,7 +626,7 @@ module PropertyDescriptor : sig
 
   val get_ : t -> any
 
-  val set_ : t -> v:any -> unit
+  val set_ : t -> any -> unit
 end
 
 module PropertyDescriptorMap : sig
@@ -672,7 +672,7 @@ module Function : sig
 
   (* Constructor *)
 
-  val create : args:string list -> t
+  val create : string list -> t
 end
 
 module ThisType : sig
@@ -720,9 +720,9 @@ module ReadonlyArray : sig
 
   val toLocaleString : 'T t -> string
 
-  val concat : 'T t -> items:'T ConcatArray.t list -> 'T list
+  val concat : 'T t -> 'T ConcatArray.t list -> 'T list
 
-  val concat' : 'T t -> items:('T, 'T ConcatArray.t) union2 list -> 'T list
+  val concat' : 'T t -> ('T, 'T ConcatArray.t) union2 list -> 'T list
 
   val join : 'T t -> ?separator:string -> unit -> string
 
@@ -739,21 +739,21 @@ module ReadonlyArray : sig
 
   val every
     :  'T t
-    -> predicate:(value:'T -> index:float -> array:'T list -> bool)
+    -> (value:'T -> index:float -> array:'T list -> bool)
     -> ?thisArg:any
     -> unit
     -> bool
 
   val every'
     :  'T t
-    -> predicate:(value:'T -> index:float -> array:'T list -> unknown)
+    -> (value:'T -> index:float -> array:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
 
   val some
     :  'T t
-    -> predicate:(value:'T -> index:float -> array:'T list -> unknown)
+    -> (value:'T -> index:float -> array:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -774,14 +774,14 @@ module ReadonlyArray : sig
 
   val filter
     :  'T t
-    -> predicate:(value:'T -> index:float -> array:'T list -> bool)
+    -> (value:'T -> index:float -> array:'T list -> bool)
     -> ?thisArg:any
     -> unit
     -> 'S list
 
   val filter'
     :  'T t
-    -> predicate:(value:'T -> index:float -> array:'T list -> unknown)
+    -> (value:'T -> index:float -> array:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> 'T list
@@ -874,11 +874,11 @@ module Array : sig
 
   val pop : 'T t -> 'T or_undefined
 
-  val push : 'T t -> items:'T list -> float
+  val push : 'T t -> 'T list -> float
 
-  val concat : 'T t -> items:'T ConcatArray.t list -> 'T list
+  val concat : 'T t -> 'T ConcatArray.t list -> 'T list
 
-  val concat' : 'T t -> items:('T, 'T ConcatArray.t) union2 list -> 'T list
+  val concat' : 'T t -> ('T, 'T ConcatArray.t) union2 list -> 'T list
 
   val join : 'T t -> ?separator:string -> unit -> string
 
@@ -892,14 +892,9 @@ module Array : sig
 
   val splice : 'T t -> start:float -> ?deleteCount:float -> unit -> 'T list
 
-  val splice'
-    :  'T t
-    -> start:float
-    -> deleteCount:float
-    -> items:'T list
-    -> 'T list
+  val splice' : 'T t -> start:float -> deleteCount:float -> 'T list -> 'T list
 
-  val unshift : 'T t -> items:'T list -> float
+  val unshift : 'T t -> 'T list -> float
 
   val indexOf : 'T t -> searchElement:'T -> ?fromIndex:float -> unit -> float
 
@@ -912,21 +907,21 @@ module Array : sig
 
   val every
     :  'T t
-    -> predicate:(value:'T -> index:float -> array:'T list -> bool)
+    -> (value:'T -> index:float -> array:'T list -> bool)
     -> ?thisArg:any
     -> unit
     -> bool
 
   val every'
     :  'T t
-    -> predicate:(value:'T -> index:float -> array:'T list -> unknown)
+    -> (value:'T -> index:float -> array:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
 
   val some
     :  'T t
-    -> predicate:(value:'T -> index:float -> array:'T list -> unknown)
+    -> (value:'T -> index:float -> array:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -947,14 +942,14 @@ module Array : sig
 
   val filter
     :  'T t
-    -> predicate:(value:'T -> index:float -> array:'T list -> bool)
+    -> (value:'T -> index:float -> array:'T list -> bool)
     -> ?thisArg:any
     -> unit
     -> 'S list
 
   val filter'
     :  'T t
-    -> predicate:(value:'T -> index:float -> array:'T list -> unknown)
+    -> (value:'T -> index:float -> array:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> 'T list
@@ -1037,9 +1032,9 @@ module Array : sig
 
   val create' : arrayLength:float -> 'T list
 
-  val create'' : items:'T list -> 'T list
+  val create'' : 'T list -> 'T list
 
-  val isArray : arg:any -> bool
+  val isArray : any -> bool
 end
 
 module ArrayConstructor : sig
@@ -1053,15 +1048,15 @@ module ArrayConstructor : sig
 
   val create' : t -> arrayLength:float -> 'T list
 
-  val create'' : t -> items:'T list -> 'T list
+  val create'' : t -> 'T list -> 'T list
 
   val apply : t -> ?arrayLength:float -> unit -> any list
 
   val apply' : t -> arrayLength:float -> 'T list
 
-  val apply'' : t -> items:'T list -> 'T list
+  val apply'' : t -> 'T list -> 'T list
 
-  val isArray : t -> arg:any -> bool
+  val isArray : t -> any -> bool
 
   val get_prototype : t -> any list
 end
@@ -1085,62 +1080,62 @@ module Object : sig
 
   val valueOf : t -> t
 
-  val hasOwnProperty : t -> v:PropertyKey.t -> bool
+  val hasOwnProperty : t -> PropertyKey.t -> bool
 
-  val isPrototypeOf : t -> v:t -> bool
+  val isPrototypeOf : t -> t -> bool
 
-  val propertyIsEnumerable : t -> v:PropertyKey.t -> bool
+  val propertyIsEnumerable : t -> PropertyKey.t -> bool
 
   (* Constructor *)
 
   val create : ?value:any -> unit -> t
 
-  val getPrototypeOf : o:any -> any
+  val getPrototypeOf : any -> any
 
   val getOwnPropertyDescriptor
-    :  o:any
+    :  any
     -> p:PropertyKey.t
     -> PropertyDescriptor.t or_undefined
 
-  val getOwnPropertyNames : o:any -> string list
+  val getOwnPropertyNames : any -> string list
 
-  val create_ : o:untyped_object or_null -> any
+  val create_ : untyped_object or_null -> any
 
   val create_'
-    :  o:untyped_object or_null
+    :  untyped_object or_null
     -> properties:(PropertyDescriptorMap.t, any ThisType.t) intersection2
     -> any
 
   val defineProperty
     :  t
-    -> o:any
+    -> any
     -> p:PropertyKey.t
     -> attributes:(PropertyDescriptor.t, any ThisType.t) intersection2
     -> any
 
   val defineProperties
     :  t
-    -> o:any
+    -> any
     -> properties:(PropertyDescriptorMap.t, any ThisType.t) intersection2
     -> any
 
-  val seal : o:'T -> 'T
+  val seal : 'T -> 'T
 
-  val freeze : a:'T list -> 'T list
+  val freeze : 'T list -> 'T list
 
-  val freeze' : f:'T -> 'T
+  val freeze' : 'T -> 'T
 
-  val freeze'' : o:'T -> 'T Readonly.t
+  val freeze'' : 'T -> 'T Readonly.t
 
-  val preventExtensions : o:'T -> 'T
+  val preventExtensions : 'T -> 'T
 
-  val isSealed : o:any -> bool
+  val isSealed : any -> bool
 
-  val isFrozen : o:any -> bool
+  val isFrozen : any -> bool
 
-  val isExtensible : o:any -> bool
+  val isExtensible : any -> bool
 
-  val keys : o:untyped_object -> string list
+  val keys : untyped_object -> string list
 end
 
 module ObjectConstructor : sig
@@ -1154,58 +1149,58 @@ module ObjectConstructor : sig
 
   val apply : t -> any
 
-  val apply' : t -> value:any -> any
+  val apply' : t -> any -> any
 
   val get_prototype : t -> Object.t
 
-  val getPrototypeOf : t -> o:any -> any
+  val getPrototypeOf : t -> any -> any
 
   val getOwnPropertyDescriptor
     :  t
-    -> o:any
+    -> any
     -> p:PropertyKey.t
     -> PropertyDescriptor.t or_undefined
 
-  val getOwnPropertyNames : t -> o:any -> string list
+  val getOwnPropertyNames : t -> any -> string list
 
-  val create_ : t -> o:untyped_object or_null -> any
+  val create_ : t -> untyped_object or_null -> any
 
   val create_'
     :  t
-    -> o:untyped_object or_null
+    -> untyped_object or_null
     -> properties:(PropertyDescriptorMap.t, any ThisType.t) intersection2
     -> any
 
   val defineProperty
     :  t
-    -> o:any
+    -> any
     -> p:PropertyKey.t
     -> attributes:(PropertyDescriptor.t, any ThisType.t) intersection2
     -> any
 
   val defineProperties
     :  t
-    -> o:any
+    -> any
     -> properties:(PropertyDescriptorMap.t, any ThisType.t) intersection2
     -> any
 
-  val seal : t -> o:'T -> 'T
+  val seal : t -> 'T -> 'T
 
-  val freeze : t -> a:'T list -> 'T list
+  val freeze : t -> 'T list -> 'T list
 
-  val freeze' : t -> f:'T -> 'T
+  val freeze' : t -> 'T -> 'T
 
-  val freeze'' : t -> o:'T -> 'T Readonly.t
+  val freeze'' : t -> 'T -> 'T Readonly.t
 
-  val preventExtensions : t -> o:'T -> 'T
+  val preventExtensions : t -> 'T -> 'T
 
-  val isSealed : t -> o:any -> bool
+  val isSealed : t -> any -> bool
 
-  val isFrozen : t -> o:any -> bool
+  val isFrozen : t -> any -> bool
 
-  val isExtensible : t -> o:any -> bool
+  val isExtensible : t -> any -> bool
 
-  val keys : t -> o:untyped_object -> string list
+  val keys : t -> untyped_object -> string list
 end
 
 val object_ : ObjectConstructor.t
@@ -1217,9 +1212,9 @@ module FunctionConstructor : sig
 
   val t_of_js : Ojs.t -> t
 
-  val create : t -> args:string list -> Function.t
+  val create : t -> string list -> Function.t
 
-  val apply : t -> args:string list -> Function.t
+  val apply : t -> string list -> Function.t
 
   val get_prototype : t -> Function.t
 end
@@ -1251,29 +1246,18 @@ module CallableFunction : sig
 
   val apply_ : t -> this:(this:'T -> 'R) -> thisArg:'T -> 'R
 
-  val apply_'
+  val apply_all
     :  t
-    -> this:
-         (this:'T
-          -> args:
-               (* FIXME: type ''A' cannot be used for variadic argument *)
-               any list
-          -> 'R)
+    -> this:(this:'T -> args:any list -> 'R)
     -> thisArg:'T
     -> args:'A
     -> 'R
 
   val call
     :  t
-    -> this:
-         (this:'T
-          -> args:
-               (* FIXME: type ''A' cannot be used for variadic argument *)
-               any list
-          -> 'R)
+    -> this:(this:'T -> args:any list -> 'R)
     -> thisArg:'T
-    -> args:(* FIXME: type ''A' cannot be used for variadic argument *)
-         any list
+    -> args:any list
     -> 'R
 
   val bind
@@ -1282,81 +1266,12 @@ module CallableFunction : sig
     -> thisArg:'T ThisParameterType.t
     -> 'T OmitThisParameter.t
 
-  val bind'
+  val bind_all
     :  t
-    -> this:
-         (this:'T
-          -> arg0:'A0
-          -> args:
-               (* FIXME: type ''A' cannot be used for variadic argument *)
-               any list
-          -> 'R)
+    -> this:(this:'T -> args:any list -> 'R)
     -> thisArg:'T
-    -> arg0:'A0
-    -> (args:(* FIXME: type ''A' cannot be used for variadic argument *)
-          any list
-        -> 'R
-       [@js.dummy])
-
-  val bind''
-    :  t
-    -> this:
-         (this:'T
-          -> arg0:'A0
-          -> arg1:'A1
-          -> args:
-               (* FIXME: type ''A' cannot be used for variadic argument *)
-               any list
-          -> 'R)
-    -> thisArg:'T
-    -> arg0:'A0
-    -> arg1:'A1
-    -> (args:(* FIXME: type ''A' cannot be used for variadic argument *)
-          any list
-        -> 'R
-       [@js.dummy])
-
-  val bind'''
-    :  t
-    -> this:
-         (this:'T
-          -> arg0:'A0
-          -> arg1:'A1
-          -> arg2:'A2
-          -> args:
-               (* FIXME: type ''A' cannot be used for variadic argument *)
-               any list
-          -> 'R)
-    -> thisArg:'T
-    -> arg0:'A0
-    -> arg1:'A1
-    -> arg2:'A2
-    -> (args:(* FIXME: type ''A' cannot be used for variadic argument *)
-          any list
-        -> 'R
-       [@js.dummy])
-
-  val bind''''
-    :  t
-    -> this:
-         (this:'T
-          -> arg0:'A0
-          -> arg1:'A1
-          -> arg2:'A2
-          -> arg3:'A3
-          -> args:
-               (* FIXME: type ''A' cannot be used for variadic argument *)
-               any list
-          -> 'R)
-    -> thisArg:'T
-    -> arg0:'A0
-    -> arg1:'A1
-    -> arg2:'A2
-    -> arg3:'A3
-    -> (args:(* FIXME: type ''A' cannot be used for variadic argument *)
-          any list
-        -> 'R
-       [@js.dummy])
+    -> args:any list
+    -> 'R
 
   val cast : t -> Function.t
 end
@@ -2141,66 +2056,58 @@ module ImportMeta : sig
 end
 
 module Math : sig
-  type t
+  val get_E : float
 
-  val t_to_js : t -> Ojs.t
+  val get_LN10 : float
 
-  val t_of_js : Ojs.t -> t
+  val get_LN2 : float
 
-  val get_E : t -> float
+  val get_LOG2E : float
 
-  val get_LN10 : t -> float
+  val get_LOG10E : float
 
-  val get_LN2 : t -> float
+  val get_PI : float
 
-  val get_LOG2E : t -> float
+  val get_SQRT1_2 : float
 
-  val get_LOG10E : t -> float
+  val get_SQRT2 : float
 
-  val get_PI : t -> float
+  val abs : float -> float
 
-  val get_SQRT1_2 : t -> float
+  val acos : float -> float
 
-  val get_SQRT2 : t -> float
+  val asin : float -> float
 
-  val abs : t -> x:float -> float
+  val atan : float -> float
 
-  val acos : t -> x:float -> float
+  val atan2 : y:float -> x:float -> float
 
-  val asin : t -> x:float -> float
+  val ceil : float -> float
 
-  val atan : t -> x:float -> float
+  val cos : float -> float
 
-  val atan2 : t -> y:float -> x:float -> float
+  val exp : float -> float
 
-  val ceil : t -> x:float -> float
+  val floor : float -> float
 
-  val cos : t -> x:float -> float
+  val log : float -> float
 
-  val exp : t -> x:float -> float
+  val max : float list -> float
 
-  val floor : t -> x:float -> float
+  val min : float list -> float
 
-  val log : t -> x:float -> float
+  val pow : x:float -> y:float -> float
 
-  val max : t -> values:float list -> float
+  val random : float
 
-  val min : t -> values:float list -> float
+  val round : float -> float
 
-  val pow : t -> x:float -> y:float -> float
+  val sin : float -> float
 
-  val random : t -> float
+  val sqrt : float -> float
 
-  val round : t -> x:float -> float
-
-  val sin : t -> x:float -> float
-
-  val sqrt : t -> x:float -> float
-
-  val tan : t -> x:float -> float
+  val tan : float -> float
 end
-
-val math : Math.t
 
 module Date : sig
   type t
@@ -2346,7 +2253,7 @@ module Date : sig
 
   val create : unit -> t
 
-  val create' : value:string or_number -> t
+  val create' : string or_number -> t
 
   val create''
     :  t
@@ -2360,7 +2267,7 @@ module Date : sig
     -> unit
     -> t
 
-  val parse : s:string -> float
+  val parse : string -> float
 
   val utc
     :  year:float
@@ -2385,7 +2292,7 @@ module DateConstructor : sig
 
   val create : t -> Date.t
 
-  val create' : t -> value:string or_number -> Date.t
+  val create' : t -> string or_number -> Date.t
 
   val create''
     :  t
@@ -2403,7 +2310,7 @@ module DateConstructor : sig
 
   val get_prototype : t -> Date.t
 
-  val parse : t -> s:string -> float
+  val parse : t -> string -> float
 
   val utc
     :  t
@@ -2662,20 +2569,20 @@ module JSON : sig
   val t_of_js : Ojs.t -> t
 
   val parse
-    :  text:string
+    :  string
     -> ?reviver:(this:any -> key:string -> value:any -> any)
     -> unit
     -> any
 
   val stringify
-    :  value:any
+    :  any
     -> ?replacer:(this:any -> key:string -> value:any -> any)
     -> ?space:string or_number
     -> unit
     -> string
 
   val stringify'
-    :  value:any
+    :  any
     -> ?replacer:string or_number list or_null
     -> ?space:string or_number
     -> unit
@@ -2886,7 +2793,7 @@ module ArrayBuffer : sig
 
   val create : byteLength:float -> t
 
-  val isView : arg:any -> bool
+  val isView : any -> bool
 end
 
 module ArrayBufferTypes : sig
@@ -2912,7 +2819,7 @@ module ArrayBufferConstructor : sig
 
   val create : t -> byteLength:float -> ArrayBuffer.t
 
-  val isView : t -> arg:any -> bool
+  val isView : t -> any -> bool
 end
 
 val arrayBuffer : ArrayBufferConstructor.t
@@ -3065,30 +2972,30 @@ module Int8Array : sig
 
   val every
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
 
-  val fill : t -> value:float -> ?start:float -> ?end_:float -> unit -> t
+  val fill : t -> float -> ?start:float -> ?end_:float -> unit -> t
 
   val filter
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> any)
+    -> (value:float -> index:float -> array:t -> any)
     -> ?thisArg:any
     -> unit
     -> t
 
   val find
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float or_undefined
 
   val findIndex
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float
@@ -3192,7 +3099,7 @@ module Int8Array : sig
 
   val some
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -3226,7 +3133,7 @@ module Int8Array : sig
 
   val get_BYTES_PER_ELEMENT : float
 
-  val of_ : items:float list -> t
+  val of_ : float list -> t
 
   val from : array:float Array.t -> t
 
@@ -3261,7 +3168,7 @@ module Int8ArrayConstructor : sig
 
   val get_BYTES_PER_ELEMENT : t -> float
 
-  val of_ : t -> items:float list -> Int8Array.t
+  val of_ : t -> float list -> Int8Array.t
 
   val from : t -> array:float Array.t -> Int8Array.t
 
@@ -3293,7 +3200,7 @@ module Uint8Array : sig
 
   val every
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -3302,21 +3209,21 @@ module Uint8Array : sig
 
   val filter
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> any)
+    -> (value:float -> index:float -> array:t -> any)
     -> ?thisArg:any
     -> unit
     -> t
 
   val find
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float or_undefined
 
   val findIndex
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float
@@ -3420,7 +3327,7 @@ module Uint8Array : sig
 
   val some
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -3454,7 +3361,7 @@ module Uint8Array : sig
 
   val get_BYTES_PER_ELEMENT : float
 
-  val of_ : items:float list -> t
+  val of_ : float list -> t
 
   val from : array:float Array.t -> t
 
@@ -3489,7 +3396,7 @@ module Uint8ArrayConstructor : sig
 
   val get_BYTES_PER_ELEMENT : t -> float
 
-  val of_ : t -> items:float list -> Uint8Array.t
+  val of_ : t -> float list -> Uint8Array.t
 
   val from : t -> array:float Array.t -> Uint8Array.t
 
@@ -3521,7 +3428,7 @@ module Uint8ClampedArray : sig
 
   val every
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -3530,21 +3437,21 @@ module Uint8ClampedArray : sig
 
   val filter
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> any)
+    -> (value:float -> index:float -> array:t -> any)
     -> ?thisArg:any
     -> unit
     -> t
 
   val find
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float or_undefined
 
   val findIndex
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float
@@ -3648,7 +3555,7 @@ module Uint8ClampedArray : sig
 
   val some
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -3682,7 +3589,7 @@ module Uint8ClampedArray : sig
 
   val get_BYTES_PER_ELEMENT : float
 
-  val of_ : items:float list -> t
+  val of_ : float list -> t
 
   val from : array:float Array.t -> t
 
@@ -3720,7 +3627,7 @@ module Uint8ClampedArrayConstructor : sig
 
   val get_BYTES_PER_ELEMENT : t -> float
 
-  val of_ : t -> items:float list -> Uint8ClampedArray.t
+  val of_ : t -> float list -> Uint8ClampedArray.t
 
   val from : t -> array:float Array.t -> Uint8ClampedArray.t
 
@@ -3752,7 +3659,7 @@ module Int16Array : sig
 
   val every
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -3761,21 +3668,21 @@ module Int16Array : sig
 
   val filter
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> any)
+    -> (value:float -> index:float -> array:t -> any)
     -> ?thisArg:any
     -> unit
     -> t
 
   val find
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float or_undefined
 
   val findIndex
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float
@@ -3879,7 +3786,7 @@ module Int16Array : sig
 
   val some
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -3913,7 +3820,7 @@ module Int16Array : sig
 
   val get_BYTES_PER_ELEMENT : float
 
-  val of_ : items:float list -> t
+  val of_ : float list -> t
 
   val from : array:float Array.t -> t
 
@@ -3948,7 +3855,7 @@ module Int16ArrayConstructor : sig
 
   val get_BYTES_PER_ELEMENT : t -> float
 
-  val of_ : t -> items:float list -> Int16Array.t
+  val of_ : t -> float list -> Int16Array.t
 
   val from : t -> array:float Array.t -> Int16Array.t
 
@@ -3980,7 +3887,7 @@ module Uint16Array : sig
 
   val every
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -3989,21 +3896,21 @@ module Uint16Array : sig
 
   val filter
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> any)
+    -> (value:float -> index:float -> array:t -> any)
     -> ?thisArg:any
     -> unit
     -> t
 
   val find
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float or_undefined
 
   val findIndex
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float
@@ -4107,7 +4014,7 @@ module Uint16Array : sig
 
   val some
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -4141,7 +4048,7 @@ module Uint16Array : sig
 
   val get_BYTES_PER_ELEMENT : float
 
-  val of_ : items:float list -> t
+  val of_ : float list -> t
 
   val from : array:float Array.t -> t
 
@@ -4179,7 +4086,7 @@ module Uint16ArrayConstructor : sig
 
   val get_BYTES_PER_ELEMENT : t -> float
 
-  val of_ : t -> items:float list -> Uint16Array.t
+  val of_ : t -> float list -> Uint16Array.t
 
   val from : t -> array:float Array.t -> Uint16Array.t
 
@@ -4211,7 +4118,7 @@ module Int32Array : sig
 
   val every
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -4220,21 +4127,21 @@ module Int32Array : sig
 
   val filter
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> any)
+    -> (value:float -> index:float -> array:t -> any)
     -> ?thisArg:any
     -> unit
     -> t
 
   val find
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float or_undefined
 
   val findIndex
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float
@@ -4338,7 +4245,7 @@ module Int32Array : sig
 
   val some
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -4372,7 +4279,7 @@ module Int32Array : sig
 
   val get_BYTES_PER_ELEMENT : float
 
-  val of_ : items:float list -> t
+  val of_ : float list -> t
 
   val from : array:float Array.t -> t
 
@@ -4407,7 +4314,7 @@ module Int32ArrayConstructor : sig
 
   val get_BYTES_PER_ELEMENT : t -> float
 
-  val of_ : t -> items:float list -> Int32Array.t
+  val of_ : t -> float list -> Int32Array.t
 
   val from : t -> array:float Array.t -> Int32Array.t
 
@@ -4439,7 +4346,7 @@ module Uint32Array : sig
 
   val every
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -4448,21 +4355,21 @@ module Uint32Array : sig
 
   val filter
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> any)
+    -> (value:float -> index:float -> array:t -> any)
     -> ?thisArg:any
     -> unit
     -> t
 
   val find
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float or_undefined
 
   val findIndex
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float
@@ -4566,7 +4473,7 @@ module Uint32Array : sig
 
   val some
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -4600,7 +4507,7 @@ module Uint32Array : sig
 
   val get_BYTES_PER_ELEMENT : float
 
-  val of_ : items:float list -> t
+  val of_ : float list -> t
 
   val from : array:float Array.t -> t
 
@@ -4638,7 +4545,7 @@ module Uint32ArrayConstructor : sig
 
   val get_BYTES_PER_ELEMENT : t -> float
 
-  val of_ : t -> items:float list -> Uint32Array.t
+  val of_ : t -> float list -> Uint32Array.t
 
   val from : t -> array:float Array.t -> Uint32Array.t
 
@@ -4670,7 +4577,7 @@ module Float32Array : sig
 
   val every
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -4679,21 +4586,21 @@ module Float32Array : sig
 
   val filter
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> any)
+    -> (value:float -> index:float -> array:t -> any)
     -> ?thisArg:any
     -> unit
     -> t
 
   val find
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float or_undefined
 
   val findIndex
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float
@@ -4797,7 +4704,7 @@ module Float32Array : sig
 
   val some
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -4831,7 +4738,7 @@ module Float32Array : sig
 
   val get_BYTES_PER_ELEMENT : float
 
-  val of_ : items:float list -> t
+  val of_ : float list -> t
 
   val from : array:float Array.t -> t
 
@@ -4869,7 +4776,7 @@ module Float32ArrayConstructor : sig
 
   val get_BYTES_PER_ELEMENT : t -> float
 
-  val of_ : t -> items:float list -> Float32Array.t
+  val of_ : t -> float list -> Float32Array.t
 
   val from : t -> array:float Array.t -> Float32Array.t
 
@@ -4901,7 +4808,7 @@ module Float64Array : sig
 
   val every
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -4910,21 +4817,21 @@ module Float64Array : sig
 
   val filter
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> any)
+    -> (value:float -> index:float -> array:t -> any)
     -> ?thisArg:any
     -> unit
     -> t
 
   val find
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float or_undefined
 
   val findIndex
     :  t
-    -> predicate:(value:float -> index:float -> obj:t -> bool)
+    -> (value:float -> index:float -> obj:t -> bool)
     -> ?thisArg:any
     -> unit
     -> float
@@ -5028,7 +4935,7 @@ module Float64Array : sig
 
   val some
     :  t
-    -> predicate:(value:float -> index:float -> array:t -> unknown)
+    -> (value:float -> index:float -> array:t -> unknown)
     -> ?thisArg:any
     -> unit
     -> bool
@@ -5060,7 +4967,7 @@ module Float64Array : sig
 
   val get_BYTES_PER_ELEMENT : float
 
-  val of_ : items:float list -> t
+  val of_ : float list -> t
 
   val from : array:float Array.t -> t
 
@@ -5098,7 +5005,7 @@ module Float64ArrayConstructor : sig
 
   val get_BYTES_PER_ELEMENT : t -> float
 
-  val of_ : t -> items:float list -> Float64Array.t
+  val of_ : t -> float list -> Float64Array.t
 
   val from : t -> array:float Array.t -> Float64Array.t
 

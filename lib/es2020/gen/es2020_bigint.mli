@@ -384,8 +384,14 @@ module BigInt : sig
     [@@js.call "toLocaleString"]
 
   val valueOf : t -> bigint [@@js.call "valueOf"]
+
+  (* Constructor *)
+
+  val asIntN : bits:float -> int:bigint -> bigint [@@js.global "BitInt.asIntN"]
+
+  val asUintN : bits:float -> int:bigint -> bigint
+    [@@js.global "BitInt.asUintN"]
 end
-[@@js.scope "BigInt"]
 
 module BigIntConstructor : sig
   type t = _BigIntConstructor
@@ -579,8 +585,38 @@ module BigInt64Array : sig
   val get : t -> float -> bigint [@@js.index_get]
 
   val set : t -> float -> bigint -> unit [@@js.index_set]
+
+  (* Constructor *)
+
+  val create : ?length:float -> unit -> _BigInt64Array
+    [@@js.new "BigInt64Array"]
+
+  val create' : array:bigint Iterable.t -> _BigInt64Array
+    [@@js.new "BigInt64Array"]
+
+  val create''
+    :  t
+    -> buffer:ArrayBuffer.t
+    -> ?byteOffset:float
+    -> ?length:float
+    -> unit
+    -> _BigInt64Array
+    [@@js.new "BigInt64Array"]
+
+  val of_ : items:(bigint list[@js.variadic]) -> _BigInt64Array
+    [@@js.global "BigInt64Array.of"]
+
+  val from : array:bigint Array.t -> _BigInt64Array
+    [@@js.global "BigInt64Array.from"]
+
+  val from'
+    :  array:'U Array.t
+    -> mapfn:(v:'U -> k:float -> bigint)
+    -> ?thisArg:any
+    -> unit
+    -> _BigInt64Array
+    [@@js.global "BigInt64Array.from"]
 end
-[@@js.scope "BigInt64Array"]
 
 module BigInt64ArrayConstructor : sig
   type t = _BigInt64ArrayConstructor
@@ -621,7 +657,7 @@ module BigInt64ArrayConstructor : sig
     -> _BigInt64Array
     [@@js.call "from"]
 end
-[@@js.scope "BigInt64ArrayConstructor"]
+[@@js.scope "BigInt64Array.Constructor"]
 
 val bigInt64Array : _BigInt64ArrayConstructor [@@js.global "BigInt64Array"]
 
@@ -798,8 +834,38 @@ module BigUint64Array : sig
   val get : t -> float -> bigint [@@js.index_get]
 
   val set : t -> float -> bigint -> unit [@@js.index_set]
+
+  (* Constructor *)
+
+  val create : ?length:float -> unit -> _BigUint64Array
+    [@@js.new "BigUint64Array"]
+
+  val create' : array:bigint Iterable.t -> _BigUint64Array
+    [@@js.new "BigUint64Array"]
+
+  val create''
+    :  t
+    -> buffer:ArrayBuffer.t
+    -> ?byteOffset:float
+    -> ?length:float
+    -> unit
+    -> _BigUint64Array
+    [@@js.new "BigUint64Array"]
+
+  val of_ : items:(bigint list[@js.variadic]) -> _BigUint64Array
+    [@@js.global "BigUint64Array.of"]
+
+  val from : array:bigint Array.t -> _BigUint64Array
+    [@@js.global "BigUint64Array.from"]
+
+  val from'
+    :  array:'U Array.t
+    -> mapfn:(v:'U -> k:float -> bigint)
+    -> ?thisArg:any
+    -> unit
+    -> _BigUint64Array
+    [@@js.global "BigUint64Array.from"]
 end
-[@@js.scope "BigUint64Array"]
 
 module BigUint64ArrayConstructor : sig
   type t = _BigUint64ArrayConstructor
@@ -846,11 +912,9 @@ end
 val bigUint64Array : _BigUint64ArrayConstructor [@@js.global "BigUint64Array"]
 
 module DataView : sig
-  type t = _DataView
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include DataView
+  end
 
   val getBigInt64
     :  t
@@ -890,11 +954,9 @@ end
 
 module Intl : sig
   module NumberFormat : sig
-    type t = _Intl_NumberFormat
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include NumberFormat
+    end
 
     val format : t -> value:bigint or_number -> string [@@js.call "format"]
 
@@ -904,3 +966,7 @@ module Intl : sig
   [@@js.scope "NumberFormat"]
 end
 [@@js.scope "Intl"]
+
+include module type of struct
+  include Intl
+end
