@@ -1,0 +1,222 @@
+(library
+ (name vscode_languageclient)
+ (public_name vscode-languageclient)
+ (libraries js_of_ocaml ojs es5 vscode vscode-languageserver-protocol)
+ (modes byte))
+
+(rule
+ (targets vscode_languageclient_api.ml)
+ (deps intf/vscode_languageclient_api.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_async.ml)
+ (deps intf/vscode_languageclient_async.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_callHierarchy.ml)
+ (deps intf/vscode_languageclient_callHierarchy.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_client.ml)
+ (deps intf/vscode_languageclient_client.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_codeConverter.ml)
+ (deps intf/vscode_languageclient_codeConverter.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_colorProvider.ml)
+ (deps intf/vscode_languageclient_colorProvider.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_commonClient.ml)
+ (deps intf/vscode_languageclient_commonClient.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_configuration.ml)
+ (deps intf/vscode_languageclient_configuration.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_declaration.ml)
+ (deps intf/vscode_languageclient_declaration.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_fileOperations.ml)
+ (deps intf/vscode_languageclient_fileOperations.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_foldingRange.ml)
+ (deps intf/vscode_languageclient_foldingRange.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_implementation.ml)
+ (deps intf/vscode_languageclient_implementation.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_is.ml)
+ (deps intf/vscode_languageclient_is.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_linkedEditingRange.ml)
+ (deps intf/vscode_languageclient_linkedEditingRange.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_main.ml)
+ (deps intf/vscode_languageclient_main.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_processes.ml)
+ (deps intf/vscode_languageclient_processes.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_progress.ml)
+ (deps intf/vscode_languageclient_progress.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_progressPart.ml)
+ (deps intf/vscode_languageclient_progressPart.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_proposed_diagnostic.ml)
+ (deps intf/vscode_languageclient_proposed_diagnostic.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_protocolCallHierarchyItem.ml)
+ (deps intf/vscode_languageclient_protocolCallHierarchyItem.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_protocolCodeAction.ml)
+ (deps intf/vscode_languageclient_protocolCodeAction.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_protocolCodeLens.ml)
+ (deps intf/vscode_languageclient_protocolCodeLens.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_protocolCompletionItem.ml)
+ (deps intf/vscode_languageclient_protocolCompletionItem.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_protocolConverter.ml)
+ (deps intf/vscode_languageclient_protocolConverter.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_protocolDiagnostic.ml)
+ (deps intf/vscode_languageclient_protocolDiagnostic.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_protocolDocumentLink.ml)
+ (deps intf/vscode_languageclient_protocolDocumentLink.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_selectionRange.ml)
+ (deps intf/vscode_languageclient_selectionRange.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_semanticTokens.ml)
+ (deps intf/vscode_languageclient_semanticTokens.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_typeDefinition.ml)
+ (deps intf/vscode_languageclient_typeDefinition.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_uuid.ml)
+ (deps intf/vscode_languageclient_uuid.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageclient_workspaceFolders.ml)
+ (deps intf/vscode_languageclient_workspaceFolders.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))

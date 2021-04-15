@@ -105,9 +105,22 @@
   ojs))
 
 (package
+ (name node)
+ (synopsis "node bindings for OCaml")
+ (description "node bindings for OCaml")
+ (depends
+  (ocaml
+   (>= 4.08.0))
+  (es2020
+   (= :version))
+  dune
+  js_of_ocaml
+  ojs))
+
+(package
  (name vscode)
- (synopsis "VSCode bindings for OCaml")
- (description "VSCode bindings for OCaml")
+ (synopsis "vscode bindings for OCaml")
+ (description "vscode bindings for OCaml")
  (depends
   (ocaml
    (>= 4.08.0))
@@ -118,9 +131,61 @@
   ojs))
 
 (package
- (name node)
- (synopsis "Node bindings for OCaml")
+ (name vscode-jsonrpc)
+ (synopsis "vscode-jsonrpc bindings for OCaml")
  (description "Node bindings for OCaml")
+ (depends
+  (ocaml
+   (>= 4.08.0))
+  (es2020
+   (= :version))
+  dune
+  js_of_ocaml
+  ojs))
+
+(package
+ (name vscode-languageclient)
+ (synopsis "vscode-languageclient bindings for OCaml")
+ (description "vscode-languageclient bindings for OCaml")
+ (depends
+  (ocaml
+   (>= 4.08.0))
+  (es2020
+   (= :version))
+  dune
+  js_of_ocaml
+  ojs))
+
+(package
+ (name vscode-languageserver-protocol)
+ (synopsis "vscode-languageserver-protocol bindings for OCaml")
+ (description "vscode-languageserver-protocol bindings for OCaml")
+ (depends
+  (ocaml
+   (>= 4.08.0))
+  (es2020
+   (= :version))
+  dune
+  js_of_ocaml
+  ojs))
+
+(package
+ (name vscode-languageserver-types)
+ (synopsis "vscode-languageserver-types bindings for OCaml")
+ (description "vscode-languageserver-types bindings for OCaml")
+ (depends
+  (ocaml
+   (>= 4.08.0))
+  (es2020
+   (= :version))
+  dune
+  js_of_ocaml
+  ojs))
+
+(package
+ (name vscode-test)
+ (synopsis "vscode-test bindings for OCaml")
+ (description "vscode-test bindings for OCaml")
  (depends
   (ocaml
    (>= 4.08.0))

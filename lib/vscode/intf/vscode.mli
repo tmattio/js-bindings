@@ -2,7 +2,7 @@
 
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
-open Es5
+open Es2015
 
 module Internal : sig
   module AnonymousInterfaces : sig
@@ -10585,6 +10585,4457 @@ module Vscode : sig
   [@@js.scope "authentication"]
 end
 [@@js.scope "vscode"]
+
+module Proposed : sig
+  include module type of struct
+    include Vscode
+  end
+
+  module Internal : sig
+    module AnonymousInterfaces : sig
+      type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      type anonymous_interface_3 = [ `anonymous_interface_3 ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      type anonymous_interface_4 = [ `anonymous_interface_4 ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      type anonymous_interface_5 = [ `anonymous_interface_5 ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      type anonymous_interface_6 = [ `anonymous_interface_6 ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      type anonymous_interface_7 = [ `anonymous_interface_7 ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      type anonymous_interface_8 = [ `anonymous_interface_8 ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      type anonymous_interface_9 = [ `anonymous_interface_9 ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      type anonymous_interface_10 = [ `anonymous_interface_10 ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      type anonymous_interface_11 = [ `anonymous_interface_11 ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      type anonymous_interface_12 = [ `anonymous_interface_12 ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      type anonymous_interface_13 = [ `anonymous_interface_13 ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      type anonymous_interface_14 = [ `anonymous_interface_14 ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      type anonymous_interface_15 = [ `anonymous_interface_15 ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      type anonymous_interface_16 = [ `anonymous_interface_16 ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      type anonymous_interface_17 = [ `anonymous_interface_17 ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+    end
+
+    module Types : sig
+      open AnonymousInterfaces
+
+      type vscode_AuthenticationProvidersChangeEvent =
+        [ `Vscode_AuthenticationProvidersChangeEvent ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_CandidatePortSource =
+        ([ `None [@js 0]
+         | `Process [@js 1]
+         | `Output [@js 2]
+         ]
+        [@js.enum])
+
+      and vscode_CandidatePortSource_None = ([ `None [@js 0] ][@js.enum])
+
+      and vscode_CandidatePortSource_Process = ([ `Process [@js 1] ][@js.enum])
+
+      and vscode_CandidatePortSource_Output = ([ `Output [@js 2] ][@js.enum])
+
+      and vscode_CompletionItem = [ `Vscode_CompletionItem ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_CompletionItemLabel = [ `Vscode_CompletionItemLabel ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_CustomTextEditorProvider =
+        [ `Vscode_CustomTextEditorProvider ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_DebugProtocolVariable = [ `Vscode_DebugProtocolVariable ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_DebugProtocolVariableContainer =
+        [ `Vscode_DebugProtocolVariableContainer ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_DocumentFilter = [ `Vscode_DocumentFilter ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_ExtensionContext = [ `Vscode_ExtensionContext ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_ExtensionRuntime =
+        ([ `Node [@js 1]
+         | `Webworker [@js 2]
+         ]
+        [@js.enum])
+
+      and vscode_ExtensionRuntime_Node = ([ `Node [@js 1] ][@js.enum])
+
+      and vscode_ExtensionRuntime_Webworker = ([ `Webworker [@js 2] ][@js.enum])
+
+      and vscode_ExternalUriOpener = [ `Vscode_ExternalUriOpener ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_ExternalUriOpenerMetadata =
+        [ `Vscode_ExternalUriOpenerMetadata ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_ExternalUriOpenerPriority =
+        ([ `None [@js 0]
+         | `Option [@js 1]
+         | `Default [@js 2]
+         | `Preferred [@js 3]
+         ]
+        [@js.enum])
+
+      and vscode_ExternalUriOpenerPriority_None = ([ `None [@js 0] ][@js.enum])
+
+      and vscode_ExternalUriOpenerPriority_Option =
+        ([ `Option [@js 1] ][@js.enum])
+
+      and vscode_ExternalUriOpenerPriority_Default =
+        ([ `Default [@js 2] ][@js.enum])
+
+      and vscode_ExternalUriOpenerPriority_Preferred =
+        ([ `Preferred [@js 3] ][@js.enum])
+
+      and vscode_FileSearchOptions =
+        [ `Vscode_FileSearchOptions | `Vscode_SearchOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_FileSearchProvider = [ `Vscode_FileSearchProvider ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_FileSearchQuery = [ `Vscode_FileSearchQuery ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_FileSystemProvider = [ `Vscode_FileSystemProvider ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_FindTextInFilesOptions =
+        [ `Vscode_FindTextInFilesOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_GlobString = string
+
+      and vscode_InlineHint = [ `Vscode_InlineHint ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_InlineHintKind =
+        ([ `Other [@js 0]
+         | `Type [@js 1]
+         | `Parameter [@js 2]
+         ]
+        [@js.enum])
+
+      and vscode_InlineHintKind_Other = ([ `Other [@js 0] ][@js.enum])
+
+      and vscode_InlineHintKind_Type = ([ `Type [@js 1] ][@js.enum])
+
+      and vscode_InlineHintKind_Parameter = ([ `Parameter [@js 2] ][@js.enum])
+
+      and vscode_InlineHintsProvider = [ `Vscode_InlineHintsProvider ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_InputBoxOptions = [ `Vscode_InputBoxOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_LineChange = [ `Vscode_LineChange ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_MessageOptions = [ `Vscode_MessageOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookCell = [ `Vscode_NotebookCell ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookCellData = [ `Vscode_NotebookCellData ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookCellExecuteEndContext =
+        [ `Vscode_NotebookCellExecuteEndContext ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookCellExecuteStartContext =
+        [ `Vscode_NotebookCellExecuteStartContext ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookCellExecutionState =
+        ([ `Idle [@js 1]
+         | `Pending [@js 2]
+         | `Executing [@js 3]
+         ]
+        [@js.enum])
+
+      and vscode_NotebookCellExecutionState_Idle = ([ `Idle [@js 1] ][@js.enum])
+
+      and vscode_NotebookCellExecutionState_Pending =
+        ([ `Pending [@js 2] ][@js.enum])
+
+      and vscode_NotebookCellExecutionState_Executing =
+        ([ `Executing [@js 3] ][@js.enum])
+
+      and vscode_NotebookCellExecutionStateChangeEvent =
+        [ `Vscode_NotebookCellExecutionStateChangeEvent ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookCellExecutionSummary =
+        [ `Vscode_NotebookCellExecutionSummary ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookCellExecutionTask =
+        [ `Vscode_NotebookCellExecutionTask ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookCellKind =
+        ([ `Markdown [@js 1]
+         | `Code [@js 2]
+         ]
+        [@js.enum])
+
+      and vscode_NotebookCellKind_Markdown = ([ `Markdown [@js 1] ][@js.enum])
+
+      and vscode_NotebookCellKind_Code = ([ `Code [@js 2] ][@js.enum])
+
+      and vscode_NotebookCellMetadata = [ `Vscode_NotebookCellMetadata ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookCellMetadataChangeEvent =
+        [ `Vscode_NotebookCellMetadataChangeEvent ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookCellOutput = [ `Vscode_NotebookCellOutput ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookCellOutputItem =
+        [ `Vscode_NotebookCellOutputItem ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookCellOutputsChangeEvent =
+        [ `Vscode_NotebookCellOutputsChangeEvent ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookCellRange = [ `Vscode_NotebookCellRange ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookCellStatusBarAlignment =
+        ([ `Left [@js 1]
+         | `Right [@js 2]
+         ]
+        [@js.enum])
+
+      and vscode_NotebookCellStatusBarAlignment_Left =
+        ([ `Left [@js 1] ][@js.enum])
+
+      and vscode_NotebookCellStatusBarAlignment_Right =
+        ([ `Right [@js 2] ][@js.enum])
+
+      and vscode_NotebookCellStatusBarItem =
+        [ `Vscode_NotebookCellStatusBarItem ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookCellsChangeData =
+        [ `Vscode_NotebookCellsChangeData ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookCellsChangeEvent =
+        [ `Vscode_NotebookCellsChangeEvent ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookCommunication = [ `Vscode_NotebookCommunication ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookConcatTextDocument =
+        [ `Vscode_NotebookConcatTextDocument ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookContentProvider =
+        [ `Vscode_NotebookContentProvider ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookData = [ `Vscode_NotebookData ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookDecorationRenderOptions =
+        [ `Vscode_NotebookDecorationRenderOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookDocument = [ `Vscode_NotebookDocument ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookDocumentBackup =
+        [ `Vscode_NotebookDocumentBackup ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookDocumentBackupContext =
+        [ `Vscode_NotebookDocumentBackupContext ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookDocumentContentOptions =
+        [ `Vscode_NotebookDocumentContentOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookDocumentFilter =
+        [ `Vscode_NotebookDocumentFilter ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookDocumentMetadata =
+        [ `Vscode_NotebookDocumentMetadata ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookDocumentMetadataChangeEvent =
+        [ `Vscode_NotebookDocumentMetadataChangeEvent ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookDocumentOpenContext =
+        [ `Vscode_NotebookDocumentOpenContext ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookDocumentShowOptions =
+        [ `Vscode_NotebookDocumentShowOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookEditor = [ `Vscode_NotebookEditor ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookEditorDecorationType =
+        [ `Vscode_NotebookEditorDecorationType ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookEditorEdit = [ `Vscode_NotebookEditorEdit ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookEditorRevealType =
+        ([ `Default [@js 0]
+         | `InCenter [@js 1]
+         | `InCenterIfOutsideViewport [@js 2]
+         | `AtTop [@js 3]
+         ]
+        [@js.enum])
+
+      and vscode_NotebookEditorRevealType_Default =
+        ([ `Default [@js 0] ][@js.enum])
+
+      and vscode_NotebookEditorRevealType_InCenter =
+        ([ `InCenter [@js 1] ][@js.enum])
+
+      and vscode_NotebookEditorRevealType_InCenterIfOutsideViewport =
+        ([ `InCenterIfOutsideViewport [@js 2] ][@js.enum])
+
+      and vscode_NotebookEditorRevealType_AtTop = ([ `AtTop [@js 3] ][@js.enum])
+
+      and vscode_NotebookEditorSelectionChangeEvent =
+        [ `Vscode_NotebookEditorSelectionChangeEvent ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookEditorVisibleRangesChangeEvent =
+        [ `Vscode_NotebookEditorVisibleRangesChangeEvent ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookFilenamePattern =
+        (GlobPattern.t, anonymous_interface_8) union2
+
+      and vscode_NotebookFilter = [ `Vscode_NotebookFilter ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookKernel = [ `Vscode_NotebookKernel ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookKernel2 = [ `Vscode_NotebookKernel2 ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_NotebookKernelOptions = [ `Vscode_NotebookKernelOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and 'T vscode_NotebookKernelProvider =
+        [ `Vscode_NotebookKernelProvider of 'T ] intf
+      [@@js.custom
+        { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
+
+      and vscode_NotebookSelector =
+        (vscode_NotebookFilter, vscode_NotebookFilter or_string list) union2
+        or_string
+
+      and vscode_NotebookSerializer = [ `Vscode_NotebookSerializer ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_OpenEditorInfo = [ `Vscode_OpenEditorInfo ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_OpenExternalOptions = [ `Vscode_OpenExternalOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_OpenExternalUriContext =
+        [ `Vscode_OpenExternalUriContext ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_PortAttributes = [ `Vscode_PortAttributes ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_PortAttributesProvider =
+        [ `Vscode_PortAttributesProvider ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_PortAutoForwardAction =
+        ([ `Notify [@js 1]
+         | `OpenBrowser [@js 2]
+         | `OpenPreview [@js 3]
+         | `Silent [@js 4]
+         | `Ignore [@js 5]
+         ]
+        [@js.enum])
+
+      and vscode_PortAutoForwardAction_Notify = ([ `Notify [@js 1] ][@js.enum])
+
+      and vscode_PortAutoForwardAction_OpenBrowser =
+        ([ `OpenBrowser [@js 2] ][@js.enum])
+
+      and vscode_PortAutoForwardAction_OpenPreview =
+        ([ `OpenPreview [@js 3] ][@js.enum])
+
+      and vscode_PortAutoForwardAction_Silent = ([ `Silent [@js 4] ][@js.enum])
+
+      and vscode_PortAutoForwardAction_Ignore = ([ `Ignore [@js 5] ][@js.enum])
+
+      and 'T vscode_QuickPick = [ `Vscode_QuickPick of 'T ] intf
+      [@@js.custom
+        { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
+
+      and vscode_QuickPickOptions = [ `Vscode_QuickPickOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_RemoteAuthorityResolver =
+        [ `Vscode_RemoteAuthorityResolver ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_RemoteAuthorityResolverContext =
+        [ `Vscode_RemoteAuthorityResolverContext ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_RemoteAuthorityResolverError =
+        [ `Vscode_RemoteAuthorityResolverError ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_ResolvedAuthority = [ `Vscode_ResolvedAuthority ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_ResolvedOptions = [ `Vscode_ResolvedOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_ResolverResult =
+        ( vscode_ResolvedAuthority
+        , vscode_ResolvedOptions
+        , vscode_TunnelInformation )
+        intersection3
+
+      and vscode_ResourceLabelFormatter =
+        [ `Vscode_ResourceLabelFormatter ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_ResourceLabelFormatting =
+        [ `Vscode_ResourceLabelFormatting ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_SearchOptions = [ `Vscode_SearchOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_SourceControl = [ `Vscode_SourceControl ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_SourceControlInputBox = [ `Vscode_SourceControlInputBox ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_SourceControlInputBoxValidation =
+        [ `Vscode_SourceControlInputBoxValidation ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_SourceControlInputBoxValidationType =
+        ([ `Error [@js 0]
+         | `Warning [@js 1]
+         | `Information [@js 2]
+         ]
+        [@js.enum])
+
+      and vscode_SourceControlInputBoxValidationType_Error =
+        ([ `Error [@js 0] ][@js.enum])
+
+      and vscode_SourceControlInputBoxValidationType_Warning =
+        ([ `Warning [@js 1] ][@js.enum])
+
+      and vscode_SourceControlInputBoxValidationType_Information =
+        ([ `Information [@js 2] ][@js.enum])
+
+      and vscode_StandardTokenType =
+        ([ `Other [@js 0]
+         | `Comment [@js 1]
+         | `String [@js 2]
+         | `RegEx [@js 4]
+         ]
+        [@js.enum])
+
+      and vscode_StandardTokenType_Other = ([ `Other [@js 0] ][@js.enum])
+
+      and vscode_StandardTokenType_Comment = ([ `Comment [@js 1] ][@js.enum])
+
+      and vscode_StandardTokenType_String = ([ `String [@js 2] ][@js.enum])
+
+      and vscode_StandardTokenType_RegEx = ([ `RegEx [@js 4] ][@js.enum])
+
+      and vscode_StatusBarItemOptions = [ `Vscode_StatusBarItemOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TaskPresentationOptions =
+        [ `Vscode_TaskPresentationOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_Terminal = [ `Vscode_Terminal ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TerminalDataWriteEvent =
+        [ `Vscode_TerminalDataWriteEvent ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TerminalDimensionsChangeEvent =
+        [ `Vscode_TerminalDimensionsChangeEvent ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TerminalOptions = [ `Vscode_TerminalOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and 'T vscode_TestChildrenCollection =
+        [ `Vscode_TestChildrenCollection of 'T ] intf
+      [@@js.custom
+        { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
+
+      and 'TChildren vscode_TestItem = [ `Vscode_TestItem of 'TChildren ] intf
+      [@@js.custom
+        { of_js = (fun _TChildren -> Obj.magic)
+        ; to_js = (fun _TChildren -> Obj.magic)
+        }]
+
+      and vscode_TestMessage = [ `Vscode_TestMessage ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TestMessageSeverity =
+        ([ `Error [@js 0]
+         | `Warning [@js 1]
+         | `Information [@js 2]
+         | `Hint [@js 3]
+         ]
+        [@js.enum])
+
+      and vscode_TestMessageSeverity_Error = ([ `Error [@js 0] ][@js.enum])
+
+      and vscode_TestMessageSeverity_Warning = ([ `Warning [@js 1] ][@js.enum])
+
+      and vscode_TestMessageSeverity_Information =
+        ([ `Information [@js 2] ][@js.enum])
+
+      and vscode_TestMessageSeverity_Hint = ([ `Hint [@js 3] ][@js.enum])
+
+      and vscode_TestObserver = [ `Vscode_TestObserver ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and 'T vscode_TestProvider = [ `Vscode_TestProvider of 'T ] intf
+      [@@js.custom
+        { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
+
+      and vscode_TestResultSnapshot = [ `Vscode_TestResultSnapshot ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TestResultState =
+        ([ `Unset [@js 0]
+         | `Queued [@js 1]
+         | `Running [@js 2]
+         | `Passed [@js 3]
+         | `Failed [@js 4]
+         | `Skipped [@js 5]
+         | `Errored [@js 6]
+         ]
+        [@js.enum])
+
+      and vscode_TestResultState_Unset = ([ `Unset [@js 0] ][@js.enum])
+
+      and vscode_TestResultState_Queued = ([ `Queued [@js 1] ][@js.enum])
+
+      and vscode_TestResultState_Running = ([ `Running [@js 2] ][@js.enum])
+
+      and vscode_TestResultState_Passed = ([ `Passed [@js 3] ][@js.enum])
+
+      and vscode_TestResultState_Failed = ([ `Failed [@js 4] ][@js.enum])
+
+      and vscode_TestResultState_Skipped = ([ `Skipped [@js 5] ][@js.enum])
+
+      and vscode_TestResultState_Errored = ([ `Errored [@js 6] ][@js.enum])
+
+      and 'T vscode_TestRunOptions =
+        [ `Vscode_TestRunOptions of 'T | `Vscode_TestRunRequest of 'T ] intf
+      [@@js.custom
+        { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
+
+      and 'T vscode_TestRunRequest = [ `Vscode_TestRunRequest of 'T ] intf
+      [@@js.custom
+        { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
+
+      and vscode_TestRunResult = [ `Vscode_TestRunResult ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TestsChangeEvent = [ `Vscode_TestsChangeEvent ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TextDocument = [ `Vscode_TextDocument ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TextSearchComplete = [ `Vscode_TextSearchComplete ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TextSearchContext = [ `Vscode_TextSearchContext ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TextSearchMatch = [ `Vscode_TextSearchMatch ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TextSearchMatchPreview =
+        [ `Vscode_TextSearchMatchPreview ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TextSearchOptions =
+        [ `Vscode_TextSearchOptions | `Vscode_SearchOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TextSearchPreviewOptions =
+        [ `Vscode_TextSearchPreviewOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TextSearchProvider = [ `Vscode_TextSearchProvider ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TextSearchQuery = [ `Vscode_TextSearchQuery ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TextSearchResult =
+        (vscode_TextSearchContext, vscode_TextSearchMatch) union2
+
+      and vscode_Timeline = [ `Vscode_Timeline ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TimelineChangeEvent = [ `Vscode_TimelineChangeEvent ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TimelineItem = [ `Vscode_TimelineItem ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TimelineOptions = [ `Vscode_TimelineOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TimelineProvider = [ `Vscode_TimelineProvider ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TokenInformation = [ `Vscode_TokenInformation ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and 'T vscode_TreeView = [ `Vscode_TreeView of 'T ] intf
+      [@@js.custom
+        { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
+
+      and vscode_Tunnel = [ `Vscode_Tunnel | `Vscode_TunnelDescription ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TunnelCreationOptions = [ `Vscode_TunnelCreationOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TunnelDescription = [ `Vscode_TunnelDescription ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TunnelInformation = [ `Vscode_TunnelInformation ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_TunnelOptions = [ `Vscode_TunnelOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_Webview = [ `Vscode_Webview ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_WebviewEditorInset = [ `Vscode_WebviewEditorInset ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_WorkspaceEdit = [ `Vscode_WorkspaceEdit ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_WorkspaceTrustRequestOptions =
+        [ `Vscode_WorkspaceTrustRequestOptions ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+
+      and vscode_WorkspaceTrustState =
+        ([ `Untrusted [@js 0]
+         | `Trusted [@js 1]
+         | `Unspecified [@js 2]
+         ]
+        [@js.enum])
+
+      and vscode_WorkspaceTrustState_Untrusted =
+        ([ `Untrusted [@js 0] ][@js.enum])
+
+      and vscode_WorkspaceTrustState_Trusted = ([ `Trusted [@js 1] ][@js.enum])
+
+      and vscode_WorkspaceTrustState_Unspecified =
+        ([ `Unspecified [@js 2] ][@js.enum])
+
+      and vscode_WorkspaceTrustStateChangeEvent =
+        [ `Vscode_WorkspaceTrustStateChangeEvent ] intf
+      [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+    end
+  end
+
+  open Internal
+  open AnonymousInterfaces
+  open Types
+
+  module AnonymousInterface0 : sig
+    type t = anonymous_interface_0
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_busy : t -> bool [@@js.get "busy"]
+
+    val set_busy : t -> bool -> unit [@@js.set "busy"]
+  end
+
+  module AnonymousInterface1 : sig
+    type t = anonymous_interface_1
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_create : t -> bool [@@js.get "create"]
+
+    val set_create : t -> bool -> unit [@@js.set "create"]
+  end
+
+  module AnonymousInterface2 : sig
+    type t = anonymous_interface_2
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_cursor : t -> string or_undefined [@@js.get "cursor"]
+  end
+
+  module AnonymousInterface3 : sig
+    type t = anonymous_interface_3
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_displayName : t -> string [@@js.get "displayName"]
+
+    val set_displayName : t -> string -> unit [@@js.set "displayName"]
+
+    val get_filenamePattern : t -> vscode_NotebookFilenamePattern list
+      [@@js.get "filenamePattern"]
+
+    val set_filenamePattern : t -> vscode_NotebookFilenamePattern list -> unit
+      [@@js.set "filenamePattern"]
+
+    val get_exclusive : t -> bool [@@js.get "exclusive"]
+
+    val set_exclusive : t -> bool -> unit [@@js.set "exclusive"]
+  end
+
+  module AnonymousInterface4 : sig
+    type t = anonymous_interface_4
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_document : t -> vscode_NotebookDocument [@@js.get "document"]
+
+    val set_document : t -> vscode_NotebookDocument -> unit
+      [@@js.set "document"]
+
+    val get_kernel : t -> vscode_NotebookKernel or_undefined [@@js.get "kernel"]
+
+    val set_kernel : t -> vscode_NotebookKernel or_undefined -> unit
+      [@@js.set "kernel"]
+  end
+
+  module AnonymousInterface5 : sig
+    type t = anonymous_interface_5
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_editable : t -> bool or_null [@@js.get "editable"]
+
+    val set_editable : t -> bool or_null -> unit [@@js.set "editable"]
+
+    val get_breakpointMargin : t -> bool or_null [@@js.get "breakpointMargin"]
+
+    val set_breakpointMargin : t -> bool or_null -> unit
+      [@@js.set "breakpointMargin"]
+
+    val get_statusMessage : t -> string or_null [@@js.get "statusMessage"]
+
+    val set_statusMessage : t -> string or_null -> unit
+      [@@js.set "statusMessage"]
+
+    val get_lastRunDuration : t -> float or_null [@@js.get "lastRunDuration"]
+
+    val set_lastRunDuration : t -> float or_null -> unit
+      [@@js.set "lastRunDuration"]
+
+    val get_inputCollapsed : t -> bool or_null [@@js.get "inputCollapsed"]
+
+    val set_inputCollapsed : t -> bool or_null -> unit
+      [@@js.set "inputCollapsed"]
+
+    val get_outputCollapsed : t -> bool or_null [@@js.get "outputCollapsed"]
+
+    val set_outputCollapsed : t -> bool or_null -> unit
+      [@@js.set "outputCollapsed"]
+
+    val get_custom : t -> (string, any) Record.t or_null [@@js.get "custom"]
+
+    val set_custom : t -> (string, any) Record.t or_null -> unit
+      [@@js.set "custom"]
+  end
+
+  module AnonymousInterface6 : sig
+    type t = anonymous_interface_6
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_editable : t -> bool or_null [@@js.get "editable"]
+
+    val set_editable : t -> bool or_null -> unit [@@js.set "editable"]
+
+    val get_cellEditable : t -> bool or_null [@@js.get "cellEditable"]
+
+    val set_cellEditable : t -> bool or_null -> unit [@@js.set "cellEditable"]
+
+    val get_custom : t -> anonymous_interface_16 or_null [@@js.get "custom"]
+
+    val set_custom : t -> anonymous_interface_16 or_null -> unit
+      [@@js.set "custom"]
+
+    val get_trusted : t -> bool or_null [@@js.get "trusted"]
+
+    val set_trusted : t -> bool or_null -> unit [@@js.set "trusted"]
+  end
+
+  module AnonymousInterface7 : sig
+    type t = anonymous_interface_7
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_elevation : t -> bool [@@js.get "elevation"]
+
+    val set_elevation : t -> bool -> unit [@@js.set "elevation"]
+
+    val get_public : t -> bool [@@js.get "public"]
+
+    val set_public : t -> bool -> unit [@@js.set "public"]
+  end
+
+  module AnonymousInterface8 : sig
+    type t = anonymous_interface_8
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_include : t -> GlobPattern.t [@@js.get "include"]
+
+    val set_include : t -> GlobPattern.t -> unit [@@js.set "include"]
+
+    val get_exclude : t -> GlobPattern.t [@@js.get "exclude"]
+
+    val set_exclude : t -> GlobPattern.t -> unit [@@js.set "exclude"]
+  end
+
+  module AnonymousInterface9 : sig
+    type t = anonymous_interface_9
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_light : t -> Uri.t [@@js.get "light"]
+
+    val set_light : t -> Uri.t -> unit [@@js.set "light"]
+
+    val get_dark : t -> Uri.t [@@js.get "dark"]
+
+    val set_dark : t -> Uri.t -> unit [@@js.set "dark"]
+  end
+
+  module AnonymousInterface10 : sig
+    type t = anonymous_interface_10
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_pid : t -> float [@@js.get "pid"]
+
+    val set_pid : t -> float -> unit [@@js.set "pid"]
+
+    val get_portRange : t -> float * float [@@js.get "portRange"]
+
+    val set_portRange : t -> float * float -> unit [@@js.set "portRange"]
+
+    val get_commandMatcher : t -> regexp [@@js.get "commandMatcher"]
+
+    val set_commandMatcher : t -> regexp -> unit [@@js.set "commandMatcher"]
+  end
+
+  module AnonymousInterface11 : sig
+    type t = anonymous_interface_11
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_port : t -> float [@@js.get "port"]
+
+    val set_port : t -> float -> unit [@@js.set "port"]
+
+    val get_host : t -> string [@@js.get "host"]
+
+    val set_host : t -> string -> unit [@@js.set "host"]
+  end
+
+  module AnonymousInterface12 : sig
+    type t = anonymous_interface_12
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_select : t -> bool [@@js.get "select"]
+
+    val set_select : t -> bool -> unit [@@js.set "select"]
+
+    val get_focus : t -> bool [@@js.get "focus"]
+
+    val set_focus : t -> bool -> unit [@@js.set "focus"]
+
+    val get_expand : t -> bool or_number [@@js.get "expand"]
+
+    val set_expand : t -> bool or_number -> unit [@@js.set "expand"]
+  end
+
+  module AnonymousInterface13 : sig
+    type t = anonymous_interface_13
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_start : t -> float [@@js.get "start"]
+
+    val set_start : t -> float -> unit [@@js.set "start"]
+
+    val get_end : t -> float [@@js.get "end"]
+
+    val set_end : t -> float -> unit [@@js.set "end"]
+  end
+
+  module AnonymousInterface14 : sig
+    type t = anonymous_interface_14
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_timestamp : t -> float [@@js.get "timestamp"]
+
+    val set_timestamp : t -> float -> unit [@@js.set "timestamp"]
+
+    val get_id : t -> string [@@js.get "id"]
+
+    val set_id : t -> string -> unit [@@js.set "id"]
+  end
+
+  module AnonymousInterface15 : sig
+    type t = anonymous_interface_15
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_viewOptions : t -> anonymous_interface_3 [@@js.get "viewOptions"]
+
+    val set_viewOptions : t -> anonymous_interface_3 -> unit
+      [@@js.set "viewOptions"]
+  end
+
+  module AnonymousInterface16 : sig
+    type t = anonymous_interface_16
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get : t -> string -> any [@@js.index_get]
+
+    val set : t -> string -> any -> unit [@@js.index_set]
+  end
+
+  module AnonymousInterface17 : sig
+    type t = anonymous_interface_17
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get : t -> string -> string or_null [@@js.index_get]
+
+    val set : t -> string -> string or_null -> unit [@@js.index_set]
+  end
+
+  module Vscode : sig
+    module AuthenticationProvidersChangeEvent : sig
+      type t = vscode_AuthenticationProvidersChangeEvent
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_added : t -> AuthenticationProviderInformation.t list
+        [@@js.get "added"]
+
+      val get_removed : t -> AuthenticationProviderInformation.t list
+        [@@js.get "removed"]
+    end
+    [@@js.scope "AuthenticationProvidersChangeEvent"]
+
+    module Authentication : sig
+      val onDidChangeAuthenticationProviders
+        : vscode_AuthenticationProvidersChangeEvent Event.t
+        [@@js.global "onDidChangeAuthenticationProviders"]
+
+      val providers : AuthenticationProviderInformation.t list
+        [@@js.global "providers"]
+
+      val logout : providerId:string -> sessionId:string -> unit Promise.t
+        [@@js.global "logout"]
+    end
+    [@@js.scope "authentication"]
+
+    module MessageOptions : sig
+      type t = vscode_MessageOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_useCustom : t -> bool [@@js.get "useCustom"]
+
+      val set_useCustom : t -> bool -> unit [@@js.set "useCustom"]
+    end
+    [@@js.scope "MessageOptions"]
+
+    module RemoteAuthorityResolverContext : sig
+      type t = vscode_RemoteAuthorityResolverContext
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_resolveAttempt : t -> float [@@js.get "resolveAttempt"]
+
+      val set_resolveAttempt : t -> float -> unit [@@js.set "resolveAttempt"]
+    end
+    [@@js.scope "RemoteAuthorityResolverContext"]
+
+    module ResolvedAuthority : sig
+      type t = vscode_ResolvedAuthority
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_host : t -> string [@@js.get "host"]
+
+      val get_port : t -> float [@@js.get "port"]
+
+      val get_connectionToken : t -> string or_undefined
+        [@@js.get "connectionToken"]
+
+      val create
+        :  host:string
+        -> port:float
+        -> ?connectionToken:string
+        -> unit
+        -> t
+        [@@js.create]
+    end
+    [@@js.scope "ResolvedAuthority"]
+
+    module ResolvedOptions : sig
+      type t = vscode_ResolvedOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_extensionHostEnv : t -> anonymous_interface_17
+        [@@js.get "extensionHostEnv"]
+
+      val set_extensionHostEnv : t -> anonymous_interface_17 -> unit
+        [@@js.set "extensionHostEnv"]
+    end
+    [@@js.scope "ResolvedOptions"]
+
+    module TunnelOptions : sig
+      type t = vscode_TunnelOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_remoteAddress : t -> anonymous_interface_11
+        [@@js.get "remoteAddress"]
+
+      val set_remoteAddress : t -> anonymous_interface_11 -> unit
+        [@@js.set "remoteAddress"]
+
+      val get_localAddressPort : t -> float [@@js.get "localAddressPort"]
+
+      val set_localAddressPort : t -> float -> unit
+        [@@js.set "localAddressPort"]
+
+      val get_label : t -> string [@@js.get "label"]
+
+      val set_label : t -> string -> unit [@@js.set "label"]
+
+      val get_public : t -> bool [@@js.get "public"]
+
+      val set_public : t -> bool -> unit [@@js.set "public"]
+    end
+    [@@js.scope "TunnelOptions"]
+
+    module TunnelDescription : sig
+      type t = vscode_TunnelDescription
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_remoteAddress : t -> anonymous_interface_11
+        [@@js.get "remoteAddress"]
+
+      val set_remoteAddress : t -> anonymous_interface_11 -> unit
+        [@@js.set "remoteAddress"]
+
+      val get_localAddress : t -> anonymous_interface_11 or_string
+        [@@js.get "localAddress"]
+
+      val set_localAddress : t -> anonymous_interface_11 or_string -> unit
+        [@@js.set "localAddress"]
+
+      val get_public : t -> bool [@@js.get "public"]
+
+      val set_public : t -> bool -> unit [@@js.set "public"]
+    end
+    [@@js.scope "TunnelDescription"]
+
+    module Tunnel : sig
+      type t = vscode_Tunnel
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_onDidDispose : t -> unit Event.t [@@js.get "onDidDispose"]
+
+      val set_onDidDispose : t -> unit Event.t -> unit [@@js.set "onDidDispose"]
+
+      val dispose : t -> (unit, unit Promise.t) union2 [@@js.call "dispose"]
+
+      val cast : t -> vscode_TunnelDescription [@@js.cast]
+    end
+    [@@js.scope "Tunnel"]
+
+    module TunnelInformation : sig
+      type t = vscode_TunnelInformation
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_environmentTunnels : t -> vscode_TunnelDescription list
+        [@@js.get "environmentTunnels"]
+
+      val set_environmentTunnels : t -> vscode_TunnelDescription list -> unit
+        [@@js.set "environmentTunnels"]
+    end
+    [@@js.scope "TunnelInformation"]
+
+    module TunnelCreationOptions : sig
+      type t = vscode_TunnelCreationOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_elevationRequired : t -> bool [@@js.get "elevationRequired"]
+
+      val set_elevationRequired : t -> bool -> unit
+        [@@js.set "elevationRequired"]
+    end
+    [@@js.scope "TunnelCreationOptions"]
+
+    module CandidatePortSource : sig
+      type t = vscode_CandidatePortSource
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module ResolverResult : sig
+      type t = vscode_ResolverResult
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module RemoteAuthorityResolverError : sig
+      type t = vscode_RemoteAuthorityResolverError
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val notAvailable : ?message:string -> ?handled:bool -> unit -> t
+        [@@js.global "NotAvailable"]
+
+      val temporarilyNotAvailable : ?message:string -> unit -> t
+        [@@js.global "TemporarilyNotAvailable"]
+
+      val create : ?message:string -> unit -> t [@@js.create]
+
+      val cast : t -> Error.t [@@js.cast]
+    end
+    [@@js.scope "RemoteAuthorityResolverError"]
+
+    module RemoteAuthorityResolver : sig
+      type t = vscode_RemoteAuthorityResolver
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val resolve
+        :  t
+        -> authority:string
+        -> context:vscode_RemoteAuthorityResolverContext
+        -> (vscode_ResolverResult, vscode_ResolverResult Promise.t) union2
+        [@@js.call "resolve"]
+
+      val tunnelFactory
+        :  t
+        -> tunnelOptions:vscode_TunnelOptions
+        -> tunnelCreationOptions:vscode_TunnelCreationOptions
+        -> vscode_Tunnel Promise.t or_undefined
+        [@@js.call "tunnelFactory"]
+
+      val showCandidatePort
+        :  t
+        -> host:string
+        -> port:float
+        -> detail:string
+        -> bool Promise.t
+        [@@js.call "showCandidatePort"]
+
+      val get_tunnelFeatures : t -> anonymous_interface_7
+        [@@js.get "tunnelFeatures"]
+
+      val set_tunnelFeatures : t -> anonymous_interface_7 -> unit
+        [@@js.set "tunnelFeatures"]
+
+      val get_candidatePortSource : t -> vscode_CandidatePortSource
+        [@@js.get "candidatePortSource"]
+
+      val set_candidatePortSource : t -> vscode_CandidatePortSource -> unit
+        [@@js.set "candidatePortSource"]
+    end
+    [@@js.scope "RemoteAuthorityResolver"]
+
+    module Workspace : sig
+      val openTunnel
+        :  tunnelOptions:vscode_TunnelOptions
+        -> vscode_Tunnel Promise.t
+        [@@js.global "openTunnel"]
+
+      val tunnels : vscode_TunnelDescription list Promise.t
+        [@@js.global "tunnels"]
+
+      val onDidChangeTunnels : unit Event.t [@@js.global "onDidChangeTunnels"]
+
+      val registerRemoteAuthorityResolver
+        :  authorityPrefix:string
+        -> resolver:vscode_RemoteAuthorityResolver
+        -> Disposable.t
+        [@@js.global "registerRemoteAuthorityResolver"]
+
+      val registerResourceLabelFormatter
+        :  formatter:vscode_ResourceLabelFormatter
+        -> Disposable.t
+        [@@js.global "registerResourceLabelFormatter"]
+
+      val registerFileSearchProvider
+        :  scheme:string
+        -> provider:vscode_FileSearchProvider
+        -> Disposable.t
+        [@@js.global "registerFileSearchProvider"]
+
+      val registerTextSearchProvider
+        :  scheme:string
+        -> provider:vscode_TextSearchProvider
+        -> Disposable.t
+        [@@js.global "registerTextSearchProvider"]
+
+      val findTextInFiles
+        :  query:vscode_TextSearchQuery
+        -> callback:(result:vscode_TextSearchResult -> unit)
+        -> ?token:CancellationToken.t
+        -> unit
+        -> vscode_TextSearchComplete Promise.t
+        [@@js.global "findTextInFiles"]
+
+      val findTextInFiles
+        :  query:vscode_TextSearchQuery
+        -> options:vscode_FindTextInFilesOptions
+        -> callback:(result:vscode_TextSearchResult -> unit)
+        -> ?token:CancellationToken.t
+        -> unit
+        -> vscode_TextSearchComplete Promise.t
+        [@@js.global "findTextInFiles"]
+
+      val registerTimelineProvider
+        :  scheme:string list or_string
+        -> provider:vscode_TimelineProvider
+        -> Disposable.t
+        [@@js.global "registerTimelineProvider"]
+
+      val trustState : vscode_WorkspaceTrustState [@@js.global "trustState"]
+
+      val requestWorkspaceTrust
+        :  ?options:vscode_WorkspaceTrustRequestOptions
+        -> unit
+        -> vscode_WorkspaceTrustState or_undefined Promise.t
+        [@@js.global "requestWorkspaceTrust"]
+
+      val onDidChangeWorkspaceTrustState
+        : vscode_WorkspaceTrustStateChangeEvent Event.t
+        [@@js.global "onDidChangeWorkspaceTrustState"]
+
+      val registerPortAttributesProvider
+        :  portSelector:anonymous_interface_10
+        -> provider:vscode_PortAttributesProvider
+        -> Disposable.t
+        [@@js.global "registerPortAttributesProvider"]
+    end
+    [@@js.scope "workspace"]
+
+    module ResourceLabelFormatter : sig
+      type t = vscode_ResourceLabelFormatter
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_scheme : t -> string [@@js.get "scheme"]
+
+      val set_scheme : t -> string -> unit [@@js.set "scheme"]
+
+      val get_authority : t -> string [@@js.get "authority"]
+
+      val set_authority : t -> string -> unit [@@js.set "authority"]
+
+      val get_formatting : t -> vscode_ResourceLabelFormatting
+        [@@js.get "formatting"]
+
+      val set_formatting : t -> vscode_ResourceLabelFormatting -> unit
+        [@@js.set "formatting"]
+    end
+    [@@js.scope "ResourceLabelFormatter"]
+
+    module ResourceLabelFormatting : sig
+      type t = vscode_ResourceLabelFormatting
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_label : t -> string [@@js.get "label"]
+
+      val set_label : t -> string -> unit [@@js.set "label"]
+
+      val get_separator
+        :  t
+        -> ([ `L_s0 [@js ""] | `L_s1 [@js "/"] | `L_s2 [@js "\\"] ][@js.enum])
+        [@@js.get "separator"]
+
+      val set_separator : t -> ([ `L_s0 | `L_s1 | `L_s2 ][@js.enum]) -> unit
+        [@@js.set "separator"]
+
+      val get_tildify : t -> bool [@@js.get "tildify"]
+
+      val set_tildify : t -> bool -> unit [@@js.set "tildify"]
+
+      val get_normalizeDriveLetter : t -> bool [@@js.get "normalizeDriveLetter"]
+
+      val set_normalizeDriveLetter : t -> bool -> unit
+        [@@js.set "normalizeDriveLetter"]
+
+      val get_workspaceSuffix : t -> string [@@js.get "workspaceSuffix"]
+
+      val set_workspaceSuffix : t -> string -> unit [@@js.set "workspaceSuffix"]
+
+      val get_authorityPrefix : t -> string [@@js.get "authorityPrefix"]
+
+      val set_authorityPrefix : t -> string -> unit [@@js.set "authorityPrefix"]
+
+      val get_stripPathStartingSeparator : t -> bool
+        [@@js.get "stripPathStartingSeparator"]
+
+      val set_stripPathStartingSeparator : t -> bool -> unit
+        [@@js.set "stripPathStartingSeparator"]
+    end
+    [@@js.scope "ResourceLabelFormatting"]
+
+    module WebviewEditorInset : sig
+      type t = vscode_WebviewEditorInset
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_editor : t -> TextEditor.t [@@js.get "editor"]
+
+      val get_line : t -> float [@@js.get "line"]
+
+      val get_height : t -> float [@@js.get "height"]
+
+      val get_webview : t -> vscode_Webview [@@js.get "webview"]
+
+      val get_onDidDispose : t -> unit Event.t [@@js.get "onDidDispose"]
+
+      val dispose : t -> unit [@@js.call "dispose"]
+    end
+    [@@js.scope "WebviewEditorInset"]
+
+    module Window : sig
+      val createWebviewTextEditorInset
+        :  editor:TextEditor.t
+        -> line:float
+        -> height:float
+        -> ?options:WebviewOptions.t
+        -> unit
+        -> vscode_WebviewEditorInset
+        [@@js.global "createWebviewTextEditorInset"]
+
+      val onDidWriteTerminalData : vscode_TerminalDataWriteEvent Event.t
+        [@@js.global "onDidWriteTerminalData"]
+
+      val onDidChangeTerminalDimensions
+        : vscode_TerminalDimensionsChangeEvent Event.t
+        [@@js.global "onDidChangeTerminalDimensions"]
+
+      val createStatusBarItem
+        :  ?options:vscode_StatusBarItemOptions
+        -> unit
+        -> StatusBarItem.t
+        [@@js.global "createStatusBarItem"]
+
+      val visibleNotebookEditors : vscode_NotebookEditor list
+        [@@js.global "visibleNotebookEditors"]
+
+      val onDidChangeVisibleNotebookEditors : vscode_NotebookEditor list Event.t
+        [@@js.global "onDidChangeVisibleNotebookEditors"]
+
+      val activeNotebookEditor : vscode_NotebookEditor or_undefined
+        [@@js.global "activeNotebookEditor"]
+
+      val onDidChangeActiveNotebookEditor
+        : vscode_NotebookEditor or_undefined Event.t
+        [@@js.global "onDidChangeActiveNotebookEditor"]
+
+      val onDidChangeNotebookEditorSelection
+        : vscode_NotebookEditorSelectionChangeEvent Event.t
+        [@@js.global "onDidChangeNotebookEditorSelection"]
+
+      val onDidChangeNotebookEditorVisibleRanges
+        : vscode_NotebookEditorVisibleRangesChangeEvent Event.t
+        [@@js.global "onDidChangeNotebookEditorVisibleRanges"]
+
+      val showNotebookDocument
+        :  uri:Uri.t
+        -> ?options:vscode_NotebookDocumentShowOptions
+        -> unit
+        -> vscode_NotebookEditor Promise.t
+        [@@js.global "showNotebookDocument"]
+
+      val showNotebookDocument
+        :  document:vscode_NotebookDocument
+        -> ?options:vscode_NotebookDocumentShowOptions
+        -> unit
+        -> vscode_NotebookEditor Promise.t
+        [@@js.global "showNotebookDocument"]
+
+      val registerExternalUriOpener
+        :  id:string
+        -> opener:vscode_ExternalUriOpener
+        -> metadata:vscode_ExternalUriOpenerMetadata
+        -> Disposable.t
+        [@@js.global "registerExternalUriOpener"]
+
+      val openEditors : vscode_OpenEditorInfo list [@@js.global "openEditors"]
+
+      val onDidChangeOpenEditors : unit Event.t
+        [@@js.global "onDidChangeOpenEditors"]
+    end
+    [@@js.scope "window"]
+
+    module FileSystemProvider : sig
+      type t = vscode_FileSystemProvider
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val open_
+        :  t
+        -> resource:Uri.t
+        -> options:anonymous_interface_1
+        -> float Promise.t or_number
+        [@@js.call "open"]
+
+      val close : t -> fd:float -> (unit, unit Promise.t) union2
+        [@@js.call "close"]
+
+      val read
+        :  t
+        -> fd:float
+        -> pos:float
+        -> data:Uint8Array.t
+        -> offset:float
+        -> length:float
+        -> float Promise.t or_number
+        [@@js.call "read"]
+
+      val write
+        :  t
+        -> fd:float
+        -> pos:float
+        -> data:Uint8Array.t
+        -> offset:float
+        -> length:float
+        -> float Promise.t or_number
+        [@@js.call "write"]
+    end
+    [@@js.scope "FileSystemProvider"]
+
+    module TextSearchQuery : sig
+      type t = vscode_TextSearchQuery
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_pattern : t -> string [@@js.get "pattern"]
+
+      val set_pattern : t -> string -> unit [@@js.set "pattern"]
+
+      val get_isMultiline : t -> bool [@@js.get "isMultiline"]
+
+      val set_isMultiline : t -> bool -> unit [@@js.set "isMultiline"]
+
+      val get_isRegExp : t -> bool [@@js.get "isRegExp"]
+
+      val set_isRegExp : t -> bool -> unit [@@js.set "isRegExp"]
+
+      val get_isCaseSensitive : t -> bool [@@js.get "isCaseSensitive"]
+
+      val set_isCaseSensitive : t -> bool -> unit [@@js.set "isCaseSensitive"]
+
+      val get_isWordMatch : t -> bool [@@js.get "isWordMatch"]
+
+      val set_isWordMatch : t -> bool -> unit [@@js.set "isWordMatch"]
+    end
+    [@@js.scope "TextSearchQuery"]
+
+    module GlobString : sig
+      type t = vscode_GlobString
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module SearchOptions : sig
+      type t = vscode_SearchOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_folder : t -> Uri.t [@@js.get "folder"]
+
+      val set_folder : t -> Uri.t -> unit [@@js.set "folder"]
+
+      val get_includes : t -> vscode_GlobString list [@@js.get "includes"]
+
+      val set_includes : t -> vscode_GlobString list -> unit
+        [@@js.set "includes"]
+
+      val get_excludes : t -> vscode_GlobString list [@@js.get "excludes"]
+
+      val set_excludes : t -> vscode_GlobString list -> unit
+        [@@js.set "excludes"]
+
+      val get_useIgnoreFiles : t -> bool [@@js.get "useIgnoreFiles"]
+
+      val set_useIgnoreFiles : t -> bool -> unit [@@js.set "useIgnoreFiles"]
+
+      val get_followSymlinks : t -> bool [@@js.get "followSymlinks"]
+
+      val set_followSymlinks : t -> bool -> unit [@@js.set "followSymlinks"]
+
+      val get_useGlobalIgnoreFiles : t -> bool [@@js.get "useGlobalIgnoreFiles"]
+
+      val set_useGlobalIgnoreFiles : t -> bool -> unit
+        [@@js.set "useGlobalIgnoreFiles"]
+    end
+    [@@js.scope "SearchOptions"]
+
+    module TextSearchPreviewOptions : sig
+      type t = vscode_TextSearchPreviewOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_matchLines : t -> float [@@js.get "matchLines"]
+
+      val set_matchLines : t -> float -> unit [@@js.set "matchLines"]
+
+      val get_charsPerLine : t -> float [@@js.get "charsPerLine"]
+
+      val set_charsPerLine : t -> float -> unit [@@js.set "charsPerLine"]
+    end
+    [@@js.scope "TextSearchPreviewOptions"]
+
+    module TextSearchOptions : sig
+      type t = vscode_TextSearchOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_maxResults : t -> float [@@js.get "maxResults"]
+
+      val set_maxResults : t -> float -> unit [@@js.set "maxResults"]
+
+      val get_previewOptions : t -> vscode_TextSearchPreviewOptions
+        [@@js.get "previewOptions"]
+
+      val set_previewOptions : t -> vscode_TextSearchPreviewOptions -> unit
+        [@@js.set "previewOptions"]
+
+      val get_maxFileSize : t -> float [@@js.get "maxFileSize"]
+
+      val set_maxFileSize : t -> float -> unit [@@js.set "maxFileSize"]
+
+      val get_encoding : t -> string [@@js.get "encoding"]
+
+      val set_encoding : t -> string -> unit [@@js.set "encoding"]
+
+      val get_beforeContext : t -> float [@@js.get "beforeContext"]
+
+      val set_beforeContext : t -> float -> unit [@@js.set "beforeContext"]
+
+      val get_afterContext : t -> float [@@js.get "afterContext"]
+
+      val set_afterContext : t -> float -> unit [@@js.set "afterContext"]
+
+      val cast : t -> vscode_SearchOptions [@@js.cast]
+    end
+    [@@js.scope "TextSearchOptions"]
+
+    module TextSearchComplete : sig
+      type t = vscode_TextSearchComplete
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_limitHit : t -> bool [@@js.get "limitHit"]
+
+      val set_limitHit : t -> bool -> unit [@@js.set "limitHit"]
+    end
+    [@@js.scope "TextSearchComplete"]
+
+    module TextSearchMatchPreview : sig
+      type t = vscode_TextSearchMatchPreview
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_text : t -> string [@@js.get "text"]
+
+      val set_text : t -> string -> unit [@@js.set "text"]
+
+      val get_matches : t -> (Range.t, Range.t) or_array [@@js.get "matches"]
+
+      val set_matches : t -> (Range.t, Range.t) or_array -> unit
+        [@@js.set "matches"]
+    end
+    [@@js.scope "TextSearchMatchPreview"]
+
+    module TextSearchMatch : sig
+      type t = vscode_TextSearchMatch
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_uri : t -> Uri.t [@@js.get "uri"]
+
+      val set_uri : t -> Uri.t -> unit [@@js.set "uri"]
+
+      val get_ranges : t -> (Range.t, Range.t) or_array [@@js.get "ranges"]
+
+      val set_ranges : t -> (Range.t, Range.t) or_array -> unit
+        [@@js.set "ranges"]
+
+      val get_preview : t -> vscode_TextSearchMatchPreview [@@js.get "preview"]
+
+      val set_preview : t -> vscode_TextSearchMatchPreview -> unit
+        [@@js.set "preview"]
+    end
+    [@@js.scope "TextSearchMatch"]
+
+    module TextSearchContext : sig
+      type t = vscode_TextSearchContext
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_uri : t -> Uri.t [@@js.get "uri"]
+
+      val set_uri : t -> Uri.t -> unit [@@js.set "uri"]
+
+      val get_text : t -> string [@@js.get "text"]
+
+      val set_text : t -> string -> unit [@@js.set "text"]
+
+      val get_lineNumber : t -> float [@@js.get "lineNumber"]
+
+      val set_lineNumber : t -> float -> unit [@@js.set "lineNumber"]
+    end
+    [@@js.scope "TextSearchContext"]
+
+    module TextSearchResult : sig
+      type t = vscode_TextSearchResult
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module TextSearchProvider : sig
+      type t = vscode_TextSearchProvider
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val provideTextSearchResults
+        :  t
+        -> query:vscode_TextSearchQuery
+        -> options:vscode_TextSearchOptions
+        -> progress:vscode_TextSearchResult Progress.t
+        -> token:CancellationToken.t
+        -> vscode_TextSearchComplete ProviderResult.t
+        [@@js.call "provideTextSearchResults"]
+    end
+    [@@js.scope "TextSearchProvider"]
+
+    module FileSearchQuery : sig
+      type t = vscode_FileSearchQuery
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_pattern : t -> string [@@js.get "pattern"]
+
+      val set_pattern : t -> string -> unit [@@js.set "pattern"]
+    end
+    [@@js.scope "FileSearchQuery"]
+
+    module FileSearchOptions : sig
+      type t = vscode_FileSearchOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_maxResults : t -> float [@@js.get "maxResults"]
+
+      val set_maxResults : t -> float -> unit [@@js.set "maxResults"]
+
+      val get_session : t -> CancellationToken.t [@@js.get "session"]
+
+      val set_session : t -> CancellationToken.t -> unit [@@js.set "session"]
+
+      val cast : t -> vscode_SearchOptions [@@js.cast]
+    end
+    [@@js.scope "FileSearchOptions"]
+
+    module FileSearchProvider : sig
+      type t = vscode_FileSearchProvider
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val provideFileSearchResults
+        :  t
+        -> query:vscode_FileSearchQuery
+        -> options:vscode_FileSearchOptions
+        -> token:CancellationToken.t
+        -> Uri.t list ProviderResult.t
+        [@@js.call "provideFileSearchResults"]
+    end
+    [@@js.scope "FileSearchProvider"]
+
+    module FindTextInFilesOptions : sig
+      type t = vscode_FindTextInFilesOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_include : t -> GlobPattern.t [@@js.get "include"]
+
+      val set_include : t -> GlobPattern.t -> unit [@@js.set "include"]
+
+      val get_exclude : t -> GlobPattern.t [@@js.get "exclude"]
+
+      val set_exclude : t -> GlobPattern.t -> unit [@@js.set "exclude"]
+
+      val get_useDefaultExcludes : t -> bool [@@js.get "useDefaultExcludes"]
+
+      val set_useDefaultExcludes : t -> bool -> unit
+        [@@js.set "useDefaultExcludes"]
+
+      val get_maxResults : t -> float [@@js.get "maxResults"]
+
+      val set_maxResults : t -> float -> unit [@@js.set "maxResults"]
+
+      val get_useIgnoreFiles : t -> bool [@@js.get "useIgnoreFiles"]
+
+      val set_useIgnoreFiles : t -> bool -> unit [@@js.set "useIgnoreFiles"]
+
+      val get_useGlobalIgnoreFiles : t -> bool [@@js.get "useGlobalIgnoreFiles"]
+
+      val set_useGlobalIgnoreFiles : t -> bool -> unit
+        [@@js.set "useGlobalIgnoreFiles"]
+
+      val get_followSymlinks : t -> bool [@@js.get "followSymlinks"]
+
+      val set_followSymlinks : t -> bool -> unit [@@js.set "followSymlinks"]
+
+      val get_encoding : t -> string [@@js.get "encoding"]
+
+      val set_encoding : t -> string -> unit [@@js.set "encoding"]
+
+      val get_previewOptions : t -> vscode_TextSearchPreviewOptions
+        [@@js.get "previewOptions"]
+
+      val set_previewOptions : t -> vscode_TextSearchPreviewOptions -> unit
+        [@@js.set "previewOptions"]
+
+      val get_beforeContext : t -> float [@@js.get "beforeContext"]
+
+      val set_beforeContext : t -> float -> unit [@@js.set "beforeContext"]
+
+      val get_afterContext : t -> float [@@js.get "afterContext"]
+
+      val set_afterContext : t -> float -> unit [@@js.set "afterContext"]
+    end
+    [@@js.scope "FindTextInFilesOptions"]
+
+    module LineChange : sig
+      type t = vscode_LineChange
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_originalStartLineNumber : t -> float
+        [@@js.get "originalStartLineNumber"]
+
+      val get_originalEndLineNumber : t -> float
+        [@@js.get "originalEndLineNumber"]
+
+      val get_modifiedStartLineNumber : t -> float
+        [@@js.get "modifiedStartLineNumber"]
+
+      val get_modifiedEndLineNumber : t -> float
+        [@@js.get "modifiedEndLineNumber"]
+    end
+    [@@js.scope "LineChange"]
+
+    module Commands : sig
+      val registerDiffInformationCommand
+        :  command:string
+        -> callback:
+             (diff:vscode_LineChange list
+              -> args:(any list[@js.variadic])
+              -> any)
+        -> ?thisArg:any
+        -> unit
+        -> Disposable.t
+        [@@js.global "registerDiffInformationCommand"]
+    end
+    [@@js.scope "commands"]
+
+    module DebugProtocolVariableContainer : sig
+      type t = vscode_DebugProtocolVariableContainer
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module DebugProtocolVariable : sig
+      type t = vscode_DebugProtocolVariable
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module SourceControlInputBoxValidationType : sig
+      type t = vscode_SourceControlInputBoxValidationType
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module SourceControlInputBoxValidation : sig
+      type t = vscode_SourceControlInputBoxValidation
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_message : t -> string [@@js.get "message"]
+
+      val get_type : t -> vscode_SourceControlInputBoxValidationType
+        [@@js.get "type"]
+    end
+    [@@js.scope "SourceControlInputBoxValidation"]
+
+    module SourceControlInputBox : sig
+      type t = vscode_SourceControlInputBox
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val focus : t -> unit [@@js.call "focus"]
+
+      val showValidationMessage
+        :  t
+        -> message:string
+        -> type_:vscode_SourceControlInputBoxValidationType
+        -> unit
+        [@@js.call "showValidationMessage"]
+
+      val validateInput
+        :  t
+        -> value:string
+        -> cursorPosition:float
+        -> vscode_SourceControlInputBoxValidation ProviderResult.t
+        [@@js.call "validateInput"]
+    end
+    [@@js.scope "SourceControlInputBox"]
+
+    module SourceControl : sig
+      type t = vscode_SourceControl
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_selected : t -> bool [@@js.get "selected"]
+
+      val get_onDidChangeSelection : t -> bool Event.t
+        [@@js.get "onDidChangeSelection"]
+    end
+    [@@js.scope "SourceControl"]
+
+    module TerminalDataWriteEvent : sig
+      type t = vscode_TerminalDataWriteEvent
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_terminal : t -> vscode_Terminal [@@js.get "terminal"]
+
+      val get_data : t -> string [@@js.get "data"]
+    end
+    [@@js.scope "TerminalDataWriteEvent"]
+
+    module TerminalDimensionsChangeEvent : sig
+      type t = vscode_TerminalDimensionsChangeEvent
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_terminal : t -> vscode_Terminal [@@js.get "terminal"]
+
+      val get_dimensions : t -> TerminalDimensions.t [@@js.get "dimensions"]
+    end
+    [@@js.scope "TerminalDimensionsChangeEvent"]
+
+    module Terminal : sig
+      type t = vscode_Terminal
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_dimensions : t -> TerminalDimensions.t or_undefined
+        [@@js.get "dimensions"]
+    end
+    [@@js.scope "Terminal"]
+
+    module TerminalOptions : sig
+      type t = vscode_TerminalOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_icon : t -> string [@@js.get "icon"]
+
+      val get_message : t -> string [@@js.get "message"]
+    end
+    [@@js.scope "TerminalOptions"]
+
+    module DocumentFilter : sig
+      type t = vscode_DocumentFilter
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_exclusive : t -> bool [@@js.get "exclusive"]
+    end
+    [@@js.scope "DocumentFilter"]
+
+    module TreeView : sig
+      type 'T t = 'T vscode_TreeView
+
+      val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+
+      val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+
+      val reveal
+        :  'T t
+        -> element:'T or_undefined
+        -> ?options:anonymous_interface_12
+        -> unit
+        -> unit Promise.t
+        [@@js.call "reveal"]
+
+      val cast : 'T t -> Disposable.t [@@js.cast]
+    end
+    [@@js.scope "TreeView"]
+
+    module TaskPresentationOptions : sig
+      type t = vscode_TaskPresentationOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_group : t -> string [@@js.get "group"]
+
+      val set_group : t -> string -> unit [@@js.set "group"]
+    end
+    [@@js.scope "TaskPresentationOptions"]
+
+    module StatusBarItemOptions : sig
+      type t = vscode_StatusBarItemOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_id : t -> string [@@js.get "id"]
+
+      val set_id : t -> string -> unit [@@js.set "id"]
+
+      val get_name : t -> string [@@js.get "name"]
+
+      val set_name : t -> string -> unit [@@js.set "name"]
+
+      val get_accessibilityInformation : t -> AccessibilityInformation.t
+        [@@js.get "accessibilityInformation"]
+
+      val set_accessibilityInformation : t -> AccessibilityInformation.t -> unit
+        [@@js.set "accessibilityInformation"]
+
+      val get_alignment : t -> StatusBarAlignment.t [@@js.get "alignment"]
+
+      val set_alignment : t -> StatusBarAlignment.t -> unit
+        [@@js.set "alignment"]
+
+      val get_priority : t -> float [@@js.get "priority"]
+
+      val set_priority : t -> float -> unit [@@js.set "priority"]
+    end
+    [@@js.scope "StatusBarItemOptions"]
+
+    module CustomTextEditorProvider : sig
+      type t = vscode_CustomTextEditorProvider
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val moveCustomTextEditor
+        :  t
+        -> newDocument:vscode_TextDocument
+        -> existingWebviewPanel:WebviewPanel.t
+        -> token:CancellationToken.t
+        -> unit Promise.t
+        [@@js.call "moveCustomTextEditor"]
+    end
+    [@@js.scope "CustomTextEditorProvider"]
+
+    module QuickPick : sig
+      type 'T t = 'T vscode_QuickPick
+
+      val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+
+      val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+
+      val get_sortByLabel : 'T t -> bool [@@js.get "sortByLabel"]
+
+      val set_sortByLabel : 'T t -> bool -> unit [@@js.set "sortByLabel"]
+
+      val cast : 'T t -> QuickInput.t [@@js.cast]
+    end
+    [@@js.scope "QuickPick"]
+
+    module QuickPickOptions : sig
+      type t = vscode_QuickPickOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_title : t -> string [@@js.get "title"]
+
+      val set_title : t -> string -> unit [@@js.set "title"]
+    end
+    [@@js.scope "QuickPickOptions"]
+
+    module InputBoxOptions : sig
+      type t = vscode_InputBoxOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_title : t -> string [@@js.get "title"]
+
+      val set_title : t -> string -> unit [@@js.set "title"]
+    end
+    [@@js.scope "InputBoxOptions"]
+
+    module NotebookCellKind : sig
+      type t = vscode_NotebookCellKind
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module NotebookCellMetadata : sig
+      type t = vscode_NotebookCellMetadata
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_editable : t -> bool [@@js.get "editable"]
+
+      val get_breakpointMargin : t -> bool [@@js.get "breakpointMargin"]
+
+      val get_outputCollapsed : t -> bool [@@js.get "outputCollapsed"]
+
+      val get_inputCollapsed : t -> bool [@@js.get "inputCollapsed"]
+
+      val get_custom : t -> (string, any) Record.t [@@js.get "custom"]
+
+      val get_statusMessage : t -> string [@@js.get "statusMessage"]
+
+      val create
+        :  ?editable:bool
+        -> ?breakpointMargin:bool
+        -> ?statusMessage:string
+        -> ?lastRunDuration:float
+        -> ?inputCollapsed:bool
+        -> ?outputCollapsed:bool
+        -> ?custom:(string, any) Record.t
+        -> unit
+        -> t
+        [@@js.create]
+
+      val with_ : t -> change:anonymous_interface_5 -> t [@@js.call "with"]
+    end
+    [@@js.scope "NotebookCellMetadata"]
+
+    module NotebookCellExecutionSummary : sig
+      type t = vscode_NotebookCellExecutionSummary
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_executionOrder : t -> float [@@js.get "executionOrder"]
+
+      val set_executionOrder : t -> float -> unit [@@js.set "executionOrder"]
+
+      val get_success : t -> bool [@@js.get "success"]
+
+      val set_success : t -> bool -> unit [@@js.set "success"]
+
+      val get_duration : t -> float [@@js.get "duration"]
+
+      val set_duration : t -> float -> unit [@@js.set "duration"]
+    end
+    [@@js.scope "NotebookCellExecutionSummary"]
+
+    module NotebookCell : sig
+      type t = vscode_NotebookCell
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_index : t -> float [@@js.get "index"]
+
+      val get_notebook : t -> vscode_NotebookDocument [@@js.get "notebook"]
+
+      val get_kind : t -> vscode_NotebookCellKind [@@js.get "kind"]
+
+      val get_document : t -> vscode_TextDocument [@@js.get "document"]
+
+      val get_metadata : t -> vscode_NotebookCellMetadata [@@js.get "metadata"]
+
+      val get_outputs : t -> vscode_NotebookCellOutput list [@@js.get "outputs"]
+
+      val get_latestExecutionSummary
+        :  t
+        -> vscode_NotebookCellExecutionSummary or_undefined
+        [@@js.get "latestExecutionSummary"]
+    end
+    [@@js.scope "NotebookCell"]
+
+    module NotebookDocumentMetadata : sig
+      type t = vscode_NotebookDocumentMetadata
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_editable : t -> bool [@@js.get "editable"]
+
+      val get_cellEditable : t -> bool [@@js.get "cellEditable"]
+
+      val get_custom : t -> anonymous_interface_16 [@@js.get "custom"]
+
+      val get_trusted : t -> bool [@@js.get "trusted"]
+
+      val create
+        :  ?editable:bool
+        -> ?cellEditable:bool
+        -> ?custom:anonymous_interface_16
+        -> ?trusted:bool
+        -> unit
+        -> t
+        [@@js.create]
+
+      val with_ : t -> change:anonymous_interface_6 -> t [@@js.call "with"]
+    end
+    [@@js.scope "NotebookDocumentMetadata"]
+
+    module NotebookDocumentContentOptions : sig
+      type t = vscode_NotebookDocumentContentOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_transientOutputs : t -> bool [@@js.get "transientOutputs"]
+
+      val set_transientOutputs : t -> bool -> unit [@@js.set "transientOutputs"]
+
+      val get_transientMetadata
+        :  t
+        -> (* FIXME: unknown type '{ [K in keyof NotebookCellMetadata]?: boolean
+              }' *)
+           any
+        [@@js.get "transientMetadata"]
+
+      val set_transientMetadata
+        :  t
+        -> (* FIXME: unknown type '{ [K in keyof NotebookCellMetadata]?: boolean
+              }' *)
+           any
+        -> unit
+        [@@js.set "transientMetadata"]
+    end
+    [@@js.scope "NotebookDocumentContentOptions"]
+
+    module NotebookDocument : sig
+      type t = vscode_NotebookDocument
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_uri : t -> Uri.t [@@js.get "uri"]
+
+      val get_version : t -> float [@@js.get "version"]
+
+      val get_fileName : t -> string [@@js.get "fileName"]
+
+      val get_isDirty : t -> bool [@@js.get "isDirty"]
+
+      val get_isUntitled : t -> bool [@@js.get "isUntitled"]
+
+      val get_isClosed : t -> bool [@@js.get "isClosed"]
+
+      val get_metadata : t -> vscode_NotebookDocumentMetadata
+        [@@js.get "metadata"]
+
+      val get_viewType : t -> string [@@js.get "viewType"]
+
+      val get_cellCount : t -> float [@@js.get "cellCount"]
+
+      val cellAt : t -> index:float -> vscode_NotebookCell [@@js.call "cellAt"]
+
+      val getCells
+        :  t
+        -> ?range:vscode_NotebookCellRange
+        -> unit
+        -> vscode_NotebookCell list
+        [@@js.call "getCells"]
+
+      val save : t -> bool Promise.t [@@js.call "save"]
+    end
+    [@@js.scope "NotebookDocument"]
+
+    module NotebookCellRange : sig
+      type t = vscode_NotebookCellRange
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_start : t -> float [@@js.get "start"]
+
+      val get_end : t -> float [@@js.get "end"]
+
+      val get_isEmpty : t -> bool [@@js.get "isEmpty"]
+
+      val create : start:float -> end_:float -> t [@@js.create]
+
+      val with_ : t -> change:anonymous_interface_13 -> t [@@js.call "with"]
+    end
+    [@@js.scope "NotebookCellRange"]
+
+    module NotebookEditorRevealType : sig
+      type t = vscode_NotebookEditorRevealType
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module NotebookEditor : sig
+      type t = vscode_NotebookEditor
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val setDecorations
+        :  t
+        -> decorationType:vscode_NotebookEditorDecorationType
+        -> range:vscode_NotebookCellRange
+        -> unit
+        [@@js.call "setDecorations"]
+
+      val get_kernel : t -> vscode_NotebookKernel [@@js.get "kernel"]
+
+      val edit
+        :  t
+        -> callback:(editBuilder:vscode_NotebookEditorEdit -> unit)
+        -> bool Promise.t
+        [@@js.call "edit"]
+
+      val get_document : t -> vscode_NotebookDocument [@@js.get "document"]
+
+      val get_selection : t -> vscode_NotebookCell [@@js.get "selection"]
+
+      val get_selections : t -> vscode_NotebookCellRange list
+        [@@js.get "selections"]
+
+      val get_visibleRanges : t -> vscode_NotebookCellRange list
+        [@@js.get "visibleRanges"]
+
+      val revealRange
+        :  t
+        -> range:vscode_NotebookCellRange
+        -> ?revealType:vscode_NotebookEditorRevealType
+        -> unit
+        -> unit
+        [@@js.call "revealRange"]
+
+      val get_viewColumn : t -> ViewColumn.t [@@js.get "viewColumn"]
+    end
+    [@@js.scope "NotebookEditor"]
+
+    module NotebookDocumentMetadataChangeEvent : sig
+      type t = vscode_NotebookDocumentMetadataChangeEvent
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_document : t -> vscode_NotebookDocument [@@js.get "document"]
+    end
+    [@@js.scope "NotebookDocumentMetadataChangeEvent"]
+
+    module NotebookCellsChangeData : sig
+      type t = vscode_NotebookCellsChangeData
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_start : t -> float [@@js.get "start"]
+
+      val get_deletedCount : t -> float [@@js.get "deletedCount"]
+
+      val get_deletedItems : t -> vscode_NotebookCell list
+        [@@js.get "deletedItems"]
+
+      val get_items : t -> vscode_NotebookCell list [@@js.get "items"]
+    end
+    [@@js.scope "NotebookCellsChangeData"]
+
+    module NotebookCellsChangeEvent : sig
+      type t = vscode_NotebookCellsChangeEvent
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_document : t -> vscode_NotebookDocument [@@js.get "document"]
+
+      val get_changes : t -> vscode_NotebookCellsChangeData list
+        [@@js.get "changes"]
+    end
+    [@@js.scope "NotebookCellsChangeEvent"]
+
+    module NotebookCellOutputsChangeEvent : sig
+      type t = vscode_NotebookCellOutputsChangeEvent
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_document : t -> vscode_NotebookDocument [@@js.get "document"]
+
+      val get_cells : t -> vscode_NotebookCell list [@@js.get "cells"]
+    end
+    [@@js.scope "NotebookCellOutputsChangeEvent"]
+
+    module NotebookCellMetadataChangeEvent : sig
+      type t = vscode_NotebookCellMetadataChangeEvent
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_document : t -> vscode_NotebookDocument [@@js.get "document"]
+
+      val get_cell : t -> vscode_NotebookCell [@@js.get "cell"]
+    end
+    [@@js.scope "NotebookCellMetadataChangeEvent"]
+
+    module NotebookEditorSelectionChangeEvent : sig
+      type t = vscode_NotebookEditorSelectionChangeEvent
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_notebookEditor : t -> vscode_NotebookEditor
+        [@@js.get "notebookEditor"]
+
+      val get_selections : t -> vscode_NotebookCellRange list
+        [@@js.get "selections"]
+    end
+    [@@js.scope "NotebookEditorSelectionChangeEvent"]
+
+    module NotebookEditorVisibleRangesChangeEvent : sig
+      type t = vscode_NotebookEditorVisibleRangesChangeEvent
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_notebookEditor : t -> vscode_NotebookEditor
+        [@@js.get "notebookEditor"]
+
+      val get_visibleRanges : t -> vscode_NotebookCellRange list
+        [@@js.get "visibleRanges"]
+    end
+    [@@js.scope "NotebookEditorVisibleRangesChangeEvent"]
+
+    module NotebookCellExecutionStateChangeEvent : sig
+      type t = vscode_NotebookCellExecutionStateChangeEvent
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_document : t -> vscode_NotebookDocument [@@js.get "document"]
+
+      val get_cell : t -> vscode_NotebookCell [@@js.get "cell"]
+
+      val get_executionState : t -> vscode_NotebookCellExecutionState
+        [@@js.get "executionState"]
+    end
+    [@@js.scope "NotebookCellExecutionStateChangeEvent"]
+
+    module NotebookCellData : sig
+      type t = vscode_NotebookCellData
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_kind : t -> vscode_NotebookCellKind [@@js.get "kind"]
+
+      val set_kind : t -> vscode_NotebookCellKind -> unit [@@js.set "kind"]
+
+      val get_source : t -> string [@@js.get "source"]
+
+      val set_source : t -> string -> unit [@@js.set "source"]
+
+      val get_language : t -> string [@@js.get "language"]
+
+      val set_language : t -> string -> unit [@@js.set "language"]
+
+      val get_outputs : t -> vscode_NotebookCellOutput list [@@js.get "outputs"]
+
+      val set_outputs : t -> vscode_NotebookCellOutput list -> unit
+        [@@js.set "outputs"]
+
+      val get_metadata : t -> vscode_NotebookCellMetadata [@@js.get "metadata"]
+
+      val set_metadata : t -> vscode_NotebookCellMetadata -> unit
+        [@@js.set "metadata"]
+
+      val get_latestExecutionSummary : t -> vscode_NotebookCellExecutionSummary
+        [@@js.get "latestExecutionSummary"]
+
+      val set_latestExecutionSummary
+        :  t
+        -> vscode_NotebookCellExecutionSummary
+        -> unit
+        [@@js.set "latestExecutionSummary"]
+
+      val create
+        :  kind:vscode_NotebookCellKind
+        -> source:string
+        -> language:string
+        -> ?outputs:vscode_NotebookCellOutput list
+        -> ?metadata:vscode_NotebookCellMetadata
+        -> ?latestExecutionSummary:vscode_NotebookCellExecutionSummary
+        -> unit
+        -> t
+        [@@js.create]
+    end
+    [@@js.scope "NotebookCellData"]
+
+    module NotebookData : sig
+      type t = vscode_NotebookData
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_cells : t -> vscode_NotebookCellData list [@@js.get "cells"]
+
+      val set_cells : t -> vscode_NotebookCellData list -> unit
+        [@@js.set "cells"]
+
+      val get_metadata : t -> vscode_NotebookDocumentMetadata
+        [@@js.get "metadata"]
+
+      val set_metadata : t -> vscode_NotebookDocumentMetadata -> unit
+        [@@js.set "metadata"]
+
+      val create
+        :  cells:vscode_NotebookCellData list
+        -> ?metadata:vscode_NotebookDocumentMetadata
+        -> unit
+        -> t
+        [@@js.create]
+    end
+    [@@js.scope "NotebookData"]
+
+    module NotebookCommunication : sig
+      type t = vscode_NotebookCommunication
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_editorId : t -> string [@@js.get "editorId"]
+
+      val get_onDidReceiveMessage : t -> any Event.t
+        [@@js.get "onDidReceiveMessage"]
+
+      val postMessage : t -> message:any -> bool Promise.t
+        [@@js.call "postMessage"]
+
+      val asWebviewUri : t -> localResource:Uri.t -> Uri.t
+        [@@js.call "asWebviewUri"]
+    end
+    [@@js.scope "NotebookCommunication"]
+
+    module NotebookDocumentShowOptions : sig
+      type t = vscode_NotebookDocumentShowOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_viewColumn : t -> ViewColumn.t [@@js.get "viewColumn"]
+
+      val set_viewColumn : t -> ViewColumn.t -> unit [@@js.set "viewColumn"]
+
+      val get_preserveFocus : t -> bool [@@js.get "preserveFocus"]
+
+      val set_preserveFocus : t -> bool -> unit [@@js.set "preserveFocus"]
+
+      val get_preview : t -> bool [@@js.get "preview"]
+
+      val set_preview : t -> bool -> unit [@@js.set "preview"]
+
+      val get_selection : t -> vscode_NotebookCellRange [@@js.get "selection"]
+
+      val set_selection : t -> vscode_NotebookCellRange -> unit
+        [@@js.set "selection"]
+    end
+    [@@js.scope "NotebookDocumentShowOptions"]
+
+    module Notebook : sig
+      val openNotebookDocument : uri:Uri.t -> vscode_NotebookDocument Promise.t
+        [@@js.global "openNotebookDocument"]
+
+      val onDidOpenNotebookDocument : vscode_NotebookDocument Event.t
+        [@@js.global "onDidOpenNotebookDocument"]
+
+      val onDidCloseNotebookDocument : vscode_NotebookDocument Event.t
+        [@@js.global "onDidCloseNotebookDocument"]
+
+      val onDidSaveNotebookDocument : vscode_NotebookDocument Event.t
+        [@@js.global "onDidSaveNotebookDocument"]
+
+      val notebookDocuments : vscode_NotebookDocument list
+        [@@js.global "notebookDocuments"]
+
+      val onDidChangeNotebookDocumentMetadata
+        : vscode_NotebookDocumentMetadataChangeEvent Event.t
+        [@@js.global "onDidChangeNotebookDocumentMetadata"]
+
+      val onDidChangeNotebookCells : vscode_NotebookCellsChangeEvent Event.t
+        [@@js.global "onDidChangeNotebookCells"]
+
+      val onDidChangeCellOutputs : vscode_NotebookCellOutputsChangeEvent Event.t
+        [@@js.global "onDidChangeCellOutputs"]
+
+      val onDidChangeCellMetadata
+        : vscode_NotebookCellMetadataChangeEvent Event.t
+        [@@js.global "onDidChangeCellMetadata"]
+
+      val registerNotebookSerializer
+        :  notebookType:string
+        -> provider:vscode_NotebookSerializer
+        -> ?options:vscode_NotebookDocumentContentOptions
+        -> unit
+        -> Disposable.t
+        [@@js.global "registerNotebookSerializer"]
+
+      val createNotebookKernel
+        :  options:vscode_NotebookKernelOptions
+        -> vscode_NotebookKernel2
+        [@@js.global "createNotebookKernel"]
+
+      val registerNotebookContentProvider
+        :  notebookType:string
+        -> provider:vscode_NotebookContentProvider
+        -> ?options:
+             ( vscode_NotebookDocumentContentOptions
+             , anonymous_interface_15 )
+             intersection2
+        -> unit
+        -> Disposable.t
+        [@@js.global "registerNotebookContentProvider"]
+
+      val createNotebookCellExecutionTask
+        :  uri:Uri.t
+        -> index:float
+        -> kernelId:string
+        -> vscode_NotebookCellExecutionTask or_undefined
+        [@@js.global "createNotebookCellExecutionTask"]
+
+      val onDidChangeCellExecutionState
+        : vscode_NotebookCellExecutionStateChangeEvent Event.t
+        [@@js.global "onDidChangeCellExecutionState"]
+
+      val onDidChangeActiveNotebookKernel : anonymous_interface_4 Event.t
+        [@@js.global "onDidChangeActiveNotebookKernel"]
+
+      val registerNotebookKernelProvider
+        :  selector:vscode_NotebookDocumentFilter
+        -> provider:vscode_NotebookKernel vscode_NotebookKernelProvider
+        -> Disposable.t
+        [@@js.global "registerNotebookKernelProvider"]
+
+      val createNotebookEditorDecorationType
+        :  options:vscode_NotebookDecorationRenderOptions
+        -> vscode_NotebookEditorDecorationType
+        [@@js.global "createNotebookEditorDecorationType"]
+
+      val createCellStatusBarItem
+        :  cell:vscode_NotebookCell
+        -> ?alignment:vscode_NotebookCellStatusBarAlignment
+        -> ?priority:float
+        -> unit
+        -> vscode_NotebookCellStatusBarItem
+        [@@js.global "createCellStatusBarItem"]
+
+      val createConcatTextDocument
+        :  notebook:vscode_NotebookDocument
+        -> ?selector:DocumentSelector.t
+        -> unit
+        -> vscode_NotebookConcatTextDocument
+        [@@js.global "createConcatTextDocument"]
+    end
+    [@@js.scope "notebook"]
+
+    module NotebookCellOutputItem : sig
+      type t = vscode_NotebookCellOutputItem
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_mime : t -> string [@@js.get "mime"]
+
+      val get_value : t -> unknown [@@js.get "value"]
+
+      val get_metadata : t -> (string, any) Record.t [@@js.get "metadata"]
+
+      val create
+        :  mime:string
+        -> value:unknown
+        -> ?metadata:(string, any) Record.t
+        -> unit
+        -> t
+        [@@js.create]
+    end
+    [@@js.scope "NotebookCellOutputItem"]
+
+    module NotebookCellOutput : sig
+      type t = vscode_NotebookCellOutput
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_id : t -> string [@@js.get "id"]
+
+      val get_outputs : t -> vscode_NotebookCellOutputItem list
+        [@@js.get "outputs"]
+
+      val get_metadata : t -> (string, any) Record.t [@@js.get "metadata"]
+
+      val create
+        :  outputs:vscode_NotebookCellOutputItem list
+        -> ?metadata:(string, any) Record.t
+        -> unit
+        -> t
+        [@@js.create]
+
+      val create'
+        :  outputs:vscode_NotebookCellOutputItem list
+        -> id:string
+        -> ?metadata:(string, any) Record.t
+        -> unit
+        -> t
+        [@@js.create]
+    end
+    [@@js.scope "NotebookCellOutput"]
+
+    module WorkspaceEdit : sig
+      type t = vscode_WorkspaceEdit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val replaceNotebookMetadata
+        :  t
+        -> uri:Uri.t
+        -> value:vscode_NotebookDocumentMetadata
+        -> unit
+        [@@js.call "replaceNotebookMetadata"]
+
+      val replaceNotebookCells
+        :  t
+        -> uri:Uri.t
+        -> start:float
+        -> end_:float
+        -> cells:vscode_NotebookCellData list
+        -> ?metadata:WorkspaceEditEntryMetadata.t
+        -> unit
+        -> unit
+        [@@js.call "replaceNotebookCells"]
+
+      val replaceNotebookCellMetadata
+        :  t
+        -> uri:Uri.t
+        -> index:float
+        -> cellMetadata:vscode_NotebookCellMetadata
+        -> ?metadata:WorkspaceEditEntryMetadata.t
+        -> unit
+        -> unit
+        [@@js.call "replaceNotebookCellMetadata"]
+
+      val replaceNotebookCellOutput
+        :  t
+        -> uri:Uri.t
+        -> index:float
+        -> outputs:vscode_NotebookCellOutput list
+        -> ?metadata:WorkspaceEditEntryMetadata.t
+        -> unit
+        -> unit
+        [@@js.call "replaceNotebookCellOutput"]
+
+      val appendNotebookCellOutput
+        :  t
+        -> uri:Uri.t
+        -> index:float
+        -> outputs:vscode_NotebookCellOutput list
+        -> ?metadata:WorkspaceEditEntryMetadata.t
+        -> unit
+        -> unit
+        [@@js.call "appendNotebookCellOutput"]
+
+      val replaceNotebookCellOutputItems
+        :  t
+        -> uri:Uri.t
+        -> index:float
+        -> outputId:string
+        -> items:vscode_NotebookCellOutputItem list
+        -> ?metadata:WorkspaceEditEntryMetadata.t
+        -> unit
+        -> unit
+        [@@js.call "replaceNotebookCellOutputItems"]
+
+      val appendNotebookCellOutputItems
+        :  t
+        -> uri:Uri.t
+        -> index:float
+        -> outputId:string
+        -> items:vscode_NotebookCellOutputItem list
+        -> ?metadata:WorkspaceEditEntryMetadata.t
+        -> unit
+        -> unit
+        [@@js.call "appendNotebookCellOutputItems"]
+    end
+    [@@js.scope "WorkspaceEdit"]
+
+    module NotebookEditorEdit : sig
+      type t = vscode_NotebookEditorEdit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val replaceMetadata : t -> value:vscode_NotebookDocumentMetadata -> unit
+        [@@js.call "replaceMetadata"]
+
+      val replaceCells
+        :  t
+        -> start:float
+        -> end_:float
+        -> cells:vscode_NotebookCellData list
+        -> unit
+        [@@js.call "replaceCells"]
+
+      val replaceCellOutput
+        :  t
+        -> index:float
+        -> outputs:vscode_NotebookCellOutput list
+        -> unit
+        [@@js.call "replaceCellOutput"]
+
+      val replaceCellMetadata
+        :  t
+        -> index:float
+        -> metadata:vscode_NotebookCellMetadata
+        -> unit
+        [@@js.call "replaceCellMetadata"]
+    end
+    [@@js.scope "NotebookEditorEdit"]
+
+    module NotebookSerializer : sig
+      type t = vscode_NotebookSerializer
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val dataToNotebook
+        :  t
+        -> data:Uint8Array.t
+        -> (vscode_NotebookData, vscode_NotebookData Promise.t) union2
+        [@@js.call "dataToNotebook"]
+
+      val notebookToData
+        :  t
+        -> data:vscode_NotebookData
+        -> (Uint8Array.t, Uint8Array.t Promise.t) union2
+        [@@js.call "notebookToData"]
+    end
+    [@@js.scope "NotebookSerializer"]
+
+    module NotebookFilter : sig
+      type t = vscode_NotebookFilter
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_viewType : t -> string [@@js.get "viewType"]
+
+      val get_scheme : t -> string [@@js.get "scheme"]
+
+      val get_pattern : t -> GlobPattern.t [@@js.get "pattern"]
+    end
+    [@@js.scope "NotebookFilter"]
+
+    module NotebookSelector : sig
+      type t = vscode_NotebookSelector
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module NotebookKernel2 : sig
+      type t = vscode_NotebookKernel2
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_id : t -> string [@@js.get "id"]
+
+      val get_selector : t -> vscode_NotebookSelector [@@js.get "selector"]
+
+      val get_label : t -> string [@@js.get "label"]
+
+      val set_label : t -> string -> unit [@@js.set "label"]
+
+      val get_description : t -> string [@@js.get "description"]
+
+      val set_description : t -> string -> unit [@@js.set "description"]
+
+      val get_supportedLanguages : t -> string list
+        [@@js.get "supportedLanguages"]
+
+      val set_supportedLanguages : t -> string list -> unit
+        [@@js.set "supportedLanguages"]
+
+      val get_hasExecutionOrder : t -> bool [@@js.get "hasExecutionOrder"]
+
+      val set_hasExecutionOrder : t -> bool -> unit
+        [@@js.set "hasExecutionOrder"]
+
+      val executeHandler
+        :  t
+        -> executions:vscode_NotebookCellExecutionTask list
+        -> unit
+        [@@js.call "executeHandler"]
+
+      val interruptHandler : t -> notebook:vscode_NotebookDocument -> unit
+        [@@js.call "interruptHandler"]
+
+      val dispose : t -> unit [@@js.call "dispose"]
+
+      val createNotebookCellExecutionTask
+        :  t
+        -> cell:vscode_NotebookCell
+        -> vscode_NotebookCellExecutionTask
+        [@@js.call "createNotebookCellExecutionTask"]
+    end
+    [@@js.scope "NotebookKernel2"]
+
+    module NotebookKernelOptions : sig
+      type t = vscode_NotebookKernelOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_id : t -> string [@@js.get "id"]
+
+      val set_id : t -> string -> unit [@@js.set "id"]
+
+      val get_label : t -> string [@@js.get "label"]
+
+      val set_label : t -> string -> unit [@@js.set "label"]
+
+      val get_description : t -> string [@@js.get "description"]
+
+      val set_description : t -> string -> unit [@@js.set "description"]
+
+      val get_selector : t -> vscode_NotebookSelector [@@js.get "selector"]
+
+      val set_selector : t -> vscode_NotebookSelector -> unit
+        [@@js.set "selector"]
+
+      val get_supportedLanguages : t -> string list
+        [@@js.get "supportedLanguages"]
+
+      val set_supportedLanguages : t -> string list -> unit
+        [@@js.set "supportedLanguages"]
+
+      val get_hasExecutionOrder : t -> bool [@@js.get "hasExecutionOrder"]
+
+      val set_hasExecutionOrder : t -> bool -> unit
+        [@@js.set "hasExecutionOrder"]
+
+      val executeHandler
+        :  t
+        -> executions:vscode_NotebookCellExecutionTask list
+        -> unit
+        [@@js.call "executeHandler"]
+
+      val interruptHandler : t -> notebook:vscode_NotebookDocument -> unit
+        [@@js.call "interruptHandler"]
+    end
+    [@@js.scope "NotebookKernelOptions"]
+
+    module NotebookDocumentBackup : sig
+      type t = vscode_NotebookDocumentBackup
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_id : t -> string [@@js.get "id"]
+
+      val delete : t -> unit [@@js.call "delete"]
+    end
+    [@@js.scope "NotebookDocumentBackup"]
+
+    module NotebookDocumentBackupContext : sig
+      type t = vscode_NotebookDocumentBackupContext
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_destination : t -> Uri.t [@@js.get "destination"]
+    end
+    [@@js.scope "NotebookDocumentBackupContext"]
+
+    module NotebookDocumentOpenContext : sig
+      type t = vscode_NotebookDocumentOpenContext
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_backupId : t -> string [@@js.get "backupId"]
+
+      val get_untitledDocumentData : t -> Uint8Array.t
+        [@@js.get "untitledDocumentData"]
+    end
+    [@@js.scope "NotebookDocumentOpenContext"]
+
+    module NotebookContentProvider : sig
+      type t = vscode_NotebookContentProvider
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_options : t -> vscode_NotebookDocumentContentOptions
+        [@@js.get "options"]
+
+      val get_onDidChangeNotebookContentOptions
+        :  t
+        -> vscode_NotebookDocumentContentOptions Event.t
+        [@@js.get "onDidChangeNotebookContentOptions"]
+
+      val openNotebook
+        :  t
+        -> uri:Uri.t
+        -> openContext:vscode_NotebookDocumentOpenContext
+        -> token:CancellationToken.t
+        -> (vscode_NotebookData, vscode_NotebookData Promise.t) union2
+        [@@js.call "openNotebook"]
+
+      val saveNotebook
+        :  t
+        -> document:vscode_NotebookDocument
+        -> token:CancellationToken.t
+        -> unit Promise.t
+        [@@js.call "saveNotebook"]
+
+      val saveNotebookAs
+        :  t
+        -> targetResource:Uri.t
+        -> document:vscode_NotebookDocument
+        -> token:CancellationToken.t
+        -> unit Promise.t
+        [@@js.call "saveNotebookAs"]
+
+      val backupNotebook
+        :  t
+        -> document:vscode_NotebookDocument
+        -> context:vscode_NotebookDocumentBackupContext
+        -> token:CancellationToken.t
+        -> vscode_NotebookDocumentBackup Promise.t
+        [@@js.call "backupNotebook"]
+    end
+    [@@js.scope "NotebookContentProvider"]
+
+    module NotebookKernel : sig
+      type t = vscode_NotebookKernel
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_id : t -> string [@@js.get "id"]
+
+      val get_label : t -> string [@@js.get "label"]
+
+      val set_label : t -> string -> unit [@@js.set "label"]
+
+      val get_description : t -> string [@@js.get "description"]
+
+      val set_description : t -> string -> unit [@@js.set "description"]
+
+      val get_detail : t -> string [@@js.get "detail"]
+
+      val set_detail : t -> string -> unit [@@js.set "detail"]
+
+      val get_isPreferred : t -> bool [@@js.get "isPreferred"]
+
+      val set_isPreferred : t -> bool -> unit [@@js.set "isPreferred"]
+
+      val get_preloads : t -> Uri.t list [@@js.get "preloads"]
+
+      val set_preloads : t -> Uri.t list -> unit [@@js.set "preloads"]
+
+      val get_supportedLanguages : t -> string list
+        [@@js.get "supportedLanguages"]
+
+      val set_supportedLanguages : t -> string list -> unit
+        [@@js.set "supportedLanguages"]
+
+      val interrupt : t -> document:vscode_NotebookDocument -> unit
+        [@@js.call "interrupt"]
+
+      val executeCellsRequest
+        :  t
+        -> document:vscode_NotebookDocument
+        -> ranges:vscode_NotebookCellRange list
+        -> unit Promise.t
+        [@@js.call "executeCellsRequest"]
+    end
+    [@@js.scope "NotebookKernel"]
+
+    module NotebookCellExecuteStartContext : sig
+      type t = vscode_NotebookCellExecuteStartContext
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_startTime : t -> float [@@js.get "startTime"]
+
+      val set_startTime : t -> float -> unit [@@js.set "startTime"]
+    end
+    [@@js.scope "NotebookCellExecuteStartContext"]
+
+    module NotebookCellExecuteEndContext : sig
+      type t = vscode_NotebookCellExecuteEndContext
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_success : t -> bool [@@js.get "success"]
+
+      val set_success : t -> bool -> unit [@@js.set "success"]
+
+      val get_duration : t -> float [@@js.get "duration"]
+
+      val set_duration : t -> float -> unit [@@js.set "duration"]
+    end
+    [@@js.scope "NotebookCellExecuteEndContext"]
+
+    module NotebookCellExecutionTask : sig
+      type t = vscode_NotebookCellExecutionTask
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_document : t -> vscode_NotebookDocument [@@js.get "document"]
+
+      val get_cell : t -> vscode_NotebookCell [@@js.get "cell"]
+
+      val start
+        :  t
+        -> ?context:vscode_NotebookCellExecuteStartContext
+        -> unit
+        -> unit
+        [@@js.call "start"]
+
+      val get_executionOrder : t -> float or_undefined
+        [@@js.get "executionOrder"]
+
+      val set_executionOrder : t -> float or_undefined -> unit
+        [@@js.set "executionOrder"]
+
+      val end_
+        :  t
+        -> ?result:vscode_NotebookCellExecuteEndContext
+        -> unit
+        -> unit
+        [@@js.call "end"]
+
+      val get_token : t -> CancellationToken.t [@@js.get "token"]
+
+      val clearOutput : t -> ?cellIndex:float -> unit -> unit Promise.t
+        [@@js.call "clearOutput"]
+
+      val appendOutput
+        :  t
+        -> out:(vscode_NotebookCellOutput, vscode_NotebookCellOutput) or_array
+        -> ?cellIndex:float
+        -> unit
+        -> unit Promise.t
+        [@@js.call "appendOutput"]
+
+      val replaceOutput
+        :  t
+        -> out:(vscode_NotebookCellOutput, vscode_NotebookCellOutput) or_array
+        -> ?cellIndex:float
+        -> unit
+        -> unit Promise.t
+        [@@js.call "replaceOutput"]
+
+      val appendOutputItems
+        :  t
+        -> items:
+             ( vscode_NotebookCellOutputItem
+             , vscode_NotebookCellOutputItem )
+             or_array
+        -> outputId:string
+        -> unit Promise.t
+        [@@js.call "appendOutputItems"]
+
+      val replaceOutputItems
+        :  t
+        -> items:
+             ( vscode_NotebookCellOutputItem
+             , vscode_NotebookCellOutputItem )
+             or_array
+        -> outputId:string
+        -> unit Promise.t
+        [@@js.call "replaceOutputItems"]
+    end
+    [@@js.scope "NotebookCellExecutionTask"]
+
+    module NotebookCellExecutionState : sig
+      type t = vscode_NotebookCellExecutionState
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module NotebookFilenamePattern : sig
+      type t = vscode_NotebookFilenamePattern
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module NotebookDocumentFilter : sig
+      type t = vscode_NotebookDocumentFilter
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_viewType : t -> string list or_string [@@js.get "viewType"]
+
+      val set_viewType : t -> string list or_string -> unit
+        [@@js.set "viewType"]
+
+      val get_filenamePattern : t -> vscode_NotebookFilenamePattern
+        [@@js.get "filenamePattern"]
+
+      val set_filenamePattern : t -> vscode_NotebookFilenamePattern -> unit
+        [@@js.set "filenamePattern"]
+    end
+    [@@js.scope "NotebookDocumentFilter"]
+
+    module NotebookKernelProvider : sig
+      type 'T t = 'T vscode_NotebookKernelProvider
+
+      val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+
+      val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+
+      type t_0 = vscode_NotebookKernel t
+
+      val t_0_to_js : t_0 -> Ojs.t
+
+      val t_0_of_js : Ojs.t -> t_0
+
+      val get_onDidChangeKernels
+        :  'T t
+        -> vscode_NotebookDocument or_undefined Event.t
+        [@@js.get "onDidChangeKernels"]
+
+      val set_onDidChangeKernels
+        :  'T t
+        -> vscode_NotebookDocument or_undefined Event.t
+        -> unit
+        [@@js.set "onDidChangeKernels"]
+
+      val provideKernels
+        :  'T t
+        -> document:vscode_NotebookDocument
+        -> token:CancellationToken.t
+        -> 'T list ProviderResult.t
+        [@@js.call "provideKernels"]
+
+      val resolveKernel
+        :  'T t
+        -> kernel:'T
+        -> document:vscode_NotebookDocument
+        -> webview:vscode_NotebookCommunication
+        -> token:CancellationToken.t
+        -> unit ProviderResult.t
+        [@@js.call "resolveKernel"]
+    end
+    [@@js.scope "NotebookKernelProvider"]
+
+    module NotebookDecorationRenderOptions : sig
+      type t = vscode_NotebookDecorationRenderOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_backgroundColor : t -> ThemeColor.t or_string
+        [@@js.get "backgroundColor"]
+
+      val set_backgroundColor : t -> ThemeColor.t or_string -> unit
+        [@@js.set "backgroundColor"]
+
+      val get_borderColor : t -> ThemeColor.t or_string [@@js.get "borderColor"]
+
+      val set_borderColor : t -> ThemeColor.t or_string -> unit
+        [@@js.set "borderColor"]
+
+      val get_top : t -> ThemableDecorationAttachmentRenderOptions.t
+        [@@js.get "top"]
+
+      val set_top : t -> ThemableDecorationAttachmentRenderOptions.t -> unit
+        [@@js.set "top"]
+    end
+    [@@js.scope "NotebookDecorationRenderOptions"]
+
+    module NotebookEditorDecorationType : sig
+      type t = vscode_NotebookEditorDecorationType
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_key : t -> string [@@js.get "key"]
+
+      val dispose : t -> unit [@@js.call "dispose"]
+    end
+    [@@js.scope "NotebookEditorDecorationType"]
+
+    module NotebookCellStatusBarAlignment : sig
+      type t = vscode_NotebookCellStatusBarAlignment
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module NotebookCellStatusBarItem : sig
+      type t = vscode_NotebookCellStatusBarItem
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_cell : t -> vscode_NotebookCell [@@js.get "cell"]
+
+      val get_alignment : t -> vscode_NotebookCellStatusBarAlignment
+        [@@js.get "alignment"]
+
+      val get_priority : t -> float [@@js.get "priority"]
+
+      val get_text : t -> string [@@js.get "text"]
+
+      val set_text : t -> string -> unit [@@js.set "text"]
+
+      val get_tooltip : t -> string or_undefined [@@js.get "tooltip"]
+
+      val set_tooltip : t -> string or_undefined -> unit [@@js.set "tooltip"]
+
+      val get_command : t -> Command.t or_string or_undefined
+        [@@js.get "command"]
+
+      val set_command : t -> Command.t or_string or_undefined -> unit
+        [@@js.set "command"]
+
+      val get_accessibilityInformation : t -> AccessibilityInformation.t
+        [@@js.get "accessibilityInformation"]
+
+      val set_accessibilityInformation : t -> AccessibilityInformation.t -> unit
+        [@@js.set "accessibilityInformation"]
+
+      val show : t -> unit [@@js.call "show"]
+
+      val hide : t -> unit [@@js.call "hide"]
+
+      val dispose : t -> unit [@@js.call "dispose"]
+    end
+    [@@js.scope "NotebookCellStatusBarItem"]
+
+    module NotebookConcatTextDocument : sig
+      type t = vscode_NotebookConcatTextDocument
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_uri : t -> Uri.t [@@js.get "uri"]
+
+      val set_uri : t -> Uri.t -> unit [@@js.set "uri"]
+
+      val get_isClosed : t -> bool [@@js.get "isClosed"]
+
+      val set_isClosed : t -> bool -> unit [@@js.set "isClosed"]
+
+      val dispose : t -> unit [@@js.call "dispose"]
+
+      val get_onDidChange : t -> unit Event.t [@@js.get "onDidChange"]
+
+      val set_onDidChange : t -> unit Event.t -> unit [@@js.set "onDidChange"]
+
+      val get_version : t -> float [@@js.get "version"]
+
+      val set_version : t -> float -> unit [@@js.set "version"]
+
+      val getText : t -> string [@@js.call "getText"]
+
+      val getText' : t -> range:Range.t -> string [@@js.call "getText"]
+
+      val offsetAt : t -> position:Position.t -> float [@@js.call "offsetAt"]
+
+      val positionAt : t -> offset:float -> Position.t [@@js.call "positionAt"]
+
+      val validateRange : t -> range:Range.t -> Range.t
+        [@@js.call "validateRange"]
+
+      val validatePosition : t -> position:Position.t -> Position.t
+        [@@js.call "validatePosition"]
+
+      val locationAt
+        :  t
+        -> positionOrRange:(Position.t, Range.t) union2
+        -> Location.t
+        [@@js.call "locationAt"]
+
+      val positionAt' : t -> location:Location.t -> Position.t
+        [@@js.call "positionAt"]
+
+      val contains : t -> uri:Uri.t -> bool [@@js.call "contains"]
+    end
+    [@@js.scope "NotebookConcatTextDocument"]
+
+    module CompletionItem : sig
+      type t = vscode_CompletionItem
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_label2 : t -> vscode_CompletionItemLabel [@@js.get "label2"]
+
+      val set_label2 : t -> vscode_CompletionItemLabel -> unit
+        [@@js.set "label2"]
+    end
+    [@@js.scope "CompletionItem"]
+
+    module CompletionItemLabel : sig
+      type t = vscode_CompletionItemLabel
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_name : t -> string [@@js.get "name"]
+
+      val set_name : t -> string -> unit [@@js.set "name"]
+
+      val get_parameters : t -> string [@@js.get "parameters"]
+
+      val set_parameters : t -> string -> unit [@@js.set "parameters"]
+
+      val get_qualifier : t -> string [@@js.get "qualifier"]
+
+      val set_qualifier : t -> string -> unit [@@js.set "qualifier"]
+
+      val get_type : t -> string [@@js.get "type"]
+
+      val set_type : t -> string -> unit [@@js.set "type"]
+    end
+    [@@js.scope "CompletionItemLabel"]
+
+    module TimelineItem : sig
+      type t = vscode_TimelineItem
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_timestamp : t -> float [@@js.get "timestamp"]
+
+      val set_timestamp : t -> float -> unit [@@js.set "timestamp"]
+
+      val get_label : t -> string [@@js.get "label"]
+
+      val set_label : t -> string -> unit [@@js.set "label"]
+
+      val get_id : t -> string [@@js.get "id"]
+
+      val set_id : t -> string -> unit [@@js.set "id"]
+
+      val get_iconPath : t -> (ThemeIcon.t, Uri.t, anonymous_interface_9) union3
+        [@@js.get "iconPath"]
+
+      val set_iconPath
+        :  t
+        -> (ThemeIcon.t, Uri.t, anonymous_interface_9) union3
+        -> unit
+        [@@js.set "iconPath"]
+
+      val get_description : t -> string [@@js.get "description"]
+
+      val set_description : t -> string -> unit [@@js.set "description"]
+
+      val get_detail : t -> string [@@js.get "detail"]
+
+      val set_detail : t -> string -> unit [@@js.set "detail"]
+
+      val get_command : t -> Command.t [@@js.get "command"]
+
+      val set_command : t -> Command.t -> unit [@@js.set "command"]
+
+      val get_contextValue : t -> string [@@js.get "contextValue"]
+
+      val set_contextValue : t -> string -> unit [@@js.set "contextValue"]
+
+      val get_accessibilityInformation : t -> AccessibilityInformation.t
+        [@@js.get "accessibilityInformation"]
+
+      val set_accessibilityInformation : t -> AccessibilityInformation.t -> unit
+        [@@js.set "accessibilityInformation"]
+
+      val create : label:string -> timestamp:float -> t [@@js.create]
+    end
+    [@@js.scope "TimelineItem"]
+
+    module TimelineChangeEvent : sig
+      type t = vscode_TimelineChangeEvent
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_uri : t -> Uri.t [@@js.get "uri"]
+
+      val set_uri : t -> Uri.t -> unit [@@js.set "uri"]
+
+      val get_reset : t -> bool [@@js.get "reset"]
+
+      val set_reset : t -> bool -> unit [@@js.set "reset"]
+    end
+    [@@js.scope "TimelineChangeEvent"]
+
+    module Timeline : sig
+      type t = vscode_Timeline
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_paging : t -> anonymous_interface_2 [@@js.get "paging"]
+
+      val get_items : t -> vscode_TimelineItem list [@@js.get "items"]
+    end
+    [@@js.scope "Timeline"]
+
+    module TimelineOptions : sig
+      type t = vscode_TimelineOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_cursor : t -> string [@@js.get "cursor"]
+
+      val set_cursor : t -> string -> unit [@@js.set "cursor"]
+
+      val get_limit : t -> anonymous_interface_14 or_number [@@js.get "limit"]
+
+      val set_limit : t -> anonymous_interface_14 or_number -> unit
+        [@@js.set "limit"]
+    end
+    [@@js.scope "TimelineOptions"]
+
+    module TimelineProvider : sig
+      type t = vscode_TimelineProvider
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_onDidChange : t -> vscode_TimelineChangeEvent or_undefined Event.t
+        [@@js.get "onDidChange"]
+
+      val set_onDidChange
+        :  t
+        -> vscode_TimelineChangeEvent or_undefined Event.t
+        -> unit
+        [@@js.set "onDidChange"]
+
+      val get_id : t -> string [@@js.get "id"]
+
+      val get_label : t -> string [@@js.get "label"]
+
+      val provideTimeline
+        :  t
+        -> uri:Uri.t
+        -> options:vscode_TimelineOptions
+        -> token:CancellationToken.t
+        -> vscode_Timeline ProviderResult.t
+        [@@js.call "provideTimeline"]
+    end
+    [@@js.scope "TimelineProvider"]
+
+    module StandardTokenType : sig
+      type t = vscode_StandardTokenType
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module TokenInformation : sig
+      type t = vscode_TokenInformation
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_type : t -> vscode_StandardTokenType [@@js.get "type"]
+
+      val set_type : t -> vscode_StandardTokenType -> unit [@@js.set "type"]
+
+      val get_range : t -> Range.t [@@js.get "range"]
+
+      val set_range : t -> Range.t -> unit [@@js.set "range"]
+    end
+    [@@js.scope "TokenInformation"]
+
+    module Languages : sig
+      val getTokenInformationAtPosition
+        :  document:vscode_TextDocument
+        -> position:Position.t
+        -> vscode_TokenInformation Promise.t
+        [@@js.global "getTokenInformationAtPosition"]
+
+      val registerInlineHintsProvider
+        :  selector:DocumentSelector.t
+        -> provider:vscode_InlineHintsProvider
+        -> Disposable.t
+        [@@js.global "registerInlineHintsProvider"]
+    end
+    [@@js.scope "languages"]
+
+    module InlineHintKind : sig
+      type t = vscode_InlineHintKind
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module InlineHint : sig
+      type t = vscode_InlineHint
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_text : t -> string [@@js.get "text"]
+
+      val set_text : t -> string -> unit [@@js.set "text"]
+
+      val get_range : t -> Range.t [@@js.get "range"]
+
+      val set_range : t -> Range.t -> unit [@@js.set "range"]
+
+      val get_kind : t -> vscode_InlineHintKind [@@js.get "kind"]
+
+      val set_kind : t -> vscode_InlineHintKind -> unit [@@js.set "kind"]
+
+      val get_description : t -> MarkdownString.t or_string
+        [@@js.get "description"]
+
+      val set_description : t -> MarkdownString.t or_string -> unit
+        [@@js.set "description"]
+
+      val get_whitespaceBefore : t -> bool [@@js.get "whitespaceBefore"]
+
+      val set_whitespaceBefore : t -> bool -> unit [@@js.set "whitespaceBefore"]
+
+      val get_whitespaceAfter : t -> bool [@@js.get "whitespaceAfter"]
+
+      val set_whitespaceAfter : t -> bool -> unit [@@js.set "whitespaceAfter"]
+
+      val create
+        :  text:string
+        -> range:Range.t
+        -> ?kind:vscode_InlineHintKind
+        -> unit
+        -> t
+        [@@js.create]
+    end
+    [@@js.scope "InlineHint"]
+
+    module InlineHintsProvider : sig
+      type t = vscode_InlineHintsProvider
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_onDidChangeInlineHints : t -> unit Event.t
+        [@@js.get "onDidChangeInlineHints"]
+
+      val set_onDidChangeInlineHints : t -> unit Event.t -> unit
+        [@@js.set "onDidChangeInlineHints"]
+
+      val provideInlineHints
+        :  t
+        -> model:vscode_TextDocument
+        -> range:Range.t
+        -> token:CancellationToken.t
+        -> vscode_InlineHint list ProviderResult.t
+        [@@js.call "provideInlineHints"]
+    end
+    [@@js.scope "InlineHintsProvider"]
+
+    module ExtensionRuntime : sig
+      type t = vscode_ExtensionRuntime
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module ExtensionContext : sig
+      type t = vscode_ExtensionContext
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_extensionRuntime : t -> vscode_ExtensionRuntime
+        [@@js.get "extensionRuntime"]
+    end
+    [@@js.scope "ExtensionContext"]
+
+    module TextDocument : sig
+      type t = vscode_TextDocument
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_notebook : t -> vscode_NotebookDocument or_undefined
+        [@@js.get "notebook"]
+
+      val set_notebook : t -> vscode_NotebookDocument or_undefined -> unit
+        [@@js.set "notebook"]
+    end
+    [@@js.scope "TextDocument"]
+
+    module Test : sig
+      val registerTestProvider
+        :  testProvider:'T vscode_TestProvider
+        -> Disposable.t
+        [@@js.global "registerTestProvider"]
+
+      val runTests
+        :  run:'T vscode_TestRunRequest
+        -> ?token:CancellationToken.t
+        -> unit
+        -> unit Promise.t
+        [@@js.global "runTests"]
+
+      val createWorkspaceTestObserver
+        :  workspaceFolder:WorkspaceFolder.t
+        -> vscode_TestObserver
+        [@@js.global "createWorkspaceTestObserver"]
+
+      val createDocumentTestObserver
+        :  document:vscode_TextDocument
+        -> vscode_TestObserver
+        [@@js.global "createDocumentTestObserver"]
+
+      val publishTestResult
+        :  results:vscode_TestRunResult
+        -> ?persist:bool
+        -> unit
+        -> unit
+        [@@js.global "publishTestResult"]
+
+      val testResults : vscode_TestRunResult list [@@js.global "testResults"]
+
+      val onDidChangeTestResults : unit Event.t
+        [@@js.global "onDidChangeTestResults"]
+    end
+    [@@js.scope "test"]
+
+    module TestObserver : sig
+      type t = vscode_TestObserver
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_tests : t -> any vscode_TestItem list [@@js.get "tests"]
+
+      val get_onDidChangeTest : t -> vscode_TestsChangeEvent Event.t
+        [@@js.get "onDidChangeTest"]
+
+      val get_onDidDiscoverInitialTests : t -> unit Event.t
+        [@@js.get "onDidDiscoverInitialTests"]
+
+      val dispose : t -> unit [@@js.call "dispose"]
+    end
+    [@@js.scope "TestObserver"]
+
+    module TestsChangeEvent : sig
+      type t = vscode_TestsChangeEvent
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_added : t -> any vscode_TestItem list [@@js.get "added"]
+
+      val get_updated : t -> any vscode_TestItem list [@@js.get "updated"]
+
+      val get_removed : t -> any vscode_TestItem list [@@js.get "removed"]
+    end
+    [@@js.scope "TestsChangeEvent"]
+
+    module TestProvider : sig
+      type 'T t = 'T vscode_TestProvider
+
+      val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+
+      val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+
+      type t_0 = any vscode_TestItem t
+
+      val t_0_to_js : t_0 -> Ojs.t
+
+      val t_0_of_js : Ojs.t -> t_0
+
+      val provideWorkspaceTestRoot
+        :  'T t
+        -> workspace:WorkspaceFolder.t
+        -> token:CancellationToken.t
+        -> 'T ProviderResult.t
+        [@@js.call "provideWorkspaceTestRoot"]
+
+      val provideDocumentTestRoot
+        :  'T t
+        -> document:vscode_TextDocument
+        -> token:CancellationToken.t
+        -> 'T ProviderResult.t
+        [@@js.call "provideDocumentTestRoot"]
+
+      val runTests
+        :  'T t
+        -> options:'T vscode_TestRunOptions
+        -> token:CancellationToken.t
+        -> unit ProviderResult.t
+        [@@js.call "runTests"]
+    end
+    [@@js.scope "TestProvider"]
+
+    module TestRunRequest : sig
+      type 'T t = 'T vscode_TestRunRequest
+
+      val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+
+      val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+
+      type t_0 = any vscode_TestItem t
+
+      val t_0_to_js : t_0 -> Ojs.t
+
+      val t_0_of_js : Ojs.t -> t_0
+
+      val get_tests : 'T t -> 'T list [@@js.get "tests"]
+
+      val set_tests : 'T t -> 'T list -> unit [@@js.set "tests"]
+
+      val get_exclude : 'T t -> 'T list [@@js.get "exclude"]
+
+      val set_exclude : 'T t -> 'T list -> unit [@@js.set "exclude"]
+
+      val get_debug : 'T t -> bool [@@js.get "debug"]
+
+      val set_debug : 'T t -> bool -> unit [@@js.set "debug"]
+    end
+    [@@js.scope "TestRunRequest"]
+
+    module TestRunOptions : sig
+      type 'T t = 'T vscode_TestRunOptions
+
+      val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+
+      val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+
+      type t_0 = any vscode_TestItem t
+
+      val t_0_to_js : t_0 -> Ojs.t
+
+      val t_0_of_js : Ojs.t -> t_0
+
+      val setState
+        :  'T t
+        -> test:'T
+        -> state:vscode_TestResultState
+        -> ?duration:float
+        -> unit
+        -> unit
+        [@@js.call "setState"]
+
+      val appendMessage : 'T t -> test:'T -> message:vscode_TestMessage -> unit
+        [@@js.call "appendMessage"]
+
+      val appendOutput : 'T t -> output:string -> unit
+        [@@js.call "appendOutput"]
+
+      val cast : 'T t -> 'T vscode_TestRunRequest [@@js.cast]
+    end
+    [@@js.scope "TestRunOptions"]
+
+    module TestChildrenCollection : sig
+      type 'T t = 'T vscode_TestChildrenCollection
+
+      val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+
+      val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+
+      val get_size : 'T t -> float [@@js.get "size"]
+
+      val get_ : 'T t -> id:string -> 'T or_undefined [@@js.call "get"]
+
+      val add : 'T t -> child:'T -> unit [@@js.call "add"]
+
+      val delete : 'T t -> child:'T or_string -> unit [@@js.call "delete"]
+
+      val clear : 'T t -> unit [@@js.call "clear"]
+
+      val cast : 'T t -> 'T Iterable.t [@@js.cast]
+    end
+    [@@js.scope "TestChildrenCollection"]
+
+    module TestItem : sig
+      type 'TChildren t = 'TChildren vscode_TestItem
+
+      val t_to_js : ('TChildren -> Ojs.t) -> 'TChildren t -> Ojs.t
+
+      val t_of_js : (Ojs.t -> 'TChildren) -> Ojs.t -> 'TChildren t
+
+      type t_0 = any t
+
+      val t_0_to_js : t_0 -> Ojs.t
+
+      val t_0_of_js : Ojs.t -> t_0
+
+      val get_id : 'TChildren t -> string [@@js.get "id"]
+
+      val get_uri : 'TChildren t -> Uri.t [@@js.get "uri"]
+
+      val get_children
+        :  'TChildren t
+        -> 'TChildren vscode_TestChildrenCollection
+        [@@js.get "children"]
+
+      val get_label : 'TChildren t -> string [@@js.get "label"]
+
+      val set_label : 'TChildren t -> string -> unit [@@js.set "label"]
+
+      val get_description : 'TChildren t -> string [@@js.get "description"]
+
+      val set_description : 'TChildren t -> string -> unit
+        [@@js.set "description"]
+
+      val get_range : 'TChildren t -> Range.t [@@js.get "range"]
+
+      val set_range : 'TChildren t -> Range.t -> unit [@@js.set "range"]
+
+      val get_runnable : 'TChildren t -> bool [@@js.get "runnable"]
+
+      val set_runnable : 'TChildren t -> bool -> unit [@@js.set "runnable"]
+
+      val get_debuggable : 'TChildren t -> bool [@@js.get "debuggable"]
+
+      val set_debuggable : 'TChildren t -> bool -> unit [@@js.set "debuggable"]
+
+      val get_expandable : 'TChildren t -> bool [@@js.get "expandable"]
+
+      val set_expandable : 'TChildren t -> bool -> unit [@@js.set "expandable"]
+
+      val create
+        :  id:string
+        -> label:string
+        -> uri:Uri.t
+        -> expandable:bool
+        -> 'TChildren t
+        [@@js.create]
+
+      val invalidate : 'TChildren t -> unit [@@js.call "invalidate"]
+
+      val discoverChildren
+        :  'TChildren t
+        -> progress:anonymous_interface_0 Progress.t
+        -> token:CancellationToken.t
+        -> unit
+        [@@js.call "discoverChildren"]
+    end
+    [@@js.scope "TestItem"]
+
+    module TestResultState : sig
+      type t = vscode_TestResultState
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module TestMessageSeverity : sig
+      type t = vscode_TestMessageSeverity
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module TestMessage : sig
+      type t = vscode_TestMessage
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_message : t -> MarkdownString.t or_string [@@js.get "message"]
+
+      val set_message : t -> MarkdownString.t or_string -> unit
+        [@@js.set "message"]
+
+      val get_severity : t -> vscode_TestMessageSeverity [@@js.get "severity"]
+
+      val set_severity : t -> vscode_TestMessageSeverity -> unit
+        [@@js.set "severity"]
+
+      val get_expectedOutput : t -> string [@@js.get "expectedOutput"]
+
+      val set_expectedOutput : t -> string -> unit [@@js.set "expectedOutput"]
+
+      val get_actualOutput : t -> string [@@js.get "actualOutput"]
+
+      val set_actualOutput : t -> string -> unit [@@js.set "actualOutput"]
+
+      val get_location : t -> Location.t [@@js.get "location"]
+
+      val set_location : t -> Location.t -> unit [@@js.set "location"]
+
+      val diff
+        :  message:MarkdownString.t or_string
+        -> expected:string
+        -> actual:string
+        -> t
+        [@@js.global "diff"]
+
+      val create : message:MarkdownString.t or_string -> t [@@js.create]
+    end
+    [@@js.scope "TestMessage"]
+
+    module TestRunResult : sig
+      type t = vscode_TestRunResult
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_completedAt : t -> float [@@js.get "completedAt"]
+
+      val set_completedAt : t -> float -> unit [@@js.set "completedAt"]
+
+      val get_output : t -> string [@@js.get "output"]
+
+      val set_output : t -> string -> unit [@@js.set "output"]
+
+      val get_results : t -> vscode_TestResultSnapshot Readonly.t list
+        [@@js.get "results"]
+
+      val set_results : t -> vscode_TestResultSnapshot Readonly.t list -> unit
+        [@@js.set "results"]
+    end
+    [@@js.scope "TestRunResult"]
+
+    module TestResultSnapshot : sig
+      type t = vscode_TestResultSnapshot
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_id : t -> string [@@js.get "id"]
+
+      val get_uri : t -> Uri.t [@@js.get "uri"]
+
+      val get_label : t -> string [@@js.get "label"]
+
+      val get_description : t -> string [@@js.get "description"]
+
+      val get_range : t -> Range.t [@@js.get "range"]
+
+      val get_state : t -> vscode_TestResultState [@@js.get "state"]
+
+      val get_duration : t -> float [@@js.get "duration"]
+
+      val get_messages : t -> vscode_TestMessage list [@@js.get "messages"]
+
+      val get_children : t -> t Readonly.t list [@@js.get "children"]
+    end
+    [@@js.scope "TestResultSnapshot"]
+
+    module ExternalUriOpenerPriority : sig
+      type t = vscode_ExternalUriOpenerPriority
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module ExternalUriOpener : sig
+      type t = vscode_ExternalUriOpener
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val canOpenExternalUri
+        :  t
+        -> uri:Uri.t
+        -> token:CancellationToken.t
+        -> ( ( vscode_ExternalUriOpenerPriority
+             , vscode_ExternalUriOpenerPriority Promise.t )
+             union2
+           , ([ `Default [@js 2]
+              | `None [@js 0]
+              | `Option [@js 1]
+              | `Preferred [@js 3]
+              ]
+             [@js.enum]) )
+           or_enum
+        [@@js.call "canOpenExternalUri"]
+
+      val openExternalUri
+        :  t
+        -> resolvedUri:Uri.t
+        -> ctx:vscode_OpenExternalUriContext
+        -> token:CancellationToken.t
+        -> (unit, unit Promise.t) union2
+        [@@js.call "openExternalUri"]
+    end
+    [@@js.scope "ExternalUriOpener"]
+
+    module OpenExternalUriContext : sig
+      type t = vscode_OpenExternalUriContext
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_sourceUri : t -> Uri.t [@@js.get "sourceUri"]
+    end
+    [@@js.scope "OpenExternalUriContext"]
+
+    module ExternalUriOpenerMetadata : sig
+      type t = vscode_ExternalUriOpenerMetadata
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_schemes : t -> string list [@@js.get "schemes"]
+
+      val get_label : t -> string [@@js.get "label"]
+    end
+    [@@js.scope "ExternalUriOpenerMetadata"]
+
+    module OpenExternalOptions : sig
+      type t = vscode_OpenExternalOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_allowContributedOpeners : t -> bool or_string
+        [@@js.get "allowContributedOpeners"]
+    end
+    [@@js.scope "OpenExternalOptions"]
+
+    module Env : sig
+      val openExternal
+        :  target:Uri.t
+        -> ?options:vscode_OpenExternalOptions
+        -> unit
+        -> bool Promise.t
+        [@@js.global "openExternal"]
+    end
+    [@@js.scope "env"]
+
+    module OpenEditorInfo : sig
+      type t = vscode_OpenEditorInfo
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_name : t -> string [@@js.get "name"]
+
+      val set_name : t -> string -> unit [@@js.set "name"]
+
+      val get_resource : t -> Uri.t [@@js.get "resource"]
+
+      val set_resource : t -> Uri.t -> unit [@@js.set "resource"]
+    end
+    [@@js.scope "OpenEditorInfo"]
+
+    module WorkspaceTrustState : sig
+      type t = vscode_WorkspaceTrustState
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module WorkspaceTrustStateChangeEvent : sig
+      type t = vscode_WorkspaceTrustStateChangeEvent
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_newTrustState : t -> vscode_WorkspaceTrustState
+        [@@js.get "newTrustState"]
+    end
+    [@@js.scope "WorkspaceTrustStateChangeEvent"]
+
+    module WorkspaceTrustRequestOptions : sig
+      type t = vscode_WorkspaceTrustRequestOptions
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_modal : t -> bool [@@js.get "modal"]
+    end
+    [@@js.scope "WorkspaceTrustRequestOptions"]
+
+    module Webview : sig
+      type t = vscode_Webview
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val postMessage : t -> message:any -> bool Promise.t
+        [@@js.call "postMessage"]
+    end
+    [@@js.scope "Webview"]
+
+    module PortAutoForwardAction : sig
+      type t = vscode_PortAutoForwardAction
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module PortAttributes : sig
+      type t = vscode_PortAttributes
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_port : t -> float [@@js.get "port"]
+
+      val set_port : t -> float -> unit [@@js.set "port"]
+
+      val get_autoForwardAction : t -> vscode_PortAutoForwardAction
+        [@@js.get "autoForwardAction"]
+
+      val set_autoForwardAction : t -> vscode_PortAutoForwardAction -> unit
+        [@@js.set "autoForwardAction"]
+    end
+    [@@js.scope "PortAttributes"]
+
+    module PortAttributesProvider : sig
+      type t = vscode_PortAttributesProvider
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val providePortAttributes
+        :  t
+        -> port:float
+        -> pid:float or_undefined
+        -> commandLine:string or_undefined
+        -> token:CancellationToken.t
+        -> vscode_PortAttributes ProviderResult.t
+        [@@js.call "providePortAttributes"]
+    end
+    [@@js.scope "PortAttributesProvider"]
+  end
+  [@@js.scope "vscode"]
+end
 
 module Thenable : sig
   type 'T t = 'T _Thenable

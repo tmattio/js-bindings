@@ -1,167 +1,167 @@
 include module type of struct
-  include Assert
+  include Node_assert
 end
 
 include module type of struct
-  include Async_hooks
+  include Node_async_hooks
 end
 
 include module type of struct
-  include Buffer
+  include Node_buffer
 end
 
 include module type of struct
-  include Child_process
+  include Node_child_process
 end
 
 include module type of struct
-  include Cluster
+  include Node_cluster
 end
 
 include module type of struct
-  include Console
+  include Node_console
 end
 
 include module type of struct
-  include Constants
+  include Node_constants
 end
 
 include module type of struct
-  include Crypto
+  include Node_crypto
 end
 
 include module type of struct
-  include Dgram
+  include Node_dgram
 end
 
 include module type of struct
-  include Dns
+  include Node_dns
 end
 
 include module type of struct
-  include Domain
+  include Node_domain
 end
 
 include module type of struct
-  include Events
+  include Node_events
 end
 
 include module type of struct
-  include Fs
+  include Node_fs
 end
 
 include module type of struct
-  include Fs_promises
+  include Node_fs_promises
 end
 
 include module type of struct
-  include Globals
+  include Node_globals
 end
 
 include module type of struct
-  include Http
+  include Node_http
 end
 
 include module type of struct
-  include Http2
+  include Node_http2
 end
 
 include module type of struct
-  include Https
+  include Node_https
 end
 
 include module type of struct
-  include Inspector
+  include Node_inspector
 end
 
 include module type of struct
-  include Module
+  include Node_module
 end
 
 include module type of struct
-  include Net
+  include Node_net
 end
 
 include module type of struct
-  include Os
+  include Node_os
 end
 
 include module type of struct
-  include Path
+  include Node_path
 end
 
 include module type of struct
-  include Perf_hooks
+  include Node_perf_hooks
 end
 
 include module type of struct
-  include Process
+  include Node_process
 end
 
 include module type of struct
-  include Punycode
+  include Node_punycode
 end
 
 include module type of struct
-  include Querystring
+  include Node_querystring
 end
 
 include module type of struct
-  include Readline
+  include Node_readline
 end
 
 include module type of struct
-  include Repl
+  include Node_repl
 end
 
 include module type of struct
-  include Stream
+  include Node_stream
 end
 
 include module type of struct
-  include String_decoder
+  include Node_string_decoder
 end
 
 include module type of struct
-  include Timers
+  include Node_timers
 end
 
 include module type of struct
-  include Tls
+  include Node_tls
 end
 
 include module type of struct
-  include Trace_events
+  include Node_trace_events
 end
 
 include module type of struct
-  include Tty
+  include Node_tty
 end
 
 include module type of struct
-  include Url
+  include Node_url
 end
 
 include module type of struct
-  include Util
+  include Node_util
 end
 
 include module type of struct
-  include V8
+  include Node_v8
 end
 
 include module type of struct
-  include Vm
+  include Node_vm
 end
 
 include module type of struct
-  include Wasi
+  include Node_wasi
 end
 
 include module type of struct
-  include Worker_threads
+  include Node_worker_threads
 end
 
 include module type of struct
-  include Zlib
+  include Node_zlib
 end

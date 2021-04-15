@@ -75,3 +75,4 @@ ts2ocaml:
         at fold (/Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:3053:23)
         at map (/Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:3267:18)
     ```
+- Can generate variant `type` instead of `type_`

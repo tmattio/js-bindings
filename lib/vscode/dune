@@ -1,7 +1,7 @@
 (library
  (name vscode)
  (public_name vscode)
- (libraries js_of_ocaml ojs es5)
+ (libraries js_of_ocaml ojs es2015)
  (modes byte))
 
 (rule

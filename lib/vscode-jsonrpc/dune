@@ -1,0 +1,117 @@
+(library
+ (name vscode_jsonrpc)
+ (public_name vscode-jsonrpc)
+ (libraries js_of_ocaml ojs es5)
+ (modes byte))
+
+(rule
+ (targets vscode_jsonrpc_api.ml)
+ (deps intf/vscode_jsonrpc_api.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_jsonrpc_cancellation.ml)
+ (deps intf/vscode_jsonrpc_cancellation.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_jsonrpc_connection.ml)
+ (deps intf/vscode_jsonrpc_connection.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_jsonrpc_disposable.ml)
+ (deps intf/vscode_jsonrpc_disposable.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_jsonrpc_encoding.ml)
+ (deps intf/vscode_jsonrpc_encoding.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_jsonrpc_events.ml)
+ (deps intf/vscode_jsonrpc_events.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_jsonrpc_is.ml)
+ (deps intf/vscode_jsonrpc_is.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_jsonrpc_linkedMap.ml)
+ (deps intf/vscode_jsonrpc_linkedMap.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_jsonrpc_main.ml)
+ (deps intf/vscode_jsonrpc_main.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_jsonrpc_messageBuffer.ml)
+ (deps intf/vscode_jsonrpc_messageBuffer.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_jsonrpc_messageReader.ml)
+ (deps intf/vscode_jsonrpc_messageReader.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_jsonrpc_messageWriter.ml)
+ (deps intf/vscode_jsonrpc_messageWriter.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_jsonrpc_messages.ml)
+ (deps intf/vscode_jsonrpc_messages.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_jsonrpc_ral.ml)
+ (deps intf/vscode_jsonrpc_ral.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_jsonrpc_ril.ml)
+ (deps intf/vscode_jsonrpc_ril.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_jsonrpc_semaphore.ml)
+ (deps intf/vscode_jsonrpc_semaphore.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))

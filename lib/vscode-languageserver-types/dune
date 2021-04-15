@@ -1,0 +1,17 @@
+(library
+ (name vscode_languageserver_types)
+ (public_name vscode-languageserver-types)
+ (libraries js_of_ocaml ojs es5)
+ (modes byte)
+ (flags
+  (:standard
+   ; 16: Hide "[unerasable-optional-argument]): this optional argument cannot be erased."
+   -w
+   -16)))
+
+(rule
+ (targets vscode_languageserver_types_main.ml)
+ (deps intf/vscode_languageserver_types_main.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))

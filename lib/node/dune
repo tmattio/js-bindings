@@ -19,302 +19,302 @@
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets assert.ml)
- (deps intf/assert.mli)
+ (targets node_assert.ml)
+ (deps intf/node_assert.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets async_hooks.ml)
- (deps intf/async_hooks.mli)
+ (targets node_async_hooks.ml)
+ (deps intf/node_async_hooks.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets buffer.ml)
- (deps intf/buffer.mli)
+ (targets node_buffer.ml)
+ (deps intf/node_buffer.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets child_process.ml)
- (deps intf/child_process.mli)
+ (targets node_child_process.ml)
+ (deps intf/node_child_process.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets cluster.ml)
- (deps intf/cluster.mli)
+ (targets node_cluster.ml)
+ (deps intf/node_cluster.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets console.ml)
- (deps intf/console.mli)
+ (targets node_console.ml)
+ (deps intf/node_console.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets constants.ml)
- (deps intf/constants.mli)
+ (targets node_constants.ml)
+ (deps intf/node_constants.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets crypto.ml)
- (deps intf/crypto.mli)
+ (targets node_crypto.ml)
+ (deps intf/node_crypto.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets dgram.ml)
- (deps intf/dgram.mli)
+ (targets node_dgram.ml)
+ (deps intf/node_dgram.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets dns.ml)
- (deps intf/dns.mli)
+ (targets node_dns.ml)
+ (deps intf/node_dns.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets domain.ml)
- (deps intf/domain.mli)
+ (targets node_domain.ml)
+ (deps intf/node_domain.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets events.ml)
- (deps intf/events.mli)
+ (targets node_events.ml)
+ (deps intf/node_events.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets fs.ml)
- (deps intf/fs.mli)
+ (targets node_fs.ml)
+ (deps intf/node_fs.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets fs_promises.ml)
- (deps intf/fs_promises.mli)
+ (targets node_fs_promises.ml)
+ (deps intf/node_fs_promises.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets globals.ml)
- (deps intf/globals.mli)
+ (targets node_globals.ml)
+ (deps intf/node_globals.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets http.ml)
- (deps intf/http.mli)
+ (targets node_http.ml)
+ (deps intf/node_http.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets http2.ml)
- (deps intf/http2.mli)
+ (targets node_http2.ml)
+ (deps intf/node_http2.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets https.ml)
- (deps intf/https.mli)
+ (targets node_https.ml)
+ (deps intf/node_https.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets import.ml)
- (deps intf/import.mli)
+ (targets node_import.ml)
+ (deps intf/node_import.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets inspector.ml)
- (deps intf/inspector.mli)
+ (targets node_inspector.ml)
+ (deps intf/node_inspector.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets module.ml)
- (deps intf/module.mli)
+ (targets node_module.ml)
+ (deps intf/node_module.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets net.ml)
- (deps intf/net.mli)
+ (targets node_net.ml)
+ (deps intf/node_net.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets os.ml)
- (deps intf/os.mli)
+ (targets node_os.ml)
+ (deps intf/node_os.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets path.ml)
- (deps intf/path.mli)
+ (targets node_path.ml)
+ (deps intf/node_path.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets perf_hooks.ml)
- (deps intf/perf_hooks.mli)
+ (targets node_perf_hooks.ml)
+ (deps intf/node_perf_hooks.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets process.ml)
- (deps intf/process.mli)
+ (targets node_process.ml)
+ (deps intf/node_process.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets punycode.ml)
- (deps intf/punycode.mli)
+ (targets node_punycode.ml)
+ (deps intf/node_punycode.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets querystring.ml)
- (deps intf/querystring.mli)
+ (targets node_querystring.ml)
+ (deps intf/node_querystring.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets readline.ml)
- (deps intf/readline.mli)
+ (targets node_readline.ml)
+ (deps intf/node_readline.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets repl.ml)
- (deps intf/repl.mli)
+ (targets node_repl.ml)
+ (deps intf/node_repl.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets stream.ml)
- (deps intf/stream.mli)
+ (targets node_stream.ml)
+ (deps intf/node_stream.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets string_decoder.ml)
- (deps intf/string_decoder.mli)
+ (targets node_string_decoder.ml)
+ (deps intf/node_string_decoder.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets timers.ml)
- (deps intf/timers.mli)
+ (targets node_timers.ml)
+ (deps intf/node_timers.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets tls.ml)
- (deps intf/tls.mli)
+ (targets node_tls.ml)
+ (deps intf/node_tls.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets trace_events.ml)
- (deps intf/trace_events.mli)
+ (targets node_trace_events.ml)
+ (deps intf/node_trace_events.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets tty.ml)
- (deps intf/tty.mli)
+ (targets node_tty.ml)
+ (deps intf/node_tty.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets url.ml)
- (deps intf/url.mli)
+ (targets node_url.ml)
+ (deps intf/node_url.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets util.ml)
- (deps intf/util.mli)
+ (targets node_util.ml)
+ (deps intf/node_util.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets v8.ml)
- (deps intf/v8.mli)
+ (targets node_v8.ml)
+ (deps intf/node_v8.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vm.ml)
- (deps intf/vm.mli)
+ (targets node_vm.ml)
+ (deps intf/node_vm.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets wasi.ml)
- (deps intf/wasi.mli)
+ (targets node_wasi.ml)
+ (deps intf/node_wasi.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets worker_threads.ml)
- (deps intf/worker_threads.mli)
+ (targets node_worker_threads.ml)
+ (deps intf/node_worker_threads.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets zlib.ml)
- (deps intf/zlib.mli)
+ (targets node_zlib.ml)
+ (deps intf/node_zlib.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))

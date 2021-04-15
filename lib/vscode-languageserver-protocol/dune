@@ -1,0 +1,159 @@
+(library
+ (name vscode_languageserver_protocol)
+ (public_name vscode-languageserver-protocol)
+ (libraries js_of_ocaml ojs es5)
+ (modes byte))
+
+(rule
+ (targets vscode_languageserver_protocol_api.ml)
+ (deps intf/vscode_languageserver_protocol_api.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_connection.ml)
+ (deps intf/vscode_languageserver_protocol_connection.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_is.ml)
+ (deps intf/vscode_languageserver_protocol_is.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_main.ml)
+ (deps intf/vscode_languageserver_protocol_main.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_messages.ml)
+ (deps intf/vscode_languageserver_protocol_messages.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_proposed_diagnostic.ml)
+ (deps intf/vscode_languageserver_protocol_proposed_diagnostic.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_protocol.ml)
+ (deps intf/vscode_languageserver_protocol_protocol.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_protocol_callHierarchy.ml)
+ (deps intf/vscode_languageserver_protocol_protocol_callHierarchy.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_protocol_colorProvider.ml)
+ (deps intf/vscode_languageserver_protocol_protocol_colorProvider.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_protocol_configuration.ml)
+ (deps intf/vscode_languageserver_protocol_protocol_configuration.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_protocol_declaration.ml)
+ (deps intf/vscode_languageserver_protocol_protocol_declaration.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_protocol_fileOperations.ml)
+ (deps intf/vscode_languageserver_protocol_protocol_fileOperations.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_protocol_foldingRange.ml)
+ (deps intf/vscode_languageserver_protocol_protocol_foldingRange.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_protocol_implementation.ml)
+ (deps intf/vscode_languageserver_protocol_protocol_implementation.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_protocol_linkedEditingRange.ml)
+ (deps intf/vscode_languageserver_protocol_protocol_linkedEditingRange.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_protocol_moniker.ml)
+ (deps intf/vscode_languageserver_protocol_protocol_moniker.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_protocol_progress.ml)
+ (deps intf/vscode_languageserver_protocol_protocol_progress.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_protocol_selectionRange.ml)
+ (deps intf/vscode_languageserver_protocol_protocol_selectionRange.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_protocol_semanticTokens.ml)
+ (deps intf/vscode_languageserver_protocol_protocol_semanticTokens.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_protocol_showDocument.ml)
+ (deps intf/vscode_languageserver_protocol_protocol_showDocument.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_protocol_typeDefinition.ml)
+ (deps intf/vscode_languageserver_protocol_protocol_typeDefinition.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
+
+(rule
+ (targets vscode_languageserver_protocol_protocol_workspaceFolders.ml)
+ (deps intf/vscode_languageserver_protocol_protocol_workspaceFolders.mli)
+ (mode promote)
+ (action
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
