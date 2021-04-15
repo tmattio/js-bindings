@@ -1,6 +1,11 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  pull_request:
+  push:
+  schedule:
+    # Prime the caches every Monday
+    - cron: 0 1 * * MON
 
 jobs:
   build:
@@ -14,50 +19,77 @@ jobs:
         os:
           - macos-latest
           - ubuntu-latest
-          - windows-latest
-        ocaml-version:
-          - 4.11.1
+        ocaml-compiler:
+          - ocaml-base-compiler.4.12.0
+        include:
+          - os: windows-latest
+            ocaml-compiler: ocaml-variants.4.12.0+mingw64c
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Retrieve opam cache
-        uses: actions/cache@v2
-        if: runner.os != 'Windows'
-        id: cache-opam
+      - name: Use OCaml ${{ matrix.ocaml-compiler }}
+        uses: avsm/setup-ocaml@v2
         with:
-          path: ~/.opam
-          key: v1-${{ runner.os }}-opam-${{ matrix.ocaml-version }}-${{ hashFiles('es5.opam.locked') }}
-          restore-keys: |
-            v1-${{ runner.os }}-opam-${{ matrix.ocaml-version }}-
+          ocaml-compiler: ${{ matrix.ocaml-compiler }}
+          dune-cache: ${{ matrix.os != 'macos-latest' }}
+          opam-depext-flags: --with-test
 
-      - name: Use OCaml ${{ matrix.ocaml-version }}
-        uses: avsm/setup-ocaml@v1
+      - run: opam depext gen_js_api --install
+
+      - run: opam install . --deps-only --with-test
+
+      - run: make build
+
+      # - run: make test
+
+  lint-opam:
+    strategy:
+      matrix:
+        ocaml-compiler:
+          - ocaml-base-compiler.4.12.0
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use OCaml ${{ matrix.ocaml-compiler }}
+        uses: avsm/setup-ocaml@v2
         with:
-          ocaml-version: ${{ matrix.ocaml-version }}
+          ocaml-compiler: ${{ matrix.ocaml-compiler }}
+          dune-cache: true
 
-      - name: Pin package
-        run: opam pin add es5.dev . --no-action
+      - run: opam depext gen_js_api opam-dune-lint --install
 
-      - name: Query and install external dependencies
-        run: opam depext es5 --yes --with-doc --with-test
+      - run: opam install . --deps-only
 
-      - name: Install dependencies
-        if: steps.cache-opam.outputs.cache-hit != 'true'
-        run: |
-          opam install . --deps-only --with-doc --with-test --locked --unlock-base
-          opam install ocamlformat --skip-updates
+      - run: make build
 
-      - name: Upgrade dependencies
-        run: opam upgrade --fixup
-        if: steps.cache-opam.outputs.cache-hit == 'true'
+      - run: opam exec -- opam-dune-lint
 
-      - name: Build
-        run: make build
+  lint-fmt:
+    strategy:
+      matrix:
+        ocaml-compiler:
+          - ocaml-base-compiler.4.12.0
 
-      - name: Check formatting
-        run: make format
+    runs-on: ubuntu-latest
 
-      - name: Run tests
-        run: make test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use OCaml ${{ matrix.ocaml-compiler }}
+        uses: avsm/setup-ocaml@v2
+        with:
+          ocaml-compiler: ${{ matrix.ocaml-compiler }}
+          dune-cache: true
+
+      - run: opam depext gen_js_api ocamlformat --install
+
+      - run: opam install . --deps-only
+
+      - run: make fmt

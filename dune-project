@@ -23,8 +23,8 @@
   (ocaml
    (>= 4.08.0))
   dune
-  ojs
-  js_of_ocaml))
+  js_of_ocaml
+  ojs))
 
 (package
  (name es2015)
@@ -33,11 +33,11 @@
  (depends
   (ocaml
    (>= 4.08.0))
-  dune
-  ojs
   (es5
    (= :version))
-  js_of_ocaml))
+  dune
+  js_of_ocaml
+  ojs))
 
 (package
  (name es2016)
@@ -46,11 +46,11 @@
  (depends
   (ocaml
    (>= 4.08.0))
-  dune
-  ojs
   (es2015
    (= :version))
-  js_of_ocaml))
+  dune
+  js_of_ocaml
+  ojs))
 
 (package
  (name es2017)
@@ -59,11 +59,11 @@
  (depends
   (ocaml
    (>= 4.08.0))
-  dune
-  ojs
   (es2016
    (= :version))
-  js_of_ocaml))
+  dune
+  js_of_ocaml
+  ojs))
 
 (package
  (name es2018)
@@ -72,11 +72,11 @@
  (depends
   (ocaml
    (>= 4.08.0))
-  dune
-  ojs
   (es2017
    (= :version))
-  js_of_ocaml))
+  dune
+  js_of_ocaml
+  ojs))
 
 (package
  (name es2019)
@@ -85,11 +85,11 @@
  (depends
   (ocaml
    (>= 4.08.0))
-  dune
-  ojs
   (es2018
    (= :version))
-  js_of_ocaml))
+  dune
+  js_of_ocaml
+  ojs))
 
 (package
  (name es2020)
@@ -98,11 +98,11 @@
  (depends
   (ocaml
    (>= 4.08.0))
-  dune
-  ojs
   (es2019
    (= :version))
-  js_of_ocaml))
+  dune
+  js_of_ocaml
+  ojs))
 
 (package
  (name vscode)
@@ -111,11 +111,11 @@
  (depends
   (ocaml
    (>= 4.08.0))
-  dune
-  ojs
   (es5
    (= :version))
-  js_of_ocaml))
+  dune
+  js_of_ocaml
+  ojs))
 
 (package
  (name node)
@@ -124,8 +124,8 @@
  (depends
   (ocaml
    (>= 4.08.0))
-  dune
-  ojs
   (es2020
    (= :version))
-  js_of_ocaml))
+  dune
+  js_of_ocaml
+  ojs))
