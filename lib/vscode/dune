@@ -9,4 +9,4 @@
  (deps lib/vscode.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))

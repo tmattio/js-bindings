@@ -14,39 +14,39 @@
  (deps lib/es2018_asyncgenerator.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2018_asynciterable.ml)
  (deps lib/es2018_asynciterable.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2018.ml)
  (deps lib/es2018.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2018_intl.ml)
  (deps lib/es2018_intl.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2018_promise.ml)
  (deps lib/es2018_promise.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2018_regexp.ml)
  (deps lib/es2018_regexp.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))

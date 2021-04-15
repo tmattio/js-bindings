@@ -14,39 +14,39 @@
  (deps lib/es2017.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2017_intl.ml)
  (deps lib/es2017_intl.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2017_object.ml)
  (deps lib/es2017_object.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2017_sharedmemory.ml)
  (deps lib/es2017_sharedmemory.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2017_string.ml)
  (deps lib/es2017_string.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2017_typedarrays.ml)
  (deps lib/es2017_typedarrays.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))

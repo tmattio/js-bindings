@@ -13,3 +13,6 @@ _build/
 
 # Local OPAM switch
 _opam/
+
+# ts2ocaml
+script/ts2ocaml.js

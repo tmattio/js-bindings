@@ -1,2 +1,2 @@
-lib/*/gen/*.ml
+lib/*/gen/*
 lib/*/*.ml

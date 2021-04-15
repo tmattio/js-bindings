@@ -14,32 +14,32 @@
  (deps lib/es2019.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2019_array.ml)
  (deps lib/es2019_array.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2019_object.ml)
  (deps lib/es2019_object.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2019_string.ml)
  (deps lib/es2019_string.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2019_symbol.ml)
  (deps lib/es2019_symbol.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))

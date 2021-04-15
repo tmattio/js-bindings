@@ -13,60 +13,60 @@
  (deps lib/es2015.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2015_collection.ml)
  (deps lib/es2015_collection.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2015_core.ml)
  (deps lib/es2015_core.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2015_generator.ml)
  (deps lib/es2015_generator.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2015_iterable.ml)
  (deps lib/es2015_iterable.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2015_promise.ml)
  (deps lib/es2015_promise.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2015_proxy.ml)
  (deps lib/es2015_proxy.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2015_reflect.ml)
  (deps lib/es2015_reflect.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2015_symbol.ml)
  (deps lib/es2015_symbol.mli)
  (mode promote)
  (action
-  (run %{bin:gen_js_api} %{deps} -o {%targets})))
+  (run %{bin:gen_js_api} %{deps} -o %{targets})))
