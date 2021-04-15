@@ -1,0 +1,11 @@
+(executable
+ (name client)
+ (modules client)
+ (libraries vscode-jsonrpc)
+ (modes js))
+
+(executable
+ (name server)
+ (modules server)
+ (libraries vscode-jsonrpc)
+ (modes js))

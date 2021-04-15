@@ -2,7 +2,7 @@
 
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
-open Es5
+open Es2020
 
 module Internal : sig
   module AnonymousInterfaces : sig end
@@ -33,10 +33,6 @@ open Internal
 open AnonymousInterfaces
 open Types
 
-(* import RAL from './ral'; *)
-(* import { Message } from './messages'; *)
-(* import { Event } from './events'; *)
-(* import { ContentEncoder, ContentTypeEncoder } from './encoding'; *)
 module MessageWriter : sig
   type t = _MessageWriter
 
@@ -46,20 +42,21 @@ module MessageWriter : sig
 
   val get_onError
     :  t
-    -> (Error.t * Message.t or_undefined * float or_undefined) Event.t_1
+    -> (Error.t
+       * Vscode_jsonrpc_messages.Message.t or_undefined
+       * float or_undefined)
+       Vscode_jsonrpc_events.Event.t
     [@@js.get "onError"]
 
-  val get_onClose : t -> unit Event.t_1 [@@js.get "onClose"]
+  val get_onClose : t -> unit Vscode_jsonrpc_events.Event.t [@@js.get "onClose"]
 
-  val write : t -> msg:Message.t -> unit Promise.t [@@js.call "write"]
+  val write : t -> msg:Vscode_jsonrpc_messages.Message.t -> unit Promise.t
+    [@@js.call "write"]
 
   val end_ : t -> unit [@@js.call "end"]
 
   val dispose : t -> unit [@@js.call "dispose"]
-end
-[@@js.scope "MessageWriter"]
 
-module MessageWriter : sig
   val is : value:any -> bool [@@js.global "is"]
 end
 [@@js.scope "MessageWriter"]
@@ -89,19 +86,22 @@ module AbstractMessageWriter : sig
 
   val get_onError
     :  t
-    -> (Error.t * Message.t or_undefined * float or_undefined) Event.t_1
+    -> (Error.t
+       * Vscode_jsonrpc_messages.Message.t or_undefined
+       * float or_undefined)
+       Vscode_jsonrpc_events.Event.t
     [@@js.get "onError"]
 
   val fireError
     :  t
     -> error:any
-    -> ?message:Message.t
+    -> ?message:Vscode_jsonrpc_messages.Message.t
     -> ?count:float
     -> unit
     -> unit
     [@@js.call "fireError"]
 
-  val get_onClose : t -> unit Event.t_1 [@@js.get "onClose"]
+  val get_onClose : t -> unit Vscode_jsonrpc_events.Event.t [@@js.get "onClose"]
 
   val fireClose : t -> unit [@@js.call "fireClose"]
 
@@ -119,20 +119,25 @@ module MessageWriterOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_charset : t -> RAL.MessageBufferEncoding.t [@@js.get "charset"]
+  val get_charset : t -> Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
+    [@@js.get "charset"]
 
-  val set_charset : t -> RAL.MessageBufferEncoding.t -> unit
+  val set_charset : t -> Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t -> unit
     [@@js.set "charset"]
 
-  val get_contentEncoder : t -> ContentEncoder.t [@@js.get "contentEncoder"]
+  val get_contentEncoder : t -> Vscode_jsonrpc_encoding.ContentEncoder.t
+    [@@js.get "contentEncoder"]
 
-  val set_contentEncoder : t -> ContentEncoder.t -> unit
+  val set_contentEncoder : t -> Vscode_jsonrpc_encoding.ContentEncoder.t -> unit
     [@@js.set "contentEncoder"]
 
-  val get_contentTypeEncoder : t -> ContentTypeEncoder.t
+  val get_contentTypeEncoder : t -> Vscode_jsonrpc_encoding.ContentTypeEncoder.t
     [@@js.get "contentTypeEncoder"]
 
-  val set_contentTypeEncoder : t -> ContentTypeEncoder.t -> unit
+  val set_contentTypeEncoder
+    :  t
+    -> Vscode_jsonrpc_encoding.ContentTypeEncoder.t
+    -> unit
     [@@js.set "contentTypeEncoder"]
 end
 [@@js.scope "MessageWriterOptions"]
@@ -167,13 +172,17 @@ module WriteableStreamMessageWriter : sig
     [@@js.set "writeSemaphore"]
 
   val create
-    :  writable:RAL.WritableStream.t
-    -> ?options:(_MessageWriterOptions, RAL.MessageBufferEncoding.t) union2
+    :  writable:Vscode_jsonrpc_ral.RAL.WritableStream.t
+    -> ?options:
+         ( _MessageWriterOptions
+         , Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t )
+         union2
     -> unit
     -> t
     [@@js.create]
 
-  val write : t -> msg:Message.t -> unit Promise.t [@@js.call "write"]
+  val write : t -> msg:Vscode_jsonrpc_messages.Message.t -> unit Promise.t
+    [@@js.call "write"]
 
   val get_doWrite : t -> (* FIXME: unknown type *) any [@@js.get "doWrite"]
 

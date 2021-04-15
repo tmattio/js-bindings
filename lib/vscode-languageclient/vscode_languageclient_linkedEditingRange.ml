@@ -44,15 +44,14 @@ module ProvideLinkedEditingRangeSignature =
           document:Code.TextDocument.t ->
             position:Code.Position.t ->
               token:Code.CancellationToken.t ->
-                Code.LinkedEditingRanges.t Code.ProviderResult.t_1)
+                Code.LinkedEditingRanges.t Code.ProviderResult.t)
       =
       fun (x7 : t) ->
         fun ~this:(x3 : unit) ->
           fun ~document:(x4 : Code.TextDocument.t) ->
             fun ~position:(x5 : Code.Position.t) ->
               fun ~token:(x6 : Code.CancellationToken.t) ->
-                Code.ProviderResult.t_1_of_js
-                  Code.LinkedEditingRanges.t_of_js
+                Code.ProviderResult.t_of_js Code.LinkedEditingRanges.t_of_js
                   (Ojs.apply (t_to_js x7)
                      [|(Ojs.unit_to_js x3);(Code.TextDocument.t_to_js x4);(
                        Code.Position.t_to_js x5);(Code.CancellationToken.t_to_js
@@ -73,7 +72,7 @@ module LinkedEditingRangeMiddleware =
             position:Code.Position.t ->
               token:Code.CancellationToken.t ->
                 next:_ProvideLinkedEditingRangeSignature ->
-                  Code.LinkedEditingRanges.t Code.ProviderResult.t_1)
+                  Code.LinkedEditingRanges.t Code.ProviderResult.t)
       =
       fun (x16 : t) ->
         fun ~this:(x11 : unit) ->
@@ -81,7 +80,7 @@ module LinkedEditingRangeMiddleware =
             fun ~position:(x13 : Code.Position.t) ->
               fun ~token:(x14 : Code.CancellationToken.t) ->
                 fun ~next:(x15 : _ProvideLinkedEditingRangeSignature) ->
-                  Code.ProviderResult.t_1_of_js
+                  Code.ProviderResult.t_of_js
                     Code.LinkedEditingRanges.t_of_js
                     (Ojs.call (t_to_js x16) "provideLinkedEditingRange"
                        [|(Ojs.unit_to_js x11);(Code.TextDocument.t_to_js x12);(
@@ -136,10 +135,10 @@ module LinkedEditingFeature =
       t ->
         (Proto.LinkedEditingRangeOptions.t or_boolean,
           Proto.LinkedEditingRangeRegistrationOptions.t,
-          Code.LinkedEditingRangeProvider.t) TextDocumentFeature.t_3)
+          Code.LinkedEditingRangeProvider.t) TextDocumentFeature.t)
       =
       fun (x29 : t) ->
-        TextDocumentFeature.t_3_of_js
+        TextDocumentFeature.t_of_js
           (fun (x30 : Ojs.t) ->
              or_boolean_of_js Proto.LinkedEditingRangeOptions.t_of_js x30)
           Proto.LinkedEditingRangeRegistrationOptions.t_of_js

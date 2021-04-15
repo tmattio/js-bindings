@@ -20,7 +20,7 @@ module Internal : sig
     open AnonymousInterfaces
 
     type _DidChangeWorkspaceFoldersNotification_HandlerSignature =
-      _DidChangeWorkspaceFoldersParams NotificationHandler.t_1
+      _DidChangeWorkspaceFoldersParams NotificationHandler.t
 
     and _DidChangeWorkspaceFoldersNotification_MiddlewareSignature =
       [ `DidChangeWorkspaceFoldersNotification_MiddlewareSignature ] intf
@@ -45,7 +45,7 @@ module Internal : sig
     [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
 
     and _WorkspaceFoldersRequest_HandlerSignature =
-      (_WorkspaceFolder list or_null, unit) RequestHandler0.t_2
+      (_WorkspaceFolder list or_null, unit) RequestHandler0.t
 
     and _WorkspaceFoldersRequest_MiddlewareSignature =
       [ `WorkspaceFoldersRequest_MiddlewareSignature ] intf
@@ -168,11 +168,7 @@ end
 
 module WorkspaceFoldersRequest : sig
   val type_
-    : ( _WorkspaceFolder list or_null
-      , never
-      , unit
-      , unit )
-      ProtocolRequestType0.t_4
+    : (_WorkspaceFolder list or_null, never, unit, unit) ProtocolRequestType0.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
@@ -194,7 +190,7 @@ module WorkspaceFoldersRequest : sig
       :  t
       -> token:CancellationToken.t
       -> next:_WorkspaceFoldersRequest_HandlerSignature
-      -> (_WorkspaceFolder list or_null, unit) HandlerResult.t_2
+      -> (_WorkspaceFolder list or_null, unit) HandlerResult.t
       [@@js.apply]
   end
   [@@js.scope "MiddlewareSignature"]
@@ -203,7 +199,7 @@ end
 
 module DidChangeWorkspaceFoldersNotification : sig
   val type_
-    : (_DidChangeWorkspaceFoldersParams, unit) ProtocolNotificationType.t_2
+    : (_DidChangeWorkspaceFoldersParams, unit) ProtocolNotificationType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig

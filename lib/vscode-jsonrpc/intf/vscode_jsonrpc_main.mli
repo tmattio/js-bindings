@@ -2,7 +2,7 @@
 
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
-open Es5
+open Es2020
 
 module Internal : sig
   module AnonymousInterfaces : sig end
@@ -40,15 +40,8 @@ open Internal
 open AnonymousInterfaces
 open Types
 
-(* import RAL from '../common/ral'; *)
-(* import { AbstractMessageReader, DataCallback, AbstractMessageWriter, Message,
-   ReadableStreamMessageReader, WriteableStreamMessageWriter,
-   MessageWriterOptions, MessageReaderOptions, MessageReader, MessageWriter,
-   ConnectionStrategy, ConnectionOptions, MessageConnection, Logger, Disposable
-   } from '../common/api'; *)
-(* import { ChildProcess } from 'child_process'; *)
-(* import { Socket } from 'net'; *)
-(* export * from '../common/api'; *)
+include module type of struct include Vscode_jsonrpc_api end
+
 module IPCMessageReader : sig
   type t = _IPCMessageReader
 
@@ -61,7 +54,9 @@ module IPCMessageReader : sig
   val set_process : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "process"]
 
-  val create : process:(ChildProcess.t, NodeJS.Process.t) union2 -> t
+  val create
+    :  process:(Node.Child_process.ChildProcess.t, Node.Process.Process.t) union2
+    -> t
     [@@js.create]
 
   val listen : t -> callback:DataCallback.t -> Disposable.t [@@js.call "listen"]
@@ -88,7 +83,9 @@ module IPCMessageWriter : sig
   val set_errorCount : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "errorCount"]
 
-  val create : process:(ChildProcess.t, NodeJS.Process.t) union2 -> t
+  val create
+    :  process:(Node.Child_process.ChildProcess.t, Node.Process.Process.t) union2
+    -> t
     [@@js.create]
 
   val write : t -> msg:Message.t -> unit Promise.t [@@js.call "write"]
@@ -115,8 +112,8 @@ module SocketMessageReader : sig
   val t_of_js : Ojs.t -> t
 
   val create
-    :  socket:Socket.t
-    -> ?encoding:RAL.MessageBufferEncoding.t
+    :  socket:Node.Net.Socket.t
+    -> ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
     -> unit
     -> t
     [@@js.create]
@@ -138,8 +135,11 @@ module SocketMessageWriter : sig
     [@@js.set "socket"]
 
   val create
-    :  socket:Socket.t
-    -> ?options:(MessageWriterOptions.t, RAL.MessageBufferEncoding.t) union2
+    :  socket:Node.Net.Socket.t
+    -> ?options:
+         ( MessageWriterOptions.t
+         , Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t )
+         union2
     -> unit
     -> t
     [@@js.create]
@@ -158,8 +158,11 @@ module StreamMessageReader : sig
   val t_of_js : Ojs.t -> t
 
   val create
-    :  readble:NodeJS.ReadableStream.t
-    -> ?encoding:(MessageReaderOptions.t, RAL.MessageBufferEncoding.t) union2
+    :  readble:Node.ReadableStream.t
+    -> ?encoding:
+         ( MessageReaderOptions.t
+         , Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t )
+         union2
     -> unit
     -> t
     [@@js.create]
@@ -176,8 +179,11 @@ module StreamMessageWriter : sig
   val t_of_js : Ojs.t -> t
 
   val create
-    :  writable:NodeJS.WritableStream.t
-    -> ?options:(MessageWriterOptions.t, RAL.MessageBufferEncoding.t) union2
+    :  writable:Node.WritableStream.t
+    -> ?options:
+         ( MessageWriterOptions.t
+         , Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t )
+         union2
     -> unit
     -> t
     [@@js.create]
@@ -203,14 +209,14 @@ end
 
 val createClientPipeTransport
   :  pipeName:string
-  -> ?encoding:RAL.MessageBufferEncoding.t
+  -> ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
   -> unit
   -> _PipeTransport Promise.t
   [@@js.global "createClientPipeTransport"]
 
 val createServerPipeTransport
   :  pipeName:string
-  -> ?encoding:RAL.MessageBufferEncoding.t
+  -> ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
   -> unit
   -> MessageReader.t * MessageWriter.t
   [@@js.global "createServerPipeTransport"]
@@ -229,14 +235,14 @@ end
 
 val createClientSocketTransport
   :  port:float
-  -> ?encoding:RAL.MessageBufferEncoding.t
+  -> ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
   -> unit
   -> _SocketTransport Promise.t
   [@@js.global "createClientSocketTransport"]
 
 val createServerSocketTransport
   :  port:float
-  -> ?encoding:RAL.MessageBufferEncoding.t
+  -> ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
   -> unit
   -> MessageReader.t * MessageWriter.t
   [@@js.global "createServerSocketTransport"]
@@ -251,8 +257,8 @@ val createMessageConnection
   [@@js.global "createMessageConnection"]
 
 val createMessageConnection
-  :  inputStream:NodeJS.ReadableStream.t
-  -> outputStream:NodeJS.WritableStream.t
+  :  inputStream:Node.ReadableStream.t
+  -> outputStream:Node.WritableStream.t
   -> ?logger:Logger.t
   -> ?options:(ConnectionOptions.t, ConnectionStrategy.t) union2
   -> unit

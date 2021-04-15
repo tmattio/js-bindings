@@ -120,17 +120,17 @@ module DiagnosticProvider : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_onDidChangeDiagnostics : t -> unit VEvent.t_1
+  val get_onDidChangeDiagnostics : t -> unit VEvent.t
     [@@js.get "onDidChangeDiagnostics"]
 
-  val set_onDidChangeDiagnostics : t -> unit VEvent.t_1 -> unit
+  val set_onDidChangeDiagnostics : t -> unit VEvent.t -> unit
     [@@js.set "onDidChangeDiagnostics"]
 
   val provideDiagnostics
     :  t
     -> textDocument:TextDocument.t
     -> token:CancellationToken.t
-    -> _VDocumentDiagnosticReport ProviderResult.t_1
+    -> _VDocumentDiagnosticReport ProviderResult.t
     [@@js.call "provideDiagnostics"]
 end
 [@@js.scope "DiagnosticProvider"]
@@ -147,7 +147,7 @@ module ProvideDiagnosticSignature : sig
     -> this:unit
     -> textDocument:TextDocument.t
     -> token:CancellationToken.t
-    -> _VDocumentDiagnosticReport ProviderResult.t_1
+    -> _VDocumentDiagnosticReport ProviderResult.t
     [@@js.apply]
 end
 [@@js.scope "ProvideDiagnosticSignature"]
@@ -165,7 +165,7 @@ module DiagnosticProviderMiddleware : sig
     -> document:TextDocument.t
     -> token:CancellationToken.t
     -> next:_ProvideDiagnosticSignature
-    -> _VDocumentDiagnosticReport ProviderResult.t_1
+    -> _VDocumentDiagnosticReport ProviderResult.t
     [@@js.call "provideDiagnostics"]
 end
 [@@js.scope "DiagnosticProviderMiddleware"]
@@ -177,10 +177,10 @@ module DiagnosticFeatureProvider : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_onDidChangeDiagnosticsEmitter : t -> unit EventEmitter.t_1
+  val get_onDidChangeDiagnosticsEmitter : t -> unit EventEmitter.t
     [@@js.get "onDidChangeDiagnosticsEmitter"]
 
-  val set_onDidChangeDiagnosticsEmitter : t -> unit EventEmitter.t_1 -> unit
+  val set_onDidChangeDiagnosticsEmitter : t -> unit EventEmitter.t -> unit
     [@@js.set "onDidChangeDiagnosticsEmitter"]
 
   val get_provider : t -> _DiagnosticProvider [@@js.get "provider"]
@@ -228,7 +228,7 @@ module DiagnosticFeature : sig
     -> ( Proposed.DiagnosticOptions.t
        , Proposed.DiagnosticRegistrationOptions.t
        , _DiagnosticFeatureProvider )
-       TextDocumentFeature.t_3
+       TextDocumentFeature.t
     [@@js.cast]
 end
 [@@js.scope "DiagnosticFeature"]

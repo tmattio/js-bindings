@@ -49,13 +49,13 @@ module ProposedFeatures =
   struct
     let (createAll :
       _client:BaseLanguageClient.t ->
-        (StaticFeature.t, any DynamicFeature.t_1) union2 list)
+        (StaticFeature.t, any DynamicFeature.t) union2 list)
       =
       fun ~_client:(x9 : BaseLanguageClient.t) ->
         Ojs.list_of_js
           (fun (x10 : Ojs.t) ->
              union2_of_js StaticFeature.t_of_js
-               (fun (x12 : Ojs.t) -> DynamicFeature.t_1_of_js any_of_js x12)
+               (fun (x12 : Ojs.t) -> DynamicFeature.t_of_js any_of_js x12)
                x10)
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "ProposedFeatures")
              "createAll" [|(BaseLanguageClient.t_to_js x9)|])

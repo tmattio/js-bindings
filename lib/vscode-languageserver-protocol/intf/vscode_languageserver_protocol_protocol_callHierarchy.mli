@@ -22,7 +22,7 @@ module Internal : sig
       ( _CallHierarchyIncomingCallsParams
       , CallHierarchyIncomingCall.t list or_null
       , unit )
-      RequestHandler.t_3
+      RequestHandler.t
 
     and _CallHierarchyOptions = [ `CallHierarchyOptions ] intf
     [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
@@ -35,7 +35,7 @@ module Internal : sig
       ( _CallHierarchyOutgoingCallsParams
       , CallHierarchyOutgoingCall.t list or_null
       , unit )
-      RequestHandler.t_3
+      RequestHandler.t
 
     and _CallHierarchyPrepareParams = [ `CallHierarchyPrepareParams ] intf
     [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
@@ -44,7 +44,7 @@ module Internal : sig
       ( _CallHierarchyPrepareParams
       , CallHierarchyItem.t list or_null
       , unit )
-      RequestHandler.t_3
+      RequestHandler.t
 
     and _CallHierarchyRegistrationOptions =
       [ `CallHierarchyRegistrationOptions | `CallHierarchyOptions ] intf
@@ -130,7 +130,7 @@ module CallHierarchyPrepareRequest : sig
       , never
       , unit
       , _CallHierarchyRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
@@ -172,7 +172,7 @@ module CallHierarchyIncomingCallsRequest : sig
       , CallHierarchyIncomingCall.t list
       , unit
       , unit )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
@@ -214,7 +214,7 @@ module CallHierarchyOutgoingCallsRequest : sig
       , CallHierarchyOutgoingCall.t list
       , unit
       , unit )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig

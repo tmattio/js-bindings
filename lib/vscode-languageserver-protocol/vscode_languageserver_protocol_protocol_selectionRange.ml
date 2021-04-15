@@ -17,7 +17,7 @@ module Internal =
             intf
         and _SelectionRangeRequest_HandlerSignature =
           (_SelectionRangeParams, SelectionRange.t list or_null, unit)
-            RequestHandler.t_3
+            RequestHandler.t
         let rec _SelectionRangeClientCapabilities_of_js :
           Ojs.t -> _SelectionRangeClientCapabilities = Obj.magic
         and _SelectionRangeClientCapabilities_to_js :
@@ -37,7 +37,7 @@ module Internal =
         and _SelectionRangeRequest_HandlerSignature_of_js :
           Ojs.t -> _SelectionRangeRequest_HandlerSignature =
           fun (x7 : Ojs.t) ->
-            RequestHandler.t_3_of_js _SelectionRangeParams_of_js
+            RequestHandler.t_of_js _SelectionRangeParams_of_js
               (fun (x9 : Ojs.t) ->
                  or_null_of_js
                    (fun (x10 : Ojs.t) ->
@@ -48,9 +48,9 @@ module Internal =
           fun
             (x1 :
               (_SelectionRangeParams, SelectionRange.t list or_null, 
-                unit) RequestHandler.t_3)
+                unit) RequestHandler.t)
             ->
-            RequestHandler.t_3_to_js _SelectionRangeParams_to_js
+            RequestHandler.t_to_js _SelectionRangeParams_to_js
               (fun (x3 : SelectionRange.t list or_null) ->
                  or_null_to_js
                    (fun (x4 : SelectionRange.t list) ->
@@ -146,9 +146,9 @@ module SelectionRangeRequest =
     let (type_ :
       (_SelectionRangeParams, SelectionRange.t list or_null,
         SelectionRange.t list, any, _SelectionRangeRegistrationOptions)
-        ProtocolRequestType.t_5)
+        ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _SelectionRangeParams_of_js
+      ProtocolRequestType.t_of_js _SelectionRangeParams_of_js
         (fun (x40 : Ojs.t) ->
            or_null_of_js
              (fun (x41 : Ojs.t) -> Ojs.list_of_js SelectionRange.t_of_js x41)

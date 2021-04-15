@@ -43,7 +43,7 @@ module Internal =
           [ `DiagnosticClientCapabilities ] intf
         and _DiagnosticOptions = [ `DiagnosticOptions ] intf
         and _DiagnosticRefreshRequest_HandlerSignature =
-          (unit, unit) RequestHandler0.t_2
+          (unit, unit) RequestHandler0.t
         and _DiagnosticRegistrationOptions =
           [ `DiagnosticRegistrationOptions  | `DiagnosticOptions ] intf
         and _DiagnosticServerCancellationData =
@@ -59,14 +59,14 @@ module Internal =
           [ `DocumentDiagnosticReportPartialResult ] intf
         and _DocumentDiagnosticRequest_HandlerSignature =
           (_DocumentDiagnosticParams, _DocumentDiagnosticReport, unit)
-            RequestHandler.t_3
+            RequestHandler.t
         and _WorkspaceDiagnosticParams = [ `WorkspaceDiagnosticParams ] intf
         and _WorkspaceDiagnosticReport = [ `WorkspaceDiagnosticReport ] intf
         and _WorkspaceDiagnosticReportPartialResult =
           [ `WorkspaceDiagnosticReportPartialResult ] intf
         and _WorkspaceDiagnosticRequest_HandlerSignature =
           (_WorkspaceDiagnosticParams, _WorkspaceDiagnosticReport or_null,
-            unit) RequestHandler.t_3
+            unit) RequestHandler.t
         and _WorkspaceDocumentDiagnosticReport =
           (anonymous_interface_4, _DocumentDiagnosticReport) intersection2
         let rec _DiagnosticClientCapabilities_of_js :
@@ -88,11 +88,11 @@ module Internal =
         and _DiagnosticRefreshRequest_HandlerSignature_of_js :
           Ojs.t -> _DiagnosticRefreshRequest_HandlerSignature =
           fun (x4 : Ojs.t) ->
-            RequestHandler0.t_2_of_js Ojs.unit_of_js Ojs.unit_of_js x4
+            RequestHandler0.t_of_js Ojs.unit_of_js Ojs.unit_of_js x4
         and _DiagnosticRefreshRequest_HandlerSignature_to_js :
           _DiagnosticRefreshRequest_HandlerSignature -> Ojs.t =
-          fun (x1 : (unit, unit) RequestHandler0.t_2) ->
-            RequestHandler0.t_2_to_js Ojs.unit_to_js Ojs.unit_to_js x1
+          fun (x1 : (unit, unit) RequestHandler0.t) ->
+            RequestHandler0.t_to_js Ojs.unit_to_js Ojs.unit_to_js x1
         and _DiagnosticRegistrationOptions_of_js :
           Ojs.t -> _DiagnosticRegistrationOptions = Obj.magic
         and _DiagnosticRegistrationOptions_to_js :
@@ -167,16 +167,16 @@ module Internal =
         and _DocumentDiagnosticRequest_HandlerSignature_of_js :
           Ojs.t -> _DocumentDiagnosticRequest_HandlerSignature =
           fun (x25 : Ojs.t) ->
-            RequestHandler.t_3_of_js _DocumentDiagnosticParams_of_js
+            RequestHandler.t_of_js _DocumentDiagnosticParams_of_js
               _DocumentDiagnosticReport_of_js Ojs.unit_of_js x25
         and _DocumentDiagnosticRequest_HandlerSignature_to_js :
           _DocumentDiagnosticRequest_HandlerSignature -> Ojs.t =
           fun
             (x21 :
               (_DocumentDiagnosticParams, _DocumentDiagnosticReport, 
-                unit) RequestHandler.t_3)
+                unit) RequestHandler.t)
             ->
-            RequestHandler.t_3_to_js _DocumentDiagnosticParams_to_js
+            RequestHandler.t_to_js _DocumentDiagnosticParams_to_js
               _DocumentDiagnosticReport_to_js Ojs.unit_to_js x21
         and _WorkspaceDiagnosticParams_of_js :
           Ojs.t -> _WorkspaceDiagnosticParams = Obj.magic
@@ -193,7 +193,7 @@ module Internal =
         and _WorkspaceDiagnosticRequest_HandlerSignature_of_js :
           Ojs.t -> _WorkspaceDiagnosticRequest_HandlerSignature =
           fun (x34 : Ojs.t) ->
-            RequestHandler.t_3_of_js _WorkspaceDiagnosticParams_of_js
+            RequestHandler.t_of_js _WorkspaceDiagnosticParams_of_js
               (fun (x36 : Ojs.t) ->
                  or_null_of_js _WorkspaceDiagnosticReport_of_js x36)
               Ojs.unit_of_js x34
@@ -202,9 +202,9 @@ module Internal =
           fun
             (x29 :
               (_WorkspaceDiagnosticParams,
-                _WorkspaceDiagnosticReport or_null, unit) RequestHandler.t_3)
+                _WorkspaceDiagnosticReport or_null, unit) RequestHandler.t)
             ->
-            RequestHandler.t_3_to_js _WorkspaceDiagnosticParams_to_js
+            RequestHandler.t_to_js _WorkspaceDiagnosticParams_to_js
               (fun (x31 : _WorkspaceDiagnosticReport or_null) ->
                  or_null_to_js _WorkspaceDiagnosticReport_to_js x31)
               Ojs.unit_to_js x29
@@ -582,9 +582,9 @@ module DocumentDiagnosticRequest =
       (_DocumentDiagnosticParams, _DocumentDiagnosticReport,
         _DocumentDiagnosticReportPartialResult,
         _DiagnosticServerCancellationData, _DiagnosticRegistrationOptions)
-        ProtocolRequestType.t_5)
+        ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _DocumentDiagnosticParams_of_js
+      ProtocolRequestType.t_of_js _DocumentDiagnosticParams_of_js
         _DocumentDiagnosticReport_of_js
         _DocumentDiagnosticReportPartialResult_of_js
         _DiagnosticServerCancellationData_of_js
@@ -691,9 +691,9 @@ module WorkspaceDiagnosticRequest =
     let (type_ :
       (_WorkspaceDiagnosticParams, _WorkspaceDiagnosticReport,
         _WorkspaceDiagnosticReportPartialResult,
-        _DiagnosticServerCancellationData, unit) ProtocolRequestType.t_5)
+        _DiagnosticServerCancellationData, unit) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _WorkspaceDiagnosticParams_of_js
+      ProtocolRequestType.t_of_js _WorkspaceDiagnosticParams_of_js
         _WorkspaceDiagnosticReport_of_js
         _WorkspaceDiagnosticReportPartialResult_of_js
         _DiagnosticServerCancellationData_of_js Ojs.unit_of_js
@@ -718,8 +718,8 @@ module DiagnosticRefreshRequest =
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DiagnosticRefreshRequest")
            "method")
-    let (type_ : (unit, unit, unit, unit) ProtocolRequestType0.t_4) =
-      ProtocolRequestType0.t_4_of_js Ojs.unit_of_js Ojs.unit_of_js
+    let (type_ : (unit, unit, unit, unit) ProtocolRequestType0.t) =
+      ProtocolRequestType0.t_of_js Ojs.unit_of_js Ojs.unit_of_js
         Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DiagnosticRefreshRequest") "type")

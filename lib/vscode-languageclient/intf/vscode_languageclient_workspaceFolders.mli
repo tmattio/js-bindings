@@ -51,12 +51,12 @@ module WorkspaceFolderWorkspaceMiddleware : sig
 
   val get_didChangeWorkspaceFolders
     :  t
-    -> (VWorkspaceFoldersChangeEvent.t, unit) NextSignature.t_2
+    -> (VWorkspaceFoldersChangeEvent.t, unit) NextSignature.t
     [@@js.get "didChangeWorkspaceFolders"]
 
   val set_didChangeWorkspaceFolders
     :  t
-    -> (VWorkspaceFoldersChangeEvent.t, unit) NextSignature.t_2
+    -> (VWorkspaceFoldersChangeEvent.t, unit) NextSignature.t
     -> unit
     [@@js.set "didChangeWorkspaceFolders"]
 end
@@ -88,7 +88,7 @@ module WorkspaceFoldersFeature : sig
 
   val create : _client:BaseLanguageClient.t -> t [@@js.create]
 
-  val get_registrationType : t -> unit RegistrationType.t_1
+  val get_registrationType : t -> unit RegistrationType.t
     [@@js.get "registrationType"]
 
   val fillInitializeParams : t -> params:InitializeParams.t -> unit
@@ -118,7 +118,7 @@ module WorkspaceFoldersFeature : sig
   val set_doSendEvent : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "doSendEvent"]
 
-  val register : t -> data:never or_undefined RegistrationData.t_1 -> unit
+  val register : t -> data:never or_undefined RegistrationData.t -> unit
     [@@js.call "register"]
 
   val unregister : t -> id:string -> unit [@@js.call "unregister"]
@@ -131,6 +131,6 @@ module WorkspaceFoldersFeature : sig
   val set_asProtocol : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "asProtocol"]
 
-  val cast : t -> unit DynamicFeature.t_1 [@@js.cast]
+  val cast : t -> unit DynamicFeature.t [@@js.cast]
 end
 [@@js.scope "WorkspaceFoldersFeature"]

@@ -2,7 +2,7 @@
 
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
-open Es5
+open Es2020
 
 module Internal : sig
   module AnonymousInterfaces : sig end
@@ -57,8 +57,6 @@ open Internal
 open AnonymousInterfaces
 open Types
 
-(* import type RAL from './ral'; *)
-(* import { Message } from './messages'; *)
 module FunctionContentEncoder : sig
   type t = _FunctionContentEncoder
 
@@ -86,7 +84,8 @@ module StreamContentEncoder : sig
 
   val set_name : t -> string -> unit [@@js.set "name"]
 
-  val create_ : t -> RAL.WritableStream.t [@@js.call "create"]
+  val create_ : t -> Vscode_jsonrpc_ral.RAL.WritableStream.t
+    [@@js.call "create"]
 end
 [@@js.scope "StreamContentEncoder"]
 
@@ -125,7 +124,8 @@ module StreamContentDecoder : sig
 
   val set_name : t -> string -> unit [@@js.set "name"]
 
-  val create_ : t -> RAL.WritableStream.t [@@js.call "create"]
+  val create_ : t -> Vscode_jsonrpc_ral.RAL.WritableStream.t
+    [@@js.call "create"]
 end
 [@@js.scope "StreamContentDecoder"]
 
@@ -144,9 +144,10 @@ module ContentTypeEncoderOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_charset : t -> RAL.MessageBufferEncoding.t [@@js.get "charset"]
+  val get_charset : t -> Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
+    [@@js.get "charset"]
 
-  val set_charset : t -> RAL.MessageBufferEncoding.t -> unit
+  val set_charset : t -> Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t -> unit
     [@@js.set "charset"]
 end
 [@@js.scope "ContentTypeEncoderOptions"]
@@ -164,7 +165,7 @@ module FunctionContentTypeEncoder : sig
 
   val encode
     :  t
-    -> msg:Message.t
+    -> msg:Vscode_jsonrpc_messages.Message.t
     -> options:_ContentTypeEncoderOptions
     -> Uint8Array.t Promise.t
     [@@js.call "encode"]
@@ -182,7 +183,10 @@ module StreamContentTypeEncoder : sig
 
   val set_name : t -> string -> unit [@@js.set "name"]
 
-  val create_ : t -> options:_ContentTypeEncoderOptions -> RAL.WritableStream.t
+  val create_
+    :  t
+    -> options:_ContentTypeEncoderOptions
+    -> Vscode_jsonrpc_ral.RAL.WritableStream.t
     [@@js.call "create"]
 end
 [@@js.scope "StreamContentTypeEncoder"]
@@ -202,9 +206,10 @@ module ContentTypeDecoderOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_charset : t -> RAL.MessageBufferEncoding.t [@@js.get "charset"]
+  val get_charset : t -> Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
+    [@@js.get "charset"]
 
-  val set_charset : t -> RAL.MessageBufferEncoding.t -> unit
+  val set_charset : t -> Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t -> unit
     [@@js.set "charset"]
 end
 [@@js.scope "ContentTypeDecoderOptions"]
@@ -224,7 +229,7 @@ module FunctionContentTypeDecoder : sig
     :  t
     -> buffer:Uint8Array.t
     -> options:_ContentTypeDecoderOptions
-    -> Message.t Promise.t
+    -> Vscode_jsonrpc_messages.Message.t Promise.t
     [@@js.call "decode"]
 end
 [@@js.scope "FunctionContentTypeDecoder"]
@@ -240,7 +245,10 @@ module StreamContentTypeDecoder : sig
 
   val set_name : t -> string -> unit [@@js.set "name"]
 
-  val create_ : t -> options:_ContentTypeDecoderOptions -> RAL.WritableStream.t
+  val create_
+    :  t
+    -> options:_ContentTypeDecoderOptions
+    -> Vscode_jsonrpc_ral.RAL.WritableStream.t
     [@@js.call "create"]
 end
 [@@js.scope "StreamContentTypeDecoder"]

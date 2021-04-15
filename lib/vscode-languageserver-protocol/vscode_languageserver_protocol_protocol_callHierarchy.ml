@@ -14,20 +14,18 @@ module Internal =
           [ `CallHierarchyIncomingCallsParams ] intf
         and _CallHierarchyIncomingCallsRequest_HandlerSignature =
           (_CallHierarchyIncomingCallsParams,
-            CallHierarchyIncomingCall.t list or_null, unit)
-            RequestHandler.t_3
+            CallHierarchyIncomingCall.t list or_null, unit) RequestHandler.t
         and _CallHierarchyOptions = [ `CallHierarchyOptions ] intf
         and _CallHierarchyOutgoingCallsParams =
           [ `CallHierarchyOutgoingCallsParams ] intf
         and _CallHierarchyOutgoingCallsRequest_HandlerSignature =
           (_CallHierarchyOutgoingCallsParams,
-            CallHierarchyOutgoingCall.t list or_null, unit)
-            RequestHandler.t_3
+            CallHierarchyOutgoingCall.t list or_null, unit) RequestHandler.t
         and _CallHierarchyPrepareParams =
           [ `CallHierarchyPrepareParams ] intf
         and _CallHierarchyPrepareRequest_HandlerSignature =
           (_CallHierarchyPrepareParams, CallHierarchyItem.t list or_null,
-            unit) RequestHandler.t_3
+            unit) RequestHandler.t
         and _CallHierarchyRegistrationOptions =
           [ `CallHierarchyRegistrationOptions  | `CallHierarchyOptions ] intf
         let rec _CallHierarchyClientCapabilities_of_js :
@@ -41,7 +39,7 @@ module Internal =
         and _CallHierarchyIncomingCallsRequest_HandlerSignature_of_js :
           Ojs.t -> _CallHierarchyIncomingCallsRequest_HandlerSignature =
           fun (x7 : Ojs.t) ->
-            RequestHandler.t_3_of_js _CallHierarchyIncomingCallsParams_of_js
+            RequestHandler.t_of_js _CallHierarchyIncomingCallsParams_of_js
               (fun (x9 : Ojs.t) ->
                  or_null_of_js
                    (fun (x10 : Ojs.t) ->
@@ -53,9 +51,9 @@ module Internal =
             (x1 :
               (_CallHierarchyIncomingCallsParams,
                 CallHierarchyIncomingCall.t list or_null, unit)
-                RequestHandler.t_3)
+                RequestHandler.t)
             ->
-            RequestHandler.t_3_to_js _CallHierarchyIncomingCallsParams_to_js
+            RequestHandler.t_to_js _CallHierarchyIncomingCallsParams_to_js
               (fun (x3 : CallHierarchyIncomingCall.t list or_null) ->
                  or_null_to_js
                    (fun (x4 : CallHierarchyIncomingCall.t list) ->
@@ -72,7 +70,7 @@ module Internal =
         and _CallHierarchyOutgoingCallsRequest_HandlerSignature_of_js :
           Ojs.t -> _CallHierarchyOutgoingCallsRequest_HandlerSignature =
           fun (x19 : Ojs.t) ->
-            RequestHandler.t_3_of_js _CallHierarchyOutgoingCallsParams_of_js
+            RequestHandler.t_of_js _CallHierarchyOutgoingCallsParams_of_js
               (fun (x21 : Ojs.t) ->
                  or_null_of_js
                    (fun (x22 : Ojs.t) ->
@@ -84,9 +82,9 @@ module Internal =
             (x13 :
               (_CallHierarchyOutgoingCallsParams,
                 CallHierarchyOutgoingCall.t list or_null, unit)
-                RequestHandler.t_3)
+                RequestHandler.t)
             ->
-            RequestHandler.t_3_to_js _CallHierarchyOutgoingCallsParams_to_js
+            RequestHandler.t_to_js _CallHierarchyOutgoingCallsParams_to_js
               (fun (x15 : CallHierarchyOutgoingCall.t list or_null) ->
                  or_null_to_js
                    (fun (x16 : CallHierarchyOutgoingCall.t list) ->
@@ -99,7 +97,7 @@ module Internal =
         and _CallHierarchyPrepareRequest_HandlerSignature_of_js :
           Ojs.t -> _CallHierarchyPrepareRequest_HandlerSignature =
           fun (x31 : Ojs.t) ->
-            RequestHandler.t_3_of_js _CallHierarchyPrepareParams_of_js
+            RequestHandler.t_of_js _CallHierarchyPrepareParams_of_js
               (fun (x33 : Ojs.t) ->
                  or_null_of_js
                    (fun (x34 : Ojs.t) ->
@@ -110,9 +108,9 @@ module Internal =
           fun
             (x25 :
               (_CallHierarchyPrepareParams, CallHierarchyItem.t list or_null,
-                unit) RequestHandler.t_3)
+                unit) RequestHandler.t)
             ->
-            RequestHandler.t_3_to_js _CallHierarchyPrepareParams_to_js
+            RequestHandler.t_to_js _CallHierarchyPrepareParams_to_js
               (fun (x27 : CallHierarchyItem.t list or_null) ->
                  or_null_to_js
                    (fun (x28 : CallHierarchyItem.t list) ->
@@ -196,10 +194,9 @@ module CallHierarchyPrepareRequest =
       | _ -> assert false
     let (type_ :
       (_CallHierarchyPrepareParams, CallHierarchyItem.t list or_null, 
-        never, unit, _CallHierarchyRegistrationOptions)
-        ProtocolRequestType.t_5)
+        never, unit, _CallHierarchyRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _CallHierarchyPrepareParams_of_js
+      ProtocolRequestType.t_of_js _CallHierarchyPrepareParams_of_js
         (fun (x56 : Ojs.t) ->
            or_null_of_js
              (fun (x57 : Ojs.t) ->
@@ -253,9 +250,9 @@ module CallHierarchyIncomingCallsRequest =
     let (type_ :
       (_CallHierarchyIncomingCallsParams,
         CallHierarchyIncomingCall.t list or_null,
-        CallHierarchyIncomingCall.t list, unit, unit) ProtocolRequestType.t_5)
+        CallHierarchyIncomingCall.t list, unit, unit) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _CallHierarchyIncomingCallsParams_of_js
+      ProtocolRequestType.t_of_js _CallHierarchyIncomingCallsParams_of_js
         (fun (x73 : Ojs.t) ->
            or_null_of_js
              (fun (x74 : Ojs.t) ->
@@ -311,9 +308,9 @@ module CallHierarchyOutgoingCallsRequest =
     let (type_ :
       (_CallHierarchyOutgoingCallsParams,
         CallHierarchyOutgoingCall.t list or_null,
-        CallHierarchyOutgoingCall.t list, unit, unit) ProtocolRequestType.t_5)
+        CallHierarchyOutgoingCall.t list, unit, unit) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _CallHierarchyOutgoingCallsParams_of_js
+      ProtocolRequestType.t_of_js _CallHierarchyOutgoingCallsParams_of_js
         (fun (x91 : Ojs.t) ->
            or_null_of_js
              (fun (x92 : Ojs.t) ->

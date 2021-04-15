@@ -1219,7 +1219,7 @@ end
 
 module RegistrationRequest : sig
   val type_
-    : (_RegistrationParams, unit, never, unit, unit) ProtocolRequestType.t_5
+    : (_RegistrationParams, unit, never, unit, unit) ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "RegistrationRequest"]
@@ -1258,7 +1258,7 @@ end
 
 module UnregistrationRequest : sig
   val type_
-    : (_UnregistrationParams, unit, never, unit, unit) ProtocolRequestType.t_5
+    : (_UnregistrationParams, unit, never, unit, unit) ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "UnregistrationRequest"]
@@ -2103,7 +2103,7 @@ module InitializeRequest : sig
       , never
       , _InitializeError
       , unit )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "InitializeRequest"]
@@ -2231,19 +2231,19 @@ module InitializedParams : sig
 end
 
 module InitializedNotification : sig
-  val type_ : (_InitializedParams, unit) ProtocolNotificationType.t_2
+  val type_ : (_InitializedParams, unit) ProtocolNotificationType.t
     [@@js.global "type"]
 end
 [@@js.scope "InitializedNotification"]
 
 module ShutdownRequest : sig
-  val type_ : (unit, never, unit, unit) ProtocolRequestType0.t_4
+  val type_ : (unit, never, unit, unit) ProtocolRequestType0.t
     [@@js.global "type"]
 end
 [@@js.scope "ShutdownRequest"]
 
 module ExitNotification : sig
-  val type_ : unit ProtocolNotificationType0.t_1 [@@js.global "type"]
+  val type_ : unit ProtocolNotificationType0.t [@@js.global "type"]
 end
 [@@js.scope "ExitNotification"]
 
@@ -2265,7 +2265,7 @@ module DidChangeConfigurationNotification : sig
   val type_
     : ( _DidChangeConfigurationParams
       , _DidChangeConfigurationRegistrationOptions )
-      ProtocolNotificationType.t_2
+      ProtocolNotificationType.t
     [@@js.global "type"]
 end
 [@@js.scope "DidChangeConfigurationNotification"]
@@ -2333,7 +2333,7 @@ end
 [@@js.scope "ShowMessageParams"]
 
 module ShowMessageNotification : sig
-  val type_ : (_ShowMessageParams, unit) ProtocolNotificationType.t_2
+  val type_ : (_ShowMessageParams, unit) ProtocolNotificationType.t
     [@@js.global "type"]
 end
 [@@js.scope "ShowMessageNotification"]
@@ -2407,13 +2407,13 @@ module ShowMessageRequest : sig
       , never
       , unit
       , unit )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "ShowMessageRequest"]
 
 module LogMessageNotification : sig
-  val type_ : (_LogMessageParams, unit) ProtocolNotificationType.t_2
+  val type_ : (_LogMessageParams, unit) ProtocolNotificationType.t
     [@@js.global "type"]
 end
 [@@js.scope "LogMessageNotification"]
@@ -2436,7 +2436,7 @@ end
 [@@js.scope "LogMessageParams"]
 
 module TelemetryEventNotification : sig
-  val type_ : (any, unit) ProtocolNotificationType.t_2 [@@js.global "type"]
+  val type_ : (any, unit) ProtocolNotificationType.t [@@js.global "type"]
 end
 [@@js.scope "TelemetryEventNotification"]
 
@@ -2534,7 +2534,7 @@ module DidOpenTextDocumentNotification : sig
   val type_
     : ( _DidOpenTextDocumentParams
       , _TextDocumentRegistrationOptions )
-      ProtocolNotificationType.t_2
+      ProtocolNotificationType.t
     [@@js.global "type"]
 end
 [@@js.scope "DidOpenTextDocumentNotification"]
@@ -2601,7 +2601,7 @@ module DidChangeTextDocumentNotification : sig
   val type_
     : ( _DidChangeTextDocumentParams
       , _TextDocumentChangeRegistrationOptions )
-      ProtocolNotificationType.t_2
+      ProtocolNotificationType.t
     [@@js.global "type"]
 end
 [@@js.scope "DidChangeTextDocumentNotification"]
@@ -2628,7 +2628,7 @@ module DidCloseTextDocumentNotification : sig
   val type_
     : ( _DidCloseTextDocumentParams
       , _TextDocumentRegistrationOptions )
-      ProtocolNotificationType.t_2
+      ProtocolNotificationType.t
     [@@js.global "type"]
 end
 [@@js.scope "DidCloseTextDocumentNotification"]
@@ -2672,7 +2672,7 @@ module DidSaveTextDocumentNotification : sig
   val type_
     : ( _DidSaveTextDocumentParams
       , _TextDocumentSaveRegistrationOptions )
-      ProtocolNotificationType.t_2
+      ProtocolNotificationType.t
     [@@js.global "type"]
 end
 [@@js.scope "DidSaveTextDocumentNotification"]
@@ -2720,7 +2720,7 @@ module WillSaveTextDocumentNotification : sig
   val type_
     : ( _WillSaveTextDocumentParams
       , _TextDocumentRegistrationOptions )
-      ProtocolNotificationType.t_2
+      ProtocolNotificationType.t
     [@@js.global "type"]
 end
 [@@js.scope "WillSaveTextDocumentNotification"]
@@ -2739,7 +2739,7 @@ module WillSaveTextDocumentWaitUntilRequest : sig
       , never
       , unit
       , _TextDocumentRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "WillSaveTextDocumentWaitUntilRequest"]
@@ -2762,7 +2762,7 @@ module DidChangeWatchedFilesNotification : sig
   val type_
     : ( _DidChangeWatchedFilesParams
       , _DidChangeWatchedFilesRegistrationOptions )
-      ProtocolNotificationType.t_2
+      ProtocolNotificationType.t
     [@@js.global "type"]
 end
 [@@js.scope "DidChangeWatchedFilesNotification"]
@@ -2906,7 +2906,7 @@ end
 [@@js.scope "PublishDiagnosticsParams"]
 
 module PublishDiagnosticsNotification : sig
-  val type_ : (_PublishDiagnosticsParams, unit) ProtocolNotificationType.t_2
+  val type_ : (_PublishDiagnosticsParams, unit) ProtocolNotificationType.t
     [@@js.global "type"]
 end
 [@@js.scope "PublishDiagnosticsNotification"]
@@ -3059,7 +3059,7 @@ module CompletionRequest : sig
       , CompletionItem.t list
       , unit
       , _CompletionRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "CompletionRequest"]
@@ -3076,7 +3076,7 @@ module CompletionResolveRequest : sig
       , never
       , unit
       , unit )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "CompletionResolveRequest"]
@@ -3148,7 +3148,7 @@ module HoverRequest : sig
       , never
       , unit
       , _HoverRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "HoverRequest"]
@@ -3288,7 +3288,7 @@ module SignatureHelpRequest : sig
       , never
       , unit
       , _SignatureHelpRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "SignatureHelpRequest"]
@@ -3362,7 +3362,7 @@ module DefinitionRequest : sig
       , (Location.t, LocationLink.t) union2 list
       , unit
       , _DefinitionRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "DefinitionRequest"]
@@ -3436,7 +3436,7 @@ module ReferencesRequest : sig
       , Location.t list
       , unit
       , _ReferenceRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "ReferencesRequest"]
@@ -3508,7 +3508,7 @@ module DocumentHighlightRequest : sig
       , DocumentHighlight.t list
       , unit
       , _DocumentHighlightRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "DocumentHighlightRequest"]
@@ -3606,7 +3606,7 @@ module DocumentSymbolRequest : sig
       , (DocumentSymbol.t, SymbolInformation.t) union2 list
       , unit
       , _DocumentSymbolRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "DocumentSymbolRequest"]
@@ -3727,7 +3727,7 @@ module CodeActionRequest : sig
       , (CodeAction.t, Command.t) union2 list
       , unit
       , _CodeActionRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "CodeActionRequest"]
@@ -3738,7 +3738,7 @@ module CodeActionResolveRequest : sig
     [@@js.global "method"]
 
   val type_
-    : (CodeAction.t, CodeAction.t, never, unit, unit) ProtocolRequestType.t_5
+    : (CodeAction.t, CodeAction.t, never, unit, unit) ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "CodeActionResolveRequest"]
@@ -3816,7 +3816,7 @@ module WorkspaceSymbolRequest : sig
       , SymbolInformation.t list
       , unit
       , _WorkspaceSymbolRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "WorkspaceSymbolRequest"]
@@ -3905,7 +3905,7 @@ module CodeLensRequest : sig
       , CodeLens.t list
       , unit
       , _CodeLensRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "CodeLensRequest"]
@@ -3914,8 +3914,7 @@ module CodeLensResolveRequest : sig
   val method_ : ([ `L_s2_codeLens_resolve [@js "codeLens/resolve"] ][@js.enum])
     [@@js.global "method"]
 
-  val type_
-    : (CodeLens.t, CodeLens.t, never, unit, unit) ProtocolRequestType.t_5
+  val type_ : (CodeLens.t, CodeLens.t, never, unit, unit) ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "CodeLensResolveRequest"]
@@ -3924,7 +3923,7 @@ module CodeLensRefreshRequest : sig
   val method_ : (* FIXME: unknown type '`workspace/codeLens/refresh`' *) any
     [@@js.global "method"]
 
-  val type_ : (unit, unit, unit, unit) ProtocolRequestType0.t_4
+  val type_ : (unit, unit, unit, unit) ProtocolRequestType0.t
     [@@js.global "type"]
 end
 [@@js.scope "CodeLensRefreshRequest"]
@@ -4005,7 +4004,7 @@ module DocumentLinkRequest : sig
       , DocumentLink.t list
       , unit
       , _DocumentLinkRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "DocumentLinkRequest"]
@@ -4016,12 +4015,7 @@ module DocumentLinkResolveRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( DocumentLink.t
-      , DocumentLink.t
-      , never
-      , unit
-      , unit )
-      ProtocolRequestType.t_5
+    : (DocumentLink.t, DocumentLink.t, never, unit, unit) ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "DocumentLinkResolveRequest"]
@@ -4096,7 +4090,7 @@ module DocumentFormattingRequest : sig
       , never
       , unit
       , _DocumentFormattingRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "DocumentFormattingRequest"]
@@ -4177,7 +4171,7 @@ module DocumentRangeFormattingRequest : sig
       , never
       , unit
       , _DocumentRangeFormattingRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "DocumentRangeFormattingRequest"]
@@ -4269,7 +4263,7 @@ module DocumentOnTypeFormattingRequest : sig
       , never
       , unit
       , _DocumentOnTypeFormattingRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "DocumentOnTypeFormattingRequest"]
@@ -4383,7 +4377,7 @@ module RenameRequest : sig
       , never
       , unit
       , _RenameRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "RenameRequest"]
@@ -4413,7 +4407,7 @@ module PrepareRenameRequest : sig
       , never
       , unit
       , unit )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "PrepareRenameRequest"]
@@ -4484,7 +4478,7 @@ module ExecuteCommandRequest : sig
       , never
       , unit
       , _ExecuteCommandRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "ExecuteCommandRequest"]
@@ -4570,7 +4564,7 @@ module ApplyWorkspaceEditRequest : sig
       , never
       , unit
       , unit )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "ApplyWorkspaceEditRequest"]

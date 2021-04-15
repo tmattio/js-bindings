@@ -43,15 +43,14 @@ module ProvideTypeDefinitionSignature =
           document:TextDocument.t ->
             position:VPosition.t ->
               token:CancellationToken.t ->
-                (VDefinition.t, VDefinitionLink.t) or_array
-                  ProviderResult.t_1)
+                (VDefinition.t, VDefinitionLink.t) or_array ProviderResult.t)
       =
       fun (x7 : t) ->
         fun ~this:(x3 : unit) ->
           fun ~document:(x4 : TextDocument.t) ->
             fun ~position:(x5 : VPosition.t) ->
               fun ~token:(x6 : CancellationToken.t) ->
-                ProviderResult.t_1_of_js
+                ProviderResult.t_of_js
                   (fun (x8 : Ojs.t) ->
                      or_array_of_js VDefinition.t_of_js
                        VDefinitionLink.t_of_js x8)
@@ -75,7 +74,7 @@ module TypeDefinitionMiddleware =
               token:CancellationToken.t ->
                 next:_ProvideTypeDefinitionSignature ->
                   (VDefinition.t, VDefinitionLink.t) or_array
-                    ProviderResult.t_1)
+                    ProviderResult.t)
       =
       fun (x18 : t) ->
         fun ~this:(x13 : unit) ->
@@ -83,7 +82,7 @@ module TypeDefinitionMiddleware =
             fun ~position:(x15 : VPosition.t) ->
               fun ~token:(x16 : CancellationToken.t) ->
                 fun ~next:(x17 : _ProvideTypeDefinitionSignature) ->
-                  ProviderResult.t_1_of_js
+                  ProviderResult.t_of_js
                     (fun (x19 : Ojs.t) ->
                        or_array_of_js VDefinition.t_of_js
                          VDefinitionLink.t_of_js x19)
@@ -141,10 +140,10 @@ module TypeDefinitionFeature =
       t ->
         (TypeDefinitionOptions.t or_boolean,
           TypeDefinitionRegistrationOptions.t, TypeDefinitionProvider.t)
-          TextDocumentFeature.t_3)
+          TextDocumentFeature.t)
       =
       fun (x33 : t) ->
-        TextDocumentFeature.t_3_of_js
+        TextDocumentFeature.t_of_js
           (fun (x34 : Ojs.t) ->
              or_boolean_of_js TypeDefinitionOptions.t_of_js x34)
           TypeDefinitionRegistrationOptions.t_of_js

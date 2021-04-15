@@ -17,7 +17,7 @@ module Internal =
           | `LinkedEditingRangeOptions ] intf
         and _LinkedEditingRangeRequest_HandlerSignature =
           (_LinkedEditingRangeParams, _LinkedEditingRanges or_null, unit)
-            RequestHandler.t_3
+            RequestHandler.t
         and _LinkedEditingRanges = [ `LinkedEditingRanges ] intf
         let rec _LinkedEditingRangeClientCapabilities_of_js :
           Ojs.t -> _LinkedEditingRangeClientCapabilities = Obj.magic
@@ -38,7 +38,7 @@ module Internal =
         and _LinkedEditingRangeRequest_HandlerSignature_of_js :
           Ojs.t -> _LinkedEditingRangeRequest_HandlerSignature =
           fun (x6 : Ojs.t) ->
-            RequestHandler.t_3_of_js _LinkedEditingRangeParams_of_js
+            RequestHandler.t_of_js _LinkedEditingRangeParams_of_js
               (fun (x8 : Ojs.t) ->
                  or_null_of_js _LinkedEditingRanges_of_js x8) Ojs.unit_of_js
               x6
@@ -47,9 +47,9 @@ module Internal =
           fun
             (x1 :
               (_LinkedEditingRangeParams, _LinkedEditingRanges or_null, 
-                unit) RequestHandler.t_3)
+                unit) RequestHandler.t)
             ->
-            RequestHandler.t_3_to_js _LinkedEditingRangeParams_to_js
+            RequestHandler.t_to_js _LinkedEditingRangeParams_to_js
               (fun (x3 : _LinkedEditingRanges or_null) ->
                  or_null_to_js _LinkedEditingRanges_to_js x3) Ojs.unit_to_js
               x1
@@ -157,9 +157,9 @@ module LinkedEditingRangeRequest =
       | _ -> assert false
     let (type_ :
       (_LinkedEditingRangeParams, _LinkedEditingRanges or_null, unit, 
-        any, _LinkedEditingRangeRegistrationOptions) ProtocolRequestType.t_5)
+        any, _LinkedEditingRangeRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _LinkedEditingRangeParams_of_js
+      ProtocolRequestType.t_of_js _LinkedEditingRangeParams_of_js
         (fun (x40 : Ojs.t) -> or_null_of_js _LinkedEditingRanges_of_js x40)
         Ojs.unit_of_js any_of_js _LinkedEditingRangeRegistrationOptions_of_js
         (Ojs.get_prop_ascii

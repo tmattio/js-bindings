@@ -9,129 +9,210 @@ module Internal =
       struct
         open AnonymousInterfaces
         type _Proposed__DiagnosticClientCapabilities =
-          Diag.DiagnosticClientCapabilities.t
+          Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticClientCapabilities.t
         and _Proposed__DiagnosticServerCapabilities =
-          Diag.DiagnosticServerCapabilities.t
+          Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticServerCapabilities.t
         and _Proposed_DiagnosticClientCapabilities =
-          Diag.DiagnosticClientCapabilities.t
-        and _Proposed_DiagnosticOptions = Diag.DiagnosticOptions.t
+          Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticClientCapabilities.t
+        and _Proposed_DiagnosticOptions =
+          Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticOptions.t
         and _Proposed_DiagnosticRegistrationOptions =
-          Diag.DiagnosticRegistrationOptions.t
+          Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticRegistrationOptions.t
         and _Proposed_DiagnosticServerCancellationData =
-          Diag.DiagnosticServerCancellationData.t
+          Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticServerCancellationData.t
         and _Proposed_DocumentDiagnosticParams =
-          Diag.DocumentDiagnosticParams.t
+          Vscode_languageserver_protocol_proposed_diagnostic.DocumentDiagnosticParams.t
         and _Proposed_DocumentDiagnosticReport =
-          Diag.DocumentDiagnosticReport.t
+          Vscode_languageserver_protocol_proposed_diagnostic.DocumentDiagnosticReport.t
         and _Proposed_DocumentDiagnosticReportKind =
-          Diag.DocumentDiagnosticReportKind.t
+          Vscode_languageserver_protocol_proposed_diagnostic.DocumentDiagnosticReportKind.t
         and _Proposed_DocumentDiagnosticReportPartialResult =
-          Diag.DocumentDiagnosticReportPartialResult.t
+          Vscode_languageserver_protocol_proposed_diagnostic.DocumentDiagnosticReportPartialResult.t
         and _Proposed_WorkspaceDiagnosticParams =
-          Diag.WorkspaceDiagnosticParams.t
+          Vscode_languageserver_protocol_proposed_diagnostic.WorkspaceDiagnosticParams.t
         and _Proposed_WorkspaceDiagnosticReport =
-          Diag.WorkspaceDiagnosticReport.t
+          Vscode_languageserver_protocol_proposed_diagnostic.WorkspaceDiagnosticReport.t
         and _Proposed_WorkspaceDiagnosticReportPartialResult =
-          Diag.WorkspaceDiagnosticReportPartialResult.t
+          Vscode_languageserver_protocol_proposed_diagnostic.WorkspaceDiagnosticReportPartialResult.t
         let rec _Proposed__DiagnosticClientCapabilities_of_js :
           Ojs.t -> _Proposed__DiagnosticClientCapabilities =
-          fun (x2 : Ojs.t) -> Diag.DiagnosticClientCapabilities.t_of_js x2
+          fun (x2 : Ojs.t) ->
+            Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticClientCapabilities.t_of_js
+              x2
         and _Proposed__DiagnosticClientCapabilities_to_js :
           _Proposed__DiagnosticClientCapabilities -> Ojs.t =
-          fun (x1 : Diag.DiagnosticClientCapabilities.t) ->
-            Diag.DiagnosticClientCapabilities.t_to_js x1
+          fun
+            (x1 :
+              Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticClientCapabilities.t)
+            ->
+            Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticClientCapabilities.t_to_js
+              x1
         and _Proposed__DiagnosticServerCapabilities_of_js :
           Ojs.t -> _Proposed__DiagnosticServerCapabilities =
-          fun (x4 : Ojs.t) -> Diag.DiagnosticServerCapabilities.t_of_js x4
+          fun (x4 : Ojs.t) ->
+            Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticServerCapabilities.t_of_js
+              x4
         and _Proposed__DiagnosticServerCapabilities_to_js :
           _Proposed__DiagnosticServerCapabilities -> Ojs.t =
-          fun (x3 : Diag.DiagnosticServerCapabilities.t) ->
-            Diag.DiagnosticServerCapabilities.t_to_js x3
+          fun
+            (x3 :
+              Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticServerCapabilities.t)
+            ->
+            Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticServerCapabilities.t_to_js
+              x3
         and _Proposed_DiagnosticClientCapabilities_of_js :
           Ojs.t -> _Proposed_DiagnosticClientCapabilities =
-          fun (x6 : Ojs.t) -> Diag.DiagnosticClientCapabilities.t_of_js x6
+          fun (x6 : Ojs.t) ->
+            Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticClientCapabilities.t_of_js
+              x6
         and _Proposed_DiagnosticClientCapabilities_to_js :
           _Proposed_DiagnosticClientCapabilities -> Ojs.t =
-          fun (x5 : Diag.DiagnosticClientCapabilities.t) ->
-            Diag.DiagnosticClientCapabilities.t_to_js x5
+          fun
+            (x5 :
+              Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticClientCapabilities.t)
+            ->
+            Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticClientCapabilities.t_to_js
+              x5
         and _Proposed_DiagnosticOptions_of_js :
           Ojs.t -> _Proposed_DiagnosticOptions =
-          fun (x8 : Ojs.t) -> Diag.DiagnosticOptions.t_of_js x8
+          fun (x8 : Ojs.t) ->
+            Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticOptions.t_of_js
+              x8
         and _Proposed_DiagnosticOptions_to_js :
           _Proposed_DiagnosticOptions -> Ojs.t =
-          fun (x7 : Diag.DiagnosticOptions.t) ->
-            Diag.DiagnosticOptions.t_to_js x7
+          fun
+            (x7 :
+              Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticOptions.t)
+            ->
+            Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticOptions.t_to_js
+              x7
         and _Proposed_DiagnosticRegistrationOptions_of_js :
           Ojs.t -> _Proposed_DiagnosticRegistrationOptions =
-          fun (x10 : Ojs.t) -> Diag.DiagnosticRegistrationOptions.t_of_js x10
+          fun (x10 : Ojs.t) ->
+            Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticRegistrationOptions.t_of_js
+              x10
         and _Proposed_DiagnosticRegistrationOptions_to_js :
           _Proposed_DiagnosticRegistrationOptions -> Ojs.t =
-          fun (x9 : Diag.DiagnosticRegistrationOptions.t) ->
-            Diag.DiagnosticRegistrationOptions.t_to_js x9
+          fun
+            (x9 :
+              Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticRegistrationOptions.t)
+            ->
+            Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticRegistrationOptions.t_to_js
+              x9
         and _Proposed_DiagnosticServerCancellationData_of_js :
           Ojs.t -> _Proposed_DiagnosticServerCancellationData =
           fun (x12 : Ojs.t) ->
-            Diag.DiagnosticServerCancellationData.t_of_js x12
+            Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticServerCancellationData.t_of_js
+              x12
         and _Proposed_DiagnosticServerCancellationData_to_js :
           _Proposed_DiagnosticServerCancellationData -> Ojs.t =
-          fun (x11 : Diag.DiagnosticServerCancellationData.t) ->
-            Diag.DiagnosticServerCancellationData.t_to_js x11
+          fun
+            (x11 :
+              Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticServerCancellationData.t)
+            ->
+            Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticServerCancellationData.t_to_js
+              x11
         and _Proposed_DocumentDiagnosticParams_of_js :
           Ojs.t -> _Proposed_DocumentDiagnosticParams =
-          fun (x14 : Ojs.t) -> Diag.DocumentDiagnosticParams.t_of_js x14
+          fun (x14 : Ojs.t) ->
+            Vscode_languageserver_protocol_proposed_diagnostic.DocumentDiagnosticParams.t_of_js
+              x14
         and _Proposed_DocumentDiagnosticParams_to_js :
           _Proposed_DocumentDiagnosticParams -> Ojs.t =
-          fun (x13 : Diag.DocumentDiagnosticParams.t) ->
-            Diag.DocumentDiagnosticParams.t_to_js x13
+          fun
+            (x13 :
+              Vscode_languageserver_protocol_proposed_diagnostic.DocumentDiagnosticParams.t)
+            ->
+            Vscode_languageserver_protocol_proposed_diagnostic.DocumentDiagnosticParams.t_to_js
+              x13
         and _Proposed_DocumentDiagnosticReport_of_js :
           Ojs.t -> _Proposed_DocumentDiagnosticReport =
-          fun (x16 : Ojs.t) -> Diag.DocumentDiagnosticReport.t_of_js x16
+          fun (x16 : Ojs.t) ->
+            Vscode_languageserver_protocol_proposed_diagnostic.DocumentDiagnosticReport.t_of_js
+              x16
         and _Proposed_DocumentDiagnosticReport_to_js :
           _Proposed_DocumentDiagnosticReport -> Ojs.t =
-          fun (x15 : Diag.DocumentDiagnosticReport.t) ->
-            Diag.DocumentDiagnosticReport.t_to_js x15
+          fun
+            (x15 :
+              Vscode_languageserver_protocol_proposed_diagnostic.DocumentDiagnosticReport.t)
+            ->
+            Vscode_languageserver_protocol_proposed_diagnostic.DocumentDiagnosticReport.t_to_js
+              x15
         and _Proposed_DocumentDiagnosticReportKind_of_js :
           Ojs.t -> _Proposed_DocumentDiagnosticReportKind =
-          fun (x18 : Ojs.t) -> Diag.DocumentDiagnosticReportKind.t_of_js x18
+          fun (x18 : Ojs.t) ->
+            Vscode_languageserver_protocol_proposed_diagnostic.DocumentDiagnosticReportKind.t_of_js
+              x18
         and _Proposed_DocumentDiagnosticReportKind_to_js :
           _Proposed_DocumentDiagnosticReportKind -> Ojs.t =
-          fun (x17 : Diag.DocumentDiagnosticReportKind.t) ->
-            Diag.DocumentDiagnosticReportKind.t_to_js x17
+          fun
+            (x17 :
+              Vscode_languageserver_protocol_proposed_diagnostic.DocumentDiagnosticReportKind.t)
+            ->
+            Vscode_languageserver_protocol_proposed_diagnostic.DocumentDiagnosticReportKind.t_to_js
+              x17
         and _Proposed_DocumentDiagnosticReportPartialResult_of_js :
           Ojs.t -> _Proposed_DocumentDiagnosticReportPartialResult =
           fun (x20 : Ojs.t) ->
-            Diag.DocumentDiagnosticReportPartialResult.t_of_js x20
+            Vscode_languageserver_protocol_proposed_diagnostic.DocumentDiagnosticReportPartialResult.t_of_js
+              x20
         and _Proposed_DocumentDiagnosticReportPartialResult_to_js :
           _Proposed_DocumentDiagnosticReportPartialResult -> Ojs.t =
-          fun (x19 : Diag.DocumentDiagnosticReportPartialResult.t) ->
-            Diag.DocumentDiagnosticReportPartialResult.t_to_js x19
+          fun
+            (x19 :
+              Vscode_languageserver_protocol_proposed_diagnostic.DocumentDiagnosticReportPartialResult.t)
+            ->
+            Vscode_languageserver_protocol_proposed_diagnostic.DocumentDiagnosticReportPartialResult.t_to_js
+              x19
         and _Proposed_WorkspaceDiagnosticParams_of_js :
           Ojs.t -> _Proposed_WorkspaceDiagnosticParams =
-          fun (x22 : Ojs.t) -> Diag.WorkspaceDiagnosticParams.t_of_js x22
+          fun (x22 : Ojs.t) ->
+            Vscode_languageserver_protocol_proposed_diagnostic.WorkspaceDiagnosticParams.t_of_js
+              x22
         and _Proposed_WorkspaceDiagnosticParams_to_js :
           _Proposed_WorkspaceDiagnosticParams -> Ojs.t =
-          fun (x21 : Diag.WorkspaceDiagnosticParams.t) ->
-            Diag.WorkspaceDiagnosticParams.t_to_js x21
+          fun
+            (x21 :
+              Vscode_languageserver_protocol_proposed_diagnostic.WorkspaceDiagnosticParams.t)
+            ->
+            Vscode_languageserver_protocol_proposed_diagnostic.WorkspaceDiagnosticParams.t_to_js
+              x21
         and _Proposed_WorkspaceDiagnosticReport_of_js :
           Ojs.t -> _Proposed_WorkspaceDiagnosticReport =
-          fun (x24 : Ojs.t) -> Diag.WorkspaceDiagnosticReport.t_of_js x24
+          fun (x24 : Ojs.t) ->
+            Vscode_languageserver_protocol_proposed_diagnostic.WorkspaceDiagnosticReport.t_of_js
+              x24
         and _Proposed_WorkspaceDiagnosticReport_to_js :
           _Proposed_WorkspaceDiagnosticReport -> Ojs.t =
-          fun (x23 : Diag.WorkspaceDiagnosticReport.t) ->
-            Diag.WorkspaceDiagnosticReport.t_to_js x23
+          fun
+            (x23 :
+              Vscode_languageserver_protocol_proposed_diagnostic.WorkspaceDiagnosticReport.t)
+            ->
+            Vscode_languageserver_protocol_proposed_diagnostic.WorkspaceDiagnosticReport.t_to_js
+              x23
         and _Proposed_WorkspaceDiagnosticReportPartialResult_of_js :
           Ojs.t -> _Proposed_WorkspaceDiagnosticReportPartialResult =
           fun (x26 : Ojs.t) ->
-            Diag.WorkspaceDiagnosticReportPartialResult.t_of_js x26
+            Vscode_languageserver_protocol_proposed_diagnostic.WorkspaceDiagnosticReportPartialResult.t_of_js
+              x26
         and _Proposed_WorkspaceDiagnosticReportPartialResult_to_js :
           _Proposed_WorkspaceDiagnosticReportPartialResult -> Ojs.t =
-          fun (x25 : Diag.WorkspaceDiagnosticReportPartialResult.t) ->
-            Diag.WorkspaceDiagnosticReportPartialResult.t_to_js x25
+          fun
+            (x25 :
+              Vscode_languageserver_protocol_proposed_diagnostic.WorkspaceDiagnosticReportPartialResult.t)
+            ->
+            Vscode_languageserver_protocol_proposed_diagnostic.WorkspaceDiagnosticReportPartialResult.t_to_js
+              x25
       end
   end
 open Internal
 open AnonymousInterfaces
 open Types
+open Vscode_jsonrpc
+open Vscode_languageserver_types
+open Vscode_languageserver_protocol_messages
+open Vscode_languageserver_protocol_protocol
+open Vscode_languageserver_protocol_connection
 module LSPErrorCodes =
   struct
     let (lspReservedErrorRangeStart : Integer.t) =

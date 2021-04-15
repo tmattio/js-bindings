@@ -2,7 +2,7 @@
 
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
-open Es5
+open Es2020
 
 module Internal : sig
   module AnonymousInterfaces : sig end
@@ -27,7 +27,6 @@ open Internal
 open AnonymousInterfaces
 open Types
 
-(* import { Disposable } from './disposable'; *)
 module Event : sig
   type 'T t = 'T _Event
 
@@ -39,14 +38,11 @@ module Event : sig
     :  'T t
     -> listener:(e:'T -> any)
     -> ?thisArgs:any
-    -> ?disposables:Disposable.t list
+    -> ?disposables:Vscode_jsonrpc_disposable.Disposable.t list
     -> unit
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.apply]
-end
-[@@js.scope "Event"]
 
-module Event : sig
   val none : any _Event [@@js.global "None"]
 end
 [@@js.scope "Event"]

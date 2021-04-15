@@ -44,7 +44,7 @@ module ProvideDeclarationSignature : sig
     -> document:TextDocument.t
     -> position:VPosition.t
     -> token:CancellationToken.t
-    -> VDeclaration.t ProviderResult.t_1
+    -> VDeclaration.t ProviderResult.t
     [@@js.apply]
 end
 [@@js.scope "ProvideDeclarationSignature"]
@@ -63,7 +63,7 @@ module DeclarationMiddleware : sig
     -> position:VPosition.t
     -> token:CancellationToken.t
     -> next:_ProvideDeclarationSignature
-    -> VDeclaration.t ProviderResult.t_1
+    -> VDeclaration.t ProviderResult.t
     [@@js.call "provideDeclaration"]
 end
 [@@js.scope "DeclarationMiddleware"]
@@ -98,7 +98,7 @@ module DeclarationFeature : sig
     -> ( DeclarationOptions.t or_boolean
        , DeclarationRegistrationOptions.t
        , DeclarationProvider.t )
-       TextDocumentFeature.t_3
+       TextDocumentFeature.t
     [@@js.cast]
 end
 [@@js.scope "DeclarationFeature"]

@@ -11,44 +11,78 @@ module Internal : sig
     open AnonymousInterfaces
 
     type _Proposed__DiagnosticClientCapabilities =
-      Diag.DiagnosticClientCapabilities.t
+      Vscode_languageserver_protocol_proposed_diagnostic
+      .DiagnosticClientCapabilities
+      .t
 
     and _Proposed__DiagnosticServerCapabilities =
-      Diag.DiagnosticServerCapabilities.t
+      Vscode_languageserver_protocol_proposed_diagnostic
+      .DiagnosticServerCapabilities
+      .t
 
     and _Proposed_DiagnosticClientCapabilities =
-      Diag.DiagnosticClientCapabilities.t
+      Vscode_languageserver_protocol_proposed_diagnostic
+      .DiagnosticClientCapabilities
+      .t
 
-    and _Proposed_DiagnosticOptions = Diag.DiagnosticOptions.t
+    and _Proposed_DiagnosticOptions =
+      Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticOptions.t
 
     and _Proposed_DiagnosticRegistrationOptions =
-      Diag.DiagnosticRegistrationOptions.t
+      Vscode_languageserver_protocol_proposed_diagnostic
+      .DiagnosticRegistrationOptions
+      .t
 
     and _Proposed_DiagnosticServerCancellationData =
-      Diag.DiagnosticServerCancellationData.t
+      Vscode_languageserver_protocol_proposed_diagnostic
+      .DiagnosticServerCancellationData
+      .t
 
-    and _Proposed_DocumentDiagnosticParams = Diag.DocumentDiagnosticParams.t
+    and _Proposed_DocumentDiagnosticParams =
+      Vscode_languageserver_protocol_proposed_diagnostic
+      .DocumentDiagnosticParams
+      .t
 
-    and _Proposed_DocumentDiagnosticReport = Diag.DocumentDiagnosticReport.t
+    and _Proposed_DocumentDiagnosticReport =
+      Vscode_languageserver_protocol_proposed_diagnostic
+      .DocumentDiagnosticReport
+      .t
 
     and _Proposed_DocumentDiagnosticReportKind =
-      Diag.DocumentDiagnosticReportKind.t
+      Vscode_languageserver_protocol_proposed_diagnostic
+      .DocumentDiagnosticReportKind
+      .t
 
     and _Proposed_DocumentDiagnosticReportPartialResult =
-      Diag.DocumentDiagnosticReportPartialResult.t
+      Vscode_languageserver_protocol_proposed_diagnostic
+      .DocumentDiagnosticReportPartialResult
+      .t
 
-    and _Proposed_WorkspaceDiagnosticParams = Diag.WorkspaceDiagnosticParams.t
+    and _Proposed_WorkspaceDiagnosticParams =
+      Vscode_languageserver_protocol_proposed_diagnostic
+      .WorkspaceDiagnosticParams
+      .t
 
-    and _Proposed_WorkspaceDiagnosticReport = Diag.WorkspaceDiagnosticReport.t
+    and _Proposed_WorkspaceDiagnosticReport =
+      Vscode_languageserver_protocol_proposed_diagnostic
+      .WorkspaceDiagnosticReport
+      .t
 
     and _Proposed_WorkspaceDiagnosticReportPartialResult =
-      Diag.WorkspaceDiagnosticReportPartialResult.t
+      Vscode_languageserver_protocol_proposed_diagnostic
+      .WorkspaceDiagnosticReportPartialResult
+      .t
   end
 end
 
 open Internal
 open AnonymousInterfaces
 open Types
+open Vscode_jsonrpc
+open Vscode_languageserver_types
+open Vscode_languageserver_protocol_messages
+open Vscode_languageserver_protocol_protocol
+open Vscode_languageserver_protocol_connection
 
 (* import type { integer } from 'vscode-languageserver-types'; *)
 (* export * from 'vscode-jsonrpc'; *)
@@ -130,7 +164,8 @@ module Proposed : sig
   end
 
   val diagnosticServerCancellationData
-    : (* FIXME: unknown type 'typeof diag.DiagnosticServerCancellationData' *)
+    : (* FIXME: unknown type 'typeof
+         Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticServerCancellationData' *)
       any
     [@@js.global "DiagnosticServerCancellationData"]
 
@@ -151,7 +186,9 @@ module Proposed : sig
   end
 
   val documentDiagnosticReportKind
-    : (* FIXME: unknown type 'typeof diag.DocumentDiagnosticReportKind' *) any
+    : (* FIXME: unknown type 'typeof
+         Vscode_languageserver_protocol_proposed_diagnostic.DocumentDiagnosticReportKind' *)
+      any
     [@@js.global "DocumentDiagnosticReportKind"]
 
   module DocumentDiagnosticReportPartialResult : sig
@@ -163,7 +200,9 @@ module Proposed : sig
   end
 
   val documentDiagnosticRequest
-    : (* FIXME: unknown type 'typeof diag.DocumentDiagnosticRequest' *) any
+    : (* FIXME: unknown type 'typeof
+         Vscode_languageserver_protocol_proposed_diagnostic.DocumentDiagnosticRequest' *)
+      any
     [@@js.global "DocumentDiagnosticRequest"]
 
   module WorkspaceDiagnosticParams : sig
@@ -191,7 +230,9 @@ module Proposed : sig
   end
 
   val diagnosticRefreshRequest
-    : (* FIXME: unknown type 'typeof diag.DiagnosticRefreshRequest' *) any
+    : (* FIXME: unknown type 'typeof
+         Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticRefreshRequest' *)
+      any
     [@@js.global "DiagnosticRefreshRequest"]
 end
 [@@js.scope "Proposed"]

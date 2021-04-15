@@ -18,7 +18,7 @@ module Internal : sig
     [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
 
     and _ShowDocumentRequest_HandlerSignature =
-      (_ShowDocumentParams, _ShowDocumentResult, unit) RequestHandler.t_3
+      (_ShowDocumentParams, _ShowDocumentResult, unit) RequestHandler.t
 
     and _ShowDocumentRequest_MiddlewareSignature =
       [ `ShowDocumentRequest_MiddlewareSignature ] intf
@@ -98,7 +98,7 @@ module ShowDocumentRequest : sig
       , unit
       , unit
       , unit )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
@@ -120,7 +120,7 @@ module ShowDocumentRequest : sig
       :  t
       -> params:_ShowDocumentParams
       -> next:_ShowDocumentRequest_HandlerSignature
-      -> (_ShowDocumentResult, unit) HandlerResult.t_2
+      -> (_ShowDocumentResult, unit) HandlerResult.t
       [@@js.apply]
   end
   [@@js.scope "MiddlewareSignature"]

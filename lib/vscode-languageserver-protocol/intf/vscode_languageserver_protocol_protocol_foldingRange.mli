@@ -38,10 +38,7 @@ module Internal : sig
     [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
 
     and _FoldingRangeRequest_HandlerSignature =
-      ( _FoldingRangeParams
-      , FoldingRange.t list or_null
-      , unit )
-      RequestHandler.t_3
+      (_FoldingRangeParams, FoldingRange.t list or_null, unit) RequestHandler.t
   end
 end
 
@@ -142,7 +139,7 @@ module FoldingRangeRequest : sig
       , FoldingRange.t list
       , any
       , _FoldingRangeRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig

@@ -2,7 +2,7 @@
 
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
-open Es5
+open Es2020
 
 module Internal : sig
   module AnonymousInterfaces : sig
@@ -31,18 +31,17 @@ module AnonymousInterface0 : sig
 
   val asReadableStream
     :  t
-    -> stream:NodeJS.ReadableStream.t
-    -> RAL.ReadableStream.t
+    -> stream:Node.ReadableStream.t
+    -> Vscode_jsonrpc_ral.RAL.ReadableStream.t
     [@@js.call "asReadableStream"]
 
   val asWritableStream
     :  t
-    -> stream:NodeJS.WritableStream.t
-    -> RAL.WritableStream.t
+    -> stream:Node.WritableStream.t
+    -> Vscode_jsonrpc_ral.RAL.WritableStream.t
     [@@js.call "asWritableStream"]
 end
 
-(* import RAL from '../common/ral'; *)
 module RIL : sig
   type t = _RIL
 
@@ -52,14 +51,12 @@ module RIL : sig
 
   val get_stream : t -> anonymous_interface_0 [@@js.get "stream"]
 
-  val cast : t -> RAL.t [@@js.cast]
-end
-[@@js.scope "RIL"]
+  val cast : t -> Vscode_jsonrpc_ral.RAL.t [@@js.cast]
 
-val rIL : unit -> _RIL [@@js.global "RIL"]
-
-module RIL : sig
   val install : unit -> unit [@@js.global "install"]
 end
 [@@js.scope "RIL"]
+
+val ril : unit -> _RIL [@@js.global "RIL"]
+
 (* export = RIL *)

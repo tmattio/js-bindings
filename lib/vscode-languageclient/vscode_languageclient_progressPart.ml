@@ -29,28 +29,28 @@ module ProgressContext =
       fun (x1 : _ProgressContext) -> _ProgressContext_to_js x1
     let (onProgress :
       t ->
-        type_:'P ProgressType.t_1 ->
+        type_:'P ProgressType.t ->
           token:string or_number ->
-            handler:'P NotificationHandler.t_1 -> Disposable.t)
+            handler:'P NotificationHandler.t -> Disposable.t)
       =
       fun (x9 : t) ->
-        fun ~type_:(x3 : 'P ProgressType.t_1) ->
+        fun ~type_:(x3 : 'P ProgressType.t) ->
           fun ~token:(x5 : string or_number) ->
-            fun ~handler:(x7 : 'P NotificationHandler.t_1) ->
+            fun ~handler:(x7 : 'P NotificationHandler.t) ->
               Disposable.t_of_js
                 (Ojs.call (t_to_js x9) "onProgress"
-                   [|(ProgressType.t_1_to_js Obj.magic x3);(or_number_to_js
-                                                              Ojs.string_to_js
-                                                              x5);(NotificationHandler.t_1_to_js
-                                                                    Obj.magic
-                                                                    x7)|])
+                   [|(ProgressType.t_to_js Obj.magic x3);(or_number_to_js
+                                                            Ojs.string_to_js
+                                                            x5);(NotificationHandler.t_to_js
+                                                                   Obj.magic
+                                                                   x7)|])
     let (sendNotification :
       t ->
-        type_:('P, 'RO) ProtocolNotificationType.t_2 ->
+        type_:('P, 'RO) ProtocolNotificationType.t ->
           ?params:'P -> unit -> unit)
       =
       fun (x16 : t) ->
-        fun ~type_:(x10 : ('P, 'RO) ProtocolNotificationType.t_2) ->
+        fun ~type_:(x10 : ('P, 'RO) ProtocolNotificationType.t) ->
           fun ?params:(x11 : 'P option) ->
             fun () ->
               ignore
@@ -62,8 +62,8 @@ module ProgressContext =
                                [||] in
                            ignore
                              (Ojs.call x12 "push"
-                                [|(ProtocolNotificationType.t_2_to_js
-                                     Obj.magic Obj.magic x10)|]);
+                                [|(ProtocolNotificationType.t_to_js Obj.magic
+                                     Obj.magic x10)|]);
                            (match x11 with
                             | Some x13 ->
                                 ignore

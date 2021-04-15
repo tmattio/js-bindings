@@ -17,7 +17,7 @@ module Internal : sig
     [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
 
     and _WorkDoneProgressCancelNotification_HandlerSignature =
-      _WorkDoneProgressCancelParams NotificationHandler.t_1
+      _WorkDoneProgressCancelParams NotificationHandler.t
 
     and _WorkDoneProgressCancelParams = [ `WorkDoneProgressCancelParams ] intf
     [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
@@ -30,7 +30,7 @@ module Internal : sig
     [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
 
     and _WorkDoneProgressCreateRequest_HandlerSignature =
-      (_WorkDoneProgressCreateParams, unit, unit) RequestHandler.t_3
+      (_WorkDoneProgressCreateParams, unit, unit) RequestHandler.t
 
     and _WorkDoneProgressEnd = [ `WorkDoneProgressEnd ] intf
     [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
@@ -153,10 +153,10 @@ module WorkDoneProgress : sig
        | `U_s2_report of _WorkDoneProgressReport [@js "report"]
        ]
       [@js.union on_field "kind"])
-      ProgressType.t_1
+      ProgressType.t
     [@@js.global "type"]
 
-  val is : value:any ProgressType.t_1 -> bool [@@js.global "is"]
+  val is : value:any ProgressType.t -> bool [@@js.global "is"]
 end
 [@@js.scope "WorkDoneProgress"]
 
@@ -180,7 +180,7 @@ module WorkDoneProgressCreateRequest : sig
       , never
       , unit
       , unit )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
@@ -207,7 +207,7 @@ end
 [@@js.scope "WorkDoneProgressCancelParams"]
 
 module WorkDoneProgressCancelNotification : sig
-  val type_ : (_WorkDoneProgressCancelParams, unit) ProtocolNotificationType.t_2
+  val type_ : (_WorkDoneProgressCancelParams, unit) ProtocolNotificationType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig

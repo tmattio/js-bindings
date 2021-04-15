@@ -42,7 +42,7 @@ module ProvideLinkedEditingRangeSignature : sig
     -> document:Code.TextDocument.t
     -> position:Code.Position.t
     -> token:Code.CancellationToken.t
-    -> Code.LinkedEditingRanges.t Code.ProviderResult.t_1
+    -> Code.LinkedEditingRanges.t Code.ProviderResult.t
     [@@js.apply]
 end
 [@@js.scope "ProvideLinkedEditingRangeSignature"]
@@ -61,7 +61,7 @@ module LinkedEditingRangeMiddleware : sig
     -> position:Code.Position.t
     -> token:Code.CancellationToken.t
     -> next:_ProvideLinkedEditingRangeSignature
-    -> Code.LinkedEditingRanges.t Code.ProviderResult.t_1
+    -> Code.LinkedEditingRanges.t Code.ProviderResult.t
     [@@js.call "provideLinkedEditingRange"]
 end
 [@@js.scope "LinkedEditingRangeMiddleware"]
@@ -99,7 +99,7 @@ module LinkedEditingFeature : sig
     -> ( Proto.LinkedEditingRangeOptions.t or_boolean
        , Proto.LinkedEditingRangeRegistrationOptions.t
        , Code.LinkedEditingRangeProvider.t )
-       TextDocumentFeature.t_3
+       TextDocumentFeature.t
     [@@js.cast]
 end
 [@@js.scope "LinkedEditingFeature"]

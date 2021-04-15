@@ -96,9 +96,9 @@ module ProtocolRequestType0 : sig
 
   val create : method_:string -> ('R, 'PR, 'E, 'RO) t [@@js.create]
 
-  val cast : ('R, 'PR, 'E, 'RO) t -> ('R, 'E) RequestType0.t_2 [@@js.cast]
+  val cast : ('R, 'PR, 'E, 'RO) t -> ('R, 'E) RequestType0.t [@@js.cast]
 
-  val cast' : ('R, 'PR, 'E, 'RO) t -> 'PR ProgressType.t_1 [@@js.cast]
+  val cast' : ('R, 'PR, 'E, 'RO) t -> 'PR ProgressType.t [@@js.cast]
 
   val cast'' : ('R, 'PR, 'E, 'RO) t -> 'RO _RegistrationType [@@js.cast]
 end
@@ -135,10 +135,9 @@ module ProtocolRequestType : sig
 
   val create : method_:string -> ('P, 'R, 'PR, 'E, 'RO) t [@@js.create]
 
-  val cast : ('P, 'R, 'PR, 'E, 'RO) t -> ('P, 'R, 'E) RequestType.t_3
-    [@@js.cast]
+  val cast : ('P, 'R, 'PR, 'E, 'RO) t -> ('P, 'R, 'E) RequestType.t [@@js.cast]
 
-  val cast' : ('P, 'R, 'PR, 'E, 'RO) t -> 'PR ProgressType.t_1 [@@js.cast]
+  val cast' : ('P, 'R, 'PR, 'E, 'RO) t -> 'PR ProgressType.t [@@js.cast]
 
   val cast'' : ('P, 'R, 'PR, 'E, 'RO) t -> 'RO _RegistrationType [@@js.cast]
 end
@@ -176,7 +175,7 @@ module ProtocolNotificationType : sig
 
   val create : method_:string -> ('P, 'RO) t [@@js.create]
 
-  val cast : ('P, 'RO) t -> 'P NotificationType.t_1 [@@js.cast]
+  val cast : ('P, 'RO) t -> 'P NotificationType.t [@@js.cast]
 
   val cast' : ('P, 'RO) t -> 'RO _RegistrationType [@@js.cast]
 end

@@ -11,11 +11,11 @@ module Internal =
         type _CreateFilesParams = [ `CreateFilesParams ] intf
         and _DeleteFilesParams = [ `DeleteFilesParams ] intf
         and _DidCreateFilesNotification_HandlerSignature =
-          _CreateFilesParams NotificationHandler.t_1
+          _CreateFilesParams NotificationHandler.t
         and _DidDeleteFilesNotification_HandlerSignature =
-          _DeleteFilesParams NotificationHandler.t_1
+          _DeleteFilesParams NotificationHandler.t
         and _DidRenameFilesNotification_HandlerSignature =
-          _RenameFilesParams NotificationHandler.t_1
+          _RenameFilesParams NotificationHandler.t
         and _FileCreate = [ `FileCreate ] intf
         and _FileDelete = [ `FileDelete ] intf
         and _FileOperationClientCapabilities =
@@ -32,13 +32,13 @@ module Internal =
         and _RenameFilesParams = [ `RenameFilesParams ] intf
         and _WillCreateFilesRequest_HandlerSignature =
           (_CreateFilesParams, WorkspaceEdit.t or_null_or_undefined, 
-            unit) RequestHandler.t_3
+            unit) RequestHandler.t
         and _WillDeleteFilesRequest_HandlerSignature =
           (_DeleteFilesParams, WorkspaceEdit.t or_null_or_undefined, 
-            unit) RequestHandler.t_3
+            unit) RequestHandler.t
         and _WillRenameFilesRequest_HandlerSignature =
           (_RenameFilesParams, WorkspaceEdit.t or_null_or_undefined, 
-            unit) RequestHandler.t_3
+            unit) RequestHandler.t
         let rec _CreateFilesParams_of_js : Ojs.t -> _CreateFilesParams =
           Obj.magic
         and _CreateFilesParams_to_js : _CreateFilesParams -> Ojs.t =
@@ -50,27 +50,27 @@ module Internal =
         and _DidCreateFilesNotification_HandlerSignature_of_js :
           Ojs.t -> _DidCreateFilesNotification_HandlerSignature =
           fun (x3 : Ojs.t) ->
-            NotificationHandler.t_1_of_js _CreateFilesParams_of_js x3
+            NotificationHandler.t_of_js _CreateFilesParams_of_js x3
         and _DidCreateFilesNotification_HandlerSignature_to_js :
           _DidCreateFilesNotification_HandlerSignature -> Ojs.t =
-          fun (x1 : _CreateFilesParams NotificationHandler.t_1) ->
-            NotificationHandler.t_1_to_js _CreateFilesParams_to_js x1
+          fun (x1 : _CreateFilesParams NotificationHandler.t) ->
+            NotificationHandler.t_to_js _CreateFilesParams_to_js x1
         and _DidDeleteFilesNotification_HandlerSignature_of_js :
           Ojs.t -> _DidDeleteFilesNotification_HandlerSignature =
           fun (x7 : Ojs.t) ->
-            NotificationHandler.t_1_of_js _DeleteFilesParams_of_js x7
+            NotificationHandler.t_of_js _DeleteFilesParams_of_js x7
         and _DidDeleteFilesNotification_HandlerSignature_to_js :
           _DidDeleteFilesNotification_HandlerSignature -> Ojs.t =
-          fun (x5 : _DeleteFilesParams NotificationHandler.t_1) ->
-            NotificationHandler.t_1_to_js _DeleteFilesParams_to_js x5
+          fun (x5 : _DeleteFilesParams NotificationHandler.t) ->
+            NotificationHandler.t_to_js _DeleteFilesParams_to_js x5
         and _DidRenameFilesNotification_HandlerSignature_of_js :
           Ojs.t -> _DidRenameFilesNotification_HandlerSignature =
           fun (x11 : Ojs.t) ->
-            NotificationHandler.t_1_of_js _RenameFilesParams_of_js x11
+            NotificationHandler.t_of_js _RenameFilesParams_of_js x11
         and _DidRenameFilesNotification_HandlerSignature_to_js :
           _DidRenameFilesNotification_HandlerSignature -> Ojs.t =
-          fun (x9 : _RenameFilesParams NotificationHandler.t_1) ->
-            NotificationHandler.t_1_to_js _RenameFilesParams_to_js x9
+          fun (x9 : _RenameFilesParams NotificationHandler.t) ->
+            NotificationHandler.t_to_js _RenameFilesParams_to_js x9
         and _FileCreate_of_js : Ojs.t -> _FileCreate = Obj.magic
         and _FileCreate_to_js : _FileCreate -> Ojs.t = Obj.magic
         and _FileDelete_of_js : Ojs.t -> _FileDelete = Obj.magic
@@ -122,7 +122,7 @@ module Internal =
         and _WillCreateFilesRequest_HandlerSignature_of_js :
           Ojs.t -> _WillCreateFilesRequest_HandlerSignature =
           fun (x21 : Ojs.t) ->
-            RequestHandler.t_3_of_js _CreateFilesParams_of_js
+            RequestHandler.t_of_js _CreateFilesParams_of_js
               (fun (x23 : Ojs.t) ->
                  or_null_or_undefined_of_js WorkspaceEdit.t_of_js x23)
               Ojs.unit_of_js x21
@@ -131,16 +131,16 @@ module Internal =
           fun
             (x16 :
               (_CreateFilesParams, WorkspaceEdit.t or_null_or_undefined,
-                unit) RequestHandler.t_3)
+                unit) RequestHandler.t)
             ->
-            RequestHandler.t_3_to_js _CreateFilesParams_to_js
+            RequestHandler.t_to_js _CreateFilesParams_to_js
               (fun (x18 : WorkspaceEdit.t or_null_or_undefined) ->
                  or_null_or_undefined_to_js WorkspaceEdit.t_to_js x18)
               Ojs.unit_to_js x16
         and _WillDeleteFilesRequest_HandlerSignature_of_js :
           Ojs.t -> _WillDeleteFilesRequest_HandlerSignature =
           fun (x31 : Ojs.t) ->
-            RequestHandler.t_3_of_js _DeleteFilesParams_of_js
+            RequestHandler.t_of_js _DeleteFilesParams_of_js
               (fun (x33 : Ojs.t) ->
                  or_null_or_undefined_of_js WorkspaceEdit.t_of_js x33)
               Ojs.unit_of_js x31
@@ -149,16 +149,16 @@ module Internal =
           fun
             (x26 :
               (_DeleteFilesParams, WorkspaceEdit.t or_null_or_undefined,
-                unit) RequestHandler.t_3)
+                unit) RequestHandler.t)
             ->
-            RequestHandler.t_3_to_js _DeleteFilesParams_to_js
+            RequestHandler.t_to_js _DeleteFilesParams_to_js
               (fun (x28 : WorkspaceEdit.t or_null_or_undefined) ->
                  or_null_or_undefined_to_js WorkspaceEdit.t_to_js x28)
               Ojs.unit_to_js x26
         and _WillRenameFilesRequest_HandlerSignature_of_js :
           Ojs.t -> _WillRenameFilesRequest_HandlerSignature =
           fun (x41 : Ojs.t) ->
-            RequestHandler.t_3_of_js _RenameFilesParams_of_js
+            RequestHandler.t_of_js _RenameFilesParams_of_js
               (fun (x43 : Ojs.t) ->
                  or_null_or_undefined_of_js WorkspaceEdit.t_of_js x43)
               Ojs.unit_of_js x41
@@ -167,9 +167,9 @@ module Internal =
           fun
             (x36 :
               (_RenameFilesParams, WorkspaceEdit.t or_null_or_undefined,
-                unit) RequestHandler.t_3)
+                unit) RequestHandler.t)
             ->
-            RequestHandler.t_3_to_js _RenameFilesParams_to_js
+            RequestHandler.t_to_js _RenameFilesParams_to_js
               (fun (x38 : WorkspaceEdit.t or_null_or_undefined) ->
                  or_null_or_undefined_to_js WorkspaceEdit.t_to_js x38)
               Ojs.unit_to_js x36
@@ -534,9 +534,9 @@ module WillCreateFilesRequest =
       | _ -> assert false
     let (type_ :
       (_CreateFilesParams, WorkspaceEdit.t or_null, never, unit,
-        _FileOperationRegistrationOptions) ProtocolRequestType.t_5)
+        _FileOperationRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _CreateFilesParams_of_js
+      ProtocolRequestType.t_of_js _CreateFilesParams_of_js
         (fun (x165 : Ojs.t) -> or_null_of_js WorkspaceEdit.t_of_js x165)
         never_of_js Ojs.unit_of_js _FileOperationRegistrationOptions_of_js
         (Ojs.get_prop_ascii
@@ -564,9 +564,9 @@ module DidCreateFilesNotification =
       | _ -> assert false
     let (type_ :
       (_CreateFilesParams, _FileOperationRegistrationOptions)
-        ProtocolNotificationType.t_2)
+        ProtocolNotificationType.t)
       =
-      ProtocolNotificationType.t_2_of_js _CreateFilesParams_of_js
+      ProtocolNotificationType.t_of_js _CreateFilesParams_of_js
         _FileOperationRegistrationOptions_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DidCreateFilesNotification")
@@ -593,9 +593,9 @@ module WillRenameFilesRequest =
       | _ -> assert false
     let (type_ :
       (_RenameFilesParams, WorkspaceEdit.t or_null, never, unit,
-        _FileOperationRegistrationOptions) ProtocolRequestType.t_5)
+        _FileOperationRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _RenameFilesParams_of_js
+      ProtocolRequestType.t_of_js _RenameFilesParams_of_js
         (fun (x179 : Ojs.t) -> or_null_of_js WorkspaceEdit.t_of_js x179)
         never_of_js Ojs.unit_of_js _FileOperationRegistrationOptions_of_js
         (Ojs.get_prop_ascii
@@ -623,9 +623,9 @@ module DidRenameFilesNotification =
       | _ -> assert false
     let (type_ :
       (_RenameFilesParams, _FileOperationRegistrationOptions)
-        ProtocolNotificationType.t_2)
+        ProtocolNotificationType.t)
       =
-      ProtocolNotificationType.t_2_of_js _RenameFilesParams_of_js
+      ProtocolNotificationType.t_of_js _RenameFilesParams_of_js
         _FileOperationRegistrationOptions_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DidRenameFilesNotification")
@@ -653,9 +653,9 @@ module DidDeleteFilesNotification =
       | _ -> assert false
     let (type_ :
       (_DeleteFilesParams, _FileOperationRegistrationOptions)
-        ProtocolNotificationType.t_2)
+        ProtocolNotificationType.t)
       =
-      ProtocolNotificationType.t_2_of_js _DeleteFilesParams_of_js
+      ProtocolNotificationType.t_of_js _DeleteFilesParams_of_js
         _FileOperationRegistrationOptions_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DidDeleteFilesNotification")
@@ -682,9 +682,9 @@ module WillDeleteFilesRequest =
       | _ -> assert false
     let (type_ :
       (_DeleteFilesParams, WorkspaceEdit.t or_null, never, unit,
-        _FileOperationRegistrationOptions) ProtocolRequestType.t_5)
+        _FileOperationRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _DeleteFilesParams_of_js
+      ProtocolRequestType.t_of_js _DeleteFilesParams_of_js
         (fun (x198 : Ojs.t) -> or_null_of_js WorkspaceEdit.t_of_js x198)
         never_of_js Ojs.unit_of_js _FileOperationRegistrationOptions_of_js
         (Ojs.get_prop_ascii

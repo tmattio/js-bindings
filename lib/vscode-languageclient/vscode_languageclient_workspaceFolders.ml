@@ -50,19 +50,17 @@ module WorkspaceFolderWorkspaceMiddleware =
           Ojs.set_prop_ascii (t_to_js x9) "workspaceFolders"
             (WorkspaceFoldersRequest.MiddlewareSignature.t_to_js x10)
     let (get_didChangeWorkspaceFolders :
-      t -> (VWorkspaceFoldersChangeEvent.t, unit) NextSignature.t_2) =
+      t -> (VWorkspaceFoldersChangeEvent.t, unit) NextSignature.t) =
       fun (x11 : t) ->
-        NextSignature.t_2_of_js VWorkspaceFoldersChangeEvent.t_of_js
+        NextSignature.t_of_js VWorkspaceFoldersChangeEvent.t_of_js
           Ojs.unit_of_js
           (Ojs.get_prop_ascii (t_to_js x11) "didChangeWorkspaceFolders")
     let (set_didChangeWorkspaceFolders :
-      t -> (VWorkspaceFoldersChangeEvent.t, unit) NextSignature.t_2 -> unit)
-      =
+      t -> (VWorkspaceFoldersChangeEvent.t, unit) NextSignature.t -> unit) =
       fun (x14 : t) ->
-        fun (x15 : (VWorkspaceFoldersChangeEvent.t, unit) NextSignature.t_2)
-          ->
+        fun (x15 : (VWorkspaceFoldersChangeEvent.t, unit) NextSignature.t) ->
           Ojs.set_prop_ascii (t_to_js x14) "didChangeWorkspaceFolders"
-            (NextSignature.t_2_to_js VWorkspaceFoldersChangeEvent.t_to_js
+            (NextSignature.t_to_js VWorkspaceFoldersChangeEvent.t_to_js
                Ojs.unit_to_js x15)
   end
 module WorkspaceFoldersFeature =
@@ -99,9 +97,9 @@ module WorkspaceFoldersFeature =
           (Ojs.new_obj
              (Ojs.get_prop_ascii Ojs.global "WorkspaceFoldersFeature")
              [|(BaseLanguageClient.t_to_js x29)|])
-    let (get_registrationType : t -> unit RegistrationType.t_1) =
+    let (get_registrationType : t -> unit RegistrationType.t) =
       fun (x30 : t) ->
-        RegistrationType.t_1_of_js Ojs.unit_of_js
+        RegistrationType.t_of_js Ojs.unit_of_js
           (Ojs.get_prop_ascii (t_to_js x30) "registrationType")
     let (fillInitializeParams : t -> params:InitializeParams.t -> unit) =
       fun (x33 : t) ->
@@ -157,13 +155,13 @@ module WorkspaceFoldersFeature =
       fun (x47 : t) ->
         fun (x48 : any) ->
           Ojs.set_prop_ascii (t_to_js x47) "doSendEvent" (any_to_js x48)
-    let (register :
-      t -> data:never or_undefined RegistrationData.t_1 -> unit) =
+    let (register : t -> data:never or_undefined RegistrationData.t -> unit)
+      =
       fun (x52 : t) ->
-        fun ~data:(x49 : never or_undefined RegistrationData.t_1) ->
+        fun ~data:(x49 : never or_undefined RegistrationData.t) ->
           ignore
             (Ojs.call (t_to_js x52) "register"
-               [|(RegistrationData.t_1_to_js
+               [|(RegistrationData.t_to_js
                     (fun (x50 : never or_undefined) ->
                        or_undefined_to_js never_to_js x50) x49)|])
     let (unregister : t -> id:string -> unit) =
@@ -180,6 +178,6 @@ module WorkspaceFoldersFeature =
       fun (x57 : t) ->
         fun (x58 : any) ->
           Ojs.set_prop_ascii (t_to_js x57) "asProtocol" (any_to_js x58)
-    let (cast : t -> unit DynamicFeature.t_1) =
-      fun (x59 : t) -> DynamicFeature.t_1_of_js Ojs.unit_of_js (t_to_js x59)
+    let (cast : t -> unit DynamicFeature.t) =
+      fun (x59 : t) -> DynamicFeature.t_of_js Ojs.unit_of_js (t_to_js x59)
   end

@@ -2,7 +2,7 @@
 
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
-open Es5
+open Es2020
 
 module Internal : sig
   module AnonymousInterfaces : sig end
@@ -19,7 +19,6 @@ open Internal
 open AnonymousInterfaces
 open Types
 
-(* import RAL from './ral'; *)
 module AbstractMessageBuffer : sig
   type t = _AbstractMessageBuffer
 
@@ -43,21 +42,25 @@ module AbstractMessageBuffer : sig
   val set__totalLength : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_totalLength"]
 
-  val create : ?encoding:RAL.MessageBufferEncoding.t -> unit -> t [@@js.create]
+  val create
+    :  ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
+    -> unit
+    -> t
+    [@@js.create]
 
   val emptyBuffer : t -> Uint8Array.t [@@js.call "emptyBuffer"]
 
   val fromString
     :  t
     -> value:string
-    -> encoding:RAL.MessageBufferEncoding.t
+    -> encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
     -> Uint8Array.t
     [@@js.call "fromString"]
 
   val toString
     :  t
     -> value:Uint8Array.t
-    -> encoding:RAL.MessageBufferEncoding.t
+    -> encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
     -> string
     [@@js.call "toString"]
 
@@ -71,11 +74,12 @@ module AbstractMessageBuffer : sig
 
   val allocNative : t -> length:float -> Uint8Array.t [@@js.call "allocNative"]
 
-  val get_encoding : t -> RAL.MessageBufferEncoding.t [@@js.get "encoding"]
+  val get_encoding : t -> Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
+    [@@js.get "encoding"]
 
   val append : t -> chunk:Uint8Array.t or_string -> unit [@@js.call "append"]
 
-  val tryReadHeaders : t -> (string, string) Map.t_2 or_undefined
+  val tryReadHeaders : t -> (string, string) Map.t or_undefined
     [@@js.call "tryReadHeaders"]
 
   val tryReadBody : t -> length:float -> Uint8Array.t or_undefined
@@ -87,6 +91,6 @@ module AbstractMessageBuffer : sig
 
   val set__read : t -> (* FIXME: unknown type *) any -> unit [@@js.set "_read"]
 
-  val cast : t -> RAL.MessageBuffer.t [@@js.cast]
+  val cast : t -> Vscode_jsonrpc_ral.RAL.MessageBuffer.t [@@js.cast]
 end
 [@@js.scope "AbstractMessageBuffer"]

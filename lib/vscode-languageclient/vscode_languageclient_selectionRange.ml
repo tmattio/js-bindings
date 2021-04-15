@@ -44,14 +44,14 @@ module ProvideSelectionRangeSignature =
           document:TextDocument.t ->
             positions:VPosition.t list ->
               token:CancellationToken.t ->
-                VSelectionRange.t list ProviderResult.t_1)
+                VSelectionRange.t list ProviderResult.t)
       =
       fun (x8 : t) ->
         fun ~this:(x3 : unit) ->
           fun ~document:(x4 : TextDocument.t) ->
             fun ~positions:(x5 : VPosition.t list) ->
               fun ~token:(x7 : CancellationToken.t) ->
-                ProviderResult.t_1_of_js
+                ProviderResult.t_of_js
                   (fun (x9 : Ojs.t) ->
                      Ojs.list_of_js VSelectionRange.t_of_js x9)
                   (Ojs.apply (t_to_js x8)
@@ -74,7 +74,7 @@ module SelectionRangeProviderMiddleware =
             positions:VPosition.t list ->
               token:CancellationToken.t ->
                 next:_ProvideSelectionRangeSignature ->
-                  VSelectionRange.t list ProviderResult.t_1)
+                  VSelectionRange.t list ProviderResult.t)
       =
       fun (x19 : t) ->
         fun ~this:(x13 : unit) ->
@@ -82,7 +82,7 @@ module SelectionRangeProviderMiddleware =
             fun ~positions:(x15 : VPosition.t list) ->
               fun ~token:(x17 : CancellationToken.t) ->
                 fun ~next:(x18 : _ProvideSelectionRangeSignature) ->
-                  ProviderResult.t_1_of_js
+                  ProviderResult.t_of_js
                     (fun (x20 : Ojs.t) ->
                        Ojs.list_of_js VSelectionRange.t_of_js x20)
                     (Ojs.call (t_to_js x19) "provideSelectionRanges"
@@ -139,10 +139,10 @@ module SelectionRangeFeature =
       t ->
         (SelectionRangeOptions.t or_boolean,
           SelectionRangeRegistrationOptions.t, SelectionRangeProvider.t)
-          TextDocumentFeature.t_3)
+          TextDocumentFeature.t)
       =
       fun (x33 : t) ->
-        TextDocumentFeature.t_3_of_js
+        TextDocumentFeature.t_of_js
           (fun (x34 : Ojs.t) ->
              or_boolean_of_js SelectionRangeOptions.t_of_js x34)
           SelectionRangeRegistrationOptions.t_of_js

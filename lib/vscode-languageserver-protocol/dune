@@ -1,7 +1,7 @@
 (library
  (name vscode_languageserver_protocol)
  (public_name vscode-languageserver-protocol)
- (libraries js_of_ocaml ojs es5)
+ (libraries js_of_ocaml ojs es5 vscode-jsonrpc vscode-languageserver-types)
  (modes byte))
 
 (rule

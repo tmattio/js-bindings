@@ -77,12 +77,12 @@ module ProvideDocumentColorsSignature =
       t ->
         document:TextDocument.t ->
           token:CancellationToken.t ->
-            VColorInformation.t list ProviderResult.t_1)
+            VColorInformation.t list ProviderResult.t)
       =
       fun (x13 : t) ->
         fun ~document:(x11 : TextDocument.t) ->
           fun ~token:(x12 : CancellationToken.t) ->
-            ProviderResult.t_1_of_js
+            ProviderResult.t_of_js
               (fun (x14 : Ojs.t) ->
                  Ojs.list_of_js VColorInformation.t_of_js x14)
               (Ojs.apply (t_to_js x13)
@@ -101,13 +101,13 @@ module ProvideColorPresentationSignature =
         color:VColor.t ->
           context:anonymous_interface_0 ->
             token:CancellationToken.t ->
-              VColorPresentation.t list ProviderResult.t_1)
+              VColorPresentation.t list ProviderResult.t)
       =
       fun (x21 : t) ->
         fun ~color:(x18 : VColor.t) ->
           fun ~context:(x19 : anonymous_interface_0) ->
             fun ~token:(x20 : CancellationToken.t) ->
-              ProviderResult.t_1_of_js
+              ProviderResult.t_of_js
                 (fun (x22 : Ojs.t) ->
                    Ojs.list_of_js VColorPresentation.t_of_js x22)
                 (Ojs.apply (t_to_js x21)
@@ -128,14 +128,14 @@ module ColorProviderMiddleware =
           document:TextDocument.t ->
             token:CancellationToken.t ->
               next:_ProvideDocumentColorsSignature ->
-                VColorInformation.t list ProviderResult.t_1)
+                VColorInformation.t list ProviderResult.t)
       =
       fun (x30 : t) ->
         fun ~this:(x26 : unit) ->
           fun ~document:(x27 : TextDocument.t) ->
             fun ~token:(x28 : CancellationToken.t) ->
               fun ~next:(x29 : _ProvideDocumentColorsSignature) ->
-                ProviderResult.t_1_of_js
+                ProviderResult.t_of_js
                   (fun (x31 : Ojs.t) ->
                      Ojs.list_of_js VColorInformation.t_of_js x31)
                   (Ojs.call (t_to_js x30) "provideDocumentColors"
@@ -149,7 +149,7 @@ module ColorProviderMiddleware =
             context:anonymous_interface_0 ->
               token:CancellationToken.t ->
                 next:_ProvideColorPresentationSignature ->
-                  VColorPresentation.t list ProviderResult.t_1)
+                  VColorPresentation.t list ProviderResult.t)
       =
       fun (x38 : t) ->
         fun ~this:(x33 : unit) ->
@@ -157,7 +157,7 @@ module ColorProviderMiddleware =
             fun ~context:(x35 : anonymous_interface_0) ->
               fun ~token:(x36 : CancellationToken.t) ->
                 fun ~next:(x37 : _ProvideColorPresentationSignature) ->
-                  ProviderResult.t_1_of_js
+                  ProviderResult.t_of_js
                     (fun (x39 : Ojs.t) ->
                        Ojs.list_of_js VColorPresentation.t_of_js x39)
                     (Ojs.call (t_to_js x38) "provideColorPresentations"
@@ -235,10 +235,10 @@ module ColorProviderFeature =
       t ->
         (DocumentColorOptions.t or_boolean,
           DocumentColorRegistrationOptions.t, DocumentColorProvider.t)
-          TextDocumentFeature.t_3)
+          TextDocumentFeature.t)
       =
       fun (x61 : t) ->
-        TextDocumentFeature.t_3_of_js
+        TextDocumentFeature.t_of_js
           (fun (x62 : Ojs.t) ->
              or_boolean_of_js DocumentColorOptions.t_of_js x62)
           DocumentColorRegistrationOptions.t_of_js

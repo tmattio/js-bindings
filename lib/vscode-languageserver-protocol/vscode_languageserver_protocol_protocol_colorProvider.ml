@@ -11,7 +11,7 @@ module Internal =
         type _ColorPresentationParams = [ `ColorPresentationParams ] intf
         and _ColorPresentationRequest_HandlerSignature =
           (_ColorPresentationParams, ColorPresentation.t list, unit)
-            RequestHandler.t_3
+            RequestHandler.t
         and _DocumentColorClientCapabilities =
           [ `DocumentColorClientCapabilities ] intf
         and _DocumentColorOptions = [ `DocumentColorOptions ] intf
@@ -20,7 +20,7 @@ module Internal =
           [ `DocumentColorRegistrationOptions  | `DocumentColorOptions ] intf
         and _DocumentColorRequest_HandlerSignature =
           (_DocumentColorParams, ColorInformation.t list, unit)
-            RequestHandler.t_3
+            RequestHandler.t
         let rec _ColorPresentationParams_of_js :
           Ojs.t -> _ColorPresentationParams = Obj.magic
         and _ColorPresentationParams_to_js :
@@ -28,7 +28,7 @@ module Internal =
         and _ColorPresentationRequest_HandlerSignature_of_js :
           Ojs.t -> _ColorPresentationRequest_HandlerSignature =
           fun (x6 : Ojs.t) ->
-            RequestHandler.t_3_of_js _ColorPresentationParams_of_js
+            RequestHandler.t_of_js _ColorPresentationParams_of_js
               (fun (x8 : Ojs.t) ->
                  Ojs.list_of_js ColorPresentation.t_of_js x8) Ojs.unit_of_js
               x6
@@ -37,9 +37,9 @@ module Internal =
           fun
             (x1 :
               (_ColorPresentationParams, ColorPresentation.t list, unit)
-                RequestHandler.t_3)
+                RequestHandler.t)
             ->
-            RequestHandler.t_3_to_js _ColorPresentationParams_to_js
+            RequestHandler.t_to_js _ColorPresentationParams_to_js
               (fun (x3 : ColorPresentation.t list) ->
                  Ojs.list_to_js ColorPresentation.t_to_js x3) Ojs.unit_to_js
               x1
@@ -62,7 +62,7 @@ module Internal =
         and _DocumentColorRequest_HandlerSignature_of_js :
           Ojs.t -> _DocumentColorRequest_HandlerSignature =
           fun (x16 : Ojs.t) ->
-            RequestHandler.t_3_of_js _DocumentColorParams_of_js
+            RequestHandler.t_of_js _DocumentColorParams_of_js
               (fun (x18 : Ojs.t) ->
                  Ojs.list_of_js ColorInformation.t_of_js x18) Ojs.unit_of_js
               x16
@@ -71,9 +71,9 @@ module Internal =
           fun
             (x11 :
               (_DocumentColorParams, ColorInformation.t list, unit)
-                RequestHandler.t_3)
+                RequestHandler.t)
             ->
-            RequestHandler.t_3_to_js _DocumentColorParams_to_js
+            RequestHandler.t_to_js _DocumentColorParams_to_js
               (fun (x13 : ColorInformation.t list) ->
                  Ojs.list_to_js ColorInformation.t_to_js x13) Ojs.unit_to_js
               x11
@@ -158,9 +158,9 @@ module DocumentColorRequest =
     let (type_ :
       (_DocumentColorParams, ColorInformation.t list,
         ColorInformation.t list, unit, _DocumentColorRegistrationOptions)
-        ProtocolRequestType.t_5)
+        ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _DocumentColorParams_of_js
+      ProtocolRequestType.t_of_js _DocumentColorParams_of_js
         (fun (x43 : Ojs.t) -> Ojs.list_of_js ColorInformation.t_of_js x43)
         (fun (x45 : Ojs.t) -> Ojs.list_of_js ColorInformation.t_of_js x45)
         Ojs.unit_of_js _DocumentColorRegistrationOptions_of_js
@@ -220,9 +220,9 @@ module ColorPresentationRequest =
         ColorPresentation.t list, unit,
         (WorkDoneProgressOptions.t, TextDocumentRegistrationOptions.t)
           intersection2)
-        ProtocolRequestType.t_5)
+        ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _ColorPresentationParams_of_js
+      ProtocolRequestType.t_of_js _ColorPresentationParams_of_js
         (fun (x65 : Ojs.t) -> Ojs.list_of_js ColorPresentation.t_of_js x65)
         (fun (x67 : Ojs.t) -> Ojs.list_of_js ColorPresentation.t_of_js x67)
         Ojs.unit_of_js

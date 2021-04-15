@@ -26,7 +26,7 @@ module Internal =
       struct
         open AnonymousInterfaces
         type _DidChangeWorkspaceFoldersNotification_HandlerSignature =
-          _DidChangeWorkspaceFoldersParams NotificationHandler.t_1
+          _DidChangeWorkspaceFoldersParams NotificationHandler.t
         and _DidChangeWorkspaceFoldersNotification_MiddlewareSignature =
           [ `DidChangeWorkspaceFoldersNotification_MiddlewareSignature ] intf
         and _DidChangeWorkspaceFoldersParams =
@@ -39,7 +39,7 @@ module Internal =
         and _WorkspaceFoldersInitializeParams =
           [ `WorkspaceFoldersInitializeParams ] intf
         and _WorkspaceFoldersRequest_HandlerSignature =
-          (_WorkspaceFolder list or_null, unit) RequestHandler0.t_2
+          (_WorkspaceFolder list or_null, unit) RequestHandler0.t
         and _WorkspaceFoldersRequest_MiddlewareSignature =
           [ `WorkspaceFoldersRequest_MiddlewareSignature ] intf
         and _WorkspaceFoldersServerCapabilities =
@@ -48,13 +48,13 @@ module Internal =
           : Ojs.t -> _DidChangeWorkspaceFoldersNotification_HandlerSignature
           =
           fun (x3 : Ojs.t) ->
-            NotificationHandler.t_1_of_js
+            NotificationHandler.t_of_js
               _DidChangeWorkspaceFoldersParams_of_js x3
         and _DidChangeWorkspaceFoldersNotification_HandlerSignature_to_js :
           _DidChangeWorkspaceFoldersNotification_HandlerSignature -> Ojs.t =
-          fun (x1 : _DidChangeWorkspaceFoldersParams NotificationHandler.t_1)
+          fun (x1 : _DidChangeWorkspaceFoldersParams NotificationHandler.t)
             ->
-            NotificationHandler.t_1_to_js
+            NotificationHandler.t_to_js
               _DidChangeWorkspaceFoldersParams_to_js x1
         and _DidChangeWorkspaceFoldersNotification_MiddlewareSignature_of_js
           :
@@ -85,7 +85,7 @@ module Internal =
         and _WorkspaceFoldersRequest_HandlerSignature_of_js :
           Ojs.t -> _WorkspaceFoldersRequest_HandlerSignature =
           fun (x10 : Ojs.t) ->
-            RequestHandler0.t_2_of_js
+            RequestHandler0.t_of_js
               (fun (x11 : Ojs.t) ->
                  or_null_of_js
                    (fun (x12 : Ojs.t) ->
@@ -93,10 +93,9 @@ module Internal =
               Ojs.unit_of_js x10
         and _WorkspaceFoldersRequest_HandlerSignature_to_js :
           _WorkspaceFoldersRequest_HandlerSignature -> Ojs.t =
-          fun
-            (x5 : (_WorkspaceFolder list or_null, unit) RequestHandler0.t_2)
+          fun (x5 : (_WorkspaceFolder list or_null, unit) RequestHandler0.t)
             ->
-            RequestHandler0.t_2_to_js
+            RequestHandler0.t_to_js
               (fun (x6 : _WorkspaceFolder list or_null) ->
                  or_null_to_js
                    (fun (x7 : _WorkspaceFolder list) ->
@@ -255,9 +254,9 @@ module WorkspaceFoldersRequest =
   struct
     let (type_ :
       (_WorkspaceFolder list or_null, never, unit, unit)
-        ProtocolRequestType0.t_4)
+        ProtocolRequestType0.t)
       =
-      ProtocolRequestType0.t_4_of_js
+      ProtocolRequestType0.t_of_js
         (fun (x62 : Ojs.t) ->
            or_null_of_js
              (fun (x63 : Ojs.t) -> Ojs.list_of_js _WorkspaceFolder_of_js x63)
@@ -287,12 +286,12 @@ module WorkspaceFoldersRequest =
           t ->
             token:CancellationToken.t ->
               next:_WorkspaceFoldersRequest_HandlerSignature ->
-                (_WorkspaceFolder list or_null, unit) HandlerResult.t_2)
+                (_WorkspaceFolder list or_null, unit) HandlerResult.t)
           =
           fun (x74 : t) ->
             fun ~token:(x72 : CancellationToken.t) ->
               fun ~next:(x73 : _WorkspaceFoldersRequest_HandlerSignature) ->
-                HandlerResult.t_2_of_js
+                HandlerResult.t_of_js
                   (fun (x75 : Ojs.t) ->
                      or_null_of_js
                        (fun (x76 : Ojs.t) ->
@@ -306,10 +305,9 @@ module WorkspaceFoldersRequest =
 module DidChangeWorkspaceFoldersNotification =
   struct
     let (type_ :
-      (_DidChangeWorkspaceFoldersParams, unit) ProtocolNotificationType.t_2)
-      =
-      ProtocolNotificationType.t_2_of_js
-        _DidChangeWorkspaceFoldersParams_of_js Ojs.unit_of_js
+      (_DidChangeWorkspaceFoldersParams, unit) ProtocolNotificationType.t) =
+      ProtocolNotificationType.t_of_js _DidChangeWorkspaceFoldersParams_of_js
+        Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global
               "DidChangeWorkspaceFoldersNotification") "type")

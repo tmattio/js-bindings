@@ -33,7 +33,7 @@ module Internal =
         and _SemanticTokensDeltaRequest_HandlerSignature =
           (_SemanticTokensDeltaParams,
             (SemanticTokens.t, SemanticTokensDelta.t) union2 or_null, 
-            unit) RequestHandler.t_3
+            unit) RequestHandler.t
         and _SemanticTokensOptions = [ `SemanticTokensOptions ] intf
         and _SemanticTokensParams = [ `SemanticTokensParams ] intf
         and _SemanticTokensPartialResult =
@@ -41,15 +41,15 @@ module Internal =
         and _SemanticTokensRangeParams = [ `SemanticTokensRangeParams ] intf
         and _SemanticTokensRangeRequest_HandlerSignature =
           (_SemanticTokensRangeParams, SemanticTokens.t or_null, unit)
-            RequestHandler.t_3
+            RequestHandler.t
         and _SemanticTokensRefreshRequest_HandlerSignature =
-          (unit, unit) RequestHandler0.t_2
+          (unit, unit) RequestHandler0.t
         and _SemanticTokensRegistrationOptions =
           [ `SemanticTokensRegistrationOptions  | `SemanticTokensOptions ]
             intf
         and _SemanticTokensRequest_HandlerSignature =
           (_SemanticTokensDeltaParams, SemanticTokens.t or_null, unit)
-            RequestHandler.t_3
+            RequestHandler.t
         and _SemanticTokensWorkspaceClientCapabilities =
           [ `SemanticTokensWorkspaceClientCapabilities ] intf
         and _TokenFormat = [ `L_s0_relative ]
@@ -68,7 +68,7 @@ module Internal =
         and _SemanticTokensDeltaRequest_HandlerSignature_of_js :
           Ojs.t -> _SemanticTokensDeltaRequest_HandlerSignature =
           fun (x8 : Ojs.t) ->
-            RequestHandler.t_3_of_js _SemanticTokensDeltaParams_of_js
+            RequestHandler.t_of_js _SemanticTokensDeltaParams_of_js
               (fun (x10 : Ojs.t) ->
                  or_null_of_js
                    (fun (x11 : Ojs.t) ->
@@ -81,9 +81,9 @@ module Internal =
             (x1 :
               (_SemanticTokensDeltaParams,
                 (SemanticTokens.t, SemanticTokensDelta.t) union2 or_null,
-                unit) RequestHandler.t_3)
+                unit) RequestHandler.t)
             ->
-            RequestHandler.t_3_to_js _SemanticTokensDeltaParams_to_js
+            RequestHandler.t_to_js _SemanticTokensDeltaParams_to_js
               (fun
                  (x3 :
                    (SemanticTokens.t, SemanticTokensDelta.t) union2 or_null)
@@ -113,7 +113,7 @@ module Internal =
         and _SemanticTokensRangeRequest_HandlerSignature_of_js :
           Ojs.t -> _SemanticTokensRangeRequest_HandlerSignature =
           fun (x20 : Ojs.t) ->
-            RequestHandler.t_3_of_js _SemanticTokensRangeParams_of_js
+            RequestHandler.t_of_js _SemanticTokensRangeParams_of_js
               (fun (x22 : Ojs.t) -> or_null_of_js SemanticTokens.t_of_js x22)
               Ojs.unit_of_js x20
         and _SemanticTokensRangeRequest_HandlerSignature_to_js :
@@ -121,19 +121,19 @@ module Internal =
           fun
             (x15 :
               (_SemanticTokensRangeParams, SemanticTokens.t or_null, 
-                unit) RequestHandler.t_3)
+                unit) RequestHandler.t)
             ->
-            RequestHandler.t_3_to_js _SemanticTokensRangeParams_to_js
+            RequestHandler.t_to_js _SemanticTokensRangeParams_to_js
               (fun (x17 : SemanticTokens.t or_null) ->
                  or_null_to_js SemanticTokens.t_to_js x17) Ojs.unit_to_js x15
         and _SemanticTokensRefreshRequest_HandlerSignature_of_js :
           Ojs.t -> _SemanticTokensRefreshRequest_HandlerSignature =
           fun (x28 : Ojs.t) ->
-            RequestHandler0.t_2_of_js Ojs.unit_of_js Ojs.unit_of_js x28
+            RequestHandler0.t_of_js Ojs.unit_of_js Ojs.unit_of_js x28
         and _SemanticTokensRefreshRequest_HandlerSignature_to_js :
           _SemanticTokensRefreshRequest_HandlerSignature -> Ojs.t =
-          fun (x25 : (unit, unit) RequestHandler0.t_2) ->
-            RequestHandler0.t_2_to_js Ojs.unit_to_js Ojs.unit_to_js x25
+          fun (x25 : (unit, unit) RequestHandler0.t) ->
+            RequestHandler0.t_to_js Ojs.unit_to_js Ojs.unit_to_js x25
         and _SemanticTokensRegistrationOptions_of_js :
           Ojs.t -> _SemanticTokensRegistrationOptions = Obj.magic
         and _SemanticTokensRegistrationOptions_to_js :
@@ -141,7 +141,7 @@ module Internal =
         and _SemanticTokensRequest_HandlerSignature_of_js :
           Ojs.t -> _SemanticTokensRequest_HandlerSignature =
           fun (x36 : Ojs.t) ->
-            RequestHandler.t_3_of_js _SemanticTokensDeltaParams_of_js
+            RequestHandler.t_of_js _SemanticTokensDeltaParams_of_js
               (fun (x38 : Ojs.t) -> or_null_of_js SemanticTokens.t_of_js x38)
               Ojs.unit_of_js x36
         and _SemanticTokensRequest_HandlerSignature_to_js :
@@ -149,9 +149,9 @@ module Internal =
           fun
             (x31 :
               (_SemanticTokensDeltaParams, SemanticTokens.t or_null, 
-                unit) RequestHandler.t_3)
+                unit) RequestHandler.t)
             ->
-            RequestHandler.t_3_to_js _SemanticTokensDeltaParams_to_js
+            RequestHandler.t_to_js _SemanticTokensDeltaParams_to_js
               (fun (x33 : SemanticTokens.t or_null) ->
                  or_null_to_js SemanticTokens.t_to_js x33) Ojs.unit_to_js x31
         and _SemanticTokensWorkspaceClientCapabilities_of_js :
@@ -411,8 +411,8 @@ module SemanticTokensRegistrationType =
       match Ojs.string_of_js x130 with
       | "textDocument/semanticTokens" -> `L_s1_textDocument_semanticTokens
       | _ -> assert false
-    let (type_ : _SemanticTokensRegistrationOptions RegistrationType.t_1) =
-      RegistrationType.t_1_of_js _SemanticTokensRegistrationOptions_of_js
+    let (type_ : _SemanticTokensRegistrationOptions RegistrationType.t) =
+      RegistrationType.t_of_js _SemanticTokensRegistrationOptions_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "SemanticTokensRegistrationType")
            "type")
@@ -451,9 +451,9 @@ module SemanticTokensRequest =
     let (type_ :
       (_SemanticTokensParams, SemanticTokens.t or_null,
         _SemanticTokensPartialResult, unit,
-        _SemanticTokensRegistrationOptions) ProtocolRequestType.t_5)
+        _SemanticTokensRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _SemanticTokensParams_of_js
+      ProtocolRequestType.t_of_js _SemanticTokensParams_of_js
         (fun (x141 : Ojs.t) -> or_null_of_js SemanticTokens.t_of_js x141)
         _SemanticTokensPartialResult_of_js Ojs.unit_of_js
         _SemanticTokensRegistrationOptions_of_js
@@ -517,9 +517,9 @@ module SemanticTokensDeltaRequest =
         (SemanticTokens.t, SemanticTokensDelta.t) union2 or_null,
         (_SemanticTokensDeltaPartialResult, _SemanticTokensPartialResult)
           union2,
-        unit, _SemanticTokensRegistrationOptions) ProtocolRequestType.t_5)
+        unit, _SemanticTokensRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _SemanticTokensDeltaParams_of_js
+      ProtocolRequestType.t_of_js _SemanticTokensDeltaParams_of_js
         (fun (x160 : Ojs.t) ->
            or_null_of_js
              (fun (x161 : Ojs.t) ->
@@ -585,9 +585,9 @@ module SemanticTokensRangeRequest =
       | _ -> assert false
     let (type_ :
       (_SemanticTokensRangeParams, SemanticTokens.t or_null,
-        _SemanticTokensPartialResult, unit, unit) ProtocolRequestType.t_5)
+        _SemanticTokensPartialResult, unit, unit) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _SemanticTokensRangeParams_of_js
+      ProtocolRequestType.t_of_js _SemanticTokensRangeParams_of_js
         (fun (x183 : Ojs.t) -> or_null_of_js SemanticTokens.t_of_js x183)
         _SemanticTokensPartialResult_of_js Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
@@ -629,8 +629,8 @@ module SemanticTokensRefreshRequest =
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "SemanticTokensRefreshRequest")
            "method")
-    let (type_ : (unit, unit, unit, unit) ProtocolRequestType0.t_4) =
-      ProtocolRequestType0.t_4_of_js Ojs.unit_of_js Ojs.unit_of_js
+    let (type_ : (unit, unit, unit, unit) ProtocolRequestType0.t) =
+      ProtocolRequestType0.t_of_js Ojs.unit_of_js Ojs.unit_of_js
         Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "SemanticTokensRefreshRequest")

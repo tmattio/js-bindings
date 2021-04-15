@@ -28,7 +28,7 @@ module Internal : sig
       ( _SelectionRangeParams
       , SelectionRange.t list or_null
       , unit )
-      RequestHandler.t_3
+      RequestHandler.t
   end
 end
 
@@ -117,7 +117,7 @@ module SelectionRangeRequest : sig
       , SelectionRange.t list
       , any
       , _SelectionRangeRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig

@@ -12,7 +12,7 @@ module Internal =
           [ `ShowDocumentClientCapabilities ] intf
         and _ShowDocumentParams = [ `ShowDocumentParams ] intf
         and _ShowDocumentRequest_HandlerSignature =
-          (_ShowDocumentParams, _ShowDocumentResult, unit) RequestHandler.t_3
+          (_ShowDocumentParams, _ShowDocumentResult, unit) RequestHandler.t
         and _ShowDocumentRequest_MiddlewareSignature =
           [ `ShowDocumentRequest_MiddlewareSignature ] intf
         and _ShowDocumentResult = [ `ShowDocumentResult ] intf
@@ -27,16 +27,16 @@ module Internal =
         and _ShowDocumentRequest_HandlerSignature_of_js :
           Ojs.t -> _ShowDocumentRequest_HandlerSignature =
           fun (x5 : Ojs.t) ->
-            RequestHandler.t_3_of_js _ShowDocumentParams_of_js
+            RequestHandler.t_of_js _ShowDocumentParams_of_js
               _ShowDocumentResult_of_js Ojs.unit_of_js x5
         and _ShowDocumentRequest_HandlerSignature_to_js :
           _ShowDocumentRequest_HandlerSignature -> Ojs.t =
           fun
             (x1 :
               (_ShowDocumentParams, _ShowDocumentResult, unit)
-                RequestHandler.t_3)
+                RequestHandler.t)
             ->
-            RequestHandler.t_3_to_js _ShowDocumentParams_to_js
+            RequestHandler.t_to_js _ShowDocumentParams_to_js
               _ShowDocumentResult_to_js Ojs.unit_to_js x1
         and _ShowDocumentRequest_MiddlewareSignature_of_js :
           Ojs.t -> _ShowDocumentRequest_MiddlewareSignature = Obj.magic
@@ -128,9 +128,9 @@ module ShowDocumentRequest =
       | _ -> assert false
     let (type_ :
       (_ShowDocumentParams, _ShowDocumentResult, unit, unit, unit)
-        ProtocolRequestType.t_5)
+        ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _ShowDocumentParams_of_js
+      ProtocolRequestType.t_of_js _ShowDocumentParams_of_js
         _ShowDocumentResult_of_js Ojs.unit_of_js Ojs.unit_of_js
         Ojs.unit_of_js
         (Ojs.get_prop_ascii
@@ -158,12 +158,12 @@ module ShowDocumentRequest =
           t ->
             params:_ShowDocumentParams ->
               next:_ShowDocumentRequest_HandlerSignature ->
-                (_ShowDocumentResult, unit) HandlerResult.t_2)
+                (_ShowDocumentResult, unit) HandlerResult.t)
           =
           fun (x45 : t) ->
             fun ~params:(x43 : _ShowDocumentParams) ->
               fun ~next:(x44 : _ShowDocumentRequest_HandlerSignature) ->
-                HandlerResult.t_2_of_js _ShowDocumentResult_of_js
+                HandlerResult.t_of_js _ShowDocumentResult_of_js
                   Ojs.unit_of_js
                   (Ojs.apply (t_to_js x45)
                      [|(_ShowDocumentParams_to_js x43);(_ShowDocumentRequest_HandlerSignature_to_js

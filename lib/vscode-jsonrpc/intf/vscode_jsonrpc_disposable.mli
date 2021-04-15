@@ -27,10 +27,7 @@ module Disposable : sig
   val t_of_js : Ojs.t -> t
 
   val dispose : t -> unit [@@js.call "dispose"]
-end
-[@@js.scope "Disposable"]
 
-module Disposable : sig
   val create_ : func:(unit -> unit) -> _Disposable [@@js.global "create"]
 end
 [@@js.scope "Disposable"]

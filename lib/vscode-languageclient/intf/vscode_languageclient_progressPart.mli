@@ -34,15 +34,15 @@ module ProgressContext : sig
 
   val onProgress
     :  t
-    -> type_:'P ProgressType.t_1
+    -> type_:'P ProgressType.t
     -> token:string or_number
-    -> handler:'P NotificationHandler.t_1
+    -> handler:'P NotificationHandler.t
     -> Disposable.t
     [@@js.call "onProgress"]
 
   val sendNotification
     :  t
-    -> type_:('P, 'RO) ProtocolNotificationType.t_2
+    -> type_:('P, 'RO) ProtocolNotificationType.t
     -> ?params:'P
     -> unit
     -> unit

@@ -265,13 +265,13 @@ module StreamInfo : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_writer : t -> NodeJS.WritableStream.t [@@js.get "writer"]
+  val get_writer : t -> Node.WritableStream.t [@@js.get "writer"]
 
-  val set_writer : t -> NodeJS.WritableStream.t -> unit [@@js.set "writer"]
+  val set_writer : t -> Node.WritableStream.t -> unit [@@js.set "writer"]
 
-  val get_reader : t -> NodeJS.ReadableStream.t [@@js.get "reader"]
+  val get_reader : t -> Node.ReadableStream.t [@@js.get "reader"]
 
-  val set_reader : t -> NodeJS.ReadableStream.t -> unit [@@js.set "reader"]
+  val set_reader : t -> Node.ReadableStream.t -> unit [@@js.set "reader"]
 
   val get_detached : t -> bool [@@js.get "detached"]
 

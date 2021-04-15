@@ -417,24 +417,24 @@ module StreamInfo =
       fun (x136 : Ojs.t) -> _StreamInfo_of_js x136
     and t_to_js : t -> Ojs.t =
       fun (x135 : _StreamInfo) -> _StreamInfo_to_js x135
-    let (get_writer : t -> NodeJS.WritableStream.t) =
+    let (get_writer : t -> Node.WritableStream.t) =
       fun (x137 : t) ->
-        NodeJS.WritableStream.t_of_js
+        Node.WritableStream.t_of_js
           (Ojs.get_prop_ascii (t_to_js x137) "writer")
-    let (set_writer : t -> NodeJS.WritableStream.t -> unit) =
+    let (set_writer : t -> Node.WritableStream.t -> unit) =
       fun (x138 : t) ->
-        fun (x139 : NodeJS.WritableStream.t) ->
+        fun (x139 : Node.WritableStream.t) ->
           Ojs.set_prop_ascii (t_to_js x138) "writer"
-            (NodeJS.WritableStream.t_to_js x139)
-    let (get_reader : t -> NodeJS.ReadableStream.t) =
+            (Node.WritableStream.t_to_js x139)
+    let (get_reader : t -> Node.ReadableStream.t) =
       fun (x140 : t) ->
-        NodeJS.ReadableStream.t_of_js
+        Node.ReadableStream.t_of_js
           (Ojs.get_prop_ascii (t_to_js x140) "reader")
-    let (set_reader : t -> NodeJS.ReadableStream.t -> unit) =
+    let (set_reader : t -> Node.ReadableStream.t -> unit) =
       fun (x141 : t) ->
-        fun (x142 : NodeJS.ReadableStream.t) ->
+        fun (x142 : Node.ReadableStream.t) ->
           Ojs.set_prop_ascii (t_to_js x141) "reader"
-            (NodeJS.ReadableStream.t_to_js x142)
+            (Node.ReadableStream.t_to_js x142)
     let (get_detached : t -> bool) =
       fun (x143 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x143) "detached")

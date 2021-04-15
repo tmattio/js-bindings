@@ -17,13 +17,13 @@ module Internal : sig
     [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
 
     and _DidCreateFilesNotification_HandlerSignature =
-      _CreateFilesParams NotificationHandler.t_1
+      _CreateFilesParams NotificationHandler.t
 
     and _DidDeleteFilesNotification_HandlerSignature =
-      _DeleteFilesParams NotificationHandler.t_1
+      _DeleteFilesParams NotificationHandler.t
 
     and _DidRenameFilesNotification_HandlerSignature =
-      _RenameFilesParams NotificationHandler.t_1
+      _RenameFilesParams NotificationHandler.t
 
     and _FileCreate = [ `FileCreate ] intf
     [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
@@ -67,19 +67,19 @@ module Internal : sig
       ( _CreateFilesParams
       , WorkspaceEdit.t or_null_or_undefined
       , unit )
-      RequestHandler.t_3
+      RequestHandler.t
 
     and _WillDeleteFilesRequest_HandlerSignature =
       ( _DeleteFilesParams
       , WorkspaceEdit.t or_null_or_undefined
       , unit )
-      RequestHandler.t_3
+      RequestHandler.t
 
     and _WillRenameFilesRequest_HandlerSignature =
       ( _RenameFilesParams
       , WorkspaceEdit.t or_null_or_undefined
       , unit )
-      RequestHandler.t_3
+      RequestHandler.t
   end
 end
 
@@ -348,7 +348,7 @@ module WillCreateFilesRequest : sig
       , never
       , unit
       , _FileOperationRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
@@ -370,7 +370,7 @@ module DidCreateFilesNotification : sig
   val type_
     : ( _CreateFilesParams
       , _FileOperationRegistrationOptions )
-      ProtocolNotificationType.t_2
+      ProtocolNotificationType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
@@ -395,7 +395,7 @@ module WillRenameFilesRequest : sig
       , never
       , unit
       , _FileOperationRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
@@ -417,7 +417,7 @@ module DidRenameFilesNotification : sig
   val type_
     : ( _RenameFilesParams
       , _FileOperationRegistrationOptions )
-      ProtocolNotificationType.t_2
+      ProtocolNotificationType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
@@ -439,7 +439,7 @@ module DidDeleteFilesNotification : sig
   val type_
     : ( _DeleteFilesParams
       , _FileOperationRegistrationOptions )
-      ProtocolNotificationType.t_2
+      ProtocolNotificationType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
@@ -464,7 +464,7 @@ module WillDeleteFilesRequest : sig
       , never
       , unit
       , _FileOperationRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig

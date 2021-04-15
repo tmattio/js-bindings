@@ -24,7 +24,7 @@ module Internal : sig
     [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
 
     and _ConfigurationRequest_HandlerSignature =
-      (_ConfigurationParams, any list, unit) RequestHandler.t_3
+      (_ConfigurationParams, any list, unit) RequestHandler.t
 
     and _ConfigurationRequest_MiddlewareSignature =
       [ `ConfigurationRequest_MiddlewareSignature ] intf
@@ -72,7 +72,7 @@ module ConfigurationRequest : sig
       , never
       , unit
       , unit )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
@@ -95,7 +95,7 @@ module ConfigurationRequest : sig
       -> params:_ConfigurationParams
       -> token:CancellationToken.t
       -> next:_ConfigurationRequest_HandlerSignature
-      -> (any list, unit) HandlerResult.t_2
+      -> (any list, unit) HandlerResult.t
       [@@js.apply]
   end
   [@@js.scope "MiddlewareSignature"]

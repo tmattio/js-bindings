@@ -1681,9 +1681,8 @@ module RegistrationParams =
 module RegistrationRequest =
   struct
     let (type_ :
-      (_RegistrationParams, unit, never, unit, unit) ProtocolRequestType.t_5)
-      =
-      ProtocolRequestType.t_5_of_js _RegistrationParams_of_js Ojs.unit_of_js
+      (_RegistrationParams, unit, never, unit, unit) ProtocolRequestType.t) =
+      ProtocolRequestType.t_of_js _RegistrationParams_of_js Ojs.unit_of_js
         never_of_js Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "RegistrationRequest") "type")
@@ -1730,11 +1729,10 @@ module UnregistrationParams =
 module UnregistrationRequest =
   struct
     let (type_ :
-      (_UnregistrationParams, unit, never, unit, unit)
-        ProtocolRequestType.t_5)
+      (_UnregistrationParams, unit, never, unit, unit) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _UnregistrationParams_of_js
-        Ojs.unit_of_js never_of_js Ojs.unit_of_js Ojs.unit_of_js
+      ProtocolRequestType.t_of_js _UnregistrationParams_of_js Ojs.unit_of_js
+        never_of_js Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "UnregistrationRequest") "type")
   end
@@ -3071,9 +3069,9 @@ module InitializeRequest =
       ((_InitializeParams, WorkspaceFoldersInitializeParams.t,
          _WorkDoneProgressParams) intersection3,
         any _InitializeResult, never, _InitializeError, unit)
-        ProtocolRequestType.t_5)
+        ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js
+      ProtocolRequestType.t_of_js
         (fun (x770 : Ojs.t) ->
            intersection3_of_js _InitializeParams_of_js
              WorkspaceFoldersInitializeParams.t_of_js
@@ -3257,24 +3255,24 @@ module InitializedParams =
   end
 module InitializedNotification =
   struct
-    let (type_ : (_InitializedParams, unit) ProtocolNotificationType.t_2) =
-      ProtocolNotificationType.t_2_of_js _InitializedParams_of_js
+    let (type_ : (_InitializedParams, unit) ProtocolNotificationType.t) =
+      ProtocolNotificationType.t_of_js _InitializedParams_of_js
         Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "InitializedNotification") "type")
   end
 module ShutdownRequest =
   struct
-    let (type_ : (unit, never, unit, unit) ProtocolRequestType0.t_4) =
-      ProtocolRequestType0.t_4_of_js Ojs.unit_of_js never_of_js
-        Ojs.unit_of_js Ojs.unit_of_js
+    let (type_ : (unit, never, unit, unit) ProtocolRequestType0.t) =
+      ProtocolRequestType0.t_of_js Ojs.unit_of_js never_of_js Ojs.unit_of_js
+        Ojs.unit_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "ShutdownRequest")
            "type")
   end
 module ExitNotification =
   struct
-    let (type_ : unit ProtocolNotificationType0.t_1) =
-      ProtocolNotificationType0.t_1_of_js Ojs.unit_of_js
+    let (type_ : unit ProtocolNotificationType0.t) =
+      ProtocolNotificationType0.t_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "ExitNotification") "type")
   end
@@ -3302,9 +3300,9 @@ module DidChangeConfigurationNotification =
     let (type_ :
       (_DidChangeConfigurationParams,
         _DidChangeConfigurationRegistrationOptions)
-        ProtocolNotificationType.t_2)
+        ProtocolNotificationType.t)
       =
-      ProtocolNotificationType.t_2_of_js _DidChangeConfigurationParams_of_js
+      ProtocolNotificationType.t_of_js _DidChangeConfigurationParams_of_js
         _DidChangeConfigurationRegistrationOptions_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global
@@ -3399,8 +3397,8 @@ module ShowMessageParams =
   end
 module ShowMessageNotification =
   struct
-    let (type_ : (_ShowMessageParams, unit) ProtocolNotificationType.t_2) =
-      ProtocolNotificationType.t_2_of_js _ShowMessageParams_of_js
+    let (type_ : (_ShowMessageParams, unit) ProtocolNotificationType.t) =
+      ProtocolNotificationType.t_of_js _ShowMessageParams_of_js
         Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "ShowMessageNotification") "type")
@@ -3503,9 +3501,9 @@ module ShowMessageRequest =
   struct
     let (type_ :
       (_ShowMessageRequestParams, _MessageActionItem or_null, never, 
-        unit, unit) ProtocolRequestType.t_5)
+        unit, unit) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _ShowMessageRequestParams_of_js
+      ProtocolRequestType.t_of_js _ShowMessageRequestParams_of_js
         (fun (x927 : Ojs.t) -> or_null_of_js _MessageActionItem_of_js x927)
         never_of_js Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
@@ -3513,9 +3511,8 @@ module ShowMessageRequest =
   end
 module LogMessageNotification =
   struct
-    let (type_ : (_LogMessageParams, unit) ProtocolNotificationType.t_2) =
-      ProtocolNotificationType.t_2_of_js _LogMessageParams_of_js
-        Ojs.unit_of_js
+    let (type_ : (_LogMessageParams, unit) ProtocolNotificationType.t) =
+      ProtocolNotificationType.t_of_js _LogMessageParams_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "LogMessageNotification") "type")
   end
@@ -3543,8 +3540,8 @@ module LogMessageParams =
   end
 module TelemetryEventNotification =
   struct
-    let (type_ : (any, unit) ProtocolNotificationType.t_2) =
-      ProtocolNotificationType.t_2_of_js any_of_js Ojs.unit_of_js
+    let (type_ : (any, unit) ProtocolNotificationType.t) =
+      ProtocolNotificationType.t_of_js any_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "TelemetryEventNotification")
            "type")
@@ -3694,9 +3691,9 @@ module DidOpenTextDocumentNotification =
       | _ -> assert false
     let (type_ :
       (_DidOpenTextDocumentParams, _TextDocumentRegistrationOptions)
-        ProtocolNotificationType.t_2)
+        ProtocolNotificationType.t)
       =
-      ProtocolNotificationType.t_2_of_js _DidOpenTextDocumentParams_of_js
+      ProtocolNotificationType.t_of_js _DidOpenTextDocumentParams_of_js
         _TextDocumentRegistrationOptions_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DidOpenTextDocumentNotification")
@@ -3788,9 +3785,9 @@ module DidChangeTextDocumentNotification =
       | _ -> assert false
     let (type_ :
       (_DidChangeTextDocumentParams, _TextDocumentChangeRegistrationOptions)
-        ProtocolNotificationType.t_2)
+        ProtocolNotificationType.t)
       =
-      ProtocolNotificationType.t_2_of_js _DidChangeTextDocumentParams_of_js
+      ProtocolNotificationType.t_of_js _DidChangeTextDocumentParams_of_js
         _TextDocumentChangeRegistrationOptions_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DidChangeTextDocumentNotification")
@@ -3826,9 +3823,9 @@ module DidCloseTextDocumentNotification =
       | _ -> assert false
     let (type_ :
       (_DidCloseTextDocumentParams, _TextDocumentRegistrationOptions)
-        ProtocolNotificationType.t_2)
+        ProtocolNotificationType.t)
       =
-      ProtocolNotificationType.t_2_of_js _DidCloseTextDocumentParams_of_js
+      ProtocolNotificationType.t_of_js _DidCloseTextDocumentParams_of_js
         _TextDocumentRegistrationOptions_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DidCloseTextDocumentNotification")
@@ -3885,9 +3882,9 @@ module DidSaveTextDocumentNotification =
       | _ -> assert false
     let (type_ :
       (_DidSaveTextDocumentParams, _TextDocumentSaveRegistrationOptions)
-        ProtocolNotificationType.t_2)
+        ProtocolNotificationType.t)
       =
-      ProtocolNotificationType.t_2_of_js _DidSaveTextDocumentParams_of_js
+      ProtocolNotificationType.t_of_js _DidSaveTextDocumentParams_of_js
         _TextDocumentSaveRegistrationOptions_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DidSaveTextDocumentNotification")
@@ -3960,9 +3957,9 @@ module WillSaveTextDocumentNotification =
       | _ -> assert false
     let (type_ :
       (_WillSaveTextDocumentParams, _TextDocumentRegistrationOptions)
-        ProtocolNotificationType.t_2)
+        ProtocolNotificationType.t)
       =
-      ProtocolNotificationType.t_2_of_js _WillSaveTextDocumentParams_of_js
+      ProtocolNotificationType.t_of_js _WillSaveTextDocumentParams_of_js
         _TextDocumentRegistrationOptions_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "WillSaveTextDocumentNotification")
@@ -3981,9 +3978,9 @@ module WillSaveTextDocumentWaitUntilRequest =
       | _ -> assert false
     let (type_ :
       (_WillSaveTextDocumentParams, TextEdit.t list or_null, never, unit,
-        _TextDocumentRegistrationOptions) ProtocolRequestType.t_5)
+        _TextDocumentRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _WillSaveTextDocumentParams_of_js
+      ProtocolRequestType.t_of_js _WillSaveTextDocumentParams_of_js
         (fun (x1051 : Ojs.t) ->
            or_null_of_js
              (fun (x1052 : Ojs.t) -> Ojs.list_of_js TextEdit.t_of_js x1052)
@@ -4016,10 +4013,9 @@ module DidChangeWatchedFilesNotification =
   struct
     let (type_ :
       (_DidChangeWatchedFilesParams,
-        _DidChangeWatchedFilesRegistrationOptions)
-        ProtocolNotificationType.t_2)
+        _DidChangeWatchedFilesRegistrationOptions) ProtocolNotificationType.t)
       =
-      ProtocolNotificationType.t_2_of_js _DidChangeWatchedFilesParams_of_js
+      ProtocolNotificationType.t_of_js _DidChangeWatchedFilesParams_of_js
         _DidChangeWatchedFilesRegistrationOptions_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DidChangeWatchedFilesNotification")
@@ -4237,8 +4233,8 @@ module PublishDiagnosticsParams =
 module PublishDiagnosticsNotification =
   struct
     let (type_ :
-      (_PublishDiagnosticsParams, unit) ProtocolNotificationType.t_2) =
-      ProtocolNotificationType.t_2_of_js _PublishDiagnosticsParams_of_js
+      (_PublishDiagnosticsParams, unit) ProtocolNotificationType.t) =
+      ProtocolNotificationType.t_of_js _PublishDiagnosticsParams_of_js
         Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "PublishDiagnosticsNotification")
@@ -4447,9 +4443,9 @@ module CompletionRequest =
       (_CompletionParams,
         (CompletionList.t, CompletionItem.t) or_array or_null,
         CompletionItem.t list, unit, _CompletionRegistrationOptions)
-        ProtocolRequestType.t_5)
+        ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _CompletionParams_of_js
+      ProtocolRequestType.t_of_js _CompletionParams_of_js
         (fun (x1191 : Ojs.t) ->
            or_null_of_js
              (fun (x1192 : Ojs.t) ->
@@ -4471,9 +4467,9 @@ module CompletionResolveRequest =
       | _ -> assert false
     let (type_ :
       (CompletionItem.t, CompletionItem.t, never, unit, unit)
-        ProtocolRequestType.t_5)
+        ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js CompletionItem.t_of_js
+      ProtocolRequestType.t_of_js CompletionItem.t_of_js
         CompletionItem.t_of_js never_of_js Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "CompletionResolveRequest") "type")
@@ -4552,9 +4548,9 @@ module HoverRequest =
       | _ -> assert false
     let (type_ :
       (_HoverParams, Hover.t or_null, never, unit, _HoverRegistrationOptions)
-        ProtocolRequestType.t_5)
+        ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _HoverParams_of_js
+      ProtocolRequestType.t_of_js _HoverParams_of_js
         (fun (x1228 : Ojs.t) -> or_null_of_js Hover.t_of_js x1228)
         never_of_js Ojs.unit_of_js _HoverRegistrationOptions_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "HoverRequest")
@@ -4744,9 +4740,9 @@ module SignatureHelpRequest =
       | _ -> assert false
     let (type_ :
       (_SignatureHelpParams, SignatureHelp.t or_null, never, unit,
-        _SignatureHelpRegistrationOptions) ProtocolRequestType.t_5)
+        _SignatureHelpRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _SignatureHelpParams_of_js
+      ProtocolRequestType.t_of_js _SignatureHelpParams_of_js
         (fun (x1289 : Ojs.t) -> or_null_of_js SignatureHelp.t_of_js x1289)
         never_of_js Ojs.unit_of_js _SignatureHelpRegistrationOptions_of_js
         (Ojs.get_prop_ascii
@@ -4829,9 +4825,9 @@ module DefinitionRequest =
       (_DefinitionParams,
         (Location.t, (Location.t, LocationLink.t) union2) or_array or_null,
         (Location.t, LocationLink.t) union2 list, unit,
-        _DefinitionRegistrationOptions) ProtocolRequestType.t_5)
+        _DefinitionRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _DefinitionParams_of_js
+      ProtocolRequestType.t_of_js _DefinitionParams_of_js
         (fun (x1316 : Ojs.t) ->
            or_null_of_js
              (fun (x1317 : Ojs.t) ->
@@ -4923,9 +4919,9 @@ module ReferencesRequest =
       | _ -> assert false
     let (type_ :
       (_ReferenceParams, Location.t list or_null, Location.t list, unit,
-        _ReferenceRegistrationOptions) ProtocolRequestType.t_5)
+        _ReferenceRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _ReferenceParams_of_js
+      ProtocolRequestType.t_of_js _ReferenceParams_of_js
         (fun (x1350 : Ojs.t) ->
            or_null_of_js
              (fun (x1351 : Ojs.t) -> Ojs.list_of_js Location.t_of_js x1351)
@@ -5007,9 +5003,9 @@ module DocumentHighlightRequest =
     let (type_ :
       (_DocumentHighlightParams, DocumentHighlight.t list or_null,
         DocumentHighlight.t list, unit,
-        _DocumentHighlightRegistrationOptions) ProtocolRequestType.t_5)
+        _DocumentHighlightRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _DocumentHighlightParams_of_js
+      ProtocolRequestType.t_of_js _DocumentHighlightParams_of_js
         (fun (x1376 : Ojs.t) ->
            or_null_of_js
              (fun (x1377 : Ojs.t) ->
@@ -5141,9 +5137,9 @@ module DocumentSymbolRequest =
       (_DocumentSymbolParams,
         (DocumentSymbol.t, SymbolInformation.t) union2 list or_null,
         (DocumentSymbol.t, SymbolInformation.t) union2 list, unit,
-        _DocumentSymbolRegistrationOptions) ProtocolRequestType.t_5)
+        _DocumentSymbolRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _DocumentSymbolParams_of_js
+      ProtocolRequestType.t_of_js _DocumentSymbolParams_of_js
         (fun (x1419 : Ojs.t) ->
            or_null_of_js
              (fun (x1420 : Ojs.t) ->
@@ -5320,9 +5316,9 @@ module CodeActionRequest =
     let (type_ :
       (_CodeActionParams, (CodeAction.t, Command.t) union2 list or_null,
         (CodeAction.t, Command.t) union2 list, unit,
-        _CodeActionRegistrationOptions) ProtocolRequestType.t_5)
+        _CodeActionRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _CodeActionParams_of_js
+      ProtocolRequestType.t_of_js _CodeActionParams_of_js
         (fun (x1483 : Ojs.t) ->
            or_null_of_js
              (fun (x1484 : Ojs.t) ->
@@ -5348,9 +5344,9 @@ module CodeActionResolveRequest =
       | "codeAction/resolve" -> `L_s1_codeAction_resolve
       | _ -> assert false
     let (type_ :
-      (CodeAction.t, CodeAction.t, never, unit, unit) ProtocolRequestType.t_5)
+      (CodeAction.t, CodeAction.t, never, unit, unit) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js CodeAction.t_of_js CodeAction.t_of_js
+      ProtocolRequestType.t_of_js CodeAction.t_of_js CodeAction.t_of_js
         never_of_js Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "CodeActionResolveRequest") "type")
@@ -5445,9 +5441,9 @@ module WorkspaceSymbolRequest =
     let (type_ :
       (_WorkspaceSymbolParams, SymbolInformation.t list or_null,
         SymbolInformation.t list, unit, _WorkspaceSymbolRegistrationOptions)
-        ProtocolRequestType.t_5)
+        ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _WorkspaceSymbolParams_of_js
+      ProtocolRequestType.t_of_js _WorkspaceSymbolParams_of_js
         (fun (x1526 : Ojs.t) ->
            or_null_of_js
              (fun (x1527 : Ojs.t) ->
@@ -5557,9 +5553,9 @@ module CodeLensRequest =
       | _ -> assert false
     let (type_ :
       (_CodeLensParams, CodeLens.t list or_null, CodeLens.t list, unit,
-        _CodeLensRegistrationOptions) ProtocolRequestType.t_5)
+        _CodeLensRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _CodeLensParams_of_js
+      ProtocolRequestType.t_of_js _CodeLensParams_of_js
         (fun (x1562 : Ojs.t) ->
            or_null_of_js
              (fun (x1563 : Ojs.t) -> Ojs.list_of_js CodeLens.t_of_js x1563)
@@ -5579,8 +5575,8 @@ module CodeLensResolveRequest =
       | "codeLens/resolve" -> `L_s2_codeLens_resolve
       | _ -> assert false
     let (type_ :
-      (CodeLens.t, CodeLens.t, never, unit, unit) ProtocolRequestType.t_5) =
-      ProtocolRequestType.t_5_of_js CodeLens.t_of_js CodeLens.t_of_js
+      (CodeLens.t, CodeLens.t, never, unit, unit) ProtocolRequestType.t) =
+      ProtocolRequestType.t_of_js CodeLens.t_of_js CodeLens.t_of_js
         never_of_js Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "CodeLensResolveRequest") "type")
@@ -5591,8 +5587,8 @@ module CodeLensRefreshRequest =
       any_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "CodeLensRefreshRequest") "method")
-    let (type_ : (unit, unit, unit, unit) ProtocolRequestType0.t_4) =
-      ProtocolRequestType0.t_4_of_js Ojs.unit_of_js Ojs.unit_of_js
+    let (type_ : (unit, unit, unit, unit) ProtocolRequestType0.t) =
+      ProtocolRequestType0.t_of_js Ojs.unit_of_js Ojs.unit_of_js
         Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "CodeLensRefreshRequest") "type")
@@ -5687,9 +5683,9 @@ module DocumentLinkRequest =
       | _ -> assert false
     let (type_ :
       (_DocumentLinkParams, DocumentLink.t list or_null, DocumentLink.t list,
-        unit, _DocumentLinkRegistrationOptions) ProtocolRequestType.t_5)
+        unit, _DocumentLinkRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _DocumentLinkParams_of_js
+      ProtocolRequestType.t_of_js _DocumentLinkParams_of_js
         (fun (x1606 : Ojs.t) ->
            or_null_of_js
              (fun (x1607 : Ojs.t) ->
@@ -5711,9 +5707,9 @@ module DocumentLinkResolveRequest =
       | _ -> assert false
     let (type_ :
       (DocumentLink.t, DocumentLink.t, never, unit, unit)
-        ProtocolRequestType.t_5)
+        ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js DocumentLink.t_of_js DocumentLink.t_of_js
+      ProtocolRequestType.t_of_js DocumentLink.t_of_js DocumentLink.t_of_js
         never_of_js Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DocumentLinkResolveRequest")
@@ -5805,9 +5801,9 @@ module DocumentFormattingRequest =
       | _ -> assert false
     let (type_ :
       (_DocumentFormattingParams, TextEdit.t list or_null, never, unit,
-        _DocumentFormattingRegistrationOptions) ProtocolRequestType.t_5)
+        _DocumentFormattingRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _DocumentFormattingParams_of_js
+      ProtocolRequestType.t_of_js _DocumentFormattingParams_of_js
         (fun (x1642 : Ojs.t) ->
            or_null_of_js
              (fun (x1643 : Ojs.t) -> Ojs.list_of_js TextEdit.t_of_js x1643)
@@ -5911,9 +5907,9 @@ module DocumentRangeFormattingRequest =
     let (type_ :
       (_DocumentRangeFormattingParams, TextEdit.t list or_null, never, 
         unit, _DocumentRangeFormattingRegistrationOptions)
-        ProtocolRequestType.t_5)
+        ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _DocumentRangeFormattingParams_of_js
+      ProtocolRequestType.t_of_js _DocumentRangeFormattingParams_of_js
         (fun (x1674 : Ojs.t) ->
            or_null_of_js
              (fun (x1675 : Ojs.t) -> Ojs.list_of_js TextEdit.t_of_js x1675)
@@ -6041,9 +6037,9 @@ module DocumentOnTypeFormattingRequest =
     let (type_ :
       (_DocumentOnTypeFormattingParams, TextEdit.t list or_null, never, 
         unit, _DocumentOnTypeFormattingRegistrationOptions)
-        ProtocolRequestType.t_5)
+        ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _DocumentOnTypeFormattingParams_of_js
+      ProtocolRequestType.t_of_js _DocumentOnTypeFormattingParams_of_js
         (fun (x1715 : Ojs.t) ->
            or_null_of_js
              (fun (x1716 : Ojs.t) -> Ojs.list_of_js TextEdit.t_of_js x1716)
@@ -6195,9 +6191,9 @@ module RenameRequest =
       | _ -> assert false
     let (type_ :
       (_RenameParams, WorkspaceEdit.t or_null, never, unit,
-        _RenameRegistrationOptions) ProtocolRequestType.t_5)
+        _RenameRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _RenameParams_of_js
+      ProtocolRequestType.t_of_js _RenameParams_of_js
         (fun (x1762 : Ojs.t) -> or_null_of_js WorkspaceEdit.t_of_js x1762)
         never_of_js Ojs.unit_of_js _RenameRegistrationOptions_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "RenameRequest")
@@ -6228,9 +6224,9 @@ module PrepareRenameRequest =
       (_PrepareRenameParams,
         (Range.t, anonymous_interface_3, anonymous_interface_12) union3
           or_null,
-        never, unit, unit) ProtocolRequestType.t_5)
+        never, unit, unit) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _PrepareRenameParams_of_js
+      ProtocolRequestType.t_of_js _PrepareRenameParams_of_js
         (fun (x1773 : Ojs.t) ->
            or_null_of_js
              (fun (x1774 : Ojs.t) ->
@@ -6321,9 +6317,9 @@ module ExecuteCommandRequest =
   struct
     let (type_ :
       (_ExecuteCommandParams, any, never, unit,
-        _ExecuteCommandRegistrationOptions) ProtocolRequestType.t_5)
+        _ExecuteCommandRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _ExecuteCommandParams_of_js any_of_js
+      ProtocolRequestType.t_of_js _ExecuteCommandParams_of_js any_of_js
         never_of_js Ojs.unit_of_js _ExecuteCommandRegistrationOptions_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "ExecuteCommandRequest") "type")
@@ -6441,9 +6437,9 @@ module ApplyWorkspaceEditRequest =
   struct
     let (type_ :
       (_ApplyWorkspaceEditParams, _ApplyWorkspaceEditResponse, never, 
-        unit, unit) ProtocolRequestType.t_5)
+        unit, unit) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _ApplyWorkspaceEditParams_of_js
+      ProtocolRequestType.t_of_js _ApplyWorkspaceEditParams_of_js
         _ApplyWorkspaceEditResponse_of_js never_of_js Ojs.unit_of_js
         Ojs.unit_of_js
         (Ojs.get_prop_ascii

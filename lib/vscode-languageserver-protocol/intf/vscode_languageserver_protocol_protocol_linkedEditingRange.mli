@@ -29,7 +29,7 @@ module Internal : sig
       ( _LinkedEditingRangeParams
       , _LinkedEditingRanges or_null
       , unit )
-      RequestHandler.t_3
+      RequestHandler.t
 
     and _LinkedEditingRanges = [ `LinkedEditingRanges ] intf
     [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
@@ -130,7 +130,7 @@ module LinkedEditingRangeRequest : sig
       , unit
       , any
       , _LinkedEditingRangeRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig

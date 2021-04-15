@@ -290,9 +290,9 @@ module MonikerRequest =
       | _ -> assert false
     let (type_ :
       (_MonikerParams, _Moniker list or_null, _Moniker list, unit,
-        _MonikerRegistrationOptions) ProtocolRequestType.t_5)
+        _MonikerRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _MonikerParams_of_js
+      ProtocolRequestType.t_of_js _MonikerParams_of_js
         (fun (x70 : Ojs.t) ->
            or_null_of_js
              (fun (x71 : Ojs.t) -> Ojs.list_of_js _Moniker_of_js x71) x70)

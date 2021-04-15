@@ -2,7 +2,7 @@
 
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
-open Es5
+open Es2020
 
 module Internal : sig
   module AnonymousInterfaces : sig end
@@ -37,11 +37,6 @@ open Internal
 open AnonymousInterfaces
 open Types
 
-(* import RAL from './ral'; *)
-(* import { Event } from './events'; *)
-(* import { Message } from './messages'; *)
-(* import { ContentDecoder, ContentTypeDecoder } from './encoding'; *)
-(* import { Disposable } from './api'; *)
 module DataCallback : sig
   type t = _DataCallback
 
@@ -49,7 +44,7 @@ module DataCallback : sig
 
   val t_of_js : Ojs.t -> t
 
-  val apply : t -> data:Message.t -> unit [@@js.apply]
+  val apply : t -> data:Vscode_jsonrpc_messages.Message.t -> unit [@@js.apply]
 end
 [@@js.scope "DataCallback"]
 
@@ -73,20 +68,24 @@ module MessageReader : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_onError : t -> Error.t Event.t_1 [@@js.get "onError"]
+  val get_onError : t -> Error.t Vscode_jsonrpc_events.Event.t
+    [@@js.get "onError"]
 
-  val get_onClose : t -> unit Event.t_1 [@@js.get "onClose"]
+  val get_onClose : t -> unit Vscode_jsonrpc_events.Event.t [@@js.get "onClose"]
 
-  val get_onPartialMessage : t -> _PartialMessageInfo Event.t_1
+  val get_onPartialMessage
+    :  t
+    -> _PartialMessageInfo Vscode_jsonrpc_events.Event.t
     [@@js.get "onPartialMessage"]
 
-  val listen : t -> callback:_DataCallback -> Disposable.t [@@js.call "listen"]
+  val listen
+    :  t
+    -> callback:_DataCallback
+    -> Vscode_jsonrpc_disposable.Disposable.t
+    [@@js.call "listen"]
 
   val dispose : t -> unit [@@js.call "dispose"]
-end
-[@@js.scope "MessageReader"]
 
-module MessageReader : sig
   val is : value:any -> bool [@@js.global "is"]
 end
 [@@js.scope "MessageReader"]
@@ -120,15 +119,18 @@ module AbstractMessageReader : sig
 
   val dispose : t -> unit [@@js.call "dispose"]
 
-  val get_onError : t -> Error.t Event.t_1 [@@js.get "onError"]
+  val get_onError : t -> Error.t Vscode_jsonrpc_events.Event.t
+    [@@js.get "onError"]
 
   val fireError : t -> error:any -> unit [@@js.call "fireError"]
 
-  val get_onClose : t -> unit Event.t_1 [@@js.get "onClose"]
+  val get_onClose : t -> unit Vscode_jsonrpc_events.Event.t [@@js.get "onClose"]
 
   val fireClose : t -> unit [@@js.call "fireClose"]
 
-  val get_onPartialMessage : t -> _PartialMessageInfo Event.t_1
+  val get_onPartialMessage
+    :  t
+    -> _PartialMessageInfo Vscode_jsonrpc_events.Event.t
     [@@js.get "onPartialMessage"]
 
   val firePartialMessage : t -> info:_PartialMessageInfo -> unit
@@ -139,7 +141,11 @@ module AbstractMessageReader : sig
   val set_asError : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "asError"]
 
-  val listen : t -> callback:_DataCallback -> Disposable.t [@@js.call "listen"]
+  val listen
+    :  t
+    -> callback:_DataCallback
+    -> Vscode_jsonrpc_disposable.Disposable.t
+    [@@js.call "listen"]
 
   val cast : t -> _MessageReader [@@js.cast]
 end
@@ -152,32 +158,45 @@ module MessageReaderOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_charset : t -> RAL.MessageBufferEncoding.t [@@js.get "charset"]
+  val get_charset : t -> Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
+    [@@js.get "charset"]
 
-  val set_charset : t -> RAL.MessageBufferEncoding.t -> unit
+  val set_charset : t -> Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t -> unit
     [@@js.set "charset"]
 
-  val get_contentDecoder : t -> ContentDecoder.t [@@js.get "contentDecoder"]
+  val get_contentDecoder : t -> Vscode_jsonrpc_encoding.ContentDecoder.t
+    [@@js.get "contentDecoder"]
 
-  val set_contentDecoder : t -> ContentDecoder.t -> unit
+  val set_contentDecoder : t -> Vscode_jsonrpc_encoding.ContentDecoder.t -> unit
     [@@js.set "contentDecoder"]
 
-  val get_contentDecoders : t -> ContentDecoder.t list
+  val get_contentDecoders : t -> Vscode_jsonrpc_encoding.ContentDecoder.t list
     [@@js.get "contentDecoders"]
 
-  val set_contentDecoders : t -> ContentDecoder.t list -> unit
+  val set_contentDecoders
+    :  t
+    -> Vscode_jsonrpc_encoding.ContentDecoder.t list
+    -> unit
     [@@js.set "contentDecoders"]
 
-  val get_contentTypeDecoder : t -> ContentTypeDecoder.t
+  val get_contentTypeDecoder : t -> Vscode_jsonrpc_encoding.ContentTypeDecoder.t
     [@@js.get "contentTypeDecoder"]
 
-  val set_contentTypeDecoder : t -> ContentTypeDecoder.t -> unit
+  val set_contentTypeDecoder
+    :  t
+    -> Vscode_jsonrpc_encoding.ContentTypeDecoder.t
+    -> unit
     [@@js.set "contentTypeDecoder"]
 
-  val get_contentTypeDecoders : t -> ContentTypeDecoder.t list
+  val get_contentTypeDecoders
+    :  t
+    -> Vscode_jsonrpc_encoding.ContentTypeDecoder.t list
     [@@js.get "contentTypeDecoders"]
 
-  val set_contentTypeDecoders : t -> ContentTypeDecoder.t list -> unit
+  val set_contentTypeDecoders
+    :  t
+    -> Vscode_jsonrpc_encoding.ContentTypeDecoder.t list
+    -> unit
     [@@js.set "contentTypeDecoders"]
 end
 [@@js.scope "MessageReaderOptions"]
@@ -234,8 +253,11 @@ module ReadableStreamMessageReader : sig
     [@@js.set "_partialMessageTimeout"]
 
   val create
-    :  readable:RAL.ReadableStream.t
-    -> ?options:(_MessageReaderOptions, RAL.MessageBufferEncoding.t) union2
+    :  readable:Vscode_jsonrpc_ral.RAL.ReadableStream.t
+    -> ?options:
+         ( _MessageReaderOptions
+         , Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t )
+         union2
     -> unit
     -> t
     [@@js.create]
@@ -245,7 +267,11 @@ module ReadableStreamMessageReader : sig
 
   val get_partialMessageTimeout : t -> float [@@js.get "partialMessageTimeout"]
 
-  val listen : t -> callback:_DataCallback -> Disposable.t [@@js.call "listen"]
+  val listen
+    :  t
+    -> callback:_DataCallback
+    -> Vscode_jsonrpc_disposable.Disposable.t
+    [@@js.call "listen"]
 
   val get_onData : t -> (* FIXME: unknown type *) any [@@js.get "onData"]
 

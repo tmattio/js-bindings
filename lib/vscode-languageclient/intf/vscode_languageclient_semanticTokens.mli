@@ -54,7 +54,7 @@ module DocumentSemanticsTokensSignature : sig
     -> this:unit
     -> document:Vscode.TextDocument.t
     -> token:Vscode.CancellationToken.t
-    -> Vscode.SemanticTokens.t Vscode.ProviderResult.t_1
+    -> Vscode.SemanticTokens.t Vscode.ProviderResult.t
     [@@js.apply]
 end
 [@@js.scope "DocumentSemanticsTokensSignature"]
@@ -73,7 +73,7 @@ module DocumentSemanticsTokensEditsSignature : sig
     -> previousResultId:string
     -> token:Vscode.CancellationToken.t
     -> (Vscode.SemanticTokens.t, Vscode.SemanticTokensEdits.t) union2
-       Vscode.ProviderResult.t_1
+       Vscode.ProviderResult.t
     [@@js.apply]
 end
 [@@js.scope "DocumentSemanticsTokensEditsSignature"]
@@ -91,7 +91,7 @@ module DocumentRangeSemanticTokensSignature : sig
     -> document:Vscode.TextDocument.t
     -> range:Vscode.Range.t
     -> token:Vscode.CancellationToken.t
-    -> Vscode.SemanticTokens.t Vscode.ProviderResult.t_1
+    -> Vscode.SemanticTokens.t Vscode.ProviderResult.t
     [@@js.apply]
 end
 [@@js.scope "DocumentRangeSemanticTokensSignature"]
@@ -109,7 +109,7 @@ module SemanticTokensMiddleware : sig
     -> document:Vscode.TextDocument.t
     -> token:Vscode.CancellationToken.t
     -> next:_DocumentSemanticsTokensSignature
-    -> Vscode.SemanticTokens.t Vscode.ProviderResult.t_1
+    -> Vscode.SemanticTokens.t Vscode.ProviderResult.t
     [@@js.call "provideDocumentSemanticTokens"]
 
   val provideDocumentSemanticTokensEdits
@@ -120,7 +120,7 @@ module SemanticTokensMiddleware : sig
     -> token:Vscode.CancellationToken.t
     -> next:_DocumentSemanticsTokensEditsSignature
     -> (Vscode.SemanticTokens.t, Vscode.SemanticTokensEdits.t) union2
-       Vscode.ProviderResult.t_1
+       Vscode.ProviderResult.t
     [@@js.call "provideDocumentSemanticTokensEdits"]
 
   val provideDocumentRangeSemanticTokens
@@ -130,7 +130,7 @@ module SemanticTokensMiddleware : sig
     -> range:Vscode.Range.t
     -> token:Vscode.CancellationToken.t
     -> next:_DocumentRangeSemanticTokensSignature
-    -> Vscode.SemanticTokens.t Vscode.ProviderResult.t_1
+    -> Vscode.SemanticTokens.t Vscode.ProviderResult.t
     [@@js.call "provideDocumentRangeSemanticTokens"]
 end
 [@@js.scope "SemanticTokensMiddleware"]
@@ -153,12 +153,12 @@ module SemanticTokensProviders : sig
   val set_full : t -> Vscode.DocumentSemanticTokensProvider.t -> unit
     [@@js.set "full"]
 
-  val get_onDidChangeSemanticTokensEmitter : t -> unit Vscode.EventEmitter.t_1
+  val get_onDidChangeSemanticTokensEmitter : t -> unit Vscode.EventEmitter.t
     [@@js.get "onDidChangeSemanticTokensEmitter"]
 
   val set_onDidChangeSemanticTokensEmitter
     :  t
-    -> unit Vscode.EventEmitter.t_1
+    -> unit Vscode.EventEmitter.t
     -> unit
     [@@js.set "onDidChangeSemanticTokensEmitter"]
 end
@@ -194,7 +194,7 @@ module SemanticTokensFeature : sig
     -> ( SemanticTokensOptions.t or_boolean
        , SemanticTokensRegistrationOptions.t
        , _SemanticTokensProviders )
-       TextDocumentFeature.t_3
+       TextDocumentFeature.t
     [@@js.cast]
 end
 [@@js.scope "SemanticTokensFeature"]

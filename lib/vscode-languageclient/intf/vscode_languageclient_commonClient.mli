@@ -47,7 +47,7 @@ end
 module ProposedFeatures : sig
   val createAll
     :  _client:BaseLanguageClient.t
-    -> (StaticFeature.t, any DynamicFeature.t_1) union2 list
+    -> (StaticFeature.t, any DynamicFeature.t) union2 list
     [@@js.global "createAll"]
 end
 [@@js.scope "ProposedFeatures"]

@@ -46,7 +46,7 @@ module ProvideTypeDefinitionSignature : sig
     -> document:TextDocument.t
     -> position:VPosition.t
     -> token:CancellationToken.t
-    -> (VDefinition.t, VDefinitionLink.t) or_array ProviderResult.t_1
+    -> (VDefinition.t, VDefinitionLink.t) or_array ProviderResult.t
     [@@js.apply]
 end
 [@@js.scope "ProvideTypeDefinitionSignature"]
@@ -65,7 +65,7 @@ module TypeDefinitionMiddleware : sig
     -> position:VPosition.t
     -> token:CancellationToken.t
     -> next:_ProvideTypeDefinitionSignature
-    -> (VDefinition.t, VDefinitionLink.t) or_array ProviderResult.t_1
+    -> (VDefinition.t, VDefinitionLink.t) or_array ProviderResult.t
     [@@js.call "provideTypeDefinition"]
 end
 [@@js.scope "TypeDefinitionMiddleware"]
@@ -100,7 +100,7 @@ module TypeDefinitionFeature : sig
     -> ( TypeDefinitionOptions.t or_boolean
        , TypeDefinitionRegistrationOptions.t
        , TypeDefinitionProvider.t )
-       TextDocumentFeature.t_3
+       TextDocumentFeature.t
     [@@js.cast]
 end
 [@@js.scope "TypeDefinitionFeature"]

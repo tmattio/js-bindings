@@ -67,7 +67,7 @@ module ProvideDocumentColorsSignature : sig
     :  t
     -> document:TextDocument.t
     -> token:CancellationToken.t
-    -> VColorInformation.t list ProviderResult.t_1
+    -> VColorInformation.t list ProviderResult.t
     [@@js.apply]
 end
 [@@js.scope "ProvideDocumentColorsSignature"]
@@ -84,7 +84,7 @@ module ProvideColorPresentationSignature : sig
     -> color:VColor.t
     -> context:anonymous_interface_0
     -> token:CancellationToken.t
-    -> VColorPresentation.t list ProviderResult.t_1
+    -> VColorPresentation.t list ProviderResult.t
     [@@js.apply]
 end
 [@@js.scope "ProvideColorPresentationSignature"]
@@ -102,7 +102,7 @@ module ColorProviderMiddleware : sig
     -> document:TextDocument.t
     -> token:CancellationToken.t
     -> next:_ProvideDocumentColorsSignature
-    -> VColorInformation.t list ProviderResult.t_1
+    -> VColorInformation.t list ProviderResult.t
     [@@js.call "provideDocumentColors"]
 
   val provideColorPresentations
@@ -112,7 +112,7 @@ module ColorProviderMiddleware : sig
     -> context:anonymous_interface_0
     -> token:CancellationToken.t
     -> next:_ProvideColorPresentationSignature
-    -> VColorPresentation.t list ProviderResult.t_1
+    -> VColorPresentation.t list ProviderResult.t
     [@@js.call "provideColorPresentations"]
 end
 [@@js.scope "ColorProviderMiddleware"]
@@ -164,7 +164,7 @@ module ColorProviderFeature : sig
     -> ( DocumentColorOptions.t or_boolean
        , DocumentColorRegistrationOptions.t
        , DocumentColorProvider.t )
-       TextDocumentFeature.t_3
+       TextDocumentFeature.t
     [@@js.cast]
 end
 [@@js.scope "ColorProviderFeature"]

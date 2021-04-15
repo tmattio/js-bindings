@@ -1076,7 +1076,7 @@ module AbstractMessageSignature =
     let (cast : t -> _MessageSignature) =
       fun (x142 : t) -> _MessageSignature_of_js (t_to_js x142)
   end
-module M_EM =
+module EM =
   struct
     type t = _EM
     let rec t_of_js : Ojs.t -> t = fun (x144 : Ojs.t) -> _EM_of_js x144

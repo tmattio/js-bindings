@@ -2,7 +2,7 @@
 
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
-open Es5
+open Es2020
 
 module Internal : sig
   module AnonymousInterfaces : sig
@@ -77,9 +77,9 @@ module AnonymousInterface0 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_encoder : t -> ContentTypeEncoder.t [@@js.get "encoder"]
+  val get_encoder : t -> any [@@js.get "encoder"]
 
-  val get_decoder : t -> ContentTypeDecoder.t [@@js.get "decoder"]
+  val get_decoder : t -> any [@@js.get "decoder"]
 end
 
 module AnonymousInterface1 : sig
@@ -154,8 +154,6 @@ module AnonymousInterface3 : sig
     [@@js.call "clearImmediate"]
 end
 
-(* import type { Disposable } from './disposable'; *)
-(* import type { ContentTypeEncoder, ContentTypeDecoder } from './encoding'; *)
 module M_MessageBuffer : sig
   type t = _MessageBuffer
 
@@ -167,7 +165,7 @@ module M_MessageBuffer : sig
 
   val append : t -> chunk:Uint8Array.t or_string -> unit [@@js.call "append"]
 
-  val tryReadHeaders : t -> (string, string) Map.t_2 or_undefined
+  val tryReadHeaders : t -> (string, string) Map.t or_undefined
     [@@js.call "tryReadHeaders"]
 
   val tryReadBody : t -> length:float -> Uint8Array.t or_undefined
@@ -190,16 +188,29 @@ module M_ReadableStream : sig
 
   val t_of_js : Ojs.t -> t
 
-  val onData : t -> listener:(data:Uint8Array.t -> unit) -> Disposable.t
+  val onData
+    :  t
+    -> listener:(data:Uint8Array.t -> unit)
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onData"]
 
-  val onClose : t -> listener:(unit -> unit) -> Disposable.t
+  val onClose
+    :  t
+    -> listener:(unit -> unit)
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onClose"]
 
-  val onError : t -> listener:(error:any -> unit) -> Disposable.t
+  val onError
+    :  t
+    -> listener:(error:any -> unit)
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onError"]
 
-  val onEnd : t -> listener:(unit -> unit) -> Disposable.t [@@js.call "onEnd"]
+  val onEnd
+    :  t
+    -> listener:(unit -> unit)
+    -> Vscode_jsonrpc_disposable.Disposable.t
+    [@@js.call "onEnd"]
 end
 [@@js.scope "_ReadableStream"]
 
@@ -210,13 +221,23 @@ module M_WritableStream : sig
 
   val t_of_js : Ojs.t -> t
 
-  val onClose : t -> listener:(unit -> unit) -> Disposable.t
+  val onClose
+    :  t
+    -> listener:(unit -> unit)
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onClose"]
 
-  val onError : t -> listener:(error:any -> unit) -> Disposable.t
+  val onError
+    :  t
+    -> listener:(error:any -> unit)
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onError"]
 
-  val onEnd : t -> listener:(unit -> unit) -> Disposable.t [@@js.call "onEnd"]
+  val onEnd
+    :  t
+    -> listener:(unit -> unit)
+    -> Vscode_jsonrpc_disposable.Disposable.t
+    [@@js.call "onEnd"]
 
   val write : t -> data:Uint8Array.t -> unit Promise.t [@@js.call "write"]
 
@@ -286,12 +307,7 @@ module RAL : sig
   val get_console : t -> anonymous_interface_2 [@@js.get "console"]
 
   val get_timer : t -> anonymous_interface_3 [@@js.get "timer"]
-end
-[@@js.scope "RAL"]
 
-val rAL : unit -> _RAL [@@js.global "RAL"]
-
-module RAL : sig
   module MessageBuffer : sig
     type t = _RAL_MessageBuffer
 
@@ -351,4 +367,5 @@ module RAL : sig
   val install : ral:_RAL -> unit [@@js.global "install"]
 end
 [@@js.scope "RAL"]
-(* export = RAL *)
+
+val ral : unit -> _RAL [@@js.global "RAL"]

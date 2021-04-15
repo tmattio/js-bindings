@@ -2,7 +2,7 @@
 
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
-open Es5
+open Es2020
 
 module Internal : sig
   module AnonymousInterfaces : sig end
@@ -33,6 +33,12 @@ open AnonymousInterfaces
 open Types
 
 module Touch : sig
+  type t = _Touch
+
+  val t_to_js : t -> Ojs.t
+
+  val t_of_js : Ojs.t -> t
+
   val none : ([ `L_n_0 [@js 0] ][@js.enum]) [@@js.global "None"]
 
   val first : ([ `L_n_1 [@js 1] ][@js.enum]) [@@js.global "First"]
@@ -44,14 +50,6 @@ module Touch : sig
   val asNew : ([ `L_n_2 [@js 2] ][@js.enum]) [@@js.global "AsNew"]
 end
 [@@js.scope "Touch"]
-
-module Touch : sig
-  type t = _Touch
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-end
 
 module LinkedMap : sig
   type ('K, 'V) t = ('K, 'V) _LinkedMap
@@ -129,14 +127,13 @@ module LinkedMap : sig
     -> unit
     [@@js.call "forEach"]
 
-  val keys : ('K, 'V) t -> 'K IterableIterator.t_1 [@@js.call "keys"]
+  val keys : ('K, 'V) t -> 'K IterableIterator.t [@@js.call "keys"]
 
-  val values : ('K, 'V) t -> 'V IterableIterator.t_1 [@@js.call "values"]
+  val values : ('K, 'V) t -> 'V IterableIterator.t [@@js.call "values"]
 
-  val entries : ('K, 'V) t -> ('K * 'V) IterableIterator.t_1
-    [@@js.call "entries"]
+  val entries : ('K, 'V) t -> ('K * 'V) IterableIterator.t [@@js.call "entries"]
 
-  val _Symbol_iterator_ : ('K, 'V) t -> ('K * 'V) IterableIterator.t_1
+  val _Symbol_iterator_ : ('K, 'V) t -> ('K * 'V) IterableIterator.t
     [@@js.call "[Symbol.iterator]"]
 
   val trimOld : ('K, 'V) t -> newSize:float -> unit [@@js.call "trimOld"]
@@ -169,7 +166,7 @@ module LinkedMap : sig
   val fromJSON : ('K, 'V) t -> data:('K * 'V) list -> unit
     [@@js.call "fromJSON"]
 
-  val cast : ('K, 'V) t -> ('K, 'V) Map.t_2 [@@js.cast]
+  val cast : ('K, 'V) t -> ('K, 'V) Map.t [@@js.cast]
 end
 [@@js.scope "LinkedMap"]
 

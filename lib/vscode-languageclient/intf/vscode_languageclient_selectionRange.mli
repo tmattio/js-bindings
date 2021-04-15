@@ -46,7 +46,7 @@ module ProvideSelectionRangeSignature : sig
     -> document:TextDocument.t
     -> positions:VPosition.t list
     -> token:CancellationToken.t
-    -> VSelectionRange.t list ProviderResult.t_1
+    -> VSelectionRange.t list ProviderResult.t
     [@@js.apply]
 end
 [@@js.scope "ProvideSelectionRangeSignature"]
@@ -65,7 +65,7 @@ module SelectionRangeProviderMiddleware : sig
     -> positions:VPosition.t list
     -> token:CancellationToken.t
     -> next:_ProvideSelectionRangeSignature
-    -> VSelectionRange.t list ProviderResult.t_1
+    -> VSelectionRange.t list ProviderResult.t
     [@@js.call "provideSelectionRanges"]
 end
 [@@js.scope "SelectionRangeProviderMiddleware"]
@@ -100,7 +100,7 @@ module SelectionRangeFeature : sig
     -> ( SelectionRangeOptions.t or_boolean
        , SelectionRangeRegistrationOptions.t
        , SelectionRangeProvider.t )
-       TextDocumentFeature.t_3
+       TextDocumentFeature.t
     [@@js.cast]
 end
 [@@js.scope "SelectionRangeFeature"]

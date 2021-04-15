@@ -45,7 +45,7 @@ module ProvideFoldingRangeSignature : sig
     -> document:TextDocument.t
     -> context:FoldingContext.t
     -> token:CancellationToken.t
-    -> VFoldingRange.t list ProviderResult.t_1
+    -> VFoldingRange.t list ProviderResult.t
     [@@js.apply]
 end
 [@@js.scope "ProvideFoldingRangeSignature"]
@@ -64,7 +64,7 @@ module FoldingRangeProviderMiddleware : sig
     -> context:FoldingContext.t
     -> token:CancellationToken.t
     -> next:_ProvideFoldingRangeSignature
-    -> VFoldingRange.t list ProviderResult.t_1
+    -> VFoldingRange.t list ProviderResult.t
     [@@js.call "provideFoldingRanges"]
 end
 [@@js.scope "FoldingRangeProviderMiddleware"]
@@ -111,7 +111,7 @@ module FoldingRangeFeature : sig
     -> ( FoldingRangeOptions.t or_boolean
        , FoldingRangeRegistrationOptions.t
        , FoldingRangeProvider.t )
-       TextDocumentFeature.t_3
+       TextDocumentFeature.t
     [@@js.cast]
 end
 [@@js.scope "FoldingRangeFeature"]

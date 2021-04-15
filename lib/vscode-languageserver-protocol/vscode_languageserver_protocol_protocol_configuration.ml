@@ -20,7 +20,7 @@ module Internal =
         and _ConfigurationItem = [ `ConfigurationItem ] intf
         and _ConfigurationParams = [ `ConfigurationParams ] intf
         and _ConfigurationRequest_HandlerSignature =
-          (_ConfigurationParams, any list, unit) RequestHandler.t_3
+          (_ConfigurationParams, any list, unit) RequestHandler.t
         and _ConfigurationRequest_MiddlewareSignature =
           [ `ConfigurationRequest_MiddlewareSignature ] intf
         let rec _ConfigurationClientCapabilities_of_js :
@@ -38,15 +38,14 @@ module Internal =
         and _ConfigurationRequest_HandlerSignature_of_js :
           Ojs.t -> _ConfigurationRequest_HandlerSignature =
           fun (x6 : Ojs.t) ->
-            RequestHandler.t_3_of_js _ConfigurationParams_of_js
+            RequestHandler.t_of_js _ConfigurationParams_of_js
               (fun (x8 : Ojs.t) -> Ojs.list_of_js any_of_js x8)
               Ojs.unit_of_js x6
         and _ConfigurationRequest_HandlerSignature_to_js :
           _ConfigurationRequest_HandlerSignature -> Ojs.t =
-          fun
-            (x1 : (_ConfigurationParams, any list, unit) RequestHandler.t_3)
+          fun (x1 : (_ConfigurationParams, any list, unit) RequestHandler.t)
             ->
-            RequestHandler.t_3_to_js _ConfigurationParams_to_js
+            RequestHandler.t_to_js _ConfigurationParams_to_js
               (fun (x3 : any list) -> Ojs.list_to_js any_to_js x3)
               Ojs.unit_to_js x1
         and _ConfigurationRequest_MiddlewareSignature_of_js :
@@ -96,9 +95,9 @@ module ConfigurationRequest =
   struct
     let (type_ :
       ((_ConfigurationParams, PartialResultParams.t) intersection2, any list,
-        never, unit, unit) ProtocolRequestType.t_5)
+        never, unit, unit) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js
+      ProtocolRequestType.t_of_js
         (fun (x21 : Ojs.t) ->
            intersection2_of_js _ConfigurationParams_of_js
              PartialResultParams.t_of_js x21)
@@ -130,13 +129,13 @@ module ConfigurationRequest =
             params:_ConfigurationParams ->
               token:CancellationToken.t ->
                 next:_ConfigurationRequest_HandlerSignature ->
-                  (any list, unit) HandlerResult.t_2)
+                  (any list, unit) HandlerResult.t)
           =
           fun (x36 : t) ->
             fun ~params:(x33 : _ConfigurationParams) ->
               fun ~token:(x34 : CancellationToken.t) ->
                 fun ~next:(x35 : _ConfigurationRequest_HandlerSignature) ->
-                  HandlerResult.t_2_of_js
+                  HandlerResult.t_of_js
                     (fun (x37 : Ojs.t) -> Ojs.list_of_js any_of_js x37)
                     Ojs.unit_of_js
                     (Ojs.apply (t_to_js x36)

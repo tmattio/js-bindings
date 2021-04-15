@@ -538,7 +538,7 @@ module AbstractMessageSignature : sig
 end
 [@@js.scope "AbstractMessageSignature"]
 
-module M_EM : sig
+module EM : sig
   type t = _EM
 
   val t_to_js : t -> Ojs.t

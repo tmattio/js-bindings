@@ -17,7 +17,7 @@ module Internal : sig
       ( _ColorPresentationParams
       , ColorPresentation.t list
       , unit )
-      RequestHandler.t_3
+      RequestHandler.t
 
     and _DocumentColorClientCapabilities =
       [ `DocumentColorClientCapabilities ] intf
@@ -34,7 +34,7 @@ module Internal : sig
     [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
 
     and _DocumentColorRequest_HandlerSignature =
-      (_DocumentColorParams, ColorInformation.t list, unit) RequestHandler.t_3
+      (_DocumentColorParams, ColorInformation.t list, unit) RequestHandler.t
   end
 end
 
@@ -119,7 +119,7 @@ module DocumentColorRequest : sig
       , ColorInformation.t list
       , unit
       , _DocumentColorRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
@@ -167,7 +167,7 @@ module ColorPresentationRequest : sig
       , ( WorkDoneProgressOptions.t
         , TextDocumentRegistrationOptions.t )
         intersection2 )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig

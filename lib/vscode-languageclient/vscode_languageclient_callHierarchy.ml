@@ -64,14 +64,14 @@ module PrepareCallHierarchySignature =
             position:VPosition.t ->
               token:CancellationToken.t ->
                 (VCallHierarchyItem.t, VCallHierarchyItem.t) or_array
-                  ProviderResult.t_1)
+                  ProviderResult.t)
       =
       fun (x7 : t) ->
         fun ~this:(x3 : unit) ->
           fun ~document:(x4 : TextDocument.t) ->
             fun ~position:(x5 : VPosition.t) ->
               fun ~token:(x6 : CancellationToken.t) ->
-                ProviderResult.t_1_of_js
+                ProviderResult.t_of_js
                   (fun (x8 : Ojs.t) ->
                      or_array_of_js VCallHierarchyItem.t_of_js
                        VCallHierarchyItem.t_of_js x8)
@@ -92,13 +92,13 @@ module CallHierarchyIncomingCallsSignature =
         this:unit ->
           item:VCallHierarchyItem.t ->
             token:CancellationToken.t ->
-              VCallHierarchyIncomingCall.t list ProviderResult.t_1)
+              VCallHierarchyIncomingCall.t list ProviderResult.t)
       =
       fun (x16 : t) ->
         fun ~this:(x13 : unit) ->
           fun ~item:(x14 : VCallHierarchyItem.t) ->
             fun ~token:(x15 : CancellationToken.t) ->
-              ProviderResult.t_1_of_js
+              ProviderResult.t_of_js
                 (fun (x17 : Ojs.t) ->
                    Ojs.list_of_js VCallHierarchyIncomingCall.t_of_js x17)
                 (Ojs.apply (t_to_js x16)
@@ -118,13 +118,13 @@ module CallHierarchyOutgoingCallsSignature =
         this:unit ->
           item:VCallHierarchyItem.t ->
             token:CancellationToken.t ->
-              VCallHierarchyOutgoingCall.t list ProviderResult.t_1)
+              VCallHierarchyOutgoingCall.t list ProviderResult.t)
       =
       fun (x24 : t) ->
         fun ~this:(x21 : unit) ->
           fun ~item:(x22 : VCallHierarchyItem.t) ->
             fun ~token:(x23 : CancellationToken.t) ->
-              ProviderResult.t_1_of_js
+              ProviderResult.t_of_js
                 (fun (x25 : Ojs.t) ->
                    Ojs.list_of_js VCallHierarchyOutgoingCall.t_of_js x25)
                 (Ojs.apply (t_to_js x24)
@@ -147,7 +147,7 @@ module CallHierarchyMiddleware =
               token:CancellationToken.t ->
                 next:_PrepareCallHierarchySignature ->
                   (VCallHierarchyItem.t, VCallHierarchyItem.t) or_array
-                    ProviderResult.t_1)
+                    ProviderResult.t)
       =
       fun (x34 : t) ->
         fun ~this:(x29 : unit) ->
@@ -155,7 +155,7 @@ module CallHierarchyMiddleware =
             fun ~positions:(x31 : VPosition.t) ->
               fun ~token:(x32 : CancellationToken.t) ->
                 fun ~next:(x33 : _PrepareCallHierarchySignature) ->
-                  ProviderResult.t_1_of_js
+                  ProviderResult.t_of_js
                     (fun (x35 : Ojs.t) ->
                        or_array_of_js VCallHierarchyItem.t_of_js
                          VCallHierarchyItem.t_of_js x35)
@@ -170,14 +170,14 @@ module CallHierarchyMiddleware =
           item:VCallHierarchyItem.t ->
             token:CancellationToken.t ->
               next:_CallHierarchyIncomingCallsSignature ->
-                VCallHierarchyIncomingCall.t list ProviderResult.t_1)
+                VCallHierarchyIncomingCall.t list ProviderResult.t)
       =
       fun (x42 : t) ->
         fun ~this:(x38 : unit) ->
           fun ~item:(x39 : VCallHierarchyItem.t) ->
             fun ~token:(x40 : CancellationToken.t) ->
               fun ~next:(x41 : _CallHierarchyIncomingCallsSignature) ->
-                ProviderResult.t_1_of_js
+                ProviderResult.t_of_js
                   (fun (x43 : Ojs.t) ->
                      Ojs.list_of_js VCallHierarchyIncomingCall.t_of_js x43)
                   (Ojs.call (t_to_js x42) "provideCallHierarchyIncomingCalls"
@@ -190,14 +190,14 @@ module CallHierarchyMiddleware =
           item:VCallHierarchyItem.t ->
             token:CancellationToken.t ->
               next:_CallHierarchyOutgoingCallsSignature ->
-                VCallHierarchyOutgoingCall.t list ProviderResult.t_1)
+                VCallHierarchyOutgoingCall.t list ProviderResult.t)
       =
       fun (x49 : t) ->
         fun ~this:(x45 : unit) ->
           fun ~item:(x46 : VCallHierarchyItem.t) ->
             fun ~token:(x47 : CancellationToken.t) ->
               fun ~next:(x48 : _CallHierarchyOutgoingCallsSignature) ->
-                ProviderResult.t_1_of_js
+                ProviderResult.t_of_js
                   (fun (x50 : Ojs.t) ->
                      Ojs.list_of_js VCallHierarchyOutgoingCall.t_of_js x50)
                   (Ojs.call (t_to_js x49) "provideCallHierarchyOutgoingCalls"
@@ -237,13 +237,13 @@ module CallHierarchyProvider =
           position:VPosition.t ->
             token:CancellationToken.t ->
               (VCallHierarchyItem.t, VCallHierarchyItem.t) or_array
-                ProviderResult.t_1)
+                ProviderResult.t)
       =
       fun (x64 : t) ->
         fun ~document:(x61 : TextDocument.t) ->
           fun ~position:(x62 : VPosition.t) ->
             fun ~token:(x63 : CancellationToken.t) ->
-              ProviderResult.t_1_of_js
+              ProviderResult.t_of_js
                 (fun (x65 : Ojs.t) ->
                    or_array_of_js VCallHierarchyItem.t_of_js
                      VCallHierarchyItem.t_of_js x65)
@@ -254,12 +254,12 @@ module CallHierarchyProvider =
       t ->
         item:VCallHierarchyItem.t ->
           token:CancellationToken.t ->
-            VCallHierarchyIncomingCall.t list ProviderResult.t_1)
+            VCallHierarchyIncomingCall.t list ProviderResult.t)
       =
       fun (x70 : t) ->
         fun ~item:(x68 : VCallHierarchyItem.t) ->
           fun ~token:(x69 : CancellationToken.t) ->
-            ProviderResult.t_1_of_js
+            ProviderResult.t_of_js
               (fun (x71 : Ojs.t) ->
                  Ojs.list_of_js VCallHierarchyIncomingCall.t_of_js x71)
               (Ojs.call (t_to_js x70) "provideCallHierarchyIncomingCalls"
@@ -269,12 +269,12 @@ module CallHierarchyProvider =
       t ->
         item:VCallHierarchyItem.t ->
           token:CancellationToken.t ->
-            VCallHierarchyOutgoingCall.t list ProviderResult.t_1)
+            VCallHierarchyOutgoingCall.t list ProviderResult.t)
       =
       fun (x75 : t) ->
         fun ~item:(x73 : VCallHierarchyItem.t) ->
           fun ~token:(x74 : CancellationToken.t) ->
-            ProviderResult.t_1_of_js
+            ProviderResult.t_of_js
               (fun (x76 : Ojs.t) ->
                  Ojs.list_of_js VCallHierarchyOutgoingCall.t_of_js x76)
               (Ojs.call (t_to_js x75) "provideCallHierarchyOutgoingCalls"
@@ -329,10 +329,10 @@ module CallHierarchyFeature =
       t ->
         (CallHierarchyOptions.t or_boolean,
           CallHierarchyRegistrationOptions.t, _CallHierarchyProvider)
-          TextDocumentFeature.t_3)
+          TextDocumentFeature.t)
       =
       fun (x90 : t) ->
-        TextDocumentFeature.t_3_of_js
+        TextDocumentFeature.t_of_js
           (fun (x91 : Ojs.t) ->
              or_boolean_of_js CallHierarchyOptions.t_of_js x91)
           CallHierarchyRegistrationOptions.t_of_js

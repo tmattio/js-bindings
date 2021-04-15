@@ -1109,12 +1109,13 @@ module Child_process : sig
 
   val spawn
     :  command:string
+    -> ?args:string list
     -> ?options:child_process_SpawnOptionsWithoutStdio
     -> unit
     -> child_process_ChildProcessWithoutNullStreams
     [@@js.global "spawn"]
 
-  val spawn
+  val spawn'
     :  command:string
     -> options:
          ( child_process_StdioPipe
@@ -1127,7 +1128,7 @@ module Child_process : sig
        child_process_ChildProcessByStdio
     [@@js.global "spawn"]
 
-  val spawn
+  val spawn'
     :  command:string
     -> options:
          ( child_process_StdioPipe
@@ -1140,7 +1141,7 @@ module Child_process : sig
        child_process_ChildProcessByStdio
     [@@js.global "spawn"]
 
-  val spawn
+  val spawn'
     :  command:string
     -> options:
          ( child_process_StdioPipe
@@ -1153,7 +1154,7 @@ module Child_process : sig
        child_process_ChildProcessByStdio
     [@@js.global "spawn"]
 
-  val spawn
+  val spawn'
     :  command:string
     -> options:
          ( child_process_StdioNull
@@ -1166,7 +1167,7 @@ module Child_process : sig
        child_process_ChildProcessByStdio
     [@@js.global "spawn"]
 
-  val spawn
+  val spawn'
     :  command:string
     -> options:
          ( child_process_StdioPipe
@@ -1179,7 +1180,7 @@ module Child_process : sig
        child_process_ChildProcessByStdio
     [@@js.global "spawn"]
 
-  val spawn
+  val spawn'
     :  command:string
     -> options:
          ( child_process_StdioNull
@@ -1192,7 +1193,7 @@ module Child_process : sig
        child_process_ChildProcessByStdio
     [@@js.global "spawn"]
 
-  val spawn
+  val spawn'
     :  command:string
     -> options:
          ( child_process_StdioNull
@@ -1205,7 +1206,7 @@ module Child_process : sig
        child_process_ChildProcessByStdio
     [@@js.global "spawn"]
 
-  val spawn
+  val spawn'
     :  command:string
     -> options:
          ( child_process_StdioNull
@@ -1218,13 +1219,13 @@ module Child_process : sig
        child_process_ChildProcessByStdio
     [@@js.global "spawn"]
 
-  val spawn
+  val spawn'
     :  command:string
     -> options:child_process_SpawnOptions
     -> child_process_ChildProcess
     [@@js.global "spawn"]
 
-  val spawn
+  val spawn'
     :  command:string
     -> ?args:string list
     -> ?options:child_process_SpawnOptionsWithoutStdio
@@ -1232,7 +1233,7 @@ module Child_process : sig
     -> child_process_ChildProcessWithoutNullStreams
     [@@js.global "spawn"]
 
-  val spawn
+  val spawn'
     :  command:string
     -> args:string list
     -> options:
@@ -1246,7 +1247,7 @@ module Child_process : sig
        child_process_ChildProcessByStdio
     [@@js.global "spawn"]
 
-  val spawn
+  val spawn'
     :  command:string
     -> args:string list
     -> options:
@@ -1260,7 +1261,7 @@ module Child_process : sig
        child_process_ChildProcessByStdio
     [@@js.global "spawn"]
 
-  val spawn
+  val spawn'
     :  command:string
     -> args:string list
     -> options:
@@ -1274,7 +1275,7 @@ module Child_process : sig
        child_process_ChildProcessByStdio
     [@@js.global "spawn"]
 
-  val spawn
+  val spawn'
     :  command:string
     -> args:string list
     -> options:
@@ -1288,7 +1289,7 @@ module Child_process : sig
        child_process_ChildProcessByStdio
     [@@js.global "spawn"]
 
-  val spawn
+  val spawn'
     :  command:string
     -> args:string list
     -> options:
@@ -1302,7 +1303,7 @@ module Child_process : sig
        child_process_ChildProcessByStdio
     [@@js.global "spawn"]
 
-  val spawn
+  val spawn'
     :  command:string
     -> args:string list
     -> options:
@@ -1316,7 +1317,7 @@ module Child_process : sig
        child_process_ChildProcessByStdio
     [@@js.global "spawn"]
 
-  val spawn
+  val spawn'
     :  command:string
     -> args:string list
     -> options:
@@ -1330,7 +1331,7 @@ module Child_process : sig
        child_process_ChildProcessByStdio
     [@@js.global "spawn"]
 
-  val spawn
+  val spawn'
     :  command:string
     -> args:string list
     -> options:
@@ -1344,7 +1345,7 @@ module Child_process : sig
        child_process_ChildProcessByStdio
     [@@js.global "spawn"]
 
-  val spawn
+  val spawn'
     :  command:string
     -> args:string list
     -> options:child_process_SpawnOptions
@@ -2077,31 +2078,31 @@ module Child_process : sig
   end
   [@@js.scope "SpawnSyncReturns"]
 
-  val spawnSync : command:string -> Buffer.t child_process_SpawnSyncReturns
+  val spawn'Sync : command:string -> Buffer.t child_process_SpawnSyncReturns
     [@@js.global "spawnSync"]
 
-  val spawnSync
+  val spawn'Sync
     :  command:string
     -> ?options:child_process_SpawnSyncOptionsWithStringEncoding
     -> unit
     -> string child_process_SpawnSyncReturns
     [@@js.global "spawnSync"]
 
-  val spawnSync
+  val spawn'Sync
     :  command:string
     -> ?options:child_process_SpawnSyncOptionsWithBufferEncoding
     -> unit
     -> Buffer.t child_process_SpawnSyncReturns
     [@@js.global "spawnSync"]
 
-  val spawnSync
+  val spawn'Sync
     :  command:string
     -> ?options:child_process_SpawnSyncOptions
     -> unit
     -> Buffer.t child_process_SpawnSyncReturns
     [@@js.global "spawnSync"]
 
-  val spawnSync
+  val spawn'Sync
     :  command:string
     -> ?args:string list
     -> ?options:child_process_SpawnSyncOptionsWithStringEncoding
@@ -2109,7 +2110,7 @@ module Child_process : sig
     -> string child_process_SpawnSyncReturns
     [@@js.global "spawnSync"]
 
-  val spawnSync
+  val spawn'Sync
     :  command:string
     -> ?args:string list
     -> ?options:child_process_SpawnSyncOptionsWithBufferEncoding
@@ -2117,7 +2118,7 @@ module Child_process : sig
     -> Buffer.t child_process_SpawnSyncReturns
     [@@js.global "spawnSync"]
 
-  val spawnSync
+  val spawn'Sync
     :  command:string
     -> ?args:string list
     -> ?options:child_process_SpawnSyncOptions

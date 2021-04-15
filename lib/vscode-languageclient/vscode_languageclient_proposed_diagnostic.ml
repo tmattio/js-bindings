@@ -194,25 +194,25 @@ module DiagnosticProvider =
       fun (x41 : Ojs.t) -> _DiagnosticProvider_of_js x41
     and t_to_js : t -> Ojs.t =
       fun (x40 : _DiagnosticProvider) -> _DiagnosticProvider_to_js x40
-    let (get_onDidChangeDiagnostics : t -> unit VEvent.t_1) =
+    let (get_onDidChangeDiagnostics : t -> unit VEvent.t) =
       fun (x42 : t) ->
-        VEvent.t_1_of_js Ojs.unit_of_js
+        VEvent.t_of_js Ojs.unit_of_js
           (Ojs.get_prop_ascii (t_to_js x42) "onDidChangeDiagnostics")
-    let (set_onDidChangeDiagnostics : t -> unit VEvent.t_1 -> unit) =
+    let (set_onDidChangeDiagnostics : t -> unit VEvent.t -> unit) =
       fun (x44 : t) ->
-        fun (x45 : unit VEvent.t_1) ->
+        fun (x45 : unit VEvent.t) ->
           Ojs.set_prop_ascii (t_to_js x44) "onDidChangeDiagnostics"
-            (VEvent.t_1_to_js Ojs.unit_to_js x45)
+            (VEvent.t_to_js Ojs.unit_to_js x45)
     let (provideDiagnostics :
       t ->
         textDocument:TextDocument.t ->
           token:CancellationToken.t ->
-            _VDocumentDiagnosticReport ProviderResult.t_1)
+            _VDocumentDiagnosticReport ProviderResult.t)
       =
       fun (x49 : t) ->
         fun ~textDocument:(x47 : TextDocument.t) ->
           fun ~token:(x48 : CancellationToken.t) ->
-            ProviderResult.t_1_of_js _VDocumentDiagnosticReport_of_js
+            ProviderResult.t_of_js _VDocumentDiagnosticReport_of_js
               (Ojs.call (t_to_js x49) "provideDiagnostics"
                  [|(TextDocument.t_to_js x47);(CancellationToken.t_to_js x48)|])
   end
@@ -229,13 +229,13 @@ module ProvideDiagnosticSignature =
         this:unit ->
           textDocument:TextDocument.t ->
             token:CancellationToken.t ->
-              _VDocumentDiagnosticReport ProviderResult.t_1)
+              _VDocumentDiagnosticReport ProviderResult.t)
       =
       fun (x56 : t) ->
         fun ~this:(x53 : unit) ->
           fun ~textDocument:(x54 : TextDocument.t) ->
             fun ~token:(x55 : CancellationToken.t) ->
-              ProviderResult.t_1_of_js _VDocumentDiagnosticReport_of_js
+              ProviderResult.t_of_js _VDocumentDiagnosticReport_of_js
                 (Ojs.apply (t_to_js x56)
                    [|(Ojs.unit_to_js x53);(TextDocument.t_to_js x54);(
                      CancellationToken.t_to_js x55)|])
@@ -254,14 +254,14 @@ module DiagnosticProviderMiddleware =
           document:TextDocument.t ->
             token:CancellationToken.t ->
               next:_ProvideDiagnosticSignature ->
-                _VDocumentDiagnosticReport ProviderResult.t_1)
+                _VDocumentDiagnosticReport ProviderResult.t)
       =
       fun (x64 : t) ->
         fun ~this:(x60 : unit) ->
           fun ~document:(x61 : TextDocument.t) ->
             fun ~token:(x62 : CancellationToken.t) ->
               fun ~next:(x63 : _ProvideDiagnosticSignature) ->
-                ProviderResult.t_1_of_js _VDocumentDiagnosticReport_of_js
+                ProviderResult.t_of_js _VDocumentDiagnosticReport_of_js
                   (Ojs.call (t_to_js x64) "provideDiagnostics"
                      [|(Ojs.unit_to_js x60);(TextDocument.t_to_js x61);(
                        CancellationToken.t_to_js x62);(_ProvideDiagnosticSignature_to_js
@@ -275,16 +275,16 @@ module DiagnosticFeatureProvider =
     and t_to_js : t -> Ojs.t =
       fun (x66 : _DiagnosticFeatureProvider) ->
         _DiagnosticFeatureProvider_to_js x66
-    let (get_onDidChangeDiagnosticsEmitter : t -> unit EventEmitter.t_1) =
+    let (get_onDidChangeDiagnosticsEmitter : t -> unit EventEmitter.t) =
       fun (x68 : t) ->
-        EventEmitter.t_1_of_js Ojs.unit_of_js
+        EventEmitter.t_of_js Ojs.unit_of_js
           (Ojs.get_prop_ascii (t_to_js x68) "onDidChangeDiagnosticsEmitter")
     let (set_onDidChangeDiagnosticsEmitter :
-      t -> unit EventEmitter.t_1 -> unit) =
+      t -> unit EventEmitter.t -> unit) =
       fun (x70 : t) ->
-        fun (x71 : unit EventEmitter.t_1) ->
+        fun (x71 : unit EventEmitter.t) ->
           Ojs.set_prop_ascii (t_to_js x70) "onDidChangeDiagnosticsEmitter"
-            (EventEmitter.t_1_to_js Ojs.unit_to_js x71)
+            (EventEmitter.t_to_js Ojs.unit_to_js x71)
     let (get_provider : t -> _DiagnosticProvider) =
       fun (x73 : t) ->
         _DiagnosticProvider_of_js
@@ -358,10 +358,10 @@ module DiagnosticFeature =
       t ->
         (Proposed.DiagnosticOptions.t,
           Proposed.DiagnosticRegistrationOptions.t,
-          _DiagnosticFeatureProvider) TextDocumentFeature.t_3)
+          _DiagnosticFeatureProvider) TextDocumentFeature.t)
       =
       fun (x91 : t) ->
-        TextDocumentFeature.t_3_of_js Proposed.DiagnosticOptions.t_of_js
+        TextDocumentFeature.t_of_js Proposed.DiagnosticOptions.t_of_js
           Proposed.DiagnosticRegistrationOptions.t_of_js
           _DiagnosticFeatureProvider_of_js (t_to_js x91)
   end

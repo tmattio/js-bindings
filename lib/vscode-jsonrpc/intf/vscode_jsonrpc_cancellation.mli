@@ -2,7 +2,9 @@
 
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
-open Es5
+[@@@js.scope "__LIB__VSCODE_JSONRPC__IMPORTS.cancellation"]
+
+open Es2020
 
 module Internal : sig
   module AnonymousInterfaces : sig end
@@ -27,8 +29,6 @@ open Internal
 open AnonymousInterfaces
 open Types
 
-(* import { Event } from './events'; *)
-(* import { Disposable } from './disposable'; *)
 module CancellationToken : sig
   type t = _CancellationToken
 
@@ -39,12 +39,9 @@ module CancellationToken : sig
   val get_isCancellationRequested : t -> bool
     [@@js.get "isCancellationRequested"]
 
-  val get_onCancellationRequested : t -> any Event.t_1
+  val get_onCancellationRequested : t -> any Vscode_jsonrpc_events.Event.t
     [@@js.get "onCancellationRequested"]
-end
-[@@js.scope "CancellationToken"]
 
-module CancellationToken : sig
   val none : _CancellationToken [@@js.global "None"]
 
   val cancelled : _CancellationToken [@@js.global "Cancelled"]
@@ -66,7 +63,7 @@ module AbstractCancellationTokenSource : sig
 
   val cancel : t -> unit [@@js.call "cancel"]
 
-  val cast : t -> Disposable.t [@@js.cast]
+  val cast : t -> Vscode_jsonrpc_disposable.Disposable.t [@@js.cast]
 end
 [@@js.scope "AbstractCancellationTokenSource"]
 

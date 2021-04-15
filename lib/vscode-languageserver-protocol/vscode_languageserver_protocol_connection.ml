@@ -27,11 +27,11 @@ module ProtocolConnection =
       fun (x1 : _ProtocolConnection) -> _ProtocolConnection_to_js x1
     let (sendRequest :
       t ->
-        type_:('R, 'PR, 'E, 'RO) ProtocolRequestType0.t_4 ->
+        type_:('R, 'PR, 'E, 'RO) ProtocolRequestType0.t ->
           ?token:CancellationToken.t -> unit -> 'R Promise.t)
       =
       fun (x11 : t) ->
-        fun ~type_:(x3 : ('R, 'PR, 'E, 'RO) ProtocolRequestType0.t_4) ->
+        fun ~type_:(x3 : ('R, 'PR, 'E, 'RO) ProtocolRequestType0.t) ->
           fun ?token:(x4 : CancellationToken.t option) ->
             fun () ->
               Promise.t_of_js Obj.magic
@@ -43,7 +43,7 @@ module ProtocolConnection =
                                [||] in
                            ignore
                              (Ojs.call x5 "push"
-                                [|(ProtocolRequestType0.t_4_to_js Obj.magic
+                                [|(ProtocolRequestType0.t_to_js Obj.magic
                                      Obj.magic Obj.magic Obj.magic x3)|]);
                            (match x4 with
                             | Some x6 ->
@@ -54,11 +54,11 @@ module ProtocolConnection =
                            x5))|])
     let (sendRequest' :
       t ->
-        type_:('R, 'E) RequestType0.t_2 ->
+        type_:('R, 'E) RequestType0.t ->
           ?token:CancellationToken.t -> unit -> 'R Promise.t)
       =
       fun (x20 : t) ->
-        fun ~type_:(x14 : ('R, 'E) RequestType0.t_2) ->
+        fun ~type_:(x14 : ('R, 'E) RequestType0.t) ->
           fun ?token:(x15 : CancellationToken.t option) ->
             fun () ->
               Promise.t_of_js Obj.magic
@@ -70,7 +70,7 @@ module ProtocolConnection =
                                [||] in
                            ignore
                              (Ojs.call x16 "push"
-                                [|(RequestType0.t_2_to_js Obj.magic Obj.magic
+                                [|(RequestType0.t_to_js Obj.magic Obj.magic
                                      x14)|]);
                            (match x15 with
                             | Some x17 ->
@@ -81,11 +81,11 @@ module ProtocolConnection =
                            x16))|])
     let (sendRequest'' :
       t ->
-        type_:('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t_5 ->
+        type_:('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t ->
           params:'P -> ?token:CancellationToken.t -> unit -> 'R Promise.t)
       =
       fun (x33 : t) ->
-        fun ~type_:(x23 : ('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t_5) ->
+        fun ~type_:(x23 : ('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t) ->
           fun ~params:(x24 : 'P) ->
             fun ?token:(x25 : CancellationToken.t option) ->
               fun () ->
@@ -98,7 +98,7 @@ module ProtocolConnection =
                                  [||] in
                              ignore
                                (Ojs.call x26 "push"
-                                  [|(ProtocolRequestType.t_5_to_js Obj.magic
+                                  [|(ProtocolRequestType.t_to_js Obj.magic
                                        Obj.magic Obj.magic Obj.magic
                                        Obj.magic x23)|]);
                              ignore (Ojs.call x26 "push" [|(Obj.magic x24)|]);
@@ -111,11 +111,11 @@ module ProtocolConnection =
                              x26))|])
     let (sendRequest''' :
       t ->
-        type_:('P, 'R, 'E) RequestType.t_3 ->
+        type_:('P, 'R, 'E) RequestType.t ->
           params:'P -> ?token:CancellationToken.t -> unit -> 'R Promise.t)
       =
       fun (x44 : t) ->
-        fun ~type_:(x36 : ('P, 'R, 'E) RequestType.t_3) ->
+        fun ~type_:(x36 : ('P, 'R, 'E) RequestType.t) ->
           fun ~params:(x37 : 'P) ->
             fun ?token:(x38 : CancellationToken.t option) ->
               fun () ->
@@ -128,8 +128,8 @@ module ProtocolConnection =
                                  [||] in
                              ignore
                                (Ojs.call x39 "push"
-                                  [|(RequestType.t_3_to_js Obj.magic
-                                       Obj.magic Obj.magic x36)|]);
+                                  [|(RequestType.t_to_js Obj.magic Obj.magic
+                                       Obj.magic x36)|]);
                              ignore (Ojs.call x39 "push" [|(Obj.magic x37)|]);
                              (match x38 with
                               | Some x40 ->
@@ -192,67 +192,68 @@ module ProtocolConnection =
                              x57))|])
     let (onRequest :
       t ->
-        type_:('R, 'PR, 'E, 'RO) ProtocolRequestType0.t_4 ->
-          handler:('R, 'E) RequestHandler0.t_2 -> Disposable.t)
+        type_:('R, 'PR, 'E, 'RO) ProtocolRequestType0.t ->
+          handler:('R, 'E) RequestHandler0.t -> Disposable.t)
       =
       fun (x70 : t) ->
-        fun ~type_:(x62 : ('R, 'PR, 'E, 'RO) ProtocolRequestType0.t_4) ->
-          fun ~handler:(x67 : ('R, 'E) RequestHandler0.t_2) ->
+        fun ~type_:(x62 : ('R, 'PR, 'E, 'RO) ProtocolRequestType0.t) ->
+          fun ~handler:(x67 : ('R, 'E) RequestHandler0.t) ->
             Disposable.t_of_js
               (Ojs.call (t_to_js x70) "onRequest"
-                 [|(ProtocolRequestType0.t_4_to_js Obj.magic Obj.magic
-                      Obj.magic Obj.magic x62);(RequestHandler0.t_2_to_js
+                 [|(ProtocolRequestType0.t_to_js Obj.magic Obj.magic
+                      Obj.magic Obj.magic x62);(RequestHandler0.t_to_js
                                                   Obj.magic Obj.magic x67)|])
     let (onRequest' :
       t ->
-        type_:('R, 'E) RequestType0.t_2 ->
-          handler:('R, 'E) RequestHandler0.t_2 -> Disposable.t)
+        type_:('R, 'E) RequestType0.t ->
+          handler:('R, 'E) RequestHandler0.t -> Disposable.t)
       =
       fun (x77 : t) ->
-        fun ~type_:(x71 : ('R, 'E) RequestType0.t_2) ->
-          fun ~handler:(x74 : ('R, 'E) RequestHandler0.t_2) ->
+        fun ~type_:(x71 : ('R, 'E) RequestType0.t) ->
+          fun ~handler:(x74 : ('R, 'E) RequestHandler0.t) ->
             Disposable.t_of_js
               (Ojs.call (t_to_js x77) "onRequest"
-                 [|(RequestType0.t_2_to_js Obj.magic Obj.magic x71);(
-                   RequestHandler0.t_2_to_js Obj.magic Obj.magic x74)|])
+                 [|(RequestType0.t_to_js Obj.magic Obj.magic x71);(RequestHandler0.t_to_js
+                                                                    Obj.magic
+                                                                    Obj.magic
+                                                                    x74)|])
     let (onRequest'' :
       t ->
-        type_:('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t_5 ->
-          handler:('P, 'R, 'E) RequestHandler.t_3 -> Disposable.t)
+        type_:('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t ->
+          handler:('P, 'R, 'E) RequestHandler.t -> Disposable.t)
       =
       fun (x88 : t) ->
-        fun ~type_:(x78 : ('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t_5) ->
-          fun ~handler:(x84 : ('P, 'R, 'E) RequestHandler.t_3) ->
+        fun ~type_:(x78 : ('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t) ->
+          fun ~handler:(x84 : ('P, 'R, 'E) RequestHandler.t) ->
             Disposable.t_of_js
               (Ojs.call (t_to_js x88) "onRequest"
-                 [|(ProtocolRequestType.t_5_to_js Obj.magic Obj.magic
-                      Obj.magic Obj.magic Obj.magic x78);(RequestHandler.t_3_to_js
-                                                            Obj.magic
-                                                            Obj.magic
-                                                            Obj.magic x84)|])
+                 [|(ProtocolRequestType.t_to_js Obj.magic Obj.magic Obj.magic
+                      Obj.magic Obj.magic x78);(RequestHandler.t_to_js
+                                                  Obj.magic Obj.magic
+                                                  Obj.magic x84)|])
     let (onRequest''' :
       t ->
-        type_:('P, 'R, 'E) RequestType.t_3 ->
-          handler:('P, 'R, 'E) RequestHandler.t_3 -> Disposable.t)
+        type_:('P, 'R, 'E) RequestType.t ->
+          handler:('P, 'R, 'E) RequestHandler.t -> Disposable.t)
       =
       fun (x97 : t) ->
-        fun ~type_:(x89 : ('P, 'R, 'E) RequestType.t_3) ->
-          fun ~handler:(x93 : ('P, 'R, 'E) RequestHandler.t_3) ->
+        fun ~type_:(x89 : ('P, 'R, 'E) RequestType.t) ->
+          fun ~handler:(x93 : ('P, 'R, 'E) RequestHandler.t) ->
             Disposable.t_of_js
               (Ojs.call (t_to_js x97) "onRequest"
-                 [|(RequestType.t_3_to_js Obj.magic Obj.magic Obj.magic x89);(
-                   RequestHandler.t_3_to_js Obj.magic Obj.magic Obj.magic x93)|])
+                 [|(RequestType.t_to_js Obj.magic Obj.magic Obj.magic x89);(
+                   RequestHandler.t_to_js Obj.magic Obj.magic Obj.magic x93)|])
     let (onRequest'''' :
       t ->
         method_:string ->
-          handler:('R, 'E) GenericRequestHandler.t_2 -> Disposable.t)
+          handler:('R, 'E) GenericRequestHandler.t -> Disposable.t)
       =
       fun (x102 : t) ->
         fun ~method_:(x98 : string) ->
-          fun ~handler:(x99 : ('R, 'E) GenericRequestHandler.t_2) ->
+          fun ~handler:(x99 : ('R, 'E) GenericRequestHandler.t) ->
             Disposable.t_of_js
               (Ojs.call (t_to_js x102) "onRequest"
-                 [|(Ojs.string_to_js x98);(GenericRequestHandler.t_2_to_js
+                 [|(Ojs.string_to_js x98);(GenericRequestHandler.t_to_js
                                              Obj.magic Obj.magic x99)|])
     let (sendNotification : t -> type_:NotificationType0.t -> unit) =
       fun (x104 : t) ->
@@ -261,19 +262,19 @@ module ProtocolConnection =
             (Ojs.call (t_to_js x104) "sendNotification"
                [|(NotificationType0.t_to_js x103)|])
     let (sendNotification' :
-      t -> type_:'RO ProtocolNotificationType0.t_1 -> unit) =
+      t -> type_:'RO ProtocolNotificationType0.t -> unit) =
       fun (x107 : t) ->
-        fun ~type_:(x105 : 'RO ProtocolNotificationType0.t_1) ->
+        fun ~type_:(x105 : 'RO ProtocolNotificationType0.t) ->
           ignore
             (Ojs.call (t_to_js x107) "sendNotification"
-               [|(ProtocolNotificationType0.t_1_to_js Obj.magic x105)|])
+               [|(ProtocolNotificationType0.t_to_js Obj.magic x105)|])
     let (sendNotification'' :
       t ->
-        type_:('P, 'RO) ProtocolNotificationType.t_2 ->
+        type_:('P, 'RO) ProtocolNotificationType.t ->
           ?params:'P -> unit -> unit)
       =
       fun (x114 : t) ->
-        fun ~type_:(x108 : ('P, 'RO) ProtocolNotificationType.t_2) ->
+        fun ~type_:(x108 : ('P, 'RO) ProtocolNotificationType.t) ->
           fun ?params:(x109 : 'P option) ->
             fun () ->
               ignore
@@ -286,7 +287,7 @@ module ProtocolConnection =
                                 [||] in
                             ignore
                               (Ojs.call x110 "push"
-                                 [|(ProtocolNotificationType.t_2_to_js
+                                 [|(ProtocolNotificationType.t_to_js
                                       Obj.magic Obj.magic x108)|]);
                             (match x109 with
                              | Some x111 ->
@@ -295,9 +296,9 @@ module ProtocolConnection =
                              | None -> ());
                             x110))|])
     let (sendNotification''' :
-      t -> type_:'P NotificationType.t_1 -> ?params:'P -> unit -> unit) =
+      t -> type_:'P NotificationType.t -> ?params:'P -> unit -> unit) =
       fun (x121 : t) ->
-        fun ~type_:(x116 : 'P NotificationType.t_1) ->
+        fun ~type_:(x116 : 'P NotificationType.t) ->
           fun ?params:(x117 : 'P option) ->
             fun () ->
               ignore
@@ -310,7 +311,7 @@ module ProtocolConnection =
                                 [||] in
                             ignore
                               (Ojs.call x118 "push"
-                                 [|(NotificationType.t_1_to_js Obj.magic x116)|]);
+                                 [|(NotificationType.t_to_js Obj.magic x116)|]);
                             (match x117 with
                              | Some x119 ->
                                  ignore
@@ -332,15 +333,15 @@ module ProtocolConnection =
                  [|(Ojs.string_to_js x125);(any_to_js x126)|])
     let (onNotification :
       t ->
-        type_:'RO ProtocolNotificationType0.t_1 ->
+        type_:'RO ProtocolNotificationType0.t ->
           handler:NotificationHandler0.t -> Disposable.t)
       =
       fun (x131 : t) ->
-        fun ~type_:(x128 : 'RO ProtocolNotificationType0.t_1) ->
+        fun ~type_:(x128 : 'RO ProtocolNotificationType0.t) ->
           fun ~handler:(x130 : NotificationHandler0.t) ->
             Disposable.t_of_js
               (Ojs.call (t_to_js x131) "onNotification"
-                 [|(ProtocolNotificationType0.t_1_to_js Obj.magic x128);(
+                 [|(ProtocolNotificationType0.t_to_js Obj.magic x128);(
                    NotificationHandler0.t_to_js x130)|])
     let (onNotification' :
       t ->
@@ -356,29 +357,29 @@ module ProtocolConnection =
                                                        x133)|])
     let (onNotification'' :
       t ->
-        type_:('P, 'RO) ProtocolNotificationType.t_2 ->
-          handler:'P NotificationHandler.t_1 -> Disposable.t)
+        type_:('P, 'RO) ProtocolNotificationType.t ->
+          handler:'P NotificationHandler.t -> Disposable.t)
       =
       fun (x140 : t) ->
-        fun ~type_:(x135 : ('P, 'RO) ProtocolNotificationType.t_2) ->
-          fun ~handler:(x138 : 'P NotificationHandler.t_1) ->
+        fun ~type_:(x135 : ('P, 'RO) ProtocolNotificationType.t) ->
+          fun ~handler:(x138 : 'P NotificationHandler.t) ->
             Disposable.t_of_js
               (Ojs.call (t_to_js x140) "onNotification"
-                 [|(ProtocolNotificationType.t_2_to_js Obj.magic Obj.magic
-                      x135);(NotificationHandler.t_1_to_js Obj.magic x138)|])
+                 [|(ProtocolNotificationType.t_to_js Obj.magic Obj.magic x135);(
+                   NotificationHandler.t_to_js Obj.magic x138)|])
     let (onNotification''' :
       t ->
-        type_:'P NotificationType.t_1 ->
-          handler:'P NotificationHandler.t_1 -> Disposable.t)
+        type_:'P NotificationType.t ->
+          handler:'P NotificationHandler.t -> Disposable.t)
       =
       fun (x145 : t) ->
-        fun ~type_:(x141 : 'P NotificationType.t_1) ->
-          fun ~handler:(x143 : 'P NotificationHandler.t_1) ->
+        fun ~type_:(x141 : 'P NotificationType.t) ->
+          fun ~handler:(x143 : 'P NotificationHandler.t) ->
             Disposable.t_of_js
               (Ojs.call (t_to_js x145) "onNotification"
-                 [|(NotificationType.t_1_to_js Obj.magic x141);(NotificationHandler.t_1_to_js
-                                                                  Obj.magic
-                                                                  x143)|])
+                 [|(NotificationType.t_to_js Obj.magic x141);(NotificationHandler.t_to_js
+                                                                Obj.magic
+                                                                x143)|])
     let (onNotification'''' :
       t ->
         method_:string ->
@@ -393,34 +394,33 @@ module ProtocolConnection =
                                               x147)|])
     let (onProgress :
       t ->
-        type_:'P ProgressType.t_1 ->
+        type_:'P ProgressType.t ->
           token:string or_number ->
-            handler:'P NotificationHandler.t_1 -> Disposable.t)
+            handler:'P NotificationHandler.t -> Disposable.t)
       =
       fun (x155 : t) ->
-        fun ~type_:(x149 : 'P ProgressType.t_1) ->
+        fun ~type_:(x149 : 'P ProgressType.t) ->
           fun ~token:(x151 : string or_number) ->
-            fun ~handler:(x153 : 'P NotificationHandler.t_1) ->
+            fun ~handler:(x153 : 'P NotificationHandler.t) ->
               Disposable.t_of_js
                 (Ojs.call (t_to_js x155) "onProgress"
-                   [|(ProgressType.t_1_to_js Obj.magic x149);(or_number_to_js
-                                                                Ojs.string_to_js
-                                                                x151);(
-                     NotificationHandler.t_1_to_js Obj.magic x153)|])
+                   [|(ProgressType.t_to_js Obj.magic x149);(or_number_to_js
+                                                              Ojs.string_to_js
+                                                              x151);(
+                     NotificationHandler.t_to_js Obj.magic x153)|])
     let (sendProgress :
       t ->
-        type_:'P ProgressType.t_1 ->
-          token:string or_number -> value:'P -> unit)
+        type_:'P ProgressType.t -> token:string or_number -> value:'P -> unit)
       =
       fun (x161 : t) ->
-        fun ~type_:(x156 : 'P ProgressType.t_1) ->
+        fun ~type_:(x156 : 'P ProgressType.t) ->
           fun ~token:(x158 : string or_number) ->
             fun ~value:(x160 : 'P) ->
               ignore
                 (Ojs.call (t_to_js x161) "sendProgress"
-                   [|(ProgressType.t_1_to_js Obj.magic x156);(or_number_to_js
-                                                                Ojs.string_to_js
-                                                                x158);(
+                   [|(ProgressType.t_to_js Obj.magic x156);(or_number_to_js
+                                                              Ojs.string_to_js
+                                                              x158);(
                      Obj.magic x160)|])
     let (trace :
       t ->
@@ -483,10 +483,9 @@ module ProtocolConnection =
                                | None -> ());
                               x172))|])
     let (get_onError :
-      t -> (Error.t * Message.t or_undefined * float or_undefined) Event.t_1)
-      =
+      t -> (Error.t * Message.t or_undefined * float or_undefined) Event.t) =
       fun (x176 : t) ->
-        Event.t_1_of_js
+        Event.t_of_js
           (fun (x177 : Ojs.t) ->
              let x178 = x177 in
              ((Error.t_of_js (Ojs.array_get x178 0)),
@@ -495,16 +494,16 @@ module ProtocolConnection =
           (Ojs.get_prop_ascii (t_to_js x176) "onError")
     let (set_onError :
       t ->
-        (Error.t * Message.t or_undefined * float or_undefined) Event.t_1 ->
+        (Error.t * Message.t or_undefined * float or_undefined) Event.t ->
           unit)
       =
       fun (x181 : t) ->
         fun
           (x182 :
-            (Error.t * Message.t or_undefined * float or_undefined) Event.t_1)
+            (Error.t * Message.t or_undefined * float or_undefined) Event.t)
           ->
           Ojs.set_prop_ascii (t_to_js x181) "onError"
-            (Event.t_1_to_js
+            (Event.t_to_js
                (fun
                   (x183 :
                     (Error.t * Message.t or_undefined * float or_undefined))
@@ -517,35 +516,34 @@ module ProtocolConnection =
                   Ojs.array_set x187 2
                     (or_undefined_to_js Ojs.float_to_js x186);
                   x187) x182)
-    let (get_onClose : t -> unit Event.t_1) =
+    let (get_onClose : t -> unit Event.t) =
       fun (x190 : t) ->
-        Event.t_1_of_js Ojs.unit_of_js
+        Event.t_of_js Ojs.unit_of_js
           (Ojs.get_prop_ascii (t_to_js x190) "onClose")
-    let (set_onClose : t -> unit Event.t_1 -> unit) =
+    let (set_onClose : t -> unit Event.t -> unit) =
       fun (x192 : t) ->
-        fun (x193 : unit Event.t_1) ->
+        fun (x193 : unit Event.t) ->
           Ojs.set_prop_ascii (t_to_js x192) "onClose"
-            (Event.t_1_to_js Ojs.unit_to_js x193)
-    let (get_onUnhandledNotification : t -> NotificationMessage.t Event.t_1)
-      =
+            (Event.t_to_js Ojs.unit_to_js x193)
+    let (get_onUnhandledNotification : t -> NotificationMessage.t Event.t) =
       fun (x195 : t) ->
-        Event.t_1_of_js NotificationMessage.t_of_js
+        Event.t_of_js NotificationMessage.t_of_js
           (Ojs.get_prop_ascii (t_to_js x195) "onUnhandledNotification")
     let (set_onUnhandledNotification :
-      t -> NotificationMessage.t Event.t_1 -> unit) =
+      t -> NotificationMessage.t Event.t -> unit) =
       fun (x197 : t) ->
-        fun (x198 : NotificationMessage.t Event.t_1) ->
+        fun (x198 : NotificationMessage.t Event.t) ->
           Ojs.set_prop_ascii (t_to_js x197) "onUnhandledNotification"
-            (Event.t_1_to_js NotificationMessage.t_to_js x198)
-    let (get_onDispose : t -> unit Event.t_1) =
+            (Event.t_to_js NotificationMessage.t_to_js x198)
+    let (get_onDispose : t -> unit Event.t) =
       fun (x200 : t) ->
-        Event.t_1_of_js Ojs.unit_of_js
+        Event.t_of_js Ojs.unit_of_js
           (Ojs.get_prop_ascii (t_to_js x200) "onDispose")
-    let (set_onDispose : t -> unit Event.t_1 -> unit) =
+    let (set_onDispose : t -> unit Event.t -> unit) =
       fun (x202 : t) ->
-        fun (x203 : unit Event.t_1) ->
+        fun (x203 : unit Event.t) ->
           Ojs.set_prop_ascii (t_to_js x202) "onDispose"
-            (Event.t_1_to_js Ojs.unit_to_js x203)
+            (Event.t_to_js Ojs.unit_to_js x203)
     let (end_ : t -> unit) =
       fun (x205 : t) -> ignore (Ojs.call (t_to_js x205) "end" [||])
     let (dispose : t -> unit) =

@@ -42,14 +42,14 @@ module ProvideDeclarationSignature =
         this:unit ->
           document:TextDocument.t ->
             position:VPosition.t ->
-              token:CancellationToken.t -> VDeclaration.t ProviderResult.t_1)
+              token:CancellationToken.t -> VDeclaration.t ProviderResult.t)
       =
       fun (x7 : t) ->
         fun ~this:(x3 : unit) ->
           fun ~document:(x4 : TextDocument.t) ->
             fun ~position:(x5 : VPosition.t) ->
               fun ~token:(x6 : CancellationToken.t) ->
-                ProviderResult.t_1_of_js VDeclaration.t_of_js
+                ProviderResult.t_of_js VDeclaration.t_of_js
                   (Ojs.apply (t_to_js x7)
                      [|(Ojs.unit_to_js x3);(TextDocument.t_to_js x4);(
                        VPosition.t_to_js x5);(CancellationToken.t_to_js x6)|])
@@ -68,7 +68,7 @@ module DeclarationMiddleware =
             position:VPosition.t ->
               token:CancellationToken.t ->
                 next:_ProvideDeclarationSignature ->
-                  VDeclaration.t ProviderResult.t_1)
+                  VDeclaration.t ProviderResult.t)
       =
       fun (x16 : t) ->
         fun ~this:(x11 : unit) ->
@@ -76,7 +76,7 @@ module DeclarationMiddleware =
             fun ~position:(x13 : VPosition.t) ->
               fun ~token:(x14 : CancellationToken.t) ->
                 fun ~next:(x15 : _ProvideDeclarationSignature) ->
-                  ProviderResult.t_1_of_js VDeclaration.t_of_js
+                  ProviderResult.t_of_js VDeclaration.t_of_js
                     (Ojs.call (t_to_js x16) "provideDeclaration"
                        [|(Ojs.unit_to_js x11);(TextDocument.t_to_js x12);(
                          VPosition.t_to_js x13);(CancellationToken.t_to_js
@@ -129,10 +129,10 @@ module DeclarationFeature =
     let (cast :
       t ->
         (DeclarationOptions.t or_boolean, DeclarationRegistrationOptions.t,
-          DeclarationProvider.t) TextDocumentFeature.t_3)
+          DeclarationProvider.t) TextDocumentFeature.t)
       =
       fun (x29 : t) ->
-        TextDocumentFeature.t_3_of_js
+        TextDocumentFeature.t_of_js
           (fun (x30 : Ojs.t) ->
              or_boolean_of_js DeclarationOptions.t_of_js x30)
           DeclarationRegistrationOptions.t_of_js DeclarationProvider.t_of_js

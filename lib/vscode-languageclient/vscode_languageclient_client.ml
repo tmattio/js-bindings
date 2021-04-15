@@ -989,19 +989,19 @@ module InitializationFailedHandler =
         _InitializationFailedHandler_to_js x180
     let (apply :
       t ->
-        error:(Error.t, any, InitializeError.t ResponseError.t_1) union3 ->
+        error:(Error.t, any, InitializeError.t ResponseError.t) union3 ->
           bool)
       =
       fun (x187 : t) ->
         fun
           ~error:(x182 :
-                   (Error.t, any, InitializeError.t ResponseError.t_1) union3)
+                   (Error.t, any, InitializeError.t ResponseError.t) union3)
           ->
           Ojs.bool_of_js
             (Ojs.apply (t_to_js x187)
                [|(union3_to_js Error.t_to_js any_to_js
-                    (fun (x185 : InitializeError.t ResponseError.t_1) ->
-                       ResponseError.t_1_to_js InitializeError.t_to_js x185)
+                    (fun (x185 : InitializeError.t ResponseError.t) ->
+                       ResponseError.t_to_js InitializeError.t_to_js x185)
                     x182)|])
   end
 module SynchronizeOptions =
@@ -1152,7 +1152,7 @@ module ProvideCompletionItemsSignature =
               context:VCompletionContext.t ->
                 token:CancellationToken.t ->
                   (VCompletionList.t, VCompletionItem.t) or_array
-                    ProviderResult.t_1)
+                    ProviderResult.t)
       =
       fun (x242 : t) ->
         fun ~this:(x237 : unit) ->
@@ -1160,7 +1160,7 @@ module ProvideCompletionItemsSignature =
             fun ~position:(x239 : VPosition.t) ->
               fun ~context:(x240 : VCompletionContext.t) ->
                 fun ~token:(x241 : CancellationToken.t) ->
-                  ProviderResult.t_1_of_js
+                  ProviderResult.t_of_js
                     (fun (x243 : Ojs.t) ->
                        or_array_of_js VCompletionList.t_of_js
                          VCompletionItem.t_of_js x243)
@@ -1182,13 +1182,13 @@ module ResolveCompletionItemSignature =
       t ->
         this:unit ->
           item:VCompletionItem.t ->
-            token:CancellationToken.t -> VCompletionItem.t ProviderResult.t_1)
+            token:CancellationToken.t -> VCompletionItem.t ProviderResult.t)
       =
       fun (x251 : t) ->
         fun ~this:(x248 : unit) ->
           fun ~item:(x249 : VCompletionItem.t) ->
             fun ~token:(x250 : CancellationToken.t) ->
-              ProviderResult.t_1_of_js VCompletionItem.t_of_js
+              ProviderResult.t_of_js VCompletionItem.t_of_js
                 (Ojs.apply (t_to_js x251)
                    [|(Ojs.unit_to_js x248);(VCompletionItem.t_to_js x249);(
                      CancellationToken.t_to_js x250)|])
@@ -1206,14 +1206,14 @@ module ProvideHoverSignature =
         this:unit ->
           document:TextDocument.t ->
             position:VPosition.t ->
-              token:CancellationToken.t -> VHover.t ProviderResult.t_1)
+              token:CancellationToken.t -> VHover.t ProviderResult.t)
       =
       fun (x259 : t) ->
         fun ~this:(x255 : unit) ->
           fun ~document:(x256 : TextDocument.t) ->
             fun ~position:(x257 : VPosition.t) ->
               fun ~token:(x258 : CancellationToken.t) ->
-                ProviderResult.t_1_of_js VHover.t_of_js
+                ProviderResult.t_of_js VHover.t_of_js
                   (Ojs.apply (t_to_js x259)
                      [|(Ojs.unit_to_js x255);(TextDocument.t_to_js x256);(
                        VPosition.t_to_js x257);(CancellationToken.t_to_js
@@ -1234,7 +1234,7 @@ module ProvideSignatureHelpSignature =
             position:VPosition.t ->
               context:VSignatureHelpContext.t ->
                 token:CancellationToken.t ->
-                  VSignatureHelp.t ProviderResult.t_1)
+                  VSignatureHelp.t ProviderResult.t)
       =
       fun (x268 : t) ->
         fun ~this:(x263 : unit) ->
@@ -1242,7 +1242,7 @@ module ProvideSignatureHelpSignature =
             fun ~position:(x265 : VPosition.t) ->
               fun ~context:(x266 : VSignatureHelpContext.t) ->
                 fun ~token:(x267 : CancellationToken.t) ->
-                  ProviderResult.t_1_of_js VSignatureHelp.t_of_js
+                  ProviderResult.t_of_js VSignatureHelp.t_of_js
                     (Ojs.apply (t_to_js x268)
                        [|(Ojs.unit_to_js x263);(TextDocument.t_to_js x264);(
                          VPosition.t_to_js x265);(VSignatureHelpContext.t_to_js
@@ -1263,15 +1263,14 @@ module ProvideDefinitionSignature =
           document:TextDocument.t ->
             position:VPosition.t ->
               token:CancellationToken.t ->
-                (VDefinition.t, VDefinitionLink.t) or_array
-                  ProviderResult.t_1)
+                (VDefinition.t, VDefinitionLink.t) or_array ProviderResult.t)
       =
       fun (x276 : t) ->
         fun ~this:(x272 : unit) ->
           fun ~document:(x273 : TextDocument.t) ->
             fun ~position:(x274 : VPosition.t) ->
               fun ~token:(x275 : CancellationToken.t) ->
-                ProviderResult.t_1_of_js
+                ProviderResult.t_of_js
                   (fun (x277 : Ojs.t) ->
                      or_array_of_js VDefinition.t_of_js
                        VDefinitionLink.t_of_js x277)
@@ -1295,7 +1294,7 @@ module ProvideReferencesSignature =
             position:VPosition.t ->
               options:anonymous_interface_2 ->
                 token:CancellationToken.t ->
-                  VLocation.t list ProviderResult.t_1)
+                  VLocation.t list ProviderResult.t)
       =
       fun (x287 : t) ->
         fun ~this:(x282 : unit) ->
@@ -1303,7 +1302,7 @@ module ProvideReferencesSignature =
             fun ~position:(x284 : VPosition.t) ->
               fun ~options:(x285 : anonymous_interface_2) ->
                 fun ~token:(x286 : CancellationToken.t) ->
-                  ProviderResult.t_1_of_js
+                  ProviderResult.t_of_js
                     (fun (x288 : Ojs.t) ->
                        Ojs.list_of_js VLocation.t_of_js x288)
                     (Ojs.apply (t_to_js x287)
@@ -1326,14 +1325,14 @@ module ProvideDocumentHighlightsSignature =
           document:TextDocument.t ->
             position:VPosition.t ->
               token:CancellationToken.t ->
-                VDocumentHighlight.t list ProviderResult.t_1)
+                VDocumentHighlight.t list ProviderResult.t)
       =
       fun (x296 : t) ->
         fun ~this:(x292 : unit) ->
           fun ~document:(x293 : TextDocument.t) ->
             fun ~position:(x294 : VPosition.t) ->
               fun ~token:(x295 : CancellationToken.t) ->
-                ProviderResult.t_1_of_js
+                ProviderResult.t_of_js
                   (fun (x297 : Ojs.t) ->
                      Ojs.list_of_js VDocumentHighlight.t_of_js x297)
                   (Ojs.apply (t_to_js x296)
@@ -1355,13 +1354,13 @@ module ProvideDocumentSymbolsSignature =
           document:TextDocument.t ->
             token:CancellationToken.t ->
               (VDocumentSymbol.t, VSymbolInformation.t) union2 list
-                ProviderResult.t_1)
+                ProviderResult.t)
       =
       fun (x304 : t) ->
         fun ~this:(x301 : unit) ->
           fun ~document:(x302 : TextDocument.t) ->
             fun ~token:(x303 : CancellationToken.t) ->
-              ProviderResult.t_1_of_js
+              ProviderResult.t_of_js
                 (fun (x305 : Ojs.t) ->
                    Ojs.list_of_js
                      (fun (x306 : Ojs.t) ->
@@ -1384,13 +1383,13 @@ module ProvideWorkspaceSymbolsSignature =
         this:unit ->
           query:string ->
             token:CancellationToken.t ->
-              VSymbolInformation.t list ProviderResult.t_1)
+              VSymbolInformation.t list ProviderResult.t)
       =
       fun (x314 : t) ->
         fun ~this:(x311 : unit) ->
           fun ~query:(x312 : string) ->
             fun ~token:(x313 : CancellationToken.t) ->
-              ProviderResult.t_1_of_js
+              ProviderResult.t_of_js
                 (fun (x315 : Ojs.t) ->
                    Ojs.list_of_js VSymbolInformation.t_of_js x315)
                 (Ojs.apply (t_to_js x314)
@@ -1412,7 +1411,7 @@ module ProvideCodeActionsSignature =
             range:VRange.t ->
               context:VCodeActionContext.t ->
                 token:CancellationToken.t ->
-                  (VCodeAction.t, VCommand.t) union2 list ProviderResult.t_1)
+                  (VCodeAction.t, VCommand.t) union2 list ProviderResult.t)
       =
       fun (x324 : t) ->
         fun ~this:(x319 : unit) ->
@@ -1420,7 +1419,7 @@ module ProvideCodeActionsSignature =
             fun ~range:(x321 : VRange.t) ->
               fun ~context:(x322 : VCodeActionContext.t) ->
                 fun ~token:(x323 : CancellationToken.t) ->
-                  ProviderResult.t_1_of_js
+                  ProviderResult.t_of_js
                     (fun (x325 : Ojs.t) ->
                        Ojs.list_of_js
                          (fun (x326 : Ojs.t) ->
@@ -1444,13 +1443,13 @@ module ResolveCodeActionSignature =
       t ->
         this:unit ->
           item:VCodeAction.t ->
-            token:CancellationToken.t -> VCodeAction.t ProviderResult.t_1)
+            token:CancellationToken.t -> VCodeAction.t ProviderResult.t)
       =
       fun (x334 : t) ->
         fun ~this:(x331 : unit) ->
           fun ~item:(x332 : VCodeAction.t) ->
             fun ~token:(x333 : CancellationToken.t) ->
-              ProviderResult.t_1_of_js VCodeAction.t_of_js
+              ProviderResult.t_of_js VCodeAction.t_of_js
                 (Ojs.apply (t_to_js x334)
                    [|(Ojs.unit_to_js x331);(VCodeAction.t_to_js x332);(
                      CancellationToken.t_to_js x333)|])
@@ -1467,13 +1466,13 @@ module ProvideCodeLensesSignature =
       t ->
         this:unit ->
           document:TextDocument.t ->
-            token:CancellationToken.t -> VCodeLens.t list ProviderResult.t_1)
+            token:CancellationToken.t -> VCodeLens.t list ProviderResult.t)
       =
       fun (x341 : t) ->
         fun ~this:(x338 : unit) ->
           fun ~document:(x339 : TextDocument.t) ->
             fun ~token:(x340 : CancellationToken.t) ->
-              ProviderResult.t_1_of_js
+              ProviderResult.t_of_js
                 (fun (x342 : Ojs.t) -> Ojs.list_of_js VCodeLens.t_of_js x342)
                 (Ojs.apply (t_to_js x341)
                    [|(Ojs.unit_to_js x338);(TextDocument.t_to_js x339);(
@@ -1491,13 +1490,13 @@ module ResolveCodeLensSignature =
       t ->
         this:unit ->
           codeLens:VCodeLens.t ->
-            token:CancellationToken.t -> VCodeLens.t ProviderResult.t_1)
+            token:CancellationToken.t -> VCodeLens.t ProviderResult.t)
       =
       fun (x349 : t) ->
         fun ~this:(x346 : unit) ->
           fun ~codeLens:(x347 : VCodeLens.t) ->
             fun ~token:(x348 : CancellationToken.t) ->
-              ProviderResult.t_1_of_js VCodeLens.t_of_js
+              ProviderResult.t_of_js VCodeLens.t_of_js
                 (Ojs.apply (t_to_js x349)
                    [|(Ojs.unit_to_js x346);(VCodeLens.t_to_js x347);(
                      CancellationToken.t_to_js x348)|])
@@ -1516,15 +1515,14 @@ module ProvideDocumentFormattingEditsSignature =
         this:unit ->
           document:TextDocument.t ->
             options:VFormattingOptions.t ->
-              token:CancellationToken.t ->
-                VTextEdit.t list ProviderResult.t_1)
+              token:CancellationToken.t -> VTextEdit.t list ProviderResult.t)
       =
       fun (x357 : t) ->
         fun ~this:(x353 : unit) ->
           fun ~document:(x354 : TextDocument.t) ->
             fun ~options:(x355 : VFormattingOptions.t) ->
               fun ~token:(x356 : CancellationToken.t) ->
-                ProviderResult.t_1_of_js
+                ProviderResult.t_of_js
                   (fun (x358 : Ojs.t) ->
                      Ojs.list_of_js VTextEdit.t_of_js x358)
                   (Ojs.apply (t_to_js x357)
@@ -1548,7 +1546,7 @@ module ProvideDocumentRangeFormattingEditsSignature =
             range:VRange.t ->
               options:VFormattingOptions.t ->
                 token:CancellationToken.t ->
-                  VTextEdit.t list ProviderResult.t_1)
+                  VTextEdit.t list ProviderResult.t)
       =
       fun (x367 : t) ->
         fun ~this:(x362 : unit) ->
@@ -1556,7 +1554,7 @@ module ProvideDocumentRangeFormattingEditsSignature =
             fun ~range:(x364 : VRange.t) ->
               fun ~options:(x365 : VFormattingOptions.t) ->
                 fun ~token:(x366 : CancellationToken.t) ->
-                  ProviderResult.t_1_of_js
+                  ProviderResult.t_of_js
                     (fun (x368 : Ojs.t) ->
                        Ojs.list_of_js VTextEdit.t_of_js x368)
                     (Ojs.apply (t_to_js x367)
@@ -1581,7 +1579,7 @@ module ProvideOnTypeFormattingEditsSignature =
               ch:string ->
                 options:VFormattingOptions.t ->
                   token:CancellationToken.t ->
-                    VTextEdit.t list ProviderResult.t_1)
+                    VTextEdit.t list ProviderResult.t)
       =
       fun (x378 : t) ->
         fun ~this:(x372 : unit) ->
@@ -1590,7 +1588,7 @@ module ProvideOnTypeFormattingEditsSignature =
               fun ~ch:(x375 : string) ->
                 fun ~options:(x376 : VFormattingOptions.t) ->
                   fun ~token:(x377 : CancellationToken.t) ->
-                    ProviderResult.t_1_of_js
+                    ProviderResult.t_of_js
                       (fun (x379 : Ojs.t) ->
                          Ojs.list_of_js VTextEdit.t_of_js x379)
                       (Ojs.apply (t_to_js x378)
@@ -1614,7 +1612,7 @@ module ProvideRenameEditsSignature =
             position:VPosition.t ->
               newName:string ->
                 token:CancellationToken.t ->
-                  VWorkspaceEdit.t ProviderResult.t_1)
+                  VWorkspaceEdit.t ProviderResult.t)
       =
       fun (x388 : t) ->
         fun ~this:(x383 : unit) ->
@@ -1622,7 +1620,7 @@ module ProvideRenameEditsSignature =
             fun ~position:(x385 : VPosition.t) ->
               fun ~newName:(x386 : string) ->
                 fun ~token:(x387 : CancellationToken.t) ->
-                  ProviderResult.t_1_of_js VWorkspaceEdit.t_of_js
+                  ProviderResult.t_of_js VWorkspaceEdit.t_of_js
                     (Ojs.apply (t_to_js x388)
                        [|(Ojs.unit_to_js x383);(TextDocument.t_to_js x384);(
                          VPosition.t_to_js x385);(Ojs.string_to_js x386);(
@@ -1642,14 +1640,14 @@ module PrepareRenameSignature =
           document:TextDocument.t ->
             position:VPosition.t ->
               token:CancellationToken.t ->
-                (VRange.t, anonymous_interface_4) union2 ProviderResult.t_1)
+                (VRange.t, anonymous_interface_4) union2 ProviderResult.t)
       =
       fun (x396 : t) ->
         fun ~this:(x392 : unit) ->
           fun ~document:(x393 : TextDocument.t) ->
             fun ~position:(x394 : VPosition.t) ->
               fun ~token:(x395 : CancellationToken.t) ->
-                ProviderResult.t_1_of_js
+                ProviderResult.t_of_js
                   (fun (x397 : Ojs.t) ->
                      union2_of_js VRange.t_of_js anonymous_interface_4_of_js
                        x397)
@@ -1671,13 +1669,13 @@ module ProvideDocumentLinksSignature =
         this:unit ->
           document:TextDocument.t ->
             token:CancellationToken.t ->
-              VDocumentLink.t list ProviderResult.t_1)
+              VDocumentLink.t list ProviderResult.t)
       =
       fun (x405 : t) ->
         fun ~this:(x402 : unit) ->
           fun ~document:(x403 : TextDocument.t) ->
             fun ~token:(x404 : CancellationToken.t) ->
-              ProviderResult.t_1_of_js
+              ProviderResult.t_of_js
                 (fun (x406 : Ojs.t) ->
                    Ojs.list_of_js VDocumentLink.t_of_js x406)
                 (Ojs.apply (t_to_js x405)
@@ -1696,13 +1694,13 @@ module ResolveDocumentLinkSignature =
       t ->
         this:unit ->
           link:VDocumentLink.t ->
-            token:CancellationToken.t -> VDocumentLink.t ProviderResult.t_1)
+            token:CancellationToken.t -> VDocumentLink.t ProviderResult.t)
       =
       fun (x413 : t) ->
         fun ~this:(x410 : unit) ->
           fun ~link:(x411 : VDocumentLink.t) ->
             fun ~token:(x412 : CancellationToken.t) ->
-              ProviderResult.t_1_of_js VDocumentLink.t_of_js
+              ProviderResult.t_of_js VDocumentLink.t_of_js
                 (Ojs.apply (t_to_js x413)
                    [|(Ojs.unit_to_js x410);(VDocumentLink.t_to_js x411);(
                      CancellationToken.t_to_js x412)|])
@@ -1717,14 +1715,13 @@ module ExecuteCommandSignature =
         _ExecuteCommandSignature_to_js x415
     let (apply :
       t ->
-        this:unit ->
-          command:string -> args:any list -> any ProviderResult.t_1)
+        this:unit -> command:string -> args:any list -> any ProviderResult.t)
       =
       fun (x421 : t) ->
         fun ~this:(x417 : unit) ->
           fun ~command:(x418 : string) ->
             fun ~args:(x419 : any list) ->
-              ProviderResult.t_1_of_js any_of_js
+              ProviderResult.t_of_js any_of_js
                 (Ojs.apply (t_to_js x421)
                    [|(Ojs.unit_to_js x417);(Ojs.string_to_js x418);(Ojs.list_to_js
                                                                     any_to_js
@@ -2017,7 +2014,7 @@ module M_Middleware =
                 token:CancellationToken.t ->
                   next:_ProvideCompletionItemsSignature ->
                     (VCompletionList.t, VCompletionItem.t) or_array
-                      ProviderResult.t_1)
+                      ProviderResult.t)
       =
       fun (x539 : t) ->
         fun ~this:(x533 : unit) ->
@@ -2026,7 +2023,7 @@ module M_Middleware =
               fun ~context:(x536 : VCompletionContext.t) ->
                 fun ~token:(x537 : CancellationToken.t) ->
                   fun ~next:(x538 : _ProvideCompletionItemsSignature) ->
-                    ProviderResult.t_1_of_js
+                    ProviderResult.t_of_js
                       (fun (x540 : Ojs.t) ->
                          or_array_of_js VCompletionList.t_of_js
                            VCompletionItem.t_of_js x540)
@@ -2042,14 +2039,14 @@ module M_Middleware =
           item:VCompletionItem.t ->
             token:CancellationToken.t ->
               next:_ResolveCompletionItemSignature ->
-                VCompletionItem.t ProviderResult.t_1)
+                VCompletionItem.t ProviderResult.t)
       =
       fun (x547 : t) ->
         fun ~this:(x543 : unit) ->
           fun ~item:(x544 : VCompletionItem.t) ->
             fun ~token:(x545 : CancellationToken.t) ->
               fun ~next:(x546 : _ResolveCompletionItemSignature) ->
-                ProviderResult.t_1_of_js VCompletionItem.t_of_js
+                ProviderResult.t_of_js VCompletionItem.t_of_js
                   (Ojs.call (t_to_js x547) "resolveCompletionItem"
                      [|(Ojs.unit_to_js x543);(VCompletionItem.t_to_js x544);(
                        CancellationToken.t_to_js x545);(_ResolveCompletionItemSignature_to_js
@@ -2060,7 +2057,7 @@ module M_Middleware =
           document:TextDocument.t ->
             position:VPosition.t ->
               token:CancellationToken.t ->
-                next:_ProvideHoverSignature -> VHover.t ProviderResult.t_1)
+                next:_ProvideHoverSignature -> VHover.t ProviderResult.t)
       =
       fun (x554 : t) ->
         fun ~this:(x549 : unit) ->
@@ -2068,7 +2065,7 @@ module M_Middleware =
             fun ~position:(x551 : VPosition.t) ->
               fun ~token:(x552 : CancellationToken.t) ->
                 fun ~next:(x553 : _ProvideHoverSignature) ->
-                  ProviderResult.t_1_of_js VHover.t_of_js
+                  ProviderResult.t_of_js VHover.t_of_js
                     (Ojs.call (t_to_js x554) "provideHover"
                        [|(Ojs.unit_to_js x549);(TextDocument.t_to_js x550);(
                          VPosition.t_to_js x551);(CancellationToken.t_to_js
@@ -2082,7 +2079,7 @@ module M_Middleware =
               context:VSignatureHelpContext.t ->
                 token:CancellationToken.t ->
                   next:_ProvideSignatureHelpSignature ->
-                    VSignatureHelp.t ProviderResult.t_1)
+                    VSignatureHelp.t ProviderResult.t)
       =
       fun (x562 : t) ->
         fun ~this:(x556 : unit) ->
@@ -2091,7 +2088,7 @@ module M_Middleware =
               fun ~context:(x559 : VSignatureHelpContext.t) ->
                 fun ~token:(x560 : CancellationToken.t) ->
                   fun ~next:(x561 : _ProvideSignatureHelpSignature) ->
-                    ProviderResult.t_1_of_js VSignatureHelp.t_of_js
+                    ProviderResult.t_of_js VSignatureHelp.t_of_js
                       (Ojs.call (t_to_js x562) "provideSignatureHelp"
                          [|(Ojs.unit_to_js x556);(TextDocument.t_to_js x557);(
                            VPosition.t_to_js x558);(VSignatureHelpContext.t_to_js
@@ -2106,7 +2103,7 @@ module M_Middleware =
               token:CancellationToken.t ->
                 next:_ProvideDefinitionSignature ->
                   (VDefinition.t, VDefinitionLink.t) or_array
-                    ProviderResult.t_1)
+                    ProviderResult.t)
       =
       fun (x569 : t) ->
         fun ~this:(x564 : unit) ->
@@ -2114,7 +2111,7 @@ module M_Middleware =
             fun ~position:(x566 : VPosition.t) ->
               fun ~token:(x567 : CancellationToken.t) ->
                 fun ~next:(x568 : _ProvideDefinitionSignature) ->
-                  ProviderResult.t_1_of_js
+                  ProviderResult.t_of_js
                     (fun (x570 : Ojs.t) ->
                        or_array_of_js VDefinition.t_of_js
                          VDefinitionLink.t_of_js x570)
@@ -2131,7 +2128,7 @@ module M_Middleware =
               options:anonymous_interface_2 ->
                 token:CancellationToken.t ->
                   next:_ProvideReferencesSignature ->
-                    VLocation.t list ProviderResult.t_1)
+                    VLocation.t list ProviderResult.t)
       =
       fun (x579 : t) ->
         fun ~this:(x573 : unit) ->
@@ -2140,7 +2137,7 @@ module M_Middleware =
               fun ~options:(x576 : anonymous_interface_2) ->
                 fun ~token:(x577 : CancellationToken.t) ->
                   fun ~next:(x578 : _ProvideReferencesSignature) ->
-                    ProviderResult.t_1_of_js
+                    ProviderResult.t_of_js
                       (fun (x580 : Ojs.t) ->
                          Ojs.list_of_js VLocation.t_of_js x580)
                       (Ojs.call (t_to_js x579) "provideReferences"
@@ -2156,7 +2153,7 @@ module M_Middleware =
             position:VPosition.t ->
               token:CancellationToken.t ->
                 next:_ProvideDocumentHighlightsSignature ->
-                  VDocumentHighlight.t list ProviderResult.t_1)
+                  VDocumentHighlight.t list ProviderResult.t)
       =
       fun (x587 : t) ->
         fun ~this:(x582 : unit) ->
@@ -2164,7 +2161,7 @@ module M_Middleware =
             fun ~position:(x584 : VPosition.t) ->
               fun ~token:(x585 : CancellationToken.t) ->
                 fun ~next:(x586 : _ProvideDocumentHighlightsSignature) ->
-                  ProviderResult.t_1_of_js
+                  ProviderResult.t_of_js
                     (fun (x588 : Ojs.t) ->
                        Ojs.list_of_js VDocumentHighlight.t_of_js x588)
                     (Ojs.call (t_to_js x587) "provideDocumentHighlights"
@@ -2179,14 +2176,14 @@ module M_Middleware =
             token:CancellationToken.t ->
               next:_ProvideDocumentSymbolsSignature ->
                 (VDocumentSymbol.t, VSymbolInformation.t) union2 list
-                  ProviderResult.t_1)
+                  ProviderResult.t)
       =
       fun (x594 : t) ->
         fun ~this:(x590 : unit) ->
           fun ~document:(x591 : TextDocument.t) ->
             fun ~token:(x592 : CancellationToken.t) ->
               fun ~next:(x593 : _ProvideDocumentSymbolsSignature) ->
-                ProviderResult.t_1_of_js
+                ProviderResult.t_of_js
                   (fun (x595 : Ojs.t) ->
                      Ojs.list_of_js
                        (fun (x596 : Ojs.t) ->
@@ -2202,14 +2199,14 @@ module M_Middleware =
           query:string ->
             token:CancellationToken.t ->
               next:_ProvideWorkspaceSymbolsSignature ->
-                VSymbolInformation.t list ProviderResult.t_1)
+                VSymbolInformation.t list ProviderResult.t)
       =
       fun (x603 : t) ->
         fun ~this:(x599 : unit) ->
           fun ~query:(x600 : string) ->
             fun ~token:(x601 : CancellationToken.t) ->
               fun ~next:(x602 : _ProvideWorkspaceSymbolsSignature) ->
-                ProviderResult.t_1_of_js
+                ProviderResult.t_of_js
                   (fun (x604 : Ojs.t) ->
                      Ojs.list_of_js VSymbolInformation.t_of_js x604)
                   (Ojs.call (t_to_js x603) "provideWorkspaceSymbols"
@@ -2224,8 +2221,7 @@ module M_Middleware =
               context:VCodeActionContext.t ->
                 token:CancellationToken.t ->
                   next:_ProvideCodeActionsSignature ->
-                    (VCodeAction.t, VCommand.t) union2 list
-                      ProviderResult.t_1)
+                    (VCodeAction.t, VCommand.t) union2 list ProviderResult.t)
       =
       fun (x612 : t) ->
         fun ~this:(x606 : unit) ->
@@ -2234,7 +2230,7 @@ module M_Middleware =
               fun ~context:(x609 : VCodeActionContext.t) ->
                 fun ~token:(x610 : CancellationToken.t) ->
                   fun ~next:(x611 : _ProvideCodeActionsSignature) ->
-                    ProviderResult.t_1_of_js
+                    ProviderResult.t_of_js
                       (fun (x613 : Ojs.t) ->
                          Ojs.list_of_js
                            (fun (x614 : Ojs.t) ->
@@ -2252,14 +2248,14 @@ module M_Middleware =
           item:VCodeAction.t ->
             token:CancellationToken.t ->
               next:_ResolveCodeActionSignature ->
-                VCodeAction.t ProviderResult.t_1)
+                VCodeAction.t ProviderResult.t)
       =
       fun (x621 : t) ->
         fun ~this:(x617 : unit) ->
           fun ~item:(x618 : VCodeAction.t) ->
             fun ~token:(x619 : CancellationToken.t) ->
               fun ~next:(x620 : _ResolveCodeActionSignature) ->
-                ProviderResult.t_1_of_js VCodeAction.t_of_js
+                ProviderResult.t_of_js VCodeAction.t_of_js
                   (Ojs.call (t_to_js x621) "resolveCodeAction"
                      [|(Ojs.unit_to_js x617);(VCodeAction.t_to_js x618);(
                        CancellationToken.t_to_js x619);(_ResolveCodeActionSignature_to_js
@@ -2270,14 +2266,14 @@ module M_Middleware =
           document:TextDocument.t ->
             token:CancellationToken.t ->
               next:_ProvideCodeLensesSignature ->
-                VCodeLens.t list ProviderResult.t_1)
+                VCodeLens.t list ProviderResult.t)
       =
       fun (x627 : t) ->
         fun ~this:(x623 : unit) ->
           fun ~document:(x624 : TextDocument.t) ->
             fun ~token:(x625 : CancellationToken.t) ->
               fun ~next:(x626 : _ProvideCodeLensesSignature) ->
-                ProviderResult.t_1_of_js
+                ProviderResult.t_of_js
                   (fun (x628 : Ojs.t) ->
                      Ojs.list_of_js VCodeLens.t_of_js x628)
                   (Ojs.call (t_to_js x627) "provideCodeLenses"
@@ -2289,15 +2285,14 @@ module M_Middleware =
         this:unit ->
           codeLens:VCodeLens.t ->
             token:CancellationToken.t ->
-              next:_ResolveCodeLensSignature ->
-                VCodeLens.t ProviderResult.t_1)
+              next:_ResolveCodeLensSignature -> VCodeLens.t ProviderResult.t)
       =
       fun (x634 : t) ->
         fun ~this:(x630 : unit) ->
           fun ~codeLens:(x631 : VCodeLens.t) ->
             fun ~token:(x632 : CancellationToken.t) ->
               fun ~next:(x633 : _ResolveCodeLensSignature) ->
-                ProviderResult.t_1_of_js VCodeLens.t_of_js
+                ProviderResult.t_of_js VCodeLens.t_of_js
                   (Ojs.call (t_to_js x634) "resolveCodeLens"
                      [|(Ojs.unit_to_js x630);(VCodeLens.t_to_js x631);(
                        CancellationToken.t_to_js x632);(_ResolveCodeLensSignature_to_js
@@ -2309,7 +2304,7 @@ module M_Middleware =
             options:VFormattingOptions.t ->
               token:CancellationToken.t ->
                 next:_ProvideDocumentFormattingEditsSignature ->
-                  VTextEdit.t list ProviderResult.t_1)
+                  VTextEdit.t list ProviderResult.t)
       =
       fun (x641 : t) ->
         fun ~this:(x636 : unit) ->
@@ -2318,7 +2313,7 @@ module M_Middleware =
               fun ~token:(x639 : CancellationToken.t) ->
                 fun ~next:(x640 : _ProvideDocumentFormattingEditsSignature)
                   ->
-                  ProviderResult.t_1_of_js
+                  ProviderResult.t_of_js
                     (fun (x642 : Ojs.t) ->
                        Ojs.list_of_js VTextEdit.t_of_js x642)
                     (Ojs.call (t_to_js x641) "provideDocumentFormattingEdits"
@@ -2334,7 +2329,7 @@ module M_Middleware =
               options:VFormattingOptions.t ->
                 token:CancellationToken.t ->
                   next:_ProvideDocumentRangeFormattingEditsSignature ->
-                    VTextEdit.t list ProviderResult.t_1)
+                    VTextEdit.t list ProviderResult.t)
       =
       fun (x650 : t) ->
         fun ~this:(x644 : unit) ->
@@ -2346,7 +2341,7 @@ module M_Middleware =
                     ~next:(x649 :
                             _ProvideDocumentRangeFormattingEditsSignature)
                     ->
-                    ProviderResult.t_1_of_js
+                    ProviderResult.t_of_js
                       (fun (x651 : Ojs.t) ->
                          Ojs.list_of_js VTextEdit.t_of_js x651)
                       (Ojs.call (t_to_js x650)
@@ -2365,7 +2360,7 @@ module M_Middleware =
                 options:VFormattingOptions.t ->
                   token:CancellationToken.t ->
                     next:_ProvideOnTypeFormattingEditsSignature ->
-                      VTextEdit.t list ProviderResult.t_1)
+                      VTextEdit.t list ProviderResult.t)
       =
       fun (x660 : t) ->
         fun ~this:(x653 : unit) ->
@@ -2376,7 +2371,7 @@ module M_Middleware =
                   fun ~token:(x658 : CancellationToken.t) ->
                     fun ~next:(x659 : _ProvideOnTypeFormattingEditsSignature)
                       ->
-                      ProviderResult.t_1_of_js
+                      ProviderResult.t_of_js
                         (fun (x661 : Ojs.t) ->
                            Ojs.list_of_js VTextEdit.t_of_js x661)
                         (Ojs.call (t_to_js x660)
@@ -2395,7 +2390,7 @@ module M_Middleware =
               newName:string ->
                 token:CancellationToken.t ->
                   next:_ProvideRenameEditsSignature ->
-                    VWorkspaceEdit.t ProviderResult.t_1)
+                    VWorkspaceEdit.t ProviderResult.t)
       =
       fun (x669 : t) ->
         fun ~this:(x663 : unit) ->
@@ -2404,7 +2399,7 @@ module M_Middleware =
               fun ~newName:(x666 : string) ->
                 fun ~token:(x667 : CancellationToken.t) ->
                   fun ~next:(x668 : _ProvideRenameEditsSignature) ->
-                    ProviderResult.t_1_of_js VWorkspaceEdit.t_of_js
+                    ProviderResult.t_of_js VWorkspaceEdit.t_of_js
                       (Ojs.call (t_to_js x669) "provideRenameEdits"
                          [|(Ojs.unit_to_js x663);(TextDocument.t_to_js x664);(
                            VPosition.t_to_js x665);(Ojs.string_to_js x666);(
@@ -2417,7 +2412,7 @@ module M_Middleware =
             position:VPosition.t ->
               token:CancellationToken.t ->
                 next:_PrepareRenameSignature ->
-                  (VRange.t, anonymous_interface_4) union2 ProviderResult.t_1)
+                  (VRange.t, anonymous_interface_4) union2 ProviderResult.t)
       =
       fun (x676 : t) ->
         fun ~this:(x671 : unit) ->
@@ -2425,7 +2420,7 @@ module M_Middleware =
             fun ~position:(x673 : VPosition.t) ->
               fun ~token:(x674 : CancellationToken.t) ->
                 fun ~next:(x675 : _PrepareRenameSignature) ->
-                  ProviderResult.t_1_of_js
+                  ProviderResult.t_of_js
                     (fun (x677 : Ojs.t) ->
                        union2_of_js VRange.t_of_js
                          anonymous_interface_4_of_js x677)
@@ -2440,14 +2435,14 @@ module M_Middleware =
           document:TextDocument.t ->
             token:CancellationToken.t ->
               next:_ProvideDocumentLinksSignature ->
-                VDocumentLink.t list ProviderResult.t_1)
+                VDocumentLink.t list ProviderResult.t)
       =
       fun (x684 : t) ->
         fun ~this:(x680 : unit) ->
           fun ~document:(x681 : TextDocument.t) ->
             fun ~token:(x682 : CancellationToken.t) ->
               fun ~next:(x683 : _ProvideDocumentLinksSignature) ->
-                ProviderResult.t_1_of_js
+                ProviderResult.t_of_js
                   (fun (x685 : Ojs.t) ->
                      Ojs.list_of_js VDocumentLink.t_of_js x685)
                   (Ojs.call (t_to_js x684) "provideDocumentLinks"
@@ -2460,14 +2455,14 @@ module M_Middleware =
           link:VDocumentLink.t ->
             token:CancellationToken.t ->
               next:_ResolveDocumentLinkSignature ->
-                VDocumentLink.t ProviderResult.t_1)
+                VDocumentLink.t ProviderResult.t)
       =
       fun (x691 : t) ->
         fun ~this:(x687 : unit) ->
           fun ~link:(x688 : VDocumentLink.t) ->
             fun ~token:(x689 : CancellationToken.t) ->
               fun ~next:(x690 : _ResolveDocumentLinkSignature) ->
-                ProviderResult.t_1_of_js VDocumentLink.t_of_js
+                ProviderResult.t_of_js VDocumentLink.t_of_js
                   (Ojs.call (t_to_js x691) "resolveDocumentLink"
                      [|(Ojs.unit_to_js x687);(VDocumentLink.t_to_js x688);(
                        CancellationToken.t_to_js x689);(_ResolveDocumentLinkSignature_to_js
@@ -2477,14 +2472,14 @@ module M_Middleware =
         this:unit ->
           command:string ->
             args:any list ->
-              next:_ExecuteCommandSignature -> any ProviderResult.t_1)
+              next:_ExecuteCommandSignature -> any ProviderResult.t)
       =
       fun (x698 : t) ->
         fun ~this:(x693 : unit) ->
           fun ~command:(x694 : string) ->
             fun ~args:(x695 : any list) ->
               fun ~next:(x697 : _ExecuteCommandSignature) ->
-                ProviderResult.t_1_of_js any_of_js
+                ProviderResult.t_of_js any_of_js
                   (Ojs.call (t_to_js x698) "executeCommand"
                      [|(Ojs.unit_to_js x693);(Ojs.string_to_js x694);(
                        Ojs.list_to_js any_to_js x695);(_ExecuteCommandSignature_to_js
@@ -2820,15 +2815,15 @@ module DynamicFeature =
                  [|(ServerCapabilities.t_to_js x817);(or_undefined_to_js
                                                         DocumentSelector.t_to_js
                                                         x818)|])
-    let (get_registrationType : 'RO t -> 'RO RegistrationType.t_1) =
+    let (get_registrationType : 'RO t -> 'RO RegistrationType.t) =
       fun (x822 : 'RO t) ->
-        RegistrationType.t_1_of_js Obj.magic
+        RegistrationType.t_of_js Obj.magic
           (Ojs.get_prop_ascii (t_to_js Obj.magic x822) "registrationType")
-    let (set_registrationType : 'RO t -> 'RO RegistrationType.t_1 -> unit) =
+    let (set_registrationType : 'RO t -> 'RO RegistrationType.t -> unit) =
       fun (x825 : 'RO t) ->
-        fun (x826 : 'RO RegistrationType.t_1) ->
+        fun (x826 : 'RO RegistrationType.t) ->
           Ojs.set_prop_ascii (t_to_js Obj.magic x825) "registrationType"
-            (RegistrationType.t_1_to_js Obj.magic x826)
+            (RegistrationType.t_to_js Obj.magic x826)
     let (register : 'RO t -> data:'RO _RegistrationData -> unit) =
       fun (x831 : 'RO t) ->
         fun ~data:(x829 : 'RO _RegistrationData) ->
@@ -2892,25 +2887,25 @@ module NotificationSendEvent =
             (Obj.magic x856)
     let (get_type :
       ('E, 'P) t ->
-        ('P, TextDocumentRegistrationOptions.t) ProtocolNotificationType.t_2)
+        ('P, TextDocumentRegistrationOptions.t) ProtocolNotificationType.t)
       =
       fun (x859 : ('E, 'P) t) ->
-        ProtocolNotificationType.t_2_of_js Obj.magic
+        ProtocolNotificationType.t_of_js Obj.magic
           TextDocumentRegistrationOptions.t_of_js
           (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x859) "type")
     let (set_type :
       ('E, 'P) t ->
-        ('P, TextDocumentRegistrationOptions.t) ProtocolNotificationType.t_2
-          -> unit)
+        ('P, TextDocumentRegistrationOptions.t) ProtocolNotificationType.t ->
+          unit)
       =
       fun (x864 : ('E, 'P) t) ->
         fun
           (x865 :
             ('P, TextDocumentRegistrationOptions.t)
-              ProtocolNotificationType.t_2)
+              ProtocolNotificationType.t)
           ->
           Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x864) "type"
-            (ProtocolNotificationType.t_2_to_js Obj.magic
+            (ProtocolNotificationType.t_to_js Obj.magic
                TextDocumentRegistrationOptions.t_to_js x865)
     let (get_params : ('E, 'P) t -> 'P) =
       fun (x870 : ('E, 'P) t) ->
@@ -2940,20 +2935,20 @@ module NotifyingFeature =
           fun (x877 : (__E, __P) _NotifyingFeature) ->
             _NotifyingFeature_to_js __E_to_js __P_to_js x877
     let (get_onNotificationSent :
-      ('E, 'P) t -> ('E, 'P) _NotificationSendEvent VEvent.t_1) =
+      ('E, 'P) t -> ('E, 'P) _NotificationSendEvent VEvent.t) =
       fun (x883 : ('E, 'P) t) ->
-        VEvent.t_1_of_js
+        VEvent.t_of_js
           (fun (x886 : Ojs.t) ->
              _NotificationSendEvent_of_js Obj.magic Obj.magic x886)
           (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x883)
              "onNotificationSent")
     let (set_onNotificationSent :
-      ('E, 'P) t -> ('E, 'P) _NotificationSendEvent VEvent.t_1 -> unit) =
+      ('E, 'P) t -> ('E, 'P) _NotificationSendEvent VEvent.t -> unit) =
       fun (x889 : ('E, 'P) t) ->
-        fun (x890 : ('E, 'P) _NotificationSendEvent VEvent.t_1) ->
+        fun (x890 : ('E, 'P) _NotificationSendEvent VEvent.t) ->
           Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x889)
             "onNotificationSent"
-            (VEvent.t_1_to_js
+            (VEvent.t_to_js
                (fun (x891 : ('E, 'P) _NotificationSendEvent) ->
                   _NotificationSendEvent_to_js Obj.magic Obj.magic x891) x890)
   end
@@ -2965,15 +2960,15 @@ module DidOpenTextDocumentFeatureShape =
     and t_to_js : t -> Ojs.t =
       fun (x896 : _DidOpenTextDocumentFeatureShape) ->
         _DidOpenTextDocumentFeatureShape_to_js x896
-    let (get_openDocuments : t -> TextDocument.t Iterable.t_1) =
+    let (get_openDocuments : t -> TextDocument.t Iterable.t) =
       fun (x898 : t) ->
-        Iterable.t_1_of_js TextDocument.t_of_js
+        Iterable.t_of_js TextDocument.t_of_js
           (Ojs.get_prop_ascii (t_to_js x898) "openDocuments")
-    let (set_openDocuments : t -> TextDocument.t Iterable.t_1 -> unit) =
+    let (set_openDocuments : t -> TextDocument.t Iterable.t -> unit) =
       fun (x900 : t) ->
-        fun (x901 : TextDocument.t Iterable.t_1) ->
+        fun (x901 : TextDocument.t Iterable.t) ->
           Ojs.set_prop_ascii (t_to_js x900) "openDocuments"
-            (Iterable.t_1_to_js TextDocument.t_to_js x901)
+            (Iterable.t_to_js TextDocument.t_to_js x901)
     let (cast : t -> TextDocumentRegistrationOptions.t _DynamicFeature) =
       fun (x903 : t) ->
         _DynamicFeature_of_js TextDocumentRegistrationOptions.t_of_js
@@ -3151,19 +3146,19 @@ module TextDocumentFeature =
             "_registrations" (any_to_js x980)
     let (create :
       _client:_BaseLanguageClient ->
-        _registrationType:'RO RegistrationType.t_1 -> ('PO, 'RO, 'PR) t)
+        _registrationType:'RO RegistrationType.t -> ('PO, 'RO, 'PR) t)
       =
       fun ~_client:(x984 : _BaseLanguageClient) ->
-        fun ~_registrationType:(x985 : 'RO RegistrationType.t_1) ->
+        fun ~_registrationType:(x985 : 'RO RegistrationType.t) ->
           t_of_js Obj.magic Obj.magic Obj.magic
             (Ojs.new_obj
                (Ojs.get_prop_ascii Ojs.global "TextDocumentFeature")
-               [|(_BaseLanguageClient_to_js x984);(RegistrationType.t_1_to_js
+               [|(_BaseLanguageClient_to_js x984);(RegistrationType.t_to_js
                                                      Obj.magic x985)|])
-    let (get_registrationType :
-      ('PO, 'RO, 'PR) t -> 'RO RegistrationType.t_1) =
+    let (get_registrationType : ('PO, 'RO, 'PR) t -> 'RO RegistrationType.t)
+      =
       fun (x990 : ('PO, 'RO, 'PR) t) ->
-        RegistrationType.t_1_of_js Obj.magic
+        RegistrationType.t_of_js Obj.magic
           (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x990)
              "registrationType")
     let (fillClientCapabilities :
@@ -3260,9 +3255,9 @@ module TextDocumentFeature =
           or_undefined_of_js Obj.magic
             (Ojs.call (t_to_js Obj.magic Obj.magic Obj.magic x1053)
                "getProvider" [|(TextDocument.t_to_js x1052)|])
-    let (getAllProviders : ('PO, 'RO, 'PR) t -> 'PR Iterable.t_1) =
+    let (getAllProviders : ('PO, 'RO, 'PR) t -> 'PR Iterable.t) =
       fun (x1058 : ('PO, 'RO, 'PR) t) ->
-        Iterable.t_1_of_js Obj.magic
+        Iterable.t_of_js Obj.magic
           (Ojs.call (t_to_js Obj.magic Obj.magic Obj.magic x1058)
              "getAllProviders" [||])
     let (cast : ('PO, 'RO, 'PR) t -> 'RO _DynamicFeature) =
@@ -3625,11 +3620,11 @@ module BaseLanguageClient =
           (Ojs.get_prop_ascii (t_to_js x1209) "initializeResult")
     let (sendRequest :
       t ->
-        type_:('R, 'PR, 'E, 'RO) ProtocolRequestType0.t_4 ->
+        type_:('R, 'PR, 'E, 'RO) ProtocolRequestType0.t ->
           ?token:CancellationToken.t -> unit -> 'R Promise.t)
       =
       fun (x1219 : t) ->
-        fun ~type_:(x1211 : ('R, 'PR, 'E, 'RO) ProtocolRequestType0.t_4) ->
+        fun ~type_:(x1211 : ('R, 'PR, 'E, 'RO) ProtocolRequestType0.t) ->
           fun ?token:(x1212 : CancellationToken.t option) ->
             fun () ->
               Promise.t_of_js Obj.magic
@@ -3641,7 +3636,7 @@ module BaseLanguageClient =
                                  [||] in
                              ignore
                                (Ojs.call x1213 "push"
-                                  [|(ProtocolRequestType0.t_4_to_js Obj.magic
+                                  [|(ProtocolRequestType0.t_to_js Obj.magic
                                        Obj.magic Obj.magic Obj.magic x1211)|]);
                              (match x1212 with
                               | Some x1214 ->
@@ -3652,12 +3647,11 @@ module BaseLanguageClient =
                              x1213))|])
     let (sendRequest' :
       t ->
-        type_:('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t_5 ->
+        type_:('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t ->
           params:'P -> ?token:CancellationToken.t -> unit -> 'R Promise.t)
       =
       fun (x1232 : t) ->
-        fun ~type_:(x1222 : ('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t_5)
-          ->
+        fun ~type_:(x1222 : ('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t) ->
           fun ~params:(x1223 : 'P) ->
             fun ?token:(x1224 : CancellationToken.t option) ->
               fun () ->
@@ -3670,9 +3664,9 @@ module BaseLanguageClient =
                                    [||] in
                                ignore
                                  (Ojs.call x1225 "push"
-                                    [|(ProtocolRequestType.t_5_to_js
+                                    [|(ProtocolRequestType.t_to_js Obj.magic
                                          Obj.magic Obj.magic Obj.magic
-                                         Obj.magic Obj.magic x1222)|]);
+                                         Obj.magic x1222)|]);
                                ignore
                                  (Ojs.call x1225 "push" [|(Obj.magic x1223)|]);
                                (match x1224 with
@@ -3684,11 +3678,11 @@ module BaseLanguageClient =
                                x1225))|])
     let (sendRequest'' :
       t ->
-        type_:('R, 'E) RequestType0.t_2 ->
+        type_:('R, 'E) RequestType0.t ->
           ?token:CancellationToken.t -> unit -> 'R Promise.t)
       =
       fun (x1241 : t) ->
-        fun ~type_:(x1235 : ('R, 'E) RequestType0.t_2) ->
+        fun ~type_:(x1235 : ('R, 'E) RequestType0.t) ->
           fun ?token:(x1236 : CancellationToken.t option) ->
             fun () ->
               Promise.t_of_js Obj.magic
@@ -3700,8 +3694,8 @@ module BaseLanguageClient =
                                  [||] in
                              ignore
                                (Ojs.call x1237 "push"
-                                  [|(RequestType0.t_2_to_js Obj.magic
-                                       Obj.magic x1235)|]);
+                                  [|(RequestType0.t_to_js Obj.magic Obj.magic
+                                       x1235)|]);
                              (match x1236 with
                               | Some x1238 ->
                                   ignore
@@ -3711,11 +3705,11 @@ module BaseLanguageClient =
                              x1237))|])
     let (sendRequest''' :
       t ->
-        type_:('P, 'R, 'E) RequestType.t_3 ->
+        type_:('P, 'R, 'E) RequestType.t ->
           params:'P -> ?token:CancellationToken.t -> unit -> 'R Promise.t)
       =
       fun (x1252 : t) ->
-        fun ~type_:(x1244 : ('P, 'R, 'E) RequestType.t_3) ->
+        fun ~type_:(x1244 : ('P, 'R, 'E) RequestType.t) ->
           fun ~params:(x1245 : 'P) ->
             fun ?token:(x1246 : CancellationToken.t option) ->
               fun () ->
@@ -3728,7 +3722,7 @@ module BaseLanguageClient =
                                    [||] in
                                ignore
                                  (Ojs.call x1247 "push"
-                                    [|(RequestType.t_3_to_js Obj.magic
+                                    [|(RequestType.t_to_js Obj.magic
                                          Obj.magic Obj.magic x1244)|]);
                                ignore
                                  (Ojs.call x1247 "push" [|(Obj.magic x1245)|]);
@@ -3795,84 +3789,81 @@ module BaseLanguageClient =
                                x1265))|])
     let (onRequest :
       t ->
-        type_:('R, 'PR, 'E, 'RO) ProtocolRequestType0.t_4 ->
-          handler:('R, 'E) RequestHandler0.t_2 -> Disposable.t)
+        type_:('R, 'PR, 'E, 'RO) ProtocolRequestType0.t ->
+          handler:('R, 'E) RequestHandler0.t -> Disposable.t)
       =
       fun (x1278 : t) ->
-        fun ~type_:(x1270 : ('R, 'PR, 'E, 'RO) ProtocolRequestType0.t_4) ->
-          fun ~handler:(x1275 : ('R, 'E) RequestHandler0.t_2) ->
+        fun ~type_:(x1270 : ('R, 'PR, 'E, 'RO) ProtocolRequestType0.t) ->
+          fun ~handler:(x1275 : ('R, 'E) RequestHandler0.t) ->
             Disposable.t_of_js
               (Ojs.call (t_to_js x1278) "onRequest"
-                 [|(ProtocolRequestType0.t_4_to_js Obj.magic Obj.magic
-                      Obj.magic Obj.magic x1270);(RequestHandler0.t_2_to_js
+                 [|(ProtocolRequestType0.t_to_js Obj.magic Obj.magic
+                      Obj.magic Obj.magic x1270);(RequestHandler0.t_to_js
                                                     Obj.magic Obj.magic x1275)|])
     let (onRequest' :
       t ->
-        type_:('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t_5 ->
-          handler:('P, 'R, 'E) RequestHandler.t_3 -> Disposable.t)
+        type_:('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t ->
+          handler:('P, 'R, 'E) RequestHandler.t -> Disposable.t)
       =
       fun (x1289 : t) ->
-        fun ~type_:(x1279 : ('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t_5)
-          ->
-          fun ~handler:(x1285 : ('P, 'R, 'E) RequestHandler.t_3) ->
+        fun ~type_:(x1279 : ('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t) ->
+          fun ~handler:(x1285 : ('P, 'R, 'E) RequestHandler.t) ->
             Disposable.t_of_js
               (Ojs.call (t_to_js x1289) "onRequest"
-                 [|(ProtocolRequestType.t_5_to_js Obj.magic Obj.magic
-                      Obj.magic Obj.magic Obj.magic x1279);(RequestHandler.t_3_to_js
-                                                              Obj.magic
-                                                              Obj.magic
-                                                              Obj.magic x1285)|])
+                 [|(ProtocolRequestType.t_to_js Obj.magic Obj.magic Obj.magic
+                      Obj.magic Obj.magic x1279);(RequestHandler.t_to_js
+                                                    Obj.magic Obj.magic
+                                                    Obj.magic x1285)|])
     let (onRequest'' :
       t ->
-        type_:('R, 'E) RequestType0.t_2 ->
-          handler:('R, 'E) RequestHandler0.t_2 -> Disposable.t)
+        type_:('R, 'E) RequestType0.t ->
+          handler:('R, 'E) RequestHandler0.t -> Disposable.t)
       =
       fun (x1296 : t) ->
-        fun ~type_:(x1290 : ('R, 'E) RequestType0.t_2) ->
-          fun ~handler:(x1293 : ('R, 'E) RequestHandler0.t_2) ->
+        fun ~type_:(x1290 : ('R, 'E) RequestType0.t) ->
+          fun ~handler:(x1293 : ('R, 'E) RequestHandler0.t) ->
             Disposable.t_of_js
               (Ojs.call (t_to_js x1296) "onRequest"
-                 [|(RequestType0.t_2_to_js Obj.magic Obj.magic x1290);(
-                   RequestHandler0.t_2_to_js Obj.magic Obj.magic x1293)|])
+                 [|(RequestType0.t_to_js Obj.magic Obj.magic x1290);(
+                   RequestHandler0.t_to_js Obj.magic Obj.magic x1293)|])
     let (onRequest''' :
       t ->
-        type_:('P, 'R, 'E) RequestType.t_3 ->
-          handler:('P, 'R, 'E) RequestHandler.t_3 -> Disposable.t)
+        type_:('P, 'R, 'E) RequestType.t ->
+          handler:('P, 'R, 'E) RequestHandler.t -> Disposable.t)
       =
       fun (x1305 : t) ->
-        fun ~type_:(x1297 : ('P, 'R, 'E) RequestType.t_3) ->
-          fun ~handler:(x1301 : ('P, 'R, 'E) RequestHandler.t_3) ->
+        fun ~type_:(x1297 : ('P, 'R, 'E) RequestType.t) ->
+          fun ~handler:(x1301 : ('P, 'R, 'E) RequestHandler.t) ->
             Disposable.t_of_js
               (Ojs.call (t_to_js x1305) "onRequest"
-                 [|(RequestType.t_3_to_js Obj.magic Obj.magic Obj.magic x1297);(
-                   RequestHandler.t_3_to_js Obj.magic Obj.magic Obj.magic
-                     x1301)|])
+                 [|(RequestType.t_to_js Obj.magic Obj.magic Obj.magic x1297);(
+                   RequestHandler.t_to_js Obj.magic Obj.magic Obj.magic x1301)|])
     let (onRequest'''' :
       t ->
         method_:string ->
-          handler:('R, 'E) GenericRequestHandler.t_2 -> Disposable.t)
+          handler:('R, 'E) GenericRequestHandler.t -> Disposable.t)
       =
       fun (x1310 : t) ->
         fun ~method_:(x1306 : string) ->
-          fun ~handler:(x1307 : ('R, 'E) GenericRequestHandler.t_2) ->
+          fun ~handler:(x1307 : ('R, 'E) GenericRequestHandler.t) ->
             Disposable.t_of_js
               (Ojs.call (t_to_js x1310) "onRequest"
-                 [|(Ojs.string_to_js x1306);(GenericRequestHandler.t_2_to_js
+                 [|(Ojs.string_to_js x1306);(GenericRequestHandler.t_to_js
                                                Obj.magic Obj.magic x1307)|])
     let (sendNotification :
-      t -> type_:'RO ProtocolNotificationType0.t_1 -> unit) =
+      t -> type_:'RO ProtocolNotificationType0.t -> unit) =
       fun (x1313 : t) ->
-        fun ~type_:(x1311 : 'RO ProtocolNotificationType0.t_1) ->
+        fun ~type_:(x1311 : 'RO ProtocolNotificationType0.t) ->
           ignore
             (Ojs.call (t_to_js x1313) "sendNotification"
-               [|(ProtocolNotificationType0.t_1_to_js Obj.magic x1311)|])
+               [|(ProtocolNotificationType0.t_to_js Obj.magic x1311)|])
     let (sendNotification' :
       t ->
-        type_:('P, 'RO) ProtocolNotificationType.t_2 ->
+        type_:('P, 'RO) ProtocolNotificationType.t ->
           ?params:'P -> unit -> unit)
       =
       fun (x1320 : t) ->
-        fun ~type_:(x1314 : ('P, 'RO) ProtocolNotificationType.t_2) ->
+        fun ~type_:(x1314 : ('P, 'RO) ProtocolNotificationType.t) ->
           fun ?params:(x1315 : 'P option) ->
             fun () ->
               ignore
@@ -3885,7 +3876,7 @@ module BaseLanguageClient =
                                  [||] in
                              ignore
                                (Ojs.call x1316 "push"
-                                  [|(ProtocolNotificationType.t_2_to_js
+                                  [|(ProtocolNotificationType.t_to_js
                                        Obj.magic Obj.magic x1314)|]);
                              (match x1315 with
                               | Some x1317 ->
@@ -3901,9 +3892,9 @@ module BaseLanguageClient =
             (Ojs.call (t_to_js x1323) "sendNotification"
                [|(NotificationType0.t_to_js x1322)|])
     let (sendNotification''' :
-      t -> type_:'P NotificationType.t_1 -> ?params:'P -> unit -> unit) =
+      t -> type_:'P NotificationType.t -> ?params:'P -> unit -> unit) =
       fun (x1329 : t) ->
-        fun ~type_:(x1324 : 'P NotificationType.t_1) ->
+        fun ~type_:(x1324 : 'P NotificationType.t) ->
           fun ?params:(x1325 : 'P option) ->
             fun () ->
               ignore
@@ -3916,8 +3907,7 @@ module BaseLanguageClient =
                                  [||] in
                              ignore
                                (Ojs.call x1326 "push"
-                                  [|(NotificationType.t_1_to_js Obj.magic
-                                       x1324)|]);
+                                  [|(NotificationType.t_to_js Obj.magic x1324)|]);
                              (match x1325 with
                               | Some x1327 ->
                                   ignore
@@ -3940,28 +3930,28 @@ module BaseLanguageClient =
                  [|(Ojs.string_to_js x1333);(any_to_js x1334)|])
     let (onNotification :
       t ->
-        type_:'RO ProtocolNotificationType0.t_1 ->
+        type_:'RO ProtocolNotificationType0.t ->
           handler:NotificationHandler0.t -> Disposable.t)
       =
       fun (x1339 : t) ->
-        fun ~type_:(x1336 : 'RO ProtocolNotificationType0.t_1) ->
+        fun ~type_:(x1336 : 'RO ProtocolNotificationType0.t) ->
           fun ~handler:(x1338 : NotificationHandler0.t) ->
             Disposable.t_of_js
               (Ojs.call (t_to_js x1339) "onNotification"
-                 [|(ProtocolNotificationType0.t_1_to_js Obj.magic x1336);(
+                 [|(ProtocolNotificationType0.t_to_js Obj.magic x1336);(
                    NotificationHandler0.t_to_js x1338)|])
     let (onNotification' :
       t ->
-        type_:('P, 'RO) ProtocolNotificationType.t_2 ->
-          handler:'P NotificationHandler.t_1 -> Disposable.t)
+        type_:('P, 'RO) ProtocolNotificationType.t ->
+          handler:'P NotificationHandler.t -> Disposable.t)
       =
       fun (x1345 : t) ->
-        fun ~type_:(x1340 : ('P, 'RO) ProtocolNotificationType.t_2) ->
-          fun ~handler:(x1343 : 'P NotificationHandler.t_1) ->
+        fun ~type_:(x1340 : ('P, 'RO) ProtocolNotificationType.t) ->
+          fun ~handler:(x1343 : 'P NotificationHandler.t) ->
             Disposable.t_of_js
               (Ojs.call (t_to_js x1345) "onNotification"
-                 [|(ProtocolNotificationType.t_2_to_js Obj.magic Obj.magic
-                      x1340);(NotificationHandler.t_1_to_js Obj.magic x1343)|])
+                 [|(ProtocolNotificationType.t_to_js Obj.magic Obj.magic
+                      x1340);(NotificationHandler.t_to_js Obj.magic x1343)|])
     let (onNotification'' :
       t ->
         type_:NotificationType0.t ->
@@ -3976,17 +3966,17 @@ module BaseLanguageClient =
                                                         x1347)|])
     let (onNotification''' :
       t ->
-        type_:'P NotificationType.t_1 ->
-          handler:'P NotificationHandler.t_1 -> Disposable.t)
+        type_:'P NotificationType.t ->
+          handler:'P NotificationHandler.t -> Disposable.t)
       =
       fun (x1353 : t) ->
-        fun ~type_:(x1349 : 'P NotificationType.t_1) ->
-          fun ~handler:(x1351 : 'P NotificationHandler.t_1) ->
+        fun ~type_:(x1349 : 'P NotificationType.t) ->
+          fun ~handler:(x1351 : 'P NotificationHandler.t) ->
             Disposable.t_of_js
               (Ojs.call (t_to_js x1353) "onNotification"
-                 [|(NotificationType.t_1_to_js Obj.magic x1349);(NotificationHandler.t_1_to_js
-                                                                   Obj.magic
-                                                                   x1351)|])
+                 [|(NotificationType.t_to_js Obj.magic x1349);(NotificationHandler.t_to_js
+                                                                 Obj.magic
+                                                                 x1351)|])
     let (onNotification'''' :
       t ->
         method_:string ->
@@ -4001,34 +3991,33 @@ module BaseLanguageClient =
                                                x1355)|])
     let (onProgress :
       t ->
-        type_:'P ProgressType.t_1 ->
+        type_:'P ProgressType.t ->
           token:string or_number ->
-            handler:'P NotificationHandler.t_1 -> Disposable.t)
+            handler:'P NotificationHandler.t -> Disposable.t)
       =
       fun (x1363 : t) ->
-        fun ~type_:(x1357 : 'P ProgressType.t_1) ->
+        fun ~type_:(x1357 : 'P ProgressType.t) ->
           fun ~token:(x1359 : string or_number) ->
-            fun ~handler:(x1361 : 'P NotificationHandler.t_1) ->
+            fun ~handler:(x1361 : 'P NotificationHandler.t) ->
               Disposable.t_of_js
                 (Ojs.call (t_to_js x1363) "onProgress"
-                   [|(ProgressType.t_1_to_js Obj.magic x1357);(or_number_to_js
-                                                                 Ojs.string_to_js
-                                                                 x1359);(
-                     NotificationHandler.t_1_to_js Obj.magic x1361)|])
+                   [|(ProgressType.t_to_js Obj.magic x1357);(or_number_to_js
+                                                               Ojs.string_to_js
+                                                               x1359);(
+                     NotificationHandler.t_to_js Obj.magic x1361)|])
     let (sendProgress :
       t ->
-        type_:'P ProgressType.t_1 ->
-          token:string or_number -> value:'P -> unit)
+        type_:'P ProgressType.t -> token:string or_number -> value:'P -> unit)
       =
       fun (x1369 : t) ->
-        fun ~type_:(x1364 : 'P ProgressType.t_1) ->
+        fun ~type_:(x1364 : 'P ProgressType.t) ->
           fun ~token:(x1366 : string or_number) ->
             fun ~value:(x1368 : 'P) ->
               ignore
                 (Ojs.call (t_to_js x1369) "sendProgress"
-                   [|(ProgressType.t_1_to_js Obj.magic x1364);(or_number_to_js
-                                                                 Ojs.string_to_js
-                                                                 x1366);(
+                   [|(ProgressType.t_to_js Obj.magic x1364);(or_number_to_js
+                                                               Ojs.string_to_js
+                                                               x1366);(
                      Obj.magic x1368)|])
     let (get_clientOptions : t -> _LanguageClientOptions) =
       fun (x1370 : t) ->
@@ -4042,13 +4031,13 @@ module BaseLanguageClient =
       fun (x1372 : t) ->
         C2p.Converter.t_of_js
           (Ojs.get_prop_ascii (t_to_js x1372) "code2ProtocolConverter")
-    let (get_onTelemetry : t -> any Event.t_1) =
+    let (get_onTelemetry : t -> any Event.t) =
       fun (x1373 : t) ->
-        Event.t_1_of_js any_of_js
+        Event.t_of_js any_of_js
           (Ojs.get_prop_ascii (t_to_js x1373) "onTelemetry")
-    let (get_onDidChangeState : t -> _StateChangeEvent Event.t_1) =
+    let (get_onDidChangeState : t -> _StateChangeEvent Event.t) =
       fun (x1375 : t) ->
-        Event.t_1_of_js _StateChangeEvent_of_js
+        Event.t_of_js _StateChangeEvent_of_js
           (Ojs.get_prop_ascii (t_to_js x1375) "onDidChangeState")
     let (get_outputChannel : t -> OutputChannel.t) =
       fun (x1377 : t) ->
@@ -4448,8 +4437,7 @@ module BaseLanguageClient =
       t ->
         request:any ->
           (TextDocumentRegistrationOptions.t _DynamicFeature,
-            (textDocument:TextDocument.t ->
-               VTextEdit.t list ProviderResult.t_1)
+            (textDocument:TextDocument.t -> VTextEdit.t list ProviderResult.t)
               _NotificationFeature)
             intersection2)
       =
@@ -4463,7 +4451,7 @@ module BaseLanguageClient =
                _NotificationFeature_of_js
                  (fun (x1516 : Ojs.t) ->
                     fun ~textDocument:(x1517 : TextDocument.t) ->
-                      ProviderResult.t_1_of_js
+                      ProviderResult.t_of_js
                         (fun (x1518 : Ojs.t) ->
                            Ojs.list_of_js VTextEdit.t_of_js x1518)
                         (Ojs.apply x1516 [|(TextDocument.t_to_js x1517)|]))

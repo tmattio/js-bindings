@@ -30,8 +30,8 @@ val createProtocolConnection
   [@@js.global "createProtocolConnection"]
 
 val createProtocolConnection
-  :  input:NodeJS.ReadableStream.t
-  -> output:NodeJS.WritableStream.t
+  :  input:Node.ReadableStream.t
+  -> output:Node.WritableStream.t
   -> ?logger:Logger.t
   -> ?options:(ConnectionOptions.t, ConnectionStrategy.t) union2
   -> unit

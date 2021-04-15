@@ -2,7 +2,8 @@
 
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
-open Es5
+open Es2020
+open Vscode_jsonrpc_messages
 
 module Internal : sig
   module AnonymousInterfaces : sig
@@ -56,10 +57,10 @@ module Internal : sig
 
     and ('R, 'E) _HandlerResult =
       ( 'R
-      , 'E ResponseError.t_1
+      , 'E ResponseError.t
       , 'R Promise.t
-      , ('R, 'E ResponseError.t_1) union2 Promise.t
-      , 'E ResponseError.t_1 Promise.t )
+      , ('R, 'E ResponseError.t) union2 Promise.t
+      , 'E ResponseError.t Promise.t )
       union5
 
     and _LogTraceParams = [ `LogTraceParams ] intf
@@ -296,19 +297,6 @@ module AnonymousInterface0 : sig
     [@@js.call "cancelUndispatched"]
 end
 
-(* import { Message, RequestType, RequestType0, RequestType1, RequestType2,
-   RequestType3, RequestType4, RequestType5, RequestType6, RequestType7,
-   RequestType8, RequestType9, ResponseMessage, ResponseError,
-   NotificationMessage, NotificationType, NotificationType0, NotificationType1,
-   NotificationType2, NotificationType3, NotificationType4, NotificationType5,
-   NotificationType6, NotificationType7, NotificationType8, NotificationType9,
-   _EM, ParameterStructures } from './messages'; *)
-(* import type { Disposable } from './disposable'; *)
-(* import { Event } from './events'; *)
-(* import { CancellationToken, AbstractCancellationTokenSource } from
-   './cancellation'; *)
-(* import { MessageReader } from './messageReader'; *)
-(* import { MessageWriter } from './messageWriter'; *)
 module ProgressToken : sig
   type t = _ProgressToken
 
@@ -368,7 +356,7 @@ module StarRequestHandler : sig
     :  t
     -> method_:string
     -> params:(untyped_object, any) or_array or_undefined
-    -> token:CancellationToken.t
+    -> token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> (any, any) _HandlerResult
     [@@js.apply]
 end
@@ -396,7 +384,10 @@ module RequestHandler0 : sig
 
   val t_of_js : (Ojs.t -> 'R) -> (Ojs.t -> 'E) -> Ojs.t -> ('R, 'E) t
 
-  val apply : ('R, 'E) t -> token:CancellationToken.t -> ('R, 'E) _HandlerResult
+  val apply
+    :  ('R, 'E) t
+    -> token:Vscode_jsonrpc_cancellation.CancellationToken.t
+    -> ('R, 'E) _HandlerResult
     [@@js.apply]
 end
 [@@js.scope "RequestHandler0"]
@@ -421,7 +412,7 @@ module RequestHandler : sig
   val apply
     :  ('P, 'R, 'E) t
     -> params:'P
-    -> token:CancellationToken.t
+    -> token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> ('R, 'E) _HandlerResult
     [@@js.apply]
 end
@@ -447,7 +438,7 @@ module RequestHandler1 : sig
   val apply
     :  ('P1, 'R, 'E) t
     -> p1:'P1
-    -> token:CancellationToken.t
+    -> token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> ('R, 'E) _HandlerResult
     [@@js.apply]
 end
@@ -476,7 +467,7 @@ module RequestHandler2 : sig
     :  ('P1, 'P2, 'R, 'E) t
     -> p1:'P1
     -> p2:'P2
-    -> token:CancellationToken.t
+    -> token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> ('R, 'E) _HandlerResult
     [@@js.apply]
 end
@@ -508,7 +499,7 @@ module RequestHandler3 : sig
     -> p1:'P1
     -> p2:'P2
     -> p3:'P3
-    -> token:CancellationToken.t
+    -> token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> ('R, 'E) _HandlerResult
     [@@js.apply]
 end
@@ -544,7 +535,7 @@ module RequestHandler4 : sig
     -> p2:'P2
     -> p3:'P3
     -> p4:'P4
-    -> token:CancellationToken.t
+    -> token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> ('R, 'E) _HandlerResult
     [@@js.apply]
 end
@@ -583,7 +574,7 @@ module RequestHandler5 : sig
     -> p3:'P3
     -> p4:'P4
     -> p5:'P5
-    -> token:CancellationToken.t
+    -> token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> ('R, 'E) _HandlerResult
     [@@js.apply]
 end
@@ -625,7 +616,7 @@ module RequestHandler6 : sig
     -> p4:'P4
     -> p5:'P5
     -> p6:'P6
-    -> token:CancellationToken.t
+    -> token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> ('R, 'E) _HandlerResult
     [@@js.apply]
 end
@@ -670,7 +661,7 @@ module RequestHandler7 : sig
     -> p5:'P5
     -> p6:'P6
     -> p7:'P7
-    -> token:CancellationToken.t
+    -> token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> ('R, 'E) _HandlerResult
     [@@js.apply]
 end
@@ -718,7 +709,7 @@ module RequestHandler8 : sig
     -> p6:'P6
     -> p7:'P7
     -> p8:'P8
-    -> token:CancellationToken.t
+    -> token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> ('R, 'E) _HandlerResult
     [@@js.apply]
 end
@@ -769,7 +760,7 @@ module RequestHandler9 : sig
     -> p7:'P7
     -> p8:'P8
     -> p9:'P9
-    -> token:CancellationToken.t
+    -> token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> ('R, 'E) _HandlerResult
     [@@js.apply]
 end
@@ -1117,14 +1108,6 @@ end
 
 val nullLogger : _Logger [@@js.global "NullLogger"]
 
-module Trace : sig
-  type t = _Trace
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-end
-
 module TraceValues : sig
   type t = _TraceValues
 
@@ -1134,6 +1117,12 @@ module TraceValues : sig
 end
 
 module Trace : sig
+  type t = _Trace
+
+  val t_to_js : t -> Ojs.t
+
+  val t_of_js : Ojs.t -> t
+
   val fromString : value:string -> _Trace [@@js.global "fromString"]
 
   val toString : value:_Trace -> _TraceValues [@@js.global "toString"]
@@ -1146,9 +1135,7 @@ module TraceFormat : sig
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
-end
 
-module TraceFormat : sig
   val fromString : value:string -> _TraceFormat [@@js.global "fromString"]
 end
 [@@js.scope "TraceFormat"]
@@ -1184,7 +1171,7 @@ end
 [@@js.scope "SetTraceParams"]
 
 module SetTraceNotification : sig
-  val type_ : _SetTraceParams NotificationType.t_1 [@@js.global "type"]
+  val type_ : _SetTraceParams NotificationType.t [@@js.global "type"]
 end
 [@@js.scope "SetTraceNotification"]
 
@@ -1206,7 +1193,7 @@ end
 [@@js.scope "LogTraceParams"]
 
 module LogTraceNotification : sig
-  val type_ : _LogTraceParams NotificationType.t_1 [@@js.global "type"]
+  val type_ : _LogTraceParams NotificationType.t [@@js.global "type"]
 end
 [@@js.scope "LogTraceNotification"]
 
@@ -1253,9 +1240,7 @@ module ConnectionStrategy : sig
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
-end
 
-module ConnectionStrategy : sig
   val is : value:any -> bool [@@js.global "is"]
 end
 [@@js.scope "ConnectionStrategy"]
@@ -1278,14 +1263,11 @@ module CancellationReceiverStrategy : sig
   val createCancellationTokenSource
     :  t
     -> id:_CancellationId
-    -> AbstractCancellationTokenSource.t
+    -> Vscode_jsonrpc_cancellation.AbstractCancellationTokenSource.t
     [@@js.call "createCancellationTokenSource"]
 
   val dispose : t -> unit [@@js.call "dispose"]
-end
-[@@js.scope "CancellationReceiverStrategy"]
 
-module CancellationReceiverStrategy : sig
   val message : _CancellationReceiverStrategy [@@js.global "Message"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -1309,10 +1291,7 @@ module CancellationSenderStrategy : sig
   val cleanup : t -> id:_CancellationId -> unit [@@js.call "cleanup"]
 
   val dispose : t -> unit [@@js.call "dispose"]
-end
-[@@js.scope "CancellationSenderStrategy"]
 
-module CancellationSenderStrategy : sig
   val message : _CancellationSenderStrategy [@@js.global "Message"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -1334,10 +1313,7 @@ module CancellationStrategy : sig
   val get_sender : t -> _CancellationSenderStrategy [@@js.get "sender"]
 
   val set_sender : t -> _CancellationSenderStrategy -> unit [@@js.set "sender"]
-end
-[@@js.scope "CancellationStrategy"]
 
-module CancellationStrategy : sig
   val message : _CancellationStrategy [@@js.global "Message"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -1362,10 +1338,7 @@ module ConnectionOptions : sig
 
   val set_connectionStrategy : t -> _ConnectionStrategy -> unit
     [@@js.set "connectionStrategy"]
-end
-[@@js.scope "ConnectionOptions"]
 
-module ConnectionOptions : sig
   val is : value:any -> bool [@@js.global "is"]
 end
 [@@js.scope "ConnectionOptions"]
@@ -1379,93 +1352,93 @@ module MessageConnection : sig
 
   val sendRequest
     :  t
-    -> type_:('R, 'E) RequestType0.t_2
-    -> ?token:CancellationToken.t
+    -> type_:('R, 'E) RequestType0.t
+    -> ?token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> unit
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
   val sendRequest'
     :  t
-    -> type_:('P, 'R, 'E) RequestType.t_3
+    -> type_:('P, 'R, 'E) RequestType.t
     -> params:'P
-    -> ?token:CancellationToken.t
+    -> ?token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> unit
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
   val sendRequest''
     :  t
-    -> type_:('P1, 'R, 'E) RequestType1.t_3
+    -> type_:('P1, 'R, 'E) RequestType1.t
     -> p1:'P1
-    -> ?token:CancellationToken.t
+    -> ?token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> unit
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
   val sendRequest'''
     :  t
-    -> type_:('P1, 'P2, 'R, 'E) RequestType2.t_4
+    -> type_:('P1, 'P2, 'R, 'E) RequestType2.t
     -> p1:'P1
     -> p2:'P2
-    -> ?token:CancellationToken.t
+    -> ?token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> unit
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
   val sendRequest''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'R, 'E) RequestType3.t_5
+    -> type_:('P1, 'P2, 'P3, 'R, 'E) RequestType3.t
     -> p1:'P1
     -> p2:'P2
     -> p3:'P3
-    -> ?token:CancellationToken.t
+    -> ?token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> unit
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
   val sendRequest'''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4, 'R, 'E) RequestType4.t_6
+    -> type_:('P1, 'P2, 'P3, 'P4, 'R, 'E) RequestType4.t
     -> p1:'P1
     -> p2:'P2
     -> p3:'P3
     -> p4:'P4
-    -> ?token:CancellationToken.t
+    -> ?token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> unit
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
   val sendRequest''''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) RequestType5.t_7
+    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) RequestType5.t
     -> p1:'P1
     -> p2:'P2
     -> p3:'P3
     -> p4:'P4
     -> p5:'P5
-    -> ?token:CancellationToken.t
+    -> ?token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> unit
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
   val sendRequest'''''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) RequestType6.t_8
+    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) RequestType6.t
     -> p1:'P1
     -> p2:'P2
     -> p3:'P3
     -> p4:'P4
     -> p5:'P5
     -> p6:'P6
-    -> ?token:CancellationToken.t
+    -> ?token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> unit
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
   val sendRequest''''''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) RequestType7.t_9
+    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) RequestType7.t
     -> p1:'P1
     -> p2:'P2
     -> p3:'P3
@@ -1473,14 +1446,14 @@ module MessageConnection : sig
     -> p5:'P5
     -> p6:'P6
     -> p7:'P7
-    -> ?token:CancellationToken.t
+    -> ?token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> unit
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
   val sendRequest'''''''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) RequestType8.t_10
+    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) RequestType8.t
     -> p1:'P1
     -> p2:'P2
     -> p3:'P3
@@ -1489,7 +1462,7 @@ module MessageConnection : sig
     -> p6:'P6
     -> p7:'P7
     -> p8:'P8
-    -> ?token:CancellationToken.t
+    -> ?token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> unit
     -> 'R Promise.t
     [@@js.call "sendRequest"]
@@ -1497,7 +1470,7 @@ module MessageConnection : sig
   val sendRequest''''''''''
     :  t
     -> type_:
-         ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) RequestType9.t_11
+         ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) RequestType9.t
     -> p1:'P1
     -> p2:'P2
     -> p3:'P3
@@ -1507,7 +1480,7 @@ module MessageConnection : sig
     -> p7:'P7
     -> p8:'P8
     -> p9:'P9
-    -> ?token:CancellationToken.t
+    -> ?token:Vscode_jsonrpc_cancellation.CancellationToken.t
     -> unit
     -> 'R Promise.t
     [@@js.call "sendRequest"]
@@ -1522,91 +1495,94 @@ module MessageConnection : sig
 
   val onRequest
     :  t
-    -> type_:('R, 'E) RequestType0.t_2
+    -> type_:('R, 'E) RequestType0.t
     -> handler:('R, 'E) _RequestHandler0
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onRequest"]
 
   val onRequest'
     :  t
-    -> type_:('P, 'R, 'E) RequestType.t_3
+    -> type_:('P, 'R, 'E) RequestType.t
     -> handler:('P, 'R, 'E) _RequestHandler
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onRequest"]
 
   val onRequest''
     :  t
-    -> type_:('P1, 'R, 'E) RequestType1.t_3
+    -> type_:('P1, 'R, 'E) RequestType1.t
     -> handler:('P1, 'R, 'E) _RequestHandler1
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onRequest"]
 
   val onRequest'''
     :  t
-    -> type_:('P1, 'P2, 'R, 'E) RequestType2.t_4
+    -> type_:('P1, 'P2, 'R, 'E) RequestType2.t
     -> handler:('P1, 'P2, 'R, 'E) _RequestHandler2
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onRequest"]
 
   val onRequest''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'R, 'E) RequestType3.t_5
+    -> type_:('P1, 'P2, 'P3, 'R, 'E) RequestType3.t
     -> handler:('P1, 'P2, 'P3, 'R, 'E) _RequestHandler3
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onRequest"]
 
   val onRequest'''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4, 'R, 'E) RequestType4.t_6
+    -> type_:('P1, 'P2, 'P3, 'P4, 'R, 'E) RequestType4.t
     -> handler:('P1, 'P2, 'P3, 'P4, 'R, 'E) _RequestHandler4
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onRequest"]
 
   val onRequest''''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) RequestType5.t_7
+    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) RequestType5.t
     -> handler:('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) _RequestHandler5
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onRequest"]
 
   val onRequest'''''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) RequestType6.t_8
+    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) RequestType6.t
     -> handler:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) _RequestHandler6
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onRequest"]
 
   val onRequest''''''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) RequestType7.t_9
+    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) RequestType7.t
     -> handler:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) _RequestHandler7
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onRequest"]
 
   val onRequest'''''''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) RequestType8.t_10
+    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) RequestType8.t
     -> handler:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) _RequestHandler8
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onRequest"]
 
   val onRequest''''''''''
     :  t
     -> type_:
-         ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) RequestType9.t_11
+         ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) RequestType9.t
     -> handler:
          ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) _RequestHandler9
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onRequest"]
 
   val onRequest'''''''''''
     :  t
     -> method_:string
     -> handler:('R, 'E) _GenericRequestHandler
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onRequest"]
 
-  val onRequest'''''''''''' : t -> handler:_StarRequestHandler -> Disposable.t
+  val onRequest''''''''''''
+    :  t
+    -> handler:_StarRequestHandler
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onRequest"]
 
   val sendNotification : t -> type_:NotificationType0.t -> unit
@@ -1614,22 +1590,18 @@ module MessageConnection : sig
 
   val sendNotification'
     :  t
-    -> type_:'P NotificationType.t_1
+    -> type_:'P NotificationType.t
     -> ?params:'P
     -> unit
     -> unit
     [@@js.call "sendNotification"]
 
-  val sendNotification''
-    :  t
-    -> type_:'P1 NotificationType1.t_1
-    -> p1:'P1
-    -> unit
+  val sendNotification'' : t -> type_:'P1 NotificationType1.t -> p1:'P1 -> unit
     [@@js.call "sendNotification"]
 
   val sendNotification'''
     :  t
-    -> type_:('P1, 'P2) NotificationType2.t_2
+    -> type_:('P1, 'P2) NotificationType2.t
     -> p1:'P1
     -> p2:'P2
     -> unit
@@ -1637,7 +1609,7 @@ module MessageConnection : sig
 
   val sendNotification''''
     :  t
-    -> type_:('P1, 'P2, 'P3) NotificationType3.t_3
+    -> type_:('P1, 'P2, 'P3) NotificationType3.t
     -> p1:'P1
     -> p2:'P2
     -> p3:'P3
@@ -1646,7 +1618,7 @@ module MessageConnection : sig
 
   val sendNotification'''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4) NotificationType4.t_4
+    -> type_:('P1, 'P2, 'P3, 'P4) NotificationType4.t
     -> p1:'P1
     -> p2:'P2
     -> p3:'P3
@@ -1656,7 +1628,7 @@ module MessageConnection : sig
 
   val sendNotification''''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4, 'P5) NotificationType5.t_5
+    -> type_:('P1, 'P2, 'P3, 'P4, 'P5) NotificationType5.t
     -> p1:'P1
     -> p2:'P2
     -> p3:'P3
@@ -1667,7 +1639,7 @@ module MessageConnection : sig
 
   val sendNotification'''''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6) NotificationType6.t_6
+    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6) NotificationType6.t
     -> p1:'P1
     -> p2:'P2
     -> p3:'P3
@@ -1679,7 +1651,7 @@ module MessageConnection : sig
 
   val sendNotification''''''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) NotificationType7.t_7
+    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) NotificationType7.t
     -> p1:'P1
     -> p2:'P2
     -> p3:'P3
@@ -1692,7 +1664,7 @@ module MessageConnection : sig
 
   val sendNotification'''''''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) NotificationType8.t_8
+    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) NotificationType8.t
     -> p1:'P1
     -> p2:'P2
     -> p3:'P3
@@ -1706,7 +1678,7 @@ module MessageConnection : sig
 
   val sendNotification''''''''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) NotificationType9.t_9
+    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) NotificationType9.t
     -> p1:'P1
     -> p2:'P2
     -> p3:'P3
@@ -1731,97 +1703,102 @@ module MessageConnection : sig
     :  t
     -> type_:NotificationType0.t
     -> handler:_NotificationHandler0
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
   val onNotification'
     :  t
-    -> type_:'P NotificationType.t_1
+    -> type_:'P NotificationType.t
     -> handler:'P _NotificationHandler
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
   val onNotification''
     :  t
-    -> type_:'P1 NotificationType1.t_1
+    -> type_:'P1 NotificationType1.t
     -> handler:'P1 _NotificationHandler1
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
   val onNotification'''
     :  t
-    -> type_:('P1, 'P2) NotificationType2.t_2
+    -> type_:('P1, 'P2) NotificationType2.t
     -> handler:('P1, 'P2) _NotificationHandler2
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
   val onNotification''''
     :  t
-    -> type_:('P1, 'P2, 'P3) NotificationType3.t_3
+    -> type_:('P1, 'P2, 'P3) NotificationType3.t
     -> handler:('P1, 'P2, 'P3) _NotificationHandler3
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
   val onNotification'''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4) NotificationType4.t_4
+    -> type_:('P1, 'P2, 'P3, 'P4) NotificationType4.t
     -> handler:('P1, 'P2, 'P3, 'P4) _NotificationHandler4
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
   val onNotification''''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4, 'P5) NotificationType5.t_5
+    -> type_:('P1, 'P2, 'P3, 'P4, 'P5) NotificationType5.t
     -> handler:('P1, 'P2, 'P3, 'P4, 'P5) _NotificationHandler5
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
   val onNotification'''''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6) NotificationType6.t_6
+    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6) NotificationType6.t
     -> handler:('P1, 'P2, 'P3, 'P4, 'P5, 'P6) _NotificationHandler6
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
   val onNotification''''''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) NotificationType7.t_7
+    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) NotificationType7.t
     -> handler:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) _NotificationHandler7
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
   val onNotification'''''''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) NotificationType8.t_8
+    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) NotificationType8.t
     -> handler:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) _NotificationHandler8
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
   val onNotification''''''''''
     :  t
-    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) NotificationType9.t_9
+    -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) NotificationType9.t
     -> handler:
          ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) _NotificationHandler9
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
   val onNotification'''''''''''
     :  t
     -> method_:string
     -> handler:_GenericNotificationHandler
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
   val onNotification''''''''''''
     :  t
     -> handler:_StarNotificationHandler
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
-  val get_onUnhandledNotification : t -> NotificationMessage.t Event.t_1
+  val get_onUnhandledNotification
+    :  t
+    -> NotificationMessage.t Vscode_jsonrpc_events.Event.t
     [@@js.get "onUnhandledNotification"]
 
-  val set_onUnhandledNotification : t -> NotificationMessage.t Event.t_1 -> unit
+  val set_onUnhandledNotification
+    :  t
+    -> NotificationMessage.t Vscode_jsonrpc_events.Event.t
+    -> unit
     [@@js.set "onUnhandledNotification"]
 
   val onProgress
@@ -1829,7 +1806,7 @@ module MessageConnection : sig
     -> type_:'P _ProgressType
     -> token:string or_number
     -> handler:'P _NotificationHandler
-    -> Disposable.t
+    -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onProgress"]
 
   val sendProgress
@@ -1840,10 +1817,15 @@ module MessageConnection : sig
     -> unit
     [@@js.call "sendProgress"]
 
-  val get_onUnhandledProgress : t -> any _ProgressParams Event.t_1
+  val get_onUnhandledProgress
+    :  t
+    -> any _ProgressParams Vscode_jsonrpc_events.Event.t
     [@@js.get "onUnhandledProgress"]
 
-  val set_onUnhandledProgress : t -> any _ProgressParams Event.t_1 -> unit
+  val set_onUnhandledProgress
+    :  t
+    -> any _ProgressParams Vscode_jsonrpc_events.Event.t
+    -> unit
     [@@js.set "onUnhandledProgress"]
 
   val trace
@@ -1866,26 +1848,31 @@ module MessageConnection : sig
 
   val get_onError
     :  t
-    -> (Error.t * Message.t or_undefined * float or_undefined) Event.t_1
+    -> (Error.t * Message.t or_undefined * float or_undefined)
+       Vscode_jsonrpc_events.Event.t
     [@@js.get "onError"]
 
   val set_onError
     :  t
-    -> (Error.t * Message.t or_undefined * float or_undefined) Event.t_1
+    -> (Error.t * Message.t or_undefined * float or_undefined)
+       Vscode_jsonrpc_events.Event.t
     -> unit
     [@@js.set "onError"]
 
-  val get_onClose : t -> unit Event.t_1 [@@js.get "onClose"]
+  val get_onClose : t -> unit Vscode_jsonrpc_events.Event.t [@@js.get "onClose"]
 
-  val set_onClose : t -> unit Event.t_1 -> unit [@@js.set "onClose"]
+  val set_onClose : t -> unit Vscode_jsonrpc_events.Event.t -> unit
+    [@@js.set "onClose"]
 
   val listen : t -> unit [@@js.call "listen"]
 
   val end_ : t -> unit [@@js.call "end"]
 
-  val get_onDispose : t -> unit Event.t_1 [@@js.get "onDispose"]
+  val get_onDispose : t -> unit Vscode_jsonrpc_events.Event.t
+    [@@js.get "onDispose"]
 
-  val set_onDispose : t -> unit Event.t_1 -> unit [@@js.set "onDispose"]
+  val set_onDispose : t -> unit Vscode_jsonrpc_events.Event.t -> unit
+    [@@js.set "onDispose"]
 
   val dispose : t -> unit [@@js.call "dispose"]
 
@@ -1894,8 +1881,8 @@ end
 [@@js.scope "MessageConnection"]
 
 val createMessageConnection
-  :  messageReader:MessageReader.t
-  -> messageWriter:MessageWriter.t
+  :  messageReader:Vscode_jsonrpc_messageReader.MessageReader.t
+  -> messageWriter:Vscode_jsonrpc_messageWriter.MessageWriter.t
   -> ?_logger:_Logger
   -> ?options:_ConnectionOptions
   -> unit

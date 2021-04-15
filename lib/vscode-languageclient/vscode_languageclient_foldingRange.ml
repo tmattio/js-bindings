@@ -44,14 +44,14 @@ module ProvideFoldingRangeSignature =
           document:TextDocument.t ->
             context:FoldingContext.t ->
               token:CancellationToken.t ->
-                VFoldingRange.t list ProviderResult.t_1)
+                VFoldingRange.t list ProviderResult.t)
       =
       fun (x7 : t) ->
         fun ~this:(x3 : unit) ->
           fun ~document:(x4 : TextDocument.t) ->
             fun ~context:(x5 : FoldingContext.t) ->
               fun ~token:(x6 : CancellationToken.t) ->
-                ProviderResult.t_1_of_js
+                ProviderResult.t_of_js
                   (fun (x8 : Ojs.t) ->
                      Ojs.list_of_js VFoldingRange.t_of_js x8)
                   (Ojs.apply (t_to_js x7)
@@ -74,7 +74,7 @@ module FoldingRangeProviderMiddleware =
             context:FoldingContext.t ->
               token:CancellationToken.t ->
                 next:_ProvideFoldingRangeSignature ->
-                  VFoldingRange.t list ProviderResult.t_1)
+                  VFoldingRange.t list ProviderResult.t)
       =
       fun (x17 : t) ->
         fun ~this:(x12 : unit) ->
@@ -82,7 +82,7 @@ module FoldingRangeProviderMiddleware =
             fun ~context:(x14 : FoldingContext.t) ->
               fun ~token:(x15 : CancellationToken.t) ->
                 fun ~next:(x16 : _ProvideFoldingRangeSignature) ->
-                  ProviderResult.t_1_of_js
+                  ProviderResult.t_of_js
                     (fun (x18 : Ojs.t) ->
                        Ojs.list_of_js VFoldingRange.t_of_js x18)
                     (Ojs.call (t_to_js x17) "provideFoldingRanges"
@@ -159,10 +159,10 @@ module FoldingRangeFeature =
     let (cast :
       t ->
         (FoldingRangeOptions.t or_boolean, FoldingRangeRegistrationOptions.t,
-          FoldingRangeProvider.t) TextDocumentFeature.t_3)
+          FoldingRangeProvider.t) TextDocumentFeature.t)
       =
       fun (x33 : t) ->
-        TextDocumentFeature.t_3_of_js
+        TextDocumentFeature.t_of_js
           (fun (x34 : Ojs.t) ->
              or_boolean_of_js FoldingRangeOptions.t_of_js x34)
           FoldingRangeRegistrationOptions.t_of_js

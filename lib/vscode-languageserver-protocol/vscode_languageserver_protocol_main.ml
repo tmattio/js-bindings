@@ -52,14 +52,14 @@ let (createProtocolConnection :
                           | None -> ());
                          x5))|])
 let (createProtocolConnection :
-  input:NodeJS.ReadableStream.t ->
-    output:NodeJS.WritableStream.t ->
+  input:Node.ReadableStream.t ->
+    output:Node.WritableStream.t ->
       ?logger:Logger.t ->
         ?options:(ConnectionOptions.t, ConnectionStrategy.t) union2 ->
           unit -> ProtocolConnection.t)
   =
-  fun ~input:(x11 : NodeJS.ReadableStream.t) ->
-    fun ~output:(x12 : NodeJS.WritableStream.t) ->
+  fun ~input:(x11 : Node.ReadableStream.t) ->
+    fun ~output:(x12 : Node.WritableStream.t) ->
       fun ?logger:(x13 : Logger.t option) ->
         fun
           ?options:(x14 :
@@ -77,10 +77,10 @@ let (createProtocolConnection :
                              [||] in
                          ignore
                            (Ojs.call x15 "push"
-                              [|(NodeJS.ReadableStream.t_to_js x11)|]);
+                              [|(Node.ReadableStream.t_to_js x11)|]);
                          ignore
                            (Ojs.call x15 "push"
-                              [|(NodeJS.WritableStream.t_to_js x12)|]);
+                              [|(Node.WritableStream.t_to_js x12)|]);
                          (match x13 with
                           | Some x19 ->
                               ignore

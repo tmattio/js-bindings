@@ -154,12 +154,12 @@ module FileOperationsMiddleware : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_didCreateFiles : t -> (Code.FileCreateEvent.t, unit) NextSignature.t_2
+  val get_didCreateFiles : t -> (Code.FileCreateEvent.t, unit) NextSignature.t
     [@@js.get "didCreateFiles"]
 
   val set_didCreateFiles
     :  t
-    -> (Code.FileCreateEvent.t, unit) NextSignature.t_2
+    -> (Code.FileCreateEvent.t, unit) NextSignature.t
     -> unit
     [@@js.set "didCreateFiles"]
 
@@ -167,23 +167,23 @@ module FileOperationsMiddleware : sig
     :  t
     -> ( Code.FileCreateEvent.t
        , Code.WorkspaceEdit.t or_null_or_undefined Promise.t )
-       NextSignature.t_2
+       NextSignature.t
     [@@js.get "willCreateFiles"]
 
   val set_willCreateFiles
     :  t
     -> ( Code.FileCreateEvent.t
        , Code.WorkspaceEdit.t or_null_or_undefined Promise.t )
-       NextSignature.t_2
+       NextSignature.t
     -> unit
     [@@js.set "willCreateFiles"]
 
-  val get_didRenameFiles : t -> (Code.FileRenameEvent.t, unit) NextSignature.t_2
+  val get_didRenameFiles : t -> (Code.FileRenameEvent.t, unit) NextSignature.t
     [@@js.get "didRenameFiles"]
 
   val set_didRenameFiles
     :  t
-    -> (Code.FileRenameEvent.t, unit) NextSignature.t_2
+    -> (Code.FileRenameEvent.t, unit) NextSignature.t
     -> unit
     [@@js.set "didRenameFiles"]
 
@@ -191,23 +191,23 @@ module FileOperationsMiddleware : sig
     :  t
     -> ( Code.FileRenameEvent.t
        , Code.WorkspaceEdit.t or_null_or_undefined Promise.t )
-       NextSignature.t_2
+       NextSignature.t
     [@@js.get "willRenameFiles"]
 
   val set_willRenameFiles
     :  t
     -> ( Code.FileRenameEvent.t
        , Code.WorkspaceEdit.t or_null_or_undefined Promise.t )
-       NextSignature.t_2
+       NextSignature.t
     -> unit
     [@@js.set "willRenameFiles"]
 
-  val get_didDeleteFiles : t -> (Code.FileDeleteEvent.t, unit) NextSignature.t_2
+  val get_didDeleteFiles : t -> (Code.FileDeleteEvent.t, unit) NextSignature.t
     [@@js.get "didDeleteFiles"]
 
   val set_didDeleteFiles
     :  t
-    -> (Code.FileDeleteEvent.t, unit) NextSignature.t_2
+    -> (Code.FileDeleteEvent.t, unit) NextSignature.t
     -> unit
     [@@js.set "didDeleteFiles"]
 
@@ -215,14 +215,14 @@ module FileOperationsMiddleware : sig
     :  t
     -> ( Code.FileDeleteEvent.t
        , Code.WorkspaceEdit.t or_null_or_undefined Promise.t )
-       NextSignature.t_2
+       NextSignature.t
     [@@js.get "willDeleteFiles"]
 
   val set_willDeleteFiles
     :  t
     -> ( Code.FileDeleteEvent.t
        , Code.WorkspaceEdit.t or_null_or_undefined Promise.t )
-       NextSignature.t_2
+       NextSignature.t
     -> unit
     [@@js.set "willDeleteFiles"]
 end
@@ -298,9 +298,9 @@ module FileOperationFeature : sig
 
   val create
     :  client:BaseLanguageClient.t
-    -> event:'E Code.Event.t_1
+    -> event:'E Code.Event.t
     -> registrationType:
-         Proto.FileOperationRegistrationOptions.t Proto.RegistrationType.t_1
+         Proto.FileOperationRegistrationOptions.t Proto.RegistrationType.t
     -> clientCapability:
          (* FIXME: unknown type '?proto.FileOperationClientCapabilities' *) any
     -> serverCapability:
@@ -310,7 +310,7 @@ module FileOperationFeature : sig
 
   val get_registrationType
     :  ('I, 'E) t
-    -> Proto.FileOperationRegistrationOptions.t Proto.RegistrationType.t_1
+    -> Proto.FileOperationRegistrationOptions.t Proto.RegistrationType.t
     [@@js.get "registrationType"]
 
   val fillClientCapabilities
@@ -324,7 +324,7 @@ module FileOperationFeature : sig
 
   val register
     :  ('I, 'E) t
-    -> data:Proto.FileOperationRegistrationOptions.t RegistrationData.t_1
+    -> data:Proto.FileOperationRegistrationOptions.t RegistrationData.t
     -> unit
     [@@js.call "register"]
 
@@ -355,7 +355,7 @@ module FileOperationFeature : sig
 
   val cast
     :  ('I, 'E) t
-    -> Proto.FileOperationRegistrationOptions.t DynamicFeature.t_1
+    -> Proto.FileOperationRegistrationOptions.t DynamicFeature.t
     [@@js.cast]
 end
 [@@js.scope "FileOperationFeature"]
@@ -403,11 +403,11 @@ module NotificationFileOperationFeature : sig
 
   val create
     :  client:BaseLanguageClient.t
-    -> event:'E Code.Event.t_1
+    -> event:'E Code.Event.t
     -> notificationType:
          ( 'P
          , Proto.FileOperationRegistrationOptions.t )
-         Proto.ProtocolNotificationType.t_2
+         Proto.ProtocolNotificationType.t
     -> clientCapability:
          (* FIXME: unknown type '?proto.FileOperationClientCapabilities' *) any
     -> serverCapability:
@@ -562,14 +562,14 @@ module RequestFileOperationFeature : sig
 
   val create
     :  client:BaseLanguageClient.t
-    -> event:'E Code.Event.t_1
+    -> event:'E Code.Event.t
     -> requestType:
          ( 'P
          , Proto.WorkspaceEdit.t or_null
          , never
          , unit
          , Proto.FileOperationRegistrationOptions.t )
-         Proto.ProtocolRequestType.t_5
+         Proto.ProtocolRequestType.t
     -> clientCapability:
          (* FIXME: unknown type '?proto.FileOperationClientCapabilities' *) any
     -> serverCapability:

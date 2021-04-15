@@ -17,7 +17,7 @@ module Internal =
         open AnonymousInterfaces
         type _WorkDoneProgressBegin = [ `WorkDoneProgressBegin ] intf
         and _WorkDoneProgressCancelNotification_HandlerSignature =
-          _WorkDoneProgressCancelParams NotificationHandler.t_1
+          _WorkDoneProgressCancelParams NotificationHandler.t
         and _WorkDoneProgressCancelParams =
           [ `WorkDoneProgressCancelParams ] intf
         and _WorkDoneProgressClientCapabilities =
@@ -25,7 +25,7 @@ module Internal =
         and _WorkDoneProgressCreateParams =
           [ `WorkDoneProgressCreateParams ] intf
         and _WorkDoneProgressCreateRequest_HandlerSignature =
-          (_WorkDoneProgressCreateParams, unit, unit) RequestHandler.t_3
+          (_WorkDoneProgressCreateParams, unit, unit) RequestHandler.t
         and _WorkDoneProgressEnd = [ `WorkDoneProgressEnd ] intf
         and _WorkDoneProgressReport = [ `WorkDoneProgressReport ] intf
         let rec _WorkDoneProgressBegin_of_js :
@@ -35,12 +35,12 @@ module Internal =
         and _WorkDoneProgressCancelNotification_HandlerSignature_of_js :
           Ojs.t -> _WorkDoneProgressCancelNotification_HandlerSignature =
           fun (x3 : Ojs.t) ->
-            NotificationHandler.t_1_of_js _WorkDoneProgressCancelParams_of_js
+            NotificationHandler.t_of_js _WorkDoneProgressCancelParams_of_js
               x3
         and _WorkDoneProgressCancelNotification_HandlerSignature_to_js :
           _WorkDoneProgressCancelNotification_HandlerSignature -> Ojs.t =
-          fun (x1 : _WorkDoneProgressCancelParams NotificationHandler.t_1) ->
-            NotificationHandler.t_1_to_js _WorkDoneProgressCancelParams_to_js
+          fun (x1 : _WorkDoneProgressCancelParams NotificationHandler.t) ->
+            NotificationHandler.t_to_js _WorkDoneProgressCancelParams_to_js
               x1
         and _WorkDoneProgressCancelParams_of_js :
           Ojs.t -> _WorkDoneProgressCancelParams = Obj.magic
@@ -57,15 +57,15 @@ module Internal =
         and _WorkDoneProgressCreateRequest_HandlerSignature_of_js :
           Ojs.t -> _WorkDoneProgressCreateRequest_HandlerSignature =
           fun (x9 : Ojs.t) ->
-            RequestHandler.t_3_of_js _WorkDoneProgressCreateParams_of_js
+            RequestHandler.t_of_js _WorkDoneProgressCreateParams_of_js
               Ojs.unit_of_js Ojs.unit_of_js x9
         and _WorkDoneProgressCreateRequest_HandlerSignature_to_js :
           _WorkDoneProgressCreateRequest_HandlerSignature -> Ojs.t =
           fun
             (x5 :
-              (_WorkDoneProgressCreateParams, unit, unit) RequestHandler.t_3)
+              (_WorkDoneProgressCreateParams, unit, unit) RequestHandler.t)
             ->
-            RequestHandler.t_3_to_js _WorkDoneProgressCreateParams_to_js
+            RequestHandler.t_to_js _WorkDoneProgressCreateParams_to_js
               Ojs.unit_to_js Ojs.unit_to_js x5
         and _WorkDoneProgressEnd_of_js : Ojs.t -> _WorkDoneProgressEnd =
           Obj.magic
@@ -235,8 +235,8 @@ module WorkDoneProgress =
     let (type_ :
       [ `U_s0_begin of _WorkDoneProgressBegin 
       | `U_s1_end of _WorkDoneProgressEnd 
-      | `U_s2_report of _WorkDoneProgressReport ] ProgressType.t_1) =
-      ProgressType.t_1_of_js
+      | `U_s2_report of _WorkDoneProgressReport ] ProgressType.t) =
+      ProgressType.t_of_js
         (fun (x65 : Ojs.t) ->
            let x66 = x65 in
            match Ojs.string_of_js (Ojs.get_prop_ascii x66 "kind") with
@@ -246,11 +246,11 @@ module WorkDoneProgress =
            | _ -> assert false)
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "WorkDoneProgress") "type")
-    let (is : value:any ProgressType.t_1 -> bool) =
-      fun ~value:(x67 : any ProgressType.t_1) ->
+    let (is : value:any ProgressType.t -> bool) =
+      fun ~value:(x67 : any ProgressType.t) ->
         Ojs.bool_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "WorkDoneProgress") "is"
-             [|(ProgressType.t_1_to_js any_to_js x67)|])
+             [|(ProgressType.t_to_js any_to_js x67)|])
   end
 module WorkDoneProgressCreateParams =
   struct
@@ -273,9 +273,9 @@ module WorkDoneProgressCreateRequest =
   struct
     let (type_ :
       (_WorkDoneProgressCreateParams, unit, never, unit, unit)
-        ProtocolRequestType.t_5)
+        ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _WorkDoneProgressCreateParams_of_js
+      ProtocolRequestType.t_of_js _WorkDoneProgressCreateParams_of_js
         Ojs.unit_of_js never_of_js Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "WorkDoneProgressCreateRequest")
@@ -311,8 +311,8 @@ module WorkDoneProgressCancelParams =
 module WorkDoneProgressCancelNotification =
   struct
     let (type_ :
-      (_WorkDoneProgressCancelParams, unit) ProtocolNotificationType.t_2) =
-      ProtocolNotificationType.t_2_of_js _WorkDoneProgressCancelParams_of_js
+      (_WorkDoneProgressCancelParams, unit) ProtocolNotificationType.t) =
+      ProtocolNotificationType.t_of_js _WorkDoneProgressCancelParams_of_js
         Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global

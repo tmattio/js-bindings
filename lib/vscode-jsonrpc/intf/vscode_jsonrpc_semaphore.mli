@@ -51,10 +51,7 @@ module Semaphore : sig
 
   val create : ?capacity:float -> unit -> 'T t [@@js.create]
 
-  val lock
-    :  'T t
-    -> thunk:(unit -> ('T, 'T PromiseLike.t_1) union2)
-    -> 'T Promise.t
+  val lock : 'T t -> thunk:(unit -> ('T, 'T Promise.t) union2) -> 'T Promise.t
     [@@js.call "lock"]
 
   val get_active : 'T t -> float [@@js.get "active"]

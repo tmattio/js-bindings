@@ -28,7 +28,7 @@ module Internal : sig
       ( _ImplementationParams
       , (Definition.t, DefinitionLink.t) or_array or_null
       , unit )
-      RequestHandler.t_3
+      RequestHandler.t
   end
 end
 
@@ -114,7 +114,7 @@ module ImplementationRequest : sig
       , (Location.t, LocationLink.t) union2 list
       , unit
       , _ImplementationRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig

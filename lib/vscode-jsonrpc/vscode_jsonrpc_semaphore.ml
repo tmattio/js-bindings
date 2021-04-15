@@ -69,17 +69,16 @@ module Semaphore =
                  | None -> ());
                 x25))
     let (lock :
-      'T t -> thunk:(unit -> ('T, 'T PromiseLike.t_1) union2) -> 'T Promise.t)
-      =
+      'T t -> thunk:(unit -> ('T, 'T Promise.t) union2) -> 'T Promise.t) =
       fun (x32 : 'T t) ->
-        fun ~thunk:(x28 : unit -> ('T, 'T PromiseLike.t_1) union2) ->
+        fun ~thunk:(x28 : unit -> ('T, 'T Promise.t) union2) ->
           Promise.t_of_js Obj.magic
             (Ojs.call (t_to_js Obj.magic x32) "lock"
                [|(Ojs.fun_to_js 1
                     (fun _ ->
                        union2_to_js Obj.magic
-                         (fun (x30 : 'T PromiseLike.t_1) ->
-                            PromiseLike.t_1_to_js Obj.magic x30) (x28 ())))|])
+                         (fun (x30 : 'T Promise.t) ->
+                            Promise.t_to_js Obj.magic x30) (x28 ())))|])
     let (get_active : 'T t -> float) =
       fun (x35 : 'T t) ->
         Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x35) "active")

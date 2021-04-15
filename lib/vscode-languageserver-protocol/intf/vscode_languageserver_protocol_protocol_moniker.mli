@@ -184,7 +184,7 @@ module MonikerRequest : sig
       , _Moniker list
       , unit
       , _MonikerRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "MonikerRequest"]

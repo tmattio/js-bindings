@@ -170,13 +170,13 @@ module ProtocolRequestType0 =
         t_of_js Obj.magic Obj.magic Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "ProtocolRequestType0")
              [|(Ojs.string_to_js x43)|])
-    let (cast : ('R, 'PR, 'E, 'RO) t -> ('R, 'E) RequestType0.t_2) =
+    let (cast : ('R, 'PR, 'E, 'RO) t -> ('R, 'E) RequestType0.t) =
       fun (x48 : ('R, 'PR, 'E, 'RO) t) ->
-        RequestType0.t_2_of_js Obj.magic Obj.magic
+        RequestType0.t_of_js Obj.magic Obj.magic
           (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x48)
-    let (cast' : ('R, 'PR, 'E, 'RO) t -> 'PR ProgressType.t_1) =
+    let (cast' : ('R, 'PR, 'E, 'RO) t -> 'PR ProgressType.t) =
       fun (x55 : ('R, 'PR, 'E, 'RO) t) ->
-        ProgressType.t_1_of_js Obj.magic
+        ProgressType.t_of_js Obj.magic
           (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x55)
     let (cast'' : ('R, 'PR, 'E, 'RO) t -> 'RO _RegistrationType) =
       fun (x61 : ('R, 'PR, 'E, 'RO) t) ->
@@ -255,13 +255,13 @@ module ProtocolRequestType =
         t_of_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "ProtocolRequestType")
              [|(Ojs.string_to_js x102)|])
-    let (cast : ('P, 'R, 'PR, 'E, 'RO) t -> ('P, 'R, 'E) RequestType.t_3) =
+    let (cast : ('P, 'R, 'PR, 'E, 'RO) t -> ('P, 'R, 'E) RequestType.t) =
       fun (x108 : ('P, 'R, 'PR, 'E, 'RO) t) ->
-        RequestType.t_3_of_js Obj.magic Obj.magic Obj.magic
+        RequestType.t_of_js Obj.magic Obj.magic Obj.magic
           (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x108)
-    let (cast' : ('P, 'R, 'PR, 'E, 'RO) t -> 'PR ProgressType.t_1) =
+    let (cast' : ('P, 'R, 'PR, 'E, 'RO) t -> 'PR ProgressType.t) =
       fun (x117 : ('P, 'R, 'PR, 'E, 'RO) t) ->
-        ProgressType.t_1_of_js Obj.magic
+        ProgressType.t_of_js Obj.magic
           (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x117)
     let (cast'' : ('P, 'R, 'PR, 'E, 'RO) t -> 'RO _RegistrationType) =
       fun (x124 : ('P, 'R, 'PR, 'E, 'RO) t) ->
@@ -348,10 +348,9 @@ module ProtocolNotificationType =
           (Ojs.new_obj
              (Ojs.get_prop_ascii Ojs.global "ProtocolNotificationType")
              [|(Ojs.string_to_js x166)|])
-    let (cast : ('P, 'RO) t -> 'P NotificationType.t_1) =
+    let (cast : ('P, 'RO) t -> 'P NotificationType.t) =
       fun (x169 : ('P, 'RO) t) ->
-        NotificationType.t_1_of_js Obj.magic
-          (t_to_js Obj.magic Obj.magic x169)
+        NotificationType.t_of_js Obj.magic (t_to_js Obj.magic Obj.magic x169)
     let (cast' : ('P, 'RO) t -> 'RO _RegistrationType) =
       fun (x173 : ('P, 'RO) t) ->
         _RegistrationType_of_js Obj.magic (t_to_js Obj.magic Obj.magic x173)

@@ -34,7 +34,7 @@ module Internal : sig
       ( _SemanticTokensDeltaParams
       , (SemanticTokens.t, SemanticTokensDelta.t) union2 or_null
       , unit )
-      RequestHandler.t_3
+      RequestHandler.t
 
     and _SemanticTokensOptions = [ `SemanticTokensOptions ] intf
     [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
@@ -52,10 +52,10 @@ module Internal : sig
       ( _SemanticTokensRangeParams
       , SemanticTokens.t or_null
       , unit )
-      RequestHandler.t_3
+      RequestHandler.t
 
     and _SemanticTokensRefreshRequest_HandlerSignature =
-      (unit, unit) RequestHandler0.t_2
+      (unit, unit) RequestHandler0.t
 
     and _SemanticTokensRegistrationOptions =
       [ `SemanticTokensRegistrationOptions | `SemanticTokensOptions ] intf
@@ -65,7 +65,7 @@ module Internal : sig
       ( _SemanticTokensDeltaParams
       , SemanticTokens.t or_null
       , unit )
-      RequestHandler.t_3
+      RequestHandler.t
 
     and _SemanticTokensWorkspaceClientCapabilities =
       [ `SemanticTokensWorkspaceClientCapabilities ] intf
@@ -251,7 +251,7 @@ module SemanticTokensRegistrationType : sig
       [@js.enum])
     [@@js.global "method"]
 
-  val type_ : _SemanticTokensRegistrationOptions RegistrationType.t_1
+  val type_ : _SemanticTokensRegistrationOptions RegistrationType.t
     [@@js.global "type"]
 end
 [@@js.scope "SemanticTokensRegistrationType"]
@@ -288,7 +288,7 @@ module SemanticTokensRequest : sig
       , _SemanticTokensPartialResult
       , unit
       , _SemanticTokensRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
@@ -337,7 +337,7 @@ module SemanticTokensDeltaRequest : sig
       , (_SemanticTokensDeltaPartialResult, _SemanticTokensPartialResult) union2
       , unit
       , _SemanticTokensRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
@@ -386,7 +386,7 @@ module SemanticTokensRangeRequest : sig
       , _SemanticTokensPartialResult
       , unit
       , unit )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
@@ -417,7 +417,7 @@ module SemanticTokensRefreshRequest : sig
     : (* FIXME: unknown type '`workspace/semanticTokens/refresh`' *) any
     [@@js.global "method"]
 
-  val type_ : (unit, unit, unit, unit) ProtocolRequestType0.t_4
+  val type_ : (unit, unit, unit, unit) ProtocolRequestType0.t
     [@@js.global "type"]
 
   module HandlerSignature : sig

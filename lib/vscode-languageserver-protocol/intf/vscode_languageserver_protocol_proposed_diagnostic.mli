@@ -38,7 +38,7 @@ module Internal : sig
     [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
 
     and _DiagnosticRefreshRequest_HandlerSignature =
-      (unit, unit) RequestHandler0.t_2
+      (unit, unit) RequestHandler0.t
 
     and _DiagnosticRegistrationOptions =
       [ `DiagnosticRegistrationOptions | `DiagnosticOptions ] intf
@@ -76,7 +76,7 @@ module Internal : sig
       ( _DocumentDiagnosticParams
       , _DocumentDiagnosticReport
       , unit )
-      RequestHandler.t_3
+      RequestHandler.t
 
     and _WorkspaceDiagnosticParams = [ `WorkspaceDiagnosticParams ] intf
     [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
@@ -92,7 +92,7 @@ module Internal : sig
       ( _WorkspaceDiagnosticParams
       , _WorkspaceDiagnosticReport or_null
       , unit )
-      RequestHandler.t_3
+      RequestHandler.t
 
     and _WorkspaceDocumentDiagnosticReport =
       (anonymous_interface_4, _DocumentDiagnosticReport) intersection2
@@ -367,7 +367,7 @@ module DocumentDiagnosticRequest : sig
       , _DocumentDiagnosticReportPartialResult
       , _DiagnosticServerCancellationData
       , _DiagnosticRegistrationOptions )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
@@ -452,7 +452,7 @@ module WorkspaceDiagnosticRequest : sig
       , _WorkspaceDiagnosticReportPartialResult
       , _DiagnosticServerCancellationData
       , unit )
-      ProtocolRequestType.t_5
+      ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
@@ -469,7 +469,7 @@ module DiagnosticRefreshRequest : sig
   val method_ : (* FIXME: unknown type '`workspace/diagnostic/refresh`' *) any
     [@@js.global "method"]
 
-  val type_ : (unit, unit, unit, unit) ProtocolRequestType0.t_4
+  val type_ : (unit, unit, unit, unit) ProtocolRequestType0.t
     [@@js.global "type"]
 
   module HandlerSignature : sig

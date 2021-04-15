@@ -23,9 +23,6 @@ module Disposable =
     and t_to_js : t -> Ojs.t = fun (x1 : _Disposable) -> _Disposable_to_js x1
     let (dispose : t -> unit) =
       fun (x3 : t) -> ignore (Ojs.call (t_to_js x3) "dispose" [||])
-  end
-module Disposable =
-  struct
     let (create_ : func:(unit -> unit) -> _Disposable) =
       fun ~func:(x4 : unit -> unit) ->
         _Disposable_of_js

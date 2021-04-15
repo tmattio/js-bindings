@@ -20,7 +20,7 @@ module Internal =
           [ `FoldingRangeRegistrationOptions  | `FoldingRangeOptions ] intf
         and _FoldingRangeRequest_HandlerSignature =
           (_FoldingRangeParams, FoldingRange.t list or_null, unit)
-            RequestHandler.t_3
+            RequestHandler.t
         let rec _FoldingRangeClientCapabilities_of_js :
           Ojs.t -> _FoldingRangeClientCapabilities = Obj.magic
         and _FoldingRangeClientCapabilities_to_js :
@@ -87,7 +87,7 @@ module Internal =
         and _FoldingRangeRequest_HandlerSignature_of_js :
           Ojs.t -> _FoldingRangeRequest_HandlerSignature =
           fun (x19 : Ojs.t) ->
-            RequestHandler.t_3_of_js _FoldingRangeParams_of_js
+            RequestHandler.t_of_js _FoldingRangeParams_of_js
               (fun (x21 : Ojs.t) ->
                  or_null_of_js
                    (fun (x22 : Ojs.t) ->
@@ -98,9 +98,9 @@ module Internal =
           fun
             (x13 :
               (_FoldingRangeParams, FoldingRange.t list or_null, unit)
-                RequestHandler.t_3)
+                RequestHandler.t)
             ->
-            RequestHandler.t_3_to_js _FoldingRangeParams_to_js
+            RequestHandler.t_to_js _FoldingRangeParams_to_js
               (fun (x15 : FoldingRange.t list or_null) ->
                  or_null_to_js
                    (fun (x16 : FoldingRange.t list) ->
@@ -210,9 +210,9 @@ module FoldingRangeRequest =
       | _ -> assert false
     let (type_ :
       (_FoldingRangeParams, FoldingRange.t list or_null, FoldingRange.t list,
-        any, _FoldingRangeRegistrationOptions) ProtocolRequestType.t_5)
+        any, _FoldingRangeRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _FoldingRangeParams_of_js
+      ProtocolRequestType.t_of_js _FoldingRangeParams_of_js
         (fun (x55 : Ojs.t) ->
            or_null_of_js
              (fun (x56 : Ojs.t) -> Ojs.list_of_js FoldingRange.t_of_js x56)

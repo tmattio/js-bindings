@@ -46,7 +46,7 @@ module ProvideImplementationSignature : sig
     -> document:TextDocument.t
     -> position:VPosition.t
     -> token:CancellationToken.t
-    -> (VDefinition.t, VDefinitionLink.t) or_array ProviderResult.t_1
+    -> (VDefinition.t, VDefinitionLink.t) or_array ProviderResult.t
     [@@js.apply]
 end
 [@@js.scope "ProvideImplementationSignature"]
@@ -65,7 +65,7 @@ module ImplementationMiddleware : sig
     -> position:VPosition.t
     -> token:CancellationToken.t
     -> next:_ProvideImplementationSignature
-    -> (VDefinition.t, VDefinitionLink.t) or_array ProviderResult.t_1
+    -> (VDefinition.t, VDefinitionLink.t) or_array ProviderResult.t
     [@@js.call "provideImplementation"]
 end
 [@@js.scope "ImplementationMiddleware"]
@@ -100,7 +100,7 @@ module ImplementationFeature : sig
     -> ( ImplementationOptions.t or_boolean
        , ImplementationRegistrationOptions.t
        , ImplementationProvider.t )
-       TextDocumentFeature.t_3
+       TextDocumentFeature.t
     [@@js.cast]
 end
 [@@js.scope "ImplementationFeature"]

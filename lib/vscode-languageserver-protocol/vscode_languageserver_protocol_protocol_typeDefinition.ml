@@ -18,7 +18,7 @@ module Internal =
         and _TypeDefinitionRequest_HandlerSignature =
           (_TypeDefinitionParams,
             (Definition.t, DefinitionLink.t) or_array or_null, unit)
-            RequestHandler.t_3
+            RequestHandler.t
         let rec _TypeDefinitionClientCapabilities_of_js :
           Ojs.t -> _TypeDefinitionClientCapabilities = Obj.magic
         and _TypeDefinitionClientCapabilities_to_js :
@@ -38,7 +38,7 @@ module Internal =
         and _TypeDefinitionRequest_HandlerSignature_of_js :
           Ojs.t -> _TypeDefinitionRequest_HandlerSignature =
           fun (x8 : Ojs.t) ->
-            RequestHandler.t_3_of_js _TypeDefinitionParams_of_js
+            RequestHandler.t_of_js _TypeDefinitionParams_of_js
               (fun (x10 : Ojs.t) ->
                  or_null_of_js
                    (fun (x11 : Ojs.t) ->
@@ -50,9 +50,9 @@ module Internal =
             (x1 :
               (_TypeDefinitionParams,
                 (Definition.t, DefinitionLink.t) or_array or_null, unit)
-                RequestHandler.t_3)
+                RequestHandler.t)
             ->
-            RequestHandler.t_3_to_js _TypeDefinitionParams_to_js
+            RequestHandler.t_to_js _TypeDefinitionParams_to_js
               (fun (x3 : (Definition.t, DefinitionLink.t) or_array or_null)
                  ->
                  or_null_to_js
@@ -141,9 +141,9 @@ module TypeDefinitionRequest =
       (_TypeDefinitionParams,
         (Location.t, (Location.t, LocationLink.t) union2) or_array or_null,
         (Location.t, LocationLink.t) union2 list, unit,
-        _TypeDefinitionRegistrationOptions) ProtocolRequestType.t_5)
+        _TypeDefinitionRegistrationOptions) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_5_of_js _TypeDefinitionParams_of_js
+      ProtocolRequestType.t_of_js _TypeDefinitionParams_of_js
         (fun (x38 : Ojs.t) ->
            or_null_of_js
              (fun (x39 : Ojs.t) ->

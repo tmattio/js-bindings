@@ -206,25 +206,25 @@ module FileOperationsMiddleware =
       fun (x13 : _FileOperationsMiddleware) ->
         _FileOperationsMiddleware_to_js x13
     let (get_didCreateFiles :
-      t -> (Code.FileCreateEvent.t, unit) NextSignature.t_2) =
+      t -> (Code.FileCreateEvent.t, unit) NextSignature.t) =
       fun (x15 : t) ->
-        NextSignature.t_2_of_js Code.FileCreateEvent.t_of_js Ojs.unit_of_js
+        NextSignature.t_of_js Code.FileCreateEvent.t_of_js Ojs.unit_of_js
           (Ojs.get_prop_ascii (t_to_js x15) "didCreateFiles")
     let (set_didCreateFiles :
-      t -> (Code.FileCreateEvent.t, unit) NextSignature.t_2 -> unit) =
+      t -> (Code.FileCreateEvent.t, unit) NextSignature.t -> unit) =
       fun (x18 : t) ->
-        fun (x19 : (Code.FileCreateEvent.t, unit) NextSignature.t_2) ->
+        fun (x19 : (Code.FileCreateEvent.t, unit) NextSignature.t) ->
           Ojs.set_prop_ascii (t_to_js x18) "didCreateFiles"
-            (NextSignature.t_2_to_js Code.FileCreateEvent.t_to_js
+            (NextSignature.t_to_js Code.FileCreateEvent.t_to_js
                Ojs.unit_to_js x19)
     let (get_willCreateFiles :
       t ->
         (Code.FileCreateEvent.t,
           Code.WorkspaceEdit.t or_null_or_undefined Promise.t)
-          NextSignature.t_2)
+          NextSignature.t)
       =
       fun (x22 : t) ->
-        NextSignature.t_2_of_js Code.FileCreateEvent.t_of_js
+        NextSignature.t_of_js Code.FileCreateEvent.t_of_js
           (fun (x24 : Ojs.t) ->
              Promise.t_of_js
                (fun (x25 : Ojs.t) ->
@@ -234,17 +234,17 @@ module FileOperationsMiddleware =
       t ->
         (Code.FileCreateEvent.t,
           Code.WorkspaceEdit.t or_null_or_undefined Promise.t)
-          NextSignature.t_2 -> unit)
+          NextSignature.t -> unit)
       =
       fun (x27 : t) ->
         fun
           (x28 :
             (Code.FileCreateEvent.t,
               Code.WorkspaceEdit.t or_null_or_undefined Promise.t)
-              NextSignature.t_2)
+              NextSignature.t)
           ->
           Ojs.set_prop_ascii (t_to_js x27) "willCreateFiles"
-            (NextSignature.t_2_to_js Code.FileCreateEvent.t_to_js
+            (NextSignature.t_to_js Code.FileCreateEvent.t_to_js
                (fun
                   (x30 : Code.WorkspaceEdit.t or_null_or_undefined Promise.t)
                   ->
@@ -253,25 +253,25 @@ module FileOperationsMiddleware =
                        or_null_or_undefined_to_js Code.WorkspaceEdit.t_to_js
                          x31) x30) x28)
     let (get_didRenameFiles :
-      t -> (Code.FileRenameEvent.t, unit) NextSignature.t_2) =
+      t -> (Code.FileRenameEvent.t, unit) NextSignature.t) =
       fun (x33 : t) ->
-        NextSignature.t_2_of_js Code.FileRenameEvent.t_of_js Ojs.unit_of_js
+        NextSignature.t_of_js Code.FileRenameEvent.t_of_js Ojs.unit_of_js
           (Ojs.get_prop_ascii (t_to_js x33) "didRenameFiles")
     let (set_didRenameFiles :
-      t -> (Code.FileRenameEvent.t, unit) NextSignature.t_2 -> unit) =
+      t -> (Code.FileRenameEvent.t, unit) NextSignature.t -> unit) =
       fun (x36 : t) ->
-        fun (x37 : (Code.FileRenameEvent.t, unit) NextSignature.t_2) ->
+        fun (x37 : (Code.FileRenameEvent.t, unit) NextSignature.t) ->
           Ojs.set_prop_ascii (t_to_js x36) "didRenameFiles"
-            (NextSignature.t_2_to_js Code.FileRenameEvent.t_to_js
+            (NextSignature.t_to_js Code.FileRenameEvent.t_to_js
                Ojs.unit_to_js x37)
     let (get_willRenameFiles :
       t ->
         (Code.FileRenameEvent.t,
           Code.WorkspaceEdit.t or_null_or_undefined Promise.t)
-          NextSignature.t_2)
+          NextSignature.t)
       =
       fun (x40 : t) ->
-        NextSignature.t_2_of_js Code.FileRenameEvent.t_of_js
+        NextSignature.t_of_js Code.FileRenameEvent.t_of_js
           (fun (x42 : Ojs.t) ->
              Promise.t_of_js
                (fun (x43 : Ojs.t) ->
@@ -281,17 +281,17 @@ module FileOperationsMiddleware =
       t ->
         (Code.FileRenameEvent.t,
           Code.WorkspaceEdit.t or_null_or_undefined Promise.t)
-          NextSignature.t_2 -> unit)
+          NextSignature.t -> unit)
       =
       fun (x45 : t) ->
         fun
           (x46 :
             (Code.FileRenameEvent.t,
               Code.WorkspaceEdit.t or_null_or_undefined Promise.t)
-              NextSignature.t_2)
+              NextSignature.t)
           ->
           Ojs.set_prop_ascii (t_to_js x45) "willRenameFiles"
-            (NextSignature.t_2_to_js Code.FileRenameEvent.t_to_js
+            (NextSignature.t_to_js Code.FileRenameEvent.t_to_js
                (fun
                   (x48 : Code.WorkspaceEdit.t or_null_or_undefined Promise.t)
                   ->
@@ -300,25 +300,25 @@ module FileOperationsMiddleware =
                        or_null_or_undefined_to_js Code.WorkspaceEdit.t_to_js
                          x49) x48) x46)
     let (get_didDeleteFiles :
-      t -> (Code.FileDeleteEvent.t, unit) NextSignature.t_2) =
+      t -> (Code.FileDeleteEvent.t, unit) NextSignature.t) =
       fun (x51 : t) ->
-        NextSignature.t_2_of_js Code.FileDeleteEvent.t_of_js Ojs.unit_of_js
+        NextSignature.t_of_js Code.FileDeleteEvent.t_of_js Ojs.unit_of_js
           (Ojs.get_prop_ascii (t_to_js x51) "didDeleteFiles")
     let (set_didDeleteFiles :
-      t -> (Code.FileDeleteEvent.t, unit) NextSignature.t_2 -> unit) =
+      t -> (Code.FileDeleteEvent.t, unit) NextSignature.t -> unit) =
       fun (x54 : t) ->
-        fun (x55 : (Code.FileDeleteEvent.t, unit) NextSignature.t_2) ->
+        fun (x55 : (Code.FileDeleteEvent.t, unit) NextSignature.t) ->
           Ojs.set_prop_ascii (t_to_js x54) "didDeleteFiles"
-            (NextSignature.t_2_to_js Code.FileDeleteEvent.t_to_js
+            (NextSignature.t_to_js Code.FileDeleteEvent.t_to_js
                Ojs.unit_to_js x55)
     let (get_willDeleteFiles :
       t ->
         (Code.FileDeleteEvent.t,
           Code.WorkspaceEdit.t or_null_or_undefined Promise.t)
-          NextSignature.t_2)
+          NextSignature.t)
       =
       fun (x58 : t) ->
-        NextSignature.t_2_of_js Code.FileDeleteEvent.t_of_js
+        NextSignature.t_of_js Code.FileDeleteEvent.t_of_js
           (fun (x60 : Ojs.t) ->
              Promise.t_of_js
                (fun (x61 : Ojs.t) ->
@@ -328,17 +328,17 @@ module FileOperationsMiddleware =
       t ->
         (Code.FileDeleteEvent.t,
           Code.WorkspaceEdit.t or_null_or_undefined Promise.t)
-          NextSignature.t_2 -> unit)
+          NextSignature.t -> unit)
       =
       fun (x63 : t) ->
         fun
           (x64 :
             (Code.FileDeleteEvent.t,
               Code.WorkspaceEdit.t or_null_or_undefined Promise.t)
-              NextSignature.t_2)
+              NextSignature.t)
           ->
           Ojs.set_prop_ascii (t_to_js x63) "willDeleteFiles"
-            (NextSignature.t_2_to_js Code.FileDeleteEvent.t_to_js
+            (NextSignature.t_to_js Code.FileDeleteEvent.t_to_js
                (fun
                   (x66 : Code.WorkspaceEdit.t or_null_or_undefined Promise.t)
                   ->
@@ -446,34 +446,34 @@ module FileOperationFeature =
             (any_to_js x128)
     let (create :
       client:BaseLanguageClient.t ->
-        event:'E Code.Event.t_1 ->
+        event:'E Code.Event.t ->
           registrationType:Proto.FileOperationRegistrationOptions.t
-            Proto.RegistrationType.t_1 ->
+            Proto.RegistrationType.t ->
             clientCapability:any -> serverCapability:any -> ('I, 'E) t)
       =
       fun ~client:(x131 : BaseLanguageClient.t) ->
-        fun ~event:(x132 : 'E Code.Event.t_1) ->
+        fun ~event:(x132 : 'E Code.Event.t) ->
           fun
             ~registrationType:(x134 :
                                 Proto.FileOperationRegistrationOptions.t
-                                  Proto.RegistrationType.t_1)
+                                  Proto.RegistrationType.t)
             ->
             fun ~clientCapability:(x136 : any) ->
               fun ~serverCapability:(x137 : any) ->
                 t_of_js Obj.magic Obj.magic
                   (Ojs.new_obj
                      (Ojs.get_prop_ascii Ojs.global "FileOperationFeature")
-                     [|(BaseLanguageClient.t_to_js x131);(Code.Event.t_1_to_js
+                     [|(BaseLanguageClient.t_to_js x131);(Code.Event.t_to_js
                                                             Obj.magic x132);(
-                       Proto.RegistrationType.t_1_to_js
+                       Proto.RegistrationType.t_to_js
                          Proto.FileOperationRegistrationOptions.t_to_js x134);(
                        any_to_js x136);(any_to_js x137)|])
     let (get_registrationType :
       ('I, 'E) t ->
-        Proto.FileOperationRegistrationOptions.t Proto.RegistrationType.t_1)
+        Proto.FileOperationRegistrationOptions.t Proto.RegistrationType.t)
       =
       fun (x140 : ('I, 'E) t) ->
-        Proto.RegistrationType.t_1_of_js
+        Proto.RegistrationType.t_of_js
           Proto.FileOperationRegistrationOptions.t_of_js
           (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x140)
              "registrationType")
@@ -494,18 +494,17 @@ module FileOperationFeature =
                [|(Proto.ServerCapabilities.t_to_js x148)|])
     let (register :
       ('I, 'E) t ->
-        data:Proto.FileOperationRegistrationOptions.t RegistrationData.t_1 ->
+        data:Proto.FileOperationRegistrationOptions.t RegistrationData.t ->
           unit)
       =
       fun (x154 : ('I, 'E) t) ->
         fun
           ~data:(x152 :
-                  Proto.FileOperationRegistrationOptions.t
-                    RegistrationData.t_1)
+                  Proto.FileOperationRegistrationOptions.t RegistrationData.t)
           ->
           ignore
             (Ojs.call (t_to_js Obj.magic Obj.magic x154) "register"
-               [|(RegistrationData.t_1_to_js
+               [|(RegistrationData.t_to_js
                     Proto.FileOperationRegistrationOptions.t_to_js x152)|])
     let (send : ('I, 'E) t -> data:'E -> unit Promise.t) =
       fun (x158 : ('I, 'E) t) ->
@@ -556,12 +555,10 @@ module FileOperationFeature =
           (Ojs.get_prop_ascii Ojs.global "FileOperationFeature")
           "asMinimatchOptions" (any_to_js x177)
     let (cast :
-      ('I, 'E) t ->
-        Proto.FileOperationRegistrationOptions.t DynamicFeature.t_1)
+      ('I, 'E) t -> Proto.FileOperationRegistrationOptions.t DynamicFeature.t)
       =
       fun (x178 : ('I, 'E) t) ->
-        DynamicFeature.t_1_of_js
-          Proto.FileOperationRegistrationOptions.t_of_js
+        DynamicFeature.t_of_js Proto.FileOperationRegistrationOptions.t_of_js
           (t_to_js Obj.magic Obj.magic x178)
   end
 module NotificationFileOperationFeature =
@@ -621,21 +618,21 @@ module NotificationFileOperationFeature =
             "_createParams" (any_to_js x213)
     let (create :
       client:BaseLanguageClient.t ->
-        event:'E Code.Event.t_1 ->
+        event:'E Code.Event.t ->
           notificationType:('P, Proto.FileOperationRegistrationOptions.t)
-            Proto.ProtocolNotificationType.t_2 ->
+            Proto.ProtocolNotificationType.t ->
             clientCapability:any ->
               serverCapability:any ->
                 accessUri:(i:'I -> Code.Uri.t) ->
                   createParams:(e:'E -> 'P) -> ('I, 'E, 'P) t)
       =
       fun ~client:(x217 : BaseLanguageClient.t) ->
-        fun ~event:(x218 : 'E Code.Event.t_1) ->
+        fun ~event:(x218 : 'E Code.Event.t) ->
           fun
             ~notificationType:(x220 :
                                 ('P,
                                   Proto.FileOperationRegistrationOptions.t)
-                                  Proto.ProtocolNotificationType.t_2)
+                                  Proto.ProtocolNotificationType.t)
             ->
             fun ~clientCapability:(x223 : any) ->
               fun ~serverCapability:(x224 : any) ->
@@ -645,10 +642,10 @@ module NotificationFileOperationFeature =
                       (Ojs.new_obj
                          (Ojs.get_prop_ascii Ojs.global
                             "NotificationFileOperationFeature")
-                         [|(BaseLanguageClient.t_to_js x217);(Code.Event.t_1_to_js
+                         [|(BaseLanguageClient.t_to_js x217);(Code.Event.t_to_js
                                                                 Obj.magic
                                                                 x218);(
-                           Proto.ProtocolNotificationType.t_2_to_js Obj.magic
+                           Proto.ProtocolNotificationType.t_to_js Obj.magic
                              Proto.FileOperationRegistrationOptions.t_to_js
                              x220);(any_to_js x223);(any_to_js x224);(
                            Ojs.fun_to_js 1
@@ -885,22 +882,22 @@ module RequestFileOperationFeature =
             "_createParams" (any_to_js x330)
     let (create :
       client:BaseLanguageClient.t ->
-        event:'E Code.Event.t_1 ->
+        event:'E Code.Event.t ->
           requestType:('P, Proto.WorkspaceEdit.t or_null, never, unit,
             Proto.FileOperationRegistrationOptions.t)
-            Proto.ProtocolRequestType.t_5 ->
+            Proto.ProtocolRequestType.t ->
             clientCapability:any ->
               serverCapability:any ->
                 accessUri:(i:'I -> Code.Uri.t) ->
                   createParams:(e:'I _Event -> 'P) -> ('I, 'E, 'P) t)
       =
       fun ~client:(x334 : BaseLanguageClient.t) ->
-        fun ~event:(x335 : 'E Code.Event.t_1) ->
+        fun ~event:(x335 : 'E Code.Event.t) ->
           fun
             ~requestType:(x337 :
                            ('P, Proto.WorkspaceEdit.t or_null, never, 
                              unit, Proto.FileOperationRegistrationOptions.t)
-                             Proto.ProtocolRequestType.t_5)
+                             Proto.ProtocolRequestType.t)
             ->
             fun ~clientCapability:(x344 : any) ->
               fun ~serverCapability:(x345 : any) ->
@@ -910,10 +907,10 @@ module RequestFileOperationFeature =
                       (Ojs.new_obj
                          (Ojs.get_prop_ascii Ojs.global
                             "RequestFileOperationFeature")
-                         [|(BaseLanguageClient.t_to_js x334);(Code.Event.t_1_to_js
+                         [|(BaseLanguageClient.t_to_js x334);(Code.Event.t_to_js
                                                                 Obj.magic
                                                                 x335);(
-                           Proto.ProtocolRequestType.t_5_to_js Obj.magic
+                           Proto.ProtocolRequestType.t_to_js Obj.magic
                              (fun (x339 : Proto.WorkspaceEdit.t or_null) ->
                                 or_null_to_js Proto.WorkspaceEdit.t_to_js
                                   x339) never_to_js Ojs.unit_to_js
