@@ -1,0 +1,5 @@
+(executable
+ (name promise)
+ (modules promise)
+ (libraries es2020)
+ (modes js))

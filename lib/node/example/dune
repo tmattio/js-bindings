@@ -1,10 +1,4 @@
 (executable
- (name promise)
- (modules promise)
- (libraries es2020)
- (modes js))
-
-(executable
  (name download_file)
  (modules download_file)
  (libraries node)
