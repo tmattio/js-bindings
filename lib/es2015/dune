@@ -9,64 +9,64 @@
    -58)))
 
 (rule
- (target es2015.ml)
- (deps gen/es2015.ml)
+ (targets es2015.ml)
+ (deps lib/es2015.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target es2015_collection.ml)
- (deps gen/es2015_collection.ml)
+ (targets es2015_collection.ml)
+ (deps lib/es2015_collection.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target es2015_core.ml)
- (deps gen/es2015_core.ml)
+ (targets es2015_core.ml)
+ (deps lib/es2015_core.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target es2015_generator.ml)
- (deps gen/es2015_generator.ml)
+ (targets es2015_generator.ml)
+ (deps lib/es2015_generator.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target es2015_iterable.ml)
- (deps gen/es2015_iterable.ml)
+ (targets es2015_iterable.ml)
+ (deps lib/es2015_iterable.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target es2015_promise.ml)
- (deps gen/es2015_promise.ml)
+ (targets es2015_promise.ml)
+ (deps lib/es2015_promise.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target es2015_proxy.ml)
- (deps gen/es2015_proxy.ml)
+ (targets es2015_proxy.ml)
+ (deps lib/es2015_proxy.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target es2015_reflect.ml)
- (deps gen/es2015_reflect.ml)
+ (targets es2015_reflect.ml)
+ (deps lib/es2015_reflect.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target es2015_symbol.ml)
- (deps gen/es2015_symbol.ml)
+ (targets es2015_symbol.ml)
+ (deps lib/es2015_symbol.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))

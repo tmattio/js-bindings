@@ -5,8 +5,8 @@
  (modes byte))
 
 (rule
- (target vscode.ml)
- (deps gen/vscode.ml)
+ (targets vscode.ml)
+ (deps lib/vscode.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))

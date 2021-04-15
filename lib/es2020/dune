@@ -10,50 +10,50 @@
    -58-60)))
 
 (rule
- (target es2020_bigint.ml)
- (deps gen/es2020_bigint.ml)
+ (targets es2020_bigint.ml)
+ (deps lib/es2020_bigint.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target es2020.ml)
- (deps gen/es2020.ml)
+ (targets es2020.ml)
+ (deps lib/es2020.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target es2020_intl.ml)
- (deps gen/es2020_intl.ml)
+ (targets es2020_intl.ml)
+ (deps lib/es2020_intl.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target es2020_promise.ml)
- (deps gen/es2020_promise.ml)
+ (targets es2020_promise.ml)
+ (deps lib/es2020_promise.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target es2020_sharedmemory.ml)
- (deps gen/es2020_sharedmemory.ml)
+ (targets es2020_sharedmemory.ml)
+ (deps lib/es2020_sharedmemory.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target es2020_string.ml)
- (deps gen/es2020_string.ml)
+ (targets es2020_string.ml)
+ (deps lib/es2020_string.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target es2020_symbol_wellknown.ml)
- (deps gen/es2020_symbol_wellknown.ml)
+ (targets es2020_symbol_wellknown.ml)
+ (deps lib/es2020_symbol_wellknown.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))

@@ -10,43 +10,43 @@
    -58-60)))
 
 (rule
- (target es2017.ml)
- (deps gen/es2017.ml)
+ (targets es2017.ml)
+ (deps lib/es2017.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target es2017_intl.ml)
- (deps gen/es2017_intl.ml)
+ (targets es2017_intl.ml)
+ (deps lib/es2017_intl.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target es2017_object.ml)
- (deps gen/es2017_object.ml)
+ (targets es2017_object.ml)
+ (deps lib/es2017_object.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target es2017_sharedmemory.ml)
- (deps gen/es2017_sharedmemory.ml)
+ (targets es2017_sharedmemory.ml)
+ (deps lib/es2017_sharedmemory.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target es2017_string.ml)
- (deps gen/es2017_string.ml)
+ (targets es2017_string.ml)
+ (deps lib/es2017_string.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target es2017_typedarrays.ml)
- (deps gen/es2017_typedarrays.ml)
+ (targets es2017_typedarrays.ml)
+ (deps lib/es2017_typedarrays.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))

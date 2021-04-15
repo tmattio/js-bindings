@@ -12,309 +12,309 @@
    -16)))
 
 (rule
- (target node.ml)
- (deps gen/node.ml)
+ (targets node.ml)
+ (deps lib/node.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target assert.ml)
- (deps gen/assert.ml)
+ (targets assert.ml)
+ (deps lib/assert.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target async_hooks.ml)
- (deps gen/async_hooks.ml)
+ (targets async_hooks.ml)
+ (deps lib/async_hooks.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target buffer.ml)
- (deps gen/buffer.ml)
+ (targets buffer.ml)
+ (deps lib/buffer.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target child_process.ml)
- (deps gen/child_process.ml)
+ (targets child_process.ml)
+ (deps lib/child_process.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target cluster.ml)
- (deps gen/cluster.ml)
+ (targets cluster.ml)
+ (deps lib/cluster.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target console.ml)
- (deps gen/console.ml)
+ (targets console.ml)
+ (deps lib/console.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target constants.ml)
- (deps gen/constants.ml)
+ (targets constants.ml)
+ (deps lib/constants.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target crypto.ml)
- (deps gen/crypto.ml)
+ (targets crypto.ml)
+ (deps lib/crypto.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target dgram.ml)
- (deps gen/dgram.ml)
+ (targets dgram.ml)
+ (deps lib/dgram.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target dns.ml)
- (deps gen/dns.ml)
+ (targets dns.ml)
+ (deps lib/dns.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target domain.ml)
- (deps gen/domain.ml)
+ (targets domain.ml)
+ (deps lib/domain.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target events.ml)
- (deps gen/events.ml)
+ (targets events.ml)
+ (deps lib/events.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target fs.ml)
- (deps gen/fs.ml)
+ (targets fs.ml)
+ (deps lib/fs.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target fs_promises.ml)
- (deps gen/fs_promises.ml)
+ (targets fs_promises.ml)
+ (deps lib/fs_promises.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target globals.ml)
- (deps gen/globals.ml)
+ (targets globals.ml)
+ (deps lib/globals.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target http.ml)
- (deps gen/http.ml)
+ (targets http.ml)
+ (deps lib/http.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target http2.ml)
- (deps gen/http2.ml)
+ (targets http2.ml)
+ (deps lib/http2.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target https.ml)
- (deps gen/https.ml)
+ (targets https.ml)
+ (deps lib/https.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target import.ml)
- (deps gen/import.ml)
+ (targets import.ml)
+ (deps lib/import.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target inspector.ml)
- (deps gen/inspector.ml)
+ (targets inspector.ml)
+ (deps lib/inspector.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target module.ml)
- (deps gen/module.ml)
+ (targets module.ml)
+ (deps lib/module.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target net.ml)
- (deps gen/net.ml)
+ (targets net.ml)
+ (deps lib/net.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target os.ml)
- (deps gen/os.ml)
+ (targets os.ml)
+ (deps lib/os.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target path.ml)
- (deps gen/path.ml)
+ (targets path.ml)
+ (deps lib/path.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target perf_hooks.ml)
- (deps gen/perf_hooks.ml)
+ (targets perf_hooks.ml)
+ (deps lib/perf_hooks.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target process.ml)
- (deps gen/process.ml)
+ (targets process.ml)
+ (deps lib/process.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target punycode.ml)
- (deps gen/punycode.ml)
+ (targets punycode.ml)
+ (deps lib/punycode.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target querystring.ml)
- (deps gen/querystring.ml)
+ (targets querystring.ml)
+ (deps lib/querystring.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target readline.ml)
- (deps gen/readline.ml)
+ (targets readline.ml)
+ (deps lib/readline.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target repl.ml)
- (deps gen/repl.ml)
+ (targets repl.ml)
+ (deps lib/repl.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target stream.ml)
- (deps gen/stream.ml)
+ (targets stream.ml)
+ (deps lib/stream.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target string_decoder.ml)
- (deps gen/string_decoder.ml)
+ (targets string_decoder.ml)
+ (deps lib/string_decoder.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target timers.ml)
- (deps gen/timers.ml)
+ (targets timers.ml)
+ (deps lib/timers.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target tls.ml)
- (deps gen/tls.ml)
+ (targets tls.ml)
+ (deps lib/tls.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target trace_events.ml)
- (deps gen/trace_events.ml)
+ (targets trace_events.ml)
+ (deps lib/trace_events.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target tty.ml)
- (deps gen/tty.ml)
+ (targets tty.ml)
+ (deps lib/tty.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target url.ml)
- (deps gen/url.ml)
+ (targets url.ml)
+ (deps lib/url.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target util.ml)
- (deps gen/util.ml)
+ (targets util.ml)
+ (deps lib/util.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target v8.ml)
- (deps gen/v8.ml)
+ (targets v8.ml)
+ (deps lib/v8.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target vm.ml)
- (deps gen/vm.ml)
+ (targets vm.ml)
+ (deps lib/vm.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target wasi.ml)
- (deps gen/wasi.ml)
+ (targets wasi.ml)
+ (deps lib/wasi.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target worker_threads.ml)
- (deps gen/worker_threads.ml)
+ (targets worker_threads.ml)
+ (deps lib/worker_threads.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
 
 (rule
- (target zlib.ml)
- (deps gen/zlib.ml)
+ (targets zlib.ml)
+ (deps lib/zlib.mli)
  (mode promote)
  (action
-  (copy %{deps} %{target})))
+  (run %{bin:gen_js_api} %{deps} -o {%targets})))
