@@ -10,14 +10,14 @@
 
 (rule
  (targets es2016.ml)
- (deps lib/es2016.mli)
+ (deps intf/es2016.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2016_array_include.ml)
- (deps lib/es2016_array_include.mli)
+ (deps intf/es2016_array_include.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))

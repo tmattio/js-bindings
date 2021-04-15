@@ -6,7 +6,7 @@
 
 (rule
  (targets vscode.ml)
- (deps lib/vscode.mli)
+ (deps intf/vscode.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
