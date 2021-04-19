@@ -2,83 +2,52 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2017
-module Internal =
-  struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _RegExp = regexp
-        and _RegExpExecArray = [ `RegExpExecArray ] intf
-        and _RegExpMatchArray = [ `RegExpMatchArray ] intf
-        let rec _RegExp_of_js : Ojs.t -> _RegExp =
-          fun (x2 : Ojs.t) -> regexp_of_js x2
-        and _RegExp_to_js : _RegExp -> Ojs.t =
-          fun (x1 : regexp) -> regexp_to_js x1
-        and _RegExpExecArray_of_js : Ojs.t -> _RegExpExecArray = Obj.magic
-        and _RegExpExecArray_to_js : _RegExpExecArray -> Ojs.t = Obj.magic
-        and _RegExpMatchArray_of_js : Ojs.t -> _RegExpMatchArray = Obj.magic
-        and _RegExpMatchArray_to_js : _RegExpMatchArray -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x4 : Ojs.t) -> anonymous_interface_0_of_js x4
-    and t_to_js : t -> Ojs.t =
-      fun (x3 : anonymous_interface_0) -> anonymous_interface_0_to_js x3
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get : t -> string -> string) =
+      fun (x3 : t) ->
+        fun (x4 : string) ->
+          Ojs.string_of_js (Ojs.get_prop (t_to_js x3) (Ojs.string_to_js x4))
+    let (set : t -> string -> string -> unit) =
       fun (x5 : t) ->
         fun (x6 : string) ->
-          Ojs.string_of_js (Ojs.get_prop (t_to_js x5) (Ojs.string_to_js x6))
-    let (set : t -> string -> string -> unit) =
-      fun (x7 : t) ->
-        fun (x8 : string) ->
-          fun (x9 : string) ->
-            Ojs.set_prop (t_to_js x7) (Ojs.string_to_js x8)
-              (Ojs.string_to_js x9)
+          fun (x7 : string) ->
+            Ojs.set_prop (t_to_js x5) (Ojs.string_to_js x6)
+              (Ojs.string_to_js x7)
   end
 module RegExpMatchArray =
   struct
     include struct include RegExpMatchArray end
-    let (get_groups : t -> anonymous_interface_0) =
-      fun (x10 : t) ->
-        anonymous_interface_0_of_js
-          (Ojs.get_prop_ascii (t_to_js x10) "groups")
-    let (set_groups : t -> anonymous_interface_0 -> unit) =
-      fun (x11 : t) ->
-        fun (x12 : anonymous_interface_0) ->
-          Ojs.set_prop_ascii (t_to_js x11) "groups"
-            (anonymous_interface_0_to_js x12)
+    let (get_groups : t -> AnonymousInterface0.t) =
+      fun (x8 : t) ->
+        AnonymousInterface0.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x8) "groups")
+    let (set_groups : t -> AnonymousInterface0.t -> unit) =
+      fun (x9 : t) ->
+        fun (x10 : AnonymousInterface0.t) ->
+          Ojs.set_prop_ascii (t_to_js x9) "groups"
+            (AnonymousInterface0.t_to_js x10)
   end
 module RegExpExecArray =
   struct
     include struct include RegExpExecArray end
-    let (get_groups : t -> anonymous_interface_0) =
-      fun (x13 : t) ->
-        anonymous_interface_0_of_js
-          (Ojs.get_prop_ascii (t_to_js x13) "groups")
-    let (set_groups : t -> anonymous_interface_0 -> unit) =
-      fun (x14 : t) ->
-        fun (x15 : anonymous_interface_0) ->
-          Ojs.set_prop_ascii (t_to_js x14) "groups"
-            (anonymous_interface_0_to_js x15)
+    let (get_groups : t -> AnonymousInterface0.t) =
+      fun (x11 : t) ->
+        AnonymousInterface0.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x11) "groups")
+    let (set_groups : t -> AnonymousInterface0.t -> unit) =
+      fun (x12 : t) ->
+        fun (x13 : AnonymousInterface0.t) ->
+          Ojs.set_prop_ascii (t_to_js x12) "groups"
+            (AnonymousInterface0.t_to_js x13)
   end
 module RegExp =
   struct
     include struct include RegExp end
     let (get_dotAll : t -> bool) =
-      fun (x16 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x16) "dotAll")
+      fun (x14 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x14) "dotAll")
   end

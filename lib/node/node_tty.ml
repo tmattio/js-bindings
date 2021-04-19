@@ -53,10 +53,9 @@ module AnonymousInterface0 =
 module Tty =
   struct
     open Node_net
-    let (isatty : fd:float -> bool) =
-      fun ~fd:(x6 : float) ->
-        Ojs.bool_of_js
-          (Ojs.call Import.tty "isatty" [|(Ojs.float_to_js x6)|])
+    let (isatty : fd:int -> bool) =
+      fun ~fd:(x6 : int) ->
+        Ojs.bool_of_js (Ojs.call Import.tty "isatty" [|(Ojs.int_to_js x6)|])
     module ReadStream =
       struct
         type t = tty_ReadStream
@@ -65,8 +64,8 @@ module Tty =
         and t_to_js : t -> Ojs.t =
           fun (x7 : tty_ReadStream) -> tty_ReadStream_to_js x7
         let (create :
-          fd:float -> ?options:Net.SocketConstructorOpts.t -> unit -> t) =
-          fun ~fd:(x9 : float) ->
+          fd:int -> ?options:Net.SocketConstructorOpts.t -> unit -> t) =
+          fun ~fd:(x9 : int) ->
             fun ?options:(x10 : Net.SocketConstructorOpts.t option) ->
               fun () ->
                 t_of_js
@@ -75,7 +74,7 @@ module Tty =
                      (let x11 =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
-                      ignore (Ojs.call x11 "push" [|(Ojs.float_to_js x9)|]);
+                      ignore (Ojs.call x11 "push" [|(Ojs.int_to_js x9)|]);
                       (match x10 with
                        | Some x12 ->
                            ignore
@@ -120,11 +119,11 @@ module Tty =
           fun (x25 : Ojs.t) -> tty_WriteStream_of_js x25
         and t_to_js : t -> Ojs.t =
           fun (x24 : tty_WriteStream) -> tty_WriteStream_to_js x24
-        let (create : fd:float -> t) =
-          fun ~fd:(x26 : float) ->
+        let (create : fd:int -> t) =
+          fun ~fd:(x26 : int) ->
             t_of_js
               (Ojs.new_obj (Ojs.get_prop_ascii Import.tty "WriteStream")
-                 [|(Ojs.float_to_js x26)|])
+                 [|(Ojs.int_to_js x26)|])
         let (addListener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
           fun (x31 : t) ->
@@ -320,12 +319,10 @@ module Tty =
                               | None -> ());
                              x83))|])
         let (cursorTo :
-          t ->
-            x:float -> ?y:float -> ?callback:(unit -> unit) -> unit -> bool)
-          =
+          t -> x:int -> ?y:int -> ?callback:(unit -> unit) -> unit -> bool) =
           fun (x93 : t) ->
-            fun ~x:(x87 : float) ->
-              fun ?y:(x88 : float option) ->
+            fun ~x:(x87 : int) ->
+              fun ?y:(x88 : int option) ->
                 fun ?callback:(x89 : (unit -> unit) option) ->
                   fun () ->
                     Ojs.bool_of_js
@@ -337,12 +334,12 @@ module Tty =
                                      [||] in
                                  ignore
                                    (Ojs.call x90 "push"
-                                      [|(Ojs.float_to_js x87)|]);
+                                      [|(Ojs.int_to_js x87)|]);
                                  (match x88 with
                                   | Some x92 ->
                                       ignore
                                         (Ojs.call x90 "push"
-                                           [|(Ojs.float_to_js x92)|])
+                                           [|(Ojs.int_to_js x92)|])
                                   | None -> ());
                                  (match x89 with
                                   | Some x91 ->
@@ -352,21 +349,19 @@ module Tty =
                                                 (fun _ -> x91 ()))|])
                                   | None -> ());
                                  x90))|])
-        let (cursorTo' : t -> x:float -> callback:(unit -> unit) -> bool) =
+        let (cursorTo' : t -> x:int -> callback:(unit -> unit) -> bool) =
           fun (x97 : t) ->
-            fun ~x:(x95 : float) ->
+            fun ~x:(x95 : int) ->
               fun ~callback:(x96 : unit -> unit) ->
                 Ojs.bool_of_js
                   (Ojs.call (t_to_js x97) "cursorTo"
-                     [|(Ojs.float_to_js x95);(Ojs.fun_to_js 1
-                                                (fun _ -> x96 ()))|])
+                     [|(Ojs.int_to_js x95);(Ojs.fun_to_js 1 (fun _ -> x96 ()))|])
         let (moveCursor :
-          t ->
-            dx:float -> dy:float -> ?callback:(unit -> unit) -> unit -> bool)
+          t -> dx:int -> dy:int -> ?callback:(unit -> unit) -> unit -> bool)
           =
           fun (x103 : t) ->
-            fun ~dx:(x98 : float) ->
-              fun ~dy:(x99 : float) ->
+            fun ~dx:(x98 : int) ->
+              fun ~dy:(x99 : int) ->
                 fun ?callback:(x100 : (unit -> unit) option) ->
                   fun () ->
                     Ojs.bool_of_js
@@ -379,10 +374,10 @@ module Tty =
                                       [||] in
                                   ignore
                                     (Ojs.call x101 "push"
-                                       [|(Ojs.float_to_js x98)|]);
+                                       [|(Ojs.int_to_js x98)|]);
                                   ignore
                                     (Ojs.call x101 "push"
-                                       [|(Ojs.float_to_js x99)|]);
+                                       [|(Ojs.int_to_js x99)|]);
                                   (match x100 with
                                    | Some x102 ->
                                        ignore
@@ -391,12 +386,12 @@ module Tty =
                                                  (fun _ -> x102 ()))|])
                                    | None -> ());
                                   x101))|])
-        let (getColorDepth :
-          t -> ?env:anonymous_interface_0 -> unit -> float) =
+        let (getColorDepth : t -> ?env:anonymous_interface_0 -> unit -> int)
+          =
           fun (x108 : t) ->
             fun ?env:(x105 : anonymous_interface_0 option) ->
               fun () ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (let x109 = t_to_js x108 in
                    Ojs.call (Ojs.get_prop_ascii x109 "getColorDepth") "apply"
                      [|x109;((let x106 =
@@ -410,9 +405,9 @@ module Tty =
                                         [|(anonymous_interface_0_to_js x107)|])
                                | None -> ());
                               x106))|])
-        let (hasColors : t -> ?depth:float -> unit -> bool) =
+        let (hasColors : t -> ?depth:int -> unit -> bool) =
           fun (x113 : t) ->
-            fun ?depth:(x110 : float option) ->
+            fun ?depth:(x110 : int option) ->
               fun () ->
                 Ojs.bool_of_js
                   (let x114 = t_to_js x113 in
@@ -425,7 +420,7 @@ module Tty =
                                | Some x112 ->
                                    ignore
                                      (Ojs.call x111 "push"
-                                        [|(Ojs.float_to_js x112)|])
+                                        [|(Ojs.int_to_js x112)|])
                                | None -> ());
                               x111))|])
         let (hasColors' : t -> ?env:anonymous_interface_0 -> unit -> bool) =
@@ -447,9 +442,9 @@ module Tty =
                                | None -> ());
                               x116))|])
         let (hasColors'' :
-          t -> depth:float -> ?env:anonymous_interface_0 -> unit -> bool) =
+          t -> depth:int -> ?env:anonymous_interface_0 -> unit -> bool) =
           fun (x124 : t) ->
-            fun ~depth:(x120 : float) ->
+            fun ~depth:(x120 : int) ->
               fun ?env:(x121 : anonymous_interface_0 option) ->
                 fun () ->
                   Ojs.bool_of_js
@@ -461,7 +456,7 @@ module Tty =
                                     [||] in
                                 ignore
                                   (Ojs.call x122 "push"
-                                     [|(Ojs.float_to_js x120)|]);
+                                     [|(Ojs.int_to_js x120)|]);
                                 (match x121 with
                                  | Some x123 ->
                                      ignore
@@ -469,26 +464,26 @@ module Tty =
                                           [|(anonymous_interface_0_to_js x123)|])
                                  | None -> ());
                                 x122))|])
-        let (getWindowSize : t -> (float * float)) =
+        let (getWindowSize : t -> (int * int)) =
           fun (x126 : t) ->
             let x127 = Ojs.call (t_to_js x126) "getWindowSize" [||] in
-            ((Ojs.float_of_js (Ojs.array_get x127 0)),
-              (Ojs.float_of_js (Ojs.array_get x127 1)))
-        let (get_columns : t -> float) =
+            ((Ojs.int_of_js (Ojs.array_get x127 0)),
+              (Ojs.int_of_js (Ojs.array_get x127 1)))
+        let (get_columns : t -> int) =
           fun (x128 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x128) "columns")
-        let (set_columns : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x128) "columns")
+        let (set_columns : t -> int -> unit) =
           fun (x129 : t) ->
-            fun (x130 : float) ->
+            fun (x130 : int) ->
               Ojs.set_prop_ascii (t_to_js x129) "columns"
-                (Ojs.float_to_js x130)
-        let (get_rows : t -> float) =
+                (Ojs.int_to_js x130)
+        let (get_rows : t -> int) =
           fun (x131 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x131) "rows")
-        let (set_rows : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x131) "rows")
+        let (set_rows : t -> int -> unit) =
           fun (x132 : t) ->
-            fun (x133 : float) ->
-              Ojs.set_prop_ascii (t_to_js x132) "rows" (Ojs.float_to_js x133)
+            fun (x133 : int) ->
+              Ojs.set_prop_ascii (t_to_js x132) "rows" (Ojs.int_to_js x133)
         let (get_isTTY : t -> bool) =
           fun (x134 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x134) "isTTY")

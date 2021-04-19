@@ -6,7 +6,7 @@
 
 (rule
  (targets es5.ml)
- (deps intf/es5.mli)
+ (deps es5.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))

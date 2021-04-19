@@ -14,5 +14,8 @@ _build/
 # Local OPAM switch
 _opam/
 
+# NPM dependencies
+node_modules/
+
 # ts2ocaml
 script/ts2ocaml.js

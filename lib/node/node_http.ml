@@ -115,16 +115,16 @@ module AnonymousInterface0 =
       fun (x10 : Ojs.t) -> anonymous_interface_0_of_js x10
     and t_to_js : t -> Ojs.t =
       fun (x9 : anonymous_interface_0) -> anonymous_interface_0_to_js x9
-    let (get : t -> float -> string or_undefined) =
+    let (get : t -> int -> string or_undefined) =
       fun (x11 : t) ->
-        fun (x12 : float) ->
+        fun (x12 : int) ->
           or_undefined_of_js Ojs.string_of_js
-            (Ojs.get_prop (t_to_js x11) (Ojs.float_to_js x12))
-    let (set : t -> float -> string or_undefined -> unit) =
+            (Ojs.array_get (t_to_js x11) x12)
+    let (set : t -> int -> string or_undefined -> unit) =
       fun (x14 : t) ->
-        fun (x15 : float) ->
+        fun (x15 : int) ->
           fun (x16 : string or_undefined) ->
-            Ojs.set_prop (t_to_js x14) (Ojs.float_to_js x15)
+            Ojs.array_set (t_to_js x14) x15
               (or_undefined_to_js Ojs.string_to_js x16)
     let (get' : t -> string -> string or_undefined) =
       fun (x18 : t) ->
@@ -749,14 +749,13 @@ module Http =
             fun (x240 : string or_null) ->
               Ojs.set_prop_ascii (t_to_js x239) "hostname"
                 (or_null_to_js Ojs.string_to_js x240)
-        let (get_family : t -> float) =
+        let (get_family : t -> int) =
           fun (x242 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x242) "family")
-        let (set_family : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x242) "family")
+        let (set_family : t -> int -> unit) =
           fun (x243 : t) ->
-            fun (x244 : float) ->
-              Ojs.set_prop_ascii (t_to_js x243) "family"
-                (Ojs.float_to_js x244)
+            fun (x244 : int) ->
+              Ojs.set_prop_ascii (t_to_js x243) "family" (Ojs.int_to_js x244)
         let (get_port : t -> string or_number or_null) =
           fun (x245 : t) ->
             or_null_of_js
@@ -795,15 +794,14 @@ module Http =
             fun (x262 : string) ->
               Ojs.set_prop_ascii (t_to_js x261) "socketPath"
                 (Ojs.string_to_js x262)
-        let (get_maxHeaderSize : t -> float) =
+        let (get_maxHeaderSize : t -> int) =
           fun (x263 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x263) "maxHeaderSize")
-        let (set_maxHeaderSize : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x263) "maxHeaderSize")
+        let (set_maxHeaderSize : t -> int -> unit) =
           fun (x264 : t) ->
-            fun (x265 : float) ->
+            fun (x265 : int) ->
               Ojs.set_prop_ascii (t_to_js x264) "maxHeaderSize"
-                (Ojs.float_to_js x265)
+                (Ojs.int_to_js x265)
         let (get_method : t -> string) =
           fun (x266 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x266) "method")
@@ -857,14 +855,14 @@ module Http =
             fun (x289 : http_Agent) ->
               Ojs.set_prop_ascii (t_to_js x288) "_defaultAgent"
                 (http_Agent_to_js x289)
-        let (get_timeout : t -> float) =
+        let (get_timeout : t -> int) =
           fun (x290 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x290) "timeout")
-        let (set_timeout : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x290) "timeout")
+        let (set_timeout : t -> int -> unit) =
           fun (x291 : t) ->
-            fun (x292 : float) ->
+            fun (x292 : int) ->
               Ojs.set_prop_ascii (t_to_js x291) "timeout"
-                (Ojs.float_to_js x292)
+                (Ojs.int_to_js x292)
         let (get_setHost : t -> bool) =
           fun (x293 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x293) "setHost")
@@ -918,15 +916,14 @@ module Http =
             fun (x308 : any) ->
               Ojs.set_prop_ascii (t_to_js x307) "ServerResponse"
                 (any_to_js x308)
-        let (get_maxHeaderSize : t -> float) =
+        let (get_maxHeaderSize : t -> int) =
           fun (x309 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x309) "maxHeaderSize")
-        let (set_maxHeaderSize : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x309) "maxHeaderSize")
+        let (set_maxHeaderSize : t -> int -> unit) =
           fun (x310 : t) ->
-            fun (x311 : float) ->
+            fun (x311 : int) ->
               Ojs.set_prop_ascii (t_to_js x310) "maxHeaderSize"
-                (Ojs.float_to_js x311)
+                (Ojs.int_to_js x311)
         let (get_insecureHTTPParser : t -> bool) =
           fun (x312 : t) ->
             Ojs.bool_of_js
@@ -963,9 +960,9 @@ module Http =
         and t_to_js : t -> Ojs.t =
           fun (x320 : http_HttpBase) -> http_HttpBase_to_js x320
         let (setTimeout :
-          t -> ?msecs:float -> ?callback:(unit -> unit) -> unit -> t) =
+          t -> ?msecs:int -> ?callback:(unit -> unit) -> unit -> t) =
           fun (x327 : t) ->
-            fun ?msecs:(x322 : float option) ->
+            fun ?msecs:(x322 : int option) ->
               fun ?callback:(x323 : (unit -> unit) option) ->
                 fun () ->
                   t_of_js
@@ -979,7 +976,7 @@ module Http =
                                  | Some x326 ->
                                      ignore
                                        (Ojs.call x324 "push"
-                                          [|(Ojs.float_to_js x326)|])
+                                          [|(Ojs.int_to_js x326)|])
                                  | None -> ());
                                 (match x323 with
                                  | Some x325 ->
@@ -995,50 +992,50 @@ module Http =
               t_of_js
                 (Ojs.call (t_to_js x330) "setTimeout"
                    [|(Ojs.fun_to_js 1 (fun _ -> x329 ()))|])
-        let (get_maxHeadersCount : t -> float or_null) =
+        let (get_maxHeadersCount : t -> int or_null) =
           fun (x331 : t) ->
-            or_null_of_js Ojs.float_of_js
+            or_null_of_js Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x331) "maxHeadersCount")
-        let (set_maxHeadersCount : t -> float or_null -> unit) =
+        let (set_maxHeadersCount : t -> int or_null -> unit) =
           fun (x333 : t) ->
-            fun (x334 : float or_null) ->
+            fun (x334 : int or_null) ->
               Ojs.set_prop_ascii (t_to_js x333) "maxHeadersCount"
-                (or_null_to_js Ojs.float_to_js x334)
-        let (get_timeout : t -> float) =
+                (or_null_to_js Ojs.int_to_js x334)
+        let (get_timeout : t -> int) =
           fun (x336 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x336) "timeout")
-        let (set_timeout : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x336) "timeout")
+        let (set_timeout : t -> int -> unit) =
           fun (x337 : t) ->
-            fun (x338 : float) ->
+            fun (x338 : int) ->
               Ojs.set_prop_ascii (t_to_js x337) "timeout"
-                (Ojs.float_to_js x338)
-        let (get_headersTimeout : t -> float) =
+                (Ojs.int_to_js x338)
+        let (get_headersTimeout : t -> int) =
           fun (x339 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x339) "headersTimeout")
-        let (set_headersTimeout : t -> float -> unit) =
+        let (set_headersTimeout : t -> int -> unit) =
           fun (x340 : t) ->
-            fun (x341 : float) ->
+            fun (x341 : int) ->
               Ojs.set_prop_ascii (t_to_js x340) "headersTimeout"
-                (Ojs.float_to_js x341)
-        let (get_keepAliveTimeout : t -> float) =
+                (Ojs.int_to_js x341)
+        let (get_keepAliveTimeout : t -> int) =
           fun (x342 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x342) "keepAliveTimeout")
-        let (set_keepAliveTimeout : t -> float -> unit) =
+        let (set_keepAliveTimeout : t -> int -> unit) =
           fun (x343 : t) ->
-            fun (x344 : float) ->
+            fun (x344 : int) ->
               Ojs.set_prop_ascii (t_to_js x343) "keepAliveTimeout"
-                (Ojs.float_to_js x344)
-        let (get_requestTimeout : t -> float) =
+                (Ojs.int_to_js x344)
+        let (get_requestTimeout : t -> int) =
           fun (x345 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x345) "requestTimeout")
-        let (set_requestTimeout : t -> float -> unit) =
+        let (set_requestTimeout : t -> int -> unit) =
           fun (x346 : t) ->
-            fun (x347 : float) ->
+            fun (x347 : int) ->
               Ojs.set_prop_ascii (t_to_js x346) "requestTimeout"
-                (Ojs.float_to_js x347)
+                (Ojs.int_to_js x347)
       end
     module Server =
       struct
@@ -1181,9 +1178,9 @@ module Http =
               (Ojs.new_obj (Ojs.get_prop_ascii Import.http "OutgoingMessage")
                  [||])
         let (setTimeout :
-          t -> msecs:float -> ?callback:(unit -> unit) -> unit -> t) =
+          t -> msecs:int -> ?callback:(unit -> unit) -> unit -> t) =
           fun (x396 : t) ->
-            fun ~msecs:(x392 : float) ->
+            fun ~msecs:(x392 : int) ->
               fun ?callback:(x393 : (unit -> unit) option) ->
                 fun () ->
                   t_of_js
@@ -1195,7 +1192,7 @@ module Http =
                                     [||] in
                                 ignore
                                   (Ojs.call x394 "push"
-                                     [|(Ojs.float_to_js x392)|]);
+                                     [|(Ojs.int_to_js x392)|]);
                                 (match x393 with
                                  | Some x395 ->
                                      ignore
@@ -1293,14 +1290,14 @@ module Http =
           fun (x428 : Ojs.t) -> http_ServerResponse_of_js x428
         and t_to_js : t -> Ojs.t =
           fun (x427 : http_ServerResponse) -> http_ServerResponse_to_js x427
-        let (get_statusCode : t -> float) =
+        let (get_statusCode : t -> int) =
           fun (x429 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x429) "statusCode")
-        let (set_statusCode : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x429) "statusCode")
+        let (set_statusCode : t -> int -> unit) =
           fun (x430 : t) ->
-            fun (x431 : float) ->
+            fun (x431 : int) ->
               Ojs.set_prop_ascii (t_to_js x430) "statusCode"
-                (Ojs.float_to_js x431)
+                (Ojs.int_to_js x431)
         let (get_statusMessage : t -> string) =
           fun (x432 : t) ->
             Ojs.string_of_js
@@ -1347,13 +1344,13 @@ module Http =
                               x441))|])
         let (writeHead :
           t ->
-            statusCode:float ->
+            statusCode:int ->
               ?reasonPhrase:string ->
                 ?headers:(http_OutgoingHttpHeaders, http_OutgoingHttpHeader)
                   or_array -> unit -> t)
           =
           fun (x453 : t) ->
-            fun ~statusCode:(x445 : float) ->
+            fun ~statusCode:(x445 : int) ->
               fun ?reasonPhrase:(x446 : string option) ->
                 fun
                   ?headers:(x447 :
@@ -1370,7 +1367,7 @@ module Http =
                                       [||] in
                                   ignore
                                     (Ojs.call x448 "push"
-                                       [|(Ojs.float_to_js x445)|]);
+                                       [|(Ojs.int_to_js x445)|]);
                                   (match x446 with
                                    | Some x452 ->
                                        ignore
@@ -1389,12 +1386,12 @@ module Http =
                                   x448))|])
         let (writeHead' :
           t ->
-            statusCode:float ->
+            statusCode:int ->
               ?headers:(http_OutgoingHttpHeaders, http_OutgoingHttpHeader)
                 or_array -> unit -> t)
           =
           fun (x461 : t) ->
-            fun ~statusCode:(x455 : float) ->
+            fun ~statusCode:(x455 : int) ->
               fun
                 ?headers:(x456 :
                            (http_OutgoingHttpHeaders,
@@ -1410,7 +1407,7 @@ module Http =
                                     [||] in
                                 ignore
                                   (Ojs.call x457 "push"
-                                     [|(Ojs.float_to_js x455)|]);
+                                     [|(Ojs.int_to_js x455)|]);
                                 (match x456 with
                                  | Some x458 ->
                                      ignore
@@ -1435,14 +1432,14 @@ module Http =
         and t_to_js : t -> Ojs.t =
           fun (x465 : http_InformationEvent) ->
             http_InformationEvent_to_js x465
-        let (get_statusCode : t -> float) =
+        let (get_statusCode : t -> int) =
           fun (x467 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x467) "statusCode")
-        let (set_statusCode : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x467) "statusCode")
+        let (set_statusCode : t -> int -> unit) =
           fun (x468 : t) ->
-            fun (x469 : float) ->
+            fun (x469 : int) ->
               Ojs.set_prop_ascii (t_to_js x468) "statusCode"
-                (Ojs.float_to_js x469)
+                (Ojs.int_to_js x469)
         let (get_statusMessage : t -> string) =
           fun (x470 : t) ->
             Ojs.string_of_js
@@ -1461,24 +1458,24 @@ module Http =
             fun (x475 : string) ->
               Ojs.set_prop_ascii (t_to_js x474) "httpVersion"
                 (Ojs.string_to_js x475)
-        let (get_httpVersionMajor : t -> float) =
+        let (get_httpVersionMajor : t -> int) =
           fun (x476 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x476) "httpVersionMajor")
-        let (set_httpVersionMajor : t -> float -> unit) =
+        let (set_httpVersionMajor : t -> int -> unit) =
           fun (x477 : t) ->
-            fun (x478 : float) ->
+            fun (x478 : int) ->
               Ojs.set_prop_ascii (t_to_js x477) "httpVersionMajor"
-                (Ojs.float_to_js x478)
-        let (get_httpVersionMinor : t -> float) =
+                (Ojs.int_to_js x478)
+        let (get_httpVersionMinor : t -> int) =
           fun (x479 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x479) "httpVersionMinor")
-        let (set_httpVersionMinor : t -> float -> unit) =
+        let (set_httpVersionMinor : t -> int -> unit) =
           fun (x480 : t) ->
-            fun (x481 : float) ->
+            fun (x481 : int) ->
               Ojs.set_prop_ascii (t_to_js x480) "httpVersionMinor"
-                (Ojs.float_to_js x481)
+                (Ojs.int_to_js x481)
         let (get_headers : t -> http_IncomingHttpHeaders) =
           fun (x482 : t) ->
             http_IncomingHttpHeaders_of_js
@@ -1592,9 +1589,9 @@ module Http =
                 (Ojs.call (t_to_js x517) "onSocket"
                    [|(Node_net.Net.Socket.t_to_js x516)|])
         let (setTimeout :
-          t -> timeout:float -> ?callback:(unit -> unit) -> unit -> t) =
+          t -> timeout:int -> ?callback:(unit -> unit) -> unit -> t) =
           fun (x522 : t) ->
-            fun ~timeout:(x518 : float) ->
+            fun ~timeout:(x518 : int) ->
               fun ?callback:(x519 : (unit -> unit) option) ->
                 fun () ->
                   t_of_js
@@ -1606,7 +1603,7 @@ module Http =
                                     [||] in
                                 ignore
                                   (Ojs.call x520 "push"
-                                     [|(Ojs.float_to_js x518)|]);
+                                     [|(Ojs.int_to_js x518)|]);
                                 (match x519 with
                                  | Some x521 ->
                                      ignore
@@ -1634,10 +1631,10 @@ module Http =
                                | None -> ());
                               x525))|])
         let (setSocketKeepAlive :
-          t -> ?enable:bool -> ?initialDelay:float -> unit -> unit) =
+          t -> ?enable:bool -> ?initialDelay:int -> unit -> unit) =
           fun (x534 : t) ->
             fun ?enable:(x529 : bool option) ->
-              fun ?initialDelay:(x530 : float option) ->
+              fun ?initialDelay:(x530 : int option) ->
                 fun () ->
                   ignore
                     (let x535 = t_to_js x534 in
@@ -1657,7 +1654,7 @@ module Http =
                                  | Some x532 ->
                                      ignore
                                        (Ojs.call x531 "push"
-                                          [|(Ojs.float_to_js x532)|])
+                                          [|(Ojs.int_to_js x532)|])
                                  | None -> ());
                                 x531))|])
         let (addListener :
@@ -2816,24 +2813,24 @@ module Http =
             fun (x843 : string) ->
               Ojs.set_prop_ascii (t_to_js x842) "httpVersion"
                 (Ojs.string_to_js x843)
-        let (get_httpVersionMajor : t -> float) =
+        let (get_httpVersionMajor : t -> int) =
           fun (x844 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x844) "httpVersionMajor")
-        let (set_httpVersionMajor : t -> float -> unit) =
+        let (set_httpVersionMajor : t -> int -> unit) =
           fun (x845 : t) ->
-            fun (x846 : float) ->
+            fun (x846 : int) ->
               Ojs.set_prop_ascii (t_to_js x845) "httpVersionMajor"
-                (Ojs.float_to_js x846)
-        let (get_httpVersionMinor : t -> float) =
+                (Ojs.int_to_js x846)
+        let (get_httpVersionMinor : t -> int) =
           fun (x847 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x847) "httpVersionMinor")
-        let (set_httpVersionMinor : t -> float -> unit) =
+        let (set_httpVersionMinor : t -> int -> unit) =
           fun (x848 : t) ->
-            fun (x849 : float) ->
+            fun (x849 : int) ->
               Ojs.set_prop_ascii (t_to_js x848) "httpVersionMinor"
-                (Ojs.float_to_js x849)
+                (Ojs.int_to_js x849)
         let (get_complete : t -> bool) =
           fun (x850 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x850) "complete")
@@ -2897,9 +2894,9 @@ module Http =
               Ojs.set_prop_ascii (t_to_js x874) "rawTrailers"
                 (Ojs.list_to_js Ojs.string_to_js x875)
         let (setTimeout :
-          t -> msecs:float -> ?callback:(unit -> unit) -> unit -> t) =
+          t -> msecs:int -> ?callback:(unit -> unit) -> unit -> t) =
           fun (x881 : t) ->
-            fun ~msecs:(x877 : float) ->
+            fun ~msecs:(x877 : int) ->
               fun ?callback:(x878 : (unit -> unit) option) ->
                 fun () ->
                   t_of_js
@@ -2911,7 +2908,7 @@ module Http =
                                     [||] in
                                 ignore
                                   (Ojs.call x879 "push"
-                                     [|(Ojs.float_to_js x877)|]);
+                                     [|(Ojs.int_to_js x877)|]);
                                 (match x878 with
                                  | Some x880 ->
                                      ignore
@@ -2935,14 +2932,14 @@ module Http =
           fun (x887 : t) ->
             fun (x888 : string) ->
               Ojs.set_prop_ascii (t_to_js x887) "url" (Ojs.string_to_js x888)
-        let (get_statusCode : t -> float) =
+        let (get_statusCode : t -> int) =
           fun (x889 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x889) "statusCode")
-        let (set_statusCode : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x889) "statusCode")
+        let (set_statusCode : t -> int -> unit) =
           fun (x890 : t) ->
-            fun (x891 : float) ->
+            fun (x891 : int) ->
               Ojs.set_prop_ascii (t_to_js x890) "statusCode"
-                (Ojs.float_to_js x891)
+                (Ojs.int_to_js x891)
         let (get_statusMessage : t -> string) =
           fun (x892 : t) ->
             Ojs.string_of_js
@@ -2986,49 +2983,49 @@ module Http =
             fun (x904 : bool) ->
               Ojs.set_prop_ascii (t_to_js x903) "keepAlive"
                 (Ojs.bool_to_js x904)
-        let (get_keepAliveMsecs : t -> float) =
+        let (get_keepAliveMsecs : t -> int) =
           fun (x905 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x905) "keepAliveMsecs")
-        let (set_keepAliveMsecs : t -> float -> unit) =
+        let (set_keepAliveMsecs : t -> int -> unit) =
           fun (x906 : t) ->
-            fun (x907 : float) ->
+            fun (x907 : int) ->
               Ojs.set_prop_ascii (t_to_js x906) "keepAliveMsecs"
-                (Ojs.float_to_js x907)
-        let (get_maxSockets : t -> float) =
+                (Ojs.int_to_js x907)
+        let (get_maxSockets : t -> int) =
           fun (x908 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x908) "maxSockets")
-        let (set_maxSockets : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x908) "maxSockets")
+        let (set_maxSockets : t -> int -> unit) =
           fun (x909 : t) ->
-            fun (x910 : float) ->
+            fun (x910 : int) ->
               Ojs.set_prop_ascii (t_to_js x909) "maxSockets"
-                (Ojs.float_to_js x910)
-        let (get_maxTotalSockets : t -> float) =
+                (Ojs.int_to_js x910)
+        let (get_maxTotalSockets : t -> int) =
           fun (x911 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x911) "maxTotalSockets")
-        let (set_maxTotalSockets : t -> float -> unit) =
+        let (set_maxTotalSockets : t -> int -> unit) =
           fun (x912 : t) ->
-            fun (x913 : float) ->
+            fun (x913 : int) ->
               Ojs.set_prop_ascii (t_to_js x912) "maxTotalSockets"
-                (Ojs.float_to_js x913)
-        let (get_maxFreeSockets : t -> float) =
+                (Ojs.int_to_js x913)
+        let (get_maxFreeSockets : t -> int) =
           fun (x914 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x914) "maxFreeSockets")
-        let (set_maxFreeSockets : t -> float -> unit) =
+        let (set_maxFreeSockets : t -> int -> unit) =
           fun (x915 : t) ->
-            fun (x916 : float) ->
+            fun (x916 : int) ->
               Ojs.set_prop_ascii (t_to_js x915) "maxFreeSockets"
-                (Ojs.float_to_js x916)
-        let (get_timeout : t -> float) =
+                (Ojs.int_to_js x916)
+        let (get_timeout : t -> int) =
           fun (x917 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x917) "timeout")
-        let (set_timeout : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x917) "timeout")
+        let (set_timeout : t -> int -> unit) =
           fun (x918 : t) ->
-            fun (x919 : float) ->
+            fun (x919 : int) ->
               Ojs.set_prop_ascii (t_to_js x918) "timeout"
-                (Ojs.float_to_js x919)
+                (Ojs.int_to_js x919)
         let (get_scheduling : t -> [ `fifo  | `lifo ]) =
           fun (x920 : t) ->
             let x921 = Ojs.get_prop_ascii (t_to_js x920) "scheduling" in
@@ -3051,32 +3048,32 @@ module Http =
           fun (x925 : Ojs.t) -> http_Agent_of_js x925
         and t_to_js : t -> Ojs.t =
           fun (x924 : http_Agent) -> http_Agent_to_js x924
-        let (get_maxFreeSockets : t -> float) =
+        let (get_maxFreeSockets : t -> int) =
           fun (x926 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x926) "maxFreeSockets")
-        let (set_maxFreeSockets : t -> float -> unit) =
+        let (set_maxFreeSockets : t -> int -> unit) =
           fun (x927 : t) ->
-            fun (x928 : float) ->
+            fun (x928 : int) ->
               Ojs.set_prop_ascii (t_to_js x927) "maxFreeSockets"
-                (Ojs.float_to_js x928)
-        let (get_maxSockets : t -> float) =
+                (Ojs.int_to_js x928)
+        let (get_maxSockets : t -> int) =
           fun (x929 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x929) "maxSockets")
-        let (set_maxSockets : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x929) "maxSockets")
+        let (set_maxSockets : t -> int -> unit) =
           fun (x930 : t) ->
-            fun (x931 : float) ->
+            fun (x931 : int) ->
               Ojs.set_prop_ascii (t_to_js x930) "maxSockets"
-                (Ojs.float_to_js x931)
-        let (get_maxTotalSockets : t -> float) =
+                (Ojs.int_to_js x931)
+        let (get_maxTotalSockets : t -> int) =
           fun (x932 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x932) "maxTotalSockets")
-        let (set_maxTotalSockets : t -> float -> unit) =
+        let (set_maxTotalSockets : t -> int -> unit) =
           fun (x933 : t) ->
-            fun (x934 : float) ->
+            fun (x934 : int) ->
               Ojs.set_prop_ascii (t_to_js x933) "maxTotalSockets"
-                (Ojs.float_to_js x934)
+                (Ojs.int_to_js x934)
         let (get_freeSockets :
           t -> Node_net.Net.Socket.t list ReadOnlyDict.t) =
           fun (x935 : t) ->
@@ -3321,6 +3318,6 @@ module Http =
                             x990))|])
     let (globalAgent : http_Agent) =
       http_Agent_of_js (Ojs.get_prop_ascii Import.http "globalAgent")
-    let (maxHeaderSize : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.http "maxHeaderSize")
+    let (maxHeaderSize : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.http "maxHeaderSize")
   end

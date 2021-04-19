@@ -2,72 +2,129 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2019
-module Internal =
+module Intl =
   struct
-    module AnonymousInterfaces =
+    module BCP47LanguageTag =
       struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
+        type t = string
+        let rec t_of_js : Ojs.t -> t =
+          fun (x2 : Ojs.t) -> Ojs.string_of_js x2
+        and t_to_js : t -> Ojs.t = fun (x1 : string) -> Ojs.string_to_js x1
       end
-    module Types =
+    module RelativeTimeFormatUnit =
       struct
-        open AnonymousInterfaces
-        type _Intl_BCP47LanguageTag = string
-        and _Intl_Calendar =
+        type t =
+          [ `day  | `days  | `hour  | `hours  | `minute  | `minutes 
+          | `month  | `months  | `quarter  | `quarters  | `second 
+          | `seconds  | `week  | `weeks  | `year  | `years ]
+        let rec t_of_js : Ojs.t -> t =
+          fun (x4 : Ojs.t) ->
+            let x5 = x4 in
+            match Ojs.string_of_js x5 with
+            | "day" -> `day
+            | "days" -> `days
+            | "hour" -> `hour
+            | "hours" -> `hours
+            | "minute" -> `minute
+            | "minutes" -> `minutes
+            | "month" -> `month
+            | "months" -> `months
+            | "quarter" -> `quarter
+            | "quarters" -> `quarters
+            | "second" -> `second
+            | "seconds" -> `seconds
+            | "week" -> `week
+            | "weeks" -> `weeks
+            | "year" -> `year
+            | "years" -> `years
+            | _ -> assert false
+        and t_to_js : t -> Ojs.t =
+          fun
+            (x3 :
+              [ `day  | `days  | `hour  | `hours  | `minute  | `minutes 
+              | `month  | `months  | `quarter  | `quarters  | `second 
+              | `seconds  | `week  | `weeks  | `year  | `years ])
+            ->
+            match x3 with
+            | `day -> Ojs.string_to_js "day"
+            | `days -> Ojs.string_to_js "days"
+            | `hour -> Ojs.string_to_js "hour"
+            | `hours -> Ojs.string_to_js "hours"
+            | `minute -> Ojs.string_to_js "minute"
+            | `minutes -> Ojs.string_to_js "minutes"
+            | `month -> Ojs.string_to_js "month"
+            | `months -> Ojs.string_to_js "months"
+            | `quarter -> Ojs.string_to_js "quarter"
+            | `quarters -> Ojs.string_to_js "quarters"
+            | `second -> Ojs.string_to_js "second"
+            | `seconds -> Ojs.string_to_js "seconds"
+            | `week -> Ojs.string_to_js "week"
+            | `weeks -> Ojs.string_to_js "weeks"
+            | `year -> Ojs.string_to_js "year"
+            | `years -> Ojs.string_to_js "years"
+      end
+    module RelativeTimeFormatLocaleMatcher =
+      struct
+        type t = [ `best_fit  | `lookup ]
+        let rec t_of_js : Ojs.t -> t =
+          fun (x7 : Ojs.t) ->
+            let x8 = x7 in
+            match Ojs.string_of_js x8 with
+            | "best fit" -> `best_fit
+            | "lookup" -> `lookup
+            | _ -> assert false
+        and t_to_js : t -> Ojs.t =
+          fun (x6 : [ `best_fit  | `lookup ]) ->
+            match x6 with
+            | `best_fit -> Ojs.string_to_js "best fit"
+            | `lookup -> Ojs.string_to_js "lookup"
+      end
+    module RelativeTimeFormatNumeric =
+      struct
+        type t = [ `always  | `auto ]
+        let rec t_of_js : Ojs.t -> t =
+          fun (x10 : Ojs.t) ->
+            let x11 = x10 in
+            match Ojs.string_of_js x11 with
+            | "always" -> `always
+            | "auto" -> `auto
+            | _ -> assert false
+        and t_to_js : t -> Ojs.t =
+          fun (x9 : [ `always  | `auto ]) ->
+            match x9 with
+            | `always -> Ojs.string_to_js "always"
+            | `auto -> Ojs.string_to_js "auto"
+      end
+    module RelativeTimeFormatStyle =
+      struct
+        type t = [ `long  | `narrow  | `short ]
+        let rec t_of_js : Ojs.t -> t =
+          fun (x13 : Ojs.t) ->
+            let x14 = x13 in
+            match Ojs.string_of_js x14 with
+            | "long" -> `long
+            | "narrow" -> `narrow
+            | "short" -> `short
+            | _ -> assert false
+        and t_to_js : t -> Ojs.t =
+          fun (x12 : [ `long  | `narrow  | `short ]) ->
+            match x12 with
+            | `long -> Ojs.string_to_js "long"
+            | `narrow -> Ojs.string_to_js "narrow"
+            | `short -> Ojs.string_to_js "short"
+      end
+    module Calendar =
+      struct
+        type t =
           [ `buddhist  | `chinese  | `coptic  | `dangi  | `ethioaa 
           | `ethiopic  | `ethiopic_amete_alem  | `gregorian  | `gregory 
           | `hebrew  | `indian  | `islamic  | `islamic_civil 
           | `islamic_rgsa  | `islamic_tbla  | `islamic_umalqura  | `islamicc 
           | `iso8601  | `japanese  | `persian  | `roc ]
-        and _Intl_DateTimeFormatOptions =
-          [ `Intl_DateTimeFormatOptions ] intf
-        and _Intl_NumberFormatOptions = [ `Intl_NumberFormatOptions ] intf
-        and _Intl_NumberingSystem =
-          [ `adlm  | `ahom  | `arab  | `arabext  | `armn  | `armnlow 
-          | `bali  | `beng  | `bhks  | `brah  | `cakm  | `cham  | `cyrl 
-          | `deva  | `diak  | `ethi  | `finance  | `fullwide  | `geor 
-          | `gong  | `gonm  | `grek  | `greklow  | `gujr  | `guru 
-          | `hanidays  | `hanidec  | `hans  | `hansfin  | `hant  | `hantfin 
-          | `hebr  | `hmng  | `hmnp  | `java  | `jpan  | `jpanfin 
-          | `jpanyear  | `kali  | `khmr  | `knda  | `lana  | `lanatham 
-          | `laoo  | `latn  | `lepc  | `limb  | `mathbold  | `mathdbl 
-          | `mathmono  | `mathsanb  | `mathsans  | `mlym  | `modi  | 
-            `mong 
-          | `mroo  | `mtei  | `mymr  | `mymrshan  | `mymrtlng  | `native 
-          | `newa  | `nkoo  | `olck  | `orya  | `osma  | `rohg  | `roman 
-          | `romanlow  | `saur  | `shrd  | `sind  | `sinh  | `sora  | 
-            `sund 
-          | `takr  | `talu  | `taml  | `tamldec  | `telu  | `thai  | 
-            `tibt 
-          | `tirh  | `traditio  | `traditional  | `vaii  | `wara  | `wcho ]
-        and _Intl_RelativeTimeFormat = [ `Intl_RelativeTimeFormat ] intf
-        and _Intl_RelativeTimeFormatLocaleMatcher = [ `best_fit  | `lookup ]
-        and _Intl_RelativeTimeFormatNumeric = [ `always  | `auto ]
-        and _Intl_RelativeTimeFormatOptions =
-          [ `Intl_RelativeTimeFormatOptions ] intf
-        and _Intl_RelativeTimeFormatPart =
-          [ `Intl_RelativeTimeFormatPart ] intf
-        and _Intl_RelativeTimeFormatStyle = [ `long  | `narrow  | `short ]
-        and _Intl_RelativeTimeFormatUnit =
-          [ `day  | `days  | `hour  | `hours  | `minute  | `minutes 
-          | `month  | `months  | `quarter  | `quarters  | `second 
-          | `seconds  | `week  | `weeks  | `year  | `years ]
-        and _Intl_ResolvedNumberFormatOptions =
-          [ `Intl_ResolvedNumberFormatOptions ] intf
-        and _Intl_ResolvedRelativeTimeFormatOptions =
-          [ `Intl_ResolvedRelativeTimeFormatOptions ] intf
-        let rec _Intl_BCP47LanguageTag_of_js :
-          Ojs.t -> _Intl_BCP47LanguageTag =
-          fun (x2 : Ojs.t) -> Ojs.string_of_js x2
-        and _Intl_BCP47LanguageTag_to_js : _Intl_BCP47LanguageTag -> Ojs.t =
-          fun (x1 : string) -> Ojs.string_to_js x1
-        and _Intl_Calendar_of_js : Ojs.t -> _Intl_Calendar =
-          fun (x4 : Ojs.t) ->
-            let x5 = x4 in
-            match Ojs.string_of_js x5 with
+        let rec t_of_js : Ojs.t -> t =
+          fun (x16 : Ojs.t) ->
+            let x17 = x16 in
+            match Ojs.string_of_js x17 with
             | "buddhist" -> `buddhist
             | "chinese" -> `chinese
             | "coptic" -> `coptic
@@ -90,16 +147,16 @@ module Internal =
             | "persian" -> `persian
             | "roc" -> `roc
             | _ -> assert false
-        and _Intl_Calendar_to_js : _Intl_Calendar -> Ojs.t =
+        and t_to_js : t -> Ojs.t =
           fun
-            (x3 :
+            (x15 :
               [ `buddhist  | `chinese  | `coptic  | `dangi  | `ethioaa 
               | `ethiopic  | `ethiopic_amete_alem  | `gregorian  | `gregory 
               | `hebrew  | `indian  | `islamic  | `islamic_civil 
               | `islamic_rgsa  | `islamic_tbla  | `islamic_umalqura 
               | `islamicc  | `iso8601  | `japanese  | `persian  | `roc ])
             ->
-            match x3 with
+            match x15 with
             | `buddhist -> Ojs.string_to_js "buddhist"
             | `chinese -> Ojs.string_to_js "chinese"
             | `coptic -> Ojs.string_to_js "coptic"
@@ -121,18 +178,31 @@ module Internal =
             | `japanese -> Ojs.string_to_js "japanese"
             | `persian -> Ojs.string_to_js "persian"
             | `roc -> Ojs.string_to_js "roc"
-        and _Intl_DateTimeFormatOptions_of_js :
-          Ojs.t -> _Intl_DateTimeFormatOptions = Obj.magic
-        and _Intl_DateTimeFormatOptions_to_js :
-          _Intl_DateTimeFormatOptions -> Ojs.t = Obj.magic
-        and _Intl_NumberFormatOptions_of_js :
-          Ojs.t -> _Intl_NumberFormatOptions = Obj.magic
-        and _Intl_NumberFormatOptions_to_js :
-          _Intl_NumberFormatOptions -> Ojs.t = Obj.magic
-        and _Intl_NumberingSystem_of_js : Ojs.t -> _Intl_NumberingSystem =
-          fun (x7 : Ojs.t) ->
-            let x8 = x7 in
-            match Ojs.string_of_js x8 with
+      end
+    module NumberingSystem =
+      struct
+        type t =
+          [ `adlm  | `ahom  | `arab  | `arabext  | `armn  | `armnlow 
+          | `bali  | `beng  | `bhks  | `brah  | `cakm  | `cham  | `cyrl 
+          | `deva  | `diak  | `ethi  | `finance  | `fullwide  | `geor 
+          | `gong  | `gonm  | `grek  | `greklow  | `gujr  | `guru 
+          | `hanidays  | `hanidec  | `hans  | `hansfin  | `hant  | `hantfin 
+          | `hebr  | `hmng  | `hmnp  | `java  | `jpan  | `jpanfin 
+          | `jpanyear  | `kali  | `khmr  | `knda  | `lana  | `lanatham 
+          | `laoo  | `latn  | `lepc  | `limb  | `mathbold  | `mathdbl 
+          | `mathmono  | `mathsanb  | `mathsans  | `mlym  | `modi  | 
+            `mong 
+          | `mroo  | `mtei  | `mymr  | `mymrshan  | `mymrtlng  | `native 
+          | `newa  | `nkoo  | `olck  | `orya  | `osma  | `rohg  | `roman 
+          | `romanlow  | `saur  | `shrd  | `sind  | `sinh  | `sora  | 
+            `sund 
+          | `takr  | `talu  | `taml  | `tamldec  | `telu  | `thai  | 
+            `tibt 
+          | `tirh  | `traditio  | `traditional  | `vaii  | `wara  | `wcho ]
+        let rec t_of_js : Ojs.t -> t =
+          fun (x19 : Ojs.t) ->
+            let x20 = x19 in
+            match Ojs.string_of_js x20 with
             | "adlm" -> `adlm
             | "ahom" -> `ahom
             | "arab" -> `arab
@@ -222,9 +292,9 @@ module Internal =
             | "wara" -> `wara
             | "wcho" -> `wcho
             | _ -> assert false
-        and _Intl_NumberingSystem_to_js : _Intl_NumberingSystem -> Ojs.t =
+        and t_to_js : t -> Ojs.t =
           fun
-            (x6 :
+            (x18 :
               [ `adlm  | `ahom  | `arab  | `arabext  | `armn  | `armnlow 
               | `bali  | `beng  | `bhks  | `brah  | `cakm  | `cham  | 
                 `cyrl 
@@ -243,7 +313,7 @@ module Internal =
               | `tamldec  | `telu  | `thai  | `tibt  | `tirh  | `traditio 
               | `traditional  | `vaii  | `wara  | `wcho ])
             ->
-            match x6 with
+            match x18 with
             | `adlm -> Ojs.string_to_js "adlm"
             | `ahom -> Ojs.string_to_js "ahom"
             | `arab -> Ojs.string_to_js "arab"
@@ -332,525 +402,310 @@ module Internal =
             | `vaii -> Ojs.string_to_js "vaii"
             | `wara -> Ojs.string_to_js "wara"
             | `wcho -> Ojs.string_to_js "wcho"
-        and _Intl_RelativeTimeFormat_of_js :
-          Ojs.t -> _Intl_RelativeTimeFormat = Obj.magic
-        and _Intl_RelativeTimeFormat_to_js :
-          _Intl_RelativeTimeFormat -> Ojs.t = Obj.magic
-        and _Intl_RelativeTimeFormatLocaleMatcher_of_js :
-          Ojs.t -> _Intl_RelativeTimeFormatLocaleMatcher =
-          fun (x10 : Ojs.t) ->
-            let x11 = x10 in
-            match Ojs.string_of_js x11 with
-            | "best fit" -> `best_fit
-            | "lookup" -> `lookup
-            | _ -> assert false
-        and _Intl_RelativeTimeFormatLocaleMatcher_to_js :
-          _Intl_RelativeTimeFormatLocaleMatcher -> Ojs.t =
-          fun (x9 : [ `best_fit  | `lookup ]) ->
-            match x9 with
-            | `best_fit -> Ojs.string_to_js "best fit"
-            | `lookup -> Ojs.string_to_js "lookup"
-        and _Intl_RelativeTimeFormatNumeric_of_js :
-          Ojs.t -> _Intl_RelativeTimeFormatNumeric =
-          fun (x13 : Ojs.t) ->
-            let x14 = x13 in
-            match Ojs.string_of_js x14 with
-            | "always" -> `always
-            | "auto" -> `auto
-            | _ -> assert false
-        and _Intl_RelativeTimeFormatNumeric_to_js :
-          _Intl_RelativeTimeFormatNumeric -> Ojs.t =
-          fun (x12 : [ `always  | `auto ]) ->
-            match x12 with
-            | `always -> Ojs.string_to_js "always"
-            | `auto -> Ojs.string_to_js "auto"
-        and _Intl_RelativeTimeFormatOptions_of_js :
-          Ojs.t -> _Intl_RelativeTimeFormatOptions = Obj.magic
-        and _Intl_RelativeTimeFormatOptions_to_js :
-          _Intl_RelativeTimeFormatOptions -> Ojs.t = Obj.magic
-        and _Intl_RelativeTimeFormatPart_of_js :
-          Ojs.t -> _Intl_RelativeTimeFormatPart = Obj.magic
-        and _Intl_RelativeTimeFormatPart_to_js :
-          _Intl_RelativeTimeFormatPart -> Ojs.t = Obj.magic
-        and _Intl_RelativeTimeFormatStyle_of_js :
-          Ojs.t -> _Intl_RelativeTimeFormatStyle =
-          fun (x16 : Ojs.t) ->
-            let x17 = x16 in
-            match Ojs.string_of_js x17 with
-            | "long" -> `long
-            | "narrow" -> `narrow
-            | "short" -> `short
-            | _ -> assert false
-        and _Intl_RelativeTimeFormatStyle_to_js :
-          _Intl_RelativeTimeFormatStyle -> Ojs.t =
-          fun (x15 : [ `long  | `narrow  | `short ]) ->
-            match x15 with
-            | `long -> Ojs.string_to_js "long"
-            | `narrow -> Ojs.string_to_js "narrow"
-            | `short -> Ojs.string_to_js "short"
-        and _Intl_RelativeTimeFormatUnit_of_js :
-          Ojs.t -> _Intl_RelativeTimeFormatUnit =
-          fun (x19 : Ojs.t) ->
-            let x20 = x19 in
-            match Ojs.string_of_js x20 with
-            | "day" -> `day
-            | "days" -> `days
-            | "hour" -> `hour
-            | "hours" -> `hours
-            | "minute" -> `minute
-            | "minutes" -> `minutes
-            | "month" -> `month
-            | "months" -> `months
-            | "quarter" -> `quarter
-            | "quarters" -> `quarters
-            | "second" -> `second
-            | "seconds" -> `seconds
-            | "week" -> `week
-            | "weeks" -> `weeks
-            | "year" -> `year
-            | "years" -> `years
-            | _ -> assert false
-        and _Intl_RelativeTimeFormatUnit_to_js :
-          _Intl_RelativeTimeFormatUnit -> Ojs.t =
-          fun
-            (x18 :
-              [ `day  | `days  | `hour  | `hours  | `minute  | `minutes 
-              | `month  | `months  | `quarter  | `quarters  | `second 
-              | `seconds  | `week  | `weeks  | `year  | `years ])
-            ->
-            match x18 with
-            | `day -> Ojs.string_to_js "day"
-            | `days -> Ojs.string_to_js "days"
-            | `hour -> Ojs.string_to_js "hour"
-            | `hours -> Ojs.string_to_js "hours"
-            | `minute -> Ojs.string_to_js "minute"
-            | `minutes -> Ojs.string_to_js "minutes"
-            | `month -> Ojs.string_to_js "month"
-            | `months -> Ojs.string_to_js "months"
-            | `quarter -> Ojs.string_to_js "quarter"
-            | `quarters -> Ojs.string_to_js "quarters"
-            | `second -> Ojs.string_to_js "second"
-            | `seconds -> Ojs.string_to_js "seconds"
-            | `week -> Ojs.string_to_js "week"
-            | `weeks -> Ojs.string_to_js "weeks"
-            | `year -> Ojs.string_to_js "year"
-            | `years -> Ojs.string_to_js "years"
-        and _Intl_ResolvedNumberFormatOptions_of_js :
-          Ojs.t -> _Intl_ResolvedNumberFormatOptions = Obj.magic
-        and _Intl_ResolvedNumberFormatOptions_to_js :
-          _Intl_ResolvedNumberFormatOptions -> Ojs.t = Obj.magic
-        and _Intl_ResolvedRelativeTimeFormatOptions_of_js :
-          Ojs.t -> _Intl_ResolvedRelativeTimeFormatOptions = Obj.magic
-        and _Intl_ResolvedRelativeTimeFormatOptions_to_js :
-          _Intl_ResolvedRelativeTimeFormatOptions -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
-module AnonymousInterface0 =
-  struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x22 : Ojs.t) -> anonymous_interface_0_of_js x22
-    and t_to_js : t -> Ojs.t =
-      fun (x21 : anonymous_interface_0) -> anonymous_interface_0_to_js x21
-    let (create :
-      t ->
-        ?locales:(_Intl_BCP47LanguageTag, _Intl_BCP47LanguageTag) or_array ->
-          ?options:_Intl_RelativeTimeFormatOptions ->
-            unit -> _Intl_RelativeTimeFormat)
-      =
-      fun (x30 : t) ->
-        fun
-          ?locales:(x23 :
-                     (_Intl_BCP47LanguageTag, _Intl_BCP47LanguageTag)
-                       or_array option)
-          ->
-          fun ?options:(x24 : _Intl_RelativeTimeFormatOptions option) ->
-            fun () ->
-              _Intl_RelativeTimeFormat_of_js
-                (Ojs.new_obj_arr (t_to_js x30)
-                   (let x25 =
-                      Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
-                        [||] in
-                    (match x23 with
-                     | Some x27 ->
-                         ignore
-                           (Ojs.call x25 "push"
-                              [|(or_array_to_js _Intl_BCP47LanguageTag_to_js
-                                   _Intl_BCP47LanguageTag_to_js x27)|])
-                     | None -> ());
-                    (match x24 with
-                     | Some x26 ->
-                         ignore
-                           (Ojs.call x25 "push"
-                              [|(_Intl_RelativeTimeFormatOptions_to_js x26)|])
-                     | None -> ());
-                    x25))
-    let (supportedLocalesOf :
-      t ->
-        locales:(_Intl_BCP47LanguageTag, _Intl_BCP47LanguageTag) or_array ->
-          ?options:_Intl_RelativeTimeFormatOptions ->
-            unit -> _Intl_BCP47LanguageTag list)
-      =
-      fun (x37 : t) ->
-        fun
-          ~locales:(x31 :
-                     (_Intl_BCP47LanguageTag, _Intl_BCP47LanguageTag)
-                       or_array)
-          ->
-          fun ?options:(x32 : _Intl_RelativeTimeFormatOptions option) ->
-            fun () ->
-              Ojs.list_of_js _Intl_BCP47LanguageTag_of_js
-                (let x38 = t_to_js x37 in
-                 Ojs.call (Ojs.get_prop_ascii x38 "supportedLocalesOf")
-                   "apply"
-                   [|x38;((let x33 =
-                             Ojs.new_obj
-                               (Ojs.get_prop_ascii Ojs.global "Array") 
-                               [||] in
-                           ignore
-                             (Ojs.call x33 "push"
-                                [|(or_array_to_js
-                                     _Intl_BCP47LanguageTag_to_js
-                                     _Intl_BCP47LanguageTag_to_js x31)|]);
-                           (match x32 with
-                            | Some x34 ->
-                                ignore
-                                  (Ojs.call x33 "push"
-                                     [|(_Intl_RelativeTimeFormatOptions_to_js
-                                          x34)|])
-                            | None -> ());
-                           x33))|])
-  end
-module Intl =
-  struct
-    module BCP47LanguageTag =
-      struct
-        type t = _Intl_BCP47LanguageTag
-        let rec t_of_js : Ojs.t -> t =
-          fun (x41 : Ojs.t) -> _Intl_BCP47LanguageTag_of_js x41
-        and t_to_js : t -> Ojs.t =
-          fun (x40 : _Intl_BCP47LanguageTag) ->
-            _Intl_BCP47LanguageTag_to_js x40
-      end
-    module RelativeTimeFormatUnit =
-      struct
-        type t = _Intl_RelativeTimeFormatUnit
-        let rec t_of_js : Ojs.t -> t =
-          fun (x43 : Ojs.t) -> _Intl_RelativeTimeFormatUnit_of_js x43
-        and t_to_js : t -> Ojs.t =
-          fun (x42 : _Intl_RelativeTimeFormatUnit) ->
-            _Intl_RelativeTimeFormatUnit_to_js x42
-      end
-    module RelativeTimeFormatLocaleMatcher =
-      struct
-        type t = _Intl_RelativeTimeFormatLocaleMatcher
-        let rec t_of_js : Ojs.t -> t =
-          fun (x45 : Ojs.t) ->
-            _Intl_RelativeTimeFormatLocaleMatcher_of_js x45
-        and t_to_js : t -> Ojs.t =
-          fun (x44 : _Intl_RelativeTimeFormatLocaleMatcher) ->
-            _Intl_RelativeTimeFormatLocaleMatcher_to_js x44
-      end
-    module RelativeTimeFormatNumeric =
-      struct
-        type t = _Intl_RelativeTimeFormatNumeric
-        let rec t_of_js : Ojs.t -> t =
-          fun (x47 : Ojs.t) -> _Intl_RelativeTimeFormatNumeric_of_js x47
-        and t_to_js : t -> Ojs.t =
-          fun (x46 : _Intl_RelativeTimeFormatNumeric) ->
-            _Intl_RelativeTimeFormatNumeric_to_js x46
-      end
-    module RelativeTimeFormatStyle =
-      struct
-        type t = _Intl_RelativeTimeFormatStyle
-        let rec t_of_js : Ojs.t -> t =
-          fun (x49 : Ojs.t) -> _Intl_RelativeTimeFormatStyle_of_js x49
-        and t_to_js : t -> Ojs.t =
-          fun (x48 : _Intl_RelativeTimeFormatStyle) ->
-            _Intl_RelativeTimeFormatStyle_to_js x48
-      end
-    module Calendar =
-      struct
-        type t = _Intl_Calendar
-        let rec t_of_js : Ojs.t -> t =
-          fun (x51 : Ojs.t) -> _Intl_Calendar_of_js x51
-        and t_to_js : t -> Ojs.t =
-          fun (x50 : _Intl_Calendar) -> _Intl_Calendar_to_js x50
-      end
-    module NumberingSystem =
-      struct
-        type t = _Intl_NumberingSystem
-        let rec t_of_js : Ojs.t -> t =
-          fun (x53 : Ojs.t) -> _Intl_NumberingSystem_of_js x53
-        and t_to_js : t -> Ojs.t =
-          fun (x52 : _Intl_NumberingSystem) ->
-            _Intl_NumberingSystem_to_js x52
       end
     module RelativeTimeFormatOptions =
       struct
-        type t = _Intl_RelativeTimeFormatOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x55 : Ojs.t) -> _Intl_RelativeTimeFormatOptions_of_js x55
-        and t_to_js : t -> Ojs.t =
-          fun (x54 : _Intl_RelativeTimeFormatOptions) ->
-            _Intl_RelativeTimeFormatOptions_to_js x54
-        let (get_localeMatcher : t -> _Intl_RelativeTimeFormatLocaleMatcher)
-          =
-          fun (x56 : t) ->
-            _Intl_RelativeTimeFormatLocaleMatcher_of_js
-              (Ojs.get_prop_ascii (t_to_js x56) "localeMatcher")
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x22 : Ojs.t) -> x22
+        and t_to_js : t -> Ojs.t = fun (x21 : Ojs.t) -> x21
+        let (get_localeMatcher : t -> RelativeTimeFormatLocaleMatcher.t) =
+          fun (x23 : t) ->
+            RelativeTimeFormatLocaleMatcher.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x23) "localeMatcher")
         let (set_localeMatcher :
-          t -> _Intl_RelativeTimeFormatLocaleMatcher -> unit) =
-          fun (x57 : t) ->
-            fun (x58 : _Intl_RelativeTimeFormatLocaleMatcher) ->
-              Ojs.set_prop_ascii (t_to_js x57) "localeMatcher"
-                (_Intl_RelativeTimeFormatLocaleMatcher_to_js x58)
-        let (get_numeric : t -> _Intl_RelativeTimeFormatNumeric) =
-          fun (x59 : t) ->
-            _Intl_RelativeTimeFormatNumeric_of_js
-              (Ojs.get_prop_ascii (t_to_js x59) "numeric")
-        let (set_numeric : t -> _Intl_RelativeTimeFormatNumeric -> unit) =
-          fun (x60 : t) ->
-            fun (x61 : _Intl_RelativeTimeFormatNumeric) ->
-              Ojs.set_prop_ascii (t_to_js x60) "numeric"
-                (_Intl_RelativeTimeFormatNumeric_to_js x61)
-        let (get_style : t -> _Intl_RelativeTimeFormatStyle) =
-          fun (x62 : t) ->
-            _Intl_RelativeTimeFormatStyle_of_js
-              (Ojs.get_prop_ascii (t_to_js x62) "style")
-        let (set_style : t -> _Intl_RelativeTimeFormatStyle -> unit) =
-          fun (x63 : t) ->
-            fun (x64 : _Intl_RelativeTimeFormatStyle) ->
-              Ojs.set_prop_ascii (t_to_js x63) "style"
-                (_Intl_RelativeTimeFormatStyle_to_js x64)
+          t -> RelativeTimeFormatLocaleMatcher.t -> unit) =
+          fun (x24 : t) ->
+            fun (x25 : RelativeTimeFormatLocaleMatcher.t) ->
+              Ojs.set_prop_ascii (t_to_js x24) "localeMatcher"
+                (RelativeTimeFormatLocaleMatcher.t_to_js x25)
+        let (get_numeric : t -> RelativeTimeFormatNumeric.t) =
+          fun (x26 : t) ->
+            RelativeTimeFormatNumeric.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x26) "numeric")
+        let (set_numeric : t -> RelativeTimeFormatNumeric.t -> unit) =
+          fun (x27 : t) ->
+            fun (x28 : RelativeTimeFormatNumeric.t) ->
+              Ojs.set_prop_ascii (t_to_js x27) "numeric"
+                (RelativeTimeFormatNumeric.t_to_js x28)
+        let (get_style : t -> RelativeTimeFormatStyle.t) =
+          fun (x29 : t) ->
+            RelativeTimeFormatStyle.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x29) "style")
+        let (set_style : t -> RelativeTimeFormatStyle.t -> unit) =
+          fun (x30 : t) ->
+            fun (x31 : RelativeTimeFormatStyle.t) ->
+              Ojs.set_prop_ascii (t_to_js x30) "style"
+                (RelativeTimeFormatStyle.t_to_js x31)
       end
     module ResolvedRelativeTimeFormatOptions =
       struct
-        type t = _Intl_ResolvedRelativeTimeFormatOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x66 : Ojs.t) ->
-            _Intl_ResolvedRelativeTimeFormatOptions_of_js x66
-        and t_to_js : t -> Ojs.t =
-          fun (x65 : _Intl_ResolvedRelativeTimeFormatOptions) ->
-            _Intl_ResolvedRelativeTimeFormatOptions_to_js x65
-        let (get_locale : t -> _Intl_BCP47LanguageTag) =
-          fun (x67 : t) ->
-            _Intl_BCP47LanguageTag_of_js
-              (Ojs.get_prop_ascii (t_to_js x67) "locale")
-        let (set_locale : t -> _Intl_BCP47LanguageTag -> unit) =
-          fun (x68 : t) ->
-            fun (x69 : _Intl_BCP47LanguageTag) ->
-              Ojs.set_prop_ascii (t_to_js x68) "locale"
-                (_Intl_BCP47LanguageTag_to_js x69)
-        let (get_style : t -> _Intl_RelativeTimeFormatStyle) =
-          fun (x70 : t) ->
-            _Intl_RelativeTimeFormatStyle_of_js
-              (Ojs.get_prop_ascii (t_to_js x70) "style")
-        let (set_style : t -> _Intl_RelativeTimeFormatStyle -> unit) =
-          fun (x71 : t) ->
-            fun (x72 : _Intl_RelativeTimeFormatStyle) ->
-              Ojs.set_prop_ascii (t_to_js x71) "style"
-                (_Intl_RelativeTimeFormatStyle_to_js x72)
-        let (get_numeric : t -> _Intl_RelativeTimeFormatNumeric) =
-          fun (x73 : t) ->
-            _Intl_RelativeTimeFormatNumeric_of_js
-              (Ojs.get_prop_ascii (t_to_js x73) "numeric")
-        let (set_numeric : t -> _Intl_RelativeTimeFormatNumeric -> unit) =
-          fun (x74 : t) ->
-            fun (x75 : _Intl_RelativeTimeFormatNumeric) ->
-              Ojs.set_prop_ascii (t_to_js x74) "numeric"
-                (_Intl_RelativeTimeFormatNumeric_to_js x75)
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x33 : Ojs.t) -> x33
+        and t_to_js : t -> Ojs.t = fun (x32 : Ojs.t) -> x32
+        let (get_locale : t -> string) =
+          fun (x34 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x34) "locale")
+        let (set_locale : t -> string -> unit) =
+          fun (x35 : t) ->
+            fun (x36 : string) ->
+              Ojs.set_prop_ascii (t_to_js x35) "locale"
+                (Ojs.string_to_js x36)
+        let (get_style : t -> RelativeTimeFormatStyle.t) =
+          fun (x37 : t) ->
+            RelativeTimeFormatStyle.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x37) "style")
+        let (set_style : t -> RelativeTimeFormatStyle.t -> unit) =
+          fun (x38 : t) ->
+            fun (x39 : RelativeTimeFormatStyle.t) ->
+              Ojs.set_prop_ascii (t_to_js x38) "style"
+                (RelativeTimeFormatStyle.t_to_js x39)
+        let (get_numeric : t -> RelativeTimeFormatNumeric.t) =
+          fun (x40 : t) ->
+            RelativeTimeFormatNumeric.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x40) "numeric")
+        let (set_numeric : t -> RelativeTimeFormatNumeric.t -> unit) =
+          fun (x41 : t) ->
+            fun (x42 : RelativeTimeFormatNumeric.t) ->
+              Ojs.set_prop_ascii (t_to_js x41) "numeric"
+                (RelativeTimeFormatNumeric.t_to_js x42)
         let (get_numberingSystem : t -> string) =
-          fun (x76 : t) ->
+          fun (x43 : t) ->
             Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x76) "numberingSystem")
+              (Ojs.get_prop_ascii (t_to_js x43) "numberingSystem")
         let (set_numberingSystem : t -> string -> unit) =
-          fun (x77 : t) ->
-            fun (x78 : string) ->
-              Ojs.set_prop_ascii (t_to_js x77) "numberingSystem"
-                (Ojs.string_to_js x78)
+          fun (x44 : t) ->
+            fun (x45 : string) ->
+              Ojs.set_prop_ascii (t_to_js x44) "numberingSystem"
+                (Ojs.string_to_js x45)
       end
     module RelativeTimeFormatPart =
       struct
-        type t = _Intl_RelativeTimeFormatPart
-        let rec t_of_js : Ojs.t -> t =
-          fun (x80 : Ojs.t) -> _Intl_RelativeTimeFormatPart_of_js x80
-        and t_to_js : t -> Ojs.t =
-          fun (x79 : _Intl_RelativeTimeFormatPart) ->
-            _Intl_RelativeTimeFormatPart_to_js x79
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x47 : Ojs.t) -> x47
+        and t_to_js : t -> Ojs.t = fun (x46 : Ojs.t) -> x46
         let (get_type : t -> string) =
-          fun (x81 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x81) "type")
+          fun (x48 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x48) "type")
         let (set_type : t -> string -> unit) =
-          fun (x82 : t) ->
-            fun (x83 : string) ->
-              Ojs.set_prop_ascii (t_to_js x82) "type" (Ojs.string_to_js x83)
+          fun (x49 : t) ->
+            fun (x50 : string) ->
+              Ojs.set_prop_ascii (t_to_js x49) "type" (Ojs.string_to_js x50)
         let (get_value : t -> string) =
-          fun (x84 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x84) "value")
+          fun (x51 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x51) "value")
         let (set_value : t -> string -> unit) =
-          fun (x85 : t) ->
-            fun (x86 : string) ->
-              Ojs.set_prop_ascii (t_to_js x85) "value" (Ojs.string_to_js x86)
-        let (get_unit : t -> _Intl_RelativeTimeFormatUnit) =
-          fun (x87 : t) ->
-            _Intl_RelativeTimeFormatUnit_of_js
-              (Ojs.get_prop_ascii (t_to_js x87) "unit")
-        let (set_unit : t -> _Intl_RelativeTimeFormatUnit -> unit) =
-          fun (x88 : t) ->
-            fun (x89 : _Intl_RelativeTimeFormatUnit) ->
-              Ojs.set_prop_ascii (t_to_js x88) "unit"
-                (_Intl_RelativeTimeFormatUnit_to_js x89)
+          fun (x52 : t) ->
+            fun (x53 : string) ->
+              Ojs.set_prop_ascii (t_to_js x52) "value" (Ojs.string_to_js x53)
+        let (get_unit : t -> RelativeTimeFormatUnit.t) =
+          fun (x54 : t) ->
+            RelativeTimeFormatUnit.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x54) "unit")
+        let (set_unit : t -> RelativeTimeFormatUnit.t -> unit) =
+          fun (x55 : t) ->
+            fun (x56 : RelativeTimeFormatUnit.t) ->
+              Ojs.set_prop_ascii (t_to_js x55) "unit"
+                (RelativeTimeFormatUnit.t_to_js x56)
       end
     module RelativeTimeFormat =
       struct
-        type t = _Intl_RelativeTimeFormat
-        let rec t_of_js : Ojs.t -> t =
-          fun (x91 : Ojs.t) -> _Intl_RelativeTimeFormat_of_js x91
-        and t_to_js : t -> Ojs.t =
-          fun (x90 : _Intl_RelativeTimeFormat) ->
-            _Intl_RelativeTimeFormat_to_js x90
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x58 : Ojs.t) -> x58
+        and t_to_js : t -> Ojs.t = fun (x57 : Ojs.t) -> x57
         let (format :
-          t -> value:float -> unit:_Intl_RelativeTimeFormatUnit -> string) =
-          fun (x94 : t) ->
-            fun ~value:(x92 : float) ->
-              fun ~unit:(x93 : _Intl_RelativeTimeFormatUnit) ->
+          t -> value:int -> unit:RelativeTimeFormatUnit.t -> string) =
+          fun (x61 : t) ->
+            fun ~value:(x59 : int) ->
+              fun ~unit:(x60 : RelativeTimeFormatUnit.t) ->
                 Ojs.string_of_js
-                  (Ojs.call (t_to_js x94) "format"
-                     [|(Ojs.float_to_js x92);(_Intl_RelativeTimeFormatUnit_to_js
-                                                x93)|])
+                  (Ojs.call (t_to_js x61) "format"
+                     [|(Ojs.int_to_js x59);(RelativeTimeFormatUnit.t_to_js
+                                              x60)|])
         let (formatToParts :
           t ->
-            value:float ->
-              unit:_Intl_RelativeTimeFormatUnit ->
-                _Intl_RelativeTimeFormatPart list)
+            value:int ->
+              unit:RelativeTimeFormatUnit.t -> RelativeTimeFormatPart.t list)
           =
-          fun (x97 : t) ->
-            fun ~value:(x95 : float) ->
-              fun ~unit:(x96 : _Intl_RelativeTimeFormatUnit) ->
-                Ojs.list_of_js _Intl_RelativeTimeFormatPart_of_js
-                  (Ojs.call (t_to_js x97) "formatToParts"
-                     [|(Ojs.float_to_js x95);(_Intl_RelativeTimeFormatUnit_to_js
-                                                x96)|])
-        let (resolvedOptions : t -> _Intl_ResolvedRelativeTimeFormatOptions)
-          =
-          fun (x99 : t) ->
-            _Intl_ResolvedRelativeTimeFormatOptions_of_js
-              (Ojs.call (t_to_js x99) "resolvedOptions" [||])
+          fun (x64 : t) ->
+            fun ~value:(x62 : int) ->
+              fun ~unit:(x63 : RelativeTimeFormatUnit.t) ->
+                Ojs.list_of_js RelativeTimeFormatPart.t_of_js
+                  (Ojs.call (t_to_js x64) "formatToParts"
+                     [|(Ojs.int_to_js x62);(RelativeTimeFormatUnit.t_to_js
+                                              x63)|])
+        let (resolvedOptions : t -> ResolvedRelativeTimeFormatOptions.t) =
+          fun (x66 : t) ->
+            ResolvedRelativeTimeFormatOptions.t_of_js
+              (Ojs.call (t_to_js x66) "resolvedOptions" [||])
       end
-    let (relativeTimeFormat : anonymous_interface_0) =
-      anonymous_interface_0_of_js
+    module AnonymousInterface0 =
+      struct
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x68 : Ojs.t) -> x68
+        and t_to_js : t -> Ojs.t = fun (x67 : Ojs.t) -> x67
+        let (create :
+          t ->
+            ?locales:(string, string) or_array ->
+              ?options:RelativeTimeFormatOptions.t ->
+                unit -> RelativeTimeFormat.t)
+          =
+          fun (x76 : t) ->
+            fun ?locales:(x69 : (string, string) or_array option) ->
+              fun ?options:(x70 : RelativeTimeFormatOptions.t option) ->
+                fun () ->
+                  RelativeTimeFormat.t_of_js
+                    (Ojs.new_obj_arr (t_to_js x76)
+                       (let x71 =
+                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
+                            [||] in
+                        (match x69 with
+                         | Some x73 ->
+                             ignore
+                               (Ojs.call x71 "push"
+                                  [|(or_array_to_js Ojs.string_to_js
+                                       Ojs.string_to_js x73)|])
+                         | None -> ());
+                        (match x70 with
+                         | Some x72 ->
+                             ignore
+                               (Ojs.call x71 "push"
+                                  [|(RelativeTimeFormatOptions.t_to_js x72)|])
+                         | None -> ());
+                        x71))
+        let (supportedLocalesOf :
+          t ->
+            locales:(string, string) or_array ->
+              ?options:RelativeTimeFormatOptions.t -> unit -> string list)
+          =
+          fun (x83 : t) ->
+            fun ~locales:(x77 : (string, string) or_array) ->
+              fun ?options:(x78 : RelativeTimeFormatOptions.t option) ->
+                fun () ->
+                  Ojs.list_of_js Ojs.string_of_js
+                    (let x84 = t_to_js x83 in
+                     Ojs.call (Ojs.get_prop_ascii x84 "supportedLocalesOf")
+                       "apply"
+                       [|x84;((let x79 =
+                                 Ojs.new_obj
+                                   (Ojs.get_prop_ascii Ojs.global "Array")
+                                   [||] in
+                               ignore
+                                 (Ojs.call x79 "push"
+                                    [|(or_array_to_js Ojs.string_to_js
+                                         Ojs.string_to_js x77)|]);
+                               (match x78 with
+                                | Some x80 ->
+                                    ignore
+                                      (Ojs.call x79 "push"
+                                         [|(RelativeTimeFormatOptions.t_to_js
+                                              x80)|])
+                                | None -> ());
+                               x79))|])
+      end
+    let (relativeTimeFormat : AnonymousInterface0.t) =
+      AnonymousInterface0.t_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "Intl")
            "RelativeTimeFormat")
     module NumberFormatOptions =
       struct
         include struct include NumberFormatOptions end
         let (get_compactDisplay : t -> string) =
-          fun (x100 : t) ->
+          fun (x86 : t) ->
             Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x100) "compactDisplay")
+              (Ojs.get_prop_ascii (t_to_js x86) "compactDisplay")
         let (set_compactDisplay : t -> string -> unit) =
-          fun (x101 : t) ->
-            fun (x102 : string) ->
-              Ojs.set_prop_ascii (t_to_js x101) "compactDisplay"
-                (Ojs.string_to_js x102)
+          fun (x87 : t) ->
+            fun (x88 : string) ->
+              Ojs.set_prop_ascii (t_to_js x87) "compactDisplay"
+                (Ojs.string_to_js x88)
         let (get_notation : t -> string) =
-          fun (x103 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x103) "notation")
+          fun (x89 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x89) "notation")
         let (set_notation : t -> string -> unit) =
-          fun (x104 : t) ->
-            fun (x105 : string) ->
-              Ojs.set_prop_ascii (t_to_js x104) "notation"
-                (Ojs.string_to_js x105)
+          fun (x90 : t) ->
+            fun (x91 : string) ->
+              Ojs.set_prop_ascii (t_to_js x90) "notation"
+                (Ojs.string_to_js x91)
         let (get_signDisplay : t -> string) =
-          fun (x106 : t) ->
-            Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x106) "signDisplay")
+          fun (x92 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x92) "signDisplay")
         let (set_signDisplay : t -> string -> unit) =
-          fun (x107 : t) ->
-            fun (x108 : string) ->
-              Ojs.set_prop_ascii (t_to_js x107) "signDisplay"
-                (Ojs.string_to_js x108)
+          fun (x93 : t) ->
+            fun (x94 : string) ->
+              Ojs.set_prop_ascii (t_to_js x93) "signDisplay"
+                (Ojs.string_to_js x94)
         let (get_unit : t -> string) =
-          fun (x109 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x109) "unit")
+          fun (x95 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x95) "unit")
         let (set_unit : t -> string -> unit) =
-          fun (x110 : t) ->
-            fun (x111 : string) ->
-              Ojs.set_prop_ascii (t_to_js x110) "unit"
-                (Ojs.string_to_js x111)
+          fun (x96 : t) ->
+            fun (x97 : string) ->
+              Ojs.set_prop_ascii (t_to_js x96) "unit" (Ojs.string_to_js x97)
         let (get_unitDisplay : t -> string) =
-          fun (x112 : t) ->
-            Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x112) "unitDisplay")
+          fun (x98 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x98) "unitDisplay")
         let (set_unitDisplay : t -> string -> unit) =
-          fun (x113 : t) ->
-            fun (x114 : string) ->
-              Ojs.set_prop_ascii (t_to_js x113) "unitDisplay"
-                (Ojs.string_to_js x114)
+          fun (x99 : t) ->
+            fun (x100 : string) ->
+              Ojs.set_prop_ascii (t_to_js x99) "unitDisplay"
+                (Ojs.string_to_js x100)
       end
     module ResolvedNumberFormatOptions =
       struct
-        type t = _Intl_ResolvedNumberFormatOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x116 : Ojs.t) -> _Intl_ResolvedNumberFormatOptions_of_js x116
-        and t_to_js : t -> Ojs.t =
-          fun (x115 : _Intl_ResolvedNumberFormatOptions) ->
-            _Intl_ResolvedNumberFormatOptions_to_js x115
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x102 : Ojs.t) -> x102
+        and t_to_js : t -> Ojs.t = fun (x101 : Ojs.t) -> x101
         let (get_compactDisplay : t -> string) =
-          fun (x117 : t) ->
+          fun (x103 : t) ->
             Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x117) "compactDisplay")
+              (Ojs.get_prop_ascii (t_to_js x103) "compactDisplay")
         let (set_compactDisplay : t -> string -> unit) =
-          fun (x118 : t) ->
-            fun (x119 : string) ->
-              Ojs.set_prop_ascii (t_to_js x118) "compactDisplay"
-                (Ojs.string_to_js x119)
+          fun (x104 : t) ->
+            fun (x105 : string) ->
+              Ojs.set_prop_ascii (t_to_js x104) "compactDisplay"
+                (Ojs.string_to_js x105)
         let (get_notation : t -> string) =
-          fun (x120 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x120) "notation")
+          fun (x106 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x106) "notation")
         let (set_notation : t -> string -> unit) =
-          fun (x121 : t) ->
-            fun (x122 : string) ->
-              Ojs.set_prop_ascii (t_to_js x121) "notation"
-                (Ojs.string_to_js x122)
+          fun (x107 : t) ->
+            fun (x108 : string) ->
+              Ojs.set_prop_ascii (t_to_js x107) "notation"
+                (Ojs.string_to_js x108)
         let (get_signDisplay : t -> string) =
-          fun (x123 : t) ->
+          fun (x109 : t) ->
             Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x123) "signDisplay")
+              (Ojs.get_prop_ascii (t_to_js x109) "signDisplay")
         let (set_signDisplay : t -> string -> unit) =
-          fun (x124 : t) ->
-            fun (x125 : string) ->
-              Ojs.set_prop_ascii (t_to_js x124) "signDisplay"
-                (Ojs.string_to_js x125)
+          fun (x110 : t) ->
+            fun (x111 : string) ->
+              Ojs.set_prop_ascii (t_to_js x110) "signDisplay"
+                (Ojs.string_to_js x111)
         let (get_unit : t -> string) =
-          fun (x126 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x126) "unit")
+          fun (x112 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x112) "unit")
         let (set_unit : t -> string -> unit) =
-          fun (x127 : t) ->
-            fun (x128 : string) ->
-              Ojs.set_prop_ascii (t_to_js x127) "unit"
-                (Ojs.string_to_js x128)
+          fun (x113 : t) ->
+            fun (x114 : string) ->
+              Ojs.set_prop_ascii (t_to_js x113) "unit"
+                (Ojs.string_to_js x114)
         let (get_unitDisplay : t -> string) =
-          fun (x129 : t) ->
+          fun (x115 : t) ->
             Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x129) "unitDisplay")
+              (Ojs.get_prop_ascii (t_to_js x115) "unitDisplay")
         let (set_unitDisplay : t -> string -> unit) =
-          fun (x130 : t) ->
-            fun (x131 : string) ->
-              Ojs.set_prop_ascii (t_to_js x130) "unitDisplay"
-                (Ojs.string_to_js x131)
+          fun (x116 : t) ->
+            fun (x117 : string) ->
+              Ojs.set_prop_ascii (t_to_js x116) "unitDisplay"
+                (Ojs.string_to_js x117)
       end
     module DateTimeFormatOptions =
       struct
         include struct include DateTimeFormatOptions end
         let (get_dateStyle : t -> [ `full  | `long  | `medium  | `short ]) =
-          fun (x132 : t) ->
-            let x133 = Ojs.get_prop_ascii (t_to_js x132) "dateStyle" in
-            match Ojs.string_of_js x133 with
+          fun (x118 : t) ->
+            let x119 = Ojs.get_prop_ascii (t_to_js x118) "dateStyle" in
+            match Ojs.string_of_js x119 with
             | "full" -> `full
             | "long" -> `long
             | "medium" -> `medium
@@ -858,18 +713,18 @@ module Intl =
             | _ -> assert false
         let (set_dateStyle :
           t -> [ `full  | `long  | `medium  | `short ] -> unit) =
-          fun (x134 : t) ->
-            fun (x135 : [ `full  | `long  | `medium  | `short ]) ->
-              Ojs.set_prop_ascii (t_to_js x134) "dateStyle"
-                (match x135 with
+          fun (x120 : t) ->
+            fun (x121 : [ `full  | `long  | `medium  | `short ]) ->
+              Ojs.set_prop_ascii (t_to_js x120) "dateStyle"
+                (match x121 with
                  | `full -> Ojs.string_to_js "full"
                  | `long -> Ojs.string_to_js "long"
                  | `medium -> Ojs.string_to_js "medium"
                  | `short -> Ojs.string_to_js "short")
         let (get_timeStyle : t -> [ `full  | `long  | `medium  | `short ]) =
-          fun (x136 : t) ->
-            let x137 = Ojs.get_prop_ascii (t_to_js x136) "timeStyle" in
-            match Ojs.string_of_js x137 with
+          fun (x122 : t) ->
+            let x123 = Ojs.get_prop_ascii (t_to_js x122) "timeStyle" in
+            match Ojs.string_of_js x123 with
             | "full" -> `full
             | "long" -> `long
             | "medium" -> `medium
@@ -877,72 +732,71 @@ module Intl =
             | _ -> assert false
         let (set_timeStyle :
           t -> [ `full  | `long  | `medium  | `short ] -> unit) =
-          fun (x138 : t) ->
-            fun (x139 : [ `full  | `long  | `medium  | `short ]) ->
-              Ojs.set_prop_ascii (t_to_js x138) "timeStyle"
-                (match x139 with
+          fun (x124 : t) ->
+            fun (x125 : [ `full  | `long  | `medium  | `short ]) ->
+              Ojs.set_prop_ascii (t_to_js x124) "timeStyle"
+                (match x125 with
                  | `full -> Ojs.string_to_js "full"
                  | `long -> Ojs.string_to_js "long"
                  | `medium -> Ojs.string_to_js "medium"
                  | `short -> Ojs.string_to_js "short")
-        let (get_calendar : t -> _Intl_Calendar) =
-          fun (x140 : t) ->
-            _Intl_Calendar_of_js
-              (Ojs.get_prop_ascii (t_to_js x140) "calendar")
-        let (set_calendar : t -> _Intl_Calendar -> unit) =
-          fun (x141 : t) ->
-            fun (x142 : _Intl_Calendar) ->
-              Ojs.set_prop_ascii (t_to_js x141) "calendar"
-                (_Intl_Calendar_to_js x142)
+        let (get_calendar : t -> Calendar.t) =
+          fun (x126 : t) ->
+            Calendar.t_of_js (Ojs.get_prop_ascii (t_to_js x126) "calendar")
+        let (set_calendar : t -> Calendar.t -> unit) =
+          fun (x127 : t) ->
+            fun (x128 : Calendar.t) ->
+              Ojs.set_prop_ascii (t_to_js x127) "calendar"
+                (Calendar.t_to_js x128)
         let (get_dayPeriod : t -> [ `long  | `narrow  | `short ]) =
-          fun (x143 : t) ->
-            let x144 = Ojs.get_prop_ascii (t_to_js x143) "dayPeriod" in
-            match Ojs.string_of_js x144 with
+          fun (x129 : t) ->
+            let x130 = Ojs.get_prop_ascii (t_to_js x129) "dayPeriod" in
+            match Ojs.string_of_js x130 with
             | "long" -> `long
             | "narrow" -> `narrow
             | "short" -> `short
             | _ -> assert false
         let (set_dayPeriod : t -> [ `long  | `narrow  | `short ] -> unit) =
-          fun (x145 : t) ->
-            fun (x146 : [ `long  | `narrow  | `short ]) ->
-              Ojs.set_prop_ascii (t_to_js x145) "dayPeriod"
-                (match x146 with
+          fun (x131 : t) ->
+            fun (x132 : [ `long  | `narrow  | `short ]) ->
+              Ojs.set_prop_ascii (t_to_js x131) "dayPeriod"
+                (match x132 with
                  | `long -> Ojs.string_to_js "long"
                  | `narrow -> Ojs.string_to_js "narrow"
                  | `short -> Ojs.string_to_js "short")
-        let (get_numberingSystem : t -> _Intl_NumberingSystem) =
-          fun (x147 : t) ->
-            _Intl_NumberingSystem_of_js
-              (Ojs.get_prop_ascii (t_to_js x147) "numberingSystem")
-        let (set_numberingSystem : t -> _Intl_NumberingSystem -> unit) =
-          fun (x148 : t) ->
-            fun (x149 : _Intl_NumberingSystem) ->
-              Ojs.set_prop_ascii (t_to_js x148) "numberingSystem"
-                (_Intl_NumberingSystem_to_js x149)
+        let (get_numberingSystem : t -> NumberingSystem.t) =
+          fun (x133 : t) ->
+            NumberingSystem.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x133) "numberingSystem")
+        let (set_numberingSystem : t -> NumberingSystem.t -> unit) =
+          fun (x134 : t) ->
+            fun (x135 : NumberingSystem.t) ->
+              Ojs.set_prop_ascii (t_to_js x134) "numberingSystem"
+                (NumberingSystem.t_to_js x135)
         let (get_hourCycle : t -> [ `h11  | `h12  | `h23  | `h24 ]) =
-          fun (x150 : t) ->
-            let x151 = Ojs.get_prop_ascii (t_to_js x150) "hourCycle" in
-            match Ojs.string_of_js x151 with
+          fun (x136 : t) ->
+            let x137 = Ojs.get_prop_ascii (t_to_js x136) "hourCycle" in
+            match Ojs.string_of_js x137 with
             | "h11" -> `h11
             | "h12" -> `h12
             | "h23" -> `h23
             | "h24" -> `h24
             | _ -> assert false
         let (set_hourCycle : t -> [ `h11  | `h12  | `h23  | `h24 ] -> unit) =
-          fun (x152 : t) ->
-            fun (x153 : [ `h11  | `h12  | `h23  | `h24 ]) ->
-              Ojs.set_prop_ascii (t_to_js x152) "hourCycle"
-                (match x153 with
+          fun (x138 : t) ->
+            fun (x139 : [ `h11  | `h12  | `h23  | `h24 ]) ->
+              Ojs.set_prop_ascii (t_to_js x138) "hourCycle"
+                (match x139 with
                  | `h11 -> Ojs.string_to_js "h11"
                  | `h12 -> Ojs.string_to_js "h12"
                  | `h23 -> Ojs.string_to_js "h23"
                  | `h24 -> Ojs.string_to_js "h24")
         let (get_fractionalSecondDigits :
           t -> [ `L_n_0  | `L_n_1  | `L_n_2  | `L_n_3 ]) =
-          fun (x154 : t) ->
-            let x155 =
-              Ojs.get_prop_ascii (t_to_js x154) "fractionalSecondDigits" in
-            match Ojs.int_of_js x155 with
+          fun (x140 : t) ->
+            let x141 =
+              Ojs.get_prop_ascii (t_to_js x140) "fractionalSecondDigits" in
+            match Ojs.int_of_js x141 with
             | 0 -> `L_n_0
             | 1 -> `L_n_1
             | 2 -> `L_n_2
@@ -950,10 +804,10 @@ module Intl =
             | _ -> assert false
         let (set_fractionalSecondDigits :
           t -> [ `L_n_0  | `L_n_1  | `L_n_2  | `L_n_3 ] -> unit) =
-          fun (x156 : t) ->
-            fun (x157 : [ `L_n_0  | `L_n_1  | `L_n_2  | `L_n_3 ]) ->
-              Ojs.set_prop_ascii (t_to_js x156) "fractionalSecondDigits"
-                (match x157 with
+          fun (x142 : t) ->
+            fun (x143 : [ `L_n_0  | `L_n_1  | `L_n_2  | `L_n_3 ]) ->
+              Ojs.set_prop_ascii (t_to_js x142) "fractionalSecondDigits"
+                (match x143 with
                  | `L_n_0 -> Ojs.string_to_js "LN0"
                  | `L_n_1 -> Ojs.string_to_js "LN1"
                  | `L_n_2 -> Ojs.string_to_js "LN2"

@@ -115,5 +115,5 @@ module Make (M: Missing) : sig
   module[@js.scope "RIL"] RIL : sig
     val install: unit -> unit [@@js.global "install"]
   end
-  (* export = RIL *)
+  
 end

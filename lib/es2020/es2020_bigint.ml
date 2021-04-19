@@ -2,125 +2,71 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2019
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _BigInt = bigint
-        and _BigInt64Array = [ `BigInt64Array ] intf
-        and _BigInt64ArrayConstructor = [ `BigInt64ArrayConstructor ] intf
-        and _BigIntConstructor = [ `BigIntConstructor ] intf
-        and _BigIntToLocaleStringOptions =
-          [ `BigIntToLocaleStringOptions ] intf
-        and _BigUint64Array = [ `BigUint64Array ] intf
-        and _BigUint64ArrayConstructor = [ `BigUint64ArrayConstructor ] intf
-        and _DataView = [ `DataView ] intf
-        and _Intl_NumberFormat = [ `Intl_NumberFormat ] intf
-        let rec _BigInt_of_js : Ojs.t -> _BigInt =
-          fun (x2 : Ojs.t) -> bigint_of_js x2
-        and _BigInt_to_js : _BigInt -> Ojs.t =
-          fun (x1 : bigint) -> bigint_to_js x1
-        and _BigInt64Array_of_js : Ojs.t -> _BigInt64Array = Obj.magic
-        and _BigInt64Array_to_js : _BigInt64Array -> Ojs.t = Obj.magic
-        and _BigInt64ArrayConstructor_of_js :
-          Ojs.t -> _BigInt64ArrayConstructor = Obj.magic
-        and _BigInt64ArrayConstructor_to_js :
-          _BigInt64ArrayConstructor -> Ojs.t = Obj.magic
-        and _BigIntConstructor_of_js : Ojs.t -> _BigIntConstructor =
-          Obj.magic
-        and _BigIntConstructor_to_js : _BigIntConstructor -> Ojs.t =
-          Obj.magic
-        and _BigIntToLocaleStringOptions_of_js :
-          Ojs.t -> _BigIntToLocaleStringOptions = Obj.magic
-        and _BigIntToLocaleStringOptions_to_js :
-          _BigIntToLocaleStringOptions -> Ojs.t = Obj.magic
-        and _BigUint64Array_of_js : Ojs.t -> _BigUint64Array = Obj.magic
-        and _BigUint64Array_to_js : _BigUint64Array -> Ojs.t = Obj.magic
-        and _BigUint64ArrayConstructor_of_js :
-          Ojs.t -> _BigUint64ArrayConstructor = Obj.magic
-        and _BigUint64ArrayConstructor_to_js :
-          _BigUint64ArrayConstructor -> Ojs.t = Obj.magic
-        and _DataView_of_js : Ojs.t -> _DataView = Obj.magic
-        and _DataView_to_js : _DataView -> Ojs.t = Obj.magic
-        and _Intl_NumberFormat_of_js : Ojs.t -> _Intl_NumberFormat =
-          Obj.magic
-        and _Intl_NumberFormat_to_js : _Intl_NumberFormat -> Ojs.t =
-          Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module BigIntToLocaleStringOptions =
   struct
-    type t = _BigIntToLocaleStringOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x4 : Ojs.t) -> _BigIntToLocaleStringOptions_of_js x4
-    and t_to_js : t -> Ojs.t =
-      fun (x3 : _BigIntToLocaleStringOptions) ->
-        _BigIntToLocaleStringOptions_to_js x3
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get_localeMatcher : t -> string) =
-      fun (x5 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x5) "localeMatcher")
+      fun (x3 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x3) "localeMatcher")
     let (set_localeMatcher : t -> string -> unit) =
-      fun (x6 : t) ->
-        fun (x7 : string) ->
-          Ojs.set_prop_ascii (t_to_js x6) "localeMatcher"
-            (Ojs.string_to_js x7)
+      fun (x4 : t) ->
+        fun (x5 : string) ->
+          Ojs.set_prop_ascii (t_to_js x4) "localeMatcher"
+            (Ojs.string_to_js x5)
     let (get_style : t -> string) =
-      fun (x8 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x8) "style")
+      fun (x6 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x6) "style")
     let (set_style : t -> string -> unit) =
-      fun (x9 : t) ->
-        fun (x10 : string) ->
-          Ojs.set_prop_ascii (t_to_js x9) "style" (Ojs.string_to_js x10)
+      fun (x7 : t) ->
+        fun (x8 : string) ->
+          Ojs.set_prop_ascii (t_to_js x7) "style" (Ojs.string_to_js x8)
     let (get_numberingSystem : t -> string) =
-      fun (x11 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x11) "numberingSystem")
+      fun (x9 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x9) "numberingSystem")
     let (set_numberingSystem : t -> string -> unit) =
-      fun (x12 : t) ->
-        fun (x13 : string) ->
-          Ojs.set_prop_ascii (t_to_js x12) "numberingSystem"
-            (Ojs.string_to_js x13)
+      fun (x10 : t) ->
+        fun (x11 : string) ->
+          Ojs.set_prop_ascii (t_to_js x10) "numberingSystem"
+            (Ojs.string_to_js x11)
     let (get_unit : t -> string) =
-      fun (x14 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x14) "unit")
+      fun (x12 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x12) "unit")
     let (set_unit : t -> string -> unit) =
-      fun (x15 : t) ->
-        fun (x16 : string) ->
-          Ojs.set_prop_ascii (t_to_js x15) "unit" (Ojs.string_to_js x16)
+      fun (x13 : t) ->
+        fun (x14 : string) ->
+          Ojs.set_prop_ascii (t_to_js x13) "unit" (Ojs.string_to_js x14)
     let (get_unitDisplay : t -> string) =
-      fun (x17 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x17) "unitDisplay")
+      fun (x15 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x15) "unitDisplay")
     let (set_unitDisplay : t -> string -> unit) =
-      fun (x18 : t) ->
-        fun (x19 : string) ->
-          Ojs.set_prop_ascii (t_to_js x18) "unitDisplay"
-            (Ojs.string_to_js x19)
+      fun (x16 : t) ->
+        fun (x17 : string) ->
+          Ojs.set_prop_ascii (t_to_js x16) "unitDisplay"
+            (Ojs.string_to_js x17)
     let (get_currency : t -> string) =
-      fun (x20 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x20) "currency")
+      fun (x18 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x18) "currency")
     let (set_currency : t -> string -> unit) =
-      fun (x21 : t) ->
-        fun (x22 : string) ->
-          Ojs.set_prop_ascii (t_to_js x21) "currency" (Ojs.string_to_js x22)
+      fun (x19 : t) ->
+        fun (x20 : string) ->
+          Ojs.set_prop_ascii (t_to_js x19) "currency" (Ojs.string_to_js x20)
     let (get_currencyDisplay : t -> string) =
-      fun (x23 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x23) "currencyDisplay")
+      fun (x21 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x21) "currencyDisplay")
     let (set_currencyDisplay : t -> string -> unit) =
-      fun (x24 : t) ->
-        fun (x25 : string) ->
-          Ojs.set_prop_ascii (t_to_js x24) "currencyDisplay"
-            (Ojs.string_to_js x25)
+      fun (x22 : t) ->
+        fun (x23 : string) ->
+          Ojs.set_prop_ascii (t_to_js x22) "currencyDisplay"
+            (Ojs.string_to_js x23)
     let (get_useGrouping : t -> bool) =
-      fun (x26 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x26) "useGrouping")
+      fun (x24 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x24) "useGrouping")
     let (set_useGrouping : t -> bool -> unit) =
-      fun (x27 : t) ->
-        fun (x28 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x27) "useGrouping" (Ojs.bool_to_js x28)
+      fun (x25 : t) ->
+        fun (x26 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x25) "useGrouping" (Ojs.bool_to_js x26)
     let (get_minimumIntegerDigits :
       t ->
         [ `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4  | `L_n_5  | `L_n_6  | 
@@ -129,9 +75,9 @@ module BigIntToLocaleStringOptions =
         | `L_n_14  | `L_n_15  | `L_n_16  | `L_n_17  | `L_n_18  | `L_n_19 
         | `L_n_20  | `L_n_21 ])
       =
-      fun (x29 : t) ->
-        let x30 = Ojs.get_prop_ascii (t_to_js x29) "minimumIntegerDigits" in
-        match Ojs.int_of_js x30 with
+      fun (x27 : t) ->
+        let x28 = Ojs.get_prop_ascii (t_to_js x27) "minimumIntegerDigits" in
+        match Ojs.int_of_js x28 with
         | 1 -> `L_n_1
         | 2 -> `L_n_2
         | 3 -> `L_n_3
@@ -162,17 +108,17 @@ module BigIntToLocaleStringOptions =
         | `L_n_14  | `L_n_15  | `L_n_16  | `L_n_17  | `L_n_18  | `L_n_19 
         | `L_n_20  | `L_n_21 ] -> unit)
       =
-      fun (x31 : t) ->
+      fun (x29 : t) ->
         fun
-          (x32 :
+          (x30 :
             [ `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4  | `L_n_5  | `L_n_6 
             | `L_n_7  | `L_n_8  | `L_n_9  | `L_n_10  | `L_n_11  | `L_n_12 
             | `L_n_13  | `L_n_14  | `L_n_15  | `L_n_16  | `L_n_17  | 
               `L_n_18 
             | `L_n_19  | `L_n_20  | `L_n_21 ])
           ->
-          Ojs.set_prop_ascii (t_to_js x31) "minimumIntegerDigits"
-            (match x32 with
+          Ojs.set_prop_ascii (t_to_js x29) "minimumIntegerDigits"
+            (match x30 with
              | `L_n_1 -> Ojs.string_to_js "LN1"
              | `L_n_2 -> Ojs.string_to_js "LN2"
              | `L_n_3 -> Ojs.string_to_js "LN3"
@@ -202,9 +148,9 @@ module BigIntToLocaleStringOptions =
         | `L_n_13  | `L_n_14  | `L_n_15  | `L_n_16  | `L_n_17  | `L_n_18 
         | `L_n_19  | `L_n_20 ])
       =
-      fun (x33 : t) ->
-        let x34 = Ojs.get_prop_ascii (t_to_js x33) "minimumFractionDigits" in
-        match Ojs.int_of_js x34 with
+      fun (x31 : t) ->
+        let x32 = Ojs.get_prop_ascii (t_to_js x31) "minimumFractionDigits" in
+        match Ojs.int_of_js x32 with
         | 0 -> `L_n_0
         | 1 -> `L_n_1
         | 2 -> `L_n_2
@@ -235,17 +181,17 @@ module BigIntToLocaleStringOptions =
         | `L_n_13  | `L_n_14  | `L_n_15  | `L_n_16  | `L_n_17  | `L_n_18 
         | `L_n_19  | `L_n_20 ] -> unit)
       =
-      fun (x35 : t) ->
+      fun (x33 : t) ->
         fun
-          (x36 :
+          (x34 :
             [ `L_n_0  | `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4  | `L_n_5 
             | `L_n_6  | `L_n_7  | `L_n_8  | `L_n_9  | `L_n_10  | `L_n_11 
             | `L_n_12  | `L_n_13  | `L_n_14  | `L_n_15  | `L_n_16  | 
               `L_n_17 
             | `L_n_18  | `L_n_19  | `L_n_20 ])
           ->
-          Ojs.set_prop_ascii (t_to_js x35) "minimumFractionDigits"
-            (match x36 with
+          Ojs.set_prop_ascii (t_to_js x33) "minimumFractionDigits"
+            (match x34 with
              | `L_n_0 -> Ojs.string_to_js "LN0"
              | `L_n_1 -> Ojs.string_to_js "LN1"
              | `L_n_2 -> Ojs.string_to_js "LN2"
@@ -275,9 +221,9 @@ module BigIntToLocaleStringOptions =
         | `L_n_13  | `L_n_14  | `L_n_15  | `L_n_16  | `L_n_17  | `L_n_18 
         | `L_n_19  | `L_n_20 ])
       =
-      fun (x37 : t) ->
-        let x38 = Ojs.get_prop_ascii (t_to_js x37) "maximumFractionDigits" in
-        match Ojs.int_of_js x38 with
+      fun (x35 : t) ->
+        let x36 = Ojs.get_prop_ascii (t_to_js x35) "maximumFractionDigits" in
+        match Ojs.int_of_js x36 with
         | 0 -> `L_n_0
         | 1 -> `L_n_1
         | 2 -> `L_n_2
@@ -308,17 +254,17 @@ module BigIntToLocaleStringOptions =
         | `L_n_13  | `L_n_14  | `L_n_15  | `L_n_16  | `L_n_17  | `L_n_18 
         | `L_n_19  | `L_n_20 ] -> unit)
       =
-      fun (x39 : t) ->
+      fun (x37 : t) ->
         fun
-          (x40 :
+          (x38 :
             [ `L_n_0  | `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4  | `L_n_5 
             | `L_n_6  | `L_n_7  | `L_n_8  | `L_n_9  | `L_n_10  | `L_n_11 
             | `L_n_12  | `L_n_13  | `L_n_14  | `L_n_15  | `L_n_16  | 
               `L_n_17 
             | `L_n_18  | `L_n_19  | `L_n_20 ])
           ->
-          Ojs.set_prop_ascii (t_to_js x39) "maximumFractionDigits"
-            (match x40 with
+          Ojs.set_prop_ascii (t_to_js x37) "maximumFractionDigits"
+            (match x38 with
              | `L_n_0 -> Ojs.string_to_js "LN0"
              | `L_n_1 -> Ojs.string_to_js "LN1"
              | `L_n_2 -> Ojs.string_to_js "LN2"
@@ -348,9 +294,9 @@ module BigIntToLocaleStringOptions =
         | `L_n_14  | `L_n_15  | `L_n_16  | `L_n_17  | `L_n_18  | `L_n_19 
         | `L_n_20  | `L_n_21 ])
       =
-      fun (x41 : t) ->
-        let x42 = Ojs.get_prop_ascii (t_to_js x41) "minimumSignificantDigits" in
-        match Ojs.int_of_js x42 with
+      fun (x39 : t) ->
+        let x40 = Ojs.get_prop_ascii (t_to_js x39) "minimumSignificantDigits" in
+        match Ojs.int_of_js x40 with
         | 1 -> `L_n_1
         | 2 -> `L_n_2
         | 3 -> `L_n_3
@@ -381,17 +327,17 @@ module BigIntToLocaleStringOptions =
         | `L_n_14  | `L_n_15  | `L_n_16  | `L_n_17  | `L_n_18  | `L_n_19 
         | `L_n_20  | `L_n_21 ] -> unit)
       =
-      fun (x43 : t) ->
+      fun (x41 : t) ->
         fun
-          (x44 :
+          (x42 :
             [ `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4  | `L_n_5  | `L_n_6 
             | `L_n_7  | `L_n_8  | `L_n_9  | `L_n_10  | `L_n_11  | `L_n_12 
             | `L_n_13  | `L_n_14  | `L_n_15  | `L_n_16  | `L_n_17  | 
               `L_n_18 
             | `L_n_19  | `L_n_20  | `L_n_21 ])
           ->
-          Ojs.set_prop_ascii (t_to_js x43) "minimumSignificantDigits"
-            (match x44 with
+          Ojs.set_prop_ascii (t_to_js x41) "minimumSignificantDigits"
+            (match x42 with
              | `L_n_1 -> Ojs.string_to_js "LN1"
              | `L_n_2 -> Ojs.string_to_js "LN2"
              | `L_n_3 -> Ojs.string_to_js "LN3"
@@ -421,9 +367,9 @@ module BigIntToLocaleStringOptions =
         | `L_n_14  | `L_n_15  | `L_n_16  | `L_n_17  | `L_n_18  | `L_n_19 
         | `L_n_20  | `L_n_21 ])
       =
-      fun (x45 : t) ->
-        let x46 = Ojs.get_prop_ascii (t_to_js x45) "maximumSignificantDigits" in
-        match Ojs.int_of_js x46 with
+      fun (x43 : t) ->
+        let x44 = Ojs.get_prop_ascii (t_to_js x43) "maximumSignificantDigits" in
+        match Ojs.int_of_js x44 with
         | 1 -> `L_n_1
         | 2 -> `L_n_2
         | 3 -> `L_n_3
@@ -454,17 +400,17 @@ module BigIntToLocaleStringOptions =
         | `L_n_14  | `L_n_15  | `L_n_16  | `L_n_17  | `L_n_18  | `L_n_19 
         | `L_n_20  | `L_n_21 ] -> unit)
       =
-      fun (x47 : t) ->
+      fun (x45 : t) ->
         fun
-          (x48 :
+          (x46 :
             [ `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4  | `L_n_5  | `L_n_6 
             | `L_n_7  | `L_n_8  | `L_n_9  | `L_n_10  | `L_n_11  | `L_n_12 
             | `L_n_13  | `L_n_14  | `L_n_15  | `L_n_16  | `L_n_17  | 
               `L_n_18 
             | `L_n_19  | `L_n_20  | `L_n_21 ])
           ->
-          Ojs.set_prop_ascii (t_to_js x47) "maximumSignificantDigits"
-            (match x48 with
+          Ojs.set_prop_ascii (t_to_js x45) "maximumSignificantDigits"
+            (match x46 with
              | `L_n_1 -> Ojs.string_to_js "LN1"
              | `L_n_2 -> Ojs.string_to_js "LN2"
              | `L_n_3 -> Ojs.string_to_js "LN3"
@@ -487,1993 +433,1937 @@ module BigIntToLocaleStringOptions =
              | `L_n_20 -> Ojs.string_to_js "LN20"
              | `L_n_21 -> Ojs.string_to_js "LN21")
     let (get_notation : t -> string) =
-      fun (x49 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x49) "notation")
+      fun (x47 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x47) "notation")
     let (set_notation : t -> string -> unit) =
-      fun (x50 : t) ->
-        fun (x51 : string) ->
-          Ojs.set_prop_ascii (t_to_js x50) "notation" (Ojs.string_to_js x51)
+      fun (x48 : t) ->
+        fun (x49 : string) ->
+          Ojs.set_prop_ascii (t_to_js x48) "notation" (Ojs.string_to_js x49)
     let (get_compactDisplay : t -> string) =
-      fun (x52 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x52) "compactDisplay")
+      fun (x50 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x50) "compactDisplay")
     let (set_compactDisplay : t -> string -> unit) =
-      fun (x53 : t) ->
-        fun (x54 : string) ->
-          Ojs.set_prop_ascii (t_to_js x53) "compactDisplay"
-            (Ojs.string_to_js x54)
+      fun (x51 : t) ->
+        fun (x52 : string) ->
+          Ojs.set_prop_ascii (t_to_js x51) "compactDisplay"
+            (Ojs.string_to_js x52)
   end
 module BigInt =
   struct
-    type t = _BigInt
-    let rec t_of_js : Ojs.t -> t = fun (x56 : Ojs.t) -> _BigInt_of_js x56
-    and t_to_js : t -> Ojs.t = fun (x55 : _BigInt) -> _BigInt_to_js x55
-    let (toString : t -> ?radix:float -> unit -> string) =
-      fun (x60 : t) ->
-        fun ?radix:(x57 : float option) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x54 : Ojs.t) -> x54
+    and t_to_js : t -> Ojs.t = fun (x53 : Ojs.t) -> x53
+    let (toString : t -> ?radix:int -> unit -> string) =
+      fun (x58 : t) ->
+        fun ?radix:(x55 : int option) ->
           fun () ->
             Ojs.string_of_js
-              (let x61 = t_to_js x60 in
-               Ojs.call (Ojs.get_prop_ascii x61 "toString") "apply"
-                 [|x61;((let x58 =
+              (let x59 = t_to_js x58 in
+               Ojs.call (Ojs.get_prop_ascii x59 "toString") "apply"
+                 [|x59;((let x56 =
                            Ojs.new_obj
                              (Ojs.get_prop_ascii Ojs.global "Array") 
                              [||] in
-                         (match x57 with
-                          | Some x59 ->
+                         (match x55 with
+                          | Some x57 ->
                               ignore
-                                (Ojs.call x58 "push"
-                                   [|(Ojs.float_to_js x59)|])
+                                (Ojs.call x56 "push" [|(Ojs.int_to_js x57)|])
                           | None -> ());
-                         x58))|])
+                         x56))|])
     let (toLocaleString :
       t ->
         ?locales:string ->
-          ?options:_BigIntToLocaleStringOptions -> unit -> string)
+          ?options:BigIntToLocaleStringOptions.t -> unit -> string)
       =
-      fun (x67 : t) ->
-        fun ?locales:(x62 : string option) ->
-          fun ?options:(x63 : _BigIntToLocaleStringOptions option) ->
+      fun (x65 : t) ->
+        fun ?locales:(x60 : string option) ->
+          fun ?options:(x61 : BigIntToLocaleStringOptions.t option) ->
             fun () ->
               Ojs.string_of_js
-                (let x68 = t_to_js x67 in
-                 Ojs.call (Ojs.get_prop_ascii x68 "toLocaleString") "apply"
-                   [|x68;((let x64 =
+                (let x66 = t_to_js x65 in
+                 Ojs.call (Ojs.get_prop_ascii x66 "toLocaleString") "apply"
+                   [|x66;((let x62 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
-                           (match x62 with
-                            | Some x66 ->
+                           (match x60 with
+                            | Some x64 ->
                                 ignore
-                                  (Ojs.call x64 "push"
-                                     [|(Ojs.string_to_js x66)|])
+                                  (Ojs.call x62 "push"
+                                     [|(Ojs.string_to_js x64)|])
                             | None -> ());
-                           (match x63 with
-                            | Some x65 ->
+                           (match x61 with
+                            | Some x63 ->
                                 ignore
-                                  (Ojs.call x64 "push"
-                                     [|(_BigIntToLocaleStringOptions_to_js
-                                          x65)|])
+                                  (Ojs.call x62 "push"
+                                     [|(BigIntToLocaleStringOptions.t_to_js
+                                          x63)|])
                             | None -> ());
-                           x64))|])
+                           x62))|])
     let (valueOf : t -> bigint) =
-      fun (x69 : t) -> bigint_of_js (Ojs.call (t_to_js x69) "valueOf" [||])
-    let (asIntN : bits:float -> int:bigint -> bigint) =
-      fun ~bits:(x70 : float) ->
-        fun ~int:(x71 : bigint) ->
+      fun (x67 : t) -> bigint_of_js (Ojs.call (t_to_js x67) "valueOf" [||])
+    let (asIntN : bits:int -> int:bigint -> bigint) =
+      fun ~bits:(x68 : int) ->
+        fun ~int:(x69 : bigint) ->
           bigint_of_js
             (Ojs.call (Ojs.get_prop_ascii Ojs.global "BitInt") "asIntN"
-               [|(Ojs.float_to_js x70);(bigint_to_js x71)|])
-    let (asUintN : bits:float -> int:bigint -> bigint) =
-      fun ~bits:(x72 : float) ->
-        fun ~int:(x73 : bigint) ->
+               [|(Ojs.int_to_js x68);(bigint_to_js x69)|])
+    let (asUintN : bits:int -> int:bigint -> bigint) =
+      fun ~bits:(x70 : int) ->
+        fun ~int:(x71 : bigint) ->
           bigint_of_js
             (Ojs.call (Ojs.get_prop_ascii Ojs.global "BitInt") "asUintN"
-               [|(Ojs.float_to_js x72);(bigint_to_js x73)|])
+               [|(Ojs.int_to_js x70);(bigint_to_js x71)|])
   end
 module BigIntConstructor =
   struct
-    type t = _BigIntConstructor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x75 : Ojs.t) -> _BigIntConstructor_of_js x75
-    and t_to_js : t -> Ojs.t =
-      fun (x74 : _BigIntConstructor) -> _BigIntConstructor_to_js x74
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x73 : Ojs.t) -> x73
+    and t_to_js : t -> Ojs.t = fun (x72 : Ojs.t) -> x72
     let (apply : t -> ?value:any -> unit -> bigint) =
-      fun (x79 : t) ->
-        fun ?value:(x76 : any option) ->
+      fun (x77 : t) ->
+        fun ?value:(x74 : any option) ->
           fun () ->
             bigint_of_js
-              (Ojs.call (t_to_js x79) "apply"
-                 [|Ojs.null;((let x77 =
+              (Ojs.call (t_to_js x77) "apply"
+                 [|Ojs.null;((let x75 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x76 with
-                               | Some x78 ->
+                              (match x74 with
+                               | Some x76 ->
                                    ignore
-                                     (Ojs.call x77 "push" [|(any_to_js x78)|])
+                                     (Ojs.call x75 "push" [|(any_to_js x76)|])
                                | None -> ());
-                              x77))|])
-    let (get_prototype : t -> _BigInt) =
-      fun (x80 : t) ->
-        _BigInt_of_js (Ojs.get_prop_ascii (t_to_js x80) "prototype")
-    let (asIntN : t -> bits:float -> int:bigint -> bigint) =
-      fun (x83 : t) ->
-        fun ~bits:(x81 : float) ->
-          fun ~int:(x82 : bigint) ->
+                              x75))|])
+    let (get_prototype : t -> BigInt.t) =
+      fun (x78 : t) ->
+        BigInt.t_of_js (Ojs.get_prop_ascii (t_to_js x78) "prototype")
+    let (asIntN : t -> bits:int -> int:bigint -> bigint) =
+      fun (x81 : t) ->
+        fun ~bits:(x79 : int) ->
+          fun ~int:(x80 : bigint) ->
             bigint_of_js
-              (Ojs.call (t_to_js x83) "asIntN"
-                 [|(Ojs.float_to_js x81);(bigint_to_js x82)|])
-    let (asUintN : t -> bits:float -> int:bigint -> bigint) =
-      fun (x86 : t) ->
-        fun ~bits:(x84 : float) ->
-          fun ~int:(x85 : bigint) ->
+              (Ojs.call (t_to_js x81) "asIntN"
+                 [|(Ojs.int_to_js x79);(bigint_to_js x80)|])
+    let (asUintN : t -> bits:int -> int:bigint -> bigint) =
+      fun (x84 : t) ->
+        fun ~bits:(x82 : int) ->
+          fun ~int:(x83 : bigint) ->
             bigint_of_js
-              (Ojs.call (t_to_js x86) "asUintN"
-                 [|(Ojs.float_to_js x84);(bigint_to_js x85)|])
+              (Ojs.call (t_to_js x84) "asUintN"
+                 [|(Ojs.int_to_js x82);(bigint_to_js x83)|])
   end
-let (bigInt : _BigIntConstructor) =
-  _BigIntConstructor_of_js (Ojs.get_prop_ascii Ojs.global "BigInt")
+let (bigInt : BigIntConstructor.t) =
+  BigIntConstructor.t_of_js (Ojs.get_prop_ascii Ojs.global "BigInt")
 module BigInt64Array =
   struct
-    type t = _BigInt64Array
-    let rec t_of_js : Ojs.t -> t =
-      fun (x88 : Ojs.t) -> _BigInt64Array_of_js x88
-    and t_to_js : t -> Ojs.t =
-      fun (x87 : _BigInt64Array) -> _BigInt64Array_to_js x87
-    let (get_BYTES_PER_ELEMENT : t -> float) =
-      fun (x89 : t) ->
-        Ojs.float_of_js
-          (Ojs.get_prop_ascii (t_to_js x89) "BYTES_PER_ELEMENT")
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x86 : Ojs.t) -> x86
+    and t_to_js : t -> Ojs.t = fun (x85 : Ojs.t) -> x85
+    let (get_BYTES_PER_ELEMENT : t -> int) =
+      fun (x87 : t) ->
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x87) "BYTES_PER_ELEMENT")
     let (get_buffer : t -> ArrayBuffer.t) =
+      fun (x88 : t) ->
+        ArrayBuffer.t_of_js (Ojs.get_prop_ascii (t_to_js x88) "buffer")
+    let (get_byteLength : t -> int) =
+      fun (x89 : t) ->
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x89) "byteLength")
+    let (get_byteOffset : t -> int) =
       fun (x90 : t) ->
-        ArrayBuffer.t_of_js (Ojs.get_prop_ascii (t_to_js x90) "buffer")
-    let (get_byteLength : t -> float) =
-      fun (x91 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x91) "byteLength")
-    let (get_byteOffset : t -> float) =
-      fun (x92 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x92) "byteOffset")
-    let (copyWithin :
-      t -> target:float -> start:float -> ?end_:float -> unit -> t) =
-      fun (x98 : t) ->
-        fun ~target:(x93 : float) ->
-          fun ~start:(x94 : float) ->
-            fun ?end_:(x95 : float option) ->
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x90) "byteOffset")
+    let (copyWithin : t -> target:int -> start:int -> ?end_:int -> unit -> t)
+      =
+      fun (x96 : t) ->
+        fun ~target:(x91 : int) ->
+          fun ~start:(x92 : int) ->
+            fun ?end_:(x93 : int option) ->
               fun () ->
                 t_of_js
-                  (let x99 = t_to_js x98 in
-                   Ojs.call (Ojs.get_prop_ascii x99 "copyWithin") "apply"
-                     [|x99;((let x96 =
+                  (let x97 = t_to_js x96 in
+                   Ojs.call (Ojs.get_prop_ascii x97 "copyWithin") "apply"
+                     [|x97;((let x94 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x96 "push" [|(Ojs.float_to_js x93)|]);
+                               (Ojs.call x94 "push" [|(Ojs.int_to_js x91)|]);
                              ignore
-                               (Ojs.call x96 "push" [|(Ojs.float_to_js x94)|]);
-                             (match x95 with
-                              | Some x97 ->
+                               (Ojs.call x94 "push" [|(Ojs.int_to_js x92)|]);
+                             (match x93 with
+                              | Some x95 ->
                                   ignore
-                                    (Ojs.call x96 "push"
-                                       [|(Ojs.float_to_js x97)|])
+                                    (Ojs.call x94 "push"
+                                       [|(Ojs.int_to_js x95)|])
                               | None -> ());
-                             x96))|])
-    let (entries : t -> (float * bigint) IterableIterator.t) =
-      fun (x100 : t) ->
+                             x94))|])
+    let (entries : t -> (int * bigint) IterableIterator.t) =
+      fun (x98 : t) ->
         IterableIterator.t_of_js
-          (fun (x101 : Ojs.t) ->
-             let x102 = x101 in
-             ((Ojs.float_of_js (Ojs.array_get x102 0)),
-               (bigint_of_js (Ojs.array_get x102 1))))
-          (Ojs.call (t_to_js x100) "entries" [||])
+          (fun (x99 : Ojs.t) ->
+             let x100 = x99 in
+             ((Ojs.int_of_js (Ojs.array_get x100 0)),
+               (bigint_of_js (Ojs.array_get x100 1))))
+          (Ojs.call (t_to_js x98) "entries" [||])
     let (every :
       t ->
-        predicate:(value:bigint -> index:float -> array:t -> bool) ->
+        predicate:(value:bigint -> index:int -> array:t -> bool) ->
           ?thisArg:any -> unit -> bool)
       =
-      fun (x110 : t) ->
-        fun
-          ~predicate:(x103 : value:bigint -> index:float -> array:t -> bool)
+      fun (x108 : t) ->
+        fun ~predicate:(x101 : value:bigint -> index:int -> array:t -> bool)
           ->
-          fun ?thisArg:(x104 : any option) ->
+          fun ?thisArg:(x102 : any option) ->
             fun () ->
               Ojs.bool_of_js
-                (let x111 = t_to_js x110 in
-                 Ojs.call (Ojs.get_prop_ascii x111 "every") "apply"
-                   [|x111;((let x105 =
+                (let x109 = t_to_js x108 in
+                 Ojs.call (Ojs.get_prop_ascii x109 "every") "apply"
+                   [|x109;((let x103 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x105 "push"
+                              (Ojs.call x103 "push"
                                  [|(Ojs.fun_to_js 3
-                                      (fun (x107 : Ojs.t) ->
-                                         fun (x108 : Ojs.t) ->
-                                           fun (x109 : Ojs.t) ->
+                                      (fun (x105 : Ojs.t) ->
+                                         fun (x106 : Ojs.t) ->
+                                           fun (x107 : Ojs.t) ->
                                              Ojs.bool_to_js
-                                               (x103
-                                                  ~value:(bigint_of_js x107)
-                                                  ~index:(Ojs.float_of_js
-                                                            x108)
-                                                  ~array:(t_of_js x109))))|]);
-                            (match x104 with
-                             | Some x106 ->
+                                               (x101
+                                                  ~value:(bigint_of_js x105)
+                                                  ~index:(Ojs.int_of_js x106)
+                                                  ~array:(t_of_js x107))))|]);
+                            (match x102 with
+                             | Some x104 ->
                                  ignore
-                                   (Ojs.call x105 "push" [|(any_to_js x106)|])
+                                   (Ojs.call x103 "push" [|(any_to_js x104)|])
                              | None -> ());
-                            x105))|])
-    let (fill :
-      t -> value:bigint -> ?start:float -> ?end_:float -> unit -> t) =
-      fun (x118 : t) ->
-        fun ~value:(x112 : bigint) ->
-          fun ?start:(x113 : float option) ->
-            fun ?end_:(x114 : float option) ->
+                            x103))|])
+    let (fill : t -> value:bigint -> ?start:int -> ?end_:int -> unit -> t) =
+      fun (x116 : t) ->
+        fun ~value:(x110 : bigint) ->
+          fun ?start:(x111 : int option) ->
+            fun ?end_:(x112 : int option) ->
               fun () ->
                 t_of_js
-                  (let x119 = t_to_js x118 in
-                   Ojs.call (Ojs.get_prop_ascii x119 "fill") "apply"
-                     [|x119;((let x115 =
+                  (let x117 = t_to_js x116 in
+                   Ojs.call (Ojs.get_prop_ascii x117 "fill") "apply"
+                     [|x117;((let x113 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x115 "push" [|(bigint_to_js x112)|]);
-                              (match x113 with
-                               | Some x117 ->
+                                (Ojs.call x113 "push" [|(bigint_to_js x110)|]);
+                              (match x111 with
+                               | Some x115 ->
                                    ignore
-                                     (Ojs.call x115 "push"
-                                        [|(Ojs.float_to_js x117)|])
+                                     (Ojs.call x113 "push"
+                                        [|(Ojs.int_to_js x115)|])
                                | None -> ());
-                              (match x114 with
-                               | Some x116 ->
+                              (match x112 with
+                               | Some x114 ->
                                    ignore
-                                     (Ojs.call x115 "push"
-                                        [|(Ojs.float_to_js x116)|])
+                                     (Ojs.call x113 "push"
+                                        [|(Ojs.int_to_js x114)|])
                                | None -> ());
-                              x115))|])
+                              x113))|])
     let (filter :
       t ->
-        predicate:(value:bigint -> index:float -> array:t -> any) ->
+        predicate:(value:bigint -> index:int -> array:t -> any) ->
           ?thisArg:any -> unit -> t)
       =
-      fun (x127 : t) ->
-        fun ~predicate:(x120 : value:bigint -> index:float -> array:t -> any)
+      fun (x125 : t) ->
+        fun ~predicate:(x118 : value:bigint -> index:int -> array:t -> any)
           ->
-          fun ?thisArg:(x121 : any option) ->
+          fun ?thisArg:(x119 : any option) ->
             fun () ->
               t_of_js
-                (let x128 = t_to_js x127 in
-                 Ojs.call (Ojs.get_prop_ascii x128 "filter") "apply"
-                   [|x128;((let x122 =
+                (let x126 = t_to_js x125 in
+                 Ojs.call (Ojs.get_prop_ascii x126 "filter") "apply"
+                   [|x126;((let x120 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x122 "push"
+                              (Ojs.call x120 "push"
                                  [|(Ojs.fun_to_js 3
-                                      (fun (x124 : Ojs.t) ->
-                                         fun (x125 : Ojs.t) ->
-                                           fun (x126 : Ojs.t) ->
+                                      (fun (x122 : Ojs.t) ->
+                                         fun (x123 : Ojs.t) ->
+                                           fun (x124 : Ojs.t) ->
                                              any_to_js
-                                               (x120
-                                                  ~value:(bigint_of_js x124)
-                                                  ~index:(Ojs.float_of_js
-                                                            x125)
-                                                  ~array:(t_of_js x126))))|]);
-                            (match x121 with
-                             | Some x123 ->
+                                               (x118
+                                                  ~value:(bigint_of_js x122)
+                                                  ~index:(Ojs.int_of_js x123)
+                                                  ~array:(t_of_js x124))))|]);
+                            (match x119 with
+                             | Some x121 ->
                                  ignore
-                                   (Ojs.call x122 "push" [|(any_to_js x123)|])
+                                   (Ojs.call x120 "push" [|(any_to_js x121)|])
                              | None -> ());
-                            x122))|])
+                            x120))|])
     let (find :
       t ->
-        predicate:(value:bigint -> index:float -> array:t -> bool) ->
+        predicate:(value:bigint -> index:int -> array:t -> bool) ->
           ?thisArg:any -> unit -> bigint or_undefined)
       =
-      fun (x136 : t) ->
-        fun
-          ~predicate:(x129 : value:bigint -> index:float -> array:t -> bool)
+      fun (x134 : t) ->
+        fun ~predicate:(x127 : value:bigint -> index:int -> array:t -> bool)
           ->
-          fun ?thisArg:(x130 : any option) ->
+          fun ?thisArg:(x128 : any option) ->
             fun () ->
               or_undefined_of_js bigint_of_js
-                (let x137 = t_to_js x136 in
-                 Ojs.call (Ojs.get_prop_ascii x137 "find") "apply"
-                   [|x137;((let x131 =
+                (let x135 = t_to_js x134 in
+                 Ojs.call (Ojs.get_prop_ascii x135 "find") "apply"
+                   [|x135;((let x129 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x131 "push"
+                              (Ojs.call x129 "push"
                                  [|(Ojs.fun_to_js 3
-                                      (fun (x133 : Ojs.t) ->
-                                         fun (x134 : Ojs.t) ->
-                                           fun (x135 : Ojs.t) ->
+                                      (fun (x131 : Ojs.t) ->
+                                         fun (x132 : Ojs.t) ->
+                                           fun (x133 : Ojs.t) ->
                                              Ojs.bool_to_js
-                                               (x129
-                                                  ~value:(bigint_of_js x133)
-                                                  ~index:(Ojs.float_of_js
-                                                            x134)
-                                                  ~array:(t_of_js x135))))|]);
-                            (match x130 with
-                             | Some x132 ->
+                                               (x127
+                                                  ~value:(bigint_of_js x131)
+                                                  ~index:(Ojs.int_of_js x132)
+                                                  ~array:(t_of_js x133))))|]);
+                            (match x128 with
+                             | Some x130 ->
                                  ignore
-                                   (Ojs.call x131 "push" [|(any_to_js x132)|])
+                                   (Ojs.call x129 "push" [|(any_to_js x130)|])
                              | None -> ());
-                            x131))|])
+                            x129))|])
     let (findIndex :
       t ->
-        predicate:(value:bigint -> index:float -> array:t -> bool) ->
-          ?thisArg:any -> unit -> float)
+        predicate:(value:bigint -> index:int -> array:t -> bool) ->
+          ?thisArg:any -> unit -> int)
       =
-      fun (x146 : t) ->
-        fun
-          ~predicate:(x139 : value:bigint -> index:float -> array:t -> bool)
+      fun (x144 : t) ->
+        fun ~predicate:(x137 : value:bigint -> index:int -> array:t -> bool)
           ->
-          fun ?thisArg:(x140 : any option) ->
+          fun ?thisArg:(x138 : any option) ->
             fun () ->
-              Ojs.float_of_js
-                (let x147 = t_to_js x146 in
-                 Ojs.call (Ojs.get_prop_ascii x147 "findIndex") "apply"
-                   [|x147;((let x141 =
+              Ojs.int_of_js
+                (let x145 = t_to_js x144 in
+                 Ojs.call (Ojs.get_prop_ascii x145 "findIndex") "apply"
+                   [|x145;((let x139 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x141 "push"
+                              (Ojs.call x139 "push"
                                  [|(Ojs.fun_to_js 3
-                                      (fun (x143 : Ojs.t) ->
-                                         fun (x144 : Ojs.t) ->
-                                           fun (x145 : Ojs.t) ->
+                                      (fun (x141 : Ojs.t) ->
+                                         fun (x142 : Ojs.t) ->
+                                           fun (x143 : Ojs.t) ->
                                              Ojs.bool_to_js
-                                               (x139
-                                                  ~value:(bigint_of_js x143)
-                                                  ~index:(Ojs.float_of_js
-                                                            x144)
-                                                  ~array:(t_of_js x145))))|]);
-                            (match x140 with
-                             | Some x142 ->
+                                               (x137
+                                                  ~value:(bigint_of_js x141)
+                                                  ~index:(Ojs.int_of_js x142)
+                                                  ~array:(t_of_js x143))))|]);
+                            (match x138 with
+                             | Some x140 ->
                                  ignore
-                                   (Ojs.call x141 "push" [|(any_to_js x142)|])
+                                   (Ojs.call x139 "push" [|(any_to_js x140)|])
                              | None -> ());
-                            x141))|])
+                            x139))|])
     let (forEach :
       t ->
-        callbackfn:(value:bigint -> index:float -> array:t -> unit) ->
+        callbackfn:(value:bigint -> index:int -> array:t -> unit) ->
           ?thisArg:any -> unit -> unit)
       =
-      fun (x155 : t) ->
-        fun
-          ~callbackfn:(x148 : value:bigint -> index:float -> array:t -> unit)
+      fun (x153 : t) ->
+        fun ~callbackfn:(x146 : value:bigint -> index:int -> array:t -> unit)
           ->
-          fun ?thisArg:(x149 : any option) ->
+          fun ?thisArg:(x147 : any option) ->
             fun () ->
               ignore
-                (let x156 = t_to_js x155 in
-                 Ojs.call (Ojs.get_prop_ascii x156 "forEach") "apply"
-                   [|x156;((let x150 =
+                (let x154 = t_to_js x153 in
+                 Ojs.call (Ojs.get_prop_ascii x154 "forEach") "apply"
+                   [|x154;((let x148 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x150 "push"
+                              (Ojs.call x148 "push"
                                  [|(Ojs.fun_to_js 3
-                                      (fun (x152 : Ojs.t) ->
-                                         fun (x153 : Ojs.t) ->
-                                           fun (x154 : Ojs.t) ->
-                                             x148 ~value:(bigint_of_js x152)
-                                               ~index:(Ojs.float_of_js x153)
-                                               ~array:(t_of_js x154)))|]);
-                            (match x149 with
-                             | Some x151 ->
+                                      (fun (x150 : Ojs.t) ->
+                                         fun (x151 : Ojs.t) ->
+                                           fun (x152 : Ojs.t) ->
+                                             x146 ~value:(bigint_of_js x150)
+                                               ~index:(Ojs.int_of_js x151)
+                                               ~array:(t_of_js x152)))|]);
+                            (match x147 with
+                             | Some x149 ->
                                  ignore
-                                   (Ojs.call x150 "push" [|(any_to_js x151)|])
+                                   (Ojs.call x148 "push" [|(any_to_js x149)|])
                              | None -> ());
-                            x150))|])
+                            x148))|])
     let (includes :
-      t -> searchElement:bigint -> ?fromIndex:float -> unit -> bool) =
-      fun (x161 : t) ->
-        fun ~searchElement:(x157 : bigint) ->
-          fun ?fromIndex:(x158 : float option) ->
+      t -> searchElement:bigint -> ?fromIndex:int -> unit -> bool) =
+      fun (x159 : t) ->
+        fun ~searchElement:(x155 : bigint) ->
+          fun ?fromIndex:(x156 : int option) ->
             fun () ->
               Ojs.bool_of_js
-                (let x162 = t_to_js x161 in
-                 Ojs.call (Ojs.get_prop_ascii x162 "includes") "apply"
-                   [|x162;((let x159 =
+                (let x160 = t_to_js x159 in
+                 Ojs.call (Ojs.get_prop_ascii x160 "includes") "apply"
+                   [|x160;((let x157 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x159 "push" [|(bigint_to_js x157)|]);
-                            (match x158 with
-                             | Some x160 ->
+                              (Ojs.call x157 "push" [|(bigint_to_js x155)|]);
+                            (match x156 with
+                             | Some x158 ->
                                  ignore
-                                   (Ojs.call x159 "push"
-                                      [|(Ojs.float_to_js x160)|])
+                                   (Ojs.call x157 "push"
+                                      [|(Ojs.int_to_js x158)|])
                              | None -> ());
-                            x159))|])
+                            x157))|])
     let (indexOf :
-      t -> searchElement:bigint -> ?fromIndex:float -> unit -> float) =
-      fun (x167 : t) ->
-        fun ~searchElement:(x163 : bigint) ->
-          fun ?fromIndex:(x164 : float option) ->
+      t -> searchElement:bigint -> ?fromIndex:int -> unit -> int) =
+      fun (x165 : t) ->
+        fun ~searchElement:(x161 : bigint) ->
+          fun ?fromIndex:(x162 : int option) ->
             fun () ->
-              Ojs.float_of_js
-                (let x168 = t_to_js x167 in
-                 Ojs.call (Ojs.get_prop_ascii x168 "indexOf") "apply"
-                   [|x168;((let x165 =
+              Ojs.int_of_js
+                (let x166 = t_to_js x165 in
+                 Ojs.call (Ojs.get_prop_ascii x166 "indexOf") "apply"
+                   [|x166;((let x163 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x165 "push" [|(bigint_to_js x163)|]);
-                            (match x164 with
-                             | Some x166 ->
+                              (Ojs.call x163 "push" [|(bigint_to_js x161)|]);
+                            (match x162 with
+                             | Some x164 ->
                                  ignore
-                                   (Ojs.call x165 "push"
-                                      [|(Ojs.float_to_js x166)|])
+                                   (Ojs.call x163 "push"
+                                      [|(Ojs.int_to_js x164)|])
                              | None -> ());
-                            x165))|])
+                            x163))|])
     let (join : t -> ?separator:string -> unit -> string) =
-      fun (x172 : t) ->
-        fun ?separator:(x169 : string option) ->
+      fun (x170 : t) ->
+        fun ?separator:(x167 : string option) ->
           fun () ->
             Ojs.string_of_js
-              (let x173 = t_to_js x172 in
-               Ojs.call (Ojs.get_prop_ascii x173 "join") "apply"
-                 [|x173;((let x170 =
+              (let x171 = t_to_js x170 in
+               Ojs.call (Ojs.get_prop_ascii x171 "join") "apply"
+                 [|x171;((let x168 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
-                          (match x169 with
-                           | Some x171 ->
+                          (match x167 with
+                           | Some x169 ->
                                ignore
-                                 (Ojs.call x170 "push"
-                                    [|(Ojs.string_to_js x171)|])
+                                 (Ojs.call x168 "push"
+                                    [|(Ojs.string_to_js x169)|])
                            | None -> ());
-                          x170))|])
-    let (keys : t -> float IterableIterator.t) =
-      fun (x174 : t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js x174) "keys" [||])
+                          x168))|])
+    let (keys : t -> int IterableIterator.t) =
+      fun (x172 : t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js x172) "keys" [||])
     let (lastIndexOf :
-      t -> searchElement:bigint -> ?fromIndex:float -> unit -> float) =
-      fun (x180 : t) ->
-        fun ~searchElement:(x176 : bigint) ->
-          fun ?fromIndex:(x177 : float option) ->
+      t -> searchElement:bigint -> ?fromIndex:int -> unit -> int) =
+      fun (x178 : t) ->
+        fun ~searchElement:(x174 : bigint) ->
+          fun ?fromIndex:(x175 : int option) ->
             fun () ->
-              Ojs.float_of_js
-                (let x181 = t_to_js x180 in
-                 Ojs.call (Ojs.get_prop_ascii x181 "lastIndexOf") "apply"
-                   [|x181;((let x178 =
+              Ojs.int_of_js
+                (let x179 = t_to_js x178 in
+                 Ojs.call (Ojs.get_prop_ascii x179 "lastIndexOf") "apply"
+                   [|x179;((let x176 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x178 "push" [|(bigint_to_js x176)|]);
-                            (match x177 with
-                             | Some x179 ->
+                              (Ojs.call x176 "push" [|(bigint_to_js x174)|]);
+                            (match x175 with
+                             | Some x177 ->
                                  ignore
-                                   (Ojs.call x178 "push"
-                                      [|(Ojs.float_to_js x179)|])
+                                   (Ojs.call x176 "push"
+                                      [|(Ojs.int_to_js x177)|])
                              | None -> ());
-                            x178))|])
-    let (get_length : t -> float) =
-      fun (x182 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x182) "length")
+                            x176))|])
+    let (get_length : t -> int) =
+      fun (x180 : t) ->
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x180) "length")
     let (map :
       t ->
-        callbackfn:(value:bigint -> index:float -> array:t -> bigint) ->
+        callbackfn:(value:bigint -> index:int -> array:t -> bigint) ->
           ?thisArg:any -> unit -> t)
       =
-      fun (x190 : t) ->
+      fun (x188 : t) ->
         fun
-          ~callbackfn:(x183 :
-                        value:bigint -> index:float -> array:t -> bigint)
+          ~callbackfn:(x181 : value:bigint -> index:int -> array:t -> bigint)
           ->
-          fun ?thisArg:(x184 : any option) ->
+          fun ?thisArg:(x182 : any option) ->
             fun () ->
               t_of_js
-                (let x191 = t_to_js x190 in
-                 Ojs.call (Ojs.get_prop_ascii x191 "map") "apply"
-                   [|x191;((let x185 =
+                (let x189 = t_to_js x188 in
+                 Ojs.call (Ojs.get_prop_ascii x189 "map") "apply"
+                   [|x189;((let x183 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x185 "push"
+                              (Ojs.call x183 "push"
                                  [|(Ojs.fun_to_js 3
-                                      (fun (x187 : Ojs.t) ->
-                                         fun (x188 : Ojs.t) ->
-                                           fun (x189 : Ojs.t) ->
+                                      (fun (x185 : Ojs.t) ->
+                                         fun (x186 : Ojs.t) ->
+                                           fun (x187 : Ojs.t) ->
                                              bigint_to_js
-                                               (x183
-                                                  ~value:(bigint_of_js x187)
-                                                  ~index:(Ojs.float_of_js
-                                                            x188)
-                                                  ~array:(t_of_js x189))))|]);
-                            (match x184 with
-                             | Some x186 ->
+                                               (x181
+                                                  ~value:(bigint_of_js x185)
+                                                  ~index:(Ojs.int_of_js x186)
+                                                  ~array:(t_of_js x187))))|]);
+                            (match x182 with
+                             | Some x184 ->
                                  ignore
-                                   (Ojs.call x185 "push" [|(any_to_js x186)|])
+                                   (Ojs.call x183 "push" [|(any_to_js x184)|])
                              | None -> ());
-                            x185))|])
+                            x183))|])
     let (reduce :
       t ->
         callbackfn:(previousValue:bigint ->
                       currentValue:bigint ->
-                        currentIndex:float -> array:t -> bigint)
+                        currentIndex:int -> array:t -> bigint)
           -> bigint)
       =
-      fun (x197 : t) ->
+      fun (x195 : t) ->
         fun
-          ~callbackfn:(x192 :
+          ~callbackfn:(x190 :
                         previousValue:bigint ->
                           currentValue:bigint ->
-                            currentIndex:float -> array:t -> bigint)
+                            currentIndex:int -> array:t -> bigint)
           ->
           bigint_of_js
-            (Ojs.call (t_to_js x197) "reduce"
+            (Ojs.call (t_to_js x195) "reduce"
                [|(Ojs.fun_to_js 4
-                    (fun (x193 : Ojs.t) ->
-                       fun (x194 : Ojs.t) ->
-                         fun (x195 : Ojs.t) ->
-                           fun (x196 : Ojs.t) ->
+                    (fun (x191 : Ojs.t) ->
+                       fun (x192 : Ojs.t) ->
+                         fun (x193 : Ojs.t) ->
+                           fun (x194 : Ojs.t) ->
                              bigint_to_js
-                               (x192 ~previousValue:(bigint_of_js x193)
-                                  ~currentValue:(bigint_of_js x194)
-                                  ~currentIndex:(Ojs.float_of_js x195)
-                                  ~array:(t_of_js x196))))|])
+                               (x190 ~previousValue:(bigint_of_js x191)
+                                  ~currentValue:(bigint_of_js x192)
+                                  ~currentIndex:(Ojs.int_of_js x193)
+                                  ~array:(t_of_js x194))))|])
     let (reduce' :
       t ->
         callbackfn:(previousValue:'U ->
                       currentValue:bigint ->
-                        currentIndex:float -> array:t -> 'U)
+                        currentIndex:int -> array:t -> 'U)
           -> initialValue:'U -> 'U)
       =
-      fun (x204 : t) ->
+      fun (x202 : t) ->
         fun
-          ~callbackfn:(x198 :
+          ~callbackfn:(x196 :
                         previousValue:'U ->
                           currentValue:bigint ->
-                            currentIndex:float -> array:t -> 'U)
+                            currentIndex:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x203 : 'U) ->
+          fun ~initialValue:(x201 : 'U) ->
             Obj.magic
-              (Ojs.call (t_to_js x204) "reduce"
+              (Ojs.call (t_to_js x202) "reduce"
                  [|(Ojs.fun_to_js 4
-                      (fun (x199 : Ojs.t) ->
-                         fun (x200 : Ojs.t) ->
-                           fun (x201 : Ojs.t) ->
-                             fun (x202 : Ojs.t) ->
+                      (fun (x197 : Ojs.t) ->
+                         fun (x198 : Ojs.t) ->
+                           fun (x199 : Ojs.t) ->
+                             fun (x200 : Ojs.t) ->
                                Obj.magic
-                                 (x198 ~previousValue:(Obj.magic x199)
-                                    ~currentValue:(bigint_of_js x200)
-                                    ~currentIndex:(Ojs.float_of_js x201)
-                                    ~array:(t_of_js x202))));(Obj.magic x203)|])
+                                 (x196 ~previousValue:(Obj.magic x197)
+                                    ~currentValue:(bigint_of_js x198)
+                                    ~currentIndex:(Ojs.int_of_js x199)
+                                    ~array:(t_of_js x200))));(Obj.magic x201)|])
     let (reduceRight :
       t ->
         callbackfn:(previousValue:bigint ->
                       currentValue:bigint ->
-                        currentIndex:float -> array:t -> bigint)
+                        currentIndex:int -> array:t -> bigint)
           -> bigint)
       =
-      fun (x210 : t) ->
+      fun (x208 : t) ->
         fun
-          ~callbackfn:(x205 :
+          ~callbackfn:(x203 :
                         previousValue:bigint ->
                           currentValue:bigint ->
-                            currentIndex:float -> array:t -> bigint)
+                            currentIndex:int -> array:t -> bigint)
           ->
           bigint_of_js
-            (Ojs.call (t_to_js x210) "reduceRight"
+            (Ojs.call (t_to_js x208) "reduceRight"
                [|(Ojs.fun_to_js 4
-                    (fun (x206 : Ojs.t) ->
-                       fun (x207 : Ojs.t) ->
-                         fun (x208 : Ojs.t) ->
-                           fun (x209 : Ojs.t) ->
+                    (fun (x204 : Ojs.t) ->
+                       fun (x205 : Ojs.t) ->
+                         fun (x206 : Ojs.t) ->
+                           fun (x207 : Ojs.t) ->
                              bigint_to_js
-                               (x205 ~previousValue:(bigint_of_js x206)
-                                  ~currentValue:(bigint_of_js x207)
-                                  ~currentIndex:(Ojs.float_of_js x208)
-                                  ~array:(t_of_js x209))))|])
+                               (x203 ~previousValue:(bigint_of_js x204)
+                                  ~currentValue:(bigint_of_js x205)
+                                  ~currentIndex:(Ojs.int_of_js x206)
+                                  ~array:(t_of_js x207))))|])
     let (reduceRight' :
       t ->
         callbackfn:(previousValue:'U ->
                       currentValue:bigint ->
-                        currentIndex:float -> array:t -> 'U)
+                        currentIndex:int -> array:t -> 'U)
           -> initialValue:'U -> 'U)
       =
-      fun (x217 : t) ->
+      fun (x215 : t) ->
         fun
-          ~callbackfn:(x211 :
+          ~callbackfn:(x209 :
                         previousValue:'U ->
                           currentValue:bigint ->
-                            currentIndex:float -> array:t -> 'U)
+                            currentIndex:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x216 : 'U) ->
+          fun ~initialValue:(x214 : 'U) ->
             Obj.magic
-              (Ojs.call (t_to_js x217) "reduceRight"
+              (Ojs.call (t_to_js x215) "reduceRight"
                  [|(Ojs.fun_to_js 4
-                      (fun (x212 : Ojs.t) ->
-                         fun (x213 : Ojs.t) ->
-                           fun (x214 : Ojs.t) ->
-                             fun (x215 : Ojs.t) ->
+                      (fun (x210 : Ojs.t) ->
+                         fun (x211 : Ojs.t) ->
+                           fun (x212 : Ojs.t) ->
+                             fun (x213 : Ojs.t) ->
                                Obj.magic
-                                 (x211 ~previousValue:(Obj.magic x212)
-                                    ~currentValue:(bigint_of_js x213)
-                                    ~currentIndex:(Ojs.float_of_js x214)
-                                    ~array:(t_of_js x215))));(Obj.magic x216)|])
+                                 (x209 ~previousValue:(Obj.magic x210)
+                                    ~currentValue:(bigint_of_js x211)
+                                    ~currentIndex:(Ojs.int_of_js x212)
+                                    ~array:(t_of_js x213))));(Obj.magic x214)|])
     let (reverse : t -> t) =
-      fun (x218 : t) -> t_of_js (Ojs.call (t_to_js x218) "reverse" [||])
-    let (set_ : t -> array:bigint Array.t -> ?offset:float -> unit -> unit) =
-      fun (x224 : t) ->
-        fun ~array:(x219 : bigint Array.t) ->
-          fun ?offset:(x220 : float option) ->
+      fun (x216 : t) -> t_of_js (Ojs.call (t_to_js x216) "reverse" [||])
+    let (set_ : t -> array:bigint Array.t -> ?offset:int -> unit -> unit) =
+      fun (x222 : t) ->
+        fun ~array:(x217 : bigint Array.t) ->
+          fun ?offset:(x218 : int option) ->
             fun () ->
               ignore
-                (let x225 = t_to_js x224 in
-                 Ojs.call (Ojs.get_prop_ascii x225 "set") "apply"
-                   [|x225;((let x221 =
+                (let x223 = t_to_js x222 in
+                 Ojs.call (Ojs.get_prop_ascii x223 "set") "apply"
+                   [|x223;((let x219 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x221 "push"
-                                 [|(Array.t_to_js bigint_to_js x219)|]);
-                            (match x220 with
-                             | Some x222 ->
+                              (Ojs.call x219 "push"
+                                 [|(Array.t_to_js bigint_to_js x217)|]);
+                            (match x218 with
+                             | Some x220 ->
                                  ignore
-                                   (Ojs.call x221 "push"
-                                      [|(Ojs.float_to_js x222)|])
+                                   (Ojs.call x219 "push"
+                                      [|(Ojs.int_to_js x220)|])
                              | None -> ());
-                            x221))|])
-    let (slice : t -> ?start:float -> ?end_:float -> unit -> t) =
-      fun (x231 : t) ->
-        fun ?start:(x226 : float option) ->
-          fun ?end_:(x227 : float option) ->
+                            x219))|])
+    let (slice : t -> ?start:int -> ?end_:int -> unit -> t) =
+      fun (x229 : t) ->
+        fun ?start:(x224 : int option) ->
+          fun ?end_:(x225 : int option) ->
             fun () ->
               t_of_js
-                (let x232 = t_to_js x231 in
-                 Ojs.call (Ojs.get_prop_ascii x232 "slice") "apply"
-                   [|x232;((let x228 =
+                (let x230 = t_to_js x229 in
+                 Ojs.call (Ojs.get_prop_ascii x230 "slice") "apply"
+                   [|x230;((let x226 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
-                            (match x226 with
-                             | Some x230 ->
+                            (match x224 with
+                             | Some x228 ->
                                  ignore
-                                   (Ojs.call x228 "push"
-                                      [|(Ojs.float_to_js x230)|])
+                                   (Ojs.call x226 "push"
+                                      [|(Ojs.int_to_js x228)|])
                              | None -> ());
-                            (match x227 with
-                             | Some x229 ->
+                            (match x225 with
+                             | Some x227 ->
                                  ignore
-                                   (Ojs.call x228 "push"
-                                      [|(Ojs.float_to_js x229)|])
+                                   (Ojs.call x226 "push"
+                                      [|(Ojs.int_to_js x227)|])
                              | None -> ());
-                            x228))|])
+                            x226))|])
     let (some :
       t ->
-        predicate:(value:bigint -> index:float -> array:t -> bool) ->
+        predicate:(value:bigint -> index:int -> array:t -> bool) ->
           ?thisArg:any -> unit -> bool)
       =
-      fun (x240 : t) ->
-        fun
-          ~predicate:(x233 : value:bigint -> index:float -> array:t -> bool)
+      fun (x238 : t) ->
+        fun ~predicate:(x231 : value:bigint -> index:int -> array:t -> bool)
           ->
-          fun ?thisArg:(x234 : any option) ->
+          fun ?thisArg:(x232 : any option) ->
             fun () ->
               Ojs.bool_of_js
-                (let x241 = t_to_js x240 in
-                 Ojs.call (Ojs.get_prop_ascii x241 "some") "apply"
-                   [|x241;((let x235 =
+                (let x239 = t_to_js x238 in
+                 Ojs.call (Ojs.get_prop_ascii x239 "some") "apply"
+                   [|x239;((let x233 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x235 "push"
+                              (Ojs.call x233 "push"
                                  [|(Ojs.fun_to_js 3
-                                      (fun (x237 : Ojs.t) ->
-                                         fun (x238 : Ojs.t) ->
-                                           fun (x239 : Ojs.t) ->
+                                      (fun (x235 : Ojs.t) ->
+                                         fun (x236 : Ojs.t) ->
+                                           fun (x237 : Ojs.t) ->
                                              Ojs.bool_to_js
-                                               (x233
-                                                  ~value:(bigint_of_js x237)
-                                                  ~index:(Ojs.float_of_js
-                                                            x238)
-                                                  ~array:(t_of_js x239))))|]);
-                            (match x234 with
-                             | Some x236 ->
+                                               (x231
+                                                  ~value:(bigint_of_js x235)
+                                                  ~index:(Ojs.int_of_js x236)
+                                                  ~array:(t_of_js x237))))|]);
+                            (match x232 with
+                             | Some x234 ->
                                  ignore
-                                   (Ojs.call x235 "push" [|(any_to_js x236)|])
+                                   (Ojs.call x233 "push" [|(any_to_js x234)|])
                              | None -> ());
-                            x235))|])
+                            x233))|])
     let (sort :
       t -> ?compareFn:(a:bigint -> b:bigint -> bigint or_number) -> unit -> t)
       =
-      fun (x248 : t) ->
+      fun (x246 : t) ->
         fun
-          ?compareFn:(x242 :
+          ?compareFn:(x240 :
                        (a:bigint -> b:bigint -> bigint or_number) option)
           ->
           fun () ->
             t_of_js
-              (let x249 = t_to_js x248 in
-               Ojs.call (Ojs.get_prop_ascii x249 "sort") "apply"
-                 [|x249;((let x243 =
+              (let x247 = t_to_js x246 in
+               Ojs.call (Ojs.get_prop_ascii x247 "sort") "apply"
+                 [|x247;((let x241 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
-                          (match x242 with
-                           | Some x244 ->
+                          (match x240 with
+                           | Some x242 ->
                                ignore
-                                 (Ojs.call x243 "push"
+                                 (Ojs.call x241 "push"
                                     [|(Ojs.fun_to_js 2
-                                         (fun (x245 : Ojs.t) ->
-                                            fun (x246 : Ojs.t) ->
+                                         (fun (x243 : Ojs.t) ->
+                                            fun (x244 : Ojs.t) ->
                                               or_number_to_js bigint_to_js
-                                                (x244 ~a:(bigint_of_js x245)
-                                                   ~b:(bigint_of_js x246))))|])
+                                                (x242 ~a:(bigint_of_js x243)
+                                                   ~b:(bigint_of_js x244))))|])
                            | None -> ());
-                          x243))|])
-    let (subarray : t -> ?begin_:float -> ?end_:float -> unit -> t) =
-      fun (x255 : t) ->
-        fun ?begin_:(x250 : float option) ->
-          fun ?end_:(x251 : float option) ->
+                          x241))|])
+    let (subarray : t -> ?begin_:int -> ?end_:int -> unit -> t) =
+      fun (x253 : t) ->
+        fun ?begin_:(x248 : int option) ->
+          fun ?end_:(x249 : int option) ->
             fun () ->
               t_of_js
-                (let x256 = t_to_js x255 in
-                 Ojs.call (Ojs.get_prop_ascii x256 "subarray") "apply"
-                   [|x256;((let x252 =
+                (let x254 = t_to_js x253 in
+                 Ojs.call (Ojs.get_prop_ascii x254 "subarray") "apply"
+                   [|x254;((let x250 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
-                            (match x250 with
-                             | Some x254 ->
+                            (match x248 with
+                             | Some x252 ->
                                  ignore
-                                   (Ojs.call x252 "push"
-                                      [|(Ojs.float_to_js x254)|])
+                                   (Ojs.call x250 "push"
+                                      [|(Ojs.int_to_js x252)|])
                              | None -> ());
-                            (match x251 with
-                             | Some x253 ->
+                            (match x249 with
+                             | Some x251 ->
                                  ignore
-                                   (Ojs.call x252 "push"
-                                      [|(Ojs.float_to_js x253)|])
+                                   (Ojs.call x250 "push"
+                                      [|(Ojs.int_to_js x251)|])
                              | None -> ());
-                            x252))|])
+                            x250))|])
     let (toLocaleString : t -> string) =
-      fun (x257 : t) ->
-        Ojs.string_of_js (Ojs.call (t_to_js x257) "toLocaleString" [||])
+      fun (x255 : t) ->
+        Ojs.string_of_js (Ojs.call (t_to_js x255) "toLocaleString" [||])
     let (toString : t -> string) =
-      fun (x258 : t) ->
-        Ojs.string_of_js (Ojs.call (t_to_js x258) "toString" [||])
+      fun (x256 : t) ->
+        Ojs.string_of_js (Ojs.call (t_to_js x256) "toString" [||])
     let (valueOf : t -> t) =
-      fun (x259 : t) -> t_of_js (Ojs.call (t_to_js x259) "valueOf" [||])
+      fun (x257 : t) -> t_of_js (Ojs.call (t_to_js x257) "valueOf" [||])
     let (values : t -> bigint IterableIterator.t) =
-      fun (x260 : t) ->
+      fun (x258 : t) ->
         IterableIterator.t_of_js bigint_of_js
-          (Ojs.call (t_to_js x260) "values" [||])
-    let (get : t -> float -> bigint) =
+          (Ojs.call (t_to_js x258) "values" [||])
+    let (get : t -> int -> bigint) =
+      fun (x260 : t) ->
+        fun (x261 : int) -> bigint_of_js (Ojs.array_get (t_to_js x260) x261)
+    let (set : t -> int -> bigint -> unit) =
       fun (x262 : t) ->
-        fun (x263 : float) ->
-          bigint_of_js (Ojs.get_prop (t_to_js x262) (Ojs.float_to_js x263))
-    let (set : t -> float -> bigint -> unit) =
-      fun (x264 : t) ->
-        fun (x265 : float) ->
-          fun (x266 : bigint) ->
-            Ojs.set_prop (t_to_js x264) (Ojs.float_to_js x265)
-              (bigint_to_js x266)
-    let (create : ?length:float -> unit -> _BigInt64Array) =
-      fun ?length:(x267 : float option) ->
+        fun (x263 : int) ->
+          fun (x264 : bigint) ->
+            Ojs.array_set (t_to_js x262) x263 (bigint_to_js x264)
+    let (create : ?length:int -> unit -> t) =
+      fun ?length:(x265 : int option) ->
         fun () ->
-          _BigInt64Array_of_js
+          t_of_js
             (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "BigInt64Array")
-               (let x268 =
+               (let x266 =
                   Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
-                (match x267 with
-                 | Some x269 ->
-                     ignore (Ojs.call x268 "push" [|(Ojs.float_to_js x269)|])
+                (match x265 with
+                 | Some x267 ->
+                     ignore (Ojs.call x266 "push" [|(Ojs.int_to_js x267)|])
                  | None -> ());
-                x268))
-    let (create' : array:bigint Iterable.t -> _BigInt64Array) =
-      fun ~array:(x270 : bigint Iterable.t) ->
-        _BigInt64Array_of_js
+                x266))
+    let (create' : array:bigint Iterable.t -> t) =
+      fun ~array:(x268 : bigint Iterable.t) ->
+        t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "BigInt64Array")
-             [|(Iterable.t_to_js bigint_to_js x270)|])
+             [|(Iterable.t_to_js bigint_to_js x268)|])
     let (create'' :
       t ->
-        buffer:ArrayBuffer.t ->
-          ?byteOffset:float -> ?length:float -> unit -> _BigInt64Array)
+        buffer:ArrayBuffer.t -> ?byteOffset:int -> ?length:int -> unit -> t)
       =
-      fun (x272 : t) ->
-        fun ~buffer:(x273 : ArrayBuffer.t) ->
-          fun ?byteOffset:(x274 : float option) ->
-            fun ?length:(x275 : float option) ->
+      fun (x270 : t) ->
+        fun ~buffer:(x271 : ArrayBuffer.t) ->
+          fun ?byteOffset:(x272 : int option) ->
+            fun ?length:(x273 : int option) ->
               fun () ->
-                _BigInt64Array_of_js
+                t_of_js
                   (Ojs.new_obj_arr
                      (Ojs.get_prop_ascii Ojs.global "BigInt64Array")
-                     (let x276 =
+                     (let x274 =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
-                      ignore (Ojs.call x276 "push" [|(t_to_js x272)|]);
+                      ignore (Ojs.call x274 "push" [|(t_to_js x270)|]);
                       ignore
-                        (Ojs.call x276 "push" [|(ArrayBuffer.t_to_js x273)|]);
-                      (match x274 with
-                       | Some x278 ->
+                        (Ojs.call x274 "push" [|(ArrayBuffer.t_to_js x271)|]);
+                      (match x272 with
+                       | Some x276 ->
                            ignore
-                             (Ojs.call x276 "push" [|(Ojs.float_to_js x278)|])
+                             (Ojs.call x274 "push" [|(Ojs.int_to_js x276)|])
                        | None -> ());
-                      (match x275 with
-                       | Some x277 ->
+                      (match x273 with
+                       | Some x275 ->
                            ignore
-                             (Ojs.call x276 "push" [|(Ojs.float_to_js x277)|])
+                             (Ojs.call x274 "push" [|(Ojs.int_to_js x275)|])
                        | None -> ());
-                      x276))
-    let (of_ : items:bigint list -> _BigInt64Array) =
-      fun ~items:(x279 : bigint list) ->
-        _BigInt64Array_of_js
-          (let x282 = Ojs.get_prop_ascii Ojs.global "BigInt64Array" in
-           Ojs.call (Ojs.get_prop_ascii x282 "of") "apply"
-             [|x282;((let x280 =
+                      x274))
+    let (of_ : items:bigint list -> t) =
+      fun ~items:(x277 : bigint list) ->
+        t_of_js
+          (let x280 = Ojs.get_prop_ascii Ojs.global "BigInt64Array" in
+           Ojs.call (Ojs.get_prop_ascii x280 "of") "apply"
+             [|x280;((let x278 =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
                       List.iter
-                        (fun (x281 : bigint) ->
+                        (fun (x279 : bigint) ->
                            ignore
-                             (Ojs.call x280 "push" [|(bigint_to_js x281)|]))
-                        x279;
-                      x280))|])
-    let (from : array:bigint Array.t -> _BigInt64Array) =
-      fun ~array:(x283 : bigint Array.t) ->
-        _BigInt64Array_of_js
+                             (Ojs.call x278 "push" [|(bigint_to_js x279)|]))
+                        x277;
+                      x278))|])
+    let (from : array:bigint Array.t -> t) =
+      fun ~array:(x281 : bigint Array.t) ->
+        t_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "BigInt64Array") "from"
-             [|(Array.t_to_js bigint_to_js x283)|])
+             [|(Array.t_to_js bigint_to_js x281)|])
     let (from' :
       array:'U Array.t ->
-        mapfn:(v:'U -> k:float -> bigint) ->
-          ?thisArg:any -> unit -> _BigInt64Array)
+        mapfn:(v:'U -> k:int -> bigint) -> ?thisArg:any -> unit -> t)
       =
-      fun ~array:(x285 : 'U Array.t) ->
-        fun ~mapfn:(x286 : v:'U -> k:float -> bigint) ->
-          fun ?thisArg:(x287 : any option) ->
+      fun ~array:(x283 : 'U Array.t) ->
+        fun ~mapfn:(x284 : v:'U -> k:int -> bigint) ->
+          fun ?thisArg:(x285 : any option) ->
             fun () ->
-              _BigInt64Array_of_js
-                (let x293 = Ojs.get_prop_ascii Ojs.global "BigInt64Array" in
-                 Ojs.call (Ojs.get_prop_ascii x293 "from") "apply"
-                   [|x293;((let x288 =
+              t_of_js
+                (let x291 = Ojs.get_prop_ascii Ojs.global "BigInt64Array" in
+                 Ojs.call (Ojs.get_prop_ascii x291 "from") "apply"
+                   [|x291;((let x286 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x288 "push"
-                                 [|(Array.t_to_js Obj.magic x285)|]);
+                              (Ojs.call x286 "push"
+                                 [|(Array.t_to_js Obj.magic x283)|]);
                             ignore
-                              (Ojs.call x288 "push"
+                              (Ojs.call x286 "push"
                                  [|(Ojs.fun_to_js 2
-                                      (fun (x290 : Ojs.t) ->
-                                         fun (x291 : Ojs.t) ->
+                                      (fun (x288 : Ojs.t) ->
+                                         fun (x289 : Ojs.t) ->
                                            bigint_to_js
-                                             (x286 ~v:(Obj.magic x290)
-                                                ~k:(Ojs.float_of_js x291))))|]);
-                            (match x287 with
-                             | Some x289 ->
+                                             (x284 ~v:(Obj.magic x288)
+                                                ~k:(Ojs.int_of_js x289))))|]);
+                            (match x285 with
+                             | Some x287 ->
                                  ignore
-                                   (Ojs.call x288 "push" [|(any_to_js x289)|])
+                                   (Ojs.call x286 "push" [|(any_to_js x287)|])
                              | None -> ());
-                            x288))|])
+                            x286))|])
   end
 module BigInt64ArrayConstructor =
   struct
-    type t = _BigInt64ArrayConstructor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x295 : Ojs.t) -> _BigInt64ArrayConstructor_of_js x295
-    and t_to_js : t -> Ojs.t =
-      fun (x294 : _BigInt64ArrayConstructor) ->
-        _BigInt64ArrayConstructor_to_js x294
-    let (get_prototype : t -> _BigInt64Array) =
-      fun (x296 : t) ->
-        _BigInt64Array_of_js (Ojs.get_prop_ascii (t_to_js x296) "prototype")
-    let (create : t -> ?length:float -> unit -> _BigInt64Array) =
-      fun (x300 : t) ->
-        fun ?length:(x297 : float option) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x293 : Ojs.t) -> x293
+    and t_to_js : t -> Ojs.t = fun (x292 : Ojs.t) -> x292
+    let (get_prototype : t -> BigInt64Array.t) =
+      fun (x294 : t) ->
+        BigInt64Array.t_of_js (Ojs.get_prop_ascii (t_to_js x294) "prototype")
+    let (create : t -> ?length:int -> unit -> BigInt64Array.t) =
+      fun (x298 : t) ->
+        fun ?length:(x295 : int option) ->
           fun () ->
-            _BigInt64Array_of_js
-              (Ojs.new_obj_arr (t_to_js x300)
-                 (let x298 =
+            BigInt64Array.t_of_js
+              (Ojs.new_obj_arr (t_to_js x298)
+                 (let x296 =
                     Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
-                  (match x297 with
-                   | Some x299 ->
-                       ignore
-                         (Ojs.call x298 "push" [|(Ojs.float_to_js x299)|])
+                  (match x295 with
+                   | Some x297 ->
+                       ignore (Ojs.call x296 "push" [|(Ojs.int_to_js x297)|])
                    | None -> ());
-                  x298))
-    let (create' : t -> array:bigint Iterable.t -> _BigInt64Array) =
-      fun (x303 : t) ->
-        fun ~array:(x301 : bigint Iterable.t) ->
-          _BigInt64Array_of_js
-            (Ojs.new_obj (t_to_js x303)
-               [|(Iterable.t_to_js bigint_to_js x301)|])
+                  x296))
+    let (create' : t -> array:bigint Iterable.t -> BigInt64Array.t) =
+      fun (x301 : t) ->
+        fun ~array:(x299 : bigint Iterable.t) ->
+          BigInt64Array.t_of_js
+            (Ojs.new_obj (t_to_js x301)
+               [|(Iterable.t_to_js bigint_to_js x299)|])
     let (create'' :
       t ->
         buffer:ArrayBuffer.t ->
-          ?byteOffset:float -> ?length:float -> unit -> _BigInt64Array)
+          ?byteOffset:int -> ?length:int -> unit -> BigInt64Array.t)
       =
-      fun (x310 : t) ->
-        fun ~buffer:(x304 : ArrayBuffer.t) ->
-          fun ?byteOffset:(x305 : float option) ->
-            fun ?length:(x306 : float option) ->
+      fun (x308 : t) ->
+        fun ~buffer:(x302 : ArrayBuffer.t) ->
+          fun ?byteOffset:(x303 : int option) ->
+            fun ?length:(x304 : int option) ->
               fun () ->
-                _BigInt64Array_of_js
-                  (Ojs.new_obj_arr (t_to_js x310)
-                     (let x307 =
+                BigInt64Array.t_of_js
+                  (Ojs.new_obj_arr (t_to_js x308)
+                     (let x305 =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
                       ignore
-                        (Ojs.call x307 "push" [|(ArrayBuffer.t_to_js x304)|]);
-                      (match x305 with
-                       | Some x309 ->
+                        (Ojs.call x305 "push" [|(ArrayBuffer.t_to_js x302)|]);
+                      (match x303 with
+                       | Some x307 ->
                            ignore
-                             (Ojs.call x307 "push" [|(Ojs.float_to_js x309)|])
+                             (Ojs.call x305 "push" [|(Ojs.int_to_js x307)|])
                        | None -> ());
-                      (match x306 with
-                       | Some x308 ->
+                      (match x304 with
+                       | Some x306 ->
                            ignore
-                             (Ojs.call x307 "push" [|(Ojs.float_to_js x308)|])
+                             (Ojs.call x305 "push" [|(Ojs.int_to_js x306)|])
                        | None -> ());
-                      x307))
-    let (get_BYTES_PER_ELEMENT : t -> float) =
-      fun (x311 : t) ->
-        Ojs.float_of_js
-          (Ojs.get_prop_ascii (t_to_js x311) "BYTES_PER_ELEMENT")
-    let (of_ : t -> items:bigint list -> _BigInt64Array) =
-      fun (x315 : t) ->
-        fun ~items:(x312 : bigint list) ->
-          _BigInt64Array_of_js
-            (let x316 = t_to_js x315 in
-             Ojs.call (Ojs.get_prop_ascii x316 "of") "apply"
-               [|x316;((let x313 =
+                      x305))
+    let (get_BYTES_PER_ELEMENT : t -> int) =
+      fun (x309 : t) ->
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x309) "BYTES_PER_ELEMENT")
+    let (of_ : t -> items:bigint list -> BigInt64Array.t) =
+      fun (x313 : t) ->
+        fun ~items:(x310 : bigint list) ->
+          BigInt64Array.t_of_js
+            (let x314 = t_to_js x313 in
+             Ojs.call (Ojs.get_prop_ascii x314 "of") "apply"
+               [|x314;((let x311 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
                         List.iter
-                          (fun (x314 : bigint) ->
+                          (fun (x312 : bigint) ->
                              ignore
-                               (Ojs.call x313 "push" [|(bigint_to_js x314)|]))
-                          x312;
-                        x313))|])
-    let (from : t -> array:bigint Array.t -> _BigInt64Array) =
-      fun (x319 : t) ->
-        fun ~array:(x317 : bigint Array.t) ->
-          _BigInt64Array_of_js
-            (Ojs.call (t_to_js x319) "from"
-               [|(Array.t_to_js bigint_to_js x317)|])
+                               (Ojs.call x311 "push" [|(bigint_to_js x312)|]))
+                          x310;
+                        x311))|])
+    let (from : t -> array:bigint Array.t -> BigInt64Array.t) =
+      fun (x317 : t) ->
+        fun ~array:(x315 : bigint Array.t) ->
+          BigInt64Array.t_of_js
+            (Ojs.call (t_to_js x317) "from"
+               [|(Array.t_to_js bigint_to_js x315)|])
     let (from' :
       t ->
         array:'U Array.t ->
-          mapfn:(v:'U -> k:float -> bigint) ->
-            ?thisArg:any -> unit -> _BigInt64Array)
+          mapfn:(v:'U -> k:int -> bigint) ->
+            ?thisArg:any -> unit -> BigInt64Array.t)
       =
-      fun (x328 : t) ->
-        fun ~array:(x320 : 'U Array.t) ->
-          fun ~mapfn:(x321 : v:'U -> k:float -> bigint) ->
-            fun ?thisArg:(x322 : any option) ->
+      fun (x326 : t) ->
+        fun ~array:(x318 : 'U Array.t) ->
+          fun ~mapfn:(x319 : v:'U -> k:int -> bigint) ->
+            fun ?thisArg:(x320 : any option) ->
               fun () ->
-                _BigInt64Array_of_js
-                  (let x329 = t_to_js x328 in
-                   Ojs.call (Ojs.get_prop_ascii x329 "from") "apply"
-                     [|x329;((let x323 =
+                BigInt64Array.t_of_js
+                  (let x327 = t_to_js x326 in
+                   Ojs.call (Ojs.get_prop_ascii x327 "from") "apply"
+                     [|x327;((let x321 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x323 "push"
-                                   [|(Array.t_to_js Obj.magic x320)|]);
+                                (Ojs.call x321 "push"
+                                   [|(Array.t_to_js Obj.magic x318)|]);
                               ignore
-                                (Ojs.call x323 "push"
+                                (Ojs.call x321 "push"
                                    [|(Ojs.fun_to_js 2
-                                        (fun (x325 : Ojs.t) ->
-                                           fun (x326 : Ojs.t) ->
+                                        (fun (x323 : Ojs.t) ->
+                                           fun (x324 : Ojs.t) ->
                                              bigint_to_js
-                                               (x321 ~v:(Obj.magic x325)
-                                                  ~k:(Ojs.float_of_js x326))))|]);
-                              (match x322 with
-                               | Some x324 ->
+                                               (x319 ~v:(Obj.magic x323)
+                                                  ~k:(Ojs.int_of_js x324))))|]);
+                              (match x320 with
+                               | Some x322 ->
                                    ignore
-                                     (Ojs.call x323 "push"
-                                        [|(any_to_js x324)|])
+                                     (Ojs.call x321 "push"
+                                        [|(any_to_js x322)|])
                                | None -> ());
-                              x323))|])
+                              x321))|])
   end
-let (bigInt64Array : _BigInt64ArrayConstructor) =
-  _BigInt64ArrayConstructor_of_js
+let (bigInt64Array : BigInt64ArrayConstructor.t) =
+  BigInt64ArrayConstructor.t_of_js
     (Ojs.get_prop_ascii Ojs.global "BigInt64Array")
 module BigUint64Array =
   struct
-    type t = _BigUint64Array
-    let rec t_of_js : Ojs.t -> t =
-      fun (x331 : Ojs.t) -> _BigUint64Array_of_js x331
-    and t_to_js : t -> Ojs.t =
-      fun (x330 : _BigUint64Array) -> _BigUint64Array_to_js x330
-    let (get_BYTES_PER_ELEMENT : t -> float) =
-      fun (x332 : t) ->
-        Ojs.float_of_js
-          (Ojs.get_prop_ascii (t_to_js x332) "BYTES_PER_ELEMENT")
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x329 : Ojs.t) -> x329
+    and t_to_js : t -> Ojs.t = fun (x328 : Ojs.t) -> x328
+    let (get_BYTES_PER_ELEMENT : t -> int) =
+      fun (x330 : t) ->
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x330) "BYTES_PER_ELEMENT")
     let (get_buffer : t -> ArrayBuffer.t) =
+      fun (x331 : t) ->
+        ArrayBuffer.t_of_js (Ojs.get_prop_ascii (t_to_js x331) "buffer")
+    let (get_byteLength : t -> int) =
+      fun (x332 : t) ->
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x332) "byteLength")
+    let (get_byteOffset : t -> int) =
       fun (x333 : t) ->
-        ArrayBuffer.t_of_js (Ojs.get_prop_ascii (t_to_js x333) "buffer")
-    let (get_byteLength : t -> float) =
-      fun (x334 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x334) "byteLength")
-    let (get_byteOffset : t -> float) =
-      fun (x335 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x335) "byteOffset")
-    let (copyWithin :
-      t -> target:float -> start:float -> ?end_:float -> unit -> t) =
-      fun (x341 : t) ->
-        fun ~target:(x336 : float) ->
-          fun ~start:(x337 : float) ->
-            fun ?end_:(x338 : float option) ->
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x333) "byteOffset")
+    let (copyWithin : t -> target:int -> start:int -> ?end_:int -> unit -> t)
+      =
+      fun (x339 : t) ->
+        fun ~target:(x334 : int) ->
+          fun ~start:(x335 : int) ->
+            fun ?end_:(x336 : int option) ->
               fun () ->
                 t_of_js
-                  (let x342 = t_to_js x341 in
-                   Ojs.call (Ojs.get_prop_ascii x342 "copyWithin") "apply"
-                     [|x342;((let x339 =
+                  (let x340 = t_to_js x339 in
+                   Ojs.call (Ojs.get_prop_ascii x340 "copyWithin") "apply"
+                     [|x340;((let x337 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x339 "push"
-                                   [|(Ojs.float_to_js x336)|]);
+                                (Ojs.call x337 "push"
+                                   [|(Ojs.int_to_js x334)|]);
                               ignore
-                                (Ojs.call x339 "push"
-                                   [|(Ojs.float_to_js x337)|]);
-                              (match x338 with
-                               | Some x340 ->
+                                (Ojs.call x337 "push"
+                                   [|(Ojs.int_to_js x335)|]);
+                              (match x336 with
+                               | Some x338 ->
                                    ignore
-                                     (Ojs.call x339 "push"
-                                        [|(Ojs.float_to_js x340)|])
+                                     (Ojs.call x337 "push"
+                                        [|(Ojs.int_to_js x338)|])
                                | None -> ());
-                              x339))|])
-    let (entries : t -> (float * bigint) IterableIterator.t) =
-      fun (x343 : t) ->
+                              x337))|])
+    let (entries : t -> (int * bigint) IterableIterator.t) =
+      fun (x341 : t) ->
         IterableIterator.t_of_js
-          (fun (x344 : Ojs.t) ->
-             let x345 = x344 in
-             ((Ojs.float_of_js (Ojs.array_get x345 0)),
-               (bigint_of_js (Ojs.array_get x345 1))))
-          (Ojs.call (t_to_js x343) "entries" [||])
+          (fun (x342 : Ojs.t) ->
+             let x343 = x342 in
+             ((Ojs.int_of_js (Ojs.array_get x343 0)),
+               (bigint_of_js (Ojs.array_get x343 1))))
+          (Ojs.call (t_to_js x341) "entries" [||])
     let (every :
       t ->
-        predicate:(value:bigint -> index:float -> array:t -> bool) ->
+        predicate:(value:bigint -> index:int -> array:t -> bool) ->
           ?thisArg:any -> unit -> bool)
       =
-      fun (x353 : t) ->
-        fun
-          ~predicate:(x346 : value:bigint -> index:float -> array:t -> bool)
+      fun (x351 : t) ->
+        fun ~predicate:(x344 : value:bigint -> index:int -> array:t -> bool)
           ->
-          fun ?thisArg:(x347 : any option) ->
+          fun ?thisArg:(x345 : any option) ->
             fun () ->
               Ojs.bool_of_js
-                (let x354 = t_to_js x353 in
-                 Ojs.call (Ojs.get_prop_ascii x354 "every") "apply"
-                   [|x354;((let x348 =
+                (let x352 = t_to_js x351 in
+                 Ojs.call (Ojs.get_prop_ascii x352 "every") "apply"
+                   [|x352;((let x346 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x348 "push"
+                              (Ojs.call x346 "push"
                                  [|(Ojs.fun_to_js 3
-                                      (fun (x350 : Ojs.t) ->
-                                         fun (x351 : Ojs.t) ->
-                                           fun (x352 : Ojs.t) ->
+                                      (fun (x348 : Ojs.t) ->
+                                         fun (x349 : Ojs.t) ->
+                                           fun (x350 : Ojs.t) ->
                                              Ojs.bool_to_js
-                                               (x346
-                                                  ~value:(bigint_of_js x350)
-                                                  ~index:(Ojs.float_of_js
-                                                            x351)
-                                                  ~array:(t_of_js x352))))|]);
-                            (match x347 with
-                             | Some x349 ->
+                                               (x344
+                                                  ~value:(bigint_of_js x348)
+                                                  ~index:(Ojs.int_of_js x349)
+                                                  ~array:(t_of_js x350))))|]);
+                            (match x345 with
+                             | Some x347 ->
                                  ignore
-                                   (Ojs.call x348 "push" [|(any_to_js x349)|])
+                                   (Ojs.call x346 "push" [|(any_to_js x347)|])
                              | None -> ());
-                            x348))|])
-    let (fill :
-      t -> value:bigint -> ?start:float -> ?end_:float -> unit -> t) =
-      fun (x361 : t) ->
-        fun ~value:(x355 : bigint) ->
-          fun ?start:(x356 : float option) ->
-            fun ?end_:(x357 : float option) ->
+                            x346))|])
+    let (fill : t -> value:bigint -> ?start:int -> ?end_:int -> unit -> t) =
+      fun (x359 : t) ->
+        fun ~value:(x353 : bigint) ->
+          fun ?start:(x354 : int option) ->
+            fun ?end_:(x355 : int option) ->
               fun () ->
                 t_of_js
-                  (let x362 = t_to_js x361 in
-                   Ojs.call (Ojs.get_prop_ascii x362 "fill") "apply"
-                     [|x362;((let x358 =
+                  (let x360 = t_to_js x359 in
+                   Ojs.call (Ojs.get_prop_ascii x360 "fill") "apply"
+                     [|x360;((let x356 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x358 "push" [|(bigint_to_js x355)|]);
-                              (match x356 with
-                               | Some x360 ->
+                                (Ojs.call x356 "push" [|(bigint_to_js x353)|]);
+                              (match x354 with
+                               | Some x358 ->
                                    ignore
-                                     (Ojs.call x358 "push"
-                                        [|(Ojs.float_to_js x360)|])
+                                     (Ojs.call x356 "push"
+                                        [|(Ojs.int_to_js x358)|])
                                | None -> ());
-                              (match x357 with
-                               | Some x359 ->
+                              (match x355 with
+                               | Some x357 ->
                                    ignore
-                                     (Ojs.call x358 "push"
-                                        [|(Ojs.float_to_js x359)|])
+                                     (Ojs.call x356 "push"
+                                        [|(Ojs.int_to_js x357)|])
                                | None -> ());
-                              x358))|])
+                              x356))|])
     let (filter :
       t ->
-        predicate:(value:bigint -> index:float -> array:t -> any) ->
+        predicate:(value:bigint -> index:int -> array:t -> any) ->
           ?thisArg:any -> unit -> t)
       =
-      fun (x370 : t) ->
-        fun ~predicate:(x363 : value:bigint -> index:float -> array:t -> any)
+      fun (x368 : t) ->
+        fun ~predicate:(x361 : value:bigint -> index:int -> array:t -> any)
           ->
-          fun ?thisArg:(x364 : any option) ->
+          fun ?thisArg:(x362 : any option) ->
             fun () ->
               t_of_js
-                (let x371 = t_to_js x370 in
-                 Ojs.call (Ojs.get_prop_ascii x371 "filter") "apply"
-                   [|x371;((let x365 =
+                (let x369 = t_to_js x368 in
+                 Ojs.call (Ojs.get_prop_ascii x369 "filter") "apply"
+                   [|x369;((let x363 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x365 "push"
+                              (Ojs.call x363 "push"
                                  [|(Ojs.fun_to_js 3
-                                      (fun (x367 : Ojs.t) ->
-                                         fun (x368 : Ojs.t) ->
-                                           fun (x369 : Ojs.t) ->
+                                      (fun (x365 : Ojs.t) ->
+                                         fun (x366 : Ojs.t) ->
+                                           fun (x367 : Ojs.t) ->
                                              any_to_js
-                                               (x363
-                                                  ~value:(bigint_of_js x367)
-                                                  ~index:(Ojs.float_of_js
-                                                            x368)
-                                                  ~array:(t_of_js x369))))|]);
-                            (match x364 with
-                             | Some x366 ->
+                                               (x361
+                                                  ~value:(bigint_of_js x365)
+                                                  ~index:(Ojs.int_of_js x366)
+                                                  ~array:(t_of_js x367))))|]);
+                            (match x362 with
+                             | Some x364 ->
                                  ignore
-                                   (Ojs.call x365 "push" [|(any_to_js x366)|])
+                                   (Ojs.call x363 "push" [|(any_to_js x364)|])
                              | None -> ());
-                            x365))|])
+                            x363))|])
     let (find :
       t ->
-        predicate:(value:bigint -> index:float -> array:t -> bool) ->
+        predicate:(value:bigint -> index:int -> array:t -> bool) ->
           ?thisArg:any -> unit -> bigint or_undefined)
       =
-      fun (x379 : t) ->
-        fun
-          ~predicate:(x372 : value:bigint -> index:float -> array:t -> bool)
+      fun (x377 : t) ->
+        fun ~predicate:(x370 : value:bigint -> index:int -> array:t -> bool)
           ->
-          fun ?thisArg:(x373 : any option) ->
+          fun ?thisArg:(x371 : any option) ->
             fun () ->
               or_undefined_of_js bigint_of_js
-                (let x380 = t_to_js x379 in
-                 Ojs.call (Ojs.get_prop_ascii x380 "find") "apply"
-                   [|x380;((let x374 =
+                (let x378 = t_to_js x377 in
+                 Ojs.call (Ojs.get_prop_ascii x378 "find") "apply"
+                   [|x378;((let x372 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x374 "push"
+                              (Ojs.call x372 "push"
                                  [|(Ojs.fun_to_js 3
-                                      (fun (x376 : Ojs.t) ->
-                                         fun (x377 : Ojs.t) ->
-                                           fun (x378 : Ojs.t) ->
+                                      (fun (x374 : Ojs.t) ->
+                                         fun (x375 : Ojs.t) ->
+                                           fun (x376 : Ojs.t) ->
                                              Ojs.bool_to_js
-                                               (x372
-                                                  ~value:(bigint_of_js x376)
-                                                  ~index:(Ojs.float_of_js
-                                                            x377)
-                                                  ~array:(t_of_js x378))))|]);
-                            (match x373 with
-                             | Some x375 ->
+                                               (x370
+                                                  ~value:(bigint_of_js x374)
+                                                  ~index:(Ojs.int_of_js x375)
+                                                  ~array:(t_of_js x376))))|]);
+                            (match x371 with
+                             | Some x373 ->
                                  ignore
-                                   (Ojs.call x374 "push" [|(any_to_js x375)|])
+                                   (Ojs.call x372 "push" [|(any_to_js x373)|])
                              | None -> ());
-                            x374))|])
+                            x372))|])
     let (findIndex :
       t ->
-        predicate:(value:bigint -> index:float -> array:t -> bool) ->
-          ?thisArg:any -> unit -> float)
+        predicate:(value:bigint -> index:int -> array:t -> bool) ->
+          ?thisArg:any -> unit -> int)
       =
-      fun (x389 : t) ->
-        fun
-          ~predicate:(x382 : value:bigint -> index:float -> array:t -> bool)
+      fun (x387 : t) ->
+        fun ~predicate:(x380 : value:bigint -> index:int -> array:t -> bool)
           ->
-          fun ?thisArg:(x383 : any option) ->
+          fun ?thisArg:(x381 : any option) ->
             fun () ->
-              Ojs.float_of_js
-                (let x390 = t_to_js x389 in
-                 Ojs.call (Ojs.get_prop_ascii x390 "findIndex") "apply"
-                   [|x390;((let x384 =
+              Ojs.int_of_js
+                (let x388 = t_to_js x387 in
+                 Ojs.call (Ojs.get_prop_ascii x388 "findIndex") "apply"
+                   [|x388;((let x382 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x384 "push"
+                              (Ojs.call x382 "push"
                                  [|(Ojs.fun_to_js 3
-                                      (fun (x386 : Ojs.t) ->
-                                         fun (x387 : Ojs.t) ->
-                                           fun (x388 : Ojs.t) ->
+                                      (fun (x384 : Ojs.t) ->
+                                         fun (x385 : Ojs.t) ->
+                                           fun (x386 : Ojs.t) ->
                                              Ojs.bool_to_js
-                                               (x382
-                                                  ~value:(bigint_of_js x386)
-                                                  ~index:(Ojs.float_of_js
-                                                            x387)
-                                                  ~array:(t_of_js x388))))|]);
-                            (match x383 with
-                             | Some x385 ->
+                                               (x380
+                                                  ~value:(bigint_of_js x384)
+                                                  ~index:(Ojs.int_of_js x385)
+                                                  ~array:(t_of_js x386))))|]);
+                            (match x381 with
+                             | Some x383 ->
                                  ignore
-                                   (Ojs.call x384 "push" [|(any_to_js x385)|])
+                                   (Ojs.call x382 "push" [|(any_to_js x383)|])
                              | None -> ());
-                            x384))|])
+                            x382))|])
     let (forEach :
       t ->
-        callbackfn:(value:bigint -> index:float -> array:t -> unit) ->
+        callbackfn:(value:bigint -> index:int -> array:t -> unit) ->
           ?thisArg:any -> unit -> unit)
       =
-      fun (x398 : t) ->
-        fun
-          ~callbackfn:(x391 : value:bigint -> index:float -> array:t -> unit)
+      fun (x396 : t) ->
+        fun ~callbackfn:(x389 : value:bigint -> index:int -> array:t -> unit)
           ->
-          fun ?thisArg:(x392 : any option) ->
+          fun ?thisArg:(x390 : any option) ->
             fun () ->
               ignore
-                (let x399 = t_to_js x398 in
-                 Ojs.call (Ojs.get_prop_ascii x399 "forEach") "apply"
-                   [|x399;((let x393 =
+                (let x397 = t_to_js x396 in
+                 Ojs.call (Ojs.get_prop_ascii x397 "forEach") "apply"
+                   [|x397;((let x391 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x393 "push"
+                              (Ojs.call x391 "push"
                                  [|(Ojs.fun_to_js 3
-                                      (fun (x395 : Ojs.t) ->
-                                         fun (x396 : Ojs.t) ->
-                                           fun (x397 : Ojs.t) ->
-                                             x391 ~value:(bigint_of_js x395)
-                                               ~index:(Ojs.float_of_js x396)
-                                               ~array:(t_of_js x397)))|]);
-                            (match x392 with
-                             | Some x394 ->
+                                      (fun (x393 : Ojs.t) ->
+                                         fun (x394 : Ojs.t) ->
+                                           fun (x395 : Ojs.t) ->
+                                             x389 ~value:(bigint_of_js x393)
+                                               ~index:(Ojs.int_of_js x394)
+                                               ~array:(t_of_js x395)))|]);
+                            (match x390 with
+                             | Some x392 ->
                                  ignore
-                                   (Ojs.call x393 "push" [|(any_to_js x394)|])
+                                   (Ojs.call x391 "push" [|(any_to_js x392)|])
                              | None -> ());
-                            x393))|])
+                            x391))|])
     let (includes :
-      t -> searchElement:bigint -> ?fromIndex:float -> unit -> bool) =
-      fun (x404 : t) ->
-        fun ~searchElement:(x400 : bigint) ->
-          fun ?fromIndex:(x401 : float option) ->
+      t -> searchElement:bigint -> ?fromIndex:int -> unit -> bool) =
+      fun (x402 : t) ->
+        fun ~searchElement:(x398 : bigint) ->
+          fun ?fromIndex:(x399 : int option) ->
             fun () ->
               Ojs.bool_of_js
-                (let x405 = t_to_js x404 in
-                 Ojs.call (Ojs.get_prop_ascii x405 "includes") "apply"
-                   [|x405;((let x402 =
+                (let x403 = t_to_js x402 in
+                 Ojs.call (Ojs.get_prop_ascii x403 "includes") "apply"
+                   [|x403;((let x400 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x402 "push" [|(bigint_to_js x400)|]);
-                            (match x401 with
-                             | Some x403 ->
+                              (Ojs.call x400 "push" [|(bigint_to_js x398)|]);
+                            (match x399 with
+                             | Some x401 ->
                                  ignore
-                                   (Ojs.call x402 "push"
-                                      [|(Ojs.float_to_js x403)|])
+                                   (Ojs.call x400 "push"
+                                      [|(Ojs.int_to_js x401)|])
                              | None -> ());
-                            x402))|])
+                            x400))|])
     let (indexOf :
-      t -> searchElement:bigint -> ?fromIndex:float -> unit -> float) =
-      fun (x410 : t) ->
-        fun ~searchElement:(x406 : bigint) ->
-          fun ?fromIndex:(x407 : float option) ->
+      t -> searchElement:bigint -> ?fromIndex:int -> unit -> int) =
+      fun (x408 : t) ->
+        fun ~searchElement:(x404 : bigint) ->
+          fun ?fromIndex:(x405 : int option) ->
             fun () ->
-              Ojs.float_of_js
-                (let x411 = t_to_js x410 in
-                 Ojs.call (Ojs.get_prop_ascii x411 "indexOf") "apply"
-                   [|x411;((let x408 =
+              Ojs.int_of_js
+                (let x409 = t_to_js x408 in
+                 Ojs.call (Ojs.get_prop_ascii x409 "indexOf") "apply"
+                   [|x409;((let x406 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x408 "push" [|(bigint_to_js x406)|]);
-                            (match x407 with
-                             | Some x409 ->
+                              (Ojs.call x406 "push" [|(bigint_to_js x404)|]);
+                            (match x405 with
+                             | Some x407 ->
                                  ignore
-                                   (Ojs.call x408 "push"
-                                      [|(Ojs.float_to_js x409)|])
+                                   (Ojs.call x406 "push"
+                                      [|(Ojs.int_to_js x407)|])
                              | None -> ());
-                            x408))|])
+                            x406))|])
     let (join : t -> ?separator:string -> unit -> string) =
-      fun (x415 : t) ->
-        fun ?separator:(x412 : string option) ->
+      fun (x413 : t) ->
+        fun ?separator:(x410 : string option) ->
           fun () ->
             Ojs.string_of_js
-              (let x416 = t_to_js x415 in
-               Ojs.call (Ojs.get_prop_ascii x416 "join") "apply"
-                 [|x416;((let x413 =
+              (let x414 = t_to_js x413 in
+               Ojs.call (Ojs.get_prop_ascii x414 "join") "apply"
+                 [|x414;((let x411 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
-                          (match x412 with
-                           | Some x414 ->
+                          (match x410 with
+                           | Some x412 ->
                                ignore
-                                 (Ojs.call x413 "push"
-                                    [|(Ojs.string_to_js x414)|])
+                                 (Ojs.call x411 "push"
+                                    [|(Ojs.string_to_js x412)|])
                            | None -> ());
-                          x413))|])
-    let (keys : t -> float IterableIterator.t) =
-      fun (x417 : t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js x417) "keys" [||])
+                          x411))|])
+    let (keys : t -> int IterableIterator.t) =
+      fun (x415 : t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js x415) "keys" [||])
     let (lastIndexOf :
-      t -> searchElement:bigint -> ?fromIndex:float -> unit -> float) =
-      fun (x423 : t) ->
-        fun ~searchElement:(x419 : bigint) ->
-          fun ?fromIndex:(x420 : float option) ->
+      t -> searchElement:bigint -> ?fromIndex:int -> unit -> int) =
+      fun (x421 : t) ->
+        fun ~searchElement:(x417 : bigint) ->
+          fun ?fromIndex:(x418 : int option) ->
             fun () ->
-              Ojs.float_of_js
-                (let x424 = t_to_js x423 in
-                 Ojs.call (Ojs.get_prop_ascii x424 "lastIndexOf") "apply"
-                   [|x424;((let x421 =
+              Ojs.int_of_js
+                (let x422 = t_to_js x421 in
+                 Ojs.call (Ojs.get_prop_ascii x422 "lastIndexOf") "apply"
+                   [|x422;((let x419 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x421 "push" [|(bigint_to_js x419)|]);
-                            (match x420 with
-                             | Some x422 ->
+                              (Ojs.call x419 "push" [|(bigint_to_js x417)|]);
+                            (match x418 with
+                             | Some x420 ->
                                  ignore
-                                   (Ojs.call x421 "push"
-                                      [|(Ojs.float_to_js x422)|])
+                                   (Ojs.call x419 "push"
+                                      [|(Ojs.int_to_js x420)|])
                              | None -> ());
-                            x421))|])
-    let (get_length : t -> float) =
-      fun (x425 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x425) "length")
+                            x419))|])
+    let (get_length : t -> int) =
+      fun (x423 : t) ->
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x423) "length")
     let (map :
       t ->
-        callbackfn:(value:bigint -> index:float -> array:t -> bigint) ->
+        callbackfn:(value:bigint -> index:int -> array:t -> bigint) ->
           ?thisArg:any -> unit -> t)
       =
-      fun (x433 : t) ->
+      fun (x431 : t) ->
         fun
-          ~callbackfn:(x426 :
-                        value:bigint -> index:float -> array:t -> bigint)
+          ~callbackfn:(x424 : value:bigint -> index:int -> array:t -> bigint)
           ->
-          fun ?thisArg:(x427 : any option) ->
+          fun ?thisArg:(x425 : any option) ->
             fun () ->
               t_of_js
-                (let x434 = t_to_js x433 in
-                 Ojs.call (Ojs.get_prop_ascii x434 "map") "apply"
-                   [|x434;((let x428 =
+                (let x432 = t_to_js x431 in
+                 Ojs.call (Ojs.get_prop_ascii x432 "map") "apply"
+                   [|x432;((let x426 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x428 "push"
+                              (Ojs.call x426 "push"
                                  [|(Ojs.fun_to_js 3
-                                      (fun (x430 : Ojs.t) ->
-                                         fun (x431 : Ojs.t) ->
-                                           fun (x432 : Ojs.t) ->
+                                      (fun (x428 : Ojs.t) ->
+                                         fun (x429 : Ojs.t) ->
+                                           fun (x430 : Ojs.t) ->
                                              bigint_to_js
-                                               (x426
-                                                  ~value:(bigint_of_js x430)
-                                                  ~index:(Ojs.float_of_js
-                                                            x431)
-                                                  ~array:(t_of_js x432))))|]);
-                            (match x427 with
-                             | Some x429 ->
+                                               (x424
+                                                  ~value:(bigint_of_js x428)
+                                                  ~index:(Ojs.int_of_js x429)
+                                                  ~array:(t_of_js x430))))|]);
+                            (match x425 with
+                             | Some x427 ->
                                  ignore
-                                   (Ojs.call x428 "push" [|(any_to_js x429)|])
+                                   (Ojs.call x426 "push" [|(any_to_js x427)|])
                              | None -> ());
-                            x428))|])
+                            x426))|])
     let (reduce :
       t ->
         callbackfn:(previousValue:bigint ->
                       currentValue:bigint ->
-                        currentIndex:float -> array:t -> bigint)
+                        currentIndex:int -> array:t -> bigint)
           -> bigint)
       =
-      fun (x440 : t) ->
+      fun (x438 : t) ->
         fun
-          ~callbackfn:(x435 :
+          ~callbackfn:(x433 :
                         previousValue:bigint ->
                           currentValue:bigint ->
-                            currentIndex:float -> array:t -> bigint)
+                            currentIndex:int -> array:t -> bigint)
           ->
           bigint_of_js
-            (Ojs.call (t_to_js x440) "reduce"
+            (Ojs.call (t_to_js x438) "reduce"
                [|(Ojs.fun_to_js 4
-                    (fun (x436 : Ojs.t) ->
-                       fun (x437 : Ojs.t) ->
-                         fun (x438 : Ojs.t) ->
-                           fun (x439 : Ojs.t) ->
+                    (fun (x434 : Ojs.t) ->
+                       fun (x435 : Ojs.t) ->
+                         fun (x436 : Ojs.t) ->
+                           fun (x437 : Ojs.t) ->
                              bigint_to_js
-                               (x435 ~previousValue:(bigint_of_js x436)
-                                  ~currentValue:(bigint_of_js x437)
-                                  ~currentIndex:(Ojs.float_of_js x438)
-                                  ~array:(t_of_js x439))))|])
+                               (x433 ~previousValue:(bigint_of_js x434)
+                                  ~currentValue:(bigint_of_js x435)
+                                  ~currentIndex:(Ojs.int_of_js x436)
+                                  ~array:(t_of_js x437))))|])
     let (reduce' :
       t ->
         callbackfn:(previousValue:'U ->
                       currentValue:bigint ->
-                        currentIndex:float -> array:t -> 'U)
+                        currentIndex:int -> array:t -> 'U)
           -> initialValue:'U -> 'U)
       =
-      fun (x447 : t) ->
+      fun (x445 : t) ->
         fun
-          ~callbackfn:(x441 :
+          ~callbackfn:(x439 :
                         previousValue:'U ->
                           currentValue:bigint ->
-                            currentIndex:float -> array:t -> 'U)
+                            currentIndex:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x446 : 'U) ->
+          fun ~initialValue:(x444 : 'U) ->
             Obj.magic
-              (Ojs.call (t_to_js x447) "reduce"
+              (Ojs.call (t_to_js x445) "reduce"
                  [|(Ojs.fun_to_js 4
-                      (fun (x442 : Ojs.t) ->
-                         fun (x443 : Ojs.t) ->
-                           fun (x444 : Ojs.t) ->
-                             fun (x445 : Ojs.t) ->
+                      (fun (x440 : Ojs.t) ->
+                         fun (x441 : Ojs.t) ->
+                           fun (x442 : Ojs.t) ->
+                             fun (x443 : Ojs.t) ->
                                Obj.magic
-                                 (x441 ~previousValue:(Obj.magic x442)
-                                    ~currentValue:(bigint_of_js x443)
-                                    ~currentIndex:(Ojs.float_of_js x444)
-                                    ~array:(t_of_js x445))));(Obj.magic x446)|])
+                                 (x439 ~previousValue:(Obj.magic x440)
+                                    ~currentValue:(bigint_of_js x441)
+                                    ~currentIndex:(Ojs.int_of_js x442)
+                                    ~array:(t_of_js x443))));(Obj.magic x444)|])
     let (reduceRight :
       t ->
         callbackfn:(previousValue:bigint ->
                       currentValue:bigint ->
-                        currentIndex:float -> array:t -> bigint)
+                        currentIndex:int -> array:t -> bigint)
           -> bigint)
       =
-      fun (x453 : t) ->
+      fun (x451 : t) ->
         fun
-          ~callbackfn:(x448 :
+          ~callbackfn:(x446 :
                         previousValue:bigint ->
                           currentValue:bigint ->
-                            currentIndex:float -> array:t -> bigint)
+                            currentIndex:int -> array:t -> bigint)
           ->
           bigint_of_js
-            (Ojs.call (t_to_js x453) "reduceRight"
+            (Ojs.call (t_to_js x451) "reduceRight"
                [|(Ojs.fun_to_js 4
-                    (fun (x449 : Ojs.t) ->
-                       fun (x450 : Ojs.t) ->
-                         fun (x451 : Ojs.t) ->
-                           fun (x452 : Ojs.t) ->
+                    (fun (x447 : Ojs.t) ->
+                       fun (x448 : Ojs.t) ->
+                         fun (x449 : Ojs.t) ->
+                           fun (x450 : Ojs.t) ->
                              bigint_to_js
-                               (x448 ~previousValue:(bigint_of_js x449)
-                                  ~currentValue:(bigint_of_js x450)
-                                  ~currentIndex:(Ojs.float_of_js x451)
-                                  ~array:(t_of_js x452))))|])
+                               (x446 ~previousValue:(bigint_of_js x447)
+                                  ~currentValue:(bigint_of_js x448)
+                                  ~currentIndex:(Ojs.int_of_js x449)
+                                  ~array:(t_of_js x450))))|])
     let (reduceRight' :
       t ->
         callbackfn:(previousValue:'U ->
                       currentValue:bigint ->
-                        currentIndex:float -> array:t -> 'U)
+                        currentIndex:int -> array:t -> 'U)
           -> initialValue:'U -> 'U)
       =
-      fun (x460 : t) ->
+      fun (x458 : t) ->
         fun
-          ~callbackfn:(x454 :
+          ~callbackfn:(x452 :
                         previousValue:'U ->
                           currentValue:bigint ->
-                            currentIndex:float -> array:t -> 'U)
+                            currentIndex:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x459 : 'U) ->
+          fun ~initialValue:(x457 : 'U) ->
             Obj.magic
-              (Ojs.call (t_to_js x460) "reduceRight"
+              (Ojs.call (t_to_js x458) "reduceRight"
                  [|(Ojs.fun_to_js 4
-                      (fun (x455 : Ojs.t) ->
-                         fun (x456 : Ojs.t) ->
-                           fun (x457 : Ojs.t) ->
-                             fun (x458 : Ojs.t) ->
+                      (fun (x453 : Ojs.t) ->
+                         fun (x454 : Ojs.t) ->
+                           fun (x455 : Ojs.t) ->
+                             fun (x456 : Ojs.t) ->
                                Obj.magic
-                                 (x454 ~previousValue:(Obj.magic x455)
-                                    ~currentValue:(bigint_of_js x456)
-                                    ~currentIndex:(Ojs.float_of_js x457)
-                                    ~array:(t_of_js x458))));(Obj.magic x459)|])
+                                 (x452 ~previousValue:(Obj.magic x453)
+                                    ~currentValue:(bigint_of_js x454)
+                                    ~currentIndex:(Ojs.int_of_js x455)
+                                    ~array:(t_of_js x456))));(Obj.magic x457)|])
     let (reverse : t -> t) =
-      fun (x461 : t) -> t_of_js (Ojs.call (t_to_js x461) "reverse" [||])
-    let (set_ : t -> array:bigint Array.t -> ?offset:float -> unit -> unit) =
-      fun (x467 : t) ->
-        fun ~array:(x462 : bigint Array.t) ->
-          fun ?offset:(x463 : float option) ->
+      fun (x459 : t) -> t_of_js (Ojs.call (t_to_js x459) "reverse" [||])
+    let (set_ : t -> array:bigint Array.t -> ?offset:int -> unit -> unit) =
+      fun (x465 : t) ->
+        fun ~array:(x460 : bigint Array.t) ->
+          fun ?offset:(x461 : int option) ->
             fun () ->
               ignore
-                (let x468 = t_to_js x467 in
-                 Ojs.call (Ojs.get_prop_ascii x468 "set") "apply"
-                   [|x468;((let x464 =
+                (let x466 = t_to_js x465 in
+                 Ojs.call (Ojs.get_prop_ascii x466 "set") "apply"
+                   [|x466;((let x462 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x464 "push"
-                                 [|(Array.t_to_js bigint_to_js x462)|]);
-                            (match x463 with
-                             | Some x465 ->
+                              (Ojs.call x462 "push"
+                                 [|(Array.t_to_js bigint_to_js x460)|]);
+                            (match x461 with
+                             | Some x463 ->
                                  ignore
-                                   (Ojs.call x464 "push"
-                                      [|(Ojs.float_to_js x465)|])
+                                   (Ojs.call x462 "push"
+                                      [|(Ojs.int_to_js x463)|])
                              | None -> ());
-                            x464))|])
-    let (slice : t -> ?start:float -> ?end_:float -> unit -> t) =
-      fun (x474 : t) ->
-        fun ?start:(x469 : float option) ->
-          fun ?end_:(x470 : float option) ->
+                            x462))|])
+    let (slice : t -> ?start:int -> ?end_:int -> unit -> t) =
+      fun (x472 : t) ->
+        fun ?start:(x467 : int option) ->
+          fun ?end_:(x468 : int option) ->
             fun () ->
               t_of_js
-                (let x475 = t_to_js x474 in
-                 Ojs.call (Ojs.get_prop_ascii x475 "slice") "apply"
-                   [|x475;((let x471 =
+                (let x473 = t_to_js x472 in
+                 Ojs.call (Ojs.get_prop_ascii x473 "slice") "apply"
+                   [|x473;((let x469 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
-                            (match x469 with
-                             | Some x473 ->
+                            (match x467 with
+                             | Some x471 ->
                                  ignore
-                                   (Ojs.call x471 "push"
-                                      [|(Ojs.float_to_js x473)|])
+                                   (Ojs.call x469 "push"
+                                      [|(Ojs.int_to_js x471)|])
                              | None -> ());
-                            (match x470 with
-                             | Some x472 ->
+                            (match x468 with
+                             | Some x470 ->
                                  ignore
-                                   (Ojs.call x471 "push"
-                                      [|(Ojs.float_to_js x472)|])
+                                   (Ojs.call x469 "push"
+                                      [|(Ojs.int_to_js x470)|])
                              | None -> ());
-                            x471))|])
+                            x469))|])
     let (some :
       t ->
-        predicate:(value:bigint -> index:float -> array:t -> bool) ->
+        predicate:(value:bigint -> index:int -> array:t -> bool) ->
           ?thisArg:any -> unit -> bool)
       =
-      fun (x483 : t) ->
-        fun
-          ~predicate:(x476 : value:bigint -> index:float -> array:t -> bool)
+      fun (x481 : t) ->
+        fun ~predicate:(x474 : value:bigint -> index:int -> array:t -> bool)
           ->
-          fun ?thisArg:(x477 : any option) ->
+          fun ?thisArg:(x475 : any option) ->
             fun () ->
               Ojs.bool_of_js
-                (let x484 = t_to_js x483 in
-                 Ojs.call (Ojs.get_prop_ascii x484 "some") "apply"
-                   [|x484;((let x478 =
+                (let x482 = t_to_js x481 in
+                 Ojs.call (Ojs.get_prop_ascii x482 "some") "apply"
+                   [|x482;((let x476 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x478 "push"
+                              (Ojs.call x476 "push"
                                  [|(Ojs.fun_to_js 3
-                                      (fun (x480 : Ojs.t) ->
-                                         fun (x481 : Ojs.t) ->
-                                           fun (x482 : Ojs.t) ->
+                                      (fun (x478 : Ojs.t) ->
+                                         fun (x479 : Ojs.t) ->
+                                           fun (x480 : Ojs.t) ->
                                              Ojs.bool_to_js
-                                               (x476
-                                                  ~value:(bigint_of_js x480)
-                                                  ~index:(Ojs.float_of_js
-                                                            x481)
-                                                  ~array:(t_of_js x482))))|]);
-                            (match x477 with
-                             | Some x479 ->
+                                               (x474
+                                                  ~value:(bigint_of_js x478)
+                                                  ~index:(Ojs.int_of_js x479)
+                                                  ~array:(t_of_js x480))))|]);
+                            (match x475 with
+                             | Some x477 ->
                                  ignore
-                                   (Ojs.call x478 "push" [|(any_to_js x479)|])
+                                   (Ojs.call x476 "push" [|(any_to_js x477)|])
                              | None -> ());
-                            x478))|])
+                            x476))|])
     let (sort :
       t -> ?compareFn:(a:bigint -> b:bigint -> bigint or_number) -> unit -> t)
       =
-      fun (x491 : t) ->
+      fun (x489 : t) ->
         fun
-          ?compareFn:(x485 :
+          ?compareFn:(x483 :
                        (a:bigint -> b:bigint -> bigint or_number) option)
           ->
           fun () ->
             t_of_js
-              (let x492 = t_to_js x491 in
-               Ojs.call (Ojs.get_prop_ascii x492 "sort") "apply"
-                 [|x492;((let x486 =
+              (let x490 = t_to_js x489 in
+               Ojs.call (Ojs.get_prop_ascii x490 "sort") "apply"
+                 [|x490;((let x484 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
-                          (match x485 with
-                           | Some x487 ->
+                          (match x483 with
+                           | Some x485 ->
                                ignore
-                                 (Ojs.call x486 "push"
+                                 (Ojs.call x484 "push"
                                     [|(Ojs.fun_to_js 2
-                                         (fun (x488 : Ojs.t) ->
-                                            fun (x489 : Ojs.t) ->
+                                         (fun (x486 : Ojs.t) ->
+                                            fun (x487 : Ojs.t) ->
                                               or_number_to_js bigint_to_js
-                                                (x487 ~a:(bigint_of_js x488)
-                                                   ~b:(bigint_of_js x489))))|])
+                                                (x485 ~a:(bigint_of_js x486)
+                                                   ~b:(bigint_of_js x487))))|])
                            | None -> ());
-                          x486))|])
-    let (subarray : t -> ?begin_:float -> ?end_:float -> unit -> t) =
-      fun (x498 : t) ->
-        fun ?begin_:(x493 : float option) ->
-          fun ?end_:(x494 : float option) ->
+                          x484))|])
+    let (subarray : t -> ?begin_:int -> ?end_:int -> unit -> t) =
+      fun (x496 : t) ->
+        fun ?begin_:(x491 : int option) ->
+          fun ?end_:(x492 : int option) ->
             fun () ->
               t_of_js
-                (let x499 = t_to_js x498 in
-                 Ojs.call (Ojs.get_prop_ascii x499 "subarray") "apply"
-                   [|x499;((let x495 =
+                (let x497 = t_to_js x496 in
+                 Ojs.call (Ojs.get_prop_ascii x497 "subarray") "apply"
+                   [|x497;((let x493 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
-                            (match x493 with
-                             | Some x497 ->
+                            (match x491 with
+                             | Some x495 ->
                                  ignore
-                                   (Ojs.call x495 "push"
-                                      [|(Ojs.float_to_js x497)|])
+                                   (Ojs.call x493 "push"
+                                      [|(Ojs.int_to_js x495)|])
                              | None -> ());
-                            (match x494 with
-                             | Some x496 ->
+                            (match x492 with
+                             | Some x494 ->
                                  ignore
-                                   (Ojs.call x495 "push"
-                                      [|(Ojs.float_to_js x496)|])
+                                   (Ojs.call x493 "push"
+                                      [|(Ojs.int_to_js x494)|])
                              | None -> ());
-                            x495))|])
+                            x493))|])
     let (toLocaleString : t -> string) =
-      fun (x500 : t) ->
-        Ojs.string_of_js (Ojs.call (t_to_js x500) "toLocaleString" [||])
+      fun (x498 : t) ->
+        Ojs.string_of_js (Ojs.call (t_to_js x498) "toLocaleString" [||])
     let (toString : t -> string) =
-      fun (x501 : t) ->
-        Ojs.string_of_js (Ojs.call (t_to_js x501) "toString" [||])
+      fun (x499 : t) ->
+        Ojs.string_of_js (Ojs.call (t_to_js x499) "toString" [||])
     let (valueOf : t -> t) =
-      fun (x502 : t) -> t_of_js (Ojs.call (t_to_js x502) "valueOf" [||])
+      fun (x500 : t) -> t_of_js (Ojs.call (t_to_js x500) "valueOf" [||])
     let (values : t -> bigint IterableIterator.t) =
-      fun (x503 : t) ->
+      fun (x501 : t) ->
         IterableIterator.t_of_js bigint_of_js
-          (Ojs.call (t_to_js x503) "values" [||])
-    let (get : t -> float -> bigint) =
+          (Ojs.call (t_to_js x501) "values" [||])
+    let (get : t -> int -> bigint) =
+      fun (x503 : t) ->
+        fun (x504 : int) -> bigint_of_js (Ojs.array_get (t_to_js x503) x504)
+    let (set : t -> int -> bigint -> unit) =
       fun (x505 : t) ->
-        fun (x506 : float) ->
-          bigint_of_js (Ojs.get_prop (t_to_js x505) (Ojs.float_to_js x506))
-    let (set : t -> float -> bigint -> unit) =
-      fun (x507 : t) ->
-        fun (x508 : float) ->
-          fun (x509 : bigint) ->
-            Ojs.set_prop (t_to_js x507) (Ojs.float_to_js x508)
-              (bigint_to_js x509)
-    let (create : ?length:float -> unit -> _BigUint64Array) =
-      fun ?length:(x510 : float option) ->
+        fun (x506 : int) ->
+          fun (x507 : bigint) ->
+            Ojs.array_set (t_to_js x505) x506 (bigint_to_js x507)
+    let (create : ?length:int -> unit -> t) =
+      fun ?length:(x508 : int option) ->
         fun () ->
-          _BigUint64Array_of_js
+          t_of_js
             (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "BigUint64Array")
-               (let x511 =
+               (let x509 =
                   Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
-                (match x510 with
-                 | Some x512 ->
-                     ignore (Ojs.call x511 "push" [|(Ojs.float_to_js x512)|])
+                (match x508 with
+                 | Some x510 ->
+                     ignore (Ojs.call x509 "push" [|(Ojs.int_to_js x510)|])
                  | None -> ());
-                x511))
-    let (create' : array:bigint Iterable.t -> _BigUint64Array) =
-      fun ~array:(x513 : bigint Iterable.t) ->
-        _BigUint64Array_of_js
+                x509))
+    let (create' : array:bigint Iterable.t -> t) =
+      fun ~array:(x511 : bigint Iterable.t) ->
+        t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "BigUint64Array")
-             [|(Iterable.t_to_js bigint_to_js x513)|])
+             [|(Iterable.t_to_js bigint_to_js x511)|])
     let (create'' :
       t ->
-        buffer:ArrayBuffer.t ->
-          ?byteOffset:float -> ?length:float -> unit -> _BigUint64Array)
+        buffer:ArrayBuffer.t -> ?byteOffset:int -> ?length:int -> unit -> t)
       =
-      fun (x515 : t) ->
-        fun ~buffer:(x516 : ArrayBuffer.t) ->
-          fun ?byteOffset:(x517 : float option) ->
-            fun ?length:(x518 : float option) ->
+      fun (x513 : t) ->
+        fun ~buffer:(x514 : ArrayBuffer.t) ->
+          fun ?byteOffset:(x515 : int option) ->
+            fun ?length:(x516 : int option) ->
               fun () ->
-                _BigUint64Array_of_js
+                t_of_js
                   (Ojs.new_obj_arr
                      (Ojs.get_prop_ascii Ojs.global "BigUint64Array")
-                     (let x519 =
+                     (let x517 =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
-                      ignore (Ojs.call x519 "push" [|(t_to_js x515)|]);
+                      ignore (Ojs.call x517 "push" [|(t_to_js x513)|]);
                       ignore
-                        (Ojs.call x519 "push" [|(ArrayBuffer.t_to_js x516)|]);
-                      (match x517 with
-                       | Some x521 ->
+                        (Ojs.call x517 "push" [|(ArrayBuffer.t_to_js x514)|]);
+                      (match x515 with
+                       | Some x519 ->
                            ignore
-                             (Ojs.call x519 "push" [|(Ojs.float_to_js x521)|])
+                             (Ojs.call x517 "push" [|(Ojs.int_to_js x519)|])
                        | None -> ());
-                      (match x518 with
-                       | Some x520 ->
+                      (match x516 with
+                       | Some x518 ->
                            ignore
-                             (Ojs.call x519 "push" [|(Ojs.float_to_js x520)|])
+                             (Ojs.call x517 "push" [|(Ojs.int_to_js x518)|])
                        | None -> ());
-                      x519))
-    let (of_ : items:bigint list -> _BigUint64Array) =
-      fun ~items:(x522 : bigint list) ->
-        _BigUint64Array_of_js
-          (let x525 = Ojs.get_prop_ascii Ojs.global "BigUint64Array" in
-           Ojs.call (Ojs.get_prop_ascii x525 "of") "apply"
-             [|x525;((let x523 =
+                      x517))
+    let (of_ : items:bigint list -> t) =
+      fun ~items:(x520 : bigint list) ->
+        t_of_js
+          (let x523 = Ojs.get_prop_ascii Ojs.global "BigUint64Array" in
+           Ojs.call (Ojs.get_prop_ascii x523 "of") "apply"
+             [|x523;((let x521 =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
                       List.iter
-                        (fun (x524 : bigint) ->
+                        (fun (x522 : bigint) ->
                            ignore
-                             (Ojs.call x523 "push" [|(bigint_to_js x524)|]))
-                        x522;
-                      x523))|])
-    let (from : array:bigint Array.t -> _BigUint64Array) =
-      fun ~array:(x526 : bigint Array.t) ->
-        _BigUint64Array_of_js
+                             (Ojs.call x521 "push" [|(bigint_to_js x522)|]))
+                        x520;
+                      x521))|])
+    let (from : array:bigint Array.t -> t) =
+      fun ~array:(x524 : bigint Array.t) ->
+        t_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "BigUint64Array") "from"
-             [|(Array.t_to_js bigint_to_js x526)|])
+             [|(Array.t_to_js bigint_to_js x524)|])
     let (from' :
       array:'U Array.t ->
-        mapfn:(v:'U -> k:float -> bigint) ->
-          ?thisArg:any -> unit -> _BigUint64Array)
+        mapfn:(v:'U -> k:int -> bigint) -> ?thisArg:any -> unit -> t)
       =
-      fun ~array:(x528 : 'U Array.t) ->
-        fun ~mapfn:(x529 : v:'U -> k:float -> bigint) ->
-          fun ?thisArg:(x530 : any option) ->
+      fun ~array:(x526 : 'U Array.t) ->
+        fun ~mapfn:(x527 : v:'U -> k:int -> bigint) ->
+          fun ?thisArg:(x528 : any option) ->
             fun () ->
-              _BigUint64Array_of_js
-                (let x536 = Ojs.get_prop_ascii Ojs.global "BigUint64Array" in
-                 Ojs.call (Ojs.get_prop_ascii x536 "from") "apply"
-                   [|x536;((let x531 =
+              t_of_js
+                (let x534 = Ojs.get_prop_ascii Ojs.global "BigUint64Array" in
+                 Ojs.call (Ojs.get_prop_ascii x534 "from") "apply"
+                   [|x534;((let x529 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x531 "push"
-                                 [|(Array.t_to_js Obj.magic x528)|]);
+                              (Ojs.call x529 "push"
+                                 [|(Array.t_to_js Obj.magic x526)|]);
                             ignore
-                              (Ojs.call x531 "push"
+                              (Ojs.call x529 "push"
                                  [|(Ojs.fun_to_js 2
-                                      (fun (x533 : Ojs.t) ->
-                                         fun (x534 : Ojs.t) ->
+                                      (fun (x531 : Ojs.t) ->
+                                         fun (x532 : Ojs.t) ->
                                            bigint_to_js
-                                             (x529 ~v:(Obj.magic x533)
-                                                ~k:(Ojs.float_of_js x534))))|]);
-                            (match x530 with
-                             | Some x532 ->
+                                             (x527 ~v:(Obj.magic x531)
+                                                ~k:(Ojs.int_of_js x532))))|]);
+                            (match x528 with
+                             | Some x530 ->
                                  ignore
-                                   (Ojs.call x531 "push" [|(any_to_js x532)|])
+                                   (Ojs.call x529 "push" [|(any_to_js x530)|])
                              | None -> ());
-                            x531))|])
+                            x529))|])
   end
 module BigUint64ArrayConstructor =
   struct
-    type t = _BigUint64ArrayConstructor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x538 : Ojs.t) -> _BigUint64ArrayConstructor_of_js x538
-    and t_to_js : t -> Ojs.t =
-      fun (x537 : _BigUint64ArrayConstructor) ->
-        _BigUint64ArrayConstructor_to_js x537
-    let (get_prototype : t -> _BigUint64Array) =
-      fun (x539 : t) ->
-        _BigUint64Array_of_js (Ojs.get_prop_ascii (t_to_js x539) "prototype")
-    let (create : t -> ?length:float -> unit -> _BigUint64Array) =
-      fun (x543 : t) ->
-        fun ?length:(x540 : float option) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x536 : Ojs.t) -> x536
+    and t_to_js : t -> Ojs.t = fun (x535 : Ojs.t) -> x535
+    let (get_prototype : t -> BigUint64Array.t) =
+      fun (x537 : t) ->
+        BigUint64Array.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x537) "prototype")
+    let (create : t -> ?length:int -> unit -> BigUint64Array.t) =
+      fun (x541 : t) ->
+        fun ?length:(x538 : int option) ->
           fun () ->
-            _BigUint64Array_of_js
-              (Ojs.new_obj_arr (t_to_js x543)
-                 (let x541 =
+            BigUint64Array.t_of_js
+              (Ojs.new_obj_arr (t_to_js x541)
+                 (let x539 =
                     Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
-                  (match x540 with
-                   | Some x542 ->
-                       ignore
-                         (Ojs.call x541 "push" [|(Ojs.float_to_js x542)|])
+                  (match x538 with
+                   | Some x540 ->
+                       ignore (Ojs.call x539 "push" [|(Ojs.int_to_js x540)|])
                    | None -> ());
-                  x541))
-    let (create' : t -> array:bigint Iterable.t -> _BigUint64Array) =
-      fun (x546 : t) ->
-        fun ~array:(x544 : bigint Iterable.t) ->
-          _BigUint64Array_of_js
-            (Ojs.new_obj (t_to_js x546)
-               [|(Iterable.t_to_js bigint_to_js x544)|])
+                  x539))
+    let (create' : t -> array:bigint Iterable.t -> BigUint64Array.t) =
+      fun (x544 : t) ->
+        fun ~array:(x542 : bigint Iterable.t) ->
+          BigUint64Array.t_of_js
+            (Ojs.new_obj (t_to_js x544)
+               [|(Iterable.t_to_js bigint_to_js x542)|])
     let (create'' :
       t ->
         buffer:ArrayBuffer.t ->
-          ?byteOffset:float -> ?length:float -> unit -> _BigUint64Array)
+          ?byteOffset:int -> ?length:int -> unit -> BigUint64Array.t)
       =
-      fun (x553 : t) ->
-        fun ~buffer:(x547 : ArrayBuffer.t) ->
-          fun ?byteOffset:(x548 : float option) ->
-            fun ?length:(x549 : float option) ->
+      fun (x551 : t) ->
+        fun ~buffer:(x545 : ArrayBuffer.t) ->
+          fun ?byteOffset:(x546 : int option) ->
+            fun ?length:(x547 : int option) ->
               fun () ->
-                _BigUint64Array_of_js
-                  (Ojs.new_obj_arr (t_to_js x553)
-                     (let x550 =
+                BigUint64Array.t_of_js
+                  (Ojs.new_obj_arr (t_to_js x551)
+                     (let x548 =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
                       ignore
-                        (Ojs.call x550 "push" [|(ArrayBuffer.t_to_js x547)|]);
-                      (match x548 with
-                       | Some x552 ->
+                        (Ojs.call x548 "push" [|(ArrayBuffer.t_to_js x545)|]);
+                      (match x546 with
+                       | Some x550 ->
                            ignore
-                             (Ojs.call x550 "push" [|(Ojs.float_to_js x552)|])
+                             (Ojs.call x548 "push" [|(Ojs.int_to_js x550)|])
                        | None -> ());
-                      (match x549 with
-                       | Some x551 ->
+                      (match x547 with
+                       | Some x549 ->
                            ignore
-                             (Ojs.call x550 "push" [|(Ojs.float_to_js x551)|])
+                             (Ojs.call x548 "push" [|(Ojs.int_to_js x549)|])
                        | None -> ());
-                      x550))
-    let (get_BYTES_PER_ELEMENT : t -> float) =
-      fun (x554 : t) ->
-        Ojs.float_of_js
-          (Ojs.get_prop_ascii (t_to_js x554) "BYTES_PER_ELEMENT")
-    let (of_ : t -> items:bigint list -> _BigUint64Array) =
-      fun (x558 : t) ->
-        fun ~items:(x555 : bigint list) ->
-          _BigUint64Array_of_js
-            (let x559 = t_to_js x558 in
-             Ojs.call (Ojs.get_prop_ascii x559 "of") "apply"
-               [|x559;((let x556 =
+                      x548))
+    let (get_BYTES_PER_ELEMENT : t -> int) =
+      fun (x552 : t) ->
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x552) "BYTES_PER_ELEMENT")
+    let (of_ : t -> items:bigint list -> BigUint64Array.t) =
+      fun (x556 : t) ->
+        fun ~items:(x553 : bigint list) ->
+          BigUint64Array.t_of_js
+            (let x557 = t_to_js x556 in
+             Ojs.call (Ojs.get_prop_ascii x557 "of") "apply"
+               [|x557;((let x554 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
                         List.iter
-                          (fun (x557 : bigint) ->
+                          (fun (x555 : bigint) ->
                              ignore
-                               (Ojs.call x556 "push" [|(bigint_to_js x557)|]))
-                          x555;
-                        x556))|])
-    let (from : t -> array:bigint Array.t -> _BigUint64Array) =
-      fun (x562 : t) ->
-        fun ~array:(x560 : bigint Array.t) ->
-          _BigUint64Array_of_js
-            (Ojs.call (t_to_js x562) "from"
-               [|(Array.t_to_js bigint_to_js x560)|])
+                               (Ojs.call x554 "push" [|(bigint_to_js x555)|]))
+                          x553;
+                        x554))|])
+    let (from : t -> array:bigint Array.t -> BigUint64Array.t) =
+      fun (x560 : t) ->
+        fun ~array:(x558 : bigint Array.t) ->
+          BigUint64Array.t_of_js
+            (Ojs.call (t_to_js x560) "from"
+               [|(Array.t_to_js bigint_to_js x558)|])
     let (from' :
       t ->
         array:'U Array.t ->
-          mapfn:(v:'U -> k:float -> bigint) ->
-            ?thisArg:any -> unit -> _BigUint64Array)
+          mapfn:(v:'U -> k:int -> bigint) ->
+            ?thisArg:any -> unit -> BigUint64Array.t)
       =
-      fun (x571 : t) ->
-        fun ~array:(x563 : 'U Array.t) ->
-          fun ~mapfn:(x564 : v:'U -> k:float -> bigint) ->
-            fun ?thisArg:(x565 : any option) ->
+      fun (x569 : t) ->
+        fun ~array:(x561 : 'U Array.t) ->
+          fun ~mapfn:(x562 : v:'U -> k:int -> bigint) ->
+            fun ?thisArg:(x563 : any option) ->
               fun () ->
-                _BigUint64Array_of_js
-                  (let x572 = t_to_js x571 in
-                   Ojs.call (Ojs.get_prop_ascii x572 "from") "apply"
-                     [|x572;((let x566 =
+                BigUint64Array.t_of_js
+                  (let x570 = t_to_js x569 in
+                   Ojs.call (Ojs.get_prop_ascii x570 "from") "apply"
+                     [|x570;((let x564 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x566 "push"
-                                   [|(Array.t_to_js Obj.magic x563)|]);
+                                (Ojs.call x564 "push"
+                                   [|(Array.t_to_js Obj.magic x561)|]);
                               ignore
-                                (Ojs.call x566 "push"
+                                (Ojs.call x564 "push"
                                    [|(Ojs.fun_to_js 2
-                                        (fun (x568 : Ojs.t) ->
-                                           fun (x569 : Ojs.t) ->
+                                        (fun (x566 : Ojs.t) ->
+                                           fun (x567 : Ojs.t) ->
                                              bigint_to_js
-                                               (x564 ~v:(Obj.magic x568)
-                                                  ~k:(Ojs.float_of_js x569))))|]);
-                              (match x565 with
-                               | Some x567 ->
+                                               (x562 ~v:(Obj.magic x566)
+                                                  ~k:(Ojs.int_of_js x567))))|]);
+                              (match x563 with
+                               | Some x565 ->
                                    ignore
-                                     (Ojs.call x566 "push"
-                                        [|(any_to_js x567)|])
+                                     (Ojs.call x564 "push"
+                                        [|(any_to_js x565)|])
                                | None -> ());
-                              x566))|])
+                              x564))|])
   end
-let (bigUint64Array : _BigUint64ArrayConstructor) =
-  _BigUint64ArrayConstructor_of_js
+let (bigUint64Array : BigUint64ArrayConstructor.t) =
+  BigUint64ArrayConstructor.t_of_js
     (Ojs.get_prop_ascii Ojs.global "BigUint64Array")
 module DataView =
   struct
     include struct include DataView end
     let (getBigInt64 :
-      t -> byteOffset:float -> ?littleEndian:bool -> unit -> bigint) =
-      fun (x577 : t) ->
-        fun ~byteOffset:(x573 : float) ->
-          fun ?littleEndian:(x574 : bool option) ->
+      t -> byteOffset:int -> ?littleEndian:bool -> unit -> bigint) =
+      fun (x575 : t) ->
+        fun ~byteOffset:(x571 : int) ->
+          fun ?littleEndian:(x572 : bool option) ->
             fun () ->
               bigint_of_js
-                (let x578 = t_to_js x577 in
-                 Ojs.call (Ojs.get_prop_ascii x578 "getBigInt64") "apply"
-                   [|x578;((let x575 =
+                (let x576 = t_to_js x575 in
+                 Ojs.call (Ojs.get_prop_ascii x576 "getBigInt64") "apply"
+                   [|x576;((let x573 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x575 "push"
-                                 [|(Ojs.float_to_js x573)|]);
-                            (match x574 with
-                             | Some x576 ->
+                              (Ojs.call x573 "push" [|(Ojs.int_to_js x571)|]);
+                            (match x572 with
+                             | Some x574 ->
                                  ignore
-                                   (Ojs.call x575 "push"
-                                      [|(Ojs.bool_to_js x576)|])
+                                   (Ojs.call x573 "push"
+                                      [|(Ojs.bool_to_js x574)|])
                              | None -> ());
-                            x575))|])
+                            x573))|])
     let (getBigUint64 :
-      t -> byteOffset:float -> ?littleEndian:bool -> unit -> bigint) =
-      fun (x583 : t) ->
-        fun ~byteOffset:(x579 : float) ->
-          fun ?littleEndian:(x580 : bool option) ->
+      t -> byteOffset:int -> ?littleEndian:bool -> unit -> bigint) =
+      fun (x581 : t) ->
+        fun ~byteOffset:(x577 : int) ->
+          fun ?littleEndian:(x578 : bool option) ->
             fun () ->
               bigint_of_js
-                (let x584 = t_to_js x583 in
-                 Ojs.call (Ojs.get_prop_ascii x584 "getBigUint64") "apply"
-                   [|x584;((let x581 =
+                (let x582 = t_to_js x581 in
+                 Ojs.call (Ojs.get_prop_ascii x582 "getBigUint64") "apply"
+                   [|x582;((let x579 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x581 "push"
-                                 [|(Ojs.float_to_js x579)|]);
-                            (match x580 with
-                             | Some x582 ->
+                              (Ojs.call x579 "push" [|(Ojs.int_to_js x577)|]);
+                            (match x578 with
+                             | Some x580 ->
                                  ignore
-                                   (Ojs.call x581 "push"
-                                      [|(Ojs.bool_to_js x582)|])
+                                   (Ojs.call x579 "push"
+                                      [|(Ojs.bool_to_js x580)|])
                              | None -> ());
-                            x581))|])
+                            x579))|])
     let (setBigInt64 :
       t ->
-        byteOffset:float ->
-          value:bigint -> ?littleEndian:bool -> unit -> unit)
+        byteOffset:int -> value:bigint -> ?littleEndian:bool -> unit -> unit)
       =
-      fun (x590 : t) ->
-        fun ~byteOffset:(x585 : float) ->
-          fun ~value:(x586 : bigint) ->
-            fun ?littleEndian:(x587 : bool option) ->
+      fun (x588 : t) ->
+        fun ~byteOffset:(x583 : int) ->
+          fun ~value:(x584 : bigint) ->
+            fun ?littleEndian:(x585 : bool option) ->
               fun () ->
                 ignore
-                  (let x591 = t_to_js x590 in
-                   Ojs.call (Ojs.get_prop_ascii x591 "setBigInt64") "apply"
-                     [|x591;((let x588 =
+                  (let x589 = t_to_js x588 in
+                   Ojs.call (Ojs.get_prop_ascii x589 "setBigInt64") "apply"
+                     [|x589;((let x586 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x588 "push"
-                                   [|(Ojs.float_to_js x585)|]);
+                                (Ojs.call x586 "push"
+                                   [|(Ojs.int_to_js x583)|]);
                               ignore
-                                (Ojs.call x588 "push" [|(bigint_to_js x586)|]);
-                              (match x587 with
-                               | Some x589 ->
+                                (Ojs.call x586 "push" [|(bigint_to_js x584)|]);
+                              (match x585 with
+                               | Some x587 ->
                                    ignore
-                                     (Ojs.call x588 "push"
-                                        [|(Ojs.bool_to_js x589)|])
+                                     (Ojs.call x586 "push"
+                                        [|(Ojs.bool_to_js x587)|])
                                | None -> ());
-                              x588))|])
+                              x586))|])
     let (setBigUint64 :
       t ->
-        byteOffset:float ->
-          value:bigint -> ?littleEndian:bool -> unit -> unit)
+        byteOffset:int -> value:bigint -> ?littleEndian:bool -> unit -> unit)
       =
-      fun (x597 : t) ->
-        fun ~byteOffset:(x592 : float) ->
-          fun ~value:(x593 : bigint) ->
-            fun ?littleEndian:(x594 : bool option) ->
+      fun (x595 : t) ->
+        fun ~byteOffset:(x590 : int) ->
+          fun ~value:(x591 : bigint) ->
+            fun ?littleEndian:(x592 : bool option) ->
               fun () ->
                 ignore
-                  (let x598 = t_to_js x597 in
-                   Ojs.call (Ojs.get_prop_ascii x598 "setBigUint64") "apply"
-                     [|x598;((let x595 =
+                  (let x596 = t_to_js x595 in
+                   Ojs.call (Ojs.get_prop_ascii x596 "setBigUint64") "apply"
+                     [|x596;((let x593 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x595 "push"
-                                   [|(Ojs.float_to_js x592)|]);
+                                (Ojs.call x593 "push"
+                                   [|(Ojs.int_to_js x590)|]);
                               ignore
-                                (Ojs.call x595 "push" [|(bigint_to_js x593)|]);
-                              (match x594 with
-                               | Some x596 ->
+                                (Ojs.call x593 "push" [|(bigint_to_js x591)|]);
+                              (match x592 with
+                               | Some x594 ->
                                    ignore
-                                     (Ojs.call x595 "push"
-                                        [|(Ojs.bool_to_js x596)|])
+                                     (Ojs.call x593 "push"
+                                        [|(Ojs.bool_to_js x594)|])
                                | None -> ());
-                              x595))|])
+                              x593))|])
   end
 module Intl =
   struct
@@ -2481,15 +2371,15 @@ module Intl =
       struct
         include struct include NumberFormat end
         let (format : t -> value:bigint or_number -> string) =
-          fun (x601 : t) ->
-            fun ~value:(x599 : bigint or_number) ->
+          fun (x599 : t) ->
+            fun ~value:(x597 : bigint or_number) ->
               Ojs.string_of_js
-                (Ojs.call (t_to_js x601) "format"
-                   [|(or_number_to_js bigint_to_js x599)|])
+                (Ojs.call (t_to_js x599) "format"
+                   [|(or_number_to_js bigint_to_js x597)|])
         let (resolvedOptions : t -> ResolvedNumberFormatOptions.t) =
-          fun (x602 : t) ->
+          fun (x600 : t) ->
             ResolvedNumberFormatOptions.t_of_js
-              (Ojs.call (t_to_js x602) "resolvedOptions" [||])
+              (Ojs.call (t_to_js x600) "resolvedOptions" [||])
       end
   end
 include struct include Intl end

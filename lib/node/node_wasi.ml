@@ -63,27 +63,27 @@ module Wasi =
             fun (x18 : bool) ->
               Ojs.set_prop_ascii (t_to_js x17) "returnOnExit"
                 (Ojs.bool_to_js x18)
-        let (get_stdin : t -> float) =
+        let (get_stdin : t -> int) =
           fun (x19 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x19) "stdin")
-        let (set_stdin : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x19) "stdin")
+        let (set_stdin : t -> int -> unit) =
           fun (x20 : t) ->
-            fun (x21 : float) ->
-              Ojs.set_prop_ascii (t_to_js x20) "stdin" (Ojs.float_to_js x21)
-        let (get_stdout : t -> float) =
+            fun (x21 : int) ->
+              Ojs.set_prop_ascii (t_to_js x20) "stdin" (Ojs.int_to_js x21)
+        let (get_stdout : t -> int) =
           fun (x22 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x22) "stdout")
-        let (set_stdout : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x22) "stdout")
+        let (set_stdout : t -> int -> unit) =
           fun (x23 : t) ->
-            fun (x24 : float) ->
-              Ojs.set_prop_ascii (t_to_js x23) "stdout" (Ojs.float_to_js x24)
-        let (get_stderr : t -> float) =
+            fun (x24 : int) ->
+              Ojs.set_prop_ascii (t_to_js x23) "stdout" (Ojs.int_to_js x24)
+        let (get_stderr : t -> int) =
           fun (x25 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x25) "stderr")
-        let (set_stderr : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x25) "stderr")
+        let (set_stderr : t -> int -> unit) =
           fun (x26 : t) ->
-            fun (x27 : float) ->
-              Ojs.set_prop_ascii (t_to_js x26) "stderr" (Ojs.float_to_js x27)
+            fun (x27 : int) ->
+              Ojs.set_prop_ascii (t_to_js x26) "stderr" (Ojs.int_to_js x27)
       end
     module WASI =
       struct

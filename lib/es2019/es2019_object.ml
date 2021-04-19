@@ -2,36 +2,11 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2018
-module Internal =
-  struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _ObjectConstructor = [ `ObjectConstructor ] intf
-        let rec _ObjectConstructor_of_js : Ojs.t -> _ObjectConstructor =
-          Obj.magic
-        and _ObjectConstructor_to_js : _ObjectConstructor -> Ojs.t =
-          Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> anonymous_interface_0_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : anonymous_interface_0) -> anonymous_interface_0_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get : t -> string -> 'T) =
       fun (x3 : t) ->
         fun (x4 : string) ->
@@ -46,9 +21,9 @@ module Object =
   struct
     include struct include Object end
     let (fromEntries :
-      entries:(PropertyKey.t * 'T) Iterable.t -> anonymous_interface_0) =
+      entries:(PropertyKey.t * 'T) Iterable.t -> AnonymousInterface0.t) =
       fun ~entries:(x8 : (PropertyKey.t * 'T) Iterable.t) ->
-        anonymous_interface_0_of_js
+        AnonymousInterface0.t_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Object") "fromEntries"
              [|(Iterable.t_to_js
                   (fun (x9 : (PropertyKey.t * 'T)) ->
@@ -68,11 +43,11 @@ module ObjectConstructor =
   struct
     include struct include ObjectConstructor end
     let (fromEntries :
-      t -> entries:(PropertyKey.t * 'T) Iterable.t -> anonymous_interface_0)
+      t -> entries:(PropertyKey.t * 'T) Iterable.t -> AnonymousInterface0.t)
       =
       fun (x21 : t) ->
         fun ~entries:(x16 : (PropertyKey.t * 'T) Iterable.t) ->
-          anonymous_interface_0_of_js
+          AnonymousInterface0.t_of_js
             (Ojs.call (t_to_js x21) "fromEntries"
                [|(Iterable.t_to_js
                     (fun (x17 : (PropertyKey.t * 'T)) ->

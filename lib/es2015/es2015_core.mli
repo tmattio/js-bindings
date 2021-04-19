@@ -4,6 +4,16 @@
 
 open Es5
 
+module Internal : sig
+  module AnonymousInterfaces : sig
+    type anonymous_interface_0
+    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+  end
+end
+
+open Internal
+open AnonymousInterfaces
+
 module Array : sig
   include module type of struct
     include Array
@@ -11,57 +21,65 @@ module Array : sig
 
   val find
     :  'T t
-    -> (this:unit -> value:'T -> index:float -> obj:'T list -> bool)
+    -> (this:unit -> value:'T -> index:int -> obj:'T list -> bool)
     -> ?thisArg:any
     -> unit
     -> 'S or_undefined
+    [@@js.call "find"]
 
   val find'
     :  'T t
-    -> (value:'T -> index:float -> obj:'T list -> unknown)
+    -> (value:'T -> index:int -> obj:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> 'T or_undefined
+    [@@js.call "find"]
 
   val findIndex
     :  'T t
-    -> (value:'T -> index:float -> obj:'T list -> unknown)
+    -> (value:'T -> index:int -> obj:'T list -> unknown)
     -> ?thisArg:any
     -> unit
-    -> float
+    -> int
+    [@@js.call "findIndex"]
 
-  val fill : 'T t -> value:'T -> ?start:float -> ?end_:float -> unit -> 'T t
+  val fill : 'T t -> value:'T -> ?start:int -> ?end_:int -> unit -> 'T t
+    [@@js.call "fill"]
 
   val copyWithin
     :  'T t
-    -> target:float
-    -> start:float
-    -> ?end_:float
+    -> target:int
+    -> start:int
+    -> ?end_:int
     -> unit
     -> 'T t
+    [@@js.call "copyWithin"]
 
-  val to_ml : 'T t -> 'T list
+  val to_ml : 'T t -> 'T list [@@js.cast]
 
-  val of_ml : 'T list -> 'T t
+  val of_ml : 'T list -> 'T t [@@js.cast]
 end
+[@@js.scope "Array"]
 
 module ArrayConstructor : sig
   include module type of struct
     include ArrayConstructor
   end
 
-  val from : t -> array:'T Array.t -> 'T list
+  val from : t -> array:'T Array.t -> 'T list [@@js.call "from"]
 
   val from'
     :  t
     -> array:'T Array.t
-    -> mapfn:(v:'T -> k:float -> 'U)
+    -> mapfn:(v:'T -> k:int -> 'U)
     -> ?thisArg:any
     -> unit
     -> 'U list
+    [@@js.call "from"]
 
-  val of_ : t -> items:'T list -> 'T list
+  val of_ : t -> items:('T list[@js.variadic]) -> 'T list [@@js.call "of"]
 end
+[@@js.scope "ArrayConstructor"]
 
 module DateConstructor : sig
   include module type of struct
@@ -69,54 +87,58 @@ module DateConstructor : sig
   end
 
   val create : t -> value:Date.t or_string or_number -> Date.t
+    [@@js.apply_newable]
 end
+[@@js.scope "DateConstructor"]
 
 module Function : sig
   include module type of struct
     include Function
   end
 
-  val get_name : t -> string
+  val get_name : t -> string [@@js.get "name"]
 end
+[@@js.scope "Function"]
 
 module Math : sig
   include module type of struct
     include Math
   end
 
-  val clz32 : float -> float
+  val clz32 : int -> int [@@js.global "Math.clz32"]
 
-  val imul : x:float -> y:float -> float
+  val imul : x:int -> y:int -> int [@@js.global "Math.imul"]
 
-  val sign : float -> float
+  val sign : int -> int [@@js.global "Math.sign"]
 
-  val log10 : float -> float
+  val log10 : int -> int [@@js.global "Math.log10"]
 
-  val log2 : float -> float
+  val log2 : int -> int [@@js.global "Math.log2"]
 
-  val log1p : float -> float
+  val log1p : int -> int [@@js.global "Math.log1p"]
 
-  val expm1 : float -> float
+  val expm1 : int -> int [@@js.global "Math.expm1"]
 
-  val cosh : float -> float
+  val cosh : int -> int [@@js.global "Math.cosh"]
 
-  val sinh : float -> float
+  val sinh : int -> int [@@js.global "Math.sinh"]
 
-  val tanh : float -> float
+  val tanh : int -> int [@@js.global "Math.tanh"]
 
-  val acosh : float -> float
+  val acosh : int -> int [@@js.global "Math.acosh"]
 
-  val asinh : float -> float
+  val asinh : int -> int [@@js.global "Math.asinh"]
 
-  val atanh : float -> float
+  val atanh : int -> int [@@js.global "Math.atanh"]
 
-  val hypot : values:float list -> float
+  val hypot : values:(int list[@js.variadic]) -> int
+    [@@js.global "Math.hypot"]
 
-  val trunc : float -> float
+  val trunc : int -> int [@@js.global "Math.trunc"]
 
-  val fround : float -> float
+  val fround : int -> int [@@js.global "Math.fround"]
 
-  val cbrt : float -> float
+  val cbrt : int -> int [@@js.global "Math.cbrt"]
 end
 
 module NumberConstructor : sig
@@ -124,28 +146,26 @@ module NumberConstructor : sig
     include NumberConstructor
   end
 
-  val t_to_js : t -> Ojs.t
+  val get_EPSILON : t -> int [@@js.get "EPSILON"]
 
-  val t_of_js : Ojs.t -> t
+  val isFinite : t -> number:unknown -> bool [@@js.call "isFinite"]
 
-  val get_EPSILON : t -> float
+  val isInteger : t -> number:unknown -> bool [@@js.call "isInteger"]
 
-  val isFinite : t -> number:unknown -> bool
+  val isNaN : t -> number:unknown -> bool [@@js.call "isNaN"]
 
-  val isInteger : t -> number:unknown -> bool
+  val isSafeInteger : t -> number:unknown -> bool [@@js.call "isSafeInteger"]
 
-  val isNaN : t -> number:unknown -> bool
+  val get_MAX_SAFE_INTEGER : t -> int [@@js.get "MAX_SAFE_INTEGER"]
 
-  val isSafeInteger : t -> number:unknown -> bool
+  val get_MIN_SAFE_INTEGER : t -> int [@@js.get "MIN_SAFE_INTEGER"]
 
-  val get_MAX_SAFE_INTEGER : t -> float
+  val parseFloat : t -> string:string -> int [@@js.call "parseFloat"]
 
-  val get_MIN_SAFE_INTEGER : t -> float
-
-  val parseFloat : t -> string:string -> float
-
-  val parseInt : t -> string:string -> ?radix:float -> unit -> float
+  val parseInt : t -> string:string -> ?radix:int -> unit -> int
+    [@@js.call "parseInt"]
 end
+[@@js.scope "NumberConstructor"]
 
 module ObjectConstructor : sig
   include module type of struct
@@ -153,6 +173,7 @@ module ObjectConstructor : sig
   end
 
   val assign : t -> target:'T -> source:'U -> ('T, 'U) intersection2
+    [@@js.call "assign"]
 
   val assign'
     :  t
@@ -160,6 +181,7 @@ module ObjectConstructor : sig
     -> source1:'U
     -> source2:'V
     -> ('T, 'U, 'V) intersection3
+    [@@js.call "assign"]
 
   val assign''
     :  t
@@ -168,17 +190,26 @@ module ObjectConstructor : sig
     -> source2:'V
     -> source3:'W
     -> ('T, 'U, 'V, 'W) intersection4
+    [@@js.call "assign"]
 
-  val assign''' : t -> target:untyped_object -> sources:any list -> any
+  val assign'''
+    :  t
+    -> target:untyped_object
+    -> sources:(any list[@js.variadic])
+    -> any
+    [@@js.call "assign"]
 
   val getOwnPropertySymbols : t -> any -> symbol list
+    [@@js.call "getOwnPropertySymbols"]
 
-  val keys : t -> any -> string list
+  val keys : t -> any -> string list [@@js.call "keys"]
 
-  val is : t -> value1:any -> value2:any -> bool
+  val is : t -> value1:any -> value2:any -> bool [@@js.call "is"]
 
   val setPrototypeOf : t -> any -> proto:untyped_object or_null -> any
+    [@@js.call "setPrototypeOf"]
 end
+[@@js.scope "ObjectConstructor"]
 
 module ReadonlyArray : sig
   include module type of struct
@@ -187,41 +218,46 @@ module ReadonlyArray : sig
 
   val find
     :  'T t
-    -> (this:unit -> value:'T -> index:float -> obj:'T list -> bool)
+    -> (this:unit -> value:'T -> index:int -> obj:'T list -> bool)
     -> ?thisArg:any
     -> unit
     -> 'S or_undefined
+    [@@js.call "find"]
 
   val find'
     :  'T t
-    -> (value:'T -> index:float -> obj:'T list -> unknown)
+    -> (value:'T -> index:int -> obj:'T list -> unknown)
     -> ?thisArg:any
     -> unit
     -> 'T or_undefined
+    [@@js.call "find"]
 
   val findIndex
     :  'T t
-    -> (value:'T -> index:float -> obj:'T list -> unknown)
+    -> (value:'T -> index:int -> obj:'T list -> unknown)
     -> ?thisArg:any
     -> unit
-    -> float
+    -> int
+    [@@js.call "findIndex"]
 
-  val to_ml : 'T t -> 'T list
+  val to_ml : 'T t -> 'T list [@@js.cast]
 
-  val of_ml : 'T list -> 'T t
+  val of_ml : 'T list -> 'T t [@@js.cast]
 end
+[@@js.scope "ReadonlyArray"]
 
 module RegExp : sig
   include module type of struct
     include RegExp
   end
 
-  val get_flags : t -> string
+  val get_flags : t -> string [@@js.get "flags"]
 
-  val get_sticky : t -> bool
+  val get_sticky : t -> bool [@@js.get "sticky"]
 
-  val get_unicode : t -> bool
+  val get_unicode : t -> bool [@@js.get "unicode"]
 end
+[@@js.scope "RegExp"]
 
 module RegExpConstructor : sig
   include module type of struct
@@ -234,6 +270,7 @@ module RegExpConstructor : sig
     -> ?flags:string
     -> unit
     -> RegExp.t
+    [@@js.apply_newable]
 
   val apply
     :  t
@@ -241,70 +278,84 @@ module RegExpConstructor : sig
     -> ?flags:string
     -> unit
     -> RegExp.t
+    [@@js.apply]
 end
+[@@js.scope "RegExpConstructor"]
 
 module String : sig
   include module type of struct
     include String
   end
 
-  val codePointAt : t -> pos:float -> float or_undefined
+  val codePointAt : t -> pos:int -> int or_undefined
+    [@@js.call "codePointAt"]
 
-  val includes : t -> searchString:string -> ?position:float -> unit -> bool
+  val includes : t -> searchString:string -> ?position:int -> unit -> bool
+    [@@js.call "includes"]
 
-  val endsWith : t -> searchString:string -> ?endPosition:float -> unit -> bool
+  val endsWith : t -> searchString:string -> ?endPosition:int -> unit -> bool
+    [@@js.call "endsWith"]
 
-  val normalize : t -> form:[ `NFC | `NFD | `NFKC | `NFKD ] -> string
+  val normalize
+    :  t
+    -> form:([ `NFC | `NFD | `NFKC | `NFKD ][@js.enum])
+    -> string
+    [@@js.call "normalize"]
 
-  val normalize' : t -> ?form:string -> unit -> string
+  val normalize' : t -> ?form:string -> unit -> string [@@js.call "normalize"]
 
-  val repeat : t -> count:float -> string
+  val repeat : t -> count:int -> string [@@js.call "repeat"]
 
-  val startsWith : t -> searchString:string -> ?position:float -> unit -> bool
+  val startsWith : t -> searchString:string -> ?position:int -> unit -> bool
+    [@@js.call "startsWith"]
 
-  val anchor : t -> name:string -> string
+  val anchor : t -> name:string -> string [@@js.call "anchor"]
 
-  val big : t -> string
+  val big : t -> string [@@js.call "big"]
 
-  val blink : t -> string
+  val blink : t -> string [@@js.call "blink"]
 
-  val bold : t -> string
+  val bold : t -> string [@@js.call "bold"]
 
-  val fixed : t -> string
+  val fixed : t -> string [@@js.call "fixed"]
 
-  val fontcolor : t -> color:string -> string
+  val fontcolor : t -> color:string -> string [@@js.call "fontcolor"]
 
-  val fontsize : t -> size:float -> string
+  val fontsize : t -> size:int -> string [@@js.call "fontsize"]
 
-  val fontsize' : t -> size:string -> string
+  val fontsize' : t -> size:string -> string [@@js.call "fontsize"]
 
-  val italics : t -> string
+  val italics : t -> string [@@js.call "italics"]
 
-  val link : t -> url:string -> string
+  val link : t -> url:string -> string [@@js.call "link"]
 
-  val small : t -> string
+  val small : t -> string [@@js.call "small"]
 
-  val strike : t -> string
+  val strike : t -> string [@@js.call "strike"]
 
-  val sub : t -> string
+  val sub : t -> string [@@js.call "sub"]
 
-  val sup : t -> string
+  val sup : t -> string [@@js.call "sup"]
 
-  val to_ml : t -> string
+  val to_ml : t -> string [@@js.cast]
 
-  val of_ml : string -> t
+  val of_ml : string -> t [@@js.cast]
 end
+[@@js.scope "String"]
 
 module StringConstructor : sig
   include module type of struct
     include StringConstructor
   end
 
-  val fromCodePoint : t -> codePoints:float list -> string
+  val fromCodePoint : t -> codePoints:(int list[@js.variadic]) -> string
+    [@@js.call "fromCodePoint"]
 
   val raw
     :  t
     -> template:TemplateStringsArray.t
-    -> substitutions:any list
+    -> substitutions:(any list[@js.variadic])
     -> string
+    [@@js.call "raw"]
 end
+[@@js.scope "StringConstructor"]

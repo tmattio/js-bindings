@@ -353,7 +353,7 @@ module Make (M: Missing) : sig
     val set_variables: t -> anonymous_interface_2 -> unit [@@js.set "variables"]
   end
   module[@js.scope "node:process"] Node_process : sig
-    (* export = process *)
+    
   end
   module[@js.scope "process"] Process : sig
     (* import * as tty from 'node:tty'; *)
@@ -872,6 +872,6 @@ module Make (M: Missing) : sig
         end
       end
     end
-    (* export = process *)
+    
   end
 end

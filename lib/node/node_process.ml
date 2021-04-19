@@ -440,13 +440,13 @@ module AnonymousInterface2 =
       fun (x38 : Ojs.t) -> anonymous_interface_2_of_js x38
     and t_to_js : t -> Ojs.t =
       fun (x37 : anonymous_interface_2) -> anonymous_interface_2_to_js x37
-    let (get_clang : t -> float) =
+    let (get_clang : t -> int) =
       fun (x39 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x39) "clang")
-    let (set_clang : t -> float -> unit) =
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x39) "clang")
+    let (set_clang : t -> int -> unit) =
       fun (x40 : t) ->
-        fun (x41 : float) ->
-          Ojs.set_prop_ascii (t_to_js x40) "clang" (Ojs.float_to_js x41)
+        fun (x41 : int) ->
+          Ojs.set_prop_ascii (t_to_js x40) "clang" (Ojs.int_to_js x41)
     let (get_host_arch : t -> string) =
       fun (x42 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x42) "host_arch")
@@ -535,15 +535,15 @@ module AnonymousInterface2 =
         fun (x74 : string) ->
           Ojs.set_prop_ascii (t_to_js x73) "target_arch"
             (Ojs.string_to_js x74)
-    let (get_v8_no_strict_aliasing : t -> float) =
+    let (get_v8_no_strict_aliasing : t -> int) =
       fun (x75 : t) ->
-        Ojs.float_of_js
+        Ojs.int_of_js
           (Ojs.get_prop_ascii (t_to_js x75) "v8_no_strict_aliasing")
-    let (set_v8_no_strict_aliasing : t -> float -> unit) =
+    let (set_v8_no_strict_aliasing : t -> int -> unit) =
       fun (x76 : t) ->
-        fun (x77 : float) ->
+        fun (x77 : int) ->
           Ojs.set_prop_ascii (t_to_js x76) "v8_no_strict_aliasing"
-            (Ojs.float_to_js x77)
+            (Ojs.int_to_js x77)
     let (get_v8_use_snapshot : t -> bool) =
       fun (x78 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x78) "v8_use_snapshot")
@@ -754,46 +754,45 @@ module Process =
         and t_to_js : t -> Ojs.t =
           fun (x147 : process_global_NodeJS_MemoryUsage) ->
             process_global_NodeJS_MemoryUsage_to_js x147
-        let (get_rss : t -> float) =
+        let (get_rss : t -> int) =
           fun (x149 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x149) "rss")
-        let (set_rss : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x149) "rss")
+        let (set_rss : t -> int -> unit) =
           fun (x150 : t) ->
-            fun (x151 : float) ->
-              Ojs.set_prop_ascii (t_to_js x150) "rss" (Ojs.float_to_js x151)
-        let (get_heapTotal : t -> float) =
+            fun (x151 : int) ->
+              Ojs.set_prop_ascii (t_to_js x150) "rss" (Ojs.int_to_js x151)
+        let (get_heapTotal : t -> int) =
           fun (x152 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x152) "heapTotal")
-        let (set_heapTotal : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x152) "heapTotal")
+        let (set_heapTotal : t -> int -> unit) =
           fun (x153 : t) ->
-            fun (x154 : float) ->
+            fun (x154 : int) ->
               Ojs.set_prop_ascii (t_to_js x153) "heapTotal"
-                (Ojs.float_to_js x154)
-        let (get_heapUsed : t -> float) =
+                (Ojs.int_to_js x154)
+        let (get_heapUsed : t -> int) =
           fun (x155 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x155) "heapUsed")
-        let (set_heapUsed : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x155) "heapUsed")
+        let (set_heapUsed : t -> int -> unit) =
           fun (x156 : t) ->
-            fun (x157 : float) ->
+            fun (x157 : int) ->
               Ojs.set_prop_ascii (t_to_js x156) "heapUsed"
-                (Ojs.float_to_js x157)
-        let (get_external : t -> float) =
+                (Ojs.int_to_js x157)
+        let (get_external : t -> int) =
           fun (x158 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x158) "external")
-        let (set_external : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x158) "external")
+        let (set_external : t -> int -> unit) =
           fun (x159 : t) ->
-            fun (x160 : float) ->
+            fun (x160 : int) ->
               Ojs.set_prop_ascii (t_to_js x159) "external"
-                (Ojs.float_to_js x160)
-        let (get_arrayBuffers : t -> float) =
+                (Ojs.int_to_js x160)
+        let (get_arrayBuffers : t -> int) =
           fun (x161 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x161) "arrayBuffers")
-        let (set_arrayBuffers : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x161) "arrayBuffers")
+        let (set_arrayBuffers : t -> int -> unit) =
           fun (x162 : t) ->
-            fun (x163 : float) ->
+            fun (x163 : int) ->
               Ojs.set_prop_ascii (t_to_js x162) "arrayBuffers"
-                (Ojs.float_to_js x163)
+                (Ojs.int_to_js x163)
       end
     module CpuUsage =
       struct
@@ -803,21 +802,20 @@ module Process =
         and t_to_js : t -> Ojs.t =
           fun (x164 : process_global_NodeJS_CpuUsage) ->
             process_global_NodeJS_CpuUsage_to_js x164
-        let (get_user : t -> float) =
+        let (get_user : t -> int) =
           fun (x166 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x166) "user")
-        let (set_user : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x166) "user")
+        let (set_user : t -> int -> unit) =
           fun (x167 : t) ->
-            fun (x168 : float) ->
-              Ojs.set_prop_ascii (t_to_js x167) "user" (Ojs.float_to_js x168)
-        let (get_system : t -> float) =
+            fun (x168 : int) ->
+              Ojs.set_prop_ascii (t_to_js x167) "user" (Ojs.int_to_js x168)
+        let (get_system : t -> int) =
           fun (x169 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x169) "system")
-        let (set_system : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x169) "system")
+        let (set_system : t -> int -> unit) =
           fun (x170 : t) ->
-            fun (x171 : float) ->
-              Ojs.set_prop_ascii (t_to_js x170) "system"
-                (Ojs.float_to_js x171)
+            fun (x171 : int) ->
+              Ojs.set_prop_ascii (t_to_js x170) "system" (Ojs.int_to_js x171)
       end
     module ProcessRelease =
       struct
@@ -980,10 +978,10 @@ module Process =
         and t_to_js : t -> Ojs.t =
           fun (x223 : process_global_NodeJS_BeforeExitListener) ->
             process_global_NodeJS_BeforeExitListener_to_js x223
-        let (apply : t -> code:float -> unit) =
+        let (apply : t -> code:int -> unit) =
           fun (x226 : t) ->
-            fun ~code:(x225 : float) ->
-              ignore (Ojs.apply (t_to_js x226) [|(Ojs.float_to_js x225)|])
+            fun ~code:(x225 : int) ->
+              ignore (Ojs.apply (t_to_js x226) [|(Ojs.int_to_js x225)|])
       end
     module DisconnectListener =
       struct
@@ -1005,10 +1003,10 @@ module Process =
         and t_to_js : t -> Ojs.t =
           fun (x230 : process_global_NodeJS_ExitListener) ->
             process_global_NodeJS_ExitListener_to_js x230
-        let (apply : t -> code:float -> unit) =
+        let (apply : t -> code:int -> unit) =
           fun (x233 : t) ->
-            fun ~code:(x232 : float) ->
-              ignore (Ojs.apply (t_to_js x233) [|(Ojs.float_to_js x232)|])
+            fun ~code:(x232 : int) ->
+              ignore (Ojs.apply (t_to_js x233) [|(Ojs.int_to_js x232)|])
       end
     module RejectionHandledListener =
       struct
@@ -1232,9 +1230,9 @@ module Process =
         and t_to_js : t -> Ojs.t =
           fun (x297 : process_global_NodeJS_HRTime) ->
             process_global_NodeJS_HRTime_to_js x297
-        let (apply : t -> ?time:(float * float) -> unit -> (float * float)) =
+        let (apply : t -> ?time:(int * int) -> unit -> (int * int)) =
           fun (x305 : t) ->
-            fun ?time:(x299 : (float * float) option) ->
+            fun ?time:(x299 : (int * int) option) ->
               fun () ->
                 let x306 =
                   Ojs.call (t_to_js x305) "apply"
@@ -1249,14 +1247,14 @@ module Process =
                                            [|((let (x302, x303) = x301 in
                                                let x304 = Ojs.array_make 2 in
                                                Ojs.array_set x304 0
-                                                 (Ojs.float_to_js x302);
+                                                 (Ojs.int_to_js x302);
                                                Ojs.array_set x304 1
-                                                 (Ojs.float_to_js x303);
+                                                 (Ojs.int_to_js x303);
                                                x304))|])
                                   | None -> ());
                                  x300))|] in
-                ((Ojs.float_of_js (Ojs.array_get x306 0)),
-                  (Ojs.float_of_js (Ojs.array_get x306 1)))
+                ((Ojs.int_of_js (Ojs.array_get x306 0)),
+                  (Ojs.int_of_js (Ojs.array_get x306 1)))
         let (bigint : t -> bigint) =
           fun (x307 : t) ->
             bigint_of_js (Ojs.call (t_to_js x307) "bigint" [||])
@@ -1412,143 +1410,139 @@ module Process =
         and t_to_js : t -> Ojs.t =
           fun (x350 : process_global_NodeJS_ResourceUsage) ->
             process_global_NodeJS_ResourceUsage_to_js x350
-        let (get_fsRead : t -> float) =
+        let (get_fsRead : t -> int) =
           fun (x352 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x352) "fsRead")
-        let (set_fsRead : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x352) "fsRead")
+        let (set_fsRead : t -> int -> unit) =
           fun (x353 : t) ->
-            fun (x354 : float) ->
-              Ojs.set_prop_ascii (t_to_js x353) "fsRead"
-                (Ojs.float_to_js x354)
-        let (get_fsWrite : t -> float) =
+            fun (x354 : int) ->
+              Ojs.set_prop_ascii (t_to_js x353) "fsRead" (Ojs.int_to_js x354)
+        let (get_fsWrite : t -> int) =
           fun (x355 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x355) "fsWrite")
-        let (set_fsWrite : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x355) "fsWrite")
+        let (set_fsWrite : t -> int -> unit) =
           fun (x356 : t) ->
-            fun (x357 : float) ->
+            fun (x357 : int) ->
               Ojs.set_prop_ascii (t_to_js x356) "fsWrite"
-                (Ojs.float_to_js x357)
-        let (get_involuntaryContextSwitches : t -> float) =
+                (Ojs.int_to_js x357)
+        let (get_involuntaryContextSwitches : t -> int) =
           fun (x358 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x358) "involuntaryContextSwitches")
-        let (set_involuntaryContextSwitches : t -> float -> unit) =
+        let (set_involuntaryContextSwitches : t -> int -> unit) =
           fun (x359 : t) ->
-            fun (x360 : float) ->
+            fun (x360 : int) ->
               Ojs.set_prop_ascii (t_to_js x359) "involuntaryContextSwitches"
-                (Ojs.float_to_js x360)
-        let (get_ipcReceived : t -> float) =
+                (Ojs.int_to_js x360)
+        let (get_ipcReceived : t -> int) =
           fun (x361 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x361) "ipcReceived")
-        let (set_ipcReceived : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x361) "ipcReceived")
+        let (set_ipcReceived : t -> int -> unit) =
           fun (x362 : t) ->
-            fun (x363 : float) ->
+            fun (x363 : int) ->
               Ojs.set_prop_ascii (t_to_js x362) "ipcReceived"
-                (Ojs.float_to_js x363)
-        let (get_ipcSent : t -> float) =
+                (Ojs.int_to_js x363)
+        let (get_ipcSent : t -> int) =
           fun (x364 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x364) "ipcSent")
-        let (set_ipcSent : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x364) "ipcSent")
+        let (set_ipcSent : t -> int -> unit) =
           fun (x365 : t) ->
-            fun (x366 : float) ->
+            fun (x366 : int) ->
               Ojs.set_prop_ascii (t_to_js x365) "ipcSent"
-                (Ojs.float_to_js x366)
-        let (get_majorPageFault : t -> float) =
+                (Ojs.int_to_js x366)
+        let (get_majorPageFault : t -> int) =
           fun (x367 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x367) "majorPageFault")
-        let (set_majorPageFault : t -> float -> unit) =
+        let (set_majorPageFault : t -> int -> unit) =
           fun (x368 : t) ->
-            fun (x369 : float) ->
+            fun (x369 : int) ->
               Ojs.set_prop_ascii (t_to_js x368) "majorPageFault"
-                (Ojs.float_to_js x369)
-        let (get_maxRSS : t -> float) =
+                (Ojs.int_to_js x369)
+        let (get_maxRSS : t -> int) =
           fun (x370 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x370) "maxRSS")
-        let (set_maxRSS : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x370) "maxRSS")
+        let (set_maxRSS : t -> int -> unit) =
           fun (x371 : t) ->
-            fun (x372 : float) ->
-              Ojs.set_prop_ascii (t_to_js x371) "maxRSS"
-                (Ojs.float_to_js x372)
-        let (get_minorPageFault : t -> float) =
+            fun (x372 : int) ->
+              Ojs.set_prop_ascii (t_to_js x371) "maxRSS" (Ojs.int_to_js x372)
+        let (get_minorPageFault : t -> int) =
           fun (x373 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x373) "minorPageFault")
-        let (set_minorPageFault : t -> float -> unit) =
+        let (set_minorPageFault : t -> int -> unit) =
           fun (x374 : t) ->
-            fun (x375 : float) ->
+            fun (x375 : int) ->
               Ojs.set_prop_ascii (t_to_js x374) "minorPageFault"
-                (Ojs.float_to_js x375)
-        let (get_sharedMemorySize : t -> float) =
+                (Ojs.int_to_js x375)
+        let (get_sharedMemorySize : t -> int) =
           fun (x376 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x376) "sharedMemorySize")
-        let (set_sharedMemorySize : t -> float -> unit) =
+        let (set_sharedMemorySize : t -> int -> unit) =
           fun (x377 : t) ->
-            fun (x378 : float) ->
+            fun (x378 : int) ->
               Ojs.set_prop_ascii (t_to_js x377) "sharedMemorySize"
-                (Ojs.float_to_js x378)
-        let (get_signalsCount : t -> float) =
+                (Ojs.int_to_js x378)
+        let (get_signalsCount : t -> int) =
           fun (x379 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x379) "signalsCount")
-        let (set_signalsCount : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x379) "signalsCount")
+        let (set_signalsCount : t -> int -> unit) =
           fun (x380 : t) ->
-            fun (x381 : float) ->
+            fun (x381 : int) ->
               Ojs.set_prop_ascii (t_to_js x380) "signalsCount"
-                (Ojs.float_to_js x381)
-        let (get_swappedOut : t -> float) =
+                (Ojs.int_to_js x381)
+        let (get_swappedOut : t -> int) =
           fun (x382 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x382) "swappedOut")
-        let (set_swappedOut : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x382) "swappedOut")
+        let (set_swappedOut : t -> int -> unit) =
           fun (x383 : t) ->
-            fun (x384 : float) ->
+            fun (x384 : int) ->
               Ojs.set_prop_ascii (t_to_js x383) "swappedOut"
-                (Ojs.float_to_js x384)
-        let (get_systemCPUTime : t -> float) =
+                (Ojs.int_to_js x384)
+        let (get_systemCPUTime : t -> int) =
           fun (x385 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x385) "systemCPUTime")
-        let (set_systemCPUTime : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x385) "systemCPUTime")
+        let (set_systemCPUTime : t -> int -> unit) =
           fun (x386 : t) ->
-            fun (x387 : float) ->
+            fun (x387 : int) ->
               Ojs.set_prop_ascii (t_to_js x386) "systemCPUTime"
-                (Ojs.float_to_js x387)
-        let (get_unsharedDataSize : t -> float) =
+                (Ojs.int_to_js x387)
+        let (get_unsharedDataSize : t -> int) =
           fun (x388 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x388) "unsharedDataSize")
-        let (set_unsharedDataSize : t -> float -> unit) =
+        let (set_unsharedDataSize : t -> int -> unit) =
           fun (x389 : t) ->
-            fun (x390 : float) ->
+            fun (x390 : int) ->
               Ojs.set_prop_ascii (t_to_js x389) "unsharedDataSize"
-                (Ojs.float_to_js x390)
-        let (get_unsharedStackSize : t -> float) =
+                (Ojs.int_to_js x390)
+        let (get_unsharedStackSize : t -> int) =
           fun (x391 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x391) "unsharedStackSize")
-        let (set_unsharedStackSize : t -> float -> unit) =
+        let (set_unsharedStackSize : t -> int -> unit) =
           fun (x392 : t) ->
-            fun (x393 : float) ->
+            fun (x393 : int) ->
               Ojs.set_prop_ascii (t_to_js x392) "unsharedStackSize"
-                (Ojs.float_to_js x393)
-        let (get_userCPUTime : t -> float) =
+                (Ojs.int_to_js x393)
+        let (get_userCPUTime : t -> int) =
           fun (x394 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x394) "userCPUTime")
-        let (set_userCPUTime : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x394) "userCPUTime")
+        let (set_userCPUTime : t -> int -> unit) =
           fun (x395 : t) ->
-            fun (x396 : float) ->
+            fun (x396 : int) ->
               Ojs.set_prop_ascii (t_to_js x395) "userCPUTime"
-                (Ojs.float_to_js x396)
-        let (get_voluntaryContextSwitches : t -> float) =
+                (Ojs.int_to_js x396)
+        let (get_voluntaryContextSwitches : t -> int) =
           fun (x397 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x397) "voluntaryContextSwitches")
-        let (set_voluntaryContextSwitches : t -> float -> unit) =
+        let (set_voluntaryContextSwitches : t -> int -> unit) =
           fun (x398 : t) ->
-            fun (x399 : float) ->
+            fun (x399 : int) ->
               Ojs.set_prop_ascii (t_to_js x398) "voluntaryContextSwitches"
-                (Ojs.float_to_js x399)
+                (Ojs.int_to_js x399)
       end
     module Process =
       struct
@@ -1676,14 +1670,14 @@ module Process =
         let (cwd : t -> string) =
           fun (x443 : t) ->
             Ojs.string_of_js (Ojs.call (t_to_js x443) "cwd" [||])
-        let (get_debugPort : t -> float) =
+        let (get_debugPort : t -> int) =
           fun (x444 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x444) "debugPort")
-        let (set_debugPort : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x444) "debugPort")
+        let (set_debugPort : t -> int -> unit) =
           fun (x445 : t) ->
-            fun (x446 : float) ->
+            fun (x446 : int) ->
               Ojs.set_prop_ascii (t_to_js x445) "debugPort"
-                (Ojs.float_to_js x446)
+                (Ojs.int_to_js x446)
         let (emitWarning :
           t ->
             warning:Error.t or_string ->
@@ -1727,9 +1721,9 @@ module Process =
             fun (x458 : process_global_NodeJS_ProcessEnv) ->
               Ojs.set_prop_ascii (t_to_js x457) "env"
                 (process_global_NodeJS_ProcessEnv_to_js x458)
-        let (exit : t -> ?code:float -> unit -> never) =
+        let (exit : t -> ?code:int -> unit -> never) =
           fun (x462 : t) ->
-            fun ?code:(x459 : float option) ->
+            fun ?code:(x459 : int option) ->
               fun () ->
                 never_of_js
                   (let x463 = t_to_js x462 in
@@ -1742,56 +1736,56 @@ module Process =
                                | Some x461 ->
                                    ignore
                                      (Ojs.call x460 "push"
-                                        [|(Ojs.float_to_js x461)|])
+                                        [|(Ojs.int_to_js x461)|])
                                | None -> ());
                               x460))|])
-        let (get_exitCode : t -> float) =
+        let (get_exitCode : t -> int) =
           fun (x464 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x464) "exitCode")
-        let (set_exitCode : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x464) "exitCode")
+        let (set_exitCode : t -> int -> unit) =
           fun (x465 : t) ->
-            fun (x466 : float) ->
+            fun (x466 : int) ->
               Ojs.set_prop_ascii (t_to_js x465) "exitCode"
-                (Ojs.float_to_js x466)
-        let (getgid : t -> float) =
+                (Ojs.int_to_js x466)
+        let (getgid : t -> int) =
           fun (x467 : t) ->
-            Ojs.float_of_js (Ojs.call (t_to_js x467) "getgid" [||])
+            Ojs.int_of_js (Ojs.call (t_to_js x467) "getgid" [||])
         let (setgid : t -> id:string or_number -> unit) =
           fun (x470 : t) ->
             fun ~id:(x468 : string or_number) ->
               ignore
                 (Ojs.call (t_to_js x470) "setgid"
                    [|(or_number_to_js Ojs.string_to_js x468)|])
-        let (getuid : t -> float) =
+        let (getuid : t -> int) =
           fun (x471 : t) ->
-            Ojs.float_of_js (Ojs.call (t_to_js x471) "getuid" [||])
+            Ojs.int_of_js (Ojs.call (t_to_js x471) "getuid" [||])
         let (setuid : t -> id:string or_number -> unit) =
           fun (x474 : t) ->
             fun ~id:(x472 : string or_number) ->
               ignore
                 (Ojs.call (t_to_js x474) "setuid"
                    [|(or_number_to_js Ojs.string_to_js x472)|])
-        let (geteuid : t -> float) =
+        let (geteuid : t -> int) =
           fun (x475 : t) ->
-            Ojs.float_of_js (Ojs.call (t_to_js x475) "geteuid" [||])
+            Ojs.int_of_js (Ojs.call (t_to_js x475) "geteuid" [||])
         let (seteuid : t -> id:string or_number -> unit) =
           fun (x478 : t) ->
             fun ~id:(x476 : string or_number) ->
               ignore
                 (Ojs.call (t_to_js x478) "seteuid"
                    [|(or_number_to_js Ojs.string_to_js x476)|])
-        let (getegid : t -> float) =
+        let (getegid : t -> int) =
           fun (x479 : t) ->
-            Ojs.float_of_js (Ojs.call (t_to_js x479) "getegid" [||])
+            Ojs.int_of_js (Ojs.call (t_to_js x479) "getegid" [||])
         let (setegid : t -> id:string or_number -> unit) =
           fun (x482 : t) ->
             fun ~id:(x480 : string or_number) ->
               ignore
                 (Ojs.call (t_to_js x482) "setegid"
                    [|(or_number_to_js Ojs.string_to_js x480)|])
-        let (getgroups : t -> float list) =
+        let (getgroups : t -> int list) =
           fun (x483 : t) ->
-            Ojs.list_of_js Ojs.float_of_js
+            Ojs.list_of_js Ojs.int_of_js
               (Ojs.call (t_to_js x483) "getgroups" [||])
         let (setgroups : t -> groups:string or_number list -> unit) =
           fun (x488 : t) ->
@@ -1846,10 +1840,10 @@ module Process =
               Ojs.set_prop_ascii (t_to_js x501) "config"
                 (anonymous_interface_8_to_js x502)
         let (kill :
-          t -> pid:float -> ?signal:string or_number -> unit -> [ `L_b_true ])
+          t -> pid:int -> ?signal:string or_number -> unit -> [ `L_b_true ])
           =
           fun (x508 : t) ->
-            fun ~pid:(x503 : float) ->
+            fun ~pid:(x503 : int) ->
               fun ?signal:(x504 : string or_number option) ->
                 fun () ->
                   let x510 =
@@ -1861,7 +1855,7 @@ module Process =
                                    [||] in
                                ignore
                                  (Ojs.call x505 "push"
-                                    [|(Ojs.float_to_js x503)|]);
+                                    [|(Ojs.int_to_js x503)|]);
                                (match x504 with
                                 | Some x506 ->
                                     ignore
@@ -1873,20 +1867,20 @@ module Process =
                   match Ojs.bool_of_js x510 with
                   | true -> `L_b_true
                   | _ -> assert false
-        let (get_pid : t -> float) =
+        let (get_pid : t -> int) =
           fun (x511 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x511) "pid")
-        let (set_pid : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x511) "pid")
+        let (set_pid : t -> int -> unit) =
           fun (x512 : t) ->
-            fun (x513 : float) ->
-              Ojs.set_prop_ascii (t_to_js x512) "pid" (Ojs.float_to_js x513)
-        let (get_ppid : t -> float) =
+            fun (x513 : int) ->
+              Ojs.set_prop_ascii (t_to_js x512) "pid" (Ojs.int_to_js x513)
+        let (get_ppid : t -> int) =
           fun (x514 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x514) "ppid")
-        let (set_ppid : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x514) "ppid")
+        let (set_ppid : t -> int -> unit) =
           fun (x515 : t) ->
-            fun (x516 : float) ->
-              Ojs.set_prop_ascii (t_to_js x515) "ppid" (Ojs.float_to_js x516)
+            fun (x516 : int) ->
+              Ojs.set_prop_ascii (t_to_js x515) "ppid" (Ojs.int_to_js x516)
         let (get_title : t -> string) =
           fun (x517 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x517) "title")
@@ -1988,18 +1982,18 @@ module Process =
             fun (x546 : anonymous_interface_6) ->
               Ojs.set_prop_ascii (t_to_js x545) "features"
                 (anonymous_interface_6_to_js x546)
-        let (umask : t -> float) =
+        let (umask : t -> int) =
           fun (x547 : t) ->
-            Ojs.float_of_js (Ojs.call (t_to_js x547) "umask" [||])
-        let (umask' : t -> mask:string or_number -> float) =
+            Ojs.int_of_js (Ojs.call (t_to_js x547) "umask" [||])
+        let (umask' : t -> mask:string or_number -> int) =
           fun (x550 : t) ->
             fun ~mask:(x548 : string or_number) ->
-              Ojs.float_of_js
+              Ojs.int_of_js
                 (Ojs.call (t_to_js x550) "umask"
                    [|(or_number_to_js Ojs.string_to_js x548)|])
-        let (uptime : t -> float) =
+        let (uptime : t -> int) =
           fun (x551 : t) ->
-            Ojs.float_of_js (Ojs.call (t_to_js x551) "uptime" [||])
+            Ojs.int_of_js (Ojs.call (t_to_js x551) "uptime" [||])
         let (get_hrtime : t -> process_global_NodeJS_HRTime) =
           fun (x552 : t) ->
             process_global_NodeJS_HRTime_of_js
@@ -2310,15 +2304,15 @@ module Process =
                          | `multipleResolves ->
                              Ojs.string_to_js "multipleResolves"));(process_global_NodeJS_MultipleResolveListener_to_js
                                                                     x623)|])
-        let (emit : t -> event:[ `beforeExit ] -> code:float -> bool) =
+        let (emit : t -> event:[ `beforeExit ] -> code:int -> bool) =
           fun (x627 : t) ->
             fun ~event:(x625 : [ `beforeExit ]) ->
-              fun ~code:(x626 : float) ->
+              fun ~code:(x626 : int) ->
                 Ojs.bool_of_js
                   (Ojs.call (t_to_js x627) "emit"
                      [|((match x625 with
                          | `beforeExit -> Ojs.string_to_js "beforeExit"));(
-                       Ojs.float_to_js x626)|])
+                       Ojs.int_to_js x626)|])
         let (emit' : t -> event:[ `disconnect ] -> bool) =
           fun (x629 : t) ->
             fun ~event:(x628 : [ `disconnect ]) ->
@@ -2326,14 +2320,14 @@ module Process =
                 (Ojs.call (t_to_js x629) "emit"
                    [|((match x628 with
                        | `disconnect -> Ojs.string_to_js "disconnect"))|])
-        let (emit'' : t -> event:[ `exit ] -> code:float -> bool) =
+        let (emit'' : t -> event:[ `exit ] -> code:int -> bool) =
           fun (x632 : t) ->
             fun ~event:(x630 : [ `exit ]) ->
-              fun ~code:(x631 : float) ->
+              fun ~code:(x631 : int) ->
                 Ojs.bool_of_js
                   (Ojs.call (t_to_js x632) "emit"
                      [|((match x630 with | `exit -> Ojs.string_to_js "exit"));(
-                       Ojs.float_to_js x631)|])
+                       Ojs.int_to_js x631)|])
         let (emit''' :
           t -> event:[ `rejectionHandled ] -> promise:any Promise.t -> bool)
           =

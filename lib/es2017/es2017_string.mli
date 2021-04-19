@@ -1,3 +1,7 @@
+[@@@ocaml.warning "-7-11-32-33-39"]
+
+[@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
+
 open Es2016
 
 module String : sig
@@ -5,11 +9,14 @@ module String : sig
     include String
   end
 
-  val padStart : t -> maxLength:float -> ?fillString:string -> unit -> string
+  val padStart : t -> maxLength:int -> ?fillString:string -> unit -> string
+    [@@js.call "padStart"]
 
-  val padEnd : t -> maxLength:float -> ?fillString:string -> unit -> string
+  val padEnd : t -> maxLength:int -> ?fillString:string -> unit -> string
+    [@@js.call "padEnd"]
 
-  val to_ml : t -> string
+  val to_ml : t -> string [@@js.cast]
 
-  val of_ml : string -> t
+  val of_ml : string -> t [@@js.cast]
 end
+[@@js.scope "String"]

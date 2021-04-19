@@ -1,0 +1,113 @@
+[@@@ocaml.warning "-7-11-32-33-39"]
+
+[@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
+
+open Es5
+open Node
+open Download
+
+module Internal : sig
+  module AnonymousInterfaces : sig
+    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
+    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+  end
+
+  module Types : sig
+    open AnonymousInterfaces
+
+    type _IUpdateMetadata = [ `IUpdateMetadata ] intf
+    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+  end
+end
+
+open Internal
+open AnonymousInterfaces
+open Types
+
+module AnonymousInterface0 : sig
+  type t = anonymous_interface_0
+
+  val t_to_js : t -> Ojs.t
+
+  val t_of_js : Ojs.t -> t
+
+  val get_version : t -> any [@@js.get "version"]
+
+  val set_version : t -> any -> unit [@@js.set "version"]
+
+  val get_date : t -> any [@@js.get "date"]
+
+  val set_date : t -> any -> unit [@@js.set "date"]
+end
+
+(* import * as https from 'https'; *)
+(* import { DownloadPlatform } from './download'; *)
+val systemDefaultPlatform : string [@@js.global "systemDefaultPlatform"]
+
+val getVSCodeDownloadUrl
+  :  version:string
+  -> ?platform:DownloadPlatform.t
+  -> unit
+  -> string
+  [@@js.global "getVSCodeDownloadUrl"]
+
+val urlToOptions : url:string -> Https.RequestOptions.t
+  [@@js.global "urlToOptions"]
+
+val downloadDirToExecutablePath : dir:string -> string
+  [@@js.global "downloadDirToExecutablePath"]
+
+val insidersDownloadDirToExecutablePath : dir:string -> string
+  [@@js.global "insidersDownloadDirToExecutablePath"]
+
+val insidersDownloadDirMetadata : dir:string -> anonymous_interface_0
+  [@@js.global "insidersDownloadDirMetadata"]
+
+module IUpdateMetadata : sig
+  type t = _IUpdateMetadata
+
+  val t_to_js : t -> Ojs.t
+
+  val t_of_js : Ojs.t -> t
+
+  val get_url : t -> string [@@js.get "url"]
+
+  val set_url : t -> string -> unit [@@js.set "url"]
+
+  val get_name : t -> string [@@js.get "name"]
+
+  val set_name : t -> string -> unit [@@js.set "name"]
+
+  val get_version : t -> string [@@js.get "version"]
+
+  val set_version : t -> string -> unit [@@js.set "version"]
+
+  val get_productVersion : t -> string [@@js.get "productVersion"]
+
+  val set_productVersion : t -> string -> unit [@@js.set "productVersion"]
+
+  val get_hash : t -> string [@@js.get "hash"]
+
+  val set_hash : t -> string -> unit [@@js.set "hash"]
+
+  val get_timestamp : t -> int [@@js.get "timestamp"]
+
+  val set_timestamp : t -> int -> unit [@@js.set "timestamp"]
+
+  val get_sha256hash : t -> string [@@js.get "sha256hash"]
+
+  val set_sha256hash : t -> string -> unit [@@js.set "sha256hash"]
+
+  val get_supportsFastUpdate : t -> bool [@@js.get "supportsFastUpdate"]
+
+  val set_supportsFastUpdate : t -> bool -> unit [@@js.set "supportsFastUpdate"]
+end
+[@@js.scope "IUpdateMetadata"]
+
+val getLatestInsidersMetadata : platform:string -> _IUpdateMetadata Promise.t
+  [@@js.global "getLatestInsidersMetadata"]
+
+val resolveCliPathFromVSCodeExecutablePath
+  :  vscodeExecutablePath:string
+  -> string
+  [@@js.global "resolveCliPathFromVSCodeExecutablePath"]

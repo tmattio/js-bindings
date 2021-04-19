@@ -2,79 +2,56 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _SymbolConstructor = [ `SymbolConstructor ] intf
-        and _Symbol = symbol
-        let rec _SymbolConstructor_of_js : Ojs.t -> _SymbolConstructor =
-          Obj.magic
-        and _SymbolConstructor_to_js : _SymbolConstructor -> Ojs.t =
-          Obj.magic
-        and _Symbol_of_js : Ojs.t -> _Symbol =
-          fun (x2 : Ojs.t) -> symbol_of_js x2
-        and _Symbol_to_js : _Symbol -> Ojs.t =
-          fun (x1 : symbol) -> symbol_to_js x1
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module Symbol =
   struct
     include struct include Symbol end
     let (for_ : key:string -> symbol) =
-      fun ~key:(x3 : string) ->
+      fun ~key:(x1 : string) ->
         symbol_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Symbol") "for"
-             [|(Ojs.string_to_js x3)|])
+             [|(Ojs.string_to_js x1)|])
     let (keyFor : sym:symbol -> string or_undefined) =
-      fun ~sym:(x4 : symbol) ->
+      fun ~sym:(x2 : symbol) ->
         or_undefined_of_js Ojs.string_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Symbol") "keyFor"
-             [|(symbol_to_js x4)|])
+             [|(symbol_to_js x2)|])
   end
 module SymbolConstructor =
   struct
-    type t = _SymbolConstructor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x7 : Ojs.t) -> _SymbolConstructor_of_js x7
-    and t_to_js : t -> Ojs.t =
-      fun (x6 : _SymbolConstructor) -> _SymbolConstructor_to_js x6
-    let (get_prototype : t -> _Symbol) =
-      fun (x8 : t) ->
-        _Symbol_of_js (Ojs.get_prop_ascii (t_to_js x8) "prototype")
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x5 : Ojs.t) -> x5
+    and t_to_js : t -> Ojs.t = fun (x4 : Ojs.t) -> x4
+    let (get_prototype : t -> Symbol.t) =
+      fun (x6 : t) ->
+        Symbol.t_of_js (Ojs.get_prop_ascii (t_to_js x6) "prototype")
     let (apply : t -> ?description:string or_number -> unit -> symbol) =
-      fun (x13 : t) ->
-        fun ?description:(x9 : string or_number option) ->
+      fun (x11 : t) ->
+        fun ?description:(x7 : string or_number option) ->
           fun () ->
             symbol_of_js
-              (Ojs.call (t_to_js x13) "apply"
-                 [|Ojs.null;((let x10 =
+              (Ojs.call (t_to_js x11) "apply"
+                 [|Ojs.null;((let x8 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x9 with
-                               | Some x11 ->
+                              (match x7 with
+                               | Some x9 ->
                                    ignore
-                                     (Ojs.call x10 "push"
+                                     (Ojs.call x8 "push"
                                         [|(or_number_to_js Ojs.string_to_js
-                                             x11)|])
+                                             x9)|])
                                | None -> ());
-                              x10))|])
+                              x8))|])
     let (for_ : t -> key:string -> symbol) =
-      fun (x15 : t) ->
-        fun ~key:(x14 : string) ->
+      fun (x13 : t) ->
+        fun ~key:(x12 : string) ->
           symbol_of_js
-            (Ojs.call (t_to_js x15) "for" [|(Ojs.string_to_js x14)|])
+            (Ojs.call (t_to_js x13) "for" [|(Ojs.string_to_js x12)|])
     let (keyFor : t -> sym:symbol -> string or_undefined) =
-      fun (x17 : t) ->
-        fun ~sym:(x16 : symbol) ->
+      fun (x15 : t) ->
+        fun ~sym:(x14 : symbol) ->
           or_undefined_of_js Ojs.string_of_js
-            (Ojs.call (t_to_js x17) "keyFor" [|(symbol_to_js x16)|])
+            (Ojs.call (t_to_js x15) "keyFor" [|(symbol_to_js x14)|])
   end
-let (symbol : _SymbolConstructor) =
-  _SymbolConstructor_of_js (Ojs.get_prop_ascii Ojs.global "Symbol")
+let (symbol : SymbolConstructor.t) =
+  SymbolConstructor.t_of_js (Ojs.get_prop_ascii Ojs.global "Symbol")

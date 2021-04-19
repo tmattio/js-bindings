@@ -2,66 +2,14 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2015
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type 'T _Array = [ `Array of 'T ] intf
-        and _Float32Array = [ `Float32Array ] intf
-        and _Float64Array = [ `Float64Array ] intf
-        and _Int16Array = [ `Int16Array ] intf
-        and _Int32Array = [ `Int32Array ] intf
-        and _Int8Array = [ `Int8Array ] intf
-        and 'T _ReadonlyArray = [ `ReadonlyArray of 'T ] intf
-        and _Uint16Array = [ `Uint16Array ] intf
-        and _Uint32Array = [ `Uint32Array ] intf
-        and _Uint8Array = [ `Uint8Array ] intf
-        and _Uint8ClampedArray = [ `Uint8ClampedArray ] intf
-        let rec _Array_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _Array =
-          fun _T -> Obj.magic
-        and _Array_to_js : 'T . ('T -> Ojs.t) -> 'T _Array -> Ojs.t =
-          fun _T -> Obj.magic
-        and _Float32Array_of_js : Ojs.t -> _Float32Array = Obj.magic
-        and _Float32Array_to_js : _Float32Array -> Ojs.t = Obj.magic
-        and _Float64Array_of_js : Ojs.t -> _Float64Array = Obj.magic
-        and _Float64Array_to_js : _Float64Array -> Ojs.t = Obj.magic
-        and _Int16Array_of_js : Ojs.t -> _Int16Array = Obj.magic
-        and _Int16Array_to_js : _Int16Array -> Ojs.t = Obj.magic
-        and _Int32Array_of_js : Ojs.t -> _Int32Array = Obj.magic
-        and _Int32Array_to_js : _Int32Array -> Ojs.t = Obj.magic
-        and _Int8Array_of_js : Ojs.t -> _Int8Array = Obj.magic
-        and _Int8Array_to_js : _Int8Array -> Ojs.t = Obj.magic
-        and _ReadonlyArray_of_js :
-          'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _ReadonlyArray =
-          fun _T -> Obj.magic
-        and _ReadonlyArray_to_js :
-          'T . ('T -> Ojs.t) -> 'T _ReadonlyArray -> Ojs.t =
-          fun _T -> Obj.magic
-        and _Uint16Array_of_js : Ojs.t -> _Uint16Array = Obj.magic
-        and _Uint16Array_to_js : _Uint16Array -> Ojs.t = Obj.magic
-        and _Uint32Array_of_js : Ojs.t -> _Uint32Array = Obj.magic
-        and _Uint32Array_to_js : _Uint32Array -> Ojs.t = Obj.magic
-        and _Uint8Array_of_js : Ojs.t -> _Uint8Array = Obj.magic
-        and _Uint8Array_to_js : _Uint8Array -> Ojs.t = Obj.magic
-        and _Uint8ClampedArray_of_js : Ojs.t -> _Uint8ClampedArray =
-          Obj.magic
-        and _Uint8ClampedArray_to_js : _Uint8ClampedArray -> Ojs.t =
-          Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module Array =
   struct
     include struct include Array end
     let (includes :
-      'T t -> searchElement:'T -> ?fromIndex:float -> unit -> bool) =
+      'T t -> searchElement:'T -> ?fromIndex:int -> unit -> bool) =
       fun (x5 : 'T t) ->
         fun ~searchElement:(x1 : 'T) ->
-          fun ?fromIndex:(x2 : float option) ->
+          fun ?fromIndex:(x2 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x7 = t_to_js Obj.magic x5 in
@@ -74,7 +22,7 @@ module Array =
                           (match x2 with
                            | Some x4 ->
                                ignore
-                                 (Ojs.call x3 "push" [|(Ojs.float_to_js x4)|])
+                                 (Ojs.call x3 "push" [|(Ojs.int_to_js x4)|])
                            | None -> ());
                           x3))|])
     let (to_ml : 'T t -> 'T list) =
@@ -86,10 +34,10 @@ module ReadonlyArray =
   struct
     include struct include ReadonlyArray end
     let (includes :
-      'T t -> searchElement:'T -> ?fromIndex:float -> unit -> bool) =
+      'T t -> searchElement:'T -> ?fromIndex:int -> unit -> bool) =
       fun (x18 : 'T t) ->
         fun ~searchElement:(x14 : 'T) ->
-          fun ?fromIndex:(x15 : float option) ->
+          fun ?fromIndex:(x15 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x20 = t_to_js Obj.magic x18 in
@@ -103,7 +51,7 @@ module ReadonlyArray =
                             | Some x17 ->
                                 ignore
                                   (Ojs.call x16 "push"
-                                     [|(Ojs.float_to_js x17)|])
+                                     [|(Ojs.int_to_js x17)|])
                             | None -> ());
                            x16))|])
     let (to_ml : 'T t -> 'T list) =
@@ -114,11 +62,11 @@ module ReadonlyArray =
 module Int8Array =
   struct
     include struct include Int8Array end
-    let (includes :
-      t -> searchElement:float -> ?fromIndex:float -> unit -> bool) =
+    let (includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool)
+      =
       fun (x31 : t) ->
-        fun ~searchElement:(x27 : float) ->
-          fun ?fromIndex:(x28 : float option) ->
+        fun ~searchElement:(x27 : int) ->
+          fun ?fromIndex:(x28 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x32 = t_to_js x31 in
@@ -128,23 +76,23 @@ module Int8Array =
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x29 "push" [|(Ojs.float_to_js x27)|]);
+                             (Ojs.call x29 "push" [|(Ojs.int_to_js x27)|]);
                            (match x28 with
                             | Some x30 ->
                                 ignore
                                   (Ojs.call x29 "push"
-                                     [|(Ojs.float_to_js x30)|])
+                                     [|(Ojs.int_to_js x30)|])
                             | None -> ());
                            x29))|])
   end
 module Uint8Array =
   struct
     include struct include Uint8Array end
-    let (includes :
-      t -> searchElement:float -> ?fromIndex:float -> unit -> bool) =
+    let (includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool)
+      =
       fun (x37 : t) ->
-        fun ~searchElement:(x33 : float) ->
-          fun ?fromIndex:(x34 : float option) ->
+        fun ~searchElement:(x33 : int) ->
+          fun ?fromIndex:(x34 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x38 = t_to_js x37 in
@@ -154,23 +102,23 @@ module Uint8Array =
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x35 "push" [|(Ojs.float_to_js x33)|]);
+                             (Ojs.call x35 "push" [|(Ojs.int_to_js x33)|]);
                            (match x34 with
                             | Some x36 ->
                                 ignore
                                   (Ojs.call x35 "push"
-                                     [|(Ojs.float_to_js x36)|])
+                                     [|(Ojs.int_to_js x36)|])
                             | None -> ());
                            x35))|])
   end
 module Uint8ClampedArray =
   struct
     include struct include Uint8ClampedArray end
-    let (includes :
-      t -> searchElement:float -> ?fromIndex:float -> unit -> bool) =
+    let (includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool)
+      =
       fun (x43 : t) ->
-        fun ~searchElement:(x39 : float) ->
-          fun ?fromIndex:(x40 : float option) ->
+        fun ~searchElement:(x39 : int) ->
+          fun ?fromIndex:(x40 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x44 = t_to_js x43 in
@@ -180,23 +128,23 @@ module Uint8ClampedArray =
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x41 "push" [|(Ojs.float_to_js x39)|]);
+                             (Ojs.call x41 "push" [|(Ojs.int_to_js x39)|]);
                            (match x40 with
                             | Some x42 ->
                                 ignore
                                   (Ojs.call x41 "push"
-                                     [|(Ojs.float_to_js x42)|])
+                                     [|(Ojs.int_to_js x42)|])
                             | None -> ());
                            x41))|])
   end
 module Int16Array =
   struct
     include struct include Int16Array end
-    let (includes :
-      t -> searchElement:float -> ?fromIndex:float -> unit -> bool) =
+    let (includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool)
+      =
       fun (x49 : t) ->
-        fun ~searchElement:(x45 : float) ->
-          fun ?fromIndex:(x46 : float option) ->
+        fun ~searchElement:(x45 : int) ->
+          fun ?fromIndex:(x46 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x50 = t_to_js x49 in
@@ -206,23 +154,23 @@ module Int16Array =
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x47 "push" [|(Ojs.float_to_js x45)|]);
+                             (Ojs.call x47 "push" [|(Ojs.int_to_js x45)|]);
                            (match x46 with
                             | Some x48 ->
                                 ignore
                                   (Ojs.call x47 "push"
-                                     [|(Ojs.float_to_js x48)|])
+                                     [|(Ojs.int_to_js x48)|])
                             | None -> ());
                            x47))|])
   end
 module Uint16Array =
   struct
     include struct include Uint16Array end
-    let (includes :
-      t -> searchElement:float -> ?fromIndex:float -> unit -> bool) =
+    let (includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool)
+      =
       fun (x55 : t) ->
-        fun ~searchElement:(x51 : float) ->
-          fun ?fromIndex:(x52 : float option) ->
+        fun ~searchElement:(x51 : int) ->
+          fun ?fromIndex:(x52 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x56 = t_to_js x55 in
@@ -232,23 +180,23 @@ module Uint16Array =
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x53 "push" [|(Ojs.float_to_js x51)|]);
+                             (Ojs.call x53 "push" [|(Ojs.int_to_js x51)|]);
                            (match x52 with
                             | Some x54 ->
                                 ignore
                                   (Ojs.call x53 "push"
-                                     [|(Ojs.float_to_js x54)|])
+                                     [|(Ojs.int_to_js x54)|])
                             | None -> ());
                            x53))|])
   end
 module Int32Array =
   struct
     include struct include Int32Array end
-    let (includes :
-      t -> searchElement:float -> ?fromIndex:float -> unit -> bool) =
+    let (includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool)
+      =
       fun (x61 : t) ->
-        fun ~searchElement:(x57 : float) ->
-          fun ?fromIndex:(x58 : float option) ->
+        fun ~searchElement:(x57 : int) ->
+          fun ?fromIndex:(x58 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x62 = t_to_js x61 in
@@ -258,23 +206,23 @@ module Int32Array =
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x59 "push" [|(Ojs.float_to_js x57)|]);
+                             (Ojs.call x59 "push" [|(Ojs.int_to_js x57)|]);
                            (match x58 with
                             | Some x60 ->
                                 ignore
                                   (Ojs.call x59 "push"
-                                     [|(Ojs.float_to_js x60)|])
+                                     [|(Ojs.int_to_js x60)|])
                             | None -> ());
                            x59))|])
   end
 module Uint32Array =
   struct
     include struct include Uint32Array end
-    let (includes :
-      t -> searchElement:float -> ?fromIndex:float -> unit -> bool) =
+    let (includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool)
+      =
       fun (x67 : t) ->
-        fun ~searchElement:(x63 : float) ->
-          fun ?fromIndex:(x64 : float option) ->
+        fun ~searchElement:(x63 : int) ->
+          fun ?fromIndex:(x64 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x68 = t_to_js x67 in
@@ -284,23 +232,23 @@ module Uint32Array =
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x65 "push" [|(Ojs.float_to_js x63)|]);
+                             (Ojs.call x65 "push" [|(Ojs.int_to_js x63)|]);
                            (match x64 with
                             | Some x66 ->
                                 ignore
                                   (Ojs.call x65 "push"
-                                     [|(Ojs.float_to_js x66)|])
+                                     [|(Ojs.int_to_js x66)|])
                             | None -> ());
                            x65))|])
   end
 module Float32Array =
   struct
     include struct include Float32Array end
-    let (includes :
-      t -> searchElement:float -> ?fromIndex:float -> unit -> bool) =
+    let (includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool)
+      =
       fun (x73 : t) ->
-        fun ~searchElement:(x69 : float) ->
-          fun ?fromIndex:(x70 : float option) ->
+        fun ~searchElement:(x69 : int) ->
+          fun ?fromIndex:(x70 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x74 = t_to_js x73 in
@@ -310,23 +258,23 @@ module Float32Array =
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x71 "push" [|(Ojs.float_to_js x69)|]);
+                             (Ojs.call x71 "push" [|(Ojs.int_to_js x69)|]);
                            (match x70 with
                             | Some x72 ->
                                 ignore
                                   (Ojs.call x71 "push"
-                                     [|(Ojs.float_to_js x72)|])
+                                     [|(Ojs.int_to_js x72)|])
                             | None -> ());
                            x71))|])
   end
 module Float64Array =
   struct
     include struct include Float64Array end
-    let (includes :
-      t -> searchElement:float -> ?fromIndex:float -> unit -> bool) =
+    let (includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool)
+      =
       fun (x79 : t) ->
-        fun ~searchElement:(x75 : float) ->
-          fun ?fromIndex:(x76 : float option) ->
+        fun ~searchElement:(x75 : int) ->
+          fun ?fromIndex:(x76 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x80 = t_to_js x79 in
@@ -336,12 +284,12 @@ module Float64Array =
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x77 "push" [|(Ojs.float_to_js x75)|]);
+                             (Ojs.call x77 "push" [|(Ojs.int_to_js x75)|]);
                            (match x76 with
                             | Some x78 ->
                                 ignore
                                   (Ojs.call x77 "push"
-                                     [|(Ojs.float_to_js x78)|])
+                                     [|(Ojs.int_to_js x78)|])
                             | None -> ());
                            x77))|])
   end

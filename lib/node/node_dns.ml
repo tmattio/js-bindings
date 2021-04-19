@@ -200,11 +200,11 @@ module AnonymousInterface0 =
   end
 module Dns =
   struct
-    let (aDDRCONFIG : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.dns "ADDRCONFIG")
-    let (v4MAPPED : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.dns "V4MAPPED")
-    let (aLL : float) = Ojs.float_of_js (Ojs.get_prop_ascii Import.dns "ALL")
+    let (aDDRCONFIG : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.dns "ADDRCONFIG")
+    let (v4MAPPED : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.dns "V4MAPPED")
+    let (aLL : int) = Ojs.int_of_js (Ojs.get_prop_ascii Import.dns "ALL")
     module LookupOptions =
       struct
         type t = dns_LookupOptions
@@ -212,20 +212,20 @@ module Dns =
           fun (x28 : Ojs.t) -> dns_LookupOptions_of_js x28
         and t_to_js : t -> Ojs.t =
           fun (x27 : dns_LookupOptions) -> dns_LookupOptions_to_js x27
-        let (get_family : t -> float) =
+        let (get_family : t -> int) =
           fun (x29 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x29) "family")
-        let (set_family : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x29) "family")
+        let (set_family : t -> int -> unit) =
           fun (x30 : t) ->
-            fun (x31 : float) ->
-              Ojs.set_prop_ascii (t_to_js x30) "family" (Ojs.float_to_js x31)
-        let (get_hints : t -> float) =
+            fun (x31 : int) ->
+              Ojs.set_prop_ascii (t_to_js x30) "family" (Ojs.int_to_js x31)
+        let (get_hints : t -> int) =
           fun (x32 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x32) "hints")
-        let (set_hints : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x32) "hints")
+        let (set_hints : t -> int -> unit) =
           fun (x33 : t) ->
-            fun (x34 : float) ->
-              Ojs.set_prop_ascii (t_to_js x33) "hints" (Ojs.float_to_js x34)
+            fun (x34 : int) ->
+              Ojs.set_prop_ascii (t_to_js x33) "hints" (Ojs.int_to_js x34)
         let (get_all : t -> bool) =
           fun (x35 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x35) "all")
@@ -299,33 +299,33 @@ module Dns =
             fun (x59 : string) ->
               Ojs.set_prop_ascii (t_to_js x58) "address"
                 (Ojs.string_to_js x59)
-        let (get_family : t -> float) =
+        let (get_family : t -> int) =
           fun (x60 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x60) "family")
-        let (set_family : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x60) "family")
+        let (set_family : t -> int -> unit) =
           fun (x61 : t) ->
-            fun (x62 : float) ->
-              Ojs.set_prop_ascii (t_to_js x61) "family" (Ojs.float_to_js x62)
+            fun (x62 : int) ->
+              Ojs.set_prop_ascii (t_to_js x61) "family" (Ojs.int_to_js x62)
       end
     let (lookup :
       hostname:string ->
-        family:float ->
+        family:int ->
           callback:(err:ErrnoException.t or_null ->
-                      address:string -> family:float -> unit)
+                      address:string -> family:int -> unit)
             -> unit)
       =
       fun ~hostname:(x63 : string) ->
-        fun ~family:(x64 : float) ->
+        fun ~family:(x64 : int) ->
           fun
             ~callback:(x65 :
                         err:ErrnoException.t or_null ->
-                          address:string -> family:float -> unit)
+                          address:string -> family:int -> unit)
             ->
             ignore
               (Ojs.call Import.dns "lookup"
-                 [|(Ojs.string_to_js x63);(Ojs.float_to_js x64);(Ojs.fun_to_js
-                                                                   3
-                                                                   (fun
+                 [|(Ojs.string_to_js x63);(Ojs.int_to_js x64);(Ojs.fun_to_js
+                                                                 3
+                                                                 (fun
                                                                     (x66 :
                                                                     Ojs.t) ->
                                                                     fun
@@ -343,13 +343,13 @@ module Dns =
                                                                     Ojs.string_of_js
                                                                     x68)
                                                                     ~family:(
-                                                                    Ojs.float_of_js
+                                                                    Ojs.int_of_js
                                                                     x69)))|])
     let (lookup :
       hostname:string ->
         options:dns_LookupOneOptions ->
           callback:(err:ErrnoException.t or_null ->
-                      address:string -> family:float -> unit)
+                      address:string -> family:int -> unit)
             -> unit)
       =
       fun ~hostname:(x70 : string) ->
@@ -357,7 +357,7 @@ module Dns =
           fun
             ~callback:(x72 :
                         err:ErrnoException.t or_null ->
-                          address:string -> family:float -> unit)
+                          address:string -> family:int -> unit)
             ->
             ignore
               (Ojs.call Import.dns "lookup"
@@ -369,7 +369,7 @@ module Dns =
                             x72
                               ~err:(or_null_of_js ErrnoException.t_of_js x73)
                               ~address:(Ojs.string_of_js x75)
-                              ~family:(Ojs.float_of_js x76)))|])
+                              ~family:(Ojs.int_of_js x76)))|])
     let (lookup :
       hostname:string ->
         options:dns_LookupAllOptions ->
@@ -398,7 +398,7 @@ module Dns =
         options:dns_LookupOptions ->
           callback:(err:ErrnoException.t or_null ->
                       address:dns_LookupAddress list or_string ->
-                        family:float -> unit)
+                        family:int -> unit)
             -> unit)
       =
       fun ~hostname:(x84 : string) ->
@@ -407,7 +407,7 @@ module Dns =
             ~callback:(x86 :
                         err:ErrnoException.t or_null ->
                           address:dns_LookupAddress list or_string ->
-                            family:float -> unit)
+                            family:int -> unit)
             ->
             ignore
               (Ojs.call Import.dns "lookup"
@@ -422,18 +422,18 @@ module Dns =
                                           (fun (x90 : Ojs.t) ->
                                              Ojs.list_of_js
                                                dns_LookupAddress_of_js x90)
-                                          x89) ~family:(Ojs.float_of_js x92)))|])
+                                          x89) ~family:(Ojs.int_of_js x92)))|])
     let (lookup :
       hostname:string ->
         callback:(err:ErrnoException.t or_null ->
-                    address:string -> family:float -> unit)
+                    address:string -> family:int -> unit)
           -> unit)
       =
       fun ~hostname:(x93 : string) ->
         fun
           ~callback:(x94 :
                       err:ErrnoException.t or_null ->
-                        address:string -> family:float -> unit)
+                        address:string -> family:int -> unit)
           ->
           ignore
             (Ojs.call Import.dns "lookup"
@@ -447,7 +447,7 @@ module Dns =
                                                             x95)
                                                     ~address:(Ojs.string_of_js
                                                                 x97)
-                                                    ~family:(Ojs.float_of_js
+                                                    ~family:(Ojs.int_of_js
                                                                x98)))|])
     module Lookup =
       struct
@@ -506,13 +506,13 @@ module Dns =
       end
     let (lookupService :
       address:string ->
-        port:float ->
+        port:int ->
           callback:(err:ErrnoException.t or_null ->
                       hostname:string -> service:string -> unit)
             -> unit)
       =
       fun ~address:(x115 : string) ->
-        fun ~port:(x116 : float) ->
+        fun ~port:(x116 : int) ->
           fun
             ~callback:(x117 :
                         err:ErrnoException.t or_null ->
@@ -520,9 +520,9 @@ module Dns =
             ->
             ignore
               (Ojs.call Import.dns "lookupService"
-                 [|(Ojs.string_to_js x115);(Ojs.float_to_js x116);(Ojs.fun_to_js
-                                                                    3
-                                                                    (fun
+                 [|(Ojs.string_to_js x115);(Ojs.int_to_js x116);(Ojs.fun_to_js
+                                                                   3
+                                                                   (fun
                                                                     (x118 :
                                                                     Ojs.t) ->
                                                                     fun
@@ -545,13 +545,13 @@ module Dns =
     module LookupService =
       struct
         let (__promisify__ :
-          address:string -> port:float -> anonymous_interface_0 Promise.t) =
+          address:string -> port:int -> anonymous_interface_0 Promise.t) =
           fun ~address:(x122 : string) ->
-            fun ~port:(x123 : float) ->
+            fun ~port:(x123 : int) ->
               Promise.t_of_js anonymous_interface_0_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "lookupService")
                    "__promisify__"
-                   [|(Ojs.string_to_js x122);(Ojs.float_to_js x123)|])
+                   [|(Ojs.string_to_js x122);(Ojs.int_to_js x123)|])
       end
     module ResolveOptions =
       struct
@@ -605,13 +605,13 @@ module Dns =
             fun (x141 : string) ->
               Ojs.set_prop_ascii (t_to_js x140) "address"
                 (Ojs.string_to_js x141)
-        let (get_ttl : t -> float) =
+        let (get_ttl : t -> int) =
           fun (x142 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x142) "ttl")
-        let (set_ttl : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x142) "ttl")
+        let (set_ttl : t -> int -> unit) =
           fun (x143 : t) ->
-            fun (x144 : float) ->
-              Ojs.set_prop_ascii (t_to_js x143) "ttl" (Ojs.float_to_js x144)
+            fun (x144 : int) ->
+              Ojs.set_prop_ascii (t_to_js x143) "ttl" (Ojs.int_to_js x144)
       end
     module AnyRecordWithTtl =
       struct
@@ -669,14 +669,14 @@ module Dns =
           fun (x162 : Ojs.t) -> dns_MxRecord_of_js x162
         and t_to_js : t -> Ojs.t =
           fun (x161 : dns_MxRecord) -> dns_MxRecord_to_js x161
-        let (get_priority : t -> float) =
+        let (get_priority : t -> int) =
           fun (x163 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x163) "priority")
-        let (set_priority : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x163) "priority")
+        let (set_priority : t -> int -> unit) =
           fun (x164 : t) ->
-            fun (x165 : float) ->
+            fun (x165 : int) ->
               Ojs.set_prop_ascii (t_to_js x164) "priority"
-                (Ojs.float_to_js x165)
+                (Ojs.int_to_js x165)
         let (get_exchange : t -> string) =
           fun (x166 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x166) "exchange")
@@ -747,22 +747,21 @@ module Dns =
             fun (x189 : string) ->
               Ojs.set_prop_ascii (t_to_js x188) "replacement"
                 (Ojs.string_to_js x189)
-        let (get_order : t -> float) =
+        let (get_order : t -> int) =
           fun (x190 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x190) "order")
-        let (set_order : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x190) "order")
+        let (set_order : t -> int -> unit) =
           fun (x191 : t) ->
-            fun (x192 : float) ->
-              Ojs.set_prop_ascii (t_to_js x191) "order"
-                (Ojs.float_to_js x192)
-        let (get_preference : t -> float) =
+            fun (x192 : int) ->
+              Ojs.set_prop_ascii (t_to_js x191) "order" (Ojs.int_to_js x192)
+        let (get_preference : t -> int) =
           fun (x193 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x193) "preference")
-        let (set_preference : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x193) "preference")
+        let (set_preference : t -> int -> unit) =
           fun (x194 : t) ->
-            fun (x195 : float) ->
+            fun (x195 : int) ->
               Ojs.set_prop_ascii (t_to_js x194) "preference"
-                (Ojs.float_to_js x195)
+                (Ojs.int_to_js x195)
       end
     module AnyNaptrRecord =
       struct
@@ -808,46 +807,42 @@ module Dns =
             fun (x210 : string) ->
               Ojs.set_prop_ascii (t_to_js x209) "hostmaster"
                 (Ojs.string_to_js x210)
-        let (get_serial : t -> float) =
+        let (get_serial : t -> int) =
           fun (x211 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x211) "serial")
-        let (set_serial : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x211) "serial")
+        let (set_serial : t -> int -> unit) =
           fun (x212 : t) ->
-            fun (x213 : float) ->
-              Ojs.set_prop_ascii (t_to_js x212) "serial"
-                (Ojs.float_to_js x213)
-        let (get_refresh : t -> float) =
+            fun (x213 : int) ->
+              Ojs.set_prop_ascii (t_to_js x212) "serial" (Ojs.int_to_js x213)
+        let (get_refresh : t -> int) =
           fun (x214 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x214) "refresh")
-        let (set_refresh : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x214) "refresh")
+        let (set_refresh : t -> int -> unit) =
           fun (x215 : t) ->
-            fun (x216 : float) ->
+            fun (x216 : int) ->
               Ojs.set_prop_ascii (t_to_js x215) "refresh"
-                (Ojs.float_to_js x216)
-        let (get_retry : t -> float) =
+                (Ojs.int_to_js x216)
+        let (get_retry : t -> int) =
           fun (x217 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x217) "retry")
-        let (set_retry : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x217) "retry")
+        let (set_retry : t -> int -> unit) =
           fun (x218 : t) ->
-            fun (x219 : float) ->
-              Ojs.set_prop_ascii (t_to_js x218) "retry"
-                (Ojs.float_to_js x219)
-        let (get_expire : t -> float) =
+            fun (x219 : int) ->
+              Ojs.set_prop_ascii (t_to_js x218) "retry" (Ojs.int_to_js x219)
+        let (get_expire : t -> int) =
           fun (x220 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x220) "expire")
-        let (set_expire : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x220) "expire")
+        let (set_expire : t -> int -> unit) =
           fun (x221 : t) ->
-            fun (x222 : float) ->
-              Ojs.set_prop_ascii (t_to_js x221) "expire"
-                (Ojs.float_to_js x222)
-        let (get_minttl : t -> float) =
+            fun (x222 : int) ->
+              Ojs.set_prop_ascii (t_to_js x221) "expire" (Ojs.int_to_js x222)
+        let (get_minttl : t -> int) =
           fun (x223 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x223) "minttl")
-        let (set_minttl : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x223) "minttl")
+        let (set_minttl : t -> int -> unit) =
           fun (x224 : t) ->
-            fun (x225 : float) ->
-              Ojs.set_prop_ascii (t_to_js x224) "minttl"
-                (Ojs.float_to_js x225)
+            fun (x225 : int) ->
+              Ojs.set_prop_ascii (t_to_js x224) "minttl" (Ojs.int_to_js x225)
       end
     module AnySoaRecord =
       struct
@@ -877,29 +872,28 @@ module Dns =
           fun (x234 : Ojs.t) -> dns_SrvRecord_of_js x234
         and t_to_js : t -> Ojs.t =
           fun (x233 : dns_SrvRecord) -> dns_SrvRecord_to_js x233
-        let (get_priority : t -> float) =
+        let (get_priority : t -> int) =
           fun (x235 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x235) "priority")
-        let (set_priority : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x235) "priority")
+        let (set_priority : t -> int -> unit) =
           fun (x236 : t) ->
-            fun (x237 : float) ->
+            fun (x237 : int) ->
               Ojs.set_prop_ascii (t_to_js x236) "priority"
-                (Ojs.float_to_js x237)
-        let (get_weight : t -> float) =
+                (Ojs.int_to_js x237)
+        let (get_weight : t -> int) =
           fun (x238 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x238) "weight")
-        let (set_weight : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x238) "weight")
+        let (set_weight : t -> int -> unit) =
           fun (x239 : t) ->
-            fun (x240 : float) ->
-              Ojs.set_prop_ascii (t_to_js x239) "weight"
-                (Ojs.float_to_js x240)
-        let (get_port : t -> float) =
+            fun (x240 : int) ->
+              Ojs.set_prop_ascii (t_to_js x239) "weight" (Ojs.int_to_js x240)
+        let (get_port : t -> int) =
           fun (x241 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x241) "port")
-        let (set_port : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x241) "port")
+        let (set_port : t -> int -> unit) =
           fun (x242 : t) ->
-            fun (x243 : float) ->
-              Ojs.set_prop_ascii (t_to_js x242) "port" (Ojs.float_to_js x243)
+            fun (x243 : int) ->
+              Ojs.set_prop_ascii (t_to_js x242) "port" (Ojs.int_to_js x243)
         let (get_name : t -> string) =
           fun (x244 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x244) "name")
@@ -2205,14 +2199,14 @@ module Dns =
           fun (x598 : Ojs.t) -> dns_ResolverOptions_of_js x598
         and t_to_js : t -> Ojs.t =
           fun (x597 : dns_ResolverOptions) -> dns_ResolverOptions_to_js x597
-        let (get_timeout : t -> float) =
+        let (get_timeout : t -> int) =
           fun (x599 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x599) "timeout")
-        let (set_timeout : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x599) "timeout")
+        let (set_timeout : t -> int -> unit) =
           fun (x600 : t) ->
-            fun (x601 : float) ->
+            fun (x601 : int) ->
               Ojs.set_prop_ascii (t_to_js x600) "timeout"
-                (Ojs.float_to_js x601)
+                (Ojs.int_to_js x601)
       end
     module Resolver =
       struct
@@ -2637,12 +2631,12 @@ module Dns =
               (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
                  "getServers" [||])
         let (lookup :
-          hostname:string -> family:float -> dns_LookupAddress Promise.t) =
+          hostname:string -> family:int -> dns_LookupAddress Promise.t) =
           fun ~hostname:(x712 : string) ->
-            fun ~family:(x713 : float) ->
+            fun ~family:(x713 : int) ->
               Promise.t_of_js dns_LookupAddress_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "promises") "lookup"
-                   [|(Ojs.string_to_js x712);(Ojs.float_to_js x713)|])
+                   [|(Ojs.string_to_js x712);(Ojs.int_to_js x713)|])
         let (lookup :
           hostname:string ->
             options:dns_LookupOneOptions -> dns_LookupAddress Promise.t)
@@ -2682,13 +2676,13 @@ module Dns =
               (Ojs.call (Ojs.get_prop_ascii Import.dns "promises") "lookup"
                  [|(Ojs.string_to_js x727)|])
         let (lookupService :
-          address:string -> port:float -> anonymous_interface_0 Promise.t) =
+          address:string -> port:int -> anonymous_interface_0 Promise.t) =
           fun ~address:(x729 : string) ->
-            fun ~port:(x730 : float) ->
+            fun ~port:(x730 : int) ->
               Promise.t_of_js anonymous_interface_0_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
                    "lookupService"
-                   [|(Ojs.string_to_js x729);(Ojs.float_to_js x730)|])
+                   [|(Ojs.string_to_js x729);(Ojs.int_to_js x730)|])
         let (resolve : hostname:string -> string list Promise.t) =
           fun ~hostname:(x732 : string) ->
             Promise.t_of_js

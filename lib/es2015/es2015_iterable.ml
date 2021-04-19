@@ -4,359 +4,102 @@
 open Es5
 open Es2015_symbol
 open Es2015_collection
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type 'T _Array = [ `Array of 'T ] intf
-        and _ArrayConstructor = [ `ArrayConstructor ] intf
-        and _Float32Array = [ `Float32Array ] intf
-        and _Float32ArrayConstructor = [ `Float32ArrayConstructor ] intf
-        and _Float64Array = [ `Float64Array ] intf
-        and _Float64ArrayConstructor = [ `Float64ArrayConstructor ] intf
-        and _IArguments = [ `IArguments ] intf
-        and _Int16Array = [ `Int16Array ] intf
-        and _Int16ArrayConstructor = [ `Int16ArrayConstructor ] intf
-        and _Int32Array = [ `Int32Array ] intf
-        and _Int32ArrayConstructor = [ `Int32ArrayConstructor ] intf
-        and _Int8Array = [ `Int8Array ] intf
-        and _Int8ArrayConstructor = [ `Int8ArrayConstructor ] intf
-        and 'T _Iterable = [ `Iterable of 'T ] intf
-        and 'T _IterableIterator =
-          [ `IterableIterator of 'T  | `Iterator of 'T ] intf
-        and ('T, 'TReturn, 'TNext) _Iterator =
-          [ `Iterator of ('T * 'TReturn * 'TNext) ] intf
-        and ('T, 'TReturn) _IteratorResult =
-          [ `U_b_false of 'T _IteratorYieldResult 
-          | `U_b_true of 'TReturn _IteratorReturnResult ]
-        and 'TReturn _IteratorReturnResult =
-          [ `IteratorReturnResult of 'TReturn ] intf
-        and 'TYield _IteratorYieldResult =
-          [ `IteratorYieldResult of 'TYield ] intf
-        and ('K, 'V) _Map = [ `Map of ('K * 'V) ] intf
-        and _MapConstructor = [ `MapConstructor ] intf
-        and 'T _Promise = [ `Promise of 'T ] intf
-        and _PromiseConstructor = [ `PromiseConstructor ] intf
-        and 'T _ReadonlyArray = [ `ReadonlyArray of 'T ] intf
-        and ('K, 'V) _ReadonlyMap = [ `ReadonlyMap of ('K * 'V) ] intf
-        and 'T _ReadonlySet = [ `ReadonlySet of 'T ] intf
-        and 'T _Set = [ `Set of 'T ] intf
-        and _SetConstructor = [ `SetConstructor ] intf
-        and _String = [ `String ] intf
-        and _SymbolConstructor = [ `SymbolConstructor ] intf
-        and _Uint16Array = [ `Uint16Array ] intf
-        and _Uint16ArrayConstructor = [ `Uint16ArrayConstructor ] intf
-        and _Uint32Array = [ `Uint32Array ] intf
-        and _Uint32ArrayConstructor = [ `Uint32ArrayConstructor ] intf
-        and _Uint8Array = [ `Uint8Array ] intf
-        and _Uint8ArrayConstructor = [ `Uint8ArrayConstructor ] intf
-        and _Uint8ClampedArray = [ `Uint8ClampedArray ] intf
-        and _Uint8ClampedArrayConstructor =
-          [ `Uint8ClampedArrayConstructor ] intf
-        and ('K, 'V) _WeakMap = [ `WeakMap of ('K * 'V) ] intf
-        and _WeakMapConstructor = [ `WeakMapConstructor ] intf
-        and 'T _WeakSet = [ `WeakSet of 'T ] intf
-        and _WeakSetConstructor = [ `WeakSetConstructor ] intf
-        let rec _Array_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _Array =
-          fun _T -> Obj.magic
-        and _Array_to_js : 'T . ('T -> Ojs.t) -> 'T _Array -> Ojs.t =
-          fun _T -> Obj.magic
-        and _ArrayConstructor_of_js : Ojs.t -> _ArrayConstructor = Obj.magic
-        and _ArrayConstructor_to_js : _ArrayConstructor -> Ojs.t = Obj.magic
-        and _Float32Array_of_js : Ojs.t -> _Float32Array = Obj.magic
-        and _Float32Array_to_js : _Float32Array -> Ojs.t = Obj.magic
-        and _Float32ArrayConstructor_of_js :
-          Ojs.t -> _Float32ArrayConstructor = Obj.magic
-        and _Float32ArrayConstructor_to_js :
-          _Float32ArrayConstructor -> Ojs.t = Obj.magic
-        and _Float64Array_of_js : Ojs.t -> _Float64Array = Obj.magic
-        and _Float64Array_to_js : _Float64Array -> Ojs.t = Obj.magic
-        and _Float64ArrayConstructor_of_js :
-          Ojs.t -> _Float64ArrayConstructor = Obj.magic
-        and _Float64ArrayConstructor_to_js :
-          _Float64ArrayConstructor -> Ojs.t = Obj.magic
-        and _IArguments_of_js : Ojs.t -> _IArguments = Obj.magic
-        and _IArguments_to_js : _IArguments -> Ojs.t = Obj.magic
-        and _Int16Array_of_js : Ojs.t -> _Int16Array = Obj.magic
-        and _Int16Array_to_js : _Int16Array -> Ojs.t = Obj.magic
-        and _Int16ArrayConstructor_of_js : Ojs.t -> _Int16ArrayConstructor =
-          Obj.magic
-        and _Int16ArrayConstructor_to_js : _Int16ArrayConstructor -> Ojs.t =
-          Obj.magic
-        and _Int32Array_of_js : Ojs.t -> _Int32Array = Obj.magic
-        and _Int32Array_to_js : _Int32Array -> Ojs.t = Obj.magic
-        and _Int32ArrayConstructor_of_js : Ojs.t -> _Int32ArrayConstructor =
-          Obj.magic
-        and _Int32ArrayConstructor_to_js : _Int32ArrayConstructor -> Ojs.t =
-          Obj.magic
-        and _Int8Array_of_js : Ojs.t -> _Int8Array = Obj.magic
-        and _Int8Array_to_js : _Int8Array -> Ojs.t = Obj.magic
-        and _Int8ArrayConstructor_of_js : Ojs.t -> _Int8ArrayConstructor =
-          Obj.magic
-        and _Int8ArrayConstructor_to_js : _Int8ArrayConstructor -> Ojs.t =
-          Obj.magic
-        and _Iterable_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _Iterable =
-          fun _T -> Obj.magic
-        and _Iterable_to_js : 'T . ('T -> Ojs.t) -> 'T _Iterable -> Ojs.t =
-          fun _T -> Obj.magic
-        and _IterableIterator_of_js :
-          'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _IterableIterator =
-          fun _T -> Obj.magic
-        and _IterableIterator_to_js :
-          'T . ('T -> Ojs.t) -> 'T _IterableIterator -> Ojs.t =
-          fun _T -> Obj.magic
-        and _Iterator_of_js :
-          'T 'TReturn 'TNext .
-            (Ojs.t -> 'T) ->
-              (Ojs.t -> 'TReturn) ->
-                (Ojs.t -> 'TNext) ->
-                  Ojs.t -> ('T, 'TReturn, 'TNext) _Iterator
-          = fun _T -> fun _TReturn -> fun _TNext -> Obj.magic
-        and _Iterator_to_js :
-          'T 'TReturn 'TNext .
-            ('T -> Ojs.t) ->
-              ('TReturn -> Ojs.t) ->
-                ('TNext -> Ojs.t) ->
-                  ('T, 'TReturn, 'TNext) _Iterator -> Ojs.t
-          = fun _T -> fun _TReturn -> fun _TNext -> Obj.magic
-        and _IteratorResult_of_js :
-          'T 'TReturn .
-            (Ojs.t -> 'T) ->
-              (Ojs.t -> 'TReturn) -> Ojs.t -> ('T, 'TReturn) _IteratorResult
-          = fun (type __T) -> fun (type __TReturn) ->
-          fun (__T_of_js : Ojs.t -> __T) ->
-            fun (__TReturn_of_js : Ojs.t -> __TReturn) ->
-              fun (x6 : Ojs.t) ->
-                let x7 = x6 in
-                match Ojs.bool_of_js (Ojs.get_prop_ascii x7 "done") with
-                | false ->
-                    `U_b_false (_IteratorYieldResult_of_js __T_of_js x7)
-                | true ->
-                    `U_b_true
-                      (_IteratorReturnResult_of_js __TReturn_of_js x7)
-        and _IteratorResult_to_js :
-          'T 'TReturn .
-            ('T -> Ojs.t) ->
-              ('TReturn -> Ojs.t) -> ('T, 'TReturn) _IteratorResult -> Ojs.t
-          = fun (type __T) -> fun (type __TReturn) ->
-          fun (__T_to_js : __T -> Ojs.t) ->
-            fun (__TReturn_to_js : __TReturn -> Ojs.t) ->
-              fun
-                (x1 :
-                  [ `U_b_false of __T _IteratorYieldResult 
-                  | `U_b_true of __TReturn _IteratorReturnResult ])
-                ->
-                match x1 with
-                | `U_b_false x2 -> _IteratorYieldResult_to_js __T_to_js x2
-                | `U_b_true x4 ->
-                    _IteratorReturnResult_to_js __TReturn_to_js x4
-        and _IteratorReturnResult_of_js :
-          'TReturn .
-            (Ojs.t -> 'TReturn) -> Ojs.t -> 'TReturn _IteratorReturnResult
-          = fun _TReturn -> Obj.magic
-        and _IteratorReturnResult_to_js :
-          'TReturn .
-            ('TReturn -> Ojs.t) -> 'TReturn _IteratorReturnResult -> Ojs.t
-          = fun _TReturn -> Obj.magic
-        and _IteratorYieldResult_of_js :
-          'TYield .
-            (Ojs.t -> 'TYield) -> Ojs.t -> 'TYield _IteratorYieldResult
-          = fun _TYield -> Obj.magic
-        and _IteratorYieldResult_to_js :
-          'TYield .
-            ('TYield -> Ojs.t) -> 'TYield _IteratorYieldResult -> Ojs.t
-          = fun _TYield -> Obj.magic
-        and _Map_of_js :
-          'K 'V . (Ojs.t -> 'K) -> (Ojs.t -> 'V) -> Ojs.t -> ('K, 'V) _Map =
-          fun _K -> fun _V -> Obj.magic
-        and _Map_to_js :
-          'K 'V . ('K -> Ojs.t) -> ('V -> Ojs.t) -> ('K, 'V) _Map -> Ojs.t =
-          fun _K -> fun _V -> Obj.magic
-        and _MapConstructor_of_js : Ojs.t -> _MapConstructor = Obj.magic
-        and _MapConstructor_to_js : _MapConstructor -> Ojs.t = Obj.magic
-        and _Promise_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _Promise =
-          fun _T -> Obj.magic
-        and _Promise_to_js : 'T . ('T -> Ojs.t) -> 'T _Promise -> Ojs.t =
-          fun _T -> Obj.magic
-        and _PromiseConstructor_of_js : Ojs.t -> _PromiseConstructor =
-          Obj.magic
-        and _PromiseConstructor_to_js : _PromiseConstructor -> Ojs.t =
-          Obj.magic
-        and _ReadonlyArray_of_js :
-          'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _ReadonlyArray =
-          fun _T -> Obj.magic
-        and _ReadonlyArray_to_js :
-          'T . ('T -> Ojs.t) -> 'T _ReadonlyArray -> Ojs.t =
-          fun _T -> Obj.magic
-        and _ReadonlyMap_of_js :
-          'K 'V .
-            (Ojs.t -> 'K) -> (Ojs.t -> 'V) -> Ojs.t -> ('K, 'V) _ReadonlyMap
-          = fun _K -> fun _V -> Obj.magic
-        and _ReadonlyMap_to_js :
-          'K 'V .
-            ('K -> Ojs.t) -> ('V -> Ojs.t) -> ('K, 'V) _ReadonlyMap -> Ojs.t
-          = fun _K -> fun _V -> Obj.magic
-        and _ReadonlySet_of_js :
-          'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _ReadonlySet =
-          fun _T -> Obj.magic
-        and _ReadonlySet_to_js :
-          'T . ('T -> Ojs.t) -> 'T _ReadonlySet -> Ojs.t =
-          fun _T -> Obj.magic
-        and _Set_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _Set =
-          fun _T -> Obj.magic
-        and _Set_to_js : 'T . ('T -> Ojs.t) -> 'T _Set -> Ojs.t =
-          fun _T -> Obj.magic
-        and _SetConstructor_of_js : Ojs.t -> _SetConstructor = Obj.magic
-        and _SetConstructor_to_js : _SetConstructor -> Ojs.t = Obj.magic
-        and _String_of_js : Ojs.t -> _String = Obj.magic
-        and _String_to_js : _String -> Ojs.t = Obj.magic
-        and _SymbolConstructor_of_js : Ojs.t -> _SymbolConstructor =
-          Obj.magic
-        and _SymbolConstructor_to_js : _SymbolConstructor -> Ojs.t =
-          Obj.magic
-        and _Uint16Array_of_js : Ojs.t -> _Uint16Array = Obj.magic
-        and _Uint16Array_to_js : _Uint16Array -> Ojs.t = Obj.magic
-        and _Uint16ArrayConstructor_of_js : Ojs.t -> _Uint16ArrayConstructor
-          = Obj.magic
-        and _Uint16ArrayConstructor_to_js : _Uint16ArrayConstructor -> Ojs.t
-          = Obj.magic
-        and _Uint32Array_of_js : Ojs.t -> _Uint32Array = Obj.magic
-        and _Uint32Array_to_js : _Uint32Array -> Ojs.t = Obj.magic
-        and _Uint32ArrayConstructor_of_js : Ojs.t -> _Uint32ArrayConstructor
-          = Obj.magic
-        and _Uint32ArrayConstructor_to_js : _Uint32ArrayConstructor -> Ojs.t
-          = Obj.magic
-        and _Uint8Array_of_js : Ojs.t -> _Uint8Array = Obj.magic
-        and _Uint8Array_to_js : _Uint8Array -> Ojs.t = Obj.magic
-        and _Uint8ArrayConstructor_of_js : Ojs.t -> _Uint8ArrayConstructor =
-          Obj.magic
-        and _Uint8ArrayConstructor_to_js : _Uint8ArrayConstructor -> Ojs.t =
-          Obj.magic
-        and _Uint8ClampedArray_of_js : Ojs.t -> _Uint8ClampedArray =
-          Obj.magic
-        and _Uint8ClampedArray_to_js : _Uint8ClampedArray -> Ojs.t =
-          Obj.magic
-        and _Uint8ClampedArrayConstructor_of_js :
-          Ojs.t -> _Uint8ClampedArrayConstructor = Obj.magic
-        and _Uint8ClampedArrayConstructor_to_js :
-          _Uint8ClampedArrayConstructor -> Ojs.t = Obj.magic
-        and _WeakMap_of_js :
-          'K 'V .
-            (Ojs.t -> 'K) -> (Ojs.t -> 'V) -> Ojs.t -> ('K, 'V) _WeakMap
-          = fun _K -> fun _V -> Obj.magic
-        and _WeakMap_to_js :
-          'K 'V .
-            ('K -> Ojs.t) -> ('V -> Ojs.t) -> ('K, 'V) _WeakMap -> Ojs.t
-          = fun _K -> fun _V -> Obj.magic
-        and _WeakMapConstructor_of_js : Ojs.t -> _WeakMapConstructor =
-          Obj.magic
-        and _WeakMapConstructor_to_js : _WeakMapConstructor -> Ojs.t =
-          Obj.magic
-        and _WeakSet_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _WeakSet =
-          fun _T -> Obj.magic
-        and _WeakSet_to_js : 'T . ('T -> Ojs.t) -> 'T _WeakSet -> Ojs.t =
-          fun _T -> Obj.magic
-        and _WeakSetConstructor_of_js : Ojs.t -> _WeakSetConstructor =
-          Obj.magic
-        and _WeakSetConstructor_to_js : _WeakSetConstructor -> Ojs.t =
-          Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module SymbolConstructor =
   struct
     include struct include SymbolConstructor end
     let (get_iterator : t -> symbol) =
-      fun (x10 : t) ->
-        symbol_of_js (Ojs.get_prop_ascii (t_to_js x10) "iterator")
+      fun (x1 : t) ->
+        symbol_of_js (Ojs.get_prop_ascii (t_to_js x1) "iterator")
   end
 module IteratorYieldResult =
   struct
-    type 'TYield t = 'TYield _IteratorYieldResult
+    type 'TYield t = Ojs.t
     let rec t_of_js : 'TYield . (Ojs.t -> 'TYield) -> Ojs.t -> 'TYield t =
       fun (type __TYield) ->
-      fun (__TYield_of_js : Ojs.t -> __TYield) ->
-        fun (x13 : Ojs.t) -> _IteratorYieldResult_of_js __TYield_of_js x13
+      fun (__TYield_of_js : Ojs.t -> __TYield) -> fun (x3 : Ojs.t) -> x3
     and t_to_js : 'TYield . ('TYield -> Ojs.t) -> 'TYield t -> Ojs.t = fun
       (type __TYield) ->
-      fun (__TYield_to_js : __TYield -> Ojs.t) ->
-        fun (x11 : __TYield _IteratorYieldResult) ->
-          _IteratorYieldResult_to_js __TYield_to_js x11
+      fun (__TYield_to_js : __TYield -> Ojs.t) -> fun (x2 : Ojs.t) -> x2
     let (get_done : 'TYield t -> [ `L_b_false ]) =
-      fun (x15 : 'TYield t) ->
-        let x17 = Ojs.get_prop_ascii (t_to_js Obj.magic x15) "done" in
-        match Ojs.bool_of_js x17 with
+      fun (x4 : 'TYield t) ->
+        let x6 = Ojs.get_prop_ascii (t_to_js Obj.magic x4) "done" in
+        match Ojs.bool_of_js x6 with
         | false -> `L_b_false
         | _ -> assert false
     let (set_done : 'TYield t -> [ `L_b_false ] -> unit) =
-      fun (x18 : 'TYield t) ->
-        fun (x19 : [ `L_b_false ]) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x18) "done"
-            (match x19 with | `L_b_false -> Ojs.string_to_js "LBFalse")
+      fun (x7 : 'TYield t) ->
+        fun (x8 : [ `L_b_false ]) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x7) "done"
+            (match x8 with | `L_b_false -> Ojs.string_to_js "LBFalse")
     let (get_value : 'TYield t -> 'TYield) =
-      fun (x21 : 'TYield t) ->
-        Obj.magic (Ojs.get_prop_ascii (t_to_js Obj.magic x21) "value")
+      fun (x10 : 'TYield t) ->
+        Obj.magic (Ojs.get_prop_ascii (t_to_js Obj.magic x10) "value")
     let (set_value : 'TYield t -> 'TYield -> unit) =
-      fun (x23 : 'TYield t) ->
-        fun (x24 : 'TYield) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x23) "value" (Obj.magic x24)
+      fun (x12 : 'TYield t) ->
+        fun (x13 : 'TYield) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x12) "value" (Obj.magic x13)
   end
 module IteratorReturnResult =
   struct
-    type 'TReturn t = 'TReturn _IteratorReturnResult
+    type 'TReturn t = Ojs.t
     let rec t_of_js : 'TReturn . (Ojs.t -> 'TReturn) -> Ojs.t -> 'TReturn t =
       fun (type __TReturn) ->
-      fun (__TReturn_of_js : Ojs.t -> __TReturn) ->
-        fun (x28 : Ojs.t) -> _IteratorReturnResult_of_js __TReturn_of_js x28
+      fun (__TReturn_of_js : Ojs.t -> __TReturn) -> fun (x16 : Ojs.t) -> x16
     and t_to_js : 'TReturn . ('TReturn -> Ojs.t) -> 'TReturn t -> Ojs.t = fun
       (type __TReturn) ->
-      fun (__TReturn_to_js : __TReturn -> Ojs.t) ->
-        fun (x26 : __TReturn _IteratorReturnResult) ->
-          _IteratorReturnResult_to_js __TReturn_to_js x26
+      fun (__TReturn_to_js : __TReturn -> Ojs.t) -> fun (x15 : Ojs.t) -> x15
     let (get_done : 'TReturn t -> [ `L_b_true ]) =
-      fun (x30 : 'TReturn t) ->
-        let x32 = Ojs.get_prop_ascii (t_to_js Obj.magic x30) "done" in
-        match Ojs.bool_of_js x32 with | true -> `L_b_true | _ -> assert false
+      fun (x17 : 'TReturn t) ->
+        let x19 = Ojs.get_prop_ascii (t_to_js Obj.magic x17) "done" in
+        match Ojs.bool_of_js x19 with | true -> `L_b_true | _ -> assert false
     let (set_done : 'TReturn t -> [ `L_b_true ] -> unit) =
-      fun (x33 : 'TReturn t) ->
-        fun (x34 : [ `L_b_true ]) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x33) "done"
-            (match x34 with | `L_b_true -> Ojs.string_to_js "LBTrue")
+      fun (x20 : 'TReturn t) ->
+        fun (x21 : [ `L_b_true ]) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x20) "done"
+            (match x21 with | `L_b_true -> Ojs.string_to_js "LBTrue")
     let (get_value : 'TReturn t -> 'TReturn) =
-      fun (x36 : 'TReturn t) ->
-        Obj.magic (Ojs.get_prop_ascii (t_to_js Obj.magic x36) "value")
+      fun (x23 : 'TReturn t) ->
+        Obj.magic (Ojs.get_prop_ascii (t_to_js Obj.magic x23) "value")
     let (set_value : 'TReturn t -> 'TReturn -> unit) =
-      fun (x38 : 'TReturn t) ->
-        fun (x39 : 'TReturn) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x38) "value" (Obj.magic x39)
+      fun (x25 : 'TReturn t) ->
+        fun (x26 : 'TReturn) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x25) "value" (Obj.magic x26)
   end
 module IteratorResult =
   struct
-    type ('T, 'TReturn) t = ('T, 'TReturn) _IteratorResult
+    type ('T, 'TReturn) t =
+      [ `false_ of 'T IteratorYieldResult.t 
+      | `true_ of 'TReturn IteratorReturnResult.t ]
     let rec t_of_js :
       'T 'TReturn .
         (Ojs.t -> 'T) -> (Ojs.t -> 'TReturn) -> Ojs.t -> ('T, 'TReturn) t
       = fun (type __T) -> fun (type __TReturn) ->
       fun (__T_of_js : Ojs.t -> __T) ->
         fun (__TReturn_of_js : Ojs.t -> __TReturn) ->
-          fun (x44 : Ojs.t) ->
-            _IteratorResult_of_js __T_of_js __TReturn_of_js x44
+          fun (x33 : Ojs.t) ->
+            let x34 = x33 in
+            match Ojs.bool_of_js (Ojs.get_prop_ascii x34 "done") with
+            | false -> `false_ (IteratorYieldResult.t_of_js __T_of_js x34)
+            | true ->
+                `true_ (IteratorReturnResult.t_of_js __TReturn_of_js x34)
     and t_to_js :
       'T 'TReturn .
         ('T -> Ojs.t) -> ('TReturn -> Ojs.t) -> ('T, 'TReturn) t -> Ojs.t
       = fun (type __T) -> fun (type __TReturn) ->
       fun (__T_to_js : __T -> Ojs.t) ->
         fun (__TReturn_to_js : __TReturn -> Ojs.t) ->
-          fun (x41 : (__T, __TReturn) _IteratorResult) ->
-            _IteratorResult_to_js __T_to_js __TReturn_to_js x41
+          fun
+            (x28 :
+              [ `false_ of __T IteratorYieldResult.t 
+              | `true_ of __TReturn IteratorReturnResult.t ])
+            ->
+            match x28 with
+            | `false_ x29 -> IteratorYieldResult.t_to_js __T_to_js x29
+            | `true_ x31 -> IteratorReturnResult.t_to_js __TReturn_to_js x31
   end
 module Iterator =
   struct
-    type ('T, 'TReturn, 'TNext) t = ('T, 'TReturn, 'TNext) _Iterator
+    type ('T, 'TReturn, 'TNext) t = Ojs.t
     let rec t_of_js :
       'T 'TReturn 'TNext .
         (Ojs.t -> 'T) ->
@@ -365,9 +108,7 @@ module Iterator =
       = fun (type __T) -> fun (type __TReturn) -> fun (type __TNext) ->
       fun (__T_of_js : Ojs.t -> __T) ->
         fun (__TReturn_of_js : Ojs.t -> __TReturn) ->
-          fun (__TNext_of_js : Ojs.t -> __TNext) ->
-            fun (x51 : Ojs.t) ->
-              _Iterator_of_js __T_of_js __TReturn_of_js __TNext_of_js x51
+          fun (__TNext_of_js : Ojs.t -> __TNext) -> fun (x38 : Ojs.t) -> x38
     and t_to_js :
       'T 'TReturn 'TNext .
         ('T -> Ojs.t) ->
@@ -376,1503 +117,1479 @@ module Iterator =
       = fun (type __T) -> fun (type __TReturn) -> fun (type __TNext) ->
       fun (__T_to_js : __T -> Ojs.t) ->
         fun (__TReturn_to_js : __TReturn -> Ojs.t) ->
-          fun (__TNext_to_js : __TNext -> Ojs.t) ->
-            fun (x47 : (__T, __TReturn, __TNext) _Iterator) ->
-              _Iterator_to_js __T_to_js __TReturn_to_js __TNext_to_js x47
+          fun (__TNext_to_js : __TNext -> Ojs.t) -> fun (x37 : Ojs.t) -> x37
     let (next :
       ('T, 'TReturn, 'TNext) t ->
-        args:any list -> ('T, 'TReturn) _IteratorResult)
+        args:any list -> ('T, 'TReturn) IteratorResult.t)
       =
-      fun (x58 : ('T, 'TReturn, 'TNext) t) ->
-        fun ~args:(x55 : any list) ->
-          _IteratorResult_of_js Obj.magic Obj.magic
-            (let x62 = t_to_js Obj.magic Obj.magic Obj.magic x58 in
-             Ojs.call (Ojs.get_prop_ascii x62 "next") "apply"
-               [|x62;((let x56 =
+      fun (x42 : ('T, 'TReturn, 'TNext) t) ->
+        fun ~args:(x39 : any list) ->
+          IteratorResult.t_of_js Obj.magic Obj.magic
+            (let x46 = t_to_js Obj.magic Obj.magic Obj.magic x42 in
+             Ojs.call (Ojs.get_prop_ascii x46 "next") "apply"
+               [|x46;((let x40 =
                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                            [||] in
                        List.iter
-                         (fun (x57 : any) ->
-                            ignore (Ojs.call x56 "push" [|(any_to_js x57)|]))
-                         x55;
-                       x56))|])
+                         (fun (x41 : any) ->
+                            ignore (Ojs.call x40 "push" [|(any_to_js x41)|]))
+                         x39;
+                       x40))|])
     let (return :
       ('T, 'TReturn, 'TNext) t ->
-        ?value:'TReturn -> unit -> ('T, 'TReturn) _IteratorResult)
+        ?value:'TReturn -> unit -> ('T, 'TReturn) IteratorResult.t)
       =
-      fun (x68 : ('T, 'TReturn, 'TNext) t) ->
-        fun ?value:(x65 : 'TReturn option) ->
+      fun (x52 : ('T, 'TReturn, 'TNext) t) ->
+        fun ?value:(x49 : 'TReturn option) ->
           fun () ->
-            _IteratorResult_of_js Obj.magic Obj.magic
-              (let x72 = t_to_js Obj.magic Obj.magic Obj.magic x68 in
-               Ojs.call (Ojs.get_prop_ascii x72 "return") "apply"
-                 [|x72;((let x66 =
+            IteratorResult.t_of_js Obj.magic Obj.magic
+              (let x56 = t_to_js Obj.magic Obj.magic Obj.magic x52 in
+               Ojs.call (Ojs.get_prop_ascii x56 "return") "apply"
+                 [|x56;((let x50 =
                            Ojs.new_obj
                              (Ojs.get_prop_ascii Ojs.global "Array") 
                              [||] in
-                         (match x65 with
-                          | Some x67 ->
+                         (match x49 with
+                          | Some x51 ->
                               ignore
-                                (Ojs.call x66 "push" [|(Obj.magic x67)|])
+                                (Ojs.call x50 "push" [|(Obj.magic x51)|])
                           | None -> ());
-                         x66))|])
+                         x50))|])
     let (throw :
       ('T, 'TReturn, 'TNext) t ->
-        ?e:any -> unit -> ('T, 'TReturn) _IteratorResult)
+        ?e:any -> unit -> ('T, 'TReturn) IteratorResult.t)
       =
-      fun (x78 : ('T, 'TReturn, 'TNext) t) ->
-        fun ?e:(x75 : any option) ->
+      fun (x62 : ('T, 'TReturn, 'TNext) t) ->
+        fun ?e:(x59 : any option) ->
           fun () ->
-            _IteratorResult_of_js Obj.magic Obj.magic
-              (let x82 = t_to_js Obj.magic Obj.magic Obj.magic x78 in
-               Ojs.call (Ojs.get_prop_ascii x82 "throw") "apply"
-                 [|x82;((let x76 =
+            IteratorResult.t_of_js Obj.magic Obj.magic
+              (let x66 = t_to_js Obj.magic Obj.magic Obj.magic x62 in
+               Ojs.call (Ojs.get_prop_ascii x66 "throw") "apply"
+                 [|x66;((let x60 =
                            Ojs.new_obj
                              (Ojs.get_prop_ascii Ojs.global "Array") 
                              [||] in
-                         (match x75 with
-                          | Some x77 ->
+                         (match x59 with
+                          | Some x61 ->
                               ignore
-                                (Ojs.call x76 "push" [|(any_to_js x77)|])
+                                (Ojs.call x60 "push" [|(any_to_js x61)|])
                           | None -> ());
-                         x76))|])
+                         x60))|])
   end
 module Iterable =
   struct
-    type 'T t = 'T _Iterable
+    type 'T t = Ojs.t
     let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type __T) ->
-      fun (__T_of_js : Ojs.t -> __T) ->
-        fun (x87 : Ojs.t) -> _Iterable_of_js __T_of_js x87
+      fun (__T_of_js : Ojs.t -> __T) -> fun (x70 : Ojs.t) -> x70
     and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-      fun (__T_to_js : __T -> Ojs.t) ->
-        fun (x85 : __T _Iterable) -> _Iterable_to_js __T_to_js x85
+      fun (__T_to_js : __T -> Ojs.t) -> fun (x69 : Ojs.t) -> x69
   end
 module IterableIterator =
   struct
     type 'T t = ('T, any, never or_undefined) Iterator.t
     let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type __T) ->
       fun (__T_of_js : Ojs.t -> __T) ->
-        fun (x94 : Ojs.t) ->
+        fun (x76 : Ojs.t) ->
           Iterator.t_of_js __T_of_js any_of_js
-            (fun (x97 : Ojs.t) -> or_undefined_of_js never_of_js x97) x94
+            (fun (x79 : Ojs.t) -> or_undefined_of_js never_of_js x79) x76
     and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
       fun (__T_to_js : __T -> Ojs.t) ->
-        fun (x89 : (__T, any, never or_undefined) Iterator.t) ->
+        fun (x71 : (__T, any, never or_undefined) Iterator.t) ->
           Iterator.t_to_js __T_to_js any_to_js
-            (fun (x92 : never or_undefined) ->
-               or_undefined_to_js never_to_js x92) x89
+            (fun (x74 : never or_undefined) ->
+               or_undefined_to_js never_to_js x74) x71
   end
 module Array =
   struct
     include struct include Array end
-    let (entries : 'T t -> (float * 'T) IterableIterator.t) =
-      fun (x99 : 'T t) ->
+    let (entries : 'T t -> (int * 'T) IterableIterator.t) =
+      fun (x81 : 'T t) ->
         IterableIterator.t_of_js
-          (fun (x101 : Ojs.t) ->
-             let x102 = x101 in
-             ((Ojs.float_of_js (Ojs.array_get x102 0)),
-               (Obj.magic (Ojs.array_get x102 1))))
-          (Ojs.call (t_to_js Obj.magic x99) "entries" [||])
-    let (keys : 'T t -> float IterableIterator.t) =
-      fun (x103 : 'T t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js Obj.magic x103) "keys" [||])
+          (fun (x83 : Ojs.t) ->
+             let x84 = x83 in
+             ((Ojs.int_of_js (Ojs.array_get x84 0)),
+               (Obj.magic (Ojs.array_get x84 1))))
+          (Ojs.call (t_to_js Obj.magic x81) "entries" [||])
+    let (keys : 'T t -> int IterableIterator.t) =
+      fun (x85 : 'T t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js Obj.magic x85) "keys" [||])
     let (values : 'T t -> 'T IterableIterator.t) =
-      fun (x106 : 'T t) ->
+      fun (x88 : 'T t) ->
         IterableIterator.t_of_js Obj.magic
-          (Ojs.call (t_to_js Obj.magic x106) "values" [||])
+          (Ojs.call (t_to_js Obj.magic x88) "values" [||])
     let (to_ml : 'T t -> 'T list) =
-      fun (x109 : 'T t) -> Ojs.list_of_js Obj.magic (t_to_js Obj.magic x109)
+      fun (x91 : 'T t) -> Ojs.list_of_js Obj.magic (t_to_js Obj.magic x91)
     let (of_ml : 'T list -> 'T t) =
-      fun (x112 : 'T list) ->
-        t_of_js Obj.magic (Ojs.list_to_js Obj.magic x112)
+      fun (x94 : 'T list) -> t_of_js Obj.magic (Ojs.list_to_js Obj.magic x94)
     let (from_iterable :
-      iterable:('T Array.t, 'T _Iterable) union2 -> 'T list) =
-      fun ~iterable:(x115 : ('T Array.t, 'T _Iterable) union2) ->
+      iterable:('T Array.t, 'T Iterable.t) union2 -> 'T list) =
+      fun ~iterable:(x97 : ('T Array.t, 'T Iterable.t) union2) ->
         Ojs.list_of_js Obj.magic
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Array") "from"
              [|(union2_to_js
-                  (fun (x116 : 'T Array.t) -> Array.t_to_js Obj.magic x116)
-                  (fun (x118 : 'T _Iterable) ->
-                     _Iterable_to_js Obj.magic x118) x115)|])
+                  (fun (x98 : 'T Array.t) -> Array.t_to_js Obj.magic x98)
+                  (fun (x100 : 'T Iterable.t) ->
+                     Iterable.t_to_js Obj.magic x100) x97)|])
     let (from_iterable' :
-      iterable:('T Array.t, 'T _Iterable) union2 ->
-        mapfn:(v:'T -> k:float -> 'U) -> ?thisArg:any -> unit -> 'U list)
+      iterable:('T Array.t, 'T Iterable.t) union2 ->
+        mapfn:(v:'T -> k:int -> 'U) -> ?thisArg:any -> unit -> 'U list)
       =
-      fun ~iterable:(x121 : ('T Array.t, 'T _Iterable) union2) ->
-        fun ~mapfn:(x122 : v:'T -> k:float -> 'U) ->
-          fun ?thisArg:(x123 : any option) ->
+      fun ~iterable:(x103 : ('T Array.t, 'T Iterable.t) union2) ->
+        fun ~mapfn:(x104 : v:'T -> k:int -> 'U) ->
+          fun ?thisArg:(x105 : any option) ->
             fun () ->
               Ojs.list_of_js Obj.magic
-                (let x132 = Ojs.get_prop_ascii Ojs.global "Array" in
-                 Ojs.call (Ojs.get_prop_ascii x132 "from") "apply"
-                   [|x132;((let x124 =
+                (let x114 = Ojs.get_prop_ascii Ojs.global "Array" in
+                 Ojs.call (Ojs.get_prop_ascii x114 "from") "apply"
+                   [|x114;((let x106 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x124 "push"
+                              (Ojs.call x106 "push"
                                  [|(union2_to_js
-                                      (fun (x128 : 'T Array.t) ->
-                                         Array.t_to_js Obj.magic x128)
-                                      (fun (x130 : 'T _Iterable) ->
-                                         _Iterable_to_js Obj.magic x130) x121)|]);
+                                      (fun (x110 : 'T Array.t) ->
+                                         Array.t_to_js Obj.magic x110)
+                                      (fun (x112 : 'T Iterable.t) ->
+                                         Iterable.t_to_js Obj.magic x112)
+                                      x103)|]);
                             ignore
-                              (Ojs.call x124 "push"
+                              (Ojs.call x106 "push"
                                  [|(Ojs.fun_to_js 2
-                                      (fun (x126 : Ojs.t) ->
-                                         fun (x127 : Ojs.t) ->
+                                      (fun (x108 : Ojs.t) ->
+                                         fun (x109 : Ojs.t) ->
                                            Obj.magic
-                                             (x122 ~v:(Obj.magic x126)
-                                                ~k:(Ojs.float_of_js x127))))|]);
-                            (match x123 with
-                             | Some x125 ->
+                                             (x104 ~v:(Obj.magic x108)
+                                                ~k:(Ojs.int_of_js x109))))|]);
+                            (match x105 with
+                             | Some x107 ->
                                  ignore
-                                   (Ojs.call x124 "push" [|(any_to_js x125)|])
+                                   (Ojs.call x106 "push" [|(any_to_js x107)|])
                              | None -> ());
-                            x124))|])
+                            x106))|])
   end
 module ArrayConstructor =
   struct
     include struct include ArrayConstructor end
     let (from_iterable :
-      t -> iterable:('T Array.t, 'T _Iterable) union2 -> 'T list) =
-      fun (x139 : t) ->
-        fun ~iterable:(x134 : ('T Array.t, 'T _Iterable) union2) ->
+      t -> iterable:('T Array.t, 'T Iterable.t) union2 -> 'T list) =
+      fun (x121 : t) ->
+        fun ~iterable:(x116 : ('T Array.t, 'T Iterable.t) union2) ->
           Ojs.list_of_js Obj.magic
-            (Ojs.call (t_to_js x139) "from"
+            (Ojs.call (t_to_js x121) "from"
                [|(union2_to_js
-                    (fun (x135 : 'T Array.t) -> Array.t_to_js Obj.magic x135)
-                    (fun (x137 : 'T _Iterable) ->
-                       _Iterable_to_js Obj.magic x137) x134)|])
+                    (fun (x117 : 'T Array.t) -> Array.t_to_js Obj.magic x117)
+                    (fun (x119 : 'T Iterable.t) ->
+                       Iterable.t_to_js Obj.magic x119) x116)|])
     let (from_iterable' :
       t ->
-        iterable:('T Array.t, 'T _Iterable) union2 ->
-          mapfn:(v:'T -> k:float -> 'U) -> ?thisArg:any -> unit -> 'U list)
+        iterable:('T Array.t, 'T Iterable.t) union2 ->
+          mapfn:(v:'T -> k:int -> 'U) -> ?thisArg:any -> unit -> 'U list)
       =
-      fun (x152 : t) ->
-        fun ~iterable:(x141 : ('T Array.t, 'T _Iterable) union2) ->
-          fun ~mapfn:(x142 : v:'T -> k:float -> 'U) ->
-            fun ?thisArg:(x143 : any option) ->
+      fun (x134 : t) ->
+        fun ~iterable:(x123 : ('T Array.t, 'T Iterable.t) union2) ->
+          fun ~mapfn:(x124 : v:'T -> k:int -> 'U) ->
+            fun ?thisArg:(x125 : any option) ->
               fun () ->
                 Ojs.list_of_js Obj.magic
-                  (let x153 = t_to_js x152 in
-                   Ojs.call (Ojs.get_prop_ascii x153 "from") "apply"
-                     [|x153;((let x144 =
+                  (let x135 = t_to_js x134 in
+                   Ojs.call (Ojs.get_prop_ascii x135 "from") "apply"
+                     [|x135;((let x126 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x144 "push"
+                                (Ojs.call x126 "push"
                                    [|(union2_to_js
-                                        (fun (x148 : 'T Array.t) ->
-                                           Array.t_to_js Obj.magic x148)
-                                        (fun (x150 : 'T _Iterable) ->
-                                           _Iterable_to_js Obj.magic x150)
-                                        x141)|]);
+                                        (fun (x130 : 'T Array.t) ->
+                                           Array.t_to_js Obj.magic x130)
+                                        (fun (x132 : 'T Iterable.t) ->
+                                           Iterable.t_to_js Obj.magic x132)
+                                        x123)|]);
                               ignore
-                                (Ojs.call x144 "push"
+                                (Ojs.call x126 "push"
                                    [|(Ojs.fun_to_js 2
-                                        (fun (x146 : Ojs.t) ->
-                                           fun (x147 : Ojs.t) ->
+                                        (fun (x128 : Ojs.t) ->
+                                           fun (x129 : Ojs.t) ->
                                              Obj.magic
-                                               (x142 ~v:(Obj.magic x146)
-                                                  ~k:(Ojs.float_of_js x147))))|]);
-                              (match x143 with
-                               | Some x145 ->
+                                               (x124 ~v:(Obj.magic x128)
+                                                  ~k:(Ojs.int_of_js x129))))|]);
+                              (match x125 with
+                               | Some x127 ->
                                    ignore
-                                     (Ojs.call x144 "push"
-                                        [|(any_to_js x145)|])
+                                     (Ojs.call x126 "push"
+                                        [|(any_to_js x127)|])
                                | None -> ());
-                              x144))|])
+                              x126))|])
   end
 module ReadonlyArray =
   struct
     include struct include ReadonlyArray end
-    let (entries : 'T t -> (float * 'T) IterableIterator.t) =
-      fun (x155 : 'T t) ->
+    let (entries : 'T t -> (int * 'T) IterableIterator.t) =
+      fun (x137 : 'T t) ->
         IterableIterator.t_of_js
-          (fun (x157 : Ojs.t) ->
-             let x158 = x157 in
-             ((Ojs.float_of_js (Ojs.array_get x158 0)),
-               (Obj.magic (Ojs.array_get x158 1))))
-          (Ojs.call (t_to_js Obj.magic x155) "entries" [||])
-    let (keys : 'T t -> float IterableIterator.t) =
-      fun (x159 : 'T t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js Obj.magic x159) "keys" [||])
+          (fun (x139 : Ojs.t) ->
+             let x140 = x139 in
+             ((Ojs.int_of_js (Ojs.array_get x140 0)),
+               (Obj.magic (Ojs.array_get x140 1))))
+          (Ojs.call (t_to_js Obj.magic x137) "entries" [||])
+    let (keys : 'T t -> int IterableIterator.t) =
+      fun (x141 : 'T t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js Obj.magic x141) "keys" [||])
     let (values : 'T t -> 'T IterableIterator.t) =
-      fun (x162 : 'T t) ->
+      fun (x144 : 'T t) ->
         IterableIterator.t_of_js Obj.magic
-          (Ojs.call (t_to_js Obj.magic x162) "values" [||])
+          (Ojs.call (t_to_js Obj.magic x144) "values" [||])
     let (to_ml : 'T t -> 'T list) =
-      fun (x165 : 'T t) -> Ojs.list_of_js Obj.magic (t_to_js Obj.magic x165)
+      fun (x147 : 'T t) -> Ojs.list_of_js Obj.magic (t_to_js Obj.magic x147)
     let (of_ml : 'T list -> 'T t) =
-      fun (x168 : 'T list) ->
-        t_of_js Obj.magic (Ojs.list_to_js Obj.magic x168)
+      fun (x150 : 'T list) ->
+        t_of_js Obj.magic (Ojs.list_to_js Obj.magic x150)
   end
 module IArguments = struct include struct include IArguments end end
 module Map =
   struct
     include struct include Map end
     let (entries : ('K, 'V) t -> ('K * 'V) IterableIterator.t) =
-      fun (x171 : ('K, 'V) t) ->
+      fun (x153 : ('K, 'V) t) ->
         IterableIterator.t_of_js
-          (fun (x174 : Ojs.t) ->
-             let x175 = x174 in
-             ((Obj.magic (Ojs.array_get x175 0)),
-               (Obj.magic (Ojs.array_get x175 1))))
-          (Ojs.call (t_to_js Obj.magic Obj.magic x171) "entries" [||])
+          (fun (x156 : Ojs.t) ->
+             let x157 = x156 in
+             ((Obj.magic (Ojs.array_get x157 0)),
+               (Obj.magic (Ojs.array_get x157 1))))
+          (Ojs.call (t_to_js Obj.magic Obj.magic x153) "entries" [||])
     let (keys : ('K, 'V) t -> 'K IterableIterator.t) =
-      fun (x176 : ('K, 'V) t) ->
+      fun (x158 : ('K, 'V) t) ->
         IterableIterator.t_of_js Obj.magic
-          (Ojs.call (t_to_js Obj.magic Obj.magic x176) "keys" [||])
+          (Ojs.call (t_to_js Obj.magic Obj.magic x158) "keys" [||])
     let (values : ('K, 'V) t -> 'V IterableIterator.t) =
-      fun (x180 : ('K, 'V) t) ->
+      fun (x162 : ('K, 'V) t) ->
         IterableIterator.t_of_js Obj.magic
-          (Ojs.call (t_to_js Obj.magic Obj.magic x180) "values" [||])
-    let (create_iterable : iterable:('K * 'V) _Iterable -> ('K, 'V) t) =
-      fun ~iterable:(x184 : ('K * 'V) _Iterable) ->
+          (Ojs.call (t_to_js Obj.magic Obj.magic x162) "values" [||])
+    let (create_iterable : iterable:('K * 'V) Iterable.t -> ('K, 'V) t) =
+      fun ~iterable:(x166 : ('K * 'V) Iterable.t) ->
         t_of_js Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Map")
-             [|(_Iterable_to_js
-                  (fun (x185 : ('K * 'V)) ->
-                     let (x186, x187) = x185 in
-                     let x188 = Ojs.array_make 2 in
-                     Ojs.array_set x188 0 (Obj.magic x186);
-                     Ojs.array_set x188 1 (Obj.magic x187);
-                     x188) x184)|])
+             [|(Iterable.t_to_js
+                  (fun (x167 : ('K * 'V)) ->
+                     let (x168, x169) = x167 in
+                     let x170 = Ojs.array_make 2 in
+                     Ojs.array_set x170 0 (Obj.magic x168);
+                     Ojs.array_set x170 1 (Obj.magic x169);
+                     x170) x166)|])
   end
 module ReadonlyMap =
   struct
     include struct include ReadonlyMap end
     let (entries : ('K, 'V) t -> ('K * 'V) IterableIterator.t) =
-      fun (x191 : ('K, 'V) t) ->
+      fun (x173 : ('K, 'V) t) ->
         IterableIterator.t_of_js
-          (fun (x194 : Ojs.t) ->
-             let x195 = x194 in
-             ((Obj.magic (Ojs.array_get x195 0)),
-               (Obj.magic (Ojs.array_get x195 1))))
-          (Ojs.call (t_to_js Obj.magic Obj.magic x191) "entries" [||])
+          (fun (x176 : Ojs.t) ->
+             let x177 = x176 in
+             ((Obj.magic (Ojs.array_get x177 0)),
+               (Obj.magic (Ojs.array_get x177 1))))
+          (Ojs.call (t_to_js Obj.magic Obj.magic x173) "entries" [||])
     let (keys : ('K, 'V) t -> 'K IterableIterator.t) =
-      fun (x196 : ('K, 'V) t) ->
+      fun (x178 : ('K, 'V) t) ->
         IterableIterator.t_of_js Obj.magic
-          (Ojs.call (t_to_js Obj.magic Obj.magic x196) "keys" [||])
+          (Ojs.call (t_to_js Obj.magic Obj.magic x178) "keys" [||])
     let (values : ('K, 'V) t -> 'V IterableIterator.t) =
-      fun (x200 : ('K, 'V) t) ->
+      fun (x182 : ('K, 'V) t) ->
         IterableIterator.t_of_js Obj.magic
-          (Ojs.call (t_to_js Obj.magic Obj.magic x200) "values" [||])
+          (Ojs.call (t_to_js Obj.magic Obj.magic x182) "values" [||])
   end
 module MapConstructor =
   struct
     include struct include MapConstructor end
     let (create_iterable :
-      t -> iterable:('K * 'V) _Iterable -> ('K, 'V) Map.t) =
-      fun (x209 : t) ->
-        fun ~iterable:(x204 : ('K * 'V) _Iterable) ->
+      t -> iterable:('K * 'V) Iterable.t -> ('K, 'V) Map.t) =
+      fun (x191 : t) ->
+        fun ~iterable:(x186 : ('K * 'V) Iterable.t) ->
           Map.t_of_js Obj.magic Obj.magic
-            (Ojs.new_obj (t_to_js x209)
-               [|(_Iterable_to_js
-                    (fun (x205 : ('K * 'V)) ->
-                       let (x206, x207) = x205 in
-                       let x208 = Ojs.array_make 2 in
-                       Ojs.array_set x208 0 (Obj.magic x206);
-                       Ojs.array_set x208 1 (Obj.magic x207);
-                       x208) x204)|])
+            (Ojs.new_obj (t_to_js x191)
+               [|(Iterable.t_to_js
+                    (fun (x187 : ('K * 'V)) ->
+                       let (x188, x189) = x187 in
+                       let x190 = Ojs.array_make 2 in
+                       Ojs.array_set x190 0 (Obj.magic x188);
+                       Ojs.array_set x190 1 (Obj.magic x189);
+                       x190) x186)|])
   end
 module WeakMap =
   struct
     include struct include WeakMap end
-    let (create_iterable : iterable:('K * 'V) _Iterable -> ('K, 'V) t) =
-      fun ~iterable:(x212 : ('K * 'V) _Iterable) ->
+    let (create_iterable : iterable:('K * 'V) Iterable.t -> ('K, 'V) t) =
+      fun ~iterable:(x194 : ('K * 'V) Iterable.t) ->
         t_of_js Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "WeakMap")
-             [|(_Iterable_to_js
-                  (fun (x213 : ('K * 'V)) ->
-                     let (x214, x215) = x213 in
-                     let x216 = Ojs.array_make 2 in
-                     Ojs.array_set x216 0 (Obj.magic x214);
-                     Ojs.array_set x216 1 (Obj.magic x215);
-                     x216) x212)|])
+             [|(Iterable.t_to_js
+                  (fun (x195 : ('K * 'V)) ->
+                     let (x196, x197) = x195 in
+                     let x198 = Ojs.array_make 2 in
+                     Ojs.array_set x198 0 (Obj.magic x196);
+                     Ojs.array_set x198 1 (Obj.magic x197);
+                     x198) x194)|])
   end
 module WeakMapConstructor =
   struct
     include struct include WeakMapConstructor end
     let (create_iterable :
-      t -> iterable:('K * 'V) _Iterable -> ('K, 'V) WeakMap.t) =
-      fun (x224 : t) ->
-        fun ~iterable:(x219 : ('K * 'V) _Iterable) ->
+      t -> iterable:('K * 'V) Iterable.t -> ('K, 'V) WeakMap.t) =
+      fun (x206 : t) ->
+        fun ~iterable:(x201 : ('K * 'V) Iterable.t) ->
           WeakMap.t_of_js Obj.magic Obj.magic
-            (Ojs.new_obj (t_to_js x224)
-               [|(_Iterable_to_js
-                    (fun (x220 : ('K * 'V)) ->
-                       let (x221, x222) = x220 in
-                       let x223 = Ojs.array_make 2 in
-                       Ojs.array_set x223 0 (Obj.magic x221);
-                       Ojs.array_set x223 1 (Obj.magic x222);
-                       x223) x219)|])
+            (Ojs.new_obj (t_to_js x206)
+               [|(Iterable.t_to_js
+                    (fun (x202 : ('K * 'V)) ->
+                       let (x203, x204) = x202 in
+                       let x205 = Ojs.array_make 2 in
+                       Ojs.array_set x205 0 (Obj.magic x203);
+                       Ojs.array_set x205 1 (Obj.magic x204);
+                       x205) x201)|])
   end
 module Set =
   struct
     include struct include Set end
     let (entries : 'T t -> ('T * 'T) IterableIterator.t) =
-      fun (x227 : 'T t) ->
+      fun (x209 : 'T t) ->
         IterableIterator.t_of_js
-          (fun (x229 : Ojs.t) ->
-             let x230 = x229 in
-             ((Obj.magic (Ojs.array_get x230 0)),
-               (Obj.magic (Ojs.array_get x230 1))))
-          (Ojs.call (t_to_js Obj.magic x227) "entries" [||])
+          (fun (x211 : Ojs.t) ->
+             let x212 = x211 in
+             ((Obj.magic (Ojs.array_get x212 0)),
+               (Obj.magic (Ojs.array_get x212 1))))
+          (Ojs.call (t_to_js Obj.magic x209) "entries" [||])
     let (keys : 'T t -> 'T IterableIterator.t) =
-      fun (x231 : 'T t) ->
+      fun (x213 : 'T t) ->
         IterableIterator.t_of_js Obj.magic
-          (Ojs.call (t_to_js Obj.magic x231) "keys" [||])
+          (Ojs.call (t_to_js Obj.magic x213) "keys" [||])
     let (values : 'T t -> 'T IterableIterator.t) =
-      fun (x234 : 'T t) ->
+      fun (x216 : 'T t) ->
         IterableIterator.t_of_js Obj.magic
-          (Ojs.call (t_to_js Obj.magic x234) "values" [||])
-    let (create_iterable : ?iterable:'T _Iterable or_null -> unit -> 'T t) =
-      fun ?iterable:(x237 : 'T _Iterable or_null option) ->
+          (Ojs.call (t_to_js Obj.magic x216) "values" [||])
+    let (create_iterable : ?iterable:'T Iterable.t or_null -> unit -> 'T t) =
+      fun ?iterable:(x219 : 'T Iterable.t or_null option) ->
         fun () ->
           t_of_js Obj.magic
             (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "Set")
-               (let x238 =
+               (let x220 =
                   Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
-                (match x237 with
-                 | Some x239 ->
+                (match x219 with
+                 | Some x221 ->
                      ignore
-                       (Ojs.call x238 "push"
+                       (Ojs.call x220 "push"
                           [|(or_null_to_js
-                               (fun (x240 : 'T _Iterable) ->
-                                  _Iterable_to_js Obj.magic x240) x239)|])
+                               (fun (x222 : 'T Iterable.t) ->
+                                  Iterable.t_to_js Obj.magic x222) x221)|])
                  | None -> ());
-                x238))
+                x220))
   end
 module ReadonlySet =
   struct
     include struct include ReadonlySet end
     let (entries : 'T t -> ('T * 'T) IterableIterator.t) =
-      fun (x243 : 'T t) ->
+      fun (x225 : 'T t) ->
         IterableIterator.t_of_js
-          (fun (x245 : Ojs.t) ->
-             let x246 = x245 in
-             ((Obj.magic (Ojs.array_get x246 0)),
-               (Obj.magic (Ojs.array_get x246 1))))
-          (Ojs.call (t_to_js Obj.magic x243) "entries" [||])
+          (fun (x227 : Ojs.t) ->
+             let x228 = x227 in
+             ((Obj.magic (Ojs.array_get x228 0)),
+               (Obj.magic (Ojs.array_get x228 1))))
+          (Ojs.call (t_to_js Obj.magic x225) "entries" [||])
     let (keys : 'T t -> 'T IterableIterator.t) =
-      fun (x247 : 'T t) ->
+      fun (x229 : 'T t) ->
         IterableIterator.t_of_js Obj.magic
-          (Ojs.call (t_to_js Obj.magic x247) "keys" [||])
+          (Ojs.call (t_to_js Obj.magic x229) "keys" [||])
     let (values : 'T t -> 'T IterableIterator.t) =
-      fun (x250 : 'T t) ->
+      fun (x232 : 'T t) ->
         IterableIterator.t_of_js Obj.magic
-          (Ojs.call (t_to_js Obj.magic x250) "values" [||])
+          (Ojs.call (t_to_js Obj.magic x232) "values" [||])
   end
 module SetConstructor =
   struct
     include struct include SetConstructor end
     let (create_iterable :
-      t -> ?iterable:'T _Iterable or_null -> unit -> 'T Set.t) =
-      fun (x258 : t) ->
-        fun ?iterable:(x253 : 'T _Iterable or_null option) ->
+      t -> ?iterable:'T Iterable.t or_null -> unit -> 'T Set.t) =
+      fun (x240 : t) ->
+        fun ?iterable:(x235 : 'T Iterable.t or_null option) ->
           fun () ->
             Set.t_of_js Obj.magic
-              (Ojs.new_obj_arr (t_to_js x258)
-                 (let x254 =
+              (Ojs.new_obj_arr (t_to_js x240)
+                 (let x236 =
                     Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
-                  (match x253 with
-                   | Some x255 ->
+                  (match x235 with
+                   | Some x237 ->
                        ignore
-                         (Ojs.call x254 "push"
+                         (Ojs.call x236 "push"
                             [|(or_null_to_js
-                                 (fun (x256 : 'T _Iterable) ->
-                                    _Iterable_to_js Obj.magic x256) x255)|])
+                                 (fun (x238 : 'T Iterable.t) ->
+                                    Iterable.t_to_js Obj.magic x238) x237)|])
                    | None -> ());
-                  x254))
+                  x236))
   end
 module WeakSet =
   struct
     include struct include WeakSet end
-    let (create_iterable : iterable:'T _Iterable -> 'T t) =
-      fun ~iterable:(x260 : 'T _Iterable) ->
+    let (create_iterable : iterable:'T Iterable.t -> 'T t) =
+      fun ~iterable:(x242 : 'T Iterable.t) ->
         t_of_js Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "WeakSet")
-             [|(_Iterable_to_js Obj.magic x260)|])
+             [|(Iterable.t_to_js Obj.magic x242)|])
   end
 module WeakSetConstructor =
   struct
     include struct include WeakSetConstructor end
-    let (create_iterable : t -> iterable:'T _Iterable -> 'T WeakSet.t) =
-      fun (x265 : t) ->
-        fun ~iterable:(x263 : 'T _Iterable) ->
+    let (create_iterable : t -> iterable:'T Iterable.t -> 'T WeakSet.t) =
+      fun (x247 : t) ->
+        fun ~iterable:(x245 : 'T Iterable.t) ->
           WeakSet.t_of_js Obj.magic
-            (Ojs.new_obj (t_to_js x265) [|(_Iterable_to_js Obj.magic x263)|])
+            (Ojs.new_obj (t_to_js x247) [|(Iterable.t_to_js Obj.magic x245)|])
   end
 module Promise =
   struct
     include struct include Promise end
-    let (all_iterable : 'T Promise.t _Iterable -> 'T list t) =
-      fun (x267 : 'T Promise.t _Iterable) ->
-        t_of_js (fun (x270 : Ojs.t) -> Ojs.list_of_js Obj.magic x270)
+    let (all_iterable : 'T Promise.t Iterable.t -> 'T list t) =
+      fun (x249 : 'T Promise.t Iterable.t) ->
+        t_of_js (fun (x252 : Ojs.t) -> Ojs.list_of_js Obj.magic x252)
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Promise") "all"
-             [|(_Iterable_to_js
-                  (fun (x268 : 'T Promise.t) ->
-                     Promise.t_to_js Obj.magic x268) x267)|])
-    let (race_iterable : 'T Promise.t _Iterable -> 'T t) =
-      fun (x272 : 'T Promise.t _Iterable) ->
+             [|(Iterable.t_to_js
+                  (fun (x250 : 'T Promise.t) ->
+                     Promise.t_to_js Obj.magic x250) x249)|])
+    let (race_iterable : 'T Promise.t Iterable.t -> 'T t) =
+      fun (x254 : 'T Promise.t Iterable.t) ->
         t_of_js Obj.magic
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Promise") "race"
-             [|(_Iterable_to_js
-                  (fun (x273 : 'T Promise.t) ->
-                     Promise.t_to_js Obj.magic x273) x272)|])
+             [|(Iterable.t_to_js
+                  (fun (x255 : 'T Promise.t) ->
+                     Promise.t_to_js Obj.magic x255) x254)|])
   end
 module PromiseConstructor =
   struct
-    type t = _PromiseConstructor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x277 : Ojs.t) -> _PromiseConstructor_of_js x277
-    and t_to_js : t -> Ojs.t =
-      fun (x276 : _PromiseConstructor) -> _PromiseConstructor_to_js x276
-    let (all_iterable : t -> 'T Promise.t _Iterable -> 'T list Promise.t) =
-      fun (x281 : t) ->
-        fun (x278 : 'T Promise.t _Iterable) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x259 : Ojs.t) -> x259
+    and t_to_js : t -> Ojs.t = fun (x258 : Ojs.t) -> x258
+    let (all_iterable : t -> 'T Promise.t Iterable.t -> 'T list Promise.t) =
+      fun (x263 : t) ->
+        fun (x260 : 'T Promise.t Iterable.t) ->
           Promise.t_of_js
-            (fun (x282 : Ojs.t) -> Ojs.list_of_js Obj.magic x282)
-            (Ojs.call (t_to_js x281) "all"
-               [|(_Iterable_to_js
-                    (fun (x279 : 'T Promise.t) ->
-                       Promise.t_to_js Obj.magic x279) x278)|])
-    let (race_iterable : t -> 'T Promise.t _Iterable -> 'T Promise.t) =
-      fun (x287 : t) ->
-        fun (x284 : 'T Promise.t _Iterable) ->
+            (fun (x264 : Ojs.t) -> Ojs.list_of_js Obj.magic x264)
+            (Ojs.call (t_to_js x263) "all"
+               [|(Iterable.t_to_js
+                    (fun (x261 : 'T Promise.t) ->
+                       Promise.t_to_js Obj.magic x261) x260)|])
+    let (race_iterable : t -> 'T Promise.t Iterable.t -> 'T Promise.t) =
+      fun (x269 : t) ->
+        fun (x266 : 'T Promise.t Iterable.t) ->
           Promise.t_of_js Obj.magic
-            (Ojs.call (t_to_js x287) "race"
-               [|(_Iterable_to_js
-                    (fun (x285 : 'T Promise.t) ->
-                       Promise.t_to_js Obj.magic x285) x284)|])
+            (Ojs.call (t_to_js x269) "race"
+               [|(Iterable.t_to_js
+                    (fun (x267 : 'T Promise.t) ->
+                       Promise.t_to_js Obj.magic x267) x266)|])
   end
 module String =
   struct
     include struct include String end
     let (to_ml : t -> string) =
-      fun (x289 : t) -> Ojs.string_of_js (t_to_js x289)
+      fun (x271 : t) -> Ojs.string_of_js (t_to_js x271)
     let (of_ml : string -> t) =
-      fun (x290 : string) -> t_of_js (Ojs.string_to_js x290)
+      fun (x272 : string) -> t_of_js (Ojs.string_to_js x272)
   end
 module Int8Array =
   struct
     include struct include Int8Array end
-    let (entries : t -> (float * float) IterableIterator.t) =
-      fun (x291 : t) ->
+    let (entries : t -> (int * int) IterableIterator.t) =
+      fun (x273 : t) ->
         IterableIterator.t_of_js
-          (fun (x292 : Ojs.t) ->
-             let x293 = x292 in
-             ((Ojs.float_of_js (Ojs.array_get x293 0)),
-               (Ojs.float_of_js (Ojs.array_get x293 1))))
-          (Ojs.call (t_to_js x291) "entries" [||])
-    let (keys : t -> float IterableIterator.t) =
-      fun (x294 : t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js x294) "keys" [||])
-    let (values : t -> float IterableIterator.t) =
-      fun (x296 : t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js x296) "values" [||])
-    let (create_iterable : float _Iterable -> t) =
-      fun (x298 : float _Iterable) ->
+          (fun (x274 : Ojs.t) ->
+             let x275 = x274 in
+             ((Ojs.int_of_js (Ojs.array_get x275 0)),
+               (Ojs.int_of_js (Ojs.array_get x275 1))))
+          (Ojs.call (t_to_js x273) "entries" [||])
+    let (keys : t -> int IterableIterator.t) =
+      fun (x276 : t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js x276) "keys" [||])
+    let (values : t -> int IterableIterator.t) =
+      fun (x278 : t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js x278) "values" [||])
+    let (create_iterable : int Iterable.t -> t) =
+      fun (x280 : int Iterable.t) ->
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Int8Array")
-             [|(_Iterable_to_js Ojs.float_to_js x298)|])
+             [|(Iterable.t_to_js Ojs.int_to_js x280)|])
     let (from_iterable :
-      array:float _Iterable ->
-        ?mapfn:(v:float -> k:float -> float) -> ?thisArg:any -> unit -> t)
+      array:int Iterable.t ->
+        ?mapfn:(v:int -> k:int -> int) -> ?thisArg:any -> unit -> t)
       =
-      fun ~array:(x300 : float _Iterable) ->
-        fun ?mapfn:(x301 : (v:float -> k:float -> float) option) ->
-          fun ?thisArg:(x302 : any option) ->
+      fun ~array:(x282 : int Iterable.t) ->
+        fun ?mapfn:(x283 : (v:int -> k:int -> int) option) ->
+          fun ?thisArg:(x284 : any option) ->
             fun () ->
               t_of_js
-                (let x309 = Ojs.get_prop_ascii Ojs.global "Int8Array" in
-                 Ojs.call (Ojs.get_prop_ascii x309 "from") "apply"
-                   [|x309;((let x303 =
+                (let x291 = Ojs.get_prop_ascii Ojs.global "Int8Array" in
+                 Ojs.call (Ojs.get_prop_ascii x291 "from") "apply"
+                   [|x291;((let x285 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x303 "push"
-                                 [|(_Iterable_to_js Ojs.float_to_js x300)|]);
-                            (match x301 with
-                             | Some x305 ->
+                              (Ojs.call x285 "push"
+                                 [|(Iterable.t_to_js Ojs.int_to_js x282)|]);
+                            (match x283 with
+                             | Some x287 ->
                                  ignore
-                                   (Ojs.call x303 "push"
+                                   (Ojs.call x285 "push"
                                       [|(Ojs.fun_to_js 2
-                                           (fun (x306 : Ojs.t) ->
-                                              fun (x307 : Ojs.t) ->
-                                                Ojs.float_to_js
-                                                  (x305
-                                                     ~v:(Ojs.float_of_js x306)
-                                                     ~k:(Ojs.float_of_js x307))))|])
+                                           (fun (x288 : Ojs.t) ->
+                                              fun (x289 : Ojs.t) ->
+                                                Ojs.int_to_js
+                                                  (x287
+                                                     ~v:(Ojs.int_of_js x288)
+                                                     ~k:(Ojs.int_of_js x289))))|])
                              | None -> ());
-                            (match x302 with
-                             | Some x304 ->
+                            (match x284 with
+                             | Some x286 ->
                                  ignore
-                                   (Ojs.call x303 "push" [|(any_to_js x304)|])
+                                   (Ojs.call x285 "push" [|(any_to_js x286)|])
                              | None -> ());
-                            x303))|])
+                            x285))|])
   end
 module Int8ArrayConstructor =
   struct
     include struct include Int8ArrayConstructor end
-    let (create_iterable : t -> float _Iterable -> Int8Array.t) =
-      fun (x312 : t) ->
-        fun (x310 : float _Iterable) ->
+    let (create_iterable : t -> int Iterable.t -> Int8Array.t) =
+      fun (x294 : t) ->
+        fun (x292 : int Iterable.t) ->
           Int8Array.t_of_js
-            (Ojs.new_obj (t_to_js x312)
-               [|(_Iterable_to_js Ojs.float_to_js x310)|])
+            (Ojs.new_obj (t_to_js x294)
+               [|(Iterable.t_to_js Ojs.int_to_js x292)|])
     let (from_iterable :
       t ->
-        array:float _Iterable ->
-          ?mapfn:(v:float -> k:float -> float) ->
+        array:int Iterable.t ->
+          ?mapfn:(v:int -> k:int -> int) ->
             ?thisArg:any -> unit -> Int8Array.t)
       =
-      fun (x322 : t) ->
-        fun ~array:(x313 : float _Iterable) ->
-          fun ?mapfn:(x314 : (v:float -> k:float -> float) option) ->
-            fun ?thisArg:(x315 : any option) ->
+      fun (x304 : t) ->
+        fun ~array:(x295 : int Iterable.t) ->
+          fun ?mapfn:(x296 : (v:int -> k:int -> int) option) ->
+            fun ?thisArg:(x297 : any option) ->
               fun () ->
                 Int8Array.t_of_js
-                  (let x323 = t_to_js x322 in
-                   Ojs.call (Ojs.get_prop_ascii x323 "from") "apply"
-                     [|x323;((let x316 =
+                  (let x305 = t_to_js x304 in
+                   Ojs.call (Ojs.get_prop_ascii x305 "from") "apply"
+                     [|x305;((let x298 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x316 "push"
-                                   [|(_Iterable_to_js Ojs.float_to_js x313)|]);
-                              (match x314 with
-                               | Some x318 ->
+                                (Ojs.call x298 "push"
+                                   [|(Iterable.t_to_js Ojs.int_to_js x295)|]);
+                              (match x296 with
+                               | Some x300 ->
                                    ignore
-                                     (Ojs.call x316 "push"
+                                     (Ojs.call x298 "push"
                                         [|(Ojs.fun_to_js 2
-                                             (fun (x319 : Ojs.t) ->
-                                                fun (x320 : Ojs.t) ->
-                                                  Ojs.float_to_js
-                                                    (x318
-                                                       ~v:(Ojs.float_of_js
-                                                             x319)
-                                                       ~k:(Ojs.float_of_js
-                                                             x320))))|])
+                                             (fun (x301 : Ojs.t) ->
+                                                fun (x302 : Ojs.t) ->
+                                                  Ojs.int_to_js
+                                                    (x300
+                                                       ~v:(Ojs.int_of_js x301)
+                                                       ~k:(Ojs.int_of_js x302))))|])
                                | None -> ());
-                              (match x315 with
-                               | Some x317 ->
+                              (match x297 with
+                               | Some x299 ->
                                    ignore
-                                     (Ojs.call x316 "push"
-                                        [|(any_to_js x317)|])
+                                     (Ojs.call x298 "push"
+                                        [|(any_to_js x299)|])
                                | None -> ());
-                              x316))|])
+                              x298))|])
   end
 module Uint8Array =
   struct
     include struct include Uint8Array end
-    let (entries : t -> (float * float) IterableIterator.t) =
-      fun (x324 : t) ->
+    let (entries : t -> (int * int) IterableIterator.t) =
+      fun (x306 : t) ->
         IterableIterator.t_of_js
-          (fun (x325 : Ojs.t) ->
-             let x326 = x325 in
-             ((Ojs.float_of_js (Ojs.array_get x326 0)),
-               (Ojs.float_of_js (Ojs.array_get x326 1))))
-          (Ojs.call (t_to_js x324) "entries" [||])
-    let (keys : t -> float IterableIterator.t) =
-      fun (x327 : t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js x327) "keys" [||])
-    let (values : t -> float IterableIterator.t) =
-      fun (x329 : t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js x329) "values" [||])
-    let (create_iterable : float _Iterable -> t) =
-      fun (x331 : float _Iterable) ->
+          (fun (x307 : Ojs.t) ->
+             let x308 = x307 in
+             ((Ojs.int_of_js (Ojs.array_get x308 0)),
+               (Ojs.int_of_js (Ojs.array_get x308 1))))
+          (Ojs.call (t_to_js x306) "entries" [||])
+    let (keys : t -> int IterableIterator.t) =
+      fun (x309 : t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js x309) "keys" [||])
+    let (values : t -> int IterableIterator.t) =
+      fun (x311 : t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js x311) "values" [||])
+    let (create_iterable : int Iterable.t -> t) =
+      fun (x313 : int Iterable.t) ->
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Uint8Array")
-             [|(_Iterable_to_js Ojs.float_to_js x331)|])
+             [|(Iterable.t_to_js Ojs.int_to_js x313)|])
     let (from_iterable :
-      array:float _Iterable ->
-        ?mapfn:(v:float -> k:float -> float) -> ?thisArg:any -> unit -> t)
+      array:int Iterable.t ->
+        ?mapfn:(v:int -> k:int -> int) -> ?thisArg:any -> unit -> t)
       =
-      fun ~array:(x333 : float _Iterable) ->
-        fun ?mapfn:(x334 : (v:float -> k:float -> float) option) ->
-          fun ?thisArg:(x335 : any option) ->
+      fun ~array:(x315 : int Iterable.t) ->
+        fun ?mapfn:(x316 : (v:int -> k:int -> int) option) ->
+          fun ?thisArg:(x317 : any option) ->
             fun () ->
               t_of_js
-                (let x342 = Ojs.get_prop_ascii Ojs.global "Uint8Array" in
-                 Ojs.call (Ojs.get_prop_ascii x342 "from") "apply"
-                   [|x342;((let x336 =
+                (let x324 = Ojs.get_prop_ascii Ojs.global "Uint8Array" in
+                 Ojs.call (Ojs.get_prop_ascii x324 "from") "apply"
+                   [|x324;((let x318 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x336 "push"
-                                 [|(_Iterable_to_js Ojs.float_to_js x333)|]);
-                            (match x334 with
-                             | Some x338 ->
+                              (Ojs.call x318 "push"
+                                 [|(Iterable.t_to_js Ojs.int_to_js x315)|]);
+                            (match x316 with
+                             | Some x320 ->
                                  ignore
-                                   (Ojs.call x336 "push"
+                                   (Ojs.call x318 "push"
                                       [|(Ojs.fun_to_js 2
-                                           (fun (x339 : Ojs.t) ->
-                                              fun (x340 : Ojs.t) ->
-                                                Ojs.float_to_js
-                                                  (x338
-                                                     ~v:(Ojs.float_of_js x339)
-                                                     ~k:(Ojs.float_of_js x340))))|])
+                                           (fun (x321 : Ojs.t) ->
+                                              fun (x322 : Ojs.t) ->
+                                                Ojs.int_to_js
+                                                  (x320
+                                                     ~v:(Ojs.int_of_js x321)
+                                                     ~k:(Ojs.int_of_js x322))))|])
                              | None -> ());
-                            (match x335 with
-                             | Some x337 ->
+                            (match x317 with
+                             | Some x319 ->
                                  ignore
-                                   (Ojs.call x336 "push" [|(any_to_js x337)|])
+                                   (Ojs.call x318 "push" [|(any_to_js x319)|])
                              | None -> ());
-                            x336))|])
+                            x318))|])
   end
 module Uint8ArrayConstructor =
   struct
     include struct include Uint8ArrayConstructor end
-    let (create_iterable : t -> float _Iterable -> Uint8Array.t) =
-      fun (x345 : t) ->
-        fun (x343 : float _Iterable) ->
+    let (create_iterable : t -> int Iterable.t -> Uint8Array.t) =
+      fun (x327 : t) ->
+        fun (x325 : int Iterable.t) ->
           Uint8Array.t_of_js
-            (Ojs.new_obj (t_to_js x345)
-               [|(_Iterable_to_js Ojs.float_to_js x343)|])
+            (Ojs.new_obj (t_to_js x327)
+               [|(Iterable.t_to_js Ojs.int_to_js x325)|])
     let (from_iterable :
       t ->
-        array:float _Iterable ->
-          ?mapfn:(v:float -> k:float -> float) ->
+        array:int Iterable.t ->
+          ?mapfn:(v:int -> k:int -> int) ->
             ?thisArg:any -> unit -> Uint8Array.t)
       =
-      fun (x355 : t) ->
-        fun ~array:(x346 : float _Iterable) ->
-          fun ?mapfn:(x347 : (v:float -> k:float -> float) option) ->
-            fun ?thisArg:(x348 : any option) ->
+      fun (x337 : t) ->
+        fun ~array:(x328 : int Iterable.t) ->
+          fun ?mapfn:(x329 : (v:int -> k:int -> int) option) ->
+            fun ?thisArg:(x330 : any option) ->
               fun () ->
                 Uint8Array.t_of_js
-                  (let x356 = t_to_js x355 in
-                   Ojs.call (Ojs.get_prop_ascii x356 "from") "apply"
-                     [|x356;((let x349 =
+                  (let x338 = t_to_js x337 in
+                   Ojs.call (Ojs.get_prop_ascii x338 "from") "apply"
+                     [|x338;((let x331 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x349 "push"
-                                   [|(_Iterable_to_js Ojs.float_to_js x346)|]);
-                              (match x347 with
-                               | Some x351 ->
+                                (Ojs.call x331 "push"
+                                   [|(Iterable.t_to_js Ojs.int_to_js x328)|]);
+                              (match x329 with
+                               | Some x333 ->
                                    ignore
-                                     (Ojs.call x349 "push"
+                                     (Ojs.call x331 "push"
                                         [|(Ojs.fun_to_js 2
-                                             (fun (x352 : Ojs.t) ->
-                                                fun (x353 : Ojs.t) ->
-                                                  Ojs.float_to_js
-                                                    (x351
-                                                       ~v:(Ojs.float_of_js
-                                                             x352)
-                                                       ~k:(Ojs.float_of_js
-                                                             x353))))|])
+                                             (fun (x334 : Ojs.t) ->
+                                                fun (x335 : Ojs.t) ->
+                                                  Ojs.int_to_js
+                                                    (x333
+                                                       ~v:(Ojs.int_of_js x334)
+                                                       ~k:(Ojs.int_of_js x335))))|])
                                | None -> ());
-                              (match x348 with
-                               | Some x350 ->
+                              (match x330 with
+                               | Some x332 ->
                                    ignore
-                                     (Ojs.call x349 "push"
-                                        [|(any_to_js x350)|])
+                                     (Ojs.call x331 "push"
+                                        [|(any_to_js x332)|])
                                | None -> ());
-                              x349))|])
+                              x331))|])
   end
 module Uint8ClampedArray =
   struct
     include struct include Uint8ClampedArray end
-    let (entries : t -> (float * float) IterableIterator.t) =
-      fun (x357 : t) ->
+    let (entries : t -> (int * int) IterableIterator.t) =
+      fun (x339 : t) ->
         IterableIterator.t_of_js
-          (fun (x358 : Ojs.t) ->
-             let x359 = x358 in
-             ((Ojs.float_of_js (Ojs.array_get x359 0)),
-               (Ojs.float_of_js (Ojs.array_get x359 1))))
-          (Ojs.call (t_to_js x357) "entries" [||])
-    let (keys : t -> float IterableIterator.t) =
-      fun (x360 : t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js x360) "keys" [||])
-    let (values : t -> float IterableIterator.t) =
-      fun (x362 : t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js x362) "values" [||])
-    let (create_iterable : float _Iterable -> t) =
-      fun (x364 : float _Iterable) ->
+          (fun (x340 : Ojs.t) ->
+             let x341 = x340 in
+             ((Ojs.int_of_js (Ojs.array_get x341 0)),
+               (Ojs.int_of_js (Ojs.array_get x341 1))))
+          (Ojs.call (t_to_js x339) "entries" [||])
+    let (keys : t -> int IterableIterator.t) =
+      fun (x342 : t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js x342) "keys" [||])
+    let (values : t -> int IterableIterator.t) =
+      fun (x344 : t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js x344) "values" [||])
+    let (create_iterable : int Iterable.t -> t) =
+      fun (x346 : int Iterable.t) ->
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Uint8ClampedArray")
-             [|(_Iterable_to_js Ojs.float_to_js x364)|])
+             [|(Iterable.t_to_js Ojs.int_to_js x346)|])
     let (from_iterable :
-      array:float _Iterable ->
-        ?mapfn:(v:float -> k:float -> float) -> ?thisArg:any -> unit -> t)
+      array:int Iterable.t ->
+        ?mapfn:(v:int -> k:int -> int) -> ?thisArg:any -> unit -> t)
       =
-      fun ~array:(x366 : float _Iterable) ->
-        fun ?mapfn:(x367 : (v:float -> k:float -> float) option) ->
-          fun ?thisArg:(x368 : any option) ->
+      fun ~array:(x348 : int Iterable.t) ->
+        fun ?mapfn:(x349 : (v:int -> k:int -> int) option) ->
+          fun ?thisArg:(x350 : any option) ->
             fun () ->
               t_of_js
-                (let x375 = Ojs.get_prop_ascii Ojs.global "Uint8ClampedArray" in
-                 Ojs.call (Ojs.get_prop_ascii x375 "from") "apply"
-                   [|x375;((let x369 =
+                (let x357 = Ojs.get_prop_ascii Ojs.global "Uint8ClampedArray" in
+                 Ojs.call (Ojs.get_prop_ascii x357 "from") "apply"
+                   [|x357;((let x351 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x369 "push"
-                                 [|(_Iterable_to_js Ojs.float_to_js x366)|]);
-                            (match x367 with
-                             | Some x371 ->
+                              (Ojs.call x351 "push"
+                                 [|(Iterable.t_to_js Ojs.int_to_js x348)|]);
+                            (match x349 with
+                             | Some x353 ->
                                  ignore
-                                   (Ojs.call x369 "push"
+                                   (Ojs.call x351 "push"
                                       [|(Ojs.fun_to_js 2
-                                           (fun (x372 : Ojs.t) ->
-                                              fun (x373 : Ojs.t) ->
-                                                Ojs.float_to_js
-                                                  (x371
-                                                     ~v:(Ojs.float_of_js x372)
-                                                     ~k:(Ojs.float_of_js x373))))|])
+                                           (fun (x354 : Ojs.t) ->
+                                              fun (x355 : Ojs.t) ->
+                                                Ojs.int_to_js
+                                                  (x353
+                                                     ~v:(Ojs.int_of_js x354)
+                                                     ~k:(Ojs.int_of_js x355))))|])
                              | None -> ());
-                            (match x368 with
-                             | Some x370 ->
+                            (match x350 with
+                             | Some x352 ->
                                  ignore
-                                   (Ojs.call x369 "push" [|(any_to_js x370)|])
+                                   (Ojs.call x351 "push" [|(any_to_js x352)|])
                              | None -> ());
-                            x369))|])
+                            x351))|])
   end
 module Uint8ClampedArrayConstructor =
   struct
     include struct include Uint8ClampedArrayConstructor end
-    let (create_iterable : t -> float _Iterable -> Uint8ClampedArray.t) =
-      fun (x378 : t) ->
-        fun (x376 : float _Iterable) ->
+    let (create_iterable : t -> int Iterable.t -> Uint8ClampedArray.t) =
+      fun (x360 : t) ->
+        fun (x358 : int Iterable.t) ->
           Uint8ClampedArray.t_of_js
-            (Ojs.new_obj (t_to_js x378)
-               [|(_Iterable_to_js Ojs.float_to_js x376)|])
+            (Ojs.new_obj (t_to_js x360)
+               [|(Iterable.t_to_js Ojs.int_to_js x358)|])
     let (from_iterable :
       t ->
-        array:float _Iterable ->
-          ?mapfn:(v:float -> k:float -> float) ->
+        array:int Iterable.t ->
+          ?mapfn:(v:int -> k:int -> int) ->
             ?thisArg:any -> unit -> Uint8ClampedArray.t)
       =
-      fun (x388 : t) ->
-        fun ~array:(x379 : float _Iterable) ->
-          fun ?mapfn:(x380 : (v:float -> k:float -> float) option) ->
-            fun ?thisArg:(x381 : any option) ->
+      fun (x370 : t) ->
+        fun ~array:(x361 : int Iterable.t) ->
+          fun ?mapfn:(x362 : (v:int -> k:int -> int) option) ->
+            fun ?thisArg:(x363 : any option) ->
               fun () ->
                 Uint8ClampedArray.t_of_js
-                  (let x389 = t_to_js x388 in
-                   Ojs.call (Ojs.get_prop_ascii x389 "from") "apply"
-                     [|x389;((let x382 =
+                  (let x371 = t_to_js x370 in
+                   Ojs.call (Ojs.get_prop_ascii x371 "from") "apply"
+                     [|x371;((let x364 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x382 "push"
-                                   [|(_Iterable_to_js Ojs.float_to_js x379)|]);
-                              (match x380 with
-                               | Some x384 ->
+                                (Ojs.call x364 "push"
+                                   [|(Iterable.t_to_js Ojs.int_to_js x361)|]);
+                              (match x362 with
+                               | Some x366 ->
                                    ignore
-                                     (Ojs.call x382 "push"
+                                     (Ojs.call x364 "push"
                                         [|(Ojs.fun_to_js 2
-                                             (fun (x385 : Ojs.t) ->
-                                                fun (x386 : Ojs.t) ->
-                                                  Ojs.float_to_js
-                                                    (x384
-                                                       ~v:(Ojs.float_of_js
-                                                             x385)
-                                                       ~k:(Ojs.float_of_js
-                                                             x386))))|])
+                                             (fun (x367 : Ojs.t) ->
+                                                fun (x368 : Ojs.t) ->
+                                                  Ojs.int_to_js
+                                                    (x366
+                                                       ~v:(Ojs.int_of_js x367)
+                                                       ~k:(Ojs.int_of_js x368))))|])
                                | None -> ());
-                              (match x381 with
-                               | Some x383 ->
+                              (match x363 with
+                               | Some x365 ->
                                    ignore
-                                     (Ojs.call x382 "push"
-                                        [|(any_to_js x383)|])
+                                     (Ojs.call x364 "push"
+                                        [|(any_to_js x365)|])
                                | None -> ());
-                              x382))|])
+                              x364))|])
   end
 module Int16Array =
   struct
     include struct include Int16Array end
-    let (entries : t -> (float * float) IterableIterator.t) =
-      fun (x390 : t) ->
+    let (entries : t -> (int * int) IterableIterator.t) =
+      fun (x372 : t) ->
         IterableIterator.t_of_js
-          (fun (x391 : Ojs.t) ->
-             let x392 = x391 in
-             ((Ojs.float_of_js (Ojs.array_get x392 0)),
-               (Ojs.float_of_js (Ojs.array_get x392 1))))
-          (Ojs.call (t_to_js x390) "entries" [||])
-    let (keys : t -> float IterableIterator.t) =
-      fun (x393 : t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js x393) "keys" [||])
-    let (values : t -> float IterableIterator.t) =
-      fun (x395 : t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js x395) "values" [||])
-    let (create_iterable : float _Iterable -> t) =
-      fun (x397 : float _Iterable) ->
+          (fun (x373 : Ojs.t) ->
+             let x374 = x373 in
+             ((Ojs.int_of_js (Ojs.array_get x374 0)),
+               (Ojs.int_of_js (Ojs.array_get x374 1))))
+          (Ojs.call (t_to_js x372) "entries" [||])
+    let (keys : t -> int IterableIterator.t) =
+      fun (x375 : t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js x375) "keys" [||])
+    let (values : t -> int IterableIterator.t) =
+      fun (x377 : t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js x377) "values" [||])
+    let (create_iterable : int Iterable.t -> t) =
+      fun (x379 : int Iterable.t) ->
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Int16Array")
-             [|(_Iterable_to_js Ojs.float_to_js x397)|])
+             [|(Iterable.t_to_js Ojs.int_to_js x379)|])
     let (from_iterable :
-      array:float _Iterable ->
-        ?mapfn:(v:float -> k:float -> float) -> ?thisArg:any -> unit -> t)
+      array:int Iterable.t ->
+        ?mapfn:(v:int -> k:int -> int) -> ?thisArg:any -> unit -> t)
       =
-      fun ~array:(x399 : float _Iterable) ->
-        fun ?mapfn:(x400 : (v:float -> k:float -> float) option) ->
-          fun ?thisArg:(x401 : any option) ->
+      fun ~array:(x381 : int Iterable.t) ->
+        fun ?mapfn:(x382 : (v:int -> k:int -> int) option) ->
+          fun ?thisArg:(x383 : any option) ->
             fun () ->
               t_of_js
-                (let x408 = Ojs.get_prop_ascii Ojs.global "Int16Array" in
-                 Ojs.call (Ojs.get_prop_ascii x408 "from") "apply"
-                   [|x408;((let x402 =
+                (let x390 = Ojs.get_prop_ascii Ojs.global "Int16Array" in
+                 Ojs.call (Ojs.get_prop_ascii x390 "from") "apply"
+                   [|x390;((let x384 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x402 "push"
-                                 [|(_Iterable_to_js Ojs.float_to_js x399)|]);
-                            (match x400 with
-                             | Some x404 ->
+                              (Ojs.call x384 "push"
+                                 [|(Iterable.t_to_js Ojs.int_to_js x381)|]);
+                            (match x382 with
+                             | Some x386 ->
                                  ignore
-                                   (Ojs.call x402 "push"
+                                   (Ojs.call x384 "push"
                                       [|(Ojs.fun_to_js 2
-                                           (fun (x405 : Ojs.t) ->
-                                              fun (x406 : Ojs.t) ->
-                                                Ojs.float_to_js
-                                                  (x404
-                                                     ~v:(Ojs.float_of_js x405)
-                                                     ~k:(Ojs.float_of_js x406))))|])
+                                           (fun (x387 : Ojs.t) ->
+                                              fun (x388 : Ojs.t) ->
+                                                Ojs.int_to_js
+                                                  (x386
+                                                     ~v:(Ojs.int_of_js x387)
+                                                     ~k:(Ojs.int_of_js x388))))|])
                              | None -> ());
-                            (match x401 with
-                             | Some x403 ->
+                            (match x383 with
+                             | Some x385 ->
                                  ignore
-                                   (Ojs.call x402 "push" [|(any_to_js x403)|])
+                                   (Ojs.call x384 "push" [|(any_to_js x385)|])
                              | None -> ());
-                            x402))|])
+                            x384))|])
   end
 module Int16ArrayConstructor =
   struct
     include struct include Int16ArrayConstructor end
-    let (create_iterable : t -> float _Iterable -> Int16Array.t) =
-      fun (x411 : t) ->
-        fun (x409 : float _Iterable) ->
+    let (create_iterable : t -> int Iterable.t -> Int16Array.t) =
+      fun (x393 : t) ->
+        fun (x391 : int Iterable.t) ->
           Int16Array.t_of_js
-            (Ojs.new_obj (t_to_js x411)
-               [|(_Iterable_to_js Ojs.float_to_js x409)|])
+            (Ojs.new_obj (t_to_js x393)
+               [|(Iterable.t_to_js Ojs.int_to_js x391)|])
     let (from_iterable :
       t ->
-        array:float _Iterable ->
-          ?mapfn:(v:float -> k:float -> float) ->
+        array:int Iterable.t ->
+          ?mapfn:(v:int -> k:int -> int) ->
             ?thisArg:any -> unit -> Int16Array.t)
       =
-      fun (x421 : t) ->
-        fun ~array:(x412 : float _Iterable) ->
-          fun ?mapfn:(x413 : (v:float -> k:float -> float) option) ->
-            fun ?thisArg:(x414 : any option) ->
+      fun (x403 : t) ->
+        fun ~array:(x394 : int Iterable.t) ->
+          fun ?mapfn:(x395 : (v:int -> k:int -> int) option) ->
+            fun ?thisArg:(x396 : any option) ->
               fun () ->
                 Int16Array.t_of_js
-                  (let x422 = t_to_js x421 in
-                   Ojs.call (Ojs.get_prop_ascii x422 "from") "apply"
-                     [|x422;((let x415 =
+                  (let x404 = t_to_js x403 in
+                   Ojs.call (Ojs.get_prop_ascii x404 "from") "apply"
+                     [|x404;((let x397 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x415 "push"
-                                   [|(_Iterable_to_js Ojs.float_to_js x412)|]);
-                              (match x413 with
-                               | Some x417 ->
+                                (Ojs.call x397 "push"
+                                   [|(Iterable.t_to_js Ojs.int_to_js x394)|]);
+                              (match x395 with
+                               | Some x399 ->
                                    ignore
-                                     (Ojs.call x415 "push"
+                                     (Ojs.call x397 "push"
                                         [|(Ojs.fun_to_js 2
-                                             (fun (x418 : Ojs.t) ->
-                                                fun (x419 : Ojs.t) ->
-                                                  Ojs.float_to_js
-                                                    (x417
-                                                       ~v:(Ojs.float_of_js
-                                                             x418)
-                                                       ~k:(Ojs.float_of_js
-                                                             x419))))|])
+                                             (fun (x400 : Ojs.t) ->
+                                                fun (x401 : Ojs.t) ->
+                                                  Ojs.int_to_js
+                                                    (x399
+                                                       ~v:(Ojs.int_of_js x400)
+                                                       ~k:(Ojs.int_of_js x401))))|])
                                | None -> ());
-                              (match x414 with
-                               | Some x416 ->
+                              (match x396 with
+                               | Some x398 ->
                                    ignore
-                                     (Ojs.call x415 "push"
-                                        [|(any_to_js x416)|])
+                                     (Ojs.call x397 "push"
+                                        [|(any_to_js x398)|])
                                | None -> ());
-                              x415))|])
+                              x397))|])
   end
 module Uint16Array =
   struct
     include struct include Uint16Array end
-    let (entries : t -> (float * float) IterableIterator.t) =
-      fun (x423 : t) ->
+    let (entries : t -> (int * int) IterableIterator.t) =
+      fun (x405 : t) ->
         IterableIterator.t_of_js
-          (fun (x424 : Ojs.t) ->
-             let x425 = x424 in
-             ((Ojs.float_of_js (Ojs.array_get x425 0)),
-               (Ojs.float_of_js (Ojs.array_get x425 1))))
-          (Ojs.call (t_to_js x423) "entries" [||])
-    let (keys : t -> float IterableIterator.t) =
-      fun (x426 : t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js x426) "keys" [||])
-    let (values : t -> float IterableIterator.t) =
-      fun (x428 : t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js x428) "values" [||])
-    let (create_iterable : float _Iterable -> t) =
-      fun (x430 : float _Iterable) ->
+          (fun (x406 : Ojs.t) ->
+             let x407 = x406 in
+             ((Ojs.int_of_js (Ojs.array_get x407 0)),
+               (Ojs.int_of_js (Ojs.array_get x407 1))))
+          (Ojs.call (t_to_js x405) "entries" [||])
+    let (keys : t -> int IterableIterator.t) =
+      fun (x408 : t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js x408) "keys" [||])
+    let (values : t -> int IterableIterator.t) =
+      fun (x410 : t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js x410) "values" [||])
+    let (create_iterable : int Iterable.t -> t) =
+      fun (x412 : int Iterable.t) ->
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Uint16Array")
-             [|(_Iterable_to_js Ojs.float_to_js x430)|])
+             [|(Iterable.t_to_js Ojs.int_to_js x412)|])
     let (from_iterable :
-      array:float _Iterable ->
-        ?mapfn:(v:float -> k:float -> float) -> ?thisArg:any -> unit -> t)
+      array:int Iterable.t ->
+        ?mapfn:(v:int -> k:int -> int) -> ?thisArg:any -> unit -> t)
       =
-      fun ~array:(x432 : float _Iterable) ->
-        fun ?mapfn:(x433 : (v:float -> k:float -> float) option) ->
-          fun ?thisArg:(x434 : any option) ->
+      fun ~array:(x414 : int Iterable.t) ->
+        fun ?mapfn:(x415 : (v:int -> k:int -> int) option) ->
+          fun ?thisArg:(x416 : any option) ->
             fun () ->
               t_of_js
-                (let x441 = Ojs.get_prop_ascii Ojs.global "Uint16Array" in
-                 Ojs.call (Ojs.get_prop_ascii x441 "from") "apply"
-                   [|x441;((let x435 =
+                (let x423 = Ojs.get_prop_ascii Ojs.global "Uint16Array" in
+                 Ojs.call (Ojs.get_prop_ascii x423 "from") "apply"
+                   [|x423;((let x417 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x435 "push"
-                                 [|(_Iterable_to_js Ojs.float_to_js x432)|]);
-                            (match x433 with
-                             | Some x437 ->
+                              (Ojs.call x417 "push"
+                                 [|(Iterable.t_to_js Ojs.int_to_js x414)|]);
+                            (match x415 with
+                             | Some x419 ->
                                  ignore
-                                   (Ojs.call x435 "push"
+                                   (Ojs.call x417 "push"
                                       [|(Ojs.fun_to_js 2
-                                           (fun (x438 : Ojs.t) ->
-                                              fun (x439 : Ojs.t) ->
-                                                Ojs.float_to_js
-                                                  (x437
-                                                     ~v:(Ojs.float_of_js x438)
-                                                     ~k:(Ojs.float_of_js x439))))|])
+                                           (fun (x420 : Ojs.t) ->
+                                              fun (x421 : Ojs.t) ->
+                                                Ojs.int_to_js
+                                                  (x419
+                                                     ~v:(Ojs.int_of_js x420)
+                                                     ~k:(Ojs.int_of_js x421))))|])
                              | None -> ());
-                            (match x434 with
-                             | Some x436 ->
+                            (match x416 with
+                             | Some x418 ->
                                  ignore
-                                   (Ojs.call x435 "push" [|(any_to_js x436)|])
+                                   (Ojs.call x417 "push" [|(any_to_js x418)|])
                              | None -> ());
-                            x435))|])
+                            x417))|])
   end
 module Uint16ArrayConstructor =
   struct
     include struct include Uint16ArrayConstructor end
-    let (create_iterable : t -> float _Iterable -> Uint16Array.t) =
-      fun (x444 : t) ->
-        fun (x442 : float _Iterable) ->
+    let (create_iterable : t -> int Iterable.t -> Uint16Array.t) =
+      fun (x426 : t) ->
+        fun (x424 : int Iterable.t) ->
           Uint16Array.t_of_js
-            (Ojs.new_obj (t_to_js x444)
-               [|(_Iterable_to_js Ojs.float_to_js x442)|])
+            (Ojs.new_obj (t_to_js x426)
+               [|(Iterable.t_to_js Ojs.int_to_js x424)|])
     let (from_iterable :
       t ->
-        array:float _Iterable ->
-          ?mapfn:(v:float -> k:float -> float) ->
+        array:int Iterable.t ->
+          ?mapfn:(v:int -> k:int -> int) ->
             ?thisArg:any -> unit -> Uint16Array.t)
       =
-      fun (x454 : t) ->
-        fun ~array:(x445 : float _Iterable) ->
-          fun ?mapfn:(x446 : (v:float -> k:float -> float) option) ->
-            fun ?thisArg:(x447 : any option) ->
+      fun (x436 : t) ->
+        fun ~array:(x427 : int Iterable.t) ->
+          fun ?mapfn:(x428 : (v:int -> k:int -> int) option) ->
+            fun ?thisArg:(x429 : any option) ->
               fun () ->
                 Uint16Array.t_of_js
-                  (let x455 = t_to_js x454 in
-                   Ojs.call (Ojs.get_prop_ascii x455 "from") "apply"
-                     [|x455;((let x448 =
+                  (let x437 = t_to_js x436 in
+                   Ojs.call (Ojs.get_prop_ascii x437 "from") "apply"
+                     [|x437;((let x430 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x448 "push"
-                                   [|(_Iterable_to_js Ojs.float_to_js x445)|]);
-                              (match x446 with
-                               | Some x450 ->
+                                (Ojs.call x430 "push"
+                                   [|(Iterable.t_to_js Ojs.int_to_js x427)|]);
+                              (match x428 with
+                               | Some x432 ->
                                    ignore
-                                     (Ojs.call x448 "push"
+                                     (Ojs.call x430 "push"
                                         [|(Ojs.fun_to_js 2
-                                             (fun (x451 : Ojs.t) ->
-                                                fun (x452 : Ojs.t) ->
-                                                  Ojs.float_to_js
-                                                    (x450
-                                                       ~v:(Ojs.float_of_js
-                                                             x451)
-                                                       ~k:(Ojs.float_of_js
-                                                             x452))))|])
+                                             (fun (x433 : Ojs.t) ->
+                                                fun (x434 : Ojs.t) ->
+                                                  Ojs.int_to_js
+                                                    (x432
+                                                       ~v:(Ojs.int_of_js x433)
+                                                       ~k:(Ojs.int_of_js x434))))|])
                                | None -> ());
-                              (match x447 with
-                               | Some x449 ->
+                              (match x429 with
+                               | Some x431 ->
                                    ignore
-                                     (Ojs.call x448 "push"
-                                        [|(any_to_js x449)|])
+                                     (Ojs.call x430 "push"
+                                        [|(any_to_js x431)|])
                                | None -> ());
-                              x448))|])
+                              x430))|])
   end
 module Int32Array =
   struct
     include struct include Int32Array end
-    let (entries : t -> (float * float) IterableIterator.t) =
-      fun (x456 : t) ->
+    let (entries : t -> (int * int) IterableIterator.t) =
+      fun (x438 : t) ->
         IterableIterator.t_of_js
-          (fun (x457 : Ojs.t) ->
-             let x458 = x457 in
-             ((Ojs.float_of_js (Ojs.array_get x458 0)),
-               (Ojs.float_of_js (Ojs.array_get x458 1))))
-          (Ojs.call (t_to_js x456) "entries" [||])
-    let (keys : t -> float IterableIterator.t) =
-      fun (x459 : t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js x459) "keys" [||])
-    let (values : t -> float IterableIterator.t) =
-      fun (x461 : t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js x461) "values" [||])
-    let (create_iterable : float _Iterable -> t) =
-      fun (x463 : float _Iterable) ->
+          (fun (x439 : Ojs.t) ->
+             let x440 = x439 in
+             ((Ojs.int_of_js (Ojs.array_get x440 0)),
+               (Ojs.int_of_js (Ojs.array_get x440 1))))
+          (Ojs.call (t_to_js x438) "entries" [||])
+    let (keys : t -> int IterableIterator.t) =
+      fun (x441 : t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js x441) "keys" [||])
+    let (values : t -> int IterableIterator.t) =
+      fun (x443 : t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js x443) "values" [||])
+    let (create_iterable : int Iterable.t -> t) =
+      fun (x445 : int Iterable.t) ->
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Int32Array")
-             [|(_Iterable_to_js Ojs.float_to_js x463)|])
+             [|(Iterable.t_to_js Ojs.int_to_js x445)|])
     let (from_iterable :
-      array:float _Iterable ->
-        ?mapfn:(v:float -> k:float -> float) -> ?thisArg:any -> unit -> t)
+      array:int Iterable.t ->
+        ?mapfn:(v:int -> k:int -> int) -> ?thisArg:any -> unit -> t)
       =
-      fun ~array:(x465 : float _Iterable) ->
-        fun ?mapfn:(x466 : (v:float -> k:float -> float) option) ->
-          fun ?thisArg:(x467 : any option) ->
+      fun ~array:(x447 : int Iterable.t) ->
+        fun ?mapfn:(x448 : (v:int -> k:int -> int) option) ->
+          fun ?thisArg:(x449 : any option) ->
             fun () ->
               t_of_js
-                (let x474 = Ojs.get_prop_ascii Ojs.global "Int32Array" in
-                 Ojs.call (Ojs.get_prop_ascii x474 "from") "apply"
-                   [|x474;((let x468 =
+                (let x456 = Ojs.get_prop_ascii Ojs.global "Int32Array" in
+                 Ojs.call (Ojs.get_prop_ascii x456 "from") "apply"
+                   [|x456;((let x450 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x468 "push"
-                                 [|(_Iterable_to_js Ojs.float_to_js x465)|]);
-                            (match x466 with
-                             | Some x470 ->
+                              (Ojs.call x450 "push"
+                                 [|(Iterable.t_to_js Ojs.int_to_js x447)|]);
+                            (match x448 with
+                             | Some x452 ->
                                  ignore
-                                   (Ojs.call x468 "push"
+                                   (Ojs.call x450 "push"
                                       [|(Ojs.fun_to_js 2
-                                           (fun (x471 : Ojs.t) ->
-                                              fun (x472 : Ojs.t) ->
-                                                Ojs.float_to_js
-                                                  (x470
-                                                     ~v:(Ojs.float_of_js x471)
-                                                     ~k:(Ojs.float_of_js x472))))|])
+                                           (fun (x453 : Ojs.t) ->
+                                              fun (x454 : Ojs.t) ->
+                                                Ojs.int_to_js
+                                                  (x452
+                                                     ~v:(Ojs.int_of_js x453)
+                                                     ~k:(Ojs.int_of_js x454))))|])
                              | None -> ());
-                            (match x467 with
-                             | Some x469 ->
+                            (match x449 with
+                             | Some x451 ->
                                  ignore
-                                   (Ojs.call x468 "push" [|(any_to_js x469)|])
+                                   (Ojs.call x450 "push" [|(any_to_js x451)|])
                              | None -> ());
-                            x468))|])
+                            x450))|])
   end
 module Int32ArrayConstructor =
   struct
     include struct include Int32ArrayConstructor end
-    let (create_iterable : t -> float _Iterable -> Int32Array.t) =
-      fun (x477 : t) ->
-        fun (x475 : float _Iterable) ->
+    let (create_iterable : t -> int Iterable.t -> Int32Array.t) =
+      fun (x459 : t) ->
+        fun (x457 : int Iterable.t) ->
           Int32Array.t_of_js
-            (Ojs.new_obj (t_to_js x477)
-               [|(_Iterable_to_js Ojs.float_to_js x475)|])
+            (Ojs.new_obj (t_to_js x459)
+               [|(Iterable.t_to_js Ojs.int_to_js x457)|])
     let (from_iterable :
       t ->
-        array:float _Iterable ->
-          ?mapfn:(v:float -> k:float -> float) ->
+        array:int Iterable.t ->
+          ?mapfn:(v:int -> k:int -> int) ->
             ?thisArg:any -> unit -> Int32Array.t)
       =
-      fun (x487 : t) ->
-        fun ~array:(x478 : float _Iterable) ->
-          fun ?mapfn:(x479 : (v:float -> k:float -> float) option) ->
-            fun ?thisArg:(x480 : any option) ->
+      fun (x469 : t) ->
+        fun ~array:(x460 : int Iterable.t) ->
+          fun ?mapfn:(x461 : (v:int -> k:int -> int) option) ->
+            fun ?thisArg:(x462 : any option) ->
               fun () ->
                 Int32Array.t_of_js
-                  (let x488 = t_to_js x487 in
-                   Ojs.call (Ojs.get_prop_ascii x488 "from") "apply"
-                     [|x488;((let x481 =
+                  (let x470 = t_to_js x469 in
+                   Ojs.call (Ojs.get_prop_ascii x470 "from") "apply"
+                     [|x470;((let x463 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x481 "push"
-                                   [|(_Iterable_to_js Ojs.float_to_js x478)|]);
-                              (match x479 with
-                               | Some x483 ->
+                                (Ojs.call x463 "push"
+                                   [|(Iterable.t_to_js Ojs.int_to_js x460)|]);
+                              (match x461 with
+                               | Some x465 ->
                                    ignore
-                                     (Ojs.call x481 "push"
+                                     (Ojs.call x463 "push"
                                         [|(Ojs.fun_to_js 2
-                                             (fun (x484 : Ojs.t) ->
-                                                fun (x485 : Ojs.t) ->
-                                                  Ojs.float_to_js
-                                                    (x483
-                                                       ~v:(Ojs.float_of_js
-                                                             x484)
-                                                       ~k:(Ojs.float_of_js
-                                                             x485))))|])
+                                             (fun (x466 : Ojs.t) ->
+                                                fun (x467 : Ojs.t) ->
+                                                  Ojs.int_to_js
+                                                    (x465
+                                                       ~v:(Ojs.int_of_js x466)
+                                                       ~k:(Ojs.int_of_js x467))))|])
                                | None -> ());
-                              (match x480 with
-                               | Some x482 ->
+                              (match x462 with
+                               | Some x464 ->
                                    ignore
-                                     (Ojs.call x481 "push"
-                                        [|(any_to_js x482)|])
+                                     (Ojs.call x463 "push"
+                                        [|(any_to_js x464)|])
                                | None -> ());
-                              x481))|])
+                              x463))|])
   end
 module Uint32Array =
   struct
     include struct include Uint32Array end
-    let (entries : t -> (float * float) IterableIterator.t) =
-      fun (x489 : t) ->
+    let (entries : t -> (int * int) IterableIterator.t) =
+      fun (x471 : t) ->
         IterableIterator.t_of_js
-          (fun (x490 : Ojs.t) ->
-             let x491 = x490 in
-             ((Ojs.float_of_js (Ojs.array_get x491 0)),
-               (Ojs.float_of_js (Ojs.array_get x491 1))))
-          (Ojs.call (t_to_js x489) "entries" [||])
-    let (keys : t -> float IterableIterator.t) =
-      fun (x492 : t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js x492) "keys" [||])
-    let (values : t -> float IterableIterator.t) =
-      fun (x494 : t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js x494) "values" [||])
-    let (create_iterable : float _Iterable -> t) =
-      fun (x496 : float _Iterable) ->
+          (fun (x472 : Ojs.t) ->
+             let x473 = x472 in
+             ((Ojs.int_of_js (Ojs.array_get x473 0)),
+               (Ojs.int_of_js (Ojs.array_get x473 1))))
+          (Ojs.call (t_to_js x471) "entries" [||])
+    let (keys : t -> int IterableIterator.t) =
+      fun (x474 : t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js x474) "keys" [||])
+    let (values : t -> int IterableIterator.t) =
+      fun (x476 : t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js x476) "values" [||])
+    let (create_iterable : int Iterable.t -> t) =
+      fun (x478 : int Iterable.t) ->
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Uint32Array")
-             [|(_Iterable_to_js Ojs.float_to_js x496)|])
+             [|(Iterable.t_to_js Ojs.int_to_js x478)|])
     let (from_iterable :
-      array:float _Iterable ->
-        ?mapfn:(v:float -> k:float -> float) -> ?thisArg:any -> unit -> t)
+      array:int Iterable.t ->
+        ?mapfn:(v:int -> k:int -> int) -> ?thisArg:any -> unit -> t)
       =
-      fun ~array:(x498 : float _Iterable) ->
-        fun ?mapfn:(x499 : (v:float -> k:float -> float) option) ->
-          fun ?thisArg:(x500 : any option) ->
+      fun ~array:(x480 : int Iterable.t) ->
+        fun ?mapfn:(x481 : (v:int -> k:int -> int) option) ->
+          fun ?thisArg:(x482 : any option) ->
             fun () ->
               t_of_js
-                (let x507 = Ojs.get_prop_ascii Ojs.global "Uint32Array" in
-                 Ojs.call (Ojs.get_prop_ascii x507 "from") "apply"
-                   [|x507;((let x501 =
+                (let x489 = Ojs.get_prop_ascii Ojs.global "Uint32Array" in
+                 Ojs.call (Ojs.get_prop_ascii x489 "from") "apply"
+                   [|x489;((let x483 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x501 "push"
-                                 [|(_Iterable_to_js Ojs.float_to_js x498)|]);
-                            (match x499 with
-                             | Some x503 ->
+                              (Ojs.call x483 "push"
+                                 [|(Iterable.t_to_js Ojs.int_to_js x480)|]);
+                            (match x481 with
+                             | Some x485 ->
                                  ignore
-                                   (Ojs.call x501 "push"
+                                   (Ojs.call x483 "push"
                                       [|(Ojs.fun_to_js 2
-                                           (fun (x504 : Ojs.t) ->
-                                              fun (x505 : Ojs.t) ->
-                                                Ojs.float_to_js
-                                                  (x503
-                                                     ~v:(Ojs.float_of_js x504)
-                                                     ~k:(Ojs.float_of_js x505))))|])
+                                           (fun (x486 : Ojs.t) ->
+                                              fun (x487 : Ojs.t) ->
+                                                Ojs.int_to_js
+                                                  (x485
+                                                     ~v:(Ojs.int_of_js x486)
+                                                     ~k:(Ojs.int_of_js x487))))|])
                              | None -> ());
-                            (match x500 with
-                             | Some x502 ->
+                            (match x482 with
+                             | Some x484 ->
                                  ignore
-                                   (Ojs.call x501 "push" [|(any_to_js x502)|])
+                                   (Ojs.call x483 "push" [|(any_to_js x484)|])
                              | None -> ());
-                            x501))|])
+                            x483))|])
   end
 module Uint32ArrayConstructor =
   struct
     include struct include Uint32ArrayConstructor end
-    let (create_iterable : t -> float _Iterable -> Uint32Array.t) =
-      fun (x510 : t) ->
-        fun (x508 : float _Iterable) ->
+    let (create_iterable : t -> int Iterable.t -> Uint32Array.t) =
+      fun (x492 : t) ->
+        fun (x490 : int Iterable.t) ->
           Uint32Array.t_of_js
-            (Ojs.new_obj (t_to_js x510)
-               [|(_Iterable_to_js Ojs.float_to_js x508)|])
+            (Ojs.new_obj (t_to_js x492)
+               [|(Iterable.t_to_js Ojs.int_to_js x490)|])
     let (from_iterable :
       t ->
-        array:float _Iterable ->
-          ?mapfn:(v:float -> k:float -> float) ->
+        array:int Iterable.t ->
+          ?mapfn:(v:int -> k:int -> int) ->
             ?thisArg:any -> unit -> Uint32Array.t)
       =
-      fun (x520 : t) ->
-        fun ~array:(x511 : float _Iterable) ->
-          fun ?mapfn:(x512 : (v:float -> k:float -> float) option) ->
-            fun ?thisArg:(x513 : any option) ->
+      fun (x502 : t) ->
+        fun ~array:(x493 : int Iterable.t) ->
+          fun ?mapfn:(x494 : (v:int -> k:int -> int) option) ->
+            fun ?thisArg:(x495 : any option) ->
               fun () ->
                 Uint32Array.t_of_js
-                  (let x521 = t_to_js x520 in
-                   Ojs.call (Ojs.get_prop_ascii x521 "from") "apply"
-                     [|x521;((let x514 =
+                  (let x503 = t_to_js x502 in
+                   Ojs.call (Ojs.get_prop_ascii x503 "from") "apply"
+                     [|x503;((let x496 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x514 "push"
-                                   [|(_Iterable_to_js Ojs.float_to_js x511)|]);
-                              (match x512 with
-                               | Some x516 ->
+                                (Ojs.call x496 "push"
+                                   [|(Iterable.t_to_js Ojs.int_to_js x493)|]);
+                              (match x494 with
+                               | Some x498 ->
                                    ignore
-                                     (Ojs.call x514 "push"
+                                     (Ojs.call x496 "push"
                                         [|(Ojs.fun_to_js 2
-                                             (fun (x517 : Ojs.t) ->
-                                                fun (x518 : Ojs.t) ->
-                                                  Ojs.float_to_js
-                                                    (x516
-                                                       ~v:(Ojs.float_of_js
-                                                             x517)
-                                                       ~k:(Ojs.float_of_js
-                                                             x518))))|])
+                                             (fun (x499 : Ojs.t) ->
+                                                fun (x500 : Ojs.t) ->
+                                                  Ojs.int_to_js
+                                                    (x498
+                                                       ~v:(Ojs.int_of_js x499)
+                                                       ~k:(Ojs.int_of_js x500))))|])
                                | None -> ());
-                              (match x513 with
-                               | Some x515 ->
+                              (match x495 with
+                               | Some x497 ->
                                    ignore
-                                     (Ojs.call x514 "push"
-                                        [|(any_to_js x515)|])
+                                     (Ojs.call x496 "push"
+                                        [|(any_to_js x497)|])
                                | None -> ());
-                              x514))|])
+                              x496))|])
   end
 module Float32Array =
   struct
     include struct include Float32Array end
-    let (entries : t -> (float * float) IterableIterator.t) =
-      fun (x522 : t) ->
+    let (entries : t -> (int * int) IterableIterator.t) =
+      fun (x504 : t) ->
         IterableIterator.t_of_js
-          (fun (x523 : Ojs.t) ->
-             let x524 = x523 in
-             ((Ojs.float_of_js (Ojs.array_get x524 0)),
-               (Ojs.float_of_js (Ojs.array_get x524 1))))
-          (Ojs.call (t_to_js x522) "entries" [||])
-    let (keys : t -> float IterableIterator.t) =
-      fun (x525 : t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js x525) "keys" [||])
-    let (values : t -> float IterableIterator.t) =
-      fun (x527 : t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js x527) "values" [||])
-    let (create_iterable : float _Iterable -> t) =
-      fun (x529 : float _Iterable) ->
+          (fun (x505 : Ojs.t) ->
+             let x506 = x505 in
+             ((Ojs.int_of_js (Ojs.array_get x506 0)),
+               (Ojs.int_of_js (Ojs.array_get x506 1))))
+          (Ojs.call (t_to_js x504) "entries" [||])
+    let (keys : t -> int IterableIterator.t) =
+      fun (x507 : t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js x507) "keys" [||])
+    let (values : t -> int IterableIterator.t) =
+      fun (x509 : t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js x509) "values" [||])
+    let (create_iterable : int Iterable.t -> t) =
+      fun (x511 : int Iterable.t) ->
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Float32Array")
-             [|(_Iterable_to_js Ojs.float_to_js x529)|])
+             [|(Iterable.t_to_js Ojs.int_to_js x511)|])
     let (from_iterable :
-      array:float _Iterable ->
-        ?mapfn:(v:float -> k:float -> float) -> ?thisArg:any -> unit -> t)
+      array:int Iterable.t ->
+        ?mapfn:(v:int -> k:int -> int) -> ?thisArg:any -> unit -> t)
       =
-      fun ~array:(x531 : float _Iterable) ->
-        fun ?mapfn:(x532 : (v:float -> k:float -> float) option) ->
-          fun ?thisArg:(x533 : any option) ->
+      fun ~array:(x513 : int Iterable.t) ->
+        fun ?mapfn:(x514 : (v:int -> k:int -> int) option) ->
+          fun ?thisArg:(x515 : any option) ->
             fun () ->
               t_of_js
-                (let x540 = Ojs.get_prop_ascii Ojs.global "Float32Array" in
-                 Ojs.call (Ojs.get_prop_ascii x540 "from") "apply"
-                   [|x540;((let x534 =
+                (let x522 = Ojs.get_prop_ascii Ojs.global "Float32Array" in
+                 Ojs.call (Ojs.get_prop_ascii x522 "from") "apply"
+                   [|x522;((let x516 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x534 "push"
-                                 [|(_Iterable_to_js Ojs.float_to_js x531)|]);
-                            (match x532 with
-                             | Some x536 ->
+                              (Ojs.call x516 "push"
+                                 [|(Iterable.t_to_js Ojs.int_to_js x513)|]);
+                            (match x514 with
+                             | Some x518 ->
                                  ignore
-                                   (Ojs.call x534 "push"
+                                   (Ojs.call x516 "push"
                                       [|(Ojs.fun_to_js 2
-                                           (fun (x537 : Ojs.t) ->
-                                              fun (x538 : Ojs.t) ->
-                                                Ojs.float_to_js
-                                                  (x536
-                                                     ~v:(Ojs.float_of_js x537)
-                                                     ~k:(Ojs.float_of_js x538))))|])
+                                           (fun (x519 : Ojs.t) ->
+                                              fun (x520 : Ojs.t) ->
+                                                Ojs.int_to_js
+                                                  (x518
+                                                     ~v:(Ojs.int_of_js x519)
+                                                     ~k:(Ojs.int_of_js x520))))|])
                              | None -> ());
-                            (match x533 with
-                             | Some x535 ->
+                            (match x515 with
+                             | Some x517 ->
                                  ignore
-                                   (Ojs.call x534 "push" [|(any_to_js x535)|])
+                                   (Ojs.call x516 "push" [|(any_to_js x517)|])
                              | None -> ());
-                            x534))|])
+                            x516))|])
   end
 module Float32ArrayConstructor =
   struct
     include struct include Float32ArrayConstructor end
-    let (create_iterable : t -> float _Iterable -> Float32Array.t) =
-      fun (x543 : t) ->
-        fun (x541 : float _Iterable) ->
+    let (create_iterable : t -> int Iterable.t -> Float32Array.t) =
+      fun (x525 : t) ->
+        fun (x523 : int Iterable.t) ->
           Float32Array.t_of_js
-            (Ojs.new_obj (t_to_js x543)
-               [|(_Iterable_to_js Ojs.float_to_js x541)|])
+            (Ojs.new_obj (t_to_js x525)
+               [|(Iterable.t_to_js Ojs.int_to_js x523)|])
     let (from_iterable :
       t ->
-        array:float _Iterable ->
-          ?mapfn:(v:float -> k:float -> float) ->
+        array:int Iterable.t ->
+          ?mapfn:(v:int -> k:int -> int) ->
             ?thisArg:any -> unit -> Float32Array.t)
       =
-      fun (x553 : t) ->
-        fun ~array:(x544 : float _Iterable) ->
-          fun ?mapfn:(x545 : (v:float -> k:float -> float) option) ->
-            fun ?thisArg:(x546 : any option) ->
+      fun (x535 : t) ->
+        fun ~array:(x526 : int Iterable.t) ->
+          fun ?mapfn:(x527 : (v:int -> k:int -> int) option) ->
+            fun ?thisArg:(x528 : any option) ->
               fun () ->
                 Float32Array.t_of_js
-                  (let x554 = t_to_js x553 in
-                   Ojs.call (Ojs.get_prop_ascii x554 "from") "apply"
-                     [|x554;((let x547 =
+                  (let x536 = t_to_js x535 in
+                   Ojs.call (Ojs.get_prop_ascii x536 "from") "apply"
+                     [|x536;((let x529 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x547 "push"
-                                   [|(_Iterable_to_js Ojs.float_to_js x544)|]);
-                              (match x545 with
-                               | Some x549 ->
+                                (Ojs.call x529 "push"
+                                   [|(Iterable.t_to_js Ojs.int_to_js x526)|]);
+                              (match x527 with
+                               | Some x531 ->
                                    ignore
-                                     (Ojs.call x547 "push"
+                                     (Ojs.call x529 "push"
                                         [|(Ojs.fun_to_js 2
-                                             (fun (x550 : Ojs.t) ->
-                                                fun (x551 : Ojs.t) ->
-                                                  Ojs.float_to_js
-                                                    (x549
-                                                       ~v:(Ojs.float_of_js
-                                                             x550)
-                                                       ~k:(Ojs.float_of_js
-                                                             x551))))|])
+                                             (fun (x532 : Ojs.t) ->
+                                                fun (x533 : Ojs.t) ->
+                                                  Ojs.int_to_js
+                                                    (x531
+                                                       ~v:(Ojs.int_of_js x532)
+                                                       ~k:(Ojs.int_of_js x533))))|])
                                | None -> ());
-                              (match x546 with
-                               | Some x548 ->
+                              (match x528 with
+                               | Some x530 ->
                                    ignore
-                                     (Ojs.call x547 "push"
-                                        [|(any_to_js x548)|])
+                                     (Ojs.call x529 "push"
+                                        [|(any_to_js x530)|])
                                | None -> ());
-                              x547))|])
+                              x529))|])
   end
 module Float64Array =
   struct
     include struct include Float64Array end
-    let (entries : t -> (float * float) IterableIterator.t) =
-      fun (x555 : t) ->
+    let (entries : t -> (int * int) IterableIterator.t) =
+      fun (x537 : t) ->
         IterableIterator.t_of_js
-          (fun (x556 : Ojs.t) ->
-             let x557 = x556 in
-             ((Ojs.float_of_js (Ojs.array_get x557 0)),
-               (Ojs.float_of_js (Ojs.array_get x557 1))))
-          (Ojs.call (t_to_js x555) "entries" [||])
-    let (keys : t -> float IterableIterator.t) =
-      fun (x558 : t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js x558) "keys" [||])
-    let (values : t -> float IterableIterator.t) =
-      fun (x560 : t) ->
-        IterableIterator.t_of_js Ojs.float_of_js
-          (Ojs.call (t_to_js x560) "values" [||])
-    let (create_iterable : float _Iterable -> t) =
-      fun (x562 : float _Iterable) ->
+          (fun (x538 : Ojs.t) ->
+             let x539 = x538 in
+             ((Ojs.int_of_js (Ojs.array_get x539 0)),
+               (Ojs.int_of_js (Ojs.array_get x539 1))))
+          (Ojs.call (t_to_js x537) "entries" [||])
+    let (keys : t -> int IterableIterator.t) =
+      fun (x540 : t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js x540) "keys" [||])
+    let (values : t -> int IterableIterator.t) =
+      fun (x542 : t) ->
+        IterableIterator.t_of_js Ojs.int_of_js
+          (Ojs.call (t_to_js x542) "values" [||])
+    let (create_iterable : int Iterable.t -> t) =
+      fun (x544 : int Iterable.t) ->
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Float64Array")
-             [|(_Iterable_to_js Ojs.float_to_js x562)|])
+             [|(Iterable.t_to_js Ojs.int_to_js x544)|])
     let (from_iterable :
-      array:float _Iterable ->
-        ?mapfn:(v:float -> k:float -> float) -> ?thisArg:any -> unit -> t)
+      array:int Iterable.t ->
+        ?mapfn:(v:int -> k:int -> int) -> ?thisArg:any -> unit -> t)
       =
-      fun ~array:(x564 : float _Iterable) ->
-        fun ?mapfn:(x565 : (v:float -> k:float -> float) option) ->
-          fun ?thisArg:(x566 : any option) ->
+      fun ~array:(x546 : int Iterable.t) ->
+        fun ?mapfn:(x547 : (v:int -> k:int -> int) option) ->
+          fun ?thisArg:(x548 : any option) ->
             fun () ->
               t_of_js
-                (let x573 = Ojs.get_prop_ascii Ojs.global "Float64Array" in
-                 Ojs.call (Ojs.get_prop_ascii x573 "from") "apply"
-                   [|x573;((let x567 =
+                (let x555 = Ojs.get_prop_ascii Ojs.global "Float64Array" in
+                 Ojs.call (Ojs.get_prop_ascii x555 "from") "apply"
+                   [|x555;((let x549 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x567 "push"
-                                 [|(_Iterable_to_js Ojs.float_to_js x564)|]);
-                            (match x565 with
-                             | Some x569 ->
+                              (Ojs.call x549 "push"
+                                 [|(Iterable.t_to_js Ojs.int_to_js x546)|]);
+                            (match x547 with
+                             | Some x551 ->
                                  ignore
-                                   (Ojs.call x567 "push"
+                                   (Ojs.call x549 "push"
                                       [|(Ojs.fun_to_js 2
-                                           (fun (x570 : Ojs.t) ->
-                                              fun (x571 : Ojs.t) ->
-                                                Ojs.float_to_js
-                                                  (x569
-                                                     ~v:(Ojs.float_of_js x570)
-                                                     ~k:(Ojs.float_of_js x571))))|])
+                                           (fun (x552 : Ojs.t) ->
+                                              fun (x553 : Ojs.t) ->
+                                                Ojs.int_to_js
+                                                  (x551
+                                                     ~v:(Ojs.int_of_js x552)
+                                                     ~k:(Ojs.int_of_js x553))))|])
                              | None -> ());
-                            (match x566 with
-                             | Some x568 ->
+                            (match x548 with
+                             | Some x550 ->
                                  ignore
-                                   (Ojs.call x567 "push" [|(any_to_js x568)|])
+                                   (Ojs.call x549 "push" [|(any_to_js x550)|])
                              | None -> ());
-                            x567))|])
+                            x549))|])
   end
 module Float64ArrayConstructor =
   struct
     include struct include Float64ArrayConstructor end
-    let (create_iterable : t -> float _Iterable -> Float64Array.t) =
-      fun (x576 : t) ->
-        fun (x574 : float _Iterable) ->
+    let (create_iterable : t -> int Iterable.t -> Float64Array.t) =
+      fun (x558 : t) ->
+        fun (x556 : int Iterable.t) ->
           Float64Array.t_of_js
-            (Ojs.new_obj (t_to_js x576)
-               [|(_Iterable_to_js Ojs.float_to_js x574)|])
+            (Ojs.new_obj (t_to_js x558)
+               [|(Iterable.t_to_js Ojs.int_to_js x556)|])
     let (from_iterable :
       t ->
-        array:float _Iterable ->
-          ?mapfn:(v:float -> k:float -> float) ->
+        array:int Iterable.t ->
+          ?mapfn:(v:int -> k:int -> int) ->
             ?thisArg:any -> unit -> Float64Array.t)
       =
-      fun (x586 : t) ->
-        fun ~array:(x577 : float _Iterable) ->
-          fun ?mapfn:(x578 : (v:float -> k:float -> float) option) ->
-            fun ?thisArg:(x579 : any option) ->
+      fun (x568 : t) ->
+        fun ~array:(x559 : int Iterable.t) ->
+          fun ?mapfn:(x560 : (v:int -> k:int -> int) option) ->
+            fun ?thisArg:(x561 : any option) ->
               fun () ->
                 Float64Array.t_of_js
-                  (let x587 = t_to_js x586 in
-                   Ojs.call (Ojs.get_prop_ascii x587 "from") "apply"
-                     [|x587;((let x580 =
+                  (let x569 = t_to_js x568 in
+                   Ojs.call (Ojs.get_prop_ascii x569 "from") "apply"
+                     [|x569;((let x562 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x580 "push"
-                                   [|(_Iterable_to_js Ojs.float_to_js x577)|]);
-                              (match x578 with
-                               | Some x582 ->
+                                (Ojs.call x562 "push"
+                                   [|(Iterable.t_to_js Ojs.int_to_js x559)|]);
+                              (match x560 with
+                               | Some x564 ->
                                    ignore
-                                     (Ojs.call x580 "push"
+                                     (Ojs.call x562 "push"
                                         [|(Ojs.fun_to_js 2
-                                             (fun (x583 : Ojs.t) ->
-                                                fun (x584 : Ojs.t) ->
-                                                  Ojs.float_to_js
-                                                    (x582
-                                                       ~v:(Ojs.float_of_js
-                                                             x583)
-                                                       ~k:(Ojs.float_of_js
-                                                             x584))))|])
+                                             (fun (x565 : Ojs.t) ->
+                                                fun (x566 : Ojs.t) ->
+                                                  Ojs.int_to_js
+                                                    (x564
+                                                       ~v:(Ojs.int_of_js x565)
+                                                       ~k:(Ojs.int_of_js x566))))|])
                                | None -> ());
-                              (match x579 with
-                               | Some x581 ->
+                              (match x561 with
+                               | Some x563 ->
                                    ignore
-                                     (Ojs.call x580 "push"
-                                        [|(any_to_js x581)|])
+                                     (Ojs.call x562 "push"
+                                        [|(any_to_js x563)|])
                                | None -> ());
-                              x580))|])
+                              x562))|])
   end

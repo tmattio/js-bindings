@@ -2643,5 +2643,5 @@ module Make (M: Missing) : sig
     val set_RequestsToCancelOnContentModified: (* FIXME: unknown type *)any -> unit [@@js.set "RequestsToCancelOnContentModified"]
     val handleFailedRequest: t -> type_:MessageSignature.t_0 -> token:CancellationToken.t_0 or_undefined -> error:any -> defaultValue:'T -> 'T [@@js.call "handleFailedRequest"]
   end
-  (* export {}; *)
+  
 end

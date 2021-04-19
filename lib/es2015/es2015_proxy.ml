@@ -2,42 +2,11 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _ProxyConstructor = [ `ProxyConstructor ] intf
-        and 'T _ProxyHandler = [ `ProxyHandler of 'T ] intf
-        let rec _ProxyConstructor_of_js : Ojs.t -> _ProxyConstructor =
-          Obj.magic
-        and _ProxyConstructor_to_js : _ProxyConstructor -> Ojs.t = Obj.magic
-        and _ProxyHandler_of_js :
-          'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _ProxyHandler =
-          fun _T -> Obj.magic
-        and _ProxyHandler_to_js :
-          'T . ('T -> Ojs.t) -> 'T _ProxyHandler -> Ojs.t =
-          fun _T -> Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module Revocable =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> anonymous_interface_0_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : anonymous_interface_0) -> anonymous_interface_0_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get_proxy : t -> 'T) =
       fun (x3 : t) -> Obj.magic (Ojs.get_prop_ascii (t_to_js x3) "proxy")
     let (set_proxy : t -> 'T -> unit) =
@@ -49,151 +18,147 @@ module Revocable =
   end
 module ProxyHandler =
   struct
-    type 'T t = 'T _ProxyHandler
+    type 'T t = Ojs.t
     let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type __T) ->
-      fun (__T_of_js : Ojs.t -> __T) ->
-        fun (x9 : Ojs.t) -> _ProxyHandler_of_js __T_of_js x9
+      fun (__T_of_js : Ojs.t -> __T) -> fun (x8 : Ojs.t) -> x8
     and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-      fun (__T_to_js : __T -> Ojs.t) ->
-        fun (x7 : __T _ProxyHandler) -> _ProxyHandler_to_js __T_to_js x7
+      fun (__T_to_js : __T -> Ojs.t) -> fun (x7 : Ojs.t) -> x7
     let (apply_ :
       'T t -> target:'T -> thisArg:any -> argArray:any list -> any) =
-      fun (x15 : 'T t) ->
-        fun ~target:(x11 : 'T) ->
-          fun ~thisArg:(x12 : any) ->
-            fun ~argArray:(x13 : any list) ->
+      fun (x13 : 'T t) ->
+        fun ~target:(x9 : 'T) ->
+          fun ~thisArg:(x10 : any) ->
+            fun ~argArray:(x11 : any list) ->
               any_of_js
-                (Ojs.call (t_to_js Obj.magic x15) "apply"
-                   [|(Obj.magic x11);(any_to_js x12);(Ojs.list_to_js
-                                                        any_to_js x13)|])
+                (Ojs.call (t_to_js Obj.magic x13) "apply"
+                   [|(Obj.magic x9);(any_to_js x10);(Ojs.list_to_js any_to_js
+                                                       x11)|])
     let (construct :
       'T t ->
         target:'T ->
           argArray:any list -> newTarget:untyped_function -> untyped_object)
       =
-      fun (x21 : 'T t) ->
-        fun ~target:(x17 : 'T) ->
-          fun ~argArray:(x18 : any list) ->
-            fun ~newTarget:(x20 : untyped_function) ->
+      fun (x19 : 'T t) ->
+        fun ~target:(x15 : 'T) ->
+          fun ~argArray:(x16 : any list) ->
+            fun ~newTarget:(x18 : untyped_function) ->
               untyped_object_of_js
-                (Ojs.call (t_to_js Obj.magic x21) "construct"
-                   [|(Obj.magic x17);(Ojs.list_to_js any_to_js x18);(
-                     untyped_function_to_js x20)|])
+                (Ojs.call (t_to_js Obj.magic x19) "construct"
+                   [|(Obj.magic x15);(Ojs.list_to_js any_to_js x16);(
+                     untyped_function_to_js x18)|])
     let (defineProperty :
       'T t ->
         target:'T ->
           p:symbol or_string -> attributes:PropertyDescriptor.t -> bool)
       =
-      fun (x27 : 'T t) ->
-        fun ~target:(x23 : 'T) ->
-          fun ~p:(x24 : symbol or_string) ->
-            fun ~attributes:(x26 : PropertyDescriptor.t) ->
+      fun (x25 : 'T t) ->
+        fun ~target:(x21 : 'T) ->
+          fun ~p:(x22 : symbol or_string) ->
+            fun ~attributes:(x24 : PropertyDescriptor.t) ->
               Ojs.bool_of_js
-                (Ojs.call (t_to_js Obj.magic x27) "defineProperty"
-                   [|(Obj.magic x23);(or_string_to_js symbol_to_js x24);(
-                     PropertyDescriptor.t_to_js x26)|])
+                (Ojs.call (t_to_js Obj.magic x25) "defineProperty"
+                   [|(Obj.magic x21);(or_string_to_js symbol_to_js x22);(
+                     PropertyDescriptor.t_to_js x24)|])
     let (deleteProperty : 'T t -> target:'T -> p:symbol or_string -> bool) =
-      fun (x32 : 'T t) ->
-        fun ~target:(x29 : 'T) ->
-          fun ~p:(x30 : symbol or_string) ->
+      fun (x30 : 'T t) ->
+        fun ~target:(x27 : 'T) ->
+          fun ~p:(x28 : symbol or_string) ->
             Ojs.bool_of_js
-              (Ojs.call (t_to_js Obj.magic x32) "deleteProperty"
-                 [|(Obj.magic x29);(or_string_to_js symbol_to_js x30)|])
+              (Ojs.call (t_to_js Obj.magic x30) "deleteProperty"
+                 [|(Obj.magic x27);(or_string_to_js symbol_to_js x28)|])
     let (get_ :
       'T t -> target:'T -> p:symbol or_string -> receiver:any -> any) =
-      fun (x38 : 'T t) ->
-        fun ~target:(x34 : 'T) ->
-          fun ~p:(x35 : symbol or_string) ->
-            fun ~receiver:(x37 : any) ->
+      fun (x36 : 'T t) ->
+        fun ~target:(x32 : 'T) ->
+          fun ~p:(x33 : symbol or_string) ->
+            fun ~receiver:(x35 : any) ->
               any_of_js
-                (Ojs.call (t_to_js Obj.magic x38) "get"
-                   [|(Obj.magic x34);(or_string_to_js symbol_to_js x35);(
-                     any_to_js x37)|])
+                (Ojs.call (t_to_js Obj.magic x36) "get"
+                   [|(Obj.magic x32);(or_string_to_js symbol_to_js x33);(
+                     any_to_js x35)|])
     let (getOwnPropertyDescriptor :
       'T t ->
         target:'T -> p:symbol or_string -> PropertyDescriptor.t or_undefined)
       =
-      fun (x43 : 'T t) ->
-        fun ~target:(x40 : 'T) ->
-          fun ~p:(x41 : symbol or_string) ->
+      fun (x41 : 'T t) ->
+        fun ~target:(x38 : 'T) ->
+          fun ~p:(x39 : symbol or_string) ->
             or_undefined_of_js PropertyDescriptor.t_of_js
-              (Ojs.call (t_to_js Obj.magic x43) "getOwnPropertyDescriptor"
-                 [|(Obj.magic x40);(or_string_to_js symbol_to_js x41)|])
+              (Ojs.call (t_to_js Obj.magic x41) "getOwnPropertyDescriptor"
+                 [|(Obj.magic x38);(or_string_to_js symbol_to_js x39)|])
     let (getPrototypeOf : 'T t -> target:'T -> untyped_object or_null) =
-      fun (x47 : 'T t) ->
-        fun ~target:(x46 : 'T) ->
+      fun (x45 : 'T t) ->
+        fun ~target:(x44 : 'T) ->
           or_null_of_js untyped_object_of_js
-            (Ojs.call (t_to_js Obj.magic x47) "getPrototypeOf"
-               [|(Obj.magic x46)|])
+            (Ojs.call (t_to_js Obj.magic x45) "getPrototypeOf"
+               [|(Obj.magic x44)|])
     let (has : 'T t -> target:'T -> p:symbol or_string -> bool) =
-      fun (x53 : 'T t) ->
-        fun ~target:(x50 : 'T) ->
-          fun ~p:(x51 : symbol or_string) ->
+      fun (x51 : 'T t) ->
+        fun ~target:(x48 : 'T) ->
+          fun ~p:(x49 : symbol or_string) ->
             Ojs.bool_of_js
-              (Ojs.call (t_to_js Obj.magic x53) "has"
-                 [|(Obj.magic x50);(or_string_to_js symbol_to_js x51)|])
+              (Ojs.call (t_to_js Obj.magic x51) "has"
+                 [|(Obj.magic x48);(or_string_to_js symbol_to_js x49)|])
     let (isExtensible : 'T t -> target:'T -> bool) =
-      fun (x56 : 'T t) ->
-        fun ~target:(x55 : 'T) ->
+      fun (x54 : 'T t) ->
+        fun ~target:(x53 : 'T) ->
           Ojs.bool_of_js
-            (Ojs.call (t_to_js Obj.magic x56) "isExtensible"
-               [|(Obj.magic x55)|])
+            (Ojs.call (t_to_js Obj.magic x54) "isExtensible"
+               [|(Obj.magic x53)|])
     let (ownKeys : 'T t -> target:'T -> symbol or_string Array.t) =
-      fun (x59 : 'T t) ->
-        fun ~target:(x58 : 'T) ->
+      fun (x57 : 'T t) ->
+        fun ~target:(x56 : 'T) ->
           Array.t_of_js
-            (fun (x61 : Ojs.t) -> or_string_of_js symbol_of_js x61)
-            (Ojs.call (t_to_js Obj.magic x59) "ownKeys" [|(Obj.magic x58)|])
+            (fun (x59 : Ojs.t) -> or_string_of_js symbol_of_js x59)
+            (Ojs.call (t_to_js Obj.magic x57) "ownKeys" [|(Obj.magic x56)|])
     let (preventExtensions : 'T t -> target:'T -> bool) =
-      fun (x64 : 'T t) ->
-        fun ~target:(x63 : 'T) ->
+      fun (x62 : 'T t) ->
+        fun ~target:(x61 : 'T) ->
           Ojs.bool_of_js
-            (Ojs.call (t_to_js Obj.magic x64) "preventExtensions"
-               [|(Obj.magic x63)|])
+            (Ojs.call (t_to_js Obj.magic x62) "preventExtensions"
+               [|(Obj.magic x61)|])
     let (set_ :
       'T t ->
         target:'T -> p:symbol or_string -> value:any -> receiver:any -> bool)
       =
-      fun (x71 : 'T t) ->
-        fun ~target:(x66 : 'T) ->
-          fun ~p:(x67 : symbol or_string) ->
-            fun ~value:(x69 : any) ->
-              fun ~receiver:(x70 : any) ->
+      fun (x69 : 'T t) ->
+        fun ~target:(x64 : 'T) ->
+          fun ~p:(x65 : symbol or_string) ->
+            fun ~value:(x67 : any) ->
+              fun ~receiver:(x68 : any) ->
                 Ojs.bool_of_js
-                  (Ojs.call (t_to_js Obj.magic x71) "set"
-                     [|(Obj.magic x66);(or_string_to_js symbol_to_js x67);(
-                       any_to_js x69);(any_to_js x70)|])
+                  (Ojs.call (t_to_js Obj.magic x69) "set"
+                     [|(Obj.magic x64);(or_string_to_js symbol_to_js x65);(
+                       any_to_js x67);(any_to_js x68)|])
     let (setPrototypeOf :
       'T t -> target:'T -> v:untyped_object or_null -> bool) =
-      fun (x76 : 'T t) ->
-        fun ~target:(x73 : 'T) ->
-          fun ~v:(x74 : untyped_object or_null) ->
+      fun (x74 : 'T t) ->
+        fun ~target:(x71 : 'T) ->
+          fun ~v:(x72 : untyped_object or_null) ->
             Ojs.bool_of_js
-              (Ojs.call (t_to_js Obj.magic x76) "setPrototypeOf"
-                 [|(Obj.magic x73);(or_null_to_js untyped_object_to_js x74)|])
+              (Ojs.call (t_to_js Obj.magic x74) "setPrototypeOf"
+                 [|(Obj.magic x71);(or_null_to_js untyped_object_to_js x72)|])
   end
 module ProxyConstructor =
   struct
-    type t = _ProxyConstructor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x79 : Ojs.t) -> _ProxyConstructor_of_js x79
-    and t_to_js : t -> Ojs.t =
-      fun (x78 : _ProxyConstructor) -> _ProxyConstructor_to_js x78
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x77 : Ojs.t) -> x77
+    and t_to_js : t -> Ojs.t = fun (x76 : Ojs.t) -> x76
     let (revocable :
-      t -> target:'T -> handler:'T _ProxyHandler -> anonymous_interface_0) =
-      fun (x83 : t) ->
-        fun ~target:(x80 : 'T) ->
-          fun ~handler:(x81 : 'T _ProxyHandler) ->
-            anonymous_interface_0_of_js
-              (Ojs.call (t_to_js x83) "revocable"
-                 [|(Obj.magic x80);(_ProxyHandler_to_js Obj.magic x81)|])
-    let (create : t -> target:'T -> handler:'T _ProxyHandler -> 'T) =
-      fun (x87 : t) ->
-        fun ~target:(x84 : 'T) ->
-          fun ~handler:(x85 : 'T _ProxyHandler) ->
+      t -> target:'T -> handler:'T ProxyHandler.t -> Revocable.t) =
+      fun (x81 : t) ->
+        fun ~target:(x78 : 'T) ->
+          fun ~handler:(x79 : 'T ProxyHandler.t) ->
+            Revocable.t_of_js
+              (Ojs.call (t_to_js x81) "revocable"
+                 [|(Obj.magic x78);(ProxyHandler.t_to_js Obj.magic x79)|])
+    let (create : t -> target:'T -> handler:'T ProxyHandler.t -> 'T) =
+      fun (x85 : t) ->
+        fun ~target:(x82 : 'T) ->
+          fun ~handler:(x83 : 'T ProxyHandler.t) ->
             Obj.magic
-              (Ojs.new_obj (t_to_js x87)
-                 [|(Obj.magic x84);(_ProxyHandler_to_js Obj.magic x85)|])
+              (Ojs.new_obj (t_to_js x85)
+                 [|(Obj.magic x82);(ProxyHandler.t_to_js Obj.magic x83)|])
   end
-let (proxy : _ProxyConstructor) =
-  _ProxyConstructor_of_js (Ojs.get_prop_ascii Ojs.global "Proxy")
+let (proxy : ProxyConstructor.t) =
+  ProxyConstructor.t_of_js (Ojs.get_prop_ascii Ojs.global "Proxy")

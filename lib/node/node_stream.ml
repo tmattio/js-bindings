@@ -222,15 +222,15 @@ module Stream =
             and t_to_js : t -> Ojs.t =
               fun (x24 : stream_internal_ReadableOptions) ->
                 stream_internal_ReadableOptions_to_js x24
-            let (get_highWaterMark : t -> float) =
+            let (get_highWaterMark : t -> int) =
               fun (x26 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x26) "highWaterMark")
-            let (set_highWaterMark : t -> float -> unit) =
+            let (set_highWaterMark : t -> int -> unit) =
               fun (x27 : t) ->
-                fun (x28 : float) ->
+                fun (x28 : int) ->
                   Ojs.set_prop_ascii (t_to_js x27) "highWaterMark"
-                    (Ojs.float_to_js x28)
+                    (Ojs.int_to_js x28)
             let (get_encoding : t -> BufferEncoding.t) =
               fun (x29 : t) ->
                 BufferEncoding.t_of_js
@@ -250,13 +250,13 @@ module Stream =
                   Ojs.set_prop_ascii (t_to_js x33) "objectMode"
                     (Ojs.bool_to_js x34)
             let (read :
-              t -> this:stream_internal_Readable -> size:float -> unit) =
+              t -> this:stream_internal_Readable -> size:int -> unit) =
               fun (x37 : t) ->
                 fun ~this:(x35 : stream_internal_Readable) ->
-                  fun ~size:(x36 : float) ->
+                  fun ~size:(x36 : int) ->
                     ignore
                       (Ojs.call (t_to_js x37) "read"
-                         [|(stream_internal_Readable_to_js x35);(Ojs.float_to_js
+                         [|(stream_internal_Readable_to_js x35);(Ojs.int_to_js
                                                                    x36)|])
             let (destroy :
               t ->
@@ -349,13 +349,13 @@ module Stream =
               fun (x63 : t) ->
                 or_null_of_js Ojs.bool_of_js
                   (Ojs.get_prop_ascii (t_to_js x63) "readableFlowing")
-            let (get_readableHighWaterMark : t -> float) =
+            let (get_readableHighWaterMark : t -> int) =
               fun (x65 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x65) "readableHighWaterMark")
-            let (get_readableLength : t -> float) =
+            let (get_readableLength : t -> int) =
               fun (x66 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x66) "readableLength")
             let (get_readableObjectMode : t -> bool) =
               fun (x67 : t) ->
@@ -389,14 +389,14 @@ module Stream =
                                        x73)|])
                          | None -> ());
                         x72))
-            let (_read : t -> size:float -> unit) =
+            let (_read : t -> size:int -> unit) =
               fun (x75 : t) ->
-                fun ~size:(x74 : float) ->
+                fun ~size:(x74 : int) ->
                   ignore
-                    (Ojs.call (t_to_js x75) "_read" [|(Ojs.float_to_js x74)|])
-            let (read : t -> ?size:float -> unit -> any) =
+                    (Ojs.call (t_to_js x75) "_read" [|(Ojs.int_to_js x74)|])
+            let (read : t -> ?size:int -> unit -> any) =
               fun (x79 : t) ->
-                fun ?size:(x76 : float option) ->
+                fun ?size:(x76 : int option) ->
                   fun () ->
                     any_of_js
                       (let x80 = t_to_js x79 in
@@ -409,7 +409,7 @@ module Stream =
                                   | Some x78 ->
                                       ignore
                                         (Ojs.call x77 "push"
-                                           [|(Ojs.float_to_js x78)|])
+                                           [|(Ojs.int_to_js x78)|])
                                   | None -> ());
                                  x77))|])
             let (setEncoding : t -> encoding:BufferEncoding.t -> t) =
@@ -1232,15 +1232,15 @@ module Stream =
             and t_to_js : t -> Ojs.t =
               fun (x316 : stream_internal_WritableOptions) ->
                 stream_internal_WritableOptions_to_js x316
-            let (get_highWaterMark : t -> float) =
+            let (get_highWaterMark : t -> int) =
               fun (x318 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x318) "highWaterMark")
-            let (set_highWaterMark : t -> float -> unit) =
+            let (set_highWaterMark : t -> int -> unit) =
               fun (x319 : t) ->
-                fun (x320 : float) ->
+                fun (x320 : int) ->
                   Ojs.set_prop_ascii (t_to_js x319) "highWaterMark"
-                    (Ojs.float_to_js x320)
+                    (Ojs.int_to_js x320)
             let (get_decodeStrings : t -> bool) =
               fun (x321 : t) ->
                 Ojs.bool_of_js
@@ -1401,21 +1401,21 @@ module Stream =
               fun (x367 : t) ->
                 Ojs.bool_of_js
                   (Ojs.get_prop_ascii (t_to_js x367) "writableFinished")
-            let (get_writableHighWaterMark : t -> float) =
+            let (get_writableHighWaterMark : t -> int) =
               fun (x368 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x368) "writableHighWaterMark")
-            let (get_writableLength : t -> float) =
+            let (get_writableLength : t -> int) =
               fun (x369 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x369) "writableLength")
             let (get_writableObjectMode : t -> bool) =
               fun (x370 : t) ->
                 Ojs.bool_of_js
                   (Ojs.get_prop_ascii (t_to_js x370) "writableObjectMode")
-            let (get_writableCorked : t -> float) =
+            let (get_writableCorked : t -> int) =
               fun (x371 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x371) "writableCorked")
             let (get_destroyed : t -> bool) =
               fun (x372 : t) ->
@@ -2417,41 +2417,41 @@ module Stream =
                 fun (x644 : bool) ->
                   Ojs.set_prop_ascii (t_to_js x643) "writableObjectMode"
                     (Ojs.bool_to_js x644)
-            let (get_readableHighWaterMark : t -> float) =
+            let (get_readableHighWaterMark : t -> int) =
               fun (x645 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x645) "readableHighWaterMark")
-            let (set_readableHighWaterMark : t -> float -> unit) =
+            let (set_readableHighWaterMark : t -> int -> unit) =
               fun (x646 : t) ->
-                fun (x647 : float) ->
+                fun (x647 : int) ->
                   Ojs.set_prop_ascii (t_to_js x646) "readableHighWaterMark"
-                    (Ojs.float_to_js x647)
-            let (get_writableHighWaterMark : t -> float) =
+                    (Ojs.int_to_js x647)
+            let (get_writableHighWaterMark : t -> int) =
               fun (x648 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x648) "writableHighWaterMark")
-            let (set_writableHighWaterMark : t -> float -> unit) =
+            let (set_writableHighWaterMark : t -> int -> unit) =
               fun (x649 : t) ->
-                fun (x650 : float) ->
+                fun (x650 : int) ->
                   Ojs.set_prop_ascii (t_to_js x649) "writableHighWaterMark"
-                    (Ojs.float_to_js x650)
-            let (get_writableCorked : t -> float) =
+                    (Ojs.int_to_js x650)
+            let (get_writableCorked : t -> int) =
               fun (x651 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x651) "writableCorked")
-            let (set_writableCorked : t -> float -> unit) =
+            let (set_writableCorked : t -> int -> unit) =
               fun (x652 : t) ->
-                fun (x653 : float) ->
+                fun (x653 : int) ->
                   Ojs.set_prop_ascii (t_to_js x652) "writableCorked"
-                    (Ojs.float_to_js x653)
-            let (read :
-              t -> this:stream_internal_Duplex -> size:float -> unit) =
+                    (Ojs.int_to_js x653)
+            let (read : t -> this:stream_internal_Duplex -> size:int -> unit)
+              =
               fun (x656 : t) ->
                 fun ~this:(x654 : stream_internal_Duplex) ->
-                  fun ~size:(x655 : float) ->
+                  fun ~size:(x655 : int) ->
                     ignore
                       (Ojs.call (t_to_js x656) "read"
-                         [|(stream_internal_Duplex_to_js x654);(Ojs.float_to_js
+                         [|(stream_internal_Duplex_to_js x654);(Ojs.int_to_js
                                                                   x655)|])
             let (write :
               t ->
@@ -2580,21 +2580,21 @@ module Stream =
               fun (x690 : t) ->
                 Ojs.bool_of_js
                   (Ojs.get_prop_ascii (t_to_js x690) "writableFinished")
-            let (get_writableHighWaterMark : t -> float) =
+            let (get_writableHighWaterMark : t -> int) =
               fun (x691 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x691) "writableHighWaterMark")
-            let (get_writableLength : t -> float) =
+            let (get_writableLength : t -> int) =
               fun (x692 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x692) "writableLength")
             let (get_writableObjectMode : t -> bool) =
               fun (x693 : t) ->
                 Ojs.bool_of_js
                   (Ojs.get_prop_ascii (t_to_js x693) "writableObjectMode")
-            let (get_writableCorked : t -> float) =
+            let (get_writableCorked : t -> int) =
               fun (x694 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x694) "writableCorked")
             let (create : ?opts:stream_internal_DuplexOptions -> unit -> t) =
               fun ?opts:(x695 : stream_internal_DuplexOptions option) ->
@@ -2907,13 +2907,13 @@ module Stream =
           struct
             include struct include DuplexOptions end
             let (read :
-              t -> this:stream_internal_Transform -> size:float -> unit) =
+              t -> this:stream_internal_Transform -> size:int -> unit) =
               fun (x777 : t) ->
                 fun ~this:(x775 : stream_internal_Transform) ->
-                  fun ~size:(x776 : float) ->
+                  fun ~size:(x776 : int) ->
                     ignore
                       (Ojs.call (t_to_js x777) "read"
-                         [|(stream_internal_Transform_to_js x775);(Ojs.float_to_js
+                         [|(stream_internal_Transform_to_js x775);(Ojs.int_to_js
                                                                     x776)|])
             let (write :
               t ->

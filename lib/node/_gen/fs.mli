@@ -542,7 +542,7 @@ module Make (M: Missing) : sig
     (* import EventEmitter = require('node:events'); *)
     (* import { URL } from 'node:url'; *)
     (* import * as promises from 'node:fs/promises'; *)
-    (* export { promises }; *)
+    
     module PathLike : sig
       type t = fs_PathLike
       val t_to_js: t -> Ojs.t

@@ -41,13 +41,13 @@ module Make (M: Missing) : sig
   open Types
   module[@js.scope "node:constants"] Node_constants : sig
     (* import exp = require('constants'); *)
-    (* export = exp *)
+    
   end
   module[@js.scope "constants"] Constants : sig
     (* import { constants as osConstants, SignalConstants } from 'node:os'; *)
     (* import { constants as cryptoConstants } from 'node:crypto'; *)
     (* import { constants as fsConstants } from 'node:fs'; *)
     val exp: ((* FIXME: unknown type 'typeof osConstants.errno' *)any, (* FIXME: unknown type 'typeof osConstants.priority' *)any, SignalConstants.t_0, (* FIXME: unknown type 'typeof cryptoConstants' *)any, (* FIXME: unknown type 'typeof fsConstants' *)any) intersection5 [@@js.global "exp"]
-    (* export = exp *)
+    
   end
 end

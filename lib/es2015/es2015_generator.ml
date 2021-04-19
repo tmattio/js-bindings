@@ -3,44 +3,6 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
 open Es2015_iterable
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type ('T, 'TReturn, 'TNext) _Generator =
-          [ `Generator of ('T * 'TReturn * 'TNext) ] intf
-        and _GeneratorFunction = [ `GeneratorFunction ] intf
-        and _GeneratorFunctionConstructor =
-          [ `GeneratorFunctionConstructor ] intf
-        let rec _Generator_of_js :
-          'T 'TReturn 'TNext .
-            (Ojs.t -> 'T) ->
-              (Ojs.t -> 'TReturn) ->
-                (Ojs.t -> 'TNext) ->
-                  Ojs.t -> ('T, 'TReturn, 'TNext) _Generator
-          = fun _T -> fun _TReturn -> fun _TNext -> Obj.magic
-        and _Generator_to_js :
-          'T 'TReturn 'TNext .
-            ('T -> Ojs.t) ->
-              ('TReturn -> Ojs.t) ->
-                ('TNext -> Ojs.t) ->
-                  ('T, 'TReturn, 'TNext) _Generator -> Ojs.t
-          = fun _T -> fun _TReturn -> fun _TNext -> Obj.magic
-        and _GeneratorFunction_of_js : Ojs.t -> _GeneratorFunction =
-          Obj.magic
-        and _GeneratorFunction_to_js : _GeneratorFunction -> Ojs.t =
-          Obj.magic
-        and _GeneratorFunctionConstructor_of_js :
-          Ojs.t -> _GeneratorFunctionConstructor = Obj.magic
-        and _GeneratorFunctionConstructor_to_js :
-          _GeneratorFunctionConstructor -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module Generator =
   struct
     include struct include Iterator end
@@ -112,15 +74,14 @@ module Generator =
   end
 module GeneratorFunction =
   struct
-    type t = _GeneratorFunction
-    let rec t_of_js : Ojs.t -> t =
-      fun (x50 : Ojs.t) -> _GeneratorFunction_of_js x50
-    and t_to_js : t -> Ojs.t =
-      fun (x49 : _GeneratorFunction) -> _GeneratorFunction_to_js x49
-    let (create : t -> args:any list -> (unknown, any, unknown) _Generator) =
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x50 : Ojs.t) -> x50
+    and t_to_js : t -> Ojs.t = fun (x49 : Ojs.t) -> x49
+    let (create : t -> args:any list -> (unknown, any, unknown) Generator.t)
+      =
       fun (x54 : t) ->
         fun ~args:(x51 : any list) ->
-          _Generator_of_js unknown_of_js any_of_js unknown_of_js
+          Generator.t_of_js unknown_of_js any_of_js unknown_of_js
             (Ojs.new_obj_arr (t_to_js x54)
                (let x52 =
                   Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
@@ -128,10 +89,10 @@ module GeneratorFunction =
                   (fun (x53 : any) ->
                      ignore (Ojs.call x52 "push" [|(any_to_js x53)|])) x51;
                 x52))
-    let (apply : t -> args:any list -> (unknown, any, unknown) _Generator) =
+    let (apply : t -> args:any list -> (unknown, any, unknown) Generator.t) =
       fun (x61 : t) ->
         fun ~args:(x58 : any list) ->
-          _Generator_of_js unknown_of_js any_of_js unknown_of_js
+          Generator.t_of_js unknown_of_js any_of_js unknown_of_js
             (Ojs.call (t_to_js x61) "apply"
                [|Ojs.null;((let x59 =
                               Ojs.new_obj
@@ -143,19 +104,19 @@ module GeneratorFunction =
                                    (Ojs.call x59 "push" [|(any_to_js x60)|]))
                               x58;
                             x59))|])
-    let (get_length : t -> float) =
+    let (get_length : t -> int) =
       fun (x65 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x65) "length")
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x65) "length")
     let (get_name : t -> string) =
       fun (x66 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x66) "name")
-    let (get_prototype : t -> (unknown, any, unknown) _Generator) =
+    let (get_prototype : t -> (unknown, any, unknown) Generator.t) =
       fun (x67 : t) ->
-        _Generator_of_js unknown_of_js any_of_js unknown_of_js
+        Generator.t_of_js unknown_of_js any_of_js unknown_of_js
           (Ojs.get_prop_ascii (t_to_js x67) "prototype")
-    let (create : string list -> _GeneratorFunction) =
+    let (create : string list -> t) =
       fun (x71 : string list) ->
-        _GeneratorFunction_of_js
+        t_of_js
           (Ojs.new_obj_arr
              (Ojs.get_prop_ascii Ojs.global "GeneratorFunction")
              (let x72 =
@@ -165,9 +126,9 @@ module GeneratorFunction =
                    ignore (Ojs.call x72 "push" [|(Ojs.string_to_js x73)|]))
                 x71;
               x72))
-    let (get_length : unit -> float) =
+    let (get_length : unit -> int) =
       fun () ->
-        Ojs.float_of_js
+        Ojs.int_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "GeneratorFunction")
              "length" [||])
     let (get_name : unit -> string) =
@@ -178,16 +139,13 @@ module GeneratorFunction =
   end
 module GeneratorFunctionConstructor =
   struct
-    type t = _GeneratorFunctionConstructor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x75 : Ojs.t) -> _GeneratorFunctionConstructor_of_js x75
-    and t_to_js : t -> Ojs.t =
-      fun (x74 : _GeneratorFunctionConstructor) ->
-        _GeneratorFunctionConstructor_to_js x74
-    let (create : t -> string list -> _GeneratorFunction) =
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x75 : Ojs.t) -> x75
+    and t_to_js : t -> Ojs.t = fun (x74 : Ojs.t) -> x74
+    let (create : t -> string list -> GeneratorFunction.t) =
       fun (x79 : t) ->
         fun (x76 : string list) ->
-          _GeneratorFunction_of_js
+          GeneratorFunction.t_of_js
             (Ojs.new_obj_arr (t_to_js x79)
                (let x77 =
                   Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
@@ -196,10 +154,10 @@ module GeneratorFunctionConstructor =
                      ignore (Ojs.call x77 "push" [|(Ojs.string_to_js x78)|]))
                   x76;
                 x77))
-    let (apply : t -> string list -> _GeneratorFunction) =
+    let (apply : t -> string list -> GeneratorFunction.t) =
       fun (x83 : t) ->
         fun (x80 : string list) ->
-          _GeneratorFunction_of_js
+          GeneratorFunction.t_of_js
             (Ojs.call (t_to_js x83) "apply"
                [|Ojs.null;((let x81 =
                               Ojs.new_obj
@@ -211,14 +169,14 @@ module GeneratorFunctionConstructor =
                                    (Ojs.call x81 "push"
                                       [|(Ojs.string_to_js x82)|])) x80;
                             x81))|])
-    let (get_length : t -> float) =
+    let (get_length : t -> int) =
       fun (x84 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x84) "length")
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x84) "length")
     let (get_name : t -> string) =
       fun (x85 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x85) "name")
-    let (get_prototype : t -> _GeneratorFunction) =
+    let (get_prototype : t -> GeneratorFunction.t) =
       fun (x86 : t) ->
-        _GeneratorFunction_of_js
+        GeneratorFunction.t_of_js
           (Ojs.get_prop_ascii (t_to_js x86) "prototype")
   end

@@ -1,8 +1,12 @@
+[@@@ocaml.warning "-7-11-32-33-39"]
+
+[@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
+
 open Es2019
 
 module Intl : sig
   module BCP47LanguageTag : sig
-    type t
+    type t = string
 
     val t_to_js : t -> Ojs.t
 
@@ -11,23 +15,24 @@ module Intl : sig
 
   module RelativeTimeFormatUnit : sig
     type t =
-      [ `day
-      | `days
-      | `hour
-      | `hours
-      | `minute
-      | `minutes
-      | `month
-      | `months
-      | `quarter
-      | `quarters
-      | `second
-      | `seconds
-      | `week
-      | `weeks
-      | `year
-      | `years
-      ]
+      ([ `day [@js "day"]
+       | `days [@js "days"]
+       | `hour [@js "hour"]
+       | `hours [@js "hours"]
+       | `minute [@js "minute"]
+       | `minutes [@js "minutes"]
+       | `month [@js "month"]
+       | `months [@js "months"]
+       | `quarter [@js "quarter"]
+       | `quarters [@js "quarters"]
+       | `second [@js "second"]
+       | `seconds [@js "seconds"]
+       | `week [@js "week"]
+       | `weeks [@js "weeks"]
+       | `year [@js "year"]
+       | `years [@js "years"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -36,9 +41,10 @@ module Intl : sig
 
   module RelativeTimeFormatLocaleMatcher : sig
     type t =
-      [ `best_fit
-      | `lookup
-      ]
+      ([ `best_fit [@js "best fit"]
+       | `lookup [@js "lookup"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -47,9 +53,10 @@ module Intl : sig
 
   module RelativeTimeFormatNumeric : sig
     type t =
-      [ `always
-      | `auto
-      ]
+      ([ `always [@js "always"]
+       | `auto [@js "auto"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -58,10 +65,11 @@ module Intl : sig
 
   module RelativeTimeFormatStyle : sig
     type t =
-      [ `long
-      | `narrow
-      | `short
-      ]
+      ([ `long [@js "long"]
+       | `narrow [@js "narrow"]
+       | `short [@js "short"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -70,28 +78,29 @@ module Intl : sig
 
   module Calendar : sig
     type t =
-      [ `buddhist
-      | `chinese
-      | `coptic
-      | `dangi
-      | `ethioaa
-      | `ethiopic
-      | `ethiopic_amete_alem
-      | `gregorian
-      | `gregory
-      | `hebrew
-      | `indian
-      | `islamic
-      | `islamic_civil
-      | `islamic_rgsa
-      | `islamic_tbla
-      | `islamic_umalqura
-      | `islamicc
-      | `iso8601
-      | `japanese
-      | `persian
-      | `roc
-      ]
+      ([ `buddhist [@js "buddhist"]
+       | `chinese [@js "chinese"]
+       | `coptic [@js "coptic"]
+       | `dangi [@js "dangi"]
+       | `ethioaa [@js "ethioaa"]
+       | `ethiopic [@js "ethiopic"]
+       | `ethiopic_amete_alem [@js "ethiopic-amete-alem"]
+       | `gregorian [@js "gregorian"]
+       | `gregory [@js "gregory"]
+       | `hebrew [@js "hebrew"]
+       | `indian [@js "indian"]
+       | `islamic [@js "islamic"]
+       | `islamic_civil [@js "islamic-civil"]
+       | `islamic_rgsa [@js "islamic-rgsa"]
+       | `islamic_tbla [@js "islamic-tbla"]
+       | `islamic_umalqura [@js "islamic-umalqura"]
+       | `islamicc [@js "islamicc"]
+       | `iso8601 [@js "iso8601"]
+       | `japanese [@js "japanese"]
+       | `persian [@js "persian"]
+       | `roc [@js "roc"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -100,95 +109,96 @@ module Intl : sig
 
   module NumberingSystem : sig
     type t =
-      [ `adlm
-      | `ahom
-      | `arab
-      | `arabext
-      | `armn
-      | `armnlow
-      | `bali
-      | `beng
-      | `bhks
-      | `brah
-      | `cakm
-      | `cham
-      | `cyrl
-      | `deva
-      | `diak
-      | `ethi
-      | `finance
-      | `fullwide
-      | `geor
-      | `gong
-      | `gonm
-      | `grek
-      | `greklow
-      | `gujr
-      | `guru
-      | `hanidays
-      | `hanidec
-      | `hans
-      | `hansfin
-      | `hant
-      | `hantfin
-      | `hebr
-      | `hmng
-      | `hmnp
-      | `java
-      | `jpan
-      | `jpanfin
-      | `jpanyear
-      | `kali
-      | `khmr
-      | `knda
-      | `lana
-      | `lanatham
-      | `laoo
-      | `latn
-      | `lepc
-      | `limb
-      | `mathbold
-      | `mathdbl
-      | `mathmono
-      | `mathsanb
-      | `mathsans
-      | `mlym
-      | `modi
-      | `mong
-      | `mroo
-      | `mtei
-      | `mymr
-      | `mymrshan
-      | `mymrtlng
-      | `native
-      | `newa
-      | `nkoo
-      | `olck
-      | `orya
-      | `osma
-      | `rohg
-      | `roman
-      | `romanlow
-      | `saur
-      | `shrd
-      | `sind
-      | `sinh
-      | `sora
-      | `sund
-      | `takr
-      | `talu
-      | `taml
-      | `tamldec
-      | `telu
-      | `thai
-      | `tibt
-      | `tirh
-      | `traditio
-      | `traditional
-      | `vaii
-      | `wara
-      | `wcho
-      ]
+      ([ `adlm [@js "adlm"]
+       | `ahom [@js "ahom"]
+       | `arab [@js "arab"]
+       | `arabext [@js "arabext"]
+       | `armn [@js "armn"]
+       | `armnlow [@js "armnlow"]
+       | `bali [@js "bali"]
+       | `beng [@js "beng"]
+       | `bhks [@js "bhks"]
+       | `brah [@js "brah"]
+       | `cakm [@js "cakm"]
+       | `cham [@js "cham"]
+       | `cyrl [@js "cyrl"]
+       | `deva [@js "deva"]
+       | `diak [@js "diak"]
+       | `ethi [@js "ethi"]
+       | `finance [@js "finance"]
+       | `fullwide [@js "fullwide"]
+       | `geor [@js "geor"]
+       | `gong [@js "gong"]
+       | `gonm [@js "gonm"]
+       | `grek [@js "grek"]
+       | `greklow [@js "greklow"]
+       | `gujr [@js "gujr"]
+       | `guru [@js "guru"]
+       | `hanidays [@js "hanidays"]
+       | `hanidec [@js "hanidec"]
+       | `hans [@js "hans"]
+       | `hansfin [@js "hansfin"]
+       | `hant [@js "hant"]
+       | `hantfin [@js "hantfin"]
+       | `hebr [@js "hebr"]
+       | `hmng [@js "hmng"]
+       | `hmnp [@js "hmnp"]
+       | `java [@js "java"]
+       | `jpan [@js "jpan"]
+       | `jpanfin [@js "jpanfin"]
+       | `jpanyear [@js "jpanyear"]
+       | `kali [@js "kali"]
+       | `khmr [@js "khmr"]
+       | `knda [@js "knda"]
+       | `lana [@js "lana"]
+       | `lanatham [@js "lanatham"]
+       | `laoo [@js "laoo"]
+       | `latn [@js "latn"]
+       | `lepc [@js "lepc"]
+       | `limb [@js "limb"]
+       | `mathbold [@js "mathbold"]
+       | `mathdbl [@js "mathdbl"]
+       | `mathmono [@js "mathmono"]
+       | `mathsanb [@js "mathsanb"]
+       | `mathsans [@js "mathsans"]
+       | `mlym [@js "mlym"]
+       | `modi [@js "modi"]
+       | `mong [@js "mong"]
+       | `mroo [@js "mroo"]
+       | `mtei [@js "mtei"]
+       | `mymr [@js "mymr"]
+       | `mymrshan [@js "mymrshan"]
+       | `mymrtlng [@js "mymrtlng"]
+       | `native [@js "native"]
+       | `newa [@js "newa"]
+       | `nkoo [@js "nkoo"]
+       | `olck [@js "olck"]
+       | `orya [@js "orya"]
+       | `osma [@js "osma"]
+       | `rohg [@js "rohg"]
+       | `roman [@js "roman"]
+       | `romanlow [@js "romanlow"]
+       | `saur [@js "saur"]
+       | `shrd [@js "shrd"]
+       | `sind [@js "sind"]
+       | `sinh [@js "sinh"]
+       | `sora [@js "sora"]
+       | `sund [@js "sund"]
+       | `takr [@js "takr"]
+       | `talu [@js "talu"]
+       | `taml [@js "taml"]
+       | `tamldec [@js "tamldec"]
+       | `telu [@js "telu"]
+       | `thai [@js "thai"]
+       | `tibt [@js "tibt"]
+       | `tirh [@js "tirh"]
+       | `traditio [@js "traditio"]
+       | `traditional [@js "traditional"]
+       | `vaii [@js "vaii"]
+       | `wara [@js "wara"]
+       | `wcho [@js "wcho"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -203,17 +213,21 @@ module Intl : sig
     val t_of_js : Ojs.t -> t
 
     val get_localeMatcher : t -> RelativeTimeFormatLocaleMatcher.t
+      [@@js.get "localeMatcher"]
 
     val set_localeMatcher : t -> RelativeTimeFormatLocaleMatcher.t -> unit
+      [@@js.set "localeMatcher"]
 
-    val get_numeric : t -> RelativeTimeFormatNumeric.t
+    val get_numeric : t -> RelativeTimeFormatNumeric.t [@@js.get "numeric"]
 
     val set_numeric : t -> RelativeTimeFormatNumeric.t -> unit
+      [@@js.set "numeric"]
 
-    val get_style : t -> RelativeTimeFormatStyle.t
+    val get_style : t -> RelativeTimeFormatStyle.t [@@js.get "style"]
 
-    val set_style : t -> RelativeTimeFormatStyle.t -> unit
+    val set_style : t -> RelativeTimeFormatStyle.t -> unit [@@js.set "style"]
   end
+  [@@js.scope "RelativeTimeFormatOptions"]
 
   module ResolvedRelativeTimeFormatOptions : sig
     type t
@@ -222,22 +236,24 @@ module Intl : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_locale : t -> BCP47LanguageTag.t
+    val get_locale : t -> string [@@js.get "locale"]
 
-    val set_locale : t -> BCP47LanguageTag.t -> unit
+    val set_locale : t -> string -> unit [@@js.set "locale"]
 
-    val get_style : t -> RelativeTimeFormatStyle.t
+    val get_style : t -> RelativeTimeFormatStyle.t [@@js.get "style"]
 
-    val set_style : t -> RelativeTimeFormatStyle.t -> unit
+    val set_style : t -> RelativeTimeFormatStyle.t -> unit [@@js.set "style"]
 
-    val get_numeric : t -> RelativeTimeFormatNumeric.t
+    val get_numeric : t -> RelativeTimeFormatNumeric.t [@@js.get "numeric"]
 
     val set_numeric : t -> RelativeTimeFormatNumeric.t -> unit
+      [@@js.set "numeric"]
 
-    val get_numberingSystem : t -> string
+    val get_numberingSystem : t -> string [@@js.get "numberingSystem"]
 
-    val set_numberingSystem : t -> string -> unit
+    val set_numberingSystem : t -> string -> unit [@@js.set "numberingSystem"]
   end
+  [@@js.scope "ResolvedRelativeTimeFormatOptions"]
 
   module RelativeTimeFormatPart : sig
     type t
@@ -246,18 +262,19 @@ module Intl : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_type : t -> string
+    val get_type : t -> string [@@js.get "type"]
 
-    val set_type : t -> string -> unit
+    val set_type : t -> string -> unit [@@js.set "type"]
 
-    val get_value : t -> string
+    val get_value : t -> string [@@js.get "value"]
 
-    val set_value : t -> string -> unit
+    val set_value : t -> string -> unit [@@js.set "value"]
 
-    val get_unit : t -> RelativeTimeFormatUnit.t
+    val get_unit : t -> RelativeTimeFormatUnit.t [@@js.get "unit"]
 
-    val set_unit : t -> RelativeTimeFormatUnit.t -> unit
+    val set_unit : t -> RelativeTimeFormatUnit.t -> unit [@@js.set "unit"]
   end
+  [@@js.scope "RelativeTimeFormatPart"]
 
   module RelativeTimeFormat : sig
     type t
@@ -266,45 +283,74 @@ module Intl : sig
 
     val t_of_js : Ojs.t -> t
 
-    val format : t -> value:float -> unit:RelativeTimeFormatUnit.t -> string
+    val format : t -> value:int -> unit:RelativeTimeFormatUnit.t -> string
+      [@@js.call "format"]
 
     val formatToParts
       :  t
-      -> value:float
+      -> value:int
       -> unit:RelativeTimeFormatUnit.t
       -> RelativeTimeFormatPart.t list
+      [@@js.call "formatToParts"]
 
     val resolvedOptions : t -> ResolvedRelativeTimeFormatOptions.t
+      [@@js.call "resolvedOptions"]
+  end
+  [@@js.scope "RelativeTimeFormat"]
+
+  module AnonymousInterface0 : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val create
+      :  t
+      -> ?locales:(string, string) or_array
+      -> ?options:RelativeTimeFormatOptions.t
+      -> unit
+      -> RelativeTimeFormat.t
+      [@@js.apply_newable]
+
+    val supportedLocalesOf
+      :  t
+      -> locales:(string, string) or_array
+      -> ?options:RelativeTimeFormatOptions.t
+      -> unit
+      -> string list
+      [@@js.call "supportedLocalesOf"]
   end
 
-  (* TODO: Support anonymous interfaces *)
-  (* val relativeTimeFormat : anonymous_interface_0 *)
+  val relativeTimeFormat : AnonymousInterface0.t
+    [@@js.global "RelativeTimeFormat"]
 
   module NumberFormatOptions : sig
     include module type of struct
       include NumberFormatOptions
     end
 
-    val get_compactDisplay : t -> string
+    val get_compactDisplay : t -> string [@@js.get "compactDisplay"]
 
-    val set_compactDisplay : t -> string -> unit
+    val set_compactDisplay : t -> string -> unit [@@js.set "compactDisplay"]
 
-    val get_notation : t -> string
+    val get_notation : t -> string [@@js.get "notation"]
 
-    val set_notation : t -> string -> unit
+    val set_notation : t -> string -> unit [@@js.set "notation"]
 
-    val get_signDisplay : t -> string
+    val get_signDisplay : t -> string [@@js.get "signDisplay"]
 
-    val set_signDisplay : t -> string -> unit
+    val set_signDisplay : t -> string -> unit [@@js.set "signDisplay"]
 
-    val get_unit : t -> string
+    val get_unit : t -> string [@@js.get "unit"]
 
-    val set_unit : t -> string -> unit
+    val set_unit : t -> string -> unit [@@js.set "unit"]
 
-    val get_unitDisplay : t -> string
+    val get_unitDisplay : t -> string [@@js.get "unitDisplay"]
 
-    val set_unitDisplay : t -> string -> unit
+    val set_unitDisplay : t -> string -> unit [@@js.set "unitDisplay"]
   end
+  [@@js.scope "NumberFormatOptions"]
 
   module ResolvedNumberFormatOptions : sig
     type t
@@ -313,26 +359,27 @@ module Intl : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_compactDisplay : t -> string
+    val get_compactDisplay : t -> string [@@js.get "compactDisplay"]
 
-    val set_compactDisplay : t -> string -> unit
+    val set_compactDisplay : t -> string -> unit [@@js.set "compactDisplay"]
 
-    val get_notation : t -> string
+    val get_notation : t -> string [@@js.get "notation"]
 
-    val set_notation : t -> string -> unit
+    val set_notation : t -> string -> unit [@@js.set "notation"]
 
-    val get_signDisplay : t -> string
+    val get_signDisplay : t -> string [@@js.get "signDisplay"]
 
-    val set_signDisplay : t -> string -> unit
+    val set_signDisplay : t -> string -> unit [@@js.set "signDisplay"]
 
-    val get_unit : t -> string
+    val get_unit : t -> string [@@js.get "unit"]
 
-    val set_unit : t -> string -> unit
+    val set_unit : t -> string -> unit [@@js.set "unit"]
 
-    val get_unitDisplay : t -> string
+    val get_unitDisplay : t -> string [@@js.get "unitDisplay"]
 
-    val set_unitDisplay : t -> string -> unit
+    val set_unitDisplay : t -> string -> unit [@@js.set "unitDisplay"]
   end
+  [@@js.scope "ResolvedNumberFormatOptions"]
 
   module DateTimeFormatOptions : sig
     include module type of struct
@@ -347,11 +394,13 @@ module Intl : sig
           | `short [@js "short"]
           ]
          [@js.enum])
+      [@@js.get "dateStyle"]
 
     val set_dateStyle
       :  t
       -> ([ `full | `long | `medium | `short ][@js.enum])
       -> unit
+      [@@js.set "dateStyle"]
 
     val get_timeStyle
       :  t
@@ -361,26 +410,32 @@ module Intl : sig
           | `short [@js "short"]
           ]
          [@js.enum])
+      [@@js.get "timeStyle"]
 
     val set_timeStyle
       :  t
       -> ([ `full | `long | `medium | `short ][@js.enum])
       -> unit
+      [@@js.set "timeStyle"]
 
-    val get_calendar : t -> Calendar.t
+    val get_calendar : t -> Calendar.t [@@js.get "calendar"]
 
-    val set_calendar : t -> Calendar.t -> unit
+    val set_calendar : t -> Calendar.t -> unit [@@js.set "calendar"]
 
     val get_dayPeriod
       :  t
       -> ([ `long [@js "long"] | `narrow [@js "narrow"] | `short [@js "short"] ]
          [@js.enum])
+      [@@js.get "dayPeriod"]
 
     val set_dayPeriod : t -> ([ `long | `narrow | `short ][@js.enum]) -> unit
+      [@@js.set "dayPeriod"]
 
     val get_numberingSystem : t -> NumberingSystem.t
+      [@@js.get "numberingSystem"]
 
     val set_numberingSystem : t -> NumberingSystem.t -> unit
+      [@@js.set "numberingSystem"]
 
     val get_hourCycle
       :  t
@@ -390,20 +445,26 @@ module Intl : sig
           | `h24 [@js "h24"]
           ]
          [@js.enum])
+      [@@js.get "hourCycle"]
 
     val set_hourCycle : t -> ([ `h11 | `h12 | `h23 | `h24 ][@js.enum]) -> unit
+      [@@js.set "hourCycle"]
 
     val get_fractionalSecondDigits
       :  t
       -> ([ `L_n_0 [@js 0] | `L_n_1 [@js 1] | `L_n_2 [@js 2] | `L_n_3 [@js 3] ]
          [@js.enum])
+      [@@js.get "fractionalSecondDigits"]
 
     val set_fractionalSecondDigits
       :  t
       -> ([ `L_n_0 | `L_n_1 | `L_n_2 | `L_n_3 ][@js.enum])
       -> unit
+      [@@js.set "fractionalSecondDigits"]
   end
+  [@@js.scope "DateTimeFormatOptions"]
 end
+[@@js.scope "Intl"]
 
 include module type of struct
   include Intl

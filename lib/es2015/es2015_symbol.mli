@@ -9,12 +9,11 @@ module Symbol : sig
     include Symbol
   end
 
-  (* Constructor *)
+  val for_ : key:string -> symbol [@@js.global "for"]
 
-  val for_ : key:string -> symbol
-
-  val keyFor : sym:symbol -> string or_undefined
+  val keyFor : sym:symbol -> string or_undefined [@@js.global "keyFor"]
 end
+[@@js.scope "Symbol"]
 
 module SymbolConstructor : sig
   type t
@@ -23,13 +22,14 @@ module SymbolConstructor : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_prototype : t -> symbol
+  val get_prototype : t -> Symbol.t [@@js.get "prototype"]
 
-  val apply : t -> ?description:string or_number -> unit -> symbol
+  val apply : t -> ?description:string or_number -> unit -> symbol [@@js.apply]
 
-  val for_ : t -> key:string -> symbol
+  val for_ : t -> key:string -> symbol [@@js.call "for"]
 
-  val keyFor : t -> sym:symbol -> string or_undefined
+  val keyFor : t -> sym:symbol -> string or_undefined [@@js.call "keyFor"]
 end
+[@@js.scope "SymbolConstructor"]
 
-val symbol : SymbolConstructor.t
+val symbol : SymbolConstructor.t [@@js.global "Symbol"]

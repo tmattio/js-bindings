@@ -90,7 +90,7 @@ module Make (M: Missing) : sig
   end
   module[@js.scope "node:events"] Node_events : sig
     (* import EventEmitter = require('events'); *)
-    (* export = EventEmitter *)
+    
   end
   module[@js.scope "events"] Events : sig
     module[@js.scope "EventEmitterOptions"] EventEmitterOptions : sig
@@ -151,7 +151,7 @@ module Make (M: Missing) : sig
     end
     (* import internal = require('events'); *)
     module[@js.scope "EventEmitter"] EventEmitter : sig
-      (* export { internal as EventEmitter }; *)
+      
     end
     module[@js.scope "global"] Global : sig
       module[@js.scope "NodeJS"] NodeJS : sig
@@ -180,6 +180,6 @@ module Make (M: Missing) : sig
         end
       end
     end
-    (* export = EventEmitter *)
+    
   end
 end

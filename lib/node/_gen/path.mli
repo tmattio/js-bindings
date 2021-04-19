@@ -24,7 +24,7 @@ open AnonymousInterfaces
 open Types
 module[@js.scope "node:path"] Node_path : sig
   (* import path = require('path'); *)
-  (* export = path *)
+  
 end
 module[@js.scope "path"] Path : sig
   module[@js.scope "path"] Path : sig
@@ -89,5 +89,5 @@ module[@js.scope "path"] Path : sig
     end
   end
   val path: path_path_PlatformPath [@@js.global "path"]
-  (* export = path *)
+  
 end

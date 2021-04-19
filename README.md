@@ -17,62 +17,8 @@ The bindings don't depend on any PPX (and in particular, they don't depend on `g
 
 ## To do
 
-- [ ] vscode
-- [ ] node
-    - [ ] Create the `on` functions
-    - [ ] Replace `cast` with `include module type of`
-    - [ ] investigate long function variants (`'''''`)
-
-## Notes
-
-gen_js_api:
-- [@@@js.dummy] failure with `gen_js_api`
-- can remove the line `[@@@js.dummy]` from the generated ml file so it can be used without the ppx
-- Support array-like accessors e.g. `[Symbol.iterator]` that should not generate a `.[Symbol.iterator]`
-
-ts2ocaml:
-- intrinsic types not supported
-- Does not generate symbol for `lib.es2015.symbol.d.ts`
-- values should create modules e.g. in `lib.es2015.promise.d.ts`, `declare var Promise: PromiseConstructor;` should generate `module Promise = PromiseConstructor`
-- Generating comments would be amazing
-- What's with all the `t_n`? Almost all of them are equal to `t` and have the same arity.
-- Do not add a labeled argument if there's only one argument, or when all of the other arguments are optional
-- `int` is probably a better default for `number`. Otherwise every accessors is generated with a `float`
-- Sometimes, there are multiple definitions with the same name in a file. `ts2ocaml` should merge them. This would probably help to create bindings spanning multiple files or projects (e.g. es2015 adding functions to string)
-- Use include module type of ... instead of the `cast` functions
-- Error when generating from `node/globals.d.ts`
- 
-    ```
-    Error: error: invalid type alias to 'union<'T | {..}>' on line 149, col 22 of globals.d.ts
-        at /Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:10272:36
-        at /Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:10347:15
-        at go$$8 (/Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:20159:29)
-        at /Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:3387:12
-        at tryPickIndexedAux (/Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:3365:22)
-        at tryPickIndexed (/Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:3383:10)
-        at tryPick (/Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:3386:10)
-        at getLiteralFieldsFromType (/Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:20188:111)
-        at /Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:20491:23
-        at /Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:3070:12
-    ```
-- Error when generating `node/assert.d.ts`
-
-    ```
-    >             (value: any, message?: string | Error): asserts value;
-    /Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:22968
-                            throw new Error("impossible_emitTypeImpl_erased");
-                            ^
-
-    Error: impossible_emitTypeImpl_erased
-        at emitTypeImpl (/Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:22968:33)
-        at /Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:22360:42
-        at /Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:3268:63
-        at fold (/Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:3053:23)
-        at map (/Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:3267:18)
-        at emitTypeImpl (/Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:22359:140)
-        at mapping$$5 (/Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:22548:36)
-        at /Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:3268:63
-        at fold (/Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:3053:23)
-        at map (/Users/tmattio/Workspace/tarides/ts2ocaml/output/ts2ocaml.js:3267:18)
-    ```
-- Can generate variant `type` instead of `type_`
+- [ ] Move `intf/.mli` and `*.ml` to `lib/`
+- [ ] Inline all types
+- [ ] Replace `cast` with `include module type of`
+- [ ] Create the `on` functions
+- [ ] investigate long function variants (`'''''`)

@@ -124,41 +124,39 @@ module AnonymousInterface2 =
       fun (x20 : Ojs.t) -> anonymous_interface_2_of_js x20
     and t_to_js : t -> Ojs.t =
       fun (x19 : anonymous_interface_2) -> anonymous_interface_2_to_js x19
-    let (get_user : t -> float) =
+    let (get_user : t -> int) =
       fun (x21 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x21) "user")
-    let (set_user : t -> float -> unit) =
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x21) "user")
+    let (set_user : t -> int -> unit) =
       fun (x22 : t) ->
-        fun (x23 : float) ->
-          Ojs.set_prop_ascii (t_to_js x22) "user" (Ojs.float_to_js x23)
-    let (get_nice : t -> float) =
+        fun (x23 : int) ->
+          Ojs.set_prop_ascii (t_to_js x22) "user" (Ojs.int_to_js x23)
+    let (get_nice : t -> int) =
       fun (x24 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x24) "nice")
-    let (set_nice : t -> float -> unit) =
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x24) "nice")
+    let (set_nice : t -> int -> unit) =
       fun (x25 : t) ->
-        fun (x26 : float) ->
-          Ojs.set_prop_ascii (t_to_js x25) "nice" (Ojs.float_to_js x26)
-    let (get_sys : t -> float) =
-      fun (x27 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x27) "sys")
-    let (set_sys : t -> float -> unit) =
+        fun (x26 : int) ->
+          Ojs.set_prop_ascii (t_to_js x25) "nice" (Ojs.int_to_js x26)
+    let (get_sys : t -> int) =
+      fun (x27 : t) -> Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x27) "sys")
+    let (set_sys : t -> int -> unit) =
       fun (x28 : t) ->
-        fun (x29 : float) ->
-          Ojs.set_prop_ascii (t_to_js x28) "sys" (Ojs.float_to_js x29)
-    let (get_idle : t -> float) =
+        fun (x29 : int) ->
+          Ojs.set_prop_ascii (t_to_js x28) "sys" (Ojs.int_to_js x29)
+    let (get_idle : t -> int) =
       fun (x30 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x30) "idle")
-    let (set_idle : t -> float -> unit) =
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x30) "idle")
+    let (set_idle : t -> int -> unit) =
       fun (x31 : t) ->
-        fun (x32 : float) ->
-          Ojs.set_prop_ascii (t_to_js x31) "idle" (Ojs.float_to_js x32)
-    let (get_irq : t -> float) =
-      fun (x33 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x33) "irq")
-    let (set_irq : t -> float -> unit) =
+        fun (x32 : int) ->
+          Ojs.set_prop_ascii (t_to_js x31) "idle" (Ojs.int_to_js x32)
+    let (get_irq : t -> int) =
+      fun (x33 : t) -> Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x33) "irq")
+    let (set_irq : t -> int -> unit) =
       fun (x34 : t) ->
-        fun (x35 : float) ->
-          Ojs.set_prop_ascii (t_to_js x34) "irq" (Ojs.float_to_js x35)
+        fun (x35 : int) ->
+          Ojs.set_prop_ascii (t_to_js x34) "irq" (Ojs.int_to_js x35)
   end
 module Os =
   struct
@@ -176,13 +174,13 @@ module Os =
           fun (x39 : t) ->
             fun (x40 : string) ->
               Ojs.set_prop_ascii (t_to_js x39) "model" (Ojs.string_to_js x40)
-        let (get_speed : t -> float) =
+        let (get_speed : t -> int) =
           fun (x41 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x41) "speed")
-        let (set_speed : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x41) "speed")
+        let (set_speed : t -> int -> unit) =
           fun (x42 : t) ->
-            fun (x43 : float) ->
-              Ojs.set_prop_ascii (t_to_js x42) "speed" (Ojs.float_to_js x43)
+            fun (x43 : int) ->
+              Ojs.set_prop_ascii (t_to_js x42) "speed" (Ojs.int_to_js x43)
         let (get_times : t -> anonymous_interface_2) =
           fun (x44 : t) ->
             anonymous_interface_2_of_js
@@ -283,14 +281,13 @@ module Os =
             fun (x78 : [ `IPv6 ]) ->
               Ojs.set_prop_ascii (t_to_js x77) "family"
                 (match x78 with | `IPv6 -> Ojs.string_to_js "IPv6")
-        let (get_scopeid : t -> float) =
+        let (get_scopeid : t -> int) =
           fun (x79 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x79) "scopeid")
-        let (set_scopeid : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x79) "scopeid")
+        let (set_scopeid : t -> int -> unit) =
           fun (x80 : t) ->
-            fun (x81 : float) ->
-              Ojs.set_prop_ascii (t_to_js x80) "scopeid"
-                (Ojs.float_to_js x81)
+            fun (x81 : int) ->
+              Ojs.set_prop_ascii (t_to_js x80) "scopeid" (Ojs.int_to_js x81)
         let (cast : t -> os_NetworkInterfaceBase) =
           fun (x82 : t) -> os_NetworkInterfaceBase_of_js (t_to_js x82)
       end
@@ -312,24 +309,22 @@ module Os =
             fun (x90 : 'T) ->
               Ojs.set_prop_ascii (t_to_js Obj.magic x89) "username"
                 (Obj.magic x90)
-        let (get_uid : 'T t -> float) =
+        let (get_uid : 'T t -> int) =
           fun (x92 : 'T t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x92) "uid")
-        let (set_uid : 'T t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x92) "uid")
+        let (set_uid : 'T t -> int -> unit) =
           fun (x94 : 'T t) ->
-            fun (x95 : float) ->
+            fun (x95 : int) ->
               Ojs.set_prop_ascii (t_to_js Obj.magic x94) "uid"
-                (Ojs.float_to_js x95)
-        let (get_gid : 'T t -> float) =
+                (Ojs.int_to_js x95)
+        let (get_gid : 'T t -> int) =
           fun (x97 : 'T t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x97) "gid")
-        let (set_gid : 'T t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x97) "gid")
+        let (set_gid : 'T t -> int -> unit) =
           fun (x99 : 'T t) ->
-            fun (x100 : float) ->
+            fun (x100 : int) ->
               Ojs.set_prop_ascii (t_to_js Obj.magic x99) "gid"
-                (Ojs.float_to_js x100)
+                (Ojs.int_to_js x100)
         let (get_shell : 'T t -> 'T) =
           fun (x102 : 'T t) ->
             Obj.magic (Ojs.get_prop_ascii (t_to_js Obj.magic x102) "shell")
@@ -358,15 +353,15 @@ module Os =
       end
     let (hostname : unit -> string) =
       fun () -> Ojs.string_of_js (Ojs.call Import.os "hostname" [||])
-    let (loadavg : unit -> float list) =
+    let (loadavg : unit -> int list) =
       fun () ->
-        Ojs.list_of_js Ojs.float_of_js (Ojs.call Import.os "loadavg" [||])
-    let (uptime : unit -> float) =
-      fun () -> Ojs.float_of_js (Ojs.call Import.os "uptime" [||])
-    let (freemem : unit -> float) =
-      fun () -> Ojs.float_of_js (Ojs.call Import.os "freemem" [||])
-    let (totalmem : unit -> float) =
-      fun () -> Ojs.float_of_js (Ojs.call Import.os "totalmem" [||])
+        Ojs.list_of_js Ojs.int_of_js (Ojs.call Import.os "loadavg" [||])
+    let (uptime : unit -> int) =
+      fun () -> Ojs.int_of_js (Ojs.call Import.os "uptime" [||])
+    let (freemem : unit -> int) =
+      fun () -> Ojs.int_of_js (Ojs.call Import.os "freemem" [||])
+    let (totalmem : unit -> int) =
+      fun () -> Ojs.int_of_js (Ojs.call Import.os "totalmem" [||])
     let (cpus : unit -> os_CpuInfo list) =
       fun () ->
         Ojs.list_of_js os_CpuInfo_of_js (Ojs.call Import.os "cpus" [||])
@@ -414,8 +409,8 @@ module Os =
       end
     module Constants =
       struct
-        let (uV_UDP_REUSEADDR : float) =
-          Ojs.float_of_js
+        let (uV_UDP_REUSEADDR : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.os "constants")
                "UV_UDP_REUSEADDR")
         let (signals : os_SignalConstants) =
@@ -424,824 +419,824 @@ module Os =
                "signals")
         module Errno =
           struct
-            let (e2BIG : float) =
-              Ojs.float_of_js
+            let (e2BIG : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "E2BIG")
-            let (eACCES : float) =
-              Ojs.float_of_js
+            let (eACCES : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EACCES")
-            let (eADDRINUSE : float) =
-              Ojs.float_of_js
+            let (eADDRINUSE : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EADDRINUSE")
-            let (eADDRNOTAVAIL : float) =
-              Ojs.float_of_js
+            let (eADDRNOTAVAIL : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EADDRNOTAVAIL")
-            let (eAFNOSUPPORT : float) =
-              Ojs.float_of_js
+            let (eAFNOSUPPORT : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EAFNOSUPPORT")
-            let (eAGAIN : float) =
-              Ojs.float_of_js
+            let (eAGAIN : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EAGAIN")
-            let (eALREADY : float) =
-              Ojs.float_of_js
+            let (eALREADY : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EALREADY")
-            let (eBADF : float) =
-              Ojs.float_of_js
+            let (eBADF : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EBADF")
-            let (eBADMSG : float) =
-              Ojs.float_of_js
+            let (eBADMSG : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EBADMSG")
-            let (eBUSY : float) =
-              Ojs.float_of_js
+            let (eBUSY : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EBUSY")
-            let (eCANCELED : float) =
-              Ojs.float_of_js
+            let (eCANCELED : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ECANCELED")
-            let (eCHILD : float) =
-              Ojs.float_of_js
+            let (eCHILD : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ECHILD")
-            let (eCONNABORTED : float) =
-              Ojs.float_of_js
+            let (eCONNABORTED : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ECONNABORTED")
-            let (eCONNREFUSED : float) =
-              Ojs.float_of_js
+            let (eCONNREFUSED : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ECONNREFUSED")
-            let (eCONNRESET : float) =
-              Ojs.float_of_js
+            let (eCONNRESET : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ECONNRESET")
-            let (eDEADLK : float) =
-              Ojs.float_of_js
+            let (eDEADLK : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EDEADLK")
-            let (eDESTADDRREQ : float) =
-              Ojs.float_of_js
+            let (eDESTADDRREQ : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EDESTADDRREQ")
-            let (eDOM : float) =
-              Ojs.float_of_js
+            let (eDOM : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EDOM")
-            let (eDQUOT : float) =
-              Ojs.float_of_js
+            let (eDQUOT : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EDQUOT")
-            let (eEXIST : float) =
-              Ojs.float_of_js
+            let (eEXIST : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EEXIST")
-            let (eFAULT : float) =
-              Ojs.float_of_js
+            let (eFAULT : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EFAULT")
-            let (eFBIG : float) =
-              Ojs.float_of_js
+            let (eFBIG : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EFBIG")
-            let (eHOSTUNREACH : float) =
-              Ojs.float_of_js
+            let (eHOSTUNREACH : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EHOSTUNREACH")
-            let (eIDRM : float) =
-              Ojs.float_of_js
+            let (eIDRM : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EIDRM")
-            let (eILSEQ : float) =
-              Ojs.float_of_js
+            let (eILSEQ : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EILSEQ")
-            let (eINPROGRESS : float) =
-              Ojs.float_of_js
+            let (eINPROGRESS : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EINPROGRESS")
-            let (eINTR : float) =
-              Ojs.float_of_js
+            let (eINTR : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EINTR")
-            let (eINVAL : float) =
-              Ojs.float_of_js
+            let (eINVAL : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EINVAL")
-            let (eIO : float) =
-              Ojs.float_of_js
+            let (eIO : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EIO")
-            let (eISCONN : float) =
-              Ojs.float_of_js
+            let (eISCONN : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EISCONN")
-            let (eISDIR : float) =
-              Ojs.float_of_js
+            let (eISDIR : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EISDIR")
-            let (eLOOP : float) =
-              Ojs.float_of_js
+            let (eLOOP : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ELOOP")
-            let (eMFILE : float) =
-              Ojs.float_of_js
+            let (eMFILE : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EMFILE")
-            let (eMLINK : float) =
-              Ojs.float_of_js
+            let (eMLINK : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EMLINK")
-            let (eMSGSIZE : float) =
-              Ojs.float_of_js
+            let (eMSGSIZE : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EMSGSIZE")
-            let (eMULTIHOP : float) =
-              Ojs.float_of_js
+            let (eMULTIHOP : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EMULTIHOP")
-            let (eNAMETOOLONG : float) =
-              Ojs.float_of_js
+            let (eNAMETOOLONG : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENAMETOOLONG")
-            let (eNETDOWN : float) =
-              Ojs.float_of_js
+            let (eNETDOWN : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENETDOWN")
-            let (eNETRESET : float) =
-              Ojs.float_of_js
+            let (eNETRESET : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENETRESET")
-            let (eNETUNREACH : float) =
-              Ojs.float_of_js
+            let (eNETUNREACH : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENETUNREACH")
-            let (eNFILE : float) =
-              Ojs.float_of_js
+            let (eNFILE : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENFILE")
-            let (eNOBUFS : float) =
-              Ojs.float_of_js
+            let (eNOBUFS : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENOBUFS")
-            let (eNODATA : float) =
-              Ojs.float_of_js
+            let (eNODATA : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENODATA")
-            let (eNODEV : float) =
-              Ojs.float_of_js
+            let (eNODEV : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENODEV")
-            let (eNOENT : float) =
-              Ojs.float_of_js
+            let (eNOENT : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENOENT")
-            let (eNOEXEC : float) =
-              Ojs.float_of_js
+            let (eNOEXEC : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENOEXEC")
-            let (eNOLCK : float) =
-              Ojs.float_of_js
+            let (eNOLCK : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENOLCK")
-            let (eNOLINK : float) =
-              Ojs.float_of_js
+            let (eNOLINK : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENOLINK")
-            let (eNOMEM : float) =
-              Ojs.float_of_js
+            let (eNOMEM : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENOMEM")
-            let (eNOMSG : float) =
-              Ojs.float_of_js
+            let (eNOMSG : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENOMSG")
-            let (eNOPROTOOPT : float) =
-              Ojs.float_of_js
+            let (eNOPROTOOPT : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENOPROTOOPT")
-            let (eNOSPC : float) =
-              Ojs.float_of_js
+            let (eNOSPC : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENOSPC")
-            let (eNOSR : float) =
-              Ojs.float_of_js
+            let (eNOSR : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENOSR")
-            let (eNOSTR : float) =
-              Ojs.float_of_js
+            let (eNOSTR : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENOSTR")
-            let (eNOSYS : float) =
-              Ojs.float_of_js
+            let (eNOSYS : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENOSYS")
-            let (eNOTCONN : float) =
-              Ojs.float_of_js
+            let (eNOTCONN : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENOTCONN")
-            let (eNOTDIR : float) =
-              Ojs.float_of_js
+            let (eNOTDIR : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENOTDIR")
-            let (eNOTEMPTY : float) =
-              Ojs.float_of_js
+            let (eNOTEMPTY : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENOTEMPTY")
-            let (eNOTSOCK : float) =
-              Ojs.float_of_js
+            let (eNOTSOCK : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENOTSOCK")
-            let (eNOTSUP : float) =
-              Ojs.float_of_js
+            let (eNOTSUP : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENOTSUP")
-            let (eNOTTY : float) =
-              Ojs.float_of_js
+            let (eNOTTY : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENOTTY")
-            let (eNXIO : float) =
-              Ojs.float_of_js
+            let (eNXIO : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ENXIO")
-            let (eOPNOTSUPP : float) =
-              Ojs.float_of_js
+            let (eOPNOTSUPP : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EOPNOTSUPP")
-            let (eOVERFLOW : float) =
-              Ojs.float_of_js
+            let (eOVERFLOW : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EOVERFLOW")
-            let (ePERM : float) =
-              Ojs.float_of_js
+            let (ePERM : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EPERM")
-            let (ePIPE : float) =
-              Ojs.float_of_js
+            let (ePIPE : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EPIPE")
-            let (ePROTO : float) =
-              Ojs.float_of_js
+            let (ePROTO : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EPROTO")
-            let (ePROTONOSUPPORT : float) =
-              Ojs.float_of_js
+            let (ePROTONOSUPPORT : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EPROTONOSUPPORT")
-            let (ePROTOTYPE : float) =
-              Ojs.float_of_js
+            let (ePROTOTYPE : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EPROTOTYPE")
-            let (eRANGE : float) =
-              Ojs.float_of_js
+            let (eRANGE : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ERANGE")
-            let (eROFS : float) =
-              Ojs.float_of_js
+            let (eROFS : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EROFS")
-            let (eSPIPE : float) =
-              Ojs.float_of_js
+            let (eSPIPE : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ESPIPE")
-            let (eSRCH : float) =
-              Ojs.float_of_js
+            let (eSRCH : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ESRCH")
-            let (eSTALE : float) =
-              Ojs.float_of_js
+            let (eSTALE : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ESTALE")
-            let (eTIME : float) =
-              Ojs.float_of_js
+            let (eTIME : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ETIME")
-            let (eTIMEDOUT : float) =
-              Ojs.float_of_js
+            let (eTIMEDOUT : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ETIMEDOUT")
-            let (eTXTBSY : float) =
-              Ojs.float_of_js
+            let (eTXTBSY : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "ETXTBSY")
-            let (eWOULDBLOCK : float) =
-              Ojs.float_of_js
+            let (eWOULDBLOCK : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EWOULDBLOCK")
-            let (eXDEV : float) =
-              Ojs.float_of_js
+            let (eXDEV : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "EXDEV")
-            let (wSAEINTR : float) =
-              Ojs.float_of_js
+            let (wSAEINTR : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEINTR")
-            let (wSAEBADF : float) =
-              Ojs.float_of_js
+            let (wSAEBADF : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEBADF")
-            let (wSAEACCES : float) =
-              Ojs.float_of_js
+            let (wSAEACCES : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEACCES")
-            let (wSAEFAULT : float) =
-              Ojs.float_of_js
+            let (wSAEFAULT : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEFAULT")
-            let (wSAEINVAL : float) =
-              Ojs.float_of_js
+            let (wSAEINVAL : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEINVAL")
-            let (wSAEMFILE : float) =
-              Ojs.float_of_js
+            let (wSAEMFILE : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEMFILE")
-            let (wSAEWOULDBLOCK : float) =
-              Ojs.float_of_js
+            let (wSAEWOULDBLOCK : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEWOULDBLOCK")
-            let (wSAEINPROGRESS : float) =
-              Ojs.float_of_js
+            let (wSAEINPROGRESS : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEINPROGRESS")
-            let (wSAEALREADY : float) =
-              Ojs.float_of_js
+            let (wSAEALREADY : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEALREADY")
-            let (wSAENOTSOCK : float) =
-              Ojs.float_of_js
+            let (wSAENOTSOCK : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAENOTSOCK")
-            let (wSAEDESTADDRREQ : float) =
-              Ojs.float_of_js
+            let (wSAEDESTADDRREQ : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEDESTADDRREQ")
-            let (wSAEMSGSIZE : float) =
-              Ojs.float_of_js
+            let (wSAEMSGSIZE : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEMSGSIZE")
-            let (wSAEPROTOTYPE : float) =
-              Ojs.float_of_js
+            let (wSAEPROTOTYPE : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEPROTOTYPE")
-            let (wSAENOPROTOOPT : float) =
-              Ojs.float_of_js
+            let (wSAENOPROTOOPT : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAENOPROTOOPT")
-            let (wSAEPROTONOSUPPORT : float) =
-              Ojs.float_of_js
+            let (wSAEPROTONOSUPPORT : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEPROTONOSUPPORT")
-            let (wSAESOCKTNOSUPPORT : float) =
-              Ojs.float_of_js
+            let (wSAESOCKTNOSUPPORT : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAESOCKTNOSUPPORT")
-            let (wSAEOPNOTSUPP : float) =
-              Ojs.float_of_js
+            let (wSAEOPNOTSUPP : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEOPNOTSUPP")
-            let (wSAEPFNOSUPPORT : float) =
-              Ojs.float_of_js
+            let (wSAEPFNOSUPPORT : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEPFNOSUPPORT")
-            let (wSAEAFNOSUPPORT : float) =
-              Ojs.float_of_js
+            let (wSAEAFNOSUPPORT : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEAFNOSUPPORT")
-            let (wSAEADDRINUSE : float) =
-              Ojs.float_of_js
+            let (wSAEADDRINUSE : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEADDRINUSE")
-            let (wSAEADDRNOTAVAIL : float) =
-              Ojs.float_of_js
+            let (wSAEADDRNOTAVAIL : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEADDRNOTAVAIL")
-            let (wSAENETDOWN : float) =
-              Ojs.float_of_js
+            let (wSAENETDOWN : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAENETDOWN")
-            let (wSAENETUNREACH : float) =
-              Ojs.float_of_js
+            let (wSAENETUNREACH : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAENETUNREACH")
-            let (wSAENETRESET : float) =
-              Ojs.float_of_js
+            let (wSAENETRESET : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAENETRESET")
-            let (wSAECONNABORTED : float) =
-              Ojs.float_of_js
+            let (wSAECONNABORTED : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAECONNABORTED")
-            let (wSAECONNRESET : float) =
-              Ojs.float_of_js
+            let (wSAECONNRESET : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAECONNRESET")
-            let (wSAENOBUFS : float) =
-              Ojs.float_of_js
+            let (wSAENOBUFS : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAENOBUFS")
-            let (wSAEISCONN : float) =
-              Ojs.float_of_js
+            let (wSAEISCONN : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEISCONN")
-            let (wSAENOTCONN : float) =
-              Ojs.float_of_js
+            let (wSAENOTCONN : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAENOTCONN")
-            let (wSAESHUTDOWN : float) =
-              Ojs.float_of_js
+            let (wSAESHUTDOWN : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAESHUTDOWN")
-            let (wSAETOOMANYREFS : float) =
-              Ojs.float_of_js
+            let (wSAETOOMANYREFS : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAETOOMANYREFS")
-            let (wSAETIMEDOUT : float) =
-              Ojs.float_of_js
+            let (wSAETIMEDOUT : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAETIMEDOUT")
-            let (wSAECONNREFUSED : float) =
-              Ojs.float_of_js
+            let (wSAECONNREFUSED : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAECONNREFUSED")
-            let (wSAELOOP : float) =
-              Ojs.float_of_js
+            let (wSAELOOP : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAELOOP")
-            let (wSAENAMETOOLONG : float) =
-              Ojs.float_of_js
+            let (wSAENAMETOOLONG : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAENAMETOOLONG")
-            let (wSAEHOSTDOWN : float) =
-              Ojs.float_of_js
+            let (wSAEHOSTDOWN : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEHOSTDOWN")
-            let (wSAEHOSTUNREACH : float) =
-              Ojs.float_of_js
+            let (wSAEHOSTUNREACH : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEHOSTUNREACH")
-            let (wSAENOTEMPTY : float) =
-              Ojs.float_of_js
+            let (wSAENOTEMPTY : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAENOTEMPTY")
-            let (wSAEPROCLIM : float) =
-              Ojs.float_of_js
+            let (wSAEPROCLIM : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEPROCLIM")
-            let (wSAEUSERS : float) =
-              Ojs.float_of_js
+            let (wSAEUSERS : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEUSERS")
-            let (wSAEDQUOT : float) =
-              Ojs.float_of_js
+            let (wSAEDQUOT : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEDQUOT")
-            let (wSAESTALE : float) =
-              Ojs.float_of_js
+            let (wSAESTALE : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAESTALE")
-            let (wSAEREMOTE : float) =
-              Ojs.float_of_js
+            let (wSAEREMOTE : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEREMOTE")
-            let (wSASYSNOTREADY : float) =
-              Ojs.float_of_js
+            let (wSASYSNOTREADY : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSASYSNOTREADY")
-            let (wSAVERNOTSUPPORTED : float) =
-              Ojs.float_of_js
+            let (wSAVERNOTSUPPORTED : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAVERNOTSUPPORTED")
-            let (wSANOTINITIALISED : float) =
-              Ojs.float_of_js
+            let (wSANOTINITIALISED : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSANOTINITIALISED")
-            let (wSAEDISCON : float) =
-              Ojs.float_of_js
+            let (wSAEDISCON : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEDISCON")
-            let (wSAENOMORE : float) =
-              Ojs.float_of_js
+            let (wSAENOMORE : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAENOMORE")
-            let (wSAECANCELLED : float) =
-              Ojs.float_of_js
+            let (wSAECANCELLED : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAECANCELLED")
-            let (wSAEINVALIDPROCTABLE : float) =
-              Ojs.float_of_js
+            let (wSAEINVALIDPROCTABLE : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEINVALIDPROCTABLE")
-            let (wSAEINVALIDPROVIDER : float) =
-              Ojs.float_of_js
+            let (wSAEINVALIDPROVIDER : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEINVALIDPROVIDER")
-            let (wSAEPROVIDERFAILEDINIT : float) =
-              Ojs.float_of_js
+            let (wSAEPROVIDERFAILEDINIT : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSAEPROVIDERFAILEDINIT")
-            let (wSASYSCALLFAILURE : float) =
-              Ojs.float_of_js
+            let (wSASYSCALLFAILURE : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSASYSCALLFAILURE")
-            let (wSASERVICE_NOT_FOUND : float) =
-              Ojs.float_of_js
+            let (wSASERVICE_NOT_FOUND : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSASERVICE_NOT_FOUND")
-            let (wSATYPE_NOT_FOUND : float) =
-              Ojs.float_of_js
+            let (wSATYPE_NOT_FOUND : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSATYPE_NOT_FOUND")
-            let (wSA_E_NO_MORE : float) =
-              Ojs.float_of_js
+            let (wSA_E_NO_MORE : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSA_E_NO_MORE")
-            let (wSA_E_CANCELLED : float) =
-              Ojs.float_of_js
+            let (wSA_E_CANCELLED : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
                    "WSA_E_CANCELLED")
-            let (wSAEREFUSED : float) =
-              Ojs.float_of_js
+            let (wSAEREFUSED : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "errno")
@@ -1249,38 +1244,38 @@ module Os =
           end
         module Priority =
           struct
-            let (pRIORITY_LOW : float) =
-              Ojs.float_of_js
+            let (pRIORITY_LOW : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "priority")
                    "PRIORITY_LOW")
-            let (pRIORITY_BELOW_NORMAL : float) =
-              Ojs.float_of_js
+            let (pRIORITY_BELOW_NORMAL : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "priority")
                    "PRIORITY_BELOW_NORMAL")
-            let (pRIORITY_NORMAL : float) =
-              Ojs.float_of_js
+            let (pRIORITY_NORMAL : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "priority")
                    "PRIORITY_NORMAL")
-            let (pRIORITY_ABOVE_NORMAL : float) =
-              Ojs.float_of_js
+            let (pRIORITY_ABOVE_NORMAL : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "priority")
                    "PRIORITY_ABOVE_NORMAL")
-            let (pRIORITY_HIGH : float) =
-              Ojs.float_of_js
+            let (pRIORITY_HIGH : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "priority")
                    "PRIORITY_HIGH")
-            let (pRIORITY_HIGHEST : float) =
-              Ojs.float_of_js
+            let (pRIORITY_HIGHEST : int) =
+              Ojs.int_of_js
                 (Ojs.get_prop_ascii
                    (Ojs.get_prop_ascii
                       (Ojs.get_prop_ascii Import.os "constants") "priority")
@@ -1306,10 +1301,10 @@ module Os =
         | "BE" -> `BE
         | "LE" -> `LE
         | _ -> assert false
-    let (getPriority : ?pid:float -> unit -> float) =
-      fun ?pid:(x128 : float option) ->
+    let (getPriority : ?pid:int -> unit -> int) =
+      fun ?pid:(x128 : int option) ->
         fun () ->
-          Ojs.float_of_js
+          Ojs.int_of_js
             (let x131 = Import.os in
              Ojs.call (Ojs.get_prop_ascii x131 "getPriority") "apply"
                [|x131;((let x129 =
@@ -1318,17 +1313,16 @@ module Os =
                         (match x128 with
                          | Some x130 ->
                              ignore
-                               (Ojs.call x129 "push"
-                                  [|(Ojs.float_to_js x130)|])
+                               (Ojs.call x129 "push" [|(Ojs.int_to_js x130)|])
                          | None -> ());
                         x129))|])
-    let (setPriority : priority:float -> unit) =
-      fun ~priority:(x132 : float) ->
-        ignore (Ojs.call Import.os "setPriority" [|(Ojs.float_to_js x132)|])
-    let (setPriority : pid:float -> priority:float -> unit) =
-      fun ~pid:(x133 : float) ->
-        fun ~priority:(x134 : float) ->
+    let (setPriority : priority:int -> unit) =
+      fun ~priority:(x132 : int) ->
+        ignore (Ojs.call Import.os "setPriority" [|(Ojs.int_to_js x132)|])
+    let (setPriority : pid:int -> priority:int -> unit) =
+      fun ~pid:(x133 : int) ->
+        fun ~priority:(x134 : int) ->
           ignore
             (Ojs.call Import.os "setPriority"
-               [|(Ojs.float_to_js x133);(Ojs.float_to_js x134)|])
+               [|(Ojs.int_to_js x133);(Ojs.int_to_js x134)|])
   end

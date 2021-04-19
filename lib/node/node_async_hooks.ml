@@ -2,301 +2,232 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
-module Internal =
-  struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type async_hooks_AsyncHook = [ `Async_hooks_AsyncHook ] intf
-        and 'T async_hooks_AsyncLocalStorage =
-          [ `Async_hooks_AsyncLocalStorage of 'T ] intf
-        and async_hooks_AsyncResource = [ `Async_hooks_AsyncResource ] intf
-        and async_hooks_AsyncResourceOptions =
-          [ `Async_hooks_AsyncResourceOptions ] intf
-        and async_hooks_HookCallbacks = [ `Async_hooks_HookCallbacks ] intf
-        let rec async_hooks_AsyncHook_of_js : Ojs.t -> async_hooks_AsyncHook
-          = Obj.magic
-        and async_hooks_AsyncHook_to_js : async_hooks_AsyncHook -> Ojs.t =
-          Obj.magic
-        and async_hooks_AsyncLocalStorage_of_js :
-          'T . (Ojs.t -> 'T) -> Ojs.t -> 'T async_hooks_AsyncLocalStorage =
-          fun _T -> Obj.magic
-        and async_hooks_AsyncLocalStorage_to_js :
-          'T . ('T -> Ojs.t) -> 'T async_hooks_AsyncLocalStorage -> Ojs.t =
-          fun _T -> Obj.magic
-        and async_hooks_AsyncResource_of_js :
-          Ojs.t -> async_hooks_AsyncResource = Obj.magic
-        and async_hooks_AsyncResource_to_js :
-          async_hooks_AsyncResource -> Ojs.t = Obj.magic
-        and async_hooks_AsyncResourceOptions_of_js :
-          Ojs.t -> async_hooks_AsyncResourceOptions = Obj.magic
-        and async_hooks_AsyncResourceOptions_to_js :
-          async_hooks_AsyncResourceOptions -> Ojs.t = Obj.magic
-        and async_hooks_HookCallbacks_of_js :
-          Ojs.t -> async_hooks_HookCallbacks = Obj.magic
-        and async_hooks_HookCallbacks_to_js :
-          async_hooks_HookCallbacks -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
-module AnonymousInterface0 =
-  struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> anonymous_interface_0_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : anonymous_interface_0) -> anonymous_interface_0_to_js x1
-    let (get_asyncResource : t -> async_hooks_AsyncResource) =
-      fun (x3 : t) ->
-        async_hooks_AsyncResource_of_js
-          (Ojs.get_prop_ascii (t_to_js x3) "asyncResource")
-    let (set_asyncResource : t -> async_hooks_AsyncResource -> unit) =
-      fun (x4 : t) ->
-        fun (x5 : async_hooks_AsyncResource) ->
-          Ojs.set_prop_ascii (t_to_js x4) "asyncResource"
-            (async_hooks_AsyncResource_to_js x5)
-  end
 module Async_hooks =
   struct
-    let (executionAsyncId : unit -> float) =
+    let (executionAsyncId : unit -> int) =
       fun () ->
-        Ojs.float_of_js (Ojs.call Import.async_hooks "executionAsyncId" [||])
+        Ojs.int_of_js (Ojs.call Import.async_hooks "executionAsyncId" [||])
     let (executionAsyncResource : unit -> untyped_object) =
       fun () ->
         untyped_object_of_js
           (Ojs.call Import.async_hooks "executionAsyncResource" [||])
-    let (triggerAsyncId : unit -> float) =
+    let (triggerAsyncId : unit -> int) =
       fun () ->
-        Ojs.float_of_js (Ojs.call Import.async_hooks "triggerAsyncId" [||])
+        Ojs.int_of_js (Ojs.call Import.async_hooks "triggerAsyncId" [||])
     module HookCallbacks =
       struct
-        type t = async_hooks_HookCallbacks
-        let rec t_of_js : Ojs.t -> t =
-          fun (x7 : Ojs.t) -> async_hooks_HookCallbacks_of_js x7
-        and t_to_js : t -> Ojs.t =
-          fun (x6 : async_hooks_HookCallbacks) ->
-            async_hooks_HookCallbacks_to_js x6
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+        and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
         let (init :
           t ->
-            asyncId:float ->
+            asyncId:int ->
               type_:string ->
-                triggerAsyncId:float -> resource:untyped_object -> unit)
+                triggerAsyncId:int -> resource:untyped_object -> unit)
           =
-          fun (x12 : t) ->
-            fun ~asyncId:(x8 : float) ->
-              fun ~type_:(x9 : string) ->
-                fun ~triggerAsyncId:(x10 : float) ->
-                  fun ~resource:(x11 : untyped_object) ->
+          fun (x7 : t) ->
+            fun ~asyncId:(x3 : int) ->
+              fun ~type_:(x4 : string) ->
+                fun ~triggerAsyncId:(x5 : int) ->
+                  fun ~resource:(x6 : untyped_object) ->
                     ignore
-                      (Ojs.call (t_to_js x12) "init"
-                         [|(Ojs.float_to_js x8);(Ojs.string_to_js x9);(
-                           Ojs.float_to_js x10);(untyped_object_to_js x11)|])
-        let (before : t -> asyncId:float -> unit) =
-          fun (x14 : t) ->
-            fun ~asyncId:(x13 : float) ->
+                      (Ojs.call (t_to_js x7) "init"
+                         [|(Ojs.int_to_js x3);(Ojs.string_to_js x4);(
+                           Ojs.int_to_js x5);(untyped_object_to_js x6)|])
+        let (before : t -> asyncId:int -> unit) =
+          fun (x9 : t) ->
+            fun ~asyncId:(x8 : int) ->
+              ignore (Ojs.call (t_to_js x9) "before" [|(Ojs.int_to_js x8)|])
+        let (after : t -> asyncId:int -> unit) =
+          fun (x11 : t) ->
+            fun ~asyncId:(x10 : int) ->
+              ignore (Ojs.call (t_to_js x11) "after" [|(Ojs.int_to_js x10)|])
+        let (promiseResolve : t -> asyncId:int -> unit) =
+          fun (x13 : t) ->
+            fun ~asyncId:(x12 : int) ->
               ignore
-                (Ojs.call (t_to_js x14) "before" [|(Ojs.float_to_js x13)|])
-        let (after : t -> asyncId:float -> unit) =
-          fun (x16 : t) ->
-            fun ~asyncId:(x15 : float) ->
+                (Ojs.call (t_to_js x13) "promiseResolve"
+                   [|(Ojs.int_to_js x12)|])
+        let (destroy : t -> asyncId:int -> unit) =
+          fun (x15 : t) ->
+            fun ~asyncId:(x14 : int) ->
               ignore
-                (Ojs.call (t_to_js x16) "after" [|(Ojs.float_to_js x15)|])
-        let (promiseResolve : t -> asyncId:float -> unit) =
-          fun (x18 : t) ->
-            fun ~asyncId:(x17 : float) ->
-              ignore
-                (Ojs.call (t_to_js x18) "promiseResolve"
-                   [|(Ojs.float_to_js x17)|])
-        let (destroy : t -> asyncId:float -> unit) =
-          fun (x20 : t) ->
-            fun ~asyncId:(x19 : float) ->
-              ignore
-                (Ojs.call (t_to_js x20) "destroy" [|(Ojs.float_to_js x19)|])
+                (Ojs.call (t_to_js x15) "destroy" [|(Ojs.int_to_js x14)|])
       end
     module AsyncHook =
       struct
-        type t = async_hooks_AsyncHook
-        let rec t_of_js : Ojs.t -> t =
-          fun (x22 : Ojs.t) -> async_hooks_AsyncHook_of_js x22
-        and t_to_js : t -> Ojs.t =
-          fun (x21 : async_hooks_AsyncHook) ->
-            async_hooks_AsyncHook_to_js x21
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x17 : Ojs.t) -> x17
+        and t_to_js : t -> Ojs.t = fun (x16 : Ojs.t) -> x16
         let (enable : t -> t) =
-          fun (x23 : t) -> t_of_js (Ojs.call (t_to_js x23) "enable" [||])
+          fun (x18 : t) -> t_of_js (Ojs.call (t_to_js x18) "enable" [||])
         let (disable : t -> t) =
-          fun (x24 : t) -> t_of_js (Ojs.call (t_to_js x24) "disable" [||])
+          fun (x19 : t) -> t_of_js (Ojs.call (t_to_js x19) "disable" [||])
       end
-    let (createHook :
-      options:async_hooks_HookCallbacks -> async_hooks_AsyncHook) =
-      fun ~options:(x25 : async_hooks_HookCallbacks) ->
-        async_hooks_AsyncHook_of_js
+    let (createHook : options:HookCallbacks.t -> AsyncHook.t) =
+      fun ~options:(x20 : HookCallbacks.t) ->
+        AsyncHook.t_of_js
           (Ojs.call Import.async_hooks "createHook"
-             [|(async_hooks_HookCallbacks_to_js x25)|])
+             [|(HookCallbacks.t_to_js x20)|])
     module AsyncResourceOptions =
       struct
-        type t = async_hooks_AsyncResourceOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x27 : Ojs.t) -> async_hooks_AsyncResourceOptions_of_js x27
-        and t_to_js : t -> Ojs.t =
-          fun (x26 : async_hooks_AsyncResourceOptions) ->
-            async_hooks_AsyncResourceOptions_to_js x26
-        let (get_triggerAsyncId : t -> float) =
-          fun (x28 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x28) "triggerAsyncId")
-        let (set_triggerAsyncId : t -> float -> unit) =
-          fun (x29 : t) ->
-            fun (x30 : float) ->
-              Ojs.set_prop_ascii (t_to_js x29) "triggerAsyncId"
-                (Ojs.float_to_js x30)
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x22 : Ojs.t) -> x22
+        and t_to_js : t -> Ojs.t = fun (x21 : Ojs.t) -> x21
+        let (get_triggerAsyncId : t -> int) =
+          fun (x23 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x23) "triggerAsyncId")
+        let (set_triggerAsyncId : t -> int -> unit) =
+          fun (x24 : t) ->
+            fun (x25 : int) ->
+              Ojs.set_prop_ascii (t_to_js x24) "triggerAsyncId"
+                (Ojs.int_to_js x25)
         let (get_requireManualDestroy : t -> bool) =
-          fun (x31 : t) ->
+          fun (x26 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x31) "requireManualDestroy")
+              (Ojs.get_prop_ascii (t_to_js x26) "requireManualDestroy")
         let (set_requireManualDestroy : t -> bool -> unit) =
-          fun (x32 : t) ->
-            fun (x33 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x32) "requireManualDestroy"
-                (Ojs.bool_to_js x33)
+          fun (x27 : t) ->
+            fun (x28 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x27) "requireManualDestroy"
+                (Ojs.bool_to_js x28)
       end
     module AsyncResource =
       struct
-        type t = async_hooks_AsyncResource
-        let rec t_of_js : Ojs.t -> t =
-          fun (x35 : Ojs.t) -> async_hooks_AsyncResource_of_js x35
-        and t_to_js : t -> Ojs.t =
-          fun (x34 : async_hooks_AsyncResource) ->
-            async_hooks_AsyncResource_to_js x34
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x30 : Ojs.t) -> x30
+        and t_to_js : t -> Ojs.t = fun (x29 : Ojs.t) -> x29
         let (create :
           type_:string ->
-            ?triggerAsyncId:async_hooks_AsyncResourceOptions or_number ->
-              unit -> t)
+            ?triggerAsyncId:AsyncResourceOptions.t or_number -> unit -> t)
           =
-          fun ~type_:(x36 : string) ->
+          fun ~type_:(x31 : string) ->
             fun
-              ?triggerAsyncId:(x37 :
-                                async_hooks_AsyncResourceOptions or_number
-                                  option)
+              ?triggerAsyncId:(x32 : AsyncResourceOptions.t or_number option)
               ->
               fun () ->
                 t_of_js
                   (Ojs.new_obj_arr
                      (Ojs.get_prop_ascii Import.async_hooks "AsyncResource")
-                     (let x38 =
+                     (let x33 =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
-                      ignore (Ojs.call x38 "push" [|(Ojs.string_to_js x36)|]);
-                      (match x37 with
-                       | Some x39 ->
+                      ignore (Ojs.call x33 "push" [|(Ojs.string_to_js x31)|]);
+                      (match x32 with
+                       | Some x34 ->
                            ignore
-                             (Ojs.call x38 "push"
+                             (Ojs.call x33 "push"
                                 [|(or_number_to_js
-                                     async_hooks_AsyncResourceOptions_to_js
-                                     x39)|])
+                                     AsyncResourceOptions.t_to_js x34)|])
                        | None -> ());
-                      x38))
+                      x33))
+        module AnonymousInterface0 =
+          struct
+            type async_resource = t
+            let rec async_resource_of_js : Ojs.t -> async_resource =
+              fun (x37 : Ojs.t) -> t_of_js x37
+            and async_resource_to_js : async_resource -> Ojs.t =
+              fun (x36 : t) -> t_to_js x36
+            type t = Ojs.t
+            let rec t_of_js : Ojs.t -> t = fun (x39 : Ojs.t) -> x39
+            and t_to_js : t -> Ojs.t = fun (x38 : Ojs.t) -> x38
+            let (get_asyncResource : t -> async_resource) =
+              fun (x40 : t) ->
+                async_resource_of_js
+                  (Ojs.get_prop_ascii (t_to_js x40) "asyncResource")
+            let (set_asyncResource : t -> async_resource -> unit) =
+              fun (x41 : t) ->
+                fun (x42 : async_resource) ->
+                  Ojs.set_prop_ascii (t_to_js x41) "asyncResource"
+                    (async_resource_to_js x42)
+          end
         let (bind :
           fn:'Func ->
             ?type_:string ->
-              unit -> ('Func, anonymous_interface_0) intersection2)
+              unit -> ('Func, AnonymousInterface0.t) intersection2)
           =
-          fun ~fn:(x41 : 'Func) ->
-            fun ?type_:(x42 : string option) ->
+          fun ~fn:(x43 : 'Func) ->
+            fun ?type_:(x44 : string option) ->
               fun () ->
-                intersection2_of_js Obj.magic anonymous_interface_0_of_js
-                  (let x45 =
+                intersection2_of_js Obj.magic AnonymousInterface0.t_of_js
+                  (let x47 =
                      Ojs.get_prop_ascii Import.async_hooks "AsyncResource" in
-                   Ojs.call (Ojs.get_prop_ascii x45 "bind") "apply"
-                     [|x45;((let x43 =
+                   Ojs.call (Ojs.get_prop_ascii x47 "bind") "apply"
+                     [|x47;((let x45 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
-                             ignore (Ojs.call x43 "push" [|(Obj.magic x41)|]);
-                             (match x42 with
-                              | Some x44 ->
+                             ignore (Ojs.call x45 "push" [|(Obj.magic x43)|]);
+                             (match x44 with
+                              | Some x46 ->
                                   ignore
-                                    (Ojs.call x43 "push"
-                                       [|(Ojs.string_to_js x44)|])
+                                    (Ojs.call x45 "push"
+                                       [|(Ojs.string_to_js x46)|])
                               | None -> ());
-                             x43))|])
+                             x45))|])
         let (bind' :
-          t -> fn:'Func -> ('Func, anonymous_interface_0) intersection2) =
-          fun (x49 : t) ->
-            fun ~fn:(x48 : 'Func) ->
-              intersection2_of_js Obj.magic anonymous_interface_0_of_js
-                (Ojs.call (t_to_js x49) "bind" [|(Obj.magic x48)|])
+          t -> fn:'Func -> ('Func, AnonymousInterface0.t) intersection2) =
+          fun (x51 : t) ->
+            fun ~fn:(x50 : 'Func) ->
+              intersection2_of_js Obj.magic AnonymousInterface0.t_of_js
+                (Ojs.call (t_to_js x51) "bind" [|(Obj.magic x50)|])
         let (runInAsyncScope :
           t ->
             fn:(this:'This -> args:any list -> 'Result) ->
               ?thisArg:'This -> args:any list -> 'Result)
           =
-          fun (x60 : t) ->
-            fun ~fn:(x52 : this:'This -> args:any list -> 'Result) ->
-              fun ?thisArg:(x53 : 'This option) ->
-                fun ~args:(x54 : any list) ->
+          fun (x62 : t) ->
+            fun ~fn:(x54 : this:'This -> args:any list -> 'Result) ->
+              fun ?thisArg:(x55 : 'This option) ->
+                fun ~args:(x56 : any list) ->
                   Obj.magic
-                    (let x61 = t_to_js x60 in
-                     Ojs.call (Ojs.get_prop_ascii x61 "runInAsyncScope")
+                    (let x63 = t_to_js x62 in
+                     Ojs.call (Ojs.get_prop_ascii x63 "runInAsyncScope")
                        "apply"
-                       [|x61;((let x55 =
+                       [|x63;((let x57 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x55 "push"
+                                 (Ojs.call x57 "push"
                                     [|(Ojs.fun_to_js_args
-                                         (fun (x58 : _) ->
+                                         (fun (x60 : _) ->
                                             Obj.magic
-                                              (x52
+                                              (x54
                                                  ~this:(Obj.magic
-                                                          (Ojs.array_get x58
+                                                          (Ojs.array_get x60
                                                              0))
                                                  ~args:(Ojs.list_of_js_from
-                                                          any_of_js x58 1))))|]);
-                               (match x53 with
-                                | Some x57 ->
+                                                          any_of_js x60 1))))|]);
+                               (match x55 with
+                                | Some x59 ->
                                     ignore
-                                      (Ojs.call x55 "push"
-                                         [|(Obj.magic x57)|])
+                                      (Ojs.call x57 "push"
+                                         [|(Obj.magic x59)|])
                                 | None -> ());
                                List.iter
-                                 (fun (x56 : any) ->
+                                 (fun (x58 : any) ->
                                     ignore
-                                      (Ojs.call x55 "push"
-                                         [|(any_to_js x56)|])) x54;
-                               x55))|])
+                                      (Ojs.call x57 "push"
+                                         [|(any_to_js x58)|])) x56;
+                               x57))|])
         let (emitDestroy : t -> t) =
-          fun (x62 : t) ->
-            t_of_js (Ojs.call (t_to_js x62) "emitDestroy" [||])
-        let (asyncId : t -> float) =
-          fun (x63 : t) ->
-            Ojs.float_of_js (Ojs.call (t_to_js x63) "asyncId" [||])
-        let (triggerAsyncId : t -> float) =
           fun (x64 : t) ->
-            Ojs.float_of_js (Ojs.call (t_to_js x64) "triggerAsyncId" [||])
+            t_of_js (Ojs.call (t_to_js x64) "emitDestroy" [||])
+        let (asyncId : t -> int) =
+          fun (x65 : t) ->
+            Ojs.int_of_js (Ojs.call (t_to_js x65) "asyncId" [||])
+        let (triggerAsyncId : t -> int) =
+          fun (x66 : t) ->
+            Ojs.int_of_js (Ojs.call (t_to_js x66) "triggerAsyncId" [||])
       end
     module AsyncLocalStorage =
       struct
-        type 'T t = 'T async_hooks_AsyncLocalStorage
+        type 'T t = Ojs.t
         let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type
-          __T) ->
-          fun (__T_of_js : Ojs.t -> __T) ->
-            fun (x67 : Ojs.t) ->
-              async_hooks_AsyncLocalStorage_of_js __T_of_js x67
+          __T) -> fun (__T_of_js : Ojs.t -> __T) -> fun (x68 : Ojs.t) -> x68
         and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-          fun (__T_to_js : __T -> Ojs.t) ->
-            fun (x65 : __T async_hooks_AsyncLocalStorage) ->
-              async_hooks_AsyncLocalStorage_to_js __T_to_js x65
+          fun (__T_to_js : __T -> Ojs.t) -> fun (x67 : Ojs.t) -> x67
         let (disable : 'T t -> unit) =
           fun (x69 : 'T t) ->
             ignore (Ojs.call (t_to_js Obj.magic x69) "disable" [||])

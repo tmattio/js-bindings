@@ -224,15 +224,14 @@ module Util =
           fun (x34 : util_CustomInspectFunction) ->
             util_CustomInspectFunction_to_js x34
         let (apply :
-          t -> depth:float -> options:util_InspectOptionsStylized -> string)
-          =
+          t -> depth:int -> options:util_InspectOptionsStylized -> string) =
           fun (x38 : t) ->
-            fun ~depth:(x36 : float) ->
+            fun ~depth:(x36 : int) ->
               fun ~options:(x37 : util_InspectOptionsStylized) ->
                 Ojs.string_of_js
                   (Ojs.apply (t_to_js x38)
-                     [|(Ojs.float_to_js x36);(util_InspectOptionsStylized_to_js
-                                                x37)|])
+                     [|(Ojs.int_to_js x36);(util_InspectOptionsStylized_to_js
+                                              x37)|])
       end
     module InspectOptionsStylized =
       struct
@@ -304,11 +303,11 @@ module Util =
     let (inspect :
       object_:any ->
         ?showHidden:bool ->
-          ?depth:float or_null -> ?color:bool -> unit -> string)
+          ?depth:int or_null -> ?color:bool -> unit -> string)
       =
       fun ~object_:(x59 : any) ->
         fun ?showHidden:(x60 : bool option) ->
-          fun ?depth:(x61 : float or_null option) ->
+          fun ?depth:(x61 : int or_null option) ->
             fun ?color:(x62 : bool option) ->
               fun () ->
                 Ojs.string_of_js
@@ -329,7 +328,7 @@ module Util =
                               | Some x65 ->
                                   ignore
                                     (Ojs.call x63 "push"
-                                       [|(or_null_to_js Ojs.float_to_js x65)|])
+                                       [|(or_null_to_js Ojs.int_to_js x65)|])
                               | None -> ());
                              (match x62 with
                               | Some x64 ->
@@ -346,12 +345,12 @@ module Util =
                [|(any_to_js x69);(util_InspectOptions_to_js x70)|])
     module Inspect =
       struct
-        let (colors : (float * float) Dict.t) =
+        let (colors : (int * int) Dict.t) =
           Dict.t_of_js
             (fun (x71 : Ojs.t) ->
                let x72 = x71 in
-               ((Ojs.float_of_js (Ojs.array_get x72 0)),
-                 (Ojs.float_of_js (Ojs.array_get x72 1))))
+               ((Ojs.int_of_js (Ojs.array_get x72 0)),
+                 (Ojs.int_of_js (Ojs.array_get x72 1))))
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.util "inspect")
                "colors")
         let (styles : any) =
@@ -1878,21 +1877,21 @@ module Util =
         and t_to_js : t -> Ojs.t =
           fun (x473 : util_EncodeIntoResult) ->
             util_EncodeIntoResult_to_js x473
-        let (get_read : t -> float) =
+        let (get_read : t -> int) =
           fun (x475 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x475) "read")
-        let (set_read : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x475) "read")
+        let (set_read : t -> int -> unit) =
           fun (x476 : t) ->
-            fun (x477 : float) ->
-              Ojs.set_prop_ascii (t_to_js x476) "read" (Ojs.float_to_js x477)
-        let (get_written : t -> float) =
+            fun (x477 : int) ->
+              Ojs.set_prop_ascii (t_to_js x476) "read" (Ojs.int_to_js x477)
+        let (get_written : t -> int) =
           fun (x478 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x478) "written")
-        let (set_written : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x478) "written")
+        let (set_written : t -> int -> unit) =
           fun (x479 : t) ->
-            fun (x480 : float) ->
+            fun (x480 : int) ->
               Ojs.set_prop_ascii (t_to_js x479) "written"
-                (Ojs.float_to_js x480)
+                (Ojs.int_to_js x480)
       end
     module TextEncoder =
       struct

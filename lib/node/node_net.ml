@@ -125,7 +125,7 @@ module Net =
             hostname:string ->
               options:Dns.LookupOneOptions.t ->
                 callback:(err:ErrnoException.t or_null ->
-                            address:string -> family:float -> unit)
+                            address:string -> family:int -> unit)
                   -> unit)
           =
           fun (x24 : t) ->
@@ -134,7 +134,7 @@ module Net =
                 fun
                   ~callback:(x19 :
                               err:ErrnoException.t or_null ->
-                                address:string -> family:float -> unit)
+                                address:string -> family:int -> unit)
                   ->
                   ignore
                     (Ojs.apply (t_to_js x24)
@@ -158,7 +158,7 @@ module Net =
                                                                     Ojs.string_of_js
                                                                     x22)
                                                                     ~family:(
-                                                                    Ojs.float_of_js
+                                                                    Ojs.int_of_js
                                                                     x23)))|])
       end
     module AddressInfo =
@@ -184,13 +184,13 @@ module Net =
             fun (x32 : string) ->
               Ojs.set_prop_ascii (t_to_js x31) "family"
                 (Ojs.string_to_js x32)
-        let (get_port : t -> float) =
+        let (get_port : t -> int) =
           fun (x33 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x33) "port")
-        let (set_port : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x33) "port")
+        let (set_port : t -> int -> unit) =
           fun (x34 : t) ->
-            fun (x35 : float) ->
-              Ojs.set_prop_ascii (t_to_js x34) "port" (Ojs.float_to_js x35)
+            fun (x35 : int) ->
+              Ojs.set_prop_ascii (t_to_js x34) "port" (Ojs.int_to_js x35)
       end
     module SocketConstructorOpts =
       struct
@@ -200,13 +200,13 @@ module Net =
         and t_to_js : t -> Ojs.t =
           fun (x36 : net_SocketConstructorOpts) ->
             net_SocketConstructorOpts_to_js x36
-        let (get_fd : t -> float) =
+        let (get_fd : t -> int) =
           fun (x38 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x38) "fd")
-        let (set_fd : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x38) "fd")
+        let (set_fd : t -> int -> unit) =
           fun (x39 : t) ->
-            fun (x40 : float) ->
-              Ojs.set_prop_ascii (t_to_js x39) "fd" (Ojs.float_to_js x40)
+            fun (x40 : int) ->
+              Ojs.set_prop_ascii (t_to_js x39) "fd" (Ojs.int_to_js x40)
         let (get_allowHalfOpen : t -> bool) =
           fun (x41 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x41) "allowHalfOpen")
@@ -254,14 +254,13 @@ module Net =
                    (fun (x58 : unit -> Uint8Array.t) ->
                       Ojs.fun_to_js 1 (fun _ -> Uint8Array.t_to_js (x58 ())))
                    x56)
-        let (callback : t -> bytesWritten:float -> buf:Uint8Array.t -> bool)
-          =
+        let (callback : t -> bytesWritten:int -> buf:Uint8Array.t -> bool) =
           fun (x61 : t) ->
-            fun ~bytesWritten:(x59 : float) ->
+            fun ~bytesWritten:(x59 : int) ->
               fun ~buf:(x60 : Uint8Array.t) ->
                 Ojs.bool_of_js
                   (Ojs.call (t_to_js x61) "callback"
-                     [|(Ojs.float_to_js x59);(Uint8Array.t_to_js x60)|])
+                     [|(Ojs.int_to_js x59);(Uint8Array.t_to_js x60)|])
       end
     module ConnectOpts =
       struct
@@ -287,13 +286,13 @@ module Net =
         and t_to_js : t -> Ojs.t =
           fun (x67 : net_TcpSocketConnectOpts) ->
             net_TcpSocketConnectOpts_to_js x67
-        let (get_port : t -> float) =
+        let (get_port : t -> int) =
           fun (x69 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x69) "port")
-        let (set_port : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x69) "port")
+        let (set_port : t -> int -> unit) =
           fun (x70 : t) ->
-            fun (x71 : float) ->
-              Ojs.set_prop_ascii (t_to_js x70) "port" (Ojs.float_to_js x71)
+            fun (x71 : int) ->
+              Ojs.set_prop_ascii (t_to_js x70) "port" (Ojs.int_to_js x71)
         let (get_host : t -> string) =
           fun (x72 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x72) "host")
@@ -310,28 +309,28 @@ module Net =
             fun (x77 : string) ->
               Ojs.set_prop_ascii (t_to_js x76) "localAddress"
                 (Ojs.string_to_js x77)
-        let (get_localPort : t -> float) =
+        let (get_localPort : t -> int) =
           fun (x78 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x78) "localPort")
-        let (set_localPort : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x78) "localPort")
+        let (set_localPort : t -> int -> unit) =
           fun (x79 : t) ->
-            fun (x80 : float) ->
+            fun (x80 : int) ->
               Ojs.set_prop_ascii (t_to_js x79) "localPort"
-                (Ojs.float_to_js x80)
-        let (get_hints : t -> float) =
+                (Ojs.int_to_js x80)
+        let (get_hints : t -> int) =
           fun (x81 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x81) "hints")
-        let (set_hints : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x81) "hints")
+        let (set_hints : t -> int -> unit) =
           fun (x82 : t) ->
-            fun (x83 : float) ->
-              Ojs.set_prop_ascii (t_to_js x82) "hints" (Ojs.float_to_js x83)
-        let (get_family : t -> float) =
+            fun (x83 : int) ->
+              Ojs.set_prop_ascii (t_to_js x82) "hints" (Ojs.int_to_js x83)
+        let (get_family : t -> int) =
           fun (x84 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x84) "family")
-        let (set_family : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x84) "family")
+        let (set_family : t -> int -> unit) =
           fun (x85 : t) ->
-            fun (x86 : float) ->
-              Ojs.set_prop_ascii (t_to_js x85) "family" (Ojs.float_to_js x86)
+            fun (x86 : int) ->
+              Ojs.set_prop_ascii (t_to_js x85) "family" (Ojs.int_to_js x86)
         let (get_lookup : t -> net_LookupFunction) =
           fun (x87 : t) ->
             net_LookupFunction_of_js
@@ -494,11 +493,11 @@ module Net =
                                 x126))|])
         let (connect' :
           t ->
-            port:float ->
+            port:int ->
               host:string -> ?connectionListener:(unit -> unit) -> unit -> t)
           =
           fun (x135 : t) ->
-            fun ~port:(x130 : float) ->
+            fun ~port:(x130 : int) ->
               fun ~host:(x131 : string) ->
                 fun ?connectionListener:(x132 : (unit -> unit) option) ->
                   fun () ->
@@ -511,7 +510,7 @@ module Net =
                                       [||] in
                                   ignore
                                     (Ojs.call x133 "push"
-                                       [|(Ojs.float_to_js x130)|]);
+                                       [|(Ojs.int_to_js x130)|]);
                                   ignore
                                     (Ojs.call x133 "push"
                                        [|(Ojs.string_to_js x131)|]);
@@ -524,10 +523,9 @@ module Net =
                                    | None -> ());
                                   x133))|])
         let (connect'' :
-          t -> port:float -> ?connectionListener:(unit -> unit) -> unit -> t)
-          =
+          t -> port:int -> ?connectionListener:(unit -> unit) -> unit -> t) =
           fun (x141 : t) ->
-            fun ~port:(x137 : float) ->
+            fun ~port:(x137 : int) ->
               fun ?connectionListener:(x138 : (unit -> unit) option) ->
                 fun () ->
                   t_of_js
@@ -539,7 +537,7 @@ module Net =
                                     [||] in
                                 ignore
                                   (Ojs.call x139 "push"
-                                     [|(Ojs.float_to_js x137)|]);
+                                     [|(Ojs.int_to_js x137)|]);
                                 (match x138 with
                                  | Some x140 ->
                                      ignore
@@ -596,9 +594,9 @@ module Net =
         let (resume : t -> t) =
           fun (x155 : t) -> t_of_js (Ojs.call (t_to_js x155) "resume" [||])
         let (setTimeout :
-          t -> timeout:float -> ?callback:(unit -> unit) -> unit -> t) =
+          t -> timeout:int -> ?callback:(unit -> unit) -> unit -> t) =
           fun (x160 : t) ->
-            fun ~timeout:(x156 : float) ->
+            fun ~timeout:(x156 : int) ->
               fun ?callback:(x157 : (unit -> unit) option) ->
                 fun () ->
                   t_of_js
@@ -610,7 +608,7 @@ module Net =
                                     [||] in
                                 ignore
                                   (Ojs.call x158 "push"
-                                     [|(Ojs.float_to_js x156)|]);
+                                     [|(Ojs.int_to_js x156)|]);
                                 (match x157 with
                                  | Some x159 ->
                                      ignore
@@ -638,10 +636,10 @@ module Net =
                                | None -> ());
                               x163))|])
         let (setKeepAlive :
-          t -> ?enable:bool -> ?initialDelay:float -> unit -> t) =
+          t -> ?enable:bool -> ?initialDelay:int -> unit -> t) =
           fun (x172 : t) ->
             fun ?enable:(x167 : bool option) ->
-              fun ?initialDelay:(x168 : float option) ->
+              fun ?initialDelay:(x168 : int option) ->
                 fun () ->
                   t_of_js
                     (let x173 = t_to_js x172 in
@@ -661,7 +659,7 @@ module Net =
                                  | Some x170 ->
                                      ignore
                                        (Ojs.call x169 "push"
-                                          [|(Ojs.float_to_js x170)|])
+                                          [|(Ojs.int_to_js x170)|])
                                  | None -> ());
                                 x169))|])
         let (address : t -> (net_AddressInfo, anonymous_interface_0) union2)
@@ -673,16 +671,15 @@ module Net =
           fun (x177 : t) -> t_of_js (Ojs.call (t_to_js x177) "unref" [||])
         let (ref : t -> t) =
           fun (x178 : t) -> t_of_js (Ojs.call (t_to_js x178) "ref" [||])
-        let (get_bufferSize : t -> float) =
+        let (get_bufferSize : t -> int) =
           fun (x179 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x179) "bufferSize")
-        let (get_bytesRead : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x179) "bufferSize")
+        let (get_bytesRead : t -> int) =
           fun (x180 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x180) "bytesRead")
-        let (get_bytesWritten : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x180) "bytesRead")
+        let (get_bytesWritten : t -> int) =
           fun (x181 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x181) "bytesWritten")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x181) "bytesWritten")
         let (get_connecting : t -> bool) =
           fun (x182 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x182) "connecting")
@@ -693,9 +690,9 @@ module Net =
           fun (x184 : t) ->
             Ojs.string_of_js
               (Ojs.get_prop_ascii (t_to_js x184) "localAddress")
-        let (get_localPort : t -> float) =
+        let (get_localPort : t -> int) =
           fun (x185 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x185) "localPort")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x185) "localPort")
         let (get_remoteAddress : t -> string) =
           fun (x186 : t) ->
             Ojs.string_of_js
@@ -704,9 +701,9 @@ module Net =
           fun (x187 : t) ->
             Ojs.string_of_js
               (Ojs.get_prop_ascii (t_to_js x187) "remoteFamily")
-        let (get_remotePort : t -> float) =
+        let (get_remotePort : t -> int) =
           fun (x188 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x188) "remotePort")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x188) "remotePort")
         let (end_ : t -> ?cb:(unit -> unit) -> unit -> unit) =
           fun (x192 : t) ->
             fun ?cb:(x189 : (unit -> unit) option) ->
@@ -1549,13 +1546,13 @@ module Net =
           fun (x428 : Ojs.t) -> net_ListenOptions_of_js x428
         and t_to_js : t -> Ojs.t =
           fun (x427 : net_ListenOptions) -> net_ListenOptions_to_js x427
-        let (get_port : t -> float) =
+        let (get_port : t -> int) =
           fun (x429 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x429) "port")
-        let (set_port : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x429) "port")
+        let (set_port : t -> int -> unit) =
           fun (x430 : t) ->
-            fun (x431 : float) ->
-              Ojs.set_prop_ascii (t_to_js x430) "port" (Ojs.float_to_js x431)
+            fun (x431 : int) ->
+              Ojs.set_prop_ascii (t_to_js x430) "port" (Ojs.int_to_js x431)
         let (get_host : t -> string) =
           fun (x432 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x432) "host")
@@ -1564,14 +1561,14 @@ module Net =
             fun (x434 : string) ->
               Ojs.set_prop_ascii (t_to_js x433) "host"
                 (Ojs.string_to_js x434)
-        let (get_backlog : t -> float) =
+        let (get_backlog : t -> int) =
           fun (x435 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x435) "backlog")
-        let (set_backlog : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x435) "backlog")
+        let (set_backlog : t -> int -> unit) =
           fun (x436 : t) ->
-            fun (x437 : float) ->
+            fun (x437 : int) ->
               Ojs.set_prop_ascii (t_to_js x436) "backlog"
-                (Ojs.float_to_js x437)
+                (Ojs.int_to_js x437)
         let (get_path : t -> string) =
           fun (x438 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x438) "path")
@@ -1696,15 +1693,15 @@ module Net =
                       x469))
         let (listen :
           t ->
-            ?port:float ->
+            ?port:int ->
               ?hostname:string ->
-                ?backlog:float ->
+                ?backlog:int ->
                   ?listeningListener:(unit -> unit) -> unit -> t)
           =
           fun (x482 : t) ->
-            fun ?port:(x473 : float option) ->
+            fun ?port:(x473 : int option) ->
               fun ?hostname:(x474 : string option) ->
-                fun ?backlog:(x475 : float option) ->
+                fun ?backlog:(x475 : int option) ->
                   fun ?listeningListener:(x476 : (unit -> unit) option) ->
                     fun () ->
                       t_of_js
@@ -1718,7 +1715,7 @@ module Net =
                                      | Some x481 ->
                                          ignore
                                            (Ojs.call x477 "push"
-                                              [|(Ojs.float_to_js x481)|])
+                                              [|(Ojs.int_to_js x481)|])
                                      | None -> ());
                                     (match x474 with
                                      | Some x480 ->
@@ -1730,7 +1727,7 @@ module Net =
                                      | Some x479 ->
                                          ignore
                                            (Ojs.call x477 "push"
-                                              [|(Ojs.float_to_js x479)|])
+                                              [|(Ojs.int_to_js x479)|])
                                      | None -> ());
                                     (match x476 with
                                      | Some x478 ->
@@ -1742,12 +1739,12 @@ module Net =
                                     x477))|])
         let (listen' :
           t ->
-            ?port:float ->
+            ?port:int ->
               ?hostname:string ->
                 ?listeningListener:(unit -> unit) -> unit -> t)
           =
           fun (x491 : t) ->
-            fun ?port:(x484 : float option) ->
+            fun ?port:(x484 : int option) ->
               fun ?hostname:(x485 : string option) ->
                 fun ?listeningListener:(x486 : (unit -> unit) option) ->
                   fun () ->
@@ -1762,7 +1759,7 @@ module Net =
                                    | Some x490 ->
                                        ignore
                                          (Ojs.call x487 "push"
-                                            [|(Ojs.float_to_js x490)|])
+                                            [|(Ojs.int_to_js x490)|])
                                    | None -> ());
                                   (match x485 with
                                    | Some x489 ->
@@ -1780,13 +1777,12 @@ module Net =
                                   x487))|])
         let (listen'' :
           t ->
-            ?port:float ->
-              ?backlog:float ->
-                ?listeningListener:(unit -> unit) -> unit -> t)
+            ?port:int ->
+              ?backlog:int -> ?listeningListener:(unit -> unit) -> unit -> t)
           =
           fun (x500 : t) ->
-            fun ?port:(x493 : float option) ->
-              fun ?backlog:(x494 : float option) ->
+            fun ?port:(x493 : int option) ->
+              fun ?backlog:(x494 : int option) ->
                 fun ?listeningListener:(x495 : (unit -> unit) option) ->
                   fun () ->
                     t_of_js
@@ -1800,13 +1796,13 @@ module Net =
                                    | Some x499 ->
                                        ignore
                                          (Ojs.call x496 "push"
-                                            [|(Ojs.float_to_js x499)|])
+                                            [|(Ojs.int_to_js x499)|])
                                    | None -> ());
                                   (match x494 with
                                    | Some x498 ->
                                        ignore
                                          (Ojs.call x496 "push"
-                                            [|(Ojs.float_to_js x498)|])
+                                            [|(Ojs.int_to_js x498)|])
                                    | None -> ());
                                   (match x495 with
                                    | Some x497 ->
@@ -1817,10 +1813,9 @@ module Net =
                                    | None -> ());
                                   x496))|])
         let (listen''' :
-          t -> ?port:float -> ?listeningListener:(unit -> unit) -> unit -> t)
-          =
+          t -> ?port:int -> ?listeningListener:(unit -> unit) -> unit -> t) =
           fun (x507 : t) ->
-            fun ?port:(x502 : float option) ->
+            fun ?port:(x502 : int option) ->
               fun ?listeningListener:(x503 : (unit -> unit) option) ->
                 fun () ->
                   t_of_js
@@ -1834,7 +1829,7 @@ module Net =
                                  | Some x506 ->
                                      ignore
                                        (Ojs.call x504 "push"
-                                          [|(Ojs.float_to_js x506)|])
+                                          [|(Ojs.int_to_js x506)|])
                                  | None -> ());
                                 (match x503 with
                                  | Some x505 ->
@@ -1847,12 +1842,11 @@ module Net =
         let (listen'''' :
           t ->
             path:string ->
-              ?backlog:float ->
-                ?listeningListener:(unit -> unit) -> unit -> t)
+              ?backlog:int -> ?listeningListener:(unit -> unit) -> unit -> t)
           =
           fun (x515 : t) ->
             fun ~path:(x509 : string) ->
-              fun ?backlog:(x510 : float option) ->
+              fun ?backlog:(x510 : int option) ->
                 fun ?listeningListener:(x511 : (unit -> unit) option) ->
                   fun () ->
                     t_of_js
@@ -1869,7 +1863,7 @@ module Net =
                                    | Some x514 ->
                                        ignore
                                          (Ojs.call x512 "push"
-                                            [|(Ojs.float_to_js x514)|])
+                                            [|(Ojs.int_to_js x514)|])
                                    | None -> ());
                                   (match x511 with
                                    | Some x513 ->
@@ -1934,12 +1928,11 @@ module Net =
         let (listen''''''' :
           t ->
             handle:any ->
-              ?backlog:float ->
-                ?listeningListener:(unit -> unit) -> unit -> t)
+              ?backlog:int -> ?listeningListener:(unit -> unit) -> unit -> t)
           =
           fun (x535 : t) ->
             fun ~handle:(x529 : any) ->
-              fun ?backlog:(x530 : float option) ->
+              fun ?backlog:(x530 : int option) ->
                 fun ?listeningListener:(x531 : (unit -> unit) option) ->
                   fun () ->
                     t_of_js
@@ -1956,7 +1949,7 @@ module Net =
                                    | Some x534 ->
                                        ignore
                                          (Ojs.call x532 "push"
-                                            [|(Ojs.float_to_js x534)|])
+                                            [|(Ojs.int_to_js x534)|])
                                    | None -> ());
                                   (match x531 with
                                    | Some x533 ->
@@ -2021,37 +2014,37 @@ module Net =
                  or_string_of_js net_AddressInfo_of_js x551)
               (Ojs.call (t_to_js x550) "address" [||])
         let (getConnections :
-          t -> cb:(error:Error.t or_null -> count:float -> unit) -> unit) =
+          t -> cb:(error:Error.t or_null -> count:int -> unit) -> unit) =
           fun (x557 : t) ->
-            fun ~cb:(x553 : error:Error.t or_null -> count:float -> unit) ->
+            fun ~cb:(x553 : error:Error.t or_null -> count:int -> unit) ->
               ignore
                 (Ojs.call (t_to_js x557) "getConnections"
                    [|(Ojs.fun_to_js 2
                         (fun (x554 : Ojs.t) ->
                            fun (x556 : Ojs.t) ->
                              x553 ~error:(or_null_of_js Error.t_of_js x554)
-                               ~count:(Ojs.float_of_js x556)))|])
+                               ~count:(Ojs.int_of_js x556)))|])
         let (ref : t -> t) =
           fun (x558 : t) -> t_of_js (Ojs.call (t_to_js x558) "ref" [||])
         let (unref : t -> t) =
           fun (x559 : t) -> t_of_js (Ojs.call (t_to_js x559) "unref" [||])
-        let (get_maxConnections : t -> float) =
+        let (get_maxConnections : t -> int) =
           fun (x560 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x560) "maxConnections")
-        let (set_maxConnections : t -> float -> unit) =
+        let (set_maxConnections : t -> int -> unit) =
           fun (x561 : t) ->
-            fun (x562 : float) ->
+            fun (x562 : int) ->
               Ojs.set_prop_ascii (t_to_js x561) "maxConnections"
-                (Ojs.float_to_js x562)
-        let (get_connections : t -> float) =
+                (Ojs.int_to_js x562)
+        let (get_connections : t -> int) =
           fun (x563 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x563) "connections")
-        let (set_connections : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x563) "connections")
+        let (set_connections : t -> int -> unit) =
           fun (x564 : t) ->
-            fun (x565 : float) ->
+            fun (x565 : int) ->
               Ojs.set_prop_ascii (t_to_js x564) "connections"
-                (Ojs.float_to_js x565)
+                (Ojs.int_to_js x565)
         let (get_listening : t -> bool) =
           fun (x566 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x566) "listening")
@@ -2411,14 +2404,14 @@ module Net =
         and t_to_js : t -> Ojs.t =
           fun (x682 : net_TcpNetConnectOpts) ->
             net_TcpNetConnectOpts_to_js x682
-        let (get_timeout : t -> float) =
+        let (get_timeout : t -> int) =
           fun (x684 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x684) "timeout")
-        let (set_timeout : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x684) "timeout")
+        let (set_timeout : t -> int -> unit) =
           fun (x685 : t) ->
-            fun (x686 : float) ->
+            fun (x686 : int) ->
               Ojs.set_prop_ascii (t_to_js x685) "timeout"
-                (Ojs.float_to_js x686)
+                (Ojs.int_to_js x686)
         let (cast : t -> net_TcpSocketConnectOpts) =
           fun (x687 : t) -> net_TcpSocketConnectOpts_of_js (t_to_js x687)
         let (cast' : t -> net_SocketConstructorOpts) =
@@ -2432,14 +2425,14 @@ module Net =
         and t_to_js : t -> Ojs.t =
           fun (x689 : net_IpcNetConnectOpts) ->
             net_IpcNetConnectOpts_to_js x689
-        let (get_timeout : t -> float) =
+        let (get_timeout : t -> int) =
           fun (x691 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x691) "timeout")
-        let (set_timeout : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x691) "timeout")
+        let (set_timeout : t -> int -> unit) =
           fun (x692 : t) ->
-            fun (x693 : float) ->
+            fun (x693 : int) ->
               Ojs.set_prop_ascii (t_to_js x692) "timeout"
-                (Ojs.float_to_js x693)
+                (Ojs.int_to_js x693)
         let (cast : t -> net_IpcSocketConnectOpts) =
           fun (x694 : t) -> net_IpcSocketConnectOpts_of_js (t_to_js x694)
         let (cast' : t -> net_SocketConstructorOpts) =
@@ -2530,11 +2523,11 @@ module Net =
                            | None -> ());
                           x712))|])
     let (connect :
-      port:float ->
+      port:int ->
         ?host:string ->
           ?connectionListener:(unit -> unit) -> unit -> net_Socket)
       =
-      fun ~port:(x715 : float) ->
+      fun ~port:(x715 : int) ->
         fun ?host:(x716 : string option) ->
           fun ?connectionListener:(x717 : (unit -> unit) option) ->
             fun () ->
@@ -2546,8 +2539,7 @@ module Net =
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x718 "push"
-                                 [|(Ojs.float_to_js x715)|]);
+                              (Ojs.call x718 "push" [|(Ojs.int_to_js x715)|]);
                             (match x716 with
                              | Some x720 ->
                                  ignore
@@ -2608,11 +2600,11 @@ module Net =
                            | None -> ());
                           x729))|])
     let (createConnection :
-      port:float ->
+      port:int ->
         ?host:string ->
           ?connectionListener:(unit -> unit) -> unit -> net_Socket)
       =
-      fun ~port:(x732 : float) ->
+      fun ~port:(x732 : int) ->
         fun ?host:(x733 : string option) ->
           fun ?connectionListener:(x734 : (unit -> unit) option) ->
             fun () ->
@@ -2625,8 +2617,7 @@ module Net =
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x735 "push"
-                                 [|(Ojs.float_to_js x732)|]);
+                              (Ojs.call x735 "push" [|(Ojs.int_to_js x732)|]);
                             (match x733 with
                              | Some x737 ->
                                  ignore
@@ -2662,9 +2653,9 @@ module Net =
                                     [|(Ojs.fun_to_js 1 (fun _ -> x742 ()))|])
                            | None -> ());
                           x741))|])
-    let (isIP : input:string -> float) =
+    let (isIP : input:string -> int) =
       fun ~input:(x744 : string) ->
-        Ojs.float_of_js
+        Ojs.int_of_js
           (Ojs.call Import.net "isIP" [|(Ojs.string_to_js x744)|])
     let (isIPv4 : input:string -> bool) =
       fun ~input:(x745 : string) ->

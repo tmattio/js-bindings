@@ -84,7 +84,7 @@ module Make (M: Missing) : sig
   open Types
   module[@js.scope "node:module"] Node_module : sig
     (* import Module = require('module'); *)
-    (* export = Module *)
+    
   end
   module[@js.scope "module"] Module : sig
     (* import { URL } from 'node:url'; *)
@@ -169,6 +169,6 @@ module Make (M: Missing) : sig
       val set_Module: (* FIXME: unknown type 'typeof Module' *)any -> unit [@@js.set "Module"]
       val create: id:string -> ?parent:t -> unit -> t [@@js.create]
     end
-    (* export = Module *)
+    
   end
 end

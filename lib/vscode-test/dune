@@ -6,42 +6,42 @@
 
 (rule
  (targets vscode_test_del.ml)
- (deps intf/vscode_test_del.mli)
+ (deps vscode_test_del.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets vscode_test_download.ml)
- (deps intf/vscode_test_download.mli)
+ (deps vscode_test_download.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets vscode_test_index.ml)
- (deps intf/vscode_test_index.mli)
+ (deps vscode_test_index.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets vscode_test_request.ml)
- (deps intf/vscode_test_request.mli)
+ (deps vscode_test_request.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets vscode_test_runTest.ml)
- (deps intf/vscode_test_runTest.mli)
+ (deps vscode_test_runTest.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets vscode_test_util.ml)
- (deps intf/vscode_test_util.mli)
+ (deps vscode_test_util.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))

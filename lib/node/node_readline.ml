@@ -136,9 +136,9 @@ module Readline =
         let (get_line : t -> string) =
           fun (x34 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x34) "line")
-        let (get_cursor : t -> float) =
+        let (get_cursor : t -> int) =
           fun (x35 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x35) "cursor")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x35) "cursor")
         let (create :
           input:ReadableStream.t ->
             ?output:WritableStream.t ->
@@ -877,14 +877,14 @@ module Readline =
             fun (x262 : bool) ->
               Ojs.set_prop_ascii (t_to_js x261) "terminal"
                 (Ojs.bool_to_js x262)
-        let (get_historySize : t -> float) =
+        let (get_historySize : t -> int) =
           fun (x263 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x263) "historySize")
-        let (set_historySize : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x263) "historySize")
+        let (set_historySize : t -> int -> unit) =
           fun (x264 : t) ->
-            fun (x265 : float) ->
+            fun (x265 : int) ->
               Ojs.set_prop_ascii (t_to_js x264) "historySize"
-                (Ojs.float_to_js x265)
+                (Ojs.int_to_js x265)
         let (get_prompt : t -> string) =
           fun (x266 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x266) "prompt")
@@ -893,14 +893,14 @@ module Readline =
             fun (x268 : string) ->
               Ojs.set_prop_ascii (t_to_js x267) "prompt"
                 (Ojs.string_to_js x268)
-        let (get_crlfDelay : t -> float) =
+        let (get_crlfDelay : t -> int) =
           fun (x269 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x269) "crlfDelay")
-        let (set_crlfDelay : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x269) "crlfDelay")
+        let (set_crlfDelay : t -> int -> unit) =
           fun (x270 : t) ->
-            fun (x271 : float) ->
+            fun (x271 : int) ->
               Ojs.set_prop_ascii (t_to_js x270) "crlfDelay"
-                (Ojs.float_to_js x271)
+                (Ojs.int_to_js x271)
         let (get_removeHistoryDuplicates : t -> bool) =
           fun (x272 : t) ->
             Ojs.bool_of_js
@@ -910,23 +910,23 @@ module Readline =
             fun (x274 : bool) ->
               Ojs.set_prop_ascii (t_to_js x273) "removeHistoryDuplicates"
                 (Ojs.bool_to_js x274)
-        let (get_escapeCodeTimeout : t -> float) =
+        let (get_escapeCodeTimeout : t -> int) =
           fun (x275 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x275) "escapeCodeTimeout")
-        let (set_escapeCodeTimeout : t -> float -> unit) =
+        let (set_escapeCodeTimeout : t -> int -> unit) =
           fun (x276 : t) ->
-            fun (x277 : float) ->
+            fun (x277 : int) ->
               Ojs.set_prop_ascii (t_to_js x276) "escapeCodeTimeout"
-                (Ojs.float_to_js x277)
-        let (get_tabSize : t -> float) =
+                (Ojs.int_to_js x277)
+        let (get_tabSize : t -> int) =
           fun (x278 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x278) "tabSize")
-        let (set_tabSize : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x278) "tabSize")
+        let (set_tabSize : t -> int -> unit) =
           fun (x279 : t) ->
-            fun (x280 : float) ->
+            fun (x280 : int) ->
               Ojs.set_prop_ascii (t_to_js x279) "tabSize"
-                (Ojs.float_to_js x280)
+                (Ojs.int_to_js x280)
       end
     let (createInterface :
       input:ReadableStream.t ->
@@ -1021,20 +1021,20 @@ module Readline =
           fun (x301 : Ojs.t) -> readline_CursorPos_of_js x301
         and t_to_js : t -> Ojs.t =
           fun (x300 : readline_CursorPos) -> readline_CursorPos_to_js x300
-        let (get_rows : t -> float) =
+        let (get_rows : t -> int) =
           fun (x302 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x302) "rows")
-        let (set_rows : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x302) "rows")
+        let (set_rows : t -> int -> unit) =
           fun (x303 : t) ->
-            fun (x304 : float) ->
-              Ojs.set_prop_ascii (t_to_js x303) "rows" (Ojs.float_to_js x304)
-        let (get_cols : t -> float) =
+            fun (x304 : int) ->
+              Ojs.set_prop_ascii (t_to_js x303) "rows" (Ojs.int_to_js x304)
+        let (get_cols : t -> int) =
           fun (x305 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x305) "cols")
-        let (set_cols : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x305) "cols")
+        let (set_cols : t -> int -> unit) =
           fun (x306 : t) ->
-            fun (x307 : float) ->
-              Ojs.set_prop_ascii (t_to_js x306) "cols" (Ojs.float_to_js x307)
+            fun (x307 : int) ->
+              Ojs.set_prop_ascii (t_to_js x306) "cols" (Ojs.int_to_js x307)
       end
     let (clearLine :
       stream:WritableStream.t ->
@@ -1088,11 +1088,11 @@ module Readline =
                           x316))|])
     let (cursorTo :
       stream:WritableStream.t ->
-        x:float -> ?y:float -> ?callback:(unit -> unit) -> unit -> bool)
+        x:int -> ?y:int -> ?callback:(unit -> unit) -> unit -> bool)
       =
       fun ~stream:(x319 : WritableStream.t) ->
-        fun ~x:(x320 : float) ->
-          fun ?y:(x321 : float option) ->
+        fun ~x:(x320 : int) ->
+          fun ?y:(x321 : int option) ->
             fun ?callback:(x322 : (unit -> unit) option) ->
               fun () ->
                 Ojs.bool_of_js
@@ -1107,12 +1107,12 @@ module Readline =
                                    [|(WritableStream.t_to_js x319)|]);
                               ignore
                                 (Ojs.call x323 "push"
-                                   [|(Ojs.float_to_js x320)|]);
+                                   [|(Ojs.int_to_js x320)|]);
                               (match x321 with
                                | Some x325 ->
                                    ignore
                                      (Ojs.call x323 "push"
-                                        [|(Ojs.float_to_js x325)|])
+                                        [|(Ojs.int_to_js x325)|])
                                | None -> ());
                               (match x322 with
                                | Some x324 ->
@@ -1123,11 +1123,11 @@ module Readline =
                               x323))|])
     let (moveCursor :
       stream:WritableStream.t ->
-        dx:float -> dy:float -> ?callback:(unit -> unit) -> unit -> bool)
+        dx:int -> dy:int -> ?callback:(unit -> unit) -> unit -> bool)
       =
       fun ~stream:(x327 : WritableStream.t) ->
-        fun ~dx:(x328 : float) ->
-          fun ~dy:(x329 : float) ->
+        fun ~dx:(x328 : int) ->
+          fun ~dy:(x329 : int) ->
             fun ?callback:(x330 : (unit -> unit) option) ->
               fun () ->
                 Ojs.bool_of_js
@@ -1142,10 +1142,10 @@ module Readline =
                                    [|(WritableStream.t_to_js x327)|]);
                               ignore
                                 (Ojs.call x331 "push"
-                                   [|(Ojs.float_to_js x328)|]);
+                                   [|(Ojs.int_to_js x328)|]);
                               ignore
                                 (Ojs.call x331 "push"
-                                   [|(Ojs.float_to_js x329)|]);
+                                   [|(Ojs.int_to_js x329)|]);
                               (match x330 with
                                | Some x332 ->
                                    ignore

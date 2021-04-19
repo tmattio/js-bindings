@@ -645,14 +645,14 @@ module AnonymousInterface0 =
       fun (x63 : Ojs.t) -> anonymous_interface_0_of_js x63
     and t_to_js : t -> Ojs.t =
       fun (x62 : anonymous_interface_0) -> anonymous_interface_0_to_js x62
-    let (get_plaintextLength : t -> float) =
+    let (get_plaintextLength : t -> int) =
       fun (x64 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x64) "plaintextLength")
-    let (set_plaintextLength : t -> float -> unit) =
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x64) "plaintextLength")
+    let (set_plaintextLength : t -> int -> unit) =
       fun (x65 : t) ->
-        fun (x66 : float) ->
+        fun (x66 : int) ->
           Ojs.set_prop_ascii (t_to_js x65) "plaintextLength"
-            (Ojs.float_to_js x66)
+            (Ojs.int_to_js x66)
   end
 module AnonymousInterface1 =
   struct
@@ -960,316 +960,316 @@ module Crypto =
         (Ojs.get_prop_ascii Import.crypto "Certificate")
     module Constants =
       struct
-        let (oPENSSL_VERSION_NUMBER : float) =
-          Ojs.float_of_js
+        let (oPENSSL_VERSION_NUMBER : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "OPENSSL_VERSION_NUMBER")
-        let (sSL_OP_ALL : float) =
-          Ojs.float_of_js
+        let (sSL_OP_ALL : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants") "SSL_OP_ALL")
-        let (sSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION : float) =
-          Ojs.float_of_js
+        let (sSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION")
-        let (sSL_OP_CIPHER_SERVER_PREFERENCE : float) =
-          Ojs.float_of_js
+        let (sSL_OP_CIPHER_SERVER_PREFERENCE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_CIPHER_SERVER_PREFERENCE")
-        let (sSL_OP_CISCO_ANYCONNECT : float) =
-          Ojs.float_of_js
+        let (sSL_OP_CISCO_ANYCONNECT : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_CISCO_ANYCONNECT")
-        let (sSL_OP_COOKIE_EXCHANGE : float) =
-          Ojs.float_of_js
+        let (sSL_OP_COOKIE_EXCHANGE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_COOKIE_EXCHANGE")
-        let (sSL_OP_CRYPTOPRO_TLSEXT_BUG : float) =
-          Ojs.float_of_js
+        let (sSL_OP_CRYPTOPRO_TLSEXT_BUG : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_CRYPTOPRO_TLSEXT_BUG")
-        let (sSL_OP_DONT_INSERT_EMPTY_FRAGMENTS : float) =
-          Ojs.float_of_js
+        let (sSL_OP_DONT_INSERT_EMPTY_FRAGMENTS : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS")
-        let (sSL_OP_EPHEMERAL_RSA : float) =
-          Ojs.float_of_js
+        let (sSL_OP_EPHEMERAL_RSA : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_EPHEMERAL_RSA")
-        let (sSL_OP_LEGACY_SERVER_CONNECT : float) =
-          Ojs.float_of_js
+        let (sSL_OP_LEGACY_SERVER_CONNECT : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_LEGACY_SERVER_CONNECT")
-        let (sSL_OP_MICROSOFT_BIG_SSLV3_BUFFER : float) =
-          Ojs.float_of_js
+        let (sSL_OP_MICROSOFT_BIG_SSLV3_BUFFER : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_MICROSOFT_BIG_SSLV3_BUFFER")
-        let (sSL_OP_MICROSOFT_SESS_ID_BUG : float) =
-          Ojs.float_of_js
+        let (sSL_OP_MICROSOFT_SESS_ID_BUG : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_MICROSOFT_SESS_ID_BUG")
-        let (sSL_OP_MSIE_SSLV2_RSA_PADDING : float) =
-          Ojs.float_of_js
+        let (sSL_OP_MSIE_SSLV2_RSA_PADDING : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_MSIE_SSLV2_RSA_PADDING")
-        let (sSL_OP_NETSCAPE_CA_DN_BUG : float) =
-          Ojs.float_of_js
+        let (sSL_OP_NETSCAPE_CA_DN_BUG : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_NETSCAPE_CA_DN_BUG")
-        let (sSL_OP_NETSCAPE_CHALLENGE_BUG : float) =
-          Ojs.float_of_js
+        let (sSL_OP_NETSCAPE_CHALLENGE_BUG : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_NETSCAPE_CHALLENGE_BUG")
-        let (sSL_OP_NETSCAPE_DEMO_CIPHER_CHANGE_BUG : float) =
-          Ojs.float_of_js
+        let (sSL_OP_NETSCAPE_DEMO_CIPHER_CHANGE_BUG : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_NETSCAPE_DEMO_CIPHER_CHANGE_BUG")
-        let (sSL_OP_NETSCAPE_REUSE_CIPHER_CHANGE_BUG : float) =
-          Ojs.float_of_js
+        let (sSL_OP_NETSCAPE_REUSE_CIPHER_CHANGE_BUG : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_NETSCAPE_REUSE_CIPHER_CHANGE_BUG")
-        let (sSL_OP_NO_COMPRESSION : float) =
-          Ojs.float_of_js
+        let (sSL_OP_NO_COMPRESSION : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_NO_COMPRESSION")
-        let (sSL_OP_NO_QUERY_MTU : float) =
-          Ojs.float_of_js
+        let (sSL_OP_NO_QUERY_MTU : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_NO_QUERY_MTU")
-        let (sSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION : float) =
-          Ojs.float_of_js
+        let (sSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION")
-        let (sSL_OP_NO_SSLv2 : float) =
-          Ojs.float_of_js
+        let (sSL_OP_NO_SSLv2 : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_NO_SSLv2")
-        let (sSL_OP_NO_SSLv3 : float) =
-          Ojs.float_of_js
+        let (sSL_OP_NO_SSLv3 : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_NO_SSLv3")
-        let (sSL_OP_NO_TICKET : float) =
-          Ojs.float_of_js
+        let (sSL_OP_NO_TICKET : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_NO_TICKET")
-        let (sSL_OP_NO_TLSv1 : float) =
-          Ojs.float_of_js
+        let (sSL_OP_NO_TLSv1 : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_NO_TLSv1")
-        let (sSL_OP_NO_TLSv1_1 : float) =
-          Ojs.float_of_js
+        let (sSL_OP_NO_TLSv1_1 : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_NO_TLSv1_1")
-        let (sSL_OP_NO_TLSv1_2 : float) =
-          Ojs.float_of_js
+        let (sSL_OP_NO_TLSv1_2 : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_NO_TLSv1_2")
-        let (sSL_OP_PKCS1_CHECK_1 : float) =
-          Ojs.float_of_js
+        let (sSL_OP_PKCS1_CHECK_1 : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_PKCS1_CHECK_1")
-        let (sSL_OP_PKCS1_CHECK_2 : float) =
-          Ojs.float_of_js
+        let (sSL_OP_PKCS1_CHECK_2 : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_PKCS1_CHECK_2")
-        let (sSL_OP_SINGLE_DH_USE : float) =
-          Ojs.float_of_js
+        let (sSL_OP_SINGLE_DH_USE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_SINGLE_DH_USE")
-        let (sSL_OP_SINGLE_ECDH_USE : float) =
-          Ojs.float_of_js
+        let (sSL_OP_SINGLE_ECDH_USE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_SINGLE_ECDH_USE")
-        let (sSL_OP_SSLEAY_080_CLIENT_DH_BUG : float) =
-          Ojs.float_of_js
+        let (sSL_OP_SSLEAY_080_CLIENT_DH_BUG : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_SSLEAY_080_CLIENT_DH_BUG")
-        let (sSL_OP_SSLREF2_REUSE_CERT_TYPE_BUG : float) =
-          Ojs.float_of_js
+        let (sSL_OP_SSLREF2_REUSE_CERT_TYPE_BUG : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_SSLREF2_REUSE_CERT_TYPE_BUG")
-        let (sSL_OP_TLS_BLOCK_PADDING_BUG : float) =
-          Ojs.float_of_js
+        let (sSL_OP_TLS_BLOCK_PADDING_BUG : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_TLS_BLOCK_PADDING_BUG")
-        let (sSL_OP_TLS_D5_BUG : float) =
-          Ojs.float_of_js
+        let (sSL_OP_TLS_D5_BUG : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_TLS_D5_BUG")
-        let (sSL_OP_TLS_ROLLBACK_BUG : float) =
-          Ojs.float_of_js
+        let (sSL_OP_TLS_ROLLBACK_BUG : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "SSL_OP_TLS_ROLLBACK_BUG")
-        let (eNGINE_METHOD_RSA : float) =
-          Ojs.float_of_js
+        let (eNGINE_METHOD_RSA : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "ENGINE_METHOD_RSA")
-        let (eNGINE_METHOD_DSA : float) =
-          Ojs.float_of_js
+        let (eNGINE_METHOD_DSA : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "ENGINE_METHOD_DSA")
-        let (eNGINE_METHOD_DH : float) =
-          Ojs.float_of_js
+        let (eNGINE_METHOD_DH : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "ENGINE_METHOD_DH")
-        let (eNGINE_METHOD_RAND : float) =
-          Ojs.float_of_js
+        let (eNGINE_METHOD_RAND : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "ENGINE_METHOD_RAND")
-        let (eNGINE_METHOD_EC : float) =
-          Ojs.float_of_js
+        let (eNGINE_METHOD_EC : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "ENGINE_METHOD_EC")
-        let (eNGINE_METHOD_CIPHERS : float) =
-          Ojs.float_of_js
+        let (eNGINE_METHOD_CIPHERS : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "ENGINE_METHOD_CIPHERS")
-        let (eNGINE_METHOD_DIGESTS : float) =
-          Ojs.float_of_js
+        let (eNGINE_METHOD_DIGESTS : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "ENGINE_METHOD_DIGESTS")
-        let (eNGINE_METHOD_PKEY_METHS : float) =
-          Ojs.float_of_js
+        let (eNGINE_METHOD_PKEY_METHS : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "ENGINE_METHOD_PKEY_METHS")
-        let (eNGINE_METHOD_PKEY_ASN1_METHS : float) =
-          Ojs.float_of_js
+        let (eNGINE_METHOD_PKEY_ASN1_METHS : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "ENGINE_METHOD_PKEY_ASN1_METHS")
-        let (eNGINE_METHOD_ALL : float) =
-          Ojs.float_of_js
+        let (eNGINE_METHOD_ALL : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "ENGINE_METHOD_ALL")
-        let (eNGINE_METHOD_NONE : float) =
-          Ojs.float_of_js
+        let (eNGINE_METHOD_NONE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "ENGINE_METHOD_NONE")
-        let (dH_CHECK_P_NOT_SAFE_PRIME : float) =
-          Ojs.float_of_js
+        let (dH_CHECK_P_NOT_SAFE_PRIME : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "DH_CHECK_P_NOT_SAFE_PRIME")
-        let (dH_CHECK_P_NOT_PRIME : float) =
-          Ojs.float_of_js
+        let (dH_CHECK_P_NOT_PRIME : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "DH_CHECK_P_NOT_PRIME")
-        let (dH_UNABLE_TO_CHECK_GENERATOR : float) =
-          Ojs.float_of_js
+        let (dH_UNABLE_TO_CHECK_GENERATOR : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "DH_UNABLE_TO_CHECK_GENERATOR")
-        let (dH_NOT_SUITABLE_GENERATOR : float) =
-          Ojs.float_of_js
+        let (dH_NOT_SUITABLE_GENERATOR : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "DH_NOT_SUITABLE_GENERATOR")
-        let (aLPN_ENABLED : float) =
-          Ojs.float_of_js
+        let (aLPN_ENABLED : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants") "ALPN_ENABLED")
-        let (rSA_PKCS1_PADDING : float) =
-          Ojs.float_of_js
+        let (rSA_PKCS1_PADDING : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "RSA_PKCS1_PADDING")
-        let (rSA_SSLV23_PADDING : float) =
-          Ojs.float_of_js
+        let (rSA_SSLV23_PADDING : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "RSA_SSLV23_PADDING")
-        let (rSA_NO_PADDING : float) =
-          Ojs.float_of_js
+        let (rSA_NO_PADDING : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "RSA_NO_PADDING")
-        let (rSA_PKCS1_OAEP_PADDING : float) =
-          Ojs.float_of_js
+        let (rSA_PKCS1_OAEP_PADDING : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "RSA_PKCS1_OAEP_PADDING")
-        let (rSA_X931_PADDING : float) =
-          Ojs.float_of_js
+        let (rSA_X931_PADDING : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "RSA_X931_PADDING")
-        let (rSA_PKCS1_PSS_PADDING : float) =
-          Ojs.float_of_js
+        let (rSA_PKCS1_PSS_PADDING : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "RSA_PKCS1_PSS_PADDING")
-        let (rSA_PSS_SALTLEN_DIGEST : float) =
-          Ojs.float_of_js
+        let (rSA_PSS_SALTLEN_DIGEST : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "RSA_PSS_SALTLEN_DIGEST")
-        let (rSA_PSS_SALTLEN_MAX_SIGN : float) =
-          Ojs.float_of_js
+        let (rSA_PSS_SALTLEN_MAX_SIGN : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "RSA_PSS_SALTLEN_MAX_SIGN")
-        let (rSA_PSS_SALTLEN_AUTO : float) =
-          Ojs.float_of_js
+        let (rSA_PSS_SALTLEN_AUTO : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "RSA_PSS_SALTLEN_AUTO")
-        let (pOINT_CONVERSION_COMPRESSED : float) =
-          Ojs.float_of_js
+        let (pOINT_CONVERSION_COMPRESSED : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "POINT_CONVERSION_COMPRESSED")
-        let (pOINT_CONVERSION_UNCOMPRESSED : float) =
-          Ojs.float_of_js
+        let (pOINT_CONVERSION_UNCOMPRESSED : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "POINT_CONVERSION_UNCOMPRESSED")
-        let (pOINT_CONVERSION_HYBRID : float) =
-          Ojs.float_of_js
+        let (pOINT_CONVERSION_HYBRID : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.crypto "constants")
                "POINT_CONVERSION_HYBRID")
@@ -1291,15 +1291,14 @@ module Crypto =
           fun (x162 : Ojs.t) -> crypto_HashOptions_of_js x162
         and t_to_js : t -> Ojs.t =
           fun (x161 : crypto_HashOptions) -> crypto_HashOptions_to_js x161
-        let (get_outputLength : t -> float) =
+        let (get_outputLength : t -> int) =
           fun (x163 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x163) "outputLength")
-        let (set_outputLength : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x163) "outputLength")
+        let (set_outputLength : t -> int -> unit) =
           fun (x164 : t) ->
-            fun (x165 : float) ->
+            fun (x165 : int) ->
               Ojs.set_prop_ascii (t_to_js x164) "outputLength"
-                (Ojs.float_to_js x165)
+                (Ojs.int_to_js x165)
         let (cast : t -> Stream.TransformOptions.t) =
           fun (x166 : t) -> Stream.TransformOptions.t_of_js (t_to_js x166)
       end
@@ -1565,15 +1564,15 @@ module Crypto =
             fun (x246 : crypto_KeyType) ->
               Ojs.set_prop_ascii (t_to_js x245) "asymmetricKeyType"
                 (crypto_KeyType_to_js x246)
-        let (get_asymmetricKeySize : t -> float) =
+        let (get_asymmetricKeySize : t -> int) =
           fun (x247 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x247) "asymmetricKeySize")
-        let (set_asymmetricKeySize : t -> float -> unit) =
+        let (set_asymmetricKeySize : t -> int -> unit) =
           fun (x248 : t) ->
-            fun (x249 : float) ->
+            fun (x249 : int) ->
               Ojs.set_prop_ascii (t_to_js x248) "asymmetricKeySize"
-                (Ojs.float_to_js x249)
+                (Ojs.int_to_js x249)
         let (export :
           t -> options:[ `pem ] crypto_KeyExportOptions -> Buffer.t or_string)
           =
@@ -1610,15 +1609,15 @@ module Crypto =
                                              x256)|])
                                | None -> ());
                               x255))|])
-        let (get_symmetricKeySize : t -> float) =
+        let (get_symmetricKeySize : t -> int) =
           fun (x260 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x260) "symmetricKeySize")
-        let (set_symmetricKeySize : t -> float -> unit) =
+        let (set_symmetricKeySize : t -> int -> unit) =
           fun (x261 : t) ->
-            fun (x262 : float) ->
+            fun (x262 : int) ->
               Ojs.set_prop_ascii (t_to_js x261) "symmetricKeySize"
-                (Ojs.float_to_js x262)
+                (Ojs.int_to_js x262)
         let (get_type : t -> crypto_KeyObjectType) =
           fun (x263 : t) ->
             crypto_KeyObjectType_of_js
@@ -1671,15 +1670,14 @@ module Crypto =
         and t_to_js : t -> Ojs.t =
           fun (x274 : crypto_CipherCCMOptions) ->
             crypto_CipherCCMOptions_to_js x274
-        let (get_authTagLength : t -> float) =
+        let (get_authTagLength : t -> int) =
           fun (x276 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x276) "authTagLength")
-        let (set_authTagLength : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x276) "authTagLength")
+        let (set_authTagLength : t -> int -> unit) =
           fun (x277 : t) ->
-            fun (x278 : float) ->
+            fun (x278 : int) ->
               Ojs.set_prop_ascii (t_to_js x277) "authTagLength"
-                (Ojs.float_to_js x278)
+                (Ojs.int_to_js x278)
         let (cast : t -> Stream.TransformOptions.t) =
           fun (x279 : t) -> Stream.TransformOptions.t_of_js (t_to_js x279)
       end
@@ -1691,15 +1689,14 @@ module Crypto =
         and t_to_js : t -> Ojs.t =
           fun (x280 : crypto_CipherGCMOptions) ->
             crypto_CipherGCMOptions_to_js x280
-        let (get_authTagLength : t -> float) =
+        let (get_authTagLength : t -> int) =
           fun (x282 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x282) "authTagLength")
-        let (set_authTagLength : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x282) "authTagLength")
+        let (set_authTagLength : t -> int -> unit) =
           fun (x283 : t) ->
-            fun (x284 : float) ->
+            fun (x284 : int) ->
               Ojs.set_prop_ascii (t_to_js x283) "authTagLength"
-                (Ojs.float_to_js x284)
+                (Ojs.int_to_js x284)
         let (cast : t -> Stream.TransformOptions.t) =
           fun (x285 : t) -> Stream.TransformOptions.t_of_js (t_to_js x285)
       end
@@ -2526,22 +2523,22 @@ module Crypto =
         and t_to_js : t -> Ojs.t =
           fun (x500 : crypto_SigningOptions) ->
             crypto_SigningOptions_to_js x500
-        let (get_padding : t -> float) =
+        let (get_padding : t -> int) =
           fun (x502 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x502) "padding")
-        let (set_padding : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x502) "padding")
+        let (set_padding : t -> int -> unit) =
           fun (x503 : t) ->
-            fun (x504 : float) ->
+            fun (x504 : int) ->
               Ojs.set_prop_ascii (t_to_js x503) "padding"
-                (Ojs.float_to_js x504)
-        let (get_saltLength : t -> float) =
+                (Ojs.int_to_js x504)
+        let (get_saltLength : t -> int) =
           fun (x505 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x505) "saltLength")
-        let (set_saltLength : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x505) "saltLength")
+        let (set_saltLength : t -> int -> unit) =
           fun (x506 : t) ->
-            fun (x507 : float) ->
+            fun (x507 : int) ->
               Ojs.set_prop_ascii (t_to_js x506) "saltLength"
-                (Ojs.float_to_js x507)
+                (Ojs.int_to_js x507)
         let (get_dsaEncoding : t -> crypto_DSAEncoding) =
           fun (x508 : t) ->
             crypto_DSAEncoding_of_js
@@ -2977,11 +2974,11 @@ module Crypto =
           fun (x606 : t) -> Stream.Writable.t_of_js (t_to_js x606)
       end
     let (createDiffieHellman :
-      prime_length:float ->
+      prime_length:int ->
         ?generator:ArrayBufferView.t or_number ->
           unit -> crypto_DiffieHellman)
       =
-      fun ~prime_length:(x607 : float) ->
+      fun ~prime_length:(x607 : int) ->
         fun ?generator:(x608 : ArrayBufferView.t or_number option) ->
           fun () ->
             crypto_DiffieHellman_of_js
@@ -2993,7 +2990,7 @@ module Crypto =
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x609 "push" [|(Ojs.float_to_js x607)|]);
+                            (Ojs.call x609 "push" [|(Ojs.int_to_js x607)|]);
                           (match x608 with
                            | Some x610 ->
                                ignore
@@ -3185,14 +3182,14 @@ module Crypto =
                 ignore
                   (Ojs.call (t_to_js x662) "setPrivateKey"
                      [|(Ojs.string_to_js x660);(BufferEncoding.t_to_js x661)|])
-        let (get_verifyError : t -> float) =
+        let (get_verifyError : t -> int) =
           fun (x663 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x663) "verifyError")
-        let (set_verifyError : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x663) "verifyError")
+        let (set_verifyError : t -> int -> unit) =
           fun (x664 : t) ->
-            fun (x665 : float) ->
+            fun (x665 : int) ->
               Ojs.set_prop_ascii (t_to_js x664) "verifyError"
-                (Ojs.float_to_js x665)
+                (Ojs.int_to_js x665)
       end
     let (getDiffieHellman : group_name:string -> crypto_DiffieHellman) =
       fun ~group_name:(x666 : string) ->
@@ -3202,16 +3199,16 @@ module Crypto =
     let (pbkdf2 :
       password:crypto_BinaryLike ->
         salt:crypto_BinaryLike ->
-          iterations:float ->
-            keylen:float ->
+          iterations:int ->
+            keylen:int ->
               digest:string ->
                 callback:(err:Error.t or_null -> derivedKey:Buffer.t -> any)
                   -> unit)
       =
       fun ~password:(x667 : crypto_BinaryLike) ->
         fun ~salt:(x668 : crypto_BinaryLike) ->
-          fun ~iterations:(x669 : float) ->
-            fun ~keylen:(x670 : float) ->
+          fun ~iterations:(x669 : int) ->
+            fun ~keylen:(x670 : int) ->
               fun ~digest:(x671 : string) ->
                 fun
                   ~callback:(x672 :
@@ -3221,9 +3218,9 @@ module Crypto =
                   ignore
                     (Ojs.call Import.crypto "pbkdf2"
                        [|(crypto_BinaryLike_to_js x667);(crypto_BinaryLike_to_js
-                                                           x668);(Ojs.float_to_js
+                                                           x668);(Ojs.int_to_js
                                                                     x669);(
-                         Ojs.float_to_js x670);(Ojs.string_to_js x671);(
+                         Ojs.int_to_js x670);(Ojs.string_to_js x671);(
                          Ojs.fun_to_js 2
                            (fun (x673 : Ojs.t) ->
                               fun (x675 : Ojs.t) ->
@@ -3234,102 +3231,98 @@ module Crypto =
     let (pbkdf2Sync :
       password:crypto_BinaryLike ->
         salt:crypto_BinaryLike ->
-          iterations:float -> keylen:float -> digest:string -> Buffer.t)
+          iterations:int -> keylen:int -> digest:string -> Buffer.t)
       =
       fun ~password:(x676 : crypto_BinaryLike) ->
         fun ~salt:(x677 : crypto_BinaryLike) ->
-          fun ~iterations:(x678 : float) ->
-            fun ~keylen:(x679 : float) ->
+          fun ~iterations:(x678 : int) ->
+            fun ~keylen:(x679 : int) ->
               fun ~digest:(x680 : string) ->
                 Buffer.t_of_js
                   (Ojs.call Import.crypto "pbkdf2Sync"
                      [|(crypto_BinaryLike_to_js x676);(crypto_BinaryLike_to_js
-                                                         x677);(Ojs.float_to_js
+                                                         x677);(Ojs.int_to_js
                                                                   x678);(
-                       Ojs.float_to_js x679);(Ojs.string_to_js x680)|])
-    let (randomBytes : size:float -> Buffer.t) =
-      fun ~size:(x681 : float) ->
+                       Ojs.int_to_js x679);(Ojs.string_to_js x680)|])
+    let (randomBytes : size:int -> Buffer.t) =
+      fun ~size:(x681 : int) ->
         Buffer.t_of_js
-          (Ojs.call Import.crypto "randomBytes" [|(Ojs.float_to_js x681)|])
+          (Ojs.call Import.crypto "randomBytes" [|(Ojs.int_to_js x681)|])
     let (randomBytes :
-      size:float ->
+      size:int ->
         callback:(err:Error.t or_null -> buf:Buffer.t -> unit) -> unit)
       =
-      fun ~size:(x682 : float) ->
+      fun ~size:(x682 : int) ->
         fun ~callback:(x683 : err:Error.t or_null -> buf:Buffer.t -> unit) ->
           ignore
             (Ojs.call Import.crypto "randomBytes"
-               [|(Ojs.float_to_js x682);(Ojs.fun_to_js 2
-                                           (fun (x684 : Ojs.t) ->
-                                              fun (x686 : Ojs.t) ->
-                                                x683
-                                                  ~err:(or_null_of_js
-                                                          Error.t_of_js x684)
-                                                  ~buf:(Buffer.t_of_js x686)))|])
-    let (pseudoRandomBytes : size:float -> Buffer.t) =
-      fun ~size:(x687 : float) ->
+               [|(Ojs.int_to_js x682);(Ojs.fun_to_js 2
+                                         (fun (x684 : Ojs.t) ->
+                                            fun (x686 : Ojs.t) ->
+                                              x683
+                                                ~err:(or_null_of_js
+                                                        Error.t_of_js x684)
+                                                ~buf:(Buffer.t_of_js x686)))|])
+    let (pseudoRandomBytes : size:int -> Buffer.t) =
+      fun ~size:(x687 : int) ->
         Buffer.t_of_js
           (Ojs.call Import.crypto "pseudoRandomBytes"
-             [|(Ojs.float_to_js x687)|])
+             [|(Ojs.int_to_js x687)|])
     let (pseudoRandomBytes :
-      size:float ->
+      size:int ->
         callback:(err:Error.t or_null -> buf:Buffer.t -> unit) -> unit)
       =
-      fun ~size:(x688 : float) ->
+      fun ~size:(x688 : int) ->
         fun ~callback:(x689 : err:Error.t or_null -> buf:Buffer.t -> unit) ->
           ignore
             (Ojs.call Import.crypto "pseudoRandomBytes"
-               [|(Ojs.float_to_js x688);(Ojs.fun_to_js 2
-                                           (fun (x690 : Ojs.t) ->
-                                              fun (x692 : Ojs.t) ->
-                                                x689
-                                                  ~err:(or_null_of_js
-                                                          Error.t_of_js x690)
-                                                  ~buf:(Buffer.t_of_js x692)))|])
-    let (randomInt : max:float -> float) =
-      fun ~max:(x693 : float) ->
-        Ojs.float_of_js
-          (Ojs.call Import.crypto "randomInt" [|(Ojs.float_to_js x693)|])
-    let (randomInt : min:float -> max:float -> float) =
-      fun ~min:(x694 : float) ->
-        fun ~max:(x695 : float) ->
-          Ojs.float_of_js
+               [|(Ojs.int_to_js x688);(Ojs.fun_to_js 2
+                                         (fun (x690 : Ojs.t) ->
+                                            fun (x692 : Ojs.t) ->
+                                              x689
+                                                ~err:(or_null_of_js
+                                                        Error.t_of_js x690)
+                                                ~buf:(Buffer.t_of_js x692)))|])
+    let (randomInt : max:int -> int) =
+      fun ~max:(x693 : int) ->
+        Ojs.int_of_js
+          (Ojs.call Import.crypto "randomInt" [|(Ojs.int_to_js x693)|])
+    let (randomInt : min:int -> max:int -> int) =
+      fun ~min:(x694 : int) ->
+        fun ~max:(x695 : int) ->
+          Ojs.int_of_js
             (Ojs.call Import.crypto "randomInt"
-               [|(Ojs.float_to_js x694);(Ojs.float_to_js x695)|])
+               [|(Ojs.int_to_js x694);(Ojs.int_to_js x695)|])
     let (randomInt :
-      max:float ->
-        callback:(err:Error.t or_null -> value:float -> unit) -> unit)
+      max:int -> callback:(err:Error.t or_null -> value:int -> unit) -> unit)
       =
-      fun ~max:(x696 : float) ->
-        fun ~callback:(x697 : err:Error.t or_null -> value:float -> unit) ->
+      fun ~max:(x696 : int) ->
+        fun ~callback:(x697 : err:Error.t or_null -> value:int -> unit) ->
           ignore
             (Ojs.call Import.crypto "randomInt"
-               [|(Ojs.float_to_js x696);(Ojs.fun_to_js 2
-                                           (fun (x698 : Ojs.t) ->
-                                              fun (x700 : Ojs.t) ->
-                                                x697
-                                                  ~err:(or_null_of_js
-                                                          Error.t_of_js x698)
-                                                  ~value:(Ojs.float_of_js
-                                                            x700)))|])
+               [|(Ojs.int_to_js x696);(Ojs.fun_to_js 2
+                                         (fun (x698 : Ojs.t) ->
+                                            fun (x700 : Ojs.t) ->
+                                              x697
+                                                ~err:(or_null_of_js
+                                                        Error.t_of_js x698)
+                                                ~value:(Ojs.int_of_js x700)))|])
     let (randomInt :
-      min:float ->
-        max:float ->
-          callback:(err:Error.t or_null -> value:float -> unit) -> unit)
+      min:int ->
+        max:int ->
+          callback:(err:Error.t or_null -> value:int -> unit) -> unit)
       =
-      fun ~min:(x701 : float) ->
-        fun ~max:(x702 : float) ->
-          fun ~callback:(x703 : err:Error.t or_null -> value:float -> unit)
-            ->
+      fun ~min:(x701 : int) ->
+        fun ~max:(x702 : int) ->
+          fun ~callback:(x703 : err:Error.t or_null -> value:int -> unit) ->
             ignore
               (Ojs.call Import.crypto "randomInt"
-                 [|(Ojs.float_to_js x701);(Ojs.float_to_js x702);(Ojs.fun_to_js
-                                                                    2
-                                                                    (
-                                                                    fun
-                                                                    (x704 :
-                                                                    Ojs.t) ->
-                                                                    fun
+                 [|(Ojs.int_to_js x701);(Ojs.int_to_js x702);(Ojs.fun_to_js 2
+                                                                (fun
+                                                                   (x704 :
+                                                                    Ojs.t)
+                                                                   ->
+                                                                   fun
                                                                     (x706 :
                                                                     Ojs.t) ->
                                                                     x703
@@ -3338,13 +3331,13 @@ module Crypto =
                                                                     Error.t_of_js
                                                                     x704)
                                                                     ~value:(
-                                                                    Ojs.float_of_js
+                                                                    Ojs.int_of_js
                                                                     x706)))|])
     let (randomFillSync :
-      buffer:'T -> ?offset:float -> ?size:float -> unit -> 'T) =
+      buffer:'T -> ?offset:int -> ?size:int -> unit -> 'T) =
       fun ~buffer:(x707 : 'T) ->
-        fun ?offset:(x708 : float option) ->
-          fun ?size:(x709 : float option) ->
+        fun ?offset:(x708 : int option) ->
+          fun ?size:(x709 : int option) ->
             fun () ->
               Obj.magic
                 (let x713 = Import.crypto in
@@ -3359,13 +3352,13 @@ module Crypto =
                              | Some x712 ->
                                  ignore
                                    (Ojs.call x710 "push"
-                                      [|(Ojs.float_to_js x712)|])
+                                      [|(Ojs.int_to_js x712)|])
                              | None -> ());
                             (match x709 with
                              | Some x711 ->
                                  ignore
                                    (Ojs.call x710 "push"
-                                      [|(Ojs.float_to_js x711)|])
+                                      [|(Ojs.int_to_js x711)|])
                              | None -> ());
                             x710))|])
     let (randomFill :
@@ -3384,45 +3377,44 @@ module Crypto =
                                             ~buf:(Obj.magic x718)))|])
     let (randomFill :
       buffer:'T ->
-        offset:float ->
+        offset:int ->
           callback:(err:Error.t or_null -> buf:'T -> unit) -> unit)
       =
       fun ~buffer:(x719 : 'T) ->
-        fun ~offset:(x720 : float) ->
+        fun ~offset:(x720 : int) ->
           fun ~callback:(x721 : err:Error.t or_null -> buf:'T -> unit) ->
             ignore
               (Ojs.call Import.crypto "randomFill"
-                 [|(Obj.magic x719);(Ojs.float_to_js x720);(Ojs.fun_to_js 2
-                                                              (fun
-                                                                 (x722 :
+                 [|(Obj.magic x719);(Ojs.int_to_js x720);(Ojs.fun_to_js 2
+                                                            (fun
+                                                               (x722 : Ojs.t)
+                                                               ->
+                                                               fun
+                                                                 (x724 :
                                                                    Ojs.t)
                                                                  ->
-                                                                 fun
-                                                                   (x724 :
-                                                                    Ojs.t)
-                                                                   ->
-                                                                   x721
-                                                                    ~err:(
-                                                                    or_null_of_js
+                                                                 x721
+                                                                   ~err:(
+                                                                   or_null_of_js
                                                                     Error.t_of_js
                                                                     x722)
-                                                                    ~buf:(
-                                                                    Obj.magic
+                                                                   ~buf:(
+                                                                   Obj.magic
                                                                     x724)))|])
     let (randomFill :
       buffer:'T ->
-        offset:float ->
-          size:float ->
+        offset:int ->
+          size:int ->
             callback:(err:Error.t or_null -> buf:'T -> unit) -> unit)
       =
       fun ~buffer:(x725 : 'T) ->
-        fun ~offset:(x726 : float) ->
-          fun ~size:(x727 : float) ->
+        fun ~offset:(x726 : int) ->
+          fun ~size:(x727 : int) ->
             fun ~callback:(x728 : err:Error.t or_null -> buf:'T -> unit) ->
               ignore
                 (Ojs.call Import.crypto "randomFill"
-                   [|(Obj.magic x725);(Ojs.float_to_js x726);(Ojs.float_to_js
-                                                                x727);(
+                   [|(Obj.magic x725);(Ojs.int_to_js x726);(Ojs.int_to_js
+                                                              x727);(
                      Ojs.fun_to_js 2
                        (fun (x729 : Ojs.t) ->
                           fun (x731 : Ojs.t) ->
@@ -3436,70 +3428,69 @@ module Crypto =
         and t_to_js : t -> Ojs.t =
           fun (x732 : crypto_ScryptOptions) ->
             crypto_ScryptOptions_to_js x732
-        let (get_cost : t -> float) =
+        let (get_cost : t -> int) =
           fun (x734 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x734) "cost")
-        let (set_cost : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x734) "cost")
+        let (set_cost : t -> int -> unit) =
           fun (x735 : t) ->
-            fun (x736 : float) ->
-              Ojs.set_prop_ascii (t_to_js x735) "cost" (Ojs.float_to_js x736)
-        let (get_blockSize : t -> float) =
+            fun (x736 : int) ->
+              Ojs.set_prop_ascii (t_to_js x735) "cost" (Ojs.int_to_js x736)
+        let (get_blockSize : t -> int) =
           fun (x737 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x737) "blockSize")
-        let (set_blockSize : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x737) "blockSize")
+        let (set_blockSize : t -> int -> unit) =
           fun (x738 : t) ->
-            fun (x739 : float) ->
+            fun (x739 : int) ->
               Ojs.set_prop_ascii (t_to_js x738) "blockSize"
-                (Ojs.float_to_js x739)
-        let (get_parallelization : t -> float) =
+                (Ojs.int_to_js x739)
+        let (get_parallelization : t -> int) =
           fun (x740 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x740) "parallelization")
-        let (set_parallelization : t -> float -> unit) =
+        let (set_parallelization : t -> int -> unit) =
           fun (x741 : t) ->
-            fun (x742 : float) ->
+            fun (x742 : int) ->
               Ojs.set_prop_ascii (t_to_js x741) "parallelization"
-                (Ojs.float_to_js x742)
-        let (get_N : t -> float) =
+                (Ojs.int_to_js x742)
+        let (get_N : t -> int) =
           fun (x743 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x743) "N")
-        let (set_N : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x743) "N")
+        let (set_N : t -> int -> unit) =
           fun (x744 : t) ->
-            fun (x745 : float) ->
-              Ojs.set_prop_ascii (t_to_js x744) "N" (Ojs.float_to_js x745)
-        let (get_r : t -> float) =
+            fun (x745 : int) ->
+              Ojs.set_prop_ascii (t_to_js x744) "N" (Ojs.int_to_js x745)
+        let (get_r : t -> int) =
           fun (x746 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x746) "r")
-        let (set_r : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x746) "r")
+        let (set_r : t -> int -> unit) =
           fun (x747 : t) ->
-            fun (x748 : float) ->
-              Ojs.set_prop_ascii (t_to_js x747) "r" (Ojs.float_to_js x748)
-        let (get_p : t -> float) =
+            fun (x748 : int) ->
+              Ojs.set_prop_ascii (t_to_js x747) "r" (Ojs.int_to_js x748)
+        let (get_p : t -> int) =
           fun (x749 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x749) "p")
-        let (set_p : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x749) "p")
+        let (set_p : t -> int -> unit) =
           fun (x750 : t) ->
-            fun (x751 : float) ->
-              Ojs.set_prop_ascii (t_to_js x750) "p" (Ojs.float_to_js x751)
-        let (get_maxmem : t -> float) =
+            fun (x751 : int) ->
+              Ojs.set_prop_ascii (t_to_js x750) "p" (Ojs.int_to_js x751)
+        let (get_maxmem : t -> int) =
           fun (x752 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x752) "maxmem")
-        let (set_maxmem : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x752) "maxmem")
+        let (set_maxmem : t -> int -> unit) =
           fun (x753 : t) ->
-            fun (x754 : float) ->
-              Ojs.set_prop_ascii (t_to_js x753) "maxmem"
-                (Ojs.float_to_js x754)
+            fun (x754 : int) ->
+              Ojs.set_prop_ascii (t_to_js x753) "maxmem" (Ojs.int_to_js x754)
       end
     let (scrypt :
       password:crypto_BinaryLike ->
         salt:crypto_BinaryLike ->
-          keylen:float ->
+          keylen:int ->
             callback:(err:Error.t or_null -> derivedKey:Buffer.t -> unit) ->
               unit)
       =
       fun ~password:(x755 : crypto_BinaryLike) ->
         fun ~salt:(x756 : crypto_BinaryLike) ->
-          fun ~keylen:(x757 : float) ->
+          fun ~keylen:(x757 : int) ->
             fun
               ~callback:(x758 :
                           err:Error.t or_null -> derivedKey:Buffer.t -> unit)
@@ -3507,7 +3498,7 @@ module Crypto =
               ignore
                 (Ojs.call Import.crypto "scrypt"
                    [|(crypto_BinaryLike_to_js x755);(crypto_BinaryLike_to_js
-                                                       x756);(Ojs.float_to_js
+                                                       x756);(Ojs.int_to_js
                                                                 x757);(
                      Ojs.fun_to_js 2
                        (fun (x759 : Ojs.t) ->
@@ -3517,14 +3508,14 @@ module Crypto =
     let (scrypt :
       password:crypto_BinaryLike ->
         salt:crypto_BinaryLike ->
-          keylen:float ->
+          keylen:int ->
             options:crypto_ScryptOptions ->
               callback:(err:Error.t or_null -> derivedKey:Buffer.t -> unit)
                 -> unit)
       =
       fun ~password:(x762 : crypto_BinaryLike) ->
         fun ~salt:(x763 : crypto_BinaryLike) ->
-          fun ~keylen:(x764 : float) ->
+          fun ~keylen:(x764 : int) ->
             fun ~options:(x765 : crypto_ScryptOptions) ->
               fun
                 ~callback:(x766 :
@@ -3534,7 +3525,7 @@ module Crypto =
                 ignore
                   (Ojs.call Import.crypto "scrypt"
                      [|(crypto_BinaryLike_to_js x762);(crypto_BinaryLike_to_js
-                                                         x763);(Ojs.float_to_js
+                                                         x763);(Ojs.int_to_js
                                                                   x764);(
                        crypto_ScryptOptions_to_js x765);(Ojs.fun_to_js 2
                                                            (fun
@@ -3555,11 +3546,11 @@ module Crypto =
     let (scryptSync :
       password:crypto_BinaryLike ->
         salt:crypto_BinaryLike ->
-          keylen:float -> ?options:crypto_ScryptOptions -> unit -> Buffer.t)
+          keylen:int -> ?options:crypto_ScryptOptions -> unit -> Buffer.t)
       =
       fun ~password:(x770 : crypto_BinaryLike) ->
         fun ~salt:(x771 : crypto_BinaryLike) ->
-          fun ~keylen:(x772 : float) ->
+          fun ~keylen:(x772 : int) ->
             fun ?options:(x773 : crypto_ScryptOptions option) ->
               fun () ->
                 Buffer.t_of_js
@@ -3577,7 +3568,7 @@ module Crypto =
                                    [|(crypto_BinaryLike_to_js x771)|]);
                               ignore
                                 (Ojs.call x774 "push"
-                                   [|(Ojs.float_to_js x772)|]);
+                                   [|(Ojs.int_to_js x772)|]);
                               (match x773 with
                                | Some x775 ->
                                    ignore
@@ -3600,14 +3591,14 @@ module Crypto =
             fun (x781 : crypto_KeyLike) ->
               Ojs.set_prop_ascii (t_to_js x780) "key"
                 (crypto_KeyLike_to_js x781)
-        let (get_padding : t -> float) =
+        let (get_padding : t -> int) =
           fun (x782 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x782) "padding")
-        let (set_padding : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x782) "padding")
+        let (set_padding : t -> int -> unit) =
           fun (x783 : t) ->
-            fun (x784 : float) ->
+            fun (x784 : int) ->
               Ojs.set_prop_ascii (t_to_js x783) "padding"
-                (Ojs.float_to_js x784)
+                (Ojs.int_to_js x784)
       end
     module RsaPrivateKey =
       struct
@@ -3650,14 +3641,14 @@ module Crypto =
             fun (x798 : TypedArray.t) ->
               Ojs.set_prop_ascii (t_to_js x797) "oaepLabel"
                 (TypedArray.t_to_js x798)
-        let (get_padding : t -> float) =
+        let (get_padding : t -> int) =
           fun (x799 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x799) "padding")
-        let (set_padding : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x799) "padding")
+        let (set_padding : t -> int -> unit) =
           fun (x800 : t) ->
-            fun (x801 : float) ->
+            fun (x801 : int) ->
               Ojs.set_prop_ascii (t_to_js x800) "padding"
-                (Ojs.float_to_js x801)
+                (Ojs.int_to_js x801)
       end
     let (publicEncrypt :
       key:(crypto_KeyLike, crypto_RsaPrivateKey, crypto_RsaPublicKey) union3
@@ -4113,24 +4104,23 @@ module Crypto =
         and t_to_js : t -> Ojs.t =
           fun (x918 : crypto_RSAKeyPairKeyObjectOptions) ->
             crypto_RSAKeyPairKeyObjectOptions_to_js x918
-        let (get_modulusLength : t -> float) =
+        let (get_modulusLength : t -> int) =
           fun (x920 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x920) "modulusLength")
-        let (set_modulusLength : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x920) "modulusLength")
+        let (set_modulusLength : t -> int -> unit) =
           fun (x921 : t) ->
-            fun (x922 : float) ->
+            fun (x922 : int) ->
               Ojs.set_prop_ascii (t_to_js x921) "modulusLength"
-                (Ojs.float_to_js x922)
-        let (get_publicExponent : t -> float) =
+                (Ojs.int_to_js x922)
+        let (get_publicExponent : t -> int) =
           fun (x923 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x923) "publicExponent")
-        let (set_publicExponent : t -> float -> unit) =
+        let (set_publicExponent : t -> int -> unit) =
           fun (x924 : t) ->
-            fun (x925 : float) ->
+            fun (x925 : int) ->
               Ojs.set_prop_ascii (t_to_js x924) "publicExponent"
-                (Ojs.float_to_js x925)
+                (Ojs.int_to_js x925)
       end
     module DSAKeyPairKeyObjectOptions =
       struct
@@ -4140,24 +4130,22 @@ module Crypto =
         and t_to_js : t -> Ojs.t =
           fun (x926 : crypto_DSAKeyPairKeyObjectOptions) ->
             crypto_DSAKeyPairKeyObjectOptions_to_js x926
-        let (get_modulusLength : t -> float) =
+        let (get_modulusLength : t -> int) =
           fun (x928 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x928) "modulusLength")
-        let (set_modulusLength : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x928) "modulusLength")
+        let (set_modulusLength : t -> int -> unit) =
           fun (x929 : t) ->
-            fun (x930 : float) ->
+            fun (x930 : int) ->
               Ojs.set_prop_ascii (t_to_js x929) "modulusLength"
-                (Ojs.float_to_js x930)
-        let (get_divisorLength : t -> float) =
+                (Ojs.int_to_js x930)
+        let (get_divisorLength : t -> int) =
           fun (x931 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x931) "divisorLength")
-        let (set_divisorLength : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x931) "divisorLength")
+        let (set_divisorLength : t -> int -> unit) =
           fun (x932 : t) ->
-            fun (x933 : float) ->
+            fun (x933 : int) ->
               Ojs.set_prop_ascii (t_to_js x932) "divisorLength"
-                (Ojs.float_to_js x933)
+                (Ojs.int_to_js x933)
       end
     module RSAKeyPairOptions =
       struct
@@ -4182,26 +4170,26 @@ module Crypto =
               fun (x934 : (__PubF, __PrivF) crypto_RSAKeyPairOptions) ->
                 crypto_RSAKeyPairOptions_to_js __PubF_to_js __PrivF_to_js
                   x934
-        let (get_modulusLength : ('PubF, 'PrivF) t -> float) =
+        let (get_modulusLength : ('PubF, 'PrivF) t -> int) =
           fun (x940 : ('PubF, 'PrivF) t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x940)
                  "modulusLength")
-        let (set_modulusLength : ('PubF, 'PrivF) t -> float -> unit) =
+        let (set_modulusLength : ('PubF, 'PrivF) t -> int -> unit) =
           fun (x943 : ('PubF, 'PrivF) t) ->
-            fun (x944 : float) ->
+            fun (x944 : int) ->
               Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x943)
-                "modulusLength" (Ojs.float_to_js x944)
-        let (get_publicExponent : ('PubF, 'PrivF) t -> float) =
+                "modulusLength" (Ojs.int_to_js x944)
+        let (get_publicExponent : ('PubF, 'PrivF) t -> int) =
           fun (x947 : ('PubF, 'PrivF) t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x947)
                  "publicExponent")
-        let (set_publicExponent : ('PubF, 'PrivF) t -> float -> unit) =
+        let (set_publicExponent : ('PubF, 'PrivF) t -> int -> unit) =
           fun (x950 : ('PubF, 'PrivF) t) ->
-            fun (x951 : float) ->
+            fun (x951 : int) ->
               Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x950)
-                "publicExponent" (Ojs.float_to_js x951)
+                "publicExponent" (Ojs.int_to_js x951)
         let (get_publicKeyEncoding :
           ('PubF, 'PrivF) t -> anonymous_interface_9) =
           fun (x954 : ('PubF, 'PrivF) t) ->
@@ -4268,26 +4256,26 @@ module Crypto =
               fun (x974 : (__PubF, __PrivF) crypto_DSAKeyPairOptions) ->
                 crypto_DSAKeyPairOptions_to_js __PubF_to_js __PrivF_to_js
                   x974
-        let (get_modulusLength : ('PubF, 'PrivF) t -> float) =
+        let (get_modulusLength : ('PubF, 'PrivF) t -> int) =
           fun (x980 : ('PubF, 'PrivF) t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x980)
                  "modulusLength")
-        let (set_modulusLength : ('PubF, 'PrivF) t -> float -> unit) =
+        let (set_modulusLength : ('PubF, 'PrivF) t -> int -> unit) =
           fun (x983 : ('PubF, 'PrivF) t) ->
-            fun (x984 : float) ->
+            fun (x984 : int) ->
               Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x983)
-                "modulusLength" (Ojs.float_to_js x984)
-        let (get_divisorLength : ('PubF, 'PrivF) t -> float) =
+                "modulusLength" (Ojs.int_to_js x984)
+        let (get_divisorLength : ('PubF, 'PrivF) t -> int) =
           fun (x987 : ('PubF, 'PrivF) t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x987)
                  "divisorLength")
-        let (set_divisorLength : ('PubF, 'PrivF) t -> float -> unit) =
+        let (set_divisorLength : ('PubF, 'PrivF) t -> int -> unit) =
           fun (x990 : ('PubF, 'PrivF) t) ->
-            fun (x991 : float) ->
+            fun (x991 : int) ->
               Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x990)
-                "divisorLength" (Ojs.float_to_js x991)
+                "divisorLength" (Ojs.int_to_js x991)
         let (get_publicKeyEncoding :
           ('PubF, 'PrivF) t -> anonymous_interface_7) =
           fun (x994 : ('PubF, 'PrivF) t) ->

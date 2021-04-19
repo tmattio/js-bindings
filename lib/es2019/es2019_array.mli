@@ -1,3 +1,7 @@
+[@@@ocaml.warning "-7-11-32-33-39"]
+
+[@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
+
 open Es2018
 
 module FlatArray : sig
@@ -26,19 +30,22 @@ module ReadonlyArray : sig
     -> callback:
          (this:'This
           -> value:'T
-          -> index:float
+          -> index:int
           -> array:'T list
           -> ('U, 'U t) union2)
     -> ?thisArg:'This
     -> unit
     -> 'U list
+    [@@js.call "flatMap"]
 
   val flat : 'T t -> this:'A -> ?depth:'D -> unit -> ('A, 'D) FlatArray.t list
+    [@@js.call "flat"]
 
-  val to_ml : 'T t -> 'T list
+  val to_ml : 'T t -> 'T list [@@js.cast]
 
-  val of_ml : 'T list -> 'T t
+  val of_ml : 'T list -> 'T t [@@js.cast]
 end
+[@@js.scope "ReadonlyArray"]
 
 module Array : sig
   include module type of struct
@@ -50,16 +57,19 @@ module Array : sig
     -> callback:
          (this:'This
           -> value:'T
-          -> index:float
+          -> index:int
           -> array:'T list
           -> ('U, 'U ReadonlyArray.t) union2)
     -> ?thisArg:'This
     -> unit
     -> 'U list
+    [@@js.call "flatMap"]
 
   val flat : 'T t -> this:'A -> ?depth:'D -> unit -> ('A, 'D) FlatArray.t list
+    [@@js.call "flat"]
 
-  val to_ml : 'T t -> 'T list
+  val to_ml : 'T t -> 'T list [@@js.cast]
 
-  val of_ml : 'T list -> 'T t
+  val of_ml : 'T list -> 'T t [@@js.cast]
 end
+[@@js.scope "Array"]

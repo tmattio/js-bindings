@@ -269,5 +269,5 @@ module Make (M: Missing) : sig
     val getEncodingHeaderValue: encodings:_Named list -> string or_undefined [@@js.global "getEncodingHeaderValue"]
     val parseEncodingHeaderValue: value:string -> string list [@@js.global "parseEncodingHeaderValue"]
   end
-  (* export {}; *)
+  
 end

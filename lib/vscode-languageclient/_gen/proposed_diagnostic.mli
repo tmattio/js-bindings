@@ -324,5 +324,5 @@ module Make (M: Missing) : sig
     val registerLanguageProvider: t -> options:Proposed.DiagnosticRegistrationOptions.t_0 -> (Disposable.t_0 * _DiagnosticFeatureProvider) [@@js.call "registerLanguageProvider"]
     val cast: t -> (Proposed.DiagnosticOptions.t_0, Proposed.DiagnosticRegistrationOptions.t_0, _DiagnosticFeatureProvider) TextDocumentFeature.t_3 [@@js.cast]
   end
-  (* export {}; *)
+  
 end

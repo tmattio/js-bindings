@@ -203,10 +203,10 @@ module Events =
               AsyncIterableIterator.t_of_js any_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.events "EventEmitter")
                    "on" [|(t_to_js x44);(Ojs.string_to_js x45)|])
-        let (listenerCount : emitter:t -> event:symbol or_string -> float) =
+        let (listenerCount : emitter:t -> event:symbol or_string -> int) =
           fun ~emitter:(x47 : t) ->
             fun ~event:(x48 : symbol or_string) ->
-              Ojs.float_of_js
+              Ojs.int_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.events "EventEmitter")
                    "listenerCount"
                    [|(t_to_js x47);(or_string_to_js symbol_to_js x48)|])
@@ -233,17 +233,17 @@ module Events =
             Ojs.set_prop_ascii
               (Ojs.get_prop_ascii Import.events "EventEmitter")
               "captureRejections" (Ojs.bool_to_js x50)
-        let (get_defaultMaxListeners : unit -> float) =
+        let (get_defaultMaxListeners : unit -> int) =
           fun () ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii
                  (Ojs.get_prop_ascii Import.events "EventEmitter")
                  "defaultMaxListeners")
-        let (set_defaultMaxListeners : float -> unit) =
-          fun (x51 : float) ->
+        let (set_defaultMaxListeners : int -> unit) =
+          fun (x51 : int) ->
             Ojs.set_prop_ascii
               (Ojs.get_prop_ascii Import.events "EventEmitter")
-              "defaultMaxListeners" (Ojs.float_to_js x51)
+              "defaultMaxListeners" (Ojs.int_to_js x51)
       end
   end
 module EventEmitter =
@@ -342,15 +342,14 @@ module EventEmitter =
                                    [|(or_string_to_js symbol_to_js x86)|])
                           | None -> ());
                          x85))|])
-    let (setMaxListeners : t -> n:float -> t) =
+    let (setMaxListeners : t -> n:int -> t) =
       fun (x91 : t) ->
-        fun ~n:(x90 : float) ->
+        fun ~n:(x90 : int) ->
           t_of_js
-            (Ojs.call (t_to_js x91) "setMaxListeners"
-               [|(Ojs.float_to_js x90)|])
-    let (getMaxListeners : t -> float) =
+            (Ojs.call (t_to_js x91) "setMaxListeners" [|(Ojs.int_to_js x90)|])
+    let (getMaxListeners : t -> int) =
       fun (x92 : t) ->
-        Ojs.float_of_js (Ojs.call (t_to_js x92) "getMaxListeners" [||])
+        Ojs.int_of_js (Ojs.call (t_to_js x92) "getMaxListeners" [||])
     let (listeners : t -> event:symbol or_string -> untyped_function list) =
       fun (x95 : t) ->
         fun ~event:(x93 : symbol or_string) ->
@@ -384,10 +383,10 @@ module EventEmitter =
                                  (Ojs.call x103 "push" [|(any_to_js x104)|]))
                             x102;
                           x103))|])
-    let (listenerCount : t -> event:symbol or_string -> float) =
+    let (listenerCount : t -> event:symbol or_string -> int) =
       fun (x110 : t) ->
         fun ~event:(x108 : symbol or_string) ->
-          Ojs.float_of_js
+          Ojs.int_of_js
             (Ojs.call (t_to_js x110) "listenerCount"
                [|(or_string_to_js symbol_to_js x108)|])
     let (prependListener :

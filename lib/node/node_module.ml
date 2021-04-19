@@ -79,14 +79,14 @@ module Module =
                 fun (x10 : string) ->
                   Ojs.set_prop_ascii (t_to_js x9) "file"
                     (Ojs.string_to_js x10)
-            let (get_version : t -> float) =
+            let (get_version : t -> int) =
               fun (x11 : t) ->
-                Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x11) "version")
-            let (set_version : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x11) "version")
+            let (set_version : t -> int -> unit) =
               fun (x12 : t) ->
-                fun (x13 : float) ->
+                fun (x13 : int) ->
                   Ojs.set_prop_ascii (t_to_js x12) "version"
-                    (Ojs.float_to_js x13)
+                    (Ojs.int_to_js x13)
             let (get_sources : t -> string list) =
               fun (x14 : t) ->
                 Ojs.list_of_js Ojs.string_of_js
@@ -141,24 +141,24 @@ module Module =
             and t_to_js : t -> Ojs.t =
               fun (x35 : module_Module_SourceMapping) ->
                 module_Module_SourceMapping_to_js x35
-            let (get_generatedLine : t -> float) =
+            let (get_generatedLine : t -> int) =
               fun (x37 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x37) "generatedLine")
-            let (set_generatedLine : t -> float -> unit) =
+            let (set_generatedLine : t -> int -> unit) =
               fun (x38 : t) ->
-                fun (x39 : float) ->
+                fun (x39 : int) ->
                   Ojs.set_prop_ascii (t_to_js x38) "generatedLine"
-                    (Ojs.float_to_js x39)
-            let (get_generatedColumn : t -> float) =
+                    (Ojs.int_to_js x39)
+            let (get_generatedColumn : t -> int) =
               fun (x40 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x40) "generatedColumn")
-            let (set_generatedColumn : t -> float -> unit) =
+            let (set_generatedColumn : t -> int -> unit) =
               fun (x41 : t) ->
-                fun (x42 : float) ->
+                fun (x42 : int) ->
                   Ojs.set_prop_ascii (t_to_js x41) "generatedColumn"
-                    (Ojs.float_to_js x42)
+                    (Ojs.int_to_js x42)
             let (get_originalSource : t -> string) =
               fun (x43 : t) ->
                 Ojs.string_of_js
@@ -168,24 +168,24 @@ module Module =
                 fun (x45 : string) ->
                   Ojs.set_prop_ascii (t_to_js x44) "originalSource"
                     (Ojs.string_to_js x45)
-            let (get_originalLine : t -> float) =
+            let (get_originalLine : t -> int) =
               fun (x46 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x46) "originalLine")
-            let (set_originalLine : t -> float -> unit) =
+            let (set_originalLine : t -> int -> unit) =
               fun (x47 : t) ->
-                fun (x48 : float) ->
+                fun (x48 : int) ->
                   Ojs.set_prop_ascii (t_to_js x47) "originalLine"
-                    (Ojs.float_to_js x48)
-            let (get_originalColumn : t -> float) =
+                    (Ojs.int_to_js x48)
+            let (get_originalColumn : t -> int) =
               fun (x49 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x49) "originalColumn")
-            let (set_originalColumn : t -> float -> unit) =
+            let (set_originalColumn : t -> int -> unit) =
               fun (x50 : t) ->
-                fun (x51 : float) ->
+                fun (x51 : int) ->
                   Ojs.set_prop_ascii (t_to_js x50) "originalColumn"
-                    (Ojs.float_to_js x51)
+                    (Ojs.int_to_js x51)
           end
         module SourceMap =
           struct
@@ -208,14 +208,13 @@ module Module =
                         "SourceMap")
                      [|(module_Module_SourceMapPayload_to_js x55)|])
             let (findEntry :
-              t -> line:float -> column:float -> module_Module_SourceMapping)
-              =
+              t -> line:int -> column:int -> module_Module_SourceMapping) =
               fun (x58 : t) ->
-                fun ~line:(x56 : float) ->
-                  fun ~column:(x57 : float) ->
+                fun ~line:(x56 : int) ->
+                  fun ~column:(x57 : int) ->
                     module_Module_SourceMapping_of_js
                       (Ojs.call (t_to_js x58) "findEntry"
-                         [|(Ojs.float_to_js x56);(Ojs.float_to_js x57)|])
+                         [|(Ojs.int_to_js x56);(Ojs.int_to_js x57)|])
           end
         type t = module_Module
         let rec t_of_js : Ojs.t -> t =

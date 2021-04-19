@@ -2,63 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2016
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _Float32ArrayConstructor = [ `Float32ArrayConstructor ] intf
-        and _Float64ArrayConstructor = [ `Float64ArrayConstructor ] intf
-        and _Int16ArrayConstructor = [ `Int16ArrayConstructor ] intf
-        and _Int32ArrayConstructor = [ `Int32ArrayConstructor ] intf
-        and _Int8ArrayConstructor = [ `Int8ArrayConstructor ] intf
-        and _Uint16ArrayConstructor = [ `Uint16ArrayConstructor ] intf
-        and _Uint32ArrayConstructor = [ `Uint32ArrayConstructor ] intf
-        and _Uint8ArrayConstructor = [ `Uint8ArrayConstructor ] intf
-        and _Uint8ClampedArrayConstructor =
-          [ `Uint8ClampedArrayConstructor ] intf
-        let rec _Float32ArrayConstructor_of_js :
-          Ojs.t -> _Float32ArrayConstructor = Obj.magic
-        and _Float32ArrayConstructor_to_js :
-          _Float32ArrayConstructor -> Ojs.t = Obj.magic
-        and _Float64ArrayConstructor_of_js :
-          Ojs.t -> _Float64ArrayConstructor = Obj.magic
-        and _Float64ArrayConstructor_to_js :
-          _Float64ArrayConstructor -> Ojs.t = Obj.magic
-        and _Int16ArrayConstructor_of_js : Ojs.t -> _Int16ArrayConstructor =
-          Obj.magic
-        and _Int16ArrayConstructor_to_js : _Int16ArrayConstructor -> Ojs.t =
-          Obj.magic
-        and _Int32ArrayConstructor_of_js : Ojs.t -> _Int32ArrayConstructor =
-          Obj.magic
-        and _Int32ArrayConstructor_to_js : _Int32ArrayConstructor -> Ojs.t =
-          Obj.magic
-        and _Int8ArrayConstructor_of_js : Ojs.t -> _Int8ArrayConstructor =
-          Obj.magic
-        and _Int8ArrayConstructor_to_js : _Int8ArrayConstructor -> Ojs.t =
-          Obj.magic
-        and _Uint16ArrayConstructor_of_js : Ojs.t -> _Uint16ArrayConstructor
-          = Obj.magic
-        and _Uint16ArrayConstructor_to_js : _Uint16ArrayConstructor -> Ojs.t
-          = Obj.magic
-        and _Uint32ArrayConstructor_of_js : Ojs.t -> _Uint32ArrayConstructor
-          = Obj.magic
-        and _Uint32ArrayConstructor_to_js : _Uint32ArrayConstructor -> Ojs.t
-          = Obj.magic
-        and _Uint8ArrayConstructor_of_js : Ojs.t -> _Uint8ArrayConstructor =
-          Obj.magic
-        and _Uint8ArrayConstructor_to_js : _Uint8ArrayConstructor -> Ojs.t =
-          Obj.magic
-        and _Uint8ClampedArrayConstructor_of_js :
-          Ojs.t -> _Uint8ClampedArrayConstructor = Obj.magic
-        and _Uint8ClampedArrayConstructor_to_js :
-          _Uint8ClampedArrayConstructor -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module Int8Array =
   struct
     include struct include Int8Array end

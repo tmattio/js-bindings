@@ -146,25 +146,25 @@ module Perf_hooks =
         and t_to_js : t -> Ojs.t =
           fun (x16 : perf_hooks_PerformanceEntry) ->
             perf_hooks_PerformanceEntry_to_js x16
-        let (get_duration : t -> float) =
+        let (get_duration : t -> int) =
           fun (x18 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x18) "duration")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x18) "duration")
         let (get_name : t -> string) =
           fun (x19 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x19) "name")
-        let (get_startTime : t -> float) =
+        let (get_startTime : t -> int) =
           fun (x20 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x20) "startTime")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x20) "startTime")
         let (get_entryType : t -> perf_hooks_EntryType) =
           fun (x21 : t) ->
             perf_hooks_EntryType_of_js
               (Ojs.get_prop_ascii (t_to_js x21) "entryType")
-        let (get_kind : t -> float) =
+        let (get_kind : t -> int) =
           fun (x22 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x22) "kind")
-        let (get_flags : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x22) "kind")
+        let (get_flags : t -> int) =
           fun (x23 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x23) "flags")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x23) "flags")
       end
     module PerformanceNodeTiming =
       struct
@@ -174,25 +174,25 @@ module Perf_hooks =
         and t_to_js : t -> Ojs.t =
           fun (x24 : perf_hooks_PerformanceNodeTiming) ->
             perf_hooks_PerformanceNodeTiming_to_js x24
-        let (get_bootstrapComplete : t -> float) =
+        let (get_bootstrapComplete : t -> int) =
           fun (x26 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x26) "bootstrapComplete")
-        let (get_environment : t -> float) =
+        let (get_environment : t -> int) =
           fun (x27 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x27) "environment")
-        let (get_idleTime : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x27) "environment")
+        let (get_idleTime : t -> int) =
           fun (x28 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x28) "idleTime")
-        let (get_loopExit : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x28) "idleTime")
+        let (get_loopExit : t -> int) =
           fun (x29 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x29) "loopExit")
-        let (get_loopStart : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x29) "loopExit")
+        let (get_loopStart : t -> int) =
           fun (x30 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x30) "loopStart")
-        let (get_v8Start : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x30) "loopStart")
+        let (get_v8Start : t -> int) =
           fun (x31 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x31) "v8Start")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x31) "v8Start")
         let (cast : t -> perf_hooks_PerformanceEntry) =
           fun (x32 : t) -> perf_hooks_PerformanceEntry_of_js (t_to_js x32)
       end
@@ -204,28 +204,28 @@ module Perf_hooks =
         and t_to_js : t -> Ojs.t =
           fun (x33 : perf_hooks_EventLoopUtilization) ->
             perf_hooks_EventLoopUtilization_to_js x33
-        let (get_idle : t -> float) =
+        let (get_idle : t -> int) =
           fun (x35 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x35) "idle")
-        let (set_idle : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x35) "idle")
+        let (set_idle : t -> int -> unit) =
           fun (x36 : t) ->
-            fun (x37 : float) ->
-              Ojs.set_prop_ascii (t_to_js x36) "idle" (Ojs.float_to_js x37)
-        let (get_active : t -> float) =
+            fun (x37 : int) ->
+              Ojs.set_prop_ascii (t_to_js x36) "idle" (Ojs.int_to_js x37)
+        let (get_active : t -> int) =
           fun (x38 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x38) "active")
-        let (set_active : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x38) "active")
+        let (set_active : t -> int -> unit) =
           fun (x39 : t) ->
-            fun (x40 : float) ->
-              Ojs.set_prop_ascii (t_to_js x39) "active" (Ojs.float_to_js x40)
-        let (get_utilization : t -> float) =
+            fun (x40 : int) ->
+              Ojs.set_prop_ascii (t_to_js x39) "active" (Ojs.int_to_js x40)
+        let (get_utilization : t -> int) =
           fun (x41 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x41) "utilization")
-        let (set_utilization : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x41) "utilization")
+        let (set_utilization : t -> int -> unit) =
           fun (x42 : t) ->
-            fun (x43 : float) ->
+            fun (x43 : int) ->
               Ojs.set_prop_ascii (t_to_js x42) "utilization"
-                (Ojs.float_to_js x43)
+                (Ojs.int_to_js x43)
       end
     module Performance =
       struct
@@ -285,12 +285,11 @@ module Perf_hooks =
           fun (x60 : t) ->
             perf_hooks_PerformanceNodeTiming_of_js
               (Ojs.get_prop_ascii (t_to_js x60) "nodeTiming")
-        let (now : t -> float) =
-          fun (x61 : t) ->
-            Ojs.float_of_js (Ojs.call (t_to_js x61) "now" [||])
-        let (get_timeOrigin : t -> float) =
+        let (now : t -> int) =
+          fun (x61 : t) -> Ojs.int_of_js (Ojs.call (t_to_js x61) "now" [||])
+        let (get_timeOrigin : t -> int) =
           fun (x62 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x62) "timeOrigin")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x62) "timeOrigin")
         let (timerify : t -> fn:'T -> 'T) =
           fun (x64 : t) ->
             fun ~fn:(x63 : 'T) ->
@@ -430,59 +429,59 @@ module Perf_hooks =
       end
     module Constants =
       struct
-        let (nODE_PERFORMANCE_GC_MAJOR : float) =
-          Ojs.float_of_js
+        let (nODE_PERFORMANCE_GC_MAJOR : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_MAJOR")
-        let (nODE_PERFORMANCE_GC_MINOR : float) =
-          Ojs.float_of_js
+        let (nODE_PERFORMANCE_GC_MINOR : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_MINOR")
-        let (nODE_PERFORMANCE_GC_INCREMENTAL : float) =
-          Ojs.float_of_js
+        let (nODE_PERFORMANCE_GC_INCREMENTAL : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_INCREMENTAL")
-        let (nODE_PERFORMANCE_GC_WEAKCB : float) =
-          Ojs.float_of_js
+        let (nODE_PERFORMANCE_GC_WEAKCB : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_WEAKCB")
-        let (nODE_PERFORMANCE_GC_FLAGS_NO : float) =
-          Ojs.float_of_js
+        let (nODE_PERFORMANCE_GC_FLAGS_NO : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_FLAGS_NO")
-        let (nODE_PERFORMANCE_GC_FLAGS_CONSTRUCT_RETAINED : float) =
-          Ojs.float_of_js
+        let (nODE_PERFORMANCE_GC_FLAGS_CONSTRUCT_RETAINED : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_FLAGS_CONSTRUCT_RETAINED")
-        let (nODE_PERFORMANCE_GC_FLAGS_FORCED : float) =
-          Ojs.float_of_js
+        let (nODE_PERFORMANCE_GC_FLAGS_FORCED : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_FLAGS_FORCED")
-        let (nODE_PERFORMANCE_GC_FLAGS_SYNCHRONOUS_PHANTOM_PROCESSING :
-          float) =
-          Ojs.float_of_js
+        let (nODE_PERFORMANCE_GC_FLAGS_SYNCHRONOUS_PHANTOM_PROCESSING : 
+          int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_FLAGS_SYNCHRONOUS_PHANTOM_PROCESSING")
-        let (nODE_PERFORMANCE_GC_FLAGS_ALL_AVAILABLE_GARBAGE : float) =
-          Ojs.float_of_js
+        let (nODE_PERFORMANCE_GC_FLAGS_ALL_AVAILABLE_GARBAGE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_FLAGS_ALL_AVAILABLE_GARBAGE")
-        let (nODE_PERFORMANCE_GC_FLAGS_ALL_EXTERNAL_MEMORY : float) =
-          Ojs.float_of_js
+        let (nODE_PERFORMANCE_GC_FLAGS_ALL_EXTERNAL_MEMORY : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_FLAGS_ALL_EXTERNAL_MEMORY")
-        let (nODE_PERFORMANCE_GC_FLAGS_SCHEDULE_IDLE : float) =
-          Ojs.float_of_js
+        let (nODE_PERFORMANCE_GC_FLAGS_SCHEDULE_IDLE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_FLAGS_SCHEDULE_IDLE")
@@ -498,14 +497,14 @@ module Perf_hooks =
         and t_to_js : t -> Ojs.t =
           fun (x98 : perf_hooks_EventLoopMonitorOptions) ->
             perf_hooks_EventLoopMonitorOptions_to_js x98
-        let (get_resolution : t -> float) =
+        let (get_resolution : t -> int) =
           fun (x100 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x100) "resolution")
-        let (set_resolution : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x100) "resolution")
+        let (set_resolution : t -> int -> unit) =
           fun (x101 : t) ->
-            fun (x102 : float) ->
+            fun (x102 : int) ->
               Ojs.set_prop_ascii (t_to_js x101) "resolution"
-                (Ojs.float_to_js x102)
+                (Ojs.int_to_js x102)
       end
     module EventLoopDelayMonitor =
       struct
@@ -523,31 +522,31 @@ module Perf_hooks =
             Ojs.bool_of_js (Ojs.call (t_to_js x106) "disable" [||])
         let (reset : t -> unit) =
           fun (x107 : t) -> ignore (Ojs.call (t_to_js x107) "reset" [||])
-        let (percentile : t -> percentile:float -> float) =
+        let (percentile : t -> percentile:int -> int) =
           fun (x109 : t) ->
-            fun ~percentile:(x108 : float) ->
-              Ojs.float_of_js
+            fun ~percentile:(x108 : int) ->
+              Ojs.int_of_js
                 (Ojs.call (t_to_js x109) "percentile"
-                   [|(Ojs.float_to_js x108)|])
-        let (get_percentiles : t -> (float, float) Map.t) =
+                   [|(Ojs.int_to_js x108)|])
+        let (get_percentiles : t -> (int, int) Map.t) =
           fun (x110 : t) ->
-            Map.t_of_js Ojs.float_of_js Ojs.float_of_js
+            Map.t_of_js Ojs.int_of_js Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x110) "percentiles")
-        let (get_exceeds : t -> float) =
+        let (get_exceeds : t -> int) =
           fun (x113 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x113) "exceeds")
-        let (get_min : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x113) "exceeds")
+        let (get_min : t -> int) =
           fun (x114 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x114) "min")
-        let (get_max : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x114) "min")
+        let (get_max : t -> int) =
           fun (x115 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x115) "max")
-        let (get_mean : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x115) "max")
+        let (get_mean : t -> int) =
           fun (x116 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x116) "mean")
-        let (get_stddev : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x116) "mean")
+        let (get_stddev : t -> int) =
           fun (x117 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x117) "stddev")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x117) "stddev")
       end
     let (monitorEventLoopDelay :
       ?options:perf_hooks_EventLoopMonitorOptions ->

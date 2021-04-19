@@ -142,10 +142,10 @@ module AnonymousInterface0 =
 module Tls =
   struct
     open Node_net
-    let (cLIENT_RENEG_LIMIT : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.tls "CLIENT_RENEG_LIMIT")
-    let (cLIENT_RENEG_WINDOW : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.tls "CLIENT_RENEG_WINDOW")
+    let (cLIENT_RENEG_LIMIT : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.tls "CLIENT_RENEG_LIMIT")
+    let (cLIENT_RENEG_WINDOW : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.tls "CLIENT_RENEG_WINDOW")
     module Certificate =
       struct
         type t = tls_Certificate
@@ -390,13 +390,13 @@ module Tls =
             fun (x103 : string) ->
               Ojs.set_prop_ascii (t_to_js x102) "name"
                 (Ojs.string_to_js x103)
-        let (get_size : t -> float) =
+        let (get_size : t -> int) =
           fun (x104 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x104) "size")
-        let (set_size : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x104) "size")
+        let (set_size : t -> int -> unit) =
           fun (x105 : t) ->
-            fun (x106 : float) ->
-              Ojs.set_prop_ascii (t_to_js x105) "size" (Ojs.float_to_js x106)
+            fun (x106 : int) ->
+              Ojs.set_prop_ascii (t_to_js x105) "size" (Ojs.int_to_js x106)
       end
     module KeyObject =
       struct
@@ -675,12 +675,12 @@ module Tls =
                                                                   or_null_of_js
                                                                     Error.t_of_js
                                                                     x199)))|])
-        let (setMaxSendFragment : t -> size:float -> bool) =
+        let (setMaxSendFragment : t -> size:int -> bool) =
           fun (x204 : t) ->
-            fun ~size:(x203 : float) ->
+            fun ~size:(x203 : int) ->
               Ojs.bool_of_js
                 (Ojs.call (t_to_js x204) "setMaxSendFragment"
-                   [|(Ojs.float_to_js x203)|])
+                   [|(Ojs.int_to_js x203)|])
         let (disableRenegotiation : t -> unit) =
           fun (x205 : t) ->
             ignore (Ojs.call (t_to_js x205) "disableRenegotiation" [||])
@@ -688,15 +688,14 @@ module Tls =
           fun (x206 : t) ->
             ignore (Ojs.call (t_to_js x206) "enableTrace" [||])
         let (exportKeyingMaterial :
-          t -> length:float -> label:string -> context:Buffer.t -> Buffer.t)
-          =
+          t -> length:int -> label:string -> context:Buffer.t -> Buffer.t) =
           fun (x210 : t) ->
-            fun ~length:(x207 : float) ->
+            fun ~length:(x207 : int) ->
               fun ~label:(x208 : string) ->
                 fun ~context:(x209 : Buffer.t) ->
                   Buffer.t_of_js
                     (Ojs.call (t_to_js x210) "exportKeyingMaterial"
-                       [|(Ojs.float_to_js x207);(Ojs.string_to_js x208);(
+                       [|(Ojs.int_to_js x207);(Ojs.string_to_js x208);(
                          Buffer.t_to_js x209)|])
         let (addListener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
@@ -1183,24 +1182,24 @@ module Tls =
           fun (x360 : Ojs.t) -> tls_TlsOptions_of_js x360
         and t_to_js : t -> Ojs.t =
           fun (x359 : tls_TlsOptions) -> tls_TlsOptions_to_js x359
-        let (get_handshakeTimeout : t -> float) =
+        let (get_handshakeTimeout : t -> int) =
           fun (x361 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x361) "handshakeTimeout")
-        let (set_handshakeTimeout : t -> float -> unit) =
+        let (set_handshakeTimeout : t -> int -> unit) =
           fun (x362 : t) ->
-            fun (x363 : float) ->
+            fun (x363 : int) ->
               Ojs.set_prop_ascii (t_to_js x362) "handshakeTimeout"
-                (Ojs.float_to_js x363)
-        let (get_sessionTimeout : t -> float) =
+                (Ojs.int_to_js x363)
+        let (get_sessionTimeout : t -> int) =
           fun (x364 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x364) "sessionTimeout")
-        let (set_sessionTimeout : t -> float -> unit) =
+        let (set_sessionTimeout : t -> int -> unit) =
           fun (x365 : t) ->
-            fun (x366 : float) ->
+            fun (x366 : int) ->
               Ojs.set_prop_ascii (t_to_js x365) "sessionTimeout"
-                (Ojs.float_to_js x366)
+                (Ojs.int_to_js x366)
         let (get_ticketKeys : t -> Buffer.t) =
           fun (x367 : t) ->
             Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x367) "ticketKeys")
@@ -1280,13 +1279,13 @@ module Tls =
             fun (x398 : string) ->
               Ojs.set_prop_ascii (t_to_js x397) "host"
                 (Ojs.string_to_js x398)
-        let (get_port : t -> float) =
+        let (get_port : t -> int) =
           fun (x399 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x399) "port")
-        let (set_port : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x399) "port")
+        let (set_port : t -> int -> unit) =
           fun (x400 : t) ->
-            fun (x401 : float) ->
-              Ojs.set_prop_ascii (t_to_js x400) "port" (Ojs.float_to_js x401)
+            fun (x401 : int) ->
+              Ojs.set_prop_ascii (t_to_js x400) "port" (Ojs.int_to_js x401)
         let (get_path : t -> string) =
           fun (x402 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x402) "path")
@@ -1330,14 +1329,14 @@ module Tls =
             fun (x417 : Buffer.t) ->
               Ojs.set_prop_ascii (t_to_js x416) "session"
                 (Buffer.t_to_js x417)
-        let (get_minDHSize : t -> float) =
+        let (get_minDHSize : t -> int) =
           fun (x418 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x418) "minDHSize")
-        let (set_minDHSize : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x418) "minDHSize")
+        let (set_minDHSize : t -> int -> unit) =
           fun (x419 : t) ->
-            fun (x420 : float) ->
+            fun (x420 : int) ->
               Ojs.set_prop_ascii (t_to_js x419) "minDHSize"
-                (Ojs.float_to_js x420)
+                (Ojs.int_to_js x420)
         let (get_lookup : t -> Net.LookupFunction.t) =
           fun (x421 : t) ->
             Net.LookupFunction.t_of_js
@@ -1347,14 +1346,14 @@ module Tls =
             fun (x423 : Net.LookupFunction.t) ->
               Ojs.set_prop_ascii (t_to_js x422) "lookup"
                 (Net.LookupFunction.t_to_js x423)
-        let (get_timeout : t -> float) =
+        let (get_timeout : t -> int) =
           fun (x424 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x424) "timeout")
-        let (set_timeout : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x424) "timeout")
+        let (set_timeout : t -> int -> unit) =
           fun (x425 : t) ->
-            fun (x426 : float) ->
+            fun (x426 : int) ->
               Ojs.set_prop_ascii (t_to_js x425) "timeout"
-                (Ojs.float_to_js x426)
+                (Ojs.int_to_js x426)
         let (pskCallback :
           t -> hint:string or_null -> tls_PSKCallbackNegotation or_null) =
           fun (x429 : t) ->
@@ -2921,15 +2920,14 @@ module Tls =
                                      union2_to_js Buffer.t_to_js
                                        tls_PxfObject_to_js x822) x821) x820)
                         x818) x817)
-        let (get_secureOptions : t -> float) =
+        let (get_secureOptions : t -> int) =
           fun (x825 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x825) "secureOptions")
-        let (set_secureOptions : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x825) "secureOptions")
+        let (set_secureOptions : t -> int -> unit) =
           fun (x826 : t) ->
-            fun (x827 : float) ->
+            fun (x827 : int) ->
               Ojs.set_prop_ascii (t_to_js x826) "secureOptions"
-                (Ojs.float_to_js x827)
+                (Ojs.int_to_js x827)
         let (get_secureProtocol : t -> string) =
           fun (x828 : t) ->
             Ojs.string_of_js
@@ -2956,15 +2954,15 @@ module Tls =
             fun (x836 : Buffer.t) ->
               Ojs.set_prop_ascii (t_to_js x835) "ticketKeys"
                 (Buffer.t_to_js x836)
-        let (get_sessionTimeout : t -> float) =
+        let (get_sessionTimeout : t -> int) =
           fun (x837 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x837) "sessionTimeout")
-        let (set_sessionTimeout : t -> float -> unit) =
+        let (set_sessionTimeout : t -> int -> unit) =
           fun (x838 : t) ->
-            fun (x839 : float) ->
+            fun (x839 : int) ->
               Ojs.set_prop_ascii (t_to_js x838) "sessionTimeout"
-                (Ojs.float_to_js x839)
+                (Ojs.int_to_js x839)
       end
     module SecureContext =
       struct
@@ -3070,12 +3068,12 @@ module Tls =
                            | None -> ());
                           x861))|])
     let (connect :
-      port:float ->
+      port:int ->
         ?host:string ->
           ?options:tls_ConnectionOptions ->
             ?secureConnectListener:(unit -> unit) -> unit -> tls_TLSSocket)
       =
-      fun ~port:(x864 : float) ->
+      fun ~port:(x864 : int) ->
         fun ?host:(x865 : string option) ->
           fun ?options:(x866 : tls_ConnectionOptions option) ->
             fun ?secureConnectListener:(x867 : (unit -> unit) option) ->
@@ -3089,7 +3087,7 @@ module Tls =
                                   [||] in
                               ignore
                                 (Ojs.call x868 "push"
-                                   [|(Ojs.float_to_js x864)|]);
+                                   [|(Ojs.int_to_js x864)|]);
                               (match x865 with
                                | Some x871 ->
                                    ignore
@@ -3110,11 +3108,11 @@ module Tls =
                                | None -> ());
                               x868))|])
     let (connect :
-      port:float ->
+      port:int ->
         ?options:tls_ConnectionOptions ->
           ?secureConnectListener:(unit -> unit) -> unit -> tls_TLSSocket)
       =
-      fun ~port:(x873 : float) ->
+      fun ~port:(x873 : int) ->
         fun ?options:(x874 : tls_ConnectionOptions option) ->
           fun ?secureConnectListener:(x875 : (unit -> unit) option) ->
             fun () ->
@@ -3126,8 +3124,7 @@ module Tls =
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x876 "push"
-                                 [|(Ojs.float_to_js x873)|]);
+                              (Ojs.call x876 "push" [|(Ojs.int_to_js x873)|]);
                             (match x874 with
                              | Some x878 ->
                                  ignore

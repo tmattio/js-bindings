@@ -96,6 +96,6 @@ module Make (M: Missing) : sig
     end
     val transcode: source:Uint8Array.t_0 -> fromEnc:buffer_TranscodeEncoding -> toEnc:buffer_TranscodeEncoding -> Buffer.t_0 [@@js.global "transcode"]
     val slowBuffer: anonymous_interface_1 [@@js.global "SlowBuffer"]
-    (* export { BuffType as Buffer }; *)
+    
   end
 end

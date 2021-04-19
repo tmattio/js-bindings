@@ -6,7 +6,7 @@
 
 (rule
  (targets vscode_languageserver_types_main.ml)
- (deps intf/vscode_languageserver_types_main.mli)
+ (deps vscode_languageserver_types_main.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))

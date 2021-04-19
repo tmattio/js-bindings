@@ -246,7 +246,7 @@ module Internal =
           [ `Inspector_Runtime_ExecutionContextDescription ] intf
         and inspector_Runtime_ExecutionContextDestroyedEventDataType =
           [ `Inspector_Runtime_ExecutionContextDestroyedEventDataType ] intf
-        and inspector_Runtime_ExecutionContextId = float
+        and inspector_Runtime_ExecutionContextId = int
         and inspector_Runtime_GetPropertiesParameterType =
           [ `Inspector_Runtime_GetPropertiesParameterType ] intf
         and inspector_Runtime_GetPropertiesReturnType =
@@ -288,7 +288,7 @@ module Internal =
           [ `Inspector_Runtime_StackTrace ] intf
         and inspector_Runtime_StackTraceId =
           [ `Inspector_Runtime_StackTraceId ] intf
-        and inspector_Runtime_Timestamp = float
+        and inspector_Runtime_Timestamp = int
         and inspector_Runtime_UniqueDebuggerId = string
         and inspector_Runtime_UnserializableValue = string
         and inspector_Schema_Domain = [ `Inspector_Schema_Domain ] intf
@@ -893,10 +893,10 @@ module Internal =
           Obj.magic
         and inspector_Runtime_ExecutionContextId_of_js :
           Ojs.t -> inspector_Runtime_ExecutionContextId =
-          fun (x12 : Ojs.t) -> Ojs.float_of_js x12
+          fun (x12 : Ojs.t) -> Ojs.int_of_js x12
         and inspector_Runtime_ExecutionContextId_to_js :
           inspector_Runtime_ExecutionContextId -> Ojs.t =
-          fun (x11 : float) -> Ojs.float_to_js x11
+          fun (x11 : int) -> Ojs.int_to_js x11
         and inspector_Runtime_GetPropertiesParameterType_of_js :
           Ojs.t -> inspector_Runtime_GetPropertiesParameterType = Obj.magic
         and inspector_Runtime_GetPropertiesParameterType_to_js :
@@ -1001,10 +1001,10 @@ module Internal =
           inspector_Runtime_StackTraceId -> Ojs.t = Obj.magic
         and inspector_Runtime_Timestamp_of_js :
           Ojs.t -> inspector_Runtime_Timestamp =
-          fun (x18 : Ojs.t) -> Ojs.float_of_js x18
+          fun (x18 : Ojs.t) -> Ojs.int_of_js x18
         and inspector_Runtime_Timestamp_to_js :
           inspector_Runtime_Timestamp -> Ojs.t =
-          fun (x17 : float) -> Ojs.float_to_js x17
+          fun (x17 : int) -> Ojs.int_to_js x17
         and inspector_Runtime_UniqueDebuggerId_of_js :
           Ojs.t -> inspector_Runtime_UniqueDebuggerId =
           fun (x20 : Ojs.t) -> Ojs.string_of_js x20
@@ -1671,15 +1671,15 @@ module Inspector =
             and t_to_js : t -> Ojs.t =
               fun (x222 : inspector_Runtime_ExceptionDetails) ->
                 inspector_Runtime_ExceptionDetails_to_js x222
-            let (get_exceptionId : t -> float) =
+            let (get_exceptionId : t -> int) =
               fun (x224 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x224) "exceptionId")
-            let (set_exceptionId : t -> float -> unit) =
+            let (set_exceptionId : t -> int -> unit) =
               fun (x225 : t) ->
-                fun (x226 : float) ->
+                fun (x226 : int) ->
                   Ojs.set_prop_ascii (t_to_js x225) "exceptionId"
-                    (Ojs.float_to_js x226)
+                    (Ojs.int_to_js x226)
             let (get_text : t -> string) =
               fun (x227 : t) ->
                 Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x227) "text")
@@ -1688,24 +1688,24 @@ module Inspector =
                 fun (x229 : string) ->
                   Ojs.set_prop_ascii (t_to_js x228) "text"
                     (Ojs.string_to_js x229)
-            let (get_lineNumber : t -> float) =
+            let (get_lineNumber : t -> int) =
               fun (x230 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x230) "lineNumber")
-            let (set_lineNumber : t -> float -> unit) =
+            let (set_lineNumber : t -> int -> unit) =
               fun (x231 : t) ->
-                fun (x232 : float) ->
+                fun (x232 : int) ->
                   Ojs.set_prop_ascii (t_to_js x231) "lineNumber"
-                    (Ojs.float_to_js x232)
-            let (get_columnNumber : t -> float) =
+                    (Ojs.int_to_js x232)
+            let (get_columnNumber : t -> int) =
               fun (x233 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x233) "columnNumber")
-            let (set_columnNumber : t -> float -> unit) =
+            let (set_columnNumber : t -> int -> unit) =
               fun (x234 : t) ->
-                fun (x235 : float) ->
+                fun (x235 : int) ->
                   Ojs.set_prop_ascii (t_to_js x234) "columnNumber"
-                    (Ojs.float_to_js x235)
+                    (Ojs.int_to_js x235)
             let (get_scriptId : t -> inspector_Runtime_ScriptId) =
               fun (x236 : t) ->
                 inspector_Runtime_ScriptId_of_js
@@ -1798,24 +1798,24 @@ module Inspector =
                 fun (x263 : string) ->
                   Ojs.set_prop_ascii (t_to_js x262) "url"
                     (Ojs.string_to_js x263)
-            let (get_lineNumber : t -> float) =
+            let (get_lineNumber : t -> int) =
               fun (x264 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x264) "lineNumber")
-            let (set_lineNumber : t -> float -> unit) =
+            let (set_lineNumber : t -> int -> unit) =
               fun (x265 : t) ->
-                fun (x266 : float) ->
+                fun (x266 : int) ->
                   Ojs.set_prop_ascii (t_to_js x265) "lineNumber"
-                    (Ojs.float_to_js x266)
-            let (get_columnNumber : t -> float) =
+                    (Ojs.int_to_js x266)
+            let (get_columnNumber : t -> int) =
               fun (x267 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x267) "columnNumber")
-            let (set_columnNumber : t -> float -> unit) =
+            let (set_columnNumber : t -> int -> unit) =
               fun (x268 : t) ->
-                fun (x269 : float) ->
+                fun (x269 : int) ->
                   Ojs.set_prop_ascii (t_to_js x268) "columnNumber"
-                    (Ojs.float_to_js x269)
+                    (Ojs.int_to_js x269)
           end
         module StackTrace =
           struct
@@ -2762,15 +2762,15 @@ module Inspector =
                 fun (x538 : string) ->
                   Ojs.set_prop_ascii (t_to_js x537) "reason"
                     (Ojs.string_to_js x538)
-            let (get_exceptionId : t -> float) =
+            let (get_exceptionId : t -> int) =
               fun (x539 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x539) "exceptionId")
-            let (set_exceptionId : t -> float -> unit) =
+            let (set_exceptionId : t -> int -> unit) =
               fun (x540 : t) ->
-                fun (x541 : float) ->
+                fun (x541 : int) ->
                   Ojs.set_prop_ascii (t_to_js x540) "exceptionId"
-                    (Ojs.float_to_js x541)
+                    (Ojs.int_to_js x541)
           end
         module ConsoleAPICalledEventDataType =
           struct
@@ -2906,24 +2906,24 @@ module Inspector =
                 fun (x580 : inspector_Runtime_ScriptId) ->
                   Ojs.set_prop_ascii (t_to_js x579) "scriptId"
                     (inspector_Runtime_ScriptId_to_js x580)
-            let (get_lineNumber : t -> float) =
+            let (get_lineNumber : t -> int) =
               fun (x581 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x581) "lineNumber")
-            let (set_lineNumber : t -> float -> unit) =
+            let (set_lineNumber : t -> int -> unit) =
               fun (x582 : t) ->
-                fun (x583 : float) ->
+                fun (x583 : int) ->
                   Ojs.set_prop_ascii (t_to_js x582) "lineNumber"
-                    (Ojs.float_to_js x583)
-            let (get_columnNumber : t -> float) =
+                    (Ojs.int_to_js x583)
+            let (get_columnNumber : t -> int) =
               fun (x584 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x584) "columnNumber")
-            let (set_columnNumber : t -> float -> unit) =
+            let (set_columnNumber : t -> int -> unit) =
               fun (x585 : t) ->
-                fun (x586 : float) ->
+                fun (x586 : int) ->
                   Ojs.set_prop_ascii (t_to_js x585) "columnNumber"
-                    (Ojs.float_to_js x586)
+                    (Ojs.int_to_js x586)
           end
         module ScriptPosition =
           struct
@@ -2934,24 +2934,24 @@ module Inspector =
             and t_to_js : t -> Ojs.t =
               fun (x587 : inspector_Debugger_ScriptPosition) ->
                 inspector_Debugger_ScriptPosition_to_js x587
-            let (get_lineNumber : t -> float) =
+            let (get_lineNumber : t -> int) =
               fun (x589 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x589) "lineNumber")
-            let (set_lineNumber : t -> float -> unit) =
+            let (set_lineNumber : t -> int -> unit) =
               fun (x590 : t) ->
-                fun (x591 : float) ->
+                fun (x591 : int) ->
                   Ojs.set_prop_ascii (t_to_js x590) "lineNumber"
-                    (Ojs.float_to_js x591)
-            let (get_columnNumber : t -> float) =
+                    (Ojs.int_to_js x591)
+            let (get_columnNumber : t -> int) =
               fun (x592 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x592) "columnNumber")
-            let (set_columnNumber : t -> float -> unit) =
+            let (set_columnNumber : t -> int -> unit) =
               fun (x593 : t) ->
-                fun (x594 : float) ->
+                fun (x594 : int) ->
                   Ojs.set_prop_ascii (t_to_js x593) "columnNumber"
-                    (Ojs.float_to_js x594)
+                    (Ojs.int_to_js x594)
           end
         module CallFrame =
           struct
@@ -3099,15 +3099,15 @@ module Inspector =
             and t_to_js : t -> Ojs.t =
               fun (x640 : inspector_Debugger_SearchMatch) ->
                 inspector_Debugger_SearchMatch_to_js x640
-            let (get_lineNumber : t -> float) =
+            let (get_lineNumber : t -> int) =
               fun (x642 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x642) "lineNumber")
-            let (set_lineNumber : t -> float -> unit) =
+            let (set_lineNumber : t -> int -> unit) =
               fun (x643 : t) ->
-                fun (x644 : float) ->
+                fun (x644 : int) ->
                   Ojs.set_prop_ascii (t_to_js x643) "lineNumber"
-                    (Ojs.float_to_js x644)
+                    (Ojs.int_to_js x644)
             let (get_lineContent : t -> string) =
               fun (x645 : t) ->
                 Ojs.string_of_js
@@ -3136,24 +3136,24 @@ module Inspector =
                 fun (x652 : inspector_Runtime_ScriptId) ->
                   Ojs.set_prop_ascii (t_to_js x651) "scriptId"
                     (inspector_Runtime_ScriptId_to_js x652)
-            let (get_lineNumber : t -> float) =
+            let (get_lineNumber : t -> int) =
               fun (x653 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x653) "lineNumber")
-            let (set_lineNumber : t -> float -> unit) =
+            let (set_lineNumber : t -> int -> unit) =
               fun (x654 : t) ->
-                fun (x655 : float) ->
+                fun (x655 : int) ->
                   Ojs.set_prop_ascii (t_to_js x654) "lineNumber"
-                    (Ojs.float_to_js x655)
-            let (get_columnNumber : t -> float) =
+                    (Ojs.int_to_js x655)
+            let (get_columnNumber : t -> int) =
               fun (x656 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x656) "columnNumber")
-            let (set_columnNumber : t -> float -> unit) =
+            let (set_columnNumber : t -> int -> unit) =
               fun (x657 : t) ->
-                fun (x658 : float) ->
+                fun (x658 : int) ->
                   Ojs.set_prop_ascii (t_to_js x657) "columnNumber"
-                    (Ojs.float_to_js x658)
+                    (Ojs.int_to_js x658)
             let (get_type : t -> string) =
               fun (x659 : t) ->
                 Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x659) "type")
@@ -3214,15 +3214,15 @@ module Inspector =
               fun (x672 : inspector_Debugger_SetBreakpointByUrlParameterType)
                 ->
                 inspector_Debugger_SetBreakpointByUrlParameterType_to_js x672
-            let (get_lineNumber : t -> float) =
+            let (get_lineNumber : t -> int) =
               fun (x674 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x674) "lineNumber")
-            let (set_lineNumber : t -> float -> unit) =
+            let (set_lineNumber : t -> int -> unit) =
               fun (x675 : t) ->
-                fun (x676 : float) ->
+                fun (x676 : int) ->
                   Ojs.set_prop_ascii (t_to_js x675) "lineNumber"
-                    (Ojs.float_to_js x676)
+                    (Ojs.int_to_js x676)
             let (get_url : t -> string) =
               fun (x677 : t) ->
                 Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x677) "url")
@@ -3249,15 +3249,15 @@ module Inspector =
                 fun (x685 : string) ->
                   Ojs.set_prop_ascii (t_to_js x684) "scriptHash"
                     (Ojs.string_to_js x685)
-            let (get_columnNumber : t -> float) =
+            let (get_columnNumber : t -> int) =
               fun (x686 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x686) "columnNumber")
-            let (set_columnNumber : t -> float -> unit) =
+            let (set_columnNumber : t -> int -> unit) =
               fun (x687 : t) ->
-                fun (x688 : float) ->
+                fun (x688 : int) ->
                   Ojs.set_prop_ascii (t_to_js x687) "columnNumber"
-                    (Ojs.float_to_js x688)
+                    (Ojs.int_to_js x688)
             let (get_condition : t -> string) =
               fun (x689 : t) ->
                 Ojs.string_of_js
@@ -3686,15 +3686,15 @@ module Inspector =
               fun (x805 : inspector_Debugger_SetVariableValueParameterType)
                 ->
                 inspector_Debugger_SetVariableValueParameterType_to_js x805
-            let (get_scopeNumber : t -> float) =
+            let (get_scopeNumber : t -> int) =
               fun (x807 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x807) "scopeNumber")
-            let (set_scopeNumber : t -> float -> unit) =
+            let (set_scopeNumber : t -> int -> unit) =
               fun (x808 : t) ->
-                fun (x809 : float) ->
+                fun (x809 : int) ->
                   Ojs.set_prop_ascii (t_to_js x808) "scopeNumber"
-                    (Ojs.float_to_js x809)
+                    (Ojs.int_to_js x809)
             let (get_variableName : t -> string) =
               fun (x810 : t) ->
                 Ojs.string_of_js
@@ -3759,15 +3759,14 @@ module Inspector =
                 ->
                 inspector_Debugger_SetAsyncCallStackDepthParameterType_to_js
                   x824
-            let (get_maxDepth : t -> float) =
+            let (get_maxDepth : t -> int) =
               fun (x826 : t) ->
-                Ojs.float_of_js
-                  (Ojs.get_prop_ascii (t_to_js x826) "maxDepth")
-            let (set_maxDepth : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x826) "maxDepth")
+            let (set_maxDepth : t -> int -> unit) =
               fun (x827 : t) ->
-                fun (x828 : float) ->
+                fun (x828 : int) ->
                   Ojs.set_prop_ascii (t_to_js x827) "maxDepth"
-                    (Ojs.float_to_js x828)
+                    (Ojs.int_to_js x828)
           end
         module SetBlackboxPatternsParameterType =
           struct
@@ -4151,41 +4150,39 @@ module Inspector =
                 fun (x940 : string) ->
                   Ojs.set_prop_ascii (t_to_js x939) "url"
                     (Ojs.string_to_js x940)
-            let (get_startLine : t -> float) =
+            let (get_startLine : t -> int) =
               fun (x941 : t) ->
-                Ojs.float_of_js
-                  (Ojs.get_prop_ascii (t_to_js x941) "startLine")
-            let (set_startLine : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x941) "startLine")
+            let (set_startLine : t -> int -> unit) =
               fun (x942 : t) ->
-                fun (x943 : float) ->
+                fun (x943 : int) ->
                   Ojs.set_prop_ascii (t_to_js x942) "startLine"
-                    (Ojs.float_to_js x943)
-            let (get_startColumn : t -> float) =
+                    (Ojs.int_to_js x943)
+            let (get_startColumn : t -> int) =
               fun (x944 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x944) "startColumn")
-            let (set_startColumn : t -> float -> unit) =
+            let (set_startColumn : t -> int -> unit) =
               fun (x945 : t) ->
-                fun (x946 : float) ->
+                fun (x946 : int) ->
                   Ojs.set_prop_ascii (t_to_js x945) "startColumn"
-                    (Ojs.float_to_js x946)
-            let (get_endLine : t -> float) =
+                    (Ojs.int_to_js x946)
+            let (get_endLine : t -> int) =
               fun (x947 : t) ->
-                Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x947) "endLine")
-            let (set_endLine : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x947) "endLine")
+            let (set_endLine : t -> int -> unit) =
               fun (x948 : t) ->
-                fun (x949 : float) ->
+                fun (x949 : int) ->
                   Ojs.set_prop_ascii (t_to_js x948) "endLine"
-                    (Ojs.float_to_js x949)
-            let (get_endColumn : t -> float) =
+                    (Ojs.int_to_js x949)
+            let (get_endColumn : t -> int) =
               fun (x950 : t) ->
-                Ojs.float_of_js
-                  (Ojs.get_prop_ascii (t_to_js x950) "endColumn")
-            let (set_endColumn : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x950) "endColumn")
+            let (set_endColumn : t -> int -> unit) =
               fun (x951 : t) ->
-                fun (x952 : float) ->
+                fun (x952 : int) ->
                   Ojs.set_prop_ascii (t_to_js x951) "endColumn"
-                    (Ojs.float_to_js x952)
+                    (Ojs.int_to_js x952)
             let (get_executionContextId :
               t -> inspector_Runtime_ExecutionContextId) =
               fun (x953 : t) ->
@@ -4251,14 +4248,14 @@ module Inspector =
                 fun (x973 : bool) ->
                   Ojs.set_prop_ascii (t_to_js x972) "isModule"
                     (Ojs.bool_to_js x973)
-            let (get_length : t -> float) =
+            let (get_length : t -> int) =
               fun (x974 : t) ->
-                Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x974) "length")
-            let (set_length : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x974) "length")
+            let (set_length : t -> int -> unit) =
               fun (x975 : t) ->
-                fun (x976 : float) ->
+                fun (x976 : int) ->
                   Ojs.set_prop_ascii (t_to_js x975) "length"
-                    (Ojs.float_to_js x976)
+                    (Ojs.int_to_js x976)
             let (get_stackTrace : t -> inspector_Runtime_StackTrace) =
               fun (x977 : t) ->
                 inspector_Runtime_StackTrace_of_js
@@ -4300,41 +4297,39 @@ module Inspector =
                 fun (x987 : string) ->
                   Ojs.set_prop_ascii (t_to_js x986) "url"
                     (Ojs.string_to_js x987)
-            let (get_startLine : t -> float) =
+            let (get_startLine : t -> int) =
               fun (x988 : t) ->
-                Ojs.float_of_js
-                  (Ojs.get_prop_ascii (t_to_js x988) "startLine")
-            let (set_startLine : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x988) "startLine")
+            let (set_startLine : t -> int -> unit) =
               fun (x989 : t) ->
-                fun (x990 : float) ->
+                fun (x990 : int) ->
                   Ojs.set_prop_ascii (t_to_js x989) "startLine"
-                    (Ojs.float_to_js x990)
-            let (get_startColumn : t -> float) =
+                    (Ojs.int_to_js x990)
+            let (get_startColumn : t -> int) =
               fun (x991 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x991) "startColumn")
-            let (set_startColumn : t -> float -> unit) =
+            let (set_startColumn : t -> int -> unit) =
               fun (x992 : t) ->
-                fun (x993 : float) ->
+                fun (x993 : int) ->
                   Ojs.set_prop_ascii (t_to_js x992) "startColumn"
-                    (Ojs.float_to_js x993)
-            let (get_endLine : t -> float) =
+                    (Ojs.int_to_js x993)
+            let (get_endLine : t -> int) =
               fun (x994 : t) ->
-                Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x994) "endLine")
-            let (set_endLine : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x994) "endLine")
+            let (set_endLine : t -> int -> unit) =
               fun (x995 : t) ->
-                fun (x996 : float) ->
+                fun (x996 : int) ->
                   Ojs.set_prop_ascii (t_to_js x995) "endLine"
-                    (Ojs.float_to_js x996)
-            let (get_endColumn : t -> float) =
+                    (Ojs.int_to_js x996)
+            let (get_endColumn : t -> int) =
               fun (x997 : t) ->
-                Ojs.float_of_js
-                  (Ojs.get_prop_ascii (t_to_js x997) "endColumn")
-            let (set_endColumn : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x997) "endColumn")
+            let (set_endColumn : t -> int -> unit) =
               fun (x998 : t) ->
-                fun (x999 : float) ->
+                fun (x999 : int) ->
                   Ojs.set_prop_ascii (t_to_js x998) "endColumn"
-                    (Ojs.float_to_js x999)
+                    (Ojs.int_to_js x999)
             let (get_executionContextId :
               t -> inspector_Runtime_ExecutionContextId) =
               fun (x1000 : t) ->
@@ -4393,14 +4388,14 @@ module Inspector =
                 fun (x1017 : bool) ->
                   Ojs.set_prop_ascii (t_to_js x1016) "isModule"
                     (Ojs.bool_to_js x1017)
-            let (get_length : t -> float) =
+            let (get_length : t -> int) =
               fun (x1018 : t) ->
-                Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x1018) "length")
-            let (set_length : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1018) "length")
+            let (set_length : t -> int -> unit) =
               fun (x1019 : t) ->
-                fun (x1020 : float) ->
+                fun (x1020 : int) ->
                   Ojs.set_prop_ascii (t_to_js x1019) "length"
-                    (Ojs.float_to_js x1020)
+                    (Ojs.int_to_js x1020)
             let (get_stackTrace : t -> inspector_Runtime_StackTrace) =
               fun (x1021 : t) ->
                 inspector_Runtime_StackTrace_of_js
@@ -4569,22 +4564,22 @@ module Inspector =
                 fun (x1072 : string) ->
                   Ojs.set_prop_ascii (t_to_js x1071) "url"
                     (Ojs.string_to_js x1072)
-            let (get_line : t -> float) =
+            let (get_line : t -> int) =
               fun (x1073 : t) ->
-                Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x1073) "line")
-            let (set_line : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1073) "line")
+            let (set_line : t -> int -> unit) =
               fun (x1074 : t) ->
-                fun (x1075 : float) ->
+                fun (x1075 : int) ->
                   Ojs.set_prop_ascii (t_to_js x1074) "line"
-                    (Ojs.float_to_js x1075)
-            let (get_column : t -> float) =
+                    (Ojs.int_to_js x1075)
+            let (get_column : t -> int) =
               fun (x1076 : t) ->
-                Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x1076) "column")
-            let (set_column : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1076) "column")
+            let (set_column : t -> int -> unit) =
               fun (x1077 : t) ->
-                fun (x1078 : float) ->
+                fun (x1078 : int) ->
                   Ojs.set_prop_ascii (t_to_js x1077) "column"
-                    (Ojs.float_to_js x1078)
+                    (Ojs.int_to_js x1078)
           end
         module MessageAddedEventDataType =
           struct
@@ -4618,14 +4613,14 @@ module Inspector =
             and t_to_js : t -> Ojs.t =
               fun (x1084 : inspector_Profiler_ProfileNode) ->
                 inspector_Profiler_ProfileNode_to_js x1084
-            let (get_id : t -> float) =
+            let (get_id : t -> int) =
               fun (x1086 : t) ->
-                Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x1086) "id")
-            let (set_id : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1086) "id")
+            let (set_id : t -> int -> unit) =
               fun (x1087 : t) ->
-                fun (x1088 : float) ->
+                fun (x1088 : int) ->
                   Ojs.set_prop_ascii (t_to_js x1087) "id"
-                    (Ojs.float_to_js x1088)
+                    (Ojs.int_to_js x1088)
             let (get_callFrame : t -> inspector_Runtime_CallFrame) =
               fun (x1089 : t) ->
                 inspector_Runtime_CallFrame_of_js
@@ -4635,24 +4630,23 @@ module Inspector =
                 fun (x1091 : inspector_Runtime_CallFrame) ->
                   Ojs.set_prop_ascii (t_to_js x1090) "callFrame"
                     (inspector_Runtime_CallFrame_to_js x1091)
-            let (get_hitCount : t -> float) =
+            let (get_hitCount : t -> int) =
               fun (x1092 : t) ->
-                Ojs.float_of_js
-                  (Ojs.get_prop_ascii (t_to_js x1092) "hitCount")
-            let (set_hitCount : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1092) "hitCount")
+            let (set_hitCount : t -> int -> unit) =
               fun (x1093 : t) ->
-                fun (x1094 : float) ->
+                fun (x1094 : int) ->
                   Ojs.set_prop_ascii (t_to_js x1093) "hitCount"
-                    (Ojs.float_to_js x1094)
-            let (get_children : t -> float list) =
+                    (Ojs.int_to_js x1094)
+            let (get_children : t -> int list) =
               fun (x1095 : t) ->
-                Ojs.list_of_js Ojs.float_of_js
+                Ojs.list_of_js Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x1095) "children")
-            let (set_children : t -> float list -> unit) =
+            let (set_children : t -> int list -> unit) =
               fun (x1097 : t) ->
-                fun (x1098 : float list) ->
+                fun (x1098 : int list) ->
                   Ojs.set_prop_ascii (t_to_js x1097) "children"
-                    (Ojs.list_to_js Ojs.float_to_js x1098)
+                    (Ojs.list_to_js Ojs.int_to_js x1098)
             let (get_deoptReason : t -> string) =
               fun (x1100 : t) ->
                 Ojs.string_of_js
@@ -4694,42 +4688,41 @@ module Inspector =
                   Ojs.set_prop_ascii (t_to_js x1112) "nodes"
                     (Ojs.list_to_js inspector_Profiler_ProfileNode_to_js
                        x1113)
-            let (get_startTime : t -> float) =
+            let (get_startTime : t -> int) =
               fun (x1115 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x1115) "startTime")
-            let (set_startTime : t -> float -> unit) =
+            let (set_startTime : t -> int -> unit) =
               fun (x1116 : t) ->
-                fun (x1117 : float) ->
+                fun (x1117 : int) ->
                   Ojs.set_prop_ascii (t_to_js x1116) "startTime"
-                    (Ojs.float_to_js x1117)
-            let (get_endTime : t -> float) =
+                    (Ojs.int_to_js x1117)
+            let (get_endTime : t -> int) =
               fun (x1118 : t) ->
-                Ojs.float_of_js
-                  (Ojs.get_prop_ascii (t_to_js x1118) "endTime")
-            let (set_endTime : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1118) "endTime")
+            let (set_endTime : t -> int -> unit) =
               fun (x1119 : t) ->
-                fun (x1120 : float) ->
+                fun (x1120 : int) ->
                   Ojs.set_prop_ascii (t_to_js x1119) "endTime"
-                    (Ojs.float_to_js x1120)
-            let (get_samples : t -> float list) =
+                    (Ojs.int_to_js x1120)
+            let (get_samples : t -> int list) =
               fun (x1121 : t) ->
-                Ojs.list_of_js Ojs.float_of_js
+                Ojs.list_of_js Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x1121) "samples")
-            let (set_samples : t -> float list -> unit) =
+            let (set_samples : t -> int list -> unit) =
               fun (x1123 : t) ->
-                fun (x1124 : float list) ->
+                fun (x1124 : int list) ->
                   Ojs.set_prop_ascii (t_to_js x1123) "samples"
-                    (Ojs.list_to_js Ojs.float_to_js x1124)
-            let (get_timeDeltas : t -> float list) =
+                    (Ojs.list_to_js Ojs.int_to_js x1124)
+            let (get_timeDeltas : t -> int list) =
               fun (x1126 : t) ->
-                Ojs.list_of_js Ojs.float_of_js
+                Ojs.list_of_js Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x1126) "timeDeltas")
-            let (set_timeDeltas : t -> float list -> unit) =
+            let (set_timeDeltas : t -> int list -> unit) =
               fun (x1128 : t) ->
-                fun (x1129 : float list) ->
+                fun (x1129 : int list) ->
                   Ojs.set_prop_ascii (t_to_js x1128) "timeDeltas"
-                    (Ojs.list_to_js Ojs.float_to_js x1129)
+                    (Ojs.list_to_js Ojs.int_to_js x1129)
           end
         module PositionTickInfo =
           struct
@@ -4740,22 +4733,22 @@ module Inspector =
             and t_to_js : t -> Ojs.t =
               fun (x1131 : inspector_Profiler_PositionTickInfo) ->
                 inspector_Profiler_PositionTickInfo_to_js x1131
-            let (get_line : t -> float) =
+            let (get_line : t -> int) =
               fun (x1133 : t) ->
-                Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x1133) "line")
-            let (set_line : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1133) "line")
+            let (set_line : t -> int -> unit) =
               fun (x1134 : t) ->
-                fun (x1135 : float) ->
+                fun (x1135 : int) ->
                   Ojs.set_prop_ascii (t_to_js x1134) "line"
-                    (Ojs.float_to_js x1135)
-            let (get_ticks : t -> float) =
+                    (Ojs.int_to_js x1135)
+            let (get_ticks : t -> int) =
               fun (x1136 : t) ->
-                Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x1136) "ticks")
-            let (set_ticks : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1136) "ticks")
+            let (set_ticks : t -> int -> unit) =
               fun (x1137 : t) ->
-                fun (x1138 : float) ->
+                fun (x1138 : int) ->
                   Ojs.set_prop_ascii (t_to_js x1137) "ticks"
-                    (Ojs.float_to_js x1138)
+                    (Ojs.int_to_js x1138)
           end
         module CoverageRange =
           struct
@@ -4766,32 +4759,32 @@ module Inspector =
             and t_to_js : t -> Ojs.t =
               fun (x1139 : inspector_Profiler_CoverageRange) ->
                 inspector_Profiler_CoverageRange_to_js x1139
-            let (get_startOffset : t -> float) =
+            let (get_startOffset : t -> int) =
               fun (x1141 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x1141) "startOffset")
-            let (set_startOffset : t -> float -> unit) =
+            let (set_startOffset : t -> int -> unit) =
               fun (x1142 : t) ->
-                fun (x1143 : float) ->
+                fun (x1143 : int) ->
                   Ojs.set_prop_ascii (t_to_js x1142) "startOffset"
-                    (Ojs.float_to_js x1143)
-            let (get_endOffset : t -> float) =
+                    (Ojs.int_to_js x1143)
+            let (get_endOffset : t -> int) =
               fun (x1144 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x1144) "endOffset")
-            let (set_endOffset : t -> float -> unit) =
+            let (set_endOffset : t -> int -> unit) =
               fun (x1145 : t) ->
-                fun (x1146 : float) ->
+                fun (x1146 : int) ->
                   Ojs.set_prop_ascii (t_to_js x1145) "endOffset"
-                    (Ojs.float_to_js x1146)
-            let (get_count : t -> float) =
+                    (Ojs.int_to_js x1146)
+            let (get_count : t -> int) =
               fun (x1147 : t) ->
-                Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x1147) "count")
-            let (set_count : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1147) "count")
+            let (set_count : t -> int -> unit) =
               fun (x1148 : t) ->
-                fun (x1149 : float) ->
+                fun (x1149 : int) ->
                   Ojs.set_prop_ascii (t_to_js x1148) "count"
-                    (Ojs.float_to_js x1149)
+                    (Ojs.int_to_js x1149)
           end
         module FunctionCoverage =
           struct
@@ -4898,14 +4891,14 @@ module Inspector =
             and t_to_js : t -> Ojs.t =
               fun (x1181 : inspector_Profiler_TypeProfileEntry) ->
                 inspector_Profiler_TypeProfileEntry_to_js x1181
-            let (get_offset : t -> float) =
+            let (get_offset : t -> int) =
               fun (x1183 : t) ->
-                Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x1183) "offset")
-            let (set_offset : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1183) "offset")
+            let (set_offset : t -> int -> unit) =
               fun (x1184 : t) ->
-                fun (x1185 : float) ->
+                fun (x1185 : int) ->
                   Ojs.set_prop_ascii (t_to_js x1184) "offset"
-                    (Ojs.float_to_js x1185)
+                    (Ojs.int_to_js x1185)
             let (get_types : t -> inspector_Profiler_TypeObject list) =
               fun (x1186 : t) ->
                 Ojs.list_of_js inspector_Profiler_TypeObject_of_js
@@ -4969,15 +4962,14 @@ module Inspector =
                 ->
                 inspector_Profiler_SetSamplingIntervalParameterType_to_js
                   x1204
-            let (get_interval : t -> float) =
+            let (get_interval : t -> int) =
               fun (x1206 : t) ->
-                Ojs.float_of_js
-                  (Ojs.get_prop_ascii (t_to_js x1206) "interval")
-            let (set_interval : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1206) "interval")
+            let (set_interval : t -> int -> unit) =
               fun (x1207 : t) ->
-                fun (x1208 : float) ->
+                fun (x1208 : int) ->
                   Ojs.set_prop_ascii (t_to_js x1207) "interval"
-                    (Ojs.float_to_js x1208)
+                    (Ojs.int_to_js x1208)
           end
         module StartPreciseCoverageParameterType =
           struct
@@ -5220,15 +5212,14 @@ module Inspector =
                 fun (x1274 : inspector_Runtime_CallFrame) ->
                   Ojs.set_prop_ascii (t_to_js x1273) "callFrame"
                     (inspector_Runtime_CallFrame_to_js x1274)
-            let (get_selfSize : t -> float) =
+            let (get_selfSize : t -> int) =
               fun (x1275 : t) ->
-                Ojs.float_of_js
-                  (Ojs.get_prop_ascii (t_to_js x1275) "selfSize")
-            let (set_selfSize : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1275) "selfSize")
+            let (set_selfSize : t -> int -> unit) =
               fun (x1276 : t) ->
-                fun (x1277 : float) ->
+                fun (x1277 : int) ->
                   Ojs.set_prop_ascii (t_to_js x1276) "selfSize"
-                    (Ojs.float_to_js x1277)
+                    (Ojs.int_to_js x1277)
             let (get_children : t -> t list) =
               fun (x1278 : t) ->
                 Ojs.list_of_js t_of_js
@@ -5433,15 +5424,15 @@ module Inspector =
               fun (x1321 : inspector_HeapProfiler_StartSamplingParameterType)
                 ->
                 inspector_HeapProfiler_StartSamplingParameterType_to_js x1321
-            let (get_samplingInterval : t -> float) =
+            let (get_samplingInterval : t -> int) =
               fun (x1323 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x1323) "samplingInterval")
-            let (set_samplingInterval : t -> float -> unit) =
+            let (set_samplingInterval : t -> int -> unit) =
               fun (x1324 : t) ->
-                fun (x1325 : float) ->
+                fun (x1325 : int) ->
                   Ojs.set_prop_ascii (t_to_js x1324) "samplingInterval"
-                    (Ojs.float_to_js x1325)
+                    (Ojs.int_to_js x1325)
           end
         module GetObjectByHeapObjectIdReturnType =
           struct
@@ -5573,22 +5564,22 @@ module Inspector =
                 ->
                 inspector_HeapProfiler_ReportHeapSnapshotProgressEventDataType_to_js
                   x1351
-            let (get_done : t -> float) =
+            let (get_done : t -> int) =
               fun (x1353 : t) ->
-                Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x1353) "done")
-            let (set_done : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1353) "done")
+            let (set_done : t -> int -> unit) =
               fun (x1354 : t) ->
-                fun (x1355 : float) ->
+                fun (x1355 : int) ->
                   Ojs.set_prop_ascii (t_to_js x1354) "done"
-                    (Ojs.float_to_js x1355)
-            let (get_total : t -> float) =
+                    (Ojs.int_to_js x1355)
+            let (get_total : t -> int) =
               fun (x1356 : t) ->
-                Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x1356) "total")
-            let (set_total : t -> float -> unit) =
+                Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1356) "total")
+            let (set_total : t -> int -> unit) =
               fun (x1357 : t) ->
-                fun (x1358 : float) ->
+                fun (x1358 : int) ->
                   Ojs.set_prop_ascii (t_to_js x1357) "total"
-                    (Ojs.float_to_js x1358)
+                    (Ojs.int_to_js x1358)
             let (get_finished : t -> bool) =
               fun (x1359 : t) ->
                 Ojs.bool_of_js
@@ -5613,24 +5604,24 @@ module Inspector =
                 ->
                 inspector_HeapProfiler_LastSeenObjectIdEventDataType_to_js
                   x1362
-            let (get_lastSeenObjectId : t -> float) =
+            let (get_lastSeenObjectId : t -> int) =
               fun (x1364 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x1364) "lastSeenObjectId")
-            let (set_lastSeenObjectId : t -> float -> unit) =
+            let (set_lastSeenObjectId : t -> int -> unit) =
               fun (x1365 : t) ->
-                fun (x1366 : float) ->
+                fun (x1366 : int) ->
                   Ojs.set_prop_ascii (t_to_js x1365) "lastSeenObjectId"
-                    (Ojs.float_to_js x1366)
-            let (get_timestamp : t -> float) =
+                    (Ojs.int_to_js x1366)
+            let (get_timestamp : t -> int) =
               fun (x1367 : t) ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x1367) "timestamp")
-            let (set_timestamp : t -> float -> unit) =
+            let (set_timestamp : t -> int -> unit) =
               fun (x1368 : t) ->
-                fun (x1369 : float) ->
+                fun (x1369 : int) ->
                   Ojs.set_prop_ascii (t_to_js x1368) "timestamp"
-                    (Ojs.float_to_js x1369)
+                    (Ojs.int_to_js x1369)
           end
         module HeapStatsUpdateEventDataType =
           struct
@@ -5645,15 +5636,15 @@ module Inspector =
                 ->
                 inspector_HeapProfiler_HeapStatsUpdateEventDataType_to_js
                   x1370
-            let (get_statsUpdate : t -> float list) =
+            let (get_statsUpdate : t -> int list) =
               fun (x1372 : t) ->
-                Ojs.list_of_js Ojs.float_of_js
+                Ojs.list_of_js Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x1372) "statsUpdate")
-            let (set_statsUpdate : t -> float list -> unit) =
+            let (set_statsUpdate : t -> int list -> unit) =
               fun (x1374 : t) ->
-                fun (x1375 : float list) ->
+                fun (x1375 : int list) ->
                   Ojs.set_prop_ascii (t_to_js x1374) "statsUpdate"
-                    (Ojs.list_to_js Ojs.float_to_js x1375)
+                    (Ojs.list_to_js Ojs.int_to_js x1375)
           end
       end
     module NodeTracing =
@@ -15476,8 +15467,8 @@ module Inspector =
           fun (x3391 : t) ->
             Node_events.Events.EventEmitter.t_of_js (t_to_js x3391)
       end
-    let (open_ : ?port:float -> ?host:string -> ?wait:bool -> unit -> unit) =
-      fun ?port:(x3392 : float option) ->
+    let (open_ : ?port:int -> ?host:string -> ?wait:bool -> unit -> unit) =
+      fun ?port:(x3392 : int option) ->
         fun ?host:(x3393 : string option) ->
           fun ?wait:(x3394 : bool option) ->
             fun () ->
@@ -15492,7 +15483,7 @@ module Inspector =
                               | Some x3398 ->
                                   ignore
                                     (Ojs.call x3395 "push"
-                                       [|(Ojs.float_to_js x3398)|])
+                                       [|(Ojs.int_to_js x3398)|])
                               | None -> ());
                              (match x3393 with
                               | Some x3397 ->

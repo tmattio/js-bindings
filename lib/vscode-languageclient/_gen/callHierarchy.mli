@@ -287,5 +287,5 @@ module Make (M: Missing) : sig
     val registerLanguageProvider: t -> options:CallHierarchyRegistrationOptions.t_0 -> (Disposable.t_0 * _CallHierarchyProvider) [@@js.call "registerLanguageProvider"]
     val cast: t -> (CallHierarchyOptions.t_0 or_boolean, CallHierarchyRegistrationOptions.t_0, _CallHierarchyProvider) TextDocumentFeature.t_3 [@@js.cast]
   end
-  (* export {}; *)
+  
 end

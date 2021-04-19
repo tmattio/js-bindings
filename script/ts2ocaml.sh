@@ -1,6 +1,6 @@
 #!/bin/sh
 
-dirs=$(find lib/*/spec -type d -maxdepth 0)
+dirs=$(find lib/*/_spec -type d -maxdepth 0)
 
 cwd=$(pwd)
 
@@ -11,12 +11,12 @@ for dir in $dirs; do
 
    files=$(find . -type f)
 
-   mkdir -p ../gen
+   mkdir -p ../_gen
 
    for f in $files; do
     gen_f=$(basename "$f" | sed -e "s/\.d\.ts/\.mli/g" | sed -e "s/\//_/g" | sed -e "s/\./_/g" | sed -e "s/lib_//g" | sed -e "s/_mli/\.mli/g")
-    echo "node ts2ocaml.js $cwd/$dir/$f > $cwd/$dir/../intf/$gen_f"
-    node ts2ocaml.js $cwd/$dir/$f > $cwd/$dir/../gen/$gen_f
+    echo "node $cwd/script/ts2ocaml.js $cwd/$dir/$f > $cwd/$dir/../_gen/$gen_f"
+    node $cwd/script/ts2ocaml.js $cwd/$dir/$f > $cwd/$dir/../_gen/$gen_f
    done
 
    cd "$cwd" || exit 1

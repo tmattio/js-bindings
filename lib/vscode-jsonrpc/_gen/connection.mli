@@ -1087,5 +1087,5 @@ module Make (M: Missing) : sig
     val inspect: t -> unit [@@js.call "inspect"]
   end
   val createMessageConnection: messageReader:MessageReader.t_0 -> messageWriter:MessageWriter.t_0 -> ?_logger:_Logger -> ?options:_ConnectionOptions -> unit -> _MessageConnection [@@js.global "createMessageConnection"]
-  (* export {}; *)
+  
 end

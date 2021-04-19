@@ -59,7 +59,7 @@ module Make (M: Missing) : sig
   open AnonymousInterfaces
   open Types
   module[@js.scope "node:console"] Node_console : sig
-    (* export = console *)
+    
   end
   module[@js.scope "console"] Console : sig
     (* import { InspectOptions } from 'node:util'; *)
@@ -140,6 +140,6 @@ module Make (M: Missing) : sig
         end
       end
     end
-    (* export = console *)
+    
   end
 end

@@ -103,16 +103,15 @@ module AnonymousInterface0 =
       fun (x10 : Ojs.t) -> anonymous_interface_0_of_js x10
     and t_to_js : t -> Ojs.t =
       fun (x9 : anonymous_interface_0) -> anonymous_interface_0_to_js x9
-    let (get : t -> float -> bool or_number) =
+    let (get : t -> int -> bool or_number) =
       fun (x11 : t) ->
-        fun (x12 : float) ->
-          or_number_of_js Ojs.bool_of_js
-            (Ojs.get_prop (t_to_js x11) (Ojs.float_to_js x12))
-    let (set : t -> float -> bool or_number -> unit) =
+        fun (x12 : int) ->
+          or_number_of_js Ojs.bool_of_js (Ojs.array_get (t_to_js x11) x12)
+    let (set : t -> int -> bool or_number -> unit) =
       fun (x14 : t) ->
-        fun (x15 : float) ->
+        fun (x15 : int) ->
           fun (x16 : bool or_number) ->
-            Ojs.set_prop (t_to_js x14) (Ojs.float_to_js x15)
+            Ojs.array_set (t_to_js x14) x15
               (or_number_to_js Ojs.bool_to_js x16)
   end
 module Zlib =
@@ -123,60 +122,58 @@ module Zlib =
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x19 : Ojs.t) -> x19
         and t_to_js : t -> Ojs.t = fun (x18 : Ojs.t) -> x18
-        let (get_flush : t -> float) =
+        let (get_flush : t -> int) =
           fun (x20 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x20) "flush")
-        let (set_flush : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x20) "flush")
+        let (set_flush : t -> int -> unit) =
           fun (x21 : t) ->
-            fun (x22 : float) ->
-              Ojs.set_prop_ascii (t_to_js x21) "flush" (Ojs.float_to_js x22)
-        let (get_finishFlush : t -> float) =
+            fun (x22 : int) ->
+              Ojs.set_prop_ascii (t_to_js x21) "flush" (Ojs.int_to_js x22)
+        let (get_finishFlush : t -> int) =
           fun (x23 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x23) "finishFlush")
-        let (set_finishFlush : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x23) "finishFlush")
+        let (set_finishFlush : t -> int -> unit) =
           fun (x24 : t) ->
-            fun (x25 : float) ->
+            fun (x25 : int) ->
               Ojs.set_prop_ascii (t_to_js x24) "finishFlush"
-                (Ojs.float_to_js x25)
-        let (get_chunkSize : t -> float) =
+                (Ojs.int_to_js x25)
+        let (get_chunkSize : t -> int) =
           fun (x26 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x26) "chunkSize")
-        let (set_chunkSize : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x26) "chunkSize")
+        let (set_chunkSize : t -> int -> unit) =
           fun (x27 : t) ->
-            fun (x28 : float) ->
+            fun (x28 : int) ->
               Ojs.set_prop_ascii (t_to_js x27) "chunkSize"
-                (Ojs.float_to_js x28)
-        let (get_windowBits : t -> float) =
+                (Ojs.int_to_js x28)
+        let (get_windowBits : t -> int) =
           fun (x29 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x29) "windowBits")
-        let (set_windowBits : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x29) "windowBits")
+        let (set_windowBits : t -> int -> unit) =
           fun (x30 : t) ->
-            fun (x31 : float) ->
+            fun (x31 : int) ->
               Ojs.set_prop_ascii (t_to_js x30) "windowBits"
-                (Ojs.float_to_js x31)
-        let (get_level : t -> float) =
+                (Ojs.int_to_js x31)
+        let (get_level : t -> int) =
           fun (x32 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x32) "level")
-        let (set_level : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x32) "level")
+        let (set_level : t -> int -> unit) =
           fun (x33 : t) ->
-            fun (x34 : float) ->
-              Ojs.set_prop_ascii (t_to_js x33) "level" (Ojs.float_to_js x34)
-        let (get_memLevel : t -> float) =
+            fun (x34 : int) ->
+              Ojs.set_prop_ascii (t_to_js x33) "level" (Ojs.int_to_js x34)
+        let (get_memLevel : t -> int) =
           fun (x35 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x35) "memLevel")
-        let (set_memLevel : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x35) "memLevel")
+        let (set_memLevel : t -> int -> unit) =
           fun (x36 : t) ->
-            fun (x37 : float) ->
-              Ojs.set_prop_ascii (t_to_js x36) "memLevel"
-                (Ojs.float_to_js x37)
-        let (get_strategy : t -> float) =
+            fun (x37 : int) ->
+              Ojs.set_prop_ascii (t_to_js x36) "memLevel" (Ojs.int_to_js x37)
+        let (get_strategy : t -> int) =
           fun (x38 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x38) "strategy")
-        let (set_strategy : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x38) "strategy")
+        let (set_strategy : t -> int -> unit) =
           fun (x39 : t) ->
-            fun (x40 : float) ->
-              Ojs.set_prop_ascii (t_to_js x39) "strategy"
-                (Ojs.float_to_js x40)
+            fun (x40 : int) ->
+              Ojs.set_prop_ascii (t_to_js x39) "strategy" (Ojs.int_to_js x40)
         let (get_dictionary : t -> (ArrayBuffer.t, ArrayBufferView.t) union2)
           =
           fun (x41 : t) ->
@@ -195,44 +192,44 @@ module Zlib =
           fun (x49 : t) ->
             fun (x50 : bool) ->
               Ojs.set_prop_ascii (t_to_js x49) "info" (Ojs.bool_to_js x50)
-        let (get_maxOutputLength : t -> float) =
+        let (get_maxOutputLength : t -> int) =
           fun (x51 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x51) "maxOutputLength")
-        let (set_maxOutputLength : t -> float -> unit) =
+        let (set_maxOutputLength : t -> int -> unit) =
           fun (x52 : t) ->
-            fun (x53 : float) ->
+            fun (x53 : int) ->
               Ojs.set_prop_ascii (t_to_js x52) "maxOutputLength"
-                (Ojs.float_to_js x53)
+                (Ojs.int_to_js x53)
       end
     module BrotliOptions =
       struct
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x55 : Ojs.t) -> x55
         and t_to_js : t -> Ojs.t = fun (x54 : Ojs.t) -> x54
-        let (get_flush : t -> float) =
+        let (get_flush : t -> int) =
           fun (x56 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x56) "flush")
-        let (set_flush : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x56) "flush")
+        let (set_flush : t -> int -> unit) =
           fun (x57 : t) ->
-            fun (x58 : float) ->
-              Ojs.set_prop_ascii (t_to_js x57) "flush" (Ojs.float_to_js x58)
-        let (get_finishFlush : t -> float) =
+            fun (x58 : int) ->
+              Ojs.set_prop_ascii (t_to_js x57) "flush" (Ojs.int_to_js x58)
+        let (get_finishFlush : t -> int) =
           fun (x59 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x59) "finishFlush")
-        let (set_finishFlush : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x59) "finishFlush")
+        let (set_finishFlush : t -> int -> unit) =
           fun (x60 : t) ->
-            fun (x61 : float) ->
+            fun (x61 : int) ->
               Ojs.set_prop_ascii (t_to_js x60) "finishFlush"
-                (Ojs.float_to_js x61)
-        let (get_chunkSize : t -> float) =
+                (Ojs.int_to_js x61)
+        let (get_chunkSize : t -> int) =
           fun (x62 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x62) "chunkSize")
-        let (set_chunkSize : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x62) "chunkSize")
+        let (set_chunkSize : t -> int -> unit) =
           fun (x63 : t) ->
-            fun (x64 : float) ->
+            fun (x64 : int) ->
               Ojs.set_prop_ascii (t_to_js x63) "chunkSize"
-                (Ojs.float_to_js x64)
+                (Ojs.int_to_js x64)
         let (get_params : t -> anonymous_interface_0) =
           fun (x65 : t) ->
             anonymous_interface_0_of_js
@@ -242,27 +239,27 @@ module Zlib =
             fun (x67 : anonymous_interface_0) ->
               Ojs.set_prop_ascii (t_to_js x66) "params"
                 (anonymous_interface_0_to_js x67)
-        let (get_maxOutputLength : t -> float) =
+        let (get_maxOutputLength : t -> int) =
           fun (x68 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x68) "maxOutputLength")
-        let (set_maxOutputLength : t -> float -> unit) =
+        let (set_maxOutputLength : t -> int -> unit) =
           fun (x69 : t) ->
-            fun (x70 : float) ->
+            fun (x70 : int) ->
               Ojs.set_prop_ascii (t_to_js x69) "maxOutputLength"
-                (Ojs.float_to_js x70)
+                (Ojs.int_to_js x70)
       end
     module Zlib =
       struct
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x72 : Ojs.t) -> x72
         and t_to_js : t -> Ojs.t = fun (x71 : Ojs.t) -> x71
-        let (get_bytesRead : t -> float) =
+        let (get_bytesRead : t -> int) =
           fun (x73 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x73) "bytesRead")
-        let (get_bytesWritten : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x73) "bytesRead")
+        let (get_bytesWritten : t -> int) =
           fun (x74 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x74) "bytesWritten")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x74) "bytesWritten")
         let (get_shell : t -> bool or_string) =
           fun (x75 : t) ->
             or_string_of_js Ojs.bool_of_js
@@ -291,9 +288,9 @@ module Zlib =
                               | None -> ());
                              x81))|])
         let (flush :
-          t -> ?kind:float -> ?callback:(unit -> unit) -> unit -> unit) =
+          t -> ?kind:int -> ?callback:(unit -> unit) -> unit -> unit) =
           fun (x90 : t) ->
-            fun ?kind:(x85 : float option) ->
+            fun ?kind:(x85 : int option) ->
               fun ?callback:(x86 : (unit -> unit) option) ->
                 fun () ->
                   ignore
@@ -307,7 +304,7 @@ module Zlib =
                                 | Some x89 ->
                                     ignore
                                       (Ojs.call x87 "push"
-                                         [|(Ojs.float_to_js x89)|])
+                                         [|(Ojs.int_to_js x89)|])
                                 | None -> ());
                                (match x86 with
                                 | Some x88 ->
@@ -341,17 +338,18 @@ module Zlib =
         let rec t_of_js : Ojs.t -> t = fun (x98 : Ojs.t) -> x98
         and t_to_js : t -> Ojs.t = fun (x97 : Ojs.t) -> x97
         let (params :
-          t ->
-            level:float -> strategy:float -> callback:(unit -> unit) -> unit)
+          t -> level:int -> strategy:int -> callback:(unit -> unit) -> unit)
           =
           fun (x102 : t) ->
-            fun ~level:(x99 : float) ->
-              fun ~strategy:(x100 : float) ->
+            fun ~level:(x99 : int) ->
+              fun ~strategy:(x100 : int) ->
                 fun ~callback:(x101 : unit -> unit) ->
                   ignore
                     (Ojs.call (t_to_js x102) "params"
-                       [|(Ojs.float_to_js x99);(Ojs.float_to_js x100);(
-                         Ojs.fun_to_js 1 (fun _ -> x101 ()))|])
+                       [|(Ojs.int_to_js x99);(Ojs.int_to_js x100);(Ojs.fun_to_js
+                                                                    1
+                                                                    (fun _ ->
+                                                                    x101 ()))|])
       end
     module ZlibReset =
       struct
@@ -364,13 +362,12 @@ module Zlib =
     module BrotliCompress =
       struct
         include struct include Stream.Transform end
-        let (get_bytesRead : t -> float) =
+        let (get_bytesRead : t -> int) =
           fun (x106 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x106) "bytesRead")
-        let (get_bytesWritten : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x106) "bytesRead")
+        let (get_bytesWritten : t -> int) =
           fun (x107 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x107) "bytesWritten")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x107) "bytesWritten")
         let (get_shell : t -> bool or_string) =
           fun (x108 : t) ->
             or_string_of_js Ojs.bool_of_js
@@ -399,9 +396,9 @@ module Zlib =
                                | None -> ());
                               x114))|])
         let (flush :
-          t -> ?kind:float -> ?callback:(unit -> unit) -> unit -> unit) =
+          t -> ?kind:int -> ?callback:(unit -> unit) -> unit -> unit) =
           fun (x123 : t) ->
-            fun ?kind:(x118 : float option) ->
+            fun ?kind:(x118 : int option) ->
               fun ?callback:(x119 : (unit -> unit) option) ->
                 fun () ->
                   ignore
@@ -415,7 +412,7 @@ module Zlib =
                                  | Some x122 ->
                                      ignore
                                        (Ojs.call x120 "push"
-                                          [|(Ojs.float_to_js x122)|])
+                                          [|(Ojs.int_to_js x122)|])
                                  | None -> ());
                                 (match x119 with
                                  | Some x121 ->
@@ -447,13 +444,12 @@ module Zlib =
     module BrotliDecompress =
       struct
         include struct include Stream.Transform end
-        let (get_bytesRead : t -> float) =
+        let (get_bytesRead : t -> int) =
           fun (x130 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x130) "bytesRead")
-        let (get_bytesWritten : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x130) "bytesRead")
+        let (get_bytesWritten : t -> int) =
           fun (x131 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x131) "bytesWritten")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x131) "bytesWritten")
         let (get_shell : t -> bool or_string) =
           fun (x132 : t) ->
             or_string_of_js Ojs.bool_of_js
@@ -482,9 +478,9 @@ module Zlib =
                                | None -> ());
                               x138))|])
         let (flush :
-          t -> ?kind:float -> ?callback:(unit -> unit) -> unit -> unit) =
+          t -> ?kind:int -> ?callback:(unit -> unit) -> unit -> unit) =
           fun (x147 : t) ->
-            fun ?kind:(x142 : float option) ->
+            fun ?kind:(x142 : int option) ->
               fun ?callback:(x143 : (unit -> unit) option) ->
                 fun () ->
                   ignore
@@ -498,7 +494,7 @@ module Zlib =
                                  | Some x146 ->
                                      ignore
                                        (Ojs.call x144 "push"
-                                          [|(Ojs.float_to_js x146)|])
+                                          [|(Ojs.int_to_js x146)|])
                                  | None -> ());
                                 (match x143 with
                                  | Some x145 ->
@@ -530,13 +526,12 @@ module Zlib =
     module Gzip =
       struct
         include struct include Stream.Transform end
-        let (get_bytesRead : t -> float) =
+        let (get_bytesRead : t -> int) =
           fun (x154 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x154) "bytesRead")
-        let (get_bytesWritten : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x154) "bytesRead")
+        let (get_bytesWritten : t -> int) =
           fun (x155 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x155) "bytesWritten")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x155) "bytesWritten")
         let (get_shell : t -> bool or_string) =
           fun (x156 : t) ->
             or_string_of_js Ojs.bool_of_js
@@ -565,9 +560,9 @@ module Zlib =
                                | None -> ());
                               x162))|])
         let (flush :
-          t -> ?kind:float -> ?callback:(unit -> unit) -> unit -> unit) =
+          t -> ?kind:int -> ?callback:(unit -> unit) -> unit -> unit) =
           fun (x171 : t) ->
-            fun ?kind:(x166 : float option) ->
+            fun ?kind:(x166 : int option) ->
               fun ?callback:(x167 : (unit -> unit) option) ->
                 fun () ->
                   ignore
@@ -581,7 +576,7 @@ module Zlib =
                                  | Some x170 ->
                                      ignore
                                        (Ojs.call x168 "push"
-                                          [|(Ojs.float_to_js x170)|])
+                                          [|(Ojs.int_to_js x170)|])
                                  | None -> ());
                                 (match x167 with
                                  | Some x169 ->
@@ -613,13 +608,12 @@ module Zlib =
     module Gunzip =
       struct
         include struct include Stream.Transform end
-        let (get_bytesRead : t -> float) =
+        let (get_bytesRead : t -> int) =
           fun (x178 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x178) "bytesRead")
-        let (get_bytesWritten : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x178) "bytesRead")
+        let (get_bytesWritten : t -> int) =
           fun (x179 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x179) "bytesWritten")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x179) "bytesWritten")
         let (get_shell : t -> bool or_string) =
           fun (x180 : t) ->
             or_string_of_js Ojs.bool_of_js
@@ -648,9 +642,9 @@ module Zlib =
                                | None -> ());
                               x186))|])
         let (flush :
-          t -> ?kind:float -> ?callback:(unit -> unit) -> unit -> unit) =
+          t -> ?kind:int -> ?callback:(unit -> unit) -> unit -> unit) =
           fun (x195 : t) ->
-            fun ?kind:(x190 : float option) ->
+            fun ?kind:(x190 : int option) ->
               fun ?callback:(x191 : (unit -> unit) option) ->
                 fun () ->
                   ignore
@@ -664,7 +658,7 @@ module Zlib =
                                  | Some x194 ->
                                      ignore
                                        (Ojs.call x192 "push"
-                                          [|(Ojs.float_to_js x194)|])
+                                          [|(Ojs.int_to_js x194)|])
                                  | None -> ());
                                 (match x191 with
                                  | Some x193 ->
@@ -696,13 +690,12 @@ module Zlib =
     module Deflate =
       struct
         include struct include Stream.Transform end
-        let (get_bytesRead : t -> float) =
+        let (get_bytesRead : t -> int) =
           fun (x202 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x202) "bytesRead")
-        let (get_bytesWritten : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x202) "bytesRead")
+        let (get_bytesWritten : t -> int) =
           fun (x203 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x203) "bytesWritten")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x203) "bytesWritten")
         let (get_shell : t -> bool or_string) =
           fun (x204 : t) ->
             or_string_of_js Ojs.bool_of_js
@@ -731,9 +724,9 @@ module Zlib =
                                | None -> ());
                               x210))|])
         let (flush :
-          t -> ?kind:float -> ?callback:(unit -> unit) -> unit -> unit) =
+          t -> ?kind:int -> ?callback:(unit -> unit) -> unit -> unit) =
           fun (x219 : t) ->
-            fun ?kind:(x214 : float option) ->
+            fun ?kind:(x214 : int option) ->
               fun ?callback:(x215 : (unit -> unit) option) ->
                 fun () ->
                   ignore
@@ -747,7 +740,7 @@ module Zlib =
                                  | Some x218 ->
                                      ignore
                                        (Ojs.call x216 "push"
-                                          [|(Ojs.float_to_js x218)|])
+                                          [|(Ojs.int_to_js x218)|])
                                  | None -> ());
                                 (match x215 with
                                  | Some x217 ->
@@ -778,28 +771,28 @@ module Zlib =
         let (reset : t -> unit) =
           fun (x226 : t) -> ignore (Ojs.call (t_to_js x226) "reset" [||])
         let (params :
-          t ->
-            level:float -> strategy:float -> callback:(unit -> unit) -> unit)
+          t -> level:int -> strategy:int -> callback:(unit -> unit) -> unit)
           =
           fun (x230 : t) ->
-            fun ~level:(x227 : float) ->
-              fun ~strategy:(x228 : float) ->
+            fun ~level:(x227 : int) ->
+              fun ~strategy:(x228 : int) ->
                 fun ~callback:(x229 : unit -> unit) ->
                   ignore
                     (Ojs.call (t_to_js x230) "params"
-                       [|(Ojs.float_to_js x227);(Ojs.float_to_js x228);(
-                         Ojs.fun_to_js 1 (fun _ -> x229 ()))|])
+                       [|(Ojs.int_to_js x227);(Ojs.int_to_js x228);(Ojs.fun_to_js
+                                                                    1
+                                                                    (fun _ ->
+                                                                    x229 ()))|])
       end
     module Inflate =
       struct
         include struct include Stream.Transform end
-        let (get_bytesRead : t -> float) =
+        let (get_bytesRead : t -> int) =
           fun (x231 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x231) "bytesRead")
-        let (get_bytesWritten : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x231) "bytesRead")
+        let (get_bytesWritten : t -> int) =
           fun (x232 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x232) "bytesWritten")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x232) "bytesWritten")
         let (get_shell : t -> bool or_string) =
           fun (x233 : t) ->
             or_string_of_js Ojs.bool_of_js
@@ -828,9 +821,9 @@ module Zlib =
                                | None -> ());
                               x239))|])
         let (flush :
-          t -> ?kind:float -> ?callback:(unit -> unit) -> unit -> unit) =
+          t -> ?kind:int -> ?callback:(unit -> unit) -> unit -> unit) =
           fun (x248 : t) ->
-            fun ?kind:(x243 : float option) ->
+            fun ?kind:(x243 : int option) ->
               fun ?callback:(x244 : (unit -> unit) option) ->
                 fun () ->
                   ignore
@@ -844,7 +837,7 @@ module Zlib =
                                  | Some x247 ->
                                      ignore
                                        (Ojs.call x245 "push"
-                                          [|(Ojs.float_to_js x247)|])
+                                          [|(Ojs.int_to_js x247)|])
                                  | None -> ());
                                 (match x244 with
                                  | Some x246 ->
@@ -878,13 +871,12 @@ module Zlib =
     module DeflateRaw =
       struct
         include struct include Stream.Transform end
-        let (get_bytesRead : t -> float) =
+        let (get_bytesRead : t -> int) =
           fun (x256 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x256) "bytesRead")
-        let (get_bytesWritten : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x256) "bytesRead")
+        let (get_bytesWritten : t -> int) =
           fun (x257 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x257) "bytesWritten")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x257) "bytesWritten")
         let (get_shell : t -> bool or_string) =
           fun (x258 : t) ->
             or_string_of_js Ojs.bool_of_js
@@ -913,9 +905,9 @@ module Zlib =
                                | None -> ());
                               x264))|])
         let (flush :
-          t -> ?kind:float -> ?callback:(unit -> unit) -> unit -> unit) =
+          t -> ?kind:int -> ?callback:(unit -> unit) -> unit -> unit) =
           fun (x273 : t) ->
-            fun ?kind:(x268 : float option) ->
+            fun ?kind:(x268 : int option) ->
               fun ?callback:(x269 : (unit -> unit) option) ->
                 fun () ->
                   ignore
@@ -929,7 +921,7 @@ module Zlib =
                                  | Some x272 ->
                                      ignore
                                        (Ojs.call x270 "push"
-                                          [|(Ojs.float_to_js x272)|])
+                                          [|(Ojs.int_to_js x272)|])
                                  | None -> ());
                                 (match x269 with
                                  | Some x271 ->
@@ -960,28 +952,28 @@ module Zlib =
         let (reset : t -> unit) =
           fun (x280 : t) -> ignore (Ojs.call (t_to_js x280) "reset" [||])
         let (params :
-          t ->
-            level:float -> strategy:float -> callback:(unit -> unit) -> unit)
+          t -> level:int -> strategy:int -> callback:(unit -> unit) -> unit)
           =
           fun (x284 : t) ->
-            fun ~level:(x281 : float) ->
-              fun ~strategy:(x282 : float) ->
+            fun ~level:(x281 : int) ->
+              fun ~strategy:(x282 : int) ->
                 fun ~callback:(x283 : unit -> unit) ->
                   ignore
                     (Ojs.call (t_to_js x284) "params"
-                       [|(Ojs.float_to_js x281);(Ojs.float_to_js x282);(
-                         Ojs.fun_to_js 1 (fun _ -> x283 ()))|])
+                       [|(Ojs.int_to_js x281);(Ojs.int_to_js x282);(Ojs.fun_to_js
+                                                                    1
+                                                                    (fun _ ->
+                                                                    x283 ()))|])
       end
     module InflateRaw =
       struct
         include struct include Stream.Transform end
-        let (get_bytesRead : t -> float) =
+        let (get_bytesRead : t -> int) =
           fun (x285 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x285) "bytesRead")
-        let (get_bytesWritten : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x285) "bytesRead")
+        let (get_bytesWritten : t -> int) =
           fun (x286 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x286) "bytesWritten")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x286) "bytesWritten")
         let (get_shell : t -> bool or_string) =
           fun (x287 : t) ->
             or_string_of_js Ojs.bool_of_js
@@ -1010,9 +1002,9 @@ module Zlib =
                                | None -> ());
                               x293))|])
         let (flush :
-          t -> ?kind:float -> ?callback:(unit -> unit) -> unit -> unit) =
+          t -> ?kind:int -> ?callback:(unit -> unit) -> unit -> unit) =
           fun (x302 : t) ->
-            fun ?kind:(x297 : float option) ->
+            fun ?kind:(x297 : int option) ->
               fun ?callback:(x298 : (unit -> unit) option) ->
                 fun () ->
                   ignore
@@ -1026,7 +1018,7 @@ module Zlib =
                                  | Some x301 ->
                                      ignore
                                        (Ojs.call x299 "push"
-                                          [|(Ojs.float_to_js x301)|])
+                                          [|(Ojs.int_to_js x301)|])
                                  | None -> ());
                                 (match x298 with
                                  | Some x300 ->
@@ -1060,13 +1052,12 @@ module Zlib =
     module Unzip =
       struct
         include struct include Stream.Transform end
-        let (get_bytesRead : t -> float) =
+        let (get_bytesRead : t -> int) =
           fun (x310 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x310) "bytesRead")
-        let (get_bytesWritten : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x310) "bytesRead")
+        let (get_bytesWritten : t -> int) =
           fun (x311 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x311) "bytesWritten")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x311) "bytesWritten")
         let (get_shell : t -> bool or_string) =
           fun (x312 : t) ->
             or_string_of_js Ojs.bool_of_js
@@ -1095,9 +1086,9 @@ module Zlib =
                                | None -> ());
                               x318))|])
         let (flush :
-          t -> ?kind:float -> ?callback:(unit -> unit) -> unit -> unit) =
+          t -> ?kind:int -> ?callback:(unit -> unit) -> unit -> unit) =
           fun (x327 : t) ->
-            fun ?kind:(x322 : float option) ->
+            fun ?kind:(x322 : int option) ->
               fun ?callback:(x323 : (unit -> unit) option) ->
                 fun () ->
                   ignore
@@ -1111,7 +1102,7 @@ module Zlib =
                                  | Some x326 ->
                                      ignore
                                        (Ojs.call x324 "push"
-                                          [|(Ojs.float_to_js x326)|])
+                                          [|(Ojs.int_to_js x326)|])
                                  | None -> ());
                                 (match x323 with
                                  | Some x325 ->
@@ -1893,499 +1884,497 @@ module Zlib =
                           x517))|])
     module Constants =
       struct
-        let (bROTLI_DECODE : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODE")
-        let (bROTLI_DECODER_ERROR_ALLOC_BLOCK_TYPE_TREES : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_ALLOC_BLOCK_TYPE_TREES : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_ALLOC_BLOCK_TYPE_TREES")
-        let (bROTLI_DECODER_ERROR_ALLOC_CONTEXT_MAP : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_ALLOC_CONTEXT_MAP : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_ALLOC_CONTEXT_MAP")
-        let (bROTLI_DECODER_ERROR_ALLOC_CONTEXT_MODES : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_ALLOC_CONTEXT_MODES : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_ALLOC_CONTEXT_MODES")
-        let (bROTLI_DECODER_ERROR_ALLOC_RING_BUFFER_1 : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_ALLOC_RING_BUFFER_1 : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_ALLOC_RING_BUFFER_1")
-        let (bROTLI_DECODER_ERROR_ALLOC_RING_BUFFER_2 : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_ALLOC_RING_BUFFER_2 : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_ALLOC_RING_BUFFER_2")
-        let (bROTLI_DECODER_ERROR_ALLOC_TREE_GROUPS : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_ALLOC_TREE_GROUPS : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_ALLOC_TREE_GROUPS")
-        let (bROTLI_DECODER_ERROR_DICTIONARY_NOT_SET : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_DICTIONARY_NOT_SET : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_DICTIONARY_NOT_SET")
-        let (bROTLI_DECODER_ERROR_FORMAT_BLOCK_LENGTH_1 : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_FORMAT_BLOCK_LENGTH_1 : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_FORMAT_BLOCK_LENGTH_1")
-        let (bROTLI_DECODER_ERROR_FORMAT_BLOCK_LENGTH_2 : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_FORMAT_BLOCK_LENGTH_2 : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_FORMAT_BLOCK_LENGTH_2")
-        let (bROTLI_DECODER_ERROR_FORMAT_CL_SPACE : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_FORMAT_CL_SPACE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_FORMAT_CL_SPACE")
-        let (bROTLI_DECODER_ERROR_FORMAT_CONTEXT_MAP_REPEAT : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_FORMAT_CONTEXT_MAP_REPEAT : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_FORMAT_CONTEXT_MAP_REPEAT")
-        let (bROTLI_DECODER_ERROR_FORMAT_DICTIONARY : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_FORMAT_DICTIONARY : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_FORMAT_DICTIONARY")
-        let (bROTLI_DECODER_ERROR_FORMAT_DISTANCE : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_FORMAT_DISTANCE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_FORMAT_DISTANCE")
-        let (bROTLI_DECODER_ERROR_FORMAT_EXUBERANT_META_NIBBLE : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_FORMAT_EXUBERANT_META_NIBBLE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_FORMAT_EXUBERANT_META_NIBBLE")
-        let (bROTLI_DECODER_ERROR_FORMAT_EXUBERANT_NIBBLE : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_FORMAT_EXUBERANT_NIBBLE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_FORMAT_EXUBERANT_NIBBLE")
-        let (bROTLI_DECODER_ERROR_FORMAT_HUFFMAN_SPACE : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_FORMAT_HUFFMAN_SPACE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_FORMAT_HUFFMAN_SPACE")
-        let (bROTLI_DECODER_ERROR_FORMAT_PADDING_1 : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_FORMAT_PADDING_1 : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_FORMAT_PADDING_1")
-        let (bROTLI_DECODER_ERROR_FORMAT_PADDING_2 : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_FORMAT_PADDING_2 : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_FORMAT_PADDING_2")
-        let (bROTLI_DECODER_ERROR_FORMAT_RESERVED : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_FORMAT_RESERVED : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_FORMAT_RESERVED")
-        let (bROTLI_DECODER_ERROR_FORMAT_SIMPLE_HUFFMAN_ALPHABET : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_FORMAT_SIMPLE_HUFFMAN_ALPHABET : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_FORMAT_SIMPLE_HUFFMAN_ALPHABET")
-        let (bROTLI_DECODER_ERROR_FORMAT_SIMPLE_HUFFMAN_SAME : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_FORMAT_SIMPLE_HUFFMAN_SAME : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_FORMAT_SIMPLE_HUFFMAN_SAME")
-        let (bROTLI_DECODER_ERROR_FORMAT_TRANSFORM : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_FORMAT_TRANSFORM : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_FORMAT_TRANSFORM")
-        let (bROTLI_DECODER_ERROR_FORMAT_WINDOW_BITS : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_FORMAT_WINDOW_BITS : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_FORMAT_WINDOW_BITS")
-        let (bROTLI_DECODER_ERROR_INVALID_ARGUMENTS : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_INVALID_ARGUMENTS : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_INVALID_ARGUMENTS")
-        let (bROTLI_DECODER_ERROR_UNREACHABLE : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_ERROR_UNREACHABLE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_ERROR_UNREACHABLE")
-        let (bROTLI_DECODER_NEEDS_MORE_INPUT : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_NEEDS_MORE_INPUT : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_NEEDS_MORE_INPUT")
-        let (bROTLI_DECODER_NEEDS_MORE_OUTPUT : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_NEEDS_MORE_OUTPUT : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_NEEDS_MORE_OUTPUT")
-        let (bROTLI_DECODER_NO_ERROR : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_NO_ERROR : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_NO_ERROR")
         let (bROTLI_DECODER_PARAM_DISABLE_RING_BUFFER_REALLOCATION : 
-          float) =
-          Ojs.float_of_js
+          int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_PARAM_DISABLE_RING_BUFFER_REALLOCATION")
-        let (bROTLI_DECODER_PARAM_LARGE_WINDOW : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_PARAM_LARGE_WINDOW : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_PARAM_LARGE_WINDOW")
-        let (bROTLI_DECODER_RESULT_ERROR : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_RESULT_ERROR : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_RESULT_ERROR")
-        let (bROTLI_DECODER_RESULT_NEEDS_MORE_INPUT : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_RESULT_NEEDS_MORE_INPUT : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_RESULT_NEEDS_MORE_INPUT")
-        let (bROTLI_DECODER_RESULT_NEEDS_MORE_OUTPUT : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_RESULT_NEEDS_MORE_OUTPUT : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_RESULT_NEEDS_MORE_OUTPUT")
-        let (bROTLI_DECODER_RESULT_SUCCESS : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_RESULT_SUCCESS : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_RESULT_SUCCESS")
-        let (bROTLI_DECODER_SUCCESS : float) =
-          Ojs.float_of_js
+        let (bROTLI_DECODER_SUCCESS : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DECODER_SUCCESS")
-        let (bROTLI_DEFAULT_MODE : float) =
-          Ojs.float_of_js
+        let (bROTLI_DEFAULT_MODE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DEFAULT_MODE")
-        let (bROTLI_DEFAULT_QUALITY : float) =
-          Ojs.float_of_js
+        let (bROTLI_DEFAULT_QUALITY : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DEFAULT_QUALITY")
-        let (bROTLI_DEFAULT_WINDOW : float) =
-          Ojs.float_of_js
+        let (bROTLI_DEFAULT_WINDOW : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_DEFAULT_WINDOW")
-        let (bROTLI_ENCODE : float) =
-          Ojs.float_of_js
+        let (bROTLI_ENCODE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_ENCODE")
-        let (bROTLI_LARGE_MAX_WINDOW_BITS : float) =
-          Ojs.float_of_js
+        let (bROTLI_LARGE_MAX_WINDOW_BITS : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_LARGE_MAX_WINDOW_BITS")
-        let (bROTLI_MAX_INPUT_BLOCK_BITS : float) =
-          Ojs.float_of_js
+        let (bROTLI_MAX_INPUT_BLOCK_BITS : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_MAX_INPUT_BLOCK_BITS")
-        let (bROTLI_MAX_QUALITY : float) =
-          Ojs.float_of_js
+        let (bROTLI_MAX_QUALITY : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_MAX_QUALITY")
-        let (bROTLI_MAX_WINDOW_BITS : float) =
-          Ojs.float_of_js
+        let (bROTLI_MAX_WINDOW_BITS : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_MAX_WINDOW_BITS")
-        let (bROTLI_MIN_INPUT_BLOCK_BITS : float) =
-          Ojs.float_of_js
+        let (bROTLI_MIN_INPUT_BLOCK_BITS : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_MIN_INPUT_BLOCK_BITS")
-        let (bROTLI_MIN_QUALITY : float) =
-          Ojs.float_of_js
+        let (bROTLI_MIN_QUALITY : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_MIN_QUALITY")
-        let (bROTLI_MIN_WINDOW_BITS : float) =
-          Ojs.float_of_js
+        let (bROTLI_MIN_WINDOW_BITS : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_MIN_WINDOW_BITS")
-        let (bROTLI_MODE_FONT : float) =
-          Ojs.float_of_js
+        let (bROTLI_MODE_FONT : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_MODE_FONT")
-        let (bROTLI_MODE_GENERIC : float) =
-          Ojs.float_of_js
+        let (bROTLI_MODE_GENERIC : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_MODE_GENERIC")
-        let (bROTLI_MODE_TEXT : float) =
-          Ojs.float_of_js
+        let (bROTLI_MODE_TEXT : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_MODE_TEXT")
-        let (bROTLI_OPERATION_EMIT_METADATA : float) =
-          Ojs.float_of_js
+        let (bROTLI_OPERATION_EMIT_METADATA : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_OPERATION_EMIT_METADATA")
-        let (bROTLI_OPERATION_FINISH : float) =
-          Ojs.float_of_js
+        let (bROTLI_OPERATION_FINISH : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_OPERATION_FINISH")
-        let (bROTLI_OPERATION_FLUSH : float) =
-          Ojs.float_of_js
+        let (bROTLI_OPERATION_FLUSH : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_OPERATION_FLUSH")
-        let (bROTLI_OPERATION_PROCESS : float) =
-          Ojs.float_of_js
+        let (bROTLI_OPERATION_PROCESS : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_OPERATION_PROCESS")
-        let (bROTLI_PARAM_DISABLE_LITERAL_CONTEXT_MODELING : float) =
-          Ojs.float_of_js
+        let (bROTLI_PARAM_DISABLE_LITERAL_CONTEXT_MODELING : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_PARAM_DISABLE_LITERAL_CONTEXT_MODELING")
-        let (bROTLI_PARAM_LARGE_WINDOW : float) =
-          Ojs.float_of_js
+        let (bROTLI_PARAM_LARGE_WINDOW : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_PARAM_LARGE_WINDOW")
-        let (bROTLI_PARAM_LGBLOCK : float) =
-          Ojs.float_of_js
+        let (bROTLI_PARAM_LGBLOCK : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_PARAM_LGBLOCK")
-        let (bROTLI_PARAM_LGWIN : float) =
-          Ojs.float_of_js
+        let (bROTLI_PARAM_LGWIN : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_PARAM_LGWIN")
-        let (bROTLI_PARAM_MODE : float) =
-          Ojs.float_of_js
+        let (bROTLI_PARAM_MODE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_PARAM_MODE")
-        let (bROTLI_PARAM_NDIRECT : float) =
-          Ojs.float_of_js
+        let (bROTLI_PARAM_NDIRECT : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_PARAM_NDIRECT")
-        let (bROTLI_PARAM_NPOSTFIX : float) =
-          Ojs.float_of_js
+        let (bROTLI_PARAM_NPOSTFIX : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_PARAM_NPOSTFIX")
-        let (bROTLI_PARAM_QUALITY : float) =
-          Ojs.float_of_js
+        let (bROTLI_PARAM_QUALITY : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_PARAM_QUALITY")
-        let (bROTLI_PARAM_SIZE_HINT : float) =
-          Ojs.float_of_js
+        let (bROTLI_PARAM_SIZE_HINT : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "BROTLI_PARAM_SIZE_HINT")
-        let (dEFLATE : float) =
-          Ojs.float_of_js
+        let (dEFLATE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "DEFLATE")
-        let (dEFLATERAW : float) =
-          Ojs.float_of_js
+        let (dEFLATERAW : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "DEFLATERAW")
-        let (gUNZIP : float) =
-          Ojs.float_of_js
+        let (gUNZIP : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "GUNZIP")
-        let (gZIP : float) =
-          Ojs.float_of_js
+        let (gZIP : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "GZIP")
-        let (iNFLATE : float) =
-          Ojs.float_of_js
+        let (iNFLATE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "INFLATE")
-        let (iNFLATERAW : float) =
-          Ojs.float_of_js
+        let (iNFLATERAW : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "INFLATERAW")
-        let (uNZIP : float) =
-          Ojs.float_of_js
+        let (uNZIP : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "UNZIP")
-        let (z_NO_FLUSH : float) =
-          Ojs.float_of_js
+        let (z_NO_FLUSH : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_NO_FLUSH")
-        let (z_PARTIAL_FLUSH : float) =
-          Ojs.float_of_js
+        let (z_PARTIAL_FLUSH : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_PARTIAL_FLUSH")
-        let (z_SYNC_FLUSH : float) =
-          Ojs.float_of_js
+        let (z_SYNC_FLUSH : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_SYNC_FLUSH")
-        let (z_FULL_FLUSH : float) =
-          Ojs.float_of_js
+        let (z_FULL_FLUSH : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_FULL_FLUSH")
-        let (z_FINISH : float) =
-          Ojs.float_of_js
+        let (z_FINISH : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_FINISH")
-        let (z_BLOCK : float) =
-          Ojs.float_of_js
+        let (z_BLOCK : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_BLOCK")
-        let (z_TREES : float) =
-          Ojs.float_of_js
+        let (z_TREES : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_TREES")
-        let (z_OK : float) =
-          Ojs.float_of_js
+        let (z_OK : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_OK")
-        let (z_STREAM_END : float) =
-          Ojs.float_of_js
+        let (z_STREAM_END : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_STREAM_END")
-        let (z_NEED_DICT : float) =
-          Ojs.float_of_js
+        let (z_NEED_DICT : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_NEED_DICT")
-        let (z_ERRNO : float) =
-          Ojs.float_of_js
+        let (z_ERRNO : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_ERRNO")
-        let (z_STREAM_ERROR : float) =
-          Ojs.float_of_js
+        let (z_STREAM_ERROR : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_STREAM_ERROR")
-        let (z_DATA_ERROR : float) =
-          Ojs.float_of_js
+        let (z_DATA_ERROR : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_DATA_ERROR")
-        let (z_MEM_ERROR : float) =
-          Ojs.float_of_js
+        let (z_MEM_ERROR : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_MEM_ERROR")
-        let (z_BUF_ERROR : float) =
-          Ojs.float_of_js
+        let (z_BUF_ERROR : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_BUF_ERROR")
-        let (z_VERSION_ERROR : float) =
-          Ojs.float_of_js
+        let (z_VERSION_ERROR : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_VERSION_ERROR")
-        let (z_NO_COMPRESSION : float) =
-          Ojs.float_of_js
+        let (z_NO_COMPRESSION : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_NO_COMPRESSION")
-        let (z_BEST_SPEED : float) =
-          Ojs.float_of_js
+        let (z_BEST_SPEED : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_BEST_SPEED")
-        let (z_BEST_COMPRESSION : float) =
-          Ojs.float_of_js
+        let (z_BEST_COMPRESSION : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_BEST_COMPRESSION")
-        let (z_DEFAULT_COMPRESSION : float) =
-          Ojs.float_of_js
+        let (z_DEFAULT_COMPRESSION : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_DEFAULT_COMPRESSION")
-        let (z_FILTERED : float) =
-          Ojs.float_of_js
+        let (z_FILTERED : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_FILTERED")
-        let (z_HUFFMAN_ONLY : float) =
-          Ojs.float_of_js
+        let (z_HUFFMAN_ONLY : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_HUFFMAN_ONLY")
-        let (z_RLE : float) =
-          Ojs.float_of_js
+        let (z_RLE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_RLE")
-        let (z_FIXED : float) =
-          Ojs.float_of_js
+        let (z_FIXED : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_FIXED")
-        let (z_DEFAULT_STRATEGY : float) =
-          Ojs.float_of_js
+        let (z_DEFAULT_STRATEGY : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_DEFAULT_STRATEGY")
-        let (z_DEFAULT_WINDOWBITS : float) =
-          Ojs.float_of_js
+        let (z_DEFAULT_WINDOWBITS : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_DEFAULT_WINDOWBITS")
-        let (z_MIN_WINDOWBITS : float) =
-          Ojs.float_of_js
+        let (z_MIN_WINDOWBITS : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_MIN_WINDOWBITS")
-        let (z_MAX_WINDOWBITS : float) =
-          Ojs.float_of_js
+        let (z_MAX_WINDOWBITS : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_MAX_WINDOWBITS")
-        let (z_MIN_CHUNK : float) =
-          Ojs.float_of_js
+        let (z_MIN_CHUNK : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_MIN_CHUNK")
-        let (z_MAX_CHUNK : float) =
-          Ojs.float_of_js
+        let (z_MAX_CHUNK : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_MAX_CHUNK")
-        let (z_DEFAULT_CHUNK : float) =
-          Ojs.float_of_js
+        let (z_DEFAULT_CHUNK : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_DEFAULT_CHUNK")
-        let (z_MIN_MEMLEVEL : float) =
-          Ojs.float_of_js
+        let (z_MIN_MEMLEVEL : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_MIN_MEMLEVEL")
-        let (z_MAX_MEMLEVEL : float) =
-          Ojs.float_of_js
+        let (z_MAX_MEMLEVEL : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_MAX_MEMLEVEL")
-        let (z_DEFAULT_MEMLEVEL : float) =
-          Ojs.float_of_js
+        let (z_DEFAULT_MEMLEVEL : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_DEFAULT_MEMLEVEL")
-        let (z_MIN_LEVEL : float) =
-          Ojs.float_of_js
+        let (z_MIN_LEVEL : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_MIN_LEVEL")
-        let (z_MAX_LEVEL : float) =
-          Ojs.float_of_js
+        let (z_MAX_LEVEL : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_MAX_LEVEL")
-        let (z_DEFAULT_LEVEL : float) =
-          Ojs.float_of_js
+        let (z_DEFAULT_LEVEL : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "Z_DEFAULT_LEVEL")
-        let (zLIB_VERNUM : float) =
-          Ojs.float_of_js
+        let (zLIB_VERNUM : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.zlib "constants")
                "ZLIB_VERNUM")
       end
-    let (z_NO_FLUSH : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_NO_FLUSH")
-    let (z_PARTIAL_FLUSH : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_PARTIAL_FLUSH")
-    let (z_SYNC_FLUSH : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_SYNC_FLUSH")
-    let (z_FULL_FLUSH : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_FULL_FLUSH")
-    let (z_FINISH : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_FINISH")
-    let (z_BLOCK : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_BLOCK")
-    let (z_TREES : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_TREES")
-    let (z_OK : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_OK")
-    let (z_STREAM_END : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_STREAM_END")
-    let (z_NEED_DICT : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_NEED_DICT")
-    let (z_ERRNO : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_ERRNO")
-    let (z_STREAM_ERROR : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_STREAM_ERROR")
-    let (z_DATA_ERROR : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_DATA_ERROR")
-    let (z_MEM_ERROR : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_MEM_ERROR")
-    let (z_BUF_ERROR : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_BUF_ERROR")
-    let (z_VERSION_ERROR : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_VERSION_ERROR")
-    let (z_NO_COMPRESSION : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_NO_COMPRESSION")
-    let (z_BEST_SPEED : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_BEST_SPEED")
-    let (z_BEST_COMPRESSION : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_BEST_COMPRESSION")
-    let (z_DEFAULT_COMPRESSION : float) =
-      Ojs.float_of_js
-        (Ojs.get_prop_ascii Import.zlib "Z_DEFAULT_COMPRESSION")
-    let (z_FILTERED : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_FILTERED")
-    let (z_HUFFMAN_ONLY : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_HUFFMAN_ONLY")
-    let (z_RLE : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_RLE")
-    let (z_FIXED : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_FIXED")
-    let (z_DEFAULT_STRATEGY : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_DEFAULT_STRATEGY")
-    let (z_BINARY : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_BINARY")
-    let (z_TEXT : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_TEXT")
-    let (z_ASCII : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_ASCII")
-    let (z_UNKNOWN : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_UNKNOWN")
-    let (z_DEFLATED : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.zlib "Z_DEFLATED")
+    let (z_NO_FLUSH : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_NO_FLUSH")
+    let (z_PARTIAL_FLUSH : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_PARTIAL_FLUSH")
+    let (z_SYNC_FLUSH : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_SYNC_FLUSH")
+    let (z_FULL_FLUSH : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_FULL_FLUSH")
+    let (z_FINISH : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_FINISH")
+    let (z_BLOCK : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_BLOCK")
+    let (z_TREES : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_TREES")
+    let (z_OK : int) = Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_OK")
+    let (z_STREAM_END : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_STREAM_END")
+    let (z_NEED_DICT : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_NEED_DICT")
+    let (z_ERRNO : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_ERRNO")
+    let (z_STREAM_ERROR : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_STREAM_ERROR")
+    let (z_DATA_ERROR : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_DATA_ERROR")
+    let (z_MEM_ERROR : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_MEM_ERROR")
+    let (z_BUF_ERROR : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_BUF_ERROR")
+    let (z_VERSION_ERROR : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_VERSION_ERROR")
+    let (z_NO_COMPRESSION : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_NO_COMPRESSION")
+    let (z_BEST_SPEED : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_BEST_SPEED")
+    let (z_BEST_COMPRESSION : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_BEST_COMPRESSION")
+    let (z_DEFAULT_COMPRESSION : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_DEFAULT_COMPRESSION")
+    let (z_FILTERED : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_FILTERED")
+    let (z_HUFFMAN_ONLY : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_HUFFMAN_ONLY")
+    let (z_RLE : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_RLE")
+    let (z_FIXED : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_FIXED")
+    let (z_DEFAULT_STRATEGY : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_DEFAULT_STRATEGY")
+    let (z_BINARY : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_BINARY")
+    let (z_TEXT : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_TEXT")
+    let (z_ASCII : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_ASCII")
+    let (z_UNKNOWN : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_UNKNOWN")
+    let (z_DEFLATED : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.zlib "Z_DEFLATED")
   end

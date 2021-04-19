@@ -2,64 +2,21 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2018
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type 'T _Array = [ `Array of 'T ] intf
-        and ('Arr, 'Depth) _FlatArray = any
-        and 'T _ReadonlyArray = [ `ReadonlyArray of 'T ] intf
-        let rec _Array_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _Array =
-          fun _T -> Obj.magic
-        and _Array_to_js : 'T . ('T -> Ojs.t) -> 'T _Array -> Ojs.t =
-          fun _T -> Obj.magic
-        and _FlatArray_of_js :
-          'Arr 'Depth .
-            (Ojs.t -> 'Arr) ->
-              (Ojs.t -> 'Depth) -> Ojs.t -> ('Arr, 'Depth) _FlatArray
-          = fun (type __Arr) -> fun (type __Depth) ->
-          fun (__Arr_of_js : Ojs.t -> __Arr) ->
-            fun (__Depth_of_js : Ojs.t -> __Depth) ->
-              fun (x2 : Ojs.t) -> any_of_js x2
-        and _FlatArray_to_js :
-          'Arr 'Depth .
-            ('Arr -> Ojs.t) ->
-              ('Depth -> Ojs.t) -> ('Arr, 'Depth) _FlatArray -> Ojs.t
-          = fun (type __Arr) -> fun (type __Depth) ->
-          fun (__Arr_to_js : __Arr -> Ojs.t) ->
-            fun (__Depth_to_js : __Depth -> Ojs.t) ->
-              fun (x1 : any) -> any_to_js x1
-        and _ReadonlyArray_of_js :
-          'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _ReadonlyArray =
-          fun _T -> Obj.magic
-        and _ReadonlyArray_to_js :
-          'T . ('T -> Ojs.t) -> 'T _ReadonlyArray -> Ojs.t =
-          fun _T -> Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module FlatArray =
   struct
-    type ('Arr, 'Depth) t = ('Arr, 'Depth) _FlatArray
+    type ('Arr, 'Depth) t = Ojs.t
     let rec t_of_js :
       'Arr 'Depth .
         (Ojs.t -> 'Arr) -> (Ojs.t -> 'Depth) -> Ojs.t -> ('Arr, 'Depth) t
       = fun (type __Arr) -> fun (type __Depth) ->
       fun (__Arr_of_js : Ojs.t -> __Arr) ->
-        fun (__Depth_of_js : Ojs.t -> __Depth) ->
-          fun (x6 : Ojs.t) -> _FlatArray_of_js __Arr_of_js __Depth_of_js x6
+        fun (__Depth_of_js : Ojs.t -> __Depth) -> fun (x2 : Ojs.t) -> x2
     and t_to_js :
       'Arr 'Depth .
         ('Arr -> Ojs.t) -> ('Depth -> Ojs.t) -> ('Arr, 'Depth) t -> Ojs.t
       = fun (type __Arr) -> fun (type __Depth) ->
       fun (__Arr_to_js : __Arr -> Ojs.t) ->
-        fun (__Depth_to_js : __Depth -> Ojs.t) ->
-          fun (x3 : (__Arr, __Depth) _FlatArray) ->
-            _FlatArray_to_js __Arr_to_js __Depth_to_js x3
+        fun (__Depth_to_js : __Depth -> Ojs.t) -> fun (x1 : Ojs.t) -> x1
   end
 module ReadonlyArray =
   struct
@@ -68,73 +25,72 @@ module ReadonlyArray =
       'T t ->
         callback:(this:'This ->
                     value:'T ->
-                      index:float -> array:'T list -> ('U, 'U t) union2)
+                      index:int -> array:'T list -> ('U, 'U t) union2)
           -> ?thisArg:'This -> unit -> 'U list)
       =
-      fun (x21 : 'T t) ->
+      fun (x15 : 'T t) ->
         fun
-          ~callback:(x9 :
+          ~callback:(x3 :
                       this:'This ->
                         value:'T ->
-                          index:float -> array:'T list -> ('U, 'U t) union2)
+                          index:int -> array:'T list -> ('U, 'U t) union2)
           ->
-          fun ?thisArg:(x10 : 'This option) ->
+          fun ?thisArg:(x4 : 'This option) ->
             fun () ->
               Ojs.list_of_js Obj.magic
-                (let x23 = t_to_js Obj.magic x21 in
-                 Ojs.call (Ojs.get_prop_ascii x23 "flatMap") "apply"
-                   [|x23;((let x11 =
+                (let x17 = t_to_js Obj.magic x15 in
+                 Ojs.call (Ojs.get_prop_ascii x17 "flatMap") "apply"
+                   [|x17;((let x5 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x11 "push"
+                             (Ojs.call x5 "push"
                                 [|(Ojs.fun_to_js 4
-                                     (fun (x13 : Ojs.t) ->
-                                        fun (x14 : Ojs.t) ->
-                                          fun (x15 : Ojs.t) ->
-                                            fun (x16 : Ojs.t) ->
+                                     (fun (x7 : Ojs.t) ->
+                                        fun (x8 : Ojs.t) ->
+                                          fun (x9 : Ojs.t) ->
+                                            fun (x10 : Ojs.t) ->
                                               union2_to_js Obj.magic
-                                                (fun (x19 : 'U t) ->
-                                                   t_to_js Obj.magic x19)
-                                                (x9 ~this:(Obj.magic x13)
-                                                   ~value:(Obj.magic x14)
-                                                   ~index:(Ojs.float_of_js
-                                                             x15)
+                                                (fun (x13 : 'U t) ->
+                                                   t_to_js Obj.magic x13)
+                                                (x3 ~this:(Obj.magic x7)
+                                                   ~value:(Obj.magic x8)
+                                                   ~index:(Ojs.int_of_js x9)
                                                    ~array:(Ojs.list_of_js
-                                                             Obj.magic x16))))|]);
-                           (match x10 with
-                            | Some x12 ->
+                                                             Obj.magic x10))))|]);
+                           (match x4 with
+                            | Some x6 ->
                                 ignore
-                                  (Ojs.call x11 "push" [|(Obj.magic x12)|])
+                                  (Ojs.call x5 "push" [|(Obj.magic x6)|])
                             | None -> ());
-                           x11))|])
+                           x5))|])
     let (flat :
-      'T t -> this:'A -> ?depth:'D -> unit -> ('A, 'D) _FlatArray list) =
-      fun (x29 : 'T t) ->
-        fun ~this:(x25 : 'A) ->
-          fun ?depth:(x26 : 'D option) ->
+      'T t -> this:'A -> ?depth:'D -> unit -> ('A, 'D) FlatArray.t list) =
+      fun (x23 : 'T t) ->
+        fun ~this:(x19 : 'A) ->
+          fun ?depth:(x20 : 'D option) ->
             fun () ->
               Ojs.list_of_js
-                (fun (x32 : Ojs.t) ->
-                   _FlatArray_of_js Obj.magic Obj.magic x32)
-                (let x31 = t_to_js Obj.magic x29 in
-                 Ojs.call (Ojs.get_prop_ascii x31 "flat") "apply"
-                   [|x31;((let x27 =
+                (fun (x26 : Ojs.t) ->
+                   FlatArray.t_of_js Obj.magic Obj.magic x26)
+                (let x25 = t_to_js Obj.magic x23 in
+                 Ojs.call (Ojs.get_prop_ascii x25 "flat") "apply"
+                   [|x25;((let x21 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
-                           ignore (Ojs.call x27 "push" [|(Obj.magic x25)|]);
-                           (match x26 with
-                            | Some x28 ->
+                           ignore (Ojs.call x21 "push" [|(Obj.magic x19)|]);
+                           (match x20 with
+                            | Some x22 ->
                                 ignore
-                                  (Ojs.call x27 "push" [|(Obj.magic x28)|])
+                                  (Ojs.call x21 "push" [|(Obj.magic x22)|])
                             | None -> ());
-                           x27))|])
+                           x21))|])
     let (to_ml : 'T t -> 'T list) =
-      fun (x35 : 'T t) -> Ojs.list_of_js Obj.magic (t_to_js Obj.magic x35)
+      fun (x29 : 'T t) -> Ojs.list_of_js Obj.magic (t_to_js Obj.magic x29)
     let (of_ml : 'T list -> 'T t) =
-      fun (x38 : 'T list) -> t_of_js Obj.magic (Ojs.list_to_js Obj.magic x38)
+      fun (x32 : 'T list) -> t_of_js Obj.magic (Ojs.list_to_js Obj.magic x32)
   end
 module Array =
   struct
@@ -143,76 +99,75 @@ module Array =
       'T t ->
         callback:(this:'This ->
                     value:'T ->
-                      index:float ->
+                      index:int ->
                         array:'T list -> ('U, 'U ReadonlyArray.t) union2)
           -> ?thisArg:'This -> unit -> 'U list)
       =
-      fun (x53 : 'T t) ->
+      fun (x47 : 'T t) ->
         fun
-          ~callback:(x41 :
+          ~callback:(x35 :
                       this:'This ->
                         value:'T ->
-                          index:float ->
+                          index:int ->
                             array:'T list -> ('U, 'U ReadonlyArray.t) union2)
           ->
-          fun ?thisArg:(x42 : 'This option) ->
+          fun ?thisArg:(x36 : 'This option) ->
             fun () ->
               Ojs.list_of_js Obj.magic
-                (let x55 = t_to_js Obj.magic x53 in
-                 Ojs.call (Ojs.get_prop_ascii x55 "flatMap") "apply"
-                   [|x55;((let x43 =
+                (let x49 = t_to_js Obj.magic x47 in
+                 Ojs.call (Ojs.get_prop_ascii x49 "flatMap") "apply"
+                   [|x49;((let x37 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x43 "push"
+                             (Ojs.call x37 "push"
                                 [|(Ojs.fun_to_js 4
-                                     (fun (x45 : Ojs.t) ->
-                                        fun (x46 : Ojs.t) ->
-                                          fun (x47 : Ojs.t) ->
-                                            fun (x48 : Ojs.t) ->
+                                     (fun (x39 : Ojs.t) ->
+                                        fun (x40 : Ojs.t) ->
+                                          fun (x41 : Ojs.t) ->
+                                            fun (x42 : Ojs.t) ->
                                               union2_to_js Obj.magic
                                                 (fun
-                                                   (x51 : 'U ReadonlyArray.t)
+                                                   (x45 : 'U ReadonlyArray.t)
                                                    ->
                                                    ReadonlyArray.t_to_js
-                                                     Obj.magic x51)
-                                                (x41 ~this:(Obj.magic x45)
-                                                   ~value:(Obj.magic x46)
-                                                   ~index:(Ojs.float_of_js
-                                                             x47)
+                                                     Obj.magic x45)
+                                                (x35 ~this:(Obj.magic x39)
+                                                   ~value:(Obj.magic x40)
+                                                   ~index:(Ojs.int_of_js x41)
                                                    ~array:(Ojs.list_of_js
-                                                             Obj.magic x48))))|]);
-                           (match x42 with
-                            | Some x44 ->
+                                                             Obj.magic x42))))|]);
+                           (match x36 with
+                            | Some x38 ->
                                 ignore
-                                  (Ojs.call x43 "push" [|(Obj.magic x44)|])
+                                  (Ojs.call x37 "push" [|(Obj.magic x38)|])
                             | None -> ());
-                           x43))|])
+                           x37))|])
     let (flat :
-      'T t -> this:'A -> ?depth:'D -> unit -> ('A, 'D) _FlatArray list) =
-      fun (x61 : 'T t) ->
-        fun ~this:(x57 : 'A) ->
-          fun ?depth:(x58 : 'D option) ->
+      'T t -> this:'A -> ?depth:'D -> unit -> ('A, 'D) FlatArray.t list) =
+      fun (x55 : 'T t) ->
+        fun ~this:(x51 : 'A) ->
+          fun ?depth:(x52 : 'D option) ->
             fun () ->
               Ojs.list_of_js
-                (fun (x64 : Ojs.t) ->
-                   _FlatArray_of_js Obj.magic Obj.magic x64)
-                (let x63 = t_to_js Obj.magic x61 in
-                 Ojs.call (Ojs.get_prop_ascii x63 "flat") "apply"
-                   [|x63;((let x59 =
+                (fun (x58 : Ojs.t) ->
+                   FlatArray.t_of_js Obj.magic Obj.magic x58)
+                (let x57 = t_to_js Obj.magic x55 in
+                 Ojs.call (Ojs.get_prop_ascii x57 "flat") "apply"
+                   [|x57;((let x53 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
-                           ignore (Ojs.call x59 "push" [|(Obj.magic x57)|]);
-                           (match x58 with
-                            | Some x60 ->
+                           ignore (Ojs.call x53 "push" [|(Obj.magic x51)|]);
+                           (match x52 with
+                            | Some x54 ->
                                 ignore
-                                  (Ojs.call x59 "push" [|(Obj.magic x60)|])
+                                  (Ojs.call x53 "push" [|(Obj.magic x54)|])
                             | None -> ());
-                           x59))|])
+                           x53))|])
     let (to_ml : 'T t -> 'T list) =
-      fun (x67 : 'T t) -> Ojs.list_of_js Obj.magic (t_to_js Obj.magic x67)
+      fun (x61 : 'T t) -> Ojs.list_of_js Obj.magic (t_to_js Obj.magic x61)
     let (of_ml : 'T list -> 'T t) =
-      fun (x70 : 'T list) -> t_of_js Obj.magic (Ojs.list_to_js Obj.magic x70)
+      fun (x64 : 'T list) -> t_of_js Obj.magic (Ojs.list_to_js Obj.magic x64)
   end

@@ -2,165 +2,116 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2019
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _PromiseConstructor = [ `PromiseConstructor ] intf
-        and 'T _PromiseFulfilledResult =
-          [ `PromiseFulfilledResult of 'T ] intf
-        and _PromiseRejectedResult = [ `PromiseRejectedResult ] intf
-        and 'T _PromiseSettledResult =
-          [ `U_s0_fulfilled of 'T _PromiseFulfilledResult 
-          | `U_s1_rejected of _PromiseRejectedResult ]
-        let rec _PromiseConstructor_of_js : Ojs.t -> _PromiseConstructor =
-          Obj.magic
-        and _PromiseConstructor_to_js : _PromiseConstructor -> Ojs.t =
-          Obj.magic
-        and _PromiseFulfilledResult_of_js :
-          'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _PromiseFulfilledResult =
-          fun _T -> Obj.magic
-        and _PromiseFulfilledResult_to_js :
-          'T . ('T -> Ojs.t) -> 'T _PromiseFulfilledResult -> Ojs.t =
-          fun _T -> Obj.magic
-        and _PromiseRejectedResult_of_js : Ojs.t -> _PromiseRejectedResult =
-          Obj.magic
-        and _PromiseRejectedResult_to_js : _PromiseRejectedResult -> Ojs.t =
-          Obj.magic
-        and _PromiseSettledResult_of_js :
-          'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _PromiseSettledResult = fun (type
-          __T) ->
-          fun (__T_of_js : Ojs.t -> __T) ->
-            fun (x5 : Ojs.t) ->
-              let x6 = x5 in
-              match Ojs.string_of_js (Ojs.get_prop_ascii x6 "status") with
-              | "fulfilled" ->
-                  `U_s0_fulfilled
-                    (_PromiseFulfilledResult_of_js __T_of_js x6)
-              | "rejected" ->
-                  `U_s1_rejected (_PromiseRejectedResult_of_js x6)
-              | _ -> assert false
-        and _PromiseSettledResult_to_js :
-          'T . ('T -> Ojs.t) -> 'T _PromiseSettledResult -> Ojs.t = fun (type
-          __T) ->
-          fun (__T_to_js : __T -> Ojs.t) ->
-            fun
-              (x1 :
-                [ `U_s0_fulfilled of __T _PromiseFulfilledResult 
-                | `U_s1_rejected of _PromiseRejectedResult ])
-              ->
-              match x1 with
-              | `U_s0_fulfilled x2 ->
-                  _PromiseFulfilledResult_to_js __T_to_js x2
-              | `U_s1_rejected x4 -> _PromiseRejectedResult_to_js x4
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module PromiseFulfilledResult =
   struct
-    type 'T t = 'T _PromiseFulfilledResult
+    type 'T t = Ojs.t
     let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type __T) ->
-      fun (__T_of_js : Ojs.t -> __T) ->
-        fun (x10 : Ojs.t) -> _PromiseFulfilledResult_of_js __T_of_js x10
+      fun (__T_of_js : Ojs.t -> __T) -> fun (x2 : Ojs.t) -> x2
     and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-      fun (__T_to_js : __T -> Ojs.t) ->
-        fun (x8 : __T _PromiseFulfilledResult) ->
-          _PromiseFulfilledResult_to_js __T_to_js x8
+      fun (__T_to_js : __T -> Ojs.t) -> fun (x1 : Ojs.t) -> x1
     let (get_status : 'T t -> [ `fulfilled ]) =
-      fun (x12 : 'T t) ->
-        let x14 = Ojs.get_prop_ascii (t_to_js Obj.magic x12) "status" in
-        match Ojs.string_of_js x14 with
+      fun (x3 : 'T t) ->
+        let x5 = Ojs.get_prop_ascii (t_to_js Obj.magic x3) "status" in
+        match Ojs.string_of_js x5 with
         | "fulfilled" -> `fulfilled
         | _ -> assert false
     let (set_status : 'T t -> [ `fulfilled ] -> unit) =
-      fun (x15 : 'T t) ->
-        fun (x16 : [ `fulfilled ]) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x15) "status"
-            (match x16 with | `fulfilled -> Ojs.string_to_js "fulfilled")
+      fun (x6 : 'T t) ->
+        fun (x7 : [ `fulfilled ]) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x6) "status"
+            (match x7 with | `fulfilled -> Ojs.string_to_js "fulfilled")
     let (get_value : 'T t -> 'T) =
-      fun (x18 : 'T t) ->
-        Obj.magic (Ojs.get_prop_ascii (t_to_js Obj.magic x18) "value")
+      fun (x9 : 'T t) ->
+        Obj.magic (Ojs.get_prop_ascii (t_to_js Obj.magic x9) "value")
     let (set_value : 'T t -> 'T -> unit) =
-      fun (x20 : 'T t) ->
-        fun (x21 : 'T) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x20) "value" (Obj.magic x21)
+      fun (x11 : 'T t) ->
+        fun (x12 : 'T) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x11) "value" (Obj.magic x12)
   end
 module PromiseRejectedResult =
   struct
-    type t = _PromiseRejectedResult
-    let rec t_of_js : Ojs.t -> t =
-      fun (x24 : Ojs.t) -> _PromiseRejectedResult_of_js x24
-    and t_to_js : t -> Ojs.t =
-      fun (x23 : _PromiseRejectedResult) -> _PromiseRejectedResult_to_js x23
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x15 : Ojs.t) -> x15
+    and t_to_js : t -> Ojs.t = fun (x14 : Ojs.t) -> x14
     let (get_status : t -> [ `rejected ]) =
-      fun (x25 : t) ->
-        let x26 = Ojs.get_prop_ascii (t_to_js x25) "status" in
-        match Ojs.string_of_js x26 with
+      fun (x16 : t) ->
+        let x17 = Ojs.get_prop_ascii (t_to_js x16) "status" in
+        match Ojs.string_of_js x17 with
         | "rejected" -> `rejected
         | _ -> assert false
     let (set_status : t -> [ `rejected ] -> unit) =
-      fun (x27 : t) ->
-        fun (x28 : [ `rejected ]) ->
-          Ojs.set_prop_ascii (t_to_js x27) "status"
-            (match x28 with | `rejected -> Ojs.string_to_js "rejected")
+      fun (x18 : t) ->
+        fun (x19 : [ `rejected ]) ->
+          Ojs.set_prop_ascii (t_to_js x18) "status"
+            (match x19 with | `rejected -> Ojs.string_to_js "rejected")
     let (get_reason : t -> any) =
-      fun (x29 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x29) "reason")
+      fun (x20 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x20) "reason")
     let (set_reason : t -> any -> unit) =
-      fun (x30 : t) ->
-        fun (x31 : any) ->
-          Ojs.set_prop_ascii (t_to_js x30) "reason" (any_to_js x31)
+      fun (x21 : t) ->
+        fun (x22 : any) ->
+          Ojs.set_prop_ascii (t_to_js x21) "reason" (any_to_js x22)
   end
 module PromiseSettledResult =
   struct
-    type 'T t = 'T _PromiseSettledResult
+    type 'T t =
+      [ `fulfilled of 'T PromiseFulfilledResult.t 
+      | `rejected of PromiseRejectedResult.t ]
     let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type __T) ->
       fun (__T_of_js : Ojs.t -> __T) ->
-        fun (x34 : Ojs.t) -> _PromiseSettledResult_of_js __T_of_js x34
+        fun (x27 : Ojs.t) ->
+          let x28 = x27 in
+          match Ojs.string_of_js (Ojs.get_prop_ascii x28 "status") with
+          | "fulfilled" ->
+              `fulfilled (PromiseFulfilledResult.t_of_js __T_of_js x28)
+          | "rejected" -> `rejected (PromiseRejectedResult.t_of_js x28)
+          | _ -> assert false
     and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
       fun (__T_to_js : __T -> Ojs.t) ->
-        fun (x32 : __T _PromiseSettledResult) ->
-          _PromiseSettledResult_to_js __T_to_js x32
+        fun
+          (x23 :
+            [ `fulfilled of __T PromiseFulfilledResult.t 
+            | `rejected of PromiseRejectedResult.t ])
+          ->
+          match x23 with
+          | `fulfilled x24 -> PromiseFulfilledResult.t_to_js __T_to_js x24
+          | `rejected x26 -> PromiseRejectedResult.t_to_js x26
   end
 module Promise =
   struct
     include struct include Promise end
     let (allSettled : 'T -> any Promise.t) =
-      fun (x36 : 'T) ->
+      fun (x30 : 'T) ->
         Promise.t_of_js any_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Promise") "allSettled"
-             [|(Obj.magic x36)|])
+             [|(Obj.magic x30)|])
     let (allSettled' :
-      'T Iterable.t -> any _PromiseSettledResult list Promise.t) =
-      fun (x38 : 'T Iterable.t) ->
+      'T Iterable.t -> any PromiseSettledResult.t list Promise.t) =
+      fun (x32 : 'T Iterable.t) ->
         Promise.t_of_js
-          (fun (x40 : Ojs.t) ->
+          (fun (x34 : Ojs.t) ->
              Ojs.list_of_js
-               (fun (x41 : Ojs.t) ->
-                  _PromiseSettledResult_of_js any_of_js x41) x40)
+               (fun (x35 : Ojs.t) ->
+                  PromiseSettledResult.t_of_js any_of_js x35) x34)
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Promise") "allSettled"
-             [|(Iterable.t_to_js Obj.magic x38)|])
+             [|(Iterable.t_to_js Obj.magic x32)|])
   end
 module PromiseConstructor =
   struct
     include struct include PromiseConstructor end
     let (allSettled : t -> 'T -> any Promise.t) =
-      fun (x44 : t) ->
-        fun (x43 : 'T) ->
+      fun (x38 : t) ->
+        fun (x37 : 'T) ->
           Promise.t_of_js any_of_js
-            (Ojs.call (t_to_js x44) "allSettled" [|(Obj.magic x43)|])
+            (Ojs.call (t_to_js x38) "allSettled" [|(Obj.magic x37)|])
     let (allSettled' :
-      t -> 'T Iterable.t -> any _PromiseSettledResult list Promise.t) =
-      fun (x48 : t) ->
-        fun (x46 : 'T Iterable.t) ->
+      t -> 'T Iterable.t -> any PromiseSettledResult.t list Promise.t) =
+      fun (x42 : t) ->
+        fun (x40 : 'T Iterable.t) ->
           Promise.t_of_js
-            (fun (x49 : Ojs.t) ->
+            (fun (x43 : Ojs.t) ->
                Ojs.list_of_js
-                 (fun (x50 : Ojs.t) ->
-                    _PromiseSettledResult_of_js any_of_js x50) x49)
-            (Ojs.call (t_to_js x48) "allSettled"
-               [|(Iterable.t_to_js Obj.magic x46)|])
+                 (fun (x44 : Ojs.t) ->
+                    PromiseSettledResult.t_of_js any_of_js x44) x43)
+            (Ojs.call (t_to_js x42) "allSettled"
+               [|(Iterable.t_to_js Obj.magic x40)|])
   end

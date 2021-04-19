@@ -2,22 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2017
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type 'T _Promise = [ `Promise of 'T ] intf
-        let rec _Promise_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _Promise =
-          fun _T -> Obj.magic
-        and _Promise_to_js : 'T . ('T -> Ojs.t) -> 'T _Promise -> Ojs.t =
-          fun _T -> Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module Promise =
   struct
     include struct include Promise end

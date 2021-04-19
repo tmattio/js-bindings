@@ -314,12 +314,12 @@ module Fs =
     module Stats =
       struct
         include struct include StatsBase end
-        type t = float StatsBase.t
+        type t = int StatsBase.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x113 : Ojs.t) -> StatsBase.t_of_js Ojs.float_of_js x113
+          fun (x113 : Ojs.t) -> StatsBase.t_of_js Ojs.int_of_js x113
         and t_to_js : t -> Ojs.t =
-          fun (x111 : float StatsBase.t) ->
-            StatsBase.t_to_js Ojs.float_to_js x111
+          fun (x111 : int StatsBase.t) ->
+            StatsBase.t_to_js Ojs.int_to_js x111
       end
     module AnonymousInterface0 =
       struct
@@ -369,14 +369,14 @@ module Fs =
         and t_to_js : t -> Ojs.t =
           fun (x127 : anonymous_interface_2) ->
             anonymous_interface_2_to_js x127
-        let (get_bytesRead : t -> float) =
+        let (get_bytesRead : t -> int) =
           fun (x129 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x129) "bytesRead")
-        let (set_bytesRead : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x129) "bytesRead")
+        let (set_bytesRead : t -> int -> unit) =
           fun (x130 : t) ->
-            fun (x131 : float) ->
+            fun (x131 : int) ->
               Ojs.set_prop_ascii (t_to_js x130) "bytesRead"
-                (Ojs.float_to_js x131)
+                (Ojs.int_to_js x131)
         let (get_buffer : t -> 'TBuffer) =
           fun (x132 : t) ->
             Obj.magic (Ojs.get_prop_ascii (t_to_js x132) "buffer")
@@ -393,15 +393,14 @@ module Fs =
         and t_to_js : t -> Ojs.t =
           fun (x135 : anonymous_interface_3) ->
             anonymous_interface_3_to_js x135
-        let (get_bytesWritten : t -> float) =
+        let (get_bytesWritten : t -> int) =
           fun (x137 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x137) "bytesWritten")
-        let (set_bytesWritten : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x137) "bytesWritten")
+        let (set_bytesWritten : t -> int -> unit) =
           fun (x138 : t) ->
-            fun (x139 : float) ->
+            fun (x139 : int) ->
               Ojs.set_prop_ascii (t_to_js x138) "bytesWritten"
-                (Ojs.float_to_js x139)
+                (Ojs.int_to_js x139)
         let (get_buffer : t -> 'TBuffer) =
           fun (x140 : t) ->
             Obj.magic (Ojs.get_prop_ascii (t_to_js x140) "buffer")
@@ -418,15 +417,14 @@ module Fs =
         and t_to_js : t -> Ojs.t =
           fun (x143 : anonymous_interface_4) ->
             anonymous_interface_4_to_js x143
-        let (get_bytesWritten : t -> float) =
+        let (get_bytesWritten : t -> int) =
           fun (x145 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x145) "bytesWritten")
-        let (set_bytesWritten : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x145) "bytesWritten")
+        let (set_bytesWritten : t -> int -> unit) =
           fun (x146 : t) ->
-            fun (x147 : float) ->
+            fun (x147 : int) ->
               Ojs.set_prop_ascii (t_to_js x146) "bytesWritten"
-                (Ojs.float_to_js x147)
+                (Ojs.int_to_js x147)
         let (get_buffer : t -> string) =
           fun (x148 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x148) "buffer")
@@ -680,20 +678,20 @@ module Fs =
             fun (x233 : BufferEncoding.t) ->
               Ojs.set_prop_ascii (t_to_js x232) "encoding"
                 (BufferEncoding.t_to_js x233)
-        let (get_fd : t -> float) =
+        let (get_fd : t -> int) =
           fun (x234 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x234) "fd")
-        let (set_fd : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x234) "fd")
+        let (set_fd : t -> int -> unit) =
           fun (x235 : t) ->
-            fun (x236 : float) ->
-              Ojs.set_prop_ascii (t_to_js x235) "fd" (Ojs.float_to_js x236)
-        let (get_mode : t -> float) =
+            fun (x236 : int) ->
+              Ojs.set_prop_ascii (t_to_js x235) "fd" (Ojs.int_to_js x236)
+        let (get_mode : t -> int) =
           fun (x237 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x237) "mode")
-        let (set_mode : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x237) "mode")
+        let (set_mode : t -> int -> unit) =
           fun (x238 : t) ->
-            fun (x239 : float) ->
-              Ojs.set_prop_ascii (t_to_js x238) "mode" (Ojs.float_to_js x239)
+            fun (x239 : int) ->
+              Ojs.set_prop_ascii (t_to_js x238) "mode" (Ojs.int_to_js x239)
         let (get_autoClose : t -> bool) =
           fun (x240 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x240) "autoClose")
@@ -710,30 +708,28 @@ module Fs =
             fun (x245 : bool) ->
               Ojs.set_prop_ascii (t_to_js x244) "emitClose"
                 (Ojs.bool_to_js x245)
-        let (get_start : t -> float) =
+        let (get_start : t -> int) =
           fun (x246 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x246) "start")
-        let (set_start : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x246) "start")
+        let (set_start : t -> int -> unit) =
           fun (x247 : t) ->
-            fun (x248 : float) ->
-              Ojs.set_prop_ascii (t_to_js x247) "start"
-                (Ojs.float_to_js x248)
-        let (get_end : t -> float) =
+            fun (x248 : int) ->
+              Ojs.set_prop_ascii (t_to_js x247) "start" (Ojs.int_to_js x248)
+        let (get_end : t -> int) =
           fun (x249 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x249) "end")
-        let (set_end : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x249) "end")
+        let (set_end : t -> int -> unit) =
           fun (x250 : t) ->
-            fun (x251 : float) ->
-              Ojs.set_prop_ascii (t_to_js x250) "end" (Ojs.float_to_js x251)
-        let (get_highWaterMark : t -> float) =
+            fun (x251 : int) ->
+              Ojs.set_prop_ascii (t_to_js x250) "end" (Ojs.int_to_js x251)
+        let (get_highWaterMark : t -> int) =
           fun (x252 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x252) "highWaterMark")
-        let (set_highWaterMark : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x252) "highWaterMark")
+        let (set_highWaterMark : t -> int -> unit) =
           fun (x253 : t) ->
-            fun (x254 : float) ->
+            fun (x254 : int) ->
               Ojs.set_prop_ascii (t_to_js x253) "highWaterMark"
-                (Ojs.float_to_js x254)
+                (Ojs.int_to_js x254)
       end
     module AnonymousInterface14 =
       struct
@@ -760,20 +756,20 @@ module Fs =
             fun (x262 : BufferEncoding.t) ->
               Ojs.set_prop_ascii (t_to_js x261) "encoding"
                 (BufferEncoding.t_to_js x262)
-        let (get_fd : t -> float) =
+        let (get_fd : t -> int) =
           fun (x263 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x263) "fd")
-        let (set_fd : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x263) "fd")
+        let (set_fd : t -> int -> unit) =
           fun (x264 : t) ->
-            fun (x265 : float) ->
-              Ojs.set_prop_ascii (t_to_js x264) "fd" (Ojs.float_to_js x265)
-        let (get_mode : t -> float) =
+            fun (x265 : int) ->
+              Ojs.set_prop_ascii (t_to_js x264) "fd" (Ojs.int_to_js x265)
+        let (get_mode : t -> int) =
           fun (x266 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x266) "mode")
-        let (set_mode : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x266) "mode")
+        let (set_mode : t -> int -> unit) =
           fun (x267 : t) ->
-            fun (x268 : float) ->
-              Ojs.set_prop_ascii (t_to_js x267) "mode" (Ojs.float_to_js x268)
+            fun (x268 : int) ->
+              Ojs.set_prop_ascii (t_to_js x267) "mode" (Ojs.int_to_js x268)
         let (get_autoClose : t -> bool) =
           fun (x269 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x269) "autoClose")
@@ -790,23 +786,21 @@ module Fs =
             fun (x274 : bool) ->
               Ojs.set_prop_ascii (t_to_js x273) "emitClose"
                 (Ojs.bool_to_js x274)
-        let (get_start : t -> float) =
+        let (get_start : t -> int) =
           fun (x275 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x275) "start")
-        let (set_start : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x275) "start")
+        let (set_start : t -> int -> unit) =
           fun (x276 : t) ->
-            fun (x277 : float) ->
-              Ojs.set_prop_ascii (t_to_js x276) "start"
-                (Ojs.float_to_js x277)
-        let (get_highWaterMark : t -> float) =
+            fun (x277 : int) ->
+              Ojs.set_prop_ascii (t_to_js x276) "start" (Ojs.int_to_js x277)
+        let (get_highWaterMark : t -> int) =
           fun (x278 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x278) "highWaterMark")
-        let (set_highWaterMark : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x278) "highWaterMark")
+        let (set_highWaterMark : t -> int -> unit) =
           fun (x279 : t) ->
-            fun (x280 : float) ->
+            fun (x280 : int) ->
               Ojs.set_prop_ascii (t_to_js x279) "highWaterMark"
-                (Ojs.float_to_js x280)
+                (Ojs.int_to_js x280)
       end
     module AnonymousInterface15 =
       struct
@@ -848,14 +842,14 @@ module Fs =
             fun (x293 : bool) ->
               Ojs.set_prop_ascii (t_to_js x292) "persistent"
                 (Ojs.bool_to_js x293)
-        let (get_interval : t -> float) =
+        let (get_interval : t -> int) =
           fun (x294 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x294) "interval")
-        let (set_interval : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x294) "interval")
+        let (set_interval : t -> int -> unit) =
           fun (x295 : t) ->
-            fun (x296 : float) ->
+            fun (x296 : int) ->
               Ojs.set_prop_ascii (t_to_js x295) "interval"
-                (Ojs.float_to_js x296)
+                (Ojs.int_to_js x296)
       end
     module AnonymousInterface17 =
       struct
@@ -1411,14 +1405,14 @@ module Fs =
         include struct include Stream.Readable end
         let (close : t -> unit) =
           fun (x460 : t) -> ignore (Ojs.call (t_to_js x460) "close" [||])
-        let (get_bytesRead : t -> float) =
+        let (get_bytesRead : t -> int) =
           fun (x461 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x461) "bytesRead")
-        let (set_bytesRead : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x461) "bytesRead")
+        let (set_bytesRead : t -> int -> unit) =
           fun (x462 : t) ->
-            fun (x463 : float) ->
+            fun (x463 : int) ->
               Ojs.set_prop_ascii (t_to_js x462) "bytesRead"
-                (Ojs.float_to_js x463)
+                (Ojs.int_to_js x463)
         let (get_path : t -> Buffer.t or_string) =
           fun (x464 : t) ->
             or_string_of_js Buffer.t_of_js
@@ -1480,16 +1474,15 @@ module Fs =
                          (fun (x485 : Ojs.t) ->
                             x484 ~err:(Error.t_of_js x485)))|])
         let (addListener'''' :
-          t -> event:[ `open_ ] -> listener:(fd:float -> unit) -> t) =
+          t -> event:[ `open_ ] -> listener:(fd:int -> unit) -> t) =
           fun (x490 : t) ->
             fun ~event:(x487 : [ `open_ ]) ->
-              fun ~listener:(x488 : fd:float -> unit) ->
+              fun ~listener:(x488 : fd:int -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x490) "addListener"
                      [|((match x487 with | `open_ -> Ojs.string_to_js "open"));(
                        Ojs.fun_to_js 1
-                         (fun (x489 : Ojs.t) ->
-                            x488 ~fd:(Ojs.float_of_js x489)))|])
+                         (fun (x489 : Ojs.t) -> x488 ~fd:(Ojs.int_of_js x489)))|])
         let (addListener''''' :
           t -> event:[ `pause ] -> listener:(unit -> unit) -> t) =
           fun (x493 : t) ->
@@ -1589,16 +1582,15 @@ module Fs =
                          (fun (x522 : Ojs.t) ->
                             x521 ~err:(Error.t_of_js x522)))|])
         let (on'''' :
-          t -> event:[ `open_ ] -> listener:(fd:float -> unit) -> t) =
+          t -> event:[ `open_ ] -> listener:(fd:int -> unit) -> t) =
           fun (x527 : t) ->
             fun ~event:(x524 : [ `open_ ]) ->
-              fun ~listener:(x525 : fd:float -> unit) ->
+              fun ~listener:(x525 : fd:int -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x527) "on"
                      [|((match x524 with | `open_ -> Ojs.string_to_js "open"));(
                        Ojs.fun_to_js 1
-                         (fun (x526 : Ojs.t) ->
-                            x525 ~fd:(Ojs.float_of_js x526)))|])
+                         (fun (x526 : Ojs.t) -> x525 ~fd:(Ojs.int_of_js x526)))|])
         let (on''''' : t -> event:[ `pause ] -> listener:(unit -> unit) -> t)
           =
           fun (x530 : t) ->
@@ -1698,16 +1690,15 @@ module Fs =
                          (fun (x559 : Ojs.t) ->
                             x558 ~err:(Error.t_of_js x559)))|])
         let (once'''' :
-          t -> event:[ `open_ ] -> listener:(fd:float -> unit) -> t) =
+          t -> event:[ `open_ ] -> listener:(fd:int -> unit) -> t) =
           fun (x564 : t) ->
             fun ~event:(x561 : [ `open_ ]) ->
-              fun ~listener:(x562 : fd:float -> unit) ->
+              fun ~listener:(x562 : fd:int -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x564) "once"
                      [|((match x561 with | `open_ -> Ojs.string_to_js "open"));(
                        Ojs.fun_to_js 1
-                         (fun (x563 : Ojs.t) ->
-                            x562 ~fd:(Ojs.float_of_js x563)))|])
+                         (fun (x563 : Ojs.t) -> x562 ~fd:(Ojs.int_of_js x563)))|])
         let (once''''' :
           t -> event:[ `pause ] -> listener:(unit -> unit) -> t) =
           fun (x567 : t) ->
@@ -1809,16 +1800,15 @@ module Fs =
                          (fun (x596 : Ojs.t) ->
                             x595 ~err:(Error.t_of_js x596)))|])
         let (prependListener'''' :
-          t -> event:[ `open_ ] -> listener:(fd:float -> unit) -> t) =
+          t -> event:[ `open_ ] -> listener:(fd:int -> unit) -> t) =
           fun (x601 : t) ->
             fun ~event:(x598 : [ `open_ ]) ->
-              fun ~listener:(x599 : fd:float -> unit) ->
+              fun ~listener:(x599 : fd:int -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x601) "prependListener"
                      [|((match x598 with | `open_ -> Ojs.string_to_js "open"));(
                        Ojs.fun_to_js 1
-                         (fun (x600 : Ojs.t) ->
-                            x599 ~fd:(Ojs.float_of_js x600)))|])
+                         (fun (x600 : Ojs.t) -> x599 ~fd:(Ojs.int_of_js x600)))|])
         let (prependListener''''' :
           t -> event:[ `pause ] -> listener:(unit -> unit) -> t) =
           fun (x604 : t) ->
@@ -1920,16 +1910,15 @@ module Fs =
                          (fun (x633 : Ojs.t) ->
                             x632 ~err:(Error.t_of_js x633)))|])
         let (prependOnceListener'''' :
-          t -> event:[ `open_ ] -> listener:(fd:float -> unit) -> t) =
+          t -> event:[ `open_ ] -> listener:(fd:int -> unit) -> t) =
           fun (x638 : t) ->
             fun ~event:(x635 : [ `open_ ]) ->
-              fun ~listener:(x636 : fd:float -> unit) ->
+              fun ~listener:(x636 : fd:int -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x638) "prependOnceListener"
                      [|((match x635 with | `open_ -> Ojs.string_to_js "open"));(
                        Ojs.fun_to_js 1
-                         (fun (x637 : Ojs.t) ->
-                            x636 ~fd:(Ojs.float_of_js x637)))|])
+                         (fun (x637 : Ojs.t) -> x636 ~fd:(Ojs.int_of_js x637)))|])
         let (prependOnceListener''''' :
           t -> event:[ `pause ] -> listener:(unit -> unit) -> t) =
           fun (x641 : t) ->
@@ -1993,15 +1982,14 @@ module Fs =
         include struct include Stream.Writable end
         let (close : t -> unit) =
           fun (x657 : t) -> ignore (Ojs.call (t_to_js x657) "close" [||])
-        let (get_bytesWritten : t -> float) =
+        let (get_bytesWritten : t -> int) =
           fun (x658 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x658) "bytesWritten")
-        let (set_bytesWritten : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x658) "bytesWritten")
+        let (set_bytesWritten : t -> int -> unit) =
           fun (x659 : t) ->
-            fun (x660 : float) ->
+            fun (x660 : int) ->
               Ojs.set_prop_ascii (t_to_js x659) "bytesWritten"
-                (Ojs.float_to_js x660)
+                (Ojs.int_to_js x660)
         let (get_path : t -> Buffer.t or_string) =
           fun (x661 : t) ->
             or_string_of_js Buffer.t_of_js
@@ -2061,16 +2049,15 @@ module Fs =
                                                                     (fun _ ->
                                                                     x680 ()))|])
         let (addListener'''' :
-          t -> event:[ `open_ ] -> listener:(fd:float -> unit) -> t) =
+          t -> event:[ `open_ ] -> listener:(fd:int -> unit) -> t) =
           fun (x685 : t) ->
             fun ~event:(x682 : [ `open_ ]) ->
-              fun ~listener:(x683 : fd:float -> unit) ->
+              fun ~listener:(x683 : fd:int -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x685) "addListener"
                      [|((match x682 with | `open_ -> Ojs.string_to_js "open"));(
                        Ojs.fun_to_js 1
-                         (fun (x684 : Ojs.t) ->
-                            x683 ~fd:(Ojs.float_of_js x684)))|])
+                         (fun (x684 : Ojs.t) -> x683 ~fd:(Ojs.int_of_js x684)))|])
         let (addListener''''' :
           t ->
             event:[ `pipe ] -> listener:(src:Stream.Readable.t -> unit) -> t)
@@ -2170,16 +2157,15 @@ module Fs =
                                                                     (fun _ ->
                                                                     x714 ()))|])
         let (on'''' :
-          t -> event:[ `open_ ] -> listener:(fd:float -> unit) -> t) =
+          t -> event:[ `open_ ] -> listener:(fd:int -> unit) -> t) =
           fun (x719 : t) ->
             fun ~event:(x716 : [ `open_ ]) ->
-              fun ~listener:(x717 : fd:float -> unit) ->
+              fun ~listener:(x717 : fd:int -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x719) "on"
                      [|((match x716 with | `open_ -> Ojs.string_to_js "open"));(
                        Ojs.fun_to_js 1
-                         (fun (x718 : Ojs.t) ->
-                            x717 ~fd:(Ojs.float_of_js x718)))|])
+                         (fun (x718 : Ojs.t) -> x717 ~fd:(Ojs.int_of_js x718)))|])
         let (on''''' :
           t ->
             event:[ `pipe ] -> listener:(src:Stream.Readable.t -> unit) -> t)
@@ -2279,16 +2265,15 @@ module Fs =
                                                                     (fun _ ->
                                                                     x748 ()))|])
         let (once'''' :
-          t -> event:[ `open_ ] -> listener:(fd:float -> unit) -> t) =
+          t -> event:[ `open_ ] -> listener:(fd:int -> unit) -> t) =
           fun (x753 : t) ->
             fun ~event:(x750 : [ `open_ ]) ->
-              fun ~listener:(x751 : fd:float -> unit) ->
+              fun ~listener:(x751 : fd:int -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x753) "once"
                      [|((match x750 with | `open_ -> Ojs.string_to_js "open"));(
                        Ojs.fun_to_js 1
-                         (fun (x752 : Ojs.t) ->
-                            x751 ~fd:(Ojs.float_of_js x752)))|])
+                         (fun (x752 : Ojs.t) -> x751 ~fd:(Ojs.int_of_js x752)))|])
         let (once''''' :
           t ->
             event:[ `pipe ] -> listener:(src:Stream.Readable.t -> unit) -> t)
@@ -2390,16 +2375,15 @@ module Fs =
                                                                     (fun _ ->
                                                                     x782 ()))|])
         let (prependListener'''' :
-          t -> event:[ `open_ ] -> listener:(fd:float -> unit) -> t) =
+          t -> event:[ `open_ ] -> listener:(fd:int -> unit) -> t) =
           fun (x787 : t) ->
             fun ~event:(x784 : [ `open_ ]) ->
-              fun ~listener:(x785 : fd:float -> unit) ->
+              fun ~listener:(x785 : fd:int -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x787) "prependListener"
                      [|((match x784 with | `open_ -> Ojs.string_to_js "open"));(
                        Ojs.fun_to_js 1
-                         (fun (x786 : Ojs.t) ->
-                            x785 ~fd:(Ojs.float_of_js x786)))|])
+                         (fun (x786 : Ojs.t) -> x785 ~fd:(Ojs.int_of_js x786)))|])
         let (prependListener''''' :
           t ->
             event:[ `pipe ] -> listener:(src:Stream.Readable.t -> unit) -> t)
@@ -2501,16 +2485,15 @@ module Fs =
                                                                     (fun _ ->
                                                                     x816 ()))|])
         let (prependOnceListener'''' :
-          t -> event:[ `open_ ] -> listener:(fd:float -> unit) -> t) =
+          t -> event:[ `open_ ] -> listener:(fd:int -> unit) -> t) =
           fun (x821 : t) ->
             fun ~event:(x818 : [ `open_ ]) ->
-              fun ~listener:(x819 : fd:float -> unit) ->
+              fun ~listener:(x819 : fd:int -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x821) "prependOnceListener"
                      [|((match x818 with | `open_ -> Ojs.string_to_js "open"));(
                        Ojs.fun_to_js 1
-                         (fun (x820 : Ojs.t) ->
-                            x819 ~fd:(Ojs.float_of_js x820)))|])
+                         (fun (x820 : Ojs.t) -> x819 ~fd:(Ojs.int_of_js x820)))|])
         let (prependOnceListener''''' :
           t ->
             event:[ `pipe ] -> listener:(src:Stream.Readable.t -> unit) -> t)
@@ -2600,16 +2583,16 @@ module Fs =
                [|(Ojs.string_to_js x845);(Ojs.string_to_js x846)|])
     let (truncate :
       path:string ->
-        len:float or_null_or_undefined -> callback:NoParamCallback.t -> unit)
+        len:int or_null_or_undefined -> callback:NoParamCallback.t -> unit)
       =
       fun ~path:(x847 : string) ->
-        fun ~len:(x848 : float or_null_or_undefined) ->
+        fun ~len:(x848 : int or_null_or_undefined) ->
           fun ~callback:(x850 : NoParamCallback.t) ->
             ignore
               (Ojs.call Import.fs "truncate"
                  [|(Ojs.string_to_js x847);(or_null_or_undefined_to_js
-                                              Ojs.float_to_js x848);(
-                   NoParamCallback.t_to_js x850)|])
+                                              Ojs.int_to_js x848);(NoParamCallback.t_to_js
+                                                                    x850)|])
     let (truncate : path:string -> callback:NoParamCallback.t -> unit) =
       fun ~path:(x851 : string) ->
         fun ~callback:(x852 : NoParamCallback.t) ->
@@ -2619,9 +2602,9 @@ module Fs =
     module Truncate =
       struct
         let (__promisify__ :
-          path:string -> ?len:float or_null -> unit -> unit Promise.t) =
+          path:string -> ?len:int or_null -> unit -> unit Promise.t) =
           fun ~path:(x853 : string) ->
-            fun ?len:(x854 : float or_null option) ->
+            fun ?len:(x854 : int or_null option) ->
               fun () ->
                 Promise.t_of_js Ojs.unit_of_js
                   (let x858 = Ojs.get_prop_ascii Import.fs "truncate" in
@@ -2637,13 +2620,13 @@ module Fs =
                                | Some x856 ->
                                    ignore
                                      (Ojs.call x855 "push"
-                                        [|(or_null_to_js Ojs.float_to_js x856)|])
+                                        [|(or_null_to_js Ojs.int_to_js x856)|])
                                | None -> ());
                               x855))|])
       end
-    let (truncateSync : path:string -> ?len:float or_null -> unit -> unit) =
+    let (truncateSync : path:string -> ?len:int or_null -> unit -> unit) =
       fun ~path:(x860 : string) ->
-        fun ?len:(x861 : float or_null option) ->
+        fun ?len:(x861 : int or_null option) ->
           fun () ->
             ignore
               (let x865 = Import.fs in
@@ -2658,33 +2641,33 @@ module Fs =
                            | Some x863 ->
                                ignore
                                  (Ojs.call x862 "push"
-                                    [|(or_null_to_js Ojs.float_to_js x863)|])
+                                    [|(or_null_to_js Ojs.int_to_js x863)|])
                            | None -> ());
                           x862))|])
     let (ftruncate :
-      fd:float ->
-        len:float or_null_or_undefined -> callback:NoParamCallback.t -> unit)
+      fd:int ->
+        len:int or_null_or_undefined -> callback:NoParamCallback.t -> unit)
       =
-      fun ~fd:(x866 : float) ->
-        fun ~len:(x867 : float or_null_or_undefined) ->
+      fun ~fd:(x866 : int) ->
+        fun ~len:(x867 : int or_null_or_undefined) ->
           fun ~callback:(x869 : NoParamCallback.t) ->
             ignore
               (Ojs.call Import.fs "ftruncate"
-                 [|(Ojs.float_to_js x866);(or_null_or_undefined_to_js
-                                             Ojs.float_to_js x867);(NoParamCallback.t_to_js
-                                                                    x869)|])
-    let (ftruncate : fd:float -> callback:NoParamCallback.t -> unit) =
-      fun ~fd:(x870 : float) ->
+                 [|(Ojs.int_to_js x866);(or_null_or_undefined_to_js
+                                           Ojs.int_to_js x867);(NoParamCallback.t_to_js
+                                                                  x869)|])
+    let (ftruncate : fd:int -> callback:NoParamCallback.t -> unit) =
+      fun ~fd:(x870 : int) ->
         fun ~callback:(x871 : NoParamCallback.t) ->
           ignore
             (Ojs.call Import.fs "ftruncate"
-               [|(Ojs.float_to_js x870);(NoParamCallback.t_to_js x871)|])
+               [|(Ojs.int_to_js x870);(NoParamCallback.t_to_js x871)|])
     module Ftruncate =
       struct
         let (__promisify__ :
-          fd:float -> ?len:float or_null -> unit -> unit Promise.t) =
-          fun ~fd:(x872 : float) ->
-            fun ?len:(x873 : float or_null option) ->
+          fd:int -> ?len:int or_null -> unit -> unit Promise.t) =
+          fun ~fd:(x872 : int) ->
+            fun ?len:(x873 : int or_null option) ->
               fun () ->
                 Promise.t_of_js Ojs.unit_of_js
                   (let x877 = Ojs.get_prop_ascii Import.fs "ftruncate" in
@@ -2695,18 +2678,18 @@ module Fs =
                                   [||] in
                               ignore
                                 (Ojs.call x874 "push"
-                                   [|(Ojs.float_to_js x872)|]);
+                                   [|(Ojs.int_to_js x872)|]);
                               (match x873 with
                                | Some x875 ->
                                    ignore
                                      (Ojs.call x874 "push"
-                                        [|(or_null_to_js Ojs.float_to_js x875)|])
+                                        [|(or_null_to_js Ojs.int_to_js x875)|])
                                | None -> ());
                               x874))|])
       end
-    let (ftruncateSync : fd:float -> ?len:float or_null -> unit -> unit) =
-      fun ~fd:(x879 : float) ->
-        fun ?len:(x880 : float or_null option) ->
+    let (ftruncateSync : fd:int -> ?len:int or_null -> unit -> unit) =
+      fun ~fd:(x879 : int) ->
+        fun ?len:(x880 : int or_null option) ->
           fun () ->
             ignore
               (let x884 = Import.fs in
@@ -2716,114 +2699,112 @@ module Fs =
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x881 "push" [|(Ojs.float_to_js x879)|]);
+                            (Ojs.call x881 "push" [|(Ojs.int_to_js x879)|]);
                           (match x880 with
                            | Some x882 ->
                                ignore
                                  (Ojs.call x881 "push"
-                                    [|(or_null_to_js Ojs.float_to_js x882)|])
+                                    [|(or_null_to_js Ojs.int_to_js x882)|])
                            | None -> ());
                           x881))|])
     let (chown :
-      path:string ->
-        uid:float -> gid:float -> callback:NoParamCallback.t -> unit)
+      path:string -> uid:int -> gid:int -> callback:NoParamCallback.t -> unit)
       =
       fun ~path:(x885 : string) ->
-        fun ~uid:(x886 : float) ->
-          fun ~gid:(x887 : float) ->
+        fun ~uid:(x886 : int) ->
+          fun ~gid:(x887 : int) ->
             fun ~callback:(x888 : NoParamCallback.t) ->
               ignore
                 (Ojs.call Import.fs "chown"
-                   [|(Ojs.string_to_js x885);(Ojs.float_to_js x886);(
-                     Ojs.float_to_js x887);(NoParamCallback.t_to_js x888)|])
+                   [|(Ojs.string_to_js x885);(Ojs.int_to_js x886);(Ojs.int_to_js
+                                                                    x887);(
+                     NoParamCallback.t_to_js x888)|])
     module Chown =
       struct
         let (__promisify__ :
-          path:string -> uid:float -> gid:float -> unit Promise.t) =
+          path:string -> uid:int -> gid:int -> unit Promise.t) =
           fun ~path:(x889 : string) ->
-            fun ~uid:(x890 : float) ->
-              fun ~gid:(x891 : float) ->
+            fun ~uid:(x890 : int) ->
+              fun ~gid:(x891 : int) ->
                 Promise.t_of_js Ojs.unit_of_js
                   (Ojs.call (Ojs.get_prop_ascii Import.fs "chown")
                      "__promisify__"
-                     [|(Ojs.string_to_js x889);(Ojs.float_to_js x890);(
-                       Ojs.float_to_js x891)|])
+                     [|(Ojs.string_to_js x889);(Ojs.int_to_js x890);(
+                       Ojs.int_to_js x891)|])
       end
-    let (chownSync : path:string -> uid:float -> gid:float -> unit) =
+    let (chownSync : path:string -> uid:int -> gid:int -> unit) =
       fun ~path:(x893 : string) ->
-        fun ~uid:(x894 : float) ->
-          fun ~gid:(x895 : float) ->
+        fun ~uid:(x894 : int) ->
+          fun ~gid:(x895 : int) ->
             ignore
               (Ojs.call Import.fs "chownSync"
-                 [|(Ojs.string_to_js x893);(Ojs.float_to_js x894);(Ojs.float_to_js
-                                                                    x895)|])
+                 [|(Ojs.string_to_js x893);(Ojs.int_to_js x894);(Ojs.int_to_js
+                                                                   x895)|])
     let (fchown :
-      fd:float ->
-        uid:float -> gid:float -> callback:NoParamCallback.t -> unit)
-      =
-      fun ~fd:(x896 : float) ->
-        fun ~uid:(x897 : float) ->
-          fun ~gid:(x898 : float) ->
+      fd:int -> uid:int -> gid:int -> callback:NoParamCallback.t -> unit) =
+      fun ~fd:(x896 : int) ->
+        fun ~uid:(x897 : int) ->
+          fun ~gid:(x898 : int) ->
             fun ~callback:(x899 : NoParamCallback.t) ->
               ignore
                 (Ojs.call Import.fs "fchown"
-                   [|(Ojs.float_to_js x896);(Ojs.float_to_js x897);(Ojs.float_to_js
-                                                                    x898);(
+                   [|(Ojs.int_to_js x896);(Ojs.int_to_js x897);(Ojs.int_to_js
+                                                                  x898);(
                      NoParamCallback.t_to_js x899)|])
     module Fchown =
       struct
-        let (__promisify__ :
-          fd:float -> uid:float -> gid:float -> unit Promise.t) =
-          fun ~fd:(x900 : float) ->
-            fun ~uid:(x901 : float) ->
-              fun ~gid:(x902 : float) ->
+        let (__promisify__ : fd:int -> uid:int -> gid:int -> unit Promise.t)
+          =
+          fun ~fd:(x900 : int) ->
+            fun ~uid:(x901 : int) ->
+              fun ~gid:(x902 : int) ->
                 Promise.t_of_js Ojs.unit_of_js
                   (Ojs.call (Ojs.get_prop_ascii Import.fs "fchown")
                      "__promisify__"
-                     [|(Ojs.float_to_js x900);(Ojs.float_to_js x901);(
-                       Ojs.float_to_js x902)|])
+                     [|(Ojs.int_to_js x900);(Ojs.int_to_js x901);(Ojs.int_to_js
+                                                                    x902)|])
       end
-    let (fchownSync : fd:float -> uid:float -> gid:float -> unit) =
-      fun ~fd:(x904 : float) ->
-        fun ~uid:(x905 : float) ->
-          fun ~gid:(x906 : float) ->
+    let (fchownSync : fd:int -> uid:int -> gid:int -> unit) =
+      fun ~fd:(x904 : int) ->
+        fun ~uid:(x905 : int) ->
+          fun ~gid:(x906 : int) ->
             ignore
               (Ojs.call Import.fs "fchownSync"
-                 [|(Ojs.float_to_js x904);(Ojs.float_to_js x905);(Ojs.float_to_js
-                                                                    x906)|])
+                 [|(Ojs.int_to_js x904);(Ojs.int_to_js x905);(Ojs.int_to_js
+                                                                x906)|])
     let (lchown :
-      path:string ->
-        uid:float -> gid:float -> callback:NoParamCallback.t -> unit)
+      path:string -> uid:int -> gid:int -> callback:NoParamCallback.t -> unit)
       =
       fun ~path:(x907 : string) ->
-        fun ~uid:(x908 : float) ->
-          fun ~gid:(x909 : float) ->
+        fun ~uid:(x908 : int) ->
+          fun ~gid:(x909 : int) ->
             fun ~callback:(x910 : NoParamCallback.t) ->
               ignore
                 (Ojs.call Import.fs "lchown"
-                   [|(Ojs.string_to_js x907);(Ojs.float_to_js x908);(
-                     Ojs.float_to_js x909);(NoParamCallback.t_to_js x910)|])
+                   [|(Ojs.string_to_js x907);(Ojs.int_to_js x908);(Ojs.int_to_js
+                                                                    x909);(
+                     NoParamCallback.t_to_js x910)|])
     module Lchown =
       struct
         let (__promisify__ :
-          path:string -> uid:float -> gid:float -> unit Promise.t) =
+          path:string -> uid:int -> gid:int -> unit Promise.t) =
           fun ~path:(x911 : string) ->
-            fun ~uid:(x912 : float) ->
-              fun ~gid:(x913 : float) ->
+            fun ~uid:(x912 : int) ->
+              fun ~gid:(x913 : int) ->
                 Promise.t_of_js Ojs.unit_of_js
                   (Ojs.call (Ojs.get_prop_ascii Import.fs "lchown")
                      "__promisify__"
-                     [|(Ojs.string_to_js x911);(Ojs.float_to_js x912);(
-                       Ojs.float_to_js x913)|])
+                     [|(Ojs.string_to_js x911);(Ojs.int_to_js x912);(
+                       Ojs.int_to_js x913)|])
       end
-    let (lchownSync : path:string -> uid:float -> gid:float -> unit) =
+    let (lchownSync : path:string -> uid:int -> gid:int -> unit) =
       fun ~path:(x915 : string) ->
-        fun ~uid:(x916 : float) ->
-          fun ~gid:(x917 : float) ->
+        fun ~uid:(x916 : int) ->
+          fun ~gid:(x917 : int) ->
             ignore
               (Ojs.call Import.fs "lchownSync"
-                 [|(Ojs.string_to_js x915);(Ojs.float_to_js x916);(Ojs.float_to_js
-                                                                    x917)|])
+                 [|(Ojs.string_to_js x915);(Ojs.int_to_js x916);(Ojs.int_to_js
+                                                                   x917)|])
     let (lutimes :
       path:string ->
         atime:Date.t or_string or_number ->
@@ -2926,30 +2907,30 @@ module Fs =
             (Ojs.call Import.fs "chmodSync"
                [|(Ojs.string_to_js x947);(Mode.t_to_js x948)|])
     let (fchmod :
-      fd:float -> mode:Mode.t -> callback:NoParamCallback.t -> unit) =
-      fun ~fd:(x949 : float) ->
+      fd:int -> mode:Mode.t -> callback:NoParamCallback.t -> unit) =
+      fun ~fd:(x949 : int) ->
         fun ~mode:(x950 : Mode.t) ->
           fun ~callback:(x951 : NoParamCallback.t) ->
             ignore
               (Ojs.call Import.fs "fchmod"
-                 [|(Ojs.float_to_js x949);(Mode.t_to_js x950);(NoParamCallback.t_to_js
-                                                                 x951)|])
+                 [|(Ojs.int_to_js x949);(Mode.t_to_js x950);(NoParamCallback.t_to_js
+                                                               x951)|])
     module Fchmod =
       struct
-        let (__promisify__ : fd:float -> mode:Mode.t -> unit Promise.t) =
-          fun ~fd:(x952 : float) ->
+        let (__promisify__ : fd:int -> mode:Mode.t -> unit Promise.t) =
+          fun ~fd:(x952 : int) ->
             fun ~mode:(x953 : Mode.t) ->
               Promise.t_of_js Ojs.unit_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.fs "fchmod")
                    "__promisify__"
-                   [|(Ojs.float_to_js x952);(Mode.t_to_js x953)|])
+                   [|(Ojs.int_to_js x952);(Mode.t_to_js x953)|])
       end
-    let (fchmodSync : fd:float -> mode:Mode.t -> unit) =
-      fun ~fd:(x955 : float) ->
+    let (fchmodSync : fd:int -> mode:Mode.t -> unit) =
+      fun ~fd:(x955 : int) ->
         fun ~mode:(x956 : Mode.t) ->
           ignore
             (Ojs.call Import.fs "fchmodSync"
-               [|(Ojs.float_to_js x955);(Mode.t_to_js x956)|])
+               [|(Ojs.int_to_js x955);(Mode.t_to_js x956)|])
     let (lchmod :
       path:string -> mode:Mode.t -> callback:NoParamCallback.t -> unit) =
       fun ~path:(x957 : string) ->
@@ -3305,34 +3286,33 @@ module Fs =
                             | None -> ());
                            x1051))|])
     let (fstat :
-      fd:float ->
+      fd:int ->
         callback:(err:ErrnoException.t or_null -> stats:Stats.t -> unit) ->
           unit)
       =
-      fun ~fd:(x1056 : float) ->
+      fun ~fd:(x1056 : int) ->
         fun
           ~callback:(x1057 :
                       err:ErrnoException.t or_null -> stats:Stats.t -> unit)
           ->
           ignore
             (Ojs.call Import.fs "fstat"
-               [|(Ojs.float_to_js x1056);(Ojs.fun_to_js 2
-                                            (fun (x1058 : Ojs.t) ->
-                                               fun (x1060 : Ojs.t) ->
-                                                 x1057
-                                                   ~err:(or_null_of_js
-                                                           ErrnoException.t_of_js
-                                                           x1058)
-                                                   ~stats:(Stats.t_of_js
-                                                             x1060)))|])
+               [|(Ojs.int_to_js x1056);(Ojs.fun_to_js 2
+                                          (fun (x1058 : Ojs.t) ->
+                                             fun (x1060 : Ojs.t) ->
+                                               x1057
+                                                 ~err:(or_null_of_js
+                                                         ErrnoException.t_of_js
+                                                         x1058)
+                                                 ~stats:(Stats.t_of_js x1060)))|])
     let (fstat :
-      fd:float ->
+      fd:int ->
         options:(StatOptions.t, anonymous_interface_0) intersection2
           or_undefined ->
           callback:(err:ErrnoException.t or_null -> stats:Stats.t -> unit) ->
             unit)
       =
-      fun ~fd:(x1061 : float) ->
+      fun ~fd:(x1061 : int) ->
         fun
           ~options:(x1062 :
                      (StatOptions.t, anonymous_interface_0) intersection2
@@ -3344,20 +3324,19 @@ module Fs =
             ->
             ignore
               (Ojs.call Import.fs "fstat"
-                 [|(Ojs.float_to_js x1061);(or_undefined_to_js
-                                              (fun
-                                                 (x1063 :
-                                                   (StatOptions.t,
-                                                     anonymous_interface_0)
-                                                     intersection2)
-                                                 ->
-                                                 intersection2_to_js
-                                                   StatOptions.t_to_js
-                                                   anonymous_interface_0_to_js
-                                                   x1063) x1062);(Ojs.fun_to_js
-                                                                    2
-                                                                    (
-                                                                    fun
+                 [|(Ojs.int_to_js x1061);(or_undefined_to_js
+                                            (fun
+                                               (x1063 :
+                                                 (StatOptions.t,
+                                                   anonymous_interface_0)
+                                                   intersection2)
+                                               ->
+                                               intersection2_to_js
+                                                 StatOptions.t_to_js
+                                                 anonymous_interface_0_to_js
+                                                 x1063) x1062);(Ojs.fun_to_js
+                                                                  2
+                                                                  (fun
                                                                     (x1067 :
                                                                     Ojs.t) ->
                                                                     fun
@@ -3372,13 +3351,13 @@ module Fs =
                                                                     Stats.t_of_js
                                                                     x1069)))|])
     let (fstat :
-      fd:float ->
+      fd:int ->
         options:(StatOptions.t, anonymous_interface_1) intersection2 ->
           callback:(err:ErrnoException.t or_null ->
                       stats:BigIntStats.t -> unit)
             -> unit)
       =
-      fun ~fd:(x1070 : float) ->
+      fun ~fd:(x1070 : int) ->
         fun
           ~options:(x1071 :
                      (StatOptions.t, anonymous_interface_1) intersection2)
@@ -3390,31 +3369,23 @@ module Fs =
             ->
             ignore
               (Ojs.call Import.fs "fstat"
-                 [|(Ojs.float_to_js x1070);(intersection2_to_js
-                                              StatOptions.t_to_js
-                                              anonymous_interface_1_to_js
-                                              x1071);(Ojs.fun_to_js 2
-                                                        (fun (x1075 : Ojs.t)
-                                                           ->
-                                                           fun
-                                                             (x1077 : Ojs.t)
-                                                             ->
-                                                             x1074
-                                                               ~err:(
-                                                               or_null_of_js
-                                                                 ErrnoException.t_of_js
-                                                                 x1075)
-                                                               ~stats:(
-                                                               BigIntStats.t_of_js
-                                                                 x1077)))|])
+                 [|(Ojs.int_to_js x1070);(intersection2_to_js
+                                            StatOptions.t_to_js
+                                            anonymous_interface_1_to_js x1071);(
+                   Ojs.fun_to_js 2
+                     (fun (x1075 : Ojs.t) ->
+                        fun (x1077 : Ojs.t) ->
+                          x1074
+                            ~err:(or_null_of_js ErrnoException.t_of_js x1075)
+                            ~stats:(BigIntStats.t_of_js x1077)))|])
     let (fstat :
-      fd:float ->
+      fd:int ->
         options:StatOptions.t or_undefined ->
           callback:(err:ErrnoException.t or_null ->
                       stats:(BigIntStats.t, Stats.t) union2 -> unit)
             -> unit)
       =
-      fun ~fd:(x1078 : float) ->
+      fun ~fd:(x1078 : int) ->
         fun ~options:(x1079 : StatOptions.t or_undefined) ->
           fun
             ~callback:(x1081 :
@@ -3423,8 +3394,8 @@ module Fs =
             ->
             ignore
               (Ojs.call Import.fs "fstat"
-                 [|(Ojs.float_to_js x1078);(or_undefined_to_js
-                                              StatOptions.t_to_js x1079);(
+                 [|(Ojs.int_to_js x1078);(or_undefined_to_js
+                                            StatOptions.t_to_js x1079);(
                    Ojs.fun_to_js 2
                      (fun (x1082 : Ojs.t) ->
                         fun (x1084 : Ojs.t) ->
@@ -3435,11 +3406,11 @@ module Fs =
     module Fstat =
       struct
         let (__promisify__ :
-          fd:float ->
+          fd:int ->
             ?options:(StatOptions.t, anonymous_interface_0) intersection2 ->
               unit -> Stats.t Promise.t)
           =
-          fun ~fd:(x1087 : float) ->
+          fun ~fd:(x1087 : int) ->
             fun
               ?options:(x1088 :
                          (StatOptions.t, anonymous_interface_0) intersection2
@@ -3456,7 +3427,7 @@ module Fs =
                                    [||] in
                                ignore
                                  (Ojs.call x1089 "push"
-                                    [|(Ojs.float_to_js x1087)|]);
+                                    [|(Ojs.int_to_js x1087)|]);
                                (match x1088 with
                                 | Some x1090 ->
                                     ignore
@@ -3468,11 +3439,11 @@ module Fs =
                                 | None -> ());
                                x1089))|])
         let (__promisify__ :
-          fd:float ->
+          fd:int ->
             options:(StatOptions.t, anonymous_interface_1) intersection2 ->
               BigIntStats.t Promise.t)
           =
-          fun ~fd:(x1095 : float) ->
+          fun ~fd:(x1095 : int) ->
             fun
               ~options:(x1096 :
                          (StatOptions.t, anonymous_interface_1) intersection2)
@@ -3480,16 +3451,16 @@ module Fs =
               Promise.t_of_js BigIntStats.t_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.fs "fstat")
                    "__promisify__"
-                   [|(Ojs.float_to_js x1095);(intersection2_to_js
-                                                StatOptions.t_to_js
-                                                anonymous_interface_1_to_js
-                                                x1096)|])
+                   [|(Ojs.int_to_js x1095);(intersection2_to_js
+                                              StatOptions.t_to_js
+                                              anonymous_interface_1_to_js
+                                              x1096)|])
         let (__promisify__ :
-          fd:float ->
+          fd:int ->
             ?options:StatOptions.t ->
               unit -> (BigIntStats.t, Stats.t) union2 Promise.t)
           =
-          fun ~fd:(x1100 : float) ->
+          fun ~fd:(x1100 : int) ->
             fun ?options:(x1101 : StatOptions.t option) ->
               fun () ->
                 Promise.t_of_js
@@ -3504,7 +3475,7 @@ module Fs =
                                    [||] in
                                ignore
                                  (Ojs.call x1102 "push"
-                                    [|(Ojs.float_to_js x1100)|]);
+                                    [|(Ojs.int_to_js x1100)|]);
                                (match x1101 with
                                 | Some x1103 ->
                                     ignore
@@ -3514,11 +3485,11 @@ module Fs =
                                x1102))|])
       end
     let (fstatSync :
-      fd:float ->
+      fd:int ->
         ?options:(StatOptions.t, anonymous_interface_0) intersection2 ->
           unit -> Stats.t)
       =
-      fun ~fd:(x1108 : float) ->
+      fun ~fd:(x1108 : int) ->
         fun
           ?options:(x1109 :
                      (StatOptions.t, anonymous_interface_0) intersection2
@@ -3533,8 +3504,7 @@ module Fs =
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1110 "push"
-                                [|(Ojs.float_to_js x1108)|]);
+                             (Ojs.call x1110 "push" [|(Ojs.int_to_js x1108)|]);
                            (match x1109 with
                             | Some x1111 ->
                                 ignore
@@ -3545,25 +3515,25 @@ module Fs =
                             | None -> ());
                            x1110))|])
     let (fstatSync :
-      fd:float ->
+      fd:int ->
         options:(StatOptions.t, anonymous_interface_1) intersection2 ->
           BigIntStats.t)
       =
-      fun ~fd:(x1115 : float) ->
+      fun ~fd:(x1115 : int) ->
         fun
           ~options:(x1116 :
                      (StatOptions.t, anonymous_interface_1) intersection2)
           ->
           BigIntStats.t_of_js
             (Ojs.call Import.fs "fstatSync"
-               [|(Ojs.float_to_js x1115);(intersection2_to_js
-                                            StatOptions.t_to_js
-                                            anonymous_interface_1_to_js x1116)|])
+               [|(Ojs.int_to_js x1115);(intersection2_to_js
+                                          StatOptions.t_to_js
+                                          anonymous_interface_1_to_js x1116)|])
     let (fstatSync :
-      fd:float ->
+      fd:int ->
         ?options:StatOptions.t -> unit -> (BigIntStats.t, Stats.t) union2)
       =
-      fun ~fd:(x1119 : float) ->
+      fun ~fd:(x1119 : int) ->
         fun ?options:(x1120 : StatOptions.t option) ->
           fun () ->
             union2_of_js BigIntStats.t_of_js Stats.t_of_js
@@ -3574,8 +3544,7 @@ module Fs =
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1121 "push"
-                                [|(Ojs.float_to_js x1119)|]);
+                             (Ojs.call x1121 "push" [|(Ojs.int_to_js x1119)|]);
                            (match x1120 with
                             | Some x1122 ->
                                 ignore
@@ -4887,14 +4856,14 @@ module Fs =
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x1419 : Ojs.t) -> x1419
         and t_to_js : t -> Ojs.t = fun (x1418 : Ojs.t) -> x1418
-        let (get_maxRetries : t -> float) =
+        let (get_maxRetries : t -> int) =
           fun (x1420 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x1420) "maxRetries")
-        let (set_maxRetries : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1420) "maxRetries")
+        let (set_maxRetries : t -> int -> unit) =
           fun (x1421 : t) ->
-            fun (x1422 : float) ->
+            fun (x1422 : int) ->
               Ojs.set_prop_ascii (t_to_js x1421) "maxRetries"
-                (Ojs.float_to_js x1422)
+                (Ojs.int_to_js x1422)
         let (get_recursive : t -> bool) =
           fun (x1423 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1423) "recursive")
@@ -4903,14 +4872,14 @@ module Fs =
             fun (x1425 : bool) ->
               Ojs.set_prop_ascii (t_to_js x1424) "recursive"
                 (Ojs.bool_to_js x1425)
-        let (get_retryDelay : t -> float) =
+        let (get_retryDelay : t -> int) =
           fun (x1426 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x1426) "retryDelay")
-        let (set_retryDelay : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1426) "retryDelay")
+        let (set_retryDelay : t -> int -> unit) =
           fun (x1427 : t) ->
-            fun (x1428 : float) ->
+            fun (x1428 : int) ->
               Ojs.set_prop_ascii (t_to_js x1427) "retryDelay"
-                (Ojs.float_to_js x1428)
+                (Ojs.int_to_js x1428)
       end
     let (rmdir : path:string -> callback:NoParamCallback.t -> unit) =
       fun ~path:(x1429 : string) ->
@@ -4990,14 +4959,14 @@ module Fs =
             fun (x1449 : bool) ->
               Ojs.set_prop_ascii (t_to_js x1448) "force"
                 (Ojs.bool_to_js x1449)
-        let (get_maxRetries : t -> float) =
+        let (get_maxRetries : t -> int) =
           fun (x1450 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x1450) "maxRetries")
-        let (set_maxRetries : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1450) "maxRetries")
+        let (set_maxRetries : t -> int -> unit) =
           fun (x1451 : t) ->
-            fun (x1452 : float) ->
+            fun (x1452 : int) ->
               Ojs.set_prop_ascii (t_to_js x1451) "maxRetries"
-                (Ojs.float_to_js x1452)
+                (Ojs.int_to_js x1452)
         let (get_recursive : t -> bool) =
           fun (x1453 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1453) "recursive")
@@ -5006,14 +4975,14 @@ module Fs =
             fun (x1455 : bool) ->
               Ojs.set_prop_ascii (t_to_js x1454) "recursive"
                 (Ojs.bool_to_js x1455)
-        let (get_retryDelay : t -> float) =
+        let (get_retryDelay : t -> int) =
           fun (x1456 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x1456) "retryDelay")
-        let (set_retryDelay : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1456) "retryDelay")
+        let (set_retryDelay : t -> int -> unit) =
           fun (x1457 : t) ->
-            fun (x1458 : float) ->
+            fun (x1458 : int) ->
               Ojs.set_prop_ascii (t_to_js x1457) "retryDelay"
-                (Ojs.float_to_js x1458)
+                (Ojs.int_to_js x1458)
       end
     let (rm : path:string -> callback:NoParamCallback.t -> unit) =
       fun ~path:(x1459 : string) ->
@@ -6046,36 +6015,35 @@ module Fs =
                                              BaseEncodingOptions.t_to_js
                                              anonymous_interface_20_to_js
                                              x1718)|])
-    let (close : fd:float -> callback:NoParamCallback.t -> unit) =
-      fun ~fd:(x1722 : float) ->
+    let (close : fd:int -> callback:NoParamCallback.t -> unit) =
+      fun ~fd:(x1722 : int) ->
         fun ~callback:(x1723 : NoParamCallback.t) ->
           ignore
             (Ojs.call Import.fs "close"
-               [|(Ojs.float_to_js x1722);(NoParamCallback.t_to_js x1723)|])
+               [|(Ojs.int_to_js x1722);(NoParamCallback.t_to_js x1723)|])
     module Close =
       struct
-        let (__promisify__ : fd:float -> unit Promise.t) =
-          fun ~fd:(x1724 : float) ->
+        let (__promisify__ : fd:int -> unit Promise.t) =
+          fun ~fd:(x1724 : int) ->
             Promise.t_of_js Ojs.unit_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.fs "close")
-                 "__promisify__" [|(Ojs.float_to_js x1724)|])
+                 "__promisify__" [|(Ojs.int_to_js x1724)|])
       end
-    let (closeSync : fd:float -> unit) =
-      fun ~fd:(x1726 : float) ->
-        ignore (Ojs.call Import.fs "closeSync" [|(Ojs.float_to_js x1726)|])
+    let (closeSync : fd:int -> unit) =
+      fun ~fd:(x1726 : int) ->
+        ignore (Ojs.call Import.fs "closeSync" [|(Ojs.int_to_js x1726)|])
     let (open_ :
       path:string ->
         flags:OpenMode.t ->
           mode:Mode.t or_null_or_undefined ->
-            callback:(err:ErrnoException.t or_null -> fd:float -> unit) ->
-              unit)
+            callback:(err:ErrnoException.t or_null -> fd:int -> unit) -> unit)
       =
       fun ~path:(x1727 : string) ->
         fun ~flags:(x1728 : OpenMode.t) ->
           fun ~mode:(x1729 : Mode.t or_null_or_undefined) ->
             fun
               ~callback:(x1731 :
-                          err:ErrnoException.t or_null -> fd:float -> unit)
+                          err:ErrnoException.t or_null -> fd:int -> unit)
               ->
               ignore
                 (Ojs.call Import.fs "open"
@@ -6086,17 +6054,17 @@ module Fs =
                           fun (x1734 : Ojs.t) ->
                             x1731
                               ~err:(or_null_of_js ErrnoException.t_of_js
-                                      x1732) ~fd:(Ojs.float_of_js x1734)))|])
+                                      x1732) ~fd:(Ojs.int_of_js x1734)))|])
     let (open_ :
       path:string ->
         flags:OpenMode.t ->
-          callback:(err:ErrnoException.t or_null -> fd:float -> unit) -> unit)
+          callback:(err:ErrnoException.t or_null -> fd:int -> unit) -> unit)
       =
       fun ~path:(x1735 : string) ->
         fun ~flags:(x1736 : OpenMode.t) ->
           fun
             ~callback:(x1737 :
-                        err:ErrnoException.t or_null -> fd:float -> unit)
+                        err:ErrnoException.t or_null -> fd:int -> unit)
             ->
             ignore
               (Ojs.call Import.fs "open"
@@ -6106,19 +6074,18 @@ module Fs =
                         fun (x1740 : Ojs.t) ->
                           x1737
                             ~err:(or_null_of_js ErrnoException.t_of_js x1738)
-                            ~fd:(Ojs.float_of_js x1740)))|])
+                            ~fd:(Ojs.int_of_js x1740)))|])
     module Open =
       struct
         let (__promisify__ :
           path:string ->
-            flags:OpenMode.t ->
-              ?mode:Mode.t or_null -> unit -> float Promise.t)
+            flags:OpenMode.t -> ?mode:Mode.t or_null -> unit -> int Promise.t)
           =
           fun ~path:(x1741 : string) ->
             fun ~flags:(x1742 : OpenMode.t) ->
               fun ?mode:(x1743 : Mode.t or_null option) ->
                 fun () ->
-                  Promise.t_of_js Ojs.float_of_js
+                  Promise.t_of_js Ojs.int_of_js
                     (let x1747 = Ojs.get_prop_ascii Import.fs "open" in
                      Ojs.call (Ojs.get_prop_ascii x1747 "__promisify__")
                        "apply"
@@ -6142,14 +6109,13 @@ module Fs =
                                  x1744))|])
       end
     let (openSync :
-      path:string ->
-        flags:OpenMode.t -> ?mode:Mode.t or_null -> unit -> float)
+      path:string -> flags:OpenMode.t -> ?mode:Mode.t or_null -> unit -> int)
       =
       fun ~path:(x1749 : string) ->
         fun ~flags:(x1750 : OpenMode.t) ->
           fun ?mode:(x1751 : Mode.t or_null option) ->
             fun () ->
-              Ojs.float_of_js
+              Ojs.int_of_js
                 (let x1755 = Import.fs in
                  Ojs.call (Ojs.get_prop_ascii x1755 "openSync") "apply"
                    [|x1755;((let x1752 =
@@ -6249,80 +6215,78 @@ module Fs =
                      (fun (x1777 : Date.t or_string) ->
                         or_string_to_js Date.t_to_js x1777) x1776)|])
     let (futimes :
-      fd:float ->
+      fd:int ->
         atime:Date.t or_string or_number ->
           mtime:Date.t or_string or_number ->
             callback:NoParamCallback.t -> unit)
       =
-      fun ~fd:(x1779 : float) ->
+      fun ~fd:(x1779 : int) ->
         fun ~atime:(x1780 : Date.t or_string or_number) ->
           fun ~mtime:(x1783 : Date.t or_string or_number) ->
             fun ~callback:(x1786 : NoParamCallback.t) ->
               ignore
                 (Ojs.call Import.fs "futimes"
-                   [|(Ojs.float_to_js x1779);(or_number_to_js
-                                                (fun
-                                                   (x1781 : Date.t or_string)
-                                                   ->
-                                                   or_string_to_js
-                                                     Date.t_to_js x1781)
-                                                x1780);(or_number_to_js
-                                                          (fun
-                                                             (x1784 :
-                                                               Date.t
-                                                                 or_string)
-                                                             ->
-                                                             or_string_to_js
-                                                               Date.t_to_js
-                                                               x1784) x1783);(
+                   [|(Ojs.int_to_js x1779);(or_number_to_js
+                                              (fun (x1781 : Date.t or_string)
+                                                 ->
+                                                 or_string_to_js Date.t_to_js
+                                                   x1781) x1780);(or_number_to_js
+                                                                    (
+                                                                    fun
+                                                                    (x1784 :
+                                                                    Date.t
+                                                                    or_string)
+                                                                    ->
+                                                                    or_string_to_js
+                                                                    Date.t_to_js
+                                                                    x1784)
+                                                                    x1783);(
                      NoParamCallback.t_to_js x1786)|])
     module Futimes =
       struct
         let (__promisify__ :
-          fd:float ->
+          fd:int ->
             atime:Date.t or_string or_number ->
               mtime:Date.t or_string or_number -> unit Promise.t)
           =
-          fun ~fd:(x1787 : float) ->
+          fun ~fd:(x1787 : int) ->
             fun ~atime:(x1788 : Date.t or_string or_number) ->
               fun ~mtime:(x1791 : Date.t or_string or_number) ->
                 Promise.t_of_js Ojs.unit_of_js
                   (Ojs.call (Ojs.get_prop_ascii Import.fs "futimes")
                      "__promisify__"
-                     [|(Ojs.float_to_js x1787);(or_number_to_js
-                                                  (fun
-                                                     (x1789 :
-                                                       Date.t or_string)
-                                                     ->
-                                                     or_string_to_js
-                                                       Date.t_to_js x1789)
-                                                  x1788);(or_number_to_js
-                                                            (fun
-                                                               (x1792 :
-                                                                 Date.t
-                                                                   or_string)
-                                                               ->
-                                                               or_string_to_js
-                                                                 Date.t_to_js
-                                                                 x1792) x1791)|])
+                     [|(Ojs.int_to_js x1787);(or_number_to_js
+                                                (fun
+                                                   (x1789 : Date.t or_string)
+                                                   ->
+                                                   or_string_to_js
+                                                     Date.t_to_js x1789)
+                                                x1788);(or_number_to_js
+                                                          (fun
+                                                             (x1792 :
+                                                               Date.t
+                                                                 or_string)
+                                                             ->
+                                                             or_string_to_js
+                                                               Date.t_to_js
+                                                               x1792) x1791)|])
       end
     let (futimesSync :
-      fd:float ->
+      fd:int ->
         atime:Date.t or_string or_number ->
           mtime:Date.t or_string or_number -> unit)
       =
-      fun ~fd:(x1795 : float) ->
+      fun ~fd:(x1795 : int) ->
         fun ~atime:(x1796 : Date.t or_string or_number) ->
           fun ~mtime:(x1799 : Date.t or_string or_number) ->
             ignore
               (Ojs.call Import.fs "futimesSync"
-                 [|(Ojs.float_to_js x1795);(or_number_to_js
-                                              (fun (x1797 : Date.t or_string)
-                                                 ->
-                                                 or_string_to_js Date.t_to_js
-                                                   x1797) x1796);(or_number_to_js
-                                                                    (
-                                                                    fun
+                 [|(Ojs.int_to_js x1795);(or_number_to_js
+                                            (fun (x1797 : Date.t or_string)
+                                               ->
+                                               or_string_to_js Date.t_to_js
+                                                 x1797) x1796);(or_number_to_js
+                                                                  (fun
                                                                     (x1800 :
                                                                     Date.t
                                                                     or_string)
@@ -6330,51 +6294,51 @@ module Fs =
                                                                     or_string_to_js
                                                                     Date.t_to_js
                                                                     x1800)
-                                                                    x1799)|])
-    let (fsync : fd:float -> callback:NoParamCallback.t -> unit) =
-      fun ~fd:(x1802 : float) ->
+                                                                  x1799)|])
+    let (fsync : fd:int -> callback:NoParamCallback.t -> unit) =
+      fun ~fd:(x1802 : int) ->
         fun ~callback:(x1803 : NoParamCallback.t) ->
           ignore
             (Ojs.call Import.fs "fsync"
-               [|(Ojs.float_to_js x1802);(NoParamCallback.t_to_js x1803)|])
+               [|(Ojs.int_to_js x1802);(NoParamCallback.t_to_js x1803)|])
     module Fsync =
       struct
-        let (__promisify__ : fd:float -> unit Promise.t) =
-          fun ~fd:(x1804 : float) ->
+        let (__promisify__ : fd:int -> unit Promise.t) =
+          fun ~fd:(x1804 : int) ->
             Promise.t_of_js Ojs.unit_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.fs "fsync")
-                 "__promisify__" [|(Ojs.float_to_js x1804)|])
+                 "__promisify__" [|(Ojs.int_to_js x1804)|])
       end
-    let (fsyncSync : fd:float -> unit) =
-      fun ~fd:(x1806 : float) ->
-        ignore (Ojs.call Import.fs "fsyncSync" [|(Ojs.float_to_js x1806)|])
+    let (fsyncSync : fd:int -> unit) =
+      fun ~fd:(x1806 : int) ->
+        ignore (Ojs.call Import.fs "fsyncSync" [|(Ojs.int_to_js x1806)|])
     let (write :
-      fd:float ->
+      fd:int ->
         buffer:'TBuffer ->
-          offset:float or_null_or_undefined ->
-            length:float or_null_or_undefined ->
-              position:float or_null_or_undefined ->
+          offset:int or_null_or_undefined ->
+            length:int or_null_or_undefined ->
+              position:int or_null_or_undefined ->
                 callback:(err:ErrnoException.t or_null ->
-                            written:float -> buffer:'TBuffer -> unit)
+                            written:int -> buffer:'TBuffer -> unit)
                   -> unit)
       =
-      fun ~fd:(x1807 : float) ->
+      fun ~fd:(x1807 : int) ->
         fun ~buffer:(x1808 : 'TBuffer) ->
-          fun ~offset:(x1809 : float or_null_or_undefined) ->
-            fun ~length:(x1811 : float or_null_or_undefined) ->
-              fun ~position:(x1813 : float or_null_or_undefined) ->
+          fun ~offset:(x1809 : int or_null_or_undefined) ->
+            fun ~length:(x1811 : int or_null_or_undefined) ->
+              fun ~position:(x1813 : int or_null_or_undefined) ->
                 fun
                   ~callback:(x1815 :
                               err:ErrnoException.t or_null ->
-                                written:float -> buffer:'TBuffer -> unit)
+                                written:int -> buffer:'TBuffer -> unit)
                   ->
                   ignore
                     (Ojs.call Import.fs "write"
-                       [|(Ojs.float_to_js x1807);(Obj.magic x1808);(or_null_or_undefined_to_js
-                                                                    Ojs.float_to_js
+                       [|(Ojs.int_to_js x1807);(Obj.magic x1808);(or_null_or_undefined_to_js
+                                                                    Ojs.int_to_js
                                                                     x1809);(
-                         or_null_or_undefined_to_js Ojs.float_to_js x1811);(
-                         or_null_or_undefined_to_js Ojs.float_to_js x1813);(
+                         or_null_or_undefined_to_js Ojs.int_to_js x1811);(
+                         or_null_or_undefined_to_js Ojs.int_to_js x1813);(
                          Ojs.fun_to_js 3
                            (fun (x1816 : Ojs.t) ->
                               fun (x1818 : Ojs.t) ->
@@ -6382,32 +6346,32 @@ module Fs =
                                   x1815
                                     ~err:(or_null_of_js
                                             ErrnoException.t_of_js x1816)
-                                    ~written:(Ojs.float_of_js x1818)
+                                    ~written:(Ojs.int_of_js x1818)
                                     ~buffer:(Obj.magic x1819)))|])
     let (write :
-      fd:float ->
+      fd:int ->
         buffer:'TBuffer ->
-          offset:float or_null_or_undefined ->
-            length:float or_null_or_undefined ->
+          offset:int or_null_or_undefined ->
+            length:int or_null_or_undefined ->
               callback:(err:ErrnoException.t or_null ->
-                          written:float -> buffer:'TBuffer -> unit)
+                          written:int -> buffer:'TBuffer -> unit)
                 -> unit)
       =
-      fun ~fd:(x1820 : float) ->
+      fun ~fd:(x1820 : int) ->
         fun ~buffer:(x1821 : 'TBuffer) ->
-          fun ~offset:(x1822 : float or_null_or_undefined) ->
-            fun ~length:(x1824 : float or_null_or_undefined) ->
+          fun ~offset:(x1822 : int or_null_or_undefined) ->
+            fun ~length:(x1824 : int or_null_or_undefined) ->
               fun
                 ~callback:(x1826 :
                             err:ErrnoException.t or_null ->
-                              written:float -> buffer:'TBuffer -> unit)
+                              written:int -> buffer:'TBuffer -> unit)
                 ->
                 ignore
                   (Ojs.call Import.fs "write"
-                     [|(Ojs.float_to_js x1820);(Obj.magic x1821);(or_null_or_undefined_to_js
-                                                                    Ojs.float_to_js
-                                                                    x1822);(
-                       or_null_or_undefined_to_js Ojs.float_to_js x1824);(
+                     [|(Ojs.int_to_js x1820);(Obj.magic x1821);(or_null_or_undefined_to_js
+                                                                  Ojs.int_to_js
+                                                                  x1822);(
+                       or_null_or_undefined_to_js Ojs.int_to_js x1824);(
                        Ojs.fun_to_js 3
                          (fun (x1827 : Ojs.t) ->
                             fun (x1829 : Ojs.t) ->
@@ -6415,63 +6379,63 @@ module Fs =
                                 x1826
                                   ~err:(or_null_of_js ErrnoException.t_of_js
                                           x1827)
-                                  ~written:(Ojs.float_of_js x1829)
+                                  ~written:(Ojs.int_of_js x1829)
                                   ~buffer:(Obj.magic x1830)))|])
     let (write :
-      fd:float ->
+      fd:int ->
         buffer:'TBuffer ->
-          offset:float or_null_or_undefined ->
+          offset:int or_null_or_undefined ->
             callback:(err:ErrnoException.t or_null ->
-                        written:float -> buffer:'TBuffer -> unit)
+                        written:int -> buffer:'TBuffer -> unit)
               -> unit)
       =
-      fun ~fd:(x1831 : float) ->
+      fun ~fd:(x1831 : int) ->
         fun ~buffer:(x1832 : 'TBuffer) ->
-          fun ~offset:(x1833 : float or_null_or_undefined) ->
+          fun ~offset:(x1833 : int or_null_or_undefined) ->
             fun
               ~callback:(x1835 :
                           err:ErrnoException.t or_null ->
-                            written:float -> buffer:'TBuffer -> unit)
+                            written:int -> buffer:'TBuffer -> unit)
               ->
               ignore
                 (Ojs.call Import.fs "write"
-                   [|(Ojs.float_to_js x1831);(Obj.magic x1832);(or_null_or_undefined_to_js
-                                                                  Ojs.float_to_js
-                                                                  x1833);(
+                   [|(Ojs.int_to_js x1831);(Obj.magic x1832);(or_null_or_undefined_to_js
+                                                                Ojs.int_to_js
+                                                                x1833);(
                      Ojs.fun_to_js 3
                        (fun (x1836 : Ojs.t) ->
                           fun (x1838 : Ojs.t) ->
                             fun (x1839 : Ojs.t) ->
                               x1835
                                 ~err:(or_null_of_js ErrnoException.t_of_js
-                                        x1836)
-                                ~written:(Ojs.float_of_js x1838)
+                                        x1836) ~written:(Ojs.int_of_js x1838)
                                 ~buffer:(Obj.magic x1839)))|])
     let (write :
-      fd:float ->
+      fd:int ->
         buffer:'TBuffer ->
           callback:(err:ErrnoException.t or_null ->
-                      written:float -> buffer:'TBuffer -> unit)
+                      written:int -> buffer:'TBuffer -> unit)
             -> unit)
       =
-      fun ~fd:(x1840 : float) ->
+      fun ~fd:(x1840 : int) ->
         fun ~buffer:(x1841 : 'TBuffer) ->
           fun
             ~callback:(x1842 :
                         err:ErrnoException.t or_null ->
-                          written:float -> buffer:'TBuffer -> unit)
+                          written:int -> buffer:'TBuffer -> unit)
             ->
             ignore
               (Ojs.call Import.fs "write"
-                 [|(Ojs.float_to_js x1840);(Obj.magic x1841);(Ojs.fun_to_js 3
-                                                                (fun
-                                                                   (x1843 :
+                 [|(Ojs.int_to_js x1840);(Obj.magic x1841);(Ojs.fun_to_js 3
+                                                              (fun
+                                                                 (x1843 :
+                                                                   Ojs.t)
+                                                                 ->
+                                                                 fun
+                                                                   (x1845 :
                                                                     Ojs.t)
                                                                    ->
                                                                    fun
-                                                                    (x1845 :
-                                                                    Ojs.t) ->
-                                                                    fun
                                                                     (x1846 :
                                                                     Ojs.t) ->
                                                                     x1842
@@ -6480,33 +6444,33 @@ module Fs =
                                                                     ErrnoException.t_of_js
                                                                     x1843)
                                                                     ~written:(
-                                                                    Ojs.float_of_js
+                                                                    Ojs.int_of_js
                                                                     x1845)
                                                                     ~buffer:(
                                                                     Obj.magic
                                                                     x1846)))|])
     let (write :
-      fd:float ->
+      fd:int ->
         string:string ->
-          position:float or_null_or_undefined ->
+          position:int or_null_or_undefined ->
             encoding:BufferEncoding.t or_null_or_undefined ->
               callback:(err:ErrnoException.t or_null ->
-                          written:float -> str:string -> unit)
+                          written:int -> str:string -> unit)
                 -> unit)
       =
-      fun ~fd:(x1847 : float) ->
+      fun ~fd:(x1847 : int) ->
         fun ~string:(x1848 : string) ->
-          fun ~position:(x1849 : float or_null_or_undefined) ->
+          fun ~position:(x1849 : int or_null_or_undefined) ->
             fun ~encoding:(x1851 : BufferEncoding.t or_null_or_undefined) ->
               fun
                 ~callback:(x1853 :
                             err:ErrnoException.t or_null ->
-                              written:float -> str:string -> unit)
+                              written:int -> str:string -> unit)
                 ->
                 ignore
                   (Ojs.call Import.fs "write"
-                     [|(Ojs.float_to_js x1847);(Ojs.string_to_js x1848);(
-                       or_null_or_undefined_to_js Ojs.float_to_js x1849);(
+                     [|(Ojs.int_to_js x1847);(Ojs.string_to_js x1848);(
+                       or_null_or_undefined_to_js Ojs.int_to_js x1849);(
                        or_null_or_undefined_to_js BufferEncoding.t_to_js
                          x1851);(Ojs.fun_to_js 3
                                    (fun (x1854 : Ojs.t) ->
@@ -6516,77 +6480,89 @@ module Fs =
                                             ~err:(or_null_of_js
                                                     ErrnoException.t_of_js
                                                     x1854)
-                                            ~written:(Ojs.float_of_js x1856)
+                                            ~written:(Ojs.int_of_js x1856)
                                             ~str:(Ojs.string_of_js x1857)))|])
     let (write :
-      fd:float ->
+      fd:int ->
         string:string ->
-          position:float or_null_or_undefined ->
+          position:int or_null_or_undefined ->
             callback:(err:ErrnoException.t or_null ->
-                        written:float -> str:string -> unit)
+                        written:int -> str:string -> unit)
               -> unit)
       =
-      fun ~fd:(x1858 : float) ->
+      fun ~fd:(x1858 : int) ->
         fun ~string:(x1859 : string) ->
-          fun ~position:(x1860 : float or_null_or_undefined) ->
+          fun ~position:(x1860 : int or_null_or_undefined) ->
             fun
               ~callback:(x1862 :
                           err:ErrnoException.t or_null ->
-                            written:float -> str:string -> unit)
+                            written:int -> str:string -> unit)
               ->
               ignore
                 (Ojs.call Import.fs "write"
-                   [|(Ojs.float_to_js x1858);(Ojs.string_to_js x1859);(
-                     or_null_or_undefined_to_js Ojs.float_to_js x1860);(
+                   [|(Ojs.int_to_js x1858);(Ojs.string_to_js x1859);(
+                     or_null_or_undefined_to_js Ojs.int_to_js x1860);(
                      Ojs.fun_to_js 3
                        (fun (x1863 : Ojs.t) ->
                           fun (x1865 : Ojs.t) ->
                             fun (x1866 : Ojs.t) ->
                               x1862
                                 ~err:(or_null_of_js ErrnoException.t_of_js
-                                        x1863)
-                                ~written:(Ojs.float_of_js x1865)
+                                        x1863) ~written:(Ojs.int_of_js x1865)
                                 ~str:(Ojs.string_of_js x1866)))|])
     let (write :
-      fd:float ->
+      fd:int ->
         string:string ->
           callback:(err:ErrnoException.t or_null ->
-                      written:float -> str:string -> unit)
+                      written:int -> str:string -> unit)
             -> unit)
       =
-      fun ~fd:(x1867 : float) ->
+      fun ~fd:(x1867 : int) ->
         fun ~string:(x1868 : string) ->
           fun
             ~callback:(x1869 :
                         err:ErrnoException.t or_null ->
-                          written:float -> str:string -> unit)
+                          written:int -> str:string -> unit)
             ->
             ignore
               (Ojs.call Import.fs "write"
-                 [|(Ojs.float_to_js x1867);(Ojs.string_to_js x1868);(
-                   Ojs.fun_to_js 3
-                     (fun (x1870 : Ojs.t) ->
-                        fun (x1872 : Ojs.t) ->
-                          fun (x1873 : Ojs.t) ->
-                            x1869
-                              ~err:(or_null_of_js ErrnoException.t_of_js
-                                      x1870) ~written:(Ojs.float_of_js x1872)
-                              ~str:(Ojs.string_of_js x1873)))|])
+                 [|(Ojs.int_to_js x1867);(Ojs.string_to_js x1868);(Ojs.fun_to_js
+                                                                    3
+                                                                    (fun
+                                                                    (x1870 :
+                                                                    Ojs.t) ->
+                                                                    fun
+                                                                    (x1872 :
+                                                                    Ojs.t) ->
+                                                                    fun
+                                                                    (x1873 :
+                                                                    Ojs.t) ->
+                                                                    x1869
+                                                                    ~err:(
+                                                                    or_null_of_js
+                                                                    ErrnoException.t_of_js
+                                                                    x1870)
+                                                                    ~written:(
+                                                                    Ojs.int_of_js
+                                                                    x1872)
+                                                                    ~str:(
+                                                                    Ojs.string_of_js
+                                                                    x1873)))|])
     module Write =
       struct
         let (__promisify__ :
-          fd:float ->
+          fd:int ->
             ?buffer:'TBuffer ->
-              ?offset:float ->
-                ?length:float ->
-                  ?position:float or_null ->
+              ?offset:int ->
+                ?length:int ->
+                  ?position:int or_null ->
                     unit -> anonymous_interface_3 Promise.t)
           =
-          fun ~fd:(x1874 : float) ->
+          fun ~fd:(x1874 : int) ->
             fun ?buffer:(x1875 : 'TBuffer option) ->
-              fun ?offset:(x1876 : float option) ->
-                fun ?length:(x1877 : float option) ->
-                  fun ?position:(x1878 : float or_null option) ->
+              fun ?offset:(x1876 : int option) ->
+                fun ?length:(x1877 : int option) ->
+                  fun ?position:(x1878 : int or_null option) ->
                     fun () ->
                       Promise.t_of_js anonymous_interface_3_of_js
                         (let x1885 = Ojs.get_prop_ascii Import.fs "write" in
@@ -6598,7 +6574,7 @@ module Fs =
                                             "Array") [||] in
                                      ignore
                                        (Ojs.call x1879 "push"
-                                          [|(Ojs.float_to_js x1874)|]);
+                                          [|(Ojs.int_to_js x1874)|]);
                                      (match x1875 with
                                       | Some x1884 ->
                                           ignore
@@ -6609,32 +6585,32 @@ module Fs =
                                       | Some x1883 ->
                                           ignore
                                             (Ojs.call x1879 "push"
-                                               [|(Ojs.float_to_js x1883)|])
+                                               [|(Ojs.int_to_js x1883)|])
                                       | None -> ());
                                      (match x1877 with
                                       | Some x1882 ->
                                           ignore
                                             (Ojs.call x1879 "push"
-                                               [|(Ojs.float_to_js x1882)|])
+                                               [|(Ojs.int_to_js x1882)|])
                                       | None -> ());
                                      (match x1878 with
                                       | Some x1880 ->
                                           ignore
                                             (Ojs.call x1879 "push"
-                                               [|(or_null_to_js
-                                                    Ojs.float_to_js x1880)|])
+                                               [|(or_null_to_js Ojs.int_to_js
+                                                    x1880)|])
                                       | None -> ());
                                      x1879))|])
         let (__promisify__ :
-          fd:float ->
+          fd:int ->
             string:string ->
-              ?position:float or_null ->
+              ?position:int or_null ->
                 ?encoding:BufferEncoding.t or_null ->
                   unit -> anonymous_interface_4 Promise.t)
           =
-          fun ~fd:(x1887 : float) ->
+          fun ~fd:(x1887 : int) ->
             fun ~string:(x1888 : string) ->
-              fun ?position:(x1889 : float or_null option) ->
+              fun ?position:(x1889 : int or_null option) ->
                 fun ?encoding:(x1890 : BufferEncoding.t or_null option) ->
                   fun () ->
                     Promise.t_of_js anonymous_interface_4_of_js
@@ -6647,7 +6623,7 @@ module Fs =
                                        [||] in
                                    ignore
                                      (Ojs.call x1891 "push"
-                                        [|(Ojs.float_to_js x1887)|]);
+                                        [|(Ojs.int_to_js x1887)|]);
                                    ignore
                                      (Ojs.call x1891 "push"
                                         [|(Ojs.string_to_js x1888)|]);
@@ -6655,7 +6631,7 @@ module Fs =
                                     | Some x1894 ->
                                         ignore
                                           (Ojs.call x1891 "push"
-                                             [|(or_null_to_js Ojs.float_to_js
+                                             [|(or_null_to_js Ojs.int_to_js
                                                   x1894)|])
                                     | None -> ());
                                    (match x1890 with
@@ -6669,18 +6645,18 @@ module Fs =
                                    x1891))|])
       end
     let (writeSync :
-      fd:float ->
+      fd:int ->
         buffer:ArrayBufferView.t ->
-          ?offset:float or_null ->
-            ?length:float or_null -> ?position:float or_null -> unit -> float)
+          ?offset:int or_null ->
+            ?length:int or_null -> ?position:int or_null -> unit -> int)
       =
-      fun ~fd:(x1898 : float) ->
+      fun ~fd:(x1898 : int) ->
         fun ~buffer:(x1899 : ArrayBufferView.t) ->
-          fun ?offset:(x1900 : float or_null option) ->
-            fun ?length:(x1901 : float or_null option) ->
-              fun ?position:(x1902 : float or_null option) ->
+          fun ?offset:(x1900 : int or_null option) ->
+            fun ?length:(x1901 : int or_null option) ->
+              fun ?position:(x1902 : int or_null option) ->
                 fun () ->
-                  Ojs.float_of_js
+                  Ojs.int_of_js
                     (let x1910 = Import.fs in
                      Ojs.call (Ojs.get_prop_ascii x1910 "writeSync") "apply"
                        [|x1910;((let x1903 =
@@ -6689,7 +6665,7 @@ module Fs =
                                      [||] in
                                  ignore
                                    (Ojs.call x1903 "push"
-                                      [|(Ojs.float_to_js x1898)|]);
+                                      [|(Ojs.int_to_js x1898)|]);
                                  ignore
                                    (Ojs.call x1903 "push"
                                       [|(ArrayBufferView.t_to_js x1899)|]);
@@ -6697,36 +6673,36 @@ module Fs =
                                   | Some x1908 ->
                                       ignore
                                         (Ojs.call x1903 "push"
-                                           [|(or_null_to_js Ojs.float_to_js
+                                           [|(or_null_to_js Ojs.int_to_js
                                                 x1908)|])
                                   | None -> ());
                                  (match x1901 with
                                   | Some x1906 ->
                                       ignore
                                         (Ojs.call x1903 "push"
-                                           [|(or_null_to_js Ojs.float_to_js
+                                           [|(or_null_to_js Ojs.int_to_js
                                                 x1906)|])
                                   | None -> ());
                                  (match x1902 with
                                   | Some x1904 ->
                                       ignore
                                         (Ojs.call x1903 "push"
-                                           [|(or_null_to_js Ojs.float_to_js
+                                           [|(or_null_to_js Ojs.int_to_js
                                                 x1904)|])
                                   | None -> ());
                                  x1903))|])
     let (writeSync :
-      fd:float ->
+      fd:int ->
         string:string ->
-          ?position:float or_null ->
-            ?encoding:BufferEncoding.t or_null -> unit -> float)
+          ?position:int or_null ->
+            ?encoding:BufferEncoding.t or_null -> unit -> int)
       =
-      fun ~fd:(x1911 : float) ->
+      fun ~fd:(x1911 : int) ->
         fun ~string:(x1912 : string) ->
-          fun ?position:(x1913 : float or_null option) ->
+          fun ?position:(x1913 : int or_null option) ->
             fun ?encoding:(x1914 : BufferEncoding.t or_null option) ->
               fun () ->
-                Ojs.float_of_js
+                Ojs.int_of_js
                   (let x1920 = Import.fs in
                    Ojs.call (Ojs.get_prop_ascii x1920 "writeSync") "apply"
                      [|x1920;((let x1915 =
@@ -6735,7 +6711,7 @@ module Fs =
                                    [||] in
                                ignore
                                  (Ojs.call x1915 "push"
-                                    [|(Ojs.float_to_js x1911)|]);
+                                    [|(Ojs.int_to_js x1911)|]);
                                ignore
                                  (Ojs.call x1915 "push"
                                     [|(Ojs.string_to_js x1912)|]);
@@ -6743,8 +6719,7 @@ module Fs =
                                 | Some x1918 ->
                                     ignore
                                       (Ojs.call x1915 "push"
-                                         [|(or_null_to_js Ojs.float_to_js
-                                              x1918)|])
+                                         [|(or_null_to_js Ojs.int_to_js x1918)|])
                                 | None -> ());
                                (match x1914 with
                                 | Some x1916 ->
@@ -6755,116 +6730,131 @@ module Fs =
                                 | None -> ());
                                x1915))|])
     let (read :
-      fd:float ->
+      fd:int ->
         buffer:'TBuffer ->
-          offset:float ->
-            length:float ->
-              position:float or_null ->
+          offset:int ->
+            length:int ->
+              position:int or_null ->
                 callback:(err:ErrnoException.t or_null ->
-                            bytesRead:float -> buffer:'TBuffer -> unit)
+                            bytesRead:int -> buffer:'TBuffer -> unit)
                   -> unit)
       =
-      fun ~fd:(x1921 : float) ->
+      fun ~fd:(x1921 : int) ->
         fun ~buffer:(x1922 : 'TBuffer) ->
-          fun ~offset:(x1923 : float) ->
-            fun ~length:(x1924 : float) ->
-              fun ~position:(x1925 : float or_null) ->
+          fun ~offset:(x1923 : int) ->
+            fun ~length:(x1924 : int) ->
+              fun ~position:(x1925 : int or_null) ->
                 fun
                   ~callback:(x1927 :
                               err:ErrnoException.t or_null ->
-                                bytesRead:float -> buffer:'TBuffer -> unit)
+                                bytesRead:int -> buffer:'TBuffer -> unit)
                   ->
                   ignore
                     (Ojs.call Import.fs "read"
-                       [|(Ojs.float_to_js x1921);(Obj.magic x1922);(Ojs.float_to_js
+                       [|(Ojs.int_to_js x1921);(Obj.magic x1922);(Ojs.int_to_js
                                                                     x1923);(
-                         Ojs.float_to_js x1924);(or_null_to_js
-                                                   Ojs.float_to_js x1925);(
-                         Ojs.fun_to_js 3
-                           (fun (x1928 : Ojs.t) ->
-                              fun (x1930 : Ojs.t) ->
-                                fun (x1931 : Ojs.t) ->
-                                  x1927
-                                    ~err:(or_null_of_js
-                                            ErrnoException.t_of_js x1928)
-                                    ~bytesRead:(Ojs.float_of_js x1930)
-                                    ~buffer:(Obj.magic x1931)))|])
+                         Ojs.int_to_js x1924);(or_null_to_js Ojs.int_to_js
+                                                 x1925);(Ojs.fun_to_js 3
+                                                           (fun
+                                                              (x1928 : Ojs.t)
+                                                              ->
+                                                              fun
+                                                                (x1930 :
+                                                                  Ojs.t)
+                                                                ->
+                                                                fun
+                                                                  (x1931 :
+                                                                    Ojs.t)
+                                                                  ->
+                                                                  x1927
+                                                                    ~err:(
+                                                                    or_null_of_js
+                                                                    ErrnoException.t_of_js
+                                                                    x1928)
+                                                                    ~bytesRead:(
+                                                                    Ojs.int_of_js
+                                                                    x1930)
+                                                                    ~buffer:(
+                                                                    Obj.magic
+                                                                    x1931)))|])
     module Read =
       struct
         let (__promisify__ :
-          fd:float ->
+          fd:int ->
             buffer:'TBuffer ->
-              offset:float ->
-                length:float ->
-                  position:float or_null -> anonymous_interface_2 Promise.t)
+              offset:int ->
+                length:int ->
+                  position:int or_null -> anonymous_interface_2 Promise.t)
           =
-          fun ~fd:(x1932 : float) ->
+          fun ~fd:(x1932 : int) ->
             fun ~buffer:(x1933 : 'TBuffer) ->
-              fun ~offset:(x1934 : float) ->
-                fun ~length:(x1935 : float) ->
-                  fun ~position:(x1936 : float or_null) ->
+              fun ~offset:(x1934 : int) ->
+                fun ~length:(x1935 : int) ->
+                  fun ~position:(x1936 : int or_null) ->
                     Promise.t_of_js anonymous_interface_2_of_js
                       (Ojs.call (Ojs.get_prop_ascii Import.fs "read")
                          "__promisify__"
-                         [|(Ojs.float_to_js x1932);(Obj.magic x1933);(
-                           Ojs.float_to_js x1934);(Ojs.float_to_js x1935);(
-                           or_null_to_js Ojs.float_to_js x1936)|])
+                         [|(Ojs.int_to_js x1932);(Obj.magic x1933);(Ojs.int_to_js
+                                                                    x1934);(
+                           Ojs.int_to_js x1935);(or_null_to_js Ojs.int_to_js
+                                                   x1936)|])
       end
     module ReadSyncOptions =
       struct
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x1940 : Ojs.t) -> x1940
         and t_to_js : t -> Ojs.t = fun (x1939 : Ojs.t) -> x1939
-        let (get_offset : t -> float) =
+        let (get_offset : t -> int) =
           fun (x1941 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x1941) "offset")
-        let (set_offset : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1941) "offset")
+        let (set_offset : t -> int -> unit) =
           fun (x1942 : t) ->
-            fun (x1943 : float) ->
+            fun (x1943 : int) ->
               Ojs.set_prop_ascii (t_to_js x1942) "offset"
-                (Ojs.float_to_js x1943)
-        let (get_length : t -> float) =
+                (Ojs.int_to_js x1943)
+        let (get_length : t -> int) =
           fun (x1944 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x1944) "length")
-        let (set_length : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1944) "length")
+        let (set_length : t -> int -> unit) =
           fun (x1945 : t) ->
-            fun (x1946 : float) ->
+            fun (x1946 : int) ->
               Ojs.set_prop_ascii (t_to_js x1945) "length"
-                (Ojs.float_to_js x1946)
-        let (get_position : t -> float or_null) =
+                (Ojs.int_to_js x1946)
+        let (get_position : t -> int or_null) =
           fun (x1947 : t) ->
-            or_null_of_js Ojs.float_of_js
+            or_null_of_js Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x1947) "position")
-        let (set_position : t -> float or_null -> unit) =
+        let (set_position : t -> int or_null -> unit) =
           fun (x1949 : t) ->
-            fun (x1950 : float or_null) ->
+            fun (x1950 : int or_null) ->
               Ojs.set_prop_ascii (t_to_js x1949) "position"
-                (or_null_to_js Ojs.float_to_js x1950)
+                (or_null_to_js Ojs.int_to_js x1950)
       end
     let (readSync :
-      fd:float ->
+      fd:int ->
         buffer:ArrayBufferView.t ->
-          offset:float -> length:float -> position:float or_null -> float)
+          offset:int -> length:int -> position:int or_null -> int)
       =
-      fun ~fd:(x1952 : float) ->
+      fun ~fd:(x1952 : int) ->
         fun ~buffer:(x1953 : ArrayBufferView.t) ->
-          fun ~offset:(x1954 : float) ->
-            fun ~length:(x1955 : float) ->
-              fun ~position:(x1956 : float or_null) ->
-                Ojs.float_of_js
+          fun ~offset:(x1954 : int) ->
+            fun ~length:(x1955 : int) ->
+              fun ~position:(x1956 : int or_null) ->
+                Ojs.int_of_js
                   (Ojs.call Import.fs "readSync"
-                     [|(Ojs.float_to_js x1952);(ArrayBufferView.t_to_js x1953);(
-                       Ojs.float_to_js x1954);(Ojs.float_to_js x1955);(
-                       or_null_to_js Ojs.float_to_js x1956)|])
+                     [|(Ojs.int_to_js x1952);(ArrayBufferView.t_to_js x1953);(
+                       Ojs.int_to_js x1954);(Ojs.int_to_js x1955);(or_null_to_js
+                                                                    Ojs.int_to_js
+                                                                    x1956)|])
     let (readSync :
-      fd:float ->
-        buffer:ArrayBufferView.t -> ?opts:ReadSyncOptions.t -> unit -> float)
+      fd:int ->
+        buffer:ArrayBufferView.t -> ?opts:ReadSyncOptions.t -> unit -> int)
       =
-      fun ~fd:(x1958 : float) ->
+      fun ~fd:(x1958 : int) ->
         fun ~buffer:(x1959 : ArrayBufferView.t) ->
           fun ?opts:(x1960 : ReadSyncOptions.t option) ->
             fun () ->
-              Ojs.float_of_js
+              Ojs.int_of_js
                 (let x1963 = Import.fs in
                  Ojs.call (Ojs.get_prop_ascii x1963 "readSync") "apply"
                    [|x1963;((let x1961 =
@@ -6873,7 +6863,7 @@ module Fs =
                                  [||] in
                              ignore
                                (Ojs.call x1961 "push"
-                                  [|(Ojs.float_to_js x1958)|]);
+                                  [|(Ojs.int_to_js x1958)|]);
                              ignore
                                (Ojs.call x1961 "push"
                                   [|(ArrayBufferView.t_to_js x1959)|]);
@@ -7679,195 +7669,195 @@ module Fs =
           (Ojs.call Import.fs "existsSync" [|(Ojs.string_to_js x2166)|])
     module Constants =
       struct
-        let (f_OK : float) =
-          Ojs.float_of_js
+        let (f_OK : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "F_OK")
-        let (r_OK : float) =
-          Ojs.float_of_js
+        let (r_OK : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "R_OK")
-        let (w_OK : float) =
-          Ojs.float_of_js
+        let (w_OK : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "W_OK")
-        let (x_OK : float) =
-          Ojs.float_of_js
+        let (x_OK : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "X_OK")
-        let (cOPYFILE_EXCL : float) =
-          Ojs.float_of_js
+        let (cOPYFILE_EXCL : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "COPYFILE_EXCL")
-        let (cOPYFILE_FICLONE : float) =
-          Ojs.float_of_js
+        let (cOPYFILE_FICLONE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "COPYFILE_FICLONE")
-        let (cOPYFILE_FICLONE_FORCE : float) =
-          Ojs.float_of_js
+        let (cOPYFILE_FICLONE_FORCE : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "COPYFILE_FICLONE_FORCE")
-        let (o_RDONLY : float) =
-          Ojs.float_of_js
+        let (o_RDONLY : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "O_RDONLY")
-        let (o_WRONLY : float) =
-          Ojs.float_of_js
+        let (o_WRONLY : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "O_WRONLY")
-        let (o_RDWR : float) =
-          Ojs.float_of_js
+        let (o_RDWR : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "O_RDWR")
-        let (o_CREAT : float) =
-          Ojs.float_of_js
+        let (o_CREAT : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "O_CREAT")
-        let (o_EXCL : float) =
-          Ojs.float_of_js
+        let (o_EXCL : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "O_EXCL")
-        let (o_NOCTTY : float) =
-          Ojs.float_of_js
+        let (o_NOCTTY : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "O_NOCTTY")
-        let (o_TRUNC : float) =
-          Ojs.float_of_js
+        let (o_TRUNC : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "O_TRUNC")
-        let (o_APPEND : float) =
-          Ojs.float_of_js
+        let (o_APPEND : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "O_APPEND")
-        let (o_DIRECTORY : float) =
-          Ojs.float_of_js
+        let (o_DIRECTORY : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "O_DIRECTORY")
-        let (o_NOATIME : float) =
-          Ojs.float_of_js
+        let (o_NOATIME : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "O_NOATIME")
-        let (o_NOFOLLOW : float) =
-          Ojs.float_of_js
+        let (o_NOFOLLOW : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "O_NOFOLLOW")
-        let (o_SYNC : float) =
-          Ojs.float_of_js
+        let (o_SYNC : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "O_SYNC")
-        let (o_DSYNC : float) =
-          Ojs.float_of_js
+        let (o_DSYNC : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "O_DSYNC")
-        let (o_SYMLINK : float) =
-          Ojs.float_of_js
+        let (o_SYMLINK : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "O_SYMLINK")
-        let (o_DIRECT : float) =
-          Ojs.float_of_js
+        let (o_DIRECT : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "O_DIRECT")
-        let (o_NONBLOCK : float) =
-          Ojs.float_of_js
+        let (o_NONBLOCK : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "O_NONBLOCK")
-        let (s_IFMT : float) =
-          Ojs.float_of_js
+        let (s_IFMT : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "S_IFMT")
-        let (s_IFREG : float) =
-          Ojs.float_of_js
+        let (s_IFREG : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "S_IFREG")
-        let (s_IFDIR : float) =
-          Ojs.float_of_js
+        let (s_IFDIR : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "S_IFDIR")
-        let (s_IFCHR : float) =
-          Ojs.float_of_js
+        let (s_IFCHR : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "S_IFCHR")
-        let (s_IFBLK : float) =
-          Ojs.float_of_js
+        let (s_IFBLK : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "S_IFBLK")
-        let (s_IFIFO : float) =
-          Ojs.float_of_js
+        let (s_IFIFO : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "S_IFIFO")
-        let (s_IFLNK : float) =
-          Ojs.float_of_js
+        let (s_IFLNK : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "S_IFLNK")
-        let (s_IFSOCK : float) =
-          Ojs.float_of_js
+        let (s_IFSOCK : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "S_IFSOCK")
-        let (s_IRWXU : float) =
-          Ojs.float_of_js
+        let (s_IRWXU : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "S_IRWXU")
-        let (s_IRUSR : float) =
-          Ojs.float_of_js
+        let (s_IRUSR : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "S_IRUSR")
-        let (s_IWUSR : float) =
-          Ojs.float_of_js
+        let (s_IWUSR : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "S_IWUSR")
-        let (s_IXUSR : float) =
-          Ojs.float_of_js
+        let (s_IXUSR : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "S_IXUSR")
-        let (s_IRWXG : float) =
-          Ojs.float_of_js
+        let (s_IRWXG : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "S_IRWXG")
-        let (s_IRGRP : float) =
-          Ojs.float_of_js
+        let (s_IRGRP : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "S_IRGRP")
-        let (s_IWGRP : float) =
-          Ojs.float_of_js
+        let (s_IWGRP : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "S_IWGRP")
-        let (s_IXGRP : float) =
-          Ojs.float_of_js
+        let (s_IXGRP : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "S_IXGRP")
-        let (s_IRWXO : float) =
-          Ojs.float_of_js
+        let (s_IRWXO : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "S_IRWXO")
-        let (s_IROTH : float) =
-          Ojs.float_of_js
+        let (s_IROTH : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "S_IROTH")
-        let (s_IWOTH : float) =
-          Ojs.float_of_js
+        let (s_IWOTH : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "S_IWOTH")
-        let (s_IXOTH : float) =
-          Ojs.float_of_js
+        let (s_IXOTH : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "S_IXOTH")
-        let (uV_O_FILEMAP_FS : float) =
-          Ojs.float_of_js
+        let (uV_O_FILEMAP_FS : int) =
+          Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.fs "constants")
                "UV_O_FILEMAP_FS")
       end
     let (access :
       path:string ->
-        mode:float or_undefined -> callback:NoParamCallback.t -> unit)
+        mode:int or_undefined -> callback:NoParamCallback.t -> unit)
       =
       fun ~path:(x2167 : string) ->
-        fun ~mode:(x2168 : float or_undefined) ->
+        fun ~mode:(x2168 : int or_undefined) ->
           fun ~callback:(x2170 : NoParamCallback.t) ->
             ignore
               (Ojs.call Import.fs "access"
-                 [|(Ojs.string_to_js x2167);(or_undefined_to_js
-                                               Ojs.float_to_js x2168);(
-                   NoParamCallback.t_to_js x2170)|])
+                 [|(Ojs.string_to_js x2167);(or_undefined_to_js Ojs.int_to_js
+                                               x2168);(NoParamCallback.t_to_js
+                                                         x2170)|])
     let (access : path:string -> callback:NoParamCallback.t -> unit) =
       fun ~path:(x2171 : string) ->
         fun ~callback:(x2172 : NoParamCallback.t) ->
@@ -7877,9 +7867,9 @@ module Fs =
     module Access =
       struct
         let (__promisify__ :
-          path:string -> ?mode:float -> unit -> unit Promise.t) =
+          path:string -> ?mode:int -> unit -> unit Promise.t) =
           fun ~path:(x2173 : string) ->
-            fun ?mode:(x2174 : float option) ->
+            fun ?mode:(x2174 : int option) ->
               fun () ->
                 Promise.t_of_js Ojs.unit_of_js
                   (let x2177 = Ojs.get_prop_ascii Import.fs "access" in
@@ -7896,13 +7886,13 @@ module Fs =
                                 | Some x2176 ->
                                     ignore
                                       (Ojs.call x2175 "push"
-                                         [|(Ojs.float_to_js x2176)|])
+                                         [|(Ojs.int_to_js x2176)|])
                                 | None -> ());
                                x2175))|])
       end
-    let (accessSync : path:string -> ?mode:float -> unit -> unit) =
+    let (accessSync : path:string -> ?mode:int -> unit -> unit) =
       fun ~path:(x2179 : string) ->
-        fun ?mode:(x2180 : float option) ->
+        fun ?mode:(x2180 : int option) ->
           fun () ->
             ignore
               (let x2183 = Import.fs in
@@ -7918,7 +7908,7 @@ module Fs =
                             | Some x2182 ->
                                 ignore
                                   (Ojs.call x2181 "push"
-                                     [|(Ojs.float_to_js x2182)|])
+                                     [|(Ojs.int_to_js x2182)|])
                             | None -> ());
                            x2181))|])
     let (createReadStream :
@@ -7972,24 +7962,23 @@ module Fs =
                                           anonymous_interface_14_to_js x2193)|])
                             | None -> ());
                            x2192))|])
-    let (fdatasync : fd:float -> callback:NoParamCallback.t -> unit) =
-      fun ~fd:(x2196 : float) ->
+    let (fdatasync : fd:int -> callback:NoParamCallback.t -> unit) =
+      fun ~fd:(x2196 : int) ->
         fun ~callback:(x2197 : NoParamCallback.t) ->
           ignore
             (Ojs.call Import.fs "fdatasync"
-               [|(Ojs.float_to_js x2196);(NoParamCallback.t_to_js x2197)|])
+               [|(Ojs.int_to_js x2196);(NoParamCallback.t_to_js x2197)|])
     module Fdatasync =
       struct
-        let (__promisify__ : fd:float -> unit Promise.t) =
-          fun ~fd:(x2198 : float) ->
+        let (__promisify__ : fd:int -> unit Promise.t) =
+          fun ~fd:(x2198 : int) ->
             Promise.t_of_js Ojs.unit_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.fs "fdatasync")
-                 "__promisify__" [|(Ojs.float_to_js x2198)|])
+                 "__promisify__" [|(Ojs.int_to_js x2198)|])
       end
-    let (fdatasyncSync : fd:float -> unit) =
-      fun ~fd:(x2200 : float) ->
-        ignore
-          (Ojs.call Import.fs "fdatasyncSync" [|(Ojs.float_to_js x2200)|])
+    let (fdatasyncSync : fd:int -> unit) =
+      fun ~fd:(x2200 : int) ->
+        ignore (Ojs.call Import.fs "fdatasyncSync" [|(Ojs.int_to_js x2200)|])
     let (copyFile :
       src:string -> dest:string -> callback:NoParamCallback.t -> unit) =
       fun ~src:(x2201 : string) ->
@@ -8001,24 +7990,23 @@ module Fs =
                    NoParamCallback.t_to_js x2203)|])
     let (copyFile :
       src:string ->
-        dest:string -> flags:float -> callback:NoParamCallback.t -> unit)
+        dest:string -> flags:int -> callback:NoParamCallback.t -> unit)
       =
       fun ~src:(x2204 : string) ->
         fun ~dest:(x2205 : string) ->
-          fun ~flags:(x2206 : float) ->
+          fun ~flags:(x2206 : int) ->
             fun ~callback:(x2207 : NoParamCallback.t) ->
               ignore
                 (Ojs.call Import.fs "copyFile"
                    [|(Ojs.string_to_js x2204);(Ojs.string_to_js x2205);(
-                     Ojs.float_to_js x2206);(NoParamCallback.t_to_js x2207)|])
+                     Ojs.int_to_js x2206);(NoParamCallback.t_to_js x2207)|])
     module CopyFile =
       struct
         let (__promisify__ :
-          src:string -> dst:string -> ?flags:float -> unit -> unit Promise.t)
-          =
+          src:string -> dst:string -> ?flags:int -> unit -> unit Promise.t) =
           fun ~src:(x2208 : string) ->
             fun ~dst:(x2209 : string) ->
-              fun ?flags:(x2210 : float option) ->
+              fun ?flags:(x2210 : int option) ->
                 fun () ->
                   Promise.t_of_js Ojs.unit_of_js
                     (let x2213 = Ojs.get_prop_ascii Import.fs "copyFile" in
@@ -8038,15 +8026,15 @@ module Fs =
                                   | Some x2212 ->
                                       ignore
                                         (Ojs.call x2211 "push"
-                                           [|(Ojs.float_to_js x2212)|])
+                                           [|(Ojs.int_to_js x2212)|])
                                   | None -> ());
                                  x2211))|])
       end
     let (copyFileSync :
-      src:string -> dest:string -> ?flags:float -> unit -> unit) =
+      src:string -> dest:string -> ?flags:int -> unit -> unit) =
       fun ~src:(x2215 : string) ->
         fun ~dest:(x2216 : string) ->
-          fun ?flags:(x2217 : float option) ->
+          fun ?flags:(x2217 : int option) ->
             fun () ->
               ignore
                 (let x2220 = Import.fs in
@@ -8065,28 +8053,28 @@ module Fs =
                               | Some x2219 ->
                                   ignore
                                     (Ojs.call x2218 "push"
-                                       [|(Ojs.float_to_js x2219)|])
+                                       [|(Ojs.int_to_js x2219)|])
                               | None -> ());
                              x2218))|])
     let (writev :
-      fd:float ->
+      fd:int ->
         buffers:ArrayBufferView.t list ->
           cb:(err:ErrnoException.t or_null ->
-                bytesWritten:float -> buffers:ArrayBufferView.t list -> unit)
+                bytesWritten:int -> buffers:ArrayBufferView.t list -> unit)
             -> unit)
       =
-      fun ~fd:(x2221 : float) ->
+      fun ~fd:(x2221 : int) ->
         fun ~buffers:(x2222 : ArrayBufferView.t list) ->
           fun
             ~cb:(x2224 :
                   err:ErrnoException.t or_null ->
-                    bytesWritten:float ->
+                    bytesWritten:int ->
                       buffers:ArrayBufferView.t list -> unit)
             ->
             ignore
               (Ojs.call Import.fs "writev"
-                 [|(Ojs.float_to_js x2221);(Ojs.list_to_js
-                                              ArrayBufferView.t_to_js x2222);(
+                 [|(Ojs.int_to_js x2221);(Ojs.list_to_js
+                                            ArrayBufferView.t_to_js x2222);(
                    Ojs.fun_to_js 3
                      (fun (x2225 : Ojs.t) ->
                         fun (x2227 : Ojs.t) ->
@@ -8094,58 +8082,56 @@ module Fs =
                             x2224
                               ~err:(or_null_of_js ErrnoException.t_of_js
                                       x2225)
-                              ~bytesWritten:(Ojs.float_of_js x2227)
+                              ~bytesWritten:(Ojs.int_of_js x2227)
                               ~buffers:(Ojs.list_of_js
                                           ArrayBufferView.t_of_js x2228)))|])
     let (writev :
-      fd:float ->
+      fd:int ->
         buffers:ArrayBufferView.t list ->
-          position:float ->
+          position:int ->
             cb:(err:ErrnoException.t or_null ->
-                  bytesWritten:float ->
-                    buffers:ArrayBufferView.t list -> unit)
+                  bytesWritten:int -> buffers:ArrayBufferView.t list -> unit)
               -> unit)
       =
-      fun ~fd:(x2230 : float) ->
+      fun ~fd:(x2230 : int) ->
         fun ~buffers:(x2231 : ArrayBufferView.t list) ->
-          fun ~position:(x2233 : float) ->
+          fun ~position:(x2233 : int) ->
             fun
               ~cb:(x2234 :
                     err:ErrnoException.t or_null ->
-                      bytesWritten:float ->
+                      bytesWritten:int ->
                         buffers:ArrayBufferView.t list -> unit)
               ->
               ignore
                 (Ojs.call Import.fs "writev"
-                   [|(Ojs.float_to_js x2230);(Ojs.list_to_js
-                                                ArrayBufferView.t_to_js x2231);(
-                     Ojs.float_to_js x2233);(Ojs.fun_to_js 3
-                                               (fun (x2235 : Ojs.t) ->
-                                                  fun (x2237 : Ojs.t) ->
-                                                    fun (x2238 : Ojs.t) ->
-                                                      x2234
-                                                        ~err:(or_null_of_js
-                                                                ErrnoException.t_of_js
-                                                                x2235)
-                                                        ~bytesWritten:(
-                                                        Ojs.float_of_js x2237)
-                                                        ~buffers:(Ojs.list_of_js
-                                                                    ArrayBufferView.t_of_js
-                                                                    x2238)))|])
+                   [|(Ojs.int_to_js x2230);(Ojs.list_to_js
+                                              ArrayBufferView.t_to_js x2231);(
+                     Ojs.int_to_js x2233);(Ojs.fun_to_js 3
+                                             (fun (x2235 : Ojs.t) ->
+                                                fun (x2237 : Ojs.t) ->
+                                                  fun (x2238 : Ojs.t) ->
+                                                    x2234
+                                                      ~err:(or_null_of_js
+                                                              ErrnoException.t_of_js
+                                                              x2235)
+                                                      ~bytesWritten:(
+                                                      Ojs.int_of_js x2237)
+                                                      ~buffers:(Ojs.list_of_js
+                                                                  ArrayBufferView.t_of_js
+                                                                  x2238)))|])
     module WriteVResult =
       struct
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x2241 : Ojs.t) -> x2241
         and t_to_js : t -> Ojs.t = fun (x2240 : Ojs.t) -> x2240
-        let (get_bytesWritten : t -> float) =
+        let (get_bytesWritten : t -> int) =
           fun (x2242 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x2242) "bytesWritten")
-        let (set_bytesWritten : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x2242) "bytesWritten")
+        let (set_bytesWritten : t -> int -> unit) =
           fun (x2243 : t) ->
-            fun (x2244 : float) ->
+            fun (x2244 : int) ->
               Ojs.set_prop_ascii (t_to_js x2243) "bytesWritten"
-                (Ojs.float_to_js x2244)
+                (Ojs.int_to_js x2244)
         let (get_buffers : t -> ArrayBufferView.t list) =
           fun (x2245 : t) ->
             Ojs.list_of_js ArrayBufferView.t_of_js
@@ -8159,13 +8145,13 @@ module Fs =
     module Writev =
       struct
         let (__promisify__ :
-          fd:float ->
+          fd:int ->
             buffers:ArrayBufferView.t list ->
-              ?position:float -> unit -> WriteVResult.t Promise.t)
+              ?position:int -> unit -> WriteVResult.t Promise.t)
           =
-          fun ~fd:(x2250 : float) ->
+          fun ~fd:(x2250 : int) ->
             fun ~buffers:(x2251 : ArrayBufferView.t list) ->
-              fun ?position:(x2252 : float option) ->
+              fun ?position:(x2252 : int option) ->
                 fun () ->
                   Promise.t_of_js WriteVResult.t_of_js
                     (let x2256 = Ojs.get_prop_ascii Import.fs "writev" in
@@ -8177,7 +8163,7 @@ module Fs =
                                      [||] in
                                  ignore
                                    (Ojs.call x2253 "push"
-                                      [|(Ojs.float_to_js x2250)|]);
+                                      [|(Ojs.int_to_js x2250)|]);
                                  ignore
                                    (Ojs.call x2253 "push"
                                       [|(Ojs.list_to_js
@@ -8186,19 +8172,19 @@ module Fs =
                                   | Some x2254 ->
                                       ignore
                                         (Ojs.call x2253 "push"
-                                           [|(Ojs.float_to_js x2254)|])
+                                           [|(Ojs.int_to_js x2254)|])
                                   | None -> ());
                                  x2253))|])
       end
     let (writevSync :
-      fd:float ->
-        buffers:ArrayBufferView.t list -> ?position:float -> unit -> float)
+      fd:int ->
+        buffers:ArrayBufferView.t list -> ?position:int -> unit -> int)
       =
-      fun ~fd:(x2258 : float) ->
+      fun ~fd:(x2258 : int) ->
         fun ~buffers:(x2259 : ArrayBufferView.t list) ->
-          fun ?position:(x2260 : float option) ->
+          fun ?position:(x2260 : int option) ->
             fun () ->
-              Ojs.float_of_js
+              Ojs.int_of_js
                 (let x2264 = Import.fs in
                  Ojs.call (Ojs.get_prop_ascii x2264 "writevSync") "apply"
                    [|x2264;((let x2261 =
@@ -8207,7 +8193,7 @@ module Fs =
                                  [||] in
                              ignore
                                (Ojs.call x2261 "push"
-                                  [|(Ojs.float_to_js x2258)|]);
+                                  [|(Ojs.int_to_js x2258)|]);
                              ignore
                                (Ojs.call x2261 "push"
                                   [|(Ojs.list_to_js ArrayBufferView.t_to_js
@@ -8216,84 +8202,82 @@ module Fs =
                               | Some x2262 ->
                                   ignore
                                     (Ojs.call x2261 "push"
-                                       [|(Ojs.float_to_js x2262)|])
+                                       [|(Ojs.int_to_js x2262)|])
                               | None -> ());
                              x2261))|])
     let (readv :
-      fd:float ->
+      fd:int ->
         buffers:ArrayBufferView.t list ->
           cb:(err:ErrnoException.t or_null ->
-                bytesRead:float -> buffers:ArrayBufferView.t list -> unit)
+                bytesRead:int -> buffers:ArrayBufferView.t list -> unit)
             -> unit)
       =
-      fun ~fd:(x2265 : float) ->
+      fun ~fd:(x2265 : int) ->
         fun ~buffers:(x2266 : ArrayBufferView.t list) ->
           fun
             ~cb:(x2268 :
                   err:ErrnoException.t or_null ->
-                    bytesRead:float -> buffers:ArrayBufferView.t list -> unit)
+                    bytesRead:int -> buffers:ArrayBufferView.t list -> unit)
             ->
             ignore
               (Ojs.call Import.fs "readv"
-                 [|(Ojs.float_to_js x2265);(Ojs.list_to_js
-                                              ArrayBufferView.t_to_js x2266);(
+                 [|(Ojs.int_to_js x2265);(Ojs.list_to_js
+                                            ArrayBufferView.t_to_js x2266);(
                    Ojs.fun_to_js 3
                      (fun (x2269 : Ojs.t) ->
                         fun (x2271 : Ojs.t) ->
                           fun (x2272 : Ojs.t) ->
                             x2268
                               ~err:(or_null_of_js ErrnoException.t_of_js
-                                      x2269)
-                              ~bytesRead:(Ojs.float_of_js x2271)
+                                      x2269) ~bytesRead:(Ojs.int_of_js x2271)
                               ~buffers:(Ojs.list_of_js
                                           ArrayBufferView.t_of_js x2272)))|])
     let (readv :
-      fd:float ->
+      fd:int ->
         buffers:ArrayBufferView.t list ->
-          position:float ->
+          position:int ->
             cb:(err:ErrnoException.t or_null ->
-                  bytesRead:float -> buffers:ArrayBufferView.t list -> unit)
+                  bytesRead:int -> buffers:ArrayBufferView.t list -> unit)
               -> unit)
       =
-      fun ~fd:(x2274 : float) ->
+      fun ~fd:(x2274 : int) ->
         fun ~buffers:(x2275 : ArrayBufferView.t list) ->
-          fun ~position:(x2277 : float) ->
+          fun ~position:(x2277 : int) ->
             fun
               ~cb:(x2278 :
                     err:ErrnoException.t or_null ->
-                      bytesRead:float ->
-                        buffers:ArrayBufferView.t list -> unit)
+                      bytesRead:int -> buffers:ArrayBufferView.t list -> unit)
               ->
               ignore
                 (Ojs.call Import.fs "readv"
-                   [|(Ojs.float_to_js x2274);(Ojs.list_to_js
-                                                ArrayBufferView.t_to_js x2275);(
-                     Ojs.float_to_js x2277);(Ojs.fun_to_js 3
-                                               (fun (x2279 : Ojs.t) ->
-                                                  fun (x2281 : Ojs.t) ->
-                                                    fun (x2282 : Ojs.t) ->
-                                                      x2278
-                                                        ~err:(or_null_of_js
-                                                                ErrnoException.t_of_js
-                                                                x2279)
-                                                        ~bytesRead:(Ojs.float_of_js
+                   [|(Ojs.int_to_js x2274);(Ojs.list_to_js
+                                              ArrayBufferView.t_to_js x2275);(
+                     Ojs.int_to_js x2277);(Ojs.fun_to_js 3
+                                             (fun (x2279 : Ojs.t) ->
+                                                fun (x2281 : Ojs.t) ->
+                                                  fun (x2282 : Ojs.t) ->
+                                                    x2278
+                                                      ~err:(or_null_of_js
+                                                              ErrnoException.t_of_js
+                                                              x2279)
+                                                      ~bytesRead:(Ojs.int_of_js
                                                                     x2281)
-                                                        ~buffers:(Ojs.list_of_js
-                                                                    ArrayBufferView.t_of_js
-                                                                    x2282)))|])
+                                                      ~buffers:(Ojs.list_of_js
+                                                                  ArrayBufferView.t_of_js
+                                                                  x2282)))|])
     module ReadVResult =
       struct
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x2285 : Ojs.t) -> x2285
         and t_to_js : t -> Ojs.t = fun (x2284 : Ojs.t) -> x2284
-        let (get_bytesRead : t -> float) =
+        let (get_bytesRead : t -> int) =
           fun (x2286 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x2286) "bytesRead")
-        let (set_bytesRead : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x2286) "bytesRead")
+        let (set_bytesRead : t -> int -> unit) =
           fun (x2287 : t) ->
-            fun (x2288 : float) ->
+            fun (x2288 : int) ->
               Ojs.set_prop_ascii (t_to_js x2287) "bytesRead"
-                (Ojs.float_to_js x2288)
+                (Ojs.int_to_js x2288)
         let (get_buffers : t -> ArrayBufferView.t list) =
           fun (x2289 : t) ->
             Ojs.list_of_js ArrayBufferView.t_of_js
@@ -8307,13 +8291,13 @@ module Fs =
     module Readv =
       struct
         let (__promisify__ :
-          fd:float ->
+          fd:int ->
             buffers:ArrayBufferView.t list ->
-              ?position:float -> unit -> ReadVResult.t Promise.t)
+              ?position:int -> unit -> ReadVResult.t Promise.t)
           =
-          fun ~fd:(x2294 : float) ->
+          fun ~fd:(x2294 : int) ->
             fun ~buffers:(x2295 : ArrayBufferView.t list) ->
-              fun ?position:(x2296 : float option) ->
+              fun ?position:(x2296 : int option) ->
                 fun () ->
                   Promise.t_of_js ReadVResult.t_of_js
                     (let x2300 = Ojs.get_prop_ascii Import.fs "readv" in
@@ -8325,7 +8309,7 @@ module Fs =
                                      [||] in
                                  ignore
                                    (Ojs.call x2297 "push"
-                                      [|(Ojs.float_to_js x2294)|]);
+                                      [|(Ojs.int_to_js x2294)|]);
                                  ignore
                                    (Ojs.call x2297 "push"
                                       [|(Ojs.list_to_js
@@ -8334,19 +8318,19 @@ module Fs =
                                   | Some x2298 ->
                                       ignore
                                         (Ojs.call x2297 "push"
-                                           [|(Ojs.float_to_js x2298)|])
+                                           [|(Ojs.int_to_js x2298)|])
                                   | None -> ());
                                  x2297))|])
       end
     let (readvSync :
-      fd:float ->
-        buffers:ArrayBufferView.t list -> ?position:float -> unit -> float)
+      fd:int ->
+        buffers:ArrayBufferView.t list -> ?position:int -> unit -> int)
       =
-      fun ~fd:(x2302 : float) ->
+      fun ~fd:(x2302 : int) ->
         fun ~buffers:(x2303 : ArrayBufferView.t list) ->
-          fun ?position:(x2304 : float option) ->
+          fun ?position:(x2304 : int option) ->
             fun () ->
-              Ojs.float_of_js
+              Ojs.int_of_js
                 (let x2308 = Import.fs in
                  Ojs.call (Ojs.get_prop_ascii x2308 "readvSync") "apply"
                    [|x2308;((let x2305 =
@@ -8355,7 +8339,7 @@ module Fs =
                                  [||] in
                              ignore
                                (Ojs.call x2305 "push"
-                                  [|(Ojs.float_to_js x2302)|]);
+                                  [|(Ojs.int_to_js x2302)|]);
                              ignore
                                (Ojs.call x2305 "push"
                                   [|(Ojs.list_to_js ArrayBufferView.t_to_js
@@ -8364,7 +8348,7 @@ module Fs =
                               | Some x2306 ->
                                   ignore
                                     (Ojs.call x2305 "push"
-                                       [|(Ojs.float_to_js x2306)|])
+                                       [|(Ojs.int_to_js x2306)|])
                               | None -> ());
                              x2305))|])
     module OpenDirOptions =
@@ -8381,14 +8365,14 @@ module Fs =
             fun (x2313 : BufferEncoding.t) ->
               Ojs.set_prop_ascii (t_to_js x2312) "encoding"
                 (BufferEncoding.t_to_js x2313)
-        let (get_bufferSize : t -> float) =
+        let (get_bufferSize : t -> int) =
           fun (x2314 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x2314) "bufferSize")
-        let (set_bufferSize : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x2314) "bufferSize")
+        let (set_bufferSize : t -> int -> unit) =
           fun (x2315 : t) ->
-            fun (x2316 : float) ->
+            fun (x2316 : int) ->
               Ojs.set_prop_ascii (t_to_js x2315) "bufferSize"
-                (Ojs.float_to_js x2316)
+                (Ojs.int_to_js x2316)
       end
     let (opendirSync :
       path:string -> ?options:OpenDirOptions.t -> unit -> Dir.t) =

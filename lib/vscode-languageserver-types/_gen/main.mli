@@ -130,9 +130,9 @@ module Internal : sig
     and _SemanticTokenModifiers_modification = [`modification[@js "modification"]] [@js.enum]
     and _SemanticTokenModifiers_documentation = [`documentation[@js "documentation"]] [@js.enum]
     and _SemanticTokenModifiers_defaultLibrary = [`defaultLibrary[@js "defaultLibrary"]] [@js.enum]
-    and _SemanticTokenTypes = [`namespace[@js "namespace"] | `type_[@js "type"] | `class[@js "class"] | `enum[@js "enum"] | `interface[@js "interface"] | `struct[@js "struct"] | `typeParameter[@js "typeParameter"] | `parameter[@js "parameter"] | `variable[@js "variable"] | `property[@js "property"] | `enumMember[@js "enumMember"] | `event[@js "event"] | `function[@js "function"] | `method[@js "method"] | `macro[@js "macro"] | `keyword[@js "keyword"] | `modifier[@js "modifier"] | `comment[@js "comment"] | `string[@js "string"] | `number[@js "number"] | `regexp[@js "regexp"] | `operator[@js "operator"]] [@js.enum]
+    and _SemanticTokenTypes = [`namespace[@js "namespace"] | `type[@js "type"] | `class[@js "class"] | `enum[@js "enum"] | `interface[@js "interface"] | `struct[@js "struct"] | `typeParameter[@js "typeParameter"] | `parameter[@js "parameter"] | `variable[@js "variable"] | `property[@js "property"] | `enumMember[@js "enumMember"] | `event[@js "event"] | `function[@js "function"] | `method[@js "method"] | `macro[@js "macro"] | `keyword[@js "keyword"] | `modifier[@js "modifier"] | `comment[@js "comment"] | `string[@js "string"] | `number[@js "number"] | `regexp[@js "regexp"] | `operator[@js "operator"]] [@js.enum]
     and _SemanticTokenTypes_namespace = [`namespace[@js "namespace"]] [@js.enum]
-    and _SemanticTokenTypes_type = [`type_[@js "type"]] [@js.enum]
+    and _SemanticTokenTypes_type = [`type[@js "type"]] [@js.enum]
     and _SemanticTokenTypes_class = [`class[@js "class"]] [@js.enum]
     and _SemanticTokenTypes_enum = [`enum[@js "enum"]] [@js.enum]
     and _SemanticTokenTypes_interface = [`interface[@js "interface"]] [@js.enum]
@@ -1570,4 +1570,4 @@ module[@js.scope "TextDocument"] TextDocument : sig
   val is: value:any -> bool [@@js.global "is"]
   val applyEdits: document:_TextDocument -> edits:_TextEdit list -> string [@@js.global "applyEdits"]
 end
-(* export {}; *)
+

@@ -1,3 +1,7 @@
+[@@@ocaml.warning "-7-11-32-33-39"]
+
+[@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
+
 open Es2017
 open Es2018_asynciterable
 
@@ -36,19 +40,23 @@ module AsyncGenerator : sig
     :  ('T, 'TReturn, 'TNext) t
     -> args:
          (* FIXME: type 'union<() | ('TNext)>' cannot be used for variadic
-            argument *) any list
+            argument *) (any list[@js.variadic])
     -> ('T, 'TReturn) IteratorResult.t Promise.t
+    [@@js.call "next"]
 
   val return
     :  ('T, 'TReturn, 'TNext) t
     -> value:('TReturn, 'TReturn Promise.t) union2
     -> ('T, 'TReturn) IteratorResult.t Promise.t
+    [@@js.call "return"]
 
   val throw
     :  ('T, 'TReturn, 'TNext) t
     -> e:any
     -> ('T, 'TReturn) IteratorResult.t Promise.t
+    [@@js.call "throw"]
 end
+[@@js.scope "AsyncGenerator"]
 
 module AsyncGeneratorFunction : sig
   type t
@@ -57,15 +65,24 @@ module AsyncGeneratorFunction : sig
 
   val t_of_js : Ojs.t -> t
 
-  val create : t -> args:any list -> (unknown, any, unknown) AsyncGenerator.t
+  val create
+    :  t
+    -> args:(any list[@js.variadic])
+    -> (unknown, any, unknown) AsyncGenerator.t
+    [@@js.apply_newable]
 
-  val apply : t -> args:any list -> (unknown, any, unknown) AsyncGenerator.t
+  val apply
+    :  t
+    -> args:(any list[@js.variadic])
+    -> (unknown, any, unknown) AsyncGenerator.t
+    [@@js.apply]
 
-  val get_length : t -> float
+  val get_length : t -> int [@@js.get "length"]
 
-  val get_name : t -> string
+  val get_name : t -> string [@@js.get "name"]
 
   val get_prototype : t -> (unknown, any, unknown) AsyncGenerator.t
+    [@@js.get "prototype"]
 end
 
 module AsyncGeneratorFunctionConstructor : sig
@@ -75,13 +92,16 @@ module AsyncGeneratorFunctionConstructor : sig
 
   val t_of_js : Ojs.t -> t
 
-  val create : t -> string list -> AsyncGeneratorFunction.t
+  val create : t -> (string list[@js.variadic]) -> AsyncGeneratorFunction.t
+    [@@js.apply_newable]
 
-  val apply : t -> string list -> AsyncGeneratorFunction.t
+  val apply : t -> (string list[@js.variadic]) -> AsyncGeneratorFunction.t
+    [@@js.apply]
 
-  val get_length : t -> float
+  val get_length : t -> int [@@js.get "length"]
 
-  val get_name : t -> string
+  val get_name : t -> string [@@js.get "name"]
 
-  val get_prototype : t -> AsyncGeneratorFunction.t
+  val get_prototype : t -> AsyncGeneratorFunction.t [@@js.get "prototype"]
 end
+[@@js.scope "AsyncGeneratorFunctionConstructor"]

@@ -542,5 +542,5 @@ module Make (M: Missing) : sig
     val doSend: t -> event:Code.FileWillDeleteEvent.t_0 -> next:(event:Code.FileDeleteEvent.t_0 -> (Code.WorkspaceEdit.t_0 Thenable.t_1, any Thenable.t_1) union2) -> (Code.WorkspaceEdit.t_0 Thenable.t_1, any Thenable.t_1) union2 [@@js.call "doSend"]
     val cast: t -> (Code.Uri.t_0, Code.FileWillDeleteEvent.t_0, Proto.DeleteFilesParams.t_0) _RequestFileOperationFeature [@@js.cast]
   end
-  (* export {}; *)
+  
 end

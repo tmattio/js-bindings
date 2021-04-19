@@ -2,27 +2,13 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2016
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _String = [ `String ] intf
-        let rec _String_of_js : Ojs.t -> _String = Obj.magic
-        and _String_to_js : _String -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module String =
   struct
     include struct include String end
     let (padStart :
-      t -> maxLength:float -> ?fillString:string -> unit -> string) =
+      t -> maxLength:int -> ?fillString:string -> unit -> string) =
       fun (x5 : t) ->
-        fun ~maxLength:(x1 : float) ->
+        fun ~maxLength:(x1 : int) ->
           fun ?fillString:(x2 : string option) ->
             fun () ->
               Ojs.string_of_js
@@ -32,8 +18,7 @@ module String =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
-                          ignore
-                            (Ojs.call x3 "push" [|(Ojs.float_to_js x1)|]);
+                          ignore (Ojs.call x3 "push" [|(Ojs.int_to_js x1)|]);
                           (match x2 with
                            | Some x4 ->
                                ignore
@@ -41,10 +26,10 @@ module String =
                                     [|(Ojs.string_to_js x4)|])
                            | None -> ());
                           x3))|])
-    let (padEnd :
-      t -> maxLength:float -> ?fillString:string -> unit -> string) =
+    let (padEnd : t -> maxLength:int -> ?fillString:string -> unit -> string)
+      =
       fun (x11 : t) ->
-        fun ~maxLength:(x7 : float) ->
+        fun ~maxLength:(x7 : int) ->
           fun ?fillString:(x8 : string option) ->
             fun () ->
               Ojs.string_of_js
@@ -54,8 +39,7 @@ module String =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
-                           ignore
-                             (Ojs.call x9 "push" [|(Ojs.float_to_js x7)|]);
+                           ignore (Ojs.call x9 "push" [|(Ojs.int_to_js x7)|]);
                            (match x8 with
                             | Some x10 ->
                                 ignore

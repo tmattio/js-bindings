@@ -4,36 +4,8 @@
 
 open Es2019
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _PromiseConstructor = [ `PromiseConstructor ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and 'T _PromiseFulfilledResult = [ `PromiseFulfilledResult of 'T ] intf
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-
-    and _PromiseRejectedResult = [ `PromiseRejectedResult ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and 'T _PromiseSettledResult =
-      ([ `U_s0_fulfilled of 'T _PromiseFulfilledResult [@js "fulfilled"]
-       | `U_s1_rejected of _PromiseRejectedResult [@js "rejected"]
-       ]
-      [@js.union on_field "status"])
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module PromiseFulfilledResult : sig
-  type 'T t = 'T _PromiseFulfilledResult
+  type 'T t
 
   val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
@@ -52,7 +24,7 @@ end
 [@@js.scope "PromiseFulfilledResult"]
 
 module PromiseRejectedResult : sig
-  type t = _PromiseRejectedResult
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -70,7 +42,11 @@ end
 [@@js.scope "PromiseRejectedResult"]
 
 module PromiseSettledResult : sig
-  type 'T t = 'T _PromiseSettledResult
+  type 'T t =
+    ([ `fulfilled of 'T PromiseFulfilledResult.t [@js "fulfilled"]
+     | `rejected of PromiseRejectedResult.t [@js "rejected"]
+     ]
+    [@js.union on_field "status"])
 
   val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
@@ -93,7 +69,7 @@ module Promise : sig
   val allSettled'
     :  'T Iterable.t
     -> (* FIXME: unknown type 'T extends Promise<infer U> ? U : T' *)
-       any _PromiseSettledResult list Promise.t
+       any PromiseSettledResult.t list Promise.t
     [@@js.global "Promise.allSettled"]
 end
 
@@ -114,7 +90,7 @@ module PromiseConstructor : sig
     :  t
     -> 'T Iterable.t
     -> (* FIXME: unknown type 'T extends Promise<infer U> ? U : T' *)
-       any _PromiseSettledResult list Promise.t
+       any PromiseSettledResult.t list Promise.t
     [@@js.call "allSettled"]
 end
 [@@js.scope "PromiseConstructor"]

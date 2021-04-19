@@ -95,8 +95,8 @@ module Worker_threads =
         (Ojs.get_prop_ascii Import.worker_threads "resourceLimits")
     let (sHARE_ENV : any) =
       any_of_js (Ojs.get_prop_ascii Import.worker_threads "SHARE_ENV")
-    let (threadId : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.worker_threads "threadId")
+    let (threadId : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.worker_threads "threadId")
     let (workerData : any) =
       any_of_js (Ojs.get_prop_ascii Import.worker_threads "workerData")
     module MessageChannel =
@@ -686,41 +686,41 @@ module Worker_threads =
         and t_to_js : t -> Ojs.t =
           fun (x216 : worker_threads_ResourceLimits) ->
             worker_threads_ResourceLimits_to_js x216
-        let (get_maxYoungGenerationSizeMb : t -> float) =
+        let (get_maxYoungGenerationSizeMb : t -> int) =
           fun (x218 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x218) "maxYoungGenerationSizeMb")
-        let (set_maxYoungGenerationSizeMb : t -> float -> unit) =
+        let (set_maxYoungGenerationSizeMb : t -> int -> unit) =
           fun (x219 : t) ->
-            fun (x220 : float) ->
+            fun (x220 : int) ->
               Ojs.set_prop_ascii (t_to_js x219) "maxYoungGenerationSizeMb"
-                (Ojs.float_to_js x220)
-        let (get_maxOldGenerationSizeMb : t -> float) =
+                (Ojs.int_to_js x220)
+        let (get_maxOldGenerationSizeMb : t -> int) =
           fun (x221 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x221) "maxOldGenerationSizeMb")
-        let (set_maxOldGenerationSizeMb : t -> float -> unit) =
+        let (set_maxOldGenerationSizeMb : t -> int -> unit) =
           fun (x222 : t) ->
-            fun (x223 : float) ->
+            fun (x223 : int) ->
               Ojs.set_prop_ascii (t_to_js x222) "maxOldGenerationSizeMb"
-                (Ojs.float_to_js x223)
-        let (get_codeRangeSizeMb : t -> float) =
+                (Ojs.int_to_js x223)
+        let (get_codeRangeSizeMb : t -> int) =
           fun (x224 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x224) "codeRangeSizeMb")
-        let (set_codeRangeSizeMb : t -> float -> unit) =
+        let (set_codeRangeSizeMb : t -> int -> unit) =
           fun (x225 : t) ->
-            fun (x226 : float) ->
+            fun (x226 : int) ->
               Ojs.set_prop_ascii (t_to_js x225) "codeRangeSizeMb"
-                (Ojs.float_to_js x226)
-        let (get_stackSizeMb : t -> float) =
+                (Ojs.int_to_js x226)
+        let (get_stackSizeMb : t -> int) =
           fun (x227 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x227) "stackSizeMb")
-        let (set_stackSizeMb : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x227) "stackSizeMb")
+        let (set_stackSizeMb : t -> int -> unit) =
           fun (x228 : t) ->
-            fun (x229 : float) ->
+            fun (x229 : int) ->
               Ojs.set_prop_ascii (t_to_js x228) "stackSizeMb"
-                (Ojs.float_to_js x229)
+                (Ojs.int_to_js x229)
       end
     module Worker =
       struct
@@ -742,9 +742,9 @@ module Worker_threads =
           fun (x235 : t) ->
             Node_stream.Stream.Writable.t_of_js
               (Ojs.get_prop_ascii (t_to_js x235) "stderr")
-        let (get_threadId : t -> float) =
+        let (get_threadId : t -> int) =
           fun (x236 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x236) "threadId")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x236) "threadId")
         let (get_resourceLimits : t -> worker_threads_ResourceLimits) =
           fun (x237 : t) ->
             worker_threads_ResourceLimits_of_js
@@ -807,9 +807,9 @@ module Worker_threads =
           fun (x250 : t) -> ignore (Ojs.call (t_to_js x250) "ref" [||])
         let (unref : t -> unit) =
           fun (x251 : t) -> ignore (Ojs.call (t_to_js x251) "unref" [||])
-        let (terminate : t -> float Promise.t) =
+        let (terminate : t -> int Promise.t) =
           fun (x252 : t) ->
-            Promise.t_of_js Ojs.float_of_js
+            Promise.t_of_js Ojs.int_of_js
               (Ojs.call (t_to_js x252) "terminate" [||])
         let (getHeapSnapshot : t -> Node_stream.Stream.Writable.t Promise.t)
           =
@@ -828,16 +828,16 @@ module Worker_threads =
                          (fun (x258 : Ojs.t) ->
                             x257 ~err:(Error.t_of_js x258)))|])
         let (addListener' :
-          t -> event:[ `exit ] -> listener:(exitCode:float -> unit) -> t) =
+          t -> event:[ `exit ] -> listener:(exitCode:int -> unit) -> t) =
           fun (x263 : t) ->
             fun ~event:(x260 : [ `exit ]) ->
-              fun ~listener:(x261 : exitCode:float -> unit) ->
+              fun ~listener:(x261 : exitCode:int -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x263) "addListener"
                      [|((match x260 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 1
                          (fun (x262 : Ojs.t) ->
-                            x261 ~exitCode:(Ojs.float_of_js x262)))|])
+                            x261 ~exitCode:(Ojs.int_of_js x262)))|])
         let (addListener'' :
           t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
           fun (x267 : t) ->
@@ -900,14 +900,14 @@ module Worker_threads =
                   (Ojs.call (t_to_js x283) "emit"
                      [|((match x281 with | `error -> Ojs.string_to_js "error"));(
                        Error.t_to_js x282)|])
-        let (emit' : t -> event:[ `exit ] -> exitCode:float -> bool) =
+        let (emit' : t -> event:[ `exit ] -> exitCode:int -> bool) =
           fun (x286 : t) ->
             fun ~event:(x284 : [ `exit ]) ->
-              fun ~exitCode:(x285 : float) ->
+              fun ~exitCode:(x285 : int) ->
                 Ojs.bool_of_js
                   (Ojs.call (t_to_js x286) "emit"
                      [|((match x284 with | `exit -> Ojs.string_to_js "exit"));(
-                       Ojs.float_to_js x285)|])
+                       Ojs.int_to_js x285)|])
         let (emit'' : t -> event:[ `message ] -> value:any -> bool) =
           fun (x289 : t) ->
             fun ~event:(x287 : [ `message ]) ->
@@ -966,16 +966,16 @@ module Worker_threads =
                          (fun (x304 : Ojs.t) ->
                             x303 ~err:(Error.t_of_js x304)))|])
         let (on' :
-          t -> event:[ `exit ] -> listener:(exitCode:float -> unit) -> t) =
+          t -> event:[ `exit ] -> listener:(exitCode:int -> unit) -> t) =
           fun (x309 : t) ->
             fun ~event:(x306 : [ `exit ]) ->
-              fun ~listener:(x307 : exitCode:float -> unit) ->
+              fun ~listener:(x307 : exitCode:int -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x309) "on"
                      [|((match x306 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 1
                          (fun (x308 : Ojs.t) ->
-                            x307 ~exitCode:(Ojs.float_of_js x308)))|])
+                            x307 ~exitCode:(Ojs.int_of_js x308)))|])
         let (on'' :
           t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
           fun (x313 : t) ->
@@ -1042,16 +1042,16 @@ module Worker_threads =
                          (fun (x329 : Ojs.t) ->
                             x328 ~err:(Error.t_of_js x329)))|])
         let (once' :
-          t -> event:[ `exit ] -> listener:(exitCode:float -> unit) -> t) =
+          t -> event:[ `exit ] -> listener:(exitCode:int -> unit) -> t) =
           fun (x334 : t) ->
             fun ~event:(x331 : [ `exit ]) ->
-              fun ~listener:(x332 : exitCode:float -> unit) ->
+              fun ~listener:(x332 : exitCode:int -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x334) "once"
                      [|((match x331 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 1
                          (fun (x333 : Ojs.t) ->
-                            x332 ~exitCode:(Ojs.float_of_js x333)))|])
+                            x332 ~exitCode:(Ojs.int_of_js x333)))|])
         let (once'' :
           t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
           fun (x338 : t) ->
@@ -1118,16 +1118,16 @@ module Worker_threads =
                          (fun (x354 : Ojs.t) ->
                             x353 ~err:(Error.t_of_js x354)))|])
         let (prependListener' :
-          t -> event:[ `exit ] -> listener:(exitCode:float -> unit) -> t) =
+          t -> event:[ `exit ] -> listener:(exitCode:int -> unit) -> t) =
           fun (x359 : t) ->
             fun ~event:(x356 : [ `exit ]) ->
-              fun ~listener:(x357 : exitCode:float -> unit) ->
+              fun ~listener:(x357 : exitCode:int -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x359) "prependListener"
                      [|((match x356 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 1
                          (fun (x358 : Ojs.t) ->
-                            x357 ~exitCode:(Ojs.float_of_js x358)))|])
+                            x357 ~exitCode:(Ojs.int_of_js x358)))|])
         let (prependListener'' :
           t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
           fun (x363 : t) ->
@@ -1194,16 +1194,16 @@ module Worker_threads =
                          (fun (x379 : Ojs.t) ->
                             x378 ~err:(Error.t_of_js x379)))|])
         let (prependOnceListener' :
-          t -> event:[ `exit ] -> listener:(exitCode:float -> unit) -> t) =
+          t -> event:[ `exit ] -> listener:(exitCode:int -> unit) -> t) =
           fun (x384 : t) ->
             fun ~event:(x381 : [ `exit ]) ->
-              fun ~listener:(x382 : exitCode:float -> unit) ->
+              fun ~listener:(x382 : exitCode:int -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x384) "prependOnceListener"
                      [|((match x381 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 1
                          (fun (x383 : Ojs.t) ->
-                            x382 ~exitCode:(Ojs.float_of_js x383)))|])
+                            x382 ~exitCode:(Ojs.int_of_js x383)))|])
         let (prependOnceListener'' :
           t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
           fun (x388 : t) ->
@@ -1270,16 +1270,16 @@ module Worker_threads =
                          (fun (x404 : Ojs.t) ->
                             x403 ~err:(Error.t_of_js x404)))|])
         let (removeListener' :
-          t -> event:[ `exit ] -> listener:(exitCode:float -> unit) -> t) =
+          t -> event:[ `exit ] -> listener:(exitCode:int -> unit) -> t) =
           fun (x409 : t) ->
             fun ~event:(x406 : [ `exit ]) ->
-              fun ~listener:(x407 : exitCode:float -> unit) ->
+              fun ~listener:(x407 : exitCode:int -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x409) "removeListener"
                      [|((match x406 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 1
                          (fun (x408 : Ojs.t) ->
-                            x407 ~exitCode:(Ojs.float_of_js x408)))|])
+                            x407 ~exitCode:(Ojs.int_of_js x408)))|])
         let (removeListener'' :
           t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
           fun (x413 : t) ->
@@ -1346,16 +1346,16 @@ module Worker_threads =
                          (fun (x429 : Ojs.t) ->
                             x428 ~err:(Error.t_of_js x429)))|])
         let (off' :
-          t -> event:[ `exit ] -> listener:(exitCode:float -> unit) -> t) =
+          t -> event:[ `exit ] -> listener:(exitCode:int -> unit) -> t) =
           fun (x434 : t) ->
             fun ~event:(x431 : [ `exit ]) ->
-              fun ~listener:(x432 : exitCode:float -> unit) ->
+              fun ~listener:(x432 : exitCode:int -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x434) "off"
                      [|((match x431 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 1
                          (fun (x433 : Ojs.t) ->
-                            x432 ~exitCode:(Ojs.float_of_js x433)))|])
+                            x432 ~exitCode:(Ojs.int_of_js x433)))|])
         let (off'' :
           t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
           fun (x438 : t) ->

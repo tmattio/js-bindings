@@ -76,41 +76,41 @@ module V8 =
             fun (x8 : string) ->
               Ojs.set_prop_ascii (t_to_js x7) "space_name"
                 (Ojs.string_to_js x8)
-        let (get_space_size : t -> float) =
+        let (get_space_size : t -> int) =
           fun (x9 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x9) "space_size")
-        let (set_space_size : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x9) "space_size")
+        let (set_space_size : t -> int -> unit) =
           fun (x10 : t) ->
-            fun (x11 : float) ->
+            fun (x11 : int) ->
               Ojs.set_prop_ascii (t_to_js x10) "space_size"
-                (Ojs.float_to_js x11)
-        let (get_space_used_size : t -> float) =
+                (Ojs.int_to_js x11)
+        let (get_space_used_size : t -> int) =
           fun (x12 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x12) "space_used_size")
-        let (set_space_used_size : t -> float -> unit) =
+        let (set_space_used_size : t -> int -> unit) =
           fun (x13 : t) ->
-            fun (x14 : float) ->
+            fun (x14 : int) ->
               Ojs.set_prop_ascii (t_to_js x13) "space_used_size"
-                (Ojs.float_to_js x14)
-        let (get_space_available_size : t -> float) =
+                (Ojs.int_to_js x14)
+        let (get_space_available_size : t -> int) =
           fun (x15 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x15) "space_available_size")
-        let (set_space_available_size : t -> float -> unit) =
+        let (set_space_available_size : t -> int -> unit) =
           fun (x16 : t) ->
-            fun (x17 : float) ->
+            fun (x17 : int) ->
               Ojs.set_prop_ascii (t_to_js x16) "space_available_size"
-                (Ojs.float_to_js x17)
-        let (get_physical_space_size : t -> float) =
+                (Ojs.int_to_js x17)
+        let (get_physical_space_size : t -> int) =
           fun (x18 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x18) "physical_space_size")
-        let (set_physical_space_size : t -> float -> unit) =
+        let (set_physical_space_size : t -> int -> unit) =
           fun (x19 : t) ->
-            fun (x20 : float) ->
+            fun (x20 : int) ->
               Ojs.set_prop_ascii (t_to_js x19) "physical_space_size"
-                (Ojs.float_to_js x20)
+                (Ojs.int_to_js x20)
       end
     module DoesZapCodeSpaceFlag =
       struct
@@ -128,78 +128,77 @@ module V8 =
           fun (x24 : Ojs.t) -> v8_HeapInfo_of_js x24
         and t_to_js : t -> Ojs.t =
           fun (x23 : v8_HeapInfo) -> v8_HeapInfo_to_js x23
-        let (get_total_heap_size : t -> float) =
+        let (get_total_heap_size : t -> int) =
           fun (x25 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x25) "total_heap_size")
-        let (set_total_heap_size : t -> float -> unit) =
+        let (set_total_heap_size : t -> int -> unit) =
           fun (x26 : t) ->
-            fun (x27 : float) ->
+            fun (x27 : int) ->
               Ojs.set_prop_ascii (t_to_js x26) "total_heap_size"
-                (Ojs.float_to_js x27)
-        let (get_total_heap_size_executable : t -> float) =
+                (Ojs.int_to_js x27)
+        let (get_total_heap_size_executable : t -> int) =
           fun (x28 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x28) "total_heap_size_executable")
-        let (set_total_heap_size_executable : t -> float -> unit) =
+        let (set_total_heap_size_executable : t -> int -> unit) =
           fun (x29 : t) ->
-            fun (x30 : float) ->
+            fun (x30 : int) ->
               Ojs.set_prop_ascii (t_to_js x29) "total_heap_size_executable"
-                (Ojs.float_to_js x30)
-        let (get_total_physical_size : t -> float) =
+                (Ojs.int_to_js x30)
+        let (get_total_physical_size : t -> int) =
           fun (x31 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x31) "total_physical_size")
-        let (set_total_physical_size : t -> float -> unit) =
+        let (set_total_physical_size : t -> int -> unit) =
           fun (x32 : t) ->
-            fun (x33 : float) ->
+            fun (x33 : int) ->
               Ojs.set_prop_ascii (t_to_js x32) "total_physical_size"
-                (Ojs.float_to_js x33)
-        let (get_total_available_size : t -> float) =
+                (Ojs.int_to_js x33)
+        let (get_total_available_size : t -> int) =
           fun (x34 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x34) "total_available_size")
-        let (set_total_available_size : t -> float -> unit) =
+        let (set_total_available_size : t -> int -> unit) =
           fun (x35 : t) ->
-            fun (x36 : float) ->
+            fun (x36 : int) ->
               Ojs.set_prop_ascii (t_to_js x35) "total_available_size"
-                (Ojs.float_to_js x36)
-        let (get_used_heap_size : t -> float) =
+                (Ojs.int_to_js x36)
+        let (get_used_heap_size : t -> int) =
           fun (x37 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x37) "used_heap_size")
-        let (set_used_heap_size : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x37) "used_heap_size")
+        let (set_used_heap_size : t -> int -> unit) =
           fun (x38 : t) ->
-            fun (x39 : float) ->
+            fun (x39 : int) ->
               Ojs.set_prop_ascii (t_to_js x38) "used_heap_size"
-                (Ojs.float_to_js x39)
-        let (get_heap_size_limit : t -> float) =
+                (Ojs.int_to_js x39)
+        let (get_heap_size_limit : t -> int) =
           fun (x40 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x40) "heap_size_limit")
-        let (set_heap_size_limit : t -> float -> unit) =
+        let (set_heap_size_limit : t -> int -> unit) =
           fun (x41 : t) ->
-            fun (x42 : float) ->
+            fun (x42 : int) ->
               Ojs.set_prop_ascii (t_to_js x41) "heap_size_limit"
-                (Ojs.float_to_js x42)
-        let (get_malloced_memory : t -> float) =
+                (Ojs.int_to_js x42)
+        let (get_malloced_memory : t -> int) =
           fun (x43 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x43) "malloced_memory")
-        let (set_malloced_memory : t -> float -> unit) =
+        let (set_malloced_memory : t -> int -> unit) =
           fun (x44 : t) ->
-            fun (x45 : float) ->
+            fun (x45 : int) ->
               Ojs.set_prop_ascii (t_to_js x44) "malloced_memory"
-                (Ojs.float_to_js x45)
-        let (get_peak_malloced_memory : t -> float) =
+                (Ojs.int_to_js x45)
+        let (get_peak_malloced_memory : t -> int) =
           fun (x46 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x46) "peak_malloced_memory")
-        let (set_peak_malloced_memory : t -> float -> unit) =
+        let (set_peak_malloced_memory : t -> int -> unit) =
           fun (x47 : t) ->
-            fun (x48 : float) ->
+            fun (x48 : int) ->
               Ojs.set_prop_ascii (t_to_js x47) "peak_malloced_memory"
-                (Ojs.float_to_js x48)
+                (Ojs.int_to_js x48)
         let (get_does_zap_garbage : t -> v8_DoesZapCodeSpaceFlag) =
           fun (x49 : t) ->
             v8_DoesZapCodeSpaceFlag_of_js
@@ -209,24 +208,24 @@ module V8 =
             fun (x51 : v8_DoesZapCodeSpaceFlag) ->
               Ojs.set_prop_ascii (t_to_js x50) "does_zap_garbage"
                 (v8_DoesZapCodeSpaceFlag_to_js x51)
-        let (get_number_of_native_contexts : t -> float) =
+        let (get_number_of_native_contexts : t -> int) =
           fun (x52 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x52) "number_of_native_contexts")
-        let (set_number_of_native_contexts : t -> float -> unit) =
+        let (set_number_of_native_contexts : t -> int -> unit) =
           fun (x53 : t) ->
-            fun (x54 : float) ->
+            fun (x54 : int) ->
               Ojs.set_prop_ascii (t_to_js x53) "number_of_native_contexts"
-                (Ojs.float_to_js x54)
-        let (get_number_of_detached_contexts : t -> float) =
+                (Ojs.int_to_js x54)
+        let (get_number_of_detached_contexts : t -> int) =
           fun (x55 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x55) "number_of_detached_contexts")
-        let (set_number_of_detached_contexts : t -> float -> unit) =
+        let (set_number_of_detached_contexts : t -> int -> unit) =
           fun (x56 : t) ->
-            fun (x57 : float) ->
+            fun (x57 : int) ->
               Ojs.set_prop_ascii (t_to_js x56) "number_of_detached_contexts"
-                (Ojs.float_to_js x57)
+                (Ojs.int_to_js x57)
       end
     module HeapCodeStatistics =
       struct
@@ -236,37 +235,37 @@ module V8 =
         and t_to_js : t -> Ojs.t =
           fun (x58 : v8_HeapCodeStatistics) ->
             v8_HeapCodeStatistics_to_js x58
-        let (get_code_and_metadata_size : t -> float) =
+        let (get_code_and_metadata_size : t -> int) =
           fun (x60 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x60) "code_and_metadata_size")
-        let (set_code_and_metadata_size : t -> float -> unit) =
+        let (set_code_and_metadata_size : t -> int -> unit) =
           fun (x61 : t) ->
-            fun (x62 : float) ->
+            fun (x62 : int) ->
               Ojs.set_prop_ascii (t_to_js x61) "code_and_metadata_size"
-                (Ojs.float_to_js x62)
-        let (get_bytecode_and_metadata_size : t -> float) =
+                (Ojs.int_to_js x62)
+        let (get_bytecode_and_metadata_size : t -> int) =
           fun (x63 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x63) "bytecode_and_metadata_size")
-        let (set_bytecode_and_metadata_size : t -> float -> unit) =
+        let (set_bytecode_and_metadata_size : t -> int -> unit) =
           fun (x64 : t) ->
-            fun (x65 : float) ->
+            fun (x65 : int) ->
               Ojs.set_prop_ascii (t_to_js x64) "bytecode_and_metadata_size"
-                (Ojs.float_to_js x65)
-        let (get_external_script_source_size : t -> float) =
+                (Ojs.int_to_js x65)
+        let (get_external_script_source_size : t -> int) =
           fun (x66 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x66) "external_script_source_size")
-        let (set_external_script_source_size : t -> float -> unit) =
+        let (set_external_script_source_size : t -> int -> unit) =
           fun (x67 : t) ->
-            fun (x68 : float) ->
+            fun (x68 : int) ->
               Ojs.set_prop_ascii (t_to_js x67) "external_script_source_size"
-                (Ojs.float_to_js x68)
+                (Ojs.int_to_js x68)
       end
-    let (cachedDataVersionTag : unit -> float) =
+    let (cachedDataVersionTag : unit -> int) =
       fun () ->
-        Ojs.float_of_js (Ojs.call Import.v8 "cachedDataVersionTag" [||])
+        Ojs.int_of_js (Ojs.call Import.v8 "cachedDataVersionTag" [||])
     let (getHeapStatistics : unit -> v8_HeapInfo) =
       fun () ->
         v8_HeapInfo_of_js (Ojs.call Import.v8 "getHeapStatistics" [||])
@@ -318,32 +317,30 @@ module V8 =
           fun (x80 : t) ->
             Buffer.t_of_js (Ojs.call (t_to_js x80) "releaseBuffer" [||])
         let (transferArrayBuffer :
-          t -> id:float -> arrayBuffer:ArrayBuffer.t -> unit) =
+          t -> id:int -> arrayBuffer:ArrayBuffer.t -> unit) =
           fun (x83 : t) ->
-            fun ~id:(x81 : float) ->
+            fun ~id:(x81 : int) ->
               fun ~arrayBuffer:(x82 : ArrayBuffer.t) ->
                 ignore
                   (Ojs.call (t_to_js x83) "transferArrayBuffer"
-                     [|(Ojs.float_to_js x81);(ArrayBuffer.t_to_js x82)|])
-        let (writeUint32 : t -> value:float -> unit) =
+                     [|(Ojs.int_to_js x81);(ArrayBuffer.t_to_js x82)|])
+        let (writeUint32 : t -> value:int -> unit) =
           fun (x85 : t) ->
-            fun ~value:(x84 : float) ->
+            fun ~value:(x84 : int) ->
               ignore
-                (Ojs.call (t_to_js x85) "writeUint32"
-                   [|(Ojs.float_to_js x84)|])
-        let (writeUint64 : t -> hi:float -> lo:float -> unit) =
+                (Ojs.call (t_to_js x85) "writeUint32" [|(Ojs.int_to_js x84)|])
+        let (writeUint64 : t -> hi:int -> lo:int -> unit) =
           fun (x88 : t) ->
-            fun ~hi:(x86 : float) ->
-              fun ~lo:(x87 : float) ->
+            fun ~hi:(x86 : int) ->
+              fun ~lo:(x87 : int) ->
                 ignore
                   (Ojs.call (t_to_js x88) "writeUint64"
-                     [|(Ojs.float_to_js x86);(Ojs.float_to_js x87)|])
-        let (writeDouble : t -> value:float -> unit) =
+                     [|(Ojs.int_to_js x86);(Ojs.int_to_js x87)|])
+        let (writeDouble : t -> value:int -> unit) =
           fun (x90 : t) ->
-            fun ~value:(x89 : float) ->
+            fun ~value:(x89 : int) ->
               ignore
-                (Ojs.call (t_to_js x90) "writeDouble"
-                   [|(Ojs.float_to_js x89)|])
+                (Ojs.call (t_to_js x90) "writeDouble" [|(Ojs.int_to_js x89)|])
         let (writeRawBytes : t -> buffer:TypedArray.t -> unit) =
           fun (x92 : t) ->
             fun ~buffer:(x91 : TypedArray.t) ->
@@ -380,34 +377,34 @@ module V8 =
           fun (x100 : t) ->
             any_of_js (Ojs.call (t_to_js x100) "readValue" [||])
         let (transferArrayBuffer :
-          t -> id:float -> arrayBuffer:ArrayBuffer.t -> unit) =
+          t -> id:int -> arrayBuffer:ArrayBuffer.t -> unit) =
           fun (x103 : t) ->
-            fun ~id:(x101 : float) ->
+            fun ~id:(x101 : int) ->
               fun ~arrayBuffer:(x102 : ArrayBuffer.t) ->
                 ignore
                   (Ojs.call (t_to_js x103) "transferArrayBuffer"
-                     [|(Ojs.float_to_js x101);(ArrayBuffer.t_to_js x102)|])
-        let (getWireFormatVersion : t -> float) =
+                     [|(Ojs.int_to_js x101);(ArrayBuffer.t_to_js x102)|])
+        let (getWireFormatVersion : t -> int) =
           fun (x104 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.call (t_to_js x104) "getWireFormatVersion" [||])
-        let (readUint32 : t -> float) =
+        let (readUint32 : t -> int) =
           fun (x105 : t) ->
-            Ojs.float_of_js (Ojs.call (t_to_js x105) "readUint32" [||])
-        let (readUint64 : t -> (float * float)) =
+            Ojs.int_of_js (Ojs.call (t_to_js x105) "readUint32" [||])
+        let (readUint64 : t -> (int * int)) =
           fun (x106 : t) ->
             let x107 = Ojs.call (t_to_js x106) "readUint64" [||] in
-            ((Ojs.float_of_js (Ojs.array_get x107 0)),
-              (Ojs.float_of_js (Ojs.array_get x107 1)))
-        let (readDouble : t -> float) =
+            ((Ojs.int_of_js (Ojs.array_get x107 0)),
+              (Ojs.int_of_js (Ojs.array_get x107 1)))
+        let (readDouble : t -> int) =
           fun (x108 : t) ->
-            Ojs.float_of_js (Ojs.call (t_to_js x108) "readDouble" [||])
-        let (readRawBytes : t -> length:float -> Buffer.t) =
+            Ojs.int_of_js (Ojs.call (t_to_js x108) "readDouble" [||])
+        let (readRawBytes : t -> length:int -> Buffer.t) =
           fun (x110 : t) ->
-            fun ~length:(x109 : float) ->
+            fun ~length:(x109 : int) ->
               Buffer.t_of_js
                 (Ojs.call (t_to_js x110) "readRawBytes"
-                   [|(Ojs.float_to_js x109)|])
+                   [|(Ojs.int_to_js x109)|])
       end
     module DefaultDeserializer =
       struct

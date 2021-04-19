@@ -2,27 +2,14 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2016
-module Internal =
+module Intl =
   struct
-    module AnonymousInterfaces = struct  end
-    module Types =
+    module DateTimeFormatPartTypes =
       struct
-        open AnonymousInterfaces
-        type _Intl_DateTimeFormat = [ `Intl_DateTimeFormat ] intf
-        and _Intl_DateTimeFormatPart = [ `Intl_DateTimeFormatPart ] intf
-        and _Intl_DateTimeFormatPartTypes =
+        type t =
           [ `day  | `dayPeriod  | `era  | `hour  | `literal  | `minute 
           | `month  | `second  | `timeZoneName  | `weekday  | `year ]
-        let rec _Intl_DateTimeFormat_of_js : Ojs.t -> _Intl_DateTimeFormat =
-          Obj.magic
-        and _Intl_DateTimeFormat_to_js : _Intl_DateTimeFormat -> Ojs.t =
-          Obj.magic
-        and _Intl_DateTimeFormatPart_of_js :
-          Ojs.t -> _Intl_DateTimeFormatPart = Obj.magic
-        and _Intl_DateTimeFormatPart_to_js :
-          _Intl_DateTimeFormatPart -> Ojs.t = Obj.magic
-        and _Intl_DateTimeFormatPartTypes_of_js :
-          Ojs.t -> _Intl_DateTimeFormatPartTypes =
+        let rec t_of_js : Ojs.t -> t =
           fun (x2 : Ojs.t) ->
             let x3 = x2 in
             match Ojs.string_of_js x3 with
@@ -38,8 +25,7 @@ module Internal =
             | "weekday" -> `weekday
             | "year" -> `year
             | _ -> assert false
-        and _Intl_DateTimeFormatPartTypes_to_js :
-          _Intl_DateTimeFormatPartTypes -> Ojs.t =
+        and t_to_js : t -> Ojs.t =
           fun
             (x1 :
               [ `day  | `dayPeriod  | `era  | `hour  | `literal  | `minute 
@@ -58,70 +44,50 @@ module Internal =
             | `weekday -> Ojs.string_to_js "weekday"
             | `year -> Ojs.string_to_js "year"
       end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
-module Intl =
-  struct
-    module DateTimeFormatPartTypes =
-      struct
-        type t = _Intl_DateTimeFormatPartTypes
-        let rec t_of_js : Ojs.t -> t =
-          fun (x5 : Ojs.t) -> _Intl_DateTimeFormatPartTypes_of_js x5
-        and t_to_js : t -> Ojs.t =
-          fun (x4 : _Intl_DateTimeFormatPartTypes) ->
-            _Intl_DateTimeFormatPartTypes_to_js x4
-      end
     module DateTimeFormatPart =
       struct
-        type t = _Intl_DateTimeFormatPart
-        let rec t_of_js : Ojs.t -> t =
-          fun (x7 : Ojs.t) -> _Intl_DateTimeFormatPart_of_js x7
-        and t_to_js : t -> Ojs.t =
-          fun (x6 : _Intl_DateTimeFormatPart) ->
-            _Intl_DateTimeFormatPart_to_js x6
-        let (get_type : t -> _Intl_DateTimeFormatPartTypes) =
-          fun (x8 : t) ->
-            _Intl_DateTimeFormatPartTypes_of_js
-              (Ojs.get_prop_ascii (t_to_js x8) "type")
-        let (set_type : t -> _Intl_DateTimeFormatPartTypes -> unit) =
-          fun (x9 : t) ->
-            fun (x10 : _Intl_DateTimeFormatPartTypes) ->
-              Ojs.set_prop_ascii (t_to_js x9) "type"
-                (_Intl_DateTimeFormatPartTypes_to_js x10)
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x5 : Ojs.t) -> x5
+        and t_to_js : t -> Ojs.t = fun (x4 : Ojs.t) -> x4
+        let (get_type : t -> DateTimeFormatPartTypes.t) =
+          fun (x6 : t) ->
+            DateTimeFormatPartTypes.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x6) "type")
+        let (set_type : t -> DateTimeFormatPartTypes.t -> unit) =
+          fun (x7 : t) ->
+            fun (x8 : DateTimeFormatPartTypes.t) ->
+              Ojs.set_prop_ascii (t_to_js x7) "type"
+                (DateTimeFormatPartTypes.t_to_js x8)
         let (get_value : t -> string) =
-          fun (x11 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x11) "value")
+          fun (x9 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x9) "value")
         let (set_value : t -> string -> unit) =
-          fun (x12 : t) ->
-            fun (x13 : string) ->
-              Ojs.set_prop_ascii (t_to_js x12) "value" (Ojs.string_to_js x13)
+          fun (x10 : t) ->
+            fun (x11 : string) ->
+              Ojs.set_prop_ascii (t_to_js x10) "value" (Ojs.string_to_js x11)
       end
     module DateTimeFormat =
       struct
         include struct include DateTimeFormat end
         let (formatToParts :
-          t ->
-            ?date:Date.t or_number -> unit -> _Intl_DateTimeFormatPart list)
-          =
-          fun (x18 : t) ->
-            fun ?date:(x14 : Date.t or_number option) ->
+          t -> ?date:Date.t or_number -> unit -> DateTimeFormatPart.t list) =
+          fun (x16 : t) ->
+            fun ?date:(x12 : Date.t or_number option) ->
               fun () ->
-                Ojs.list_of_js _Intl_DateTimeFormatPart_of_js
-                  (let x19 = t_to_js x18 in
-                   Ojs.call (Ojs.get_prop_ascii x19 "formatToParts") "apply"
-                     [|x19;((let x15 =
+                Ojs.list_of_js DateTimeFormatPart.t_of_js
+                  (let x17 = t_to_js x16 in
+                   Ojs.call (Ojs.get_prop_ascii x17 "formatToParts") "apply"
+                     [|x17;((let x13 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
-                             (match x14 with
-                              | Some x16 ->
+                             (match x12 with
+                              | Some x14 ->
                                   ignore
-                                    (Ojs.call x15 "push"
-                                       [|(or_number_to_js Date.t_to_js x16)|])
+                                    (Ojs.call x13 "push"
+                                       [|(or_number_to_js Date.t_to_js x14)|])
                               | None -> ());
-                             x15))|])
+                             x13))|])
       end
   end
 include struct include Intl end

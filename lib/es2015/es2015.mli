@@ -33,3 +33,5 @@ end
 include module type of struct
   include Es2015_symbol
 end
+
+(* We don't include wellknown, nothing there is of any interest *)

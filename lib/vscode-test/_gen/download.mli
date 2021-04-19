@@ -76,5 +76,5 @@ module Make (M: Missing) : sig
     val t_0_of_js: Ojs.t -> t_0
   end
   val downloadAndUnzipVSCode: ?version:_DownloadVersion -> ?platform:_DownloadPlatform -> unit -> string Promise.t_1 [@@js.global "downloadAndUnzipVSCode"]
-  (* export {}; *)
+  
 end

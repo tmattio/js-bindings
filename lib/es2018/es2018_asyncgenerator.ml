@@ -3,44 +3,6 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2017
 open Es2018_asynciterable
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type ('T, 'TReturn, 'TNext) _AsyncGenerator =
-          [ `AsyncGenerator of ('T * 'TReturn * 'TNext) ] intf
-        and _AsyncGeneratorFunction = [ `AsyncGeneratorFunction ] intf
-        and _AsyncGeneratorFunctionConstructor =
-          [ `AsyncGeneratorFunctionConstructor ] intf
-        let rec _AsyncGenerator_of_js :
-          'T 'TReturn 'TNext .
-            (Ojs.t -> 'T) ->
-              (Ojs.t -> 'TReturn) ->
-                (Ojs.t -> 'TNext) ->
-                  Ojs.t -> ('T, 'TReturn, 'TNext) _AsyncGenerator
-          = fun _T -> fun _TReturn -> fun _TNext -> Obj.magic
-        and _AsyncGenerator_to_js :
-          'T 'TReturn 'TNext .
-            ('T -> Ojs.t) ->
-              ('TReturn -> Ojs.t) ->
-                ('TNext -> Ojs.t) ->
-                  ('T, 'TReturn, 'TNext) _AsyncGenerator -> Ojs.t
-          = fun _T -> fun _TReturn -> fun _TNext -> Obj.magic
-        and _AsyncGeneratorFunction_of_js : Ojs.t -> _AsyncGeneratorFunction
-          = Obj.magic
-        and _AsyncGeneratorFunction_to_js : _AsyncGeneratorFunction -> Ojs.t
-          = Obj.magic
-        and _AsyncGeneratorFunctionConstructor_of_js :
-          Ojs.t -> _AsyncGeneratorFunctionConstructor = Obj.magic
-        and _AsyncGeneratorFunctionConstructor_to_js :
-          _AsyncGeneratorFunctionConstructor -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module AsyncGenerator =
   struct
     include struct include AsyncIterator end
@@ -123,12 +85,9 @@ module AsyncGenerator =
   end
 module AsyncGeneratorFunction =
   struct
-    type t = _AsyncGeneratorFunction
-    let rec t_of_js : Ojs.t -> t =
-      fun (x56 : Ojs.t) -> _AsyncGeneratorFunction_of_js x56
-    and t_to_js : t -> Ojs.t =
-      fun (x55 : _AsyncGeneratorFunction) ->
-        _AsyncGeneratorFunction_to_js x55
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x56 : Ojs.t) -> x56
+    and t_to_js : t -> Ojs.t = fun (x55 : Ojs.t) -> x55
     let (create :
       t -> args:any list -> (unknown, any, unknown) AsyncGenerator.t) =
       fun (x60 : t) ->
@@ -157,9 +116,9 @@ module AsyncGeneratorFunction =
                                    (Ojs.call x65 "push" [|(any_to_js x66)|]))
                               x64;
                             x65))|])
-    let (get_length : t -> float) =
+    let (get_length : t -> int) =
       fun (x71 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x71) "length")
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x71) "length")
     let (get_name : t -> string) =
       fun (x72 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x72) "name")
@@ -170,16 +129,13 @@ module AsyncGeneratorFunction =
   end
 module AsyncGeneratorFunctionConstructor =
   struct
-    type t = _AsyncGeneratorFunctionConstructor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x78 : Ojs.t) -> _AsyncGeneratorFunctionConstructor_of_js x78
-    and t_to_js : t -> Ojs.t =
-      fun (x77 : _AsyncGeneratorFunctionConstructor) ->
-        _AsyncGeneratorFunctionConstructor_to_js x77
-    let (create : t -> string list -> _AsyncGeneratorFunction) =
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x78 : Ojs.t) -> x78
+    and t_to_js : t -> Ojs.t = fun (x77 : Ojs.t) -> x77
+    let (create : t -> string list -> AsyncGeneratorFunction.t) =
       fun (x82 : t) ->
         fun (x79 : string list) ->
-          _AsyncGeneratorFunction_of_js
+          AsyncGeneratorFunction.t_of_js
             (Ojs.new_obj_arr (t_to_js x82)
                (let x80 =
                   Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
@@ -188,10 +144,10 @@ module AsyncGeneratorFunctionConstructor =
                      ignore (Ojs.call x80 "push" [|(Ojs.string_to_js x81)|]))
                   x79;
                 x80))
-    let (apply : t -> string list -> _AsyncGeneratorFunction) =
+    let (apply : t -> string list -> AsyncGeneratorFunction.t) =
       fun (x86 : t) ->
         fun (x83 : string list) ->
-          _AsyncGeneratorFunction_of_js
+          AsyncGeneratorFunction.t_of_js
             (Ojs.call (t_to_js x86) "apply"
                [|Ojs.null;((let x84 =
                               Ojs.new_obj
@@ -203,14 +159,14 @@ module AsyncGeneratorFunctionConstructor =
                                    (Ojs.call x84 "push"
                                       [|(Ojs.string_to_js x85)|])) x83;
                             x84))|])
-    let (get_length : t -> float) =
+    let (get_length : t -> int) =
       fun (x87 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x87) "length")
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x87) "length")
     let (get_name : t -> string) =
       fun (x88 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x88) "name")
-    let (get_prototype : t -> _AsyncGeneratorFunction) =
+    let (get_prototype : t -> AsyncGeneratorFunction.t) =
       fun (x89 : t) ->
-        _AsyncGeneratorFunction_of_js
+        AsyncGeneratorFunction.t_of_js
           (Ojs.get_prop_ascii (t_to_js x89) "prototype")
   end

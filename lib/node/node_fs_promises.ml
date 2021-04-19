@@ -136,13 +136,13 @@ module AnonymousInterface2 =
       fun (x14 : Ojs.t) -> anonymous_interface_2_of_js x14
     and t_to_js : t -> Ojs.t =
       fun (x13 : anonymous_interface_2) -> anonymous_interface_2_to_js x13
-    let (get_bytesRead : t -> float) =
+    let (get_bytesRead : t -> int) =
       fun (x15 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x15) "bytesRead")
-    let (set_bytesRead : t -> float -> unit) =
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x15) "bytesRead")
+    let (set_bytesRead : t -> int -> unit) =
       fun (x16 : t) ->
-        fun (x17 : float) ->
-          Ojs.set_prop_ascii (t_to_js x16) "bytesRead" (Ojs.float_to_js x17)
+        fun (x17 : int) ->
+          Ojs.set_prop_ascii (t_to_js x16) "bytesRead" (Ojs.int_to_js x17)
     let (get_buffer : t -> 'TBuffer) =
       fun (x18 : t) -> Obj.magic (Ojs.get_prop_ascii (t_to_js x18) "buffer")
     let (set_buffer : t -> 'TBuffer -> unit) =
@@ -157,14 +157,13 @@ module AnonymousInterface3 =
       fun (x22 : Ojs.t) -> anonymous_interface_3_of_js x22
     and t_to_js : t -> Ojs.t =
       fun (x21 : anonymous_interface_3) -> anonymous_interface_3_to_js x21
-    let (get_bytesWritten : t -> float) =
+    let (get_bytesWritten : t -> int) =
       fun (x23 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x23) "bytesWritten")
-    let (set_bytesWritten : t -> float -> unit) =
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x23) "bytesWritten")
+    let (set_bytesWritten : t -> int -> unit) =
       fun (x24 : t) ->
-        fun (x25 : float) ->
-          Ojs.set_prop_ascii (t_to_js x24) "bytesWritten"
-            (Ojs.float_to_js x25)
+        fun (x25 : int) ->
+          Ojs.set_prop_ascii (t_to_js x24) "bytesWritten" (Ojs.int_to_js x25)
     let (get_buffer : t -> 'TBuffer) =
       fun (x26 : t) -> Obj.magic (Ojs.get_prop_ascii (t_to_js x26) "buffer")
     let (set_buffer : t -> 'TBuffer -> unit) =
@@ -179,14 +178,13 @@ module AnonymousInterface4 =
       fun (x30 : Ojs.t) -> anonymous_interface_4_of_js x30
     and t_to_js : t -> Ojs.t =
       fun (x29 : anonymous_interface_4) -> anonymous_interface_4_to_js x29
-    let (get_bytesWritten : t -> float) =
+    let (get_bytesWritten : t -> int) =
       fun (x31 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x31) "bytesWritten")
-    let (set_bytesWritten : t -> float -> unit) =
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x31) "bytesWritten")
+    let (set_bytesWritten : t -> int -> unit) =
       fun (x32 : t) ->
-        fun (x33 : float) ->
-          Ojs.set_prop_ascii (t_to_js x32) "bytesWritten"
-            (Ojs.float_to_js x33)
+        fun (x33 : int) ->
+          Ojs.set_prop_ascii (t_to_js x32) "bytesWritten" (Ojs.int_to_js x33)
     let (get_buffer : t -> string) =
       fun (x34 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x34) "buffer")
@@ -390,9 +388,9 @@ module Fs_promises =
         and t_to_js : t -> Ojs.t =
           fun (x102 : node_fs_promises_FileHandle) ->
             node_fs_promises_FileHandle_to_js x102
-        let (get_fd : t -> float) =
+        let (get_fd : t -> int) =
           fun (x104 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x104) "fd")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x104) "fd")
         let (appendFile :
           t ->
             data:Uint8Array.t or_string ->
@@ -421,13 +419,13 @@ module Fs_promises =
                                                BufferEncoding.t_to_js x108)|])
                                  | None -> ());
                                 x107))|])
-        let (chown : t -> uid:float -> gid:float -> unit Promise.t) =
+        let (chown : t -> uid:int -> gid:int -> unit Promise.t) =
           fun (x116 : t) ->
-            fun ~uid:(x114 : float) ->
-              fun ~gid:(x115 : float) ->
+            fun ~uid:(x114 : int) ->
+              fun ~gid:(x115 : int) ->
                 Promise.t_of_js Ojs.unit_of_js
                   (Ojs.call (t_to_js x116) "chown"
-                     [|(Ojs.float_to_js x114);(Ojs.float_to_js x115)|])
+                     [|(Ojs.int_to_js x114);(Ojs.int_to_js x115)|])
         let (chmod : t -> mode:Mode.t -> unit Promise.t) =
           fun (x119 : t) ->
             fun ~mode:(x118 : Mode.t) ->
@@ -444,16 +442,16 @@ module Fs_promises =
         let (read :
           t ->
             buffer:'TBuffer ->
-              ?offset:float or_null ->
-                ?length:float or_null ->
-                  ?position:float or_null ->
+              ?offset:int or_null ->
+                ?length:int or_null ->
+                  ?position:int or_null ->
                     unit -> anonymous_interface_2 Promise.t)
           =
           fun (x136 : t) ->
             fun ~buffer:(x125 : 'TBuffer) ->
-              fun ?offset:(x126 : float or_null option) ->
-                fun ?length:(x127 : float or_null option) ->
-                  fun ?position:(x128 : float or_null option) ->
+              fun ?offset:(x126 : int or_null option) ->
+                fun ?length:(x127 : int or_null option) ->
+                  fun ?position:(x128 : int or_null option) ->
                     fun () ->
                       Promise.t_of_js anonymous_interface_2_of_js
                         (let x137 = t_to_js x136 in
@@ -469,22 +467,22 @@ module Fs_promises =
                                      | Some x134 ->
                                          ignore
                                            (Ojs.call x129 "push"
-                                              [|(or_null_to_js
-                                                   Ojs.float_to_js x134)|])
+                                              [|(or_null_to_js Ojs.int_to_js
+                                                   x134)|])
                                      | None -> ());
                                     (match x127 with
                                      | Some x132 ->
                                          ignore
                                            (Ojs.call x129 "push"
-                                              [|(or_null_to_js
-                                                   Ojs.float_to_js x132)|])
+                                              [|(or_null_to_js Ojs.int_to_js
+                                                   x132)|])
                                      | None -> ());
                                     (match x128 with
                                      | Some x130 ->
                                          ignore
                                            (Ojs.call x129 "push"
-                                              [|(or_null_to_js
-                                                   Ojs.float_to_js x130)|])
+                                              [|(or_null_to_js Ojs.int_to_js
+                                                   x130)|])
                                      | None -> ());
                                     x129))|])
         let (readFile :
@@ -614,9 +612,9 @@ module Fs_promises =
                                         [|(StatOptions.t_to_js x174)|])
                                | None -> ());
                               x173))|])
-        let (truncate : t -> ?len:float -> unit -> unit Promise.t) =
+        let (truncate : t -> ?len:int -> unit -> unit Promise.t) =
           fun (x183 : t) ->
-            fun ?len:(x180 : float option) ->
+            fun ?len:(x180 : int option) ->
               fun () ->
                 Promise.t_of_js Ojs.unit_of_js
                   (let x184 = t_to_js x183 in
@@ -629,7 +627,7 @@ module Fs_promises =
                                | Some x182 ->
                                    ignore
                                      (Ojs.call x181 "push"
-                                        [|(Ojs.float_to_js x182)|])
+                                        [|(Ojs.int_to_js x182)|])
                                | None -> ());
                               x181))|])
         let (utimes :
@@ -651,16 +649,16 @@ module Fs_promises =
         let (write :
           t ->
             buffer:'TBuffer ->
-              ?offset:float or_null ->
-                ?length:float or_null ->
-                  ?position:float or_null ->
+              ?offset:int or_null ->
+                ?length:int or_null ->
+                  ?position:int or_null ->
                     unit -> anonymous_interface_3 Promise.t)
           =
           fun (x205 : t) ->
             fun ~buffer:(x194 : 'TBuffer) ->
-              fun ?offset:(x195 : float or_null option) ->
-                fun ?length:(x196 : float or_null option) ->
-                  fun ?position:(x197 : float or_null option) ->
+              fun ?offset:(x195 : int or_null option) ->
+                fun ?length:(x196 : int or_null option) ->
+                  fun ?position:(x197 : int or_null option) ->
                     fun () ->
                       Promise.t_of_js anonymous_interface_3_of_js
                         (let x206 = t_to_js x205 in
@@ -676,34 +674,34 @@ module Fs_promises =
                                      | Some x203 ->
                                          ignore
                                            (Ojs.call x198 "push"
-                                              [|(or_null_to_js
-                                                   Ojs.float_to_js x203)|])
+                                              [|(or_null_to_js Ojs.int_to_js
+                                                   x203)|])
                                      | None -> ());
                                     (match x196 with
                                      | Some x201 ->
                                          ignore
                                            (Ojs.call x198 "push"
-                                              [|(or_null_to_js
-                                                   Ojs.float_to_js x201)|])
+                                              [|(or_null_to_js Ojs.int_to_js
+                                                   x201)|])
                                      | None -> ());
                                     (match x197 with
                                      | Some x199 ->
                                          ignore
                                            (Ojs.call x198 "push"
-                                              [|(or_null_to_js
-                                                   Ojs.float_to_js x199)|])
+                                              [|(or_null_to_js Ojs.int_to_js
+                                                   x199)|])
                                      | None -> ());
                                     x198))|])
         let (write' :
           t ->
             data:Uint8Array.t or_string ->
-              ?position:float or_null ->
+              ?position:int or_null ->
                 ?encoding:BufferEncoding.t or_null ->
                   unit -> anonymous_interface_4 Promise.t)
           =
           fun (x217 : t) ->
             fun ~data:(x208 : Uint8Array.t or_string) ->
-              fun ?position:(x209 : float or_null option) ->
+              fun ?position:(x209 : int or_null option) ->
                 fun ?encoding:(x210 : BufferEncoding.t or_null option) ->
                   fun () ->
                     Promise.t_of_js anonymous_interface_4_of_js
@@ -721,7 +719,7 @@ module Fs_promises =
                                    | Some x214 ->
                                        ignore
                                          (Ojs.call x211 "push"
-                                            [|(or_null_to_js Ojs.float_to_js
+                                            [|(or_null_to_js Ojs.int_to_js
                                                  x214)|])
                                    | None -> ());
                                   (match x210 with
@@ -763,11 +761,11 @@ module Fs_promises =
         let (writev :
           t ->
             buffers:ArrayBufferView.t list ->
-              ?position:float -> unit -> WriteVResult.t Promise.t)
+              ?position:int -> unit -> WriteVResult.t Promise.t)
           =
           fun (x234 : t) ->
             fun ~buffers:(x229 : ArrayBufferView.t list) ->
-              fun ?position:(x230 : float option) ->
+              fun ?position:(x230 : int option) ->
                 fun () ->
                   Promise.t_of_js WriteVResult.t_of_js
                     (let x235 = t_to_js x234 in
@@ -784,17 +782,17 @@ module Fs_promises =
                                  | Some x232 ->
                                      ignore
                                        (Ojs.call x231 "push"
-                                          [|(Ojs.float_to_js x232)|])
+                                          [|(Ojs.int_to_js x232)|])
                                  | None -> ());
                                 x231))|])
         let (readv :
           t ->
             buffers:ArrayBufferView.t list ->
-              ?position:float -> unit -> ReadVResult.t Promise.t)
+              ?position:int -> unit -> ReadVResult.t Promise.t)
           =
           fun (x242 : t) ->
             fun ~buffers:(x237 : ArrayBufferView.t list) ->
-              fun ?position:(x238 : float option) ->
+              fun ?position:(x238 : int option) ->
                 fun () ->
                   Promise.t_of_js ReadVResult.t_of_js
                     (let x243 = t_to_js x242 in
@@ -811,7 +809,7 @@ module Fs_promises =
                                  | Some x240 ->
                                      ignore
                                        (Ojs.call x239 "push"
-                                          [|(Ojs.float_to_js x240)|])
+                                          [|(Ojs.int_to_js x240)|])
                                  | None -> ());
                                 x239))|])
         let (close : t -> unit Promise.t) =
@@ -819,9 +817,9 @@ module Fs_promises =
             Promise.t_of_js Ojs.unit_of_js
               (Ojs.call (t_to_js x245) "close" [||])
       end
-    let (access : path:string -> ?mode:float -> unit -> unit Promise.t) =
+    let (access : path:string -> ?mode:int -> unit -> unit Promise.t) =
       fun ~path:(x247 : string) ->
-        fun ?mode:(x248 : float option) ->
+        fun ?mode:(x248 : int option) ->
           fun () ->
             Promise.t_of_js Ojs.unit_of_js
               (let x251 = Import.fs_promises in
@@ -836,14 +834,14 @@ module Fs_promises =
                            | Some x250 ->
                                ignore
                                  (Ojs.call x249 "push"
-                                    [|(Ojs.float_to_js x250)|])
+                                    [|(Ojs.int_to_js x250)|])
                            | None -> ());
                           x249))|])
     let (copyFile :
-      src:string -> dest:string -> ?flags:float -> unit -> unit Promise.t) =
+      src:string -> dest:string -> ?flags:int -> unit -> unit Promise.t) =
       fun ~src:(x253 : string) ->
         fun ~dest:(x254 : string) ->
-          fun ?flags:(x255 : float option) ->
+          fun ?flags:(x255 : int option) ->
             fun () ->
               Promise.t_of_js Ojs.unit_of_js
                 (let x258 = Import.fs_promises in
@@ -862,7 +860,7 @@ module Fs_promises =
                              | Some x257 ->
                                  ignore
                                    (Ojs.call x256 "push"
-                                      [|(Ojs.float_to_js x257)|])
+                                      [|(Ojs.int_to_js x257)|])
                              | None -> ());
                             x256))|])
     let (open_ :
@@ -897,16 +895,16 @@ module Fs_promises =
     let (read :
       handle:node_fs_promises_FileHandle ->
         buffer:'TBuffer ->
-          ?offset:float or_null ->
-            ?length:float or_null ->
-              ?position:float or_null ->
+          ?offset:int or_null ->
+            ?length:int or_null ->
+              ?position:int or_null ->
                 unit -> anonymous_interface_2 Promise.t)
       =
       fun ~handle:(x268 : node_fs_promises_FileHandle) ->
         fun ~buffer:(x269 : 'TBuffer) ->
-          fun ?offset:(x270 : float or_null option) ->
-            fun ?length:(x271 : float or_null option) ->
-              fun ?position:(x272 : float or_null option) ->
+          fun ?offset:(x270 : int or_null option) ->
+            fun ?length:(x271 : int or_null option) ->
+              fun ?position:(x272 : int or_null option) ->
                 fun () ->
                   Promise.t_of_js anonymous_interface_2_of_js
                     (let x280 = Import.fs_promises in
@@ -925,37 +923,34 @@ module Fs_promises =
                                  | Some x278 ->
                                      ignore
                                        (Ojs.call x273 "push"
-                                          [|(or_null_to_js Ojs.float_to_js
-                                               x278)|])
+                                          [|(or_null_to_js Ojs.int_to_js x278)|])
                                  | None -> ());
                                 (match x271 with
                                  | Some x276 ->
                                      ignore
                                        (Ojs.call x273 "push"
-                                          [|(or_null_to_js Ojs.float_to_js
-                                               x276)|])
+                                          [|(or_null_to_js Ojs.int_to_js x276)|])
                                  | None -> ());
                                 (match x272 with
                                  | Some x274 ->
                                      ignore
                                        (Ojs.call x273 "push"
-                                          [|(or_null_to_js Ojs.float_to_js
-                                               x274)|])
+                                          [|(or_null_to_js Ojs.int_to_js x274)|])
                                  | None -> ());
                                 x273))|])
     let (write :
       handle:node_fs_promises_FileHandle ->
         buffer:'TBuffer ->
-          ?offset:float or_null ->
-            ?length:float or_null ->
-              ?position:float or_null ->
+          ?offset:int or_null ->
+            ?length:int or_null ->
+              ?position:int or_null ->
                 unit -> anonymous_interface_3 Promise.t)
       =
       fun ~handle:(x282 : node_fs_promises_FileHandle) ->
         fun ~buffer:(x283 : 'TBuffer) ->
-          fun ?offset:(x284 : float or_null option) ->
-            fun ?length:(x285 : float or_null option) ->
-              fun ?position:(x286 : float or_null option) ->
+          fun ?offset:(x284 : int or_null option) ->
+            fun ?length:(x285 : int or_null option) ->
+              fun ?position:(x286 : int or_null option) ->
                 fun () ->
                   Promise.t_of_js anonymous_interface_3_of_js
                     (let x294 = Import.fs_promises in
@@ -974,34 +969,31 @@ module Fs_promises =
                                  | Some x292 ->
                                      ignore
                                        (Ojs.call x287 "push"
-                                          [|(or_null_to_js Ojs.float_to_js
-                                               x292)|])
+                                          [|(or_null_to_js Ojs.int_to_js x292)|])
                                  | None -> ());
                                 (match x285 with
                                  | Some x290 ->
                                      ignore
                                        (Ojs.call x287 "push"
-                                          [|(or_null_to_js Ojs.float_to_js
-                                               x290)|])
+                                          [|(or_null_to_js Ojs.int_to_js x290)|])
                                  | None -> ());
                                 (match x286 with
                                  | Some x288 ->
                                      ignore
                                        (Ojs.call x287 "push"
-                                          [|(or_null_to_js Ojs.float_to_js
-                                               x288)|])
+                                          [|(or_null_to_js Ojs.int_to_js x288)|])
                                  | None -> ());
                                 x287))|])
     let (write :
       handle:node_fs_promises_FileHandle ->
         string:string ->
-          ?position:float or_null ->
+          ?position:int or_null ->
             ?encoding:BufferEncoding.t or_null ->
               unit -> anonymous_interface_4 Promise.t)
       =
       fun ~handle:(x296 : node_fs_promises_FileHandle) ->
         fun ~string:(x297 : string) ->
-          fun ?position:(x298 : float or_null option) ->
+          fun ?position:(x298 : int or_null option) ->
             fun ?encoding:(x299 : BufferEncoding.t or_null option) ->
               fun () ->
                 Promise.t_of_js anonymous_interface_4_of_js
@@ -1021,7 +1013,7 @@ module Fs_promises =
                                | Some x303 ->
                                    ignore
                                      (Ojs.call x300 "push"
-                                        [|(or_null_to_js Ojs.float_to_js x303)|])
+                                        [|(or_null_to_js Ojs.int_to_js x303)|])
                                | None -> ());
                               (match x299 with
                                | Some x301 ->
@@ -1037,9 +1029,9 @@ module Fs_promises =
           Promise.t_of_js Ojs.unit_of_js
             (Ojs.call Import.fs_promises "rename"
                [|(Ojs.string_to_js x307);(Ojs.string_to_js x308)|])
-    let (truncate : path:string -> ?len:float -> unit -> unit Promise.t) =
+    let (truncate : path:string -> ?len:int -> unit -> unit Promise.t) =
       fun ~path:(x310 : string) ->
-        fun ?len:(x311 : float option) ->
+        fun ?len:(x311 : int option) ->
           fun () ->
             Promise.t_of_js Ojs.unit_of_js
               (let x314 = Import.fs_promises in
@@ -1054,15 +1046,15 @@ module Fs_promises =
                            | Some x313 ->
                                ignore
                                  (Ojs.call x312 "push"
-                                    [|(Ojs.float_to_js x313)|])
+                                    [|(Ojs.int_to_js x313)|])
                            | None -> ());
                           x312))|])
     let (ftruncate :
       handle:node_fs_promises_FileHandle ->
-        ?len:float -> unit -> unit Promise.t)
+        ?len:int -> unit -> unit Promise.t)
       =
       fun ~handle:(x316 : node_fs_promises_FileHandle) ->
-        fun ?len:(x317 : float option) ->
+        fun ?len:(x317 : int option) ->
           fun () ->
             Promise.t_of_js Ojs.unit_of_js
               (let x320 = Import.fs_promises in
@@ -1078,7 +1070,7 @@ module Fs_promises =
                            | Some x319 ->
                                ignore
                                  (Ojs.call x318 "push"
-                                    [|(Ojs.float_to_js x319)|])
+                                    [|(Ojs.int_to_js x319)|])
                            | None -> ());
                           x318))|])
     let (rmdir :
@@ -1567,14 +1559,14 @@ module Fs_promises =
           Promise.t_of_js Ojs.unit_of_js
             (Ojs.call Import.fs_promises "lchmod"
                [|(Ojs.string_to_js x472);(Mode.t_to_js x473)|])
-    let (lchown : path:string -> uid:float -> gid:float -> unit Promise.t) =
+    let (lchown : path:string -> uid:int -> gid:int -> unit Promise.t) =
       fun ~path:(x475 : string) ->
-        fun ~uid:(x476 : float) ->
-          fun ~gid:(x477 : float) ->
+        fun ~uid:(x476 : int) ->
+          fun ~gid:(x477 : int) ->
             Promise.t_of_js Ojs.unit_of_js
               (Ojs.call Import.fs_promises "lchown"
-                 [|(Ojs.string_to_js x475);(Ojs.float_to_js x476);(Ojs.float_to_js
-                                                                    x477)|])
+                 [|(Ojs.string_to_js x475);(Ojs.int_to_js x476);(Ojs.int_to_js
+                                                                   x477)|])
     let (lutimes :
       path:string ->
         atime:Date.t or_string or_number ->
@@ -1601,24 +1593,24 @@ module Fs_promises =
                                                                   x483)|])
     let (fchown :
       handle:node_fs_promises_FileHandle ->
-        uid:float -> gid:float -> unit Promise.t)
+        uid:int -> gid:int -> unit Promise.t)
       =
       fun ~handle:(x487 : node_fs_promises_FileHandle) ->
-        fun ~uid:(x488 : float) ->
-          fun ~gid:(x489 : float) ->
+        fun ~uid:(x488 : int) ->
+          fun ~gid:(x489 : int) ->
             Promise.t_of_js Ojs.unit_of_js
               (Ojs.call Import.fs_promises "fchown"
-                 [|(node_fs_promises_FileHandle_to_js x487);(Ojs.float_to_js
+                 [|(node_fs_promises_FileHandle_to_js x487);(Ojs.int_to_js
                                                                x488);(
-                   Ojs.float_to_js x489)|])
-    let (chown : path:string -> uid:float -> gid:float -> unit Promise.t) =
+                   Ojs.int_to_js x489)|])
+    let (chown : path:string -> uid:int -> gid:int -> unit Promise.t) =
       fun ~path:(x491 : string) ->
-        fun ~uid:(x492 : float) ->
-          fun ~gid:(x493 : float) ->
+        fun ~uid:(x492 : int) ->
+          fun ~gid:(x493 : int) ->
             Promise.t_of_js Ojs.unit_of_js
               (Ojs.call Import.fs_promises "chown"
-                 [|(Ojs.string_to_js x491);(Ojs.float_to_js x492);(Ojs.float_to_js
-                                                                    x493)|])
+                 [|(Ojs.string_to_js x491);(Ojs.int_to_js x492);(Ojs.int_to_js
+                                                                   x493)|])
     let (utimes :
       path:string ->
         atime:Date.t or_string or_number ->

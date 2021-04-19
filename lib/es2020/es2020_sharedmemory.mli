@@ -5,21 +5,6 @@
 open Es2019
 open Es2020_bigint
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _Atomics = [ `Atomics ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module Atomics : sig
   include module type of struct
     include Atomics
@@ -28,7 +13,7 @@ module Atomics : sig
   val add
     :  t
     -> typedArray:(BigInt64Array.t, BigUint64Array.t) union2
-    -> index:float
+    -> index:int
     -> value:bigint
     -> bigint
     [@@js.call "add"]
@@ -36,7 +21,7 @@ module Atomics : sig
   val and_
     :  t
     -> typedArray:(BigInt64Array.t, BigUint64Array.t) union2
-    -> index:float
+    -> index:int
     -> value:bigint
     -> bigint
     [@@js.call "and"]
@@ -44,7 +29,7 @@ module Atomics : sig
   val compareExchange
     :  t
     -> typedArray:(BigInt64Array.t, BigUint64Array.t) union2
-    -> index:float
+    -> index:int
     -> expectedValue:bigint
     -> replacementValue:bigint
     -> bigint
@@ -53,7 +38,7 @@ module Atomics : sig
   val exchange
     :  t
     -> typedArray:(BigInt64Array.t, BigUint64Array.t) union2
-    -> index:float
+    -> index:int
     -> value:bigint
     -> bigint
     [@@js.call "exchange"]
@@ -61,14 +46,14 @@ module Atomics : sig
   val load
     :  t
     -> typedArray:(BigInt64Array.t, BigUint64Array.t) union2
-    -> index:float
+    -> index:int
     -> bigint
     [@@js.call "load"]
 
   val or_
     :  t
     -> typedArray:(BigInt64Array.t, BigUint64Array.t) union2
-    -> index:float
+    -> index:int
     -> value:bigint
     -> bigint
     [@@js.call "or"]
@@ -76,7 +61,7 @@ module Atomics : sig
   val store
     :  t
     -> typedArray:(BigInt64Array.t, BigUint64Array.t) union2
-    -> index:float
+    -> index:int
     -> value:bigint
     -> bigint
     [@@js.call "store"]
@@ -84,7 +69,7 @@ module Atomics : sig
   val sub
     :  t
     -> typedArray:(BigInt64Array.t, BigUint64Array.t) union2
-    -> index:float
+    -> index:int
     -> value:bigint
     -> bigint
     [@@js.call "sub"]
@@ -92,9 +77,9 @@ module Atomics : sig
   val wait
     :  t
     -> typedArray:BigInt64Array.t
-    -> index:float
+    -> index:int
     -> value:bigint
-    -> ?timeout:float
+    -> ?timeout:int
     -> unit
     -> ([ `not_equal [@js "not-equal"]
         | `ok [@js "ok"]
@@ -106,16 +91,16 @@ module Atomics : sig
   val notify
     :  t
     -> typedArray:BigInt64Array.t
-    -> index:float
-    -> ?count:float
+    -> index:int
+    -> ?count:int
     -> unit
-    -> float
+    -> int
     [@@js.call "notify"]
 
   val xor
     :  t
     -> typedArray:(BigInt64Array.t, BigUint64Array.t) union2
-    -> index:float
+    -> index:int
     -> value:bigint
     -> bigint
     [@@js.call "xor"]

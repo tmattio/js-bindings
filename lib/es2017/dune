@@ -11,42 +11,42 @@
 
 (rule
  (targets es2017.ml)
- (deps intf/es2017.mli)
+ (deps es2017.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2017_intl.ml)
- (deps intf/es2017_intl.mli)
+ (deps es2017_intl.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2017_object.ml)
- (deps intf/es2017_object.mli)
+ (deps es2017_object.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2017_sharedmemory.ml)
- (deps intf/es2017_sharedmemory.mli)
+ (deps es2017_sharedmemory.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2017_string.ml)
- (deps intf/es2017_string.mli)
+ (deps es2017_string.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
  (targets es2017_typedarrays.ml)
- (deps intf/es2017_typedarrays.mli)
+ (deps es2017_typedarrays.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))

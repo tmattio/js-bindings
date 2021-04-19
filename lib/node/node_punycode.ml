@@ -43,17 +43,17 @@ module Punycode =
           fun (x6 : Ojs.t) -> punycode_ucs2_of_js x6
         and t_to_js : t -> Ojs.t =
           fun (x5 : punycode_ucs2) -> punycode_ucs2_to_js x5
-        let (decode : t -> string:string -> float list) =
+        let (decode : t -> string:string -> int list) =
           fun (x8 : t) ->
             fun ~string:(x7 : string) ->
-              Ojs.list_of_js Ojs.float_of_js
+              Ojs.list_of_js Ojs.int_of_js
                 (Ojs.call (t_to_js x8) "decode" [|(Ojs.string_to_js x7)|])
-        let (encode : t -> codePoints:float list -> string) =
+        let (encode : t -> codePoints:int list -> string) =
           fun (x12 : t) ->
-            fun ~codePoints:(x10 : float list) ->
+            fun ~codePoints:(x10 : int list) ->
               Ojs.string_of_js
                 (Ojs.call (t_to_js x12) "encode"
-                   [|(Ojs.list_to_js Ojs.float_to_js x10)|])
+                   [|(Ojs.list_to_js Ojs.int_to_js x10)|])
       end
     let (version : string) =
       Ojs.string_of_js (Ojs.get_prop_ascii Import.punycode "version")

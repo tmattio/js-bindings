@@ -3,3 +3,9 @@
  (modules promise)
  (libraries es2020)
  (modes js))
+
+(executable
+ (name obj_type)
+ (modules obj_type)
+ (libraries es2020)
+ (modes js))

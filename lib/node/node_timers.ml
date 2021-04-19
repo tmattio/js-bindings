@@ -15,10 +15,10 @@ module Timers =
   struct
     let (setTimeout :
       callback:(args:any list -> unit) ->
-        ?ms:float -> args:any list -> Timeout.t)
+        ?ms:int -> args:any list -> Timeout.t)
       =
       fun ~callback:(x1 : args:any list -> unit) ->
-        fun ?ms:(x2 : float option) ->
+        fun ?ms:(x2 : int option) ->
           fun ~args:(x3 : any list) ->
             Timeout.t_of_js
               (let x9 = Import.timers in
@@ -36,7 +36,7 @@ module Timers =
                         (match x2 with
                          | Some x6 ->
                              ignore
-                               (Ojs.call x4 "push" [|(Ojs.float_to_js x6)|])
+                               (Ojs.call x4 "push" [|(Ojs.int_to_js x6)|])
                          | None -> ());
                         List.iter
                           (fun (x5 : any) ->
@@ -45,17 +45,17 @@ module Timers =
                         x4))|])
     module SetTimeout =
       struct
-        let (__promisify__ : ms:float -> unit Promise.t) =
-          fun ~ms:(x10 : float) ->
+        let (__promisify__ : ms:int -> unit Promise.t) =
+          fun ~ms:(x10 : int) ->
             Promise.t_of_js Ojs.unit_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.timers "setTimeout")
-                 "__promisify__" [|(Ojs.float_to_js x10)|])
-        let (__promisify__ : ms:float -> value:'T -> 'T Promise.t) =
-          fun ~ms:(x12 : float) ->
+                 "__promisify__" [|(Ojs.int_to_js x10)|])
+        let (__promisify__ : ms:int -> value:'T -> 'T Promise.t) =
+          fun ~ms:(x12 : int) ->
             fun ~value:(x13 : 'T) ->
               Promise.t_of_js Obj.magic
                 (Ojs.call (Ojs.get_prop_ascii Import.timers "setTimeout")
-                   "__promisify__" [|(Ojs.float_to_js x12);(Obj.magic x13)|])
+                   "__promisify__" [|(Ojs.int_to_js x12);(Obj.magic x13)|])
       end
     let (clearTimeout : timeoutId:Timeout.t -> unit) =
       fun ~timeoutId:(x15 : Timeout.t) ->
@@ -63,10 +63,10 @@ module Timers =
           (Ojs.call Import.timers "clearTimeout" [|(Timeout.t_to_js x15)|])
     let (setInterval :
       callback:(args:any list -> unit) ->
-        ?ms:float -> args:any list -> Timeout.t)
+        ?ms:int -> args:any list -> Timeout.t)
       =
       fun ~callback:(x16 : args:any list -> unit) ->
-        fun ?ms:(x17 : float option) ->
+        fun ?ms:(x17 : int option) ->
           fun ~args:(x18 : any list) ->
             Timeout.t_of_js
               (let x24 = Import.timers in
@@ -85,8 +85,7 @@ module Timers =
                          (match x17 with
                           | Some x21 ->
                               ignore
-                                (Ojs.call x19 "push"
-                                   [|(Ojs.float_to_js x21)|])
+                                (Ojs.call x19 "push" [|(Ojs.int_to_js x21)|])
                           | None -> ());
                          List.iter
                            (fun (x20 : any) ->

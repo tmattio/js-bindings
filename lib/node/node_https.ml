@@ -125,15 +125,15 @@ module Https =
             fun (x33 : bool) ->
               Ojs.set_prop_ascii (t_to_js x32) "rejectUnauthorized"
                 (Ojs.bool_to_js x33)
-        let (get_maxCachedSessions : t -> float) =
+        let (get_maxCachedSessions : t -> int) =
           fun (x34 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x34) "maxCachedSessions")
-        let (set_maxCachedSessions : t -> float -> unit) =
+        let (set_maxCachedSessions : t -> int -> unit) =
           fun (x35 : t) ->
-            fun (x36 : float) ->
+            fun (x36 : int) ->
               Ojs.set_prop_ascii (t_to_js x35) "maxCachedSessions"
-                (Ojs.float_to_js x36)
+                (Ojs.int_to_js x36)
         let (cast : t -> Http.AgentOptions.t) =
           fun (x37 : t) -> Http.AgentOptions.t_of_js (t_to_js x37)
         let (cast' : t -> Tls.ConnectionOptions.t) =

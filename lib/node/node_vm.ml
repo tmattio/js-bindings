@@ -85,27 +85,27 @@ module AnonymousInterface0 =
       fun (x5 : Ojs.t) -> anonymous_interface_0_of_js x5
     and t_to_js : t -> Ojs.t =
       fun (x4 : anonymous_interface_0) -> anonymous_interface_0_to_js x4
-    let (get_jsMemoryEstimate : t -> float) =
+    let (get_jsMemoryEstimate : t -> int) =
       fun (x6 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x6) "jsMemoryEstimate")
-    let (set_jsMemoryEstimate : t -> float -> unit) =
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x6) "jsMemoryEstimate")
+    let (set_jsMemoryEstimate : t -> int -> unit) =
       fun (x7 : t) ->
-        fun (x8 : float) ->
+        fun (x8 : int) ->
           Ojs.set_prop_ascii (t_to_js x7) "jsMemoryEstimate"
-            (Ojs.float_to_js x8)
-    let (get_jsMemoryRange : t -> (float * float)) =
+            (Ojs.int_to_js x8)
+    let (get_jsMemoryRange : t -> (int * int)) =
       fun (x9 : t) ->
         let x10 = Ojs.get_prop_ascii (t_to_js x9) "jsMemoryRange" in
-        ((Ojs.float_of_js (Ojs.array_get x10 0)),
-          (Ojs.float_of_js (Ojs.array_get x10 1)))
-    let (set_jsMemoryRange : t -> (float * float) -> unit) =
+        ((Ojs.int_of_js (Ojs.array_get x10 0)),
+          (Ojs.int_of_js (Ojs.array_get x10 1)))
+    let (set_jsMemoryRange : t -> (int * int) -> unit) =
       fun (x11 : t) ->
-        fun (x12 : (float * float)) ->
+        fun (x12 : (int * int)) ->
           Ojs.set_prop_ascii (t_to_js x11) "jsMemoryRange"
             (let (x13, x14) = x12 in
              let x15 = Ojs.array_make 2 in
-             Ojs.array_set x15 0 (Ojs.float_to_js x13);
-             Ojs.array_set x15 1 (Ojs.float_to_js x14);
+             Ojs.array_set x15 0 (Ojs.int_to_js x13);
+             Ojs.array_set x15 1 (Ojs.int_to_js x14);
              x15)
   end
 module AnonymousInterface1 =
@@ -157,22 +157,22 @@ module Vm =
             fun (x32 : string) ->
               Ojs.set_prop_ascii (t_to_js x31) "filename"
                 (Ojs.string_to_js x32)
-        let (get_lineOffset : t -> float) =
+        let (get_lineOffset : t -> int) =
           fun (x33 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x33) "lineOffset")
-        let (set_lineOffset : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x33) "lineOffset")
+        let (set_lineOffset : t -> int -> unit) =
           fun (x34 : t) ->
-            fun (x35 : float) ->
+            fun (x35 : int) ->
               Ojs.set_prop_ascii (t_to_js x34) "lineOffset"
-                (Ojs.float_to_js x35)
-        let (get_columnOffset : t -> float) =
+                (Ojs.int_to_js x35)
+        let (get_columnOffset : t -> int) =
           fun (x36 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x36) "columnOffset")
-        let (set_columnOffset : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x36) "columnOffset")
+        let (set_columnOffset : t -> int -> unit) =
           fun (x37 : t) ->
-            fun (x38 : float) ->
+            fun (x38 : int) ->
               Ojs.set_prop_ascii (t_to_js x37) "columnOffset"
-                (Ojs.float_to_js x38)
+                (Ojs.int_to_js x38)
       end
     module ScriptOptions =
       struct
@@ -189,14 +189,13 @@ module Vm =
             fun (x43 : bool) ->
               Ojs.set_prop_ascii (t_to_js x42) "displayErrors"
                 (Ojs.bool_to_js x43)
-        let (get_timeout : t -> float) =
+        let (get_timeout : t -> int) =
           fun (x44 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x44) "timeout")
-        let (set_timeout : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x44) "timeout")
+        let (set_timeout : t -> int -> unit) =
           fun (x45 : t) ->
-            fun (x46 : float) ->
-              Ojs.set_prop_ascii (t_to_js x45) "timeout"
-                (Ojs.float_to_js x46)
+            fun (x46 : int) ->
+              Ojs.set_prop_ascii (t_to_js x45) "timeout" (Ojs.int_to_js x46)
         let (get_cachedData : t -> Buffer.t) =
           fun (x47 : t) ->
             Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x47) "cachedData")
@@ -233,14 +232,13 @@ module Vm =
             fun (x58 : bool) ->
               Ojs.set_prop_ascii (t_to_js x57) "displayErrors"
                 (Ojs.bool_to_js x58)
-        let (get_timeout : t -> float) =
+        let (get_timeout : t -> int) =
           fun (x59 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x59) "timeout")
-        let (set_timeout : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x59) "timeout")
+        let (set_timeout : t -> int -> unit) =
           fun (x60 : t) ->
-            fun (x61 : float) ->
-              Ojs.set_prop_ascii (t_to_js x60) "timeout"
-                (Ojs.float_to_js x61)
+            fun (x61 : int) ->
+              Ojs.set_prop_ascii (t_to_js x60) "timeout" (Ojs.int_to_js x61)
         let (get_breakOnSigint : t -> bool) =
           fun (x62 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x62) "breakOnSigint")

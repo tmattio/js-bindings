@@ -2,67 +2,16 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2017
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type 'T _AsyncIterable = [ `AsyncIterable of 'T ] intf
-        and 'T _AsyncIterableIterator =
-          [ `AsyncIterableIterator of 'T  | `AsyncIterator of 'T ] intf
-        and ('T, 'TReturn, 'TNext) _AsyncIterator =
-          [ `AsyncIterator of ('T * 'TReturn * 'TNext) ] intf
-        and _SymbolConstructor = [ `SymbolConstructor ] intf
-        let rec _AsyncIterable_of_js :
-          'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _AsyncIterable =
-          fun _T -> Obj.magic
-        and _AsyncIterable_to_js :
-          'T . ('T -> Ojs.t) -> 'T _AsyncIterable -> Ojs.t =
-          fun _T -> Obj.magic
-        and _AsyncIterableIterator_of_js :
-          'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _AsyncIterableIterator =
-          fun _T -> Obj.magic
-        and _AsyncIterableIterator_to_js :
-          'T . ('T -> Ojs.t) -> 'T _AsyncIterableIterator -> Ojs.t =
-          fun _T -> Obj.magic
-        and _AsyncIterator_of_js :
-          'T 'TReturn 'TNext .
-            (Ojs.t -> 'T) ->
-              (Ojs.t -> 'TReturn) ->
-                (Ojs.t -> 'TNext) ->
-                  Ojs.t -> ('T, 'TReturn, 'TNext) _AsyncIterator
-          = fun _T -> fun _TReturn -> fun _TNext -> Obj.magic
-        and _AsyncIterator_to_js :
-          'T 'TReturn 'TNext .
-            ('T -> Ojs.t) ->
-              ('TReturn -> Ojs.t) ->
-                ('TNext -> Ojs.t) ->
-                  ('T, 'TReturn, 'TNext) _AsyncIterator -> Ojs.t
-          = fun _T -> fun _TReturn -> fun _TNext -> Obj.magic
-        and _SymbolConstructor_of_js : Ojs.t -> _SymbolConstructor =
-          Obj.magic
-        and _SymbolConstructor_to_js : _SymbolConstructor -> Ojs.t =
-          Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module SymbolConstructor =
   struct
-    type t = _SymbolConstructor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> _SymbolConstructor_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : _SymbolConstructor) -> _SymbolConstructor_to_js x1
+    include struct include SymbolConstructor end
     let (get_asyncIterator : t -> symbol) =
-      fun (x3 : t) ->
-        symbol_of_js (Ojs.get_prop_ascii (t_to_js x3) "asyncIterator")
+      fun (x1 : t) ->
+        symbol_of_js (Ojs.get_prop_ascii (t_to_js x1) "asyncIterator")
   end
 module AsyncIterator =
   struct
-    type ('T, 'TReturn, 'TNext) t = ('T, 'TReturn, 'TNext) _AsyncIterator
+    type ('T, 'TReturn, 'TNext) t = Ojs.t
     let rec t_of_js :
       'T 'TReturn 'TNext .
         (Ojs.t -> 'T) ->
@@ -71,9 +20,7 @@ module AsyncIterator =
       = fun (type __T) -> fun (type __TReturn) -> fun (type __TNext) ->
       fun (__T_of_js : Ojs.t -> __T) ->
         fun (__TReturn_of_js : Ojs.t -> __TReturn) ->
-          fun (__TNext_of_js : Ojs.t -> __TNext) ->
-            fun (x8 : Ojs.t) ->
-              _AsyncIterator_of_js __T_of_js __TReturn_of_js __TNext_of_js x8
+          fun (__TNext_of_js : Ojs.t -> __TNext) -> fun (x3 : Ojs.t) -> x3
     and t_to_js :
       'T 'TReturn 'TNext .
         ('T -> Ojs.t) ->
@@ -82,99 +29,95 @@ module AsyncIterator =
       = fun (type __T) -> fun (type __TReturn) -> fun (type __TNext) ->
       fun (__T_to_js : __T -> Ojs.t) ->
         fun (__TReturn_to_js : __TReturn -> Ojs.t) ->
-          fun (__TNext_to_js : __TNext -> Ojs.t) ->
-            fun (x4 : (__T, __TReturn, __TNext) _AsyncIterator) ->
-              _AsyncIterator_to_js __T_to_js __TReturn_to_js __TNext_to_js x4
+          fun (__TNext_to_js : __TNext -> Ojs.t) -> fun (x2 : Ojs.t) -> x2
     let (next :
       ('T, 'TReturn, 'TNext) t ->
         args:any list -> ('T, 'TReturn) IteratorResult.t Promise.t)
       =
-      fun (x15 : ('T, 'TReturn, 'TNext) t) ->
-        fun ~args:(x12 : any list) ->
+      fun (x7 : ('T, 'TReturn, 'TNext) t) ->
+        fun ~args:(x4 : any list) ->
           Promise.t_of_js
-            (fun (x20 : Ojs.t) ->
-               IteratorResult.t_of_js Obj.magic Obj.magic x20)
-            (let x19 = t_to_js Obj.magic Obj.magic Obj.magic x15 in
-             Ojs.call (Ojs.get_prop_ascii x19 "next") "apply"
-               [|x19;((let x13 =
+            (fun (x12 : Ojs.t) ->
+               IteratorResult.t_of_js Obj.magic Obj.magic x12)
+            (let x11 = t_to_js Obj.magic Obj.magic Obj.magic x7 in
+             Ojs.call (Ojs.get_prop_ascii x11 "next") "apply"
+               [|x11;((let x5 =
                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                            [||] in
                        List.iter
-                         (fun (x14 : any) ->
-                            ignore (Ojs.call x13 "push" [|(any_to_js x14)|]))
-                         x12;
-                       x13))|])
+                         (fun (x6 : any) ->
+                            ignore (Ojs.call x5 "push" [|(any_to_js x6)|]))
+                         x4;
+                       x5))|])
     let (return :
       ('T, 'TReturn, 'TNext) t ->
         ?value:('TReturn, 'TReturn Promise.t) union2 ->
           unit -> ('T, 'TReturn) IteratorResult.t Promise.t)
       =
-      fun (x29 : ('T, 'TReturn, 'TNext) t) ->
-        fun ?value:(x23 : ('TReturn, 'TReturn Promise.t) union2 option) ->
+      fun (x21 : ('T, 'TReturn, 'TNext) t) ->
+        fun ?value:(x15 : ('TReturn, 'TReturn Promise.t) union2 option) ->
           fun () ->
             Promise.t_of_js
-              (fun (x34 : Ojs.t) ->
-                 IteratorResult.t_of_js Obj.magic Obj.magic x34)
-              (let x33 = t_to_js Obj.magic Obj.magic Obj.magic x29 in
-               Ojs.call (Ojs.get_prop_ascii x33 "return") "apply"
-                 [|x33;((let x24 =
+              (fun (x26 : Ojs.t) ->
+                 IteratorResult.t_of_js Obj.magic Obj.magic x26)
+              (let x25 = t_to_js Obj.magic Obj.magic Obj.magic x21 in
+               Ojs.call (Ojs.get_prop_ascii x25 "return") "apply"
+                 [|x25;((let x16 =
                            Ojs.new_obj
                              (Ojs.get_prop_ascii Ojs.global "Array") 
                              [||] in
-                         (match x23 with
-                          | Some x25 ->
+                         (match x15 with
+                          | Some x17 ->
                               ignore
-                                (Ojs.call x24 "push"
+                                (Ojs.call x16 "push"
                                    [|(union2_to_js Obj.magic
-                                        (fun (x27 : 'TReturn Promise.t) ->
-                                           Promise.t_to_js Obj.magic x27) x25)|])
+                                        (fun (x19 : 'TReturn Promise.t) ->
+                                           Promise.t_to_js Obj.magic x19) x17)|])
                           | None -> ());
-                         x24))|])
+                         x16))|])
     let (throw :
       ('T, 'TReturn, 'TNext) t ->
         ?e:any -> unit -> ('T, 'TReturn) IteratorResult.t Promise.t)
       =
-      fun (x40 : ('T, 'TReturn, 'TNext) t) ->
-        fun ?e:(x37 : any option) ->
+      fun (x32 : ('T, 'TReturn, 'TNext) t) ->
+        fun ?e:(x29 : any option) ->
           fun () ->
             Promise.t_of_js
-              (fun (x45 : Ojs.t) ->
-                 IteratorResult.t_of_js Obj.magic Obj.magic x45)
-              (let x44 = t_to_js Obj.magic Obj.magic Obj.magic x40 in
-               Ojs.call (Ojs.get_prop_ascii x44 "throw") "apply"
-                 [|x44;((let x38 =
+              (fun (x37 : Ojs.t) ->
+                 IteratorResult.t_of_js Obj.magic Obj.magic x37)
+              (let x36 = t_to_js Obj.magic Obj.magic Obj.magic x32 in
+               Ojs.call (Ojs.get_prop_ascii x36 "throw") "apply"
+                 [|x36;((let x30 =
                            Ojs.new_obj
                              (Ojs.get_prop_ascii Ojs.global "Array") 
                              [||] in
-                         (match x37 with
-                          | Some x39 ->
+                         (match x29 with
+                          | Some x31 ->
                               ignore
-                                (Ojs.call x38 "push" [|(any_to_js x39)|])
+                                (Ojs.call x30 "push" [|(any_to_js x31)|])
                           | None -> ());
-                         x38))|])
+                         x30))|])
   end
 module AsyncIterable =
   struct
-    type 'T t = 'T _AsyncIterable
+    type 'T t = Ojs.t
     let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type __T) ->
-      fun (__T_of_js : Ojs.t -> __T) ->
-        fun (x50 : Ojs.t) -> _AsyncIterable_of_js __T_of_js x50
+      fun (__T_of_js : Ojs.t -> __T) -> fun (x41 : Ojs.t) -> x41
     and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-      fun (__T_to_js : __T -> Ojs.t) ->
-        fun (x48 : __T _AsyncIterable) -> _AsyncIterable_to_js __T_to_js x48
+      fun (__T_to_js : __T -> Ojs.t) -> fun (x40 : Ojs.t) -> x40
   end
 module AsyncIterableIterator =
   struct
     type 'T t = ('T, any, never or_undefined) AsyncIterator.t
     let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type __T) ->
       fun (__T_of_js : Ojs.t -> __T) ->
-        fun (x57 : Ojs.t) ->
+        fun (x47 : Ojs.t) ->
           AsyncIterator.t_of_js __T_of_js any_of_js
-            (fun (x60 : Ojs.t) -> or_undefined_of_js never_of_js x60) x57
+            (fun (x50 : Ojs.t) -> or_undefined_of_js never_of_js x50) x47
     and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
       fun (__T_to_js : __T -> Ojs.t) ->
-        fun (x52 : (__T, any, never or_undefined) AsyncIterator.t) ->
+        fun (x42 : (__T, any, never or_undefined) AsyncIterator.t) ->
           AsyncIterator.t_to_js __T_to_js any_to_js
-            (fun (x55 : never or_undefined) ->
-               or_undefined_to_js never_to_js x55) x52
+            (fun (x45 : never or_undefined) ->
+               or_undefined_to_js never_to_js x45) x42
   end

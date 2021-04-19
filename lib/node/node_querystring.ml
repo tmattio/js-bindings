@@ -61,13 +61,13 @@ module Querystring =
         and t_to_js : t -> Ojs.t =
           fun (x5 : querystring_ParseOptions) ->
             querystring_ParseOptions_to_js x5
-        let (get_maxKeys : t -> float) =
+        let (get_maxKeys : t -> int) =
           fun (x7 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x7) "maxKeys")
-        let (set_maxKeys : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x7) "maxKeys")
+        let (set_maxKeys : t -> int -> unit) =
           fun (x8 : t) ->
-            fun (x9 : float) ->
-              Ojs.set_prop_ascii (t_to_js x8) "maxKeys" (Ojs.float_to_js x9)
+            fun (x9 : int) ->
+              Ojs.set_prop_ascii (t_to_js x8) "maxKeys" (Ojs.int_to_js x9)
         let (decodeURIComponent : t -> str:string -> string) =
           fun (x11 : t) ->
             fun ~str:(x10 : string) ->
@@ -101,7 +101,7 @@ module Querystring =
             querystring_ParsedUrlQueryInput_to_js x18
         let (cast :
           t ->
-            (string list, bool list, float list) union3 or_boolean or_string
+            (string list, bool list, int list) union3 or_boolean or_string
               or_number or_null Dict.t)
           =
           fun (x20 : t) ->
@@ -121,7 +121,7 @@ module Querystring =
                                        (fun (x28 : Ojs.t) ->
                                           Ojs.list_of_js Ojs.bool_of_js x28)
                                        (fun (x30 : Ojs.t) ->
-                                          Ojs.list_of_js Ojs.float_of_js x30)
+                                          Ojs.list_of_js Ojs.int_of_js x30)
                                        x25) x24) x23) x22) x21) (t_to_js x20)
       end
     let (stringify :

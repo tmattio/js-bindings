@@ -5,690 +5,163 @@ open Es2020
 open Node_globals
 open Node_events
 open Node_net
-module Internal =
-  struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-        let rec anonymous_interface_1_of_js : Ojs.t -> anonymous_interface_1
-          = Obj.magic
-        and anonymous_interface_1_to_js : anonymous_interface_1 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-        let rec anonymous_interface_2_of_js : Ojs.t -> anonymous_interface_2
-          = Obj.magic
-        and anonymous_interface_2_to_js : anonymous_interface_2 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_3 = [ `anonymous_interface_3 ] intf
-        let rec anonymous_interface_3_of_js : Ojs.t -> anonymous_interface_3
-          = Obj.magic
-        and anonymous_interface_3_to_js : anonymous_interface_3 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_4 = [ `anonymous_interface_4 ] intf
-        let rec anonymous_interface_4_of_js : Ojs.t -> anonymous_interface_4
-          = Obj.magic
-        and anonymous_interface_4_to_js : anonymous_interface_4 -> Ojs.t =
-          Obj.magic
-      end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type child_process_ChildProcess =
-          [ `Child_process_ChildProcess ] intf
-        and ('I, 'O, 'E) child_process_ChildProcessByStdio =
-          [ `Child_process_ChildProcessByStdio of ('I * 'O * 'E) 
-          | `Child_process_ChildProcess ] intf
-        and child_process_ChildProcessWithoutNullStreams =
-          [ `Child_process_ChildProcessWithoutNullStreams 
-          | `Child_process_ChildProcess ] intf
-        and child_process_CommonOptions =
-          [ `Child_process_CommonOptions 
-          | `Child_process_ProcessEnvOptions ] intf
-        and child_process_CommonSpawnOptions =
-          [ `Child_process_CommonSpawnOptions 
-          | `Child_process_CommonOptions  | `Child_process_MessagingOptions 
-          | `Child_process_ProcessEnvOptions ] intf
-        and child_process_ExecException =
-          [ `Child_process_ExecException ] intf
-        and child_process_ExecFileException =
-          (child_process_ExecException, ErrnoException.t) intersection2
-        and child_process_ExecFileOptions =
-          [ `Child_process_ExecFileOptions  | `Child_process_CommonOptions 
-          | `Child_process_ProcessEnvOptions ] intf
-        and child_process_ExecFileOptionsWithBufferEncoding =
-          [ `Child_process_ExecFileOptionsWithBufferEncoding 
-          | `Child_process_CommonOptions  | `Child_process_ExecFileOptions 
-          | `Child_process_ProcessEnvOptions ] intf
-        and child_process_ExecFileOptionsWithOtherEncoding =
-          [ `Child_process_ExecFileOptionsWithOtherEncoding 
-          | `Child_process_CommonOptions  | `Child_process_ExecFileOptions 
-          | `Child_process_ProcessEnvOptions ] intf
-        and child_process_ExecFileOptionsWithStringEncoding =
-          [ `Child_process_ExecFileOptionsWithStringEncoding 
-          | `Child_process_CommonOptions  | `Child_process_ExecFileOptions 
-          | `Child_process_ProcessEnvOptions ] intf
-        and child_process_ExecFileSyncOptions =
-          [ `Child_process_ExecFileSyncOptions 
-          | `Child_process_CommonOptions 
-          | `Child_process_ProcessEnvOptions ] intf
-        and child_process_ExecFileSyncOptionsWithBufferEncoding =
-          [ `Child_process_ExecFileSyncOptionsWithBufferEncoding 
-          | `Child_process_CommonOptions 
-          | `Child_process_ExecFileSyncOptions 
-          | `Child_process_ProcessEnvOptions ] intf
-        and child_process_ExecFileSyncOptionsWithStringEncoding =
-          [ `Child_process_ExecFileSyncOptionsWithStringEncoding 
-          | `Child_process_CommonOptions 
-          | `Child_process_ExecFileSyncOptions 
-          | `Child_process_ProcessEnvOptions ] intf
-        and child_process_ExecOptions =
-          [ `Child_process_ExecOptions  | `Child_process_CommonOptions 
-          | `Child_process_ProcessEnvOptions ] intf
-        and child_process_ExecOptionsWithBufferEncoding =
-          [ `Child_process_ExecOptionsWithBufferEncoding 
-          | `Child_process_CommonOptions  | `Child_process_ExecOptions 
-          | `Child_process_ProcessEnvOptions ] intf
-        and child_process_ExecOptionsWithStringEncoding =
-          [ `Child_process_ExecOptionsWithStringEncoding 
-          | `Child_process_CommonOptions  | `Child_process_ExecOptions 
-          | `Child_process_ProcessEnvOptions ] intf
-        and child_process_ExecSyncOptions =
-          [ `Child_process_ExecSyncOptions  | `Child_process_CommonOptions 
-          | `Child_process_ProcessEnvOptions ] intf
-        and child_process_ExecSyncOptionsWithBufferEncoding =
-          [ `Child_process_ExecSyncOptionsWithBufferEncoding 
-          | `Child_process_CommonOptions  | `Child_process_ExecSyncOptions 
-          | `Child_process_ProcessEnvOptions ] intf
-        and child_process_ExecSyncOptionsWithStringEncoding =
-          [ `Child_process_ExecSyncOptionsWithStringEncoding 
-          | `Child_process_CommonOptions  | `Child_process_ExecSyncOptions 
-          | `Child_process_ProcessEnvOptions ] intf
-        and child_process_ForkOptions =
-          [ `Child_process_ForkOptions  | `Child_process_MessagingOptions 
-          | `Child_process_ProcessEnvOptions ] intf
-        and child_process_MessageOptions =
-          [ `Child_process_MessageOptions ] intf
-        and child_process_MessagingOptions =
-          [ `Child_process_MessagingOptions ] intf
-        and child_process_ProcessEnvOptions =
-          [ `Child_process_ProcessEnvOptions ] intf
-        and 'T child_process_PromiseWithChild =
-          [ `Child_process_PromiseWithChild of 'T ] intf
-        and child_process_SendHandle = (Net.Server.t, Net.Socket.t) union2
-        and child_process_Serializable =
-          untyped_object or_boolean or_string or_number
-        and child_process_SerializationType = [ `advanced  | `json ]
-        and child_process_SpawnOptions =
-          [ `Child_process_SpawnOptions  | `Child_process_CommonOptions 
-          | `Child_process_CommonSpawnOptions 
-          | `Child_process_MessagingOptions 
-          | `Child_process_ProcessEnvOptions ] intf
-        and ('Stdin, 'Stdout,
-          'Stderr) child_process_SpawnOptionsWithStdioTuple =
-          [
-            `Child_process_SpawnOptionsWithStdioTuple of
-              ('Stdin * 'Stdout * 'Stderr) 
-          | `Child_process_CommonOptions 
-          | `Child_process_CommonSpawnOptions 
-          | `Child_process_MessagingOptions 
-          | `Child_process_ProcessEnvOptions  | `Child_process_SpawnOptions ]
-            intf
-        and child_process_SpawnOptionsWithoutStdio =
-          [ `Child_process_SpawnOptionsWithoutStdio 
-          | `Child_process_CommonOptions 
-          | `Child_process_CommonSpawnOptions 
-          | `Child_process_MessagingOptions 
-          | `Child_process_ProcessEnvOptions  | `Child_process_SpawnOptions ]
-            intf
-        and child_process_SpawnSyncOptions =
-          [ `Child_process_SpawnSyncOptions  | `Child_process_CommonOptions 
-          | `Child_process_CommonSpawnOptions 
-          | `Child_process_MessagingOptions 
-          | `Child_process_ProcessEnvOptions ] intf
-        and child_process_SpawnSyncOptionsWithBufferEncoding =
-          [ `Child_process_SpawnSyncOptionsWithBufferEncoding 
-          | `Child_process_CommonOptions 
-          | `Child_process_CommonSpawnOptions 
-          | `Child_process_MessagingOptions 
-          | `Child_process_ProcessEnvOptions 
-          | `Child_process_SpawnSyncOptions ] intf
-        and child_process_SpawnSyncOptionsWithStringEncoding =
-          [ `Child_process_SpawnSyncOptionsWithStringEncoding 
-          | `Child_process_CommonOptions 
-          | `Child_process_CommonSpawnOptions 
-          | `Child_process_MessagingOptions 
-          | `Child_process_ProcessEnvOptions 
-          | `Child_process_SpawnSyncOptions ] intf
-        and 'T child_process_SpawnSyncReturns =
-          [ `Child_process_SpawnSyncReturns of 'T ] intf
-        and child_process_StdioNull =
-          (Node_stream.Stream.Stream.t, [ `ignore  | `inherit_ ]) or_enum
-        and child_process_StdioOptions =
-          ((Node_stream.Stream.Stream.t,
-             [ `ignore  | `inherit_  | `ipc  | `pipe ]) or_enum or_number
-             or_null_or_undefined list,
-            [ `ignore  | `inherit_  | `pipe ]) or_enum
-        and child_process_StdioPipe = [ `pipe ] or_null_or_undefined
-        let rec child_process_ChildProcess_of_js :
-          Ojs.t -> child_process_ChildProcess = Obj.magic
-        and child_process_ChildProcess_to_js :
-          child_process_ChildProcess -> Ojs.t = Obj.magic
-        and child_process_ChildProcessByStdio_of_js :
-          'I 'O 'E .
-            (Ojs.t -> 'I) ->
-              (Ojs.t -> 'O) ->
-                (Ojs.t -> 'E) ->
-                  Ojs.t -> ('I, 'O, 'E) child_process_ChildProcessByStdio
-          = fun _I -> fun _O -> fun _E -> Obj.magic
-        and child_process_ChildProcessByStdio_to_js :
-          'I 'O 'E .
-            ('I -> Ojs.t) ->
-              ('O -> Ojs.t) ->
-                ('E -> Ojs.t) ->
-                  ('I, 'O, 'E) child_process_ChildProcessByStdio -> Ojs.t
-          = fun _I -> fun _O -> fun _E -> Obj.magic
-        and child_process_ChildProcessWithoutNullStreams_of_js :
-          Ojs.t -> child_process_ChildProcessWithoutNullStreams = Obj.magic
-        and child_process_ChildProcessWithoutNullStreams_to_js :
-          child_process_ChildProcessWithoutNullStreams -> Ojs.t = Obj.magic
-        and child_process_CommonOptions_of_js :
-          Ojs.t -> child_process_CommonOptions = Obj.magic
-        and child_process_CommonOptions_to_js :
-          child_process_CommonOptions -> Ojs.t = Obj.magic
-        and child_process_CommonSpawnOptions_of_js :
-          Ojs.t -> child_process_CommonSpawnOptions = Obj.magic
-        and child_process_CommonSpawnOptions_to_js :
-          child_process_CommonSpawnOptions -> Ojs.t = Obj.magic
-        and child_process_ExecException_of_js :
-          Ojs.t -> child_process_ExecException = Obj.magic
-        and child_process_ExecException_to_js :
-          child_process_ExecException -> Ojs.t = Obj.magic
-        and child_process_ExecFileException_of_js :
-          Ojs.t -> child_process_ExecFileException =
-          fun (x4 : Ojs.t) ->
-            intersection2_of_js child_process_ExecException_of_js
-              ErrnoException.t_of_js x4
-        and child_process_ExecFileException_to_js :
-          child_process_ExecFileException -> Ojs.t =
-          fun
-            (x1 :
-              (child_process_ExecException, ErrnoException.t) intersection2)
-            ->
-            intersection2_to_js child_process_ExecException_to_js
-              ErrnoException.t_to_js x1
-        and child_process_ExecFileOptions_of_js :
-          Ojs.t -> child_process_ExecFileOptions = Obj.magic
-        and child_process_ExecFileOptions_to_js :
-          child_process_ExecFileOptions -> Ojs.t = Obj.magic
-        and child_process_ExecFileOptionsWithBufferEncoding_of_js :
-          Ojs.t -> child_process_ExecFileOptionsWithBufferEncoding =
-          Obj.magic
-        and child_process_ExecFileOptionsWithBufferEncoding_to_js :
-          child_process_ExecFileOptionsWithBufferEncoding -> Ojs.t =
-          Obj.magic
-        and child_process_ExecFileOptionsWithOtherEncoding_of_js :
-          Ojs.t -> child_process_ExecFileOptionsWithOtherEncoding = Obj.magic
-        and child_process_ExecFileOptionsWithOtherEncoding_to_js :
-          child_process_ExecFileOptionsWithOtherEncoding -> Ojs.t = Obj.magic
-        and child_process_ExecFileOptionsWithStringEncoding_of_js :
-          Ojs.t -> child_process_ExecFileOptionsWithStringEncoding =
-          Obj.magic
-        and child_process_ExecFileOptionsWithStringEncoding_to_js :
-          child_process_ExecFileOptionsWithStringEncoding -> Ojs.t =
-          Obj.magic
-        and child_process_ExecFileSyncOptions_of_js :
-          Ojs.t -> child_process_ExecFileSyncOptions = Obj.magic
-        and child_process_ExecFileSyncOptions_to_js :
-          child_process_ExecFileSyncOptions -> Ojs.t = Obj.magic
-        and child_process_ExecFileSyncOptionsWithBufferEncoding_of_js :
-          Ojs.t -> child_process_ExecFileSyncOptionsWithBufferEncoding =
-          Obj.magic
-        and child_process_ExecFileSyncOptionsWithBufferEncoding_to_js :
-          child_process_ExecFileSyncOptionsWithBufferEncoding -> Ojs.t =
-          Obj.magic
-        and child_process_ExecFileSyncOptionsWithStringEncoding_of_js :
-          Ojs.t -> child_process_ExecFileSyncOptionsWithStringEncoding =
-          Obj.magic
-        and child_process_ExecFileSyncOptionsWithStringEncoding_to_js :
-          child_process_ExecFileSyncOptionsWithStringEncoding -> Ojs.t =
-          Obj.magic
-        and child_process_ExecOptions_of_js :
-          Ojs.t -> child_process_ExecOptions = Obj.magic
-        and child_process_ExecOptions_to_js :
-          child_process_ExecOptions -> Ojs.t = Obj.magic
-        and child_process_ExecOptionsWithBufferEncoding_of_js :
-          Ojs.t -> child_process_ExecOptionsWithBufferEncoding = Obj.magic
-        and child_process_ExecOptionsWithBufferEncoding_to_js :
-          child_process_ExecOptionsWithBufferEncoding -> Ojs.t = Obj.magic
-        and child_process_ExecOptionsWithStringEncoding_of_js :
-          Ojs.t -> child_process_ExecOptionsWithStringEncoding = Obj.magic
-        and child_process_ExecOptionsWithStringEncoding_to_js :
-          child_process_ExecOptionsWithStringEncoding -> Ojs.t = Obj.magic
-        and child_process_ExecSyncOptions_of_js :
-          Ojs.t -> child_process_ExecSyncOptions = Obj.magic
-        and child_process_ExecSyncOptions_to_js :
-          child_process_ExecSyncOptions -> Ojs.t = Obj.magic
-        and child_process_ExecSyncOptionsWithBufferEncoding_of_js :
-          Ojs.t -> child_process_ExecSyncOptionsWithBufferEncoding =
-          Obj.magic
-        and child_process_ExecSyncOptionsWithBufferEncoding_to_js :
-          child_process_ExecSyncOptionsWithBufferEncoding -> Ojs.t =
-          Obj.magic
-        and child_process_ExecSyncOptionsWithStringEncoding_of_js :
-          Ojs.t -> child_process_ExecSyncOptionsWithStringEncoding =
-          Obj.magic
-        and child_process_ExecSyncOptionsWithStringEncoding_to_js :
-          child_process_ExecSyncOptionsWithStringEncoding -> Ojs.t =
-          Obj.magic
-        and child_process_ForkOptions_of_js :
-          Ojs.t -> child_process_ForkOptions = Obj.magic
-        and child_process_ForkOptions_to_js :
-          child_process_ForkOptions -> Ojs.t = Obj.magic
-        and child_process_MessageOptions_of_js :
-          Ojs.t -> child_process_MessageOptions = Obj.magic
-        and child_process_MessageOptions_to_js :
-          child_process_MessageOptions -> Ojs.t = Obj.magic
-        and child_process_MessagingOptions_of_js :
-          Ojs.t -> child_process_MessagingOptions = Obj.magic
-        and child_process_MessagingOptions_to_js :
-          child_process_MessagingOptions -> Ojs.t = Obj.magic
-        and child_process_ProcessEnvOptions_of_js :
-          Ojs.t -> child_process_ProcessEnvOptions = Obj.magic
-        and child_process_ProcessEnvOptions_to_js :
-          child_process_ProcessEnvOptions -> Ojs.t = Obj.magic
-        and child_process_PromiseWithChild_of_js :
-          'T . (Ojs.t -> 'T) -> Ojs.t -> 'T child_process_PromiseWithChild =
-          fun _T -> Obj.magic
-        and child_process_PromiseWithChild_to_js :
-          'T . ('T -> Ojs.t) -> 'T child_process_PromiseWithChild -> Ojs.t =
-          fun _T -> Obj.magic
-        and child_process_SendHandle_of_js :
-          Ojs.t -> child_process_SendHandle =
-          fun (x10 : Ojs.t) ->
-            union2_of_js Net.Server.t_of_js Net.Socket.t_of_js x10
-        and child_process_SendHandle_to_js :
-          child_process_SendHandle -> Ojs.t =
-          fun (x7 : (Net.Server.t, Net.Socket.t) union2) ->
-            union2_to_js Net.Server.t_to_js Net.Socket.t_to_js x7
-        and child_process_Serializable_of_js :
-          Ojs.t -> child_process_Serializable =
-          fun (x17 : Ojs.t) ->
-            or_number_of_js
-              (fun (x18 : Ojs.t) ->
-                 or_string_of_js
-                   (fun (x19 : Ojs.t) ->
-                      or_boolean_of_js untyped_object_of_js x19) x18) x17
-        and child_process_Serializable_to_js :
-          child_process_Serializable -> Ojs.t =
-          fun (x13 : untyped_object or_boolean or_string or_number) ->
-            or_number_to_js
-              (fun (x14 : untyped_object or_boolean or_string) ->
-                 or_string_to_js
-                   (fun (x15 : untyped_object or_boolean) ->
-                      or_boolean_to_js untyped_object_to_js x15) x14) x13
-        and child_process_SerializationType_of_js :
-          Ojs.t -> child_process_SerializationType =
-          fun (x22 : Ojs.t) ->
-            let x23 = x22 in
-            match Ojs.string_of_js x23 with
-            | "advanced" -> `advanced
-            | "json" -> `json
-            | _ -> assert false
-        and child_process_SerializationType_to_js :
-          child_process_SerializationType -> Ojs.t =
-          fun (x21 : [ `advanced  | `json ]) ->
-            match x21 with
-            | `advanced -> Ojs.string_to_js "advanced"
-            | `json -> Ojs.string_to_js "json"
-        and child_process_SpawnOptions_of_js :
-          Ojs.t -> child_process_SpawnOptions = Obj.magic
-        and child_process_SpawnOptions_to_js :
-          child_process_SpawnOptions -> Ojs.t = Obj.magic
-        and child_process_SpawnOptionsWithStdioTuple_of_js :
-          'Stdin 'Stdout 'Stderr .
-            (Ojs.t -> 'Stdin) ->
-              (Ojs.t -> 'Stdout) ->
-                (Ojs.t -> 'Stderr) ->
-                  Ojs.t ->
-                    ('Stdin, 'Stdout, 'Stderr)
-                      child_process_SpawnOptionsWithStdioTuple
-          = fun _Stdin -> fun _Stdout -> fun _Stderr -> Obj.magic
-        and child_process_SpawnOptionsWithStdioTuple_to_js :
-          'Stdin 'Stdout 'Stderr .
-            ('Stdin -> Ojs.t) ->
-              ('Stdout -> Ojs.t) ->
-                ('Stderr -> Ojs.t) ->
-                  ('Stdin, 'Stdout, 'Stderr)
-                    child_process_SpawnOptionsWithStdioTuple -> Ojs.t
-          = fun _Stdin -> fun _Stdout -> fun _Stderr -> Obj.magic
-        and child_process_SpawnOptionsWithoutStdio_of_js :
-          Ojs.t -> child_process_SpawnOptionsWithoutStdio = Obj.magic
-        and child_process_SpawnOptionsWithoutStdio_to_js :
-          child_process_SpawnOptionsWithoutStdio -> Ojs.t = Obj.magic
-        and child_process_SpawnSyncOptions_of_js :
-          Ojs.t -> child_process_SpawnSyncOptions = Obj.magic
-        and child_process_SpawnSyncOptions_to_js :
-          child_process_SpawnSyncOptions -> Ojs.t = Obj.magic
-        and child_process_SpawnSyncOptionsWithBufferEncoding_of_js :
-          Ojs.t -> child_process_SpawnSyncOptionsWithBufferEncoding =
-          Obj.magic
-        and child_process_SpawnSyncOptionsWithBufferEncoding_to_js :
-          child_process_SpawnSyncOptionsWithBufferEncoding -> Ojs.t =
-          Obj.magic
-        and child_process_SpawnSyncOptionsWithStringEncoding_of_js :
-          Ojs.t -> child_process_SpawnSyncOptionsWithStringEncoding =
-          Obj.magic
-        and child_process_SpawnSyncOptionsWithStringEncoding_to_js :
-          child_process_SpawnSyncOptionsWithStringEncoding -> Ojs.t =
-          Obj.magic
-        and child_process_SpawnSyncReturns_of_js :
-          'T . (Ojs.t -> 'T) -> Ojs.t -> 'T child_process_SpawnSyncReturns =
-          fun _T -> Obj.magic
-        and child_process_SpawnSyncReturns_to_js :
-          'T . ('T -> Ojs.t) -> 'T child_process_SpawnSyncReturns -> Ojs.t =
-          fun _T -> Obj.magic
-        and child_process_StdioNull_of_js : Ojs.t -> child_process_StdioNull
-          =
-          fun (x27 : Ojs.t) ->
-            or_enum_of_js Node_stream.Stream.Stream.t_of_js
-              (fun (x29 : Ojs.t) ->
-                 let x30 = x29 in
-                 match Ojs.string_of_js x30 with
-                 | "ignore" -> `ignore
-                 | "inherit" -> `inherit_
-                 | _ -> assert false) x27
-        and child_process_StdioNull_to_js : child_process_StdioNull -> Ojs.t
-          =
-          fun
-            (x24 :
-              (Node_stream.Stream.Stream.t, [ `ignore  | `inherit_ ]) or_enum)
-            ->
-            or_enum_to_js Node_stream.Stream.Stream.t_to_js
-              (fun (x26 : [ `ignore  | `inherit_ ]) ->
-                 match x26 with
-                 | `ignore -> Ojs.string_to_js "ignore"
-                 | `inherit_ -> Ojs.string_to_js "inherit") x24
-        and child_process_StdioOptions_of_js :
-          Ojs.t -> child_process_StdioOptions =
-          fun (x39 : Ojs.t) ->
-            or_enum_of_js
-              (fun (x40 : Ojs.t) ->
-                 Ojs.list_of_js
-                   (fun (x41 : Ojs.t) ->
-                      or_null_or_undefined_of_js
-                        (fun (x42 : Ojs.t) ->
-                           or_number_of_js
-                             (fun (x43 : Ojs.t) ->
-                                or_enum_of_js
-                                  Node_stream.Stream.Stream.t_of_js
-                                  (fun (x45 : Ojs.t) ->
-                                     let x46 = x45 in
-                                     match Ojs.string_of_js x46 with
-                                     | "ignore" -> `ignore
-                                     | "inherit" -> `inherit_
-                                     | "ipc" -> `ipc
-                                     | "pipe" -> `pipe
-                                     | _ -> assert false) x43) x42) x41) x40)
-              (fun (x47 : Ojs.t) ->
-                 let x48 = x47 in
-                 match Ojs.string_of_js x48 with
-                 | "ignore" -> `ignore
-                 | "inherit" -> `inherit_
-                 | "pipe" -> `pipe
-                 | _ -> assert false) x39
-        and child_process_StdioOptions_to_js :
-          child_process_StdioOptions -> Ojs.t =
-          fun
-            (x31 :
-              ((Node_stream.Stream.Stream.t,
-                 [ `ignore  | `inherit_  | `ipc  | `pipe ]) or_enum or_number
-                 or_null_or_undefined list,
-                [ `ignore  | `inherit_  | `pipe ]) or_enum)
-            ->
-            or_enum_to_js
-              (fun
-                 (x32 :
-                   (Node_stream.Stream.Stream.t,
-                     [ `ignore  | `inherit_  | `ipc  | `pipe ]) or_enum
-                     or_number or_null_or_undefined list)
-                 ->
-                 Ojs.list_to_js
-                   (fun
-                      (x33 :
-                        (Node_stream.Stream.Stream.t,
-                          [ `ignore  | `inherit_  | `ipc  | `pipe ]) or_enum
-                          or_number or_null_or_undefined)
-                      ->
-                      or_null_or_undefined_to_js
-                        (fun
-                           (x34 :
-                             (Node_stream.Stream.Stream.t,
-                               [ `ignore  | `inherit_  | `ipc  | `pipe ])
-                               or_enum or_number)
-                           ->
-                           or_number_to_js
-                             (fun
-                                (x35 :
-                                  (Node_stream.Stream.Stream.t,
-                                    [ `ignore  | `inherit_  | `ipc  | `pipe ])
-                                    or_enum)
-                                ->
-                                or_enum_to_js
-                                  Node_stream.Stream.Stream.t_to_js
-                                  (fun
-                                     (x37 :
-                                       [ `ignore  | `inherit_  | `ipc 
-                                       | `pipe ])
-                                     ->
-                                     match x37 with
-                                     | `ignore -> Ojs.string_to_js "ignore"
-                                     | `inherit_ ->
-                                         Ojs.string_to_js "inherit"
-                                     | `ipc -> Ojs.string_to_js "ipc"
-                                     | `pipe -> Ojs.string_to_js "pipe") x35)
-                             x34) x33) x32)
-              (fun (x38 : [ `ignore  | `inherit_  | `pipe ]) ->
-                 match x38 with
-                 | `ignore -> Ojs.string_to_js "ignore"
-                 | `inherit_ -> Ojs.string_to_js "inherit"
-                 | `pipe -> Ojs.string_to_js "pipe") x31
-        and child_process_StdioPipe_of_js : Ojs.t -> child_process_StdioPipe
-          =
-          fun (x51 : Ojs.t) ->
-            or_null_or_undefined_of_js
-              (fun (x52 : Ojs.t) ->
-                 let x53 = x52 in
-                 match Ojs.string_of_js x53 with
-                 | "pipe" -> `pipe
-                 | _ -> assert false) x51
-        and child_process_StdioPipe_to_js : child_process_StdioPipe -> Ojs.t
-          =
-          fun (x49 : [ `pipe ] or_null_or_undefined) ->
-            or_null_or_undefined_to_js
-              (fun (x50 : [ `pipe ]) ->
-                 match x50 with | `pipe -> Ojs.string_to_js "pipe") x49
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x55 : Ojs.t) -> anonymous_interface_0_of_js x55
-    and t_to_js : t -> Ojs.t =
-      fun (x54 : anonymous_interface_0) -> anonymous_interface_0_to_js x54
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get_encoding : t -> BufferEncoding.t) =
-      fun (x56 : t) ->
-        BufferEncoding.t_of_js (Ojs.get_prop_ascii (t_to_js x56) "encoding")
+      fun (x3 : t) ->
+        BufferEncoding.t_of_js (Ojs.get_prop_ascii (t_to_js x3) "encoding")
     let (set_encoding : t -> BufferEncoding.t -> unit) =
-      fun (x57 : t) ->
-        fun (x58 : BufferEncoding.t) ->
-          Ojs.set_prop_ascii (t_to_js x57) "encoding"
-            (BufferEncoding.t_to_js x58)
+      fun (x4 : t) ->
+        fun (x5 : BufferEncoding.t) ->
+          Ojs.set_prop_ascii (t_to_js x4) "encoding"
+            (BufferEncoding.t_to_js x5)
   end
 module AnonymousInterface1 =
   struct
-    type t = anonymous_interface_1
-    let rec t_of_js : Ojs.t -> t =
-      fun (x60 : Ojs.t) -> anonymous_interface_1_of_js x60
-    and t_to_js : t -> Ojs.t =
-      fun (x59 : anonymous_interface_1) -> anonymous_interface_1_to_js x59
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x7 : Ojs.t) -> x7
+    and t_to_js : t -> Ojs.t = fun (x6 : Ojs.t) -> x6
     let (get_encoding : t -> [ `buffer ] or_null) =
-      fun (x61 : t) ->
+      fun (x8 : t) ->
         or_null_of_js
-          (fun (x62 : Ojs.t) ->
-             let x63 = x62 in
-             match Ojs.string_of_js x63 with
+          (fun (x9 : Ojs.t) ->
+             let x10 = x9 in
+             match Ojs.string_of_js x10 with
              | "buffer" -> `buffer
              | _ -> assert false)
-          (Ojs.get_prop_ascii (t_to_js x61) "encoding")
+          (Ojs.get_prop_ascii (t_to_js x8) "encoding")
     let (set_encoding : t -> [ `buffer ] or_null -> unit) =
-      fun (x64 : t) ->
-        fun (x65 : [ `buffer ] or_null) ->
-          Ojs.set_prop_ascii (t_to_js x64) "encoding"
+      fun (x11 : t) ->
+        fun (x12 : [ `buffer ] or_null) ->
+          Ojs.set_prop_ascii (t_to_js x11) "encoding"
             (or_null_to_js
-               (fun (x66 : [ `buffer ]) ->
-                  match x66 with | `buffer -> Ojs.string_to_js "buffer") x65)
+               (fun (x13 : [ `buffer ]) ->
+                  match x13 with | `buffer -> Ojs.string_to_js "buffer") x12)
   end
 module AnonymousInterface2 =
   struct
-    type t = anonymous_interface_2
-    let rec t_of_js : Ojs.t -> t =
-      fun (x68 : Ojs.t) -> anonymous_interface_2_of_js x68
-    and t_to_js : t -> Ojs.t =
-      fun (x67 : anonymous_interface_2) -> anonymous_interface_2_to_js x67
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x15 : Ojs.t) -> x15
+    and t_to_js : t -> Ojs.t = fun (x14 : Ojs.t) -> x14
     let (get_stdout : t -> Buffer.t) =
-      fun (x69 : t) ->
-        Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x69) "stdout")
+      fun (x16 : t) ->
+        Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x16) "stdout")
     let (set_stdout : t -> Buffer.t -> unit) =
-      fun (x70 : t) ->
-        fun (x71 : Buffer.t) ->
-          Ojs.set_prop_ascii (t_to_js x70) "stdout" (Buffer.t_to_js x71)
+      fun (x17 : t) ->
+        fun (x18 : Buffer.t) ->
+          Ojs.set_prop_ascii (t_to_js x17) "stdout" (Buffer.t_to_js x18)
     let (get_stderr : t -> Buffer.t) =
-      fun (x72 : t) ->
-        Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x72) "stderr")
+      fun (x19 : t) ->
+        Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x19) "stderr")
     let (set_stderr : t -> Buffer.t -> unit) =
-      fun (x73 : t) ->
-        fun (x74 : Buffer.t) ->
-          Ojs.set_prop_ascii (t_to_js x73) "stderr" (Buffer.t_to_js x74)
+      fun (x20 : t) ->
+        fun (x21 : Buffer.t) ->
+          Ojs.set_prop_ascii (t_to_js x20) "stderr" (Buffer.t_to_js x21)
   end
 module AnonymousInterface3 =
   struct
-    type t = anonymous_interface_3
-    let rec t_of_js : Ojs.t -> t =
-      fun (x76 : Ojs.t) -> anonymous_interface_3_of_js x76
-    and t_to_js : t -> Ojs.t =
-      fun (x75 : anonymous_interface_3) -> anonymous_interface_3_to_js x75
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x23 : Ojs.t) -> x23
+    and t_to_js : t -> Ojs.t = fun (x22 : Ojs.t) -> x22
     let (get_stdout : t -> string) =
-      fun (x77 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x77) "stdout")
+      fun (x24 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x24) "stdout")
     let (set_stdout : t -> string -> unit) =
-      fun (x78 : t) ->
-        fun (x79 : string) ->
-          Ojs.set_prop_ascii (t_to_js x78) "stdout" (Ojs.string_to_js x79)
+      fun (x25 : t) ->
+        fun (x26 : string) ->
+          Ojs.set_prop_ascii (t_to_js x25) "stdout" (Ojs.string_to_js x26)
     let (get_stderr : t -> string) =
-      fun (x80 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x80) "stderr")
+      fun (x27 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x27) "stderr")
     let (set_stderr : t -> string -> unit) =
-      fun (x81 : t) ->
-        fun (x82 : string) ->
-          Ojs.set_prop_ascii (t_to_js x81) "stderr" (Ojs.string_to_js x82)
+      fun (x28 : t) ->
+        fun (x29 : string) ->
+          Ojs.set_prop_ascii (t_to_js x28) "stderr" (Ojs.string_to_js x29)
   end
 module AnonymousInterface4 =
   struct
-    type t = anonymous_interface_4
-    let rec t_of_js : Ojs.t -> t =
-      fun (x84 : Ojs.t) -> anonymous_interface_4_of_js x84
-    and t_to_js : t -> Ojs.t =
-      fun (x83 : anonymous_interface_4) -> anonymous_interface_4_to_js x83
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x31 : Ojs.t) -> x31
+    and t_to_js : t -> Ojs.t = fun (x30 : Ojs.t) -> x30
     let (get_stdout : t -> Buffer.t or_string) =
-      fun (x85 : t) ->
+      fun (x32 : t) ->
         or_string_of_js Buffer.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x85) "stdout")
+          (Ojs.get_prop_ascii (t_to_js x32) "stdout")
     let (set_stdout : t -> Buffer.t or_string -> unit) =
-      fun (x87 : t) ->
-        fun (x88 : Buffer.t or_string) ->
-          Ojs.set_prop_ascii (t_to_js x87) "stdout"
-            (or_string_to_js Buffer.t_to_js x88)
+      fun (x34 : t) ->
+        fun (x35 : Buffer.t or_string) ->
+          Ojs.set_prop_ascii (t_to_js x34) "stdout"
+            (or_string_to_js Buffer.t_to_js x35)
     let (get_stderr : t -> Buffer.t or_string) =
-      fun (x90 : t) ->
+      fun (x37 : t) ->
         or_string_of_js Buffer.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x90) "stderr")
+          (Ojs.get_prop_ascii (t_to_js x37) "stderr")
     let (set_stderr : t -> Buffer.t or_string -> unit) =
-      fun (x92 : t) ->
-        fun (x93 : Buffer.t or_string) ->
-          Ojs.set_prop_ascii (t_to_js x92) "stderr"
-            (or_string_to_js Buffer.t_to_js x93)
+      fun (x39 : t) ->
+        fun (x40 : Buffer.t or_string) ->
+          Ojs.set_prop_ascii (t_to_js x39) "stderr"
+            (or_string_to_js Buffer.t_to_js x40)
   end
 module Child_process =
   struct
     module Serializable =
       struct
-        type t = child_process_Serializable
-        let rec t_of_js : Ojs.t -> t =
-          fun (x96 : Ojs.t) -> child_process_Serializable_of_js x96
-        and t_to_js : t -> Ojs.t =
-          fun (x95 : child_process_Serializable) ->
-            child_process_Serializable_to_js x95
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x43 : Ojs.t) -> x43
+        and t_to_js : t -> Ojs.t = fun (x42 : Ojs.t) -> x42
       end
     module SendHandle =
       struct
-        type t = child_process_SendHandle
+        type t = (Net.Server.t, Net.Socket.t) union2
         let rec t_of_js : Ojs.t -> t =
-          fun (x98 : Ojs.t) -> child_process_SendHandle_of_js x98
+          fun (x47 : Ojs.t) ->
+            union2_of_js Net.Server.t_of_js Net.Socket.t_of_js x47
         and t_to_js : t -> Ojs.t =
-          fun (x97 : child_process_SendHandle) ->
-            child_process_SendHandle_to_js x97
+          fun (x44 : (Net.Server.t, Net.Socket.t) union2) ->
+            union2_to_js Net.Server.t_to_js Net.Socket.t_to_js x44
       end
     module ChildProcess =
       struct
-        type t = child_process_ChildProcess
-        let rec t_of_js : Ojs.t -> t =
-          fun (x100 : Ojs.t) -> child_process_ChildProcess_of_js x100
-        and t_to_js : t -> Ojs.t =
-          fun (x99 : child_process_ChildProcess) ->
-            child_process_ChildProcess_to_js x99
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x51 : Ojs.t) -> x51
+        and t_to_js : t -> Ojs.t = fun (x50 : Ojs.t) -> x50
         let (get_stdin : t -> Node_stream.Stream.Writable.t or_null) =
-          fun (x101 : t) ->
+          fun (x52 : t) ->
             or_null_of_js Node_stream.Stream.Writable.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x101) "stdin")
+              (Ojs.get_prop_ascii (t_to_js x52) "stdin")
         let (set_stdin : t -> Node_stream.Stream.Writable.t or_null -> unit)
           =
-          fun (x103 : t) ->
-            fun (x104 : Node_stream.Stream.Writable.t or_null) ->
-              Ojs.set_prop_ascii (t_to_js x103) "stdin"
-                (or_null_to_js Node_stream.Stream.Writable.t_to_js x104)
+          fun (x54 : t) ->
+            fun (x55 : Node_stream.Stream.Writable.t or_null) ->
+              Ojs.set_prop_ascii (t_to_js x54) "stdin"
+                (or_null_to_js Node_stream.Stream.Writable.t_to_js x55)
         let (get_stdout : t -> Node_stream.Stream.Readable.t or_null) =
-          fun (x106 : t) ->
+          fun (x57 : t) ->
             or_null_of_js Node_stream.Stream.Readable.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x106) "stdout")
+              (Ojs.get_prop_ascii (t_to_js x57) "stdout")
         let (set_stdout : t -> Node_stream.Stream.Readable.t or_null -> unit)
           =
-          fun (x108 : t) ->
-            fun (x109 : Node_stream.Stream.Readable.t or_null) ->
-              Ojs.set_prop_ascii (t_to_js x108) "stdout"
-                (or_null_to_js Node_stream.Stream.Readable.t_to_js x109)
+          fun (x59 : t) ->
+            fun (x60 : Node_stream.Stream.Readable.t or_null) ->
+              Ojs.set_prop_ascii (t_to_js x59) "stdout"
+                (or_null_to_js Node_stream.Stream.Readable.t_to_js x60)
         let (get_stderr : t -> Node_stream.Stream.Readable.t or_null) =
-          fun (x111 : t) ->
+          fun (x62 : t) ->
             or_null_of_js Node_stream.Stream.Readable.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x111) "stderr")
+              (Ojs.get_prop_ascii (t_to_js x62) "stderr")
         let (set_stderr : t -> Node_stream.Stream.Readable.t or_null -> unit)
           =
-          fun (x113 : t) ->
-            fun (x114 : Node_stream.Stream.Readable.t or_null) ->
-              Ojs.set_prop_ascii (t_to_js x113) "stderr"
-                (or_null_to_js Node_stream.Stream.Readable.t_to_js x114)
+          fun (x64 : t) ->
+            fun (x65 : Node_stream.Stream.Readable.t or_null) ->
+              Ojs.set_prop_ascii (t_to_js x64) "stderr"
+                (or_null_to_js Node_stream.Stream.Readable.t_to_js x65)
         let (get_channel : t -> Node_stream.Stream.Pipe.t or_null) =
-          fun (x116 : t) ->
+          fun (x67 : t) ->
             or_null_of_js Node_stream.Stream.Pipe.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x116) "channel")
+              (Ojs.get_prop_ascii (t_to_js x67) "channel")
         let (get_stdio :
           t ->
             (Node_stream.Stream.Writable.t or_null *
@@ -698,893 +171,865 @@ module Child_process =
               union2 or_null_or_undefined * (Node_stream.Stream.Readable.t,
               Node_stream.Stream.Writable.t) union2 or_null_or_undefined))
           =
-          fun (x118 : t) ->
-            let x119 = Ojs.get_prop_ascii (t_to_js x118) "stdio" in
+          fun (x69 : t) ->
+            let x70 = Ojs.get_prop_ascii (t_to_js x69) "stdio" in
             ((or_null_of_js Node_stream.Stream.Writable.t_of_js
-                (Ojs.array_get x119 0)),
+                (Ojs.array_get x70 0)),
               (or_null_of_js Node_stream.Stream.Readable.t_of_js
-                 (Ojs.array_get x119 1)),
+                 (Ojs.array_get x70 1)),
               (or_null_of_js Node_stream.Stream.Readable.t_of_js
-                 (Ojs.array_get x119 2)),
+                 (Ojs.array_get x70 2)),
               (or_null_or_undefined_of_js
-                 (fun (x123 : Ojs.t) ->
+                 (fun (x74 : Ojs.t) ->
                     union2_of_js Node_stream.Stream.Readable.t_of_js
-                      Node_stream.Stream.Writable.t_of_js x123)
-                 (Ojs.array_get x119 3)),
+                      Node_stream.Stream.Writable.t_of_js x74)
+                 (Ojs.array_get x70 3)),
               (or_null_or_undefined_of_js
-                 (fun (x126 : Ojs.t) ->
+                 (fun (x77 : Ojs.t) ->
                     union2_of_js Node_stream.Stream.Readable.t_of_js
-                      Node_stream.Stream.Writable.t_of_js x126)
-                 (Ojs.array_get x119 4)))
+                      Node_stream.Stream.Writable.t_of_js x77)
+                 (Ojs.array_get x70 4)))
         let (get_killed : t -> bool) =
-          fun (x129 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x129) "killed")
-        let (get_pid : t -> float) =
-          fun (x130 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x130) "pid")
+          fun (x80 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x80) "killed")
+        let (get_pid : t -> int) =
+          fun (x81 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x81) "pid")
         let (get_connected : t -> bool) =
-          fun (x131 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x131) "connected")
-        let (get_exitCode : t -> float or_null) =
-          fun (x132 : t) ->
-            or_null_of_js Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x132) "exitCode")
+          fun (x82 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x82) "connected")
+        let (get_exitCode : t -> int or_null) =
+          fun (x83 : t) ->
+            or_null_of_js Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js x83) "exitCode")
         let (get_signalCode : t -> Node_process.Process.Signals.t or_null) =
-          fun (x134 : t) ->
+          fun (x85 : t) ->
             or_null_of_js Node_process.Process.Signals.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x134) "signalCode")
+              (Ojs.get_prop_ascii (t_to_js x85) "signalCode")
         let (get_spawnargs : t -> string list) =
-          fun (x136 : t) ->
+          fun (x87 : t) ->
             Ojs.list_of_js Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x136) "spawnargs")
+              (Ojs.get_prop_ascii (t_to_js x87) "spawnargs")
         let (get_spawnfile : t -> string) =
-          fun (x138 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x138) "spawnfile")
+          fun (x89 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x89) "spawnfile")
         let (kill :
           t ->
             ?signal:Node_process.Process.Signals.t or_number -> unit -> bool)
           =
-          fun (x143 : t) ->
+          fun (x94 : t) ->
             fun
-              ?signal:(x139 :
-                        Node_process.Process.Signals.t or_number option)
+              ?signal:(x90 : Node_process.Process.Signals.t or_number option)
               ->
               fun () ->
                 Ojs.bool_of_js
-                  (let x144 = t_to_js x143 in
-                   Ojs.call (Ojs.get_prop_ascii x144 "kill") "apply"
-                     [|x144;((let x140 =
-                                Ojs.new_obj
-                                  (Ojs.get_prop_ascii Ojs.global "Array")
-                                  [||] in
-                              (match x139 with
-                               | Some x141 ->
-                                   ignore
-                                     (Ojs.call x140 "push"
-                                        [|(or_number_to_js
-                                             Node_process.Process.Signals.t_to_js
-                                             x141)|])
-                               | None -> ());
-                              x140))|])
+                  (let x95 = t_to_js x94 in
+                   Ojs.call (Ojs.get_prop_ascii x95 "kill") "apply"
+                     [|x95;((let x91 =
+                               Ojs.new_obj
+                                 (Ojs.get_prop_ascii Ojs.global "Array") 
+                                 [||] in
+                             (match x90 with
+                              | Some x92 ->
+                                  ignore
+                                    (Ojs.call x91 "push"
+                                       [|(or_number_to_js
+                                            Node_process.Process.Signals.t_to_js
+                                            x92)|])
+                              | None -> ());
+                             x91))|])
         let (send :
           t ->
-            message:child_process_Serializable ->
+            message:Serializable.t ->
               ?callback:(error:Error.t or_null -> unit) -> unit -> bool)
           =
-          fun (x151 : t) ->
-            fun ~message:(x145 : child_process_Serializable) ->
-              fun ?callback:(x146 : (error:Error.t or_null -> unit) option)
-                ->
+          fun (x102 : t) ->
+            fun ~message:(x96 : Serializable.t) ->
+              fun ?callback:(x97 : (error:Error.t or_null -> unit) option) ->
                 fun () ->
                   Ojs.bool_of_js
-                    (let x152 = t_to_js x151 in
-                     Ojs.call (Ojs.get_prop_ascii x152 "send") "apply"
-                       [|x152;((let x147 =
+                    (let x103 = t_to_js x102 in
+                     Ojs.call (Ojs.get_prop_ascii x103 "send") "apply"
+                       [|x103;((let x98 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
                                 ignore
-                                  (Ojs.call x147 "push"
-                                     [|(child_process_Serializable_to_js x145)|]);
-                                (match x146 with
-                                 | Some x148 ->
+                                  (Ojs.call x98 "push"
+                                     [|(Serializable.t_to_js x96)|]);
+                                (match x97 with
+                                 | Some x99 ->
                                      ignore
-                                       (Ojs.call x147 "push"
+                                       (Ojs.call x98 "push"
                                           [|(Ojs.fun_to_js 1
-                                               (fun (x149 : Ojs.t) ->
-                                                  x148
+                                               (fun (x100 : Ojs.t) ->
+                                                  x99
                                                     ~error:(or_null_of_js
                                                               Error.t_of_js
-                                                              x149)))|])
+                                                              x100)))|])
                                  | None -> ());
-                                x147))|])
+                                x98))|])
         let (send' :
           t ->
-            message:child_process_Serializable ->
-              ?sendHandle:child_process_SendHandle ->
+            message:Serializable.t ->
+              ?sendHandle:SendHandle.t ->
                 ?callback:(error:Error.t or_null -> unit) -> unit -> bool)
           =
-          fun (x161 : t) ->
-            fun ~message:(x153 : child_process_Serializable) ->
-              fun ?sendHandle:(x154 : child_process_SendHandle option) ->
-                fun ?callback:(x155 : (error:Error.t or_null -> unit) option)
+          fun (x112 : t) ->
+            fun ~message:(x104 : Serializable.t) ->
+              fun ?sendHandle:(x105 : SendHandle.t option) ->
+                fun ?callback:(x106 : (error:Error.t or_null -> unit) option)
                   ->
                   fun () ->
                     Ojs.bool_of_js
-                      (let x162 = t_to_js x161 in
-                       Ojs.call (Ojs.get_prop_ascii x162 "send") "apply"
-                         [|x162;((let x156 =
+                      (let x113 = t_to_js x112 in
+                       Ojs.call (Ojs.get_prop_ascii x113 "send") "apply"
+                         [|x113;((let x107 =
                                     Ojs.new_obj
                                       (Ojs.get_prop_ascii Ojs.global "Array")
                                       [||] in
                                   ignore
-                                    (Ojs.call x156 "push"
-                                       [|(child_process_Serializable_to_js
-                                            x153)|]);
-                                  (match x154 with
-                                   | Some x160 ->
+                                    (Ojs.call x107 "push"
+                                       [|(Serializable.t_to_js x104)|]);
+                                  (match x105 with
+                                   | Some x111 ->
                                        ignore
-                                         (Ojs.call x156 "push"
-                                            [|(child_process_SendHandle_to_js
-                                                 x160)|])
+                                         (Ojs.call x107 "push"
+                                            [|(SendHandle.t_to_js x111)|])
                                    | None -> ());
-                                  (match x155 with
-                                   | Some x157 ->
+                                  (match x106 with
+                                   | Some x108 ->
                                        ignore
-                                         (Ojs.call x156 "push"
+                                         (Ojs.call x107 "push"
                                             [|(Ojs.fun_to_js 1
-                                                 (fun (x158 : Ojs.t) ->
-                                                    x157
+                                                 (fun (x109 : Ojs.t) ->
+                                                    x108
                                                       ~error:(or_null_of_js
                                                                 Error.t_of_js
-                                                                x158)))|])
+                                                                x109)))|])
                                    | None -> ());
-                                  x156))|])
+                                  x107))|])
         let (send'' :
           t ->
-            message:child_process_Serializable ->
-              ?sendHandle:child_process_SendHandle ->
-                ?options:child_process_MessageOptions ->
+            message:Serializable.t ->
+              ?sendHandle:SendHandle.t ->
+                ?options:MessageOptions.t ->
                   ?callback:(error:Error.t or_null -> unit) -> unit -> bool)
           =
-          fun (x173 : t) ->
-            fun ~message:(x163 : child_process_Serializable) ->
-              fun ?sendHandle:(x164 : child_process_SendHandle option) ->
-                fun ?options:(x165 : child_process_MessageOptions option) ->
+          fun (x124 : t) ->
+            fun ~message:(x114 : Serializable.t) ->
+              fun ?sendHandle:(x115 : SendHandle.t option) ->
+                fun ?options:(x116 : MessageOptions.t option) ->
                   fun
-                    ?callback:(x166 : (error:Error.t or_null -> unit) option)
+                    ?callback:(x117 : (error:Error.t or_null -> unit) option)
                     ->
                     fun () ->
                       Ojs.bool_of_js
-                        (let x174 = t_to_js x173 in
-                         Ojs.call (Ojs.get_prop_ascii x174 "send") "apply"
-                           [|x174;((let x167 =
+                        (let x125 = t_to_js x124 in
+                         Ojs.call (Ojs.get_prop_ascii x125 "send") "apply"
+                           [|x125;((let x118 =
                                       Ojs.new_obj
                                         (Ojs.get_prop_ascii Ojs.global
                                            "Array") [||] in
                                     ignore
-                                      (Ojs.call x167 "push"
-                                         [|(child_process_Serializable_to_js
-                                              x163)|]);
-                                    (match x164 with
-                                     | Some x172 ->
+                                      (Ojs.call x118 "push"
+                                         [|(Serializable.t_to_js x114)|]);
+                                    (match x115 with
+                                     | Some x123 ->
                                          ignore
-                                           (Ojs.call x167 "push"
-                                              [|(child_process_SendHandle_to_js
-                                                   x172)|])
+                                           (Ojs.call x118 "push"
+                                              [|(SendHandle.t_to_js x123)|])
                                      | None -> ());
-                                    (match x165 with
-                                     | Some x171 ->
+                                    (match x116 with
+                                     | Some x122 ->
                                          ignore
-                                           (Ojs.call x167 "push"
-                                              [|(child_process_MessageOptions_to_js
-                                                   x171)|])
+                                           (Ojs.call x118 "push"
+                                              [|(MessageOptions.t_to_js x122)|])
                                      | None -> ());
-                                    (match x166 with
-                                     | Some x168 ->
+                                    (match x117 with
+                                     | Some x119 ->
                                          ignore
-                                           (Ojs.call x167 "push"
+                                           (Ojs.call x118 "push"
                                               [|(Ojs.fun_to_js 1
-                                                   (fun (x169 : Ojs.t) ->
-                                                      x168
+                                                   (fun (x120 : Ojs.t) ->
+                                                      x119
                                                         ~error:(or_null_of_js
                                                                   Error.t_of_js
-                                                                  x169)))|])
+                                                                  x120)))|])
                                      | None -> ());
-                                    x167))|])
+                                    x118))|])
         let (disconnect : t -> unit) =
-          fun (x175 : t) ->
-            ignore (Ojs.call (t_to_js x175) "disconnect" [||])
+          fun (x126 : t) ->
+            ignore (Ojs.call (t_to_js x126) "disconnect" [||])
         let (unref : t -> unit) =
-          fun (x176 : t) -> ignore (Ojs.call (t_to_js x176) "unref" [||])
+          fun (x127 : t) -> ignore (Ojs.call (t_to_js x127) "unref" [||])
         let (ref : t -> unit) =
-          fun (x177 : t) -> ignore (Ojs.call (t_to_js x177) "ref" [||])
+          fun (x128 : t) -> ignore (Ojs.call (t_to_js x128) "ref" [||])
         let (addListener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
-          fun (x182 : t) ->
-            fun ~event:(x178 : string) ->
-              fun ~listener:(x179 : args:any list -> unit) ->
+          fun (x133 : t) ->
+            fun ~event:(x129 : string) ->
+              fun ~listener:(x130 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x182) "addListener"
-                     [|(Ojs.string_to_js x178);(Ojs.fun_to_js_args
-                                                  (fun (x180 : _) ->
-                                                     x179
+                  (Ojs.call (t_to_js x133) "addListener"
+                     [|(Ojs.string_to_js x129);(Ojs.fun_to_js_args
+                                                  (fun (x131 : _) ->
+                                                     x130
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
-                                                                x180 0)))|])
+                                                                x131 0)))|])
         let (addListener' :
           t ->
             event:[ `close ] ->
-              listener:(code:float or_null ->
+              listener:(code:int or_null ->
                           signal:Node_process.Process.Signals.t or_null ->
                             unit)
                 -> t)
           =
-          fun (x189 : t) ->
-            fun ~event:(x183 : [ `close ]) ->
+          fun (x140 : t) ->
+            fun ~event:(x134 : [ `close ]) ->
               fun
-                ~listener:(x184 :
-                            code:float or_null ->
+                ~listener:(x135 :
+                            code:int or_null ->
                               signal:Node_process.Process.Signals.t or_null
                                 -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x189) "addListener"
-                     [|((match x183 with | `close -> Ojs.string_to_js "close"));(
+                  (Ojs.call (t_to_js x140) "addListener"
+                     [|((match x134 with | `close -> Ojs.string_to_js "close"));(
                        Ojs.fun_to_js 2
-                         (fun (x185 : Ojs.t) ->
-                            fun (x187 : Ojs.t) ->
-                              x184 ~code:(or_null_of_js Ojs.float_of_js x185)
+                         (fun (x136 : Ojs.t) ->
+                            fun (x138 : Ojs.t) ->
+                              x135 ~code:(or_null_of_js Ojs.int_of_js x136)
                                 ~signal:(or_null_of_js
                                            Node_process.Process.Signals.t_of_js
-                                           x187)))|])
+                                           x138)))|])
         let (addListener'' :
           t -> event:[ `disconnect ] -> listener:(unit -> unit) -> t) =
-          fun (x192 : t) ->
-            fun ~event:(x190 : [ `disconnect ]) ->
-              fun ~listener:(x191 : unit -> unit) ->
+          fun (x143 : t) ->
+            fun ~event:(x141 : [ `disconnect ]) ->
+              fun ~listener:(x142 : unit -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x192) "addListener"
-                     [|((match x190 with
+                  (Ojs.call (t_to_js x143) "addListener"
+                     [|((match x141 with
                          | `disconnect -> Ojs.string_to_js "disconnect"));(
-                       Ojs.fun_to_js 1 (fun _ -> x191 ()))|])
+                       Ojs.fun_to_js 1 (fun _ -> x142 ()))|])
         let (addListener''' :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
-          fun (x196 : t) ->
-            fun ~event:(x193 : [ `error ]) ->
-              fun ~listener:(x194 : err:Error.t -> unit) ->
+          fun (x147 : t) ->
+            fun ~event:(x144 : [ `error ]) ->
+              fun ~listener:(x145 : err:Error.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x196) "addListener"
-                     [|((match x193 with | `error -> Ojs.string_to_js "error"));(
+                  (Ojs.call (t_to_js x147) "addListener"
+                     [|((match x144 with | `error -> Ojs.string_to_js "error"));(
                        Ojs.fun_to_js 1
-                         (fun (x195 : Ojs.t) ->
-                            x194 ~err:(Error.t_of_js x195)))|])
+                         (fun (x146 : Ojs.t) ->
+                            x145 ~err:(Error.t_of_js x146)))|])
         let (addListener'''' :
           t ->
             event:[ `exit ] ->
-              listener:(code:float or_null ->
+              listener:(code:int or_null ->
                           signal:Node_process.Process.Signals.t or_null ->
                             unit)
                 -> t)
           =
-          fun (x203 : t) ->
-            fun ~event:(x197 : [ `exit ]) ->
+          fun (x154 : t) ->
+            fun ~event:(x148 : [ `exit ]) ->
               fun
-                ~listener:(x198 :
-                            code:float or_null ->
+                ~listener:(x149 :
+                            code:int or_null ->
                               signal:Node_process.Process.Signals.t or_null
                                 -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x203) "addListener"
-                     [|((match x197 with | `exit -> Ojs.string_to_js "exit"));(
+                  (Ojs.call (t_to_js x154) "addListener"
+                     [|((match x148 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 2
-                         (fun (x199 : Ojs.t) ->
-                            fun (x201 : Ojs.t) ->
-                              x198 ~code:(or_null_of_js Ojs.float_of_js x199)
+                         (fun (x150 : Ojs.t) ->
+                            fun (x152 : Ojs.t) ->
+                              x149 ~code:(or_null_of_js Ojs.int_of_js x150)
                                 ~signal:(or_null_of_js
                                            Node_process.Process.Signals.t_of_js
-                                           x201)))|])
+                                           x152)))|])
         let (addListener''''' :
           t ->
             event:[ `message ] ->
-              listener:(message:child_process_Serializable ->
-                          sendHandle:child_process_SendHandle -> unit)
+              listener:(message:Serializable.t ->
+                          sendHandle:SendHandle.t -> unit)
                 -> t)
           =
-          fun (x208 : t) ->
-            fun ~event:(x204 : [ `message ]) ->
+          fun (x159 : t) ->
+            fun ~event:(x155 : [ `message ]) ->
               fun
-                ~listener:(x205 :
-                            message:child_process_Serializable ->
-                              sendHandle:child_process_SendHandle -> unit)
+                ~listener:(x156 :
+                            message:Serializable.t ->
+                              sendHandle:SendHandle.t -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x208) "addListener"
-                     [|((match x204 with
+                  (Ojs.call (t_to_js x159) "addListener"
+                     [|((match x155 with
                          | `message -> Ojs.string_to_js "message"));(
                        Ojs.fun_to_js 2
-                         (fun (x206 : Ojs.t) ->
-                            fun (x207 : Ojs.t) ->
-                              x205
-                                ~message:(child_process_Serializable_of_js
-                                            x206)
-                                ~sendHandle:(child_process_SendHandle_of_js
-                                               x207)))|])
+                         (fun (x157 : Ojs.t) ->
+                            fun (x158 : Ojs.t) ->
+                              x156 ~message:(Serializable.t_of_js x157)
+                                ~sendHandle:(SendHandle.t_of_js x158)))|])
         let (emit : t -> event:symbol or_string -> args:any list -> bool) =
-          fun (x214 : t) ->
-            fun ~event:(x209 : symbol or_string) ->
-              fun ~args:(x210 : any list) ->
+          fun (x165 : t) ->
+            fun ~event:(x160 : symbol or_string) ->
+              fun ~args:(x161 : any list) ->
                 Ojs.bool_of_js
-                  (let x215 = t_to_js x214 in
-                   Ojs.call (Ojs.get_prop_ascii x215 "emit") "apply"
-                     [|x215;((let x211 =
+                  (let x166 = t_to_js x165 in
+                   Ojs.call (Ojs.get_prop_ascii x166 "emit") "apply"
+                     [|x166;((let x162 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x211 "push"
-                                   [|(or_string_to_js symbol_to_js x209)|]);
+                                (Ojs.call x162 "push"
+                                   [|(or_string_to_js symbol_to_js x160)|]);
                               List.iter
-                                (fun (x212 : any) ->
+                                (fun (x163 : any) ->
                                    ignore
-                                     (Ojs.call x211 "push"
-                                        [|(any_to_js x212)|])) x210;
-                              x211))|])
+                                     (Ojs.call x162 "push"
+                                        [|(any_to_js x163)|])) x161;
+                              x162))|])
         let (emit' :
           t ->
             event:[ `close ] ->
-              code:float or_null ->
+              code:int or_null ->
                 signal:Node_process.Process.Signals.t or_null -> bool)
           =
-          fun (x221 : t) ->
-            fun ~event:(x216 : [ `close ]) ->
-              fun ~code:(x217 : float or_null) ->
-                fun ~signal:(x219 : Node_process.Process.Signals.t or_null)
+          fun (x172 : t) ->
+            fun ~event:(x167 : [ `close ]) ->
+              fun ~code:(x168 : int or_null) ->
+                fun ~signal:(x170 : Node_process.Process.Signals.t or_null)
                   ->
                   Ojs.bool_of_js
-                    (Ojs.call (t_to_js x221) "emit"
-                       [|((match x216 with
+                    (Ojs.call (t_to_js x172) "emit"
+                       [|((match x167 with
                            | `close -> Ojs.string_to_js "close"));(or_null_to_js
-                                                                    Ojs.float_to_js
-                                                                    x217);(
+                                                                    Ojs.int_to_js
+                                                                    x168);(
                          or_null_to_js Node_process.Process.Signals.t_to_js
-                           x219)|])
+                           x170)|])
         let (emit'' : t -> event:[ `disconnect ] -> bool) =
-          fun (x223 : t) ->
-            fun ~event:(x222 : [ `disconnect ]) ->
+          fun (x174 : t) ->
+            fun ~event:(x173 : [ `disconnect ]) ->
               Ojs.bool_of_js
-                (Ojs.call (t_to_js x223) "emit"
-                   [|((match x222 with
+                (Ojs.call (t_to_js x174) "emit"
+                   [|((match x173 with
                        | `disconnect -> Ojs.string_to_js "disconnect"))|])
         let (emit''' : t -> event:[ `error ] -> err:Error.t -> bool) =
-          fun (x226 : t) ->
-            fun ~event:(x224 : [ `error ]) ->
-              fun ~err:(x225 : Error.t) ->
+          fun (x177 : t) ->
+            fun ~event:(x175 : [ `error ]) ->
+              fun ~err:(x176 : Error.t) ->
                 Ojs.bool_of_js
-                  (Ojs.call (t_to_js x226) "emit"
-                     [|((match x224 with | `error -> Ojs.string_to_js "error"));(
-                       Error.t_to_js x225)|])
+                  (Ojs.call (t_to_js x177) "emit"
+                     [|((match x175 with | `error -> Ojs.string_to_js "error"));(
+                       Error.t_to_js x176)|])
         let (emit'''' :
           t ->
             event:[ `exit ] ->
-              code:float or_null ->
+              code:int or_null ->
                 signal:Node_process.Process.Signals.t or_null -> bool)
           =
-          fun (x232 : t) ->
-            fun ~event:(x227 : [ `exit ]) ->
-              fun ~code:(x228 : float or_null) ->
-                fun ~signal:(x230 : Node_process.Process.Signals.t or_null)
+          fun (x183 : t) ->
+            fun ~event:(x178 : [ `exit ]) ->
+              fun ~code:(x179 : int or_null) ->
+                fun ~signal:(x181 : Node_process.Process.Signals.t or_null)
                   ->
                   Ojs.bool_of_js
-                    (Ojs.call (t_to_js x232) "emit"
-                       [|((match x227 with | `exit -> Ojs.string_to_js "exit"));(
-                         or_null_to_js Ojs.float_to_js x228);(or_null_to_js
-                                                                Node_process.Process.Signals.t_to_js
-                                                                x230)|])
+                    (Ojs.call (t_to_js x183) "emit"
+                       [|((match x178 with | `exit -> Ojs.string_to_js "exit"));(
+                         or_null_to_js Ojs.int_to_js x179);(or_null_to_js
+                                                              Node_process.Process.Signals.t_to_js
+                                                              x181)|])
         let (emit''''' :
           t ->
             event:[ `message ] ->
-              message:child_process_Serializable ->
-                sendHandle:child_process_SendHandle -> bool)
+              message:Serializable.t -> sendHandle:SendHandle.t -> bool)
           =
-          fun (x236 : t) ->
-            fun ~event:(x233 : [ `message ]) ->
-              fun ~message:(x234 : child_process_Serializable) ->
-                fun ~sendHandle:(x235 : child_process_SendHandle) ->
+          fun (x187 : t) ->
+            fun ~event:(x184 : [ `message ]) ->
+              fun ~message:(x185 : Serializable.t) ->
+                fun ~sendHandle:(x186 : SendHandle.t) ->
                   Ojs.bool_of_js
-                    (Ojs.call (t_to_js x236) "emit"
-                       [|((match x233 with
+                    (Ojs.call (t_to_js x187) "emit"
+                       [|((match x184 with
                            | `message -> Ojs.string_to_js "message"));(
-                         child_process_Serializable_to_js x234);(child_process_SendHandle_to_js
-                                                                   x235)|])
+                         Serializable.t_to_js x185);(SendHandle.t_to_js x186)|])
         let (on : t -> event:string -> listener:(args:any list -> unit) -> t)
           =
-          fun (x241 : t) ->
-            fun ~event:(x237 : string) ->
-              fun ~listener:(x238 : args:any list -> unit) ->
+          fun (x192 : t) ->
+            fun ~event:(x188 : string) ->
+              fun ~listener:(x189 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x241) "on"
-                     [|(Ojs.string_to_js x237);(Ojs.fun_to_js_args
-                                                  (fun (x239 : _) ->
-                                                     x238
+                  (Ojs.call (t_to_js x192) "on"
+                     [|(Ojs.string_to_js x188);(Ojs.fun_to_js_args
+                                                  (fun (x190 : _) ->
+                                                     x189
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
-                                                                x239 0)))|])
+                                                                x190 0)))|])
         let (on' :
           t ->
             event:[ `close ] ->
-              listener:(code:float or_null ->
+              listener:(code:int or_null ->
                           signal:Node_process.Process.Signals.t or_null ->
                             unit)
                 -> t)
           =
-          fun (x248 : t) ->
-            fun ~event:(x242 : [ `close ]) ->
+          fun (x199 : t) ->
+            fun ~event:(x193 : [ `close ]) ->
               fun
-                ~listener:(x243 :
-                            code:float or_null ->
+                ~listener:(x194 :
+                            code:int or_null ->
                               signal:Node_process.Process.Signals.t or_null
                                 -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x248) "on"
-                     [|((match x242 with | `close -> Ojs.string_to_js "close"));(
+                  (Ojs.call (t_to_js x199) "on"
+                     [|((match x193 with | `close -> Ojs.string_to_js "close"));(
                        Ojs.fun_to_js 2
-                         (fun (x244 : Ojs.t) ->
-                            fun (x246 : Ojs.t) ->
-                              x243 ~code:(or_null_of_js Ojs.float_of_js x244)
+                         (fun (x195 : Ojs.t) ->
+                            fun (x197 : Ojs.t) ->
+                              x194 ~code:(or_null_of_js Ojs.int_of_js x195)
                                 ~signal:(or_null_of_js
                                            Node_process.Process.Signals.t_of_js
-                                           x246)))|])
+                                           x197)))|])
         let (on'' :
           t -> event:[ `disconnect ] -> listener:(unit -> unit) -> t) =
-          fun (x251 : t) ->
-            fun ~event:(x249 : [ `disconnect ]) ->
-              fun ~listener:(x250 : unit -> unit) ->
+          fun (x202 : t) ->
+            fun ~event:(x200 : [ `disconnect ]) ->
+              fun ~listener:(x201 : unit -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x251) "on"
-                     [|((match x249 with
+                  (Ojs.call (t_to_js x202) "on"
+                     [|((match x200 with
                          | `disconnect -> Ojs.string_to_js "disconnect"));(
-                       Ojs.fun_to_js 1 (fun _ -> x250 ()))|])
+                       Ojs.fun_to_js 1 (fun _ -> x201 ()))|])
         let (on''' :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
-          fun (x255 : t) ->
-            fun ~event:(x252 : [ `error ]) ->
-              fun ~listener:(x253 : err:Error.t -> unit) ->
+          fun (x206 : t) ->
+            fun ~event:(x203 : [ `error ]) ->
+              fun ~listener:(x204 : err:Error.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x255) "on"
-                     [|((match x252 with | `error -> Ojs.string_to_js "error"));(
+                  (Ojs.call (t_to_js x206) "on"
+                     [|((match x203 with | `error -> Ojs.string_to_js "error"));(
                        Ojs.fun_to_js 1
-                         (fun (x254 : Ojs.t) ->
-                            x253 ~err:(Error.t_of_js x254)))|])
+                         (fun (x205 : Ojs.t) ->
+                            x204 ~err:(Error.t_of_js x205)))|])
         let (on'''' :
           t ->
             event:[ `exit ] ->
-              listener:(code:float or_null ->
+              listener:(code:int or_null ->
                           signal:Node_process.Process.Signals.t or_null ->
                             unit)
                 -> t)
           =
-          fun (x262 : t) ->
-            fun ~event:(x256 : [ `exit ]) ->
+          fun (x213 : t) ->
+            fun ~event:(x207 : [ `exit ]) ->
               fun
-                ~listener:(x257 :
-                            code:float or_null ->
+                ~listener:(x208 :
+                            code:int or_null ->
                               signal:Node_process.Process.Signals.t or_null
                                 -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x262) "on"
-                     [|((match x256 with | `exit -> Ojs.string_to_js "exit"));(
+                  (Ojs.call (t_to_js x213) "on"
+                     [|((match x207 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 2
-                         (fun (x258 : Ojs.t) ->
-                            fun (x260 : Ojs.t) ->
-                              x257 ~code:(or_null_of_js Ojs.float_of_js x258)
+                         (fun (x209 : Ojs.t) ->
+                            fun (x211 : Ojs.t) ->
+                              x208 ~code:(or_null_of_js Ojs.int_of_js x209)
                                 ~signal:(or_null_of_js
                                            Node_process.Process.Signals.t_of_js
-                                           x260)))|])
+                                           x211)))|])
         let (on''''' :
           t ->
             event:[ `message ] ->
-              listener:(message:child_process_Serializable ->
-                          sendHandle:child_process_SendHandle -> unit)
+              listener:(message:Serializable.t ->
+                          sendHandle:SendHandle.t -> unit)
                 -> t)
           =
-          fun (x267 : t) ->
-            fun ~event:(x263 : [ `message ]) ->
+          fun (x218 : t) ->
+            fun ~event:(x214 : [ `message ]) ->
               fun
-                ~listener:(x264 :
-                            message:child_process_Serializable ->
-                              sendHandle:child_process_SendHandle -> unit)
+                ~listener:(x215 :
+                            message:Serializable.t ->
+                              sendHandle:SendHandle.t -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x267) "on"
-                     [|((match x263 with
+                  (Ojs.call (t_to_js x218) "on"
+                     [|((match x214 with
                          | `message -> Ojs.string_to_js "message"));(
                        Ojs.fun_to_js 2
-                         (fun (x265 : Ojs.t) ->
-                            fun (x266 : Ojs.t) ->
-                              x264
-                                ~message:(child_process_Serializable_of_js
-                                            x265)
-                                ~sendHandle:(child_process_SendHandle_of_js
-                                               x266)))|])
+                         (fun (x216 : Ojs.t) ->
+                            fun (x217 : Ojs.t) ->
+                              x215 ~message:(Serializable.t_of_js x216)
+                                ~sendHandle:(SendHandle.t_of_js x217)))|])
         let (once :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
-          fun (x272 : t) ->
-            fun ~event:(x268 : string) ->
-              fun ~listener:(x269 : args:any list -> unit) ->
+          fun (x223 : t) ->
+            fun ~event:(x219 : string) ->
+              fun ~listener:(x220 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x272) "once"
-                     [|(Ojs.string_to_js x268);(Ojs.fun_to_js_args
-                                                  (fun (x270 : _) ->
-                                                     x269
+                  (Ojs.call (t_to_js x223) "once"
+                     [|(Ojs.string_to_js x219);(Ojs.fun_to_js_args
+                                                  (fun (x221 : _) ->
+                                                     x220
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
-                                                                x270 0)))|])
+                                                                x221 0)))|])
         let (once' :
           t ->
             event:[ `close ] ->
-              listener:(code:float or_null ->
+              listener:(code:int or_null ->
                           signal:Node_process.Process.Signals.t or_null ->
                             unit)
                 -> t)
           =
-          fun (x279 : t) ->
-            fun ~event:(x273 : [ `close ]) ->
+          fun (x230 : t) ->
+            fun ~event:(x224 : [ `close ]) ->
               fun
-                ~listener:(x274 :
-                            code:float or_null ->
+                ~listener:(x225 :
+                            code:int or_null ->
                               signal:Node_process.Process.Signals.t or_null
                                 -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x279) "once"
-                     [|((match x273 with | `close -> Ojs.string_to_js "close"));(
+                  (Ojs.call (t_to_js x230) "once"
+                     [|((match x224 with | `close -> Ojs.string_to_js "close"));(
                        Ojs.fun_to_js 2
-                         (fun (x275 : Ojs.t) ->
-                            fun (x277 : Ojs.t) ->
-                              x274 ~code:(or_null_of_js Ojs.float_of_js x275)
+                         (fun (x226 : Ojs.t) ->
+                            fun (x228 : Ojs.t) ->
+                              x225 ~code:(or_null_of_js Ojs.int_of_js x226)
                                 ~signal:(or_null_of_js
                                            Node_process.Process.Signals.t_of_js
-                                           x277)))|])
+                                           x228)))|])
         let (once'' :
           t -> event:[ `disconnect ] -> listener:(unit -> unit) -> t) =
-          fun (x282 : t) ->
-            fun ~event:(x280 : [ `disconnect ]) ->
-              fun ~listener:(x281 : unit -> unit) ->
+          fun (x233 : t) ->
+            fun ~event:(x231 : [ `disconnect ]) ->
+              fun ~listener:(x232 : unit -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x282) "once"
-                     [|((match x280 with
+                  (Ojs.call (t_to_js x233) "once"
+                     [|((match x231 with
                          | `disconnect -> Ojs.string_to_js "disconnect"));(
-                       Ojs.fun_to_js 1 (fun _ -> x281 ()))|])
+                       Ojs.fun_to_js 1 (fun _ -> x232 ()))|])
         let (once''' :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
-          fun (x286 : t) ->
-            fun ~event:(x283 : [ `error ]) ->
-              fun ~listener:(x284 : err:Error.t -> unit) ->
+          fun (x237 : t) ->
+            fun ~event:(x234 : [ `error ]) ->
+              fun ~listener:(x235 : err:Error.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x286) "once"
-                     [|((match x283 with | `error -> Ojs.string_to_js "error"));(
+                  (Ojs.call (t_to_js x237) "once"
+                     [|((match x234 with | `error -> Ojs.string_to_js "error"));(
                        Ojs.fun_to_js 1
-                         (fun (x285 : Ojs.t) ->
-                            x284 ~err:(Error.t_of_js x285)))|])
+                         (fun (x236 : Ojs.t) ->
+                            x235 ~err:(Error.t_of_js x236)))|])
         let (once'''' :
           t ->
             event:[ `exit ] ->
-              listener:(code:float or_null ->
+              listener:(code:int or_null ->
                           signal:Node_process.Process.Signals.t or_null ->
                             unit)
                 -> t)
           =
-          fun (x293 : t) ->
-            fun ~event:(x287 : [ `exit ]) ->
+          fun (x244 : t) ->
+            fun ~event:(x238 : [ `exit ]) ->
               fun
-                ~listener:(x288 :
-                            code:float or_null ->
+                ~listener:(x239 :
+                            code:int or_null ->
                               signal:Node_process.Process.Signals.t or_null
                                 -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x293) "once"
-                     [|((match x287 with | `exit -> Ojs.string_to_js "exit"));(
+                  (Ojs.call (t_to_js x244) "once"
+                     [|((match x238 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 2
-                         (fun (x289 : Ojs.t) ->
-                            fun (x291 : Ojs.t) ->
-                              x288 ~code:(or_null_of_js Ojs.float_of_js x289)
+                         (fun (x240 : Ojs.t) ->
+                            fun (x242 : Ojs.t) ->
+                              x239 ~code:(or_null_of_js Ojs.int_of_js x240)
                                 ~signal:(or_null_of_js
                                            Node_process.Process.Signals.t_of_js
-                                           x291)))|])
+                                           x242)))|])
         let (once''''' :
           t ->
             event:[ `message ] ->
-              listener:(message:child_process_Serializable ->
-                          sendHandle:child_process_SendHandle -> unit)
+              listener:(message:Serializable.t ->
+                          sendHandle:SendHandle.t -> unit)
                 -> t)
           =
-          fun (x298 : t) ->
-            fun ~event:(x294 : [ `message ]) ->
+          fun (x249 : t) ->
+            fun ~event:(x245 : [ `message ]) ->
               fun
-                ~listener:(x295 :
-                            message:child_process_Serializable ->
-                              sendHandle:child_process_SendHandle -> unit)
+                ~listener:(x246 :
+                            message:Serializable.t ->
+                              sendHandle:SendHandle.t -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x298) "once"
-                     [|((match x294 with
+                  (Ojs.call (t_to_js x249) "once"
+                     [|((match x245 with
                          | `message -> Ojs.string_to_js "message"));(
                        Ojs.fun_to_js 2
-                         (fun (x296 : Ojs.t) ->
-                            fun (x297 : Ojs.t) ->
-                              x295
-                                ~message:(child_process_Serializable_of_js
-                                            x296)
-                                ~sendHandle:(child_process_SendHandle_of_js
-                                               x297)))|])
+                         (fun (x247 : Ojs.t) ->
+                            fun (x248 : Ojs.t) ->
+                              x246 ~message:(Serializable.t_of_js x247)
+                                ~sendHandle:(SendHandle.t_of_js x248)))|])
         let (prependListener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
-          fun (x303 : t) ->
-            fun ~event:(x299 : string) ->
-              fun ~listener:(x300 : args:any list -> unit) ->
+          fun (x254 : t) ->
+            fun ~event:(x250 : string) ->
+              fun ~listener:(x251 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x303) "prependListener"
-                     [|(Ojs.string_to_js x299);(Ojs.fun_to_js_args
-                                                  (fun (x301 : _) ->
-                                                     x300
+                  (Ojs.call (t_to_js x254) "prependListener"
+                     [|(Ojs.string_to_js x250);(Ojs.fun_to_js_args
+                                                  (fun (x252 : _) ->
+                                                     x251
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
-                                                                x301 0)))|])
+                                                                x252 0)))|])
         let (prependListener' :
           t ->
             event:[ `close ] ->
-              listener:(code:float or_null ->
+              listener:(code:int or_null ->
                           signal:Node_process.Process.Signals.t or_null ->
                             unit)
                 -> t)
           =
-          fun (x310 : t) ->
-            fun ~event:(x304 : [ `close ]) ->
+          fun (x261 : t) ->
+            fun ~event:(x255 : [ `close ]) ->
               fun
-                ~listener:(x305 :
-                            code:float or_null ->
+                ~listener:(x256 :
+                            code:int or_null ->
                               signal:Node_process.Process.Signals.t or_null
                                 -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x310) "prependListener"
-                     [|((match x304 with | `close -> Ojs.string_to_js "close"));(
+                  (Ojs.call (t_to_js x261) "prependListener"
+                     [|((match x255 with | `close -> Ojs.string_to_js "close"));(
                        Ojs.fun_to_js 2
-                         (fun (x306 : Ojs.t) ->
-                            fun (x308 : Ojs.t) ->
-                              x305 ~code:(or_null_of_js Ojs.float_of_js x306)
+                         (fun (x257 : Ojs.t) ->
+                            fun (x259 : Ojs.t) ->
+                              x256 ~code:(or_null_of_js Ojs.int_of_js x257)
                                 ~signal:(or_null_of_js
                                            Node_process.Process.Signals.t_of_js
-                                           x308)))|])
+                                           x259)))|])
         let (prependListener'' :
           t -> event:[ `disconnect ] -> listener:(unit -> unit) -> t) =
-          fun (x313 : t) ->
-            fun ~event:(x311 : [ `disconnect ]) ->
-              fun ~listener:(x312 : unit -> unit) ->
+          fun (x264 : t) ->
+            fun ~event:(x262 : [ `disconnect ]) ->
+              fun ~listener:(x263 : unit -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x313) "prependListener"
-                     [|((match x311 with
+                  (Ojs.call (t_to_js x264) "prependListener"
+                     [|((match x262 with
                          | `disconnect -> Ojs.string_to_js "disconnect"));(
-                       Ojs.fun_to_js 1 (fun _ -> x312 ()))|])
+                       Ojs.fun_to_js 1 (fun _ -> x263 ()))|])
         let (prependListener''' :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
-          fun (x317 : t) ->
-            fun ~event:(x314 : [ `error ]) ->
-              fun ~listener:(x315 : err:Error.t -> unit) ->
+          fun (x268 : t) ->
+            fun ~event:(x265 : [ `error ]) ->
+              fun ~listener:(x266 : err:Error.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x317) "prependListener"
-                     [|((match x314 with | `error -> Ojs.string_to_js "error"));(
+                  (Ojs.call (t_to_js x268) "prependListener"
+                     [|((match x265 with | `error -> Ojs.string_to_js "error"));(
                        Ojs.fun_to_js 1
-                         (fun (x316 : Ojs.t) ->
-                            x315 ~err:(Error.t_of_js x316)))|])
+                         (fun (x267 : Ojs.t) ->
+                            x266 ~err:(Error.t_of_js x267)))|])
         let (prependListener'''' :
           t ->
             event:[ `exit ] ->
-              listener:(code:float or_null ->
+              listener:(code:int or_null ->
                           signal:Node_process.Process.Signals.t or_null ->
                             unit)
                 -> t)
           =
-          fun (x324 : t) ->
-            fun ~event:(x318 : [ `exit ]) ->
+          fun (x275 : t) ->
+            fun ~event:(x269 : [ `exit ]) ->
               fun
-                ~listener:(x319 :
-                            code:float or_null ->
+                ~listener:(x270 :
+                            code:int or_null ->
                               signal:Node_process.Process.Signals.t or_null
                                 -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x324) "prependListener"
-                     [|((match x318 with | `exit -> Ojs.string_to_js "exit"));(
+                  (Ojs.call (t_to_js x275) "prependListener"
+                     [|((match x269 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 2
-                         (fun (x320 : Ojs.t) ->
-                            fun (x322 : Ojs.t) ->
-                              x319 ~code:(or_null_of_js Ojs.float_of_js x320)
+                         (fun (x271 : Ojs.t) ->
+                            fun (x273 : Ojs.t) ->
+                              x270 ~code:(or_null_of_js Ojs.int_of_js x271)
                                 ~signal:(or_null_of_js
                                            Node_process.Process.Signals.t_of_js
-                                           x322)))|])
+                                           x273)))|])
         let (prependListener''''' :
           t ->
             event:[ `message ] ->
-              listener:(message:child_process_Serializable ->
-                          sendHandle:child_process_SendHandle -> unit)
+              listener:(message:Serializable.t ->
+                          sendHandle:SendHandle.t -> unit)
                 -> t)
           =
-          fun (x329 : t) ->
-            fun ~event:(x325 : [ `message ]) ->
+          fun (x280 : t) ->
+            fun ~event:(x276 : [ `message ]) ->
               fun
-                ~listener:(x326 :
-                            message:child_process_Serializable ->
-                              sendHandle:child_process_SendHandle -> unit)
+                ~listener:(x277 :
+                            message:Serializable.t ->
+                              sendHandle:SendHandle.t -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x329) "prependListener"
-                     [|((match x325 with
+                  (Ojs.call (t_to_js x280) "prependListener"
+                     [|((match x276 with
                          | `message -> Ojs.string_to_js "message"));(
                        Ojs.fun_to_js 2
-                         (fun (x327 : Ojs.t) ->
-                            fun (x328 : Ojs.t) ->
-                              x326
-                                ~message:(child_process_Serializable_of_js
-                                            x327)
-                                ~sendHandle:(child_process_SendHandle_of_js
-                                               x328)))|])
+                         (fun (x278 : Ojs.t) ->
+                            fun (x279 : Ojs.t) ->
+                              x277 ~message:(Serializable.t_of_js x278)
+                                ~sendHandle:(SendHandle.t_of_js x279)))|])
         let (prependOnceListener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
-          fun (x334 : t) ->
-            fun ~event:(x330 : string) ->
-              fun ~listener:(x331 : args:any list -> unit) ->
+          fun (x285 : t) ->
+            fun ~event:(x281 : string) ->
+              fun ~listener:(x282 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x334) "prependOnceListener"
-                     [|(Ojs.string_to_js x330);(Ojs.fun_to_js_args
-                                                  (fun (x332 : _) ->
-                                                     x331
+                  (Ojs.call (t_to_js x285) "prependOnceListener"
+                     [|(Ojs.string_to_js x281);(Ojs.fun_to_js_args
+                                                  (fun (x283 : _) ->
+                                                     x282
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
-                                                                x332 0)))|])
+                                                                x283 0)))|])
         let (prependOnceListener' :
           t ->
             event:[ `close ] ->
-              listener:(code:float or_null ->
+              listener:(code:int or_null ->
                           signal:Node_process.Process.Signals.t or_null ->
                             unit)
                 -> t)
           =
-          fun (x341 : t) ->
-            fun ~event:(x335 : [ `close ]) ->
+          fun (x292 : t) ->
+            fun ~event:(x286 : [ `close ]) ->
               fun
-                ~listener:(x336 :
-                            code:float or_null ->
+                ~listener:(x287 :
+                            code:int or_null ->
                               signal:Node_process.Process.Signals.t or_null
                                 -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x341) "prependOnceListener"
-                     [|((match x335 with | `close -> Ojs.string_to_js "close"));(
+                  (Ojs.call (t_to_js x292) "prependOnceListener"
+                     [|((match x286 with | `close -> Ojs.string_to_js "close"));(
                        Ojs.fun_to_js 2
-                         (fun (x337 : Ojs.t) ->
-                            fun (x339 : Ojs.t) ->
-                              x336 ~code:(or_null_of_js Ojs.float_of_js x337)
+                         (fun (x288 : Ojs.t) ->
+                            fun (x290 : Ojs.t) ->
+                              x287 ~code:(or_null_of_js Ojs.int_of_js x288)
                                 ~signal:(or_null_of_js
                                            Node_process.Process.Signals.t_of_js
-                                           x339)))|])
+                                           x290)))|])
         let (prependOnceListener'' :
           t -> event:[ `disconnect ] -> listener:(unit -> unit) -> t) =
-          fun (x344 : t) ->
-            fun ~event:(x342 : [ `disconnect ]) ->
-              fun ~listener:(x343 : unit -> unit) ->
+          fun (x295 : t) ->
+            fun ~event:(x293 : [ `disconnect ]) ->
+              fun ~listener:(x294 : unit -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x344) "prependOnceListener"
-                     [|((match x342 with
+                  (Ojs.call (t_to_js x295) "prependOnceListener"
+                     [|((match x293 with
                          | `disconnect -> Ojs.string_to_js "disconnect"));(
-                       Ojs.fun_to_js 1 (fun _ -> x343 ()))|])
+                       Ojs.fun_to_js 1 (fun _ -> x294 ()))|])
         let (prependOnceListener''' :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
-          fun (x348 : t) ->
-            fun ~event:(x345 : [ `error ]) ->
-              fun ~listener:(x346 : err:Error.t -> unit) ->
+          fun (x299 : t) ->
+            fun ~event:(x296 : [ `error ]) ->
+              fun ~listener:(x297 : err:Error.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x348) "prependOnceListener"
-                     [|((match x345 with | `error -> Ojs.string_to_js "error"));(
+                  (Ojs.call (t_to_js x299) "prependOnceListener"
+                     [|((match x296 with | `error -> Ojs.string_to_js "error"));(
                        Ojs.fun_to_js 1
-                         (fun (x347 : Ojs.t) ->
-                            x346 ~err:(Error.t_of_js x347)))|])
+                         (fun (x298 : Ojs.t) ->
+                            x297 ~err:(Error.t_of_js x298)))|])
         let (prependOnceListener'''' :
           t ->
             event:[ `exit ] ->
-              listener:(code:float or_null ->
+              listener:(code:int or_null ->
                           signal:Node_process.Process.Signals.t or_null ->
                             unit)
                 -> t)
           =
-          fun (x355 : t) ->
-            fun ~event:(x349 : [ `exit ]) ->
+          fun (x306 : t) ->
+            fun ~event:(x300 : [ `exit ]) ->
               fun
-                ~listener:(x350 :
-                            code:float or_null ->
+                ~listener:(x301 :
+                            code:int or_null ->
                               signal:Node_process.Process.Signals.t or_null
                                 -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x355) "prependOnceListener"
-                     [|((match x349 with | `exit -> Ojs.string_to_js "exit"));(
+                  (Ojs.call (t_to_js x306) "prependOnceListener"
+                     [|((match x300 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 2
-                         (fun (x351 : Ojs.t) ->
-                            fun (x353 : Ojs.t) ->
-                              x350 ~code:(or_null_of_js Ojs.float_of_js x351)
+                         (fun (x302 : Ojs.t) ->
+                            fun (x304 : Ojs.t) ->
+                              x301 ~code:(or_null_of_js Ojs.int_of_js x302)
                                 ~signal:(or_null_of_js
                                            Node_process.Process.Signals.t_of_js
-                                           x353)))|])
+                                           x304)))|])
         let (prependOnceListener''''' :
           t ->
             event:[ `message ] ->
-              listener:(message:child_process_Serializable ->
-                          sendHandle:child_process_SendHandle -> unit)
+              listener:(message:Serializable.t ->
+                          sendHandle:SendHandle.t -> unit)
                 -> t)
           =
-          fun (x360 : t) ->
-            fun ~event:(x356 : [ `message ]) ->
+          fun (x311 : t) ->
+            fun ~event:(x307 : [ `message ]) ->
               fun
-                ~listener:(x357 :
-                            message:child_process_Serializable ->
-                              sendHandle:child_process_SendHandle -> unit)
+                ~listener:(x308 :
+                            message:Serializable.t ->
+                              sendHandle:SendHandle.t -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x360) "prependOnceListener"
-                     [|((match x356 with
+                  (Ojs.call (t_to_js x311) "prependOnceListener"
+                     [|((match x307 with
                          | `message -> Ojs.string_to_js "message"));(
                        Ojs.fun_to_js 2
-                         (fun (x358 : Ojs.t) ->
-                            fun (x359 : Ojs.t) ->
-                              x357
-                                ~message:(child_process_Serializable_of_js
-                                            x358)
-                                ~sendHandle:(child_process_SendHandle_of_js
-                                               x359)))|])
+                         (fun (x309 : Ojs.t) ->
+                            fun (x310 : Ojs.t) ->
+                              x308 ~message:(Serializable.t_of_js x309)
+                                ~sendHandle:(SendHandle.t_of_js x310)))|])
         let (cast : t -> Events.EventEmitter.t) =
-          fun (x361 : t) -> Events.EventEmitter.t_of_js (t_to_js x361)
+          fun (x312 : t) -> Events.EventEmitter.t_of_js (t_to_js x312)
       end
     module ChildProcessWithoutNullStreams =
       struct
-        type t = child_process_ChildProcessWithoutNullStreams
-        let rec t_of_js : Ojs.t -> t =
-          fun (x363 : Ojs.t) ->
-            child_process_ChildProcessWithoutNullStreams_of_js x363
-        and t_to_js : t -> Ojs.t =
-          fun (x362 : child_process_ChildProcessWithoutNullStreams) ->
-            child_process_ChildProcessWithoutNullStreams_to_js x362
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x314 : Ojs.t) -> x314
+        and t_to_js : t -> Ojs.t = fun (x313 : Ojs.t) -> x313
         let (get_stdin : t -> Node_stream.Stream.Writable.t) =
-          fun (x364 : t) ->
+          fun (x315 : t) ->
             Node_stream.Stream.Writable.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x364) "stdin")
+              (Ojs.get_prop_ascii (t_to_js x315) "stdin")
         let (set_stdin : t -> Node_stream.Stream.Writable.t -> unit) =
-          fun (x365 : t) ->
-            fun (x366 : Node_stream.Stream.Writable.t) ->
-              Ojs.set_prop_ascii (t_to_js x365) "stdin"
-                (Node_stream.Stream.Writable.t_to_js x366)
+          fun (x316 : t) ->
+            fun (x317 : Node_stream.Stream.Writable.t) ->
+              Ojs.set_prop_ascii (t_to_js x316) "stdin"
+                (Node_stream.Stream.Writable.t_to_js x317)
         let (get_stdout : t -> Node_stream.Stream.Readable.t) =
-          fun (x367 : t) ->
+          fun (x318 : t) ->
             Node_stream.Stream.Readable.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x367) "stdout")
+              (Ojs.get_prop_ascii (t_to_js x318) "stdout")
         let (set_stdout : t -> Node_stream.Stream.Readable.t -> unit) =
-          fun (x368 : t) ->
-            fun (x369 : Node_stream.Stream.Readable.t) ->
-              Ojs.set_prop_ascii (t_to_js x368) "stdout"
-                (Node_stream.Stream.Readable.t_to_js x369)
+          fun (x319 : t) ->
+            fun (x320 : Node_stream.Stream.Readable.t) ->
+              Ojs.set_prop_ascii (t_to_js x319) "stdout"
+                (Node_stream.Stream.Readable.t_to_js x320)
         let (get_stderr : t -> Node_stream.Stream.Readable.t) =
-          fun (x370 : t) ->
+          fun (x321 : t) ->
             Node_stream.Stream.Readable.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x370) "stderr")
+              (Ojs.get_prop_ascii (t_to_js x321) "stderr")
         let (set_stderr : t -> Node_stream.Stream.Readable.t -> unit) =
-          fun (x371 : t) ->
-            fun (x372 : Node_stream.Stream.Readable.t) ->
-              Ojs.set_prop_ascii (t_to_js x371) "stderr"
-                (Node_stream.Stream.Readable.t_to_js x372)
+          fun (x322 : t) ->
+            fun (x323 : Node_stream.Stream.Readable.t) ->
+              Ojs.set_prop_ascii (t_to_js x322) "stderr"
+                (Node_stream.Stream.Readable.t_to_js x323)
         let (get_stdio :
           t ->
             (Node_stream.Stream.Writable.t * Node_stream.Stream.Readable.t *
@@ -1593,27 +1038,27 @@ module Child_process =
               (Node_stream.Stream.Readable.t, Node_stream.Stream.Writable.t)
               union2 or_null_or_undefined))
           =
-          fun (x373 : t) ->
-            let x374 = Ojs.get_prop_ascii (t_to_js x373) "stdio" in
-            ((Node_stream.Stream.Writable.t_of_js (Ojs.array_get x374 0)),
-              (Node_stream.Stream.Readable.t_of_js (Ojs.array_get x374 1)),
-              (Node_stream.Stream.Readable.t_of_js (Ojs.array_get x374 2)),
+          fun (x324 : t) ->
+            let x325 = Ojs.get_prop_ascii (t_to_js x324) "stdio" in
+            ((Node_stream.Stream.Writable.t_of_js (Ojs.array_get x325 0)),
+              (Node_stream.Stream.Readable.t_of_js (Ojs.array_get x325 1)),
+              (Node_stream.Stream.Readable.t_of_js (Ojs.array_get x325 2)),
               (or_null_or_undefined_of_js
-                 (fun (x375 : Ojs.t) ->
+                 (fun (x326 : Ojs.t) ->
                     union2_of_js Node_stream.Stream.Readable.t_of_js
-                      Node_stream.Stream.Writable.t_of_js x375)
-                 (Ojs.array_get x374 3)),
+                      Node_stream.Stream.Writable.t_of_js x326)
+                 (Ojs.array_get x325 3)),
               (or_null_or_undefined_of_js
-                 (fun (x378 : Ojs.t) ->
+                 (fun (x329 : Ojs.t) ->
                     union2_of_js Node_stream.Stream.Readable.t_of_js
-                      Node_stream.Stream.Writable.t_of_js x378)
-                 (Ojs.array_get x374 4)))
-        let (cast : t -> child_process_ChildProcess) =
-          fun (x381 : t) -> child_process_ChildProcess_of_js (t_to_js x381)
+                      Node_stream.Stream.Writable.t_of_js x329)
+                 (Ojs.array_get x325 4)))
+        let (cast : t -> ChildProcess.t) =
+          fun (x332 : t) -> ChildProcess.t_of_js (t_to_js x332)
       end
     module ChildProcessByStdio =
       struct
-        type ('I, 'O, 'E) t = ('I, 'O, 'E) child_process_ChildProcessByStdio
+        type ('I, 'O, 'E) t = ('I, 'O, 'E) ChildProcessByStdio.t
         let rec t_of_js :
           'I 'O 'E .
             (Ojs.t -> 'I) ->
@@ -1622,9 +1067,9 @@ module Child_process =
           fun (__I_of_js : Ojs.t -> __I) ->
             fun (__O_of_js : Ojs.t -> __O) ->
               fun (__E_of_js : Ojs.t -> __E) ->
-                fun (x386 : Ojs.t) ->
-                  child_process_ChildProcessByStdio_of_js __I_of_js __O_of_js
-                    __E_of_js x386
+                fun (x337 : Ojs.t) ->
+                  ChildProcessByStdio.t_of_js __I_of_js __O_of_js __E_of_js
+                    x337
         and t_to_js :
           'I 'O 'E .
             ('I -> Ojs.t) ->
@@ -1633,41 +1078,39 @@ module Child_process =
           fun (__I_to_js : __I -> Ojs.t) ->
             fun (__O_to_js : __O -> Ojs.t) ->
               fun (__E_to_js : __E -> Ojs.t) ->
-                fun
-                  (x382 : (__I, __O, __E) child_process_ChildProcessByStdio)
-                  ->
-                  child_process_ChildProcessByStdio_to_js __I_to_js __O_to_js
-                    __E_to_js x382
+                fun (x333 : (__I, __O, __E) ChildProcessByStdio.t) ->
+                  ChildProcessByStdio.t_to_js __I_to_js __O_to_js __E_to_js
+                    x333
         let (get_stdin : ('I, 'O, 'E) t -> 'I) =
-          fun (x390 : ('I, 'O, 'E) t) ->
+          fun (x341 : ('I, 'O, 'E) t) ->
             Obj.magic
               (Ojs.get_prop_ascii
-                 (t_to_js Obj.magic Obj.magic Obj.magic x390) "stdin")
+                 (t_to_js Obj.magic Obj.magic Obj.magic x341) "stdin")
         let (set_stdin : ('I, 'O, 'E) t -> 'I -> unit) =
-          fun (x394 : ('I, 'O, 'E) t) ->
-            fun (x395 : 'I) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x394)
-                "stdin" (Obj.magic x395)
+          fun (x345 : ('I, 'O, 'E) t) ->
+            fun (x346 : 'I) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x345)
+                "stdin" (Obj.magic x346)
         let (get_stdout : ('I, 'O, 'E) t -> 'O) =
-          fun (x399 : ('I, 'O, 'E) t) ->
+          fun (x350 : ('I, 'O, 'E) t) ->
             Obj.magic
               (Ojs.get_prop_ascii
-                 (t_to_js Obj.magic Obj.magic Obj.magic x399) "stdout")
+                 (t_to_js Obj.magic Obj.magic Obj.magic x350) "stdout")
         let (set_stdout : ('I, 'O, 'E) t -> 'O -> unit) =
-          fun (x403 : ('I, 'O, 'E) t) ->
-            fun (x404 : 'O) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x403)
-                "stdout" (Obj.magic x404)
+          fun (x354 : ('I, 'O, 'E) t) ->
+            fun (x355 : 'O) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x354)
+                "stdout" (Obj.magic x355)
         let (get_stderr : ('I, 'O, 'E) t -> 'E) =
-          fun (x408 : ('I, 'O, 'E) t) ->
+          fun (x359 : ('I, 'O, 'E) t) ->
             Obj.magic
               (Ojs.get_prop_ascii
-                 (t_to_js Obj.magic Obj.magic Obj.magic x408) "stderr")
+                 (t_to_js Obj.magic Obj.magic Obj.magic x359) "stderr")
         let (set_stderr : ('I, 'O, 'E) t -> 'E -> unit) =
-          fun (x412 : ('I, 'O, 'E) t) ->
-            fun (x413 : 'E) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x412)
-                "stderr" (Obj.magic x413)
+          fun (x363 : ('I, 'O, 'E) t) ->
+            fun (x364 : 'E) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x363)
+                "stderr" (Obj.magic x364)
         let (get_stdio :
           ('I, 'O, 'E) t ->
             ('I * 'O * 'E * (Node_stream.Stream.Readable.t,
@@ -1675,293 +1118,377 @@ module Child_process =
               (Node_stream.Stream.Readable.t, Node_stream.Stream.Writable.t)
               union2 or_null_or_undefined))
           =
-          fun (x417 : ('I, 'O, 'E) t) ->
-            let x421 =
-              Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x417)
+          fun (x368 : ('I, 'O, 'E) t) ->
+            let x372 =
+              Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x368)
                 "stdio" in
-            ((Obj.magic (Ojs.array_get x421 0)),
-              (Obj.magic (Ojs.array_get x421 1)),
-              (Obj.magic (Ojs.array_get x421 2)),
+            ((Obj.magic (Ojs.array_get x372 0)),
+              (Obj.magic (Ojs.array_get x372 1)),
+              (Obj.magic (Ojs.array_get x372 2)),
               (or_null_or_undefined_of_js
-                 (fun (x422 : Ojs.t) ->
+                 (fun (x373 : Ojs.t) ->
                     union2_of_js Node_stream.Stream.Readable.t_of_js
-                      Node_stream.Stream.Writable.t_of_js x422)
-                 (Ojs.array_get x421 3)),
+                      Node_stream.Stream.Writable.t_of_js x373)
+                 (Ojs.array_get x372 3)),
               (or_null_or_undefined_of_js
-                 (fun (x425 : Ojs.t) ->
+                 (fun (x376 : Ojs.t) ->
                     union2_of_js Node_stream.Stream.Readable.t_of_js
-                      Node_stream.Stream.Writable.t_of_js x425)
-                 (Ojs.array_get x421 4)))
-        let (cast : ('I, 'O, 'E) t -> child_process_ChildProcess) =
-          fun (x428 : ('I, 'O, 'E) t) ->
-            child_process_ChildProcess_of_js
-              (t_to_js Obj.magic Obj.magic Obj.magic x428)
+                      Node_stream.Stream.Writable.t_of_js x376)
+                 (Ojs.array_get x372 4)))
+        let (cast : ('I, 'O, 'E) t -> ChildProcess.t) =
+          fun (x379 : ('I, 'O, 'E) t) ->
+            ChildProcess.t_of_js (t_to_js Obj.magic Obj.magic Obj.magic x379)
       end
     module MessageOptions =
       struct
-        type t = child_process_MessageOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x433 : Ojs.t) -> child_process_MessageOptions_of_js x433
-        and t_to_js : t -> Ojs.t =
-          fun (x432 : child_process_MessageOptions) ->
-            child_process_MessageOptions_to_js x432
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x384 : Ojs.t) -> x384
+        and t_to_js : t -> Ojs.t = fun (x383 : Ojs.t) -> x383
         let (get_keepOpen : t -> bool) =
-          fun (x434 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x434) "keepOpen")
+          fun (x385 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x385) "keepOpen")
         let (set_keepOpen : t -> bool -> unit) =
-          fun (x435 : t) ->
-            fun (x436 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x435) "keepOpen"
-                (Ojs.bool_to_js x436)
+          fun (x386 : t) ->
+            fun (x387 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x386) "keepOpen"
+                (Ojs.bool_to_js x387)
       end
     module StdioOptions =
       struct
-        type t = child_process_StdioOptions
+        type t =
+          ((Node_stream.Stream.Stream.t,
+             [ `ignore  | `inherit_  | `ipc  | `pipe ]) or_enum or_number
+             or_null_or_undefined list,
+            [ `ignore  | `inherit_  | `pipe ]) or_enum
         let rec t_of_js : Ojs.t -> t =
-          fun (x438 : Ojs.t) -> child_process_StdioOptions_of_js x438
+          fun (x396 : Ojs.t) ->
+            or_enum_of_js
+              (fun (x397 : Ojs.t) ->
+                 Ojs.list_of_js
+                   (fun (x398 : Ojs.t) ->
+                      or_null_or_undefined_of_js
+                        (fun (x399 : Ojs.t) ->
+                           or_number_of_js
+                             (fun (x400 : Ojs.t) ->
+                                or_enum_of_js
+                                  Node_stream.Stream.Stream.t_of_js
+                                  (fun (x402 : Ojs.t) ->
+                                     let x403 = x402 in
+                                     match Ojs.string_of_js x403 with
+                                     | "ignore" -> `ignore
+                                     | "inherit" -> `inherit_
+                                     | "ipc" -> `ipc
+                                     | "pipe" -> `pipe
+                                     | _ -> assert false) x400) x399) x398)
+                   x397)
+              (fun (x404 : Ojs.t) ->
+                 let x405 = x404 in
+                 match Ojs.string_of_js x405 with
+                 | "ignore" -> `ignore
+                 | "inherit" -> `inherit_
+                 | "pipe" -> `pipe
+                 | _ -> assert false) x396
         and t_to_js : t -> Ojs.t =
-          fun (x437 : child_process_StdioOptions) ->
-            child_process_StdioOptions_to_js x437
+          fun
+            (x388 :
+              ((Node_stream.Stream.Stream.t,
+                 [ `ignore  | `inherit_  | `ipc  | `pipe ]) or_enum or_number
+                 or_null_or_undefined list,
+                [ `ignore  | `inherit_  | `pipe ]) or_enum)
+            ->
+            or_enum_to_js
+              (fun
+                 (x389 :
+                   (Node_stream.Stream.Stream.t,
+                     [ `ignore  | `inherit_  | `ipc  | `pipe ]) or_enum
+                     or_number or_null_or_undefined list)
+                 ->
+                 Ojs.list_to_js
+                   (fun
+                      (x390 :
+                        (Node_stream.Stream.Stream.t,
+                          [ `ignore  | `inherit_  | `ipc  | `pipe ]) or_enum
+                          or_number or_null_or_undefined)
+                      ->
+                      or_null_or_undefined_to_js
+                        (fun
+                           (x391 :
+                             (Node_stream.Stream.Stream.t,
+                               [ `ignore  | `inherit_  | `ipc  | `pipe ])
+                               or_enum or_number)
+                           ->
+                           or_number_to_js
+                             (fun
+                                (x392 :
+                                  (Node_stream.Stream.Stream.t,
+                                    [ `ignore  | `inherit_  | `ipc  | `pipe ])
+                                    or_enum)
+                                ->
+                                or_enum_to_js
+                                  Node_stream.Stream.Stream.t_to_js
+                                  (fun
+                                     (x394 :
+                                       [ `ignore  | `inherit_  | `ipc 
+                                       | `pipe ])
+                                     ->
+                                     match x394 with
+                                     | `ignore -> Ojs.string_to_js "ignore"
+                                     | `inherit_ ->
+                                         Ojs.string_to_js "inherit"
+                                     | `ipc -> Ojs.string_to_js "ipc"
+                                     | `pipe -> Ojs.string_to_js "pipe") x392)
+                             x391) x390) x389)
+              (fun (x395 : [ `ignore  | `inherit_  | `pipe ]) ->
+                 match x395 with
+                 | `ignore -> Ojs.string_to_js "ignore"
+                 | `inherit_ -> Ojs.string_to_js "inherit"
+                 | `pipe -> Ojs.string_to_js "pipe") x388
       end
     module SerializationType =
       struct
-        type t = child_process_SerializationType
+        type t = [ `advanced  | `json ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x440 : Ojs.t) -> child_process_SerializationType_of_js x440
+          fun (x407 : Ojs.t) ->
+            let x408 = x407 in
+            match Ojs.string_of_js x408 with
+            | "advanced" -> `advanced
+            | "json" -> `json
+            | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x439 : child_process_SerializationType) ->
-            child_process_SerializationType_to_js x439
+          fun (x406 : [ `advanced  | `json ]) ->
+            match x406 with
+            | `advanced -> Ojs.string_to_js "advanced"
+            | `json -> Ojs.string_to_js "json"
       end
     module MessagingOptions =
       struct
-        type t = child_process_MessagingOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x442 : Ojs.t) -> child_process_MessagingOptions_of_js x442
-        and t_to_js : t -> Ojs.t =
-          fun (x441 : child_process_MessagingOptions) ->
-            child_process_MessagingOptions_to_js x441
-        let (get_serialization : t -> child_process_SerializationType) =
-          fun (x443 : t) ->
-            child_process_SerializationType_of_js
-              (Ojs.get_prop_ascii (t_to_js x443) "serialization")
-        let (set_serialization :
-          t -> child_process_SerializationType -> unit) =
-          fun (x444 : t) ->
-            fun (x445 : child_process_SerializationType) ->
-              Ojs.set_prop_ascii (t_to_js x444) "serialization"
-                (child_process_SerializationType_to_js x445)
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x410 : Ojs.t) -> x410
+        and t_to_js : t -> Ojs.t = fun (x409 : Ojs.t) -> x409
+        let (get_serialization : t -> SerializationType.t) =
+          fun (x411 : t) ->
+            SerializationType.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x411) "serialization")
+        let (set_serialization : t -> SerializationType.t -> unit) =
+          fun (x412 : t) ->
+            fun (x413 : SerializationType.t) ->
+              Ojs.set_prop_ascii (t_to_js x412) "serialization"
+                (SerializationType.t_to_js x413)
       end
     module ProcessEnvOptions =
       struct
-        type t = child_process_ProcessEnvOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x447 : Ojs.t) -> child_process_ProcessEnvOptions_of_js x447
-        and t_to_js : t -> Ojs.t =
-          fun (x446 : child_process_ProcessEnvOptions) ->
-            child_process_ProcessEnvOptions_to_js x446
-        let (get_uid : t -> float) =
-          fun (x448 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x448) "uid")
-        let (set_uid : t -> float -> unit) =
-          fun (x449 : t) ->
-            fun (x450 : float) ->
-              Ojs.set_prop_ascii (t_to_js x449) "uid" (Ojs.float_to_js x450)
-        let (get_gid : t -> float) =
-          fun (x451 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x451) "gid")
-        let (set_gid : t -> float -> unit) =
-          fun (x452 : t) ->
-            fun (x453 : float) ->
-              Ojs.set_prop_ascii (t_to_js x452) "gid" (Ojs.float_to_js x453)
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x415 : Ojs.t) -> x415
+        and t_to_js : t -> Ojs.t = fun (x414 : Ojs.t) -> x414
+        let (get_uid : t -> int) =
+          fun (x416 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x416) "uid")
+        let (set_uid : t -> int -> unit) =
+          fun (x417 : t) ->
+            fun (x418 : int) ->
+              Ojs.set_prop_ascii (t_to_js x417) "uid" (Ojs.int_to_js x418)
+        let (get_gid : t -> int) =
+          fun (x419 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x419) "gid")
+        let (set_gid : t -> int -> unit) =
+          fun (x420 : t) ->
+            fun (x421 : int) ->
+              Ojs.set_prop_ascii (t_to_js x420) "gid" (Ojs.int_to_js x421)
         let (get_cwd : t -> string) =
-          fun (x454 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x454) "cwd")
+          fun (x422 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x422) "cwd")
         let (set_cwd : t -> string -> unit) =
-          fun (x455 : t) ->
-            fun (x456 : string) ->
-              Ojs.set_prop_ascii (t_to_js x455) "cwd" (Ojs.string_to_js x456)
+          fun (x423 : t) ->
+            fun (x424 : string) ->
+              Ojs.set_prop_ascii (t_to_js x423) "cwd" (Ojs.string_to_js x424)
         let (get_env : t -> Node_process.Process.ProcessEnv.t) =
-          fun (x457 : t) ->
+          fun (x425 : t) ->
             Node_process.Process.ProcessEnv.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x457) "env")
+              (Ojs.get_prop_ascii (t_to_js x425) "env")
         let (set_env : t -> Node_process.Process.ProcessEnv.t -> unit) =
-          fun (x458 : t) ->
-            fun (x459 : Node_process.Process.ProcessEnv.t) ->
-              Ojs.set_prop_ascii (t_to_js x458) "env"
-                (Node_process.Process.ProcessEnv.t_to_js x459)
+          fun (x426 : t) ->
+            fun (x427 : Node_process.Process.ProcessEnv.t) ->
+              Ojs.set_prop_ascii (t_to_js x426) "env"
+                (Node_process.Process.ProcessEnv.t_to_js x427)
       end
     module CommonOptions =
       struct
-        type t = child_process_CommonOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x461 : Ojs.t) -> child_process_CommonOptions_of_js x461
-        and t_to_js : t -> Ojs.t =
-          fun (x460 : child_process_CommonOptions) ->
-            child_process_CommonOptions_to_js x460
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x429 : Ojs.t) -> x429
+        and t_to_js : t -> Ojs.t = fun (x428 : Ojs.t) -> x428
         let (get_windowsHide : t -> bool) =
-          fun (x462 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x462) "windowsHide")
+          fun (x430 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x430) "windowsHide")
         let (set_windowsHide : t -> bool -> unit) =
-          fun (x463 : t) ->
-            fun (x464 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x463) "windowsHide"
-                (Ojs.bool_to_js x464)
-        let (get_timeout : t -> float) =
-          fun (x465 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x465) "timeout")
-        let (set_timeout : t -> float -> unit) =
-          fun (x466 : t) ->
-            fun (x467 : float) ->
-              Ojs.set_prop_ascii (t_to_js x466) "timeout"
-                (Ojs.float_to_js x467)
-        let (cast : t -> child_process_ProcessEnvOptions) =
-          fun (x468 : t) ->
-            child_process_ProcessEnvOptions_of_js (t_to_js x468)
+          fun (x431 : t) ->
+            fun (x432 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x431) "windowsHide"
+                (Ojs.bool_to_js x432)
+        let (get_timeout : t -> int) =
+          fun (x433 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x433) "timeout")
+        let (set_timeout : t -> int -> unit) =
+          fun (x434 : t) ->
+            fun (x435 : int) ->
+              Ojs.set_prop_ascii (t_to_js x434) "timeout"
+                (Ojs.int_to_js x435)
+        let (cast : t -> ProcessEnvOptions.t) =
+          fun (x436 : t) -> ProcessEnvOptions.t_of_js (t_to_js x436)
       end
     module CommonSpawnOptions =
       struct
-        type t = child_process_CommonSpawnOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x470 : Ojs.t) -> child_process_CommonSpawnOptions_of_js x470
-        and t_to_js : t -> Ojs.t =
-          fun (x469 : child_process_CommonSpawnOptions) ->
-            child_process_CommonSpawnOptions_to_js x469
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x438 : Ojs.t) -> x438
+        and t_to_js : t -> Ojs.t = fun (x437 : Ojs.t) -> x437
         let (get_argv0 : t -> string) =
-          fun (x471 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x471) "argv0")
+          fun (x439 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x439) "argv0")
         let (set_argv0 : t -> string -> unit) =
-          fun (x472 : t) ->
-            fun (x473 : string) ->
-              Ojs.set_prop_ascii (t_to_js x472) "argv0"
-                (Ojs.string_to_js x473)
-        let (get_stdio : t -> child_process_StdioOptions) =
-          fun (x474 : t) ->
-            child_process_StdioOptions_of_js
-              (Ojs.get_prop_ascii (t_to_js x474) "stdio")
-        let (set_stdio : t -> child_process_StdioOptions -> unit) =
-          fun (x475 : t) ->
-            fun (x476 : child_process_StdioOptions) ->
-              Ojs.set_prop_ascii (t_to_js x475) "stdio"
-                (child_process_StdioOptions_to_js x476)
+          fun (x440 : t) ->
+            fun (x441 : string) ->
+              Ojs.set_prop_ascii (t_to_js x440) "argv0"
+                (Ojs.string_to_js x441)
+        let (get_stdio : t -> StdioOptions.t) =
+          fun (x442 : t) ->
+            StdioOptions.t_of_js (Ojs.get_prop_ascii (t_to_js x442) "stdio")
+        let (set_stdio : t -> StdioOptions.t -> unit) =
+          fun (x443 : t) ->
+            fun (x444 : StdioOptions.t) ->
+              Ojs.set_prop_ascii (t_to_js x443) "stdio"
+                (StdioOptions.t_to_js x444)
         let (get_shell : t -> bool or_string) =
-          fun (x477 : t) ->
+          fun (x445 : t) ->
             or_string_of_js Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x477) "shell")
+              (Ojs.get_prop_ascii (t_to_js x445) "shell")
         let (set_shell : t -> bool or_string -> unit) =
-          fun (x479 : t) ->
-            fun (x480 : bool or_string) ->
-              Ojs.set_prop_ascii (t_to_js x479) "shell"
-                (or_string_to_js Ojs.bool_to_js x480)
+          fun (x447 : t) ->
+            fun (x448 : bool or_string) ->
+              Ojs.set_prop_ascii (t_to_js x447) "shell"
+                (or_string_to_js Ojs.bool_to_js x448)
         let (get_windowsVerbatimArguments : t -> bool) =
-          fun (x482 : t) ->
+          fun (x450 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x482) "windowsVerbatimArguments")
+              (Ojs.get_prop_ascii (t_to_js x450) "windowsVerbatimArguments")
         let (set_windowsVerbatimArguments : t -> bool -> unit) =
-          fun (x483 : t) ->
-            fun (x484 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x483) "windowsVerbatimArguments"
-                (Ojs.bool_to_js x484)
-        let (cast : t -> child_process_CommonOptions) =
-          fun (x485 : t) -> child_process_CommonOptions_of_js (t_to_js x485)
-        let (cast' : t -> child_process_MessagingOptions) =
-          fun (x486 : t) ->
-            child_process_MessagingOptions_of_js (t_to_js x486)
+          fun (x451 : t) ->
+            fun (x452 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x451) "windowsVerbatimArguments"
+                (Ojs.bool_to_js x452)
+        let (cast : t -> CommonOptions.t) =
+          fun (x453 : t) -> CommonOptions.t_of_js (t_to_js x453)
+        let (cast' : t -> MessagingOptions.t) =
+          fun (x454 : t) -> MessagingOptions.t_of_js (t_to_js x454)
       end
     module SpawnOptions =
       struct
-        type t = child_process_SpawnOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x488 : Ojs.t) -> child_process_SpawnOptions_of_js x488
-        and t_to_js : t -> Ojs.t =
-          fun (x487 : child_process_SpawnOptions) ->
-            child_process_SpawnOptions_to_js x487
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x456 : Ojs.t) -> x456
+        and t_to_js : t -> Ojs.t = fun (x455 : Ojs.t) -> x455
         let (get_detached : t -> bool) =
-          fun (x489 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x489) "detached")
+          fun (x457 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x457) "detached")
         let (set_detached : t -> bool -> unit) =
-          fun (x490 : t) ->
-            fun (x491 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x490) "detached"
-                (Ojs.bool_to_js x491)
-        let (cast : t -> child_process_CommonSpawnOptions) =
-          fun (x492 : t) ->
-            child_process_CommonSpawnOptions_of_js (t_to_js x492)
+          fun (x458 : t) ->
+            fun (x459 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x458) "detached"
+                (Ojs.bool_to_js x459)
+        let (cast : t -> CommonSpawnOptions.t) =
+          fun (x460 : t) -> CommonSpawnOptions.t_of_js (t_to_js x460)
       end
     module SpawnOptionsWithoutStdio =
       struct
-        type t = child_process_SpawnOptionsWithoutStdio
-        let rec t_of_js : Ojs.t -> t =
-          fun (x494 : Ojs.t) ->
-            child_process_SpawnOptionsWithoutStdio_of_js x494
-        and t_to_js : t -> Ojs.t =
-          fun (x493 : child_process_SpawnOptionsWithoutStdio) ->
-            child_process_SpawnOptionsWithoutStdio_to_js x493
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x462 : Ojs.t) -> x462
+        and t_to_js : t -> Ojs.t = fun (x461 : Ojs.t) -> x461
         let (get_stdio :
           t -> ([ `pipe ] or_null_or_undefined list, [ `pipe ]) or_enum) =
-          fun (x495 : t) ->
+          fun (x463 : t) ->
             or_enum_of_js
-              (fun (x496 : Ojs.t) ->
+              (fun (x464 : Ojs.t) ->
                  Ojs.list_of_js
-                   (fun (x497 : Ojs.t) ->
+                   (fun (x465 : Ojs.t) ->
                       or_null_or_undefined_of_js
-                        (fun (x498 : Ojs.t) ->
-                           let x499 = x498 in
-                           match Ojs.string_of_js x499 with
+                        (fun (x466 : Ojs.t) ->
+                           let x467 = x466 in
+                           match Ojs.string_of_js x467 with
                            | "pipe" -> `pipe
-                           | _ -> assert false) x497) x496)
-              (fun (x500 : Ojs.t) ->
-                 let x501 = x500 in
-                 match Ojs.string_of_js x501 with
+                           | _ -> assert false) x465) x464)
+              (fun (x468 : Ojs.t) ->
+                 let x469 = x468 in
+                 match Ojs.string_of_js x469 with
                  | "pipe" -> `pipe
                  | _ -> assert false)
-              (Ojs.get_prop_ascii (t_to_js x495) "stdio")
+              (Ojs.get_prop_ascii (t_to_js x463) "stdio")
         let (set_stdio :
           t ->
             ([ `pipe ] or_null_or_undefined list, [ `pipe ]) or_enum -> unit)
           =
-          fun (x502 : t) ->
+          fun (x470 : t) ->
             fun
-              (x503 :
+              (x471 :
                 ([ `pipe ] or_null_or_undefined list, [ `pipe ]) or_enum)
               ->
-              Ojs.set_prop_ascii (t_to_js x502) "stdio"
+              Ojs.set_prop_ascii (t_to_js x470) "stdio"
                 (or_enum_to_js
-                   (fun (x504 : [ `pipe ] or_null_or_undefined list) ->
+                   (fun (x472 : [ `pipe ] or_null_or_undefined list) ->
                       Ojs.list_to_js
-                        (fun (x505 : [ `pipe ] or_null_or_undefined) ->
+                        (fun (x473 : [ `pipe ] or_null_or_undefined) ->
                            or_null_or_undefined_to_js
-                             (fun (x506 : [ `pipe ]) ->
-                                match x506 with
-                                | `pipe -> Ojs.string_to_js "pipe") x505)
-                        x504)
-                   (fun (x507 : [ `pipe ]) ->
-                      match x507 with | `pipe -> Ojs.string_to_js "pipe")
-                   x503)
-        let (cast : t -> child_process_SpawnOptions) =
-          fun (x508 : t) -> child_process_SpawnOptions_of_js (t_to_js x508)
+                             (fun (x474 : [ `pipe ]) ->
+                                match x474 with
+                                | `pipe -> Ojs.string_to_js "pipe") x473)
+                        x472)
+                   (fun (x475 : [ `pipe ]) ->
+                      match x475 with | `pipe -> Ojs.string_to_js "pipe")
+                   x471)
+        let (cast : t -> SpawnOptions.t) =
+          fun (x476 : t) -> SpawnOptions.t_of_js (t_to_js x476)
       end
     module StdioNull =
       struct
-        type t = child_process_StdioNull
+        type t =
+          (Node_stream.Stream.Stream.t, [ `ignore  | `inherit_ ]) or_enum
         let rec t_of_js : Ojs.t -> t =
-          fun (x510 : Ojs.t) -> child_process_StdioNull_of_js x510
+          fun (x480 : Ojs.t) ->
+            or_enum_of_js Node_stream.Stream.Stream.t_of_js
+              (fun (x482 : Ojs.t) ->
+                 let x483 = x482 in
+                 match Ojs.string_of_js x483 with
+                 | "ignore" -> `ignore
+                 | "inherit" -> `inherit_
+                 | _ -> assert false) x480
         and t_to_js : t -> Ojs.t =
-          fun (x509 : child_process_StdioNull) ->
-            child_process_StdioNull_to_js x509
+          fun
+            (x477 :
+              (Node_stream.Stream.Stream.t, [ `ignore  | `inherit_ ]) or_enum)
+            ->
+            or_enum_to_js Node_stream.Stream.Stream.t_to_js
+              (fun (x479 : [ `ignore  | `inherit_ ]) ->
+                 match x479 with
+                 | `ignore -> Ojs.string_to_js "ignore"
+                 | `inherit_ -> Ojs.string_to_js "inherit") x477
       end
     module StdioPipe =
       struct
-        type t = child_process_StdioPipe
+        type t = [ `pipe ] or_null_or_undefined
         let rec t_of_js : Ojs.t -> t =
-          fun (x512 : Ojs.t) -> child_process_StdioPipe_of_js x512
+          fun (x486 : Ojs.t) ->
+            or_null_or_undefined_of_js
+              (fun (x487 : Ojs.t) ->
+                 let x488 = x487 in
+                 match Ojs.string_of_js x488 with
+                 | "pipe" -> `pipe
+                 | _ -> assert false) x486
         and t_to_js : t -> Ojs.t =
-          fun (x511 : child_process_StdioPipe) ->
-            child_process_StdioPipe_to_js x511
+          fun (x484 : [ `pipe ] or_null_or_undefined) ->
+            or_null_or_undefined_to_js
+              (fun (x485 : [ `pipe ]) ->
+                 match x485 with | `pipe -> Ojs.string_to_js "pipe") x484
       end
     module SpawnOptionsWithStdioTuple =
       struct
         type ('Stdin, 'Stdout, 'Stderr) t =
-          ('Stdin, 'Stdout, 'Stderr) child_process_SpawnOptionsWithStdioTuple
+          ('Stdin, 'Stdout, 'Stderr) SpawnOptionsWithStdioTuple.t
         let rec t_of_js :
           'Stdin 'Stdout 'Stderr .
             (Ojs.t -> 'Stdin) ->
@@ -1972,9 +1499,9 @@ module Child_process =
           fun (__Stdin_of_js : Ojs.t -> __Stdin) ->
             fun (__Stdout_of_js : Ojs.t -> __Stdout) ->
               fun (__Stderr_of_js : Ojs.t -> __Stderr) ->
-                fun (x517 : Ojs.t) ->
-                  child_process_SpawnOptionsWithStdioTuple_of_js
-                    __Stdin_of_js __Stdout_of_js __Stderr_of_js x517
+                fun (x493 : Ojs.t) ->
+                  SpawnOptionsWithStdioTuple.t_of_js __Stdin_of_js
+                    __Stdout_of_js __Stderr_of_js x493
         and t_to_js :
           'Stdin 'Stdout 'Stderr .
             ('Stdin -> Ojs.t) ->
@@ -1986,12 +1513,12 @@ module Child_process =
             fun (__Stdout_to_js : __Stdout -> Ojs.t) ->
               fun (__Stderr_to_js : __Stderr -> Ojs.t) ->
                 fun
-                  (x513 :
+                  (x489 :
                     (__Stdin, __Stdout, __Stderr)
-                      child_process_SpawnOptionsWithStdioTuple)
+                      SpawnOptionsWithStdioTuple.t)
                   ->
-                  child_process_SpawnOptionsWithStdioTuple_to_js
-                    __Stdin_to_js __Stdout_to_js __Stderr_to_js x513
+                  SpawnOptionsWithStdioTuple.t_to_js __Stdin_to_js
+                    __Stdout_to_js __Stderr_to_js x489
         type ('Stdin, 'Stdout, 'Stderr) t_3 = ('Stdin, 'Stdout, 'Stderr) t
         let rec t_3_of_js :
           'Stdin 'Stdout 'Stderr .
@@ -2003,8 +1530,8 @@ module Child_process =
           fun (__Stdin_of_js : Ojs.t -> __Stdin) ->
             fun (__Stdout_of_js : Ojs.t -> __Stdout) ->
               fun (__Stderr_of_js : Ojs.t -> __Stderr) ->
-                fun (x525 : Ojs.t) ->
-                  t_of_js __Stdin_of_js __Stdout_of_js __Stderr_of_js x525
+                fun (x501 : Ojs.t) ->
+                  t_of_js __Stdin_of_js __Stdout_of_js __Stderr_of_js x501
         and t_3_to_js :
           'Stdin 'Stdout 'Stderr .
             ('Stdin -> Ojs.t) ->
@@ -2015,745 +1542,767 @@ module Child_process =
           fun (__Stdin_to_js : __Stdin -> Ojs.t) ->
             fun (__Stdout_to_js : __Stdout -> Ojs.t) ->
               fun (__Stderr_to_js : __Stderr -> Ojs.t) ->
-                fun (x521 : (__Stdin, __Stdout, __Stderr) t) ->
-                  t_to_js __Stdin_to_js __Stdout_to_js __Stderr_to_js x521
+                fun (x497 : (__Stdin, __Stdout, __Stderr) t) ->
+                  t_to_js __Stdin_to_js __Stdout_to_js __Stderr_to_js x497
         let (get_stdio :
           ('Stdin, 'Stdout, 'Stderr) t -> ('Stdin * 'Stdout * 'Stderr)) =
-          fun (x529 : ('Stdin, 'Stdout, 'Stderr) t) ->
-            let x533 =
-              Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x529)
+          fun (x505 : ('Stdin, 'Stdout, 'Stderr) t) ->
+            let x509 =
+              Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x505)
                 "stdio" in
-            ((Obj.magic (Ojs.array_get x533 0)),
-              (Obj.magic (Ojs.array_get x533 1)),
-              (Obj.magic (Ojs.array_get x533 2)))
+            ((Obj.magic (Ojs.array_get x509 0)),
+              (Obj.magic (Ojs.array_get x509 1)),
+              (Obj.magic (Ojs.array_get x509 2)))
         let (set_stdio :
           ('Stdin, 'Stdout, 'Stderr) t ->
             ('Stdin * 'Stdout * 'Stderr) -> unit)
           =
-          fun (x534 : ('Stdin, 'Stdout, 'Stderr) t) ->
-            fun (x535 : ('Stdin * 'Stdout * 'Stderr)) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x534)
+          fun (x510 : ('Stdin, 'Stdout, 'Stderr) t) ->
+            fun (x511 : ('Stdin * 'Stdout * 'Stderr)) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x510)
                 "stdio"
-                (let (x536, x537, x538) = x535 in
-                 let x539 = Ojs.array_make 3 in
-                 Ojs.array_set x539 0 (Obj.magic x536);
-                 Ojs.array_set x539 1 (Obj.magic x537);
-                 Ojs.array_set x539 2 (Obj.magic x538);
-                 x539)
-        let (cast :
-          ('Stdin, 'Stdout, 'Stderr) t -> child_process_SpawnOptions) =
-          fun (x543 : ('Stdin, 'Stdout, 'Stderr) t) ->
-            child_process_SpawnOptions_of_js
-              (t_to_js Obj.magic Obj.magic Obj.magic x543)
+                (let (x512, x513, x514) = x511 in
+                 let x515 = Ojs.array_make 3 in
+                 Ojs.array_set x515 0 (Obj.magic x512);
+                 Ojs.array_set x515 1 (Obj.magic x513);
+                 Ojs.array_set x515 2 (Obj.magic x514);
+                 x515)
+        let (cast : ('Stdin, 'Stdout, 'Stderr) t -> SpawnOptions.t) =
+          fun (x519 : ('Stdin, 'Stdout, 'Stderr) t) ->
+            SpawnOptions.t_of_js (t_to_js Obj.magic Obj.magic Obj.magic x519)
       end
     let (spawn :
       command:string ->
         ?args:string list ->
-          ?options:child_process_SpawnOptionsWithoutStdio ->
-            unit -> child_process_ChildProcessWithoutNullStreams)
+          ?options:SpawnOptionsWithoutStdio.t ->
+            unit -> ChildProcessWithoutNullStreams.t)
       =
-      fun ~command:(x547 : string) ->
-        fun ?args:(x548 : string list option) ->
-          fun ?options:(x549 : child_process_SpawnOptionsWithoutStdio option)
-            ->
+      fun ~command:(x523 : string) ->
+        fun ?args:(x524 : string list option) ->
+          fun ?options:(x525 : SpawnOptionsWithoutStdio.t option) ->
             fun () ->
-              child_process_ChildProcessWithoutNullStreams_of_js
-                (let x554 = Import.child_process in
-                 Ojs.call (Ojs.get_prop_ascii x554 "spawn") "apply"
-                   [|x554;((let x550 =
+              ChildProcessWithoutNullStreams.t_of_js
+                (let x530 = Import.child_process in
+                 Ojs.call (Ojs.get_prop_ascii x530 "spawn") "apply"
+                   [|x530;((let x526 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x550 "push"
-                                 [|(Ojs.string_to_js x547)|]);
-                            (match x548 with
-                             | Some x552 ->
+                              (Ojs.call x526 "push"
+                                 [|(Ojs.string_to_js x523)|]);
+                            (match x524 with
+                             | Some x528 ->
                                  ignore
-                                   (Ojs.call x550 "push"
-                                      [|(Ojs.list_to_js Ojs.string_to_js x552)|])
+                                   (Ojs.call x526 "push"
+                                      [|(Ojs.list_to_js Ojs.string_to_js x528)|])
                              | None -> ());
-                            (match x549 with
-                             | Some x551 ->
+                            (match x525 with
+                             | Some x527 ->
                                  ignore
-                                   (Ojs.call x550 "push"
-                                      [|(child_process_SpawnOptionsWithoutStdio_to_js
-                                           x551)|])
+                                   (Ojs.call x526 "push"
+                                      [|(SpawnOptionsWithoutStdio.t_to_js
+                                           x527)|])
                              | None -> ());
-                            x550))|])
+                            x526))|])
     let (spawn' :
       command:string ->
-        options:(child_process_StdioPipe, child_process_StdioPipe,
-          child_process_StdioPipe) child_process_SpawnOptionsWithStdioTuple
-          ->
+        options:(StdioPipe.t, StdioPipe.t, StdioPipe.t)
+          SpawnOptionsWithStdioTuple.t ->
           (Node_stream.Stream.Writable.t, Node_stream.Stream.Readable.t,
-            Node_stream.Stream.Readable.t) child_process_ChildProcessByStdio)
+            Node_stream.Stream.Readable.t) ChildProcessByStdio.t)
       =
-      fun ~command:(x555 : string) ->
+      fun ~command:(x531 : string) ->
         fun
-          ~options:(x556 :
-                     (child_process_StdioPipe, child_process_StdioPipe,
-                       child_process_StdioPipe)
-                       child_process_SpawnOptionsWithStdioTuple)
+          ~options:(x532 :
+                     (StdioPipe.t, StdioPipe.t, StdioPipe.t)
+                       SpawnOptionsWithStdioTuple.t)
           ->
-          child_process_ChildProcessByStdio_of_js
-            Node_stream.Stream.Writable.t_of_js
+          ChildProcessByStdio.t_of_js Node_stream.Stream.Writable.t_of_js
             Node_stream.Stream.Readable.t_of_js
             Node_stream.Stream.Readable.t_of_js
             (Ojs.call Import.child_process "spawn"
-               [|(Ojs.string_to_js x555);(child_process_SpawnOptionsWithStdioTuple_to_js
-                                            child_process_StdioPipe_to_js
-                                            child_process_StdioPipe_to_js
-                                            child_process_StdioPipe_to_js
-                                            x556)|])
+               [|(Ojs.string_to_js x531);(SpawnOptionsWithStdioTuple.t_to_js
+                                            StdioPipe.t_to_js
+                                            StdioPipe.t_to_js
+                                            StdioPipe.t_to_js x532)|])
     let (spawn' :
       command:string ->
-        options:(child_process_StdioPipe, child_process_StdioPipe,
-          child_process_StdioNull) child_process_SpawnOptionsWithStdioTuple
-          ->
+        options:(StdioPipe.t, StdioPipe.t, StdioNull.t)
+          SpawnOptionsWithStdioTuple.t ->
           (Node_stream.Stream.Writable.t, Node_stream.Stream.Readable.t,
-            never or_null) child_process_ChildProcessByStdio)
+            never or_null) ChildProcessByStdio.t)
       =
-      fun ~command:(x563 : string) ->
+      fun ~command:(x539 : string) ->
         fun
-          ~options:(x564 :
-                     (child_process_StdioPipe, child_process_StdioPipe,
-                       child_process_StdioNull)
-                       child_process_SpawnOptionsWithStdioTuple)
+          ~options:(x540 :
+                     (StdioPipe.t, StdioPipe.t, StdioNull.t)
+                       SpawnOptionsWithStdioTuple.t)
           ->
-          child_process_ChildProcessByStdio_of_js
-            Node_stream.Stream.Writable.t_of_js
+          ChildProcessByStdio.t_of_js Node_stream.Stream.Writable.t_of_js
             Node_stream.Stream.Readable.t_of_js
-            (fun (x570 : Ojs.t) -> or_null_of_js never_of_js x570)
+            (fun (x546 : Ojs.t) -> or_null_of_js never_of_js x546)
             (Ojs.call Import.child_process "spawn"
-               [|(Ojs.string_to_js x563);(child_process_SpawnOptionsWithStdioTuple_to_js
-                                            child_process_StdioPipe_to_js
-                                            child_process_StdioPipe_to_js
-                                            child_process_StdioNull_to_js
-                                            x564)|])
+               [|(Ojs.string_to_js x539);(SpawnOptionsWithStdioTuple.t_to_js
+                                            StdioPipe.t_to_js
+                                            StdioPipe.t_to_js
+                                            StdioNull.t_to_js x540)|])
     let (spawn' :
       command:string ->
-        options:(child_process_StdioPipe, child_process_StdioNull,
-          child_process_StdioPipe) child_process_SpawnOptionsWithStdioTuple
-          ->
+        options:(StdioPipe.t, StdioNull.t, StdioPipe.t)
+          SpawnOptionsWithStdioTuple.t ->
           (Node_stream.Stream.Writable.t, never or_null,
-            Node_stream.Stream.Readable.t) child_process_ChildProcessByStdio)
+            Node_stream.Stream.Readable.t) ChildProcessByStdio.t)
       =
-      fun ~command:(x572 : string) ->
+      fun ~command:(x548 : string) ->
         fun
-          ~options:(x573 :
-                     (child_process_StdioPipe, child_process_StdioNull,
-                       child_process_StdioPipe)
-                       child_process_SpawnOptionsWithStdioTuple)
+          ~options:(x549 :
+                     (StdioPipe.t, StdioNull.t, StdioPipe.t)
+                       SpawnOptionsWithStdioTuple.t)
           ->
-          child_process_ChildProcessByStdio_of_js
-            Node_stream.Stream.Writable.t_of_js
-            (fun (x578 : Ojs.t) -> or_null_of_js never_of_js x578)
+          ChildProcessByStdio.t_of_js Node_stream.Stream.Writable.t_of_js
+            (fun (x554 : Ojs.t) -> or_null_of_js never_of_js x554)
             Node_stream.Stream.Readable.t_of_js
             (Ojs.call Import.child_process "spawn"
-               [|(Ojs.string_to_js x572);(child_process_SpawnOptionsWithStdioTuple_to_js
-                                            child_process_StdioPipe_to_js
-                                            child_process_StdioNull_to_js
-                                            child_process_StdioPipe_to_js
-                                            x573)|])
+               [|(Ojs.string_to_js x548);(SpawnOptionsWithStdioTuple.t_to_js
+                                            StdioPipe.t_to_js
+                                            StdioNull.t_to_js
+                                            StdioPipe.t_to_js x549)|])
     let (spawn' :
       command:string ->
-        options:(child_process_StdioNull, child_process_StdioPipe,
-          child_process_StdioPipe) child_process_SpawnOptionsWithStdioTuple
-          ->
+        options:(StdioNull.t, StdioPipe.t, StdioPipe.t)
+          SpawnOptionsWithStdioTuple.t ->
           (never or_null, Node_stream.Stream.Readable.t,
-            Node_stream.Stream.Readable.t) child_process_ChildProcessByStdio)
+            Node_stream.Stream.Readable.t) ChildProcessByStdio.t)
       =
-      fun ~command:(x581 : string) ->
+      fun ~command:(x557 : string) ->
         fun
-          ~options:(x582 :
-                     (child_process_StdioNull, child_process_StdioPipe,
-                       child_process_StdioPipe)
-                       child_process_SpawnOptionsWithStdioTuple)
+          ~options:(x558 :
+                     (StdioNull.t, StdioPipe.t, StdioPipe.t)
+                       SpawnOptionsWithStdioTuple.t)
           ->
-          child_process_ChildProcessByStdio_of_js
-            (fun (x586 : Ojs.t) -> or_null_of_js never_of_js x586)
+          ChildProcessByStdio.t_of_js
+            (fun (x562 : Ojs.t) -> or_null_of_js never_of_js x562)
             Node_stream.Stream.Readable.t_of_js
             Node_stream.Stream.Readable.t_of_js
             (Ojs.call Import.child_process "spawn"
-               [|(Ojs.string_to_js x581);(child_process_SpawnOptionsWithStdioTuple_to_js
-                                            child_process_StdioNull_to_js
-                                            child_process_StdioPipe_to_js
-                                            child_process_StdioPipe_to_js
-                                            x582)|])
+               [|(Ojs.string_to_js x557);(SpawnOptionsWithStdioTuple.t_to_js
+                                            StdioNull.t_to_js
+                                            StdioPipe.t_to_js
+                                            StdioPipe.t_to_js x558)|])
     let (spawn' :
       command:string ->
-        options:(child_process_StdioPipe, child_process_StdioNull,
-          child_process_StdioNull) child_process_SpawnOptionsWithStdioTuple
-          ->
+        options:(StdioPipe.t, StdioNull.t, StdioNull.t)
+          SpawnOptionsWithStdioTuple.t ->
           (Node_stream.Stream.Writable.t, never or_null, never or_null)
-            child_process_ChildProcessByStdio)
+            ChildProcessByStdio.t)
       =
-      fun ~command:(x590 : string) ->
+      fun ~command:(x566 : string) ->
         fun
-          ~options:(x591 :
-                     (child_process_StdioPipe, child_process_StdioNull,
-                       child_process_StdioNull)
-                       child_process_SpawnOptionsWithStdioTuple)
+          ~options:(x567 :
+                     (StdioPipe.t, StdioNull.t, StdioNull.t)
+                       SpawnOptionsWithStdioTuple.t)
           ->
-          child_process_ChildProcessByStdio_of_js
-            Node_stream.Stream.Writable.t_of_js
-            (fun (x596 : Ojs.t) -> or_null_of_js never_of_js x596)
-            (fun (x598 : Ojs.t) -> or_null_of_js never_of_js x598)
+          ChildProcessByStdio.t_of_js Node_stream.Stream.Writable.t_of_js
+            (fun (x572 : Ojs.t) -> or_null_of_js never_of_js x572)
+            (fun (x574 : Ojs.t) -> or_null_of_js never_of_js x574)
             (Ojs.call Import.child_process "spawn"
-               [|(Ojs.string_to_js x590);(child_process_SpawnOptionsWithStdioTuple_to_js
-                                            child_process_StdioPipe_to_js
-                                            child_process_StdioNull_to_js
-                                            child_process_StdioNull_to_js
-                                            x591)|])
+               [|(Ojs.string_to_js x566);(SpawnOptionsWithStdioTuple.t_to_js
+                                            StdioPipe.t_to_js
+                                            StdioNull.t_to_js
+                                            StdioNull.t_to_js x567)|])
     let (spawn' :
       command:string ->
-        options:(child_process_StdioNull, child_process_StdioPipe,
-          child_process_StdioNull) child_process_SpawnOptionsWithStdioTuple
-          ->
+        options:(StdioNull.t, StdioPipe.t, StdioNull.t)
+          SpawnOptionsWithStdioTuple.t ->
           (never or_null, Node_stream.Stream.Readable.t, never or_null)
-            child_process_ChildProcessByStdio)
+            ChildProcessByStdio.t)
       =
-      fun ~command:(x600 : string) ->
+      fun ~command:(x576 : string) ->
         fun
-          ~options:(x601 :
-                     (child_process_StdioNull, child_process_StdioPipe,
-                       child_process_StdioNull)
-                       child_process_SpawnOptionsWithStdioTuple)
+          ~options:(x577 :
+                     (StdioNull.t, StdioPipe.t, StdioNull.t)
+                       SpawnOptionsWithStdioTuple.t)
           ->
-          child_process_ChildProcessByStdio_of_js
-            (fun (x605 : Ojs.t) -> or_null_of_js never_of_js x605)
+          ChildProcessByStdio.t_of_js
+            (fun (x581 : Ojs.t) -> or_null_of_js never_of_js x581)
             Node_stream.Stream.Readable.t_of_js
-            (fun (x608 : Ojs.t) -> or_null_of_js never_of_js x608)
+            (fun (x584 : Ojs.t) -> or_null_of_js never_of_js x584)
             (Ojs.call Import.child_process "spawn"
-               [|(Ojs.string_to_js x600);(child_process_SpawnOptionsWithStdioTuple_to_js
-                                            child_process_StdioNull_to_js
-                                            child_process_StdioPipe_to_js
-                                            child_process_StdioNull_to_js
-                                            x601)|])
+               [|(Ojs.string_to_js x576);(SpawnOptionsWithStdioTuple.t_to_js
+                                            StdioNull.t_to_js
+                                            StdioPipe.t_to_js
+                                            StdioNull.t_to_js x577)|])
     let (spawn' :
       command:string ->
-        options:(child_process_StdioNull, child_process_StdioNull,
-          child_process_StdioPipe) child_process_SpawnOptionsWithStdioTuple
-          ->
+        options:(StdioNull.t, StdioNull.t, StdioPipe.t)
+          SpawnOptionsWithStdioTuple.t ->
           (never or_null, never or_null, Node_stream.Stream.Readable.t)
-            child_process_ChildProcessByStdio)
+            ChildProcessByStdio.t)
       =
-      fun ~command:(x610 : string) ->
+      fun ~command:(x586 : string) ->
         fun
-          ~options:(x611 :
-                     (child_process_StdioNull, child_process_StdioNull,
-                       child_process_StdioPipe)
-                       child_process_SpawnOptionsWithStdioTuple)
+          ~options:(x587 :
+                     (StdioNull.t, StdioNull.t, StdioPipe.t)
+                       SpawnOptionsWithStdioTuple.t)
           ->
-          child_process_ChildProcessByStdio_of_js
-            (fun (x615 : Ojs.t) -> or_null_of_js never_of_js x615)
-            (fun (x617 : Ojs.t) -> or_null_of_js never_of_js x617)
+          ChildProcessByStdio.t_of_js
+            (fun (x591 : Ojs.t) -> or_null_of_js never_of_js x591)
+            (fun (x593 : Ojs.t) -> or_null_of_js never_of_js x593)
             Node_stream.Stream.Readable.t_of_js
             (Ojs.call Import.child_process "spawn"
-               [|(Ojs.string_to_js x610);(child_process_SpawnOptionsWithStdioTuple_to_js
-                                            child_process_StdioNull_to_js
-                                            child_process_StdioNull_to_js
-                                            child_process_StdioPipe_to_js
-                                            x611)|])
+               [|(Ojs.string_to_js x586);(SpawnOptionsWithStdioTuple.t_to_js
+                                            StdioNull.t_to_js
+                                            StdioNull.t_to_js
+                                            StdioPipe.t_to_js x587)|])
     let (spawn' :
       command:string ->
-        options:(child_process_StdioNull, child_process_StdioNull,
-          child_process_StdioNull) child_process_SpawnOptionsWithStdioTuple
-          ->
-          (never or_null, never or_null, never or_null)
-            child_process_ChildProcessByStdio)
+        options:(StdioNull.t, StdioNull.t, StdioNull.t)
+          SpawnOptionsWithStdioTuple.t ->
+          (never or_null, never or_null, never or_null) ChildProcessByStdio.t)
       =
-      fun ~command:(x620 : string) ->
+      fun ~command:(x596 : string) ->
         fun
-          ~options:(x621 :
-                     (child_process_StdioNull, child_process_StdioNull,
-                       child_process_StdioNull)
-                       child_process_SpawnOptionsWithStdioTuple)
+          ~options:(x597 :
+                     (StdioNull.t, StdioNull.t, StdioNull.t)
+                       SpawnOptionsWithStdioTuple.t)
           ->
-          child_process_ChildProcessByStdio_of_js
-            (fun (x625 : Ojs.t) -> or_null_of_js never_of_js x625)
-            (fun (x627 : Ojs.t) -> or_null_of_js never_of_js x627)
-            (fun (x629 : Ojs.t) -> or_null_of_js never_of_js x629)
+          ChildProcessByStdio.t_of_js
+            (fun (x601 : Ojs.t) -> or_null_of_js never_of_js x601)
+            (fun (x603 : Ojs.t) -> or_null_of_js never_of_js x603)
+            (fun (x605 : Ojs.t) -> or_null_of_js never_of_js x605)
             (Ojs.call Import.child_process "spawn"
-               [|(Ojs.string_to_js x620);(child_process_SpawnOptionsWithStdioTuple_to_js
-                                            child_process_StdioNull_to_js
-                                            child_process_StdioNull_to_js
-                                            child_process_StdioNull_to_js
-                                            x621)|])
-    let (spawn' :
-      command:string ->
-        options:child_process_SpawnOptions -> child_process_ChildProcess)
+               [|(Ojs.string_to_js x596);(SpawnOptionsWithStdioTuple.t_to_js
+                                            StdioNull.t_to_js
+                                            StdioNull.t_to_js
+                                            StdioNull.t_to_js x597)|])
+    let (spawn' : command:string -> options:SpawnOptions.t -> ChildProcess.t)
       =
-      fun ~command:(x631 : string) ->
-        fun ~options:(x632 : child_process_SpawnOptions) ->
-          child_process_ChildProcess_of_js
+      fun ~command:(x607 : string) ->
+        fun ~options:(x608 : SpawnOptions.t) ->
+          ChildProcess.t_of_js
             (Ojs.call Import.child_process "spawn"
-               [|(Ojs.string_to_js x631);(child_process_SpawnOptions_to_js
-                                            x632)|])
+               [|(Ojs.string_to_js x607);(SpawnOptions.t_to_js x608)|])
     let (spawn' :
       command:string ->
         ?args:string list ->
-          ?options:child_process_SpawnOptionsWithoutStdio ->
-            unit -> child_process_ChildProcessWithoutNullStreams)
+          ?options:SpawnOptionsWithoutStdio.t ->
+            unit -> ChildProcessWithoutNullStreams.t)
       =
-      fun ~command:(x633 : string) ->
-        fun ?args:(x634 : string list option) ->
-          fun ?options:(x635 : child_process_SpawnOptionsWithoutStdio option)
-            ->
+      fun ~command:(x609 : string) ->
+        fun ?args:(x610 : string list option) ->
+          fun ?options:(x611 : SpawnOptionsWithoutStdio.t option) ->
             fun () ->
-              child_process_ChildProcessWithoutNullStreams_of_js
-                (let x640 = Import.child_process in
-                 Ojs.call (Ojs.get_prop_ascii x640 "spawn") "apply"
-                   [|x640;((let x636 =
+              ChildProcessWithoutNullStreams.t_of_js
+                (let x616 = Import.child_process in
+                 Ojs.call (Ojs.get_prop_ascii x616 "spawn") "apply"
+                   [|x616;((let x612 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x636 "push"
-                                 [|(Ojs.string_to_js x633)|]);
-                            (match x634 with
-                             | Some x638 ->
+                              (Ojs.call x612 "push"
+                                 [|(Ojs.string_to_js x609)|]);
+                            (match x610 with
+                             | Some x614 ->
                                  ignore
-                                   (Ojs.call x636 "push"
-                                      [|(Ojs.list_to_js Ojs.string_to_js x638)|])
+                                   (Ojs.call x612 "push"
+                                      [|(Ojs.list_to_js Ojs.string_to_js x614)|])
                              | None -> ());
-                            (match x635 with
-                             | Some x637 ->
+                            (match x611 with
+                             | Some x613 ->
                                  ignore
-                                   (Ojs.call x636 "push"
-                                      [|(child_process_SpawnOptionsWithoutStdio_to_js
-                                           x637)|])
+                                   (Ojs.call x612 "push"
+                                      [|(SpawnOptionsWithoutStdio.t_to_js
+                                           x613)|])
                              | None -> ());
-                            x636))|])
+                            x612))|])
     let (spawn' :
       command:string ->
         args:string list ->
-          options:(child_process_StdioPipe, child_process_StdioPipe,
-            child_process_StdioPipe) child_process_SpawnOptionsWithStdioTuple
-            ->
+          options:(StdioPipe.t, StdioPipe.t, StdioPipe.t)
+            SpawnOptionsWithStdioTuple.t ->
             (Node_stream.Stream.Writable.t, Node_stream.Stream.Readable.t,
-              Node_stream.Stream.Readable.t)
-              child_process_ChildProcessByStdio)
+              Node_stream.Stream.Readable.t) ChildProcessByStdio.t)
       =
-      fun ~command:(x641 : string) ->
-        fun ~args:(x642 : string list) ->
+      fun ~command:(x617 : string) ->
+        fun ~args:(x618 : string list) ->
           fun
-            ~options:(x644 :
-                       (child_process_StdioPipe, child_process_StdioPipe,
-                         child_process_StdioPipe)
-                         child_process_SpawnOptionsWithStdioTuple)
+            ~options:(x620 :
+                       (StdioPipe.t, StdioPipe.t, StdioPipe.t)
+                         SpawnOptionsWithStdioTuple.t)
             ->
-            child_process_ChildProcessByStdio_of_js
-              Node_stream.Stream.Writable.t_of_js
+            ChildProcessByStdio.t_of_js Node_stream.Stream.Writable.t_of_js
               Node_stream.Stream.Readable.t_of_js
               Node_stream.Stream.Readable.t_of_js
               (Ojs.call Import.child_process "spawn"
-                 [|(Ojs.string_to_js x641);(Ojs.list_to_js Ojs.string_to_js
-                                              x642);(child_process_SpawnOptionsWithStdioTuple_to_js
-                                                       child_process_StdioPipe_to_js
-                                                       child_process_StdioPipe_to_js
-                                                       child_process_StdioPipe_to_js
-                                                       x644)|])
+                 [|(Ojs.string_to_js x617);(Ojs.list_to_js Ojs.string_to_js
+                                              x618);(SpawnOptionsWithStdioTuple.t_to_js
+                                                       StdioPipe.t_to_js
+                                                       StdioPipe.t_to_js
+                                                       StdioPipe.t_to_js x620)|])
     let (spawn' :
       command:string ->
         args:string list ->
-          options:(child_process_StdioPipe, child_process_StdioPipe,
-            child_process_StdioNull) child_process_SpawnOptionsWithStdioTuple
-            ->
+          options:(StdioPipe.t, StdioPipe.t, StdioNull.t)
+            SpawnOptionsWithStdioTuple.t ->
             (Node_stream.Stream.Writable.t, Node_stream.Stream.Readable.t,
-              never or_null) child_process_ChildProcessByStdio)
+              never or_null) ChildProcessByStdio.t)
       =
-      fun ~command:(x651 : string) ->
-        fun ~args:(x652 : string list) ->
+      fun ~command:(x627 : string) ->
+        fun ~args:(x628 : string list) ->
           fun
-            ~options:(x654 :
-                       (child_process_StdioPipe, child_process_StdioPipe,
-                         child_process_StdioNull)
-                         child_process_SpawnOptionsWithStdioTuple)
+            ~options:(x630 :
+                       (StdioPipe.t, StdioPipe.t, StdioNull.t)
+                         SpawnOptionsWithStdioTuple.t)
             ->
-            child_process_ChildProcessByStdio_of_js
-              Node_stream.Stream.Writable.t_of_js
+            ChildProcessByStdio.t_of_js Node_stream.Stream.Writable.t_of_js
               Node_stream.Stream.Readable.t_of_js
-              (fun (x660 : Ojs.t) -> or_null_of_js never_of_js x660)
+              (fun (x636 : Ojs.t) -> or_null_of_js never_of_js x636)
               (Ojs.call Import.child_process "spawn"
-                 [|(Ojs.string_to_js x651);(Ojs.list_to_js Ojs.string_to_js
-                                              x652);(child_process_SpawnOptionsWithStdioTuple_to_js
-                                                       child_process_StdioPipe_to_js
-                                                       child_process_StdioPipe_to_js
-                                                       child_process_StdioNull_to_js
-                                                       x654)|])
+                 [|(Ojs.string_to_js x627);(Ojs.list_to_js Ojs.string_to_js
+                                              x628);(SpawnOptionsWithStdioTuple.t_to_js
+                                                       StdioPipe.t_to_js
+                                                       StdioPipe.t_to_js
+                                                       StdioNull.t_to_js x630)|])
     let (spawn' :
       command:string ->
         args:string list ->
-          options:(child_process_StdioPipe, child_process_StdioNull,
-            child_process_StdioPipe) child_process_SpawnOptionsWithStdioTuple
-            ->
+          options:(StdioPipe.t, StdioNull.t, StdioPipe.t)
+            SpawnOptionsWithStdioTuple.t ->
             (Node_stream.Stream.Writable.t, never or_null,
-              Node_stream.Stream.Readable.t)
-              child_process_ChildProcessByStdio)
+              Node_stream.Stream.Readable.t) ChildProcessByStdio.t)
       =
-      fun ~command:(x662 : string) ->
-        fun ~args:(x663 : string list) ->
+      fun ~command:(x638 : string) ->
+        fun ~args:(x639 : string list) ->
           fun
-            ~options:(x665 :
-                       (child_process_StdioPipe, child_process_StdioNull,
-                         child_process_StdioPipe)
-                         child_process_SpawnOptionsWithStdioTuple)
+            ~options:(x641 :
+                       (StdioPipe.t, StdioNull.t, StdioPipe.t)
+                         SpawnOptionsWithStdioTuple.t)
             ->
-            child_process_ChildProcessByStdio_of_js
-              Node_stream.Stream.Writable.t_of_js
-              (fun (x670 : Ojs.t) -> or_null_of_js never_of_js x670)
+            ChildProcessByStdio.t_of_js Node_stream.Stream.Writable.t_of_js
+              (fun (x646 : Ojs.t) -> or_null_of_js never_of_js x646)
               Node_stream.Stream.Readable.t_of_js
               (Ojs.call Import.child_process "spawn"
-                 [|(Ojs.string_to_js x662);(Ojs.list_to_js Ojs.string_to_js
-                                              x663);(child_process_SpawnOptionsWithStdioTuple_to_js
-                                                       child_process_StdioPipe_to_js
-                                                       child_process_StdioNull_to_js
-                                                       child_process_StdioPipe_to_js
-                                                       x665)|])
+                 [|(Ojs.string_to_js x638);(Ojs.list_to_js Ojs.string_to_js
+                                              x639);(SpawnOptionsWithStdioTuple.t_to_js
+                                                       StdioPipe.t_to_js
+                                                       StdioNull.t_to_js
+                                                       StdioPipe.t_to_js x641)|])
     let (spawn' :
       command:string ->
         args:string list ->
-          options:(child_process_StdioNull, child_process_StdioPipe,
-            child_process_StdioPipe) child_process_SpawnOptionsWithStdioTuple
-            ->
+          options:(StdioNull.t, StdioPipe.t, StdioPipe.t)
+            SpawnOptionsWithStdioTuple.t ->
             (never or_null, Node_stream.Stream.Readable.t,
-              Node_stream.Stream.Readable.t)
-              child_process_ChildProcessByStdio)
+              Node_stream.Stream.Readable.t) ChildProcessByStdio.t)
       =
-      fun ~command:(x673 : string) ->
-        fun ~args:(x674 : string list) ->
+      fun ~command:(x649 : string) ->
+        fun ~args:(x650 : string list) ->
           fun
-            ~options:(x676 :
-                       (child_process_StdioNull, child_process_StdioPipe,
-                         child_process_StdioPipe)
-                         child_process_SpawnOptionsWithStdioTuple)
+            ~options:(x652 :
+                       (StdioNull.t, StdioPipe.t, StdioPipe.t)
+                         SpawnOptionsWithStdioTuple.t)
             ->
-            child_process_ChildProcessByStdio_of_js
-              (fun (x680 : Ojs.t) -> or_null_of_js never_of_js x680)
+            ChildProcessByStdio.t_of_js
+              (fun (x656 : Ojs.t) -> or_null_of_js never_of_js x656)
               Node_stream.Stream.Readable.t_of_js
               Node_stream.Stream.Readable.t_of_js
               (Ojs.call Import.child_process "spawn"
-                 [|(Ojs.string_to_js x673);(Ojs.list_to_js Ojs.string_to_js
-                                              x674);(child_process_SpawnOptionsWithStdioTuple_to_js
-                                                       child_process_StdioNull_to_js
-                                                       child_process_StdioPipe_to_js
-                                                       child_process_StdioPipe_to_js
-                                                       x676)|])
+                 [|(Ojs.string_to_js x649);(Ojs.list_to_js Ojs.string_to_js
+                                              x650);(SpawnOptionsWithStdioTuple.t_to_js
+                                                       StdioNull.t_to_js
+                                                       StdioPipe.t_to_js
+                                                       StdioPipe.t_to_js x652)|])
     let (spawn' :
       command:string ->
         args:string list ->
-          options:(child_process_StdioPipe, child_process_StdioNull,
-            child_process_StdioNull) child_process_SpawnOptionsWithStdioTuple
-            ->
+          options:(StdioPipe.t, StdioNull.t, StdioNull.t)
+            SpawnOptionsWithStdioTuple.t ->
             (Node_stream.Stream.Writable.t, never or_null, never or_null)
-              child_process_ChildProcessByStdio)
+              ChildProcessByStdio.t)
+      =
+      fun ~command:(x660 : string) ->
+        fun ~args:(x661 : string list) ->
+          fun
+            ~options:(x663 :
+                       (StdioPipe.t, StdioNull.t, StdioNull.t)
+                         SpawnOptionsWithStdioTuple.t)
+            ->
+            ChildProcessByStdio.t_of_js Node_stream.Stream.Writable.t_of_js
+              (fun (x668 : Ojs.t) -> or_null_of_js never_of_js x668)
+              (fun (x670 : Ojs.t) -> or_null_of_js never_of_js x670)
+              (Ojs.call Import.child_process "spawn"
+                 [|(Ojs.string_to_js x660);(Ojs.list_to_js Ojs.string_to_js
+                                              x661);(SpawnOptionsWithStdioTuple.t_to_js
+                                                       StdioPipe.t_to_js
+                                                       StdioNull.t_to_js
+                                                       StdioNull.t_to_js x663)|])
+    let (spawn' :
+      command:string ->
+        args:string list ->
+          options:(StdioNull.t, StdioPipe.t, StdioNull.t)
+            SpawnOptionsWithStdioTuple.t ->
+            (never or_null, Node_stream.Stream.Readable.t, never or_null)
+              ChildProcessByStdio.t)
+      =
+      fun ~command:(x672 : string) ->
+        fun ~args:(x673 : string list) ->
+          fun
+            ~options:(x675 :
+                       (StdioNull.t, StdioPipe.t, StdioNull.t)
+                         SpawnOptionsWithStdioTuple.t)
+            ->
+            ChildProcessByStdio.t_of_js
+              (fun (x679 : Ojs.t) -> or_null_of_js never_of_js x679)
+              Node_stream.Stream.Readable.t_of_js
+              (fun (x682 : Ojs.t) -> or_null_of_js never_of_js x682)
+              (Ojs.call Import.child_process "spawn"
+                 [|(Ojs.string_to_js x672);(Ojs.list_to_js Ojs.string_to_js
+                                              x673);(SpawnOptionsWithStdioTuple.t_to_js
+                                                       StdioNull.t_to_js
+                                                       StdioPipe.t_to_js
+                                                       StdioNull.t_to_js x675)|])
+    let (spawn' :
+      command:string ->
+        args:string list ->
+          options:(StdioNull.t, StdioNull.t, StdioPipe.t)
+            SpawnOptionsWithStdioTuple.t ->
+            (never or_null, never or_null, Node_stream.Stream.Readable.t)
+              ChildProcessByStdio.t)
       =
       fun ~command:(x684 : string) ->
         fun ~args:(x685 : string list) ->
           fun
             ~options:(x687 :
-                       (child_process_StdioPipe, child_process_StdioNull,
-                         child_process_StdioNull)
-                         child_process_SpawnOptionsWithStdioTuple)
+                       (StdioNull.t, StdioNull.t, StdioPipe.t)
+                         SpawnOptionsWithStdioTuple.t)
             ->
-            child_process_ChildProcessByStdio_of_js
-              Node_stream.Stream.Writable.t_of_js
-              (fun (x692 : Ojs.t) -> or_null_of_js never_of_js x692)
-              (fun (x694 : Ojs.t) -> or_null_of_js never_of_js x694)
+            ChildProcessByStdio.t_of_js
+              (fun (x691 : Ojs.t) -> or_null_of_js never_of_js x691)
+              (fun (x693 : Ojs.t) -> or_null_of_js never_of_js x693)
+              Node_stream.Stream.Readable.t_of_js
               (Ojs.call Import.child_process "spawn"
                  [|(Ojs.string_to_js x684);(Ojs.list_to_js Ojs.string_to_js
-                                              x685);(child_process_SpawnOptionsWithStdioTuple_to_js
-                                                       child_process_StdioPipe_to_js
-                                                       child_process_StdioNull_to_js
-                                                       child_process_StdioNull_to_js
-                                                       x687)|])
+                                              x685);(SpawnOptionsWithStdioTuple.t_to_js
+                                                       StdioNull.t_to_js
+                                                       StdioNull.t_to_js
+                                                       StdioPipe.t_to_js x687)|])
     let (spawn' :
       command:string ->
         args:string list ->
-          options:(child_process_StdioNull, child_process_StdioPipe,
-            child_process_StdioNull) child_process_SpawnOptionsWithStdioTuple
-            ->
-            (never or_null, Node_stream.Stream.Readable.t, never or_null)
-              child_process_ChildProcessByStdio)
+          options:(StdioNull.t, StdioNull.t, StdioNull.t)
+            SpawnOptionsWithStdioTuple.t ->
+            (never or_null, never or_null, never or_null)
+              ChildProcessByStdio.t)
       =
       fun ~command:(x696 : string) ->
         fun ~args:(x697 : string list) ->
           fun
             ~options:(x699 :
-                       (child_process_StdioNull, child_process_StdioPipe,
-                         child_process_StdioNull)
-                         child_process_SpawnOptionsWithStdioTuple)
+                       (StdioNull.t, StdioNull.t, StdioNull.t)
+                         SpawnOptionsWithStdioTuple.t)
             ->
-            child_process_ChildProcessByStdio_of_js
+            ChildProcessByStdio.t_of_js
               (fun (x703 : Ojs.t) -> or_null_of_js never_of_js x703)
-              Node_stream.Stream.Readable.t_of_js
-              (fun (x706 : Ojs.t) -> or_null_of_js never_of_js x706)
+              (fun (x705 : Ojs.t) -> or_null_of_js never_of_js x705)
+              (fun (x707 : Ojs.t) -> or_null_of_js never_of_js x707)
               (Ojs.call Import.child_process "spawn"
                  [|(Ojs.string_to_js x696);(Ojs.list_to_js Ojs.string_to_js
-                                              x697);(child_process_SpawnOptionsWithStdioTuple_to_js
-                                                       child_process_StdioNull_to_js
-                                                       child_process_StdioPipe_to_js
-                                                       child_process_StdioNull_to_js
-                                                       x699)|])
+                                              x697);(SpawnOptionsWithStdioTuple.t_to_js
+                                                       StdioNull.t_to_js
+                                                       StdioNull.t_to_js
+                                                       StdioNull.t_to_js x699)|])
     let (spawn' :
       command:string ->
-        args:string list ->
-          options:(child_process_StdioNull, child_process_StdioNull,
-            child_process_StdioPipe) child_process_SpawnOptionsWithStdioTuple
-            ->
-            (never or_null, never or_null, Node_stream.Stream.Readable.t)
-              child_process_ChildProcessByStdio)
+        args:string list -> options:SpawnOptions.t -> ChildProcess.t)
       =
-      fun ~command:(x708 : string) ->
-        fun ~args:(x709 : string list) ->
-          fun
-            ~options:(x711 :
-                       (child_process_StdioNull, child_process_StdioNull,
-                         child_process_StdioPipe)
-                         child_process_SpawnOptionsWithStdioTuple)
-            ->
-            child_process_ChildProcessByStdio_of_js
-              (fun (x715 : Ojs.t) -> or_null_of_js never_of_js x715)
-              (fun (x717 : Ojs.t) -> or_null_of_js never_of_js x717)
-              Node_stream.Stream.Readable.t_of_js
+      fun ~command:(x709 : string) ->
+        fun ~args:(x710 : string list) ->
+          fun ~options:(x712 : SpawnOptions.t) ->
+            ChildProcess.t_of_js
               (Ojs.call Import.child_process "spawn"
-                 [|(Ojs.string_to_js x708);(Ojs.list_to_js Ojs.string_to_js
-                                              x709);(child_process_SpawnOptionsWithStdioTuple_to_js
-                                                       child_process_StdioNull_to_js
-                                                       child_process_StdioNull_to_js
-                                                       child_process_StdioPipe_to_js
-                                                       x711)|])
-    let (spawn' :
-      command:string ->
-        args:string list ->
-          options:(child_process_StdioNull, child_process_StdioNull,
-            child_process_StdioNull) child_process_SpawnOptionsWithStdioTuple
-            ->
-            (never or_null, never or_null, never or_null)
-              child_process_ChildProcessByStdio)
-      =
-      fun ~command:(x720 : string) ->
-        fun ~args:(x721 : string list) ->
-          fun
-            ~options:(x723 :
-                       (child_process_StdioNull, child_process_StdioNull,
-                         child_process_StdioNull)
-                         child_process_SpawnOptionsWithStdioTuple)
-            ->
-            child_process_ChildProcessByStdio_of_js
-              (fun (x727 : Ojs.t) -> or_null_of_js never_of_js x727)
-              (fun (x729 : Ojs.t) -> or_null_of_js never_of_js x729)
-              (fun (x731 : Ojs.t) -> or_null_of_js never_of_js x731)
-              (Ojs.call Import.child_process "spawn"
-                 [|(Ojs.string_to_js x720);(Ojs.list_to_js Ojs.string_to_js
-                                              x721);(child_process_SpawnOptionsWithStdioTuple_to_js
-                                                       child_process_StdioNull_to_js
-                                                       child_process_StdioNull_to_js
-                                                       child_process_StdioNull_to_js
-                                                       x723)|])
-    let (spawn' :
-      command:string ->
-        args:string list ->
-          options:child_process_SpawnOptions -> child_process_ChildProcess)
-      =
-      fun ~command:(x733 : string) ->
-        fun ~args:(x734 : string list) ->
-          fun ~options:(x736 : child_process_SpawnOptions) ->
-            child_process_ChildProcess_of_js
-              (Ojs.call Import.child_process "spawn"
-                 [|(Ojs.string_to_js x733);(Ojs.list_to_js Ojs.string_to_js
-                                              x734);(child_process_SpawnOptions_to_js
-                                                       x736)|])
+                 [|(Ojs.string_to_js x709);(Ojs.list_to_js Ojs.string_to_js
+                                              x710);(SpawnOptions.t_to_js
+                                                       x712)|])
     module ExecOptions =
       struct
-        type t = child_process_ExecOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x738 : Ojs.t) -> child_process_ExecOptions_of_js x738
-        and t_to_js : t -> Ojs.t =
-          fun (x737 : child_process_ExecOptions) ->
-            child_process_ExecOptions_to_js x737
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x714 : Ojs.t) -> x714
+        and t_to_js : t -> Ojs.t = fun (x713 : Ojs.t) -> x713
         let (get_shell : t -> string) =
-          fun (x739 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x739) "shell")
+          fun (x715 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x715) "shell")
         let (set_shell : t -> string -> unit) =
-          fun (x740 : t) ->
-            fun (x741 : string) ->
-              Ojs.set_prop_ascii (t_to_js x740) "shell"
-                (Ojs.string_to_js x741)
-        let (get_maxBuffer : t -> float) =
-          fun (x742 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x742) "maxBuffer")
-        let (set_maxBuffer : t -> float -> unit) =
-          fun (x743 : t) ->
-            fun (x744 : float) ->
-              Ojs.set_prop_ascii (t_to_js x743) "maxBuffer"
-                (Ojs.float_to_js x744)
+          fun (x716 : t) ->
+            fun (x717 : string) ->
+              Ojs.set_prop_ascii (t_to_js x716) "shell"
+                (Ojs.string_to_js x717)
+        let (get_maxBuffer : t -> int) =
+          fun (x718 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x718) "maxBuffer")
+        let (set_maxBuffer : t -> int -> unit) =
+          fun (x719 : t) ->
+            fun (x720 : int) ->
+              Ojs.set_prop_ascii (t_to_js x719) "maxBuffer"
+                (Ojs.int_to_js x720)
         let (get_killSignal : t -> Node_process.Process.Signals.t or_number)
           =
-          fun (x745 : t) ->
+          fun (x721 : t) ->
             or_number_of_js Node_process.Process.Signals.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x745) "killSignal")
+              (Ojs.get_prop_ascii (t_to_js x721) "killSignal")
         let (set_killSignal :
           t -> Node_process.Process.Signals.t or_number -> unit) =
-          fun (x747 : t) ->
-            fun (x748 : Node_process.Process.Signals.t or_number) ->
-              Ojs.set_prop_ascii (t_to_js x747) "killSignal"
-                (or_number_to_js Node_process.Process.Signals.t_to_js x748)
-        let (cast : t -> child_process_CommonOptions) =
-          fun (x750 : t) -> child_process_CommonOptions_of_js (t_to_js x750)
+          fun (x723 : t) ->
+            fun (x724 : Node_process.Process.Signals.t or_number) ->
+              Ojs.set_prop_ascii (t_to_js x723) "killSignal"
+                (or_number_to_js Node_process.Process.Signals.t_to_js x724)
+        let (cast : t -> CommonOptions.t) =
+          fun (x726 : t) -> CommonOptions.t_of_js (t_to_js x726)
       end
     module ExecOptionsWithStringEncoding =
       struct
-        type t = child_process_ExecOptionsWithStringEncoding
-        let rec t_of_js : Ojs.t -> t =
-          fun (x752 : Ojs.t) ->
-            child_process_ExecOptionsWithStringEncoding_of_js x752
-        and t_to_js : t -> Ojs.t =
-          fun (x751 : child_process_ExecOptionsWithStringEncoding) ->
-            child_process_ExecOptionsWithStringEncoding_to_js x751
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x728 : Ojs.t) -> x728
+        and t_to_js : t -> Ojs.t = fun (x727 : Ojs.t) -> x727
         let (get_encoding : t -> BufferEncoding.t) =
-          fun (x753 : t) ->
+          fun (x729 : t) ->
             BufferEncoding.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x753) "encoding")
+              (Ojs.get_prop_ascii (t_to_js x729) "encoding")
         let (set_encoding : t -> BufferEncoding.t -> unit) =
-          fun (x754 : t) ->
-            fun (x755 : BufferEncoding.t) ->
-              Ojs.set_prop_ascii (t_to_js x754) "encoding"
-                (BufferEncoding.t_to_js x755)
-        let (cast : t -> child_process_ExecOptions) =
-          fun (x756 : t) -> child_process_ExecOptions_of_js (t_to_js x756)
+          fun (x730 : t) ->
+            fun (x731 : BufferEncoding.t) ->
+              Ojs.set_prop_ascii (t_to_js x730) "encoding"
+                (BufferEncoding.t_to_js x731)
+        let (cast : t -> ExecOptions.t) =
+          fun (x732 : t) -> ExecOptions.t_of_js (t_to_js x732)
       end
     module ExecOptionsWithBufferEncoding =
       struct
-        type t = child_process_ExecOptionsWithBufferEncoding
-        let rec t_of_js : Ojs.t -> t =
-          fun (x758 : Ojs.t) ->
-            child_process_ExecOptionsWithBufferEncoding_of_js x758
-        and t_to_js : t -> Ojs.t =
-          fun (x757 : child_process_ExecOptionsWithBufferEncoding) ->
-            child_process_ExecOptionsWithBufferEncoding_to_js x757
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x734 : Ojs.t) -> x734
+        and t_to_js : t -> Ojs.t = fun (x733 : Ojs.t) -> x733
         let (get_encoding : t -> BufferEncoding.t or_null) =
-          fun (x759 : t) ->
+          fun (x735 : t) ->
             or_null_of_js BufferEncoding.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x759) "encoding")
+              (Ojs.get_prop_ascii (t_to_js x735) "encoding")
         let (set_encoding : t -> BufferEncoding.t or_null -> unit) =
-          fun (x761 : t) ->
-            fun (x762 : BufferEncoding.t or_null) ->
-              Ojs.set_prop_ascii (t_to_js x761) "encoding"
-                (or_null_to_js BufferEncoding.t_to_js x762)
-        let (cast : t -> child_process_ExecOptions) =
-          fun (x764 : t) -> child_process_ExecOptions_of_js (t_to_js x764)
+          fun (x737 : t) ->
+            fun (x738 : BufferEncoding.t or_null) ->
+              Ojs.set_prop_ascii (t_to_js x737) "encoding"
+                (or_null_to_js BufferEncoding.t_to_js x738)
+        let (cast : t -> ExecOptions.t) =
+          fun (x740 : t) -> ExecOptions.t_of_js (t_to_js x740)
       end
     module ExecException =
       struct
-        type t = child_process_ExecException
-        let rec t_of_js : Ojs.t -> t =
-          fun (x766 : Ojs.t) -> child_process_ExecException_of_js x766
-        and t_to_js : t -> Ojs.t =
-          fun (x765 : child_process_ExecException) ->
-            child_process_ExecException_to_js x765
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x742 : Ojs.t) -> x742
+        and t_to_js : t -> Ojs.t = fun (x741 : Ojs.t) -> x741
         let (get_cmd : t -> string) =
-          fun (x767 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x767) "cmd")
+          fun (x743 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x743) "cmd")
         let (set_cmd : t -> string -> unit) =
-          fun (x768 : t) ->
-            fun (x769 : string) ->
-              Ojs.set_prop_ascii (t_to_js x768) "cmd" (Ojs.string_to_js x769)
+          fun (x744 : t) ->
+            fun (x745 : string) ->
+              Ojs.set_prop_ascii (t_to_js x744) "cmd" (Ojs.string_to_js x745)
         let (get_killed : t -> bool) =
-          fun (x770 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x770) "killed")
+          fun (x746 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x746) "killed")
         let (set_killed : t -> bool -> unit) =
-          fun (x771 : t) ->
-            fun (x772 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x771) "killed"
-                (Ojs.bool_to_js x772)
-        let (get_code : t -> float) =
-          fun (x773 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x773) "code")
-        let (set_code : t -> float -> unit) =
-          fun (x774 : t) ->
-            fun (x775 : float) ->
-              Ojs.set_prop_ascii (t_to_js x774) "code" (Ojs.float_to_js x775)
+          fun (x747 : t) ->
+            fun (x748 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x747) "killed"
+                (Ojs.bool_to_js x748)
+        let (get_code : t -> int) =
+          fun (x749 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x749) "code")
+        let (set_code : t -> int -> unit) =
+          fun (x750 : t) ->
+            fun (x751 : int) ->
+              Ojs.set_prop_ascii (t_to_js x750) "code" (Ojs.int_to_js x751)
         let (get_signal : t -> Node_process.Process.Signals.t) =
-          fun (x776 : t) ->
+          fun (x752 : t) ->
             Node_process.Process.Signals.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x776) "signal")
+              (Ojs.get_prop_ascii (t_to_js x752) "signal")
         let (set_signal : t -> Node_process.Process.Signals.t -> unit) =
-          fun (x777 : t) ->
-            fun (x778 : Node_process.Process.Signals.t) ->
-              Ojs.set_prop_ascii (t_to_js x777) "signal"
-                (Node_process.Process.Signals.t_to_js x778)
+          fun (x753 : t) ->
+            fun (x754 : Node_process.Process.Signals.t) ->
+              Ojs.set_prop_ascii (t_to_js x753) "signal"
+                (Node_process.Process.Signals.t_to_js x754)
         let (cast : t -> Error.t) =
-          fun (x779 : t) -> Error.t_of_js (t_to_js x779)
+          fun (x755 : t) -> Error.t_of_js (t_to_js x755)
       end
     let (exec :
       command:string ->
-        ?callback:(error:child_process_ExecException or_null ->
+        ?callback:(error:ExecException.t or_null ->
                      stdout:string -> stderr:string -> unit)
-          -> unit -> child_process_ChildProcess)
+          -> unit -> ChildProcess.t)
       =
-      fun ~command:(x780 : string) ->
+      fun ~command:(x756 : string) ->
         fun
-          ?callback:(x781 :
-                      (error:child_process_ExecException or_null ->
+          ?callback:(x757 :
+                      (error:ExecException.t or_null ->
                          stdout:string -> stderr:string -> unit)
                         option)
           ->
           fun () ->
-            child_process_ChildProcess_of_js
-              (let x788 = Import.child_process in
-               Ojs.call (Ojs.get_prop_ascii x788 "exec") "apply"
-                 [|x788;((let x782 =
+            ChildProcess.t_of_js
+              (let x764 = Import.child_process in
+               Ojs.call (Ojs.get_prop_ascii x764 "exec") "apply"
+                 [|x764;((let x758 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x782 "push" [|(Ojs.string_to_js x780)|]);
-                          (match x781 with
-                           | Some x783 ->
+                            (Ojs.call x758 "push" [|(Ojs.string_to_js x756)|]);
+                          (match x757 with
+                           | Some x759 ->
                                ignore
-                                 (Ojs.call x782 "push"
+                                 (Ojs.call x758 "push"
                                     [|(Ojs.fun_to_js 3
-                                         (fun (x784 : Ojs.t) ->
-                                            fun (x786 : Ojs.t) ->
-                                              fun (x787 : Ojs.t) ->
-                                                x783
+                                         (fun (x760 : Ojs.t) ->
+                                            fun (x762 : Ojs.t) ->
+                                              fun (x763 : Ojs.t) ->
+                                                x759
                                                   ~error:(or_null_of_js
-                                                            child_process_ExecException_of_js
-                                                            x784)
+                                                            ExecException.t_of_js
+                                                            x760)
                                                   ~stdout:(Ojs.string_of_js
-                                                             x786)
+                                                             x762)
                                                   ~stderr:(Ojs.string_of_js
-                                                             x787)))|])
+                                                             x763)))|])
                            | None -> ());
-                          x782))|])
+                          x758))|])
     let (exec :
       command:string ->
-        options:(anonymous_interface_1, child_process_ExecOptions)
-          intersection2 ->
-          ?callback:(error:child_process_ExecException or_null ->
+        options:(AnonymousInterface1.t, ExecOptions.t) intersection2 ->
+          ?callback:(error:ExecException.t or_null ->
                        stdout:Buffer.t -> stderr:Buffer.t -> unit)
-            -> unit -> child_process_ChildProcess)
+            -> unit -> ChildProcess.t)
       =
-      fun ~command:(x789 : string) ->
+      fun ~command:(x765 : string) ->
         fun
-          ~options:(x790 :
-                     (anonymous_interface_1, child_process_ExecOptions)
-                       intersection2)
+          ~options:(x766 :
+                     (AnonymousInterface1.t, ExecOptions.t) intersection2)
           ->
           fun
-            ?callback:(x791 :
-                        (error:child_process_ExecException or_null ->
+            ?callback:(x767 :
+                        (error:ExecException.t or_null ->
                            stdout:Buffer.t -> stderr:Buffer.t -> unit)
                           option)
             ->
             fun () ->
-              child_process_ChildProcess_of_js
-                (let x800 = Import.child_process in
-                 Ojs.call (Ojs.get_prop_ascii x800 "exec") "apply"
-                   [|x800;((let x792 =
+              ChildProcess.t_of_js
+                (let x776 = Import.child_process in
+                 Ojs.call (Ojs.get_prop_ascii x776 "exec") "apply"
+                   [|x776;((let x768 =
+                              Ojs.new_obj
+                                (Ojs.get_prop_ascii Ojs.global "Array") 
+                                [||] in
+                            ignore
+                              (Ojs.call x768 "push"
+                                 [|(Ojs.string_to_js x765)|]);
+                            ignore
+                              (Ojs.call x768 "push"
+                                 [|(intersection2_to_js
+                                      AnonymousInterface1.t_to_js
+                                      ExecOptions.t_to_js x766)|]);
+                            (match x767 with
+                             | Some x769 ->
+                                 ignore
+                                   (Ojs.call x768 "push"
+                                      [|(Ojs.fun_to_js 3
+                                           (fun (x770 : Ojs.t) ->
+                                              fun (x772 : Ojs.t) ->
+                                                fun (x773 : Ojs.t) ->
+                                                  x769
+                                                    ~error:(or_null_of_js
+                                                              ExecException.t_of_js
+                                                              x770)
+                                                    ~stdout:(Buffer.t_of_js
+                                                               x772)
+                                                    ~stderr:(Buffer.t_of_js
+                                                               x773)))|])
+                             | None -> ());
+                            x768))|])
+    let (exec :
+      command:string ->
+        options:(AnonymousInterface0.t, ExecOptions.t) intersection2 ->
+          ?callback:(error:ExecException.t or_null ->
+                       stdout:string -> stderr:string -> unit)
+            -> unit -> ChildProcess.t)
+      =
+      fun ~command:(x777 : string) ->
+        fun
+          ~options:(x778 :
+                     (AnonymousInterface0.t, ExecOptions.t) intersection2)
+          ->
+          fun
+            ?callback:(x779 :
+                        (error:ExecException.t or_null ->
+                           stdout:string -> stderr:string -> unit)
+                          option)
+            ->
+            fun () ->
+              ChildProcess.t_of_js
+                (let x788 = Import.child_process in
+                 Ojs.call (Ojs.get_prop_ascii x788 "exec") "apply"
+                   [|x788;((let x780 =
+                              Ojs.new_obj
+                                (Ojs.get_prop_ascii Ojs.global "Array") 
+                                [||] in
+                            ignore
+                              (Ojs.call x780 "push"
+                                 [|(Ojs.string_to_js x777)|]);
+                            ignore
+                              (Ojs.call x780 "push"
+                                 [|(intersection2_to_js
+                                      AnonymousInterface0.t_to_js
+                                      ExecOptions.t_to_js x778)|]);
+                            (match x779 with
+                             | Some x781 ->
+                                 ignore
+                                   (Ojs.call x780 "push"
+                                      [|(Ojs.fun_to_js 3
+                                           (fun (x782 : Ojs.t) ->
+                                              fun (x784 : Ojs.t) ->
+                                                fun (x785 : Ojs.t) ->
+                                                  x781
+                                                    ~error:(or_null_of_js
+                                                              ExecException.t_of_js
+                                                              x782)
+                                                    ~stdout:(Ojs.string_of_js
+                                                               x784)
+                                                    ~stderr:(Ojs.string_of_js
+                                                               x785)))|])
+                             | None -> ());
+                            x780))|])
+    let (exec :
+      command:string ->
+        options:(AnonymousInterface0.t, ExecOptions.t) intersection2 ->
+          ?callback:(error:ExecException.t or_null ->
+                       stdout:Buffer.t or_string ->
+                         stderr:Buffer.t or_string -> unit)
+            -> unit -> ChildProcess.t)
+      =
+      fun ~command:(x789 : string) ->
+        fun
+          ~options:(x790 :
+                     (AnonymousInterface0.t, ExecOptions.t) intersection2)
+          ->
+          fun
+            ?callback:(x791 :
+                        (error:ExecException.t or_null ->
+                           stdout:Buffer.t or_string ->
+                             stderr:Buffer.t or_string -> unit)
+                          option)
+            ->
+            fun () ->
+              ChildProcess.t_of_js
+                (let x802 = Import.child_process in
+                 Ojs.call (Ojs.get_prop_ascii x802 "exec") "apply"
+                   [|x802;((let x792 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
@@ -2763,8 +2312,8 @@ module Child_process =
                             ignore
                               (Ojs.call x792 "push"
                                  [|(intersection2_to_js
-                                      anonymous_interface_1_to_js
-                                      child_process_ExecOptions_to_js x790)|]);
+                                      AnonymousInterface0.t_to_js
+                                      ExecOptions.t_to_js x790)|]);
                             (match x791 with
                              | Some x793 ->
                                  ignore
@@ -2772,98 +2321,93 @@ module Child_process =
                                       [|(Ojs.fun_to_js 3
                                            (fun (x794 : Ojs.t) ->
                                               fun (x796 : Ojs.t) ->
-                                                fun (x797 : Ojs.t) ->
+                                                fun (x798 : Ojs.t) ->
                                                   x793
                                                     ~error:(or_null_of_js
-                                                              child_process_ExecException_of_js
+                                                              ExecException.t_of_js
                                                               x794)
-                                                    ~stdout:(Buffer.t_of_js
+                                                    ~stdout:(or_string_of_js
+                                                               Buffer.t_of_js
                                                                x796)
-                                                    ~stderr:(Buffer.t_of_js
-                                                               x797)))|])
+                                                    ~stderr:(or_string_of_js
+                                                               Buffer.t_of_js
+                                                               x798)))|])
                              | None -> ());
                             x792))|])
     let (exec :
       command:string ->
-        options:(anonymous_interface_0, child_process_ExecOptions)
-          intersection2 ->
-          ?callback:(error:child_process_ExecException or_null ->
+        options:ExecOptions.t ->
+          ?callback:(error:ExecException.t or_null ->
                        stdout:string -> stderr:string -> unit)
-            -> unit -> child_process_ChildProcess)
+            -> unit -> ChildProcess.t)
       =
-      fun ~command:(x801 : string) ->
-        fun
-          ~options:(x802 :
-                     (anonymous_interface_0, child_process_ExecOptions)
-                       intersection2)
-          ->
+      fun ~command:(x803 : string) ->
+        fun ~options:(x804 : ExecOptions.t) ->
           fun
-            ?callback:(x803 :
-                        (error:child_process_ExecException or_null ->
+            ?callback:(x805 :
+                        (error:ExecException.t or_null ->
                            stdout:string -> stderr:string -> unit)
                           option)
             ->
             fun () ->
-              child_process_ChildProcess_of_js
+              ChildProcess.t_of_js
                 (let x812 = Import.child_process in
                  Ojs.call (Ojs.get_prop_ascii x812 "exec") "apply"
-                   [|x812;((let x804 =
+                   [|x812;((let x806 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x804 "push"
-                                 [|(Ojs.string_to_js x801)|]);
+                              (Ojs.call x806 "push"
+                                 [|(Ojs.string_to_js x803)|]);
                             ignore
-                              (Ojs.call x804 "push"
-                                 [|(intersection2_to_js
-                                      anonymous_interface_0_to_js
-                                      child_process_ExecOptions_to_js x802)|]);
-                            (match x803 with
-                             | Some x805 ->
+                              (Ojs.call x806 "push"
+                                 [|(ExecOptions.t_to_js x804)|]);
+                            (match x805 with
+                             | Some x807 ->
                                  ignore
-                                   (Ojs.call x804 "push"
+                                   (Ojs.call x806 "push"
                                       [|(Ojs.fun_to_js 3
-                                           (fun (x806 : Ojs.t) ->
-                                              fun (x808 : Ojs.t) ->
-                                                fun (x809 : Ojs.t) ->
-                                                  x805
+                                           (fun (x808 : Ojs.t) ->
+                                              fun (x810 : Ojs.t) ->
+                                                fun (x811 : Ojs.t) ->
+                                                  x807
                                                     ~error:(or_null_of_js
-                                                              child_process_ExecException_of_js
-                                                              x806)
+                                                              ExecException.t_of_js
+                                                              x808)
                                                     ~stdout:(Ojs.string_of_js
-                                                               x808)
+                                                               x810)
                                                     ~stderr:(Ojs.string_of_js
-                                                               x809)))|])
+                                                               x811)))|])
                              | None -> ());
-                            x804))|])
+                            x806))|])
     let (exec :
       command:string ->
-        options:(anonymous_interface_0, child_process_ExecOptions)
-          intersection2 ->
-          ?callback:(error:child_process_ExecException or_null ->
+        options:(Node_fs.Fs.BaseEncodingOptions.t, ExecOptions.t)
+          intersection2 or_null_or_undefined ->
+          ?callback:(error:ExecException.t or_null ->
                        stdout:Buffer.t or_string ->
                          stderr:Buffer.t or_string -> unit)
-            -> unit -> child_process_ChildProcess)
+            -> unit -> ChildProcess.t)
       =
       fun ~command:(x813 : string) ->
         fun
           ~options:(x814 :
-                     (anonymous_interface_0, child_process_ExecOptions)
-                       intersection2)
+                     (Node_fs.Fs.BaseEncodingOptions.t, ExecOptions.t)
+                       intersection2 or_null_or_undefined)
           ->
           fun
             ?callback:(x815 :
-                        (error:child_process_ExecException or_null ->
+                        (error:ExecException.t or_null ->
                            stdout:Buffer.t or_string ->
                              stderr:Buffer.t or_string -> unit)
                           option)
             ->
             fun () ->
-              child_process_ChildProcess_of_js
-                (let x826 = Import.child_process in
-                 Ojs.call (Ojs.get_prop_ascii x826 "exec") "apply"
-                   [|x826;((let x816 =
+              ChildProcess.t_of_js
+                (let x827 = Import.child_process in
+                 Ojs.call (Ojs.get_prop_ascii x827 "exec") "apply"
+                   [|x827;((let x816 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
@@ -2872,9 +2416,15 @@ module Child_process =
                                  [|(Ojs.string_to_js x813)|]);
                             ignore
                               (Ojs.call x816 "push"
-                                 [|(intersection2_to_js
-                                      anonymous_interface_0_to_js
-                                      child_process_ExecOptions_to_js x814)|]);
+                                 [|(or_null_or_undefined_to_js
+                                      (fun
+                                         (x824 :
+                                           (Node_fs.Fs.BaseEncodingOptions.t,
+                                             ExecOptions.t) intersection2)
+                                         ->
+                                         intersection2_to_js
+                                           Node_fs.Fs.BaseEncodingOptions.t_to_js
+                                           ExecOptions.t_to_js x824) x814)|]);
                             (match x815 with
                              | Some x817 ->
                                  ignore
@@ -2885,7 +2435,7 @@ module Child_process =
                                                 fun (x822 : Ojs.t) ->
                                                   x817
                                                     ~error:(or_null_of_js
-                                                              child_process_ExecException_of_js
+                                                              ExecException.t_of_js
                                                               x818)
                                                     ~stdout:(or_string_of_js
                                                                Buffer.t_of_js
@@ -2895,920 +2445,733 @@ module Child_process =
                                                                x822)))|])
                              | None -> ());
                             x816))|])
-    let (exec :
-      command:string ->
-        options:child_process_ExecOptions ->
-          ?callback:(error:child_process_ExecException or_null ->
-                       stdout:string -> stderr:string -> unit)
-            -> unit -> child_process_ChildProcess)
-      =
-      fun ~command:(x827 : string) ->
-        fun ~options:(x828 : child_process_ExecOptions) ->
-          fun
-            ?callback:(x829 :
-                        (error:child_process_ExecException or_null ->
-                           stdout:string -> stderr:string -> unit)
-                          option)
-            ->
-            fun () ->
-              child_process_ChildProcess_of_js
-                (let x836 = Import.child_process in
-                 Ojs.call (Ojs.get_prop_ascii x836 "exec") "apply"
-                   [|x836;((let x830 =
-                              Ojs.new_obj
-                                (Ojs.get_prop_ascii Ojs.global "Array") 
-                                [||] in
-                            ignore
-                              (Ojs.call x830 "push"
-                                 [|(Ojs.string_to_js x827)|]);
-                            ignore
-                              (Ojs.call x830 "push"
-                                 [|(child_process_ExecOptions_to_js x828)|]);
-                            (match x829 with
-                             | Some x831 ->
-                                 ignore
-                                   (Ojs.call x830 "push"
-                                      [|(Ojs.fun_to_js 3
-                                           (fun (x832 : Ojs.t) ->
-                                              fun (x834 : Ojs.t) ->
-                                                fun (x835 : Ojs.t) ->
-                                                  x831
-                                                    ~error:(or_null_of_js
-                                                              child_process_ExecException_of_js
-                                                              x832)
-                                                    ~stdout:(Ojs.string_of_js
-                                                               x834)
-                                                    ~stderr:(Ojs.string_of_js
-                                                               x835)))|])
-                             | None -> ());
-                            x830))|])
-    let (exec :
-      command:string ->
-        options:(Node_fs.Fs.BaseEncodingOptions.t, child_process_ExecOptions)
-          intersection2 or_null_or_undefined ->
-          ?callback:(error:child_process_ExecException or_null ->
-                       stdout:Buffer.t or_string ->
-                         stderr:Buffer.t or_string -> unit)
-            -> unit -> child_process_ChildProcess)
-      =
-      fun ~command:(x837 : string) ->
-        fun
-          ~options:(x838 :
-                     (Node_fs.Fs.BaseEncodingOptions.t,
-                       child_process_ExecOptions) intersection2
-                       or_null_or_undefined)
-          ->
-          fun
-            ?callback:(x839 :
-                        (error:child_process_ExecException or_null ->
-                           stdout:Buffer.t or_string ->
-                             stderr:Buffer.t or_string -> unit)
-                          option)
-            ->
-            fun () ->
-              child_process_ChildProcess_of_js
-                (let x851 = Import.child_process in
-                 Ojs.call (Ojs.get_prop_ascii x851 "exec") "apply"
-                   [|x851;((let x840 =
-                              Ojs.new_obj
-                                (Ojs.get_prop_ascii Ojs.global "Array") 
-                                [||] in
-                            ignore
-                              (Ojs.call x840 "push"
-                                 [|(Ojs.string_to_js x837)|]);
-                            ignore
-                              (Ojs.call x840 "push"
-                                 [|(or_null_or_undefined_to_js
-                                      (fun
-                                         (x848 :
-                                           (Node_fs.Fs.BaseEncodingOptions.t,
-                                             child_process_ExecOptions)
-                                             intersection2)
-                                         ->
-                                         intersection2_to_js
-                                           Node_fs.Fs.BaseEncodingOptions.t_to_js
-                                           child_process_ExecOptions_to_js
-                                           x848) x838)|]);
-                            (match x839 with
-                             | Some x841 ->
-                                 ignore
-                                   (Ojs.call x840 "push"
-                                      [|(Ojs.fun_to_js 3
-                                           (fun (x842 : Ojs.t) ->
-                                              fun (x844 : Ojs.t) ->
-                                                fun (x846 : Ojs.t) ->
-                                                  x841
-                                                    ~error:(or_null_of_js
-                                                              child_process_ExecException_of_js
-                                                              x842)
-                                                    ~stdout:(or_string_of_js
-                                                               Buffer.t_of_js
-                                                               x844)
-                                                    ~stderr:(or_string_of_js
-                                                               Buffer.t_of_js
-                                                               x846)))|])
-                             | None -> ());
-                            x840))|])
     module PromiseWithChild =
       struct
-        type 'T t = 'T child_process_PromiseWithChild
+        type 'T t = Ojs.t
         let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type
           __T) ->
-          fun (__T_of_js : Ojs.t -> __T) ->
-            fun (x854 : Ojs.t) ->
-              child_process_PromiseWithChild_of_js __T_of_js x854
+          fun (__T_of_js : Ojs.t -> __T) -> fun (x829 : Ojs.t) -> x829
         and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-          fun (__T_to_js : __T -> Ojs.t) ->
-            fun (x852 : __T child_process_PromiseWithChild) ->
-              child_process_PromiseWithChild_to_js __T_to_js x852
-        let (get_child : 'T t -> child_process_ChildProcess) =
-          fun (x856 : 'T t) ->
-            child_process_ChildProcess_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x856) "child")
-        let (set_child : 'T t -> child_process_ChildProcess -> unit) =
-          fun (x858 : 'T t) ->
-            fun (x859 : child_process_ChildProcess) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x858) "child"
-                (child_process_ChildProcess_to_js x859)
+          fun (__T_to_js : __T -> Ojs.t) -> fun (x828 : Ojs.t) -> x828
+        let (get_child : 'T t -> ChildProcess.t) =
+          fun (x830 : 'T t) ->
+            ChildProcess.t_of_js
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x830) "child")
+        let (set_child : 'T t -> ChildProcess.t -> unit) =
+          fun (x832 : 'T t) ->
+            fun (x833 : ChildProcess.t) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x832) "child"
+                (ChildProcess.t_to_js x833)
         let (cast : 'T t -> 'T Promise.t) =
-          fun (x861 : 'T t) ->
-            Promise.t_of_js Obj.magic (t_to_js Obj.magic x861)
+          fun (x835 : 'T t) ->
+            Promise.t_of_js Obj.magic (t_to_js Obj.magic x835)
       end
     module Exec =
       struct
         let (__promisify__ :
-          command:string ->
-            anonymous_interface_3 child_process_PromiseWithChild)
-          =
-          fun ~command:(x864 : string) ->
-            child_process_PromiseWithChild_of_js anonymous_interface_3_of_js
+          command:string -> AnonymousInterface3.t PromiseWithChild.t) =
+          fun ~command:(x838 : string) ->
+            PromiseWithChild.t_of_js AnonymousInterface3.t_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.child_process "exec")
-                 "__promisify__" [|(Ojs.string_to_js x864)|])
+                 "__promisify__" [|(Ojs.string_to_js x838)|])
         let (__promisify__ :
           command:string ->
-            options:(anonymous_interface_1, child_process_ExecOptions)
-              intersection2 ->
-              anonymous_interface_2 child_process_PromiseWithChild)
+            options:(AnonymousInterface1.t, ExecOptions.t) intersection2 ->
+              AnonymousInterface2.t PromiseWithChild.t)
           =
-          fun ~command:(x866 : string) ->
+          fun ~command:(x840 : string) ->
             fun
-              ~options:(x867 :
-                         (anonymous_interface_1, child_process_ExecOptions)
-                           intersection2)
+              ~options:(x841 :
+                         (AnonymousInterface1.t, ExecOptions.t) intersection2)
               ->
-              child_process_PromiseWithChild_of_js
-                anonymous_interface_2_of_js
+              PromiseWithChild.t_of_js AnonymousInterface2.t_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.child_process "exec")
                    "__promisify__"
-                   [|(Ojs.string_to_js x866);(intersection2_to_js
-                                                anonymous_interface_1_to_js
-                                                child_process_ExecOptions_to_js
-                                                x867)|])
+                   [|(Ojs.string_to_js x840);(intersection2_to_js
+                                                AnonymousInterface1.t_to_js
+                                                ExecOptions.t_to_js x841)|])
         let (__promisify__ :
           command:string ->
-            options:(anonymous_interface_0, child_process_ExecOptions)
-              intersection2 ->
-              anonymous_interface_3 child_process_PromiseWithChild)
+            options:(AnonymousInterface0.t, ExecOptions.t) intersection2 ->
+              AnonymousInterface3.t PromiseWithChild.t)
           =
-          fun ~command:(x871 : string) ->
+          fun ~command:(x845 : string) ->
             fun
-              ~options:(x872 :
-                         (anonymous_interface_0, child_process_ExecOptions)
-                           intersection2)
+              ~options:(x846 :
+                         (AnonymousInterface0.t, ExecOptions.t) intersection2)
               ->
-              child_process_PromiseWithChild_of_js
-                anonymous_interface_3_of_js
+              PromiseWithChild.t_of_js AnonymousInterface3.t_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.child_process "exec")
                    "__promisify__"
-                   [|(Ojs.string_to_js x871);(intersection2_to_js
-                                                anonymous_interface_0_to_js
-                                                child_process_ExecOptions_to_js
-                                                x872)|])
+                   [|(Ojs.string_to_js x845);(intersection2_to_js
+                                                AnonymousInterface0.t_to_js
+                                                ExecOptions.t_to_js x846)|])
         let (__promisify__ :
           command:string ->
-            options:child_process_ExecOptions ->
-              anonymous_interface_3 child_process_PromiseWithChild)
+            options:ExecOptions.t -> AnonymousInterface3.t PromiseWithChild.t)
           =
-          fun ~command:(x876 : string) ->
-            fun ~options:(x877 : child_process_ExecOptions) ->
-              child_process_PromiseWithChild_of_js
-                anonymous_interface_3_of_js
+          fun ~command:(x850 : string) ->
+            fun ~options:(x851 : ExecOptions.t) ->
+              PromiseWithChild.t_of_js AnonymousInterface3.t_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.child_process "exec")
                    "__promisify__"
-                   [|(Ojs.string_to_js x876);(child_process_ExecOptions_to_js
-                                                x877)|])
+                   [|(Ojs.string_to_js x850);(ExecOptions.t_to_js x851)|])
         let (__promisify__ :
           command:string ->
-            ?options:(Node_fs.Fs.BaseEncodingOptions.t,
-              child_process_ExecOptions) intersection2 or_null ->
-              unit -> anonymous_interface_4 child_process_PromiseWithChild)
+            ?options:(Node_fs.Fs.BaseEncodingOptions.t, ExecOptions.t)
+              intersection2 or_null ->
+              unit -> AnonymousInterface4.t PromiseWithChild.t)
           =
-          fun ~command:(x879 : string) ->
+          fun ~command:(x853 : string) ->
             fun
-              ?options:(x880 :
-                         (Node_fs.Fs.BaseEncodingOptions.t,
-                           child_process_ExecOptions) intersection2 or_null
-                           option)
+              ?options:(x854 :
+                         (Node_fs.Fs.BaseEncodingOptions.t, ExecOptions.t)
+                           intersection2 or_null option)
               ->
               fun () ->
-                child_process_PromiseWithChild_of_js
-                  anonymous_interface_4_of_js
-                  (let x886 = Ojs.get_prop_ascii Import.child_process "exec" in
-                   Ojs.call (Ojs.get_prop_ascii x886 "__promisify__") "apply"
-                     [|x886;((let x881 =
+                PromiseWithChild.t_of_js AnonymousInterface4.t_of_js
+                  (let x860 = Ojs.get_prop_ascii Import.child_process "exec" in
+                   Ojs.call (Ojs.get_prop_ascii x860 "__promisify__") "apply"
+                     [|x860;((let x855 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x881 "push"
-                                   [|(Ojs.string_to_js x879)|]);
-                              (match x880 with
-                               | Some x882 ->
+                                (Ojs.call x855 "push"
+                                   [|(Ojs.string_to_js x853)|]);
+                              (match x854 with
+                               | Some x856 ->
                                    ignore
-                                     (Ojs.call x881 "push"
+                                     (Ojs.call x855 "push"
                                         [|(or_null_to_js
                                              (fun
-                                                (x883 :
+                                                (x857 :
                                                   (Node_fs.Fs.BaseEncodingOptions.t,
-                                                    child_process_ExecOptions)
+                                                    ExecOptions.t)
                                                     intersection2)
                                                 ->
                                                 intersection2_to_js
                                                   Node_fs.Fs.BaseEncodingOptions.t_to_js
-                                                  child_process_ExecOptions_to_js
-                                                  x883) x882)|])
+                                                  ExecOptions.t_to_js x857)
+                                             x856)|])
                                | None -> ());
-                              x881))|])
+                              x855))|])
       end
     module ExecFileOptions =
       struct
-        type t = child_process_ExecFileOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x889 : Ojs.t) -> child_process_ExecFileOptions_of_js x889
-        and t_to_js : t -> Ojs.t =
-          fun (x888 : child_process_ExecFileOptions) ->
-            child_process_ExecFileOptions_to_js x888
-        let (get_maxBuffer : t -> float) =
-          fun (x890 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x890) "maxBuffer")
-        let (set_maxBuffer : t -> float -> unit) =
-          fun (x891 : t) ->
-            fun (x892 : float) ->
-              Ojs.set_prop_ascii (t_to_js x891) "maxBuffer"
-                (Ojs.float_to_js x892)
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x863 : Ojs.t) -> x863
+        and t_to_js : t -> Ojs.t = fun (x862 : Ojs.t) -> x862
+        let (get_maxBuffer : t -> int) =
+          fun (x864 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x864) "maxBuffer")
+        let (set_maxBuffer : t -> int -> unit) =
+          fun (x865 : t) ->
+            fun (x866 : int) ->
+              Ojs.set_prop_ascii (t_to_js x865) "maxBuffer"
+                (Ojs.int_to_js x866)
         let (get_killSignal : t -> Node_process.Process.Signals.t or_number)
           =
-          fun (x893 : t) ->
+          fun (x867 : t) ->
             or_number_of_js Node_process.Process.Signals.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x893) "killSignal")
+              (Ojs.get_prop_ascii (t_to_js x867) "killSignal")
         let (set_killSignal :
           t -> Node_process.Process.Signals.t or_number -> unit) =
-          fun (x895 : t) ->
-            fun (x896 : Node_process.Process.Signals.t or_number) ->
-              Ojs.set_prop_ascii (t_to_js x895) "killSignal"
-                (or_number_to_js Node_process.Process.Signals.t_to_js x896)
+          fun (x869 : t) ->
+            fun (x870 : Node_process.Process.Signals.t or_number) ->
+              Ojs.set_prop_ascii (t_to_js x869) "killSignal"
+                (or_number_to_js Node_process.Process.Signals.t_to_js x870)
         let (get_windowsVerbatimArguments : t -> bool) =
-          fun (x898 : t) ->
+          fun (x872 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x898) "windowsVerbatimArguments")
+              (Ojs.get_prop_ascii (t_to_js x872) "windowsVerbatimArguments")
         let (set_windowsVerbatimArguments : t -> bool -> unit) =
-          fun (x899 : t) ->
-            fun (x900 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x899) "windowsVerbatimArguments"
-                (Ojs.bool_to_js x900)
+          fun (x873 : t) ->
+            fun (x874 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x873) "windowsVerbatimArguments"
+                (Ojs.bool_to_js x874)
         let (get_shell : t -> bool or_string) =
-          fun (x901 : t) ->
+          fun (x875 : t) ->
             or_string_of_js Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x901) "shell")
+              (Ojs.get_prop_ascii (t_to_js x875) "shell")
         let (set_shell : t -> bool or_string -> unit) =
-          fun (x903 : t) ->
-            fun (x904 : bool or_string) ->
-              Ojs.set_prop_ascii (t_to_js x903) "shell"
-                (or_string_to_js Ojs.bool_to_js x904)
-        let (cast : t -> child_process_CommonOptions) =
-          fun (x906 : t) -> child_process_CommonOptions_of_js (t_to_js x906)
+          fun (x877 : t) ->
+            fun (x878 : bool or_string) ->
+              Ojs.set_prop_ascii (t_to_js x877) "shell"
+                (or_string_to_js Ojs.bool_to_js x878)
+        let (cast : t -> CommonOptions.t) =
+          fun (x880 : t) -> CommonOptions.t_of_js (t_to_js x880)
       end
     module ExecFileOptionsWithStringEncoding =
       struct
-        type t = child_process_ExecFileOptionsWithStringEncoding
-        let rec t_of_js : Ojs.t -> t =
-          fun (x908 : Ojs.t) ->
-            child_process_ExecFileOptionsWithStringEncoding_of_js x908
-        and t_to_js : t -> Ojs.t =
-          fun (x907 : child_process_ExecFileOptionsWithStringEncoding) ->
-            child_process_ExecFileOptionsWithStringEncoding_to_js x907
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x882 : Ojs.t) -> x882
+        and t_to_js : t -> Ojs.t = fun (x881 : Ojs.t) -> x881
         let (get_encoding : t -> BufferEncoding.t) =
-          fun (x909 : t) ->
+          fun (x883 : t) ->
             BufferEncoding.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x909) "encoding")
+              (Ojs.get_prop_ascii (t_to_js x883) "encoding")
         let (set_encoding : t -> BufferEncoding.t -> unit) =
-          fun (x910 : t) ->
-            fun (x911 : BufferEncoding.t) ->
-              Ojs.set_prop_ascii (t_to_js x910) "encoding"
-                (BufferEncoding.t_to_js x911)
-        let (cast : t -> child_process_ExecFileOptions) =
-          fun (x912 : t) ->
-            child_process_ExecFileOptions_of_js (t_to_js x912)
+          fun (x884 : t) ->
+            fun (x885 : BufferEncoding.t) ->
+              Ojs.set_prop_ascii (t_to_js x884) "encoding"
+                (BufferEncoding.t_to_js x885)
+        let (cast : t -> ExecFileOptions.t) =
+          fun (x886 : t) -> ExecFileOptions.t_of_js (t_to_js x886)
       end
     module ExecFileOptionsWithBufferEncoding =
       struct
-        type t = child_process_ExecFileOptionsWithBufferEncoding
-        let rec t_of_js : Ojs.t -> t =
-          fun (x914 : Ojs.t) ->
-            child_process_ExecFileOptionsWithBufferEncoding_of_js x914
-        and t_to_js : t -> Ojs.t =
-          fun (x913 : child_process_ExecFileOptionsWithBufferEncoding) ->
-            child_process_ExecFileOptionsWithBufferEncoding_to_js x913
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x888 : Ojs.t) -> x888
+        and t_to_js : t -> Ojs.t = fun (x887 : Ojs.t) -> x887
         let (get_encoding : t -> [ `buffer ] or_null) =
-          fun (x915 : t) ->
+          fun (x889 : t) ->
             or_null_of_js
-              (fun (x916 : Ojs.t) ->
-                 let x917 = x916 in
-                 match Ojs.string_of_js x917 with
+              (fun (x890 : Ojs.t) ->
+                 let x891 = x890 in
+                 match Ojs.string_of_js x891 with
                  | "buffer" -> `buffer
                  | _ -> assert false)
-              (Ojs.get_prop_ascii (t_to_js x915) "encoding")
+              (Ojs.get_prop_ascii (t_to_js x889) "encoding")
         let (set_encoding : t -> [ `buffer ] or_null -> unit) =
-          fun (x918 : t) ->
-            fun (x919 : [ `buffer ] or_null) ->
-              Ojs.set_prop_ascii (t_to_js x918) "encoding"
+          fun (x892 : t) ->
+            fun (x893 : [ `buffer ] or_null) ->
+              Ojs.set_prop_ascii (t_to_js x892) "encoding"
                 (or_null_to_js
-                   (fun (x920 : [ `buffer ]) ->
-                      match x920 with | `buffer -> Ojs.string_to_js "buffer")
-                   x919)
-        let (cast : t -> child_process_ExecFileOptions) =
-          fun (x921 : t) ->
-            child_process_ExecFileOptions_of_js (t_to_js x921)
+                   (fun (x894 : [ `buffer ]) ->
+                      match x894 with | `buffer -> Ojs.string_to_js "buffer")
+                   x893)
+        let (cast : t -> ExecFileOptions.t) =
+          fun (x895 : t) -> ExecFileOptions.t_of_js (t_to_js x895)
       end
     module ExecFileOptionsWithOtherEncoding =
       struct
-        type t = child_process_ExecFileOptionsWithOtherEncoding
-        let rec t_of_js : Ojs.t -> t =
-          fun (x923 : Ojs.t) ->
-            child_process_ExecFileOptionsWithOtherEncoding_of_js x923
-        and t_to_js : t -> Ojs.t =
-          fun (x922 : child_process_ExecFileOptionsWithOtherEncoding) ->
-            child_process_ExecFileOptionsWithOtherEncoding_to_js x922
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x897 : Ojs.t) -> x897
+        and t_to_js : t -> Ojs.t = fun (x896 : Ojs.t) -> x896
         let (get_encoding : t -> BufferEncoding.t) =
-          fun (x924 : t) ->
+          fun (x898 : t) ->
             BufferEncoding.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x924) "encoding")
+              (Ojs.get_prop_ascii (t_to_js x898) "encoding")
         let (set_encoding : t -> BufferEncoding.t -> unit) =
-          fun (x925 : t) ->
-            fun (x926 : BufferEncoding.t) ->
-              Ojs.set_prop_ascii (t_to_js x925) "encoding"
-                (BufferEncoding.t_to_js x926)
-        let (cast : t -> child_process_ExecFileOptions) =
-          fun (x927 : t) ->
-            child_process_ExecFileOptions_of_js (t_to_js x927)
+          fun (x899 : t) ->
+            fun (x900 : BufferEncoding.t) ->
+              Ojs.set_prop_ascii (t_to_js x899) "encoding"
+                (BufferEncoding.t_to_js x900)
+        let (cast : t -> ExecFileOptions.t) =
+          fun (x901 : t) -> ExecFileOptions.t_of_js (t_to_js x901)
       end
     module ExecFileException =
       struct
-        type t = child_process_ExecFileException
-        let rec t_of_js : Ojs.t -> t =
-          fun (x929 : Ojs.t) -> child_process_ExecFileException_of_js x929
-        and t_to_js : t -> Ojs.t =
-          fun (x928 : child_process_ExecFileException) ->
-            child_process_ExecFileException_to_js x928
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x903 : Ojs.t) -> x903
+        and t_to_js : t -> Ojs.t = fun (x902 : Ojs.t) -> x902
       end
-    let (execFile : file:string -> child_process_ChildProcess) =
-      fun ~file:(x930 : string) ->
-        child_process_ChildProcess_of_js
+    let (execFile : file:string -> ChildProcess.t) =
+      fun ~file:(x904 : string) ->
+        ChildProcess.t_of_js
           (Ojs.call Import.child_process "execFile"
-             [|(Ojs.string_to_js x930)|])
+             [|(Ojs.string_to_js x904)|])
     let (execFile :
       file:string ->
-        options:(Node_fs.Fs.BaseEncodingOptions.t,
-          child_process_ExecFileOptions) intersection2 or_null_or_undefined
-          -> child_process_ChildProcess)
+        options:(Node_fs.Fs.BaseEncodingOptions.t, ExecFileOptions.t)
+          intersection2 or_null_or_undefined -> ChildProcess.t)
       =
-      fun ~file:(x931 : string) ->
+      fun ~file:(x905 : string) ->
         fun
-          ~options:(x932 :
-                     (Node_fs.Fs.BaseEncodingOptions.t,
-                       child_process_ExecFileOptions) intersection2
-                       or_null_or_undefined)
+          ~options:(x906 :
+                     (Node_fs.Fs.BaseEncodingOptions.t, ExecFileOptions.t)
+                       intersection2 or_null_or_undefined)
           ->
-          child_process_ChildProcess_of_js
+          ChildProcess.t_of_js
             (Ojs.call Import.child_process "execFile"
-               [|(Ojs.string_to_js x931);(or_null_or_undefined_to_js
+               [|(Ojs.string_to_js x905);(or_null_or_undefined_to_js
                                             (fun
-                                               (x933 :
+                                               (x907 :
                                                  (Node_fs.Fs.BaseEncodingOptions.t,
-                                                   child_process_ExecFileOptions)
+                                                   ExecFileOptions.t)
                                                    intersection2)
                                                ->
                                                intersection2_to_js
                                                  Node_fs.Fs.BaseEncodingOptions.t_to_js
-                                                 child_process_ExecFileOptions_to_js
-                                                 x933) x932)|])
+                                                 ExecFileOptions.t_to_js x907)
+                                            x906)|])
     let (execFile :
-      file:string ->
-        ?args:string list or_null -> unit -> child_process_ChildProcess)
-      =
-      fun ~file:(x936 : string) ->
-        fun ?args:(x937 : string list or_null option) ->
+      file:string -> ?args:string list or_null -> unit -> ChildProcess.t) =
+      fun ~file:(x910 : string) ->
+        fun ?args:(x911 : string list or_null option) ->
           fun () ->
-            child_process_ChildProcess_of_js
-              (let x942 = Import.child_process in
-               Ojs.call (Ojs.get_prop_ascii x942 "execFile") "apply"
-                 [|x942;((let x938 =
+            ChildProcess.t_of_js
+              (let x916 = Import.child_process in
+               Ojs.call (Ojs.get_prop_ascii x916 "execFile") "apply"
+                 [|x916;((let x912 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x938 "push" [|(Ojs.string_to_js x936)|]);
-                          (match x937 with
-                           | Some x939 ->
+                            (Ojs.call x912 "push" [|(Ojs.string_to_js x910)|]);
+                          (match x911 with
+                           | Some x913 ->
                                ignore
-                                 (Ojs.call x938 "push"
+                                 (Ojs.call x912 "push"
                                     [|(or_null_to_js
-                                         (fun (x940 : string list) ->
+                                         (fun (x914 : string list) ->
                                             Ojs.list_to_js Ojs.string_to_js
-                                              x940) x939)|])
+                                              x914) x913)|])
                            | None -> ());
-                          x938))|])
+                          x912))|])
     let (execFile :
       file:string ->
         args:string list or_null_or_undefined ->
-          options:(Node_fs.Fs.BaseEncodingOptions.t,
-            child_process_ExecFileOptions) intersection2 or_null_or_undefined
-            -> child_process_ChildProcess)
+          options:(Node_fs.Fs.BaseEncodingOptions.t, ExecFileOptions.t)
+            intersection2 or_null_or_undefined -> ChildProcess.t)
       =
-      fun ~file:(x943 : string) ->
-        fun ~args:(x944 : string list or_null_or_undefined) ->
+      fun ~file:(x917 : string) ->
+        fun ~args:(x918 : string list or_null_or_undefined) ->
           fun
-            ~options:(x947 :
-                       (Node_fs.Fs.BaseEncodingOptions.t,
-                         child_process_ExecFileOptions) intersection2
-                         or_null_or_undefined)
+            ~options:(x921 :
+                       (Node_fs.Fs.BaseEncodingOptions.t, ExecFileOptions.t)
+                         intersection2 or_null_or_undefined)
             ->
-            child_process_ChildProcess_of_js
+            ChildProcess.t_of_js
               (Ojs.call Import.child_process "execFile"
-                 [|(Ojs.string_to_js x943);(or_null_or_undefined_to_js
-                                              (fun (x945 : string list) ->
+                 [|(Ojs.string_to_js x917);(or_null_or_undefined_to_js
+                                              (fun (x919 : string list) ->
                                                  Ojs.list_to_js
-                                                   Ojs.string_to_js x945)
-                                              x944);(or_null_or_undefined_to_js
+                                                   Ojs.string_to_js x919)
+                                              x918);(or_null_or_undefined_to_js
                                                        (fun
-                                                          (x948 :
+                                                          (x922 :
                                                             (Node_fs.Fs.BaseEncodingOptions.t,
-                                                              child_process_ExecFileOptions)
+                                                              ExecFileOptions.t)
                                                               intersection2)
                                                           ->
                                                           intersection2_to_js
                                                             Node_fs.Fs.BaseEncodingOptions.t_to_js
-                                                            child_process_ExecFileOptions_to_js
-                                                            x948) x947)|])
+                                                            ExecFileOptions.t_to_js
+                                                            x922) x921)|])
     let (execFile :
       file:string ->
-        callback:(error:child_process_ExecFileException or_null ->
+        callback:(error:ExecFileException.t or_null ->
                     stdout:string -> stderr:string -> unit)
-          -> child_process_ChildProcess)
+          -> ChildProcess.t)
       =
-      fun ~file:(x951 : string) ->
+      fun ~file:(x925 : string) ->
         fun
-          ~callback:(x952 :
-                      error:child_process_ExecFileException or_null ->
+          ~callback:(x926 :
+                      error:ExecFileException.t or_null ->
                         stdout:string -> stderr:string -> unit)
           ->
-          child_process_ChildProcess_of_js
+          ChildProcess.t_of_js
             (Ojs.call Import.child_process "execFile"
-               [|(Ojs.string_to_js x951);(Ojs.fun_to_js 3
-                                            (fun (x953 : Ojs.t) ->
-                                               fun (x955 : Ojs.t) ->
-                                                 fun (x956 : Ojs.t) ->
-                                                   x952
+               [|(Ojs.string_to_js x925);(Ojs.fun_to_js 3
+                                            (fun (x927 : Ojs.t) ->
+                                               fun (x929 : Ojs.t) ->
+                                                 fun (x930 : Ojs.t) ->
+                                                   x926
                                                      ~error:(or_null_of_js
-                                                               child_process_ExecFileException_of_js
-                                                               x953)
+                                                               ExecFileException.t_of_js
+                                                               x927)
                                                      ~stdout:(Ojs.string_of_js
-                                                                x955)
+                                                                x929)
                                                      ~stderr:(Ojs.string_of_js
-                                                                x956)))|])
+                                                                x930)))|])
     let (execFile :
       file:string ->
         args:string list or_null_or_undefined ->
-          callback:(error:child_process_ExecFileException or_null ->
+          callback:(error:ExecFileException.t or_null ->
                       stdout:string -> stderr:string -> unit)
-            -> child_process_ChildProcess)
+            -> ChildProcess.t)
       =
-      fun ~file:(x957 : string) ->
-        fun ~args:(x958 : string list or_null_or_undefined) ->
+      fun ~file:(x931 : string) ->
+        fun ~args:(x932 : string list or_null_or_undefined) ->
           fun
-            ~callback:(x961 :
-                        error:child_process_ExecFileException or_null ->
+            ~callback:(x935 :
+                        error:ExecFileException.t or_null ->
                           stdout:string -> stderr:string -> unit)
             ->
-            child_process_ChildProcess_of_js
+            ChildProcess.t_of_js
               (Ojs.call Import.child_process "execFile"
-                 [|(Ojs.string_to_js x957);(or_null_or_undefined_to_js
-                                              (fun (x959 : string list) ->
+                 [|(Ojs.string_to_js x931);(or_null_or_undefined_to_js
+                                              (fun (x933 : string list) ->
                                                  Ojs.list_to_js
-                                                   Ojs.string_to_js x959)
-                                              x958);(Ojs.fun_to_js 3
-                                                       (fun (x962 : Ojs.t) ->
-                                                          fun (x964 : Ojs.t)
+                                                   Ojs.string_to_js x933)
+                                              x932);(Ojs.fun_to_js 3
+                                                       (fun (x936 : Ojs.t) ->
+                                                          fun (x938 : Ojs.t)
                                                             ->
                                                             fun
-                                                              (x965 : Ojs.t)
+                                                              (x939 : Ojs.t)
                                                               ->
-                                                              x961
+                                                              x935
                                                                 ~error:(
                                                                 or_null_of_js
-                                                                  child_process_ExecFileException_of_js
-                                                                  x962)
+                                                                  ExecFileException.t_of_js
+                                                                  x936)
                                                                 ~stdout:(
                                                                 Ojs.string_of_js
-                                                                  x964)
+                                                                  x938)
                                                                 ~stderr:(
                                                                 Ojs.string_of_js
-                                                                  x965)))|])
+                                                                  x939)))|])
     let (execFile :
       file:string ->
-        options:child_process_ExecFileOptionsWithBufferEncoding ->
-          callback:(error:child_process_ExecFileException or_null ->
+        options:ExecFileOptionsWithBufferEncoding.t ->
+          callback:(error:ExecFileException.t or_null ->
                       stdout:Buffer.t -> stderr:Buffer.t -> unit)
-            -> child_process_ChildProcess)
+            -> ChildProcess.t)
       =
-      fun ~file:(x966 : string) ->
-        fun ~options:(x967 : child_process_ExecFileOptionsWithBufferEncoding)
-          ->
+      fun ~file:(x940 : string) ->
+        fun ~options:(x941 : ExecFileOptionsWithBufferEncoding.t) ->
           fun
-            ~callback:(x968 :
-                        error:child_process_ExecFileException or_null ->
+            ~callback:(x942 :
+                        error:ExecFileException.t or_null ->
                           stdout:Buffer.t -> stderr:Buffer.t -> unit)
             ->
-            child_process_ChildProcess_of_js
+            ChildProcess.t_of_js
               (Ojs.call Import.child_process "execFile"
-                 [|(Ojs.string_to_js x966);(child_process_ExecFileOptionsWithBufferEncoding_to_js
-                                              x967);(Ojs.fun_to_js 3
-                                                       (fun (x969 : Ojs.t) ->
-                                                          fun (x971 : Ojs.t)
+                 [|(Ojs.string_to_js x940);(ExecFileOptionsWithBufferEncoding.t_to_js
+                                              x941);(Ojs.fun_to_js 3
+                                                       (fun (x943 : Ojs.t) ->
+                                                          fun (x945 : Ojs.t)
                                                             ->
                                                             fun
-                                                              (x972 : Ojs.t)
+                                                              (x946 : Ojs.t)
                                                               ->
-                                                              x968
+                                                              x942
                                                                 ~error:(
                                                                 or_null_of_js
-                                                                  child_process_ExecFileException_of_js
-                                                                  x969)
+                                                                  ExecFileException.t_of_js
+                                                                  x943)
                                                                 ~stdout:(
                                                                 Buffer.t_of_js
-                                                                  x971)
+                                                                  x945)
                                                                 ~stderr:(
                                                                 Buffer.t_of_js
-                                                                  x972)))|])
+                                                                  x946)))|])
     let (execFile :
       file:string ->
         args:string list or_null_or_undefined ->
-          options:child_process_ExecFileOptionsWithBufferEncoding ->
-            callback:(error:child_process_ExecFileException or_null ->
+          options:ExecFileOptionsWithBufferEncoding.t ->
+            callback:(error:ExecFileException.t or_null ->
                         stdout:Buffer.t -> stderr:Buffer.t -> unit)
-              -> child_process_ChildProcess)
+              -> ChildProcess.t)
       =
-      fun ~file:(x973 : string) ->
-        fun ~args:(x974 : string list or_null_or_undefined) ->
-          fun
-            ~options:(x977 : child_process_ExecFileOptionsWithBufferEncoding)
-            ->
+      fun ~file:(x947 : string) ->
+        fun ~args:(x948 : string list or_null_or_undefined) ->
+          fun ~options:(x951 : ExecFileOptionsWithBufferEncoding.t) ->
             fun
-              ~callback:(x978 :
-                          error:child_process_ExecFileException or_null ->
+              ~callback:(x952 :
+                          error:ExecFileException.t or_null ->
                             stdout:Buffer.t -> stderr:Buffer.t -> unit)
               ->
-              child_process_ChildProcess_of_js
+              ChildProcess.t_of_js
                 (Ojs.call Import.child_process "execFile"
-                   [|(Ojs.string_to_js x973);(or_null_or_undefined_to_js
-                                                (fun (x975 : string list) ->
+                   [|(Ojs.string_to_js x947);(or_null_or_undefined_to_js
+                                                (fun (x949 : string list) ->
                                                    Ojs.list_to_js
-                                                     Ojs.string_to_js x975)
-                                                x974);(child_process_ExecFileOptionsWithBufferEncoding_to_js
-                                                         x977);(Ojs.fun_to_js
+                                                     Ojs.string_to_js x949)
+                                                x948);(ExecFileOptionsWithBufferEncoding.t_to_js
+                                                         x951);(Ojs.fun_to_js
                                                                   3
                                                                   (fun
-                                                                    (x979 :
+                                                                    (x953 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x981 :
+                                                                    (x955 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x982 :
+                                                                    (x956 :
                                                                     Ojs.t) ->
-                                                                    x978
+                                                                    x952
                                                                     ~error:(
                                                                     or_null_of_js
-                                                                    child_process_ExecFileException_of_js
-                                                                    x979)
+                                                                    ExecFileException.t_of_js
+                                                                    x953)
                                                                     ~stdout:(
                                                                     Buffer.t_of_js
-                                                                    x981)
+                                                                    x955)
                                                                     ~stderr:(
                                                                     Buffer.t_of_js
-                                                                    x982)))|])
+                                                                    x956)))|])
     let (execFile :
       file:string ->
-        options:child_process_ExecFileOptionsWithStringEncoding ->
-          callback:(error:child_process_ExecFileException or_null ->
+        options:ExecFileOptionsWithStringEncoding.t ->
+          callback:(error:ExecFileException.t or_null ->
                       stdout:string -> stderr:string -> unit)
-            -> child_process_ChildProcess)
+            -> ChildProcess.t)
       =
-      fun ~file:(x983 : string) ->
-        fun ~options:(x984 : child_process_ExecFileOptionsWithStringEncoding)
-          ->
+      fun ~file:(x957 : string) ->
+        fun ~options:(x958 : ExecFileOptionsWithStringEncoding.t) ->
           fun
-            ~callback:(x985 :
-                        error:child_process_ExecFileException or_null ->
+            ~callback:(x959 :
+                        error:ExecFileException.t or_null ->
                           stdout:string -> stderr:string -> unit)
             ->
-            child_process_ChildProcess_of_js
+            ChildProcess.t_of_js
               (Ojs.call Import.child_process "execFile"
-                 [|(Ojs.string_to_js x983);(child_process_ExecFileOptionsWithStringEncoding_to_js
-                                              x984);(Ojs.fun_to_js 3
-                                                       (fun (x986 : Ojs.t) ->
-                                                          fun (x988 : Ojs.t)
+                 [|(Ojs.string_to_js x957);(ExecFileOptionsWithStringEncoding.t_to_js
+                                              x958);(Ojs.fun_to_js 3
+                                                       (fun (x960 : Ojs.t) ->
+                                                          fun (x962 : Ojs.t)
                                                             ->
                                                             fun
-                                                              (x989 : Ojs.t)
+                                                              (x963 : Ojs.t)
                                                               ->
-                                                              x985
+                                                              x959
                                                                 ~error:(
                                                                 or_null_of_js
-                                                                  child_process_ExecFileException_of_js
-                                                                  x986)
+                                                                  ExecFileException.t_of_js
+                                                                  x960)
                                                                 ~stdout:(
                                                                 Ojs.string_of_js
-                                                                  x988)
+                                                                  x962)
                                                                 ~stderr:(
                                                                 Ojs.string_of_js
-                                                                  x989)))|])
+                                                                  x963)))|])
     let (execFile :
       file:string ->
         args:string list or_null_or_undefined ->
-          options:child_process_ExecFileOptionsWithStringEncoding ->
-            callback:(error:child_process_ExecFileException or_null ->
+          options:ExecFileOptionsWithStringEncoding.t ->
+            callback:(error:ExecFileException.t or_null ->
                         stdout:string -> stderr:string -> unit)
-              -> child_process_ChildProcess)
+              -> ChildProcess.t)
       =
-      fun ~file:(x990 : string) ->
-        fun ~args:(x991 : string list or_null_or_undefined) ->
-          fun
-            ~options:(x994 : child_process_ExecFileOptionsWithStringEncoding)
-            ->
+      fun ~file:(x964 : string) ->
+        fun ~args:(x965 : string list or_null_or_undefined) ->
+          fun ~options:(x968 : ExecFileOptionsWithStringEncoding.t) ->
             fun
-              ~callback:(x995 :
-                          error:child_process_ExecFileException or_null ->
+              ~callback:(x969 :
+                          error:ExecFileException.t or_null ->
                             stdout:string -> stderr:string -> unit)
               ->
-              child_process_ChildProcess_of_js
+              ChildProcess.t_of_js
                 (Ojs.call Import.child_process "execFile"
-                   [|(Ojs.string_to_js x990);(or_null_or_undefined_to_js
-                                                (fun (x992 : string list) ->
+                   [|(Ojs.string_to_js x964);(or_null_or_undefined_to_js
+                                                (fun (x966 : string list) ->
                                                    Ojs.list_to_js
-                                                     Ojs.string_to_js x992)
-                                                x991);(child_process_ExecFileOptionsWithStringEncoding_to_js
-                                                         x994);(Ojs.fun_to_js
+                                                     Ojs.string_to_js x966)
+                                                x965);(ExecFileOptionsWithStringEncoding.t_to_js
+                                                         x968);(Ojs.fun_to_js
                                                                   3
                                                                   (fun
-                                                                    (x996 :
+                                                                    (x970 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x998 :
+                                                                    (x972 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x999 :
+                                                                    (x973 :
                                                                     Ojs.t) ->
-                                                                    x995
+                                                                    x969
                                                                     ~error:(
                                                                     or_null_of_js
-                                                                    child_process_ExecFileException_of_js
-                                                                    x996)
+                                                                    ExecFileException.t_of_js
+                                                                    x970)
                                                                     ~stdout:(
                                                                     Ojs.string_of_js
-                                                                    x998)
+                                                                    x972)
                                                                     ~stderr:(
                                                                     Ojs.string_of_js
-                                                                    x999)))|])
+                                                                    x973)))|])
     let (execFile :
       file:string ->
-        options:child_process_ExecFileOptionsWithOtherEncoding ->
-          callback:(error:child_process_ExecFileException or_null ->
+        options:ExecFileOptionsWithOtherEncoding.t ->
+          callback:(error:ExecFileException.t or_null ->
                       stdout:Buffer.t or_string ->
                         stderr:Buffer.t or_string -> unit)
-            -> child_process_ChildProcess)
+            -> ChildProcess.t)
       =
-      fun ~file:(x1000 : string) ->
-        fun ~options:(x1001 : child_process_ExecFileOptionsWithOtherEncoding)
-          ->
+      fun ~file:(x974 : string) ->
+        fun ~options:(x975 : ExecFileOptionsWithOtherEncoding.t) ->
           fun
-            ~callback:(x1002 :
-                        error:child_process_ExecFileException or_null ->
+            ~callback:(x976 :
+                        error:ExecFileException.t or_null ->
                           stdout:Buffer.t or_string ->
                             stderr:Buffer.t or_string -> unit)
             ->
-            child_process_ChildProcess_of_js
+            ChildProcess.t_of_js
               (Ojs.call Import.child_process "execFile"
-                 [|(Ojs.string_to_js x1000);(child_process_ExecFileOptionsWithOtherEncoding_to_js
-                                               x1001);(Ojs.fun_to_js 3
-                                                         (fun (x1003 : Ojs.t)
+                 [|(Ojs.string_to_js x974);(ExecFileOptionsWithOtherEncoding.t_to_js
+                                              x975);(Ojs.fun_to_js 3
+                                                       (fun (x977 : Ojs.t) ->
+                                                          fun (x979 : Ojs.t)
                                                             ->
                                                             fun
-                                                              (x1005 : Ojs.t)
+                                                              (x981 : Ojs.t)
                                                               ->
-                                                              fun
-                                                                (x1007 :
-                                                                  Ojs.t)
-                                                                ->
-                                                                x1002
-                                                                  ~error:(
-                                                                  or_null_of_js
-                                                                    child_process_ExecFileException_of_js
-                                                                    x1003)
-                                                                  ~stdout:(
-                                                                  or_string_of_js
-                                                                    Buffer.t_of_js
-                                                                    x1005)
-                                                                  ~stderr:(
-                                                                  or_string_of_js
-                                                                    Buffer.t_of_js
-                                                                    x1007)))|])
+                                                              x976
+                                                                ~error:(
+                                                                or_null_of_js
+                                                                  ExecFileException.t_of_js
+                                                                  x977)
+                                                                ~stdout:(
+                                                                or_string_of_js
+                                                                  Buffer.t_of_js
+                                                                  x979)
+                                                                ~stderr:(
+                                                                or_string_of_js
+                                                                  Buffer.t_of_js
+                                                                  x981)))|])
     let (execFile :
       file:string ->
         args:string list or_null_or_undefined ->
-          options:child_process_ExecFileOptionsWithOtherEncoding ->
-            callback:(error:child_process_ExecFileException or_null ->
+          options:ExecFileOptionsWithOtherEncoding.t ->
+            callback:(error:ExecFileException.t or_null ->
                         stdout:Buffer.t or_string ->
                           stderr:Buffer.t or_string -> unit)
-              -> child_process_ChildProcess)
+              -> ChildProcess.t)
       =
-      fun ~file:(x1009 : string) ->
-        fun ~args:(x1010 : string list or_null_or_undefined) ->
-          fun
-            ~options:(x1013 : child_process_ExecFileOptionsWithOtherEncoding)
-            ->
+      fun ~file:(x983 : string) ->
+        fun ~args:(x984 : string list or_null_or_undefined) ->
+          fun ~options:(x987 : ExecFileOptionsWithOtherEncoding.t) ->
             fun
-              ~callback:(x1014 :
-                          error:child_process_ExecFileException or_null ->
+              ~callback:(x988 :
+                          error:ExecFileException.t or_null ->
                             stdout:Buffer.t or_string ->
                               stderr:Buffer.t or_string -> unit)
               ->
-              child_process_ChildProcess_of_js
+              ChildProcess.t_of_js
                 (Ojs.call Import.child_process "execFile"
-                   [|(Ojs.string_to_js x1009);(or_null_or_undefined_to_js
-                                                 (fun (x1011 : string list)
-                                                    ->
-                                                    Ojs.list_to_js
-                                                      Ojs.string_to_js x1011)
-                                                 x1010);(child_process_ExecFileOptionsWithOtherEncoding_to_js
-                                                           x1013);(Ojs.fun_to_js
-                                                                    3
-                                                                    (fun
-                                                                    (x1015 :
+                   [|(Ojs.string_to_js x983);(or_null_or_undefined_to_js
+                                                (fun (x985 : string list) ->
+                                                   Ojs.list_to_js
+                                                     Ojs.string_to_js x985)
+                                                x984);(ExecFileOptionsWithOtherEncoding.t_to_js
+                                                         x987);(Ojs.fun_to_js
+                                                                  3
+                                                                  (fun
+                                                                    (x989 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x1017 :
+                                                                    (x991 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x1019 :
+                                                                    (x993 :
                                                                     Ojs.t) ->
-                                                                    x1014
+                                                                    x988
                                                                     ~error:(
                                                                     or_null_of_js
-                                                                    child_process_ExecFileException_of_js
-                                                                    x1015)
+                                                                    ExecFileException.t_of_js
+                                                                    x989)
                                                                     ~stdout:(
                                                                     or_string_of_js
                                                                     Buffer.t_of_js
-                                                                    x1017)
+                                                                    x991)
                                                                     ~stderr:(
                                                                     or_string_of_js
                                                                     Buffer.t_of_js
-                                                                    x1019)))|])
+                                                                    x993)))|])
     let (execFile :
       file:string ->
-        options:child_process_ExecFileOptions ->
-          callback:(error:child_process_ExecFileException or_null ->
+        options:ExecFileOptions.t ->
+          callback:(error:ExecFileException.t or_null ->
                       stdout:string -> stderr:string -> unit)
-            -> child_process_ChildProcess)
+            -> ChildProcess.t)
       =
-      fun ~file:(x1021 : string) ->
-        fun ~options:(x1022 : child_process_ExecFileOptions) ->
+      fun ~file:(x995 : string) ->
+        fun ~options:(x996 : ExecFileOptions.t) ->
           fun
-            ~callback:(x1023 :
-                        error:child_process_ExecFileException or_null ->
+            ~callback:(x997 :
+                        error:ExecFileException.t or_null ->
                           stdout:string -> stderr:string -> unit)
             ->
-            child_process_ChildProcess_of_js
+            ChildProcess.t_of_js
               (Ojs.call Import.child_process "execFile"
-                 [|(Ojs.string_to_js x1021);(child_process_ExecFileOptions_to_js
-                                               x1022);(Ojs.fun_to_js 3
-                                                         (fun (x1024 : Ojs.t)
-                                                            ->
-                                                            fun
-                                                              (x1026 : Ojs.t)
-                                                              ->
-                                                              fun
-                                                                (x1027 :
-                                                                  Ojs.t)
-                                                                ->
-                                                                x1023
-                                                                  ~error:(
-                                                                  or_null_of_js
-                                                                    child_process_ExecFileException_of_js
-                                                                    x1024)
-                                                                  ~stdout:(
-                                                                  Ojs.string_of_js
-                                                                    x1026)
-                                                                  ~stderr:(
-                                                                  Ojs.string_of_js
-                                                                    x1027)))|])
+                 [|(Ojs.string_to_js x995);(ExecFileOptions.t_to_js x996);(
+                   Ojs.fun_to_js 3
+                     (fun (x998 : Ojs.t) ->
+                        fun (x1000 : Ojs.t) ->
+                          fun (x1001 : Ojs.t) ->
+                            x997
+                              ~error:(or_null_of_js ExecFileException.t_of_js
+                                        x998)
+                              ~stdout:(Ojs.string_of_js x1000)
+                              ~stderr:(Ojs.string_of_js x1001)))|])
     let (execFile :
       file:string ->
         args:string list or_null_or_undefined ->
-          options:child_process_ExecFileOptions ->
-            callback:(error:child_process_ExecFileException or_null ->
+          options:ExecFileOptions.t ->
+            callback:(error:ExecFileException.t or_null ->
                         stdout:string -> stderr:string -> unit)
-              -> child_process_ChildProcess)
+              -> ChildProcess.t)
       =
-      fun ~file:(x1028 : string) ->
-        fun ~args:(x1029 : string list or_null_or_undefined) ->
-          fun ~options:(x1032 : child_process_ExecFileOptions) ->
+      fun ~file:(x1002 : string) ->
+        fun ~args:(x1003 : string list or_null_or_undefined) ->
+          fun ~options:(x1006 : ExecFileOptions.t) ->
             fun
-              ~callback:(x1033 :
-                          error:child_process_ExecFileException or_null ->
+              ~callback:(x1007 :
+                          error:ExecFileException.t or_null ->
                             stdout:string -> stderr:string -> unit)
               ->
-              child_process_ChildProcess_of_js
+              ChildProcess.t_of_js
                 (Ojs.call Import.child_process "execFile"
-                   [|(Ojs.string_to_js x1028);(or_null_or_undefined_to_js
-                                                 (fun (x1030 : string list)
+                   [|(Ojs.string_to_js x1002);(or_null_or_undefined_to_js
+                                                 (fun (x1004 : string list)
                                                     ->
                                                     Ojs.list_to_js
-                                                      Ojs.string_to_js x1030)
-                                                 x1029);(child_process_ExecFileOptions_to_js
-                                                           x1032);(Ojs.fun_to_js
+                                                      Ojs.string_to_js x1004)
+                                                 x1003);(ExecFileOptions.t_to_js
+                                                           x1006);(Ojs.fun_to_js
                                                                     3
                                                                     (fun
-                                                                    (x1034 :
+                                                                    (x1008 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x1036 :
+                                                                    (x1010 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x1037 :
+                                                                    (x1011 :
                                                                     Ojs.t) ->
-                                                                    x1033
+                                                                    x1007
                                                                     ~error:(
                                                                     or_null_of_js
-                                                                    child_process_ExecFileException_of_js
-                                                                    x1034)
+                                                                    ExecFileException.t_of_js
+                                                                    x1008)
                                                                     ~stdout:(
                                                                     Ojs.string_of_js
-                                                                    x1036)
+                                                                    x1010)
                                                                     ~stderr:(
                                                                     Ojs.string_of_js
-                                                                    x1037)))|])
+                                                                    x1011)))|])
     let (execFile :
       file:string ->
-        options:(Node_fs.Fs.BaseEncodingOptions.t,
-          child_process_ExecFileOptions) intersection2 or_null_or_undefined
-          ->
-          callback:(error:child_process_ExecFileException or_null ->
+        options:(Node_fs.Fs.BaseEncodingOptions.t, ExecFileOptions.t)
+          intersection2 or_null_or_undefined ->
+          callback:(error:ExecFileException.t or_null ->
                       stdout:Buffer.t or_string ->
                         stderr:Buffer.t or_string -> unit)
-            or_null_or_undefined -> child_process_ChildProcess)
+            or_null_or_undefined -> ChildProcess.t)
       =
-      fun ~file:(x1038 : string) ->
+      fun ~file:(x1012 : string) ->
         fun
-          ~options:(x1039 :
-                     (Node_fs.Fs.BaseEncodingOptions.t,
-                       child_process_ExecFileOptions) intersection2
-                       or_null_or_undefined)
+          ~options:(x1013 :
+                     (Node_fs.Fs.BaseEncodingOptions.t, ExecFileOptions.t)
+                       intersection2 or_null_or_undefined)
           ->
           fun
-            ~callback:(x1043 :
-                        (error:child_process_ExecFileException or_null ->
+            ~callback:(x1017 :
+                        (error:ExecFileException.t or_null ->
                            stdout:Buffer.t or_string ->
                              stderr:Buffer.t or_string -> unit)
                           or_null_or_undefined)
             ->
-            child_process_ChildProcess_of_js
+            ChildProcess.t_of_js
               (Ojs.call Import.child_process "execFile"
-                 [|(Ojs.string_to_js x1038);(or_null_or_undefined_to_js
+                 [|(Ojs.string_to_js x1012);(or_null_or_undefined_to_js
                                                (fun
-                                                  (x1040 :
+                                                  (x1014 :
                                                     (Node_fs.Fs.BaseEncodingOptions.t,
-                                                      child_process_ExecFileOptions)
+                                                      ExecFileOptions.t)
                                                       intersection2)
                                                   ->
                                                   intersection2_to_js
                                                     Node_fs.Fs.BaseEncodingOptions.t_to_js
-                                                    child_process_ExecFileOptions_to_js
-                                                    x1040) x1039);(or_null_or_undefined_to_js
+                                                    ExecFileOptions.t_to_js
+                                                    x1014) x1013);(or_null_or_undefined_to_js
                                                                     (fun
-                                                                    (x1044 :
-                                                                    error:child_process_ExecFileException
+                                                                    (x1018 :
+                                                                    error:ExecFileException.t
                                                                     or_null
                                                                     ->
                                                                     stdout:Buffer.t
@@ -3821,1402 +3184,1256 @@ module Child_process =
                                                                     Ojs.fun_to_js
                                                                     3
                                                                     (fun
-                                                                    (x1045 :
+                                                                    (x1019 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x1047 :
+                                                                    (x1021 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x1049 :
+                                                                    (x1023 :
                                                                     Ojs.t) ->
-                                                                    x1044
+                                                                    x1018
                                                                     ~error:(
                                                                     or_null_of_js
-                                                                    child_process_ExecFileException_of_js
-                                                                    x1045)
+                                                                    ExecFileException.t_of_js
+                                                                    x1019)
                                                                     ~stdout:(
                                                                     or_string_of_js
                                                                     Buffer.t_of_js
-                                                                    x1047)
+                                                                    x1021)
                                                                     ~stderr:(
                                                                     or_string_of_js
                                                                     Buffer.t_of_js
-                                                                    x1049)))
-                                                                    x1043)|])
+                                                                    x1023)))
+                                                                    x1017)|])
     let (execFile :
       file:string ->
         args:string list or_null_or_undefined ->
-          options:(Node_fs.Fs.BaseEncodingOptions.t,
-            child_process_ExecFileOptions) intersection2 or_null_or_undefined
-            ->
-            callback:(error:child_process_ExecFileException or_null ->
+          options:(Node_fs.Fs.BaseEncodingOptions.t, ExecFileOptions.t)
+            intersection2 or_null_or_undefined ->
+            callback:(error:ExecFileException.t or_null ->
                         stdout:Buffer.t or_string ->
                           stderr:Buffer.t or_string -> unit)
-              or_null_or_undefined -> child_process_ChildProcess)
+              or_null_or_undefined -> ChildProcess.t)
       =
-      fun ~file:(x1051 : string) ->
-        fun ~args:(x1052 : string list or_null_or_undefined) ->
+      fun ~file:(x1025 : string) ->
+        fun ~args:(x1026 : string list or_null_or_undefined) ->
           fun
-            ~options:(x1055 :
-                       (Node_fs.Fs.BaseEncodingOptions.t,
-                         child_process_ExecFileOptions) intersection2
-                         or_null_or_undefined)
+            ~options:(x1029 :
+                       (Node_fs.Fs.BaseEncodingOptions.t, ExecFileOptions.t)
+                         intersection2 or_null_or_undefined)
             ->
             fun
-              ~callback:(x1059 :
-                          (error:child_process_ExecFileException or_null ->
+              ~callback:(x1033 :
+                          (error:ExecFileException.t or_null ->
                              stdout:Buffer.t or_string ->
                                stderr:Buffer.t or_string -> unit)
                             or_null_or_undefined)
               ->
-              child_process_ChildProcess_of_js
+              ChildProcess.t_of_js
                 (Ojs.call Import.child_process "execFile"
-                   [|(Ojs.string_to_js x1051);(or_null_or_undefined_to_js
-                                                 (fun (x1053 : string list)
+                   [|(Ojs.string_to_js x1025);(or_null_or_undefined_to_js
+                                                 (fun (x1027 : string list)
                                                     ->
                                                     Ojs.list_to_js
-                                                      Ojs.string_to_js x1053)
-                                                 x1052);(or_null_or_undefined_to_js
+                                                      Ojs.string_to_js x1027)
+                                                 x1026);(or_null_or_undefined_to_js
                                                            (fun
-                                                              (x1056 :
+                                                              (x1030 :
                                                                 (Node_fs.Fs.BaseEncodingOptions.t,
-                                                                  child_process_ExecFileOptions)
+                                                                  ExecFileOptions.t)
                                                                   intersection2)
                                                               ->
                                                               intersection2_to_js
                                                                 Node_fs.Fs.BaseEncodingOptions.t_to_js
-                                                                child_process_ExecFileOptions_to_js
-                                                                x1056) x1055);(
+                                                                ExecFileOptions.t_to_js
+                                                                x1030) x1029);(
                      or_null_or_undefined_to_js
                        (fun
-                          (x1060 :
-                            error:child_process_ExecFileException or_null ->
+                          (x1034 :
+                            error:ExecFileException.t or_null ->
                               stdout:Buffer.t or_string ->
                                 stderr:Buffer.t or_string -> unit)
                           ->
                           Ojs.fun_to_js 3
-                            (fun (x1061 : Ojs.t) ->
-                               fun (x1063 : Ojs.t) ->
-                                 fun (x1065 : Ojs.t) ->
-                                   x1060
+                            (fun (x1035 : Ojs.t) ->
+                               fun (x1037 : Ojs.t) ->
+                                 fun (x1039 : Ojs.t) ->
+                                   x1034
                                      ~error:(or_null_of_js
-                                               child_process_ExecFileException_of_js
-                                               x1061)
+                                               ExecFileException.t_of_js
+                                               x1035)
                                      ~stdout:(or_string_of_js Buffer.t_of_js
-                                                x1063)
+                                                x1037)
                                      ~stderr:(or_string_of_js Buffer.t_of_js
-                                                x1065))) x1059)|])
+                                                x1039))) x1033)|])
     module ExecFile =
       struct
         let (__promisify__ :
-          file:string -> anonymous_interface_3 child_process_PromiseWithChild)
-          =
-          fun ~file:(x1067 : string) ->
-            child_process_PromiseWithChild_of_js anonymous_interface_3_of_js
+          file:string -> AnonymousInterface3.t PromiseWithChild.t) =
+          fun ~file:(x1041 : string) ->
+            PromiseWithChild.t_of_js AnonymousInterface3.t_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.child_process "execFile")
-                 "__promisify__" [|(Ojs.string_to_js x1067)|])
+                 "__promisify__" [|(Ojs.string_to_js x1041)|])
         let (__promisify__ :
           file:string ->
             args:string list or_null_or_undefined ->
-              anonymous_interface_3 child_process_PromiseWithChild)
+              AnonymousInterface3.t PromiseWithChild.t)
+          =
+          fun ~file:(x1043 : string) ->
+            fun ~args:(x1044 : string list or_null_or_undefined) ->
+              PromiseWithChild.t_of_js AnonymousInterface3.t_of_js
+                (Ojs.call
+                   (Ojs.get_prop_ascii Import.child_process "execFile")
+                   "__promisify__"
+                   [|(Ojs.string_to_js x1043);(or_null_or_undefined_to_js
+                                                 (fun (x1045 : string list)
+                                                    ->
+                                                    Ojs.list_to_js
+                                                      Ojs.string_to_js x1045)
+                                                 x1044)|])
+        let (__promisify__ :
+          file:string ->
+            options:ExecFileOptionsWithBufferEncoding.t ->
+              AnonymousInterface2.t PromiseWithChild.t)
+          =
+          fun ~file:(x1048 : string) ->
+            fun ~options:(x1049 : ExecFileOptionsWithBufferEncoding.t) ->
+              PromiseWithChild.t_of_js AnonymousInterface2.t_of_js
+                (Ojs.call
+                   (Ojs.get_prop_ascii Import.child_process "execFile")
+                   "__promisify__"
+                   [|(Ojs.string_to_js x1048);(ExecFileOptionsWithBufferEncoding.t_to_js
+                                                 x1049)|])
+        let (__promisify__ :
+          file:string ->
+            args:string list or_null_or_undefined ->
+              options:ExecFileOptionsWithBufferEncoding.t ->
+                AnonymousInterface2.t PromiseWithChild.t)
+          =
+          fun ~file:(x1051 : string) ->
+            fun ~args:(x1052 : string list or_null_or_undefined) ->
+              fun ~options:(x1055 : ExecFileOptionsWithBufferEncoding.t) ->
+                PromiseWithChild.t_of_js AnonymousInterface2.t_of_js
+                  (Ojs.call
+                     (Ojs.get_prop_ascii Import.child_process "execFile")
+                     "__promisify__"
+                     [|(Ojs.string_to_js x1051);(or_null_or_undefined_to_js
+                                                   (fun (x1053 : string list)
+                                                      ->
+                                                      Ojs.list_to_js
+                                                        Ojs.string_to_js
+                                                        x1053) x1052);(
+                       ExecFileOptionsWithBufferEncoding.t_to_js x1055)|])
+        let (__promisify__ :
+          file:string ->
+            options:ExecFileOptionsWithStringEncoding.t ->
+              AnonymousInterface3.t PromiseWithChild.t)
+          =
+          fun ~file:(x1057 : string) ->
+            fun ~options:(x1058 : ExecFileOptionsWithStringEncoding.t) ->
+              PromiseWithChild.t_of_js AnonymousInterface3.t_of_js
+                (Ojs.call
+                   (Ojs.get_prop_ascii Import.child_process "execFile")
+                   "__promisify__"
+                   [|(Ojs.string_to_js x1057);(ExecFileOptionsWithStringEncoding.t_to_js
+                                                 x1058)|])
+        let (__promisify__ :
+          file:string ->
+            args:string list or_null_or_undefined ->
+              options:ExecFileOptionsWithStringEncoding.t ->
+                AnonymousInterface3.t PromiseWithChild.t)
+          =
+          fun ~file:(x1060 : string) ->
+            fun ~args:(x1061 : string list or_null_or_undefined) ->
+              fun ~options:(x1064 : ExecFileOptionsWithStringEncoding.t) ->
+                PromiseWithChild.t_of_js AnonymousInterface3.t_of_js
+                  (Ojs.call
+                     (Ojs.get_prop_ascii Import.child_process "execFile")
+                     "__promisify__"
+                     [|(Ojs.string_to_js x1060);(or_null_or_undefined_to_js
+                                                   (fun (x1062 : string list)
+                                                      ->
+                                                      Ojs.list_to_js
+                                                        Ojs.string_to_js
+                                                        x1062) x1061);(
+                       ExecFileOptionsWithStringEncoding.t_to_js x1064)|])
+        let (__promisify__ :
+          file:string ->
+            options:ExecFileOptionsWithOtherEncoding.t ->
+              AnonymousInterface4.t PromiseWithChild.t)
+          =
+          fun ~file:(x1066 : string) ->
+            fun ~options:(x1067 : ExecFileOptionsWithOtherEncoding.t) ->
+              PromiseWithChild.t_of_js AnonymousInterface4.t_of_js
+                (Ojs.call
+                   (Ojs.get_prop_ascii Import.child_process "execFile")
+                   "__promisify__"
+                   [|(Ojs.string_to_js x1066);(ExecFileOptionsWithOtherEncoding.t_to_js
+                                                 x1067)|])
+        let (__promisify__ :
+          file:string ->
+            args:string list or_null_or_undefined ->
+              options:ExecFileOptionsWithOtherEncoding.t ->
+                AnonymousInterface4.t PromiseWithChild.t)
           =
           fun ~file:(x1069 : string) ->
             fun ~args:(x1070 : string list or_null_or_undefined) ->
-              child_process_PromiseWithChild_of_js
-                anonymous_interface_3_of_js
-                (Ojs.call
-                   (Ojs.get_prop_ascii Import.child_process "execFile")
-                   "__promisify__"
-                   [|(Ojs.string_to_js x1069);(or_null_or_undefined_to_js
-                                                 (fun (x1071 : string list)
-                                                    ->
-                                                    Ojs.list_to_js
-                                                      Ojs.string_to_js x1071)
-                                                 x1070)|])
-        let (__promisify__ :
-          file:string ->
-            options:child_process_ExecFileOptionsWithBufferEncoding ->
-              anonymous_interface_2 child_process_PromiseWithChild)
-          =
-          fun ~file:(x1074 : string) ->
-            fun
-              ~options:(x1075 :
-                         child_process_ExecFileOptionsWithBufferEncoding)
-              ->
-              child_process_PromiseWithChild_of_js
-                anonymous_interface_2_of_js
-                (Ojs.call
-                   (Ojs.get_prop_ascii Import.child_process "execFile")
-                   "__promisify__"
-                   [|(Ojs.string_to_js x1074);(child_process_ExecFileOptionsWithBufferEncoding_to_js
-                                                 x1075)|])
-        let (__promisify__ :
-          file:string ->
-            args:string list or_null_or_undefined ->
-              options:child_process_ExecFileOptionsWithBufferEncoding ->
-                anonymous_interface_2 child_process_PromiseWithChild)
-          =
-          fun ~file:(x1077 : string) ->
-            fun ~args:(x1078 : string list or_null_or_undefined) ->
-              fun
-                ~options:(x1081 :
-                           child_process_ExecFileOptionsWithBufferEncoding)
-                ->
-                child_process_PromiseWithChild_of_js
-                  anonymous_interface_2_of_js
+              fun ~options:(x1073 : ExecFileOptionsWithOtherEncoding.t) ->
+                PromiseWithChild.t_of_js AnonymousInterface4.t_of_js
                   (Ojs.call
                      (Ojs.get_prop_ascii Import.child_process "execFile")
                      "__promisify__"
-                     [|(Ojs.string_to_js x1077);(or_null_or_undefined_to_js
-                                                   (fun (x1079 : string list)
+                     [|(Ojs.string_to_js x1069);(or_null_or_undefined_to_js
+                                                   (fun (x1071 : string list)
                                                       ->
                                                       Ojs.list_to_js
                                                         Ojs.string_to_js
-                                                        x1079) x1078);(
-                       child_process_ExecFileOptionsWithBufferEncoding_to_js
-                         x1081)|])
+                                                        x1071) x1070);(
+                       ExecFileOptionsWithOtherEncoding.t_to_js x1073)|])
         let (__promisify__ :
           file:string ->
-            options:child_process_ExecFileOptionsWithStringEncoding ->
-              anonymous_interface_3 child_process_PromiseWithChild)
+            options:ExecFileOptions.t ->
+              AnonymousInterface3.t PromiseWithChild.t)
           =
-          fun ~file:(x1083 : string) ->
-            fun
-              ~options:(x1084 :
-                         child_process_ExecFileOptionsWithStringEncoding)
-              ->
-              child_process_PromiseWithChild_of_js
-                anonymous_interface_3_of_js
+          fun ~file:(x1075 : string) ->
+            fun ~options:(x1076 : ExecFileOptions.t) ->
+              PromiseWithChild.t_of_js AnonymousInterface3.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.child_process "execFile")
                    "__promisify__"
-                   [|(Ojs.string_to_js x1083);(child_process_ExecFileOptionsWithStringEncoding_to_js
-                                                 x1084)|])
+                   [|(Ojs.string_to_js x1075);(ExecFileOptions.t_to_js x1076)|])
         let (__promisify__ :
           file:string ->
             args:string list or_null_or_undefined ->
-              options:child_process_ExecFileOptionsWithStringEncoding ->
-                anonymous_interface_3 child_process_PromiseWithChild)
+              options:ExecFileOptions.t ->
+                AnonymousInterface3.t PromiseWithChild.t)
           =
-          fun ~file:(x1086 : string) ->
-            fun ~args:(x1087 : string list or_null_or_undefined) ->
-              fun
-                ~options:(x1090 :
-                           child_process_ExecFileOptionsWithStringEncoding)
-                ->
-                child_process_PromiseWithChild_of_js
-                  anonymous_interface_3_of_js
+          fun ~file:(x1078 : string) ->
+            fun ~args:(x1079 : string list or_null_or_undefined) ->
+              fun ~options:(x1082 : ExecFileOptions.t) ->
+                PromiseWithChild.t_of_js AnonymousInterface3.t_of_js
                   (Ojs.call
                      (Ojs.get_prop_ascii Import.child_process "execFile")
                      "__promisify__"
-                     [|(Ojs.string_to_js x1086);(or_null_or_undefined_to_js
-                                                   (fun (x1088 : string list)
+                     [|(Ojs.string_to_js x1078);(or_null_or_undefined_to_js
+                                                   (fun (x1080 : string list)
                                                       ->
                                                       Ojs.list_to_js
                                                         Ojs.string_to_js
-                                                        x1088) x1087);(
-                       child_process_ExecFileOptionsWithStringEncoding_to_js
-                         x1090)|])
+                                                        x1080) x1079);(
+                       ExecFileOptions.t_to_js x1082)|])
         let (__promisify__ :
           file:string ->
-            options:child_process_ExecFileOptionsWithOtherEncoding ->
-              anonymous_interface_4 child_process_PromiseWithChild)
+            options:(Node_fs.Fs.BaseEncodingOptions.t, ExecFileOptions.t)
+              intersection2 or_null_or_undefined ->
+              AnonymousInterface4.t PromiseWithChild.t)
           =
-          fun ~file:(x1092 : string) ->
+          fun ~file:(x1084 : string) ->
             fun
-              ~options:(x1093 :
-                         child_process_ExecFileOptionsWithOtherEncoding)
-              ->
-              child_process_PromiseWithChild_of_js
-                anonymous_interface_4_of_js
-                (Ojs.call
-                   (Ojs.get_prop_ascii Import.child_process "execFile")
-                   "__promisify__"
-                   [|(Ojs.string_to_js x1092);(child_process_ExecFileOptionsWithOtherEncoding_to_js
-                                                 x1093)|])
-        let (__promisify__ :
-          file:string ->
-            args:string list or_null_or_undefined ->
-              options:child_process_ExecFileOptionsWithOtherEncoding ->
-                anonymous_interface_4 child_process_PromiseWithChild)
-          =
-          fun ~file:(x1095 : string) ->
-            fun ~args:(x1096 : string list or_null_or_undefined) ->
-              fun
-                ~options:(x1099 :
-                           child_process_ExecFileOptionsWithOtherEncoding)
-                ->
-                child_process_PromiseWithChild_of_js
-                  anonymous_interface_4_of_js
-                  (Ojs.call
-                     (Ojs.get_prop_ascii Import.child_process "execFile")
-                     "__promisify__"
-                     [|(Ojs.string_to_js x1095);(or_null_or_undefined_to_js
-                                                   (fun (x1097 : string list)
-                                                      ->
-                                                      Ojs.list_to_js
-                                                        Ojs.string_to_js
-                                                        x1097) x1096);(
-                       child_process_ExecFileOptionsWithOtherEncoding_to_js
-                         x1099)|])
-        let (__promisify__ :
-          file:string ->
-            options:child_process_ExecFileOptions ->
-              anonymous_interface_3 child_process_PromiseWithChild)
-          =
-          fun ~file:(x1101 : string) ->
-            fun ~options:(x1102 : child_process_ExecFileOptions) ->
-              child_process_PromiseWithChild_of_js
-                anonymous_interface_3_of_js
-                (Ojs.call
-                   (Ojs.get_prop_ascii Import.child_process "execFile")
-                   "__promisify__"
-                   [|(Ojs.string_to_js x1101);(child_process_ExecFileOptions_to_js
-                                                 x1102)|])
-        let (__promisify__ :
-          file:string ->
-            args:string list or_null_or_undefined ->
-              options:child_process_ExecFileOptions ->
-                anonymous_interface_3 child_process_PromiseWithChild)
-          =
-          fun ~file:(x1104 : string) ->
-            fun ~args:(x1105 : string list or_null_or_undefined) ->
-              fun ~options:(x1108 : child_process_ExecFileOptions) ->
-                child_process_PromiseWithChild_of_js
-                  anonymous_interface_3_of_js
-                  (Ojs.call
-                     (Ojs.get_prop_ascii Import.child_process "execFile")
-                     "__promisify__"
-                     [|(Ojs.string_to_js x1104);(or_null_or_undefined_to_js
-                                                   (fun (x1106 : string list)
-                                                      ->
-                                                      Ojs.list_to_js
-                                                        Ojs.string_to_js
-                                                        x1106) x1105);(
-                       child_process_ExecFileOptions_to_js x1108)|])
-        let (__promisify__ :
-          file:string ->
-            options:(Node_fs.Fs.BaseEncodingOptions.t,
-              child_process_ExecFileOptions) intersection2
-              or_null_or_undefined ->
-              anonymous_interface_4 child_process_PromiseWithChild)
-          =
-          fun ~file:(x1110 : string) ->
-            fun
-              ~options:(x1111 :
+              ~options:(x1085 :
                          (Node_fs.Fs.BaseEncodingOptions.t,
-                           child_process_ExecFileOptions) intersection2
+                           ExecFileOptions.t) intersection2
                            or_null_or_undefined)
               ->
-              child_process_PromiseWithChild_of_js
-                anonymous_interface_4_of_js
+              PromiseWithChild.t_of_js AnonymousInterface4.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.child_process "execFile")
                    "__promisify__"
-                   [|(Ojs.string_to_js x1110);(or_null_or_undefined_to_js
+                   [|(Ojs.string_to_js x1084);(or_null_or_undefined_to_js
                                                  (fun
-                                                    (x1112 :
+                                                    (x1086 :
                                                       (Node_fs.Fs.BaseEncodingOptions.t,
-                                                        child_process_ExecFileOptions)
+                                                        ExecFileOptions.t)
                                                         intersection2)
                                                     ->
                                                     intersection2_to_js
                                                       Node_fs.Fs.BaseEncodingOptions.t_to_js
-                                                      child_process_ExecFileOptions_to_js
-                                                      x1112) x1111)|])
+                                                      ExecFileOptions.t_to_js
+                                                      x1086) x1085)|])
         let (__promisify__ :
           file:string ->
             args:string list or_null_or_undefined ->
-              options:(Node_fs.Fs.BaseEncodingOptions.t,
-                child_process_ExecFileOptions) intersection2
-                or_null_or_undefined ->
-                anonymous_interface_4 child_process_PromiseWithChild)
+              options:(Node_fs.Fs.BaseEncodingOptions.t, ExecFileOptions.t)
+                intersection2 or_null_or_undefined ->
+                AnonymousInterface4.t PromiseWithChild.t)
           =
-          fun ~file:(x1116 : string) ->
-            fun ~args:(x1117 : string list or_null_or_undefined) ->
+          fun ~file:(x1090 : string) ->
+            fun ~args:(x1091 : string list or_null_or_undefined) ->
               fun
-                ~options:(x1120 :
+                ~options:(x1094 :
                            (Node_fs.Fs.BaseEncodingOptions.t,
-                             child_process_ExecFileOptions) intersection2
+                             ExecFileOptions.t) intersection2
                              or_null_or_undefined)
                 ->
-                child_process_PromiseWithChild_of_js
-                  anonymous_interface_4_of_js
+                PromiseWithChild.t_of_js AnonymousInterface4.t_of_js
                   (Ojs.call
                      (Ojs.get_prop_ascii Import.child_process "execFile")
                      "__promisify__"
-                     [|(Ojs.string_to_js x1116);(or_null_or_undefined_to_js
-                                                   (fun (x1118 : string list)
+                     [|(Ojs.string_to_js x1090);(or_null_or_undefined_to_js
+                                                   (fun (x1092 : string list)
                                                       ->
                                                       Ojs.list_to_js
                                                         Ojs.string_to_js
-                                                        x1118) x1117);(
+                                                        x1092) x1091);(
                        or_null_or_undefined_to_js
                          (fun
-                            (x1121 :
+                            (x1095 :
                               (Node_fs.Fs.BaseEncodingOptions.t,
-                                child_process_ExecFileOptions) intersection2)
+                                ExecFileOptions.t) intersection2)
                             ->
                             intersection2_to_js
                               Node_fs.Fs.BaseEncodingOptions.t_to_js
-                              child_process_ExecFileOptions_to_js x1121)
-                         x1120)|])
+                              ExecFileOptions.t_to_js x1095) x1094)|])
       end
     module ForkOptions =
       struct
-        type t = child_process_ForkOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x1126 : Ojs.t) -> child_process_ForkOptions_of_js x1126
-        and t_to_js : t -> Ojs.t =
-          fun (x1125 : child_process_ForkOptions) ->
-            child_process_ForkOptions_to_js x1125
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x1100 : Ojs.t) -> x1100
+        and t_to_js : t -> Ojs.t = fun (x1099 : Ojs.t) -> x1099
         let (get_execPath : t -> string) =
-          fun (x1127 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1127) "execPath")
+          fun (x1101 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1101) "execPath")
         let (set_execPath : t -> string -> unit) =
-          fun (x1128 : t) ->
-            fun (x1129 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1128) "execPath"
-                (Ojs.string_to_js x1129)
+          fun (x1102 : t) ->
+            fun (x1103 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1102) "execPath"
+                (Ojs.string_to_js x1103)
         let (get_execArgv : t -> string list) =
-          fun (x1130 : t) ->
+          fun (x1104 : t) ->
             Ojs.list_of_js Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x1130) "execArgv")
+              (Ojs.get_prop_ascii (t_to_js x1104) "execArgv")
         let (set_execArgv : t -> string list -> unit) =
-          fun (x1132 : t) ->
-            fun (x1133 : string list) ->
-              Ojs.set_prop_ascii (t_to_js x1132) "execArgv"
-                (Ojs.list_to_js Ojs.string_to_js x1133)
+          fun (x1106 : t) ->
+            fun (x1107 : string list) ->
+              Ojs.set_prop_ascii (t_to_js x1106) "execArgv"
+                (Ojs.list_to_js Ojs.string_to_js x1107)
         let (get_silent : t -> bool) =
-          fun (x1135 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1135) "silent")
+          fun (x1109 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1109) "silent")
         let (set_silent : t -> bool -> unit) =
-          fun (x1136 : t) ->
-            fun (x1137 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x1136) "silent"
-                (Ojs.bool_to_js x1137)
-        let (get_stdio : t -> child_process_StdioOptions) =
-          fun (x1138 : t) ->
-            child_process_StdioOptions_of_js
-              (Ojs.get_prop_ascii (t_to_js x1138) "stdio")
-        let (set_stdio : t -> child_process_StdioOptions -> unit) =
-          fun (x1139 : t) ->
-            fun (x1140 : child_process_StdioOptions) ->
-              Ojs.set_prop_ascii (t_to_js x1139) "stdio"
-                (child_process_StdioOptions_to_js x1140)
+          fun (x1110 : t) ->
+            fun (x1111 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x1110) "silent"
+                (Ojs.bool_to_js x1111)
+        let (get_stdio : t -> StdioOptions.t) =
+          fun (x1112 : t) ->
+            StdioOptions.t_of_js (Ojs.get_prop_ascii (t_to_js x1112) "stdio")
+        let (set_stdio : t -> StdioOptions.t -> unit) =
+          fun (x1113 : t) ->
+            fun (x1114 : StdioOptions.t) ->
+              Ojs.set_prop_ascii (t_to_js x1113) "stdio"
+                (StdioOptions.t_to_js x1114)
         let (get_detached : t -> bool) =
-          fun (x1141 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1141) "detached")
+          fun (x1115 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1115) "detached")
         let (set_detached : t -> bool -> unit) =
-          fun (x1142 : t) ->
-            fun (x1143 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x1142) "detached"
-                (Ojs.bool_to_js x1143)
+          fun (x1116 : t) ->
+            fun (x1117 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x1116) "detached"
+                (Ojs.bool_to_js x1117)
         let (get_windowsVerbatimArguments : t -> bool) =
-          fun (x1144 : t) ->
+          fun (x1118 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x1144) "windowsVerbatimArguments")
+              (Ojs.get_prop_ascii (t_to_js x1118) "windowsVerbatimArguments")
         let (set_windowsVerbatimArguments : t -> bool -> unit) =
-          fun (x1145 : t) ->
-            fun (x1146 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x1145) "windowsVerbatimArguments"
-                (Ojs.bool_to_js x1146)
-        let (cast : t -> child_process_ProcessEnvOptions) =
-          fun (x1147 : t) ->
-            child_process_ProcessEnvOptions_of_js (t_to_js x1147)
-        let (cast' : t -> child_process_MessagingOptions) =
-          fun (x1148 : t) ->
-            child_process_MessagingOptions_of_js (t_to_js x1148)
+          fun (x1119 : t) ->
+            fun (x1120 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x1119) "windowsVerbatimArguments"
+                (Ojs.bool_to_js x1120)
+        let (cast : t -> ProcessEnvOptions.t) =
+          fun (x1121 : t) -> ProcessEnvOptions.t_of_js (t_to_js x1121)
+        let (cast' : t -> MessagingOptions.t) =
+          fun (x1122 : t) -> MessagingOptions.t_of_js (t_to_js x1122)
       end
     let (fork :
-      modulePath:string ->
-        ?options:child_process_ForkOptions ->
-          unit -> child_process_ChildProcess)
+      modulePath:string -> ?options:ForkOptions.t -> unit -> ChildProcess.t)
       =
-      fun ~modulePath:(x1149 : string) ->
-        fun ?options:(x1150 : child_process_ForkOptions option) ->
+      fun ~modulePath:(x1123 : string) ->
+        fun ?options:(x1124 : ForkOptions.t option) ->
           fun () ->
-            child_process_ChildProcess_of_js
-              (let x1153 = Import.child_process in
-               Ojs.call (Ojs.get_prop_ascii x1153 "fork") "apply"
-                 [|x1153;((let x1151 =
+            ChildProcess.t_of_js
+              (let x1127 = Import.child_process in
+               Ojs.call (Ojs.get_prop_ascii x1127 "fork") "apply"
+                 [|x1127;((let x1125 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1151 "push"
-                                [|(Ojs.string_to_js x1149)|]);
-                           (match x1150 with
-                            | Some x1152 ->
+                             (Ojs.call x1125 "push"
+                                [|(Ojs.string_to_js x1123)|]);
+                           (match x1124 with
+                            | Some x1126 ->
                                 ignore
-                                  (Ojs.call x1151 "push"
-                                     [|(child_process_ForkOptions_to_js x1152)|])
+                                  (Ojs.call x1125 "push"
+                                     [|(ForkOptions.t_to_js x1126)|])
                             | None -> ());
-                           x1151))|])
+                           x1125))|])
     let (fork :
       modulePath:string ->
-        ?args:string list ->
-          ?options:child_process_ForkOptions ->
-            unit -> child_process_ChildProcess)
+        ?args:string list -> ?options:ForkOptions.t -> unit -> ChildProcess.t)
       =
-      fun ~modulePath:(x1154 : string) ->
-        fun ?args:(x1155 : string list option) ->
-          fun ?options:(x1156 : child_process_ForkOptions option) ->
+      fun ~modulePath:(x1128 : string) ->
+        fun ?args:(x1129 : string list option) ->
+          fun ?options:(x1130 : ForkOptions.t option) ->
             fun () ->
-              child_process_ChildProcess_of_js
-                (let x1161 = Import.child_process in
-                 Ojs.call (Ojs.get_prop_ascii x1161 "fork") "apply"
-                   [|x1161;((let x1157 =
+              ChildProcess.t_of_js
+                (let x1135 = Import.child_process in
+                 Ojs.call (Ojs.get_prop_ascii x1135 "fork") "apply"
+                   [|x1135;((let x1131 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x1157 "push"
-                                  [|(Ojs.string_to_js x1154)|]);
-                             (match x1155 with
-                              | Some x1159 ->
+                               (Ojs.call x1131 "push"
+                                  [|(Ojs.string_to_js x1128)|]);
+                             (match x1129 with
+                              | Some x1133 ->
                                   ignore
-                                    (Ojs.call x1157 "push"
+                                    (Ojs.call x1131 "push"
                                        [|(Ojs.list_to_js Ojs.string_to_js
-                                            x1159)|])
+                                            x1133)|])
                               | None -> ());
-                             (match x1156 with
-                              | Some x1158 ->
+                             (match x1130 with
+                              | Some x1132 ->
                                   ignore
-                                    (Ojs.call x1157 "push"
-                                       [|(child_process_ForkOptions_to_js
-                                            x1158)|])
+                                    (Ojs.call x1131 "push"
+                                       [|(ForkOptions.t_to_js x1132)|])
                               | None -> ());
-                             x1157))|])
+                             x1131))|])
     module SpawnSyncOptions =
       struct
-        type t = child_process_SpawnSyncOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x1163 : Ojs.t) -> child_process_SpawnSyncOptions_of_js x1163
-        and t_to_js : t -> Ojs.t =
-          fun (x1162 : child_process_SpawnSyncOptions) ->
-            child_process_SpawnSyncOptions_to_js x1162
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x1137 : Ojs.t) -> x1137
+        and t_to_js : t -> Ojs.t = fun (x1136 : Ojs.t) -> x1136
         let (get_input : t -> ArrayBufferView.t or_string) =
-          fun (x1164 : t) ->
+          fun (x1138 : t) ->
             or_string_of_js ArrayBufferView.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1164) "input")
+              (Ojs.get_prop_ascii (t_to_js x1138) "input")
         let (set_input : t -> ArrayBufferView.t or_string -> unit) =
-          fun (x1166 : t) ->
-            fun (x1167 : ArrayBufferView.t or_string) ->
-              Ojs.set_prop_ascii (t_to_js x1166) "input"
-                (or_string_to_js ArrayBufferView.t_to_js x1167)
+          fun (x1140 : t) ->
+            fun (x1141 : ArrayBufferView.t or_string) ->
+              Ojs.set_prop_ascii (t_to_js x1140) "input"
+                (or_string_to_js ArrayBufferView.t_to_js x1141)
         let (get_killSignal : t -> Node_process.Process.Signals.t or_number)
           =
-          fun (x1169 : t) ->
+          fun (x1143 : t) ->
             or_number_of_js Node_process.Process.Signals.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1169) "killSignal")
+              (Ojs.get_prop_ascii (t_to_js x1143) "killSignal")
         let (set_killSignal :
           t -> Node_process.Process.Signals.t or_number -> unit) =
-          fun (x1171 : t) ->
-            fun (x1172 : Node_process.Process.Signals.t or_number) ->
-              Ojs.set_prop_ascii (t_to_js x1171) "killSignal"
-                (or_number_to_js Node_process.Process.Signals.t_to_js x1172)
-        let (get_maxBuffer : t -> float) =
-          fun (x1174 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x1174) "maxBuffer")
-        let (set_maxBuffer : t -> float -> unit) =
-          fun (x1175 : t) ->
-            fun (x1176 : float) ->
-              Ojs.set_prop_ascii (t_to_js x1175) "maxBuffer"
-                (Ojs.float_to_js x1176)
+          fun (x1145 : t) ->
+            fun (x1146 : Node_process.Process.Signals.t or_number) ->
+              Ojs.set_prop_ascii (t_to_js x1145) "killSignal"
+                (or_number_to_js Node_process.Process.Signals.t_to_js x1146)
+        let (get_maxBuffer : t -> int) =
+          fun (x1148 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1148) "maxBuffer")
+        let (set_maxBuffer : t -> int -> unit) =
+          fun (x1149 : t) ->
+            fun (x1150 : int) ->
+              Ojs.set_prop_ascii (t_to_js x1149) "maxBuffer"
+                (Ojs.int_to_js x1150)
         let (get_encoding :
           t -> (BufferEncoding.t, [ `buffer ]) or_enum or_null) =
-          fun (x1177 : t) ->
+          fun (x1151 : t) ->
             or_null_of_js
-              (fun (x1178 : Ojs.t) ->
+              (fun (x1152 : Ojs.t) ->
                  or_enum_of_js BufferEncoding.t_of_js
-                   (fun (x1180 : Ojs.t) ->
-                      let x1181 = x1180 in
-                      match Ojs.string_of_js x1181 with
+                   (fun (x1154 : Ojs.t) ->
+                      let x1155 = x1154 in
+                      match Ojs.string_of_js x1155 with
                       | "buffer" -> `buffer
-                      | _ -> assert false) x1178)
-              (Ojs.get_prop_ascii (t_to_js x1177) "encoding")
+                      | _ -> assert false) x1152)
+              (Ojs.get_prop_ascii (t_to_js x1151) "encoding")
         let (set_encoding :
           t -> (BufferEncoding.t, [ `buffer ]) or_enum or_null -> unit) =
-          fun (x1182 : t) ->
-            fun (x1183 : (BufferEncoding.t, [ `buffer ]) or_enum or_null) ->
-              Ojs.set_prop_ascii (t_to_js x1182) "encoding"
+          fun (x1156 : t) ->
+            fun (x1157 : (BufferEncoding.t, [ `buffer ]) or_enum or_null) ->
+              Ojs.set_prop_ascii (t_to_js x1156) "encoding"
                 (or_null_to_js
-                   (fun (x1184 : (BufferEncoding.t, [ `buffer ]) or_enum) ->
+                   (fun (x1158 : (BufferEncoding.t, [ `buffer ]) or_enum) ->
                       or_enum_to_js BufferEncoding.t_to_js
-                        (fun (x1186 : [ `buffer ]) ->
-                           match x1186 with
-                           | `buffer -> Ojs.string_to_js "buffer") x1184)
-                   x1183)
-        let (cast : t -> child_process_CommonSpawnOptions) =
-          fun (x1187 : t) ->
-            child_process_CommonSpawnOptions_of_js (t_to_js x1187)
+                        (fun (x1160 : [ `buffer ]) ->
+                           match x1160 with
+                           | `buffer -> Ojs.string_to_js "buffer") x1158)
+                   x1157)
+        let (cast : t -> CommonSpawnOptions.t) =
+          fun (x1161 : t) -> CommonSpawnOptions.t_of_js (t_to_js x1161)
       end
     module SpawnSyncOptionsWithStringEncoding =
       struct
-        type t = child_process_SpawnSyncOptionsWithStringEncoding
-        let rec t_of_js : Ojs.t -> t =
-          fun (x1189 : Ojs.t) ->
-            child_process_SpawnSyncOptionsWithStringEncoding_of_js x1189
-        and t_to_js : t -> Ojs.t =
-          fun (x1188 : child_process_SpawnSyncOptionsWithStringEncoding) ->
-            child_process_SpawnSyncOptionsWithStringEncoding_to_js x1188
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x1163 : Ojs.t) -> x1163
+        and t_to_js : t -> Ojs.t = fun (x1162 : Ojs.t) -> x1162
         let (get_encoding : t -> BufferEncoding.t) =
-          fun (x1190 : t) ->
+          fun (x1164 : t) ->
             BufferEncoding.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1190) "encoding")
+              (Ojs.get_prop_ascii (t_to_js x1164) "encoding")
         let (set_encoding : t -> BufferEncoding.t -> unit) =
-          fun (x1191 : t) ->
-            fun (x1192 : BufferEncoding.t) ->
-              Ojs.set_prop_ascii (t_to_js x1191) "encoding"
-                (BufferEncoding.t_to_js x1192)
-        let (cast : t -> child_process_SpawnSyncOptions) =
-          fun (x1193 : t) ->
-            child_process_SpawnSyncOptions_of_js (t_to_js x1193)
+          fun (x1165 : t) ->
+            fun (x1166 : BufferEncoding.t) ->
+              Ojs.set_prop_ascii (t_to_js x1165) "encoding"
+                (BufferEncoding.t_to_js x1166)
+        let (cast : t -> SpawnSyncOptions.t) =
+          fun (x1167 : t) -> SpawnSyncOptions.t_of_js (t_to_js x1167)
       end
     module SpawnSyncOptionsWithBufferEncoding =
       struct
-        type t = child_process_SpawnSyncOptionsWithBufferEncoding
-        let rec t_of_js : Ojs.t -> t =
-          fun (x1195 : Ojs.t) ->
-            child_process_SpawnSyncOptionsWithBufferEncoding_of_js x1195
-        and t_to_js : t -> Ojs.t =
-          fun (x1194 : child_process_SpawnSyncOptionsWithBufferEncoding) ->
-            child_process_SpawnSyncOptionsWithBufferEncoding_to_js x1194
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x1169 : Ojs.t) -> x1169
+        and t_to_js : t -> Ojs.t = fun (x1168 : Ojs.t) -> x1168
         let (get_encoding : t -> [ `buffer ] or_null) =
-          fun (x1196 : t) ->
+          fun (x1170 : t) ->
             or_null_of_js
-              (fun (x1197 : Ojs.t) ->
-                 let x1198 = x1197 in
-                 match Ojs.string_of_js x1198 with
+              (fun (x1171 : Ojs.t) ->
+                 let x1172 = x1171 in
+                 match Ojs.string_of_js x1172 with
                  | "buffer" -> `buffer
                  | _ -> assert false)
-              (Ojs.get_prop_ascii (t_to_js x1196) "encoding")
+              (Ojs.get_prop_ascii (t_to_js x1170) "encoding")
         let (set_encoding : t -> [ `buffer ] or_null -> unit) =
-          fun (x1199 : t) ->
-            fun (x1200 : [ `buffer ] or_null) ->
-              Ojs.set_prop_ascii (t_to_js x1199) "encoding"
+          fun (x1173 : t) ->
+            fun (x1174 : [ `buffer ] or_null) ->
+              Ojs.set_prop_ascii (t_to_js x1173) "encoding"
                 (or_null_to_js
-                   (fun (x1201 : [ `buffer ]) ->
-                      match x1201 with | `buffer -> Ojs.string_to_js "buffer")
-                   x1200)
-        let (cast : t -> child_process_SpawnSyncOptions) =
-          fun (x1202 : t) ->
-            child_process_SpawnSyncOptions_of_js (t_to_js x1202)
+                   (fun (x1175 : [ `buffer ]) ->
+                      match x1175 with | `buffer -> Ojs.string_to_js "buffer")
+                   x1174)
+        let (cast : t -> SpawnSyncOptions.t) =
+          fun (x1176 : t) -> SpawnSyncOptions.t_of_js (t_to_js x1176)
       end
     module SpawnSyncReturns =
       struct
-        type 'T t = 'T child_process_SpawnSyncReturns
+        type 'T t = Ojs.t
         let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type
           __T) ->
-          fun (__T_of_js : Ojs.t -> __T) ->
-            fun (x1205 : Ojs.t) ->
-              child_process_SpawnSyncReturns_of_js __T_of_js x1205
+          fun (__T_of_js : Ojs.t -> __T) -> fun (x1178 : Ojs.t) -> x1178
         and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-          fun (__T_to_js : __T -> Ojs.t) ->
-            fun (x1203 : __T child_process_SpawnSyncReturns) ->
-              child_process_SpawnSyncReturns_to_js __T_to_js x1203
-        let (get_pid : 'T t -> float) =
-          fun (x1207 : 'T t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x1207) "pid")
-        let (set_pid : 'T t -> float -> unit) =
-          fun (x1209 : 'T t) ->
-            fun (x1210 : float) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x1209) "pid"
-                (Ojs.float_to_js x1210)
+          fun (__T_to_js : __T -> Ojs.t) -> fun (x1177 : Ojs.t) -> x1177
+        let (get_pid : 'T t -> int) =
+          fun (x1179 : 'T t) ->
+            Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x1179) "pid")
+        let (set_pid : 'T t -> int -> unit) =
+          fun (x1181 : 'T t) ->
+            fun (x1182 : int) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x1181) "pid"
+                (Ojs.int_to_js x1182)
         let (get_output : 'T t -> string list) =
-          fun (x1212 : 'T t) ->
+          fun (x1184 : 'T t) ->
             Ojs.list_of_js Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x1212) "output")
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x1184) "output")
         let (set_output : 'T t -> string list -> unit) =
-          fun (x1215 : 'T t) ->
-            fun (x1216 : string list) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x1215) "output"
-                (Ojs.list_to_js Ojs.string_to_js x1216)
+          fun (x1187 : 'T t) ->
+            fun (x1188 : string list) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x1187) "output"
+                (Ojs.list_to_js Ojs.string_to_js x1188)
         let (get_stdout : 'T t -> 'T) =
-          fun (x1219 : 'T t) ->
-            Obj.magic (Ojs.get_prop_ascii (t_to_js Obj.magic x1219) "stdout")
+          fun (x1191 : 'T t) ->
+            Obj.magic (Ojs.get_prop_ascii (t_to_js Obj.magic x1191) "stdout")
         let (set_stdout : 'T t -> 'T -> unit) =
-          fun (x1221 : 'T t) ->
-            fun (x1222 : 'T) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x1221) "stdout"
-                (Obj.magic x1222)
+          fun (x1193 : 'T t) ->
+            fun (x1194 : 'T) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x1193) "stdout"
+                (Obj.magic x1194)
         let (get_stderr : 'T t -> 'T) =
-          fun (x1224 : 'T t) ->
-            Obj.magic (Ojs.get_prop_ascii (t_to_js Obj.magic x1224) "stderr")
+          fun (x1196 : 'T t) ->
+            Obj.magic (Ojs.get_prop_ascii (t_to_js Obj.magic x1196) "stderr")
         let (set_stderr : 'T t -> 'T -> unit) =
-          fun (x1226 : 'T t) ->
-            fun (x1227 : 'T) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x1226) "stderr"
-                (Obj.magic x1227)
-        let (get_status : 'T t -> float or_null) =
-          fun (x1229 : 'T t) ->
-            or_null_of_js Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x1229) "status")
-        let (set_status : 'T t -> float or_null -> unit) =
-          fun (x1232 : 'T t) ->
-            fun (x1233 : float or_null) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x1232) "status"
-                (or_null_to_js Ojs.float_to_js x1233)
+          fun (x1198 : 'T t) ->
+            fun (x1199 : 'T) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x1198) "stderr"
+                (Obj.magic x1199)
+        let (get_status : 'T t -> int or_null) =
+          fun (x1201 : 'T t) ->
+            or_null_of_js Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x1201) "status")
+        let (set_status : 'T t -> int or_null -> unit) =
+          fun (x1204 : 'T t) ->
+            fun (x1205 : int or_null) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x1204) "status"
+                (or_null_to_js Ojs.int_to_js x1205)
         let (get_signal : 'T t -> Node_process.Process.Signals.t or_null) =
-          fun (x1236 : 'T t) ->
+          fun (x1208 : 'T t) ->
             or_null_of_js Node_process.Process.Signals.t_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x1236) "signal")
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x1208) "signal")
         let (set_signal :
           'T t -> Node_process.Process.Signals.t or_null -> unit) =
-          fun (x1239 : 'T t) ->
-            fun (x1240 : Node_process.Process.Signals.t or_null) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x1239) "signal"
-                (or_null_to_js Node_process.Process.Signals.t_to_js x1240)
+          fun (x1211 : 'T t) ->
+            fun (x1212 : Node_process.Process.Signals.t or_null) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x1211) "signal"
+                (or_null_to_js Node_process.Process.Signals.t_to_js x1212)
         let (get_error : 'T t -> Error.t) =
-          fun (x1243 : 'T t) ->
+          fun (x1215 : 'T t) ->
             Error.t_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x1243) "error")
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x1215) "error")
         let (set_error : 'T t -> Error.t -> unit) =
-          fun (x1245 : 'T t) ->
-            fun (x1246 : Error.t) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x1245) "error"
-                (Error.t_to_js x1246)
+          fun (x1217 : 'T t) ->
+            fun (x1218 : Error.t) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x1217) "error"
+                (Error.t_to_js x1218)
       end
-    let (spawn'Sync :
-      command:string -> Buffer.t child_process_SpawnSyncReturns) =
-      fun ~command:(x1248 : string) ->
-        child_process_SpawnSyncReturns_of_js Buffer.t_of_js
+    let (spawn'Sync : command:string -> Buffer.t SpawnSyncReturns.t) =
+      fun ~command:(x1220 : string) ->
+        SpawnSyncReturns.t_of_js Buffer.t_of_js
           (Ojs.call Import.child_process "spawnSync"
-             [|(Ojs.string_to_js x1248)|])
+             [|(Ojs.string_to_js x1220)|])
     let (spawn'Sync :
       command:string ->
-        ?options:child_process_SpawnSyncOptionsWithStringEncoding ->
-          unit -> string child_process_SpawnSyncReturns)
+        ?options:SpawnSyncOptionsWithStringEncoding.t ->
+          unit -> string SpawnSyncReturns.t)
       =
-      fun ~command:(x1250 : string) ->
-        fun
-          ?options:(x1251 :
-                     child_process_SpawnSyncOptionsWithStringEncoding option)
-          ->
+      fun ~command:(x1222 : string) ->
+        fun ?options:(x1223 : SpawnSyncOptionsWithStringEncoding.t option) ->
           fun () ->
-            child_process_SpawnSyncReturns_of_js Ojs.string_of_js
-              (let x1254 = Import.child_process in
-               Ojs.call (Ojs.get_prop_ascii x1254 "spawnSync") "apply"
-                 [|x1254;((let x1252 =
+            SpawnSyncReturns.t_of_js Ojs.string_of_js
+              (let x1226 = Import.child_process in
+               Ojs.call (Ojs.get_prop_ascii x1226 "spawnSync") "apply"
+                 [|x1226;((let x1224 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1252 "push"
-                                [|(Ojs.string_to_js x1250)|]);
-                           (match x1251 with
-                            | Some x1253 ->
+                             (Ojs.call x1224 "push"
+                                [|(Ojs.string_to_js x1222)|]);
+                           (match x1223 with
+                            | Some x1225 ->
                                 ignore
-                                  (Ojs.call x1252 "push"
-                                     [|(child_process_SpawnSyncOptionsWithStringEncoding_to_js
-                                          x1253)|])
+                                  (Ojs.call x1224 "push"
+                                     [|(SpawnSyncOptionsWithStringEncoding.t_to_js
+                                          x1225)|])
                             | None -> ());
-                           x1252))|])
+                           x1224))|])
     let (spawn'Sync :
       command:string ->
-        ?options:child_process_SpawnSyncOptionsWithBufferEncoding ->
-          unit -> Buffer.t child_process_SpawnSyncReturns)
+        ?options:SpawnSyncOptionsWithBufferEncoding.t ->
+          unit -> Buffer.t SpawnSyncReturns.t)
       =
-      fun ~command:(x1256 : string) ->
-        fun
-          ?options:(x1257 :
-                     child_process_SpawnSyncOptionsWithBufferEncoding option)
-          ->
+      fun ~command:(x1228 : string) ->
+        fun ?options:(x1229 : SpawnSyncOptionsWithBufferEncoding.t option) ->
           fun () ->
-            child_process_SpawnSyncReturns_of_js Buffer.t_of_js
-              (let x1260 = Import.child_process in
-               Ojs.call (Ojs.get_prop_ascii x1260 "spawnSync") "apply"
-                 [|x1260;((let x1258 =
+            SpawnSyncReturns.t_of_js Buffer.t_of_js
+              (let x1232 = Import.child_process in
+               Ojs.call (Ojs.get_prop_ascii x1232 "spawnSync") "apply"
+                 [|x1232;((let x1230 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1258 "push"
-                                [|(Ojs.string_to_js x1256)|]);
-                           (match x1257 with
-                            | Some x1259 ->
+                             (Ojs.call x1230 "push"
+                                [|(Ojs.string_to_js x1228)|]);
+                           (match x1229 with
+                            | Some x1231 ->
                                 ignore
-                                  (Ojs.call x1258 "push"
-                                     [|(child_process_SpawnSyncOptionsWithBufferEncoding_to_js
-                                          x1259)|])
+                                  (Ojs.call x1230 "push"
+                                     [|(SpawnSyncOptionsWithBufferEncoding.t_to_js
+                                          x1231)|])
                             | None -> ());
-                           x1258))|])
+                           x1230))|])
     let (spawn'Sync :
       command:string ->
-        ?options:child_process_SpawnSyncOptions ->
-          unit -> Buffer.t child_process_SpawnSyncReturns)
+        ?options:SpawnSyncOptions.t -> unit -> Buffer.t SpawnSyncReturns.t)
       =
-      fun ~command:(x1262 : string) ->
-        fun ?options:(x1263 : child_process_SpawnSyncOptions option) ->
+      fun ~command:(x1234 : string) ->
+        fun ?options:(x1235 : SpawnSyncOptions.t option) ->
           fun () ->
-            child_process_SpawnSyncReturns_of_js Buffer.t_of_js
-              (let x1266 = Import.child_process in
-               Ojs.call (Ojs.get_prop_ascii x1266 "spawnSync") "apply"
-                 [|x1266;((let x1264 =
+            SpawnSyncReturns.t_of_js Buffer.t_of_js
+              (let x1238 = Import.child_process in
+               Ojs.call (Ojs.get_prop_ascii x1238 "spawnSync") "apply"
+                 [|x1238;((let x1236 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1264 "push"
-                                [|(Ojs.string_to_js x1262)|]);
-                           (match x1263 with
-                            | Some x1265 ->
+                             (Ojs.call x1236 "push"
+                                [|(Ojs.string_to_js x1234)|]);
+                           (match x1235 with
+                            | Some x1237 ->
                                 ignore
-                                  (Ojs.call x1264 "push"
-                                     [|(child_process_SpawnSyncOptions_to_js
-                                          x1265)|])
+                                  (Ojs.call x1236 "push"
+                                     [|(SpawnSyncOptions.t_to_js x1237)|])
                             | None -> ());
-                           x1264))|])
+                           x1236))|])
     let (spawn'Sync :
       command:string ->
         ?args:string list ->
-          ?options:child_process_SpawnSyncOptionsWithStringEncoding ->
-            unit -> string child_process_SpawnSyncReturns)
+          ?options:SpawnSyncOptionsWithStringEncoding.t ->
+            unit -> string SpawnSyncReturns.t)
       =
-      fun ~command:(x1268 : string) ->
-        fun ?args:(x1269 : string list option) ->
-          fun
-            ?options:(x1270 :
-                       child_process_SpawnSyncOptionsWithStringEncoding
-                         option)
+      fun ~command:(x1240 : string) ->
+        fun ?args:(x1241 : string list option) ->
+          fun ?options:(x1242 : SpawnSyncOptionsWithStringEncoding.t option)
             ->
             fun () ->
-              child_process_SpawnSyncReturns_of_js Ojs.string_of_js
-                (let x1275 = Import.child_process in
-                 Ojs.call (Ojs.get_prop_ascii x1275 "spawnSync") "apply"
-                   [|x1275;((let x1271 =
+              SpawnSyncReturns.t_of_js Ojs.string_of_js
+                (let x1247 = Import.child_process in
+                 Ojs.call (Ojs.get_prop_ascii x1247 "spawnSync") "apply"
+                   [|x1247;((let x1243 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x1271 "push"
-                                  [|(Ojs.string_to_js x1268)|]);
-                             (match x1269 with
-                              | Some x1273 ->
+                               (Ojs.call x1243 "push"
+                                  [|(Ojs.string_to_js x1240)|]);
+                             (match x1241 with
+                              | Some x1245 ->
                                   ignore
-                                    (Ojs.call x1271 "push"
+                                    (Ojs.call x1243 "push"
                                        [|(Ojs.list_to_js Ojs.string_to_js
-                                            x1273)|])
+                                            x1245)|])
                               | None -> ());
-                             (match x1270 with
-                              | Some x1272 ->
+                             (match x1242 with
+                              | Some x1244 ->
                                   ignore
-                                    (Ojs.call x1271 "push"
-                                       [|(child_process_SpawnSyncOptionsWithStringEncoding_to_js
-                                            x1272)|])
+                                    (Ojs.call x1243 "push"
+                                       [|(SpawnSyncOptionsWithStringEncoding.t_to_js
+                                            x1244)|])
                               | None -> ());
-                             x1271))|])
+                             x1243))|])
     let (spawn'Sync :
       command:string ->
         ?args:string list ->
-          ?options:child_process_SpawnSyncOptionsWithBufferEncoding ->
-            unit -> Buffer.t child_process_SpawnSyncReturns)
+          ?options:SpawnSyncOptionsWithBufferEncoding.t ->
+            unit -> Buffer.t SpawnSyncReturns.t)
       =
-      fun ~command:(x1277 : string) ->
-        fun ?args:(x1278 : string list option) ->
-          fun
-            ?options:(x1279 :
-                       child_process_SpawnSyncOptionsWithBufferEncoding
-                         option)
+      fun ~command:(x1249 : string) ->
+        fun ?args:(x1250 : string list option) ->
+          fun ?options:(x1251 : SpawnSyncOptionsWithBufferEncoding.t option)
             ->
             fun () ->
-              child_process_SpawnSyncReturns_of_js Buffer.t_of_js
-                (let x1284 = Import.child_process in
-                 Ojs.call (Ojs.get_prop_ascii x1284 "spawnSync") "apply"
-                   [|x1284;((let x1280 =
+              SpawnSyncReturns.t_of_js Buffer.t_of_js
+                (let x1256 = Import.child_process in
+                 Ojs.call (Ojs.get_prop_ascii x1256 "spawnSync") "apply"
+                   [|x1256;((let x1252 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x1280 "push"
-                                  [|(Ojs.string_to_js x1277)|]);
-                             (match x1278 with
-                              | Some x1282 ->
+                               (Ojs.call x1252 "push"
+                                  [|(Ojs.string_to_js x1249)|]);
+                             (match x1250 with
+                              | Some x1254 ->
                                   ignore
-                                    (Ojs.call x1280 "push"
+                                    (Ojs.call x1252 "push"
                                        [|(Ojs.list_to_js Ojs.string_to_js
-                                            x1282)|])
+                                            x1254)|])
                               | None -> ());
-                             (match x1279 with
-                              | Some x1281 ->
+                             (match x1251 with
+                              | Some x1253 ->
                                   ignore
-                                    (Ojs.call x1280 "push"
-                                       [|(child_process_SpawnSyncOptionsWithBufferEncoding_to_js
-                                            x1281)|])
+                                    (Ojs.call x1252 "push"
+                                       [|(SpawnSyncOptionsWithBufferEncoding.t_to_js
+                                            x1253)|])
                               | None -> ());
-                             x1280))|])
+                             x1252))|])
     let (spawn'Sync :
       command:string ->
         ?args:string list ->
-          ?options:child_process_SpawnSyncOptions ->
-            unit -> Buffer.t child_process_SpawnSyncReturns)
+          ?options:SpawnSyncOptions.t -> unit -> Buffer.t SpawnSyncReturns.t)
       =
-      fun ~command:(x1286 : string) ->
-        fun ?args:(x1287 : string list option) ->
-          fun ?options:(x1288 : child_process_SpawnSyncOptions option) ->
+      fun ~command:(x1258 : string) ->
+        fun ?args:(x1259 : string list option) ->
+          fun ?options:(x1260 : SpawnSyncOptions.t option) ->
             fun () ->
-              child_process_SpawnSyncReturns_of_js Buffer.t_of_js
-                (let x1293 = Import.child_process in
-                 Ojs.call (Ojs.get_prop_ascii x1293 "spawnSync") "apply"
-                   [|x1293;((let x1289 =
+              SpawnSyncReturns.t_of_js Buffer.t_of_js
+                (let x1265 = Import.child_process in
+                 Ojs.call (Ojs.get_prop_ascii x1265 "spawnSync") "apply"
+                   [|x1265;((let x1261 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x1289 "push"
-                                  [|(Ojs.string_to_js x1286)|]);
-                             (match x1287 with
-                              | Some x1291 ->
+                               (Ojs.call x1261 "push"
+                                  [|(Ojs.string_to_js x1258)|]);
+                             (match x1259 with
+                              | Some x1263 ->
                                   ignore
-                                    (Ojs.call x1289 "push"
+                                    (Ojs.call x1261 "push"
                                        [|(Ojs.list_to_js Ojs.string_to_js
-                                            x1291)|])
+                                            x1263)|])
                               | None -> ());
-                             (match x1288 with
-                              | Some x1290 ->
+                             (match x1260 with
+                              | Some x1262 ->
                                   ignore
-                                    (Ojs.call x1289 "push"
-                                       [|(child_process_SpawnSyncOptions_to_js
-                                            x1290)|])
+                                    (Ojs.call x1261 "push"
+                                       [|(SpawnSyncOptions.t_to_js x1262)|])
                               | None -> ());
-                             x1289))|])
+                             x1261))|])
     module ExecSyncOptions =
       struct
-        type t = child_process_ExecSyncOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x1296 : Ojs.t) -> child_process_ExecSyncOptions_of_js x1296
-        and t_to_js : t -> Ojs.t =
-          fun (x1295 : child_process_ExecSyncOptions) ->
-            child_process_ExecSyncOptions_to_js x1295
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x1268 : Ojs.t) -> x1268
+        and t_to_js : t -> Ojs.t = fun (x1267 : Ojs.t) -> x1267
         let (get_input : t -> Uint8Array.t or_string) =
-          fun (x1297 : t) ->
+          fun (x1269 : t) ->
             or_string_of_js Uint8Array.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1297) "input")
+              (Ojs.get_prop_ascii (t_to_js x1269) "input")
         let (set_input : t -> Uint8Array.t or_string -> unit) =
-          fun (x1299 : t) ->
-            fun (x1300 : Uint8Array.t or_string) ->
-              Ojs.set_prop_ascii (t_to_js x1299) "input"
-                (or_string_to_js Uint8Array.t_to_js x1300)
-        let (get_stdio : t -> child_process_StdioOptions) =
-          fun (x1302 : t) ->
-            child_process_StdioOptions_of_js
-              (Ojs.get_prop_ascii (t_to_js x1302) "stdio")
-        let (set_stdio : t -> child_process_StdioOptions -> unit) =
-          fun (x1303 : t) ->
-            fun (x1304 : child_process_StdioOptions) ->
-              Ojs.set_prop_ascii (t_to_js x1303) "stdio"
-                (child_process_StdioOptions_to_js x1304)
+          fun (x1271 : t) ->
+            fun (x1272 : Uint8Array.t or_string) ->
+              Ojs.set_prop_ascii (t_to_js x1271) "input"
+                (or_string_to_js Uint8Array.t_to_js x1272)
+        let (get_stdio : t -> StdioOptions.t) =
+          fun (x1274 : t) ->
+            StdioOptions.t_of_js (Ojs.get_prop_ascii (t_to_js x1274) "stdio")
+        let (set_stdio : t -> StdioOptions.t -> unit) =
+          fun (x1275 : t) ->
+            fun (x1276 : StdioOptions.t) ->
+              Ojs.set_prop_ascii (t_to_js x1275) "stdio"
+                (StdioOptions.t_to_js x1276)
         let (get_shell : t -> string) =
-          fun (x1305 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1305) "shell")
+          fun (x1277 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1277) "shell")
         let (set_shell : t -> string -> unit) =
-          fun (x1306 : t) ->
-            fun (x1307 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1306) "shell"
-                (Ojs.string_to_js x1307)
+          fun (x1278 : t) ->
+            fun (x1279 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1278) "shell"
+                (Ojs.string_to_js x1279)
         let (get_killSignal : t -> Node_process.Process.Signals.t or_number)
           =
-          fun (x1308 : t) ->
+          fun (x1280 : t) ->
             or_number_of_js Node_process.Process.Signals.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1308) "killSignal")
+              (Ojs.get_prop_ascii (t_to_js x1280) "killSignal")
         let (set_killSignal :
           t -> Node_process.Process.Signals.t or_number -> unit) =
-          fun (x1310 : t) ->
-            fun (x1311 : Node_process.Process.Signals.t or_number) ->
-              Ojs.set_prop_ascii (t_to_js x1310) "killSignal"
-                (or_number_to_js Node_process.Process.Signals.t_to_js x1311)
-        let (get_maxBuffer : t -> float) =
-          fun (x1313 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x1313) "maxBuffer")
-        let (set_maxBuffer : t -> float -> unit) =
-          fun (x1314 : t) ->
-            fun (x1315 : float) ->
-              Ojs.set_prop_ascii (t_to_js x1314) "maxBuffer"
-                (Ojs.float_to_js x1315)
+          fun (x1282 : t) ->
+            fun (x1283 : Node_process.Process.Signals.t or_number) ->
+              Ojs.set_prop_ascii (t_to_js x1282) "killSignal"
+                (or_number_to_js Node_process.Process.Signals.t_to_js x1283)
+        let (get_maxBuffer : t -> int) =
+          fun (x1285 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1285) "maxBuffer")
+        let (set_maxBuffer : t -> int -> unit) =
+          fun (x1286 : t) ->
+            fun (x1287 : int) ->
+              Ojs.set_prop_ascii (t_to_js x1286) "maxBuffer"
+                (Ojs.int_to_js x1287)
         let (get_encoding :
           t -> (BufferEncoding.t, [ `buffer ]) or_enum or_null) =
-          fun (x1316 : t) ->
+          fun (x1288 : t) ->
             or_null_of_js
-              (fun (x1317 : Ojs.t) ->
+              (fun (x1289 : Ojs.t) ->
                  or_enum_of_js BufferEncoding.t_of_js
-                   (fun (x1319 : Ojs.t) ->
-                      let x1320 = x1319 in
-                      match Ojs.string_of_js x1320 with
+                   (fun (x1291 : Ojs.t) ->
+                      let x1292 = x1291 in
+                      match Ojs.string_of_js x1292 with
                       | "buffer" -> `buffer
-                      | _ -> assert false) x1317)
-              (Ojs.get_prop_ascii (t_to_js x1316) "encoding")
+                      | _ -> assert false) x1289)
+              (Ojs.get_prop_ascii (t_to_js x1288) "encoding")
         let (set_encoding :
           t -> (BufferEncoding.t, [ `buffer ]) or_enum or_null -> unit) =
-          fun (x1321 : t) ->
-            fun (x1322 : (BufferEncoding.t, [ `buffer ]) or_enum or_null) ->
-              Ojs.set_prop_ascii (t_to_js x1321) "encoding"
+          fun (x1293 : t) ->
+            fun (x1294 : (BufferEncoding.t, [ `buffer ]) or_enum or_null) ->
+              Ojs.set_prop_ascii (t_to_js x1293) "encoding"
                 (or_null_to_js
-                   (fun (x1323 : (BufferEncoding.t, [ `buffer ]) or_enum) ->
+                   (fun (x1295 : (BufferEncoding.t, [ `buffer ]) or_enum) ->
                       or_enum_to_js BufferEncoding.t_to_js
-                        (fun (x1325 : [ `buffer ]) ->
-                           match x1325 with
-                           | `buffer -> Ojs.string_to_js "buffer") x1323)
-                   x1322)
-        let (cast : t -> child_process_CommonOptions) =
-          fun (x1326 : t) ->
-            child_process_CommonOptions_of_js (t_to_js x1326)
+                        (fun (x1297 : [ `buffer ]) ->
+                           match x1297 with
+                           | `buffer -> Ojs.string_to_js "buffer") x1295)
+                   x1294)
+        let (cast : t -> CommonOptions.t) =
+          fun (x1298 : t) -> CommonOptions.t_of_js (t_to_js x1298)
       end
     module ExecSyncOptionsWithStringEncoding =
       struct
-        type t = child_process_ExecSyncOptionsWithStringEncoding
-        let rec t_of_js : Ojs.t -> t =
-          fun (x1328 : Ojs.t) ->
-            child_process_ExecSyncOptionsWithStringEncoding_of_js x1328
-        and t_to_js : t -> Ojs.t =
-          fun (x1327 : child_process_ExecSyncOptionsWithStringEncoding) ->
-            child_process_ExecSyncOptionsWithStringEncoding_to_js x1327
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x1300 : Ojs.t) -> x1300
+        and t_to_js : t -> Ojs.t = fun (x1299 : Ojs.t) -> x1299
         let (get_encoding : t -> BufferEncoding.t) =
-          fun (x1329 : t) ->
+          fun (x1301 : t) ->
             BufferEncoding.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1329) "encoding")
+              (Ojs.get_prop_ascii (t_to_js x1301) "encoding")
         let (set_encoding : t -> BufferEncoding.t -> unit) =
-          fun (x1330 : t) ->
-            fun (x1331 : BufferEncoding.t) ->
-              Ojs.set_prop_ascii (t_to_js x1330) "encoding"
-                (BufferEncoding.t_to_js x1331)
-        let (cast : t -> child_process_ExecSyncOptions) =
-          fun (x1332 : t) ->
-            child_process_ExecSyncOptions_of_js (t_to_js x1332)
+          fun (x1302 : t) ->
+            fun (x1303 : BufferEncoding.t) ->
+              Ojs.set_prop_ascii (t_to_js x1302) "encoding"
+                (BufferEncoding.t_to_js x1303)
+        let (cast : t -> ExecSyncOptions.t) =
+          fun (x1304 : t) -> ExecSyncOptions.t_of_js (t_to_js x1304)
       end
     module ExecSyncOptionsWithBufferEncoding =
       struct
-        type t = child_process_ExecSyncOptionsWithBufferEncoding
-        let rec t_of_js : Ojs.t -> t =
-          fun (x1334 : Ojs.t) ->
-            child_process_ExecSyncOptionsWithBufferEncoding_of_js x1334
-        and t_to_js : t -> Ojs.t =
-          fun (x1333 : child_process_ExecSyncOptionsWithBufferEncoding) ->
-            child_process_ExecSyncOptionsWithBufferEncoding_to_js x1333
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x1306 : Ojs.t) -> x1306
+        and t_to_js : t -> Ojs.t = fun (x1305 : Ojs.t) -> x1305
         let (get_encoding : t -> [ `buffer ] or_null) =
-          fun (x1335 : t) ->
+          fun (x1307 : t) ->
             or_null_of_js
-              (fun (x1336 : Ojs.t) ->
-                 let x1337 = x1336 in
-                 match Ojs.string_of_js x1337 with
+              (fun (x1308 : Ojs.t) ->
+                 let x1309 = x1308 in
+                 match Ojs.string_of_js x1309 with
                  | "buffer" -> `buffer
                  | _ -> assert false)
-              (Ojs.get_prop_ascii (t_to_js x1335) "encoding")
+              (Ojs.get_prop_ascii (t_to_js x1307) "encoding")
         let (set_encoding : t -> [ `buffer ] or_null -> unit) =
-          fun (x1338 : t) ->
-            fun (x1339 : [ `buffer ] or_null) ->
-              Ojs.set_prop_ascii (t_to_js x1338) "encoding"
+          fun (x1310 : t) ->
+            fun (x1311 : [ `buffer ] or_null) ->
+              Ojs.set_prop_ascii (t_to_js x1310) "encoding"
                 (or_null_to_js
-                   (fun (x1340 : [ `buffer ]) ->
-                      match x1340 with | `buffer -> Ojs.string_to_js "buffer")
-                   x1339)
-        let (cast : t -> child_process_ExecSyncOptions) =
-          fun (x1341 : t) ->
-            child_process_ExecSyncOptions_of_js (t_to_js x1341)
+                   (fun (x1312 : [ `buffer ]) ->
+                      match x1312 with | `buffer -> Ojs.string_to_js "buffer")
+                   x1311)
+        let (cast : t -> ExecSyncOptions.t) =
+          fun (x1313 : t) -> ExecSyncOptions.t_of_js (t_to_js x1313)
       end
     let (execSync : command:string -> Buffer.t) =
-      fun ~command:(x1342 : string) ->
+      fun ~command:(x1314 : string) ->
         Buffer.t_of_js
           (Ojs.call Import.child_process "execSync"
-             [|(Ojs.string_to_js x1342)|])
+             [|(Ojs.string_to_js x1314)|])
     let (execSync :
       command:string ->
-        ?options:child_process_ExecSyncOptionsWithStringEncoding ->
-          unit -> string)
+        ?options:ExecSyncOptionsWithStringEncoding.t -> unit -> string)
       =
-      fun ~command:(x1343 : string) ->
-        fun
-          ?options:(x1344 :
-                     child_process_ExecSyncOptionsWithStringEncoding option)
-          ->
+      fun ~command:(x1315 : string) ->
+        fun ?options:(x1316 : ExecSyncOptionsWithStringEncoding.t option) ->
           fun () ->
             Ojs.string_of_js
-              (let x1347 = Import.child_process in
-               Ojs.call (Ojs.get_prop_ascii x1347 "execSync") "apply"
-                 [|x1347;((let x1345 =
+              (let x1319 = Import.child_process in
+               Ojs.call (Ojs.get_prop_ascii x1319 "execSync") "apply"
+                 [|x1319;((let x1317 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1345 "push"
-                                [|(Ojs.string_to_js x1343)|]);
-                           (match x1344 with
-                            | Some x1346 ->
+                             (Ojs.call x1317 "push"
+                                [|(Ojs.string_to_js x1315)|]);
+                           (match x1316 with
+                            | Some x1318 ->
                                 ignore
-                                  (Ojs.call x1345 "push"
-                                     [|(child_process_ExecSyncOptionsWithStringEncoding_to_js
-                                          x1346)|])
+                                  (Ojs.call x1317 "push"
+                                     [|(ExecSyncOptionsWithStringEncoding.t_to_js
+                                          x1318)|])
                             | None -> ());
-                           x1345))|])
+                           x1317))|])
     let (execSync :
       command:string ->
-        ?options:child_process_ExecSyncOptionsWithBufferEncoding ->
-          unit -> Buffer.t)
+        ?options:ExecSyncOptionsWithBufferEncoding.t -> unit -> Buffer.t)
       =
-      fun ~command:(x1348 : string) ->
-        fun
-          ?options:(x1349 :
-                     child_process_ExecSyncOptionsWithBufferEncoding option)
-          ->
+      fun ~command:(x1320 : string) ->
+        fun ?options:(x1321 : ExecSyncOptionsWithBufferEncoding.t option) ->
           fun () ->
             Buffer.t_of_js
-              (let x1352 = Import.child_process in
-               Ojs.call (Ojs.get_prop_ascii x1352 "execSync") "apply"
-                 [|x1352;((let x1350 =
+              (let x1324 = Import.child_process in
+               Ojs.call (Ojs.get_prop_ascii x1324 "execSync") "apply"
+                 [|x1324;((let x1322 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1350 "push"
-                                [|(Ojs.string_to_js x1348)|]);
-                           (match x1349 with
-                            | Some x1351 ->
+                             (Ojs.call x1322 "push"
+                                [|(Ojs.string_to_js x1320)|]);
+                           (match x1321 with
+                            | Some x1323 ->
                                 ignore
-                                  (Ojs.call x1350 "push"
-                                     [|(child_process_ExecSyncOptionsWithBufferEncoding_to_js
-                                          x1351)|])
+                                  (Ojs.call x1322 "push"
+                                     [|(ExecSyncOptionsWithBufferEncoding.t_to_js
+                                          x1323)|])
                             | None -> ());
-                           x1350))|])
+                           x1322))|])
     let (execSync :
-      command:string ->
-        ?options:child_process_ExecSyncOptions -> unit -> Buffer.t)
-      =
-      fun ~command:(x1353 : string) ->
-        fun ?options:(x1354 : child_process_ExecSyncOptions option) ->
+      command:string -> ?options:ExecSyncOptions.t -> unit -> Buffer.t) =
+      fun ~command:(x1325 : string) ->
+        fun ?options:(x1326 : ExecSyncOptions.t option) ->
           fun () ->
             Buffer.t_of_js
-              (let x1357 = Import.child_process in
-               Ojs.call (Ojs.get_prop_ascii x1357 "execSync") "apply"
-                 [|x1357;((let x1355 =
+              (let x1329 = Import.child_process in
+               Ojs.call (Ojs.get_prop_ascii x1329 "execSync") "apply"
+                 [|x1329;((let x1327 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1355 "push"
-                                [|(Ojs.string_to_js x1353)|]);
-                           (match x1354 with
-                            | Some x1356 ->
+                             (Ojs.call x1327 "push"
+                                [|(Ojs.string_to_js x1325)|]);
+                           (match x1326 with
+                            | Some x1328 ->
                                 ignore
-                                  (Ojs.call x1355 "push"
-                                     [|(child_process_ExecSyncOptions_to_js
-                                          x1356)|])
+                                  (Ojs.call x1327 "push"
+                                     [|(ExecSyncOptions.t_to_js x1328)|])
                             | None -> ());
-                           x1355))|])
+                           x1327))|])
     module ExecFileSyncOptions =
       struct
-        type t = child_process_ExecFileSyncOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x1359 : Ojs.t) ->
-            child_process_ExecFileSyncOptions_of_js x1359
-        and t_to_js : t -> Ojs.t =
-          fun (x1358 : child_process_ExecFileSyncOptions) ->
-            child_process_ExecFileSyncOptions_to_js x1358
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x1331 : Ojs.t) -> x1331
+        and t_to_js : t -> Ojs.t = fun (x1330 : Ojs.t) -> x1330
         let (get_input : t -> ArrayBufferView.t or_string) =
-          fun (x1360 : t) ->
+          fun (x1332 : t) ->
             or_string_of_js ArrayBufferView.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1360) "input")
+              (Ojs.get_prop_ascii (t_to_js x1332) "input")
         let (set_input : t -> ArrayBufferView.t or_string -> unit) =
-          fun (x1362 : t) ->
-            fun (x1363 : ArrayBufferView.t or_string) ->
-              Ojs.set_prop_ascii (t_to_js x1362) "input"
-                (or_string_to_js ArrayBufferView.t_to_js x1363)
-        let (get_stdio : t -> child_process_StdioOptions) =
-          fun (x1365 : t) ->
-            child_process_StdioOptions_of_js
-              (Ojs.get_prop_ascii (t_to_js x1365) "stdio")
-        let (set_stdio : t -> child_process_StdioOptions -> unit) =
-          fun (x1366 : t) ->
-            fun (x1367 : child_process_StdioOptions) ->
-              Ojs.set_prop_ascii (t_to_js x1366) "stdio"
-                (child_process_StdioOptions_to_js x1367)
+          fun (x1334 : t) ->
+            fun (x1335 : ArrayBufferView.t or_string) ->
+              Ojs.set_prop_ascii (t_to_js x1334) "input"
+                (or_string_to_js ArrayBufferView.t_to_js x1335)
+        let (get_stdio : t -> StdioOptions.t) =
+          fun (x1337 : t) ->
+            StdioOptions.t_of_js (Ojs.get_prop_ascii (t_to_js x1337) "stdio")
+        let (set_stdio : t -> StdioOptions.t -> unit) =
+          fun (x1338 : t) ->
+            fun (x1339 : StdioOptions.t) ->
+              Ojs.set_prop_ascii (t_to_js x1338) "stdio"
+                (StdioOptions.t_to_js x1339)
         let (get_killSignal : t -> Node_process.Process.Signals.t or_number)
           =
-          fun (x1368 : t) ->
+          fun (x1340 : t) ->
             or_number_of_js Node_process.Process.Signals.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1368) "killSignal")
+              (Ojs.get_prop_ascii (t_to_js x1340) "killSignal")
         let (set_killSignal :
           t -> Node_process.Process.Signals.t or_number -> unit) =
-          fun (x1370 : t) ->
-            fun (x1371 : Node_process.Process.Signals.t or_number) ->
-              Ojs.set_prop_ascii (t_to_js x1370) "killSignal"
-                (or_number_to_js Node_process.Process.Signals.t_to_js x1371)
-        let (get_maxBuffer : t -> float) =
-          fun (x1373 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x1373) "maxBuffer")
-        let (set_maxBuffer : t -> float -> unit) =
-          fun (x1374 : t) ->
-            fun (x1375 : float) ->
-              Ojs.set_prop_ascii (t_to_js x1374) "maxBuffer"
-                (Ojs.float_to_js x1375)
+          fun (x1342 : t) ->
+            fun (x1343 : Node_process.Process.Signals.t or_number) ->
+              Ojs.set_prop_ascii (t_to_js x1342) "killSignal"
+                (or_number_to_js Node_process.Process.Signals.t_to_js x1343)
+        let (get_maxBuffer : t -> int) =
+          fun (x1345 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1345) "maxBuffer")
+        let (set_maxBuffer : t -> int -> unit) =
+          fun (x1346 : t) ->
+            fun (x1347 : int) ->
+              Ojs.set_prop_ascii (t_to_js x1346) "maxBuffer"
+                (Ojs.int_to_js x1347)
         let (get_encoding : t -> BufferEncoding.t) =
-          fun (x1376 : t) ->
+          fun (x1348 : t) ->
             BufferEncoding.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1376) "encoding")
+              (Ojs.get_prop_ascii (t_to_js x1348) "encoding")
         let (set_encoding : t -> BufferEncoding.t -> unit) =
-          fun (x1377 : t) ->
-            fun (x1378 : BufferEncoding.t) ->
-              Ojs.set_prop_ascii (t_to_js x1377) "encoding"
-                (BufferEncoding.t_to_js x1378)
+          fun (x1349 : t) ->
+            fun (x1350 : BufferEncoding.t) ->
+              Ojs.set_prop_ascii (t_to_js x1349) "encoding"
+                (BufferEncoding.t_to_js x1350)
         let (get_shell : t -> bool or_string) =
-          fun (x1379 : t) ->
+          fun (x1351 : t) ->
             or_string_of_js Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x1379) "shell")
+              (Ojs.get_prop_ascii (t_to_js x1351) "shell")
         let (set_shell : t -> bool or_string -> unit) =
-          fun (x1381 : t) ->
-            fun (x1382 : bool or_string) ->
-              Ojs.set_prop_ascii (t_to_js x1381) "shell"
-                (or_string_to_js Ojs.bool_to_js x1382)
-        let (cast : t -> child_process_CommonOptions) =
-          fun (x1384 : t) ->
-            child_process_CommonOptions_of_js (t_to_js x1384)
+          fun (x1353 : t) ->
+            fun (x1354 : bool or_string) ->
+              Ojs.set_prop_ascii (t_to_js x1353) "shell"
+                (or_string_to_js Ojs.bool_to_js x1354)
+        let (cast : t -> CommonOptions.t) =
+          fun (x1356 : t) -> CommonOptions.t_of_js (t_to_js x1356)
       end
     module ExecFileSyncOptionsWithStringEncoding =
       struct
-        type t = child_process_ExecFileSyncOptionsWithStringEncoding
-        let rec t_of_js : Ojs.t -> t =
-          fun (x1386 : Ojs.t) ->
-            child_process_ExecFileSyncOptionsWithStringEncoding_of_js x1386
-        and t_to_js : t -> Ojs.t =
-          fun (x1385 : child_process_ExecFileSyncOptionsWithStringEncoding)
-            ->
-            child_process_ExecFileSyncOptionsWithStringEncoding_to_js x1385
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x1358 : Ojs.t) -> x1358
+        and t_to_js : t -> Ojs.t = fun (x1357 : Ojs.t) -> x1357
         let (get_encoding : t -> BufferEncoding.t) =
-          fun (x1387 : t) ->
+          fun (x1359 : t) ->
             BufferEncoding.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1387) "encoding")
+              (Ojs.get_prop_ascii (t_to_js x1359) "encoding")
         let (set_encoding : t -> BufferEncoding.t -> unit) =
-          fun (x1388 : t) ->
-            fun (x1389 : BufferEncoding.t) ->
-              Ojs.set_prop_ascii (t_to_js x1388) "encoding"
-                (BufferEncoding.t_to_js x1389)
-        let (cast : t -> child_process_ExecFileSyncOptions) =
-          fun (x1390 : t) ->
-            child_process_ExecFileSyncOptions_of_js (t_to_js x1390)
+          fun (x1360 : t) ->
+            fun (x1361 : BufferEncoding.t) ->
+              Ojs.set_prop_ascii (t_to_js x1360) "encoding"
+                (BufferEncoding.t_to_js x1361)
+        let (cast : t -> ExecFileSyncOptions.t) =
+          fun (x1362 : t) -> ExecFileSyncOptions.t_of_js (t_to_js x1362)
       end
     module ExecFileSyncOptionsWithBufferEncoding =
       struct
-        type t = child_process_ExecFileSyncOptionsWithBufferEncoding
-        let rec t_of_js : Ojs.t -> t =
-          fun (x1392 : Ojs.t) ->
-            child_process_ExecFileSyncOptionsWithBufferEncoding_of_js x1392
-        and t_to_js : t -> Ojs.t =
-          fun (x1391 : child_process_ExecFileSyncOptionsWithBufferEncoding)
-            ->
-            child_process_ExecFileSyncOptionsWithBufferEncoding_to_js x1391
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x1364 : Ojs.t) -> x1364
+        and t_to_js : t -> Ojs.t = fun (x1363 : Ojs.t) -> x1363
         let (get_encoding : t -> BufferEncoding.t) =
-          fun (x1393 : t) ->
+          fun (x1365 : t) ->
             BufferEncoding.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1393) "encoding")
+              (Ojs.get_prop_ascii (t_to_js x1365) "encoding")
         let (set_encoding : t -> BufferEncoding.t -> unit) =
-          fun (x1394 : t) ->
-            fun (x1395 : BufferEncoding.t) ->
-              Ojs.set_prop_ascii (t_to_js x1394) "encoding"
-                (BufferEncoding.t_to_js x1395)
-        let (cast : t -> child_process_ExecFileSyncOptions) =
-          fun (x1396 : t) ->
-            child_process_ExecFileSyncOptions_of_js (t_to_js x1396)
+          fun (x1366 : t) ->
+            fun (x1367 : BufferEncoding.t) ->
+              Ojs.set_prop_ascii (t_to_js x1366) "encoding"
+                (BufferEncoding.t_to_js x1367)
+        let (cast : t -> ExecFileSyncOptions.t) =
+          fun (x1368 : t) -> ExecFileSyncOptions.t_of_js (t_to_js x1368)
       end
     let (execFileSync : command:string -> Buffer.t) =
-      fun ~command:(x1397 : string) ->
+      fun ~command:(x1369 : string) ->
         Buffer.t_of_js
           (Ojs.call Import.child_process "execFileSync"
-             [|(Ojs.string_to_js x1397)|])
+             [|(Ojs.string_to_js x1369)|])
     let (execFileSync :
       command:string ->
-        ?options:child_process_ExecFileSyncOptionsWithStringEncoding ->
-          unit -> string)
+        ?options:ExecFileSyncOptionsWithStringEncoding.t -> unit -> string)
       =
-      fun ~command:(x1398 : string) ->
-        fun
-          ?options:(x1399 :
-                     child_process_ExecFileSyncOptionsWithStringEncoding
-                       option)
+      fun ~command:(x1370 : string) ->
+        fun ?options:(x1371 : ExecFileSyncOptionsWithStringEncoding.t option)
           ->
           fun () ->
             Ojs.string_of_js
-              (let x1402 = Import.child_process in
-               Ojs.call (Ojs.get_prop_ascii x1402 "execFileSync") "apply"
-                 [|x1402;((let x1400 =
+              (let x1374 = Import.child_process in
+               Ojs.call (Ojs.get_prop_ascii x1374 "execFileSync") "apply"
+                 [|x1374;((let x1372 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1400 "push"
-                                [|(Ojs.string_to_js x1398)|]);
-                           (match x1399 with
-                            | Some x1401 ->
+                             (Ojs.call x1372 "push"
+                                [|(Ojs.string_to_js x1370)|]);
+                           (match x1371 with
+                            | Some x1373 ->
                                 ignore
-                                  (Ojs.call x1400 "push"
-                                     [|(child_process_ExecFileSyncOptionsWithStringEncoding_to_js
-                                          x1401)|])
+                                  (Ojs.call x1372 "push"
+                                     [|(ExecFileSyncOptionsWithStringEncoding.t_to_js
+                                          x1373)|])
                             | None -> ());
-                           x1400))|])
+                           x1372))|])
     let (execFileSync :
       command:string ->
-        ?options:child_process_ExecFileSyncOptionsWithBufferEncoding ->
-          unit -> Buffer.t)
+        ?options:ExecFileSyncOptionsWithBufferEncoding.t -> unit -> Buffer.t)
       =
-      fun ~command:(x1403 : string) ->
-        fun
-          ?options:(x1404 :
-                     child_process_ExecFileSyncOptionsWithBufferEncoding
-                       option)
+      fun ~command:(x1375 : string) ->
+        fun ?options:(x1376 : ExecFileSyncOptionsWithBufferEncoding.t option)
           ->
           fun () ->
             Buffer.t_of_js
-              (let x1407 = Import.child_process in
-               Ojs.call (Ojs.get_prop_ascii x1407 "execFileSync") "apply"
-                 [|x1407;((let x1405 =
+              (let x1379 = Import.child_process in
+               Ojs.call (Ojs.get_prop_ascii x1379 "execFileSync") "apply"
+                 [|x1379;((let x1377 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1405 "push"
-                                [|(Ojs.string_to_js x1403)|]);
-                           (match x1404 with
-                            | Some x1406 ->
+                             (Ojs.call x1377 "push"
+                                [|(Ojs.string_to_js x1375)|]);
+                           (match x1376 with
+                            | Some x1378 ->
                                 ignore
-                                  (Ojs.call x1405 "push"
-                                     [|(child_process_ExecFileSyncOptionsWithBufferEncoding_to_js
-                                          x1406)|])
+                                  (Ojs.call x1377 "push"
+                                     [|(ExecFileSyncOptionsWithBufferEncoding.t_to_js
+                                          x1378)|])
                             | None -> ());
-                           x1405))|])
+                           x1377))|])
     let (execFileSync :
-      command:string ->
-        ?options:child_process_ExecFileSyncOptions -> unit -> Buffer.t)
-      =
-      fun ~command:(x1408 : string) ->
-        fun ?options:(x1409 : child_process_ExecFileSyncOptions option) ->
+      command:string -> ?options:ExecFileSyncOptions.t -> unit -> Buffer.t) =
+      fun ~command:(x1380 : string) ->
+        fun ?options:(x1381 : ExecFileSyncOptions.t option) ->
           fun () ->
             Buffer.t_of_js
-              (let x1412 = Import.child_process in
-               Ojs.call (Ojs.get_prop_ascii x1412 "execFileSync") "apply"
-                 [|x1412;((let x1410 =
+              (let x1384 = Import.child_process in
+               Ojs.call (Ojs.get_prop_ascii x1384 "execFileSync") "apply"
+                 [|x1384;((let x1382 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1410 "push"
-                                [|(Ojs.string_to_js x1408)|]);
-                           (match x1409 with
-                            | Some x1411 ->
+                             (Ojs.call x1382 "push"
+                                [|(Ojs.string_to_js x1380)|]);
+                           (match x1381 with
+                            | Some x1383 ->
                                 ignore
-                                  (Ojs.call x1410 "push"
-                                     [|(child_process_ExecFileSyncOptions_to_js
-                                          x1411)|])
+                                  (Ojs.call x1382 "push"
+                                     [|(ExecFileSyncOptions.t_to_js x1383)|])
                             | None -> ());
-                           x1410))|])
+                           x1382))|])
     let (execFileSync :
       command:string ->
         ?args:string list ->
-          ?options:child_process_ExecFileSyncOptionsWithStringEncoding ->
-            unit -> string)
+          ?options:ExecFileSyncOptionsWithStringEncoding.t -> unit -> string)
       =
-      fun ~command:(x1413 : string) ->
-        fun ?args:(x1414 : string list option) ->
+      fun ~command:(x1385 : string) ->
+        fun ?args:(x1386 : string list option) ->
           fun
-            ?options:(x1415 :
-                       child_process_ExecFileSyncOptionsWithStringEncoding
-                         option)
+            ?options:(x1387 : ExecFileSyncOptionsWithStringEncoding.t option)
             ->
             fun () ->
               Ojs.string_of_js
-                (let x1420 = Import.child_process in
-                 Ojs.call (Ojs.get_prop_ascii x1420 "execFileSync") "apply"
-                   [|x1420;((let x1416 =
+                (let x1392 = Import.child_process in
+                 Ojs.call (Ojs.get_prop_ascii x1392 "execFileSync") "apply"
+                   [|x1392;((let x1388 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x1416 "push"
-                                  [|(Ojs.string_to_js x1413)|]);
-                             (match x1414 with
-                              | Some x1418 ->
+                               (Ojs.call x1388 "push"
+                                  [|(Ojs.string_to_js x1385)|]);
+                             (match x1386 with
+                              | Some x1390 ->
                                   ignore
-                                    (Ojs.call x1416 "push"
+                                    (Ojs.call x1388 "push"
                                        [|(Ojs.list_to_js Ojs.string_to_js
-                                            x1418)|])
+                                            x1390)|])
                               | None -> ());
-                             (match x1415 with
-                              | Some x1417 ->
+                             (match x1387 with
+                              | Some x1389 ->
                                   ignore
-                                    (Ojs.call x1416 "push"
-                                       [|(child_process_ExecFileSyncOptionsWithStringEncoding_to_js
-                                            x1417)|])
+                                    (Ojs.call x1388 "push"
+                                       [|(ExecFileSyncOptionsWithStringEncoding.t_to_js
+                                            x1389)|])
                               | None -> ());
-                             x1416))|])
+                             x1388))|])
     let (execFileSync :
       command:string ->
         ?args:string list ->
-          ?options:child_process_ExecFileSyncOptionsWithBufferEncoding ->
+          ?options:ExecFileSyncOptionsWithBufferEncoding.t ->
             unit -> Buffer.t)
       =
-      fun ~command:(x1421 : string) ->
-        fun ?args:(x1422 : string list option) ->
+      fun ~command:(x1393 : string) ->
+        fun ?args:(x1394 : string list option) ->
           fun
-            ?options:(x1423 :
-                       child_process_ExecFileSyncOptionsWithBufferEncoding
-                         option)
+            ?options:(x1395 : ExecFileSyncOptionsWithBufferEncoding.t option)
             ->
             fun () ->
               Buffer.t_of_js
-                (let x1428 = Import.child_process in
-                 Ojs.call (Ojs.get_prop_ascii x1428 "execFileSync") "apply"
-                   [|x1428;((let x1424 =
+                (let x1400 = Import.child_process in
+                 Ojs.call (Ojs.get_prop_ascii x1400 "execFileSync") "apply"
+                   [|x1400;((let x1396 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x1424 "push"
-                                  [|(Ojs.string_to_js x1421)|]);
-                             (match x1422 with
-                              | Some x1426 ->
+                               (Ojs.call x1396 "push"
+                                  [|(Ojs.string_to_js x1393)|]);
+                             (match x1394 with
+                              | Some x1398 ->
                                   ignore
-                                    (Ojs.call x1424 "push"
+                                    (Ojs.call x1396 "push"
                                        [|(Ojs.list_to_js Ojs.string_to_js
-                                            x1426)|])
+                                            x1398)|])
                               | None -> ());
-                             (match x1423 with
-                              | Some x1425 ->
+                             (match x1395 with
+                              | Some x1397 ->
                                   ignore
-                                    (Ojs.call x1424 "push"
-                                       [|(child_process_ExecFileSyncOptionsWithBufferEncoding_to_js
-                                            x1425)|])
+                                    (Ojs.call x1396 "push"
+                                       [|(ExecFileSyncOptionsWithBufferEncoding.t_to_js
+                                            x1397)|])
                               | None -> ());
-                             x1424))|])
+                             x1396))|])
     let (execFileSync :
       command:string ->
         ?args:string list ->
-          ?options:child_process_ExecFileSyncOptions -> unit -> Buffer.t)
+          ?options:ExecFileSyncOptions.t -> unit -> Buffer.t)
       =
-      fun ~command:(x1429 : string) ->
-        fun ?args:(x1430 : string list option) ->
-          fun ?options:(x1431 : child_process_ExecFileSyncOptions option) ->
+      fun ~command:(x1401 : string) ->
+        fun ?args:(x1402 : string list option) ->
+          fun ?options:(x1403 : ExecFileSyncOptions.t option) ->
             fun () ->
               Buffer.t_of_js
-                (let x1436 = Import.child_process in
-                 Ojs.call (Ojs.get_prop_ascii x1436 "execFileSync") "apply"
-                   [|x1436;((let x1432 =
+                (let x1408 = Import.child_process in
+                 Ojs.call (Ojs.get_prop_ascii x1408 "execFileSync") "apply"
+                   [|x1408;((let x1404 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x1432 "push"
-                                  [|(Ojs.string_to_js x1429)|]);
-                             (match x1430 with
-                              | Some x1434 ->
+                               (Ojs.call x1404 "push"
+                                  [|(Ojs.string_to_js x1401)|]);
+                             (match x1402 with
+                              | Some x1406 ->
                                   ignore
-                                    (Ojs.call x1432 "push"
+                                    (Ojs.call x1404 "push"
                                        [|(Ojs.list_to_js Ojs.string_to_js
-                                            x1434)|])
+                                            x1406)|])
                               | None -> ());
-                             (match x1431 with
-                              | Some x1433 ->
+                             (match x1403 with
+                              | Some x1405 ->
                                   ignore
-                                    (Ojs.call x1432 "push"
-                                       [|(child_process_ExecFileSyncOptions_to_js
-                                            x1433)|])
+                                    (Ojs.call x1404 "push"
+                                       [|(ExecFileSyncOptions.t_to_js x1405)|])
                               | None -> ());
-                             x1432))|])
+                             x1404))|])
   end

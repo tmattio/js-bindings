@@ -208,7 +208,7 @@ module Make (M: Missing) : sig
   end
   module[@js.scope "node:stream"] Node_stream : sig
     (* import Stream = require('stream'); *)
-    (* export = Stream *)
+    
   end
   module[@js.scope "stream"] Stream : sig
     (* import EventEmitter = require('node:events'); *)
@@ -597,6 +597,6 @@ module Make (M: Missing) : sig
         val unref: t -> unit [@@js.call "unref"]
       end
     end
-    (* export = internal *)
+    
   end
 end

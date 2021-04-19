@@ -80,34 +80,33 @@ module Cluster =
             fun (x22 : any list) ->
               Ojs.set_prop_ascii (t_to_js x21) "stdio"
                 (Ojs.list_to_js any_to_js x22)
-        let (get_uid : t -> float) =
+        let (get_uid : t -> int) =
           fun (x24 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x24) "uid")
-        let (set_uid : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x24) "uid")
+        let (set_uid : t -> int -> unit) =
           fun (x25 : t) ->
-            fun (x26 : float) ->
-              Ojs.set_prop_ascii (t_to_js x25) "uid" (Ojs.float_to_js x26)
-        let (get_gid : t -> float) =
+            fun (x26 : int) ->
+              Ojs.set_prop_ascii (t_to_js x25) "uid" (Ojs.int_to_js x26)
+        let (get_gid : t -> int) =
           fun (x27 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x27) "gid")
-        let (set_gid : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x27) "gid")
+        let (set_gid : t -> int -> unit) =
           fun (x28 : t) ->
-            fun (x29 : float) ->
-              Ojs.set_prop_ascii (t_to_js x28) "gid" (Ojs.float_to_js x29)
-        let (get_inspectPort : t -> (unit -> float) or_number) =
+            fun (x29 : int) ->
+              Ojs.set_prop_ascii (t_to_js x28) "gid" (Ojs.int_to_js x29)
+        let (get_inspectPort : t -> (unit -> int) or_number) =
           fun (x30 : t) ->
             or_number_of_js
               (fun (x31 : Ojs.t) ->
-                 fun () -> Ojs.float_of_js (Ojs.apply x31 [||]))
+                 fun () -> Ojs.int_of_js (Ojs.apply x31 [||]))
               (Ojs.get_prop_ascii (t_to_js x30) "inspectPort")
-        let (set_inspectPort : t -> (unit -> float) or_number -> unit) =
+        let (set_inspectPort : t -> (unit -> int) or_number -> unit) =
           fun (x32 : t) ->
-            fun (x33 : (unit -> float) or_number) ->
+            fun (x33 : (unit -> int) or_number) ->
               Ojs.set_prop_ascii (t_to_js x32) "inspectPort"
                 (or_number_to_js
-                   (fun (x34 : unit -> float) ->
-                      Ojs.fun_to_js 1 (fun _ -> Ojs.float_to_js (x34 ())))
-                   x33)
+                   (fun (x34 : unit -> int) ->
+                      Ojs.fun_to_js 1 (fun _ -> Ojs.int_to_js (x34 ()))) x33)
       end
     module Address =
       struct
@@ -124,13 +123,13 @@ module Cluster =
             fun (x39 : string) ->
               Ojs.set_prop_ascii (t_to_js x38) "address"
                 (Ojs.string_to_js x39)
-        let (get_port : t -> float) =
+        let (get_port : t -> int) =
           fun (x40 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x40) "port")
-        let (set_port : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x40) "port")
+        let (set_port : t -> int -> unit) =
           fun (x41 : t) ->
-            fun (x42 : float) ->
-              Ojs.set_prop_ascii (t_to_js x41) "port" (Ojs.float_to_js x42)
+            fun (x42 : int) ->
+              Ojs.set_prop_ascii (t_to_js x41) "port" (Ojs.int_to_js x42)
         let (get_addressType : t -> [ `udp4  | `udp6 ] or_number) =
           fun (x43 : t) ->
             or_number_of_js
@@ -158,13 +157,13 @@ module Cluster =
           fun (x50 : Ojs.t) -> cluster_Worker_of_js x50
         and t_to_js : t -> Ojs.t =
           fun (x49 : cluster_Worker) -> cluster_Worker_to_js x49
-        let (get_id : t -> float) =
+        let (get_id : t -> int) =
           fun (x51 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x51) "id")
-        let (set_id : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x51) "id")
+        let (set_id : t -> int -> unit) =
           fun (x52 : t) ->
-            fun (x53 : float) ->
-              Ojs.set_prop_ascii (t_to_js x52) "id" (Ojs.float_to_js x53)
+            fun (x53 : int) ->
+              Ojs.set_prop_ascii (t_to_js x52) "id" (Ojs.int_to_js x53)
         let (get_process :
           t -> Node_child_process.Child_process.ChildProcess.t) =
           fun (x54 : t) ->
@@ -314,18 +313,18 @@ module Cluster =
         let (addListener''' :
           t ->
             event:[ `exit ] ->
-              listener:(code:float -> signal:string -> unit) -> t)
+              listener:(code:int -> signal:string -> unit) -> t)
           =
           fun (x99 : t) ->
             fun ~event:(x95 : [ `exit ]) ->
-              fun ~listener:(x96 : code:float -> signal:string -> unit) ->
+              fun ~listener:(x96 : code:int -> signal:string -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x99) "addListener"
                      [|((match x95 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 2
                          (fun (x97 : Ojs.t) ->
                             fun (x98 : Ojs.t) ->
-                              x96 ~code:(Ojs.float_of_js x97)
+                              x96 ~code:(Ojs.int_of_js x97)
                                 ~signal:(Ojs.string_of_js x98)))|])
         let (addListener'''' :
           t ->
@@ -415,15 +414,15 @@ module Cluster =
                      [|((match x123 with | `error -> Ojs.string_to_js "error"));(
                        Error.t_to_js x124)|])
         let (emit''' :
-          t -> event:[ `exit ] -> code:float -> signal:string -> bool) =
+          t -> event:[ `exit ] -> code:int -> signal:string -> bool) =
           fun (x129 : t) ->
             fun ~event:(x126 : [ `exit ]) ->
-              fun ~code:(x127 : float) ->
+              fun ~code:(x127 : int) ->
                 fun ~signal:(x128 : string) ->
                   Ojs.bool_of_js
                     (Ojs.call (t_to_js x129) "emit"
                        [|((match x126 with | `exit -> Ojs.string_to_js "exit"));(
-                         Ojs.float_to_js x127);(Ojs.string_to_js x128)|])
+                         Ojs.int_to_js x127);(Ojs.string_to_js x128)|])
         let (emit'''' :
           t -> event:[ `listening ] -> address:cluster_Address -> bool) =
           fun (x132 : t) ->
@@ -493,18 +492,18 @@ module Cluster =
         let (on''' :
           t ->
             event:[ `exit ] ->
-              listener:(code:float -> signal:string -> unit) -> t)
+              listener:(code:int -> signal:string -> unit) -> t)
           =
           fun (x157 : t) ->
             fun ~event:(x153 : [ `exit ]) ->
-              fun ~listener:(x154 : code:float -> signal:string -> unit) ->
+              fun ~listener:(x154 : code:int -> signal:string -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x157) "on"
                      [|((match x153 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 2
                          (fun (x155 : Ojs.t) ->
                             fun (x156 : Ojs.t) ->
-                              x154 ~code:(Ojs.float_of_js x155)
+                              x154 ~code:(Ojs.int_of_js x155)
                                 ~signal:(Ojs.string_of_js x156)))|])
         let (on'''' :
           t ->
@@ -595,18 +594,18 @@ module Cluster =
         let (once''' :
           t ->
             event:[ `exit ] ->
-              listener:(code:float -> signal:string -> unit) -> t)
+              listener:(code:int -> signal:string -> unit) -> t)
           =
           fun (x188 : t) ->
             fun ~event:(x184 : [ `exit ]) ->
-              fun ~listener:(x185 : code:float -> signal:string -> unit) ->
+              fun ~listener:(x185 : code:int -> signal:string -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x188) "once"
                      [|((match x184 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 2
                          (fun (x186 : Ojs.t) ->
                             fun (x187 : Ojs.t) ->
-                              x185 ~code:(Ojs.float_of_js x186)
+                              x185 ~code:(Ojs.int_of_js x186)
                                 ~signal:(Ojs.string_of_js x187)))|])
         let (once'''' :
           t ->
@@ -697,18 +696,18 @@ module Cluster =
         let (prependListener''' :
           t ->
             event:[ `exit ] ->
-              listener:(code:float -> signal:string -> unit) -> t)
+              listener:(code:int -> signal:string -> unit) -> t)
           =
           fun (x219 : t) ->
             fun ~event:(x215 : [ `exit ]) ->
-              fun ~listener:(x216 : code:float -> signal:string -> unit) ->
+              fun ~listener:(x216 : code:int -> signal:string -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x219) "prependListener"
                      [|((match x215 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 2
                          (fun (x217 : Ojs.t) ->
                             fun (x218 : Ojs.t) ->
-                              x216 ~code:(Ojs.float_of_js x217)
+                              x216 ~code:(Ojs.int_of_js x217)
                                 ~signal:(Ojs.string_of_js x218)))|])
         let (prependListener'''' :
           t ->
@@ -799,18 +798,18 @@ module Cluster =
         let (prependOnceListener''' :
           t ->
             event:[ `exit ] ->
-              listener:(code:float -> signal:string -> unit) -> t)
+              listener:(code:int -> signal:string -> unit) -> t)
           =
           fun (x250 : t) ->
             fun ~event:(x246 : [ `exit ]) ->
-              fun ~listener:(x247 : code:float -> signal:string -> unit) ->
+              fun ~listener:(x247 : code:int -> signal:string -> unit) ->
                 t_of_js
                   (Ojs.call (t_to_js x250) "prependOnceListener"
                      [|((match x246 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 2
                          (fun (x248 : Ojs.t) ->
                             fun (x249 : Ojs.t) ->
-                              x247 ~code:(Ojs.float_of_js x248)
+                              x247 ~code:(Ojs.int_of_js x248)
                                 ~signal:(Ojs.string_of_js x249)))|])
         let (prependOnceListener'''' :
           t ->
@@ -935,15 +934,15 @@ module Cluster =
             fun (x286 : bool) ->
               Ojs.set_prop_ascii (t_to_js x285) "isWorker"
                 (Ojs.bool_to_js x286)
-        let (get_schedulingPolicy : t -> float) =
+        let (get_schedulingPolicy : t -> int) =
           fun (x287 : t) ->
-            Ojs.float_of_js
+            Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x287) "schedulingPolicy")
-        let (set_schedulingPolicy : t -> float -> unit) =
+        let (set_schedulingPolicy : t -> int -> unit) =
           fun (x288 : t) ->
-            fun (x289 : float) ->
+            fun (x289 : int) ->
               Ojs.set_prop_ascii (t_to_js x288) "schedulingPolicy"
-                (Ojs.float_to_js x289)
+                (Ojs.int_to_js x289)
         let (get_settings : t -> cluster_ClusterSettings) =
           fun (x290 : t) ->
             cluster_ClusterSettings_of_js
@@ -989,12 +988,12 @@ module Cluster =
             fun (x304 : cluster_Worker Dict.t) ->
               Ojs.set_prop_ascii (t_to_js x303) "workers"
                 (Dict.t_to_js cluster_Worker_to_js x304)
-        let (get_SCHED_NONE : t -> float) =
+        let (get_SCHED_NONE : t -> int) =
           fun (x306 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x306) "SCHED_NONE")
-        let (get_SCHED_RR : t -> float) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x306) "SCHED_NONE")
+        let (get_SCHED_RR : t -> int) =
           fun (x307 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x307) "SCHED_RR")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x307) "SCHED_RR")
         let (addListener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
           fun (x312 : t) ->
@@ -1027,7 +1026,7 @@ module Cluster =
           t ->
             event:[ `exit ] ->
               listener:(worker:cluster_Worker ->
-                          code:float -> signal:string -> unit)
+                          code:int -> signal:string -> unit)
                 -> t)
           =
           fun (x322 : t) ->
@@ -1035,7 +1034,7 @@ module Cluster =
               fun
                 ~listener:(x318 :
                             worker:cluster_Worker ->
-                              code:float -> signal:string -> unit)
+                              code:int -> signal:string -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x322) "addListener"
@@ -1045,7 +1044,7 @@ module Cluster =
                             fun (x320 : Ojs.t) ->
                               fun (x321 : Ojs.t) ->
                                 x318 ~worker:(cluster_Worker_of_js x319)
-                                  ~code:(Ojs.float_of_js x320)
+                                  ~code:(Ojs.int_of_js x320)
                                   ~signal:(Ojs.string_of_js x321)))|])
         let (addListener''' :
           t ->
@@ -1182,19 +1181,19 @@ module Cluster =
         let (emit'' :
           t ->
             event:[ `exit ] ->
-              worker:cluster_Worker -> code:float -> signal:string -> bool)
+              worker:cluster_Worker -> code:int -> signal:string -> bool)
           =
           fun (x362 : t) ->
             fun ~event:(x358 : [ `exit ]) ->
               fun ~worker:(x359 : cluster_Worker) ->
-                fun ~code:(x360 : float) ->
+                fun ~code:(x360 : int) ->
                   fun ~signal:(x361 : string) ->
                     Ojs.bool_of_js
                       (Ojs.call (t_to_js x362) "emit"
                          [|((match x358 with
                              | `exit -> Ojs.string_to_js "exit"));(cluster_Worker_to_js
                                                                     x359);(
-                           Ojs.float_to_js x360);(Ojs.string_to_js x361)|])
+                           Ojs.int_to_js x360);(Ojs.string_to_js x361)|])
         let (emit''' : t -> event:[ `fork ] -> worker:cluster_Worker -> bool)
           =
           fun (x365 : t) ->
@@ -1290,7 +1289,7 @@ module Cluster =
           t ->
             event:[ `exit ] ->
               listener:(worker:cluster_Worker ->
-                          code:float -> signal:string -> unit)
+                          code:int -> signal:string -> unit)
                 -> t)
           =
           fun (x397 : t) ->
@@ -1298,7 +1297,7 @@ module Cluster =
               fun
                 ~listener:(x393 :
                             worker:cluster_Worker ->
-                              code:float -> signal:string -> unit)
+                              code:int -> signal:string -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x397) "on"
@@ -1308,7 +1307,7 @@ module Cluster =
                             fun (x395 : Ojs.t) ->
                               fun (x396 : Ojs.t) ->
                                 x393 ~worker:(cluster_Worker_of_js x394)
-                                  ~code:(Ojs.float_of_js x395)
+                                  ~code:(Ojs.int_of_js x395)
                                   ~signal:(Ojs.string_of_js x396)))|])
         let (on''' :
           t ->
@@ -1444,7 +1443,7 @@ module Cluster =
           t ->
             event:[ `exit ] ->
               listener:(worker:cluster_Worker ->
-                          code:float -> signal:string -> unit)
+                          code:int -> signal:string -> unit)
                 -> t)
           =
           fun (x437 : t) ->
@@ -1452,7 +1451,7 @@ module Cluster =
               fun
                 ~listener:(x433 :
                             worker:cluster_Worker ->
-                              code:float -> signal:string -> unit)
+                              code:int -> signal:string -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x437) "once"
@@ -1462,7 +1461,7 @@ module Cluster =
                             fun (x435 : Ojs.t) ->
                               fun (x436 : Ojs.t) ->
                                 x433 ~worker:(cluster_Worker_of_js x434)
-                                  ~code:(Ojs.float_of_js x435)
+                                  ~code:(Ojs.int_of_js x435)
                                   ~signal:(Ojs.string_of_js x436)))|])
         let (once''' :
           t ->
@@ -1598,7 +1597,7 @@ module Cluster =
           t ->
             event:[ `exit ] ->
               listener:(worker:cluster_Worker ->
-                          code:float -> signal:string -> unit)
+                          code:int -> signal:string -> unit)
                 -> t)
           =
           fun (x477 : t) ->
@@ -1606,7 +1605,7 @@ module Cluster =
               fun
                 ~listener:(x473 :
                             worker:cluster_Worker ->
-                              code:float -> signal:string -> unit)
+                              code:int -> signal:string -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x477) "prependListener"
@@ -1616,7 +1615,7 @@ module Cluster =
                             fun (x475 : Ojs.t) ->
                               fun (x476 : Ojs.t) ->
                                 x473 ~worker:(cluster_Worker_of_js x474)
-                                  ~code:(Ojs.float_of_js x475)
+                                  ~code:(Ojs.int_of_js x475)
                                   ~signal:(Ojs.string_of_js x476)))|])
         let (prependListener''' :
           t ->
@@ -1752,7 +1751,7 @@ module Cluster =
           t ->
             event:[ `exit ] ->
               listener:(worker:cluster_Worker ->
-                          code:float -> signal:string -> unit)
+                          code:int -> signal:string -> unit)
                 -> t)
           =
           fun (x517 : t) ->
@@ -1760,7 +1759,7 @@ module Cluster =
               fun
                 ~listener:(x513 :
                             worker:cluster_Worker ->
-                              code:float -> signal:string -> unit)
+                              code:int -> signal:string -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x517) "prependOnceListener"
@@ -1770,7 +1769,7 @@ module Cluster =
                             fun (x515 : Ojs.t) ->
                               fun (x516 : Ojs.t) ->
                                 x513 ~worker:(cluster_Worker_of_js x514)
-                                  ~code:(Ojs.float_of_js x515)
+                                  ~code:(Ojs.int_of_js x515)
                                   ~signal:(Ojs.string_of_js x516)))|])
         let (prependOnceListener''' :
           t ->
@@ -1878,10 +1877,10 @@ module Cluster =
           fun (x543 : t) ->
             Node_events.Events.EventEmitter.t_of_js (t_to_js x543)
       end
-    let (sCHED_NONE : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.cluster "SCHED_NONE")
-    let (sCHED_RR : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.cluster "SCHED_RR")
+    let (sCHED_NONE : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.cluster "SCHED_NONE")
+    let (sCHED_RR : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.cluster "SCHED_RR")
     let (disconnect : ?callback:(unit -> unit) -> unit -> unit) =
       fun ?callback:(x544 : (unit -> unit) option) ->
         fun () ->
@@ -1917,8 +1916,8 @@ module Cluster =
       Ojs.bool_of_js (Ojs.get_prop_ascii Import.cluster "isMaster")
     let (isWorker : bool) =
       Ojs.bool_of_js (Ojs.get_prop_ascii Import.cluster "isWorker")
-    let (schedulingPolicy : float) =
-      Ojs.float_of_js (Ojs.get_prop_ascii Import.cluster "schedulingPolicy")
+    let (schedulingPolicy : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.cluster "schedulingPolicy")
     let (settings : cluster_ClusterSettings) =
       cluster_ClusterSettings_of_js
         (Ojs.get_prop_ascii Import.cluster "settings")
@@ -1969,15 +1968,14 @@ module Cluster =
                       x562 ~worker:(cluster_Worker_of_js x563)))|])
     let (addListener :
       event:[ `exit ] ->
-        listener:(worker:cluster_Worker ->
-                    code:float -> signal:string -> unit)
+        listener:(worker:cluster_Worker -> code:int -> signal:string -> unit)
           -> cluster_Cluster)
       =
       fun ~event:(x564 : [ `exit ]) ->
         fun
           ~listener:(x565 :
                       worker:cluster_Worker ->
-                        code:float -> signal:string -> unit)
+                        code:int -> signal:string -> unit)
           ->
           cluster_Cluster_of_js
             (Ojs.call Import.cluster "addListener"
@@ -1987,7 +1985,7 @@ module Cluster =
                       fun (x567 : Ojs.t) ->
                         fun (x568 : Ojs.t) ->
                           x565 ~worker:(cluster_Worker_of_js x566)
-                            ~code:(Ojs.float_of_js x567)
+                            ~code:(Ojs.int_of_js x567)
                             ~signal:(Ojs.string_of_js x568)))|])
     let (addListener :
       event:[ `fork ] ->
@@ -2108,16 +2106,16 @@ module Cluster =
                  cluster_Worker_to_js x596)|])
     let (emit :
       event:[ `exit ] ->
-        worker:cluster_Worker -> code:float -> signal:string -> bool)
+        worker:cluster_Worker -> code:int -> signal:string -> bool)
       =
       fun ~event:(x597 : [ `exit ]) ->
         fun ~worker:(x598 : cluster_Worker) ->
-          fun ~code:(x599 : float) ->
+          fun ~code:(x599 : int) ->
             fun ~signal:(x600 : string) ->
               Ojs.bool_of_js
                 (Ojs.call Import.cluster "emit"
                    [|((match x597 with | `exit -> Ojs.string_to_js "exit"));(
-                     cluster_Worker_to_js x598);(Ojs.float_to_js x599);(
+                     cluster_Worker_to_js x598);(Ojs.int_to_js x599);(
                      Ojs.string_to_js x600)|])
     let (emit : event:[ `fork ] -> worker:cluster_Worker -> bool) =
       fun ~event:(x601 : [ `fork ]) ->
@@ -2195,15 +2193,14 @@ module Cluster =
                       x621 ~worker:(cluster_Worker_of_js x622)))|])
     let (on :
       event:[ `exit ] ->
-        listener:(worker:cluster_Worker ->
-                    code:float -> signal:string -> unit)
+        listener:(worker:cluster_Worker -> code:int -> signal:string -> unit)
           -> cluster_Cluster)
       =
       fun ~event:(x623 : [ `exit ]) ->
         fun
           ~listener:(x624 :
                       worker:cluster_Worker ->
-                        code:float -> signal:string -> unit)
+                        code:int -> signal:string -> unit)
           ->
           cluster_Cluster_of_js
             (Ojs.call Import.cluster "on"
@@ -2213,7 +2210,7 @@ module Cluster =
                       fun (x626 : Ojs.t) ->
                         fun (x627 : Ojs.t) ->
                           x624 ~worker:(cluster_Worker_of_js x625)
-                            ~code:(Ojs.float_of_js x626)
+                            ~code:(Ojs.int_of_js x626)
                             ~signal:(Ojs.string_of_js x627)))|])
     let (on :
       event:[ `fork ] ->
@@ -2332,15 +2329,14 @@ module Cluster =
                       x653 ~worker:(cluster_Worker_of_js x654)))|])
     let (once :
       event:[ `exit ] ->
-        listener:(worker:cluster_Worker ->
-                    code:float -> signal:string -> unit)
+        listener:(worker:cluster_Worker -> code:int -> signal:string -> unit)
           -> cluster_Cluster)
       =
       fun ~event:(x655 : [ `exit ]) ->
         fun
           ~listener:(x656 :
                       worker:cluster_Worker ->
-                        code:float -> signal:string -> unit)
+                        code:int -> signal:string -> unit)
           ->
           cluster_Cluster_of_js
             (Ojs.call Import.cluster "once"
@@ -2350,7 +2346,7 @@ module Cluster =
                       fun (x658 : Ojs.t) ->
                         fun (x659 : Ojs.t) ->
                           x656 ~worker:(cluster_Worker_of_js x657)
-                            ~code:(Ojs.float_of_js x658)
+                            ~code:(Ojs.int_of_js x658)
                             ~signal:(Ojs.string_of_js x659)))|])
     let (once :
       event:[ `fork ] ->
@@ -2470,21 +2466,20 @@ module Cluster =
                                   [|(Ojs.string_to_js x686)|])
                          | None -> ());
                         x685))|])
-    let (setMaxListeners : n:float -> cluster_Cluster) =
-      fun ~n:(x688 : float) ->
+    let (setMaxListeners : n:int -> cluster_Cluster) =
+      fun ~n:(x688 : int) ->
         cluster_Cluster_of_js
-          (Ojs.call Import.cluster "setMaxListeners"
-             [|(Ojs.float_to_js x688)|])
-    let (getMaxListeners : unit -> float) =
+          (Ojs.call Import.cluster "setMaxListeners" [|(Ojs.int_to_js x688)|])
+    let (getMaxListeners : unit -> int) =
       fun () ->
-        Ojs.float_of_js (Ojs.call Import.cluster "getMaxListeners" [||])
+        Ojs.int_of_js (Ojs.call Import.cluster "getMaxListeners" [||])
     let (listeners : event:string -> untyped_function list) =
       fun ~event:(x689 : string) ->
         Ojs.list_of_js untyped_function_of_js
           (Ojs.call Import.cluster "listeners" [|(Ojs.string_to_js x689)|])
-    let (listenerCount : type_:string -> float) =
+    let (listenerCount : type_:string -> int) =
       fun ~type_:(x691 : string) ->
-        Ojs.float_of_js
+        Ojs.int_of_js
           (Ojs.call Import.cluster "listenerCount"
              [|(Ojs.string_to_js x691)|])
     let (prependListener :
@@ -2513,15 +2508,14 @@ module Cluster =
                       x697 ~worker:(cluster_Worker_of_js x698)))|])
     let (prependListener :
       event:[ `exit ] ->
-        listener:(worker:cluster_Worker ->
-                    code:float -> signal:string -> unit)
+        listener:(worker:cluster_Worker -> code:int -> signal:string -> unit)
           -> cluster_Cluster)
       =
       fun ~event:(x699 : [ `exit ]) ->
         fun
           ~listener:(x700 :
                       worker:cluster_Worker ->
-                        code:float -> signal:string -> unit)
+                        code:int -> signal:string -> unit)
           ->
           cluster_Cluster_of_js
             (Ojs.call Import.cluster "prependListener"
@@ -2531,7 +2525,7 @@ module Cluster =
                       fun (x702 : Ojs.t) ->
                         fun (x703 : Ojs.t) ->
                           x700 ~worker:(cluster_Worker_of_js x701)
-                            ~code:(Ojs.float_of_js x702)
+                            ~code:(Ojs.int_of_js x702)
                             ~signal:(Ojs.string_of_js x703)))|])
     let (prependListener :
       event:[ `fork ] ->
@@ -2650,15 +2644,14 @@ module Cluster =
                       x729 ~worker:(cluster_Worker_of_js x730)))|])
     let (prependOnceListener :
       event:[ `exit ] ->
-        listener:(worker:cluster_Worker ->
-                    code:float -> signal:string -> unit)
+        listener:(worker:cluster_Worker -> code:int -> signal:string -> unit)
           -> cluster_Cluster)
       =
       fun ~event:(x731 : [ `exit ]) ->
         fun
           ~listener:(x732 :
                       worker:cluster_Worker ->
-                        code:float -> signal:string -> unit)
+                        code:int -> signal:string -> unit)
           ->
           cluster_Cluster_of_js
             (Ojs.call Import.cluster "prependOnceListener"
@@ -2668,7 +2661,7 @@ module Cluster =
                       fun (x734 : Ojs.t) ->
                         fun (x735 : Ojs.t) ->
                           x732 ~worker:(cluster_Worker_of_js x733)
-                            ~code:(Ojs.float_of_js x734)
+                            ~code:(Ojs.int_of_js x734)
                             ~signal:(Ojs.string_of_js x735)))|])
     let (prependOnceListener :
       event:[ `fork ] ->

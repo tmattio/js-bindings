@@ -2,27 +2,12 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2017
-module Internal =
+module Intl =
   struct
-    module AnonymousInterfaces =
+    module LDMLPluralRule =
       struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _Intl_LDMLPluralRule =
-          [ `few  | `many  | `one  | `other  | `two  | `zero ]
-        and _Intl_PluralRuleType = [ `cardinal  | `ordinal ]
-        and _Intl_PluralRules = [ `Intl_PluralRules ] intf
-        and _Intl_PluralRulesOptions = [ `Intl_PluralRulesOptions ] intf
-        and _Intl_ResolvedPluralRulesOptions =
-          [ `Intl_ResolvedPluralRulesOptions ] intf
-        let rec _Intl_LDMLPluralRule_of_js : Ojs.t -> _Intl_LDMLPluralRule =
+        type t = [ `few  | `many  | `one  | `other  | `two  | `zero ]
+        let rec t_of_js : Ojs.t -> t =
           fun (x2 : Ojs.t) ->
             let x3 = x2 in
             match Ojs.string_of_js x3 with
@@ -33,7 +18,7 @@ module Internal =
             | "two" -> `two
             | "zero" -> `zero
             | _ -> assert false
-        and _Intl_LDMLPluralRule_to_js : _Intl_LDMLPluralRule -> Ojs.t =
+        and t_to_js : t -> Ojs.t =
           fun (x1 : [ `few  | `many  | `one  | `other  | `two  | `zero ]) ->
             match x1 with
             | `few -> Ojs.string_to_js "few"
@@ -42,327 +27,289 @@ module Internal =
             | `other -> Ojs.string_to_js "other"
             | `two -> Ojs.string_to_js "two"
             | `zero -> Ojs.string_to_js "zero"
-        and _Intl_PluralRuleType_of_js : Ojs.t -> _Intl_PluralRuleType =
+      end
+    module PluralRuleType =
+      struct
+        type t = [ `cardinal  | `ordinal ]
+        let rec t_of_js : Ojs.t -> t =
           fun (x5 : Ojs.t) ->
             let x6 = x5 in
             match Ojs.string_of_js x6 with
             | "cardinal" -> `cardinal
             | "ordinal" -> `ordinal
             | _ -> assert false
-        and _Intl_PluralRuleType_to_js : _Intl_PluralRuleType -> Ojs.t =
+        and t_to_js : t -> Ojs.t =
           fun (x4 : [ `cardinal  | `ordinal ]) ->
             match x4 with
             | `cardinal -> Ojs.string_to_js "cardinal"
             | `ordinal -> Ojs.string_to_js "ordinal"
-        and _Intl_PluralRules_of_js : Ojs.t -> _Intl_PluralRules = Obj.magic
-        and _Intl_PluralRules_to_js : _Intl_PluralRules -> Ojs.t = Obj.magic
-        and _Intl_PluralRulesOptions_of_js :
-          Ojs.t -> _Intl_PluralRulesOptions = Obj.magic
-        and _Intl_PluralRulesOptions_to_js :
-          _Intl_PluralRulesOptions -> Ojs.t = Obj.magic
-        and _Intl_ResolvedPluralRulesOptions_of_js :
-          Ojs.t -> _Intl_ResolvedPluralRulesOptions = Obj.magic
-        and _Intl_ResolvedPluralRulesOptions_to_js :
-          _Intl_ResolvedPluralRulesOptions -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
-module AnonymousInterface0 =
-  struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x8 : Ojs.t) -> anonymous_interface_0_of_js x8
-    and t_to_js : t -> Ojs.t =
-      fun (x7 : anonymous_interface_0) -> anonymous_interface_0_to_js x7
-    let (create :
-      t ->
-        ?locales:string list or_string ->
-          ?options:_Intl_PluralRulesOptions -> unit -> _Intl_PluralRules)
-      =
-      fun (x16 : t) ->
-        fun ?locales:(x9 : string list or_string option) ->
-          fun ?options:(x10 : _Intl_PluralRulesOptions option) ->
-            fun () ->
-              _Intl_PluralRules_of_js
-                (Ojs.new_obj_arr (t_to_js x16)
-                   (let x11 =
-                      Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
-                        [||] in
-                    (match x9 with
-                     | Some x13 ->
-                         ignore
-                           (Ojs.call x11 "push"
-                              [|(or_string_to_js
-                                   (fun (x14 : string list) ->
-                                      Ojs.list_to_js Ojs.string_to_js x14)
-                                   x13)|])
-                     | None -> ());
-                    (match x10 with
-                     | Some x12 ->
-                         ignore
-                           (Ojs.call x11 "push"
-                              [|(_Intl_PluralRulesOptions_to_js x12)|])
-                     | None -> ());
-                    x11))
-    let (apply :
-      t ->
-        ?locales:string list or_string ->
-          ?options:_Intl_PluralRulesOptions -> unit -> _Intl_PluralRules)
-      =
-      fun (x24 : t) ->
-        fun ?locales:(x17 : string list or_string option) ->
-          fun ?options:(x18 : _Intl_PluralRulesOptions option) ->
-            fun () ->
-              _Intl_PluralRules_of_js
-                (Ojs.call (t_to_js x24) "apply"
-                   [|Ojs.null;((let x19 =
-                                  Ojs.new_obj
-                                    (Ojs.get_prop_ascii Ojs.global "Array")
-                                    [||] in
-                                (match x17 with
-                                 | Some x21 ->
-                                     ignore
-                                       (Ojs.call x19 "push"
-                                          [|(or_string_to_js
-                                               (fun (x22 : string list) ->
-                                                  Ojs.list_to_js
-                                                    Ojs.string_to_js x22) x21)|])
-                                 | None -> ());
-                                (match x18 with
-                                 | Some x20 ->
-                                     ignore
-                                       (Ojs.call x19 "push"
-                                          [|(_Intl_PluralRulesOptions_to_js
-                                               x20)|])
-                                 | None -> ());
-                                x19))|])
-    let (supportedLocalesOf :
-      t ->
-        locales:string list or_string ->
-          ?options:_Intl_PluralRulesOptions -> unit -> string list)
-      =
-      fun (x31 : t) ->
-        fun ~locales:(x25 : string list or_string) ->
-          fun ?options:(x26 : _Intl_PluralRulesOptions option) ->
-            fun () ->
-              Ojs.list_of_js Ojs.string_of_js
-                (let x32 = t_to_js x31 in
-                 Ojs.call (Ojs.get_prop_ascii x32 "supportedLocalesOf")
-                   "apply"
-                   [|x32;((let x27 =
-                             Ojs.new_obj
-                               (Ojs.get_prop_ascii Ojs.global "Array") 
-                               [||] in
-                           ignore
-                             (Ojs.call x27 "push"
-                                [|(or_string_to_js
-                                     (fun (x29 : string list) ->
-                                        Ojs.list_to_js Ojs.string_to_js x29)
-                                     x25)|]);
-                           (match x26 with
-                            | Some x28 ->
-                                ignore
-                                  (Ojs.call x27 "push"
-                                     [|(_Intl_PluralRulesOptions_to_js x28)|])
-                            | None -> ());
-                           x27))|])
-  end
-module Intl =
-  struct
-    module LDMLPluralRule =
-      struct
-        type t = _Intl_LDMLPluralRule
-        let rec t_of_js : Ojs.t -> t =
-          fun (x35 : Ojs.t) -> _Intl_LDMLPluralRule_of_js x35
-        and t_to_js : t -> Ojs.t =
-          fun (x34 : _Intl_LDMLPluralRule) -> _Intl_LDMLPluralRule_to_js x34
-      end
-    module PluralRuleType =
-      struct
-        type t = _Intl_PluralRuleType
-        let rec t_of_js : Ojs.t -> t =
-          fun (x37 : Ojs.t) -> _Intl_PluralRuleType_of_js x37
-        and t_to_js : t -> Ojs.t =
-          fun (x36 : _Intl_PluralRuleType) -> _Intl_PluralRuleType_to_js x36
       end
     module PluralRulesOptions =
       struct
-        type t = _Intl_PluralRulesOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x39 : Ojs.t) -> _Intl_PluralRulesOptions_of_js x39
-        and t_to_js : t -> Ojs.t =
-          fun (x38 : _Intl_PluralRulesOptions) ->
-            _Intl_PluralRulesOptions_to_js x38
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x8 : Ojs.t) -> x8
+        and t_to_js : t -> Ojs.t = fun (x7 : Ojs.t) -> x7
         let (get_localeMatcher : t -> [ `best_fit  | `lookup ]) =
-          fun (x40 : t) ->
-            let x41 = Ojs.get_prop_ascii (t_to_js x40) "localeMatcher" in
-            match Ojs.string_of_js x41 with
+          fun (x9 : t) ->
+            let x10 = Ojs.get_prop_ascii (t_to_js x9) "localeMatcher" in
+            match Ojs.string_of_js x10 with
             | "best fit" -> `best_fit
             | "lookup" -> `lookup
             | _ -> assert false
         let (set_localeMatcher : t -> [ `best_fit  | `lookup ] -> unit) =
-          fun (x42 : t) ->
-            fun (x43 : [ `best_fit  | `lookup ]) ->
-              Ojs.set_prop_ascii (t_to_js x42) "localeMatcher"
-                (match x43 with
+          fun (x11 : t) ->
+            fun (x12 : [ `best_fit  | `lookup ]) ->
+              Ojs.set_prop_ascii (t_to_js x11) "localeMatcher"
+                (match x12 with
                  | `best_fit -> Ojs.string_to_js "bestFit"
                  | `lookup -> Ojs.string_to_js "lookup")
-        let (get_type : t -> _Intl_PluralRuleType) =
-          fun (x44 : t) ->
-            _Intl_PluralRuleType_of_js
-              (Ojs.get_prop_ascii (t_to_js x44) "type")
-        let (set_type : t -> _Intl_PluralRuleType -> unit) =
-          fun (x45 : t) ->
-            fun (x46 : _Intl_PluralRuleType) ->
-              Ojs.set_prop_ascii (t_to_js x45) "type"
-                (_Intl_PluralRuleType_to_js x46)
-        let (get_minimumIntegerDigits : t -> float) =
-          fun (x47 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x47) "minimumIntegerDigits")
-        let (set_minimumIntegerDigits : t -> float -> unit) =
-          fun (x48 : t) ->
-            fun (x49 : float) ->
-              Ojs.set_prop_ascii (t_to_js x48) "minimumIntegerDigits"
-                (Ojs.float_to_js x49)
-        let (get_minimumFractionDigits : t -> float) =
-          fun (x50 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x50) "minimumFractionDigits")
-        let (set_minimumFractionDigits : t -> float -> unit) =
-          fun (x51 : t) ->
-            fun (x52 : float) ->
-              Ojs.set_prop_ascii (t_to_js x51) "minimumFractionDigits"
-                (Ojs.float_to_js x52)
-        let (get_maximumFractionDigits : t -> float) =
-          fun (x53 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x53) "maximumFractionDigits")
-        let (set_maximumFractionDigits : t -> float -> unit) =
-          fun (x54 : t) ->
-            fun (x55 : float) ->
-              Ojs.set_prop_ascii (t_to_js x54) "maximumFractionDigits"
-                (Ojs.float_to_js x55)
-        let (get_minimumSignificantDigits : t -> float) =
-          fun (x56 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x56) "minimumSignificantDigits")
-        let (set_minimumSignificantDigits : t -> float -> unit) =
-          fun (x57 : t) ->
-            fun (x58 : float) ->
-              Ojs.set_prop_ascii (t_to_js x57) "minimumSignificantDigits"
-                (Ojs.float_to_js x58)
-        let (get_maximumSignificantDigits : t -> float) =
-          fun (x59 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x59) "maximumSignificantDigits")
-        let (set_maximumSignificantDigits : t -> float -> unit) =
-          fun (x60 : t) ->
-            fun (x61 : float) ->
-              Ojs.set_prop_ascii (t_to_js x60) "maximumSignificantDigits"
-                (Ojs.float_to_js x61)
+        let (get_type : t -> PluralRuleType.t) =
+          fun (x13 : t) ->
+            PluralRuleType.t_of_js (Ojs.get_prop_ascii (t_to_js x13) "type")
+        let (set_type : t -> PluralRuleType.t -> unit) =
+          fun (x14 : t) ->
+            fun (x15 : PluralRuleType.t) ->
+              Ojs.set_prop_ascii (t_to_js x14) "type"
+                (PluralRuleType.t_to_js x15)
+        let (get_minimumIntegerDigits : t -> int) =
+          fun (x16 : t) ->
+            Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js x16) "minimumIntegerDigits")
+        let (set_minimumIntegerDigits : t -> int -> unit) =
+          fun (x17 : t) ->
+            fun (x18 : int) ->
+              Ojs.set_prop_ascii (t_to_js x17) "minimumIntegerDigits"
+                (Ojs.int_to_js x18)
+        let (get_minimumFractionDigits : t -> int) =
+          fun (x19 : t) ->
+            Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js x19) "minimumFractionDigits")
+        let (set_minimumFractionDigits : t -> int -> unit) =
+          fun (x20 : t) ->
+            fun (x21 : int) ->
+              Ojs.set_prop_ascii (t_to_js x20) "minimumFractionDigits"
+                (Ojs.int_to_js x21)
+        let (get_maximumFractionDigits : t -> int) =
+          fun (x22 : t) ->
+            Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js x22) "maximumFractionDigits")
+        let (set_maximumFractionDigits : t -> int -> unit) =
+          fun (x23 : t) ->
+            fun (x24 : int) ->
+              Ojs.set_prop_ascii (t_to_js x23) "maximumFractionDigits"
+                (Ojs.int_to_js x24)
+        let (get_minimumSignificantDigits : t -> int) =
+          fun (x25 : t) ->
+            Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js x25) "minimumSignificantDigits")
+        let (set_minimumSignificantDigits : t -> int -> unit) =
+          fun (x26 : t) ->
+            fun (x27 : int) ->
+              Ojs.set_prop_ascii (t_to_js x26) "minimumSignificantDigits"
+                (Ojs.int_to_js x27)
+        let (get_maximumSignificantDigits : t -> int) =
+          fun (x28 : t) ->
+            Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js x28) "maximumSignificantDigits")
+        let (set_maximumSignificantDigits : t -> int -> unit) =
+          fun (x29 : t) ->
+            fun (x30 : int) ->
+              Ojs.set_prop_ascii (t_to_js x29) "maximumSignificantDigits"
+                (Ojs.int_to_js x30)
       end
     module ResolvedPluralRulesOptions =
       struct
-        type t = _Intl_ResolvedPluralRulesOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x63 : Ojs.t) -> _Intl_ResolvedPluralRulesOptions_of_js x63
-        and t_to_js : t -> Ojs.t =
-          fun (x62 : _Intl_ResolvedPluralRulesOptions) ->
-            _Intl_ResolvedPluralRulesOptions_to_js x62
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x32 : Ojs.t) -> x32
+        and t_to_js : t -> Ojs.t = fun (x31 : Ojs.t) -> x31
         let (get_locale : t -> string) =
-          fun (x64 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x64) "locale")
+          fun (x33 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x33) "locale")
         let (set_locale : t -> string -> unit) =
-          fun (x65 : t) ->
-            fun (x66 : string) ->
-              Ojs.set_prop_ascii (t_to_js x65) "locale"
-                (Ojs.string_to_js x66)
-        let (get_pluralCategories : t -> _Intl_LDMLPluralRule list) =
-          fun (x67 : t) ->
-            Ojs.list_of_js _Intl_LDMLPluralRule_of_js
-              (Ojs.get_prop_ascii (t_to_js x67) "pluralCategories")
-        let (set_pluralCategories : t -> _Intl_LDMLPluralRule list -> unit) =
-          fun (x69 : t) ->
-            fun (x70 : _Intl_LDMLPluralRule list) ->
-              Ojs.set_prop_ascii (t_to_js x69) "pluralCategories"
-                (Ojs.list_to_js _Intl_LDMLPluralRule_to_js x70)
-        let (get_type : t -> _Intl_PluralRuleType) =
-          fun (x72 : t) ->
-            _Intl_PluralRuleType_of_js
-              (Ojs.get_prop_ascii (t_to_js x72) "type")
-        let (set_type : t -> _Intl_PluralRuleType -> unit) =
-          fun (x73 : t) ->
-            fun (x74 : _Intl_PluralRuleType) ->
-              Ojs.set_prop_ascii (t_to_js x73) "type"
-                (_Intl_PluralRuleType_to_js x74)
-        let (get_minimumIntegerDigits : t -> float) =
-          fun (x75 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x75) "minimumIntegerDigits")
-        let (set_minimumIntegerDigits : t -> float -> unit) =
-          fun (x76 : t) ->
-            fun (x77 : float) ->
-              Ojs.set_prop_ascii (t_to_js x76) "minimumIntegerDigits"
-                (Ojs.float_to_js x77)
-        let (get_minimumFractionDigits : t -> float) =
-          fun (x78 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x78) "minimumFractionDigits")
-        let (set_minimumFractionDigits : t -> float -> unit) =
-          fun (x79 : t) ->
-            fun (x80 : float) ->
-              Ojs.set_prop_ascii (t_to_js x79) "minimumFractionDigits"
-                (Ojs.float_to_js x80)
-        let (get_maximumFractionDigits : t -> float) =
-          fun (x81 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x81) "maximumFractionDigits")
-        let (set_maximumFractionDigits : t -> float -> unit) =
-          fun (x82 : t) ->
-            fun (x83 : float) ->
-              Ojs.set_prop_ascii (t_to_js x82) "maximumFractionDigits"
-                (Ojs.float_to_js x83)
-        let (get_minimumSignificantDigits : t -> float) =
-          fun (x84 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x84) "minimumSignificantDigits")
-        let (set_minimumSignificantDigits : t -> float -> unit) =
-          fun (x85 : t) ->
-            fun (x86 : float) ->
-              Ojs.set_prop_ascii (t_to_js x85) "minimumSignificantDigits"
-                (Ojs.float_to_js x86)
-        let (get_maximumSignificantDigits : t -> float) =
-          fun (x87 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x87) "maximumSignificantDigits")
-        let (set_maximumSignificantDigits : t -> float -> unit) =
-          fun (x88 : t) ->
-            fun (x89 : float) ->
-              Ojs.set_prop_ascii (t_to_js x88) "maximumSignificantDigits"
-                (Ojs.float_to_js x89)
+          fun (x34 : t) ->
+            fun (x35 : string) ->
+              Ojs.set_prop_ascii (t_to_js x34) "locale"
+                (Ojs.string_to_js x35)
+        let (get_pluralCategories : t -> LDMLPluralRule.t list) =
+          fun (x36 : t) ->
+            Ojs.list_of_js LDMLPluralRule.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x36) "pluralCategories")
+        let (set_pluralCategories : t -> LDMLPluralRule.t list -> unit) =
+          fun (x38 : t) ->
+            fun (x39 : LDMLPluralRule.t list) ->
+              Ojs.set_prop_ascii (t_to_js x38) "pluralCategories"
+                (Ojs.list_to_js LDMLPluralRule.t_to_js x39)
+        let (get_type : t -> PluralRuleType.t) =
+          fun (x41 : t) ->
+            PluralRuleType.t_of_js (Ojs.get_prop_ascii (t_to_js x41) "type")
+        let (set_type : t -> PluralRuleType.t -> unit) =
+          fun (x42 : t) ->
+            fun (x43 : PluralRuleType.t) ->
+              Ojs.set_prop_ascii (t_to_js x42) "type"
+                (PluralRuleType.t_to_js x43)
+        let (get_minimumIntegerDigits : t -> int) =
+          fun (x44 : t) ->
+            Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js x44) "minimumIntegerDigits")
+        let (set_minimumIntegerDigits : t -> int -> unit) =
+          fun (x45 : t) ->
+            fun (x46 : int) ->
+              Ojs.set_prop_ascii (t_to_js x45) "minimumIntegerDigits"
+                (Ojs.int_to_js x46)
+        let (get_minimumFractionDigits : t -> int) =
+          fun (x47 : t) ->
+            Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js x47) "minimumFractionDigits")
+        let (set_minimumFractionDigits : t -> int -> unit) =
+          fun (x48 : t) ->
+            fun (x49 : int) ->
+              Ojs.set_prop_ascii (t_to_js x48) "minimumFractionDigits"
+                (Ojs.int_to_js x49)
+        let (get_maximumFractionDigits : t -> int) =
+          fun (x50 : t) ->
+            Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js x50) "maximumFractionDigits")
+        let (set_maximumFractionDigits : t -> int -> unit) =
+          fun (x51 : t) ->
+            fun (x52 : int) ->
+              Ojs.set_prop_ascii (t_to_js x51) "maximumFractionDigits"
+                (Ojs.int_to_js x52)
+        let (get_minimumSignificantDigits : t -> int) =
+          fun (x53 : t) ->
+            Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js x53) "minimumSignificantDigits")
+        let (set_minimumSignificantDigits : t -> int -> unit) =
+          fun (x54 : t) ->
+            fun (x55 : int) ->
+              Ojs.set_prop_ascii (t_to_js x54) "minimumSignificantDigits"
+                (Ojs.int_to_js x55)
+        let (get_maximumSignificantDigits : t -> int) =
+          fun (x56 : t) ->
+            Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js x56) "maximumSignificantDigits")
+        let (set_maximumSignificantDigits : t -> int -> unit) =
+          fun (x57 : t) ->
+            fun (x58 : int) ->
+              Ojs.set_prop_ascii (t_to_js x57) "maximumSignificantDigits"
+                (Ojs.int_to_js x58)
       end
     module PluralRules =
       struct
-        type t = _Intl_PluralRules
-        let rec t_of_js : Ojs.t -> t =
-          fun (x91 : Ojs.t) -> _Intl_PluralRules_of_js x91
-        and t_to_js : t -> Ojs.t =
-          fun (x90 : _Intl_PluralRules) -> _Intl_PluralRules_to_js x90
-        let (resolvedOptions : t -> _Intl_ResolvedPluralRulesOptions) =
-          fun (x92 : t) ->
-            _Intl_ResolvedPluralRulesOptions_of_js
-              (Ojs.call (t_to_js x92) "resolvedOptions" [||])
-        let (select : t -> n:float -> _Intl_LDMLPluralRule) =
-          fun (x94 : t) ->
-            fun ~n:(x93 : float) ->
-              _Intl_LDMLPluralRule_of_js
-                (Ojs.call (t_to_js x94) "select" [|(Ojs.float_to_js x93)|])
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x60 : Ojs.t) -> x60
+        and t_to_js : t -> Ojs.t = fun (x59 : Ojs.t) -> x59
+        let (resolvedOptions : t -> ResolvedPluralRulesOptions.t) =
+          fun (x61 : t) ->
+            ResolvedPluralRulesOptions.t_of_js
+              (Ojs.call (t_to_js x61) "resolvedOptions" [||])
+        let (select : t -> n:int -> LDMLPluralRule.t) =
+          fun (x63 : t) ->
+            fun ~n:(x62 : int) ->
+              LDMLPluralRule.t_of_js
+                (Ojs.call (t_to_js x63) "select" [|(Ojs.int_to_js x62)|])
       end
-    let (pluralRules : anonymous_interface_0) =
-      anonymous_interface_0_of_js
+    module AnonymousInterface0 =
+      struct
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x65 : Ojs.t) -> x65
+        and t_to_js : t -> Ojs.t = fun (x64 : Ojs.t) -> x64
+        let (create :
+          t ->
+            ?locales:string list or_string ->
+              ?options:PluralRulesOptions.t -> unit -> PluralRules.t)
+          =
+          fun (x73 : t) ->
+            fun ?locales:(x66 : string list or_string option) ->
+              fun ?options:(x67 : PluralRulesOptions.t option) ->
+                fun () ->
+                  PluralRules.t_of_js
+                    (Ojs.new_obj_arr (t_to_js x73)
+                       (let x68 =
+                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
+                            [||] in
+                        (match x66 with
+                         | Some x70 ->
+                             ignore
+                               (Ojs.call x68 "push"
+                                  [|(or_string_to_js
+                                       (fun (x71 : string list) ->
+                                          Ojs.list_to_js Ojs.string_to_js x71)
+                                       x70)|])
+                         | None -> ());
+                        (match x67 with
+                         | Some x69 ->
+                             ignore
+                               (Ojs.call x68 "push"
+                                  [|(PluralRulesOptions.t_to_js x69)|])
+                         | None -> ());
+                        x68))
+        let (apply :
+          t ->
+            ?locales:string list or_string ->
+              ?options:PluralRulesOptions.t -> unit -> PluralRules.t)
+          =
+          fun (x81 : t) ->
+            fun ?locales:(x74 : string list or_string option) ->
+              fun ?options:(x75 : PluralRulesOptions.t option) ->
+                fun () ->
+                  PluralRules.t_of_js
+                    (Ojs.call (t_to_js x81) "apply"
+                       [|Ojs.null;((let x76 =
+                                      Ojs.new_obj
+                                        (Ojs.get_prop_ascii Ojs.global
+                                           "Array") [||] in
+                                    (match x74 with
+                                     | Some x78 ->
+                                         ignore
+                                           (Ojs.call x76 "push"
+                                              [|(or_string_to_js
+                                                   (fun (x79 : string list)
+                                                      ->
+                                                      Ojs.list_to_js
+                                                        Ojs.string_to_js x79)
+                                                   x78)|])
+                                     | None -> ());
+                                    (match x75 with
+                                     | Some x77 ->
+                                         ignore
+                                           (Ojs.call x76 "push"
+                                              [|(PluralRulesOptions.t_to_js
+                                                   x77)|])
+                                     | None -> ());
+                                    x76))|])
+        let (supportedLocalesOf :
+          t ->
+            locales:string list or_string ->
+              ?options:PluralRulesOptions.t -> unit -> string list)
+          =
+          fun (x88 : t) ->
+            fun ~locales:(x82 : string list or_string) ->
+              fun ?options:(x83 : PluralRulesOptions.t option) ->
+                fun () ->
+                  Ojs.list_of_js Ojs.string_of_js
+                    (let x89 = t_to_js x88 in
+                     Ojs.call (Ojs.get_prop_ascii x89 "supportedLocalesOf")
+                       "apply"
+                       [|x89;((let x84 =
+                                 Ojs.new_obj
+                                   (Ojs.get_prop_ascii Ojs.global "Array")
+                                   [||] in
+                               ignore
+                                 (Ojs.call x84 "push"
+                                    [|(or_string_to_js
+                                         (fun (x86 : string list) ->
+                                            Ojs.list_to_js Ojs.string_to_js
+                                              x86) x82)|]);
+                               (match x83 with
+                                | Some x85 ->
+                                    ignore
+                                      (Ojs.call x84 "push"
+                                         [|(PluralRulesOptions.t_to_js x85)|])
+                                | None -> ());
+                               x84))|])
+      end
+    let (pluralRules : AnonymousInterface0.t) =
+      AnonymousInterface0.t_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "Intl")
            "PluralRules")
   end

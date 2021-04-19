@@ -316,5 +316,5 @@ module Make (M: Missing) : sig
     end
     val install: ral:_RAL -> unit [@@js.global "install"]
   end
-  (* export = RAL *)
+  
 end

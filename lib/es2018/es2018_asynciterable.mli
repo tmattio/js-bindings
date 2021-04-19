@@ -1,14 +1,17 @@
+[@@@ocaml.warning "-7-11-32-33-39"]
+
+[@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
+
 open Es2017
 
 module SymbolConstructor : sig
-  type t
+  include module type of struct
+    include SymbolConstructor
+  end
 
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val get_asyncIterator : t -> symbol
+  val get_asyncIterator : t -> symbol [@@js.get "asyncIterator"]
 end
+[@@js.scope "SymbolConstructor"]
 
 module AsyncIterator : sig
   type ('T, 'TReturn, 'TNext) t
@@ -33,19 +36,23 @@ module AsyncIterator : sig
          (* FIXME: type 'union<() | ('TNext)>' cannot be used for variadic
             argument *) (any list[@js.variadic])
     -> ('T, 'TReturn) IteratorResult.t Promise.t
+    [@@js.call "next"]
 
   val return
     :  ('T, 'TReturn, 'TNext) t
     -> ?value:('TReturn, 'TReturn Promise.t) union2
     -> unit
     -> ('T, 'TReturn) IteratorResult.t Promise.t
+    [@@js.call "return"]
 
   val throw
     :  ('T, 'TReturn, 'TNext) t
     -> ?e:any
     -> unit
     -> ('T, 'TReturn) IteratorResult.t Promise.t
+    [@@js.call "throw"]
 end
+[@@js.scope "AsyncIterator"]
 
 module AsyncIterable : sig
   type 'T t

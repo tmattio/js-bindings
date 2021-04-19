@@ -76,9 +76,9 @@ module Map =
             t_of_js Obj.magic Obj.magic
               (Ojs.call (t_to_js Obj.magic Obj.magic x34) "set"
                  [|(Obj.magic x32);(Obj.magic x33)|])
-    let (get_size : ('K, 'V) t -> float) =
+    let (get_size : ('K, 'V) t -> int) =
       fun (x39 : ('K, 'V) t) ->
-        Ojs.float_of_js
+        Ojs.int_of_js
           (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x39) "size")
     let (create : unit -> (any, any) t) =
       fun () ->
@@ -204,9 +204,9 @@ module ReadonlyMap =
           Ojs.bool_of_js
             (Ojs.call (t_to_js Obj.magic Obj.magic x94) "has"
                [|(Obj.magic x93)|])
-    let (get_size : ('K, 'V) t -> float) =
+    let (get_size : ('K, 'V) t -> int) =
       fun (x97 : ('K, 'V) t) ->
-        Ojs.float_of_js
+        Ojs.int_of_js
           (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x97) "size")
   end
 module WeakMap =
@@ -365,9 +365,9 @@ module Set =
         fun ~value:(x170 : 'T) ->
           Ojs.bool_of_js
             (Ojs.call (t_to_js Obj.magic x171) "has" [|(Obj.magic x170)|])
-    let (get_size : 'T t -> float) =
+    let (get_size : 'T t -> int) =
       fun (x173 : 'T t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x173) "size")
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x173) "size")
     let (create : ?values:'T list or_null -> unit -> 'T t) =
       fun ?values:(x175 : 'T list or_null option) ->
         fun () ->
@@ -457,9 +457,9 @@ module ReadonlySet =
         fun ~value:(x205 : 'T) ->
           Ojs.bool_of_js
             (Ojs.call (t_to_js Obj.magic x206) "has" [|(Obj.magic x205)|])
-    let (get_size : 'T t -> float) =
+    let (get_size : 'T t -> int) =
       fun (x208 : 'T t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x208) "size")
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x208) "size")
   end
 module WeakSet =
   struct

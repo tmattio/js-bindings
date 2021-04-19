@@ -73,20 +73,20 @@ module Dgram =
                 (match x12 with
                  | `IPv4 -> Ojs.string_to_js "IPv4"
                  | `IPv6 -> Ojs.string_to_js "IPv6")
-        let (get_port : t -> float) =
+        let (get_port : t -> int) =
           fun (x13 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x13) "port")
-        let (set_port : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x13) "port")
+        let (set_port : t -> int -> unit) =
           fun (x14 : t) ->
-            fun (x15 : float) ->
-              Ojs.set_prop_ascii (t_to_js x14) "port" (Ojs.float_to_js x15)
-        let (get_size : t -> float) =
+            fun (x15 : int) ->
+              Ojs.set_prop_ascii (t_to_js x14) "port" (Ojs.int_to_js x15)
+        let (get_size : t -> int) =
           fun (x16 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x16) "size")
-        let (set_size : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x16) "size")
+        let (set_size : t -> int -> unit) =
           fun (x17 : t) ->
-            fun (x18 : float) ->
-              Ojs.set_prop_ascii (t_to_js x17) "size" (Ojs.float_to_js x18)
+            fun (x18 : int) ->
+              Ojs.set_prop_ascii (t_to_js x17) "size" (Ojs.int_to_js x18)
       end
     module BindOptions =
       struct
@@ -95,13 +95,13 @@ module Dgram =
           fun (x20 : Ojs.t) -> dgram_BindOptions_of_js x20
         and t_to_js : t -> Ojs.t =
           fun (x19 : dgram_BindOptions) -> dgram_BindOptions_to_js x19
-        let (get_port : t -> float) =
+        let (get_port : t -> int) =
           fun (x21 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x21) "port")
-        let (set_port : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x21) "port")
+        let (set_port : t -> int -> unit) =
           fun (x22 : t) ->
-            fun (x23 : float) ->
-              Ojs.set_prop_ascii (t_to_js x22) "port" (Ojs.float_to_js x23)
+            fun (x23 : int) ->
+              Ojs.set_prop_ascii (t_to_js x22) "port" (Ojs.int_to_js x23)
         let (get_address : t -> string) =
           fun (x24 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x24) "address")
@@ -118,13 +118,13 @@ module Dgram =
             fun (x29 : bool) ->
               Ojs.set_prop_ascii (t_to_js x28) "exclusive"
                 (Ojs.bool_to_js x29)
-        let (get_fd : t -> float) =
+        let (get_fd : t -> int) =
           fun (x30 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x30) "fd")
-        let (set_fd : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x30) "fd")
+        let (set_fd : t -> int -> unit) =
           fun (x31 : t) ->
-            fun (x32 : float) ->
-              Ojs.set_prop_ascii (t_to_js x31) "fd" (Ojs.float_to_js x32)
+            fun (x32 : int) ->
+              Ojs.set_prop_ascii (t_to_js x31) "fd" (Ojs.int_to_js x32)
       end
     module SocketType =
       struct
@@ -165,30 +165,28 @@ module Dgram =
             fun (x45 : bool) ->
               Ojs.set_prop_ascii (t_to_js x44) "ipv6Only"
                 (Ojs.bool_to_js x45)
-        let (get_recvBufferSize : t -> float) =
+        let (get_recvBufferSize : t -> int) =
           fun (x46 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x46) "recvBufferSize")
-        let (set_recvBufferSize : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x46) "recvBufferSize")
+        let (set_recvBufferSize : t -> int -> unit) =
           fun (x47 : t) ->
-            fun (x48 : float) ->
+            fun (x48 : int) ->
               Ojs.set_prop_ascii (t_to_js x47) "recvBufferSize"
-                (Ojs.float_to_js x48)
-        let (get_sendBufferSize : t -> float) =
+                (Ojs.int_to_js x48)
+        let (get_sendBufferSize : t -> int) =
           fun (x49 : t) ->
-            Ojs.float_of_js
-              (Ojs.get_prop_ascii (t_to_js x49) "sendBufferSize")
-        let (set_sendBufferSize : t -> float -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x49) "sendBufferSize")
+        let (set_sendBufferSize : t -> int -> unit) =
           fun (x50 : t) ->
-            fun (x51 : float) ->
+            fun (x51 : int) ->
               Ojs.set_prop_ascii (t_to_js x50) "sendBufferSize"
-                (Ojs.float_to_js x51)
+                (Ojs.int_to_js x51)
         let (lookup :
           t ->
             hostname:string ->
               options:Dns.LookupOneOptions.t ->
                 callback:(err:ErrnoException.t or_null ->
-                            address:string -> family:float -> unit)
+                            address:string -> family:int -> unit)
                   -> unit)
           =
           fun (x59 : t) ->
@@ -197,7 +195,7 @@ module Dgram =
                 fun
                   ~callback:(x54 :
                               err:ErrnoException.t or_null ->
-                                address:string -> family:float -> unit)
+                                address:string -> family:int -> unit)
                   ->
                   ignore
                     (Ojs.call (t_to_js x59) "lookup"
@@ -221,7 +219,7 @@ module Dgram =
                                                                     Ojs.string_of_js
                                                                     x57)
                                                                     ~family:(
-                                                                    Ojs.float_of_js
+                                                                    Ojs.int_of_js
                                                                     x58)))|])
       end
     let (createSocket :
@@ -330,11 +328,11 @@ module Dgram =
               (Ojs.call (t_to_js x82) "address" [||])
         let (bind :
           t ->
-            ?port:float ->
+            ?port:int ->
               ?address:string -> ?callback:(unit -> unit) -> unit -> unit)
           =
           fun (x90 : t) ->
-            fun ?port:(x83 : float option) ->
+            fun ?port:(x83 : int option) ->
               fun ?address:(x84 : string option) ->
                 fun ?callback:(x85 : (unit -> unit) option) ->
                   fun () ->
@@ -349,7 +347,7 @@ module Dgram =
                                   | Some x89 ->
                                       ignore
                                         (Ojs.call x86 "push"
-                                           [|(Ojs.float_to_js x89)|])
+                                           [|(Ojs.int_to_js x89)|])
                                   | None -> ());
                                  (match x84 with
                                   | Some x88 ->
@@ -366,9 +364,9 @@ module Dgram =
                                   | None -> ());
                                  x86))|])
         let (bind' :
-          t -> ?port:float -> ?callback:(unit -> unit) -> unit -> unit) =
+          t -> ?port:int -> ?callback:(unit -> unit) -> unit -> unit) =
           fun (x97 : t) ->
-            fun ?port:(x92 : float option) ->
+            fun ?port:(x92 : int option) ->
               fun ?callback:(x93 : (unit -> unit) option) ->
                 fun () ->
                   ignore
@@ -382,7 +380,7 @@ module Dgram =
                                 | Some x96 ->
                                     ignore
                                       (Ojs.call x94 "push"
-                                         [|(Ojs.float_to_js x96)|])
+                                         [|(Ojs.int_to_js x96)|])
                                 | None -> ());
                                (match x93 with
                                 | Some x95 ->
@@ -456,11 +454,11 @@ module Dgram =
                               x111))|])
         let (connect :
           t ->
-            port:float ->
+            port:int ->
               ?address:string -> ?callback:(unit -> unit) -> unit -> unit)
           =
           fun (x121 : t) ->
-            fun ~port:(x115 : float) ->
+            fun ~port:(x115 : int) ->
               fun ?address:(x116 : string option) ->
                 fun ?callback:(x117 : (unit -> unit) option) ->
                   fun () ->
@@ -473,7 +471,7 @@ module Dgram =
                                       [||] in
                                   ignore
                                     (Ojs.call x118 "push"
-                                       [|(Ojs.float_to_js x115)|]);
+                                       [|(Ojs.int_to_js x115)|]);
                                   (match x116 with
                                    | Some x120 ->
                                        ignore
@@ -488,14 +486,14 @@ module Dgram =
                                                  (fun _ -> x119 ()))|])
                                    | None -> ());
                                   x118))|])
-        let (connect' : t -> port:float -> callback:(unit -> unit) -> unit) =
+        let (connect' : t -> port:int -> callback:(unit -> unit) -> unit) =
           fun (x125 : t) ->
-            fun ~port:(x123 : float) ->
+            fun ~port:(x123 : int) ->
               fun ~callback:(x124 : unit -> unit) ->
                 ignore
                   (Ojs.call (t_to_js x125) "connect"
-                     [|(Ojs.float_to_js x123);(Ojs.fun_to_js 1
-                                                 (fun _ -> x124 ()))|])
+                     [|(Ojs.int_to_js x123);(Ojs.fun_to_js 1
+                                               (fun _ -> x124 ()))|])
         let (disconnect : t -> unit) =
           fun (x126 : t) ->
             ignore (Ojs.call (t_to_js x126) "disconnect" [||])
@@ -526,14 +524,12 @@ module Dgram =
                                           [|(Ojs.string_to_js x130)|])
                                  | None -> ());
                                 x129))|])
-        let (getRecvBufferSize : t -> float) =
+        let (getRecvBufferSize : t -> int) =
           fun (x133 : t) ->
-            Ojs.float_of_js
-              (Ojs.call (t_to_js x133) "getRecvBufferSize" [||])
-        let (getSendBufferSize : t -> float) =
+            Ojs.int_of_js (Ojs.call (t_to_js x133) "getRecvBufferSize" [||])
+        let (getSendBufferSize : t -> int) =
           fun (x134 : t) ->
-            Ojs.float_of_js
-              (Ojs.call (t_to_js x134) "getSendBufferSize" [||])
+            Ojs.int_of_js (Ojs.call (t_to_js x134) "getSendBufferSize" [||])
         let (ref : t -> t) =
           fun (x135 : t) -> t_of_js (Ojs.call (t_to_js x135) "ref" [||])
         let (remoteAddress : t -> Node_net.Net.AddressInfo.t) =
@@ -543,18 +539,18 @@ module Dgram =
         let (send :
           t ->
             msg:(Uint8Array.t, any list) union2 or_string ->
-              ?port:float ->
+              ?port:int ->
                 ?address:string ->
-                  ?callback:(error:Error.t or_null -> bytes:float -> unit) ->
+                  ?callback:(error:Error.t or_null -> bytes:int -> unit) ->
                     unit -> unit)
           =
           fun (x152 : t) ->
             fun ~msg:(x137 : (Uint8Array.t, any list) union2 or_string) ->
-              fun ?port:(x138 : float option) ->
+              fun ?port:(x138 : int option) ->
                 fun ?address:(x139 : string option) ->
                   fun
                     ?callback:(x140 :
-                                (error:Error.t or_null -> bytes:float -> unit)
+                                (error:Error.t or_null -> bytes:int -> unit)
                                   option)
                     ->
                     fun () ->
@@ -583,7 +579,7 @@ module Dgram =
                                      | Some x147 ->
                                          ignore
                                            (Ojs.call x141 "push"
-                                              [|(Ojs.float_to_js x147)|])
+                                              [|(Ojs.int_to_js x147)|])
                                      | None -> ());
                                     (match x139 with
                                      | Some x146 ->
@@ -602,23 +598,23 @@ module Dgram =
                                                           ~error:(or_null_of_js
                                                                     Error.t_of_js
                                                                     x143)
-                                                          ~bytes:(Ojs.float_of_js
+                                                          ~bytes:(Ojs.int_of_js
                                                                     x145)))|])
                                      | None -> ());
                                     x141))|])
         let (send' :
           t ->
             msg:(Uint8Array.t, any list) union2 or_string ->
-              ?port:float ->
-                ?callback:(error:Error.t or_null -> bytes:float -> unit) ->
+              ?port:int ->
+                ?callback:(error:Error.t or_null -> bytes:int -> unit) ->
                   unit -> unit)
           =
           fun (x167 : t) ->
             fun ~msg:(x154 : (Uint8Array.t, any list) union2 or_string) ->
-              fun ?port:(x155 : float option) ->
+              fun ?port:(x155 : int option) ->
                 fun
                   ?callback:(x156 :
-                              (error:Error.t or_null -> bytes:float -> unit)
+                              (error:Error.t or_null -> bytes:int -> unit)
                                 option)
                   ->
                   fun () ->
@@ -646,7 +642,7 @@ module Dgram =
                                    | Some x162 ->
                                        ignore
                                          (Ojs.call x157 "push"
-                                            [|(Ojs.float_to_js x162)|])
+                                            [|(Ojs.int_to_js x162)|])
                                    | None -> ());
                                   (match x156 with
                                    | Some x158 ->
@@ -659,21 +655,21 @@ module Dgram =
                                                         ~error:(or_null_of_js
                                                                   Error.t_of_js
                                                                   x159)
-                                                        ~bytes:(Ojs.float_of_js
+                                                        ~bytes:(Ojs.int_of_js
                                                                   x161)))|])
                                    | None -> ());
                                   x157))|])
         let (send'' :
           t ->
             msg:(Uint8Array.t, any list) union2 or_string ->
-              ?callback:(error:Error.t or_null -> bytes:float -> unit) ->
+              ?callback:(error:Error.t or_null -> bytes:int -> unit) ->
                 unit -> unit)
           =
           fun (x180 : t) ->
             fun ~msg:(x169 : (Uint8Array.t, any list) union2 or_string) ->
               fun
                 ?callback:(x170 :
-                            (error:Error.t or_null -> bytes:float -> unit)
+                            (error:Error.t or_null -> bytes:int -> unit)
                               option)
                 ->
                 fun () ->
@@ -707,30 +703,30 @@ module Dgram =
                                                       ~error:(or_null_of_js
                                                                 Error.t_of_js
                                                                 x173)
-                                                      ~bytes:(Ojs.float_of_js
+                                                      ~bytes:(Ojs.int_of_js
                                                                 x175)))|])
                                  | None -> ());
                                 x171))|])
         let (send''' :
           t ->
             msg:Uint8Array.t or_string ->
-              offset:float ->
-                length:float ->
-                  ?port:float ->
+              offset:int ->
+                length:int ->
+                  ?port:int ->
                     ?address:string ->
-                      ?callback:(error:Error.t or_null -> bytes:float -> unit)
+                      ?callback:(error:Error.t or_null -> bytes:int -> unit)
                         -> unit -> unit)
           =
           fun (x196 : t) ->
             fun ~msg:(x182 : Uint8Array.t or_string) ->
-              fun ~offset:(x183 : float) ->
-                fun ~length:(x184 : float) ->
-                  fun ?port:(x185 : float option) ->
+              fun ~offset:(x183 : int) ->
+                fun ~length:(x184 : int) ->
+                  fun ?port:(x185 : int option) ->
                     fun ?address:(x186 : string option) ->
                       fun
                         ?callback:(x187 :
                                     (error:Error.t or_null ->
-                                       bytes:float -> unit)
+                                       bytes:int -> unit)
                                       option)
                         ->
                         fun () ->
@@ -748,15 +744,15 @@ module Dgram =
                                                   Uint8Array.t_to_js x182)|]);
                                         ignore
                                           (Ojs.call x188 "push"
-                                             [|(Ojs.float_to_js x183)|]);
+                                             [|(Ojs.int_to_js x183)|]);
                                         ignore
                                           (Ojs.call x188 "push"
-                                             [|(Ojs.float_to_js x184)|]);
+                                             [|(Ojs.int_to_js x184)|]);
                                         (match x185 with
                                          | Some x194 ->
                                              ignore
                                                (Ojs.call x188 "push"
-                                                  [|(Ojs.float_to_js x194)|])
+                                                  [|(Ojs.int_to_js x194)|])
                                          | None -> ());
                                         (match x186 with
                                          | Some x193 ->
@@ -778,28 +774,27 @@ module Dgram =
                                                                 Error.t_of_js
                                                                 x190)
                                                               ~bytes:(
-                                                              Ojs.float_of_js
+                                                              Ojs.int_of_js
                                                                 x192)))|])
                                          | None -> ());
                                         x188))|])
         let (send'''' :
           t ->
             msg:Uint8Array.t or_string ->
-              offset:float ->
-                length:float ->
-                  ?port:float ->
-                    ?callback:(error:Error.t or_null -> bytes:float -> unit)
-                      -> unit -> unit)
+              offset:int ->
+                length:int ->
+                  ?port:int ->
+                    ?callback:(error:Error.t or_null -> bytes:int -> unit) ->
+                      unit -> unit)
           =
           fun (x210 : t) ->
             fun ~msg:(x198 : Uint8Array.t or_string) ->
-              fun ~offset:(x199 : float) ->
-                fun ~length:(x200 : float) ->
-                  fun ?port:(x201 : float option) ->
+              fun ~offset:(x199 : int) ->
+                fun ~length:(x200 : int) ->
+                  fun ?port:(x201 : int option) ->
                     fun
                       ?callback:(x202 :
-                                  (error:Error.t or_null ->
-                                     bytes:float -> unit)
+                                  (error:Error.t or_null -> bytes:int -> unit)
                                     option)
                       ->
                       fun () ->
@@ -816,15 +811,15 @@ module Dgram =
                                                 Uint8Array.t_to_js x198)|]);
                                       ignore
                                         (Ojs.call x203 "push"
-                                           [|(Ojs.float_to_js x199)|]);
+                                           [|(Ojs.int_to_js x199)|]);
                                       ignore
                                         (Ojs.call x203 "push"
-                                           [|(Ojs.float_to_js x200)|]);
+                                           [|(Ojs.int_to_js x200)|]);
                                       (match x201 with
                                        | Some x208 ->
                                            ignore
                                              (Ojs.call x203 "push"
-                                                [|(Ojs.float_to_js x208)|])
+                                                [|(Ojs.int_to_js x208)|])
                                        | None -> ());
                                       (match x202 with
                                        | Some x204 ->
@@ -837,25 +832,25 @@ module Dgram =
                                                             ~error:(or_null_of_js
                                                                     Error.t_of_js
                                                                     x205)
-                                                            ~bytes:(Ojs.float_of_js
+                                                            ~bytes:(Ojs.int_of_js
                                                                     x207)))|])
                                        | None -> ());
                                       x203))|])
         let (send''''' :
           t ->
             msg:Uint8Array.t or_string ->
-              offset:float ->
-                length:float ->
-                  ?callback:(error:Error.t or_null -> bytes:float -> unit) ->
+              offset:int ->
+                length:int ->
+                  ?callback:(error:Error.t or_null -> bytes:int -> unit) ->
                     unit -> unit)
           =
           fun (x222 : t) ->
             fun ~msg:(x212 : Uint8Array.t or_string) ->
-              fun ~offset:(x213 : float) ->
-                fun ~length:(x214 : float) ->
+              fun ~offset:(x213 : int) ->
+                fun ~length:(x214 : int) ->
                   fun
                     ?callback:(x215 :
-                                (error:Error.t or_null -> bytes:float -> unit)
+                                (error:Error.t or_null -> bytes:int -> unit)
                                   option)
                     ->
                     fun () ->
@@ -872,10 +867,10 @@ module Dgram =
                                               Uint8Array.t_to_js x212)|]);
                                     ignore
                                       (Ojs.call x216 "push"
-                                         [|(Ojs.float_to_js x213)|]);
+                                         [|(Ojs.int_to_js x213)|]);
                                     ignore
                                       (Ojs.call x216 "push"
-                                         [|(Ojs.float_to_js x214)|]);
+                                         [|(Ojs.int_to_js x214)|]);
                                     (match x215 with
                                      | Some x217 ->
                                          ignore
@@ -887,7 +882,7 @@ module Dgram =
                                                           ~error:(or_null_of_js
                                                                     Error.t_of_js
                                                                     x218)
-                                                          ~bytes:(Ojs.float_of_js
+                                                          ~bytes:(Ojs.int_of_js
                                                                     x220)))|])
                                      | None -> ());
                                     x216))|])
@@ -910,29 +905,29 @@ module Dgram =
               ignore
                 (Ojs.call (t_to_js x229) "setMulticastLoopback"
                    [|(Ojs.bool_to_js x228)|])
-        let (setMulticastTTL : t -> ttl:float -> unit) =
+        let (setMulticastTTL : t -> ttl:int -> unit) =
           fun (x231 : t) ->
-            fun ~ttl:(x230 : float) ->
+            fun ~ttl:(x230 : int) ->
               ignore
                 (Ojs.call (t_to_js x231) "setMulticastTTL"
-                   [|(Ojs.float_to_js x230)|])
-        let (setRecvBufferSize : t -> size:float -> unit) =
+                   [|(Ojs.int_to_js x230)|])
+        let (setRecvBufferSize : t -> size:int -> unit) =
           fun (x233 : t) ->
-            fun ~size:(x232 : float) ->
+            fun ~size:(x232 : int) ->
               ignore
                 (Ojs.call (t_to_js x233) "setRecvBufferSize"
-                   [|(Ojs.float_to_js x232)|])
-        let (setSendBufferSize : t -> size:float -> unit) =
+                   [|(Ojs.int_to_js x232)|])
+        let (setSendBufferSize : t -> size:int -> unit) =
           fun (x235 : t) ->
-            fun ~size:(x234 : float) ->
+            fun ~size:(x234 : int) ->
               ignore
                 (Ojs.call (t_to_js x235) "setSendBufferSize"
-                   [|(Ojs.float_to_js x234)|])
-        let (setTTL : t -> ttl:float -> unit) =
+                   [|(Ojs.int_to_js x234)|])
+        let (setTTL : t -> ttl:int -> unit) =
           fun (x237 : t) ->
-            fun ~ttl:(x236 : float) ->
+            fun ~ttl:(x236 : int) ->
               ignore
-                (Ojs.call (t_to_js x237) "setTTL" [|(Ojs.float_to_js x236)|])
+                (Ojs.call (t_to_js x237) "setTTL" [|(Ojs.int_to_js x236)|])
         let (unref : t -> t) =
           fun (x238 : t) -> t_of_js (Ojs.call (t_to_js x238) "unref" [||])
         let (addSourceSpecificMembership :
