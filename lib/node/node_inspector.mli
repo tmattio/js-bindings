@@ -3278,8 +3278,7 @@ module Inspector : sig
 
       val get_samplingInterval : t -> int [@@js.get "samplingInterval"]
 
-      val set_samplingInterval : t -> int -> unit
-        [@@js.set "samplingInterval"]
+      val set_samplingInterval : t -> int -> unit [@@js.set "samplingInterval"]
     end
     [@@js.scope "StartSamplingParameterType"]
 
@@ -3390,8 +3389,7 @@ module Inspector : sig
 
       val get_lastSeenObjectId : t -> int [@@js.get "lastSeenObjectId"]
 
-      val set_lastSeenObjectId : t -> int -> unit
-        [@@js.set "lastSeenObjectId"]
+      val set_lastSeenObjectId : t -> int -> unit [@@js.set "lastSeenObjectId"]
 
       val get_timestamp : t -> int [@@js.get "timestamp"]
 

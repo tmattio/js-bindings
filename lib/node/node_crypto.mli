@@ -646,8 +646,7 @@ module Crypto : sig
 
     val eNGINE_METHOD_DIGESTS : int [@@js.global "ENGINE_METHOD_DIGESTS"]
 
-    val eNGINE_METHOD_PKEY_METHS : int
-      [@@js.global "ENGINE_METHOD_PKEY_METHS"]
+    val eNGINE_METHOD_PKEY_METHS : int [@@js.global "ENGINE_METHOD_PKEY_METHS"]
 
     val eNGINE_METHOD_PKEY_ASN1_METHS : int
       [@@js.global "ENGINE_METHOD_PKEY_ASN1_METHS"]
@@ -683,8 +682,7 @@ module Crypto : sig
 
     val rSA_PSS_SALTLEN_DIGEST : int [@@js.global "RSA_PSS_SALTLEN_DIGEST"]
 
-    val rSA_PSS_SALTLEN_MAX_SIGN : int
-      [@@js.global "RSA_PSS_SALTLEN_MAX_SIGN"]
+    val rSA_PSS_SALTLEN_MAX_SIGN : int [@@js.global "RSA_PSS_SALTLEN_MAX_SIGN"]
 
     val rSA_PSS_SALTLEN_AUTO : int [@@js.global "RSA_PSS_SALTLEN_AUTO"]
 
@@ -885,8 +883,7 @@ module Crypto : sig
 
     val get_asymmetricKeySize : t -> int [@@js.get "asymmetricKeySize"]
 
-    val set_asymmetricKeySize : t -> int -> unit
-      [@@js.set "asymmetricKeySize"]
+    val set_asymmetricKeySize : t -> int -> unit [@@js.set "asymmetricKeySize"]
 
     val export
       :  t
@@ -1683,8 +1680,7 @@ module Crypto : sig
     -> unit
     [@@js.global "randomBytes"]
 
-  val pseudoRandomBytes : size:int -> Buffer.t
-    [@@js.global "pseudoRandomBytes"]
+  val pseudoRandomBytes : size:int -> Buffer.t [@@js.global "pseudoRandomBytes"]
 
   val pseudoRandomBytes
     :  size:int
@@ -2111,8 +2107,7 @@ module Crypto : sig
       -> Ojs.t
       -> ('PubF, 'PrivF) t
 
-    val get_modulusLength : ('PubF, 'PrivF) t -> int
-      [@@js.get "modulusLength"]
+    val get_modulusLength : ('PubF, 'PrivF) t -> int [@@js.get "modulusLength"]
 
     val set_modulusLength : ('PubF, 'PrivF) t -> int -> unit
       [@@js.set "modulusLength"]
@@ -2164,14 +2159,12 @@ module Crypto : sig
       -> Ojs.t
       -> ('PubF, 'PrivF) t
 
-    val get_modulusLength : ('PubF, 'PrivF) t -> int
-      [@@js.get "modulusLength"]
+    val get_modulusLength : ('PubF, 'PrivF) t -> int [@@js.get "modulusLength"]
 
     val set_modulusLength : ('PubF, 'PrivF) t -> int -> unit
       [@@js.set "modulusLength"]
 
-    val get_divisorLength : ('PubF, 'PrivF) t -> int
-      [@@js.get "divisorLength"]
+    val get_divisorLength : ('PubF, 'PrivF) t -> int [@@js.get "divisorLength"]
 
     val set_divisorLength : ('PubF, 'PrivF) t -> int -> unit
       [@@js.set "divisorLength"]

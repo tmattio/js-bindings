@@ -86,8 +86,7 @@ module GeneratorFunction : sig
 
   (* Constructor *)
 
-  val create : (string list[@js.variadic]) -> t
-    [@@js.new "GeneratorFunction"]
+  val create : (string list[@js.variadic]) -> t [@@js.new "GeneratorFunction"]
 
   val get_length : unit -> int [@@js.global "GeneratorFunction.length"]
 

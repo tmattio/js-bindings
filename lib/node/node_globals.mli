@@ -425,20 +425,10 @@ module Buffer : sig
   val writeBigUInt64LE : t -> bigint -> ?offset:int -> unit -> int
     [@@js.call "writeBigUInt64LE"]
 
-  val writeUIntLE
-    :  t
-    -> value:int
-    -> offset:int
-    -> byteLength:int
-    -> int
+  val writeUIntLE : t -> value:int -> offset:int -> byteLength:int -> int
     [@@js.call "writeUIntLE"]
 
-  val writeUIntBE
-    :  t
-    -> value:int
-    -> offset:int
-    -> byteLength:int
-    -> int
+  val writeUIntBE : t -> value:int -> offset:int -> byteLength:int -> int
     [@@js.call "writeUIntBE"]
 
   val writeIntLE : t -> value:int -> offset:int -> byteLength:int -> int
@@ -473,43 +463,31 @@ module Buffer : sig
 
   val readUInt8 : t -> ?offset:int -> unit -> int [@@js.call "readUInt8"]
 
-  val readUInt16LE : t -> ?offset:int -> unit -> int
-    [@@js.call "readUInt16LE"]
+  val readUInt16LE : t -> ?offset:int -> unit -> int [@@js.call "readUInt16LE"]
 
-  val readUInt16BE : t -> ?offset:int -> unit -> int
-    [@@js.call "readUInt16BE"]
+  val readUInt16BE : t -> ?offset:int -> unit -> int [@@js.call "readUInt16BE"]
 
-  val readUInt32LE : t -> ?offset:int -> unit -> int
-    [@@js.call "readUInt32LE"]
+  val readUInt32LE : t -> ?offset:int -> unit -> int [@@js.call "readUInt32LE"]
 
-  val readUInt32BE : t -> ?offset:int -> unit -> int
-    [@@js.call "readUInt32BE"]
+  val readUInt32BE : t -> ?offset:int -> unit -> int [@@js.call "readUInt32BE"]
 
   val readInt8 : t -> ?offset:int -> unit -> int [@@js.call "readInt8"]
 
-  val readInt16LE : t -> ?offset:int -> unit -> int
-    [@@js.call "readInt16LE"]
+  val readInt16LE : t -> ?offset:int -> unit -> int [@@js.call "readInt16LE"]
 
-  val readInt16BE : t -> ?offset:int -> unit -> int
-    [@@js.call "readInt16BE"]
+  val readInt16BE : t -> ?offset:int -> unit -> int [@@js.call "readInt16BE"]
 
-  val readInt32LE : t -> ?offset:int -> unit -> int
-    [@@js.call "readInt32LE"]
+  val readInt32LE : t -> ?offset:int -> unit -> int [@@js.call "readInt32LE"]
 
-  val readInt32BE : t -> ?offset:int -> unit -> int
-    [@@js.call "readInt32BE"]
+  val readInt32BE : t -> ?offset:int -> unit -> int [@@js.call "readInt32BE"]
 
-  val readFloatLE : t -> ?offset:int -> unit -> int
-    [@@js.call "readFloatLE"]
+  val readFloatLE : t -> ?offset:int -> unit -> int [@@js.call "readFloatLE"]
 
-  val readFloatBE : t -> ?offset:int -> unit -> int
-    [@@js.call "readFloatBE"]
+  val readFloatBE : t -> ?offset:int -> unit -> int [@@js.call "readFloatBE"]
 
-  val readDoubleLE : t -> ?offset:int -> unit -> int
-    [@@js.call "readDoubleLE"]
+  val readDoubleLE : t -> ?offset:int -> unit -> int [@@js.call "readDoubleLE"]
 
-  val readDoubleBE : t -> ?offset:int -> unit -> int
-    [@@js.call "readDoubleBE"]
+  val readDoubleBE : t -> ?offset:int -> unit -> int [@@js.call "readDoubleBE"]
 
   val reverse : t -> t [@@js.call "reverse"]
 
@@ -534,8 +512,7 @@ module Buffer : sig
   val writeUInt32BE : t -> int -> ?offset:int -> unit -> int
     [@@js.call "writeUInt32BE"]
 
-  val writeInt8 : t -> int -> ?offset:int -> unit -> int
-    [@@js.call "writeInt8"]
+  val writeInt8 : t -> int -> ?offset:int -> unit -> int [@@js.call "writeInt8"]
 
   val writeInt16LE : t -> int -> ?offset:int -> unit -> int
     [@@js.call "writeInt16LE"]
@@ -645,8 +622,7 @@ module InspectOptions : sig
 
   val get_maxArrayLength : t -> int or_null [@@js.get "maxArrayLength"]
 
-  val set_maxArrayLength : t -> int or_null -> unit
-    [@@js.set "maxArrayLength"]
+  val set_maxArrayLength : t -> int or_null -> unit [@@js.set "maxArrayLength"]
 
   val get_maxStringLength : t -> int or_null [@@js.get "maxStringLength"]
 

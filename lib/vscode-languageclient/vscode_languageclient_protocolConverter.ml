@@ -93,12 +93,12 @@ module Converter =
             (Ojs.call (t_to_js x33) "asRanges"
                [|(Ojs.list_to_js Ls.Range.t_to_js x31)|])
     let (asDiagnosticSeverity :
-      t -> value:float or_null_or_undefined -> Code.DiagnosticSeverity.t) =
+      t -> value:int or_null_or_undefined -> Code.DiagnosticSeverity.t) =
       fun (x37 : t) ->
-        fun ~value:(x35 : float or_null_or_undefined) ->
+        fun ~value:(x35 : int or_null_or_undefined) ->
           Code.DiagnosticSeverity.t_of_js
             (Ojs.call (t_to_js x37) "asDiagnosticSeverity"
-               [|(or_null_or_undefined_to_js Ojs.float_to_js x35)|])
+               [|(or_null_or_undefined_to_js Ojs.int_to_js x35)|])
     let (asDiagnosticTag :
       t -> tag:Ls.DiagnosticTag.t -> Code.DiagnosticTag.t or_undefined) =
       fun (x39 : t) ->
@@ -430,12 +430,12 @@ module Converter =
                     (fun (x173 : Ls.Location.t list) ->
                        Ojs.list_to_js Ls.Location.t_to_js x173) x172)|])
     let (asDocumentHighlightKind :
-      t -> item:float -> Code.DocumentHighlightKind.t) =
+      t -> item:int -> Code.DocumentHighlightKind.t) =
       fun (x179 : t) ->
-        fun ~item:(x178 : float) ->
+        fun ~item:(x178 : int) ->
           Code.DocumentHighlightKind.t_of_js
             (Ojs.call (t_to_js x179) "asDocumentHighlightKind"
-               [|(Ojs.float_to_js x178)|])
+               [|(Ojs.int_to_js x178)|])
     let (asDocumentHighlight :
       t -> item:Ls.DocumentHighlight.t -> Code.DocumentHighlight.t) =
       fun (x181 : t) ->

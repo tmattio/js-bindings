@@ -928,14 +928,14 @@ module ConnectionOptions =
         fun (x163 : CancellationStrategy.t) ->
           Ojs.set_prop_ascii (t_to_js x162) "cancellationStrategy"
             (CancellationStrategy.t_to_js x163)
-    let (get_maxRestartCount : t -> float) =
+    let (get_maxRestartCount : t -> int) =
       fun (x164 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x164) "maxRestartCount")
-    let (set_maxRestartCount : t -> float -> unit) =
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x164) "maxRestartCount")
+    let (set_maxRestartCount : t -> int -> unit) =
       fun (x165 : t) ->
-        fun (x166 : float) ->
+        fun (x166 : int) ->
           Ojs.set_prop_ascii (t_to_js x165) "maxRestartCount"
-            (Ojs.float_to_js x166)
+            (Ojs.int_to_js x166)
   end
 module ErrorAction =
   struct
@@ -964,17 +964,17 @@ module ErrorHandler =
       t ->
         error:Error.t ->
           message:Message.t or_undefined ->
-            count:float or_undefined -> _ErrorAction)
+            count:int or_undefined -> _ErrorAction)
       =
       fun (x178 : t) ->
         fun ~error:(x173 : Error.t) ->
           fun ~message:(x174 : Message.t or_undefined) ->
-            fun ~count:(x176 : float or_undefined) ->
+            fun ~count:(x176 : int or_undefined) ->
               _ErrorAction_of_js
                 (Ojs.call (t_to_js x178) "error"
                    [|(Error.t_to_js x173);(or_undefined_to_js Message.t_to_js
                                              x174);(or_undefined_to_js
-                                                      Ojs.float_to_js x176)|])
+                                                      Ojs.int_to_js x176)|])
     let (closed : t -> _CloseAction) =
       fun (x179 : t) ->
         _CloseAction_of_js (Ojs.call (t_to_js x179) "closed" [||])
@@ -4052,9 +4052,9 @@ module BaseLanguageClient =
         or_undefined_of_js DiagnosticCollection.t_of_js
           (Ojs.get_prop_ascii (t_to_js x1379) "diagnostics")
     let (createDefaultErrorHandler :
-      t -> ?maxRestartCount:float -> unit -> _ErrorHandler) =
+      t -> ?maxRestartCount:int -> unit -> _ErrorHandler) =
       fun (x1384 : t) ->
-        fun ?maxRestartCount:(x1381 : float option) ->
+        fun ?maxRestartCount:(x1381 : int option) ->
           fun () ->
             _ErrorHandler_of_js
               (let x1385 = t_to_js x1384 in
@@ -4069,7 +4069,7 @@ module BaseLanguageClient =
                             | Some x1383 ->
                                 ignore
                                   (Ojs.call x1382 "push"
-                                     [|(Ojs.float_to_js x1383)|])
+                                     [|(Ojs.int_to_js x1383)|])
                             | None -> ());
                            x1382))|])
     let (set_trace : t -> Trace.t -> unit) =

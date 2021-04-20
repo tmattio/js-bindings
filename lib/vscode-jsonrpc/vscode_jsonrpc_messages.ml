@@ -722,56 +722,56 @@ module RequestMessage =
   end
 module ErrorCodes =
   struct
-    let (parseError : float) =
-      Ojs.float_of_js
+    let (parseError : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "ErrorCodes")
            "ParseError")
-    let (invalidRequest : float) =
-      Ojs.float_of_js
+    let (invalidRequest : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "ErrorCodes")
            "InvalidRequest")
-    let (methodNotFound : float) =
-      Ojs.float_of_js
+    let (methodNotFound : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "ErrorCodes")
            "MethodNotFound")
-    let (invalidParams : float) =
-      Ojs.float_of_js
+    let (invalidParams : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "ErrorCodes")
            "InvalidParams")
-    let (internalError : float) =
-      Ojs.float_of_js
+    let (internalError : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "ErrorCodes")
            "InternalError")
-    let (jsonrpcReservedErrorRangeStart : float) =
-      Ojs.float_of_js
+    let (jsonrpcReservedErrorRangeStart : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "ErrorCodes")
            "jsonrpcReservedErrorRangeStart")
-    let (serverErrorStart : float) =
-      Ojs.float_of_js
+    let (serverErrorStart : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "ErrorCodes")
            "serverErrorStart")
-    let (messageWriteError : float) =
-      Ojs.float_of_js
+    let (messageWriteError : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "ErrorCodes")
            "MessageWriteError")
-    let (messageReadError : float) =
-      Ojs.float_of_js
+    let (messageReadError : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "ErrorCodes")
            "MessageReadError")
-    let (serverNotInitialized : float) =
-      Ojs.float_of_js
+    let (serverNotInitialized : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "ErrorCodes")
            "ServerNotInitialized")
-    let (unknownErrorCode : float) =
-      Ojs.float_of_js
+    let (unknownErrorCode : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "ErrorCodes")
            "UnknownErrorCode")
     let (jsonrpcReservedErrorRangeEnd : any) =
       any_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "ErrorCodes")
            "jsonrpcReservedErrorRangeEnd")
-    let (serverErrorEnd : float) =
-      Ojs.float_of_js
+    let (serverErrorEnd : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "ErrorCodes")
            "serverErrorEnd")
   end
@@ -790,14 +790,14 @@ module ResponseErrorLiteral =
       fun (x35 : Ojs.t) -> t_of_js Ojs.unit_of_js x35
     and t_0_to_js : t_0 -> Ojs.t =
       fun (x33 : unit t) -> t_to_js Ojs.unit_to_js x33
-    let (get_code : 'D t -> float) =
+    let (get_code : 'D t -> int) =
       fun (x37 : 'D t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x37) "code")
-    let (set_code : 'D t -> float -> unit) =
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x37) "code")
+    let (set_code : 'D t -> int -> unit) =
       fun (x39 : 'D t) ->
-        fun (x40 : float) ->
+        fun (x40 : int) ->
           Ojs.set_prop_ascii (t_to_js Obj.magic x39) "code"
-            (Ojs.float_to_js x40)
+            (Ojs.int_to_js x40)
     let (get_message : 'D t -> string) =
       fun (x42 : 'D t) ->
         Ojs.string_of_js
@@ -829,15 +829,15 @@ module ResponseError =
       fun (x58 : Ojs.t) -> t_of_js Ojs.unit_of_js x58
     and t_0_to_js : t_0 -> Ojs.t =
       fun (x56 : unit t) -> t_to_js Ojs.unit_to_js x56
-    let (get_code : 'D t -> float) =
+    let (get_code : 'D t -> int) =
       fun (x60 : 'D t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x60) "code")
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x60) "code")
     let (get_data : 'D t -> 'D or_undefined) =
       fun (x62 : 'D t) ->
         or_undefined_of_js Obj.magic
           (Ojs.get_prop_ascii (t_to_js Obj.magic x62) "data")
-    let (create : code:float -> message:string -> ?data:'D -> unit -> 'D t) =
-      fun ~code:(x65 : float) ->
+    let (create : code:int -> message:string -> ?data:'D -> unit -> 'D t) =
+      fun ~code:(x65 : int) ->
         fun ~message:(x66 : string) ->
           fun ?data:(x67 : 'D option) ->
             fun () ->
@@ -847,7 +847,7 @@ module ResponseError =
                    (let x68 =
                       Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                         [||] in
-                    ignore (Ojs.call x68 "push" [|(Ojs.float_to_js x65)|]);
+                    ignore (Ojs.call x68 "push" [|(Ojs.int_to_js x65)|]);
                     ignore (Ojs.call x68 "push" [|(Ojs.string_to_js x66)|]);
                     (match x67 with
                      | Some x69 ->
@@ -982,14 +982,13 @@ module LSPLogMessage =
           Ojs.set_prop_ascii (t_to_js x117) "message"
             (union3_to_js _NotificationMessage_to_js _RequestMessage_to_js
                _ResponseMessage_to_js x118)
-    let (get_timestamp : t -> float) =
+    let (get_timestamp : t -> int) =
       fun (x122 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x122) "timestamp")
-    let (set_timestamp : t -> float -> unit) =
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x122) "timestamp")
+    let (set_timestamp : t -> int -> unit) =
       fun (x123 : t) ->
-        fun (x124 : float) ->
-          Ojs.set_prop_ascii (t_to_js x123) "timestamp"
-            (Ojs.float_to_js x124)
+        fun (x124 : int) ->
+          Ojs.set_prop_ascii (t_to_js x123) "timestamp" (Ojs.int_to_js x124)
   end
 module ParameterStructures =
   struct
@@ -1040,9 +1039,9 @@ module MessageSignature =
     let (get_method : t -> string) =
       fun (x132 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x132) "method")
-    let (get_numberOfParams : t -> float) =
+    let (get_numberOfParams : t -> int) =
       fun (x133 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x133) "numberOfParams")
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x133) "numberOfParams")
     let (get_parameterStructures : t -> _ParameterStructures) =
       fun (x134 : t) ->
         _ParameterStructures_of_js
@@ -1059,16 +1058,16 @@ module AbstractMessageSignature =
     let (get_method : t -> string) =
       fun (x137 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x137) "method")
-    let (get_numberOfParams : t -> float) =
+    let (get_numberOfParams : t -> int) =
       fun (x138 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x138) "numberOfParams")
-    let (create : method_:string -> numberOfParams:float -> t) =
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x138) "numberOfParams")
+    let (create : method_:string -> numberOfParams:int -> t) =
       fun ~method_:(x139 : string) ->
-        fun ~numberOfParams:(x140 : float) ->
+        fun ~numberOfParams:(x140 : int) ->
           t_of_js
             (Ojs.new_obj
                (Ojs.get_prop_ascii Ojs.global "AbstractMessageSignature")
-               [|(Ojs.string_to_js x139);(Ojs.float_to_js x140)|])
+               [|(Ojs.string_to_js x139);(Ojs.int_to_js x140)|])
     let (get_parameterStructures : t -> _ParameterStructures) =
       fun (x141 : t) ->
         _ParameterStructures_of_js
@@ -1081,14 +1080,14 @@ module EM =
     type t = _EM
     let rec t_of_js : Ojs.t -> t = fun (x144 : Ojs.t) -> _EM_of_js x144
     and t_to_js : t -> Ojs.t = fun (x143 : _EM) -> _EM_to_js x143
-    let (get___endMarker__ : t -> float) =
+    let (get___endMarker__ : t -> int) =
       fun (x145 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x145) "_$endMarker$_")
-    let (set___endMarker__ : t -> float -> unit) =
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x145) "_$endMarker$_")
+    let (set___endMarker__ : t -> int -> unit) =
       fun (x146 : t) ->
-        fun (x147 : float) ->
+        fun (x147 : int) ->
           Ojs.set_prop_ascii (t_to_js x146) "_$endMarker$_"
-            (Ojs.float_to_js x147)
+            (Ojs.int_to_js x147)
   end
 module RequestType0 =
   struct

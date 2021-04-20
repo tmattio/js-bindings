@@ -351,8 +351,7 @@ module BigInt : sig
 
   val asIntN : bits:int -> int:bigint -> bigint [@@js.global "BitInt.asIntN"]
 
-  val asUintN : bits:int -> int:bigint -> bigint
-    [@@js.global "BitInt.asUintN"]
+  val asUintN : bits:int -> int:bigint -> bigint [@@js.global "BitInt.asUintN"]
 end
 
 module BigIntConstructor : sig
@@ -447,12 +446,7 @@ module BigInt64Array : sig
 
   val keys : t -> int IterableIterator.t [@@js.call "keys"]
 
-  val lastIndexOf
-    :  t
-    -> searchElement:bigint
-    -> ?fromIndex:int
-    -> unit
-    -> int
+  val lastIndexOf : t -> searchElement:bigint -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -586,8 +580,7 @@ module BigInt64ArrayConstructor : sig
 
   val get_prototype : t -> BigInt64Array.t [@@js.get "prototype"]
 
-  val create : t -> ?length:int -> unit -> BigInt64Array.t
-    [@@js.apply_newable]
+  val create : t -> ?length:int -> unit -> BigInt64Array.t [@@js.apply_newable]
 
   val create' : t -> array:bigint Iterable.t -> BigInt64Array.t
     [@@js.apply_newable]
@@ -694,12 +687,7 @@ module BigUint64Array : sig
 
   val keys : t -> int IterableIterator.t [@@js.call "keys"]
 
-  val lastIndexOf
-    :  t
-    -> searchElement:bigint
-    -> ?fromIndex:int
-    -> unit
-    -> int
+  val lastIndexOf : t -> searchElement:bigint -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -833,8 +821,7 @@ module BigUint64ArrayConstructor : sig
 
   val get_prototype : t -> BigUint64Array.t [@@js.get "prototype"]
 
-  val create : t -> ?length:int -> unit -> BigUint64Array.t
-    [@@js.apply_newable]
+  val create : t -> ?length:int -> unit -> BigUint64Array.t [@@js.apply_newable]
 
   val create' : t -> array:bigint Iterable.t -> BigUint64Array.t
     [@@js.apply_newable]
@@ -873,20 +860,10 @@ module DataView : sig
     include DataView
   end
 
-  val getBigInt64
-    :  t
-    -> byteOffset:int
-    -> ?littleEndian:bool
-    -> unit
-    -> bigint
+  val getBigInt64 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> bigint
     [@@js.call "getBigInt64"]
 
-  val getBigUint64
-    :  t
-    -> byteOffset:int
-    -> ?littleEndian:bool
-    -> unit
-    -> bigint
+  val getBigUint64 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> bigint
     [@@js.call "getBigUint64"]
 
   val setBigInt64

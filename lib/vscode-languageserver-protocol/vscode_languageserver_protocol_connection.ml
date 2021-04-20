@@ -483,30 +483,29 @@ module ProtocolConnection =
                                | None -> ());
                               x172))|])
     let (get_onError :
-      t -> (Error.t * Message.t or_undefined * float or_undefined) Event.t) =
+      t -> (Error.t * Message.t or_undefined * int or_undefined) Event.t) =
       fun (x176 : t) ->
         Event.t_of_js
           (fun (x177 : Ojs.t) ->
              let x178 = x177 in
              ((Error.t_of_js (Ojs.array_get x178 0)),
                (or_undefined_of_js Message.t_of_js (Ojs.array_get x178 1)),
-               (or_undefined_of_js Ojs.float_of_js (Ojs.array_get x178 2))))
+               (or_undefined_of_js Ojs.int_of_js (Ojs.array_get x178 2))))
           (Ojs.get_prop_ascii (t_to_js x176) "onError")
     let (set_onError :
       t ->
-        (Error.t * Message.t or_undefined * float or_undefined) Event.t ->
-          unit)
+        (Error.t * Message.t or_undefined * int or_undefined) Event.t -> unit)
       =
       fun (x181 : t) ->
         fun
           (x182 :
-            (Error.t * Message.t or_undefined * float or_undefined) Event.t)
+            (Error.t * Message.t or_undefined * int or_undefined) Event.t)
           ->
           Ojs.set_prop_ascii (t_to_js x181) "onError"
             (Event.t_to_js
                (fun
                   (x183 :
-                    (Error.t * Message.t or_undefined * float or_undefined))
+                    (Error.t * Message.t or_undefined * int or_undefined))
                   ->
                   let (x184, x185, x186) = x183 in
                   let x187 = Ojs.array_make 3 in
@@ -514,7 +513,7 @@ module ProtocolConnection =
                   Ojs.array_set x187 1
                     (or_undefined_to_js Message.t_to_js x185);
                   Ojs.array_set x187 2
-                    (or_undefined_to_js Ojs.float_to_js x186);
+                    (or_undefined_to_js Ojs.int_to_js x186);
                   x187) x182)
     let (get_onClose : t -> unit Event.t) =
       fun (x190 : t) ->

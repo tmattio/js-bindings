@@ -1,0 +1,13 @@
+(lang dune 2.7)
+
+(name helloworld-sample)
+
+(generate_opam_files true)
+
+(package
+ (name helloworld-sample)
+ (synopsis "HelloWorld example for VS Code")
+ (depends
+  (ocaml
+   (>= 4.11))
+  vscode))

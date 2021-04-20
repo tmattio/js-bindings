@@ -46,13 +46,7 @@ module Array : sig
   val fill : 'T t -> value:'T -> ?start:int -> ?end_:int -> unit -> 'T t
     [@@js.call "fill"]
 
-  val copyWithin
-    :  'T t
-    -> target:int
-    -> start:int
-    -> ?end_:int
-    -> unit
-    -> 'T t
+  val copyWithin : 'T t -> target:int -> start:int -> ?end_:int -> unit -> 'T t
     [@@js.call "copyWithin"]
 
   val to_ml : 'T t -> 'T list [@@js.cast]
@@ -131,8 +125,7 @@ module Math : sig
 
   val atanh : int -> int [@@js.global "Math.atanh"]
 
-  val hypot : values:(int list[@js.variadic]) -> int
-    [@@js.global "Math.hypot"]
+  val hypot : values:(int list[@js.variadic]) -> int [@@js.global "Math.hypot"]
 
   val trunc : int -> int [@@js.global "Math.trunc"]
 
@@ -287,8 +280,7 @@ module String : sig
     include String
   end
 
-  val codePointAt : t -> pos:int -> int or_undefined
-    [@@js.call "codePointAt"]
+  val codePointAt : t -> pos:int -> int or_undefined [@@js.call "codePointAt"]
 
   val includes : t -> searchString:string -> ?position:int -> unit -> bool
     [@@js.call "includes"]

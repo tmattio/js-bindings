@@ -525,8 +525,7 @@ module Readline : sig
 
     val get_escapeCodeTimeout : t -> int [@@js.get "escapeCodeTimeout"]
 
-    val set_escapeCodeTimeout : t -> int -> unit
-      [@@js.set "escapeCodeTimeout"]
+    val set_escapeCodeTimeout : t -> int -> unit [@@js.set "escapeCodeTimeout"]
 
     val get_tabSize : t -> int [@@js.get "tabSize"]
 

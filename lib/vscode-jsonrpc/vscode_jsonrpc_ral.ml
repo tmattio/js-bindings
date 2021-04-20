@@ -241,11 +241,11 @@ module AnonymousInterface3 =
     let (setTimeout :
       t ->
         callback:(args:any list -> unit) ->
-          ms:float -> args:any list -> _RAL_TimeoutHandle)
+          ms:int -> args:any list -> _RAL_TimeoutHandle)
       =
       fun (x65 : t) ->
         fun ~callback:(x58 : args:any list -> unit) ->
-          fun ~ms:(x59 : float) ->
+          fun ~ms:(x59 : int) ->
             fun ~args:(x60 : any list) ->
               _RAL_TimeoutHandle_of_js
                 (let x66 = t_to_js x65 in
@@ -262,7 +262,7 @@ module AnonymousInterface3 =
                                           ~args:(Ojs.list_of_js_from
                                                    any_of_js x63 0)))|]);
                            ignore
-                             (Ojs.call x61 "push" [|(Ojs.float_to_js x59)|]);
+                             (Ojs.call x61 "push" [|(Ojs.int_to_js x59)|]);
                            List.iter
                              (fun (x62 : any) ->
                                 ignore
@@ -333,11 +333,11 @@ module M_MessageBuffer =
           (fun (x86 : Ojs.t) ->
              Map.t_of_js Ojs.string_of_js Ojs.string_of_js x86)
           (Ojs.call (t_to_js x85) "tryReadHeaders" [||])
-    let (tryReadBody : t -> length:float -> Uint8Array.t or_undefined) =
+    let (tryReadBody : t -> length:int -> Uint8Array.t or_undefined) =
       fun (x90 : t) ->
-        fun ~length:(x89 : float) ->
+        fun ~length:(x89 : int) ->
           or_undefined_of_js Uint8Array.t_of_js
-            (Ojs.call (t_to_js x90) "tryReadBody" [|(Ojs.float_to_js x89)|])
+            (Ojs.call (t_to_js x90) "tryReadBody" [|(Ojs.int_to_js x89)|])
   end
 module M_MessageBufferEncoding =
   struct

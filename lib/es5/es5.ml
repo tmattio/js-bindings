@@ -720,7 +720,7 @@ let rec or_string_of_js : 'a . (Ojs.t -> 'a) -> Ojs.t -> 'a or_string =
 and or_string_to_js : 'a . ('a -> Ojs.t) -> 'a or_string -> Ojs.t =
   fun a_to_js ->
     function | `String x -> Ojs.string_to_js x | `Other x -> a_to_js x
-type 'a or_number = [ `Number of int  | `Other of 'a ]
+type 'a or_number = [ `Number of float  | `Other of 'a ]
 let rec or_number_of_js : 'a . (Ojs.t -> 'a) -> Ojs.t -> 'a or_number =
   fun a_of_js ->
     fun x ->

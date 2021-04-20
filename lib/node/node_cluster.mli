@@ -67,8 +67,7 @@ module Cluster : sig
 
     val set_gid : t -> int -> unit [@@js.set "gid"]
 
-    val get_inspectPort : t -> (unit -> int) or_number
-      [@@js.get "inspectPort"]
+    val get_inspectPort : t -> (unit -> int) or_number [@@js.get "inspectPort"]
 
     val set_inspectPort : t -> (unit -> int) or_number -> unit
       [@@js.set "inspectPort"]
@@ -1080,8 +1079,7 @@ module Cluster : sig
   val removeAllListeners : ?event:string -> unit -> cluster_Cluster
     [@@js.global "removeAllListeners"]
 
-  val setMaxListeners : n:int -> cluster_Cluster
-    [@@js.global "setMaxListeners"]
+  val setMaxListeners : n:int -> cluster_Cluster [@@js.global "setMaxListeners"]
 
   val getMaxListeners : unit -> int [@@js.global "getMaxListeners"]
 

@@ -391,12 +391,7 @@ module Http2 : sig
     val priority : t -> options:http2_StreamPriorityOptions -> unit
       [@@js.call "priority"]
 
-    val setTimeout
-      :  t
-      -> msecs:int
-      -> ?callback:(unit -> unit)
-      -> unit
-      -> unit
+    val setTimeout : t -> msecs:int -> ?callback:(unit -> unit) -> unit -> unit
       [@@js.call "setTimeout"]
 
     val sendTrailers : t -> headers:Node_http.Http.OutgoingHttpHeaders.t -> unit
@@ -1368,8 +1363,7 @@ module Http2 : sig
 
     val get_initialWindowSize : t -> int [@@js.get "initialWindowSize"]
 
-    val set_initialWindowSize : t -> int -> unit
-      [@@js.set "initialWindowSize"]
+    val set_initialWindowSize : t -> int -> unit [@@js.set "initialWindowSize"]
 
     val get_maxFrameSize : t -> int [@@js.get "maxFrameSize"]
 
@@ -1382,8 +1376,7 @@ module Http2 : sig
 
     val get_maxHeaderListSize : t -> int [@@js.get "maxHeaderListSize"]
 
-    val set_maxHeaderListSize : t -> int -> unit
-      [@@js.set "maxHeaderListSize"]
+    val set_maxHeaderListSize : t -> int -> unit [@@js.set "maxHeaderListSize"]
 
     val get_enableConnectProtocol : t -> bool [@@js.get "enableConnectProtocol"]
 
@@ -1458,8 +1451,7 @@ module Http2 : sig
 
     val get_outboundQueueSize : t -> int [@@js.get "outboundQueueSize"]
 
-    val set_outboundQueueSize : t -> int -> unit
-      [@@js.set "outboundQueueSize"]
+    val set_outboundQueueSize : t -> int -> unit [@@js.set "outboundQueueSize"]
 
     val get_deflateDynamicTableSize : t -> int
       [@@js.get "deflateDynamicTableSize"]
@@ -1542,12 +1534,7 @@ module Http2 : sig
     val setLocalWindowSize : t -> windowSize:int -> unit
       [@@js.call "setLocalWindowSize"]
 
-    val setTimeout
-      :  t
-      -> msecs:int
-      -> ?callback:(unit -> unit)
-      -> unit
-      -> unit
+    val setTimeout : t -> msecs:int -> ?callback:(unit -> unit) -> unit -> unit
       [@@js.call "setTimeout"]
 
     val settings : t -> settings:http2_Settings -> unit [@@js.call "settings"]
@@ -1579,10 +1566,7 @@ module Http2 : sig
       :  t
       -> event:([ `goaway ][@js.enum])
       -> listener:
-           (errorCode:int
-            -> lastStreamID:int
-            -> opaqueData:Buffer.t
-            -> unit)
+           (errorCode:int -> lastStreamID:int -> opaqueData:Buffer.t -> unit)
       -> t
       [@@js.call "addListener"]
 
@@ -1691,10 +1675,7 @@ module Http2 : sig
       :  t
       -> event:([ `goaway ][@js.enum])
       -> listener:
-           (errorCode:int
-            -> lastStreamID:int
-            -> opaqueData:Buffer.t
-            -> unit)
+           (errorCode:int -> lastStreamID:int -> opaqueData:Buffer.t -> unit)
       -> t
       [@@js.call "on"]
 
@@ -1754,10 +1735,7 @@ module Http2 : sig
       :  t
       -> event:([ `goaway ][@js.enum])
       -> listener:
-           (errorCode:int
-            -> lastStreamID:int
-            -> opaqueData:Buffer.t
-            -> unit)
+           (errorCode:int -> lastStreamID:int -> opaqueData:Buffer.t -> unit)
       -> t
       [@@js.call "once"]
 
@@ -1821,10 +1799,7 @@ module Http2 : sig
       :  t
       -> event:([ `goaway ][@js.enum])
       -> listener:
-           (errorCode:int
-            -> lastStreamID:int
-            -> opaqueData:Buffer.t
-            -> unit)
+           (errorCode:int -> lastStreamID:int -> opaqueData:Buffer.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
@@ -1888,10 +1863,7 @@ module Http2 : sig
       :  t
       -> event:([ `goaway ][@js.enum])
       -> listener:
-           (errorCode:int
-            -> lastStreamID:int
-            -> opaqueData:Buffer.t
-            -> unit)
+           (errorCode:int -> lastStreamID:int -> opaqueData:Buffer.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
@@ -3419,12 +3391,7 @@ module Http2 : sig
 
     val get_url : t -> string [@@js.get "url"]
 
-    val setTimeout
-      :  t
-      -> msecs:int
-      -> ?callback:(unit -> unit)
-      -> unit
-      -> unit
+    val setTimeout : t -> msecs:int -> ?callback:(unit -> unit) -> unit -> unit
       [@@js.call "setTimeout"]
 
     val read : t -> ?size:int -> unit -> Buffer.t or_string or_null
@@ -3778,12 +3745,7 @@ module Http2 : sig
       -> unit
       [@@js.call "setHeader"]
 
-    val setTimeout
-      :  t
-      -> msecs:int
-      -> ?callback:(unit -> unit)
-      -> unit
-      -> unit
+    val setTimeout : t -> msecs:int -> ?callback:(unit -> unit) -> unit -> unit
       [@@js.call "setTimeout"]
 
     val write
@@ -4131,13 +4093,11 @@ module Http2 : sig
     val nGHTTP2_FLOW_CONTROL_ERROR : int
       [@@js.global "NGHTTP2_FLOW_CONTROL_ERROR"]
 
-    val nGHTTP2_SETTINGS_TIMEOUT : int
-      [@@js.global "NGHTTP2_SETTINGS_TIMEOUT"]
+    val nGHTTP2_SETTINGS_TIMEOUT : int [@@js.global "NGHTTP2_SETTINGS_TIMEOUT"]
 
     val nGHTTP2_STREAM_CLOSED : int [@@js.global "NGHTTP2_STREAM_CLOSED"]
 
-    val nGHTTP2_FRAME_SIZE_ERROR : int
-      [@@js.global "NGHTTP2_FRAME_SIZE_ERROR"]
+    val nGHTTP2_FRAME_SIZE_ERROR : int [@@js.global "NGHTTP2_FRAME_SIZE_ERROR"]
 
     val nGHTTP2_REFUSED_STREAM : int [@@js.global "NGHTTP2_REFUSED_STREAM"]
 
@@ -4164,8 +4124,7 @@ module Http2 : sig
 
     val nGHTTP2_FLAG_END_STREAM : int [@@js.global "NGHTTP2_FLAG_END_STREAM"]
 
-    val nGHTTP2_FLAG_END_HEADERS : int
-      [@@js.global "NGHTTP2_FLAG_END_HEADERS"]
+    val nGHTTP2_FLAG_END_HEADERS : int [@@js.global "NGHTTP2_FLAG_END_HEADERS"]
 
     val nGHTTP2_FLAG_ACK : int [@@js.global "NGHTTP2_FLAG_ACK"]
 
@@ -4473,8 +4432,7 @@ module Http2 : sig
     val hTTP_STATUS_PARTIAL_CONTENT : int
       [@@js.global "HTTP_STATUS_PARTIAL_CONTENT"]
 
-    val hTTP_STATUS_MULTI_STATUS : int
-      [@@js.global "HTTP_STATUS_MULTI_STATUS"]
+    val hTTP_STATUS_MULTI_STATUS : int [@@js.global "HTTP_STATUS_MULTI_STATUS"]
 
     val hTTP_STATUS_ALREADY_REPORTED : int
       [@@js.global "HTTP_STATUS_ALREADY_REPORTED"]
@@ -4491,8 +4449,7 @@ module Http2 : sig
 
     val hTTP_STATUS_SEE_OTHER : int [@@js.global "HTTP_STATUS_SEE_OTHER"]
 
-    val hTTP_STATUS_NOT_MODIFIED : int
-      [@@js.global "HTTP_STATUS_NOT_MODIFIED"]
+    val hTTP_STATUS_NOT_MODIFIED : int [@@js.global "HTTP_STATUS_NOT_MODIFIED"]
 
     val hTTP_STATUS_USE_PROXY : int [@@js.global "HTTP_STATUS_USE_PROXY"]
 
@@ -4504,8 +4461,7 @@ module Http2 : sig
 
     val hTTP_STATUS_BAD_REQUEST : int [@@js.global "HTTP_STATUS_BAD_REQUEST"]
 
-    val hTTP_STATUS_UNAUTHORIZED : int
-      [@@js.global "HTTP_STATUS_UNAUTHORIZED"]
+    val hTTP_STATUS_UNAUTHORIZED : int [@@js.global "HTTP_STATUS_UNAUTHORIZED"]
 
     val hTTP_STATUS_PAYMENT_REQUIRED : int
       [@@js.global "HTTP_STATUS_PAYMENT_REQUIRED"]
@@ -4539,8 +4495,7 @@ module Http2 : sig
     val hTTP_STATUS_PAYLOAD_TOO_LARGE : int
       [@@js.global "HTTP_STATUS_PAYLOAD_TOO_LARGE"]
 
-    val hTTP_STATUS_URI_TOO_LONG : int
-      [@@js.global "HTTP_STATUS_URI_TOO_LONG"]
+    val hTTP_STATUS_URI_TOO_LONG : int [@@js.global "HTTP_STATUS_URI_TOO_LONG"]
 
     val hTTP_STATUS_UNSUPPORTED_MEDIA_TYPE : int
       [@@js.global "HTTP_STATUS_UNSUPPORTED_MEDIA_TYPE"]
@@ -4611,8 +4566,7 @@ module Http2 : sig
     val hTTP_STATUS_BANDWIDTH_LIMIT_EXCEEDED : int
       [@@js.global "HTTP_STATUS_BANDWIDTH_LIMIT_EXCEEDED"]
 
-    val hTTP_STATUS_NOT_EXTENDED : int
-      [@@js.global "HTTP_STATUS_NOT_EXTENDED"]
+    val hTTP_STATUS_NOT_EXTENDED : int [@@js.global "HTTP_STATUS_NOT_EXTENDED"]
 
     val hTTP_STATUS_NETWORK_AUTHENTICATION_REQUIRED : int
       [@@js.global "HTTP_STATUS_NETWORK_AUTHENTICATION_REQUIRED"]

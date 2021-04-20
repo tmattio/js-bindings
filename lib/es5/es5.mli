@@ -582,7 +582,7 @@ val or_string_to_js : ('a -> Ojs.t) -> 'a or_string -> Ojs.t
 val or_string_of_js : (Ojs.t -> 'a) -> Ojs.t -> 'a or_string
 
 type 'a or_number =
-  [ `Number of int
+  [ `Number of float
   | `Other of 'a
   ]
 [@@js.custom

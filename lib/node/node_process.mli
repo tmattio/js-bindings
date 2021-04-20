@@ -886,8 +886,7 @@ module Process : sig
 
     val get_unsharedStackSize : t -> int [@@js.get "unsharedStackSize"]
 
-    val set_unsharedStackSize : t -> int -> unit
-      [@@js.set "unsharedStackSize"]
+    val set_unsharedStackSize : t -> int -> unit [@@js.set "unsharedStackSize"]
 
     val get_userCPUTime : t -> int [@@js.get "userCPUTime"]
 

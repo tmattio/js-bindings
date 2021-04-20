@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "taskName": "build",
+      "label": "build",
+      "type": "shell",
+      "command": "opam exec -- dune build @extension -w",
+      "problemMatcher": "$ocamlc",
+      "presentation": {
+        "reveal": "never"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}

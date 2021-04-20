@@ -142,11 +142,7 @@ module Util : sig
 
     val t_of_js : Ojs.t -> t
 
-    val apply
-      :  t
-      -> depth:int
-      -> options:util_InspectOptionsStylized
-      -> string
+    val apply : t -> depth:int -> options:util_InspectOptionsStylized -> string
       [@@js.apply]
   end
   [@@js.scope "CustomInspectFunction"]

@@ -347,13 +347,13 @@ module SocketTransport =
         fun (x110 : _TransportKind_socket) ->
           Ojs.set_prop_ascii (t_to_js x109) "kind"
             (_TransportKind_socket_to_js x110)
-    let (get_port : t -> float) =
+    let (get_port : t -> int) =
       fun (x111 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x111) "port")
-    let (set_port : t -> float -> unit) =
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x111) "port")
+    let (set_port : t -> int -> unit) =
       fun (x112 : t) ->
-        fun (x113 : float) ->
-          Ojs.set_prop_ascii (t_to_js x112) "port" (Ojs.float_to_js x113)
+        fun (x113 : int) ->
+          Ojs.set_prop_ascii (t_to_js x112) "port" (Ojs.int_to_js x113)
   end
 module Transport =
   struct

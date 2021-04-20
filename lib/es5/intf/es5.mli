@@ -1513,14 +1513,12 @@ module Intl : sig
     val set_minimumIntegerDigits : t -> int -> unit
       [@@js.set "minimumIntegerDigits"]
 
-    val get_minimumFractionDigits : t -> int
-      [@@js.get "minimumFractionDigits"]
+    val get_minimumFractionDigits : t -> int [@@js.get "minimumFractionDigits"]
 
     val set_minimumFractionDigits : t -> int -> unit
       [@@js.set "minimumFractionDigits"]
 
-    val get_maximumFractionDigits : t -> int
-      [@@js.get "maximumFractionDigits"]
+    val get_maximumFractionDigits : t -> int [@@js.get "maximumFractionDigits"]
 
     val set_maximumFractionDigits : t -> int -> unit
       [@@js.set "maximumFractionDigits"]
@@ -1571,14 +1569,12 @@ module Intl : sig
     val set_minimumIntegerDigits : t -> int -> unit
       [@@js.set "minimumIntegerDigits"]
 
-    val get_minimumFractionDigits : t -> int
-      [@@js.get "minimumFractionDigits"]
+    val get_minimumFractionDigits : t -> int [@@js.get "minimumFractionDigits"]
 
     val set_minimumFractionDigits : t -> int -> unit
       [@@js.set "minimumFractionDigits"]
 
-    val get_maximumFractionDigits : t -> int
-      [@@js.get "maximumFractionDigits"]
+    val get_maximumFractionDigits : t -> int [@@js.get "maximumFractionDigits"]
 
     val set_maximumFractionDigits : t -> int -> unit
       [@@js.set "maximumFractionDigits"]
@@ -1848,12 +1844,7 @@ module ReadonlyArray : sig
   val indexOf : 'T t -> searchElement:'T -> ?fromIndex:int -> unit -> int
     [@@js.call "indexOf"]
 
-  val lastIndexOf
-    :  'T t
-    -> searchElement:'T
-    -> ?fromIndex:int
-    -> unit
-    -> int
+  val lastIndexOf : 'T t -> searchElement:'T -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val every
@@ -2061,12 +2052,7 @@ module Array : sig
   val indexOf : 'T t -> searchElement:'T -> ?fromIndex:int -> unit -> int
     [@@js.call "indexOf"]
 
-  val lastIndexOf
-    :  'T t
-    -> searchElement:'T
-    -> ?fromIndex:int
-    -> unit
-    -> int
+  val lastIndexOf : 'T t -> searchElement:'T -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val every
@@ -2470,8 +2456,7 @@ module String : sig
 
   val search : t -> regexp:RegExp.t or_string -> int [@@js.call "search"]
 
-  val slice : t -> ?start:int -> ?end_:int -> unit -> string
-    [@@js.call "slice"]
+  val slice : t -> ?start:int -> ?end_:int -> unit -> string [@@js.call "slice"]
 
   val split
     :  t
@@ -2589,8 +2574,7 @@ module Number : sig
 
   val toString : t -> ?radix:int -> unit -> string [@@js.call "toString"]
 
-  val toFixed : t -> ?fractionDigits:int -> unit -> string
-    [@@js.call "toFixed"]
+  val toFixed : t -> ?fractionDigits:int -> unit -> string [@@js.call "toFixed"]
 
   val toExponential : t -> ?fractionDigits:int -> unit -> string
     [@@js.call "toExponential"]
@@ -2793,8 +2777,7 @@ module Date : sig
 
   val setMilliseconds : t -> ms:int -> int [@@js.call "setMilliseconds"]
 
-  val setUTCMilliseconds : t -> ms:int -> int
-    [@@js.call "setUTCMilliseconds"]
+  val setUTCMilliseconds : t -> ms:int -> int [@@js.call "setUTCMilliseconds"]
 
   val setSeconds : t -> sec:int -> ?ms:int -> unit -> int
     [@@js.call "setSeconds"]
@@ -2838,22 +2821,10 @@ module Date : sig
   val setUTCMonth : t -> month:int -> ?date:int -> unit -> int
     [@@js.call "setUTCMonth"]
 
-  val setFullYear
-    :  t
-    -> year:int
-    -> ?month:int
-    -> ?date:int
-    -> unit
-    -> int
+  val setFullYear : t -> year:int -> ?month:int -> ?date:int -> unit -> int
     [@@js.call "setFullYear"]
 
-  val setUTCFullYear
-    :  t
-    -> year:int
-    -> ?month:int
-    -> ?date:int
-    -> unit
-    -> int
+  val setUTCFullYear : t -> year:int -> ?month:int -> ?date:int -> unit -> int
     [@@js.call "setUTCFullYear"]
 
   val toUTCString : t -> string [@@js.call "toUTCString"]
@@ -3412,8 +3383,7 @@ module DataView : sig
     -> unit
     [@@js.call "setFloat64"]
 
-  val setInt8 : t -> byteOffset:int -> value:int -> unit
-    [@@js.call "setInt8"]
+  val setInt8 : t -> byteOffset:int -> value:int -> unit [@@js.call "setInt8"]
 
   val setInt16
     :  t
@@ -3433,8 +3403,7 @@ module DataView : sig
     -> unit
     [@@js.call "setInt32"]
 
-  val setUint8 : t -> byteOffset:int -> value:int -> unit
-    [@@js.call "setUint8"]
+  val setUint8 : t -> byteOffset:int -> value:int -> unit [@@js.call "setUint8"]
 
   val setUint16
     :  t
@@ -3513,8 +3482,7 @@ module Int8Array : sig
     -> bool
     [@@js.call "every"]
 
-  val fill : t -> int -> ?start:int -> ?end_:int -> unit -> t
-    [@@js.call "fill"]
+  val fill : t -> int -> ?start:int -> ?end_:int -> unit -> t [@@js.call "fill"]
 
   val filter
     :  t
@@ -3553,12 +3521,7 @@ module Int8Array : sig
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val lastIndexOf
-    :  t
-    -> searchElement:int
-    -> ?fromIndex:int
-    -> unit
-    -> int
+  val lastIndexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -3810,12 +3773,7 @@ module Uint8Array : sig
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val lastIndexOf
-    :  t
-    -> searchElement:int
-    -> ?fromIndex:int
-    -> unit
-    -> int
+  val lastIndexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -4067,12 +4025,7 @@ module Uint8ClampedArray : sig
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val lastIndexOf
-    :  t
-    -> searchElement:int
-    -> ?fromIndex:int
-    -> unit
-    -> int
+  val lastIndexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -4330,12 +4283,7 @@ module Int16Array : sig
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val lastIndexOf
-    :  t
-    -> searchElement:int
-    -> ?fromIndex:int
-    -> unit
-    -> int
+  val lastIndexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -4587,12 +4535,7 @@ module Uint16Array : sig
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val lastIndexOf
-    :  t
-    -> searchElement:int
-    -> ?fromIndex:int
-    -> unit
-    -> int
+  val lastIndexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -4721,8 +4664,7 @@ module Uint16Array : sig
     -> t
     [@@js.new "Uint16Array"]
 
-  val get_BYTES_PER_ELEMENT : int
-    [@@js.global "Uint16Array.BYTES_PER_ELEMENT"]
+  val get_BYTES_PER_ELEMENT : int [@@js.global "Uint16Array.BYTES_PER_ELEMENT"]
 
   val of_ : (int list[@js.variadic]) -> t [@@js.global "Uint16Array.of"]
 
@@ -4748,10 +4690,7 @@ module Uint16ArrayConstructor : sig
 
   val create : t -> length:int -> Uint16Array.t [@@js.apply_newable]
 
-  val create'
-    :  t
-    -> array:(ArrayBuffer.t, int Array.t) union2
-    -> Uint16Array.t
+  val create' : t -> array:(ArrayBuffer.t, int Array.t) union2 -> Uint16Array.t
     [@@js.apply_newable]
 
   val create''
@@ -4848,12 +4787,7 @@ module Int32Array : sig
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val lastIndexOf
-    :  t
-    -> searchElement:int
-    -> ?fromIndex:int
-    -> unit
-    -> int
+  val lastIndexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -5105,12 +5039,7 @@ module Uint32Array : sig
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val lastIndexOf
-    :  t
-    -> searchElement:int
-    -> ?fromIndex:int
-    -> unit
-    -> int
+  val lastIndexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -5239,8 +5168,7 @@ module Uint32Array : sig
     -> t
     [@@js.new "Uint32Array"]
 
-  val get_BYTES_PER_ELEMENT : int
-    [@@js.global "Uint32Array.BYTES_PER_ELEMENT"]
+  val get_BYTES_PER_ELEMENT : int [@@js.global "Uint32Array.BYTES_PER_ELEMENT"]
 
   val of_ : (int list[@js.variadic]) -> t [@@js.global "Uint32Array.of"]
 
@@ -5266,10 +5194,7 @@ module Uint32ArrayConstructor : sig
 
   val create : t -> length:int -> Uint32Array.t [@@js.apply_newable]
 
-  val create'
-    :  t
-    -> array:(ArrayBuffer.t, int Array.t) union2
-    -> Uint32Array.t
+  val create' : t -> array:(ArrayBuffer.t, int Array.t) union2 -> Uint32Array.t
     [@@js.apply_newable]
 
   val create''
@@ -5366,12 +5291,7 @@ module Float32Array : sig
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val lastIndexOf
-    :  t
-    -> searchElement:int
-    -> ?fromIndex:int
-    -> unit
-    -> int
+  val lastIndexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -5500,8 +5420,7 @@ module Float32Array : sig
     -> t
     [@@js.new "Float32Array"]
 
-  val get_BYTES_PER_ELEMENT : int
-    [@@js.global "Float32Array.BYTES_PER_ELEMENT"]
+  val get_BYTES_PER_ELEMENT : int [@@js.global "Float32Array.BYTES_PER_ELEMENT"]
 
   val of_ : (int list[@js.variadic]) -> t [@@js.global "Float32Array.of"]
 
@@ -5527,10 +5446,7 @@ module Float32ArrayConstructor : sig
 
   val create : t -> length:int -> Float32Array.t [@@js.apply_newable]
 
-  val create'
-    :  t
-    -> array:(ArrayBuffer.t, int Array.t) union2
-    -> Float32Array.t
+  val create' : t -> array:(ArrayBuffer.t, int Array.t) union2 -> Float32Array.t
     [@@js.apply_newable]
 
   val create''
@@ -5627,12 +5543,7 @@ module Float64Array : sig
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val lastIndexOf
-    :  t
-    -> searchElement:int
-    -> ?fromIndex:int
-    -> unit
-    -> int
+  val lastIndexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -5759,8 +5670,7 @@ module Float64Array : sig
     -> t
     [@@js.new "Float64Array"]
 
-  val get_BYTES_PER_ELEMENT : int
-    [@@js.global "Float64Array.BYTES_PER_ELEMENT"]
+  val get_BYTES_PER_ELEMENT : int [@@js.global "Float64Array.BYTES_PER_ELEMENT"]
 
   val of_ : (int list[@js.variadic]) -> t [@@js.global "Float64Array.of"]
 
@@ -5786,10 +5696,7 @@ module Float64ArrayConstructor : sig
 
   val create : t -> length:int -> Float64Array.t [@@js.apply_newable]
 
-  val create'
-    :  t
-    -> array:(ArrayBuffer.t, int Array.t) union2
-    -> Float64Array.t
+  val create' : t -> array:(ArrayBuffer.t, int Array.t) union2 -> Float64Array.t
     [@@js.apply_newable]
 
   val create''

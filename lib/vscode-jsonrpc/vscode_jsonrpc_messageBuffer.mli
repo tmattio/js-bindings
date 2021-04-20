@@ -64,12 +64,7 @@ module AbstractMessageBuffer : sig
     -> string
     [@@js.call "toString"]
 
-  val asNative
-    :  t
-    -> buffer:Uint8Array.t
-    -> ?length:int
-    -> unit
-    -> Uint8Array.t
+  val asNative : t -> buffer:Uint8Array.t -> ?length:int -> unit -> Uint8Array.t
     [@@js.call "asNative"]
 
   val allocNative : t -> length:int -> Uint8Array.t [@@js.call "allocNative"]

@@ -215,8 +215,7 @@ module V8 : sig
 
     val writeUint32 : t -> value:int -> unit [@@js.call "writeUint32"]
 
-    val writeUint64 : t -> hi:int -> lo:int -> unit
-      [@@js.call "writeUint64"]
+    val writeUint64 : t -> hi:int -> lo:int -> unit [@@js.call "writeUint64"]
 
     val writeDouble : t -> value:int -> unit [@@js.call "writeDouble"]
 

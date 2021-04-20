@@ -366,18 +366,18 @@ module Converter =
           or_null_or_undefined_of_js Proto.Location.t_of_js
             (Ojs.call (t_to_js x110) "asLocation"
                [|(or_null_or_undefined_to_js Code.Location.t_to_js x108)|])
-    let (asDiagnosticSeverity :
-      t -> value:Code.DiagnosticSeverity.t -> float) =
+    let (asDiagnosticSeverity : t -> value:Code.DiagnosticSeverity.t -> int)
+      =
       fun (x113 : t) ->
         fun ~value:(x112 : Code.DiagnosticSeverity.t) ->
-          Ojs.float_of_js
+          Ojs.int_of_js
             (Ojs.call (t_to_js x113) "asDiagnosticSeverity"
                [|(Code.DiagnosticSeverity.t_to_js x112)|])
     let (asDiagnosticTag :
-      t -> value:Code.DiagnosticTag.t -> float or_undefined) =
+      t -> value:Code.DiagnosticTag.t -> int or_undefined) =
       fun (x115 : t) ->
         fun ~value:(x114 : Code.DiagnosticTag.t) ->
-          or_undefined_of_js Ojs.float_of_js
+          or_undefined_of_js Ojs.int_of_js
             (Ojs.call (t_to_js x115) "asDiagnosticTag"
                [|(Code.DiagnosticTag.t_to_js x114)|])
     let (asDiagnostic : t -> item:Code.Diagnostic.t -> Proto.Diagnostic.t) =

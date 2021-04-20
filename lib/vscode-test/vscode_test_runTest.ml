@@ -112,7 +112,7 @@ module TestOptions =
           Ojs.set_prop_ascii (t_to_js x32) "launchArgs"
             (Ojs.list_to_js Ojs.string_to_js x33)
   end
-let (runTests : options:_TestOptions -> float Promise.t) =
+let (runTests : options:_TestOptions -> int Promise.t) =
   fun ~options:(x35 : _TestOptions) ->
-    Promise.t_of_js Ojs.float_of_js
+    Promise.t_of_js Ojs.int_of_js
       (Ojs.call Ojs.global "runTests" [|(_TestOptions_to_js x35)|])

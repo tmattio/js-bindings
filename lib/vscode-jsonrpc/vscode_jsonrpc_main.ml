@@ -385,11 +385,11 @@ module SocketTransport =
           (Ojs.call (t_to_js x89) "onConnected" [||])
   end
 let (createClientSocketTransport :
-  port:float ->
+  port:int ->
     ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t ->
       unit -> _SocketTransport Promise.t)
   =
-  fun ~port:(x92 : float) ->
+  fun ~port:(x92 : int) ->
     fun
       ?encoding:(x93 : Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t option)
       ->
@@ -401,7 +401,7 @@ let (createClientSocketTransport :
              [|x96;((let x94 =
                        Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                          [||] in
-                     ignore (Ojs.call x94 "push" [|(Ojs.float_to_js x92)|]);
+                     ignore (Ojs.call x94 "push" [|(Ojs.int_to_js x92)|]);
                      (match x93 with
                       | Some x95 ->
                           ignore
@@ -411,11 +411,11 @@ let (createClientSocketTransport :
                       | None -> ());
                      x94))|])
 let (createServerSocketTransport :
-  port:float ->
+  port:int ->
     ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t ->
       unit -> (MessageReader.t * MessageWriter.t))
   =
-  fun ~port:(x98 : float) ->
+  fun ~port:(x98 : int) ->
     fun
       ?encoding:(x99 : Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t option)
       ->
@@ -427,7 +427,7 @@ let (createServerSocketTransport :
             [|x102;((let x100 =
                        Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                          [||] in
-                     ignore (Ojs.call x100 "push" [|(Ojs.float_to_js x98)|]);
+                     ignore (Ojs.call x100 "push" [|(Ojs.int_to_js x98)|]);
                      (match x99 with
                       | Some x101 ->
                           ignore

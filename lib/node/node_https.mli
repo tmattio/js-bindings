@@ -93,8 +93,7 @@ module Https : sig
 
     val get_maxCachedSessions : t -> int [@@js.get "maxCachedSessions"]
 
-    val set_maxCachedSessions : t -> int -> unit
-      [@@js.set "maxCachedSessions"]
+    val set_maxCachedSessions : t -> int -> unit [@@js.set "maxCachedSessions"]
 
     val cast : t -> Http.AgentOptions.t [@@js.cast]
 

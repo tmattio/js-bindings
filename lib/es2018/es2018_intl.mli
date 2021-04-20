@@ -57,14 +57,12 @@ module Intl : sig
     val set_minimumIntegerDigits : t -> int -> unit
       [@@js.set "minimumIntegerDigits"]
 
-    val get_minimumFractionDigits : t -> int
-      [@@js.get "minimumFractionDigits"]
+    val get_minimumFractionDigits : t -> int [@@js.get "minimumFractionDigits"]
 
     val set_minimumFractionDigits : t -> int -> unit
       [@@js.set "minimumFractionDigits"]
 
-    val get_maximumFractionDigits : t -> int
-      [@@js.get "maximumFractionDigits"]
+    val get_maximumFractionDigits : t -> int [@@js.get "maximumFractionDigits"]
 
     val set_maximumFractionDigits : t -> int -> unit
       [@@js.set "maximumFractionDigits"]
@@ -109,14 +107,12 @@ module Intl : sig
     val set_minimumIntegerDigits : t -> int -> unit
       [@@js.set "minimumIntegerDigits"]
 
-    val get_minimumFractionDigits : t -> int
-      [@@js.get "minimumFractionDigits"]
+    val get_minimumFractionDigits : t -> int [@@js.get "minimumFractionDigits"]
 
     val set_minimumFractionDigits : t -> int -> unit
       [@@js.set "minimumFractionDigits"]
 
-    val get_maximumFractionDigits : t -> int
-      [@@js.get "maximumFractionDigits"]
+    val get_maximumFractionDigits : t -> int [@@js.get "maximumFractionDigits"]
 
     val set_maximumFractionDigits : t -> int -> unit
       [@@js.set "maximumFractionDigits"]

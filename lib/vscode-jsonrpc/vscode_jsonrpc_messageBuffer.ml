@@ -98,10 +98,10 @@ module AbstractMessageBuffer =
                  [|(Uint8Array.t_to_js x19);(Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t_to_js
                                                x20)|])
     let (asNative :
-      t -> buffer:Uint8Array.t -> ?length:float -> unit -> Uint8Array.t) =
+      t -> buffer:Uint8Array.t -> ?length:int -> unit -> Uint8Array.t) =
       fun (x26 : t) ->
         fun ~buffer:(x22 : Uint8Array.t) ->
-          fun ?length:(x23 : float option) ->
+          fun ?length:(x23 : int option) ->
             fun () ->
               Uint8Array.t_of_js
                 (let x27 = t_to_js x26 in
@@ -117,14 +117,14 @@ module AbstractMessageBuffer =
                             | Some x25 ->
                                 ignore
                                   (Ojs.call x24 "push"
-                                     [|(Ojs.float_to_js x25)|])
+                                     [|(Ojs.int_to_js x25)|])
                             | None -> ());
                            x24))|])
-    let (allocNative : t -> length:float -> Uint8Array.t) =
+    let (allocNative : t -> length:int -> Uint8Array.t) =
       fun (x29 : t) ->
-        fun ~length:(x28 : float) ->
+        fun ~length:(x28 : int) ->
           Uint8Array.t_of_js
-            (Ojs.call (t_to_js x29) "allocNative" [|(Ojs.float_to_js x28)|])
+            (Ojs.call (t_to_js x29) "allocNative" [|(Ojs.int_to_js x28)|])
     let (get_encoding : t -> Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t)
       =
       fun (x30 : t) ->
@@ -142,14 +142,14 @@ module AbstractMessageBuffer =
           (fun (x35 : Ojs.t) ->
              Map.t_of_js Ojs.string_of_js Ojs.string_of_js x35)
           (Ojs.call (t_to_js x34) "tryReadHeaders" [||])
-    let (tryReadBody : t -> length:float -> Uint8Array.t or_undefined) =
+    let (tryReadBody : t -> length:int -> Uint8Array.t or_undefined) =
       fun (x39 : t) ->
-        fun ~length:(x38 : float) ->
+        fun ~length:(x38 : int) ->
           or_undefined_of_js Uint8Array.t_of_js
-            (Ojs.call (t_to_js x39) "tryReadBody" [|(Ojs.float_to_js x38)|])
-    let (get_numberOfBytes : t -> float) =
+            (Ojs.call (t_to_js x39) "tryReadBody" [|(Ojs.int_to_js x38)|])
+    let (get_numberOfBytes : t -> int) =
       fun (x41 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x41) "numberOfBytes")
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x41) "numberOfBytes")
     let (get__read : t -> any) =
       fun (x42 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x42) "_read")
     let (set__read : t -> any -> unit) =

@@ -1,0 +1,6 @@
+(rule
+ (alias extension)
+ (mode
+  (promote (until-clean)))
+ (action
+  (copy %{project_root}/src/extension.bc.js ./extension.js)))

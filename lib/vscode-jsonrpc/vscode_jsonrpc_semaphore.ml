@@ -56,8 +56,8 @@ module Semaphore =
         fun (x22 : any) ->
           Ojs.set_prop_ascii (t_to_js Obj.magic x21) "_waiting"
             (any_to_js x22)
-    let (create : ?capacity:float -> unit -> 'T t) =
-      fun ?capacity:(x24 : float option) ->
+    let (create : ?capacity:int -> unit -> 'T t) =
+      fun ?capacity:(x24 : int option) ->
         fun () ->
           t_of_js Obj.magic
             (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "Semaphore")
@@ -65,7 +65,7 @@ module Semaphore =
                   Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
                 (match x24 with
                  | Some x26 ->
-                     ignore (Ojs.call x25 "push" [|(Ojs.float_to_js x26)|])
+                     ignore (Ojs.call x25 "push" [|(Ojs.int_to_js x26)|])
                  | None -> ());
                 x25))
     let (lock :
@@ -79,9 +79,9 @@ module Semaphore =
                        union2_to_js Obj.magic
                          (fun (x30 : 'T Promise.t) ->
                             Promise.t_to_js Obj.magic x30) (x28 ())))|])
-    let (get_active : 'T t -> float) =
+    let (get_active : 'T t -> int) =
       fun (x35 : 'T t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x35) "active")
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x35) "active")
     let (get_runNext : 'T t -> any) =
       fun (x37 : 'T t) ->
         any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x37) "runNext")

@@ -62,12 +62,12 @@ module PartialMessageInfo =
       fun (x6 : Ojs.t) -> _PartialMessageInfo_of_js x6
     and t_to_js : t -> Ojs.t =
       fun (x5 : _PartialMessageInfo) -> _PartialMessageInfo_to_js x5
-    let (get_messageToken : t -> float) =
+    let (get_messageToken : t -> int) =
       fun (x7 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x7) "messageToken")
-    let (get_waitingTime : t -> float) =
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x7) "messageToken")
+    let (get_waitingTime : t -> int) =
       fun (x8 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x8) "waitingTime")
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x8) "waitingTime")
   end
 module MessageReader =
   struct
@@ -341,14 +341,14 @@ module ReadableStreamMessageReader =
                                  x100)|])
                    | None -> ());
                   x99))
-    let (set_partialMessageTimeout : t -> float -> unit) =
+    let (set_partialMessageTimeout : t -> int -> unit) =
       fun (x103 : t) ->
-        fun (x104 : float) ->
+        fun (x104 : int) ->
           Ojs.set_prop_ascii (t_to_js x103) "partialMessageTimeout"
-            (Ojs.float_to_js x104)
-    let (get_partialMessageTimeout : t -> float) =
+            (Ojs.int_to_js x104)
+    let (get_partialMessageTimeout : t -> int) =
       fun (x105 : t) ->
-        Ojs.float_of_js
+        Ojs.int_of_js
           (Ojs.get_prop_ascii (t_to_js x105) "partialMessageTimeout")
     let (listen :
       t -> callback:_DataCallback -> Vscode_jsonrpc_disposable.Disposable.t)

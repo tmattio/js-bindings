@@ -44,15 +44,15 @@ module Delayer =
     and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
       fun (__T_to_js : __T -> Ojs.t) ->
         fun (x7 : __T _Delayer) -> _Delayer_to_js __T_to_js x7
-    let (get_defaultDelay : 'T t -> float) =
+    let (get_defaultDelay : 'T t -> int) =
       fun (x11 : 'T t) ->
-        Ojs.float_of_js
+        Ojs.int_of_js
           (Ojs.get_prop_ascii (t_to_js Obj.magic x11) "defaultDelay")
-    let (set_defaultDelay : 'T t -> float -> unit) =
+    let (set_defaultDelay : 'T t -> int -> unit) =
       fun (x13 : 'T t) ->
-        fun (x14 : float) ->
+        fun (x14 : int) ->
           Ojs.set_prop_ascii (t_to_js Obj.magic x13) "defaultDelay"
-            (Ojs.float_to_js x14)
+            (Ojs.int_to_js x14)
     let (get_timeout : 'T t -> any) =
       fun (x16 : 'T t) ->
         any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x16) "timeout")
@@ -85,16 +85,16 @@ module Delayer =
       fun (x33 : 'T t) ->
         fun (x34 : any) ->
           Ojs.set_prop_ascii (t_to_js Obj.magic x33) "task" (any_to_js x34)
-    let (create : defaultDelay:float -> 'T t) =
-      fun ~defaultDelay:(x36 : float) ->
+    let (create : defaultDelay:int -> 'T t) =
+      fun ~defaultDelay:(x36 : int) ->
         t_of_js Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Delayer")
-             [|(Ojs.float_to_js x36)|])
+             [|(Ojs.int_to_js x36)|])
     let (trigger :
-      'T t -> task:'T _ITask -> ?delay:float -> unit -> 'T Promise.t) =
+      'T t -> task:'T _ITask -> ?delay:int -> unit -> 'T Promise.t) =
       fun (x43 : 'T t) ->
         fun ~task:(x38 : 'T _ITask) ->
-          fun ?delay:(x39 : float option) ->
+          fun ?delay:(x39 : int option) ->
             fun () ->
               Promise.t_of_js Obj.magic
                 (let x45 = t_to_js Obj.magic x43 in
@@ -110,7 +110,7 @@ module Delayer =
                             | Some x41 ->
                                 ignore
                                   (Ojs.call x40 "push"
-                                     [|(Ojs.float_to_js x41)|])
+                                     [|(Ojs.int_to_js x41)|])
                             | None -> ());
                            x40))|])
     let (forceDelivery : 'T t -> 'T or_undefined) =

@@ -120,11 +120,7 @@ module Module : sig
 
       val create : payload:module_Module_SourceMapPayload -> t [@@js.create]
 
-      val findEntry
-        :  t
-        -> line:int
-        -> column:int
-        -> module_Module_SourceMapping
+      val findEntry : t -> line:int -> column:int -> module_Module_SourceMapping
         [@@js.call "findEntry"]
     end
     [@@js.scope "SourceMap"]

@@ -150,9 +150,9 @@ module LinkedMap =
       fun (x60 : ('K, 'V) t) ->
         Ojs.bool_of_js
           (Ojs.call (t_to_js Obj.magic Obj.magic x60) "isEmpty" [||])
-    let (get_size : ('K, 'V) t -> float) =
+    let (get_size : ('K, 'V) t -> int) =
       fun (x63 : ('K, 'V) t) ->
-        Ojs.float_of_js
+        Ojs.int_of_js
           (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x63) "size")
     let (get_first : ('K, 'V) t -> 'V or_undefined) =
       fun (x66 : ('K, 'V) t) ->
@@ -286,12 +286,12 @@ module LinkedMap =
                (Obj.magic (Ojs.array_get x141 1))))
           (Ojs.call (t_to_js Obj.magic Obj.magic x137) "[Symbol.iterator]"
              [||])
-    let (trimOld : ('K, 'V) t -> newSize:float -> unit) =
+    let (trimOld : ('K, 'V) t -> newSize:int -> unit) =
       fun (x143 : ('K, 'V) t) ->
-        fun ~newSize:(x142 : float) ->
+        fun ~newSize:(x142 : int) ->
           ignore
             (Ojs.call (t_to_js Obj.magic Obj.magic x143) "trimOld"
-               [|(Ojs.float_to_js x142)|])
+               [|(Ojs.int_to_js x142)|])
     let (get_addItemFirst : ('K, 'V) t -> any) =
       fun (x146 : ('K, 'V) t) ->
         any_of_js
@@ -388,39 +388,38 @@ module LRUCache =
         fun (x209 : any) ->
           Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x208) "_ratio"
             (any_to_js x209)
-    let (create : limit:float -> ?ratio:float -> unit -> ('K, 'V) t) =
-      fun ~limit:(x212 : float) ->
-        fun ?ratio:(x213 : float option) ->
+    let (create : limit:int -> ?ratio:int -> unit -> ('K, 'V) t) =
+      fun ~limit:(x212 : int) ->
+        fun ?ratio:(x213 : int option) ->
           fun () ->
             t_of_js Obj.magic Obj.magic
               (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "LRUCache")
                  (let x214 =
                     Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
-                  ignore (Ojs.call x214 "push" [|(Ojs.float_to_js x212)|]);
+                  ignore (Ojs.call x214 "push" [|(Ojs.int_to_js x212)|]);
                   (match x213 with
                    | Some x215 ->
-                       ignore
-                         (Ojs.call x214 "push" [|(Ojs.float_to_js x215)|])
+                       ignore (Ojs.call x214 "push" [|(Ojs.int_to_js x215)|])
                    | None -> ());
                   x214))
-    let (get_limit : ('K, 'V) t -> float) =
+    let (get_limit : ('K, 'V) t -> int) =
       fun (x218 : ('K, 'V) t) ->
-        Ojs.float_of_js
+        Ojs.int_of_js
           (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x218) "limit")
-    let (set_limit : ('K, 'V) t -> float -> unit) =
+    let (set_limit : ('K, 'V) t -> int -> unit) =
       fun (x221 : ('K, 'V) t) ->
-        fun (x222 : float) ->
+        fun (x222 : int) ->
           Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x221) "limit"
-            (Ojs.float_to_js x222)
-    let (get_ratio : ('K, 'V) t -> float) =
+            (Ojs.int_to_js x222)
+    let (get_ratio : ('K, 'V) t -> int) =
       fun (x225 : ('K, 'V) t) ->
-        Ojs.float_of_js
+        Ojs.int_of_js
           (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x225) "ratio")
-    let (set_ratio : ('K, 'V) t -> float -> unit) =
+    let (set_ratio : ('K, 'V) t -> int -> unit) =
       fun (x228 : ('K, 'V) t) ->
-        fun (x229 : float) ->
+        fun (x229 : int) ->
           Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x228) "ratio"
-            (Ojs.float_to_js x229)
+            (Ojs.int_to_js x229)
     let (get_ :
       ('K, 'V) t -> key:'K -> ?touch:_Touch -> unit -> 'V or_undefined) =
       fun (x236 : ('K, 'V) t) ->

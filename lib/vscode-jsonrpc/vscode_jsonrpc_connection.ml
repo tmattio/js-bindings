@@ -4286,7 +4286,7 @@ module MessageConnection =
                                x1457))|])
     let (get_onError :
       t ->
-        (Error.t * Message.t or_undefined * float or_undefined)
+        (Error.t * Message.t or_undefined * int or_undefined)
           Vscode_jsonrpc_events.Event.t)
       =
       fun (x1461 : t) ->
@@ -4295,24 +4295,24 @@ module MessageConnection =
              let x1463 = x1462 in
              ((Error.t_of_js (Ojs.array_get x1463 0)),
                (or_undefined_of_js Message.t_of_js (Ojs.array_get x1463 1)),
-               (or_undefined_of_js Ojs.float_of_js (Ojs.array_get x1463 2))))
+               (or_undefined_of_js Ojs.int_of_js (Ojs.array_get x1463 2))))
           (Ojs.get_prop_ascii (t_to_js x1461) "onError")
     let (set_onError :
       t ->
-        (Error.t * Message.t or_undefined * float or_undefined)
+        (Error.t * Message.t or_undefined * int or_undefined)
           Vscode_jsonrpc_events.Event.t -> unit)
       =
       fun (x1466 : t) ->
         fun
           (x1467 :
-            (Error.t * Message.t or_undefined * float or_undefined)
+            (Error.t * Message.t or_undefined * int or_undefined)
               Vscode_jsonrpc_events.Event.t)
           ->
           Ojs.set_prop_ascii (t_to_js x1466) "onError"
             (Vscode_jsonrpc_events.Event.t_to_js
                (fun
                   (x1468 :
-                    (Error.t * Message.t or_undefined * float or_undefined))
+                    (Error.t * Message.t or_undefined * int or_undefined))
                   ->
                   let (x1469, x1470, x1471) = x1468 in
                   let x1472 = Ojs.array_make 3 in
@@ -4320,7 +4320,7 @@ module MessageConnection =
                   Ojs.array_set x1472 1
                     (or_undefined_to_js Message.t_to_js x1470);
                   Ojs.array_set x1472 2
-                    (or_undefined_to_js Ojs.float_to_js x1471);
+                    (or_undefined_to_js Ojs.int_to_js x1471);
                   x1472) x1467)
     let (get_onClose : t -> unit Vscode_jsonrpc_events.Event.t) =
       fun (x1475 : t) ->

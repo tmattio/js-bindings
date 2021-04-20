@@ -214,10 +214,7 @@ module Dns : sig
     :  hostname:string
     -> family:int
     -> callback:
-         (err:ErrnoException.t or_null
-          -> address:string
-          -> family:int
-          -> unit)
+         (err:ErrnoException.t or_null -> address:string -> family:int -> unit)
     -> unit
     [@@js.global "lookup"]
 
@@ -225,10 +222,7 @@ module Dns : sig
     :  hostname:string
     -> options:dns_LookupOneOptions
     -> callback:
-         (err:ErrnoException.t or_null
-          -> address:string
-          -> family:int
-          -> unit)
+         (err:ErrnoException.t or_null -> address:string -> family:int -> unit)
     -> unit
     [@@js.global "lookup"]
 
@@ -256,10 +250,7 @@ module Dns : sig
   val lookup
     :  hostname:string
     -> callback:
-         (err:ErrnoException.t or_null
-          -> address:string
-          -> family:int
-          -> unit)
+         (err:ErrnoException.t or_null -> address:string -> family:int -> unit)
     -> unit
     [@@js.global "lookup"]
 

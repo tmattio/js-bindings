@@ -168,9 +168,9 @@ module Internal =
             intf
         and _WorkspaceChange = [ `WorkspaceChange ] intf
         and _WorkspaceEdit = [ `WorkspaceEdit ] intf
-        and decimal = float
-        and integer = float
-        and uinteger = float
+        and decimal = int
+        and integer = int
+        and uinteger = int
         let rec _AnnotatedTextEdit_of_js : Ojs.t -> _AnnotatedTextEdit =
           Obj.magic
         and _AnnotatedTextEdit_to_js : _AnnotatedTextEdit -> Ojs.t =
@@ -1097,17 +1097,17 @@ module Internal =
         and _WorkspaceEdit_of_js : Ojs.t -> _WorkspaceEdit = Obj.magic
         and _WorkspaceEdit_to_js : _WorkspaceEdit -> Ojs.t = Obj.magic
         and decimal_of_js : Ojs.t -> decimal =
-          fun (x174 : Ojs.t) -> Ojs.float_of_js x174
+          fun (x174 : Ojs.t) -> Ojs.int_of_js x174
         and decimal_to_js : decimal -> Ojs.t =
-          fun (x173 : float) -> Ojs.float_to_js x173
+          fun (x173 : int) -> Ojs.int_to_js x173
         and integer_of_js : Ojs.t -> integer =
-          fun (x176 : Ojs.t) -> Ojs.float_of_js x176
+          fun (x176 : Ojs.t) -> Ojs.int_of_js x176
         and integer_to_js : integer -> Ojs.t =
-          fun (x175 : float) -> Ojs.float_to_js x175
+          fun (x175 : int) -> Ojs.int_to_js x175
         and uinteger_of_js : Ojs.t -> uinteger =
-          fun (x178 : Ojs.t) -> Ojs.float_of_js x178
+          fun (x178 : Ojs.t) -> Ojs.int_of_js x178
         and uinteger_to_js : uinteger -> Ojs.t =
-          fun (x177 : float) -> Ojs.float_to_js x177
+          fun (x177 : int) -> Ojs.int_to_js x177
       end
   end
 open Internal
@@ -1212,8 +1212,8 @@ module Integer =
       any_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "integer")
            "MIN_VALUE")
-    let (mAX_VALUE : float) =
-      Ojs.float_of_js
+    let (mAX_VALUE : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "integer")
            "MAX_VALUE")
   end
@@ -1222,12 +1222,12 @@ module Uinteger =
     type t = uinteger
     let rec t_of_js : Ojs.t -> t = fun (x215 : Ojs.t) -> uinteger_of_js x215
     and t_to_js : t -> Ojs.t = fun (x214 : uinteger) -> uinteger_to_js x214
-    let (mIN_VALUE : float) =
-      Ojs.float_of_js
+    let (mIN_VALUE : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "uinteger")
            "MIN_VALUE")
-    let (mAX_VALUE : float) =
-      Ojs.float_of_js
+    let (mAX_VALUE : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "uinteger")
            "MAX_VALUE")
   end
@@ -3400,8 +3400,8 @@ module CompletionItemTag =
       fun (x849 : Ojs.t) -> _CompletionItemTag_of_js x849
     and t_to_js : t -> Ojs.t =
       fun (x848 : _CompletionItemTag) -> _CompletionItemTag_to_js x848
-    let (deprecated : float) =
-      Ojs.float_of_js
+    let (deprecated : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "CompletionItemTag") "Deprecated")
   end

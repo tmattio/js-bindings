@@ -289,8 +289,7 @@ module Fs_promises : sig
       -> unit Promise.t
       [@@js.call "appendFile"]
 
-    val chown : t -> uid:int -> gid:int -> unit Promise.t
-      [@@js.call "chown"]
+    val chown : t -> uid:int -> gid:int -> unit Promise.t [@@js.call "chown"]
 
     val chmod : t -> mode:Mode.t -> unit Promise.t [@@js.call "chmod"]
 

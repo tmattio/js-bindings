@@ -3348,20 +3348,20 @@ module DidChangeConfigurationParams =
   end
 module MessageType =
   struct
-    let (error : float) =
-      Ojs.float_of_js
+    let (error : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "MessageType")
            "Error")
-    let (warning : float) =
-      Ojs.float_of_js
+    let (warning : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "MessageType")
            "Warning")
-    let (info : float) =
-      Ojs.float_of_js
+    let (info : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "MessageType")
            "Info")
-    let (log : float) =
-      Ojs.float_of_js
+    let (log : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "MessageType")
            "Log")
   end
@@ -3589,16 +3589,16 @@ module TextDocumentSyncClientCapabilities =
   end
 module TextDocumentSyncKind =
   struct
-    let (none : float) =
-      Ojs.float_of_js
+    let (none : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "TextDocumentSyncKind") "None")
-    let (full : float) =
-      Ojs.float_of_js
+    let (full : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "TextDocumentSyncKind") "Full")
-    let (incremental : float) =
-      Ojs.float_of_js
+    let (incremental : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "TextDocumentSyncKind")
            "Incremental")
@@ -4041,16 +4041,16 @@ module DidChangeWatchedFilesParams =
   end
 module FileChangeType =
   struct
-    let (created : float) =
-      Ojs.float_of_js
+    let (created : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "FileChangeType")
            "Created")
-    let (changed : float) =
-      Ojs.float_of_js
+    let (changed : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "FileChangeType")
            "Changed")
-    let (deleted : float) =
-      Ojs.float_of_js
+    let (deleted : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "FileChangeType")
            "Deleted")
   end
@@ -4130,16 +4130,16 @@ module FileSystemWatcher =
   end
 module WatchKind =
   struct
-    let (create_ : float) =
-      Ojs.float_of_js
+    let (create_ : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "WatchKind")
            "Create")
-    let (change : float) =
-      Ojs.float_of_js
+    let (change : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "WatchKind")
            "Change")
-    let (delete : float) =
-      Ojs.float_of_js
+    let (delete : int) =
+      Ojs.int_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "WatchKind")
            "Delete")
   end

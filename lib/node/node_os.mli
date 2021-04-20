@@ -580,7 +580,6 @@ module Os : sig
 
   val setPriority : priority:int -> unit [@@js.global "setPriority"]
 
-  val setPriority : pid:int -> priority:int -> unit
-    [@@js.global "setPriority"]
+  val setPriority : pid:int -> priority:int -> unit [@@js.global "setPriority"]
 end
 [@@js.scope Import.os]

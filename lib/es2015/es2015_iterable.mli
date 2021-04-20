@@ -54,10 +54,11 @@ end
 [@@js.scope "IteratorReturnResult"]
 
 module IteratorResult : sig
-  type ('T, 'TReturn) t = ([ `false_ of 'T IteratorYieldResult.t [@js false]
-  | `true_ of 'TReturn IteratorReturnResult.t [@js true]
-  ]
- [@js.union on_field "done"])
+  type ('T, 'TReturn) t =
+    ([ `false_ of 'T IteratorYieldResult.t [@js false]
+     | `true_ of 'TReturn IteratorReturnResult.t [@js true]
+     ]
+    [@js.union on_field "done"])
 
   val t_to_js
     :  ('T -> Ojs.t)
@@ -163,7 +164,10 @@ module ArrayConstructor : sig
     include ArrayConstructor
   end
 
-  val from_iterable : t -> iterable:('T Array.t, 'T Iterable.t) union2 -> 'T list
+  val from_iterable
+    :  t
+    -> iterable:('T Array.t, 'T Iterable.t) union2
+    -> 'T list
     [@@js.call "from"]
 
   val from_iterable'
@@ -432,8 +436,7 @@ module Uint8ArrayConstructor : sig
     include Uint8ArrayConstructor
   end
 
-  val create_iterable : t -> int Iterable.t -> Uint8Array.t
-    [@@js.apply_newable]
+  val create_iterable : t -> int Iterable.t -> Uint8Array.t [@@js.apply_newable]
 
   val from_iterable
     :  t
@@ -518,8 +521,7 @@ module Int16ArrayConstructor : sig
     include Int16ArrayConstructor
   end
 
-  val create_iterable : t -> int Iterable.t -> Int16Array.t
-    [@@js.apply_newable]
+  val create_iterable : t -> int Iterable.t -> Int16Array.t [@@js.apply_newable]
 
   val from_iterable
     :  t
@@ -604,8 +606,7 @@ module Int32ArrayConstructor : sig
     include Int32ArrayConstructor
   end
 
-  val create_iterable : t -> int Iterable.t -> Int32Array.t
-    [@@js.apply_newable]
+  val create_iterable : t -> int Iterable.t -> Int32Array.t [@@js.apply_newable]
 
   val from_iterable
     :  t

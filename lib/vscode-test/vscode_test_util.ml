@@ -129,13 +129,13 @@ module IUpdateMetadata =
       fun (x33 : t) ->
         fun (x34 : string) ->
           Ojs.set_prop_ascii (t_to_js x33) "hash" (Ojs.string_to_js x34)
-    let (get_timestamp : t -> float) =
+    let (get_timestamp : t -> int) =
       fun (x35 : t) ->
-        Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x35) "timestamp")
-    let (set_timestamp : t -> float -> unit) =
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x35) "timestamp")
+    let (set_timestamp : t -> int -> unit) =
       fun (x36 : t) ->
-        fun (x37 : float) ->
-          Ojs.set_prop_ascii (t_to_js x36) "timestamp" (Ojs.float_to_js x37)
+        fun (x37 : int) ->
+          Ojs.set_prop_ascii (t_to_js x36) "timestamp" (Ojs.int_to_js x37)
     let (get_sha256hash : t -> string) =
       fun (x38 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x38) "sha256hash")

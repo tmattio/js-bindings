@@ -42,7 +42,7 @@ module MessageWriter =
       fun (x1 : _MessageWriter) -> _MessageWriter_to_js x1
     let (get_onError :
       t ->
-        (Error.t * Vscode_jsonrpc_messages.Message.t or_undefined * float
+        (Error.t * Vscode_jsonrpc_messages.Message.t or_undefined * int
           or_undefined) Vscode_jsonrpc_events.Event.t)
       =
       fun (x3 : t) ->
@@ -52,7 +52,7 @@ module MessageWriter =
              ((Error.t_of_js (Ojs.array_get x5 0)),
                (or_undefined_of_js Vscode_jsonrpc_messages.Message.t_of_js
                   (Ojs.array_get x5 1)),
-               (or_undefined_of_js Ojs.float_of_js (Ojs.array_get x5 2))))
+               (or_undefined_of_js Ojs.int_of_js (Ojs.array_get x5 2))))
           (Ojs.get_prop_ascii (t_to_js x3) "onError")
     let (get_onClose : t -> unit Vscode_jsonrpc_events.Event.t) =
       fun (x8 : t) ->
@@ -106,7 +106,7 @@ module AbstractMessageWriter =
       fun (x24 : t) -> ignore (Ojs.call (t_to_js x24) "dispose" [||])
     let (get_onError :
       t ->
-        (Error.t * Vscode_jsonrpc_messages.Message.t or_undefined * float
+        (Error.t * Vscode_jsonrpc_messages.Message.t or_undefined * int
           or_undefined) Vscode_jsonrpc_events.Event.t)
       =
       fun (x25 : t) ->
@@ -116,18 +116,18 @@ module AbstractMessageWriter =
              ((Error.t_of_js (Ojs.array_get x27 0)),
                (or_undefined_of_js Vscode_jsonrpc_messages.Message.t_of_js
                   (Ojs.array_get x27 1)),
-               (or_undefined_of_js Ojs.float_of_js (Ojs.array_get x27 2))))
+               (or_undefined_of_js Ojs.int_of_js (Ojs.array_get x27 2))))
           (Ojs.get_prop_ascii (t_to_js x25) "onError")
     let (fireError :
       t ->
         error:any ->
           ?message:Vscode_jsonrpc_messages.Message.t ->
-            ?count:float -> unit -> unit)
+            ?count:int -> unit -> unit)
       =
       fun (x36 : t) ->
         fun ~error:(x30 : any) ->
           fun ?message:(x31 : Vscode_jsonrpc_messages.Message.t option) ->
-            fun ?count:(x32 : float option) ->
+            fun ?count:(x32 : int option) ->
               fun () ->
                 ignore
                   (let x37 = t_to_js x36 in
@@ -148,7 +148,7 @@ module AbstractMessageWriter =
                               | Some x34 ->
                                   ignore
                                     (Ojs.call x33 "push"
-                                       [|(Ojs.float_to_js x34)|])
+                                       [|(Ojs.int_to_js x34)|])
                               | None -> ());
                              x33))|])
     let (get_onClose : t -> unit Vscode_jsonrpc_events.Event.t) =
