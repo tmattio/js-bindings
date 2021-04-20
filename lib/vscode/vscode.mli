@@ -2404,6 +2404,39 @@ module Vscode : sig
   end
   [@@js.scope "TextEdit"]
 
+  module IconPath : sig
+    type t =
+      { light : ([ `String of string | `Uri of Uri.t ][@js.union])
+      ; dark : ([ `String of string | `Uri of Uri.t ][@js.union])
+      }
+
+    [@@@js.stop]
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    [@@@js.start]
+
+    [@@@js.implem
+    let t_of_js js_val =
+      let light_js = Ojs.get js_val "light" in
+      let dark_js = Ojs.get js_val "dark" in
+      let light =
+        if Ojs.has_property light_js "parse" then
+          `Uri ([%js.to: Uri.t] light_js)
+        else
+          `String ([%js.to: string] light_js)
+      in
+      let dark =
+        if Ojs.has_property dark_js "parse" then
+          `Uri ([%js.to: Uri.t] dark_js)
+        else
+          `String ([%js.to: string] dark_js)
+      in
+      { light; dark }]
+  end
+
   module WorkspaceEditEntryMetadata : sig
     type t
 
@@ -2423,22 +2456,6 @@ module Vscode : sig
     val description : t -> string [@@js.get "description"]
 
     val set_description : t -> string -> unit [@@js.set "description"]
-
-    module IconPath : sig
-      type t
-
-      val t_to_js : t -> Ojs.t
-
-      val t_of_js : Ojs.t -> t
-
-      val light : t -> Uri.t [@@js.get "light"]
-
-      val set_light : t -> Uri.t -> unit [@@js.set "light"]
-
-      val dark : t -> Uri.t [@@js.get "dark"]
-
-      val set_dark : t -> Uri.t -> unit [@@js.set "dark"]
-    end
 
     val icon_path : t -> (ThemeIcon.t, Uri.t, IconPath.t) union3
       [@@js.get "iconPath"]
@@ -5661,22 +5678,6 @@ module Vscode : sig
 
     val set_title : t -> string -> unit [@@js.set "title"]
 
-    module IconPath : sig
-      type t
-
-      val t_to_js : t -> Ojs.t
-
-      val t_of_js : Ojs.t -> t
-
-      val light : t -> Uri.t [@@js.get "light"]
-
-      val set_light : t -> Uri.t -> unit [@@js.set "light"]
-
-      val dark : t -> Uri.t [@@js.get "dark"]
-
-      val set_dark : t -> Uri.t -> unit [@@js.set "dark"]
-    end
-
     val icon_path : t -> (Uri.t, IconPath.t) union2 [@@js.get "iconPath"]
 
     val set_icon_path : t -> (Uri.t, IconPath.t) union2 -> unit
@@ -6126,22 +6127,6 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    module IconPath : sig
-      type t
-
-      val t_to_js : t -> Ojs.t
-
-      val t_of_js : Ojs.t -> t
-
-      val light : t -> Uri.t [@@js.get "light"]
-
-      val set_light : t -> Uri.t -> unit [@@js.set "light"]
-
-      val dark : t -> Uri.t [@@js.get "dark"]
-
-      val set_dark : t -> Uri.t -> unit [@@js.set "dark"]
-    end
-
     val icon_path : t -> (ThemeIcon.t, Uri.t, IconPath.t) union3
       [@@js.get "iconPath"]
 
@@ -6373,22 +6358,6 @@ module Vscode : sig
 
     val set_id : t -> string -> unit [@@js.set "id"]
 
-    module IconPath : sig
-      type t
-
-      val t_to_js : t -> Ojs.t
-
-      val t_of_js : Ojs.t -> t
-
-      val light : t -> Uri.t or_string [@@js.get "light"]
-
-      val set_light : t -> Uri.t or_string -> unit [@@js.set "light"]
-
-      val dark : t -> Uri.t or_string [@@js.get "dark"]
-
-      val set_dark : t -> Uri.t or_string -> unit [@@js.set "dark"]
-    end
-
     val icon_path : t -> (ThemeIcon.t, Uri.t, IconPath.t) union3 or_string
       [@@js.get "iconPath"]
 
@@ -6433,7 +6402,7 @@ module Vscode : sig
       [@@js.set "accessibilityInformation"]
 
     val create
-      :  label:TreeItemLabel.t or_string
+      :  TreeItemLabel.t or_string
       -> ?collapsible_state:TreeItemCollapsibleState.t
       -> unit
       -> t
@@ -6455,28 +6424,23 @@ module Vscode : sig
 
     val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
 
-    val on_did_change_tree_data
-      :  'T t
-      -> ('T, unit) union2 or_null_or_undefined Event.t
+    module OnDidChangeTreeData : sig
+      type 'T t = ('T, unit) union2 or_null_or_undefined Event.t
+    end
+
+    val on_did_change_tree_data : 'T t -> 'T OnDidChangeTreeData.t
       [@@js.get "onDidChangeTreeData"]
 
-    val set_on_did_change_tree_data
-      :  'T t
-      -> ('T, unit) union2 or_null_or_undefined Event.t
-      -> unit
+    val set_on_did_change_tree_data : 'T t -> 'T OnDidChangeTreeData.t -> unit
       [@@js.set "onDidChangeTreeData"]
 
-    val get_tree_item
-      :  'T t
-      -> element:'T
-      -> (TreeItem.t, TreeItem.t Promise.t) union2
+    val get_tree_item : 'T t -> 'T -> (TreeItem.t, TreeItem.t Promise.t) union2
       [@@js.call "getTreeItem"]
 
     val get_children : 'T t -> ?element:'T -> unit -> 'T list ProviderResult.t
       [@@js.call "getChildren"]
 
-    val get_parent : 'T t -> element:'T -> 'T ProviderResult.t
-      [@@js.call "getParent"]
+    val get_parent : 'T t -> 'T -> 'T ProviderResult.t [@@js.call "getParent"]
 
     val resolve_tree_item
       :  'T t
@@ -6485,6 +6449,23 @@ module Vscode : sig
       -> token:CancellationToken.t
       -> TreeItem.t ProviderResult.t
       [@@js.call "resolveTreeItem"]
+
+    val create
+      :  ?on_did_change_tree_data:'T OnDidChangeTreeData.t
+      -> get_tree_item:
+           ('T
+            -> ([ `Value of TreeItem.t | `Promise of TreeItem.t Promise.t ]
+               [@js.union]))
+      -> get_children:(?element:'T -> unit -> 'T list ProviderResult.t)
+      -> ?get_parent:(element:'T -> 'T ProviderResult.t)
+      -> ?resolve_tree_item:
+           (item:TreeItem.t
+            -> element:'T
+            -> token:CancellationToken.t
+            -> TreeItem.t ProviderResult.t)
+      -> unit
+      -> 'T t
+      [@@js.builder]
   end
   [@@js.scope "TreeDataProvider"]
 
@@ -6942,13 +6923,13 @@ module Vscode : sig
       [@@js.global "createTerminal"]
 
     val register_tree_data_provider
-      :  view_id:string
-      -> tree_data_provider:'T TreeDataProvider.t
+      :  string
+      -> 'T TreeDataProvider.t
       -> Disposable.t
       [@@js.global "registerTreeDataProvider"]
 
     val create_tree_view
-      :  view_id:string
+      :  string
       -> options:'T TreeViewOptions.t
       -> 'T TreeView.t
       [@@js.global "createTreeView"]
@@ -6957,38 +6938,37 @@ module Vscode : sig
       [@@js.global "registerUriHandler"]
 
     val register_webview_panel_serializer
-      :  view_type_:string
-      -> serializer:unknown WebviewPanelSerializer.t
+      :  string
+      -> unknown WebviewPanelSerializer.t
       -> Disposable.t
       [@@js.global "registerWebviewPanelSerializer"]
 
     val register_webview_view_provider
-      :  view_id:string
-      -> provider:WebviewViewProvider.t
+      :  string
+      -> WebviewViewProvider.t
       -> ?options:RegisterWebviewViewProviderOptions.t
       -> unit
       -> Disposable.t
       [@@js.global "registerWebviewViewProvider"]
 
     val register_custom_editor_provider
-      :  view_type_:string
-      -> provider:
-           ( CustomDocument.t CustomEditorProvider.t
-           , CustomDocument.t CustomReadonlyEditorProvider.t
-           , CustomTextEditorProvider.t )
-           union3
+      :  string
+      -> ( CustomDocument.t CustomEditorProvider.t
+         , CustomDocument.t CustomReadonlyEditorProvider.t
+         , CustomTextEditorProvider.t )
+         union3
       -> ?options:RegisterCustomEditorProviderOptions.t
       -> unit
       -> Disposable.t
       [@@js.global "registerCustomEditorProvider"]
 
     val register_terminal_link_provider
-      :  provider:TerminalLink.t TerminalLinkProvider.t
+      :  TerminalLink.t TerminalLinkProvider.t
       -> Disposable.t
       [@@js.global "registerTerminalLinkProvider"]
 
     val register_file_decoration_provider
-      :  provider:FileDecorationProvider.t
+      :  FileDecorationProvider.t
       -> Disposable.t
       [@@js.global "registerFileDecorationProvider"]
 

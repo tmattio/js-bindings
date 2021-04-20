@@ -1,11 +1,9 @@
 (lang dune 2.7)
 
-(name helloworld-sample)
-
-(generate_opam_files true)
+(name custom-view-sample)
 
 (package
- (name helloworld-sample)
+ (name custom-view-sample)
  (synopsis "HelloWorld example for VS Code")
  (depends
   (ocaml

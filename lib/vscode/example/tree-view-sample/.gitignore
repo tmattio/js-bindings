@@ -1,0 +1,4 @@
+dist/extension.js
+node_modules
+.vscode-test/
+*.vsix

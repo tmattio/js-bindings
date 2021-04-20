@@ -1,0 +1,11 @@
+(lang dune 2.7)
+
+(name helloworld-sample)
+
+(package
+ (name helloworld-sample)
+ (synopsis "HelloWorld example for VS Code")
+ (depends
+  (ocaml
+   (>= 4.11))
+  vscode))
