@@ -17,35 +17,436 @@ module AnonymousInterface0 =
   end
 module Worker_threads =
   struct
-    let (is_main_thread : bool) =
-      Ojs.bool_of_js
-        (Ojs.get_prop_ascii Import.worker_threads "isMainThread")
-    let (parent_port : worker_threads_MessagePort or_null) =
-      or_null_of_js worker_threads_MessagePort_of_js
-        (Ojs.get_prop_ascii Import.worker_threads "parentPort")
-    let (resource_limits : worker_threads_ResourceLimits) =
-      worker_threads_ResourceLimits_of_js
-        (Ojs.get_prop_ascii Import.worker_threads "resourceLimits")
-    let (share_env : any) =
-      any_of_js (Ojs.get_prop_ascii Import.worker_threads "SHARE_ENV")
-    let (thread_id : int) =
-      Ojs.int_of_js (Ojs.get_prop_ascii Import.worker_threads "threadId")
-    let (worker_data : any) =
-      any_of_js (Ojs.get_prop_ascii Import.worker_threads "workerData")
+    module MessagePort =
+      struct
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x7 : Ojs.t) -> x7
+        and t_to_js : t -> Ojs.t = fun (x6 : Ojs.t) -> x6
+        let (close : t -> unit) =
+          fun (x8 : t) -> ignore (Ojs.call (t_to_js x8) "close" [||])
+        let (post_message : t -> value:any -> unit -> unit) =
+          fun (x10 : t) ->
+            fun ~value:(x9 : any) ->
+              fun () ->
+                ignore
+                  (Ojs.call (t_to_js x10) "postMessage" [|(any_to_js x9)|])
+        let (ref : t -> unit) =
+          fun (x11 : t) -> ignore (Ojs.call (t_to_js x11) "ref" [||])
+        let (unref : t -> unit) =
+          fun (x12 : t) -> ignore (Ojs.call (t_to_js x12) "unref" [||])
+        let (start : t -> unit) =
+          fun (x13 : t) -> ignore (Ojs.call (t_to_js x13) "start" [||])
+        let (add_listener :
+          t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
+          fun (x16 : t) ->
+            fun ~event:(x14 : [ `close ]) ->
+              fun ~listener:(x15 : unit -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x16) "addListener"
+                     [|((match x14 with | `close -> Ojs.string_to_js "close"));(
+                       Ojs.fun_to_js 1 (fun _ -> x15 ()))|])
+        let (add_listener' :
+          t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
+          fun (x20 : t) ->
+            fun ~event:(x17 : [ `message ]) ->
+              fun ~listener:(x18 : value:any -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x20) "addListener"
+                     [|((match x17 with
+                         | `message -> Ojs.string_to_js "message"));(
+                       Ojs.fun_to_js 1
+                         (fun (x19 : Ojs.t) -> x18 ~value:(any_of_js x19)))|])
+        let (add_listener'' :
+          t ->
+            event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
+          =
+          fun (x24 : t) ->
+            fun ~event:(x21 : [ `messageerror ]) ->
+              fun ~listener:(x22 : error:Error.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x24) "addListener"
+                     [|((match x21 with
+                         | `messageerror -> Ojs.string_to_js "messageerror"));(
+                       Ojs.fun_to_js 1
+                         (fun (x23 : Ojs.t) -> x22 ~error:(Error.t_of_js x23)))|])
+        let (add_listener''' :
+          t ->
+            event:symbol or_string -> listener:(args:any list -> unit) -> t)
+          =
+          fun (x30 : t) ->
+            fun ~event:(x25 : symbol or_string) ->
+              fun ~listener:(x27 : args:any list -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x30) "addListener"
+                     [|(or_string_to_js symbol_to_js x25);(Ojs.fun_to_js_args
+                                                             (fun (x28 : _)
+                                                                ->
+                                                                x27
+                                                                  ~args:(
+                                                                  Ojs.list_of_js_from
+                                                                    any_of_js
+                                                                    x28 0)))|])
+        let (emit : t -> event:[ `close ] -> bool) =
+          fun (x32 : t) ->
+            fun ~event:(x31 : [ `close ]) ->
+              Ojs.bool_of_js
+                (Ojs.call (t_to_js x32) "emit"
+                   [|((match x31 with | `close -> Ojs.string_to_js "close"))|])
+        let (emit' : t -> event:[ `message ] -> value:any -> bool) =
+          fun (x35 : t) ->
+            fun ~event:(x33 : [ `message ]) ->
+              fun ~value:(x34 : any) ->
+                Ojs.bool_of_js
+                  (Ojs.call (t_to_js x35) "emit"
+                     [|((match x33 with
+                         | `message -> Ojs.string_to_js "message"));(
+                       any_to_js x34)|])
+        let (emit'' : t -> event:[ `messageerror ] -> error:Error.t -> bool)
+          =
+          fun (x38 : t) ->
+            fun ~event:(x36 : [ `messageerror ]) ->
+              fun ~error:(x37 : Error.t) ->
+                Ojs.bool_of_js
+                  (Ojs.call (t_to_js x38) "emit"
+                     [|((match x36 with
+                         | `messageerror -> Ojs.string_to_js "messageerror"));(
+                       Error.t_to_js x37)|])
+        let (emit''' : t -> event:symbol or_string -> args:any list -> bool)
+          =
+          fun (x44 : t) ->
+            fun ~event:(x39 : symbol or_string) ->
+              fun ~args:(x40 : any list) ->
+                Ojs.bool_of_js
+                  (let x45 = t_to_js x44 in
+                   Ojs.call (Ojs.get_prop_ascii x45 "emit") "apply"
+                     [|x45;((let x41 =
+                               Ojs.new_obj
+                                 (Ojs.get_prop_ascii Ojs.global "Array") 
+                                 [||] in
+                             ignore
+                               (Ojs.call x41 "push"
+                                  [|(or_string_to_js symbol_to_js x39)|]);
+                             List.iter
+                               (fun (x42 : any) ->
+                                  ignore
+                                    (Ojs.call x41 "push" [|(any_to_js x42)|]))
+                               x40;
+                             x41))|])
+        let (on : t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
+          fun (x48 : t) ->
+            fun ~event:(x46 : [ `close ]) ->
+              fun ~listener:(x47 : unit -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x48) "on"
+                     [|((match x46 with | `close -> Ojs.string_to_js "close"));(
+                       Ojs.fun_to_js 1 (fun _ -> x47 ()))|])
+        let (on' :
+          t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
+          fun (x52 : t) ->
+            fun ~event:(x49 : [ `message ]) ->
+              fun ~listener:(x50 : value:any -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x52) "on"
+                     [|((match x49 with
+                         | `message -> Ojs.string_to_js "message"));(
+                       Ojs.fun_to_js 1
+                         (fun (x51 : Ojs.t) -> x50 ~value:(any_of_js x51)))|])
+        let (on'' :
+          t ->
+            event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
+          =
+          fun (x56 : t) ->
+            fun ~event:(x53 : [ `messageerror ]) ->
+              fun ~listener:(x54 : error:Error.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x56) "on"
+                     [|((match x53 with
+                         | `messageerror -> Ojs.string_to_js "messageerror"));(
+                       Ojs.fun_to_js 1
+                         (fun (x55 : Ojs.t) -> x54 ~error:(Error.t_of_js x55)))|])
+        let (on''' :
+          t ->
+            event:symbol or_string -> listener:(args:any list -> unit) -> t)
+          =
+          fun (x62 : t) ->
+            fun ~event:(x57 : symbol or_string) ->
+              fun ~listener:(x59 : args:any list -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x62) "on"
+                     [|(or_string_to_js symbol_to_js x57);(Ojs.fun_to_js_args
+                                                             (fun (x60 : _)
+                                                                ->
+                                                                x59
+                                                                  ~args:(
+                                                                  Ojs.list_of_js_from
+                                                                    any_of_js
+                                                                    x60 0)))|])
+        let (once : t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
+          fun (x65 : t) ->
+            fun ~event:(x63 : [ `close ]) ->
+              fun ~listener:(x64 : unit -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x65) "once"
+                     [|((match x63 with | `close -> Ojs.string_to_js "close"));(
+                       Ojs.fun_to_js 1 (fun _ -> x64 ()))|])
+        let (once' :
+          t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
+          fun (x69 : t) ->
+            fun ~event:(x66 : [ `message ]) ->
+              fun ~listener:(x67 : value:any -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x69) "once"
+                     [|((match x66 with
+                         | `message -> Ojs.string_to_js "message"));(
+                       Ojs.fun_to_js 1
+                         (fun (x68 : Ojs.t) -> x67 ~value:(any_of_js x68)))|])
+        let (once'' :
+          t ->
+            event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
+          =
+          fun (x73 : t) ->
+            fun ~event:(x70 : [ `messageerror ]) ->
+              fun ~listener:(x71 : error:Error.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x73) "once"
+                     [|((match x70 with
+                         | `messageerror -> Ojs.string_to_js "messageerror"));(
+                       Ojs.fun_to_js 1
+                         (fun (x72 : Ojs.t) -> x71 ~error:(Error.t_of_js x72)))|])
+        let (once''' :
+          t ->
+            event:symbol or_string -> listener:(args:any list -> unit) -> t)
+          =
+          fun (x79 : t) ->
+            fun ~event:(x74 : symbol or_string) ->
+              fun ~listener:(x76 : args:any list -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x79) "once"
+                     [|(or_string_to_js symbol_to_js x74);(Ojs.fun_to_js_args
+                                                             (fun (x77 : _)
+                                                                ->
+                                                                x76
+                                                                  ~args:(
+                                                                  Ojs.list_of_js_from
+                                                                    any_of_js
+                                                                    x77 0)))|])
+        let (prepend_listener :
+          t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
+          fun (x82 : t) ->
+            fun ~event:(x80 : [ `close ]) ->
+              fun ~listener:(x81 : unit -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x82) "prependListener"
+                     [|((match x80 with | `close -> Ojs.string_to_js "close"));(
+                       Ojs.fun_to_js 1 (fun _ -> x81 ()))|])
+        let (prepend_listener' :
+          t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
+          fun (x86 : t) ->
+            fun ~event:(x83 : [ `message ]) ->
+              fun ~listener:(x84 : value:any -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x86) "prependListener"
+                     [|((match x83 with
+                         | `message -> Ojs.string_to_js "message"));(
+                       Ojs.fun_to_js 1
+                         (fun (x85 : Ojs.t) -> x84 ~value:(any_of_js x85)))|])
+        let (prepend_listener'' :
+          t ->
+            event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
+          =
+          fun (x90 : t) ->
+            fun ~event:(x87 : [ `messageerror ]) ->
+              fun ~listener:(x88 : error:Error.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x90) "prependListener"
+                     [|((match x87 with
+                         | `messageerror -> Ojs.string_to_js "messageerror"));(
+                       Ojs.fun_to_js 1
+                         (fun (x89 : Ojs.t) -> x88 ~error:(Error.t_of_js x89)))|])
+        let (prepend_listener''' :
+          t ->
+            event:symbol or_string -> listener:(args:any list -> unit) -> t)
+          =
+          fun (x96 : t) ->
+            fun ~event:(x91 : symbol or_string) ->
+              fun ~listener:(x93 : args:any list -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x96) "prependListener"
+                     [|(or_string_to_js symbol_to_js x91);(Ojs.fun_to_js_args
+                                                             (fun (x94 : _)
+                                                                ->
+                                                                x93
+                                                                  ~args:(
+                                                                  Ojs.list_of_js_from
+                                                                    any_of_js
+                                                                    x94 0)))|])
+        let (prepend_once_listener :
+          t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
+          fun (x99 : t) ->
+            fun ~event:(x97 : [ `close ]) ->
+              fun ~listener:(x98 : unit -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x99) "prependOnceListener"
+                     [|((match x97 with | `close -> Ojs.string_to_js "close"));(
+                       Ojs.fun_to_js 1 (fun _ -> x98 ()))|])
+        let (prepend_once_listener' :
+          t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
+          fun (x103 : t) ->
+            fun ~event:(x100 : [ `message ]) ->
+              fun ~listener:(x101 : value:any -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x103) "prependOnceListener"
+                     [|((match x100 with
+                         | `message -> Ojs.string_to_js "message"));(
+                       Ojs.fun_to_js 1
+                         (fun (x102 : Ojs.t) -> x101 ~value:(any_of_js x102)))|])
+        let (prepend_once_listener'' :
+          t ->
+            event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
+          =
+          fun (x107 : t) ->
+            fun ~event:(x104 : [ `messageerror ]) ->
+              fun ~listener:(x105 : error:Error.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x107) "prependOnceListener"
+                     [|((match x104 with
+                         | `messageerror -> Ojs.string_to_js "messageerror"));(
+                       Ojs.fun_to_js 1
+                         (fun (x106 : Ojs.t) ->
+                            x105 ~error:(Error.t_of_js x106)))|])
+        let (prepend_once_listener''' :
+          t ->
+            event:symbol or_string -> listener:(args:any list -> unit) -> t)
+          =
+          fun (x113 : t) ->
+            fun ~event:(x108 : symbol or_string) ->
+              fun ~listener:(x110 : args:any list -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x113) "prependOnceListener"
+                     [|(or_string_to_js symbol_to_js x108);(Ojs.fun_to_js_args
+                                                              (fun (x111 : _)
+                                                                 ->
+                                                                 x110
+                                                                   ~args:(
+                                                                   Ojs.list_of_js_from
+                                                                    any_of_js
+                                                                    x111 0)))|])
+        let (remove_listener :
+          t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
+          fun (x116 : t) ->
+            fun ~event:(x114 : [ `close ]) ->
+              fun ~listener:(x115 : unit -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x116) "removeListener"
+                     [|((match x114 with | `close -> Ojs.string_to_js "close"));(
+                       Ojs.fun_to_js 1 (fun _ -> x115 ()))|])
+        let (remove_listener' :
+          t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
+          fun (x120 : t) ->
+            fun ~event:(x117 : [ `message ]) ->
+              fun ~listener:(x118 : value:any -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x120) "removeListener"
+                     [|((match x117 with
+                         | `message -> Ojs.string_to_js "message"));(
+                       Ojs.fun_to_js 1
+                         (fun (x119 : Ojs.t) -> x118 ~value:(any_of_js x119)))|])
+        let (remove_listener'' :
+          t ->
+            event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
+          =
+          fun (x124 : t) ->
+            fun ~event:(x121 : [ `messageerror ]) ->
+              fun ~listener:(x122 : error:Error.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x124) "removeListener"
+                     [|((match x121 with
+                         | `messageerror -> Ojs.string_to_js "messageerror"));(
+                       Ojs.fun_to_js 1
+                         (fun (x123 : Ojs.t) ->
+                            x122 ~error:(Error.t_of_js x123)))|])
+        let (remove_listener''' :
+          t ->
+            event:symbol or_string -> listener:(args:any list -> unit) -> t)
+          =
+          fun (x130 : t) ->
+            fun ~event:(x125 : symbol or_string) ->
+              fun ~listener:(x127 : args:any list -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x130) "removeListener"
+                     [|(or_string_to_js symbol_to_js x125);(Ojs.fun_to_js_args
+                                                              (fun (x128 : _)
+                                                                 ->
+                                                                 x127
+                                                                   ~args:(
+                                                                   Ojs.list_of_js_from
+                                                                    any_of_js
+                                                                    x128 0)))|])
+        let (off : t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
+          fun (x133 : t) ->
+            fun ~event:(x131 : [ `close ]) ->
+              fun ~listener:(x132 : unit -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x133) "off"
+                     [|((match x131 with | `close -> Ojs.string_to_js "close"));(
+                       Ojs.fun_to_js 1 (fun _ -> x132 ()))|])
+        let (off' :
+          t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
+          fun (x137 : t) ->
+            fun ~event:(x134 : [ `message ]) ->
+              fun ~listener:(x135 : value:any -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x137) "off"
+                     [|((match x134 with
+                         | `message -> Ojs.string_to_js "message"));(
+                       Ojs.fun_to_js 1
+                         (fun (x136 : Ojs.t) -> x135 ~value:(any_of_js x136)))|])
+        let (off'' :
+          t ->
+            event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
+          =
+          fun (x141 : t) ->
+            fun ~event:(x138 : [ `messageerror ]) ->
+              fun ~listener:(x139 : error:Error.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x141) "off"
+                     [|((match x138 with
+                         | `messageerror -> Ojs.string_to_js "messageerror"));(
+                       Ojs.fun_to_js 1
+                         (fun (x140 : Ojs.t) ->
+                            x139 ~error:(Error.t_of_js x140)))|])
+        let (off''' :
+          t ->
+            event:symbol or_string -> listener:(args:any list -> unit) -> t)
+          =
+          fun (x147 : t) ->
+            fun ~event:(x142 : symbol or_string) ->
+              fun ~listener:(x144 : args:any list -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x147) "off"
+                     [|(or_string_to_js symbol_to_js x142);(Ojs.fun_to_js_args
+                                                              (fun (x145 : _)
+                                                                 ->
+                                                                 x144
+                                                                   ~args:(
+                                                                   Ojs.list_of_js_from
+                                                                    any_of_js
+                                                                    x145 0)))|])
+        let (cast : t -> Node_events.Events.EventEmitter.t) =
+          fun (x148 : t) ->
+            Node_events.Events.EventEmitter.t_of_js (t_to_js x148)
+      end
     module MessageChannel =
       struct
-        type t = worker_threads_MessageChannel
-        let rec t_of_js : Ojs.t -> t =
-          fun (x8 : Ojs.t) -> worker_threads_MessageChannel_of_js x8
-        and t_to_js : t -> Ojs.t =
-          fun (x7 : worker_threads_MessageChannel) ->
-            worker_threads_MessageChannel_to_js x7
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x150 : Ojs.t) -> x150
+        and t_to_js : t -> Ojs.t = fun (x149 : Ojs.t) -> x149
         let (get_port1 : t -> MessagePort.t) =
-          fun (x9 : t) ->
-            MessagePort.t_of_js (Ojs.get_prop_ascii (t_to_js x9) "port1")
+          fun (x151 : t) ->
+            MessagePort.t_of_js (Ojs.get_prop_ascii (t_to_js x151) "port1")
         let (get_port2 : t -> MessagePort.t) =
-          fun (x10 : t) ->
-            MessagePort.t_of_js (Ojs.get_prop_ascii (t_to_js x10) "port2")
+          fun (x152 : t) ->
+            MessagePort.t_of_js (Ojs.get_prop_ascii (t_to_js x152) "port2")
       end
     module TransferListItem =
       struct
@@ -53,1313 +454,876 @@ module Worker_threads =
           (ArrayBuffer.t, Node_fs_promises.Fs_promises.FileHandle.t,
             MessagePort.t) union3
         let rec t_of_js : Ojs.t -> t =
-          fun (x15 : Ojs.t) ->
+          fun (x157 : Ojs.t) ->
             union3_of_js ArrayBuffer.t_of_js
               Node_fs_promises.Fs_promises.FileHandle.t_of_js
-              MessagePort.t_of_js x15
+              MessagePort.t_of_js x157
         and t_to_js : t -> Ojs.t =
           fun
-            (x11 :
+            (x153 :
               (ArrayBuffer.t, Node_fs_promises.Fs_promises.FileHandle.t,
                 MessagePort.t) union3)
             ->
             union3_to_js ArrayBuffer.t_to_js
               Node_fs_promises.Fs_promises.FileHandle.t_to_js
-              MessagePort.t_to_js x11
-      end
-    module MessagePort =
-      struct
-        type t = worker_threads_MessagePort
-        let rec t_of_js : Ojs.t -> t =
-          fun (x20 : Ojs.t) -> worker_threads_MessagePort_of_js x20
-        and t_to_js : t -> Ojs.t =
-          fun (x19 : worker_threads_MessagePort) ->
-            worker_threads_MessagePort_to_js x19
-        let (close : t -> unit) =
-          fun (x21 : t) -> ignore (Ojs.call (t_to_js x21) "close" [||])
-        let (post_message :
-          t ->
-            value:any ->
-              ?transfer_list:TransferListItem.t list -> unit -> unit)
-          =
-          fun (x27 : t) ->
-            fun ~value:(x22 : any) ->
-              fun ?transfer_list:(x23 : TransferListItem.t list option) ->
-                fun () ->
-                  ignore
-                    (let x28 = t_to_js x27 in
-                     Ojs.call (Ojs.get_prop_ascii x28 "postMessage") "apply"
-                       [|x28;((let x24 =
-                                 Ojs.new_obj
-                                   (Ojs.get_prop_ascii Ojs.global "Array")
-                                   [||] in
-                               ignore
-                                 (Ojs.call x24 "push" [|(any_to_js x22)|]);
-                               (match x23 with
-                                | Some x25 ->
-                                    ignore
-                                      (Ojs.call x24 "push"
-                                         [|(Ojs.list_to_js
-                                              TransferListItem.t_to_js x25)|])
-                                | None -> ());
-                               x24))|])
-        let (ref : t -> unit) =
-          fun (x29 : t) -> ignore (Ojs.call (t_to_js x29) "ref" [||])
-        let (unref : t -> unit) =
-          fun (x30 : t) -> ignore (Ojs.call (t_to_js x30) "unref" [||])
-        let (start : t -> unit) =
-          fun (x31 : t) -> ignore (Ojs.call (t_to_js x31) "start" [||])
-        let (add_listener :
-          t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
-          fun (x34 : t) ->
-            fun ~event:(x32 : [ `close ]) ->
-              fun ~listener:(x33 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x34) "addListener"
-                     [|((match x32 with | `close -> Ojs.string_to_js "close"));(
-                       Ojs.fun_to_js 1 (fun _ -> x33 ()))|])
-        let (add_listener' :
-          t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
-          fun (x38 : t) ->
-            fun ~event:(x35 : [ `message ]) ->
-              fun ~listener:(x36 : value:any -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x38) "addListener"
-                     [|((match x35 with
-                         | `message -> Ojs.string_to_js "message"));(
-                       Ojs.fun_to_js 1
-                         (fun (x37 : Ojs.t) -> x36 ~value:(any_of_js x37)))|])
-        let (add_listener'' :
-          t ->
-            event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
-          =
-          fun (x42 : t) ->
-            fun ~event:(x39 : [ `messageerror ]) ->
-              fun ~listener:(x40 : error:Error.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x42) "addListener"
-                     [|((match x39 with
-                         | `messageerror -> Ojs.string_to_js "messageerror"));(
-                       Ojs.fun_to_js 1
-                         (fun (x41 : Ojs.t) -> x40 ~error:(Error.t_of_js x41)))|])
-        let (add_listener''' :
-          t ->
-            event:symbol or_string -> listener:(args:any list -> unit) -> t)
-          =
-          fun (x48 : t) ->
-            fun ~event:(x43 : symbol or_string) ->
-              fun ~listener:(x45 : args:any list -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x48) "addListener"
-                     [|(or_string_to_js symbol_to_js x43);(Ojs.fun_to_js_args
-                                                             (fun (x46 : _)
-                                                                ->
-                                                                x45
-                                                                  ~args:(
-                                                                  Ojs.list_of_js_from
-                                                                    any_of_js
-                                                                    x46 0)))|])
-        let (emit : t -> event:[ `close ] -> bool) =
-          fun (x50 : t) ->
-            fun ~event:(x49 : [ `close ]) ->
-              Ojs.bool_of_js
-                (Ojs.call (t_to_js x50) "emit"
-                   [|((match x49 with | `close -> Ojs.string_to_js "close"))|])
-        let (emit' : t -> event:[ `message ] -> value:any -> bool) =
-          fun (x53 : t) ->
-            fun ~event:(x51 : [ `message ]) ->
-              fun ~value:(x52 : any) ->
-                Ojs.bool_of_js
-                  (Ojs.call (t_to_js x53) "emit"
-                     [|((match x51 with
-                         | `message -> Ojs.string_to_js "message"));(
-                       any_to_js x52)|])
-        let (emit'' : t -> event:[ `messageerror ] -> error:Error.t -> bool)
-          =
-          fun (x56 : t) ->
-            fun ~event:(x54 : [ `messageerror ]) ->
-              fun ~error:(x55 : Error.t) ->
-                Ojs.bool_of_js
-                  (Ojs.call (t_to_js x56) "emit"
-                     [|((match x54 with
-                         | `messageerror -> Ojs.string_to_js "messageerror"));(
-                       Error.t_to_js x55)|])
-        let (emit''' : t -> event:symbol or_string -> args:any list -> bool)
-          =
-          fun (x62 : t) ->
-            fun ~event:(x57 : symbol or_string) ->
-              fun ~args:(x58 : any list) ->
-                Ojs.bool_of_js
-                  (let x63 = t_to_js x62 in
-                   Ojs.call (Ojs.get_prop_ascii x63 "emit") "apply"
-                     [|x63;((let x59 =
-                               Ojs.new_obj
-                                 (Ojs.get_prop_ascii Ojs.global "Array") 
-                                 [||] in
-                             ignore
-                               (Ojs.call x59 "push"
-                                  [|(or_string_to_js symbol_to_js x57)|]);
-                             List.iter
-                               (fun (x60 : any) ->
-                                  ignore
-                                    (Ojs.call x59 "push" [|(any_to_js x60)|]))
-                               x58;
-                             x59))|])
-        let (on : t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
-          fun (x66 : t) ->
-            fun ~event:(x64 : [ `close ]) ->
-              fun ~listener:(x65 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x66) "on"
-                     [|((match x64 with | `close -> Ojs.string_to_js "close"));(
-                       Ojs.fun_to_js 1 (fun _ -> x65 ()))|])
-        let (on' :
-          t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
-          fun (x70 : t) ->
-            fun ~event:(x67 : [ `message ]) ->
-              fun ~listener:(x68 : value:any -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x70) "on"
-                     [|((match x67 with
-                         | `message -> Ojs.string_to_js "message"));(
-                       Ojs.fun_to_js 1
-                         (fun (x69 : Ojs.t) -> x68 ~value:(any_of_js x69)))|])
-        let (on'' :
-          t ->
-            event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
-          =
-          fun (x74 : t) ->
-            fun ~event:(x71 : [ `messageerror ]) ->
-              fun ~listener:(x72 : error:Error.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x74) "on"
-                     [|((match x71 with
-                         | `messageerror -> Ojs.string_to_js "messageerror"));(
-                       Ojs.fun_to_js 1
-                         (fun (x73 : Ojs.t) -> x72 ~error:(Error.t_of_js x73)))|])
-        let (on''' :
-          t ->
-            event:symbol or_string -> listener:(args:any list -> unit) -> t)
-          =
-          fun (x80 : t) ->
-            fun ~event:(x75 : symbol or_string) ->
-              fun ~listener:(x77 : args:any list -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x80) "on"
-                     [|(or_string_to_js symbol_to_js x75);(Ojs.fun_to_js_args
-                                                             (fun (x78 : _)
-                                                                ->
-                                                                x77
-                                                                  ~args:(
-                                                                  Ojs.list_of_js_from
-                                                                    any_of_js
-                                                                    x78 0)))|])
-        let (once : t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
-          fun (x83 : t) ->
-            fun ~event:(x81 : [ `close ]) ->
-              fun ~listener:(x82 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x83) "once"
-                     [|((match x81 with | `close -> Ojs.string_to_js "close"));(
-                       Ojs.fun_to_js 1 (fun _ -> x82 ()))|])
-        let (once' :
-          t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
-          fun (x87 : t) ->
-            fun ~event:(x84 : [ `message ]) ->
-              fun ~listener:(x85 : value:any -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x87) "once"
-                     [|((match x84 with
-                         | `message -> Ojs.string_to_js "message"));(
-                       Ojs.fun_to_js 1
-                         (fun (x86 : Ojs.t) -> x85 ~value:(any_of_js x86)))|])
-        let (once'' :
-          t ->
-            event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
-          =
-          fun (x91 : t) ->
-            fun ~event:(x88 : [ `messageerror ]) ->
-              fun ~listener:(x89 : error:Error.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x91) "once"
-                     [|((match x88 with
-                         | `messageerror -> Ojs.string_to_js "messageerror"));(
-                       Ojs.fun_to_js 1
-                         (fun (x90 : Ojs.t) -> x89 ~error:(Error.t_of_js x90)))|])
-        let (once''' :
-          t ->
-            event:symbol or_string -> listener:(args:any list -> unit) -> t)
-          =
-          fun (x97 : t) ->
-            fun ~event:(x92 : symbol or_string) ->
-              fun ~listener:(x94 : args:any list -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x97) "once"
-                     [|(or_string_to_js symbol_to_js x92);(Ojs.fun_to_js_args
-                                                             (fun (x95 : _)
-                                                                ->
-                                                                x94
-                                                                  ~args:(
-                                                                  Ojs.list_of_js_from
-                                                                    any_of_js
-                                                                    x95 0)))|])
-        let (prepend_listener :
-          t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
-          fun (x100 : t) ->
-            fun ~event:(x98 : [ `close ]) ->
-              fun ~listener:(x99 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x100) "prependListener"
-                     [|((match x98 with | `close -> Ojs.string_to_js "close"));(
-                       Ojs.fun_to_js 1 (fun _ -> x99 ()))|])
-        let (prepend_listener' :
-          t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
-          fun (x104 : t) ->
-            fun ~event:(x101 : [ `message ]) ->
-              fun ~listener:(x102 : value:any -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x104) "prependListener"
-                     [|((match x101 with
-                         | `message -> Ojs.string_to_js "message"));(
-                       Ojs.fun_to_js 1
-                         (fun (x103 : Ojs.t) -> x102 ~value:(any_of_js x103)))|])
-        let (prepend_listener'' :
-          t ->
-            event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
-          =
-          fun (x108 : t) ->
-            fun ~event:(x105 : [ `messageerror ]) ->
-              fun ~listener:(x106 : error:Error.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x108) "prependListener"
-                     [|((match x105 with
-                         | `messageerror -> Ojs.string_to_js "messageerror"));(
-                       Ojs.fun_to_js 1
-                         (fun (x107 : Ojs.t) ->
-                            x106 ~error:(Error.t_of_js x107)))|])
-        let (prepend_listener''' :
-          t ->
-            event:symbol or_string -> listener:(args:any list -> unit) -> t)
-          =
-          fun (x114 : t) ->
-            fun ~event:(x109 : symbol or_string) ->
-              fun ~listener:(x111 : args:any list -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x114) "prependListener"
-                     [|(or_string_to_js symbol_to_js x109);(Ojs.fun_to_js_args
-                                                              (fun (x112 : _)
-                                                                 ->
-                                                                 x111
-                                                                   ~args:(
-                                                                   Ojs.list_of_js_from
-                                                                    any_of_js
-                                                                    x112 0)))|])
-        let (prepend_once_listener :
-          t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
-          fun (x117 : t) ->
-            fun ~event:(x115 : [ `close ]) ->
-              fun ~listener:(x116 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x117) "prependOnceListener"
-                     [|((match x115 with | `close -> Ojs.string_to_js "close"));(
-                       Ojs.fun_to_js 1 (fun _ -> x116 ()))|])
-        let (prepend_once_listener' :
-          t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
-          fun (x121 : t) ->
-            fun ~event:(x118 : [ `message ]) ->
-              fun ~listener:(x119 : value:any -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x121) "prependOnceListener"
-                     [|((match x118 with
-                         | `message -> Ojs.string_to_js "message"));(
-                       Ojs.fun_to_js 1
-                         (fun (x120 : Ojs.t) -> x119 ~value:(any_of_js x120)))|])
-        let (prepend_once_listener'' :
-          t ->
-            event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
-          =
-          fun (x125 : t) ->
-            fun ~event:(x122 : [ `messageerror ]) ->
-              fun ~listener:(x123 : error:Error.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x125) "prependOnceListener"
-                     [|((match x122 with
-                         | `messageerror -> Ojs.string_to_js "messageerror"));(
-                       Ojs.fun_to_js 1
-                         (fun (x124 : Ojs.t) ->
-                            x123 ~error:(Error.t_of_js x124)))|])
-        let (prepend_once_listener''' :
-          t ->
-            event:symbol or_string -> listener:(args:any list -> unit) -> t)
-          =
-          fun (x131 : t) ->
-            fun ~event:(x126 : symbol or_string) ->
-              fun ~listener:(x128 : args:any list -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x131) "prependOnceListener"
-                     [|(or_string_to_js symbol_to_js x126);(Ojs.fun_to_js_args
-                                                              (fun (x129 : _)
-                                                                 ->
-                                                                 x128
-                                                                   ~args:(
-                                                                   Ojs.list_of_js_from
-                                                                    any_of_js
-                                                                    x129 0)))|])
-        let (remove_listener :
-          t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
-          fun (x134 : t) ->
-            fun ~event:(x132 : [ `close ]) ->
-              fun ~listener:(x133 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x134) "removeListener"
-                     [|((match x132 with | `close -> Ojs.string_to_js "close"));(
-                       Ojs.fun_to_js 1 (fun _ -> x133 ()))|])
-        let (remove_listener' :
-          t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
-          fun (x138 : t) ->
-            fun ~event:(x135 : [ `message ]) ->
-              fun ~listener:(x136 : value:any -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x138) "removeListener"
-                     [|((match x135 with
-                         | `message -> Ojs.string_to_js "message"));(
-                       Ojs.fun_to_js 1
-                         (fun (x137 : Ojs.t) -> x136 ~value:(any_of_js x137)))|])
-        let (remove_listener'' :
-          t ->
-            event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
-          =
-          fun (x142 : t) ->
-            fun ~event:(x139 : [ `messageerror ]) ->
-              fun ~listener:(x140 : error:Error.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x142) "removeListener"
-                     [|((match x139 with
-                         | `messageerror -> Ojs.string_to_js "messageerror"));(
-                       Ojs.fun_to_js 1
-                         (fun (x141 : Ojs.t) ->
-                            x140 ~error:(Error.t_of_js x141)))|])
-        let (remove_listener''' :
-          t ->
-            event:symbol or_string -> listener:(args:any list -> unit) -> t)
-          =
-          fun (x148 : t) ->
-            fun ~event:(x143 : symbol or_string) ->
-              fun ~listener:(x145 : args:any list -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x148) "removeListener"
-                     [|(or_string_to_js symbol_to_js x143);(Ojs.fun_to_js_args
-                                                              (fun (x146 : _)
-                                                                 ->
-                                                                 x145
-                                                                   ~args:(
-                                                                   Ojs.list_of_js_from
-                                                                    any_of_js
-                                                                    x146 0)))|])
-        let (off : t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
-          fun (x151 : t) ->
-            fun ~event:(x149 : [ `close ]) ->
-              fun ~listener:(x150 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x151) "off"
-                     [|((match x149 with | `close -> Ojs.string_to_js "close"));(
-                       Ojs.fun_to_js 1 (fun _ -> x150 ()))|])
-        let (off' :
-          t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
-          fun (x155 : t) ->
-            fun ~event:(x152 : [ `message ]) ->
-              fun ~listener:(x153 : value:any -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x155) "off"
-                     [|((match x152 with
-                         | `message -> Ojs.string_to_js "message"));(
-                       Ojs.fun_to_js 1
-                         (fun (x154 : Ojs.t) -> x153 ~value:(any_of_js x154)))|])
-        let (off'' :
-          t ->
-            event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
-          =
-          fun (x159 : t) ->
-            fun ~event:(x156 : [ `messageerror ]) ->
-              fun ~listener:(x157 : error:Error.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x159) "off"
-                     [|((match x156 with
-                         | `messageerror -> Ojs.string_to_js "messageerror"));(
-                       Ojs.fun_to_js 1
-                         (fun (x158 : Ojs.t) ->
-                            x157 ~error:(Error.t_of_js x158)))|])
-        let (off''' :
-          t ->
-            event:symbol or_string -> listener:(args:any list -> unit) -> t)
-          =
-          fun (x165 : t) ->
-            fun ~event:(x160 : symbol or_string) ->
-              fun ~listener:(x162 : args:any list -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x165) "off"
-                     [|(or_string_to_js symbol_to_js x160);(Ojs.fun_to_js_args
-                                                              (fun (x163 : _)
-                                                                 ->
-                                                                 x162
-                                                                   ~args:(
-                                                                   Ojs.list_of_js_from
-                                                                    any_of_js
-                                                                    x163 0)))|])
-        let (cast : t -> Node_events.Events.EventEmitter.t) =
-          fun (x166 : t) ->
-            Node_events.Events.EventEmitter.t_of_js (t_to_js x166)
-      end
-    module WorkerOptions =
-      struct
-        type t = worker_threads_WorkerOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x168 : Ojs.t) -> worker_threads_WorkerOptions_of_js x168
-        and t_to_js : t -> Ojs.t =
-          fun (x167 : worker_threads_WorkerOptions) ->
-            worker_threads_WorkerOptions_to_js x167
-        let (get_argv : t -> any list) =
-          fun (x169 : t) ->
-            Ojs.list_of_js any_of_js
-              (Ojs.get_prop_ascii (t_to_js x169) "argv")
-        let (set_argv : t -> any list -> unit) =
-          fun (x171 : t) ->
-            fun (x172 : any list) ->
-              Ojs.set_prop_ascii (t_to_js x171) "argv"
-                (Ojs.list_to_js any_to_js x172)
-        let (get_env : t -> (string Dict.t, any) union2) =
-          fun (x174 : t) ->
-            union2_of_js
-              (fun (x175 : Ojs.t) -> Dict.t_of_js Ojs.string_of_js x175)
-              any_of_js (Ojs.get_prop_ascii (t_to_js x174) "env")
-        let (set_env : t -> (string Dict.t, any) union2 -> unit) =
-          fun (x178 : t) ->
-            fun (x179 : (string Dict.t, any) union2) ->
-              Ojs.set_prop_ascii (t_to_js x178) "env"
-                (union2_to_js
-                   (fun (x180 : string Dict.t) ->
-                      Dict.t_to_js Ojs.string_to_js x180) any_to_js x179)
-        let (get_eval : t -> bool) =
-          fun (x183 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x183) "eval")
-        let (set_eval : t -> bool -> unit) =
-          fun (x184 : t) ->
-            fun (x185 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x184) "eval" (Ojs.bool_to_js x185)
-        let (get_worker_data : t -> any) =
-          fun (x186 : t) ->
-            any_of_js (Ojs.get_prop_ascii (t_to_js x186) "workerData")
-        let (set_worker_data : t -> any -> unit) =
-          fun (x187 : t) ->
-            fun (x188 : any) ->
-              Ojs.set_prop_ascii (t_to_js x187) "workerData" (any_to_js x188)
-        let (get_stdin : t -> bool) =
-          fun (x189 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x189) "stdin")
-        let (set_stdin : t -> bool -> unit) =
-          fun (x190 : t) ->
-            fun (x191 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x190) "stdin" (Ojs.bool_to_js x191)
-        let (get_stdout : t -> bool) =
-          fun (x192 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x192) "stdout")
-        let (set_stdout : t -> bool -> unit) =
-          fun (x193 : t) ->
-            fun (x194 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x193) "stdout"
-                (Ojs.bool_to_js x194)
-        let (get_stderr : t -> bool) =
-          fun (x195 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x195) "stderr")
-        let (set_stderr : t -> bool -> unit) =
-          fun (x196 : t) ->
-            fun (x197 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x196) "stderr"
-                (Ojs.bool_to_js x197)
-        let (get_exec_argv : t -> string list) =
-          fun (x198 : t) ->
-            Ojs.list_of_js Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x198) "execArgv")
-        let (set_exec_argv : t -> string list -> unit) =
-          fun (x200 : t) ->
-            fun (x201 : string list) ->
-              Ojs.set_prop_ascii (t_to_js x200) "execArgv"
-                (Ojs.list_to_js Ojs.string_to_js x201)
-        let (get_resource_limits : t -> ResourceLimits.t) =
-          fun (x203 : t) ->
-            ResourceLimits.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x203) "resourceLimits")
-        let (set_resource_limits : t -> ResourceLimits.t -> unit) =
-          fun (x204 : t) ->
-            fun (x205 : ResourceLimits.t) ->
-              Ojs.set_prop_ascii (t_to_js x204) "resourceLimits"
-                (ResourceLimits.t_to_js x205)
-        let (get_transfer_list : t -> TransferListItem.t list) =
-          fun (x206 : t) ->
-            Ojs.list_of_js TransferListItem.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x206) "transferList")
-        let (set_transfer_list : t -> TransferListItem.t list -> unit) =
-          fun (x208 : t) ->
-            fun (x209 : TransferListItem.t list) ->
-              Ojs.set_prop_ascii (t_to_js x208) "transferList"
-                (Ojs.list_to_js TransferListItem.t_to_js x209)
-        let (get_track_unmanaged_fds : t -> bool) =
-          fun (x211 : t) ->
-            Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x211) "trackUnmanagedFds")
-        let (set_track_unmanaged_fds : t -> bool -> unit) =
-          fun (x212 : t) ->
-            fun (x213 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x212) "trackUnmanagedFds"
-                (Ojs.bool_to_js x213)
+              MessagePort.t_to_js x153
       end
     module ResourceLimits =
       struct
-        type t = worker_threads_ResourceLimits
-        let rec t_of_js : Ojs.t -> t =
-          fun (x215 : Ojs.t) -> worker_threads_ResourceLimits_of_js x215
-        and t_to_js : t -> Ojs.t =
-          fun (x214 : worker_threads_ResourceLimits) ->
-            worker_threads_ResourceLimits_to_js x214
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x162 : Ojs.t) -> x162
+        and t_to_js : t -> Ojs.t = fun (x161 : Ojs.t) -> x161
         let (get_max_young_generation_size_mb : t -> int) =
-          fun (x216 : t) ->
+          fun (x163 : t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x216) "maxYoungGenerationSizeMb")
+              (Ojs.get_prop_ascii (t_to_js x163) "maxYoungGenerationSizeMb")
         let (set_max_young_generation_size_mb : t -> int -> unit) =
-          fun (x217 : t) ->
-            fun (x218 : int) ->
-              Ojs.set_prop_ascii (t_to_js x217) "maxYoungGenerationSizeMb"
-                (Ojs.int_to_js x218)
+          fun (x164 : t) ->
+            fun (x165 : int) ->
+              Ojs.set_prop_ascii (t_to_js x164) "maxYoungGenerationSizeMb"
+                (Ojs.int_to_js x165)
         let (get_max_old_generation_size_mb : t -> int) =
-          fun (x219 : t) ->
+          fun (x166 : t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x219) "maxOldGenerationSizeMb")
+              (Ojs.get_prop_ascii (t_to_js x166) "maxOldGenerationSizeMb")
         let (set_max_old_generation_size_mb : t -> int -> unit) =
-          fun (x220 : t) ->
-            fun (x221 : int) ->
-              Ojs.set_prop_ascii (t_to_js x220) "maxOldGenerationSizeMb"
-                (Ojs.int_to_js x221)
+          fun (x167 : t) ->
+            fun (x168 : int) ->
+              Ojs.set_prop_ascii (t_to_js x167) "maxOldGenerationSizeMb"
+                (Ojs.int_to_js x168)
         let (get_code_range_size_mb : t -> int) =
-          fun (x222 : t) ->
+          fun (x169 : t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x222) "codeRangeSizeMb")
+              (Ojs.get_prop_ascii (t_to_js x169) "codeRangeSizeMb")
         let (set_code_range_size_mb : t -> int -> unit) =
-          fun (x223 : t) ->
-            fun (x224 : int) ->
-              Ojs.set_prop_ascii (t_to_js x223) "codeRangeSizeMb"
-                (Ojs.int_to_js x224)
+          fun (x170 : t) ->
+            fun (x171 : int) ->
+              Ojs.set_prop_ascii (t_to_js x170) "codeRangeSizeMb"
+                (Ojs.int_to_js x171)
         let (get_stack_size_mb : t -> int) =
-          fun (x225 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x225) "stackSizeMb")
+          fun (x172 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x172) "stackSizeMb")
         let (set_stack_size_mb : t -> int -> unit) =
-          fun (x226 : t) ->
-            fun (x227 : int) ->
-              Ojs.set_prop_ascii (t_to_js x226) "stackSizeMb"
-                (Ojs.int_to_js x227)
+          fun (x173 : t) ->
+            fun (x174 : int) ->
+              Ojs.set_prop_ascii (t_to_js x173) "stackSizeMb"
+                (Ojs.int_to_js x174)
+      end
+    module WorkerOptions =
+      struct
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x176 : Ojs.t) -> x176
+        and t_to_js : t -> Ojs.t = fun (x175 : Ojs.t) -> x175
+        let (get_argv : t -> any list) =
+          fun (x177 : t) ->
+            Ojs.list_of_js any_of_js
+              (Ojs.get_prop_ascii (t_to_js x177) "argv")
+        let (set_argv : t -> any list -> unit) =
+          fun (x179 : t) ->
+            fun (x180 : any list) ->
+              Ojs.set_prop_ascii (t_to_js x179) "argv"
+                (Ojs.list_to_js any_to_js x180)
+        let (get_env : t -> (string Dict.t, any) union2) =
+          fun (x182 : t) ->
+            union2_of_js
+              (fun (x183 : Ojs.t) -> Dict.t_of_js Ojs.string_of_js x183)
+              any_of_js (Ojs.get_prop_ascii (t_to_js x182) "env")
+        let (set_env : t -> (string Dict.t, any) union2 -> unit) =
+          fun (x186 : t) ->
+            fun (x187 : (string Dict.t, any) union2) ->
+              Ojs.set_prop_ascii (t_to_js x186) "env"
+                (union2_to_js
+                   (fun (x188 : string Dict.t) ->
+                      Dict.t_to_js Ojs.string_to_js x188) any_to_js x187)
+        let (get_eval : t -> bool) =
+          fun (x191 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x191) "eval")
+        let (set_eval : t -> bool -> unit) =
+          fun (x192 : t) ->
+            fun (x193 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x192) "eval" (Ojs.bool_to_js x193)
+        let (get_worker_data : t -> any) =
+          fun (x194 : t) ->
+            any_of_js (Ojs.get_prop_ascii (t_to_js x194) "workerData")
+        let (set_worker_data : t -> any -> unit) =
+          fun (x195 : t) ->
+            fun (x196 : any) ->
+              Ojs.set_prop_ascii (t_to_js x195) "workerData" (any_to_js x196)
+        let (get_stdin : t -> bool) =
+          fun (x197 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x197) "stdin")
+        let (set_stdin : t -> bool -> unit) =
+          fun (x198 : t) ->
+            fun (x199 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x198) "stdin" (Ojs.bool_to_js x199)
+        let (get_stdout : t -> bool) =
+          fun (x200 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x200) "stdout")
+        let (set_stdout : t -> bool -> unit) =
+          fun (x201 : t) ->
+            fun (x202 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x201) "stdout"
+                (Ojs.bool_to_js x202)
+        let (get_stderr : t -> bool) =
+          fun (x203 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x203) "stderr")
+        let (set_stderr : t -> bool -> unit) =
+          fun (x204 : t) ->
+            fun (x205 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x204) "stderr"
+                (Ojs.bool_to_js x205)
+        let (get_exec_argv : t -> string list) =
+          fun (x206 : t) ->
+            Ojs.list_of_js Ojs.string_of_js
+              (Ojs.get_prop_ascii (t_to_js x206) "execArgv")
+        let (set_exec_argv : t -> string list -> unit) =
+          fun (x208 : t) ->
+            fun (x209 : string list) ->
+              Ojs.set_prop_ascii (t_to_js x208) "execArgv"
+                (Ojs.list_to_js Ojs.string_to_js x209)
+        let (get_resource_limits : t -> ResourceLimits.t) =
+          fun (x211 : t) ->
+            ResourceLimits.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x211) "resourceLimits")
+        let (set_resource_limits : t -> ResourceLimits.t -> unit) =
+          fun (x212 : t) ->
+            fun (x213 : ResourceLimits.t) ->
+              Ojs.set_prop_ascii (t_to_js x212) "resourceLimits"
+                (ResourceLimits.t_to_js x213)
+        let (get_transfer_list : t -> TransferListItem.t list) =
+          fun (x214 : t) ->
+            Ojs.list_of_js TransferListItem.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x214) "transferList")
+        let (set_transfer_list : t -> TransferListItem.t list -> unit) =
+          fun (x216 : t) ->
+            fun (x217 : TransferListItem.t list) ->
+              Ojs.set_prop_ascii (t_to_js x216) "transferList"
+                (Ojs.list_to_js TransferListItem.t_to_js x217)
+        let (get_track_unmanaged_fds : t -> bool) =
+          fun (x219 : t) ->
+            Ojs.bool_of_js
+              (Ojs.get_prop_ascii (t_to_js x219) "trackUnmanagedFds")
+        let (set_track_unmanaged_fds : t -> bool -> unit) =
+          fun (x220 : t) ->
+            fun (x221 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x220) "trackUnmanagedFds"
+                (Ojs.bool_to_js x221)
       end
     module Worker =
       struct
-        type t = worker_threads_Worker
-        let rec t_of_js : Ojs.t -> t =
-          fun (x229 : Ojs.t) -> worker_threads_Worker_of_js x229
-        and t_to_js : t -> Ojs.t =
-          fun (x228 : worker_threads_Worker) ->
-            worker_threads_Worker_to_js x228
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x223 : Ojs.t) -> x223
+        and t_to_js : t -> Ojs.t = fun (x222 : Ojs.t) -> x222
         let (get_stdin : t -> Node_stream.Stream.Writable.t or_null) =
-          fun (x230 : t) ->
+          fun (x224 : t) ->
             or_null_of_js Node_stream.Stream.Writable.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x230) "stdin")
+              (Ojs.get_prop_ascii (t_to_js x224) "stdin")
         let (get_stdout : t -> Node_stream.Stream.Writable.t) =
-          fun (x232 : t) ->
+          fun (x226 : t) ->
             Node_stream.Stream.Writable.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x232) "stdout")
+              (Ojs.get_prop_ascii (t_to_js x226) "stdout")
         let (get_stderr : t -> Node_stream.Stream.Writable.t) =
-          fun (x233 : t) ->
+          fun (x227 : t) ->
             Node_stream.Stream.Writable.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x233) "stderr")
+              (Ojs.get_prop_ascii (t_to_js x227) "stderr")
         let (get_thread_id : t -> int) =
-          fun (x234 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x234) "threadId")
+          fun (x228 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x228) "threadId")
         let (get_resource_limits : t -> ResourceLimits.t) =
-          fun (x235 : t) ->
+          fun (x229 : t) ->
             ResourceLimits.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x235) "resourceLimits")
+              (Ojs.get_prop_ascii (t_to_js x229) "resourceLimits")
         let (create :
           filename:Node_url.Url.Url.t or_string ->
             ?options:WorkerOptions.t -> unit -> t)
           =
-          fun ~filename:(x236 : Node_url.Url.Url.t or_string) ->
-            fun ?options:(x237 : WorkerOptions.t option) ->
+          fun ~filename:(x230 : Node_url.Url.Url.t or_string) ->
+            fun ?options:(x231 : WorkerOptions.t option) ->
               fun () ->
                 t_of_js
                   (Ojs.new_obj_arr
                      (Ojs.get_prop_ascii Import.worker_threads "Worker")
-                     (let x238 =
+                     (let x232 =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
                       ignore
-                        (Ojs.call x238 "push"
-                           [|(or_string_to_js Node_url.Url.Url.t_to_js x236)|]);
-                      (match x237 with
-                       | Some x239 ->
+                        (Ojs.call x232 "push"
+                           [|(or_string_to_js Node_url.Url.Url.t_to_js x230)|]);
+                      (match x231 with
+                       | Some x233 ->
                            ignore
-                             (Ojs.call x238 "push"
-                                [|(WorkerOptions.t_to_js x239)|])
+                             (Ojs.call x232 "push"
+                                [|(WorkerOptions.t_to_js x233)|])
                        | None -> ());
-                      x238))
+                      x232))
         let (post_message :
           t ->
             value:any ->
               ?transfer_list:TransferListItem.t list -> unit -> unit)
           =
-          fun (x246 : t) ->
-            fun ~value:(x241 : any) ->
-              fun ?transfer_list:(x242 : TransferListItem.t list option) ->
+          fun (x240 : t) ->
+            fun ~value:(x235 : any) ->
+              fun ?transfer_list:(x236 : TransferListItem.t list option) ->
                 fun () ->
                   ignore
-                    (let x247 = t_to_js x246 in
-                     Ojs.call (Ojs.get_prop_ascii x247 "postMessage") "apply"
-                       [|x247;((let x243 =
+                    (let x241 = t_to_js x240 in
+                     Ojs.call (Ojs.get_prop_ascii x241 "postMessage") "apply"
+                       [|x241;((let x237 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
                                 ignore
-                                  (Ojs.call x243 "push" [|(any_to_js x241)|]);
-                                (match x242 with
-                                 | Some x244 ->
+                                  (Ojs.call x237 "push" [|(any_to_js x235)|]);
+                                (match x236 with
+                                 | Some x238 ->
                                      ignore
-                                       (Ojs.call x243 "push"
+                                       (Ojs.call x237 "push"
                                           [|(Ojs.list_to_js
-                                               TransferListItem.t_to_js x244)|])
+                                               TransferListItem.t_to_js x238)|])
                                  | None -> ());
-                                x243))|])
+                                x237))|])
         let (ref : t -> unit) =
-          fun (x248 : t) -> ignore (Ojs.call (t_to_js x248) "ref" [||])
+          fun (x242 : t) -> ignore (Ojs.call (t_to_js x242) "ref" [||])
         let (unref : t -> unit) =
-          fun (x249 : t) -> ignore (Ojs.call (t_to_js x249) "unref" [||])
+          fun (x243 : t) -> ignore (Ojs.call (t_to_js x243) "unref" [||])
         let (terminate : t -> int Promise.t) =
-          fun (x250 : t) ->
+          fun (x244 : t) ->
             Promise.t_of_js Ojs.int_of_js
-              (Ojs.call (t_to_js x250) "terminate" [||])
+              (Ojs.call (t_to_js x244) "terminate" [||])
         let (get_heap_snapshot :
           t -> Node_stream.Stream.Writable.t Promise.t) =
-          fun (x252 : t) ->
+          fun (x246 : t) ->
             Promise.t_of_js Node_stream.Stream.Writable.t_of_js
-              (Ojs.call (t_to_js x252) "getHeapSnapshot" [||])
+              (Ojs.call (t_to_js x246) "getHeapSnapshot" [||])
         let (add_listener :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
-          fun (x257 : t) ->
-            fun ~event:(x254 : [ `error ]) ->
-              fun ~listener:(x255 : err:Error.t -> unit) ->
+          fun (x251 : t) ->
+            fun ~event:(x248 : [ `error ]) ->
+              fun ~listener:(x249 : err:Error.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x257) "addListener"
-                     [|((match x254 with | `error -> Ojs.string_to_js "error"));(
+                  (Ojs.call (t_to_js x251) "addListener"
+                     [|((match x248 with | `error -> Ojs.string_to_js "error"));(
                        Ojs.fun_to_js 1
-                         (fun (x256 : Ojs.t) ->
-                            x255 ~err:(Error.t_of_js x256)))|])
+                         (fun (x250 : Ojs.t) ->
+                            x249 ~err:(Error.t_of_js x250)))|])
         let (add_listener' :
           t -> event:[ `exit ] -> listener:(exitCode:int -> unit) -> t) =
-          fun (x261 : t) ->
-            fun ~event:(x258 : [ `exit ]) ->
-              fun ~listener:(x259 : exitCode:int -> unit) ->
+          fun (x255 : t) ->
+            fun ~event:(x252 : [ `exit ]) ->
+              fun ~listener:(x253 : exitCode:int -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x261) "addListener"
-                     [|((match x258 with | `exit -> Ojs.string_to_js "exit"));(
+                  (Ojs.call (t_to_js x255) "addListener"
+                     [|((match x252 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 1
-                         (fun (x260 : Ojs.t) ->
-                            x259 ~exitCode:(Ojs.int_of_js x260)))|])
+                         (fun (x254 : Ojs.t) ->
+                            x253 ~exitCode:(Ojs.int_of_js x254)))|])
         let (add_listener'' :
           t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
-          fun (x265 : t) ->
-            fun ~event:(x262 : [ `message ]) ->
-              fun ~listener:(x263 : value:any -> unit) ->
+          fun (x259 : t) ->
+            fun ~event:(x256 : [ `message ]) ->
+              fun ~listener:(x257 : value:any -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x265) "addListener"
-                     [|((match x262 with
+                  (Ojs.call (t_to_js x259) "addListener"
+                     [|((match x256 with
                          | `message -> Ojs.string_to_js "message"));(
                        Ojs.fun_to_js 1
-                         (fun (x264 : Ojs.t) -> x263 ~value:(any_of_js x264)))|])
+                         (fun (x258 : Ojs.t) -> x257 ~value:(any_of_js x258)))|])
         let (add_listener''' :
           t ->
             event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
           =
-          fun (x269 : t) ->
-            fun ~event:(x266 : [ `messageerror ]) ->
-              fun ~listener:(x267 : error:Error.t -> unit) ->
+          fun (x263 : t) ->
+            fun ~event:(x260 : [ `messageerror ]) ->
+              fun ~listener:(x261 : error:Error.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x269) "addListener"
-                     [|((match x266 with
+                  (Ojs.call (t_to_js x263) "addListener"
+                     [|((match x260 with
                          | `messageerror -> Ojs.string_to_js "messageerror"));(
                        Ojs.fun_to_js 1
-                         (fun (x268 : Ojs.t) ->
-                            x267 ~error:(Error.t_of_js x268)))|])
+                         (fun (x262 : Ojs.t) ->
+                            x261 ~error:(Error.t_of_js x262)))|])
         let (add_listener'''' :
           t -> event:[ `online ] -> listener:(unit -> unit) -> t) =
-          fun (x272 : t) ->
-            fun ~event:(x270 : [ `online ]) ->
-              fun ~listener:(x271 : unit -> unit) ->
+          fun (x266 : t) ->
+            fun ~event:(x264 : [ `online ]) ->
+              fun ~listener:(x265 : unit -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x272) "addListener"
-                     [|((match x270 with
+                  (Ojs.call (t_to_js x266) "addListener"
+                     [|((match x264 with
                          | `online -> Ojs.string_to_js "online"));(Ojs.fun_to_js
                                                                     1
                                                                     (fun _ ->
-                                                                    x271 ()))|])
+                                                                    x265 ()))|])
         let (add_listener''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
-          fun (x278 : t) ->
-            fun ~event:(x273 : symbol or_string) ->
-              fun ~listener:(x275 : args:any list -> unit) ->
+          fun (x272 : t) ->
+            fun ~event:(x267 : symbol or_string) ->
+              fun ~listener:(x269 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x278) "addListener"
-                     [|(or_string_to_js symbol_to_js x273);(Ojs.fun_to_js_args
-                                                              (fun (x276 : _)
+                  (Ojs.call (t_to_js x272) "addListener"
+                     [|(or_string_to_js symbol_to_js x267);(Ojs.fun_to_js_args
+                                                              (fun (x270 : _)
                                                                  ->
-                                                                 x275
+                                                                 x269
                                                                    ~args:(
                                                                    Ojs.list_of_js_from
                                                                     any_of_js
-                                                                    x276 0)))|])
+                                                                    x270 0)))|])
         let (emit : t -> event:[ `error ] -> err:Error.t -> bool) =
+          fun (x275 : t) ->
+            fun ~event:(x273 : [ `error ]) ->
+              fun ~err:(x274 : Error.t) ->
+                Ojs.bool_of_js
+                  (Ojs.call (t_to_js x275) "emit"
+                     [|((match x273 with | `error -> Ojs.string_to_js "error"));(
+                       Error.t_to_js x274)|])
+        let (emit' : t -> event:[ `exit ] -> exit_code:int -> bool) =
+          fun (x278 : t) ->
+            fun ~event:(x276 : [ `exit ]) ->
+              fun ~exit_code:(x277 : int) ->
+                Ojs.bool_of_js
+                  (Ojs.call (t_to_js x278) "emit"
+                     [|((match x276 with | `exit -> Ojs.string_to_js "exit"));(
+                       Ojs.int_to_js x277)|])
+        let (emit'' : t -> event:[ `message ] -> value:any -> bool) =
           fun (x281 : t) ->
-            fun ~event:(x279 : [ `error ]) ->
-              fun ~err:(x280 : Error.t) ->
+            fun ~event:(x279 : [ `message ]) ->
+              fun ~value:(x280 : any) ->
                 Ojs.bool_of_js
                   (Ojs.call (t_to_js x281) "emit"
-                     [|((match x279 with | `error -> Ojs.string_to_js "error"));(
-                       Error.t_to_js x280)|])
-        let (emit' : t -> event:[ `exit ] -> exit_code:int -> bool) =
-          fun (x284 : t) ->
-            fun ~event:(x282 : [ `exit ]) ->
-              fun ~exit_code:(x283 : int) ->
-                Ojs.bool_of_js
-                  (Ojs.call (t_to_js x284) "emit"
-                     [|((match x282 with | `exit -> Ojs.string_to_js "exit"));(
-                       Ojs.int_to_js x283)|])
-        let (emit'' : t -> event:[ `message ] -> value:any -> bool) =
-          fun (x287 : t) ->
-            fun ~event:(x285 : [ `message ]) ->
-              fun ~value:(x286 : any) ->
-                Ojs.bool_of_js
-                  (Ojs.call (t_to_js x287) "emit"
-                     [|((match x285 with
+                     [|((match x279 with
                          | `message -> Ojs.string_to_js "message"));(
-                       any_to_js x286)|])
+                       any_to_js x280)|])
         let (emit''' : t -> event:[ `messageerror ] -> error:Error.t -> bool)
           =
-          fun (x290 : t) ->
-            fun ~event:(x288 : [ `messageerror ]) ->
-              fun ~error:(x289 : Error.t) ->
+          fun (x284 : t) ->
+            fun ~event:(x282 : [ `messageerror ]) ->
+              fun ~error:(x283 : Error.t) ->
                 Ojs.bool_of_js
-                  (Ojs.call (t_to_js x290) "emit"
-                     [|((match x288 with
+                  (Ojs.call (t_to_js x284) "emit"
+                     [|((match x282 with
                          | `messageerror -> Ojs.string_to_js "messageerror"));(
-                       Error.t_to_js x289)|])
+                       Error.t_to_js x283)|])
         let (emit'''' : t -> event:[ `online ] -> bool) =
-          fun (x292 : t) ->
-            fun ~event:(x291 : [ `online ]) ->
+          fun (x286 : t) ->
+            fun ~event:(x285 : [ `online ]) ->
               Ojs.bool_of_js
-                (Ojs.call (t_to_js x292) "emit"
-                   [|((match x291 with | `online -> Ojs.string_to_js "online"))|])
+                (Ojs.call (t_to_js x286) "emit"
+                   [|((match x285 with | `online -> Ojs.string_to_js "online"))|])
         let (emit''''' :
           t -> event:symbol or_string -> args:any list -> bool) =
-          fun (x298 : t) ->
-            fun ~event:(x293 : symbol or_string) ->
-              fun ~args:(x294 : any list) ->
+          fun (x292 : t) ->
+            fun ~event:(x287 : symbol or_string) ->
+              fun ~args:(x288 : any list) ->
                 Ojs.bool_of_js
-                  (let x299 = t_to_js x298 in
-                   Ojs.call (Ojs.get_prop_ascii x299 "emit") "apply"
-                     [|x299;((let x295 =
+                  (let x293 = t_to_js x292 in
+                   Ojs.call (Ojs.get_prop_ascii x293 "emit") "apply"
+                     [|x293;((let x289 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x295 "push"
-                                   [|(or_string_to_js symbol_to_js x293)|]);
+                                (Ojs.call x289 "push"
+                                   [|(or_string_to_js symbol_to_js x287)|]);
                               List.iter
-                                (fun (x296 : any) ->
+                                (fun (x290 : any) ->
                                    ignore
-                                     (Ojs.call x295 "push"
-                                        [|(any_to_js x296)|])) x294;
-                              x295))|])
+                                     (Ojs.call x289 "push"
+                                        [|(any_to_js x290)|])) x288;
+                              x289))|])
         let (on :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
-          fun (x303 : t) ->
-            fun ~event:(x300 : [ `error ]) ->
-              fun ~listener:(x301 : err:Error.t -> unit) ->
+          fun (x297 : t) ->
+            fun ~event:(x294 : [ `error ]) ->
+              fun ~listener:(x295 : err:Error.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x303) "on"
-                     [|((match x300 with | `error -> Ojs.string_to_js "error"));(
+                  (Ojs.call (t_to_js x297) "on"
+                     [|((match x294 with | `error -> Ojs.string_to_js "error"));(
                        Ojs.fun_to_js 1
-                         (fun (x302 : Ojs.t) ->
-                            x301 ~err:(Error.t_of_js x302)))|])
+                         (fun (x296 : Ojs.t) ->
+                            x295 ~err:(Error.t_of_js x296)))|])
         let (on' :
           t -> event:[ `exit ] -> listener:(exitCode:int -> unit) -> t) =
-          fun (x307 : t) ->
-            fun ~event:(x304 : [ `exit ]) ->
-              fun ~listener:(x305 : exitCode:int -> unit) ->
+          fun (x301 : t) ->
+            fun ~event:(x298 : [ `exit ]) ->
+              fun ~listener:(x299 : exitCode:int -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x307) "on"
-                     [|((match x304 with | `exit -> Ojs.string_to_js "exit"));(
+                  (Ojs.call (t_to_js x301) "on"
+                     [|((match x298 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 1
-                         (fun (x306 : Ojs.t) ->
-                            x305 ~exitCode:(Ojs.int_of_js x306)))|])
+                         (fun (x300 : Ojs.t) ->
+                            x299 ~exitCode:(Ojs.int_of_js x300)))|])
         let (on'' :
           t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
-          fun (x311 : t) ->
-            fun ~event:(x308 : [ `message ]) ->
-              fun ~listener:(x309 : value:any -> unit) ->
+          fun (x305 : t) ->
+            fun ~event:(x302 : [ `message ]) ->
+              fun ~listener:(x303 : value:any -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x311) "on"
-                     [|((match x308 with
+                  (Ojs.call (t_to_js x305) "on"
+                     [|((match x302 with
                          | `message -> Ojs.string_to_js "message"));(
                        Ojs.fun_to_js 1
-                         (fun (x310 : Ojs.t) -> x309 ~value:(any_of_js x310)))|])
+                         (fun (x304 : Ojs.t) -> x303 ~value:(any_of_js x304)))|])
         let (on''' :
           t ->
             event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
           =
-          fun (x315 : t) ->
-            fun ~event:(x312 : [ `messageerror ]) ->
-              fun ~listener:(x313 : error:Error.t -> unit) ->
+          fun (x309 : t) ->
+            fun ~event:(x306 : [ `messageerror ]) ->
+              fun ~listener:(x307 : error:Error.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x315) "on"
-                     [|((match x312 with
+                  (Ojs.call (t_to_js x309) "on"
+                     [|((match x306 with
                          | `messageerror -> Ojs.string_to_js "messageerror"));(
                        Ojs.fun_to_js 1
-                         (fun (x314 : Ojs.t) ->
-                            x313 ~error:(Error.t_of_js x314)))|])
+                         (fun (x308 : Ojs.t) ->
+                            x307 ~error:(Error.t_of_js x308)))|])
         let (on'''' : t -> event:[ `online ] -> listener:(unit -> unit) -> t)
           =
-          fun (x318 : t) ->
-            fun ~event:(x316 : [ `online ]) ->
-              fun ~listener:(x317 : unit -> unit) ->
+          fun (x312 : t) ->
+            fun ~event:(x310 : [ `online ]) ->
+              fun ~listener:(x311 : unit -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x318) "on"
-                     [|((match x316 with
+                  (Ojs.call (t_to_js x312) "on"
+                     [|((match x310 with
                          | `online -> Ojs.string_to_js "online"));(Ojs.fun_to_js
                                                                     1
                                                                     (fun _ ->
-                                                                    x317 ()))|])
+                                                                    x311 ()))|])
         let (on''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
-          fun (x324 : t) ->
-            fun ~event:(x319 : symbol or_string) ->
-              fun ~listener:(x321 : args:any list -> unit) ->
+          fun (x318 : t) ->
+            fun ~event:(x313 : symbol or_string) ->
+              fun ~listener:(x315 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x324) "on"
-                     [|(or_string_to_js symbol_to_js x319);(Ojs.fun_to_js_args
-                                                              (fun (x322 : _)
+                  (Ojs.call (t_to_js x318) "on"
+                     [|(or_string_to_js symbol_to_js x313);(Ojs.fun_to_js_args
+                                                              (fun (x316 : _)
                                                                  ->
-                                                                 x321
+                                                                 x315
                                                                    ~args:(
                                                                    Ojs.list_of_js_from
                                                                     any_of_js
-                                                                    x322 0)))|])
+                                                                    x316 0)))|])
         let (once :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
-          fun (x328 : t) ->
-            fun ~event:(x325 : [ `error ]) ->
-              fun ~listener:(x326 : err:Error.t -> unit) ->
+          fun (x322 : t) ->
+            fun ~event:(x319 : [ `error ]) ->
+              fun ~listener:(x320 : err:Error.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x328) "once"
-                     [|((match x325 with | `error -> Ojs.string_to_js "error"));(
+                  (Ojs.call (t_to_js x322) "once"
+                     [|((match x319 with | `error -> Ojs.string_to_js "error"));(
                        Ojs.fun_to_js 1
-                         (fun (x327 : Ojs.t) ->
-                            x326 ~err:(Error.t_of_js x327)))|])
+                         (fun (x321 : Ojs.t) ->
+                            x320 ~err:(Error.t_of_js x321)))|])
         let (once' :
           t -> event:[ `exit ] -> listener:(exitCode:int -> unit) -> t) =
-          fun (x332 : t) ->
-            fun ~event:(x329 : [ `exit ]) ->
-              fun ~listener:(x330 : exitCode:int -> unit) ->
+          fun (x326 : t) ->
+            fun ~event:(x323 : [ `exit ]) ->
+              fun ~listener:(x324 : exitCode:int -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x332) "once"
-                     [|((match x329 with | `exit -> Ojs.string_to_js "exit"));(
+                  (Ojs.call (t_to_js x326) "once"
+                     [|((match x323 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 1
-                         (fun (x331 : Ojs.t) ->
-                            x330 ~exitCode:(Ojs.int_of_js x331)))|])
+                         (fun (x325 : Ojs.t) ->
+                            x324 ~exitCode:(Ojs.int_of_js x325)))|])
         let (once'' :
           t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
-          fun (x336 : t) ->
-            fun ~event:(x333 : [ `message ]) ->
-              fun ~listener:(x334 : value:any -> unit) ->
+          fun (x330 : t) ->
+            fun ~event:(x327 : [ `message ]) ->
+              fun ~listener:(x328 : value:any -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x336) "once"
-                     [|((match x333 with
+                  (Ojs.call (t_to_js x330) "once"
+                     [|((match x327 with
                          | `message -> Ojs.string_to_js "message"));(
                        Ojs.fun_to_js 1
-                         (fun (x335 : Ojs.t) -> x334 ~value:(any_of_js x335)))|])
+                         (fun (x329 : Ojs.t) -> x328 ~value:(any_of_js x329)))|])
         let (once''' :
           t ->
             event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
           =
-          fun (x340 : t) ->
-            fun ~event:(x337 : [ `messageerror ]) ->
-              fun ~listener:(x338 : error:Error.t -> unit) ->
+          fun (x334 : t) ->
+            fun ~event:(x331 : [ `messageerror ]) ->
+              fun ~listener:(x332 : error:Error.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x340) "once"
-                     [|((match x337 with
+                  (Ojs.call (t_to_js x334) "once"
+                     [|((match x331 with
                          | `messageerror -> Ojs.string_to_js "messageerror"));(
                        Ojs.fun_to_js 1
-                         (fun (x339 : Ojs.t) ->
-                            x338 ~error:(Error.t_of_js x339)))|])
+                         (fun (x333 : Ojs.t) ->
+                            x332 ~error:(Error.t_of_js x333)))|])
         let (once'''' :
           t -> event:[ `online ] -> listener:(unit -> unit) -> t) =
-          fun (x343 : t) ->
-            fun ~event:(x341 : [ `online ]) ->
-              fun ~listener:(x342 : unit -> unit) ->
+          fun (x337 : t) ->
+            fun ~event:(x335 : [ `online ]) ->
+              fun ~listener:(x336 : unit -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x343) "once"
-                     [|((match x341 with
+                  (Ojs.call (t_to_js x337) "once"
+                     [|((match x335 with
                          | `online -> Ojs.string_to_js "online"));(Ojs.fun_to_js
                                                                     1
                                                                     (fun _ ->
-                                                                    x342 ()))|])
+                                                                    x336 ()))|])
         let (once''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
-          fun (x349 : t) ->
-            fun ~event:(x344 : symbol or_string) ->
-              fun ~listener:(x346 : args:any list -> unit) ->
+          fun (x343 : t) ->
+            fun ~event:(x338 : symbol or_string) ->
+              fun ~listener:(x340 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x349) "once"
-                     [|(or_string_to_js symbol_to_js x344);(Ojs.fun_to_js_args
-                                                              (fun (x347 : _)
+                  (Ojs.call (t_to_js x343) "once"
+                     [|(or_string_to_js symbol_to_js x338);(Ojs.fun_to_js_args
+                                                              (fun (x341 : _)
                                                                  ->
-                                                                 x346
+                                                                 x340
                                                                    ~args:(
                                                                    Ojs.list_of_js_from
                                                                     any_of_js
-                                                                    x347 0)))|])
+                                                                    x341 0)))|])
         let (prepend_listener :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
-          fun (x353 : t) ->
-            fun ~event:(x350 : [ `error ]) ->
-              fun ~listener:(x351 : err:Error.t -> unit) ->
+          fun (x347 : t) ->
+            fun ~event:(x344 : [ `error ]) ->
+              fun ~listener:(x345 : err:Error.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x353) "prependListener"
-                     [|((match x350 with | `error -> Ojs.string_to_js "error"));(
+                  (Ojs.call (t_to_js x347) "prependListener"
+                     [|((match x344 with | `error -> Ojs.string_to_js "error"));(
                        Ojs.fun_to_js 1
-                         (fun (x352 : Ojs.t) ->
-                            x351 ~err:(Error.t_of_js x352)))|])
+                         (fun (x346 : Ojs.t) ->
+                            x345 ~err:(Error.t_of_js x346)))|])
         let (prepend_listener' :
           t -> event:[ `exit ] -> listener:(exitCode:int -> unit) -> t) =
-          fun (x357 : t) ->
-            fun ~event:(x354 : [ `exit ]) ->
-              fun ~listener:(x355 : exitCode:int -> unit) ->
+          fun (x351 : t) ->
+            fun ~event:(x348 : [ `exit ]) ->
+              fun ~listener:(x349 : exitCode:int -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x357) "prependListener"
-                     [|((match x354 with | `exit -> Ojs.string_to_js "exit"));(
+                  (Ojs.call (t_to_js x351) "prependListener"
+                     [|((match x348 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 1
-                         (fun (x356 : Ojs.t) ->
-                            x355 ~exitCode:(Ojs.int_of_js x356)))|])
+                         (fun (x350 : Ojs.t) ->
+                            x349 ~exitCode:(Ojs.int_of_js x350)))|])
         let (prepend_listener'' :
           t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
-          fun (x361 : t) ->
-            fun ~event:(x358 : [ `message ]) ->
-              fun ~listener:(x359 : value:any -> unit) ->
+          fun (x355 : t) ->
+            fun ~event:(x352 : [ `message ]) ->
+              fun ~listener:(x353 : value:any -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x361) "prependListener"
-                     [|((match x358 with
+                  (Ojs.call (t_to_js x355) "prependListener"
+                     [|((match x352 with
                          | `message -> Ojs.string_to_js "message"));(
                        Ojs.fun_to_js 1
-                         (fun (x360 : Ojs.t) -> x359 ~value:(any_of_js x360)))|])
+                         (fun (x354 : Ojs.t) -> x353 ~value:(any_of_js x354)))|])
         let (prepend_listener''' :
           t ->
             event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
           =
-          fun (x365 : t) ->
-            fun ~event:(x362 : [ `messageerror ]) ->
-              fun ~listener:(x363 : error:Error.t -> unit) ->
+          fun (x359 : t) ->
+            fun ~event:(x356 : [ `messageerror ]) ->
+              fun ~listener:(x357 : error:Error.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x365) "prependListener"
-                     [|((match x362 with
+                  (Ojs.call (t_to_js x359) "prependListener"
+                     [|((match x356 with
                          | `messageerror -> Ojs.string_to_js "messageerror"));(
                        Ojs.fun_to_js 1
-                         (fun (x364 : Ojs.t) ->
-                            x363 ~error:(Error.t_of_js x364)))|])
+                         (fun (x358 : Ojs.t) ->
+                            x357 ~error:(Error.t_of_js x358)))|])
         let (prepend_listener'''' :
           t -> event:[ `online ] -> listener:(unit -> unit) -> t) =
-          fun (x368 : t) ->
-            fun ~event:(x366 : [ `online ]) ->
-              fun ~listener:(x367 : unit -> unit) ->
+          fun (x362 : t) ->
+            fun ~event:(x360 : [ `online ]) ->
+              fun ~listener:(x361 : unit -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x368) "prependListener"
-                     [|((match x366 with
+                  (Ojs.call (t_to_js x362) "prependListener"
+                     [|((match x360 with
                          | `online -> Ojs.string_to_js "online"));(Ojs.fun_to_js
                                                                     1
                                                                     (fun _ ->
-                                                                    x367 ()))|])
+                                                                    x361 ()))|])
         let (prepend_listener''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
-          fun (x374 : t) ->
-            fun ~event:(x369 : symbol or_string) ->
-              fun ~listener:(x371 : args:any list -> unit) ->
+          fun (x368 : t) ->
+            fun ~event:(x363 : symbol or_string) ->
+              fun ~listener:(x365 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x374) "prependListener"
-                     [|(or_string_to_js symbol_to_js x369);(Ojs.fun_to_js_args
-                                                              (fun (x372 : _)
+                  (Ojs.call (t_to_js x368) "prependListener"
+                     [|(or_string_to_js symbol_to_js x363);(Ojs.fun_to_js_args
+                                                              (fun (x366 : _)
                                                                  ->
-                                                                 x371
+                                                                 x365
                                                                    ~args:(
                                                                    Ojs.list_of_js_from
                                                                     any_of_js
-                                                                    x372 0)))|])
+                                                                    x366 0)))|])
         let (prepend_once_listener :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
-          fun (x378 : t) ->
-            fun ~event:(x375 : [ `error ]) ->
-              fun ~listener:(x376 : err:Error.t -> unit) ->
+          fun (x372 : t) ->
+            fun ~event:(x369 : [ `error ]) ->
+              fun ~listener:(x370 : err:Error.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x378) "prependOnceListener"
-                     [|((match x375 with | `error -> Ojs.string_to_js "error"));(
+                  (Ojs.call (t_to_js x372) "prependOnceListener"
+                     [|((match x369 with | `error -> Ojs.string_to_js "error"));(
                        Ojs.fun_to_js 1
-                         (fun (x377 : Ojs.t) ->
-                            x376 ~err:(Error.t_of_js x377)))|])
+                         (fun (x371 : Ojs.t) ->
+                            x370 ~err:(Error.t_of_js x371)))|])
         let (prepend_once_listener' :
           t -> event:[ `exit ] -> listener:(exitCode:int -> unit) -> t) =
-          fun (x382 : t) ->
-            fun ~event:(x379 : [ `exit ]) ->
-              fun ~listener:(x380 : exitCode:int -> unit) ->
+          fun (x376 : t) ->
+            fun ~event:(x373 : [ `exit ]) ->
+              fun ~listener:(x374 : exitCode:int -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x382) "prependOnceListener"
-                     [|((match x379 with | `exit -> Ojs.string_to_js "exit"));(
+                  (Ojs.call (t_to_js x376) "prependOnceListener"
+                     [|((match x373 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 1
-                         (fun (x381 : Ojs.t) ->
-                            x380 ~exitCode:(Ojs.int_of_js x381)))|])
+                         (fun (x375 : Ojs.t) ->
+                            x374 ~exitCode:(Ojs.int_of_js x375)))|])
         let (prepend_once_listener'' :
           t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
-          fun (x386 : t) ->
-            fun ~event:(x383 : [ `message ]) ->
-              fun ~listener:(x384 : value:any -> unit) ->
+          fun (x380 : t) ->
+            fun ~event:(x377 : [ `message ]) ->
+              fun ~listener:(x378 : value:any -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x386) "prependOnceListener"
-                     [|((match x383 with
+                  (Ojs.call (t_to_js x380) "prependOnceListener"
+                     [|((match x377 with
                          | `message -> Ojs.string_to_js "message"));(
                        Ojs.fun_to_js 1
-                         (fun (x385 : Ojs.t) -> x384 ~value:(any_of_js x385)))|])
+                         (fun (x379 : Ojs.t) -> x378 ~value:(any_of_js x379)))|])
         let (prepend_once_listener''' :
           t ->
             event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
           =
-          fun (x390 : t) ->
-            fun ~event:(x387 : [ `messageerror ]) ->
-              fun ~listener:(x388 : error:Error.t -> unit) ->
+          fun (x384 : t) ->
+            fun ~event:(x381 : [ `messageerror ]) ->
+              fun ~listener:(x382 : error:Error.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x390) "prependOnceListener"
-                     [|((match x387 with
+                  (Ojs.call (t_to_js x384) "prependOnceListener"
+                     [|((match x381 with
                          | `messageerror -> Ojs.string_to_js "messageerror"));(
                        Ojs.fun_to_js 1
-                         (fun (x389 : Ojs.t) ->
-                            x388 ~error:(Error.t_of_js x389)))|])
+                         (fun (x383 : Ojs.t) ->
+                            x382 ~error:(Error.t_of_js x383)))|])
         let (prepend_once_listener'''' :
           t -> event:[ `online ] -> listener:(unit -> unit) -> t) =
-          fun (x393 : t) ->
-            fun ~event:(x391 : [ `online ]) ->
-              fun ~listener:(x392 : unit -> unit) ->
+          fun (x387 : t) ->
+            fun ~event:(x385 : [ `online ]) ->
+              fun ~listener:(x386 : unit -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x393) "prependOnceListener"
-                     [|((match x391 with
+                  (Ojs.call (t_to_js x387) "prependOnceListener"
+                     [|((match x385 with
                          | `online -> Ojs.string_to_js "online"));(Ojs.fun_to_js
                                                                     1
                                                                     (fun _ ->
-                                                                    x392 ()))|])
+                                                                    x386 ()))|])
         let (prepend_once_listener''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
-          fun (x399 : t) ->
-            fun ~event:(x394 : symbol or_string) ->
-              fun ~listener:(x396 : args:any list -> unit) ->
+          fun (x393 : t) ->
+            fun ~event:(x388 : symbol or_string) ->
+              fun ~listener:(x390 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x399) "prependOnceListener"
-                     [|(or_string_to_js symbol_to_js x394);(Ojs.fun_to_js_args
-                                                              (fun (x397 : _)
+                  (Ojs.call (t_to_js x393) "prependOnceListener"
+                     [|(or_string_to_js symbol_to_js x388);(Ojs.fun_to_js_args
+                                                              (fun (x391 : _)
                                                                  ->
-                                                                 x396
+                                                                 x390
                                                                    ~args:(
                                                                    Ojs.list_of_js_from
                                                                     any_of_js
-                                                                    x397 0)))|])
+                                                                    x391 0)))|])
         let (remove_listener :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
-          fun (x403 : t) ->
-            fun ~event:(x400 : [ `error ]) ->
-              fun ~listener:(x401 : err:Error.t -> unit) ->
+          fun (x397 : t) ->
+            fun ~event:(x394 : [ `error ]) ->
+              fun ~listener:(x395 : err:Error.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x403) "removeListener"
-                     [|((match x400 with | `error -> Ojs.string_to_js "error"));(
+                  (Ojs.call (t_to_js x397) "removeListener"
+                     [|((match x394 with | `error -> Ojs.string_to_js "error"));(
                        Ojs.fun_to_js 1
-                         (fun (x402 : Ojs.t) ->
-                            x401 ~err:(Error.t_of_js x402)))|])
+                         (fun (x396 : Ojs.t) ->
+                            x395 ~err:(Error.t_of_js x396)))|])
         let (remove_listener' :
           t -> event:[ `exit ] -> listener:(exitCode:int -> unit) -> t) =
-          fun (x407 : t) ->
-            fun ~event:(x404 : [ `exit ]) ->
-              fun ~listener:(x405 : exitCode:int -> unit) ->
+          fun (x401 : t) ->
+            fun ~event:(x398 : [ `exit ]) ->
+              fun ~listener:(x399 : exitCode:int -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x407) "removeListener"
-                     [|((match x404 with | `exit -> Ojs.string_to_js "exit"));(
+                  (Ojs.call (t_to_js x401) "removeListener"
+                     [|((match x398 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 1
-                         (fun (x406 : Ojs.t) ->
-                            x405 ~exitCode:(Ojs.int_of_js x406)))|])
+                         (fun (x400 : Ojs.t) ->
+                            x399 ~exitCode:(Ojs.int_of_js x400)))|])
         let (remove_listener'' :
           t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
-          fun (x411 : t) ->
-            fun ~event:(x408 : [ `message ]) ->
-              fun ~listener:(x409 : value:any -> unit) ->
+          fun (x405 : t) ->
+            fun ~event:(x402 : [ `message ]) ->
+              fun ~listener:(x403 : value:any -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x411) "removeListener"
-                     [|((match x408 with
+                  (Ojs.call (t_to_js x405) "removeListener"
+                     [|((match x402 with
                          | `message -> Ojs.string_to_js "message"));(
                        Ojs.fun_to_js 1
-                         (fun (x410 : Ojs.t) -> x409 ~value:(any_of_js x410)))|])
+                         (fun (x404 : Ojs.t) -> x403 ~value:(any_of_js x404)))|])
         let (remove_listener''' :
           t ->
             event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
           =
-          fun (x415 : t) ->
-            fun ~event:(x412 : [ `messageerror ]) ->
-              fun ~listener:(x413 : error:Error.t -> unit) ->
+          fun (x409 : t) ->
+            fun ~event:(x406 : [ `messageerror ]) ->
+              fun ~listener:(x407 : error:Error.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x415) "removeListener"
-                     [|((match x412 with
+                  (Ojs.call (t_to_js x409) "removeListener"
+                     [|((match x406 with
                          | `messageerror -> Ojs.string_to_js "messageerror"));(
                        Ojs.fun_to_js 1
-                         (fun (x414 : Ojs.t) ->
-                            x413 ~error:(Error.t_of_js x414)))|])
+                         (fun (x408 : Ojs.t) ->
+                            x407 ~error:(Error.t_of_js x408)))|])
         let (remove_listener'''' :
           t -> event:[ `online ] -> listener:(unit -> unit) -> t) =
-          fun (x418 : t) ->
-            fun ~event:(x416 : [ `online ]) ->
-              fun ~listener:(x417 : unit -> unit) ->
+          fun (x412 : t) ->
+            fun ~event:(x410 : [ `online ]) ->
+              fun ~listener:(x411 : unit -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x418) "removeListener"
-                     [|((match x416 with
+                  (Ojs.call (t_to_js x412) "removeListener"
+                     [|((match x410 with
                          | `online -> Ojs.string_to_js "online"));(Ojs.fun_to_js
                                                                     1
                                                                     (fun _ ->
-                                                                    x417 ()))|])
+                                                                    x411 ()))|])
         let (remove_listener''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
-          fun (x424 : t) ->
-            fun ~event:(x419 : symbol or_string) ->
-              fun ~listener:(x421 : args:any list -> unit) ->
+          fun (x418 : t) ->
+            fun ~event:(x413 : symbol or_string) ->
+              fun ~listener:(x415 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x424) "removeListener"
-                     [|(or_string_to_js symbol_to_js x419);(Ojs.fun_to_js_args
-                                                              (fun (x422 : _)
+                  (Ojs.call (t_to_js x418) "removeListener"
+                     [|(or_string_to_js symbol_to_js x413);(Ojs.fun_to_js_args
+                                                              (fun (x416 : _)
                                                                  ->
-                                                                 x421
+                                                                 x415
                                                                    ~args:(
                                                                    Ojs.list_of_js_from
                                                                     any_of_js
-                                                                    x422 0)))|])
+                                                                    x416 0)))|])
         let (off :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
-          fun (x428 : t) ->
-            fun ~event:(x425 : [ `error ]) ->
-              fun ~listener:(x426 : err:Error.t -> unit) ->
+          fun (x422 : t) ->
+            fun ~event:(x419 : [ `error ]) ->
+              fun ~listener:(x420 : err:Error.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x428) "off"
-                     [|((match x425 with | `error -> Ojs.string_to_js "error"));(
+                  (Ojs.call (t_to_js x422) "off"
+                     [|((match x419 with | `error -> Ojs.string_to_js "error"));(
                        Ojs.fun_to_js 1
-                         (fun (x427 : Ojs.t) ->
-                            x426 ~err:(Error.t_of_js x427)))|])
+                         (fun (x421 : Ojs.t) ->
+                            x420 ~err:(Error.t_of_js x421)))|])
         let (off' :
           t -> event:[ `exit ] -> listener:(exitCode:int -> unit) -> t) =
-          fun (x432 : t) ->
-            fun ~event:(x429 : [ `exit ]) ->
-              fun ~listener:(x430 : exitCode:int -> unit) ->
+          fun (x426 : t) ->
+            fun ~event:(x423 : [ `exit ]) ->
+              fun ~listener:(x424 : exitCode:int -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x432) "off"
-                     [|((match x429 with | `exit -> Ojs.string_to_js "exit"));(
+                  (Ojs.call (t_to_js x426) "off"
+                     [|((match x423 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 1
-                         (fun (x431 : Ojs.t) ->
-                            x430 ~exitCode:(Ojs.int_of_js x431)))|])
+                         (fun (x425 : Ojs.t) ->
+                            x424 ~exitCode:(Ojs.int_of_js x425)))|])
         let (off'' :
           t -> event:[ `message ] -> listener:(value:any -> unit) -> t) =
-          fun (x436 : t) ->
-            fun ~event:(x433 : [ `message ]) ->
-              fun ~listener:(x434 : value:any -> unit) ->
+          fun (x430 : t) ->
+            fun ~event:(x427 : [ `message ]) ->
+              fun ~listener:(x428 : value:any -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x436) "off"
-                     [|((match x433 with
+                  (Ojs.call (t_to_js x430) "off"
+                     [|((match x427 with
                          | `message -> Ojs.string_to_js "message"));(
                        Ojs.fun_to_js 1
-                         (fun (x435 : Ojs.t) -> x434 ~value:(any_of_js x435)))|])
+                         (fun (x429 : Ojs.t) -> x428 ~value:(any_of_js x429)))|])
         let (off''' :
           t ->
             event:[ `messageerror ] -> listener:(error:Error.t -> unit) -> t)
           =
-          fun (x440 : t) ->
-            fun ~event:(x437 : [ `messageerror ]) ->
-              fun ~listener:(x438 : error:Error.t -> unit) ->
+          fun (x434 : t) ->
+            fun ~event:(x431 : [ `messageerror ]) ->
+              fun ~listener:(x432 : error:Error.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x440) "off"
-                     [|((match x437 with
+                  (Ojs.call (t_to_js x434) "off"
+                     [|((match x431 with
                          | `messageerror -> Ojs.string_to_js "messageerror"));(
                        Ojs.fun_to_js 1
-                         (fun (x439 : Ojs.t) ->
-                            x438 ~error:(Error.t_of_js x439)))|])
+                         (fun (x433 : Ojs.t) ->
+                            x432 ~error:(Error.t_of_js x433)))|])
         let (off'''' :
           t -> event:[ `online ] -> listener:(unit -> unit) -> t) =
-          fun (x443 : t) ->
-            fun ~event:(x441 : [ `online ]) ->
-              fun ~listener:(x442 : unit -> unit) ->
+          fun (x437 : t) ->
+            fun ~event:(x435 : [ `online ]) ->
+              fun ~listener:(x436 : unit -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x443) "off"
-                     [|((match x441 with
+                  (Ojs.call (t_to_js x437) "off"
+                     [|((match x435 with
                          | `online -> Ojs.string_to_js "online"));(Ojs.fun_to_js
                                                                     1
                                                                     (fun _ ->
-                                                                    x442 ()))|])
+                                                                    x436 ()))|])
         let (off''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
-          fun (x449 : t) ->
-            fun ~event:(x444 : symbol or_string) ->
-              fun ~listener:(x446 : args:any list -> unit) ->
+          fun (x443 : t) ->
+            fun ~event:(x438 : symbol or_string) ->
+              fun ~listener:(x440 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x449) "off"
-                     [|(or_string_to_js symbol_to_js x444);(Ojs.fun_to_js_args
-                                                              (fun (x447 : _)
+                  (Ojs.call (t_to_js x443) "off"
+                     [|(or_string_to_js symbol_to_js x438);(Ojs.fun_to_js_args
+                                                              (fun (x441 : _)
                                                                  ->
-                                                                 x446
+                                                                 x440
                                                                    ~args:(
                                                                    Ojs.list_of_js_from
                                                                     any_of_js
-                                                                    x447 0)))|])
+                                                                    x441 0)))|])
         let (cast : t -> Node_events.Events.EventEmitter.t) =
-          fun (x450 : t) ->
-            Node_events.Events.EventEmitter.t_of_js (t_to_js x450)
+          fun (x444 : t) ->
+            Node_events.Events.EventEmitter.t_of_js (t_to_js x444)
       end
     let (mark_as_untransferable : object_:untyped_object -> unit) =
-      fun ~object_:(x451 : untyped_object) ->
+      fun ~object_:(x445 : untyped_object) ->
         ignore
           (Ojs.call Import.worker_threads "markAsUntransferable"
-             [|(untyped_object_to_js x451)|])
+             [|(untyped_object_to_js x445)|])
     let (move_message_port_to_context :
       port:MessagePort.t -> context:Node_vm.Vm.Context.t -> MessagePort.t) =
-      fun ~port:(x452 : MessagePort.t) ->
-        fun ~context:(x453 : Node_vm.Vm.Context.t) ->
+      fun ~port:(x446 : MessagePort.t) ->
+        fun ~context:(x447 : Node_vm.Vm.Context.t) ->
           MessagePort.t_of_js
             (Ojs.call Import.worker_threads "moveMessagePortToContext"
-               [|(MessagePort.t_to_js x452);(Node_vm.Vm.Context.t_to_js x453)|])
+               [|(MessagePort.t_to_js x446);(Node_vm.Vm.Context.t_to_js x447)|])
     let (receive_message_on_port :
       port:MessagePort.t -> AnonymousInterface0.t or_undefined) =
-      fun ~port:(x454 : MessagePort.t) ->
+      fun ~port:(x448 : MessagePort.t) ->
         or_undefined_of_js AnonymousInterface0.t_of_js
           (Ojs.call Import.worker_threads "receiveMessageOnPort"
-             [|(MessagePort.t_to_js x454)|])
+             [|(MessagePort.t_to_js x448)|])
+    let (is_main_thread : bool) =
+      Ojs.bool_of_js
+        (Ojs.get_prop_ascii Import.worker_threads "isMainThread")
+    let (parent_port : MessagePort.t or_null) =
+      or_null_of_js MessagePort.t_of_js
+        (Ojs.get_prop_ascii Import.worker_threads "parentPort")
+    let (resource_limits : ResourceLimits.t) =
+      ResourceLimits.t_of_js
+        (Ojs.get_prop_ascii Import.worker_threads "resourceLimits")
+    let (share_env : any) =
+      any_of_js (Ojs.get_prop_ascii Import.worker_threads "SHARE_ENV")
+    let (thread_id : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.worker_threads "threadId")
+    let (worker_data : any) =
+      any_of_js (Ojs.get_prop_ascii Import.worker_threads "workerData")
   end

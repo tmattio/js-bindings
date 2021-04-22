@@ -7,18 +7,8 @@ open Node_globals
 
 module Module : sig
   module Module : sig
-    val sync_builtin_esm_exports : unit -> unit
-      [@@js.global "syncBuiltinESMExports"]
-
-    val find_source_map
-      :  path:string
-      -> ?error:Error.t
-      -> unit
-      -> Module_SourceMap.t
-      [@@js.global "findSourceMap"]
-
     module SourceMapPayload : sig
-      type t_SourceMapPayload
+      type t
 
       val t_to_js : t -> Ojs.t
 
@@ -56,7 +46,7 @@ module Module : sig
     [@@js.scope "SourceMapPayload"]
 
     module SourceMapping : sig
-      type t_SourceMapping
+      type t
 
       val t_to_js : t -> Ojs.t
 
@@ -85,17 +75,17 @@ module Module : sig
     [@@js.scope "SourceMapping"]
 
     module SourceMap : sig
-      type t_SourceMap
+      type t
 
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
 
-      val get_payload : t -> Module_SourceMapPayload.t [@@js.get "payload"]
+      val get_payload : t -> SourceMapPayload.t [@@js.get "payload"]
 
-      val create : payload:Module_SourceMapPayload.t -> t [@@js.create]
+      val create : payload:SourceMapPayload.t -> t [@@js.create]
 
-      val find_entry : t -> line:int -> column:int -> Module_SourceMapping.t
+      val find_entry : t -> line:int -> column:int -> SourceMapping.t
         [@@js.call "findEntry"]
     end
     [@@js.scope "SourceMap"]
@@ -127,6 +117,12 @@ module Module : sig
       [@@js.set "Module"]
 
     val create : id:string -> ?parent:t -> unit -> t [@@js.create]
+
+    val sync_builtin_esm_exports : unit -> unit
+      [@@js.global "syncBuiltinESMExports"]
+
+    val find_source_map : path:string -> ?error:Error.t -> unit -> SourceMap.t
+      [@@js.global "findSourceMap"]
   end
   [@@js.scope "Module"]
 end

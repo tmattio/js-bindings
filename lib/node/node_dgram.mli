@@ -115,20 +115,6 @@ module Dgram : sig
   end
   [@@js.scope "SocketOptions"]
 
-  val create_socket
-    :  type_:SocketType.t
-    -> ?callback:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
-    -> unit
-    -> Socket.t
-    [@@js.global "createSocket"]
-
-  val create_socket
-    :  options:SocketOptions.t
-    -> ?callback:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
-    -> unit
-    -> Socket.t
-    [@@js.global "createSocket"]
-
   module Socket : sig
     type t
 
@@ -535,5 +521,19 @@ module Dgram : sig
     val cast : t -> Node_events.Events.EventEmitter.t [@@js.cast]
   end
   [@@js.scope "Socket"]
+
+  val create_socket
+    :  type_:SocketType.t
+    -> ?callback:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
+    -> unit
+    -> Socket.t
+    [@@js.global "createSocket"]
+
+  val create_socket
+    :  options:SocketOptions.t
+    -> ?callback:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
+    -> unit
+    -> Socket.t
+    [@@js.global "createSocket"]
 end
 [@@js.scope Import.dgram]

@@ -9,7 +9,7 @@ module V8 : sig
   open Node_stream
 
   module HeapSpaceInfo : sig
-    type t = v8_HeapSpaceInfo
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -52,7 +52,7 @@ module V8 : sig
   end
 
   module HeapInfo : sig
-    type t = v8_HeapInfo
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -95,10 +95,10 @@ module V8 : sig
     val set_peak_malloced_memory : t -> int -> unit
       [@@js.set "peak_malloced_memory"]
 
-    val get_does_zap_garbage : t -> v8_DoesZapCodeSpaceFlag
+    val get_does_zap_garbage : t -> DoesZapCodeSpaceFlag.t
       [@@js.get "does_zap_garbage"]
 
-    val set_does_zap_garbage : t -> v8_DoesZapCodeSpaceFlag -> unit
+    val set_does_zap_garbage : t -> DoesZapCodeSpaceFlag.t -> unit
       [@@js.set "does_zap_garbage"]
 
     val get_number_of_native_contexts : t -> int
@@ -116,7 +116,7 @@ module V8 : sig
   [@@js.scope "HeapInfo"]
 
   module HeapCodeStatistics : sig
-    type t = v8_HeapCodeStatistics
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -144,10 +144,9 @@ module V8 : sig
 
   val cached_data_version_tag : unit -> int [@@js.global "cachedDataVersionTag"]
 
-  val get_heap_statistics : unit -> v8_HeapInfo
-    [@@js.global "getHeapStatistics"]
+  val get_heap_statistics : unit -> HeapInfo.t [@@js.global "getHeapStatistics"]
 
-  val get_heap_space_statistics : unit -> v8_HeapSpaceInfo list
+  val get_heap_space_statistics : unit -> HeapSpaceInfo.t list
     [@@js.global "getHeapSpaceStatistics"]
 
   val set_flags_from_string : flags:string -> unit
@@ -159,11 +158,11 @@ module V8 : sig
   val write_heap_snapshot : ?file_name:string -> unit -> string
     [@@js.global "writeHeapSnapshot"]
 
-  val get_heap_code_statistics : unit -> v8_HeapCodeStatistics
+  val get_heap_code_statistics : unit -> HeapCodeStatistics.t
     [@@js.global "getHeapCodeStatistics"]
 
   module Serializer : sig
-    type t = v8_Serializer
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -194,18 +193,18 @@ module V8 : sig
   [@@js.scope "Serializer"]
 
   module DefaultSerializer : sig
-    type t = v8_DefaultSerializer
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val cast : t -> v8_Serializer [@@js.cast]
+    val cast : t -> Serializer.t [@@js.cast]
   end
   [@@js.scope "DefaultSerializer"]
 
   module Deserializer : sig
-    type t = v8_Deserializer
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -237,13 +236,13 @@ module V8 : sig
   [@@js.scope "Deserializer"]
 
   module DefaultDeserializer : sig
-    type t = v8_DefaultDeserializer
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val cast : t -> v8_Deserializer [@@js.cast]
+    val cast : t -> Deserializer.t [@@js.cast]
   end
   [@@js.scope "DefaultDeserializer"]
 

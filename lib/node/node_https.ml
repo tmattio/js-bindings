@@ -276,6 +276,6 @@ module Https =
                                                        x74)))|])
                             | None -> ());
                            x72))|])
-    let (global_agent : https_Agent) =
-      https_Agent_of_js (Ojs.get_prop_ascii Import.https "globalAgent")
+    let (global_agent : Agent.t) =
+      Agent.t_of_js (Ojs.get_prop_ascii Import.https "globalAgent")
   end

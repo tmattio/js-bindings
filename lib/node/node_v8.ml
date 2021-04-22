@@ -8,11 +8,9 @@ module V8 =
     open Node_stream
     module HeapSpaceInfo =
       struct
-        type t = v8_HeapSpaceInfo
-        let rec t_of_js : Ojs.t -> t =
-          fun (x2 : Ojs.t) -> v8_HeapSpaceInfo_of_js x2
-        and t_to_js : t -> Ojs.t =
-          fun (x1 : v8_HeapSpaceInfo) -> v8_HeapSpaceInfo_to_js x1
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+        and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
         let (get_space_name : t -> string) =
           fun (x3 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x3) "space_name")
@@ -73,11 +71,9 @@ module V8 =
       end
     module HeapInfo =
       struct
-        type t = v8_HeapInfo
-        let rec t_of_js : Ojs.t -> t =
-          fun (x22 : Ojs.t) -> v8_HeapInfo_of_js x22
-        and t_to_js : t -> Ojs.t =
-          fun (x21 : v8_HeapInfo) -> v8_HeapInfo_to_js x21
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x22 : Ojs.t) -> x22
+        and t_to_js : t -> Ojs.t = fun (x21 : Ojs.t) -> x21
         let (get_total_heap_size : t -> int) =
           fun (x23 : t) ->
             Ojs.int_of_js
@@ -149,15 +145,15 @@ module V8 =
             fun (x46 : int) ->
               Ojs.set_prop_ascii (t_to_js x45) "peak_malloced_memory"
                 (Ojs.int_to_js x46)
-        let (get_does_zap_garbage : t -> v8_DoesZapCodeSpaceFlag) =
+        let (get_does_zap_garbage : t -> DoesZapCodeSpaceFlag.t) =
           fun (x47 : t) ->
-            v8_DoesZapCodeSpaceFlag_of_js
+            DoesZapCodeSpaceFlag.t_of_js
               (Ojs.get_prop_ascii (t_to_js x47) "does_zap_garbage")
-        let (set_does_zap_garbage : t -> v8_DoesZapCodeSpaceFlag -> unit) =
+        let (set_does_zap_garbage : t -> DoesZapCodeSpaceFlag.t -> unit) =
           fun (x48 : t) ->
-            fun (x49 : v8_DoesZapCodeSpaceFlag) ->
+            fun (x49 : DoesZapCodeSpaceFlag.t) ->
               Ojs.set_prop_ascii (t_to_js x48) "does_zap_garbage"
-                (v8_DoesZapCodeSpaceFlag_to_js x49)
+                (DoesZapCodeSpaceFlag.t_to_js x49)
         let (get_number_of_native_contexts : t -> int) =
           fun (x50 : t) ->
             Ojs.int_of_js
@@ -179,12 +175,9 @@ module V8 =
       end
     module HeapCodeStatistics =
       struct
-        type t = v8_HeapCodeStatistics
-        let rec t_of_js : Ojs.t -> t =
-          fun (x57 : Ojs.t) -> v8_HeapCodeStatistics_of_js x57
-        and t_to_js : t -> Ojs.t =
-          fun (x56 : v8_HeapCodeStatistics) ->
-            v8_HeapCodeStatistics_to_js x56
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x57 : Ojs.t) -> x57
+        and t_to_js : t -> Ojs.t = fun (x56 : Ojs.t) -> x56
         let (get_code_and_metadata_size : t -> int) =
           fun (x58 : t) ->
             Ojs.int_of_js
@@ -216,12 +209,12 @@ module V8 =
     let (cached_data_version_tag : unit -> int) =
       fun () ->
         Ojs.int_of_js (Ojs.call Import.v8 "cachedDataVersionTag" [||])
-    let (get_heap_statistics : unit -> v8_HeapInfo) =
+    let (get_heap_statistics : unit -> HeapInfo.t) =
       fun () ->
-        v8_HeapInfo_of_js (Ojs.call Import.v8 "getHeapStatistics" [||])
-    let (get_heap_space_statistics : unit -> v8_HeapSpaceInfo list) =
+        HeapInfo.t_of_js (Ojs.call Import.v8 "getHeapStatistics" [||])
+    let (get_heap_space_statistics : unit -> HeapSpaceInfo.t list) =
       fun () ->
-        Ojs.list_of_js v8_HeapSpaceInfo_of_js
+        Ojs.list_of_js HeapSpaceInfo.t_of_js
           (Ojs.call Import.v8 "getHeapSpaceStatistics" [||])
     let (set_flags_from_string : flags:string -> unit) =
       fun ~flags:(x68 : string) ->
@@ -245,17 +238,15 @@ module V8 =
                               (Ojs.call x70 "push" [|(Ojs.string_to_js x71)|])
                         | None -> ());
                        x70))|])
-    let (get_heap_code_statistics : unit -> v8_HeapCodeStatistics) =
+    let (get_heap_code_statistics : unit -> HeapCodeStatistics.t) =
       fun () ->
-        v8_HeapCodeStatistics_of_js
+        HeapCodeStatistics.t_of_js
           (Ojs.call Import.v8 "getHeapCodeStatistics" [||])
     module Serializer =
       struct
-        type t = v8_Serializer
-        let rec t_of_js : Ojs.t -> t =
-          fun (x74 : Ojs.t) -> v8_Serializer_of_js x74
-        and t_to_js : t -> Ojs.t =
-          fun (x73 : v8_Serializer) -> v8_Serializer_to_js x73
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x74 : Ojs.t) -> x74
+        and t_to_js : t -> Ojs.t = fun (x73 : Ojs.t) -> x73
         let (write_header : t -> unit) =
           fun (x75 : t) -> ignore (Ojs.call (t_to_js x75) "writeHeader" [||])
         let (write_value : t -> val_:any -> bool) =
@@ -300,21 +291,17 @@ module V8 =
       end
     module DefaultSerializer =
       struct
-        type t = v8_DefaultSerializer
-        let rec t_of_js : Ojs.t -> t =
-          fun (x92 : Ojs.t) -> v8_DefaultSerializer_of_js x92
-        and t_to_js : t -> Ojs.t =
-          fun (x91 : v8_DefaultSerializer) -> v8_DefaultSerializer_to_js x91
-        let (cast : t -> v8_Serializer) =
-          fun (x93 : t) -> v8_Serializer_of_js (t_to_js x93)
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x92 : Ojs.t) -> x92
+        and t_to_js : t -> Ojs.t = fun (x91 : Ojs.t) -> x91
+        let (cast : t -> Serializer.t) =
+          fun (x93 : t) -> Serializer.t_of_js (t_to_js x93)
       end
     module Deserializer =
       struct
-        type t = v8_Deserializer
-        let rec t_of_js : Ojs.t -> t =
-          fun (x95 : Ojs.t) -> v8_Deserializer_of_js x95
-        and t_to_js : t -> Ojs.t =
-          fun (x94 : v8_Deserializer) -> v8_Deserializer_to_js x94
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x95 : Ojs.t) -> x95
+        and t_to_js : t -> Ojs.t = fun (x94 : Ojs.t) -> x94
         let (create : data:TypedArray.t -> t) =
           fun ~data:(x96 : TypedArray.t) ->
             t_of_js
@@ -358,14 +345,11 @@ module V8 =
       end
     module DefaultDeserializer =
       struct
-        type t = v8_DefaultDeserializer
-        let rec t_of_js : Ojs.t -> t =
-          fun (x110 : Ojs.t) -> v8_DefaultDeserializer_of_js x110
-        and t_to_js : t -> Ojs.t =
-          fun (x109 : v8_DefaultDeserializer) ->
-            v8_DefaultDeserializer_to_js x109
-        let (cast : t -> v8_Deserializer) =
-          fun (x111 : t) -> v8_Deserializer_of_js (t_to_js x111)
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x110 : Ojs.t) -> x110
+        and t_to_js : t -> Ojs.t = fun (x109 : Ojs.t) -> x109
+        let (cast : t -> Deserializer.t) =
+          fun (x111 : t) -> Deserializer.t_of_js (t_to_js x111)
       end
     let (serialize : value:any -> Buffer.t) =
       fun ~value:(x112 : any) ->

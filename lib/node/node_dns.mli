@@ -231,18 +231,6 @@ module Dns : sig
   end
   [@@js.scope "RecordWithTtl"]
 
-  module AnyRecordWithTtl : sig
-    type t =
-      ([ `U_s0_A of AnyARecord.t [@js "A"]
-       | `U_s1_AAAA of AnyAaaaRecord.t [@js "AAAA"]
-       ]
-      [@js.union on_field "type"])
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-  end
-
   module AnyARecord : sig
     type t
 
@@ -272,6 +260,18 @@ module Dns : sig
     val cast : t -> RecordWithTtl.t [@@js.cast]
   end
   [@@js.scope "AnyAaaaRecord"]
+
+  module AnyRecordWithTtl : sig
+    type t =
+      ([ `U_s0_A of AnyARecord.t [@js "A"]
+       | `U_s1_AAAA of AnyAaaaRecord.t [@js "AAAA"]
+       ]
+      [@js.union on_field "type"])
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+  end
 
   module MxRecord : sig
     type t
@@ -627,8 +627,8 @@ module Dns : sig
     -> callback:
          (err:ErrnoException.t or_null
           -> addresses:
-               ( dns_SoaRecord
-               , ( (dns_AnyRecord, MxRecord.t, NaptrRecord.t, SrvRecord.t) union4
+               ( SoaRecord.t
+               , ( (AnyRecord.t, MxRecord.t, NaptrRecord.t, SrvRecord.t) union4
                  , string )
                  or_array
                  or_string )
@@ -684,7 +684,7 @@ module Dns : sig
     val __promisify__
       :  hostname:string
       -> rrtype:string
-      -> ( dns_SoaRecord
+      -> ( SoaRecord.t
          , ( (AnyRecord.t, MxRecord.t, NaptrRecord.t, SrvRecord.t) union4
            , string )
            or_array
@@ -1199,7 +1199,7 @@ module Dns : sig
     val resolve
       :  hostname:string
       -> rrtype:string
-      -> ( dns_SoaRecord
+      -> ( SoaRecord.t
          , ( (AnyRecord.t, MxRecord.t, NaptrRecord.t, SrvRecord.t) union4
            , string )
            or_array
@@ -1270,7 +1270,7 @@ module Dns : sig
     val set_servers : servers:string list -> unit [@@js.global "setServers"]
 
     module Resolver : sig
-      type t = dns_promises_Resolver
+      type t
 
       val t_to_js : t -> Ojs.t
 

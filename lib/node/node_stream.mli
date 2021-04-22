@@ -35,25 +35,17 @@ end
 
 module Stream : sig
   module Internal : sig
+    type stream = Node_events.Events.EventEmitter.t
+
     module Base : sig
       include module type of struct
-        include Node_events.Events.EventEmitter
-      end
+          include Node_events.Events.EventEmitter
+        end
+        with type t = stream
 
       val pipe : t -> 'T -> ?options:AnonymousInterface1.t -> unit -> 'T
         [@@js.call "pipe"]
     end
-
-    module Stream : sig
-      include module type of struct
-        include Base
-      end
-
-      val create : ?opts:ReadableOptions.t -> unit -> t [@@js.create]
-
-      val cast : t -> stream_internal [@@js.cast]
-    end
-    [@@js.scope "Stream"]
 
     module ReadableOptions : sig
       type t
@@ -74,11 +66,11 @@ module Stream : sig
 
       val set_object_mode : t -> bool -> unit [@@js.set "objectMode"]
 
-      val read : t -> this:Readable.t -> size:int -> unit [@@js.call "read"]
+      val read : t -> this:stream -> size:int -> unit [@@js.call "read"]
 
       val destroy
         :  t
-        -> this:Readable.t
+        -> this:stream
         -> error:Error.t or_null
         -> callback:(error:Error.t or_null -> unit)
         -> unit
@@ -90,10 +82,21 @@ module Stream : sig
     end
     [@@js.scope "ReadableOptions"]
 
+    module Stream : sig
+      include module type of struct
+          include Base
+        end
+        with type t = stream
+
+      val create : ?opts:ReadableOptions.t -> unit -> t [@@js.create]
+    end
+    [@@js.scope "Stream"]
+
     module Readable : sig
       include module type of struct
-        include Stream
-      end
+          include Stream
+        end
+        with type t = stream
 
       val from
         :  iterable:(any AsyncIterable.t, any Iterable.t) union2
@@ -554,7 +557,7 @@ module Stream : sig
 
       val write
         :  t
-        -> this:Writable.t
+        -> this:stream
         -> chunk:any
         -> encoding:BufferEncoding.t
         -> callback:(?error:Error.t or_null -> unit -> unit)
@@ -563,7 +566,7 @@ module Stream : sig
 
       val writev
         :  t
-        -> this:Writable.t
+        -> this:stream
         -> chunks:AnonymousInterface0.t list
         -> callback:(?error:Error.t or_null -> unit -> unit)
         -> unit
@@ -571,7 +574,7 @@ module Stream : sig
 
       val destroy
         :  t
-        -> this:Writable.t
+        -> this:stream
         -> error:Error.t or_null
         -> callback:(error:Error.t or_null -> unit)
         -> unit
@@ -579,7 +582,7 @@ module Stream : sig
 
       val final
         :  t
-        -> this:Writable.t
+        -> this:stream
         -> callback:(?error:Error.t or_null -> unit -> unit)
         -> unit
         [@@js.call "final"]
@@ -1044,11 +1047,11 @@ module Stream : sig
 
       val set_writable_corked : t -> int -> unit [@@js.set "writableCorked"]
 
-      val read : t -> this:Duplex.t -> size:int -> unit [@@js.call "read"]
+      val read : t -> this:stream -> size:int -> unit [@@js.call "read"]
 
       val write
         :  t
-        -> this:Duplex.t
+        -> this:stream
         -> chunk:any
         -> encoding:BufferEncoding.t
         -> callback:(?error:Error.t or_null -> unit -> unit)
@@ -1057,7 +1060,7 @@ module Stream : sig
 
       val writev
         :  t
-        -> this:Duplex.t
+        -> this:stream
         -> chunks:AnonymousInterface0.t list
         -> callback:(?error:Error.t or_null -> unit -> unit)
         -> unit
@@ -1065,14 +1068,14 @@ module Stream : sig
 
       val final
         :  t
-        -> this:Duplex.t
+        -> this:stream
         -> callback:(?error:Error.t or_null -> unit -> unit)
         -> unit
         [@@js.call "final"]
 
       val destroy
         :  t
-        -> this:Duplex.t
+        -> this:stream
         -> error:Error.t or_null
         -> callback:(error:Error.t or_null -> unit)
         -> unit
@@ -1195,11 +1198,11 @@ module Stream : sig
         include DuplexOptions
       end
 
-      val read : t -> this:Transform.t -> size:int -> unit [@@js.call "read"]
+      val read : t -> this:stream -> size:int -> unit [@@js.call "read"]
 
       val write
         :  t
-        -> this:Transform.t
+        -> this:stream
         -> chunk:any
         -> encoding:BufferEncoding.t
         -> callback:(?error:Error.t or_null -> unit -> unit)
@@ -1208,7 +1211,7 @@ module Stream : sig
 
       val writev
         :  t
-        -> this:Transform.t
+        -> this:stream
         -> chunks:AnonymousInterface0.t list
         -> callback:(?error:Error.t or_null -> unit -> unit)
         -> unit
@@ -1216,14 +1219,14 @@ module Stream : sig
 
       val final
         :  t
-        -> this:Transform.t
+        -> this:stream
         -> callback:(?error:Error.t or_null -> unit -> unit)
         -> unit
         [@@js.call "final"]
 
       val destroy
         :  t
-        -> this:Transform.t
+        -> this:stream
         -> error:Error.t or_null
         -> callback:(error:Error.t or_null -> unit)
         -> unit
@@ -1231,14 +1234,14 @@ module Stream : sig
 
       val transform
         :  t
-        -> this:Transform.t
+        -> this:stream
         -> chunk:any
         -> encoding:BufferEncoding.t
         -> callback:TransformCallback.t
         -> unit
         [@@js.call "transform"]
 
-      val flush : t -> this:Transform.t -> callback:TransformCallback.t -> unit
+      val flush : t -> this:stream -> callback:TransformCallback.t -> unit
         [@@js.call "flush"]
     end
     [@@js.scope "TransformOptions"]

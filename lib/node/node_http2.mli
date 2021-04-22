@@ -34,7 +34,7 @@ module Http2 : sig
   open Node_url
 
   module IncomingHttpStatusHeader : sig
-    type t = http2_IncomingHttpStatusHeader
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -47,7 +47,7 @@ module Http2 : sig
   [@@js.scope "IncomingHttpStatusHeader"]
 
   module IncomingHttpHeaders : sig
-    type t = http2_IncomingHttpHeaders
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -74,7 +74,7 @@ module Http2 : sig
   [@@js.scope "IncomingHttpHeaders"]
 
   module StreamPriorityOptions : sig
-    type t = http2_StreamPriorityOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -99,7 +99,7 @@ module Http2 : sig
   [@@js.scope "StreamPriorityOptions"]
 
   module StreamState : sig
-    type t = http2_StreamState
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -133,7 +133,7 @@ module Http2 : sig
   [@@js.scope "StreamState"]
 
   module ServerStreamResponseOptions : sig
-    type t = http2_ServerStreamResponseOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -150,7 +150,7 @@ module Http2 : sig
   [@@js.scope "ServerStreamResponseOptions"]
 
   module StatOptions : sig
-    type t = http2_StatOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -167,7 +167,7 @@ module Http2 : sig
   [@@js.scope "StatOptions"]
 
   module ServerStreamFileResponseOptions : sig
-    type t = http2_ServerStreamFileResponseOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -177,7 +177,7 @@ module Http2 : sig
       :  t
       -> stats:Fs.Stats.t
       -> headers:Node_http.Http.OutgoingHttpHeaders.t
-      -> stat_options:http2_StatOptions
+      -> stat_options:StatOptions.t
       -> unit or_boolean
       [@@js.call "statCheck"]
 
@@ -196,24 +196,18 @@ module Http2 : sig
   [@@js.scope "ServerStreamFileResponseOptions"]
 
   module ServerStreamFileResponseOptionsWithError : sig
-    type t = http2_ServerStreamFileResponseOptionsWithError
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include ServerStreamFileResponseOptions
+    end
 
     val on_error : t -> err:ErrnoException.t -> unit [@@js.call "onError"]
-
-    val cast : t -> http2_ServerStreamFileResponseOptions [@@js.cast]
   end
   [@@js.scope "ServerStreamFileResponseOptionsWithError"]
 
   module Http2Stream : sig
-    type t = http2_Http2Stream
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Stream.Duplex
+    end
 
     val get_aborted : t -> bool [@@js.get "aborted"]
 
@@ -240,14 +234,14 @@ module Http2 : sig
     val get_sent_trailers : t -> Node_http.Http.OutgoingHttpHeaders.t
       [@@js.get "sentTrailers"]
 
-    val get_session : t -> http2_Http2Session [@@js.get "session"]
+    (* val get_session : t -> Http2Session.t [@@js.get "session"] *)
 
-    val get_state : t -> http2_StreamState [@@js.get "state"]
+    val get_state : t -> StreamState.t [@@js.get "state"]
 
     val close : t -> ?code:int -> ?callback:(unit -> unit) -> unit -> unit
       [@@js.call "close"]
 
-    val priority : t -> options:http2_StreamPriorityOptions -> unit
+    val priority : t -> options:StreamPriorityOptions.t -> unit
       [@@js.call "priority"]
 
     val set_timeout : t -> msecs:int -> ?callback:(unit -> unit) -> unit -> unit
@@ -346,7 +340,7 @@ module Http2 : sig
     val add_listener''''''''''''
       :  t
       -> event:([ `trailers ][@js.enum])
-      -> listener:(trailers:http2_IncomingHttpHeaders -> flags:int -> unit)
+      -> listener:(trailers:IncomingHttpHeaders.t -> flags:int -> unit)
       -> t
       [@@js.call "addListener"]
 
@@ -420,7 +414,7 @@ module Http2 : sig
     val emit''''''''''''
       :  t
       -> event:([ `trailers ][@js.enum])
-      -> trailers:http2_IncomingHttpHeaders
+      -> trailers:IncomingHttpHeaders.t
       -> flags:int
       -> bool
       [@@js.call "emit"]
@@ -514,7 +508,7 @@ module Http2 : sig
     val on''''''''''''
       :  t
       -> event:([ `trailers ][@js.enum])
-      -> listener:(trailers:http2_IncomingHttpHeaders -> flags:int -> unit)
+      -> listener:(trailers:IncomingHttpHeaders.t -> flags:int -> unit)
       -> t
       [@@js.call "on"]
 
@@ -619,7 +613,7 @@ module Http2 : sig
     val once''''''''''''
       :  t
       -> event:([ `trailers ][@js.enum])
-      -> listener:(trailers:http2_IncomingHttpHeaders -> flags:int -> unit)
+      -> listener:(trailers:IncomingHttpHeaders.t -> flags:int -> unit)
       -> t
       [@@js.call "once"]
 
@@ -724,7 +718,7 @@ module Http2 : sig
     val prepend_listener''''''''''''
       :  t
       -> event:([ `trailers ][@js.enum])
-      -> listener:(trailers:http2_IncomingHttpHeaders -> flags:int -> unit)
+      -> listener:(trailers:IncomingHttpHeaders.t -> flags:int -> unit)
       -> t
       [@@js.call "prependListener"]
 
@@ -829,7 +823,7 @@ module Http2 : sig
     val prepend_once_listener''''''''''''
       :  t
       -> event:([ `trailers ][@js.enum])
-      -> listener:(trailers:http2_IncomingHttpHeaders -> flags:int -> unit)
+      -> listener:(trailers:IncomingHttpHeaders.t -> flags:int -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
@@ -846,17 +840,13 @@ module Http2 : sig
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependOnceListener"]
-
-    val cast : t -> Stream.Duplex.t [@@js.cast]
   end
   [@@js.scope "Http2Stream"]
 
   module ClientHttp2Stream : sig
-    type t = http2_ClientHttp2Stream
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Http2Stream
+    end
 
     val add_listener
       :  t
@@ -870,9 +860,7 @@ module Http2 : sig
       -> event:([ `headers ][@js.enum])
       -> listener:
            (headers:
-              ( http2_IncomingHttpHeaders
-              , http2_IncomingHttpStatusHeader )
-              intersection2
+              (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
             -> flags:int
             -> unit)
       -> t
@@ -881,7 +869,7 @@ module Http2 : sig
     val add_listener''
       :  t
       -> event:([ `push ][@js.enum])
-      -> listener:(headers:http2_IncomingHttpHeaders -> flags:int -> unit)
+      -> listener:(headers:IncomingHttpHeaders.t -> flags:int -> unit)
       -> t
       [@@js.call "addListener"]
 
@@ -890,9 +878,7 @@ module Http2 : sig
       -> event:([ `response ][@js.enum])
       -> listener:
            (headers:
-              ( http2_IncomingHttpHeaders
-              , http2_IncomingHttpStatusHeader )
-              intersection2
+              (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
             -> flags:int
             -> unit)
       -> t
@@ -911,9 +897,7 @@ module Http2 : sig
       :  t
       -> event:([ `headers ][@js.enum])
       -> headers:
-           ( http2_IncomingHttpHeaders
-           , http2_IncomingHttpStatusHeader )
-           intersection2
+           (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
       -> flags:int
       -> bool
       [@@js.call "emit"]
@@ -921,7 +905,7 @@ module Http2 : sig
     val emit''
       :  t
       -> event:([ `push ][@js.enum])
-      -> headers:http2_IncomingHttpHeaders
+      -> headers:IncomingHttpHeaders.t
       -> flags:int
       -> bool
       [@@js.call "emit"]
@@ -930,9 +914,7 @@ module Http2 : sig
       :  t
       -> event:([ `response ][@js.enum])
       -> headers:
-           ( http2_IncomingHttpHeaders
-           , http2_IncomingHttpStatusHeader )
-           intersection2
+           (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
       -> flags:int
       -> bool
       [@@js.call "emit"]
@@ -956,9 +938,7 @@ module Http2 : sig
       -> event:([ `headers ][@js.enum])
       -> listener:
            (headers:
-              ( http2_IncomingHttpHeaders
-              , http2_IncomingHttpStatusHeader )
-              intersection2
+              (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
             -> flags:int
             -> unit)
       -> t
@@ -967,7 +947,7 @@ module Http2 : sig
     val on''
       :  t
       -> event:([ `push ][@js.enum])
-      -> listener:(headers:http2_IncomingHttpHeaders -> flags:int -> unit)
+      -> listener:(headers:IncomingHttpHeaders.t -> flags:int -> unit)
       -> t
       [@@js.call "on"]
 
@@ -976,9 +956,7 @@ module Http2 : sig
       -> event:([ `response ][@js.enum])
       -> listener:
            (headers:
-              ( http2_IncomingHttpHeaders
-              , http2_IncomingHttpStatusHeader )
-              intersection2
+              (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
             -> flags:int
             -> unit)
       -> t
@@ -1003,9 +981,7 @@ module Http2 : sig
       -> event:([ `headers ][@js.enum])
       -> listener:
            (headers:
-              ( http2_IncomingHttpHeaders
-              , http2_IncomingHttpStatusHeader )
-              intersection2
+              (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
             -> flags:int
             -> unit)
       -> t
@@ -1014,7 +990,7 @@ module Http2 : sig
     val once''
       :  t
       -> event:([ `push ][@js.enum])
-      -> listener:(headers:http2_IncomingHttpHeaders -> flags:int -> unit)
+      -> listener:(headers:IncomingHttpHeaders.t -> flags:int -> unit)
       -> t
       [@@js.call "once"]
 
@@ -1023,9 +999,7 @@ module Http2 : sig
       -> event:([ `response ][@js.enum])
       -> listener:
            (headers:
-              ( http2_IncomingHttpHeaders
-              , http2_IncomingHttpStatusHeader )
-              intersection2
+              (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
             -> flags:int
             -> unit)
       -> t
@@ -1050,9 +1024,7 @@ module Http2 : sig
       -> event:([ `headers ][@js.enum])
       -> listener:
            (headers:
-              ( http2_IncomingHttpHeaders
-              , http2_IncomingHttpStatusHeader )
-              intersection2
+              (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
             -> flags:int
             -> unit)
       -> t
@@ -1061,7 +1033,7 @@ module Http2 : sig
     val prepend_listener''
       :  t
       -> event:([ `push ][@js.enum])
-      -> listener:(headers:http2_IncomingHttpHeaders -> flags:int -> unit)
+      -> listener:(headers:IncomingHttpHeaders.t -> flags:int -> unit)
       -> t
       [@@js.call "prependListener"]
 
@@ -1070,9 +1042,7 @@ module Http2 : sig
       -> event:([ `response ][@js.enum])
       -> listener:
            (headers:
-              ( http2_IncomingHttpHeaders
-              , http2_IncomingHttpStatusHeader )
-              intersection2
+              (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
             -> flags:int
             -> unit)
       -> t
@@ -1097,9 +1067,7 @@ module Http2 : sig
       -> event:([ `headers ][@js.enum])
       -> listener:
            (headers:
-              ( http2_IncomingHttpHeaders
-              , http2_IncomingHttpStatusHeader )
-              intersection2
+              (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
             -> flags:int
             -> unit)
       -> t
@@ -1108,7 +1076,7 @@ module Http2 : sig
     val prepend_once_listener''
       :  t
       -> event:([ `push ][@js.enum])
-      -> listener:(headers:http2_IncomingHttpHeaders -> flags:int -> unit)
+      -> listener:(headers:IncomingHttpHeaders.t -> flags:int -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
@@ -1117,9 +1085,7 @@ module Http2 : sig
       -> event:([ `response ][@js.enum])
       -> listener:
            (headers:
-              ( http2_IncomingHttpHeaders
-              , http2_IncomingHttpStatusHeader )
-              intersection2
+              (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
             -> flags:int
             -> unit)
       -> t
@@ -1131,17 +1097,13 @@ module Http2 : sig
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependOnceListener"]
-
-    val cast : t -> http2_Http2Stream [@@js.cast]
   end
   [@@js.scope "ClientHttp2Stream"]
 
   module ServerHttp2Stream : sig
-    type t = http2_ServerHttp2Stream
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Http2Stream
+    end
 
     val get_headers_sent : t -> bool [@@js.get "headersSent"]
 
@@ -1168,7 +1130,7 @@ module Http2 : sig
     val push_stream'
       :  t
       -> headers:Node_http.Http.OutgoingHttpHeaders.t
-      -> ?options:http2_StreamPriorityOptions
+      -> ?options:StreamPriorityOptions.t
       -> ?callback:
            (err:Error.t or_null
             -> push_stream:t
@@ -1181,7 +1143,7 @@ module Http2 : sig
     val respond
       :  t
       -> ?headers:Node_http.Http.OutgoingHttpHeaders.t
-      -> ?options:http2_ServerStreamResponseOptions
+      -> ?options:ServerStreamResponseOptions.t
       -> unit
       -> unit
       [@@js.call "respond"]
@@ -1190,7 +1152,7 @@ module Http2 : sig
       :  t
       -> fd:Fs_promises.FileHandle.t or_number
       -> ?headers:Node_http.Http.OutgoingHttpHeaders.t
-      -> ?options:http2_ServerStreamFileResponseOptions
+      -> ?options:ServerStreamFileResponseOptions.t
       -> unit
       -> unit
       [@@js.call "respondWithFD"]
@@ -1199,17 +1161,15 @@ module Http2 : sig
       :  t
       -> path:string
       -> ?headers:Node_http.Http.OutgoingHttpHeaders.t
-      -> ?options:http2_ServerStreamFileResponseOptionsWithError
+      -> ?options:ServerStreamFileResponseOptionsWithError.t
       -> unit
       -> unit
       [@@js.call "respondWithFile"]
-
-    val cast : t -> http2_Http2Stream [@@js.cast]
   end
   [@@js.scope "ServerHttp2Stream"]
 
   module Settings : sig
-    type t = http2_Settings
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -1251,7 +1211,7 @@ module Http2 : sig
   [@@js.scope "Settings"]
 
   module ClientSessionRequestOptions : sig
-    type t = http2_ClientSessionRequestOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -1280,7 +1240,7 @@ module Http2 : sig
   [@@js.scope "ClientSessionRequestOptions"]
 
   module SessionState : sig
-    type t = http2_SessionState
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -1334,11 +1294,9 @@ module Http2 : sig
   [@@js.scope "SessionState"]
 
   module Http2Session : sig
-    type t = http2_Http2Session
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Node_events.Events.EventEmitter
+    end
 
     val get_alpn_protocol : t -> string [@@js.get "alpnProtocol"]
 
@@ -1350,18 +1308,18 @@ module Http2 : sig
 
     val get_encrypted : t -> bool [@@js.get "encrypted"]
 
-    val get_local_settings : t -> http2_Settings [@@js.get "localSettings"]
+    val get_local_settings : t -> Settings.t [@@js.get "localSettings"]
 
     val get_origin_set : t -> string list [@@js.get "originSet"]
 
     val get_pending_settings_ack : t -> bool [@@js.get "pendingSettingsAck"]
 
-    val get_remote_settings : t -> http2_Settings [@@js.get "remoteSettings"]
+    val get_remote_settings : t -> Settings.t [@@js.get "remoteSettings"]
 
     val get_socket : t -> (Net.Socket.t, Tls.TLSSocket.t) union2
       [@@js.get "socket"]
 
-    val get_state : t -> http2_SessionState [@@js.get "state"]
+    val get_state : t -> SessionState.t [@@js.get "state"]
 
     val get_type : t -> int [@@js.get "type"]
 
@@ -1403,7 +1361,7 @@ module Http2 : sig
     val set_timeout : t -> msecs:int -> ?callback:(unit -> unit) -> unit -> unit
       [@@js.call "setTimeout"]
 
-    val settings : t -> settings:http2_Settings -> unit [@@js.call "settings"]
+    val settings : t -> settings:Settings.t -> unit [@@js.call "settings"]
 
     val unref : t -> unit [@@js.call "unref"]
 
@@ -1439,7 +1397,7 @@ module Http2 : sig
     val add_listener''''
       :  t
       -> event:([ `localSettings ][@js.enum])
-      -> listener:(settings:http2_Settings -> unit)
+      -> listener:(settings:Settings.t -> unit)
       -> t
       [@@js.call "addListener"]
 
@@ -1453,7 +1411,7 @@ module Http2 : sig
     val add_listener''''''
       :  t
       -> event:([ `remoteSettings ][@js.enum])
-      -> listener:(settings:http2_Settings -> unit)
+      -> listener:(settings:Settings.t -> unit)
       -> t
       [@@js.call "addListener"]
 
@@ -1497,7 +1455,7 @@ module Http2 : sig
     val emit''''
       :  t
       -> event:([ `localSettings ][@js.enum])
-      -> settings:http2_Settings
+      -> settings:Settings.t
       -> bool
       [@@js.call "emit"]
 
@@ -1506,7 +1464,7 @@ module Http2 : sig
     val emit''''''
       :  t
       -> event:([ `remoteSettings ][@js.enum])
-      -> settings:http2_Settings
+      -> settings:Settings.t
       -> bool
       [@@js.call "emit"]
 
@@ -1548,7 +1506,7 @@ module Http2 : sig
     val on''''
       :  t
       -> event:([ `localSettings ][@js.enum])
-      -> listener:(settings:http2_Settings -> unit)
+      -> listener:(settings:Settings.t -> unit)
       -> t
       [@@js.call "on"]
 
@@ -1562,7 +1520,7 @@ module Http2 : sig
     val on''''''
       :  t
       -> event:([ `remoteSettings ][@js.enum])
-      -> listener:(settings:http2_Settings -> unit)
+      -> listener:(settings:Settings.t -> unit)
       -> t
       [@@js.call "on"]
 
@@ -1608,7 +1566,7 @@ module Http2 : sig
     val once''''
       :  t
       -> event:([ `localSettings ][@js.enum])
-      -> listener:(settings:http2_Settings -> unit)
+      -> listener:(settings:Settings.t -> unit)
       -> t
       [@@js.call "once"]
 
@@ -1622,7 +1580,7 @@ module Http2 : sig
     val once''''''
       :  t
       -> event:([ `remoteSettings ][@js.enum])
-      -> listener:(settings:http2_Settings -> unit)
+      -> listener:(settings:Settings.t -> unit)
       -> t
       [@@js.call "once"]
 
@@ -1672,7 +1630,7 @@ module Http2 : sig
     val prepend_listener''''
       :  t
       -> event:([ `localSettings ][@js.enum])
-      -> listener:(settings:http2_Settings -> unit)
+      -> listener:(settings:Settings.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
@@ -1686,7 +1644,7 @@ module Http2 : sig
     val prepend_listener''''''
       :  t
       -> event:([ `remoteSettings ][@js.enum])
-      -> listener:(settings:http2_Settings -> unit)
+      -> listener:(settings:Settings.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
@@ -1736,7 +1694,7 @@ module Http2 : sig
     val prepend_once_listener''''
       :  t
       -> event:([ `localSettings ][@js.enum])
-      -> listener:(settings:http2_Settings -> unit)
+      -> listener:(settings:Settings.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
@@ -1750,7 +1708,7 @@ module Http2 : sig
     val prepend_once_listener''''''
       :  t
       -> event:([ `remoteSettings ][@js.enum])
-      -> listener:(settings:http2_Settings -> unit)
+      -> listener:(settings:Settings.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
@@ -1767,13 +1725,11 @@ module Http2 : sig
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependOnceListener"]
-
-    val cast : t -> Node_events.Events.EventEmitter.t [@@js.cast]
   end
   [@@js.scope "Http2Session"]
 
   module ClientHttp2Session : sig
-    type t = http2_ClientHttp2Session
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -1782,9 +1738,9 @@ module Http2 : sig
     val request
       :  t
       -> ?headers:Node_http.Http.OutgoingHttpHeaders.t
-      -> ?options:http2_ClientSessionRequestOptions
+      -> ?options:ClientSessionRequestOptions.t
       -> unit
-      -> http2_ClientHttp2Stream
+      -> ClientHttp2Stream.t
       [@@js.call "request"]
 
     val add_listener
@@ -1813,10 +1769,10 @@ module Http2 : sig
       :  t
       -> event:([ `stream ][@js.enum])
       -> listener:
-           (stream:http2_ClientHttp2Stream
+           (stream:ClientHttp2Stream.t
             -> headers:
-                 ( http2_IncomingHttpHeaders
-                 , http2_IncomingHttpStatusHeader )
+                 ( IncomingHttpHeaders.t
+                 , IncomingHttpStatusHeader.t )
                  intersection2
             -> flags:int
             -> unit)
@@ -1857,11 +1813,9 @@ module Http2 : sig
     val emit'''
       :  t
       -> event:([ `stream ][@js.enum])
-      -> stream:http2_ClientHttp2Stream
+      -> stream:ClientHttp2Stream.t
       -> headers:
-           ( http2_IncomingHttpHeaders
-           , http2_IncomingHttpStatusHeader )
-           intersection2
+           (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
       -> flags:int
       -> bool
       [@@js.call "emit"]
@@ -1899,10 +1853,10 @@ module Http2 : sig
       :  t
       -> event:([ `stream ][@js.enum])
       -> listener:
-           (stream:http2_ClientHttp2Stream
+           (stream:ClientHttp2Stream.t
             -> headers:
-                 ( http2_IncomingHttpHeaders
-                 , http2_IncomingHttpStatusHeader )
+                 ( IncomingHttpHeaders.t
+                 , IncomingHttpStatusHeader.t )
                  intersection2
             -> flags:int
             -> unit)
@@ -1942,10 +1896,10 @@ module Http2 : sig
       :  t
       -> event:([ `stream ][@js.enum])
       -> listener:
-           (stream:http2_ClientHttp2Stream
+           (stream:ClientHttp2Stream.t
             -> headers:
-                 ( http2_IncomingHttpHeaders
-                 , http2_IncomingHttpStatusHeader )
+                 ( IncomingHttpHeaders.t
+                 , IncomingHttpStatusHeader.t )
                  intersection2
             -> flags:int
             -> unit)
@@ -1985,10 +1939,10 @@ module Http2 : sig
       :  t
       -> event:([ `stream ][@js.enum])
       -> listener:
-           (stream:http2_ClientHttp2Stream
+           (stream:ClientHttp2Stream.t
             -> headers:
-                 ( http2_IncomingHttpHeaders
-                 , http2_IncomingHttpStatusHeader )
+                 ( IncomingHttpHeaders.t
+                 , IncomingHttpStatusHeader.t )
                  intersection2
             -> flags:int
             -> unit)
@@ -2028,10 +1982,10 @@ module Http2 : sig
       :  t
       -> event:([ `stream ][@js.enum])
       -> listener:
-           (stream:http2_ClientHttp2Stream
+           (stream:ClientHttp2Stream.t
             -> headers:
-                 ( http2_IncomingHttpHeaders
-                 , http2_IncomingHttpStatusHeader )
+                 ( IncomingHttpHeaders.t
+                 , IncomingHttpStatusHeader.t )
                  intersection2
             -> flags:int
             -> unit)
@@ -2045,12 +1999,12 @@ module Http2 : sig
       -> t
       [@@js.call "prependOnceListener"]
 
-    val cast : t -> http2_Http2Session [@@js.cast]
+    val cast : t -> Http2Session.t [@@js.cast]
   end
   [@@js.scope "ClientHttp2Session"]
 
   module AlternativeServiceOptions : sig
-    type t = http2_AlternativeServiceOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -2063,193 +2017,8 @@ module Http2 : sig
   end
   [@@js.scope "AlternativeServiceOptions"]
 
-  module ServerHttp2Session : sig
-    type t = http2_ServerHttp2Session
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val get_server : t -> (http2_Http2SecureServer, http2_Http2Server) union2
-      [@@js.get "server"]
-
-    val altsvc
-      :  t
-      -> alt:string
-      -> origin_or_stream:
-           (http2_AlternativeServiceOptions, Url.URL.t) union2 or_string
-           or_number
-      -> unit
-      [@@js.call "altsvc"]
-
-    val origin
-      :  t
-      -> args:
-           (* FIXME: type 'Array<union<String | ?url.URL | {..}>>' cannot be
-              used for variadic argument *) (any list[@js.variadic])
-      -> unit
-      [@@js.call "origin"]
-
-    val add_listener
-      :  t
-      -> event:([ `connect ][@js.enum])
-      -> listener:
-           (session:t -> socket:(Net.Socket.t, Tls.TLSSocket.t) union2 -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val add_listener'
-      :  t
-      -> event:([ `stream ][@js.enum])
-      -> listener:
-           (stream:http2_ServerHttp2Stream
-            -> headers:http2_IncomingHttpHeaders
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val add_listener''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val emit
-      :  t
-      -> event:([ `connect ][@js.enum])
-      -> session:t
-      -> socket:(Net.Socket.t, Tls.TLSSocket.t) union2
-      -> bool
-      [@@js.call "emit"]
-
-    val emit'
-      :  t
-      -> event:([ `stream ][@js.enum])
-      -> stream:http2_ServerHttp2Stream
-      -> headers:http2_IncomingHttpHeaders
-      -> flags:int
-      -> bool
-      [@@js.call "emit"]
-
-    val emit''
-      :  t
-      -> event:symbol or_string
-      -> args:(any list[@js.variadic])
-      -> bool
-      [@@js.call "emit"]
-
-    val on
-      :  t
-      -> event:([ `connect ][@js.enum])
-      -> listener:
-           (session:t -> socket:(Net.Socket.t, Tls.TLSSocket.t) union2 -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on'
-      :  t
-      -> event:([ `stream ][@js.enum])
-      -> listener:
-           (stream:http2_ServerHttp2Stream
-            -> headers:http2_IncomingHttpHeaders
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val once
-      :  t
-      -> event:([ `connect ][@js.enum])
-      -> listener:
-           (session:t -> socket:(Net.Socket.t, Tls.TLSSocket.t) union2 -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once'
-      :  t
-      -> event:([ `stream ][@js.enum])
-      -> listener:
-           (stream:http2_ServerHttp2Stream
-            -> headers:http2_IncomingHttpHeaders
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val prepend_listener
-      :  t
-      -> event:([ `connect ][@js.enum])
-      -> listener:
-           (session:t -> socket:(Net.Socket.t, Tls.TLSSocket.t) union2 -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'
-      :  t
-      -> event:([ `stream ][@js.enum])
-      -> listener:
-           (stream:http2_ServerHttp2Stream
-            -> headers:http2_IncomingHttpHeaders
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_once_listener
-      :  t
-      -> event:([ `connect ][@js.enum])
-      -> listener:
-           (session:t -> socket:(Net.Socket.t, Tls.TLSSocket.t) union2 -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'
-      :  t
-      -> event:([ `stream ][@js.enum])
-      -> listener:
-           (stream:http2_ServerHttp2Stream
-            -> headers:http2_IncomingHttpHeaders
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val cast : t -> http2_Http2Session [@@js.cast]
-  end
-  [@@js.scope "ServerHttp2Session"]
-
   module SessionOptions : sig
-    type t = http2_SessionOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -2291,9 +2060,9 @@ module Http2 : sig
     val set_peer_max_concurrent_streams : t -> int -> unit
       [@@js.set "peerMaxConcurrentStreams"]
 
-    val get_settings : t -> http2_Settings [@@js.get "settings"]
+    val get_settings : t -> Settings.t [@@js.get "settings"]
 
-    val set_settings : t -> http2_Settings -> unit [@@js.set "settings"]
+    val set_settings : t -> Settings.t -> unit [@@js.set "settings"]
 
     val select_padding : t -> frame_len:int -> max_frame_len:int -> int
       [@@js.call "selectPadding"]
@@ -2308,7 +2077,7 @@ module Http2 : sig
   [@@js.scope "SessionOptions"]
 
   module ClientSessionOptions : sig
-    type t = http2_ClientSessionOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -2323,7 +2092,7 @@ module Http2 : sig
     val create_connection
       :  t
       -> authority:Url.URL.t
-      -> option:http2_SessionOptions
+      -> option:SessionOptions.t
       -> Stream.Duplex.t
       [@@js.call "createConnection"]
 
@@ -2335,12 +2104,12 @@ module Http2 : sig
     val set_protocol : t -> ([ `http_ | `https_ ][@js.enum]) -> unit
       [@@js.set "protocol"]
 
-    val cast : t -> http2_SessionOptions [@@js.cast]
+    val cast : t -> SessionOptions.t [@@js.cast]
   end
   [@@js.scope "ClientSessionOptions"]
 
   module ServerSessionOptions : sig
-    type t = http2_ServerSessionOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -2390,49 +2159,49 @@ module Http2 : sig
       -> unit
       [@@js.set "Http2ServerResponse"]
 
-    val cast : t -> http2_SessionOptions [@@js.cast]
+    val cast : t -> SessionOptions.t [@@js.cast]
   end
   [@@js.scope "ServerSessionOptions"]
 
   module SecureClientSessionOptions : sig
-    type t = http2_SecureClientSessionOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val cast : t -> http2_ClientSessionOptions [@@js.cast]
+    val cast : t -> ClientSessionOptions.t [@@js.cast]
 
     val cast' : t -> Tls.ConnectionOptions.t [@@js.cast]
   end
   [@@js.scope "SecureClientSessionOptions"]
 
   module SecureServerSessionOptions : sig
-    type t = http2_SecureServerSessionOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val cast : t -> http2_ServerSessionOptions [@@js.cast]
+    val cast : t -> ServerSessionOptions.t [@@js.cast]
 
     val cast' : t -> Tls.TlsOptions.t [@@js.cast]
   end
   [@@js.scope "SecureServerSessionOptions"]
 
   module ServerOptions : sig
-    type t = http2_ServerOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val cast : t -> http2_ServerSessionOptions [@@js.cast]
+    val cast : t -> ServerSessionOptions.t [@@js.cast]
   end
   [@@js.scope "ServerOptions"]
 
   module SecureServerOptions : sig
-    type t = http2_SecureServerOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -2446,778 +2215,20 @@ module Http2 : sig
 
     val set_origins : t -> string list -> unit [@@js.set "origins"]
 
-    val cast : t -> http2_SecureServerSessionOptions [@@js.cast]
+    val cast : t -> SecureServerSessionOptions.t [@@js.cast]
   end
   [@@js.scope "SecureServerOptions"]
 
-  module Http2Server : sig
-    type t = http2_Http2Server
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val add_listener
-      :  t
-      -> event:([ `checkContinue ][@js.enum])
-      -> listener:
-           (request:http2_Http2ServerRequest
-            -> response:http2_Http2ServerResponse
-            -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val add_listener'
-      :  t
-      -> event:([ `request ][@js.enum])
-      -> listener:
-           (request:http2_Http2ServerRequest
-            -> response:http2_Http2ServerResponse
-            -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val add_listener''
-      :  t
-      -> event:([ `session ][@js.enum])
-      -> listener:(session:http2_ServerHttp2Session -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val add_listener'''
-      :  t
-      -> event:([ `sessionError ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val add_listener''''
-      :  t
-      -> event:([ `stream ][@js.enum])
-      -> listener:
-           (stream:http2_ServerHttp2Stream
-            -> headers:http2_IncomingHttpHeaders
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val add_listener'''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val add_listener''''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val emit
-      :  t
-      -> event:([ `checkContinue ][@js.enum])
-      -> request:http2_Http2ServerRequest
-      -> response:http2_Http2ServerResponse
-      -> bool
-      [@@js.call "emit"]
-
-    val emit'
-      :  t
-      -> event:([ `request ][@js.enum])
-      -> request:http2_Http2ServerRequest
-      -> response:http2_Http2ServerResponse
-      -> bool
-      [@@js.call "emit"]
-
-    val emit''
-      :  t
-      -> event:([ `session ][@js.enum])
-      -> session:http2_ServerHttp2Session
-      -> bool
-      [@@js.call "emit"]
-
-    val emit'''
-      :  t
-      -> event:([ `sessionError ][@js.enum])
-      -> err:Error.t
-      -> bool
-      [@@js.call "emit"]
-
-    val emit''''
-      :  t
-      -> event:([ `stream ][@js.enum])
-      -> stream:http2_ServerHttp2Stream
-      -> headers:http2_IncomingHttpHeaders
-      -> flags:int
-      -> bool
-      [@@js.call "emit"]
-
-    val emit''''' : t -> event:([ `timeout ][@js.enum]) -> bool
-      [@@js.call "emit"]
-
-    val emit''''''
-      :  t
-      -> event:symbol or_string
-      -> args:(any list[@js.variadic])
-      -> bool
-      [@@js.call "emit"]
-
-    val on
-      :  t
-      -> event:([ `checkContinue ][@js.enum])
-      -> listener:
-           (request:http2_Http2ServerRequest
-            -> response:http2_Http2ServerResponse
-            -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on'
-      :  t
-      -> event:([ `request ][@js.enum])
-      -> listener:
-           (request:http2_Http2ServerRequest
-            -> response:http2_Http2ServerResponse
-            -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on''
-      :  t
-      -> event:([ `session ][@js.enum])
-      -> listener:(session:http2_ServerHttp2Session -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on'''
-      :  t
-      -> event:([ `sessionError ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on''''
-      :  t
-      -> event:([ `stream ][@js.enum])
-      -> listener:
-           (stream:http2_ServerHttp2Stream
-            -> headers:http2_IncomingHttpHeaders
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on'''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on''''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val once
-      :  t
-      -> event:([ `checkContinue ][@js.enum])
-      -> listener:
-           (request:http2_Http2ServerRequest
-            -> response:http2_Http2ServerResponse
-            -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once'
-      :  t
-      -> event:([ `request ][@js.enum])
-      -> listener:
-           (request:http2_Http2ServerRequest
-            -> response:http2_Http2ServerResponse
-            -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once''
-      :  t
-      -> event:([ `session ][@js.enum])
-      -> listener:(session:http2_ServerHttp2Session -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once'''
-      :  t
-      -> event:([ `sessionError ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once''''
-      :  t
-      -> event:([ `stream ][@js.enum])
-      -> listener:
-           (stream:http2_ServerHttp2Stream
-            -> headers:http2_IncomingHttpHeaders
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once'''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once''''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val prepend_listener
-      :  t
-      -> event:([ `checkContinue ][@js.enum])
-      -> listener:
-           (request:http2_Http2ServerRequest
-            -> response:http2_Http2ServerResponse
-            -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'
-      :  t
-      -> event:([ `request ][@js.enum])
-      -> listener:
-           (request:http2_Http2ServerRequest
-            -> response:http2_Http2ServerResponse
-            -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''
-      :  t
-      -> event:([ `session ][@js.enum])
-      -> listener:(session:http2_ServerHttp2Session -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''
-      :  t
-      -> event:([ `sessionError ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''
-      :  t
-      -> event:([ `stream ][@js.enum])
-      -> listener:
-           (stream:http2_ServerHttp2Stream
-            -> headers:http2_IncomingHttpHeaders
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_once_listener
-      :  t
-      -> event:([ `checkContinue ][@js.enum])
-      -> listener:
-           (request:http2_Http2ServerRequest
-            -> response:http2_Http2ServerResponse
-            -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'
-      :  t
-      -> event:([ `request ][@js.enum])
-      -> listener:
-           (request:http2_Http2ServerRequest
-            -> response:http2_Http2ServerResponse
-            -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''
-      :  t
-      -> event:([ `session ][@js.enum])
-      -> listener:(session:http2_ServerHttp2Session -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''
-      :  t
-      -> event:([ `sessionError ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''''
-      :  t
-      -> event:([ `stream ][@js.enum])
-      -> listener:
-           (stream:http2_ServerHttp2Stream
-            -> headers:http2_IncomingHttpHeaders
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val set_timeout : t -> ?msec:int -> ?callback:(unit -> unit) -> unit -> t
-      [@@js.call "setTimeout"]
-
-    val cast : t -> Net.Server.t [@@js.cast]
-  end
-  [@@js.scope "Http2Server"]
-
-  module Http2SecureServer : sig
-    type t = http2_Http2SecureServer
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val add_listener
-      :  t
-      -> event:([ `checkContinue ][@js.enum])
-      -> listener:
-           (request:http2_Http2ServerRequest
-            -> response:http2_Http2ServerResponse
-            -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val add_listener'
-      :  t
-      -> event:([ `request ][@js.enum])
-      -> listener:
-           (request:http2_Http2ServerRequest
-            -> response:http2_Http2ServerResponse
-            -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val add_listener''
-      :  t
-      -> event:([ `session ][@js.enum])
-      -> listener:(session:http2_ServerHttp2Session -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val add_listener'''
-      :  t
-      -> event:([ `sessionError ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val add_listener''''
-      :  t
-      -> event:([ `stream ][@js.enum])
-      -> listener:
-           (stream:http2_ServerHttp2Stream
-            -> headers:http2_IncomingHttpHeaders
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val add_listener'''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val add_listener''''''
-      :  t
-      -> event:([ `unknownProtocol ][@js.enum])
-      -> listener:(socket:Tls.TLSSocket.t -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val add_listener'''''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val emit
-      :  t
-      -> event:([ `checkContinue ][@js.enum])
-      -> request:http2_Http2ServerRequest
-      -> response:http2_Http2ServerResponse
-      -> bool
-      [@@js.call "emit"]
-
-    val emit'
-      :  t
-      -> event:([ `request ][@js.enum])
-      -> request:http2_Http2ServerRequest
-      -> response:http2_Http2ServerResponse
-      -> bool
-      [@@js.call "emit"]
-
-    val emit''
-      :  t
-      -> event:([ `session ][@js.enum])
-      -> session:http2_ServerHttp2Session
-      -> bool
-      [@@js.call "emit"]
-
-    val emit'''
-      :  t
-      -> event:([ `sessionError ][@js.enum])
-      -> err:Error.t
-      -> bool
-      [@@js.call "emit"]
-
-    val emit''''
-      :  t
-      -> event:([ `stream ][@js.enum])
-      -> stream:http2_ServerHttp2Stream
-      -> headers:http2_IncomingHttpHeaders
-      -> flags:int
-      -> bool
-      [@@js.call "emit"]
-
-    val emit''''' : t -> event:([ `timeout ][@js.enum]) -> bool
-      [@@js.call "emit"]
-
-    val emit''''''
-      :  t
-      -> event:([ `unknownProtocol ][@js.enum])
-      -> socket:Tls.TLSSocket.t
-      -> bool
-      [@@js.call "emit"]
-
-    val emit'''''''
-      :  t
-      -> event:symbol or_string
-      -> args:(any list[@js.variadic])
-      -> bool
-      [@@js.call "emit"]
-
-    val on
-      :  t
-      -> event:([ `checkContinue ][@js.enum])
-      -> listener:
-           (request:http2_Http2ServerRequest
-            -> response:http2_Http2ServerResponse
-            -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on'
-      :  t
-      -> event:([ `request ][@js.enum])
-      -> listener:
-           (request:http2_Http2ServerRequest
-            -> response:http2_Http2ServerResponse
-            -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on''
-      :  t
-      -> event:([ `session ][@js.enum])
-      -> listener:(session:http2_ServerHttp2Session -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on'''
-      :  t
-      -> event:([ `sessionError ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on''''
-      :  t
-      -> event:([ `stream ][@js.enum])
-      -> listener:
-           (stream:http2_ServerHttp2Stream
-            -> headers:http2_IncomingHttpHeaders
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on'''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on''''''
-      :  t
-      -> event:([ `unknownProtocol ][@js.enum])
-      -> listener:(socket:Tls.TLSSocket.t -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on'''''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val once
-      :  t
-      -> event:([ `checkContinue ][@js.enum])
-      -> listener:
-           (request:http2_Http2ServerRequest
-            -> response:http2_Http2ServerResponse
-            -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once'
-      :  t
-      -> event:([ `request ][@js.enum])
-      -> listener:
-           (request:http2_Http2ServerRequest
-            -> response:http2_Http2ServerResponse
-            -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once''
-      :  t
-      -> event:([ `session ][@js.enum])
-      -> listener:(session:http2_ServerHttp2Session -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once'''
-      :  t
-      -> event:([ `sessionError ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once''''
-      :  t
-      -> event:([ `stream ][@js.enum])
-      -> listener:
-           (stream:http2_ServerHttp2Stream
-            -> headers:http2_IncomingHttpHeaders
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once'''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once''''''
-      :  t
-      -> event:([ `unknownProtocol ][@js.enum])
-      -> listener:(socket:Tls.TLSSocket.t -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once'''''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val prepend_listener
-      :  t
-      -> event:([ `checkContinue ][@js.enum])
-      -> listener:
-           (request:http2_Http2ServerRequest
-            -> response:http2_Http2ServerResponse
-            -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'
-      :  t
-      -> event:([ `request ][@js.enum])
-      -> listener:
-           (request:http2_Http2ServerRequest
-            -> response:http2_Http2ServerResponse
-            -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''
-      :  t
-      -> event:([ `session ][@js.enum])
-      -> listener:(session:http2_ServerHttp2Session -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''
-      :  t
-      -> event:([ `sessionError ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''
-      :  t
-      -> event:([ `stream ][@js.enum])
-      -> listener:
-           (stream:http2_ServerHttp2Stream
-            -> headers:http2_IncomingHttpHeaders
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''''
-      :  t
-      -> event:([ `unknownProtocol ][@js.enum])
-      -> listener:(socket:Tls.TLSSocket.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_once_listener
-      :  t
-      -> event:([ `checkContinue ][@js.enum])
-      -> listener:
-           (request:http2_Http2ServerRequest
-            -> response:http2_Http2ServerResponse
-            -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'
-      :  t
-      -> event:([ `request ][@js.enum])
-      -> listener:
-           (request:http2_Http2ServerRequest
-            -> response:http2_Http2ServerResponse
-            -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''
-      :  t
-      -> event:([ `session ][@js.enum])
-      -> listener:(session:http2_ServerHttp2Session -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''
-      :  t
-      -> event:([ `sessionError ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''''
-      :  t
-      -> event:([ `stream ][@js.enum])
-      -> listener:
-           (stream:http2_ServerHttp2Stream
-            -> headers:http2_IncomingHttpHeaders
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''''''
-      :  t
-      -> event:([ `unknownProtocol ][@js.enum])
-      -> listener:(socket:Tls.TLSSocket.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val set_timeout : t -> ?msec:int -> ?callback:(unit -> unit) -> unit -> t
-      [@@js.call "setTimeout"]
-
-    val cast : t -> Tls.Server.t [@@js.cast]
-  end
-  [@@js.scope "Http2SecureServer"]
-
   module Http2ServerRequest : sig
-    type t = http2_Http2ServerRequest
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
     val create
-      :  stream:http2_ServerHttp2Stream
-      -> headers:http2_IncomingHttpHeaders
+      :  stream:ServerHttp2Stream.t
+      -> headers:IncomingHttpHeaders.t
       -> options:Stream.ReadableOptions.t
       -> raw_headers:string list
       -> t
@@ -3232,7 +2243,7 @@ module Http2 : sig
 
     val get_complete : t -> bool [@@js.get "complete"]
 
-    val get_headers : t -> http2_IncomingHttpHeaders [@@js.get "headers"]
+    val get_headers : t -> IncomingHttpHeaders.t [@@js.get "headers"]
 
     val get_http_version : t -> string [@@js.get "httpVersion"]
 
@@ -3251,9 +2262,9 @@ module Http2 : sig
     val get_socket : t -> (Net.Socket.t, Tls.TLSSocket.t) union2
       [@@js.get "socket"]
 
-    val get_stream : t -> http2_ServerHttp2Stream [@@js.get "stream"]
+    val get_stream : t -> ServerHttp2Stream.t [@@js.get "stream"]
 
-    val get_trailers : t -> http2_IncomingHttpHeaders [@@js.get "trailers"]
+    val get_trailers : t -> IncomingHttpHeaders.t [@@js.get "trailers"]
 
     val get_url : t -> string [@@js.get "url"]
 
@@ -3537,13 +2548,13 @@ module Http2 : sig
   [@@js.scope "Http2ServerRequest"]
 
   module Http2ServerResponse : sig
-    type t = http2_Http2ServerResponse
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val create : stream:http2_ServerHttp2Stream -> t [@@js.create]
+    val create : stream:ServerHttp2Stream.t -> t [@@js.create]
 
     val get_connection : t -> (Net.Socket.t, Tls.TLSSocket.t) union2
       [@@js.get "connection"]
@@ -3555,7 +2566,7 @@ module Http2 : sig
     val get_socket : t -> (Net.Socket.t, Tls.TLSSocket.t) union2
       [@@js.get "socket"]
 
-    val get_stream : t -> http2_ServerHttp2Stream [@@js.get "stream"]
+    val get_stream : t -> ServerHttp2Stream.t [@@js.get "stream"]
 
     val get_send_date : t -> bool [@@js.get "sendDate"]
 
@@ -3927,604 +2938,1526 @@ module Http2 : sig
   end
   [@@js.scope "Http2ServerResponse"]
 
+  module ServerHttp2Session : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    (* val get_server : t -> (Http2SecureServer.t, Http2Server.t) union2
+       [@@js.get "server"] *)
+
+    val altsvc
+      :  t
+      -> alt:string
+      -> origin_or_stream:
+           (AlternativeServiceOptions.t, Url.URL.t) union2 or_string or_number
+      -> unit
+      [@@js.call "altsvc"]
+
+    val origin
+      :  t
+      -> args:
+           (* FIXME: type 'Array<union<String | ?url.URL | {..}>>' cannot be
+              used for variadic argument *) (any list[@js.variadic])
+      -> unit
+      [@@js.call "origin"]
+
+    val add_listener
+      :  t
+      -> event:([ `connect ][@js.enum])
+      -> listener:
+           (session:t -> socket:(Net.Socket.t, Tls.TLSSocket.t) union2 -> unit)
+      -> t
+      [@@js.call "addListener"]
+
+    val add_listener'
+      :  t
+      -> event:([ `stream ][@js.enum])
+      -> listener:
+           (stream:ServerHttp2Stream.t
+            -> headers:IncomingHttpHeaders.t
+            -> flags:int
+            -> unit)
+      -> t
+      [@@js.call "addListener"]
+
+    val add_listener''
+      :  t
+      -> event:symbol or_string
+      -> listener:(args:(any list[@js.variadic]) -> unit)
+      -> t
+      [@@js.call "addListener"]
+
+    val emit
+      :  t
+      -> event:([ `connect ][@js.enum])
+      -> session:t
+      -> socket:(Net.Socket.t, Tls.TLSSocket.t) union2
+      -> bool
+      [@@js.call "emit"]
+
+    val emit'
+      :  t
+      -> event:([ `stream ][@js.enum])
+      -> stream:ServerHttp2Stream.t
+      -> headers:IncomingHttpHeaders.t
+      -> flags:int
+      -> bool
+      [@@js.call "emit"]
+
+    val emit''
+      :  t
+      -> event:symbol or_string
+      -> args:(any list[@js.variadic])
+      -> bool
+      [@@js.call "emit"]
+
+    val on
+      :  t
+      -> event:([ `connect ][@js.enum])
+      -> listener:
+           (session:t -> socket:(Net.Socket.t, Tls.TLSSocket.t) union2 -> unit)
+      -> t
+      [@@js.call "on"]
+
+    val on'
+      :  t
+      -> event:([ `stream ][@js.enum])
+      -> listener:
+           (stream:ServerHttp2Stream.t
+            -> headers:IncomingHttpHeaders.t
+            -> flags:int
+            -> unit)
+      -> t
+      [@@js.call "on"]
+
+    val on''
+      :  t
+      -> event:symbol or_string
+      -> listener:(args:(any list[@js.variadic]) -> unit)
+      -> t
+      [@@js.call "on"]
+
+    val once
+      :  t
+      -> event:([ `connect ][@js.enum])
+      -> listener:
+           (session:t -> socket:(Net.Socket.t, Tls.TLSSocket.t) union2 -> unit)
+      -> t
+      [@@js.call "once"]
+
+    val once'
+      :  t
+      -> event:([ `stream ][@js.enum])
+      -> listener:
+           (stream:ServerHttp2Stream.t
+            -> headers:IncomingHttpHeaders.t
+            -> flags:int
+            -> unit)
+      -> t
+      [@@js.call "once"]
+
+    val once''
+      :  t
+      -> event:symbol or_string
+      -> listener:(args:(any list[@js.variadic]) -> unit)
+      -> t
+      [@@js.call "once"]
+
+    val prepend_listener
+      :  t
+      -> event:([ `connect ][@js.enum])
+      -> listener:
+           (session:t -> socket:(Net.Socket.t, Tls.TLSSocket.t) union2 -> unit)
+      -> t
+      [@@js.call "prependListener"]
+
+    val prepend_listener'
+      :  t
+      -> event:([ `stream ][@js.enum])
+      -> listener:
+           (stream:ServerHttp2Stream.t
+            -> headers:IncomingHttpHeaders.t
+            -> flags:int
+            -> unit)
+      -> t
+      [@@js.call "prependListener"]
+
+    val prepend_listener''
+      :  t
+      -> event:symbol or_string
+      -> listener:(args:(any list[@js.variadic]) -> unit)
+      -> t
+      [@@js.call "prependListener"]
+
+    val prepend_once_listener
+      :  t
+      -> event:([ `connect ][@js.enum])
+      -> listener:
+           (session:t -> socket:(Net.Socket.t, Tls.TLSSocket.t) union2 -> unit)
+      -> t
+      [@@js.call "prependOnceListener"]
+
+    val prepend_once_listener'
+      :  t
+      -> event:([ `stream ][@js.enum])
+      -> listener:
+           (stream:ServerHttp2Stream.t
+            -> headers:IncomingHttpHeaders.t
+            -> flags:int
+            -> unit)
+      -> t
+      [@@js.call "prependOnceListener"]
+
+    val prepend_once_listener''
+      :  t
+      -> event:symbol or_string
+      -> listener:(args:(any list[@js.variadic]) -> unit)
+      -> t
+      [@@js.call "prependOnceListener"]
+
+    val cast : t -> Http2Session.t [@@js.cast]
+  end
+  [@@js.scope "ServerHttp2Session"]
+
+  module Http2Server : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val add_listener
+      :  t
+      -> event:([ `checkContinue ][@js.enum])
+      -> listener:
+           (request:Http2ServerRequest.t
+            -> response:Http2ServerResponse.t
+            -> unit)
+      -> t
+      [@@js.call "addListener"]
+
+    val add_listener'
+      :  t
+      -> event:([ `request ][@js.enum])
+      -> listener:
+           (request:Http2ServerRequest.t
+            -> response:Http2ServerResponse.t
+            -> unit)
+      -> t
+      [@@js.call "addListener"]
+
+    val add_listener''
+      :  t
+      -> event:([ `session ][@js.enum])
+      -> listener:(session:ServerHttp2Session.t -> unit)
+      -> t
+      [@@js.call "addListener"]
+
+    val add_listener'''
+      :  t
+      -> event:([ `sessionError ][@js.enum])
+      -> listener:(err:Error.t -> unit)
+      -> t
+      [@@js.call "addListener"]
+
+    val add_listener''''
+      :  t
+      -> event:([ `stream ][@js.enum])
+      -> listener:
+           (stream:ServerHttp2Stream.t
+            -> headers:IncomingHttpHeaders.t
+            -> flags:int
+            -> unit)
+      -> t
+      [@@js.call "addListener"]
+
+    val add_listener'''''
+      :  t
+      -> event:([ `timeout ][@js.enum])
+      -> listener:(unit -> unit)
+      -> t
+      [@@js.call "addListener"]
+
+    val add_listener''''''
+      :  t
+      -> event:symbol or_string
+      -> listener:(args:(any list[@js.variadic]) -> unit)
+      -> t
+      [@@js.call "addListener"]
+
+    val emit
+      :  t
+      -> event:([ `checkContinue ][@js.enum])
+      -> request:Http2ServerRequest.t
+      -> response:Http2ServerResponse.t
+      -> bool
+      [@@js.call "emit"]
+
+    val emit'
+      :  t
+      -> event:([ `request ][@js.enum])
+      -> request:Http2ServerRequest.t
+      -> response:Http2ServerResponse.t
+      -> bool
+      [@@js.call "emit"]
+
+    val emit''
+      :  t
+      -> event:([ `session ][@js.enum])
+      -> session:ServerHttp2Session.t
+      -> bool
+      [@@js.call "emit"]
+
+    val emit'''
+      :  t
+      -> event:([ `sessionError ][@js.enum])
+      -> err:Error.t
+      -> bool
+      [@@js.call "emit"]
+
+    val emit''''
+      :  t
+      -> event:([ `stream ][@js.enum])
+      -> stream:ServerHttp2Stream.t
+      -> headers:IncomingHttpHeaders.t
+      -> flags:int
+      -> bool
+      [@@js.call "emit"]
+
+    val emit''''' : t -> event:([ `timeout ][@js.enum]) -> bool
+      [@@js.call "emit"]
+
+    val emit''''''
+      :  t
+      -> event:symbol or_string
+      -> args:(any list[@js.variadic])
+      -> bool
+      [@@js.call "emit"]
+
+    val on
+      :  t
+      -> event:([ `checkContinue ][@js.enum])
+      -> listener:
+           (request:Http2ServerRequest.t
+            -> response:Http2ServerResponse.t
+            -> unit)
+      -> t
+      [@@js.call "on"]
+
+    val on'
+      :  t
+      -> event:([ `request ][@js.enum])
+      -> listener:
+           (request:Http2ServerRequest.t
+            -> response:Http2ServerResponse.t
+            -> unit)
+      -> t
+      [@@js.call "on"]
+
+    val on''
+      :  t
+      -> event:([ `session ][@js.enum])
+      -> listener:(session:ServerHttp2Session.t -> unit)
+      -> t
+      [@@js.call "on"]
+
+    val on'''
+      :  t
+      -> event:([ `sessionError ][@js.enum])
+      -> listener:(err:Error.t -> unit)
+      -> t
+      [@@js.call "on"]
+
+    val on''''
+      :  t
+      -> event:([ `stream ][@js.enum])
+      -> listener:
+           (stream:ServerHttp2Stream.t
+            -> headers:IncomingHttpHeaders.t
+            -> flags:int
+            -> unit)
+      -> t
+      [@@js.call "on"]
+
+    val on'''''
+      :  t
+      -> event:([ `timeout ][@js.enum])
+      -> listener:(unit -> unit)
+      -> t
+      [@@js.call "on"]
+
+    val on''''''
+      :  t
+      -> event:symbol or_string
+      -> listener:(args:(any list[@js.variadic]) -> unit)
+      -> t
+      [@@js.call "on"]
+
+    val once
+      :  t
+      -> event:([ `checkContinue ][@js.enum])
+      -> listener:
+           (request:Http2ServerRequest.t
+            -> response:Http2ServerResponse.t
+            -> unit)
+      -> t
+      [@@js.call "once"]
+
+    val once'
+      :  t
+      -> event:([ `request ][@js.enum])
+      -> listener:
+           (request:Http2ServerRequest.t
+            -> response:Http2ServerResponse.t
+            -> unit)
+      -> t
+      [@@js.call "once"]
+
+    val once''
+      :  t
+      -> event:([ `session ][@js.enum])
+      -> listener:(session:ServerHttp2Session.t -> unit)
+      -> t
+      [@@js.call "once"]
+
+    val once'''
+      :  t
+      -> event:([ `sessionError ][@js.enum])
+      -> listener:(err:Error.t -> unit)
+      -> t
+      [@@js.call "once"]
+
+    val once''''
+      :  t
+      -> event:([ `stream ][@js.enum])
+      -> listener:
+           (stream:ServerHttp2Stream.t
+            -> headers:IncomingHttpHeaders.t
+            -> flags:int
+            -> unit)
+      -> t
+      [@@js.call "once"]
+
+    val once'''''
+      :  t
+      -> event:([ `timeout ][@js.enum])
+      -> listener:(unit -> unit)
+      -> t
+      [@@js.call "once"]
+
+    val once''''''
+      :  t
+      -> event:symbol or_string
+      -> listener:(args:(any list[@js.variadic]) -> unit)
+      -> t
+      [@@js.call "once"]
+
+    val prepend_listener
+      :  t
+      -> event:([ `checkContinue ][@js.enum])
+      -> listener:
+           (request:Http2ServerRequest.t
+            -> response:Http2ServerResponse.t
+            -> unit)
+      -> t
+      [@@js.call "prependListener"]
+
+    val prepend_listener'
+      :  t
+      -> event:([ `request ][@js.enum])
+      -> listener:
+           (request:Http2ServerRequest.t
+            -> response:Http2ServerResponse.t
+            -> unit)
+      -> t
+      [@@js.call "prependListener"]
+
+    val prepend_listener''
+      :  t
+      -> event:([ `session ][@js.enum])
+      -> listener:(session:ServerHttp2Session.t -> unit)
+      -> t
+      [@@js.call "prependListener"]
+
+    val prepend_listener'''
+      :  t
+      -> event:([ `sessionError ][@js.enum])
+      -> listener:(err:Error.t -> unit)
+      -> t
+      [@@js.call "prependListener"]
+
+    val prepend_listener''''
+      :  t
+      -> event:([ `stream ][@js.enum])
+      -> listener:
+           (stream:ServerHttp2Stream.t
+            -> headers:IncomingHttpHeaders.t
+            -> flags:int
+            -> unit)
+      -> t
+      [@@js.call "prependListener"]
+
+    val prepend_listener'''''
+      :  t
+      -> event:([ `timeout ][@js.enum])
+      -> listener:(unit -> unit)
+      -> t
+      [@@js.call "prependListener"]
+
+    val prepend_listener''''''
+      :  t
+      -> event:symbol or_string
+      -> listener:(args:(any list[@js.variadic]) -> unit)
+      -> t
+      [@@js.call "prependListener"]
+
+    val prepend_once_listener
+      :  t
+      -> event:([ `checkContinue ][@js.enum])
+      -> listener:
+           (request:Http2ServerRequest.t
+            -> response:Http2ServerResponse.t
+            -> unit)
+      -> t
+      [@@js.call "prependOnceListener"]
+
+    val prepend_once_listener'
+      :  t
+      -> event:([ `request ][@js.enum])
+      -> listener:
+           (request:Http2ServerRequest.t
+            -> response:Http2ServerResponse.t
+            -> unit)
+      -> t
+      [@@js.call "prependOnceListener"]
+
+    val prepend_once_listener''
+      :  t
+      -> event:([ `session ][@js.enum])
+      -> listener:(session:ServerHttp2Session.t -> unit)
+      -> t
+      [@@js.call "prependOnceListener"]
+
+    val prepend_once_listener'''
+      :  t
+      -> event:([ `sessionError ][@js.enum])
+      -> listener:(err:Error.t -> unit)
+      -> t
+      [@@js.call "prependOnceListener"]
+
+    val prepend_once_listener''''
+      :  t
+      -> event:([ `stream ][@js.enum])
+      -> listener:
+           (stream:ServerHttp2Stream.t
+            -> headers:IncomingHttpHeaders.t
+            -> flags:int
+            -> unit)
+      -> t
+      [@@js.call "prependOnceListener"]
+
+    val prepend_once_listener'''''
+      :  t
+      -> event:([ `timeout ][@js.enum])
+      -> listener:(unit -> unit)
+      -> t
+      [@@js.call "prependOnceListener"]
+
+    val prepend_once_listener''''''
+      :  t
+      -> event:symbol or_string
+      -> listener:(args:(any list[@js.variadic]) -> unit)
+      -> t
+      [@@js.call "prependOnceListener"]
+
+    val set_timeout : t -> ?msec:int -> ?callback:(unit -> unit) -> unit -> t
+      [@@js.call "setTimeout"]
+
+    val cast : t -> Net.Server.t [@@js.cast]
+  end
+  [@@js.scope "Http2Server"]
+
+  module Http2SecureServer : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val add_listener
+      :  t
+      -> event:([ `checkContinue ][@js.enum])
+      -> listener:
+           (request:Http2ServerRequest.t
+            -> response:Http2ServerResponse.t
+            -> unit)
+      -> t
+      [@@js.call "addListener"]
+
+    val add_listener'
+      :  t
+      -> event:([ `request ][@js.enum])
+      -> listener:
+           (request:Http2ServerRequest.t
+            -> response:Http2ServerResponse.t
+            -> unit)
+      -> t
+      [@@js.call "addListener"]
+
+    val add_listener''
+      :  t
+      -> event:([ `session ][@js.enum])
+      -> listener:(session:ServerHttp2Session.t -> unit)
+      -> t
+      [@@js.call "addListener"]
+
+    val add_listener'''
+      :  t
+      -> event:([ `sessionError ][@js.enum])
+      -> listener:(err:Error.t -> unit)
+      -> t
+      [@@js.call "addListener"]
+
+    val add_listener''''
+      :  t
+      -> event:([ `stream ][@js.enum])
+      -> listener:
+           (stream:ServerHttp2Stream.t
+            -> headers:IncomingHttpHeaders.t
+            -> flags:int
+            -> unit)
+      -> t
+      [@@js.call "addListener"]
+
+    val add_listener'''''
+      :  t
+      -> event:([ `timeout ][@js.enum])
+      -> listener:(unit -> unit)
+      -> t
+      [@@js.call "addListener"]
+
+    val add_listener''''''
+      :  t
+      -> event:([ `unknownProtocol ][@js.enum])
+      -> listener:(socket:Tls.TLSSocket.t -> unit)
+      -> t
+      [@@js.call "addListener"]
+
+    val add_listener'''''''
+      :  t
+      -> event:symbol or_string
+      -> listener:(args:(any list[@js.variadic]) -> unit)
+      -> t
+      [@@js.call "addListener"]
+
+    val emit
+      :  t
+      -> event:([ `checkContinue ][@js.enum])
+      -> request:Http2ServerRequest.t
+      -> response:Http2ServerResponse.t
+      -> bool
+      [@@js.call "emit"]
+
+    val emit'
+      :  t
+      -> event:([ `request ][@js.enum])
+      -> request:Http2ServerRequest.t
+      -> response:Http2ServerResponse.t
+      -> bool
+      [@@js.call "emit"]
+
+    val emit''
+      :  t
+      -> event:([ `session ][@js.enum])
+      -> session:ServerHttp2Session.t
+      -> bool
+      [@@js.call "emit"]
+
+    val emit'''
+      :  t
+      -> event:([ `sessionError ][@js.enum])
+      -> err:Error.t
+      -> bool
+      [@@js.call "emit"]
+
+    val emit''''
+      :  t
+      -> event:([ `stream ][@js.enum])
+      -> stream:ServerHttp2Stream.t
+      -> headers:IncomingHttpHeaders.t
+      -> flags:int
+      -> bool
+      [@@js.call "emit"]
+
+    val emit''''' : t -> event:([ `timeout ][@js.enum]) -> bool
+      [@@js.call "emit"]
+
+    val emit''''''
+      :  t
+      -> event:([ `unknownProtocol ][@js.enum])
+      -> socket:Tls.TLSSocket.t
+      -> bool
+      [@@js.call "emit"]
+
+    val emit'''''''
+      :  t
+      -> event:symbol or_string
+      -> args:(any list[@js.variadic])
+      -> bool
+      [@@js.call "emit"]
+
+    val on
+      :  t
+      -> event:([ `checkContinue ][@js.enum])
+      -> listener:
+           (request:Http2ServerRequest.t
+            -> response:Http2ServerResponse.t
+            -> unit)
+      -> t
+      [@@js.call "on"]
+
+    val on'
+      :  t
+      -> event:([ `request ][@js.enum])
+      -> listener:
+           (request:Http2ServerRequest.t
+            -> response:Http2ServerResponse.t
+            -> unit)
+      -> t
+      [@@js.call "on"]
+
+    val on''
+      :  t
+      -> event:([ `session ][@js.enum])
+      -> listener:(session:ServerHttp2Session.t -> unit)
+      -> t
+      [@@js.call "on"]
+
+    val on'''
+      :  t
+      -> event:([ `sessionError ][@js.enum])
+      -> listener:(err:Error.t -> unit)
+      -> t
+      [@@js.call "on"]
+
+    val on''''
+      :  t
+      -> event:([ `stream ][@js.enum])
+      -> listener:
+           (stream:ServerHttp2Stream.t
+            -> headers:IncomingHttpHeaders.t
+            -> flags:int
+            -> unit)
+      -> t
+      [@@js.call "on"]
+
+    val on'''''
+      :  t
+      -> event:([ `timeout ][@js.enum])
+      -> listener:(unit -> unit)
+      -> t
+      [@@js.call "on"]
+
+    val on''''''
+      :  t
+      -> event:([ `unknownProtocol ][@js.enum])
+      -> listener:(socket:Tls.TLSSocket.t -> unit)
+      -> t
+      [@@js.call "on"]
+
+    val on'''''''
+      :  t
+      -> event:symbol or_string
+      -> listener:(args:(any list[@js.variadic]) -> unit)
+      -> t
+      [@@js.call "on"]
+
+    val once
+      :  t
+      -> event:([ `checkContinue ][@js.enum])
+      -> listener:
+           (request:Http2ServerRequest.t
+            -> response:Http2ServerResponse.t
+            -> unit)
+      -> t
+      [@@js.call "once"]
+
+    val once'
+      :  t
+      -> event:([ `request ][@js.enum])
+      -> listener:
+           (request:Http2ServerRequest.t
+            -> response:Http2ServerResponse.t
+            -> unit)
+      -> t
+      [@@js.call "once"]
+
+    val once''
+      :  t
+      -> event:([ `session ][@js.enum])
+      -> listener:(session:ServerHttp2Session.t -> unit)
+      -> t
+      [@@js.call "once"]
+
+    val once'''
+      :  t
+      -> event:([ `sessionError ][@js.enum])
+      -> listener:(err:Error.t -> unit)
+      -> t
+      [@@js.call "once"]
+
+    val once''''
+      :  t
+      -> event:([ `stream ][@js.enum])
+      -> listener:
+           (stream:ServerHttp2Stream.t
+            -> headers:IncomingHttpHeaders.t
+            -> flags:int
+            -> unit)
+      -> t
+      [@@js.call "once"]
+
+    val once'''''
+      :  t
+      -> event:([ `timeout ][@js.enum])
+      -> listener:(unit -> unit)
+      -> t
+      [@@js.call "once"]
+
+    val once''''''
+      :  t
+      -> event:([ `unknownProtocol ][@js.enum])
+      -> listener:(socket:Tls.TLSSocket.t -> unit)
+      -> t
+      [@@js.call "once"]
+
+    val once'''''''
+      :  t
+      -> event:symbol or_string
+      -> listener:(args:(any list[@js.variadic]) -> unit)
+      -> t
+      [@@js.call "once"]
+
+    val prepend_listener
+      :  t
+      -> event:([ `checkContinue ][@js.enum])
+      -> listener:
+           (request:Http2ServerRequest.t
+            -> response:Http2ServerResponse.t
+            -> unit)
+      -> t
+      [@@js.call "prependListener"]
+
+    val prepend_listener'
+      :  t
+      -> event:([ `request ][@js.enum])
+      -> listener:
+           (request:Http2ServerRequest.t
+            -> response:Http2ServerResponse.t
+            -> unit)
+      -> t
+      [@@js.call "prependListener"]
+
+    val prepend_listener''
+      :  t
+      -> event:([ `session ][@js.enum])
+      -> listener:(session:ServerHttp2Session.t -> unit)
+      -> t
+      [@@js.call "prependListener"]
+
+    val prepend_listener'''
+      :  t
+      -> event:([ `sessionError ][@js.enum])
+      -> listener:(err:Error.t -> unit)
+      -> t
+      [@@js.call "prependListener"]
+
+    val prepend_listener''''
+      :  t
+      -> event:([ `stream ][@js.enum])
+      -> listener:
+           (stream:ServerHttp2Stream.t
+            -> headers:IncomingHttpHeaders.t
+            -> flags:int
+            -> unit)
+      -> t
+      [@@js.call "prependListener"]
+
+    val prepend_listener'''''
+      :  t
+      -> event:([ `timeout ][@js.enum])
+      -> listener:(unit -> unit)
+      -> t
+      [@@js.call "prependListener"]
+
+    val prepend_listener''''''
+      :  t
+      -> event:([ `unknownProtocol ][@js.enum])
+      -> listener:(socket:Tls.TLSSocket.t -> unit)
+      -> t
+      [@@js.call "prependListener"]
+
+    val prepend_listener'''''''
+      :  t
+      -> event:symbol or_string
+      -> listener:(args:(any list[@js.variadic]) -> unit)
+      -> t
+      [@@js.call "prependListener"]
+
+    val prepend_once_listener
+      :  t
+      -> event:([ `checkContinue ][@js.enum])
+      -> listener:
+           (request:Http2ServerRequest.t
+            -> response:Http2ServerResponse.t
+            -> unit)
+      -> t
+      [@@js.call "prependOnceListener"]
+
+    val prepend_once_listener'
+      :  t
+      -> event:([ `request ][@js.enum])
+      -> listener:
+           (request:Http2ServerRequest.t
+            -> response:Http2ServerResponse.t
+            -> unit)
+      -> t
+      [@@js.call "prependOnceListener"]
+
+    val prepend_once_listener''
+      :  t
+      -> event:([ `session ][@js.enum])
+      -> listener:(session:ServerHttp2Session.t -> unit)
+      -> t
+      [@@js.call "prependOnceListener"]
+
+    val prepend_once_listener'''
+      :  t
+      -> event:([ `sessionError ][@js.enum])
+      -> listener:(err:Error.t -> unit)
+      -> t
+      [@@js.call "prependOnceListener"]
+
+    val prepend_once_listener''''
+      :  t
+      -> event:([ `stream ][@js.enum])
+      -> listener:
+           (stream:ServerHttp2Stream.t
+            -> headers:IncomingHttpHeaders.t
+            -> flags:int
+            -> unit)
+      -> t
+      [@@js.call "prependOnceListener"]
+
+    val prepend_once_listener'''''
+      :  t
+      -> event:([ `timeout ][@js.enum])
+      -> listener:(unit -> unit)
+      -> t
+      [@@js.call "prependOnceListener"]
+
+    val prepend_once_listener''''''
+      :  t
+      -> event:([ `unknownProtocol ][@js.enum])
+      -> listener:(socket:Tls.TLSSocket.t -> unit)
+      -> t
+      [@@js.call "prependOnceListener"]
+
+    val prepend_once_listener'''''''
+      :  t
+      -> event:symbol or_string
+      -> listener:(args:(any list[@js.variadic]) -> unit)
+      -> t
+      [@@js.call "prependOnceListener"]
+
+    val set_timeout : t -> ?msec:int -> ?callback:(unit -> unit) -> unit -> t
+      [@@js.call "setTimeout"]
+
+    val cast : t -> Tls.Server.t [@@js.cast]
+  end
+  [@@js.scope "Http2SecureServer"]
+
   module Constants : sig
-    val n_ghttp2_SESSION_SERVER : int [@@js.global "NGHTTP2_SESSION_SERVER"]
+    val ngsession_server : int [@@js.global "NGHTTP2_SESSION_SERVER"]
 
-    val n_ghttp2_SESSION_CLIENT : int [@@js.global "NGHTTP2_SESSION_CLIENT"]
+    val ngsession_client : int [@@js.global "NGHTTP2_SESSION_CLIENT"]
 
-    val n_ghttp2_STREAM_STATE_IDLE : int
-      [@@js.global "NGHTTP2_STREAM_STATE_IDLE"]
+    val ngstream_state_idle : int [@@js.global "NGHTTP2_STREAM_STATE_IDLE"]
 
-    val n_ghttp2_STREAM_STATE_OPEN : int
-      [@@js.global "NGHTTP2_STREAM_STATE_OPEN"]
+    val ngstream_state_open : int [@@js.global "NGHTTP2_STREAM_STATE_OPEN"]
 
-    val n_ghttp2_STREAM_STATE_RESERVED_LOCAL : int
+    val ngstream_state_reserved_local : int
       [@@js.global "NGHTTP2_STREAM_STATE_RESERVED_LOCAL"]
 
-    val n_ghttp2_STREAM_STATE_RESERVED_REMOTE : int
+    val ngstream_state_reserved_remote : int
       [@@js.global "NGHTTP2_STREAM_STATE_RESERVED_REMOTE"]
 
-    val n_ghttp2_STREAM_STATE_HALF_CLOSED_LOCAL : int
+    val ngstream_state_half_closed_local : int
       [@@js.global "NGHTTP2_STREAM_STATE_HALF_CLOSED_LOCAL"]
 
-    val n_ghttp2_STREAM_STATE_HALF_CLOSED_REMOTE : int
+    val ngstream_state_half_closed_remote : int
       [@@js.global "NGHTTP2_STREAM_STATE_HALF_CLOSED_REMOTE"]
 
-    val n_ghttp2_STREAM_STATE_CLOSED : int
-      [@@js.global "NGHTTP2_STREAM_STATE_CLOSED"]
+    val ngstream_state_closed : int [@@js.global "NGHTTP2_STREAM_STATE_CLOSED"]
 
-    val n_ghttp2_NO_ERROR : int [@@js.global "NGHTTP2_NO_ERROR"]
+    val ngno_error : int [@@js.global "NGHTTP2_NO_ERROR"]
 
-    val n_ghttp2_PROTOCOL_ERROR : int [@@js.global "NGHTTP2_PROTOCOL_ERROR"]
+    val ngprotocol_error : int [@@js.global "NGHTTP2_PROTOCOL_ERROR"]
 
-    val n_ghttp2_INTERNAL_ERROR : int [@@js.global "NGHTTP2_INTERNAL_ERROR"]
+    val nginternal_error : int [@@js.global "NGHTTP2_INTERNAL_ERROR"]
 
-    val n_ghttp2_FLOW_CONTROL_ERROR : int
-      [@@js.global "NGHTTP2_FLOW_CONTROL_ERROR"]
+    val ngflow_control_error : int [@@js.global "NGHTTP2_FLOW_CONTROL_ERROR"]
 
-    val n_ghttp2_SETTINGS_TIMEOUT : int [@@js.global "NGHTTP2_SETTINGS_TIMEOUT"]
+    val ngsettings_timeout : int [@@js.global "NGHTTP2_SETTINGS_TIMEOUT"]
 
-    val n_ghttp2_STREAM_CLOSED : int [@@js.global "NGHTTP2_STREAM_CLOSED"]
+    val ngstream_closed : int [@@js.global "NGHTTP2_STREAM_CLOSED"]
 
-    val n_ghttp2_FRAME_SIZE_ERROR : int [@@js.global "NGHTTP2_FRAME_SIZE_ERROR"]
+    val ngframe_size_error : int [@@js.global "NGHTTP2_FRAME_SIZE_ERROR"]
 
-    val n_ghttp2_REFUSED_STREAM : int [@@js.global "NGHTTP2_REFUSED_STREAM"]
+    val ngrefused_stream : int [@@js.global "NGHTTP2_REFUSED_STREAM"]
 
-    val n_ghttp2_CANCEL : int [@@js.global "NGHTTP2_CANCEL"]
+    val ngcancel : int [@@js.global "NGHTTP2_CANCEL"]
 
-    val n_ghttp2_COMPRESSION_ERROR : int
-      [@@js.global "NGHTTP2_COMPRESSION_ERROR"]
+    val ngcompression_error : int [@@js.global "NGHTTP2_COMPRESSION_ERROR"]
 
-    val n_ghttp2_CONNECT_ERROR : int [@@js.global "NGHTTP2_CONNECT_ERROR"]
+    val ngconnect_error : int [@@js.global "NGHTTP2_CONNECT_ERROR"]
 
-    val n_ghttp2_ENHANCE_YOUR_CALM : int
-      [@@js.global "NGHTTP2_ENHANCE_YOUR_CALM"]
+    val ngenhance_your_calm : int [@@js.global "NGHTTP2_ENHANCE_YOUR_CALM"]
 
-    val n_ghttp2_INADEQUATE_SECURITY : int
-      [@@js.global "NGHTTP2_INADEQUATE_SECURITY"]
+    val nginadequate_security : int [@@js.global "NGHTTP2_INADEQUATE_SECURITY"]
 
-    val n_ghttp2_HTTP_1_1_REQUIRED : int
-      [@@js.global "NGHTTP2_HTTP_1_1_REQUIRED"]
+    val nghttp_1_1_required : int [@@js.global "NGHTTP2_HTTP_1_1_REQUIRED"]
 
-    val n_ghttp2_ERR_FRAME_SIZE_ERROR : int
+    val ngerr_frame_size_error : int
       [@@js.global "NGHTTP2_ERR_FRAME_SIZE_ERROR"]
 
-    val n_ghttp2_FLAG_NONE : int [@@js.global "NGHTTP2_FLAG_NONE"]
+    val ngflag_none : int [@@js.global "NGHTTP2_FLAG_NONE"]
 
-    val n_ghttp2_FLAG_END_STREAM : int [@@js.global "NGHTTP2_FLAG_END_STREAM"]
+    val ngflag_end_stream : int [@@js.global "NGHTTP2_FLAG_END_STREAM"]
 
-    val n_ghttp2_FLAG_END_HEADERS : int [@@js.global "NGHTTP2_FLAG_END_HEADERS"]
+    val ngflag_end_headers : int [@@js.global "NGHTTP2_FLAG_END_HEADERS"]
 
-    val n_ghttp2_FLAG_ACK : int [@@js.global "NGHTTP2_FLAG_ACK"]
+    val ngflag_ack : int [@@js.global "NGHTTP2_FLAG_ACK"]
 
-    val n_ghttp2_FLAG_PADDED : int [@@js.global "NGHTTP2_FLAG_PADDED"]
+    val ngflag_padded : int [@@js.global "NGHTTP2_FLAG_PADDED"]
 
-    val n_ghttp2_FLAG_PRIORITY : int [@@js.global "NGHTTP2_FLAG_PRIORITY"]
+    val ngflag_priority : int [@@js.global "NGHTTP2_FLAG_PRIORITY"]
 
-    val d_efault_settings_header_table_size : int
+    val default_settings_header_table_size : int
       [@@js.global "DEFAULT_SETTINGS_HEADER_TABLE_SIZE"]
 
-    val d_efault_settings_enable_push : int
+    val default_settings_enable_push : int
       [@@js.global "DEFAULT_SETTINGS_ENABLE_PUSH"]
 
-    val d_efault_settings_initial_window_size : int
+    val default_settings_initial_window_size : int
       [@@js.global "DEFAULT_SETTINGS_INITIAL_WINDOW_SIZE"]
 
-    val d_efault_settings_max_frame_size : int
+    val default_settings_max_frame_size : int
       [@@js.global "DEFAULT_SETTINGS_MAX_FRAME_SIZE"]
 
-    val m_ax_max_frame_size : int [@@js.global "MAX_MAX_FRAME_SIZE"]
+    val max_max_frame_size : int [@@js.global "MAX_MAX_FRAME_SIZE"]
 
-    val m_in_max_frame_size : int [@@js.global "MIN_MAX_FRAME_SIZE"]
+    val min_max_frame_size : int [@@js.global "MIN_MAX_FRAME_SIZE"]
 
-    val m_ax_initial_window_size : int [@@js.global "MAX_INITIAL_WINDOW_SIZE"]
+    val max_initial_window_size : int [@@js.global "MAX_INITIAL_WINDOW_SIZE"]
 
-    val n_ghttp2_DEFAULT_WEIGHT : int [@@js.global "NGHTTP2_DEFAULT_WEIGHT"]
+    val ngdefault_weight : int [@@js.global "NGHTTP2_DEFAULT_WEIGHT"]
 
-    val n_ghttp2_SETTINGS_HEADER_TABLE_SIZE : int
+    val ngsettings_header_table_size : int
       [@@js.global "NGHTTP2_SETTINGS_HEADER_TABLE_SIZE"]
 
-    val n_ghttp2_SETTINGS_ENABLE_PUSH : int
+    val ngsettings_enable_push : int
       [@@js.global "NGHTTP2_SETTINGS_ENABLE_PUSH"]
 
-    val n_ghttp2_SETTINGS_MAX_CONCURRENT_STREAMS : int
+    val ngsettings_max_concurrent_streams : int
       [@@js.global "NGHTTP2_SETTINGS_MAX_CONCURRENT_STREAMS"]
 
-    val n_ghttp2_SETTINGS_INITIAL_WINDOW_SIZE : int
+    val ngsettings_initial_window_size : int
       [@@js.global "NGHTTP2_SETTINGS_INITIAL_WINDOW_SIZE"]
 
-    val n_ghttp2_SETTINGS_MAX_FRAME_SIZE : int
+    val ngsettings_max_frame_size : int
       [@@js.global "NGHTTP2_SETTINGS_MAX_FRAME_SIZE"]
 
-    val n_ghttp2_SETTINGS_MAX_HEADER_LIST_SIZE : int
+    val ngsettings_max_header_list_size : int
       [@@js.global "NGHTTP2_SETTINGS_MAX_HEADER_LIST_SIZE"]
 
-    val p_adding_strategy_none : int [@@js.global "PADDING_STRATEGY_NONE"]
+    val padding_strategy_none : int [@@js.global "PADDING_STRATEGY_NONE"]
 
-    val p_adding_strategy_max : int [@@js.global "PADDING_STRATEGY_MAX"]
+    val padding_strategy_max : int [@@js.global "PADDING_STRATEGY_MAX"]
 
-    val p_adding_strategy_callback : int
+    val padding_strategy_callback : int
       [@@js.global "PADDING_STRATEGY_CALLBACK"]
 
-    val h_ttp2_HEADER_STATUS : string [@@js.global "HTTP2_HEADER_STATUS"]
+    val http2_HEADER_STATUS : string [@@js.global "HTTP2_HEADER_STATUS"]
 
-    val h_ttp2_HEADER_METHOD : string [@@js.global "HTTP2_HEADER_METHOD"]
+    val http2_HEADER_METHOD : string [@@js.global "HTTP2_HEADER_METHOD"]
 
-    val h_ttp2_HEADER_AUTHORITY : string [@@js.global "HTTP2_HEADER_AUTHORITY"]
+    val http2_HEADER_AUTHORITY : string [@@js.global "HTTP2_HEADER_AUTHORITY"]
 
-    val h_ttp2_HEADER_SCHEME : string [@@js.global "HTTP2_HEADER_SCHEME"]
+    val http2_HEADER_SCHEME : string [@@js.global "HTTP2_HEADER_SCHEME"]
 
-    val h_ttp2_HEADER_PATH : string [@@js.global "HTTP2_HEADER_PATH"]
+    val http2_HEADER_PATH : string [@@js.global "HTTP2_HEADER_PATH"]
 
-    val h_ttp2_HEADER_ACCEPT_CHARSET : string
+    val http2_HEADER_ACCEPT_CHARSET : string
       [@@js.global "HTTP2_HEADER_ACCEPT_CHARSET"]
 
-    val h_ttp2_HEADER_ACCEPT_ENCODING : string
+    val http2_HEADER_ACCEPT_ENCODING : string
       [@@js.global "HTTP2_HEADER_ACCEPT_ENCODING"]
 
-    val h_ttp2_HEADER_ACCEPT_LANGUAGE : string
+    val http2_HEADER_ACCEPT_LANGUAGE : string
       [@@js.global "HTTP2_HEADER_ACCEPT_LANGUAGE"]
 
-    val h_ttp2_HEADER_ACCEPT_RANGES : string
+    val http2_HEADER_ACCEPT_RANGES : string
       [@@js.global "HTTP2_HEADER_ACCEPT_RANGES"]
 
-    val h_ttp2_HEADER_ACCEPT : string [@@js.global "HTTP2_HEADER_ACCEPT"]
+    val http2_HEADER_ACCEPT : string [@@js.global "HTTP2_HEADER_ACCEPT"]
 
-    val h_ttp2_HEADER_ACCESS_CONTROL_ALLOW_ORIGIN : string
+    val http2_HEADER_ACCESS_CONTROL_ALLOW_ORIGIN : string
       [@@js.global "HTTP2_HEADER_ACCESS_CONTROL_ALLOW_ORIGIN"]
 
-    val h_ttp2_HEADER_AGE : string [@@js.global "HTTP2_HEADER_AGE"]
+    val http2_HEADER_AGE : string [@@js.global "HTTP2_HEADER_AGE"]
 
-    val h_ttp2_HEADER_ALLOW : string [@@js.global "HTTP2_HEADER_ALLOW"]
+    val http2_HEADER_ALLOW : string [@@js.global "HTTP2_HEADER_ALLOW"]
 
-    val h_ttp2_HEADER_AUTHORIZATION : string
+    val http2_HEADER_AUTHORIZATION : string
       [@@js.global "HTTP2_HEADER_AUTHORIZATION"]
 
-    val h_ttp2_HEADER_CACHE_CONTROL : string
+    val http2_HEADER_CACHE_CONTROL : string
       [@@js.global "HTTP2_HEADER_CACHE_CONTROL"]
 
-    val h_ttp2_HEADER_CONNECTION : string
-      [@@js.global "HTTP2_HEADER_CONNECTION"]
+    val http2_HEADER_CONNECTION : string [@@js.global "HTTP2_HEADER_CONNECTION"]
 
-    val h_ttp2_HEADER_CONTENT_DISPOSITION : string
+    val http2_HEADER_CONTENT_DISPOSITION : string
       [@@js.global "HTTP2_HEADER_CONTENT_DISPOSITION"]
 
-    val h_ttp2_HEADER_CONTENT_ENCODING : string
+    val http2_HEADER_CONTENT_ENCODING : string
       [@@js.global "HTTP2_HEADER_CONTENT_ENCODING"]
 
-    val h_ttp2_HEADER_CONTENT_LANGUAGE : string
+    val http2_HEADER_CONTENT_LANGUAGE : string
       [@@js.global "HTTP2_HEADER_CONTENT_LANGUAGE"]
 
-    val h_ttp2_HEADER_CONTENT_LENGTH : string
+    val http2_HEADER_CONTENT_LENGTH : string
       [@@js.global "HTTP2_HEADER_CONTENT_LENGTH"]
 
-    val h_ttp2_HEADER_CONTENT_LOCATION : string
+    val http2_HEADER_CONTENT_LOCATION : string
       [@@js.global "HTTP2_HEADER_CONTENT_LOCATION"]
 
-    val h_ttp2_HEADER_CONTENT_MD5 : string
+    val http2_HEADER_CONTENT_MD5 : string
       [@@js.global "HTTP2_HEADER_CONTENT_MD5"]
 
-    val h_ttp2_HEADER_CONTENT_RANGE : string
+    val http2_HEADER_CONTENT_RANGE : string
       [@@js.global "HTTP2_HEADER_CONTENT_RANGE"]
 
-    val h_ttp2_HEADER_CONTENT_TYPE : string
+    val http2_HEADER_CONTENT_TYPE : string
       [@@js.global "HTTP2_HEADER_CONTENT_TYPE"]
 
-    val h_ttp2_HEADER_COOKIE : string [@@js.global "HTTP2_HEADER_COOKIE"]
+    val http2_HEADER_COOKIE : string [@@js.global "HTTP2_HEADER_COOKIE"]
 
-    val h_ttp2_HEADER_DATE : string [@@js.global "HTTP2_HEADER_DATE"]
+    val http2_HEADER_DATE : string [@@js.global "HTTP2_HEADER_DATE"]
 
-    val h_ttp2_HEADER_ETAG : string [@@js.global "HTTP2_HEADER_ETAG"]
+    val http2_HEADER_ETAG : string [@@js.global "HTTP2_HEADER_ETAG"]
 
-    val h_ttp2_HEADER_EXPECT : string [@@js.global "HTTP2_HEADER_EXPECT"]
+    val http2_HEADER_EXPECT : string [@@js.global "HTTP2_HEADER_EXPECT"]
 
-    val h_ttp2_HEADER_EXPIRES : string [@@js.global "HTTP2_HEADER_EXPIRES"]
+    val http2_HEADER_EXPIRES : string [@@js.global "HTTP2_HEADER_EXPIRES"]
 
-    val h_ttp2_HEADER_FROM : string [@@js.global "HTTP2_HEADER_FROM"]
+    val http2_HEADER_FROM : string [@@js.global "HTTP2_HEADER_FROM"]
 
-    val h_ttp2_HEADER_HOST : string [@@js.global "HTTP2_HEADER_HOST"]
+    val http2_HEADER_HOST : string [@@js.global "HTTP2_HEADER_HOST"]
 
-    val h_ttp2_HEADER_IF_MATCH : string [@@js.global "HTTP2_HEADER_IF_MATCH"]
+    val http2_HEADER_IF_MATCH : string [@@js.global "HTTP2_HEADER_IF_MATCH"]
 
-    val h_ttp2_HEADER_IF_MODIFIED_SINCE : string
+    val http2_HEADER_IF_MODIFIED_SINCE : string
       [@@js.global "HTTP2_HEADER_IF_MODIFIED_SINCE"]
 
-    val h_ttp2_HEADER_IF_NONE_MATCH : string
+    val http2_HEADER_IF_NONE_MATCH : string
       [@@js.global "HTTP2_HEADER_IF_NONE_MATCH"]
 
-    val h_ttp2_HEADER_IF_RANGE : string [@@js.global "HTTP2_HEADER_IF_RANGE"]
+    val http2_HEADER_IF_RANGE : string [@@js.global "HTTP2_HEADER_IF_RANGE"]
 
-    val h_ttp2_HEADER_IF_UNMODIFIED_SINCE : string
+    val http2_HEADER_IF_UNMODIFIED_SINCE : string
       [@@js.global "HTTP2_HEADER_IF_UNMODIFIED_SINCE"]
 
-    val h_ttp2_HEADER_LAST_MODIFIED : string
+    val http2_HEADER_LAST_MODIFIED : string
       [@@js.global "HTTP2_HEADER_LAST_MODIFIED"]
 
-    val h_ttp2_HEADER_LINK : string [@@js.global "HTTP2_HEADER_LINK"]
+    val http2_HEADER_LINK : string [@@js.global "HTTP2_HEADER_LINK"]
 
-    val h_ttp2_HEADER_LOCATION : string [@@js.global "HTTP2_HEADER_LOCATION"]
+    val http2_HEADER_LOCATION : string [@@js.global "HTTP2_HEADER_LOCATION"]
 
-    val h_ttp2_HEADER_MAX_FORWARDS : string
+    val http2_HEADER_MAX_FORWARDS : string
       [@@js.global "HTTP2_HEADER_MAX_FORWARDS"]
 
-    val h_ttp2_HEADER_PREFER : string [@@js.global "HTTP2_HEADER_PREFER"]
+    val http2_HEADER_PREFER : string [@@js.global "HTTP2_HEADER_PREFER"]
 
-    val h_ttp2_HEADER_PROXY_AUTHENTICATE : string
+    val http2_HEADER_PROXY_AUTHENTICATE : string
       [@@js.global "HTTP2_HEADER_PROXY_AUTHENTICATE"]
 
-    val h_ttp2_HEADER_PROXY_AUTHORIZATION : string
+    val http2_HEADER_PROXY_AUTHORIZATION : string
       [@@js.global "HTTP2_HEADER_PROXY_AUTHORIZATION"]
 
-    val h_ttp2_HEADER_RANGE : string [@@js.global "HTTP2_HEADER_RANGE"]
+    val http2_HEADER_RANGE : string [@@js.global "HTTP2_HEADER_RANGE"]
 
-    val h_ttp2_HEADER_REFERER : string [@@js.global "HTTP2_HEADER_REFERER"]
+    val http2_HEADER_REFERER : string [@@js.global "HTTP2_HEADER_REFERER"]
 
-    val h_ttp2_HEADER_REFRESH : string [@@js.global "HTTP2_HEADER_REFRESH"]
+    val http2_HEADER_REFRESH : string [@@js.global "HTTP2_HEADER_REFRESH"]
 
-    val h_ttp2_HEADER_RETRY_AFTER : string
+    val http2_HEADER_RETRY_AFTER : string
       [@@js.global "HTTP2_HEADER_RETRY_AFTER"]
 
-    val h_ttp2_HEADER_SERVER : string [@@js.global "HTTP2_HEADER_SERVER"]
+    val http2_HEADER_SERVER : string [@@js.global "HTTP2_HEADER_SERVER"]
 
-    val h_ttp2_HEADER_SET_COOKIE : string
-      [@@js.global "HTTP2_HEADER_SET_COOKIE"]
+    val http2_HEADER_SET_COOKIE : string [@@js.global "HTTP2_HEADER_SET_COOKIE"]
 
-    val h_ttp2_HEADER_STRICT_TRANSPORT_SECURITY : string
+    val http2_HEADER_STRICT_TRANSPORT_SECURITY : string
       [@@js.global "HTTP2_HEADER_STRICT_TRANSPORT_SECURITY"]
 
-    val h_ttp2_HEADER_TRANSFER_ENCODING : string
+    val http2_HEADER_TRANSFER_ENCODING : string
       [@@js.global "HTTP2_HEADER_TRANSFER_ENCODING"]
 
-    val h_ttp2_HEADER_TE : string [@@js.global "HTTP2_HEADER_TE"]
+    val http2_HEADER_TE : string [@@js.global "HTTP2_HEADER_TE"]
 
-    val h_ttp2_HEADER_UPGRADE : string [@@js.global "HTTP2_HEADER_UPGRADE"]
+    val http2_HEADER_UPGRADE : string [@@js.global "HTTP2_HEADER_UPGRADE"]
 
-    val h_ttp2_HEADER_USER_AGENT : string
-      [@@js.global "HTTP2_HEADER_USER_AGENT"]
+    val http2_HEADER_USER_AGENT : string [@@js.global "HTTP2_HEADER_USER_AGENT"]
 
-    val h_ttp2_HEADER_VARY : string [@@js.global "HTTP2_HEADER_VARY"]
+    val http2_HEADER_VARY : string [@@js.global "HTTP2_HEADER_VARY"]
 
-    val h_ttp2_HEADER_VIA : string [@@js.global "HTTP2_HEADER_VIA"]
+    val http2_HEADER_VIA : string [@@js.global "HTTP2_HEADER_VIA"]
 
-    val h_ttp2_HEADER_WWW_AUTHENTICATE : string
+    val http2_HEADER_WWW_AUTHENTICATE : string
       [@@js.global "HTTP2_HEADER_WWW_AUTHENTICATE"]
 
-    val h_ttp2_HEADER_HTTP2_SETTINGS : string
+    val http2_HEADER_HTTP2_SETTINGS : string
       [@@js.global "HTTP2_HEADER_HTTP2_SETTINGS"]
 
-    val h_ttp2_HEADER_KEEP_ALIVE : string
-      [@@js.global "HTTP2_HEADER_KEEP_ALIVE"]
+    val http2_HEADER_KEEP_ALIVE : string [@@js.global "HTTP2_HEADER_KEEP_ALIVE"]
 
-    val h_ttp2_HEADER_PROXY_CONNECTION : string
+    val http2_HEADER_PROXY_CONNECTION : string
       [@@js.global "HTTP2_HEADER_PROXY_CONNECTION"]
 
-    val h_ttp2_METHOD_ACL : string [@@js.global "HTTP2_METHOD_ACL"]
+    val http2_METHOD_ACL : string [@@js.global "HTTP2_METHOD_ACL"]
 
-    val h_ttp2_METHOD_BASELINE_CONTROL : string
+    val http2_METHOD_BASELINE_CONTROL : string
       [@@js.global "HTTP2_METHOD_BASELINE_CONTROL"]
 
-    val h_ttp2_METHOD_BIND : string [@@js.global "HTTP2_METHOD_BIND"]
+    val http2_METHOD_BIND : string [@@js.global "HTTP2_METHOD_BIND"]
 
-    val h_ttp2_METHOD_CHECKIN : string [@@js.global "HTTP2_METHOD_CHECKIN"]
+    val http2_METHOD_CHECKIN : string [@@js.global "HTTP2_METHOD_CHECKIN"]
 
-    val h_ttp2_METHOD_CHECKOUT : string [@@js.global "HTTP2_METHOD_CHECKOUT"]
+    val http2_METHOD_CHECKOUT : string [@@js.global "HTTP2_METHOD_CHECKOUT"]
 
-    val h_ttp2_METHOD_CONNECT : string [@@js.global "HTTP2_METHOD_CONNECT"]
+    val http2_METHOD_CONNECT : string [@@js.global "HTTP2_METHOD_CONNECT"]
 
-    val h_ttp2_METHOD_COPY : string [@@js.global "HTTP2_METHOD_COPY"]
+    val http2_METHOD_COPY : string [@@js.global "HTTP2_METHOD_COPY"]
 
-    val h_ttp2_METHOD_DELETE : string [@@js.global "HTTP2_METHOD_DELETE"]
+    val http2_METHOD_DELETE : string [@@js.global "HTTP2_METHOD_DELETE"]
 
-    val h_ttp2_METHOD_GET : string [@@js.global "HTTP2_METHOD_GET"]
+    val http2_METHOD_GET : string [@@js.global "HTTP2_METHOD_GET"]
 
-    val h_ttp2_METHOD_HEAD : string [@@js.global "HTTP2_METHOD_HEAD"]
+    val http2_METHOD_HEAD : string [@@js.global "HTTP2_METHOD_HEAD"]
 
-    val h_ttp2_METHOD_LABEL : string [@@js.global "HTTP2_METHOD_LABEL"]
+    val http2_METHOD_LABEL : string [@@js.global "HTTP2_METHOD_LABEL"]
 
-    val h_ttp2_METHOD_LINK : string [@@js.global "HTTP2_METHOD_LINK"]
+    val http2_METHOD_LINK : string [@@js.global "HTTP2_METHOD_LINK"]
 
-    val h_ttp2_METHOD_LOCK : string [@@js.global "HTTP2_METHOD_LOCK"]
+    val http2_METHOD_LOCK : string [@@js.global "HTTP2_METHOD_LOCK"]
 
-    val h_ttp2_METHOD_MERGE : string [@@js.global "HTTP2_METHOD_MERGE"]
+    val http2_METHOD_MERGE : string [@@js.global "HTTP2_METHOD_MERGE"]
 
-    val h_ttp2_METHOD_MKACTIVITY : string
-      [@@js.global "HTTP2_METHOD_MKACTIVITY"]
+    val http2_METHOD_MKACTIVITY : string [@@js.global "HTTP2_METHOD_MKACTIVITY"]
 
-    val h_ttp2_METHOD_MKCALENDAR : string
-      [@@js.global "HTTP2_METHOD_MKCALENDAR"]
+    val http2_METHOD_MKCALENDAR : string [@@js.global "HTTP2_METHOD_MKCALENDAR"]
 
-    val h_ttp2_METHOD_MKCOL : string [@@js.global "HTTP2_METHOD_MKCOL"]
+    val http2_METHOD_MKCOL : string [@@js.global "HTTP2_METHOD_MKCOL"]
 
-    val h_ttp2_METHOD_MKREDIRECTREF : string
+    val http2_METHOD_MKREDIRECTREF : string
       [@@js.global "HTTP2_METHOD_MKREDIRECTREF"]
 
-    val h_ttp2_METHOD_MKWORKSPACE : string
+    val http2_METHOD_MKWORKSPACE : string
       [@@js.global "HTTP2_METHOD_MKWORKSPACE"]
 
-    val h_ttp2_METHOD_MOVE : string [@@js.global "HTTP2_METHOD_MOVE"]
+    val http2_METHOD_MOVE : string [@@js.global "HTTP2_METHOD_MOVE"]
 
-    val h_ttp2_METHOD_OPTIONS : string [@@js.global "HTTP2_METHOD_OPTIONS"]
+    val http2_METHOD_OPTIONS : string [@@js.global "HTTP2_METHOD_OPTIONS"]
 
-    val h_ttp2_METHOD_ORDERPATCH : string
-      [@@js.global "HTTP2_METHOD_ORDERPATCH"]
+    val http2_METHOD_ORDERPATCH : string [@@js.global "HTTP2_METHOD_ORDERPATCH"]
 
-    val h_ttp2_METHOD_PATCH : string [@@js.global "HTTP2_METHOD_PATCH"]
+    val http2_METHOD_PATCH : string [@@js.global "HTTP2_METHOD_PATCH"]
 
-    val h_ttp2_METHOD_POST : string [@@js.global "HTTP2_METHOD_POST"]
+    val http2_METHOD_POST : string [@@js.global "HTTP2_METHOD_POST"]
 
-    val h_ttp2_METHOD_PRI : string [@@js.global "HTTP2_METHOD_PRI"]
+    val http2_METHOD_PRI : string [@@js.global "HTTP2_METHOD_PRI"]
 
-    val h_ttp2_METHOD_PROPFIND : string [@@js.global "HTTP2_METHOD_PROPFIND"]
+    val http2_METHOD_PROPFIND : string [@@js.global "HTTP2_METHOD_PROPFIND"]
 
-    val h_ttp2_METHOD_PROPPATCH : string [@@js.global "HTTP2_METHOD_PROPPATCH"]
+    val http2_METHOD_PROPPATCH : string [@@js.global "HTTP2_METHOD_PROPPATCH"]
 
-    val h_ttp2_METHOD_PUT : string [@@js.global "HTTP2_METHOD_PUT"]
+    val http2_METHOD_PUT : string [@@js.global "HTTP2_METHOD_PUT"]
 
-    val h_ttp2_METHOD_REBIND : string [@@js.global "HTTP2_METHOD_REBIND"]
+    val http2_METHOD_REBIND : string [@@js.global "HTTP2_METHOD_REBIND"]
 
-    val h_ttp2_METHOD_REPORT : string [@@js.global "HTTP2_METHOD_REPORT"]
+    val http2_METHOD_REPORT : string [@@js.global "HTTP2_METHOD_REPORT"]
 
-    val h_ttp2_METHOD_SEARCH : string [@@js.global "HTTP2_METHOD_SEARCH"]
+    val http2_METHOD_SEARCH : string [@@js.global "HTTP2_METHOD_SEARCH"]
 
-    val h_ttp2_METHOD_TRACE : string [@@js.global "HTTP2_METHOD_TRACE"]
+    val http2_METHOD_TRACE : string [@@js.global "HTTP2_METHOD_TRACE"]
 
-    val h_ttp2_METHOD_UNBIND : string [@@js.global "HTTP2_METHOD_UNBIND"]
+    val http2_METHOD_UNBIND : string [@@js.global "HTTP2_METHOD_UNBIND"]
 
-    val h_ttp2_METHOD_UNCHECKOUT : string
-      [@@js.global "HTTP2_METHOD_UNCHECKOUT"]
+    val http2_METHOD_UNCHECKOUT : string [@@js.global "HTTP2_METHOD_UNCHECKOUT"]
 
-    val h_ttp2_METHOD_UNLINK : string [@@js.global "HTTP2_METHOD_UNLINK"]
+    val http2_METHOD_UNLINK : string [@@js.global "HTTP2_METHOD_UNLINK"]
 
-    val h_ttp2_METHOD_UNLOCK : string [@@js.global "HTTP2_METHOD_UNLOCK"]
+    val http2_METHOD_UNLOCK : string [@@js.global "HTTP2_METHOD_UNLOCK"]
 
-    val h_ttp2_METHOD_UPDATE : string [@@js.global "HTTP2_METHOD_UPDATE"]
+    val http2_METHOD_UPDATE : string [@@js.global "HTTP2_METHOD_UPDATE"]
 
-    val h_ttp2_METHOD_UPDATEREDIRECTREF : string
+    val http2_METHOD_UPDATEREDIRECTREF : string
       [@@js.global "HTTP2_METHOD_UPDATEREDIRECTREF"]
 
-    val h_ttp2_METHOD_VERSION_CONTROL : string
+    val http2_METHOD_VERSION_CONTROL : string
       [@@js.global "HTTP2_METHOD_VERSION_CONTROL"]
 
-    val h_ttp_status_continue : int [@@js.global "HTTP_STATUS_CONTINUE"]
+    val http_status_continue : int [@@js.global "HTTP_STATUS_CONTINUE"]
 
-    val h_ttp_status_switching_protocols : int
+    val http_status_switching_protocols : int
       [@@js.global "HTTP_STATUS_SWITCHING_PROTOCOLS"]
 
-    val h_ttp_status_processing : int [@@js.global "HTTP_STATUS_PROCESSING"]
+    val http_status_processing : int [@@js.global "HTTP_STATUS_PROCESSING"]
 
-    val h_ttp_status_ok : int [@@js.global "HTTP_STATUS_OK"]
+    val http_status_ok : int [@@js.global "HTTP_STATUS_OK"]
 
-    val h_ttp_status_created : int [@@js.global "HTTP_STATUS_CREATED"]
+    val http_status_created : int [@@js.global "HTTP_STATUS_CREATED"]
 
-    val h_ttp_status_accepted : int [@@js.global "HTTP_STATUS_ACCEPTED"]
+    val http_status_accepted : int [@@js.global "HTTP_STATUS_ACCEPTED"]
 
-    val h_ttp_status_non_authoritative_information : int
+    val http_status_non_authoritative_information : int
       [@@js.global "HTTP_STATUS_NON_AUTHORITATIVE_INFORMATION"]
 
-    val h_ttp_status_no_content : int [@@js.global "HTTP_STATUS_NO_CONTENT"]
+    val http_status_no_content : int [@@js.global "HTTP_STATUS_NO_CONTENT"]
 
-    val h_ttp_status_reset_content : int
+    val http_status_reset_content : int
       [@@js.global "HTTP_STATUS_RESET_CONTENT"]
 
-    val h_ttp_status_partial_content : int
+    val http_status_partial_content : int
       [@@js.global "HTTP_STATUS_PARTIAL_CONTENT"]
 
-    val h_ttp_status_multi_status : int [@@js.global "HTTP_STATUS_MULTI_STATUS"]
+    val http_status_multi_status : int [@@js.global "HTTP_STATUS_MULTI_STATUS"]
 
-    val h_ttp_status_already_reported : int
+    val http_status_already_reported : int
       [@@js.global "HTTP_STATUS_ALREADY_REPORTED"]
 
-    val h_ttp_status_im_used : int [@@js.global "HTTP_STATUS_IM_USED"]
+    val http_status_im_used : int [@@js.global "HTTP_STATUS_IM_USED"]
 
-    val h_ttp_status_multiple_choices : int
+    val http_status_multiple_choices : int
       [@@js.global "HTTP_STATUS_MULTIPLE_CHOICES"]
 
-    val h_ttp_status_moved_permanently : int
+    val http_status_moved_permanently : int
       [@@js.global "HTTP_STATUS_MOVED_PERMANENTLY"]
 
-    val h_ttp_status_found : int [@@js.global "HTTP_STATUS_FOUND"]
+    val http_status_found : int [@@js.global "HTTP_STATUS_FOUND"]
 
-    val h_ttp_status_see_other : int [@@js.global "HTTP_STATUS_SEE_OTHER"]
+    val http_status_see_other : int [@@js.global "HTTP_STATUS_SEE_OTHER"]
 
-    val h_ttp_status_not_modified : int [@@js.global "HTTP_STATUS_NOT_MODIFIED"]
+    val http_status_not_modified : int [@@js.global "HTTP_STATUS_NOT_MODIFIED"]
 
-    val h_ttp_status_use_proxy : int [@@js.global "HTTP_STATUS_USE_PROXY"]
+    val http_status_use_proxy : int [@@js.global "HTTP_STATUS_USE_PROXY"]
 
-    val h_ttp_status_temporary_redirect : int
+    val http_status_temporary_redirect : int
       [@@js.global "HTTP_STATUS_TEMPORARY_REDIRECT"]
 
-    val h_ttp_status_permanent_redirect : int
+    val http_status_permanent_redirect : int
       [@@js.global "HTTP_STATUS_PERMANENT_REDIRECT"]
 
-    val h_ttp_status_bad_request : int [@@js.global "HTTP_STATUS_BAD_REQUEST"]
+    val http_status_bad_request : int [@@js.global "HTTP_STATUS_BAD_REQUEST"]
 
-    val h_ttp_status_unauthorized : int [@@js.global "HTTP_STATUS_UNAUTHORIZED"]
+    val http_status_unauthorized : int [@@js.global "HTTP_STATUS_UNAUTHORIZED"]
 
-    val h_ttp_status_payment_required : int
+    val http_status_payment_required : int
       [@@js.global "HTTP_STATUS_PAYMENT_REQUIRED"]
 
-    val h_ttp_status_forbidden : int [@@js.global "HTTP_STATUS_FORBIDDEN"]
+    val http_status_forbidden : int [@@js.global "HTTP_STATUS_FORBIDDEN"]
 
-    val h_ttp_status_not_found : int [@@js.global "HTTP_STATUS_NOT_FOUND"]
+    val http_status_not_found : int [@@js.global "HTTP_STATUS_NOT_FOUND"]
 
-    val h_ttp_status_method_not_allowed : int
+    val http_status_method_not_allowed : int
       [@@js.global "HTTP_STATUS_METHOD_NOT_ALLOWED"]
 
-    val h_ttp_status_not_acceptable : int
+    val http_status_not_acceptable : int
       [@@js.global "HTTP_STATUS_NOT_ACCEPTABLE"]
 
-    val h_ttp_status_proxy_authentication_required : int
+    val http_status_proxy_authentication_required : int
       [@@js.global "HTTP_STATUS_PROXY_AUTHENTICATION_REQUIRED"]
 
-    val h_ttp_status_request_timeout : int
+    val http_status_request_timeout : int
       [@@js.global "HTTP_STATUS_REQUEST_TIMEOUT"]
 
-    val h_ttp_status_conflict : int [@@js.global "HTTP_STATUS_CONFLICT"]
+    val http_status_conflict : int [@@js.global "HTTP_STATUS_CONFLICT"]
 
-    val h_ttp_status_gone : int [@@js.global "HTTP_STATUS_GONE"]
+    val http_status_gone : int [@@js.global "HTTP_STATUS_GONE"]
 
-    val h_ttp_status_length_required : int
+    val http_status_length_required : int
       [@@js.global "HTTP_STATUS_LENGTH_REQUIRED"]
 
-    val h_ttp_status_precondition_failed : int
+    val http_status_precondition_failed : int
       [@@js.global "HTTP_STATUS_PRECONDITION_FAILED"]
 
-    val h_ttp_status_payload_too_large : int
+    val http_status_payload_too_large : int
       [@@js.global "HTTP_STATUS_PAYLOAD_TOO_LARGE"]
 
-    val h_ttp_status_uri_too_long : int [@@js.global "HTTP_STATUS_URI_TOO_LONG"]
+    val http_status_uri_too_long : int [@@js.global "HTTP_STATUS_URI_TOO_LONG"]
 
-    val h_ttp_status_unsupported_media_type : int
+    val http_status_unsupported_media_type : int
       [@@js.global "HTTP_STATUS_UNSUPPORTED_MEDIA_TYPE"]
 
-    val h_ttp_status_range_not_satisfiable : int
+    val http_status_range_not_satisfiable : int
       [@@js.global "HTTP_STATUS_RANGE_NOT_SATISFIABLE"]
 
-    val h_ttp_status_expectation_failed : int
+    val http_status_expectation_failed : int
       [@@js.global "HTTP_STATUS_EXPECTATION_FAILED"]
 
-    val h_ttp_status_teapot : int [@@js.global "HTTP_STATUS_TEAPOT"]
+    val http_status_teapot : int [@@js.global "HTTP_STATUS_TEAPOT"]
 
-    val h_ttp_status_misdirected_request : int
+    val http_status_misdirected_request : int
       [@@js.global "HTTP_STATUS_MISDIRECTED_REQUEST"]
 
-    val h_ttp_status_unprocessable_entity : int
+    val http_status_unprocessable_entity : int
       [@@js.global "HTTP_STATUS_UNPROCESSABLE_ENTITY"]
 
-    val h_ttp_status_locked : int [@@js.global "HTTP_STATUS_LOCKED"]
+    val http_status_locked : int [@@js.global "HTTP_STATUS_LOCKED"]
 
-    val h_ttp_status_failed_dependency : int
+    val http_status_failed_dependency : int
       [@@js.global "HTTP_STATUS_FAILED_DEPENDENCY"]
 
-    val h_ttp_status_unordered_collection : int
+    val http_status_unordered_collection : int
       [@@js.global "HTTP_STATUS_UNORDERED_COLLECTION"]
 
-    val h_ttp_status_upgrade_required : int
+    val http_status_upgrade_required : int
       [@@js.global "HTTP_STATUS_UPGRADE_REQUIRED"]
 
-    val h_ttp_status_precondition_required : int
+    val http_status_precondition_required : int
       [@@js.global "HTTP_STATUS_PRECONDITION_REQUIRED"]
 
-    val h_ttp_status_too_many_requests : int
+    val http_status_too_many_requests : int
       [@@js.global "HTTP_STATUS_TOO_MANY_REQUESTS"]
 
-    val h_ttp_status_request_header_fields_too_large : int
+    val http_status_request_header_fields_too_large : int
       [@@js.global "HTTP_STATUS_REQUEST_HEADER_FIELDS_TOO_LARGE"]
 
-    val h_ttp_status_unavailable_for_legal_reasons : int
+    val http_status_unavailable_for_legal_reasons : int
       [@@js.global "HTTP_STATUS_UNAVAILABLE_FOR_LEGAL_REASONS"]
 
-    val h_ttp_status_internal_server_error : int
+    val http_status_internal_server_error : int
       [@@js.global "HTTP_STATUS_INTERNAL_SERVER_ERROR"]
 
-    val h_ttp_status_not_implemented : int
+    val http_status_not_implemented : int
       [@@js.global "HTTP_STATUS_NOT_IMPLEMENTED"]
 
-    val h_ttp_status_bad_gateway : int [@@js.global "HTTP_STATUS_BAD_GATEWAY"]
+    val http_status_bad_gateway : int [@@js.global "HTTP_STATUS_BAD_GATEWAY"]
 
-    val h_ttp_status_service_unavailable : int
+    val http_status_service_unavailable : int
       [@@js.global "HTTP_STATUS_SERVICE_UNAVAILABLE"]
 
-    val h_ttp_status_gateway_timeout : int
+    val http_status_gateway_timeout : int
       [@@js.global "HTTP_STATUS_GATEWAY_TIMEOUT"]
 
-    val h_ttp_status_http_version_not_supported : int
+    val http_status_http_version_not_supported : int
       [@@js.global "HTTP_STATUS_HTTP_VERSION_NOT_SUPPORTED"]
 
-    val h_ttp_status_variant_also_negotiates : int
+    val http_status_variant_also_negotiates : int
       [@@js.global "HTTP_STATUS_VARIANT_ALSO_NEGOTIATES"]
 
-    val h_ttp_status_insufficient_storage : int
+    val http_status_insufficient_storage : int
       [@@js.global "HTTP_STATUS_INSUFFICIENT_STORAGE"]
 
-    val h_ttp_status_loop_detected : int
+    val http_status_loop_detected : int
       [@@js.global "HTTP_STATUS_LOOP_DETECTED"]
 
-    val h_ttp_status_bandwidth_limit_exceeded : int
+    val http_status_bandwidth_limit_exceeded : int
       [@@js.global "HTTP_STATUS_BANDWIDTH_LIMIT_EXCEEDED"]
 
-    val h_ttp_status_not_extended : int [@@js.global "HTTP_STATUS_NOT_EXTENDED"]
+    val http_status_not_extended : int [@@js.global "HTTP_STATUS_NOT_EXTENDED"]
 
-    val h_ttp_status_network_authentication_required : int
+    val http_status_network_authentication_required : int
       [@@js.global "HTTP_STATUS_NETWORK_AUTHENTICATION_REQUIRED"]
   end
   [@@js.scope "constants"]
 
-  val get_default_settings : unit -> http2_Settings
+  val get_default_settings : unit -> Settings.t
     [@@js.global "getDefaultSettings"]
 
-  val get_packed_settings : settings:http2_Settings -> Buffer.t
+  val get_packed_settings : settings:Settings.t -> Buffer.t
     [@@js.global "getPackedSettings"]
 
-  val get_unpacked_settings : buf:Uint8Array.t -> http2_Settings
+  val get_unpacked_settings : buf:Uint8Array.t -> Settings.t
     [@@js.global "getUnpackedSettings"]
 
   val create_server
     :  ?on_request_handler:
-         (request:http2_Http2ServerRequest
-          -> response:http2_Http2ServerResponse
+         (request:Http2ServerRequest.t
+          -> response:Http2ServerResponse.t
           -> unit)
     -> unit
-    -> http2_Http2Server
+    -> Http2Server.t
     [@@js.global "createServer"]
 
   val create_server
-    :  options:http2_ServerOptions
+    :  options:ServerOptions.t
     -> ?on_request_handler:
-         (request:http2_Http2ServerRequest
-          -> response:http2_Http2ServerResponse
+         (request:Http2ServerRequest.t
+          -> response:Http2ServerResponse.t
           -> unit)
     -> unit
-    -> http2_Http2Server
+    -> Http2Server.t
     [@@js.global "createServer"]
 
   val create_secure_server
     :  ?on_request_handler:
-         (request:http2_Http2ServerRequest
-          -> response:http2_Http2ServerResponse
+         (request:Http2ServerRequest.t
+          -> response:Http2ServerResponse.t
           -> unit)
     -> unit
-    -> http2_Http2SecureServer
+    -> Http2SecureServer.t
     [@@js.global "createSecureServer"]
 
   val create_secure_server
-    :  options:http2_SecureServerOptions
+    :  options:SecureServerOptions.t
     -> ?on_request_handler:
-         (request:http2_Http2ServerRequest
-          -> response:http2_Http2ServerResponse
+         (request:Http2ServerRequest.t
+          -> response:Http2ServerResponse.t
           -> unit)
     -> unit
-    -> http2_Http2SecureServer
+    -> Http2SecureServer.t
     [@@js.global "createSecureServer"]
 
   val connect
     :  authority:Url.URL.t or_string
     -> listener:
-         (session:http2_ClientHttp2Session
+         (session:ClientHttp2Session.t
           -> socket:(Net.Socket.t, Tls.TLSSocket.t) union2
           -> unit)
-    -> http2_ClientHttp2Session
+    -> ClientHttp2Session.t
     [@@js.global "connect"]
 
   val connect
     :  authority:Url.URL.t or_string
     -> ?options:
          ([ `U_s15_http_ of
-            ( http2_ClientSessionOptions
-            , http2_SecureClientSessionOptions )
-            union2
+            (ClientSessionOptions.t, SecureClientSessionOptions.t) union2
           | `U_s16_https_ of
-            ( http2_ClientSessionOptions
-            , http2_SecureClientSessionOptions )
-            union2
+            (ClientSessionOptions.t, SecureClientSessionOptions.t) union2
           ]
          [@js.union on_field "protocol"])
     -> ?listener:
-         (session:http2_ClientHttp2Session
+         (session:ClientHttp2Session.t
           -> socket:(Net.Socket.t, Tls.TLSSocket.t) union2
           -> unit)
     -> unit
-    -> http2_ClientHttp2Session
+    -> ClientHttp2Session.t
     [@@js.global "connect"]
 end
 [@@js.scope Import.http2]

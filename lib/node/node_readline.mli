@@ -35,6 +35,126 @@ module Readline : sig
   end
   [@@js.scope "Key"]
 
+  module CompleterResult : sig
+    type t = string list * string
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+  end
+
+  module AsyncCompleter : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val apply
+      :  t
+      -> line:string
+      -> callback:
+           (?err:Error.t or_null -> ?result:CompleterResult.t -> unit -> unit)
+      -> any
+      [@@js.apply]
+  end
+  [@@js.scope "AsyncCompleter"]
+
+  module Completer : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val apply : t -> line:string -> CompleterResult.t [@@js.apply]
+  end
+  [@@js.scope "Completer"]
+
+  module ReadLineOptions : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_input : t -> ReadableStream.t [@@js.get "input"]
+
+    val set_input : t -> ReadableStream.t -> unit [@@js.set "input"]
+
+    val get_output : t -> WritableStream.t [@@js.get "output"]
+
+    val set_output : t -> WritableStream.t -> unit [@@js.set "output"]
+
+    val get_completer : t -> (AsyncCompleter.t, Completer.t) union2
+      [@@js.get "completer"]
+
+    val set_completer : t -> (AsyncCompleter.t, Completer.t) union2 -> unit
+      [@@js.set "completer"]
+
+    val get_terminal : t -> bool [@@js.get "terminal"]
+
+    val set_terminal : t -> bool -> unit [@@js.set "terminal"]
+
+    val get_history_size : t -> int [@@js.get "historySize"]
+
+    val set_history_size : t -> int -> unit [@@js.set "historySize"]
+
+    val get_prompt : t -> string [@@js.get "prompt"]
+
+    val set_prompt : t -> string -> unit [@@js.set "prompt"]
+
+    val get_crlf_delay : t -> int [@@js.get "crlfDelay"]
+
+    val set_crlf_delay : t -> int -> unit [@@js.set "crlfDelay"]
+
+    val get_remove_history_duplicates : t -> bool
+      [@@js.get "removeHistoryDuplicates"]
+
+    val set_remove_history_duplicates : t -> bool -> unit
+      [@@js.set "removeHistoryDuplicates"]
+
+    val get_escape_code_timeout : t -> int [@@js.get "escapeCodeTimeout"]
+
+    val set_escape_code_timeout : t -> int -> unit
+      [@@js.set "escapeCodeTimeout"]
+
+    val get_tab_size : t -> int [@@js.get "tabSize"]
+
+    val set_tab_size : t -> int -> unit [@@js.set "tabSize"]
+  end
+  [@@js.scope "ReadLineOptions"]
+
+  module Direction : sig
+    type t =
+      ([ `L_n_minus1 [@js -1]
+       | `L_n_0 [@js 0]
+       | `L_n_1 [@js 1]
+       ]
+      [@js.enum])
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+  end
+
+  module CursorPos : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_rows : t -> int [@@js.get "rows"]
+
+    val set_rows : t -> int -> unit [@@js.set "rows"]
+
+    val get_cols : t -> int [@@js.get "cols"]
+
+    val set_cols : t -> int -> unit [@@js.set "cols"]
+  end
+  [@@js.scope "CursorPos"]
+
   module Interface : sig
     type t
 
@@ -390,96 +510,6 @@ module Readline : sig
     val t_of_js : Ojs.t -> t
   end
 
-  module Completer : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val apply : t -> line:string -> CompleterResult.t [@@js.apply]
-  end
-  [@@js.scope "Completer"]
-
-  module AsyncCompleter : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val apply
-      :  t
-      -> line:string
-      -> callback:
-           (?err:Error.t or_null -> ?result:CompleterResult.t -> unit -> unit)
-      -> any
-      [@@js.apply]
-  end
-  [@@js.scope "AsyncCompleter"]
-
-  module CompleterResult : sig
-    type t = string list * string
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-  end
-
-  module ReadLineOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val get_input : t -> ReadableStream.t [@@js.get "input"]
-
-    val set_input : t -> ReadableStream.t -> unit [@@js.set "input"]
-
-    val get_output : t -> WritableStream.t [@@js.get "output"]
-
-    val set_output : t -> WritableStream.t -> unit [@@js.set "output"]
-
-    val get_completer : t -> (AsyncCompleter.t, Completer.t) union2
-      [@@js.get "completer"]
-
-    val set_completer : t -> (AsyncCompleter.t, Completer.t) union2 -> unit
-      [@@js.set "completer"]
-
-    val get_terminal : t -> bool [@@js.get "terminal"]
-
-    val set_terminal : t -> bool -> unit [@@js.set "terminal"]
-
-    val get_history_size : t -> int [@@js.get "historySize"]
-
-    val set_history_size : t -> int -> unit [@@js.set "historySize"]
-
-    val get_prompt : t -> string [@@js.get "prompt"]
-
-    val set_prompt : t -> string -> unit [@@js.set "prompt"]
-
-    val get_crlf_delay : t -> int [@@js.get "crlfDelay"]
-
-    val set_crlf_delay : t -> int -> unit [@@js.set "crlfDelay"]
-
-    val get_remove_history_duplicates : t -> bool
-      [@@js.get "removeHistoryDuplicates"]
-
-    val set_remove_history_duplicates : t -> bool -> unit
-      [@@js.set "removeHistoryDuplicates"]
-
-    val get_escape_code_timeout : t -> int [@@js.get "escapeCodeTimeout"]
-
-    val set_escape_code_timeout : t -> int -> unit
-      [@@js.set "escapeCodeTimeout"]
-
-    val get_tab_size : t -> int [@@js.get "tabSize"]
-
-    val set_tab_size : t -> int -> unit [@@js.set "tabSize"]
-  end
-  [@@js.scope "ReadLineOptions"]
-
   val create_interface
     :  input:ReadableStream.t
     -> ?output:WritableStream.t
@@ -498,36 +528,6 @@ module Readline : sig
     -> unit
     -> unit
     [@@js.global "emitKeypressEvents"]
-
-  module Direction : sig
-    type t =
-      ([ `L_n_minus1 [@js -1]
-       | `L_n_0 [@js 0]
-       | `L_n_1 [@js 1]
-       ]
-      [@js.enum])
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-  end
-
-  module CursorPos : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val get_rows : t -> int [@@js.get "rows"]
-
-    val set_rows : t -> int -> unit [@@js.set "rows"]
-
-    val get_cols : t -> int [@@js.get "cols"]
-
-    val set_cols : t -> int -> unit [@@js.set "cols"]
-  end
-  [@@js.scope "CursorPos"]
 
   val clear_line
     :  stream:WritableStream.t

@@ -218,35 +218,23 @@ module AnonymousInterface8 : sig
   val set_variables : t -> AnonymousInterface2.t -> unit [@@js.set "variables"]
 end
 
-val process : process_global_NodeJS_Process [@@js.global "process"]
-
 module Process : sig
   open Node_tty
 
   module ReadStream : sig
-    type t = process_global_NodeJS_ReadStream
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val cast : t -> Tty.ReadStream.t [@@js.cast]
+    include module type of struct
+      include Tty.ReadStream
+    end
   end
-  [@@js.scope "ReadStream"]
 
   module WriteStream : sig
-    type t = process_global_NodeJS_WriteStream
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val cast : t -> Tty.WriteStream.t [@@js.cast]
+    include module type of struct
+      include Tty.WriteStream
+    end
   end
-  [@@js.scope "WriteStream"]
 
   module MemoryUsage : sig
-    type t = process_global_NodeJS_MemoryUsage
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -275,7 +263,7 @@ module Process : sig
   [@@js.scope "MemoryUsage"]
 
   module CpuUsage : sig
-    type t = process_global_NodeJS_CpuUsage
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -292,7 +280,7 @@ module Process : sig
   [@@js.scope "CpuUsage"]
 
   module ProcessRelease : sig
-    type t = process_global_NodeJS_ProcessRelease
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -321,7 +309,7 @@ module Process : sig
   [@@js.scope "ProcessRelease"]
 
   module ProcessVersions : sig
-    type t = process_global_NodeJS_ProcessVersions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -443,7 +431,7 @@ module Process : sig
   end
 
   module BeforeExitListener : sig
-    type t = process_global_NodeJS_BeforeExitListener
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -454,7 +442,7 @@ module Process : sig
   [@@js.scope "BeforeExitListener"]
 
   module DisconnectListener : sig
-    type t = process_global_NodeJS_DisconnectListener
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -465,7 +453,7 @@ module Process : sig
   [@@js.scope "DisconnectListener"]
 
   module ExitListener : sig
-    type t = process_global_NodeJS_ExitListener
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -476,7 +464,7 @@ module Process : sig
   [@@js.scope "ExitListener"]
 
   module RejectionHandledListener : sig
-    type t = process_global_NodeJS_RejectionHandledListener
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -487,7 +475,7 @@ module Process : sig
   [@@js.scope "RejectionHandledListener"]
 
   module UncaughtExceptionListener : sig
-    type t = process_global_NodeJS_UncaughtExceptionListener
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -498,7 +486,7 @@ module Process : sig
   [@@js.scope "UncaughtExceptionListener"]
 
   module UnhandledRejectionListener : sig
-    type t = process_global_NodeJS_UnhandledRejectionListener
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -514,7 +502,7 @@ module Process : sig
   [@@js.scope "UnhandledRejectionListener"]
 
   module WarningListener : sig
-    type t = process_global_NodeJS_WarningListener
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -525,7 +513,7 @@ module Process : sig
   [@@js.scope "WarningListener"]
 
   module MessageListener : sig
-    type t = process_global_NodeJS_MessageListener
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -536,18 +524,18 @@ module Process : sig
   [@@js.scope "MessageListener"]
 
   module SignalsListener : sig
-    type t = process_global_NodeJS_SignalsListener
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val apply : t -> signal:NodeJS_Signals.t -> unit [@@js.apply]
+    val apply : t -> signal:Signals.t -> unit [@@js.apply]
   end
   [@@js.scope "SignalsListener"]
 
   module NewListenerListener : sig
-    type t = process_global_NodeJS_NewListenerListener
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -563,7 +551,7 @@ module Process : sig
   [@@js.scope "NewListenerListener"]
 
   module RemoveListenerListener : sig
-    type t = process_global_NodeJS_RemoveListenerListener
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -579,7 +567,7 @@ module Process : sig
   [@@js.scope "RemoveListenerListener"]
 
   module MultipleResolveListener : sig
-    type t = process_global_NodeJS_MultipleResolveListener
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -587,7 +575,7 @@ module Process : sig
 
     val apply
       :  t
-      -> type_:NodeJS_MultipleResolveType.t
+      -> type_:MultipleResolveType.t
       -> promise:any Promise.t
       -> value:any
       -> unit
@@ -596,7 +584,7 @@ module Process : sig
   [@@js.scope "MultipleResolveListener"]
 
   module Socket : sig
-    type t = process_global_NodeJS_Socket
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -612,7 +600,7 @@ module Process : sig
   [@@js.scope "Socket"]
 
   module ProcessEnv : sig
-    type t = process_global_NodeJS_ProcessEnv
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -623,7 +611,7 @@ module Process : sig
   [@@js.scope "ProcessEnv"]
 
   module HRTime : sig
-    type t = process_global_NodeJS_HRTime
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -636,7 +624,7 @@ module Process : sig
   [@@js.scope "HRTime"]
 
   module ProcessReport : sig
-    type t = process_global_NodeJS_ProcessReport
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -667,9 +655,9 @@ module Process : sig
     val set_report_on_uncaught_exception : t -> bool -> unit
       [@@js.set "reportOnUncaughtException"]
 
-    val get_signal : t -> NodeJS_Signals.t [@@js.get "signal"]
+    val get_signal : t -> Signals.t [@@js.get "signal"]
 
-    val set_signal : t -> NodeJS_Signals.t -> unit [@@js.set "signal"]
+    val set_signal : t -> Signals.t -> unit [@@js.set "signal"]
 
     val write_report : t -> ?file_name:string -> unit -> string
       [@@js.call "writeReport"]
@@ -688,7 +676,7 @@ module Process : sig
   [@@js.scope "ProcessReport"]
 
   module ResourceUsage : sig
-    type t = process_global_NodeJS_ResourceUsage
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -766,54 +754,40 @@ module Process : sig
   [@@js.scope "ResourceUsage"]
 
   module Process : sig
-    type t = process_global_NodeJS_Process
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_stdout
-      :  t
-      -> ( process_global_NodeJS_WriteStream
-         , AnonymousInterface4.t )
-         intersection2
+    val get_stdout : t -> (WriteStream.t, AnonymousInterface4.t) intersection2
       [@@js.get "stdout"]
 
     val set_stdout
       :  t
-      -> ( process_global_NodeJS_WriteStream
-         , AnonymousInterface4.t )
-         intersection2
+      -> (WriteStream.t, AnonymousInterface4.t) intersection2
       -> unit
       [@@js.set "stdout"]
 
-    val get_stderr
-      :  t
-      -> ( process_global_NodeJS_WriteStream
-         , AnonymousInterface5.t )
-         intersection2
+    val get_stderr : t -> (WriteStream.t, AnonymousInterface5.t) intersection2
       [@@js.get "stderr"]
 
     val set_stderr
       :  t
-      -> ( process_global_NodeJS_WriteStream
-         , AnonymousInterface5.t )
-         intersection2
+      -> (WriteStream.t, AnonymousInterface5.t) intersection2
       -> unit
       [@@js.set "stderr"]
 
-    val get_stdin
-      :  t
-      -> (NodeJS_ReadStream.t, AnonymousInterface3.t) intersection2
+    val get_stdin : t -> (ReadStream.t, AnonymousInterface3.t) intersection2
       [@@js.get "stdin"]
 
     val set_stdin
       :  t
-      -> (NodeJS_ReadStream.t, AnonymousInterface3.t) intersection2
+      -> (ReadStream.t, AnonymousInterface3.t) intersection2
       -> unit
       [@@js.set "stdin"]
 
-    val open_stdin : t -> NodeJS_Socket.t [@@js.call "openStdin"]
+    val open_stdin : t -> Socket.t [@@js.call "openStdin"]
 
     val get_argv : t -> string list [@@js.get "argv"]
 
@@ -850,9 +824,9 @@ module Process : sig
       -> unit
       [@@js.call "emitWarning"]
 
-    val get_env : t -> NodeJS_ProcessEnv.t [@@js.get "env"]
+    val get_env : t -> ProcessEnv.t [@@js.get "env"]
 
-    val set_env : t -> NodeJS_ProcessEnv.t -> unit [@@js.set "env"]
+    val set_env : t -> ProcessEnv.t -> unit [@@js.set "env"]
 
     val exit : t -> ?code:int -> unit -> never [@@js.call "exit"]
 
@@ -894,10 +868,9 @@ module Process : sig
 
     val set_version : t -> string -> unit [@@js.set "version"]
 
-    val get_versions : t -> NodeJS_ProcessVersions.t [@@js.get "versions"]
+    val get_versions : t -> ProcessVersions.t [@@js.get "versions"]
 
-    val set_versions : t -> NodeJS_ProcessVersions.t -> unit
-      [@@js.set "versions"]
+    val set_versions : t -> ProcessVersions.t -> unit [@@js.set "versions"]
 
     val get_config : t -> AnonymousInterface8.t [@@js.get "config"]
 
@@ -927,21 +900,17 @@ module Process : sig
 
     val set_arch : t -> string -> unit [@@js.set "arch"]
 
-    val get_platform : t -> NodeJS_Platform.t [@@js.get "platform"]
+    val get_platform : t -> Platform.t [@@js.get "platform"]
 
-    val set_platform : t -> NodeJS_Platform.t -> unit [@@js.set "platform"]
+    val set_platform : t -> Platform.t -> unit [@@js.set "platform"]
 
     val get_main_module : t -> Module.t [@@js.get "mainModule"]
 
     val set_main_module : t -> Module.t -> unit [@@js.set "mainModule"]
 
-    val memory_usage : t -> NodeJS_MemoryUsage.t [@@js.call "memoryUsage"]
+    val memory_usage : t -> MemoryUsage.t [@@js.call "memoryUsage"]
 
-    val cpu_usage
-      :  t
-      -> ?previous_value:NodeJS_CpuUsage.t
-      -> unit
-      -> NodeJS_CpuUsage.t
+    val cpu_usage : t -> ?previous_value:CpuUsage.t -> unit -> CpuUsage.t
       [@@js.call "cpuUsage"]
 
     val next_tick
@@ -951,9 +920,9 @@ module Process : sig
       -> unit
       [@@js.call "nextTick"]
 
-    val get_release : t -> NodeJS_ProcessRelease.t [@@js.get "release"]
+    val get_release : t -> ProcessRelease.t [@@js.get "release"]
 
-    val set_release : t -> NodeJS_ProcessRelease.t -> unit [@@js.set "release"]
+    val set_release : t -> ProcessRelease.t -> unit [@@js.set "release"]
 
     val get_features : t -> AnonymousInterface6.t [@@js.get "features"]
 
@@ -965,9 +934,9 @@ module Process : sig
 
     val uptime : t -> int [@@js.call "uptime"]
 
-    val get_hrtime : t -> NodeJS_HRTime.t [@@js.get "hrtime"]
+    val get_hrtime : t -> HRTime.t [@@js.get "hrtime"]
 
-    val set_hrtime : t -> NodeJS_HRTime.t -> unit [@@js.set "hrtime"]
+    val set_hrtime : t -> HRTime.t -> unit [@@js.set "hrtime"]
 
     val get_domain : t -> Node_domain.Domain.Domain.t [@@js.get "domain"]
 
@@ -996,11 +965,11 @@ module Process : sig
     val set_allowed_node_environment_flags : t -> string ReadonlySet.t -> unit
       [@@js.set "allowedNodeEnvironmentFlags"]
 
-    val get_report : t -> NodeJS_ProcessReport.t [@@js.get "report"]
+    val get_report : t -> ProcessReport.t [@@js.get "report"]
 
-    val set_report : t -> NodeJS_ProcessReport.t -> unit [@@js.set "report"]
+    val set_report : t -> ProcessReport.t -> unit [@@js.set "report"]
 
-    val resource_usage : t -> NodeJS_ResourceUsage.t [@@js.call "resourceUsage"]
+    val resource_usage : t -> ResourceUsage.t [@@js.call "resourceUsage"]
 
     val get_trace_deprecation : t -> bool [@@js.get "traceDeprecation"]
 
@@ -1009,91 +978,91 @@ module Process : sig
     val add_listener
       :  t
       -> event:([ `beforeExit ][@js.enum])
-      -> listener:NodeJS_BeforeExitListener.t
+      -> listener:BeforeExitListener.t
       -> t
       [@@js.call "addListener"]
 
     val add_listener'
       :  t
       -> event:([ `disconnect ][@js.enum])
-      -> listener:NodeJS_DisconnectListener.t
+      -> listener:DisconnectListener.t
       -> t
       [@@js.call "addListener"]
 
     val add_listener''
       :  t
       -> event:([ `exit ][@js.enum])
-      -> listener:NodeJS_ExitListener.t
+      -> listener:ExitListener.t
       -> t
       [@@js.call "addListener"]
 
     val add_listener'''
       :  t
       -> event:([ `rejectionHandled ][@js.enum])
-      -> listener:NodeJS_RejectionHandledListener.t
+      -> listener:RejectionHandledListener.t
       -> t
       [@@js.call "addListener"]
 
     val add_listener''''
       :  t
       -> event:([ `uncaughtException ][@js.enum])
-      -> listener:NodeJS_UncaughtExceptionListener.t
+      -> listener:UncaughtExceptionListener.t
       -> t
       [@@js.call "addListener"]
 
     val add_listener'''''
       :  t
       -> event:([ `uncaughtExceptionMonitor ][@js.enum])
-      -> listener:NodeJS_UncaughtExceptionListener.t
+      -> listener:UncaughtExceptionListener.t
       -> t
       [@@js.call "addListener"]
 
     val add_listener''''''
       :  t
       -> event:([ `unhandledRejection ][@js.enum])
-      -> listener:NodeJS_UnhandledRejectionListener.t
+      -> listener:UnhandledRejectionListener.t
       -> t
       [@@js.call "addListener"]
 
     val add_listener'''''''
       :  t
       -> event:([ `warning ][@js.enum])
-      -> listener:NodeJS_WarningListener.t
+      -> listener:WarningListener.t
       -> t
       [@@js.call "addListener"]
 
     val add_listener''''''''
       :  t
       -> event:([ `message ][@js.enum])
-      -> listener:NodeJS_MessageListener.t
+      -> listener:MessageListener.t
       -> t
       [@@js.call "addListener"]
 
     val add_listener'''''''''
       :  t
-      -> event:NodeJS_Signals.t
-      -> listener:NodeJS_SignalsListener.t
+      -> event:Signals.t
+      -> listener:SignalsListener.t
       -> t
       [@@js.call "addListener"]
 
     val add_listener''''''''''
       :  t
       -> event:([ `newListener ][@js.enum])
-      -> listener:NodeJS_NewListenerListener.t
+      -> listener:NewListenerListener.t
       -> t
       [@@js.call "addListener"]
 
     val add_listener'''''''''''
       :  t
       -> event:([ `removeListener ][@js.enum])
-      -> listener:NodeJS_RemoveListenerListener.t
+      -> listener:RemoveListenerListener.t
       -> t
       [@@js.call "addListener"]
 
     val add_listener''''''''''''
       :  t
       -> event:([ `multipleResolves ][@js.enum])
-      -> listener:NodeJS_MultipleResolveListener.t
+      -> listener:MultipleResolveListener.t
       -> t
       [@@js.call "addListener"]
 
@@ -1150,11 +1119,7 @@ module Process : sig
       -> t
       [@@js.call "emit"]
 
-    val emit'''''''''
-      :  t
-      -> event:NodeJS_Signals.t
-      -> signal:NodeJS_Signals.t
-      -> bool
+    val emit''''''''' : t -> event:Signals.t -> signal:Signals.t -> bool
       [@@js.call "emit"]
 
     val emit''''''''''
@@ -1176,98 +1141,90 @@ module Process : sig
     val emit''''''''''''
       :  t
       -> event:([ `multipleResolves ][@js.enum])
-      -> listener:NodeJS_MultipleResolveListener.t
+      -> listener:MultipleResolveListener.t
       -> t
       [@@js.call "emit"]
 
     val on
       :  t
       -> event:([ `beforeExit ][@js.enum])
-      -> listener:NodeJS_BeforeExitListener.t
+      -> listener:BeforeExitListener.t
       -> t
       [@@js.call "on"]
 
     val on'
       :  t
       -> event:([ `disconnect ][@js.enum])
-      -> listener:NodeJS_DisconnectListener.t
+      -> listener:DisconnectListener.t
       -> t
       [@@js.call "on"]
 
-    val on''
-      :  t
-      -> event:([ `exit ][@js.enum])
-      -> listener:NodeJS_ExitListener.t
-      -> t
+    val on'' : t -> event:([ `exit ][@js.enum]) -> listener:ExitListener.t -> t
       [@@js.call "on"]
 
     val on'''
       :  t
       -> event:([ `rejectionHandled ][@js.enum])
-      -> listener:NodeJS_RejectionHandledListener.t
+      -> listener:RejectionHandledListener.t
       -> t
       [@@js.call "on"]
 
     val on''''
       :  t
       -> event:([ `uncaughtException ][@js.enum])
-      -> listener:NodeJS_UncaughtExceptionListener.t
+      -> listener:UncaughtExceptionListener.t
       -> t
       [@@js.call "on"]
 
     val on'''''
       :  t
       -> event:([ `uncaughtExceptionMonitor ][@js.enum])
-      -> listener:NodeJS_UncaughtExceptionListener.t
+      -> listener:UncaughtExceptionListener.t
       -> t
       [@@js.call "on"]
 
     val on''''''
       :  t
       -> event:([ `unhandledRejection ][@js.enum])
-      -> listener:NodeJS_UnhandledRejectionListener.t
+      -> listener:UnhandledRejectionListener.t
       -> t
       [@@js.call "on"]
 
     val on'''''''
       :  t
       -> event:([ `warning ][@js.enum])
-      -> listener:NodeJS_WarningListener.t
+      -> listener:WarningListener.t
       -> t
       [@@js.call "on"]
 
     val on''''''''
       :  t
       -> event:([ `message ][@js.enum])
-      -> listener:NodeJS_MessageListener.t
+      -> listener:MessageListener.t
       -> t
       [@@js.call "on"]
 
-    val on'''''''''
-      :  t
-      -> event:NodeJS_Signals.t
-      -> listener:NodeJS_SignalsListener.t
-      -> t
+    val on''''''''' : t -> event:Signals.t -> listener:SignalsListener.t -> t
       [@@js.call "on"]
 
     val on''''''''''
       :  t
       -> event:([ `newListener ][@js.enum])
-      -> listener:NodeJS_NewListenerListener.t
+      -> listener:NewListenerListener.t
       -> t
       [@@js.call "on"]
 
     val on'''''''''''
       :  t
       -> event:([ `removeListener ][@js.enum])
-      -> listener:NodeJS_RemoveListenerListener.t
+      -> listener:RemoveListenerListener.t
       -> t
       [@@js.call "on"]
 
     val on''''''''''''
       :  t
       -> event:([ `multipleResolves ][@js.enum])
-      -> listener:NodeJS_MultipleResolveListener.t
+      -> listener:MultipleResolveListener.t
       -> t
       [@@js.call "on"]
 
@@ -1281,369 +1238,348 @@ module Process : sig
     val once
       :  t
       -> event:([ `beforeExit ][@js.enum])
-      -> listener:NodeJS_BeforeExitListener.t
+      -> listener:BeforeExitListener.t
       -> t
       [@@js.call "once"]
 
     val once'
       :  t
       -> event:([ `disconnect ][@js.enum])
-      -> listener:NodeJS_DisconnectListener.t
+      -> listener:DisconnectListener.t
       -> t
       [@@js.call "once"]
 
     val once''
       :  t
       -> event:([ `exit ][@js.enum])
-      -> listener:NodeJS_ExitListener.t
+      -> listener:ExitListener.t
       -> t
       [@@js.call "once"]
 
     val once'''
       :  t
       -> event:([ `rejectionHandled ][@js.enum])
-      -> listener:NodeJS_RejectionHandledListener.t
+      -> listener:RejectionHandledListener.t
       -> t
       [@@js.call "once"]
 
     val once''''
       :  t
       -> event:([ `uncaughtException ][@js.enum])
-      -> listener:NodeJS_UncaughtExceptionListener.t
+      -> listener:UncaughtExceptionListener.t
       -> t
       [@@js.call "once"]
 
     val once'''''
       :  t
       -> event:([ `uncaughtExceptionMonitor ][@js.enum])
-      -> listener:NodeJS_UncaughtExceptionListener.t
+      -> listener:UncaughtExceptionListener.t
       -> t
       [@@js.call "once"]
 
     val once''''''
       :  t
       -> event:([ `unhandledRejection ][@js.enum])
-      -> listener:NodeJS_UnhandledRejectionListener.t
+      -> listener:UnhandledRejectionListener.t
       -> t
       [@@js.call "once"]
 
     val once'''''''
       :  t
       -> event:([ `warning ][@js.enum])
-      -> listener:NodeJS_WarningListener.t
+      -> listener:WarningListener.t
       -> t
       [@@js.call "once"]
 
     val once''''''''
       :  t
       -> event:([ `message ][@js.enum])
-      -> listener:NodeJS_MessageListener.t
+      -> listener:MessageListener.t
       -> t
       [@@js.call "once"]
 
-    val once'''''''''
-      :  t
-      -> event:NodeJS_Signals.t
-      -> listener:NodeJS_SignalsListener.t
-      -> t
+    val once''''''''' : t -> event:Signals.t -> listener:SignalsListener.t -> t
       [@@js.call "once"]
 
     val once''''''''''
       :  t
       -> event:([ `newListener ][@js.enum])
-      -> listener:NodeJS_NewListenerListener.t
+      -> listener:NewListenerListener.t
       -> t
       [@@js.call "once"]
 
     val once'''''''''''
       :  t
       -> event:([ `removeListener ][@js.enum])
-      -> listener:NodeJS_RemoveListenerListener.t
+      -> listener:RemoveListenerListener.t
       -> t
       [@@js.call "once"]
 
     val once''''''''''''
       :  t
       -> event:([ `multipleResolves ][@js.enum])
-      -> listener:NodeJS_MultipleResolveListener.t
+      -> listener:MultipleResolveListener.t
       -> t
       [@@js.call "once"]
 
     val prepend_listener
       :  t
       -> event:([ `beforeExit ][@js.enum])
-      -> listener:NodeJS_BeforeExitListener.t
+      -> listener:BeforeExitListener.t
       -> t
       [@@js.call "prependListener"]
 
     val prepend_listener'
       :  t
       -> event:([ `disconnect ][@js.enum])
-      -> listener:NodeJS_DisconnectListener.t
+      -> listener:DisconnectListener.t
       -> t
       [@@js.call "prependListener"]
 
     val prepend_listener''
       :  t
       -> event:([ `exit ][@js.enum])
-      -> listener:NodeJS_ExitListener.t
+      -> listener:ExitListener.t
       -> t
       [@@js.call "prependListener"]
 
     val prepend_listener'''
       :  t
       -> event:([ `rejectionHandled ][@js.enum])
-      -> listener:NodeJS_RejectionHandledListener.t
+      -> listener:RejectionHandledListener.t
       -> t
       [@@js.call "prependListener"]
 
     val prepend_listener''''
       :  t
       -> event:([ `uncaughtException ][@js.enum])
-      -> listener:NodeJS_UncaughtExceptionListener.t
+      -> listener:UncaughtExceptionListener.t
       -> t
       [@@js.call "prependListener"]
 
     val prepend_listener'''''
       :  t
       -> event:([ `uncaughtExceptionMonitor ][@js.enum])
-      -> listener:NodeJS_UncaughtExceptionListener.t
+      -> listener:UncaughtExceptionListener.t
       -> t
       [@@js.call "prependListener"]
 
     val prepend_listener''''''
       :  t
       -> event:([ `unhandledRejection ][@js.enum])
-      -> listener:NodeJS_UnhandledRejectionListener.t
+      -> listener:UnhandledRejectionListener.t
       -> t
       [@@js.call "prependListener"]
 
     val prepend_listener'''''''
       :  t
       -> event:([ `warning ][@js.enum])
-      -> listener:NodeJS_WarningListener.t
+      -> listener:WarningListener.t
       -> t
       [@@js.call "prependListener"]
 
     val prepend_listener''''''''
       :  t
       -> event:([ `message ][@js.enum])
-      -> listener:NodeJS_MessageListener.t
+      -> listener:MessageListener.t
       -> t
       [@@js.call "prependListener"]
 
     val prepend_listener'''''''''
       :  t
-      -> event:NodeJS_Signals.t
-      -> listener:NodeJS_SignalsListener.t
+      -> event:Signals.t
+      -> listener:SignalsListener.t
       -> t
       [@@js.call "prependListener"]
 
     val prepend_listener''''''''''
       :  t
       -> event:([ `newListener ][@js.enum])
-      -> listener:NodeJS_NewListenerListener.t
+      -> listener:NewListenerListener.t
       -> t
       [@@js.call "prependListener"]
 
     val prepend_listener'''''''''''
       :  t
       -> event:([ `removeListener ][@js.enum])
-      -> listener:NodeJS_RemoveListenerListener.t
+      -> listener:RemoveListenerListener.t
       -> t
       [@@js.call "prependListener"]
 
     val prepend_listener''''''''''''
       :  t
       -> event:([ `multipleResolves ][@js.enum])
-      -> listener:NodeJS_MultipleResolveListener.t
+      -> listener:MultipleResolveListener.t
       -> t
       [@@js.call "prependListener"]
 
     val prepend_once_listener
       :  t
       -> event:([ `beforeExit ][@js.enum])
-      -> listener:NodeJS_BeforeExitListener.t
+      -> listener:BeforeExitListener.t
       -> t
       [@@js.call "prependOnceListener"]
 
     val prepend_once_listener'
       :  t
       -> event:([ `disconnect ][@js.enum])
-      -> listener:NodeJS_DisconnectListener.t
+      -> listener:DisconnectListener.t
       -> t
       [@@js.call "prependOnceListener"]
 
     val prepend_once_listener''
       :  t
       -> event:([ `exit ][@js.enum])
-      -> listener:NodeJS_ExitListener.t
+      -> listener:ExitListener.t
       -> t
       [@@js.call "prependOnceListener"]
 
     val prepend_once_listener'''
       :  t
       -> event:([ `rejectionHandled ][@js.enum])
-      -> listener:NodeJS_RejectionHandledListener.t
+      -> listener:RejectionHandledListener.t
       -> t
       [@@js.call "prependOnceListener"]
 
     val prepend_once_listener''''
       :  t
       -> event:([ `uncaughtException ][@js.enum])
-      -> listener:NodeJS_UncaughtExceptionListener.t
+      -> listener:UncaughtExceptionListener.t
       -> t
       [@@js.call "prependOnceListener"]
 
     val prepend_once_listener'''''
       :  t
       -> event:([ `uncaughtExceptionMonitor ][@js.enum])
-      -> listener:NodeJS_UncaughtExceptionListener.t
+      -> listener:UncaughtExceptionListener.t
       -> t
       [@@js.call "prependOnceListener"]
 
     val prepend_once_listener''''''
       :  t
       -> event:([ `unhandledRejection ][@js.enum])
-      -> listener:NodeJS_UnhandledRejectionListener.t
+      -> listener:UnhandledRejectionListener.t
       -> t
       [@@js.call "prependOnceListener"]
 
     val prepend_once_listener'''''''
       :  t
       -> event:([ `warning ][@js.enum])
-      -> listener:NodeJS_WarningListener.t
+      -> listener:WarningListener.t
       -> t
       [@@js.call "prependOnceListener"]
 
     val prepend_once_listener''''''''
       :  t
       -> event:([ `message ][@js.enum])
-      -> listener:NodeJS_MessageListener.t
+      -> listener:MessageListener.t
       -> t
       [@@js.call "prependOnceListener"]
 
     val prepend_once_listener'''''''''
       :  t
-      -> event:NodeJS_Signals.t
-      -> listener:NodeJS_SignalsListener.t
+      -> event:Signals.t
+      -> listener:SignalsListener.t
       -> t
       [@@js.call "prependOnceListener"]
 
     val prepend_once_listener''''''''''
       :  t
       -> event:([ `newListener ][@js.enum])
-      -> listener:NodeJS_NewListenerListener.t
+      -> listener:NewListenerListener.t
       -> t
       [@@js.call "prependOnceListener"]
 
     val prepend_once_listener'''''''''''
       :  t
       -> event:([ `removeListener ][@js.enum])
-      -> listener:NodeJS_RemoveListenerListener.t
+      -> listener:RemoveListenerListener.t
       -> t
       [@@js.call "prependOnceListener"]
 
     val prepend_once_listener''''''''''''
       :  t
       -> event:([ `multipleResolves ][@js.enum])
-      -> listener:NodeJS_MultipleResolveListener.t
+      -> listener:MultipleResolveListener.t
       -> t
       [@@js.call "prependOnceListener"]
 
     val listeners
       :  t
       -> event:([ `beforeExit ][@js.enum])
-      -> NodeJS_BeforeExitListener.t list
+      -> BeforeExitListener.t list
       [@@js.call "listeners"]
 
     val listeners'
       :  t
       -> event:([ `disconnect ][@js.enum])
-      -> NodeJS_DisconnectListener.t list
+      -> DisconnectListener.t list
       [@@js.call "listeners"]
 
-    val listeners''
-      :  t
-      -> event:([ `exit ][@js.enum])
-      -> NodeJS_ExitListener.t list
+    val listeners'' : t -> event:([ `exit ][@js.enum]) -> ExitListener.t list
       [@@js.call "listeners"]
 
     val listeners'''
       :  t
       -> event:([ `rejectionHandled ][@js.enum])
-      -> NodeJS_RejectionHandledListener.t list
+      -> RejectionHandledListener.t list
       [@@js.call "listeners"]
 
     val listeners''''
       :  t
       -> event:([ `uncaughtException ][@js.enum])
-      -> NodeJS_UncaughtExceptionListener.t list
+      -> UncaughtExceptionListener.t list
       [@@js.call "listeners"]
 
     val listeners'''''
       :  t
       -> event:([ `uncaughtExceptionMonitor ][@js.enum])
-      -> NodeJS_UncaughtExceptionListener.t list
+      -> UncaughtExceptionListener.t list
       [@@js.call "listeners"]
 
     val listeners''''''
       :  t
       -> event:([ `unhandledRejection ][@js.enum])
-      -> NodeJS_UnhandledRejectionListener.t list
+      -> UnhandledRejectionListener.t list
       [@@js.call "listeners"]
 
     val listeners'''''''
       :  t
       -> event:([ `warning ][@js.enum])
-      -> NodeJS_WarningListener.t list
+      -> WarningListener.t list
       [@@js.call "listeners"]
 
     val listeners''''''''
       :  t
       -> event:([ `message ][@js.enum])
-      -> NodeJS_MessageListener.t list
+      -> MessageListener.t list
       [@@js.call "listeners"]
 
-    val listeners'''''''''
-      :  t
-      -> event:NodeJS_Signals.t
-      -> NodeJS_SignalsListener.t list
+    val listeners''''''''' : t -> event:Signals.t -> SignalsListener.t list
       [@@js.call "listeners"]
 
     val listeners''''''''''
       :  t
       -> event:([ `newListener ][@js.enum])
-      -> NodeJS_NewListenerListener.t list
+      -> NewListenerListener.t list
       [@@js.call "listeners"]
 
     val listeners'''''''''''
       :  t
       -> event:([ `removeListener ][@js.enum])
-      -> NodeJS_RemoveListenerListener.t list
+      -> RemoveListenerListener.t list
       [@@js.call "listeners"]
 
     val listeners''''''''''''
       :  t
       -> event:([ `multipleResolves ][@js.enum])
-      -> NodeJS_MultipleResolveListener.t list
+      -> MultipleResolveListener.t list
       [@@js.call "listeners"]
 
     val cast : t -> Node_events.Events.EventEmitter.t [@@js.cast]
   end
   [@@js.scope "Process"]
-
-  module Global : sig
-    type t = process_global_NodeJS_Global
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val get_process : t -> NodeJS_Process.t [@@js.get "process"]
-
-    val set_process : t -> NodeJS_Process.t -> unit [@@js.set "process"]
-  end
-  [@@js.scope "Global"]
 end
 [@@js.scope Import.process]
+
+val process : Process.Process.t [@@js.global "process"]

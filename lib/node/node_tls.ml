@@ -315,1029 +315,1463 @@ module Tls =
               Ojs.set_prop_ascii (t_to_js x122) "passphrase"
                 (Ojs.string_to_js x123)
       end
-    module TLSSocketOptions =
+    module SecureVersion =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x125 : Ojs.t) -> x125
-        and t_to_js : t -> Ojs.t = fun (x124 : Ojs.t) -> x124
-        let (get_is_server : t -> bool) =
-          fun (x126 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x126) "isServer")
-        let (set_is_server : t -> bool -> unit) =
-          fun (x127 : t) ->
-            fun (x128 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x127) "isServer"
-                (Ojs.bool_to_js x128)
-        let (get_server : t -> Net.Server.t) =
-          fun (x129 : t) ->
-            Net.Server.t_of_js (Ojs.get_prop_ascii (t_to_js x129) "server")
-        let (set_server : t -> Net.Server.t -> unit) =
-          fun (x130 : t) ->
-            fun (x131 : Net.Server.t) ->
-              Ojs.set_prop_ascii (t_to_js x130) "server"
-                (Net.Server.t_to_js x131)
-        let (get_session : t -> Buffer.t) =
-          fun (x132 : t) ->
-            Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x132) "session")
-        let (set_session : t -> Buffer.t -> unit) =
-          fun (x133 : t) ->
-            fun (x134 : Buffer.t) ->
-              Ojs.set_prop_ascii (t_to_js x133) "session"
-                (Buffer.t_to_js x134)
-        let (get_request_ocsp : t -> bool) =
-          fun (x135 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x135) "requestOCSP")
-        let (set_request_ocsp : t -> bool -> unit) =
-          fun (x136 : t) ->
-            fun (x137 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x136) "requestOCSP"
-                (Ojs.bool_to_js x137)
-        let (cast : t -> SecureContextOptions.t) =
-          fun (x138 : t) -> SecureContextOptions.t_of_js (t_to_js x138)
-        let (cast' : t -> CommonConnectionOptions.t) =
-          fun (x139 : t) -> CommonConnectionOptions.t_of_js (t_to_js x139)
+        type t = [ `TLSv1  | `TLSv1_1  | `TLSv1_2  | `TLSv1_3 ]
+        let rec t_of_js : Ojs.t -> t =
+          fun (x125 : Ojs.t) ->
+            let x126 = x125 in
+            match Ojs.string_of_js x126 with
+            | "TLSv1" -> `TLSv1
+            | "TLSv1.1" -> `TLSv1_1
+            | "TLSv1.2" -> `TLSv1_2
+            | "TLSv1.3" -> `TLSv1_3
+            | _ -> assert false
+        and t_to_js : t -> Ojs.t =
+          fun (x124 : [ `TLSv1  | `TLSv1_1  | `TLSv1_2  | `TLSv1_3 ]) ->
+            match x124 with
+            | `TLSv1 -> Ojs.string_to_js "TLSv1"
+            | `TLSv1_1 -> Ojs.string_to_js "TLSv1.1"
+            | `TLSv1_2 -> Ojs.string_to_js "TLSv1.2"
+            | `TLSv1_3 -> Ojs.string_to_js "TLSv1.3"
       end
-    module TLSSocket =
+    module SecureContext =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x141 : Ojs.t) -> x141
-        and t_to_js : t -> Ojs.t = fun (x140 : Ojs.t) -> x140
-        let (create :
-          socket:Net.Socket.t -> ?options:TLSSocketOptions.t -> unit -> t) =
-          fun ~socket:(x142 : Net.Socket.t) ->
-            fun ?options:(x143 : TLSSocketOptions.t option) ->
-              fun () ->
-                t_of_js
-                  (Ojs.new_obj_arr
-                     (Ojs.get_prop_ascii Import.tls "TLSSocket")
-                     (let x144 =
-                        Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
-                          [||] in
-                      ignore
-                        (Ojs.call x144 "push" [|(Net.Socket.t_to_js x142)|]);
-                      (match x143 with
-                       | Some x145 ->
-                           ignore
-                             (Ojs.call x144 "push"
-                                [|(TLSSocketOptions.t_to_js x145)|])
-                       | None -> ());
-                      x144))
-        let (get_authorized : t -> bool) =
-          fun (x146 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x146) "authorized")
-        let (set_authorized : t -> bool -> unit) =
+        let rec t_of_js : Ojs.t -> t = fun (x128 : Ojs.t) -> x128
+        and t_to_js : t -> Ojs.t = fun (x127 : Ojs.t) -> x127
+        let (get_context : t -> any) =
+          fun (x129 : t) ->
+            any_of_js (Ojs.get_prop_ascii (t_to_js x129) "context")
+        let (set_context : t -> any -> unit) =
+          fun (x130 : t) ->
+            fun (x131 : any) ->
+              Ojs.set_prop_ascii (t_to_js x130) "context" (any_to_js x131)
+      end
+    module SecureContextOptions =
+      struct
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x133 : Ojs.t) -> x133
+        and t_to_js : t -> Ojs.t = fun (x132 : Ojs.t) -> x132
+        let (get_ca :
+          t -> (Buffer.t, Buffer.t or_string list) union2 or_string) =
+          fun (x134 : t) ->
+            or_string_of_js
+              (fun (x135 : Ojs.t) ->
+                 union2_of_js Buffer.t_of_js
+                   (fun (x137 : Ojs.t) ->
+                      Ojs.list_of_js
+                        (fun (x138 : Ojs.t) ->
+                           or_string_of_js Buffer.t_of_js x138) x137) x135)
+              (Ojs.get_prop_ascii (t_to_js x134) "ca")
+        let (set_ca :
+          t -> (Buffer.t, Buffer.t or_string list) union2 or_string -> unit)
+          =
+          fun (x140 : t) ->
+            fun (x141 : (Buffer.t, Buffer.t or_string list) union2 or_string)
+              ->
+              Ojs.set_prop_ascii (t_to_js x140) "ca"
+                (or_string_to_js
+                   (fun (x142 : (Buffer.t, Buffer.t or_string list) union2)
+                      ->
+                      union2_to_js Buffer.t_to_js
+                        (fun (x144 : Buffer.t or_string list) ->
+                           Ojs.list_to_js
+                             (fun (x145 : Buffer.t or_string) ->
+                                or_string_to_js Buffer.t_to_js x145) x144)
+                        x142) x141)
+        let (get_cert :
+          t -> (Buffer.t, Buffer.t or_string list) union2 or_string) =
           fun (x147 : t) ->
-            fun (x148 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x147) "authorized"
-                (Ojs.bool_to_js x148)
-        let (get_authorization_error : t -> Error.t) =
-          fun (x149 : t) ->
-            Error.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x149) "authorizationError")
-        let (set_authorization_error : t -> Error.t -> unit) =
-          fun (x150 : t) ->
-            fun (x151 : Error.t) ->
-              Ojs.set_prop_ascii (t_to_js x150) "authorizationError"
-                (Error.t_to_js x151)
-        let (get_encrypted : t -> bool) =
-          fun (x152 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x152) "encrypted")
-        let (set_encrypted : t -> bool -> unit) =
+            or_string_of_js
+              (fun (x148 : Ojs.t) ->
+                 union2_of_js Buffer.t_of_js
+                   (fun (x150 : Ojs.t) ->
+                      Ojs.list_of_js
+                        (fun (x151 : Ojs.t) ->
+                           or_string_of_js Buffer.t_of_js x151) x150) x148)
+              (Ojs.get_prop_ascii (t_to_js x147) "cert")
+        let (set_cert :
+          t -> (Buffer.t, Buffer.t or_string list) union2 or_string -> unit)
+          =
           fun (x153 : t) ->
-            fun (x154 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x153) "encrypted"
-                (Ojs.bool_to_js x154)
-        let (get_alpn_protocol : t -> string) =
-          fun (x155 : t) ->
-            Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x155) "alpnProtocol")
-        let (set_alpn_protocol : t -> string -> unit) =
-          fun (x156 : t) ->
-            fun (x157 : string) ->
-              Ojs.set_prop_ascii (t_to_js x156) "alpnProtocol"
-                (Ojs.string_to_js x157)
-        let (get_certificate :
-          t -> (PeerCertificate.t, untyped_object) union2 or_null) =
-          fun (x158 : t) ->
-            or_null_of_js
-              (fun (x159 : Ojs.t) ->
-                 union2_of_js PeerCertificate.t_of_js untyped_object_of_js
-                   x159) (Ojs.call (t_to_js x158) "getCertificate" [||])
-        let (get_cipher : t -> CipherNameAndProtocol.t) =
-          fun (x162 : t) ->
-            CipherNameAndProtocol.t_of_js
-              (Ojs.call (t_to_js x162) "getCipher" [||])
-        let (get_ephemeral_key_info :
-          t -> (EphemeralKeyInfo.t, untyped_object) union2 or_null) =
+            fun (x154 : (Buffer.t, Buffer.t or_string list) union2 or_string)
+              ->
+              Ojs.set_prop_ascii (t_to_js x153) "cert"
+                (or_string_to_js
+                   (fun (x155 : (Buffer.t, Buffer.t or_string list) union2)
+                      ->
+                      union2_to_js Buffer.t_to_js
+                        (fun (x157 : Buffer.t or_string list) ->
+                           Ojs.list_to_js
+                             (fun (x158 : Buffer.t or_string) ->
+                                or_string_to_js Buffer.t_to_js x158) x157)
+                        x155) x154)
+        let (get_sigalgs : t -> string) =
+          fun (x160 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x160) "sigalgs")
+        let (set_sigalgs : t -> string -> unit) =
+          fun (x161 : t) ->
+            fun (x162 : string) ->
+              Ojs.set_prop_ascii (t_to_js x161) "sigalgs"
+                (Ojs.string_to_js x162)
+        let (get_ciphers : t -> string) =
           fun (x163 : t) ->
-            or_null_of_js
-              (fun (x164 : Ojs.t) ->
-                 union2_of_js EphemeralKeyInfo.t_of_js untyped_object_of_js
-                   x164) (Ojs.call (t_to_js x163) "getEphemeralKeyInfo" [||])
-        let (get_finished : t -> Buffer.t or_undefined) =
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x163) "ciphers")
+        let (set_ciphers : t -> string -> unit) =
+          fun (x164 : t) ->
+            fun (x165 : string) ->
+              Ojs.set_prop_ascii (t_to_js x164) "ciphers"
+                (Ojs.string_to_js x165)
+        let (get_client_cert_engine : t -> string) =
+          fun (x166 : t) ->
+            Ojs.string_of_js
+              (Ojs.get_prop_ascii (t_to_js x166) "clientCertEngine")
+        let (set_client_cert_engine : t -> string -> unit) =
           fun (x167 : t) ->
-            or_undefined_of_js Buffer.t_of_js
-              (Ojs.call (t_to_js x167) "getFinished" [||])
-        let (get_peer_certificate :
-          t -> detailed:[ `L_b_true ] -> DetailedPeerCertificate.t) =
-          fun (x170 : t) ->
-            fun ~detailed:(x169 : [ `L_b_true ]) ->
-              DetailedPeerCertificate.t_of_js
-                (Ojs.call (t_to_js x170) "getPeerCertificate"
-                   [|((match x169 with
-                       | `L_b_true -> Ojs.string_to_js "LBTrue"))|])
-        let (get_peer_certificate' :
-          t -> ?detailed:[ `L_b_false ] -> unit -> PeerCertificate.t) =
-          fun (x174 : t) ->
-            fun ?detailed:(x171 : [ `L_b_false ] option) ->
-              fun () ->
-                PeerCertificate.t_of_js
-                  (let x175 = t_to_js x174 in
-                   Ojs.call (Ojs.get_prop_ascii x175 "getPeerCertificate")
-                     "apply"
-                     [|x175;((let x172 =
-                                Ojs.new_obj
-                                  (Ojs.get_prop_ascii Ojs.global "Array")
-                                  [||] in
-                              (match x171 with
-                               | Some x173 ->
-                                   ignore
-                                     (Ojs.call x172 "push"
-                                        [|((match x173 with
-                                            | `L_b_false ->
-                                                Ojs.string_to_js "LBFalse"))|])
-                               | None -> ());
-                              x172))|])
-        let (get_peer_certificate'' :
-          t ->
-            ?detailed:bool ->
-              unit -> (DetailedPeerCertificate.t, PeerCertificate.t) union2)
+            fun (x168 : string) ->
+              Ojs.set_prop_ascii (t_to_js x167) "clientCertEngine"
+                (Ojs.string_to_js x168)
+        let (get_crl :
+          t -> (Buffer.t, Buffer.t or_string list) union2 or_string) =
+          fun (x169 : t) ->
+            or_string_of_js
+              (fun (x170 : Ojs.t) ->
+                 union2_of_js Buffer.t_of_js
+                   (fun (x172 : Ojs.t) ->
+                      Ojs.list_of_js
+                        (fun (x173 : Ojs.t) ->
+                           or_string_of_js Buffer.t_of_js x173) x172) x170)
+              (Ojs.get_prop_ascii (t_to_js x169) "crl")
+        let (set_crl :
+          t -> (Buffer.t, Buffer.t or_string list) union2 or_string -> unit)
           =
-          fun (x179 : t) ->
-            fun ?detailed:(x176 : bool option) ->
-              fun () ->
-                union2_of_js DetailedPeerCertificate.t_of_js
-                  PeerCertificate.t_of_js
-                  (let x180 = t_to_js x179 in
-                   Ojs.call (Ojs.get_prop_ascii x180 "getPeerCertificate")
-                     "apply"
-                     [|x180;((let x177 =
-                                Ojs.new_obj
-                                  (Ojs.get_prop_ascii Ojs.global "Array")
-                                  [||] in
-                              (match x176 with
-                               | Some x178 ->
-                                   ignore
-                                     (Ojs.call x177 "push"
-                                        [|(Ojs.bool_to_js x178)|])
-                               | None -> ());
-                              x177))|])
-        let (get_peer_finished : t -> Buffer.t or_undefined) =
-          fun (x183 : t) ->
-            or_undefined_of_js Buffer.t_of_js
-              (Ojs.call (t_to_js x183) "getPeerFinished" [||])
-        let (get_protocol : t -> string or_null) =
-          fun (x185 : t) ->
-            or_null_of_js Ojs.string_of_js
-              (Ojs.call (t_to_js x185) "getProtocol" [||])
-        let (get_session : t -> Buffer.t or_undefined) =
+          fun (x175 : t) ->
+            fun (x176 : (Buffer.t, Buffer.t or_string list) union2 or_string)
+              ->
+              Ojs.set_prop_ascii (t_to_js x175) "crl"
+                (or_string_to_js
+                   (fun (x177 : (Buffer.t, Buffer.t or_string list) union2)
+                      ->
+                      union2_to_js Buffer.t_to_js
+                        (fun (x179 : Buffer.t or_string list) ->
+                           Ojs.list_to_js
+                             (fun (x180 : Buffer.t or_string) ->
+                                or_string_to_js Buffer.t_to_js x180) x179)
+                        x177) x176)
+        let (get_dhparam : t -> Buffer.t or_string) =
+          fun (x182 : t) ->
+            or_string_of_js Buffer.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x182) "dhparam")
+        let (set_dhparam : t -> Buffer.t or_string -> unit) =
+          fun (x184 : t) ->
+            fun (x185 : Buffer.t or_string) ->
+              Ojs.set_prop_ascii (t_to_js x184) "dhparam"
+                (or_string_to_js Buffer.t_to_js x185)
+        let (get_ecdh_curve : t -> string) =
           fun (x187 : t) ->
-            or_undefined_of_js Buffer.t_of_js
-              (Ojs.call (t_to_js x187) "getSession" [||])
-        let (get_shared_sigalgs : t -> string list) =
-          fun (x189 : t) ->
-            Ojs.list_of_js Ojs.string_of_js
-              (Ojs.call (t_to_js x189) "getSharedSigalgs" [||])
-        let (get_tls_ticket : t -> Buffer.t or_undefined) =
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x187) "ecdhCurve")
+        let (set_ecdh_curve : t -> string -> unit) =
+          fun (x188 : t) ->
+            fun (x189 : string) ->
+              Ojs.set_prop_ascii (t_to_js x188) "ecdhCurve"
+                (Ojs.string_to_js x189)
+        let (get_honor_cipher_order : t -> bool) =
+          fun (x190 : t) ->
+            Ojs.bool_of_js
+              (Ojs.get_prop_ascii (t_to_js x190) "honorCipherOrder")
+        let (set_honor_cipher_order : t -> bool -> unit) =
           fun (x191 : t) ->
-            or_undefined_of_js Buffer.t_of_js
-              (Ojs.call (t_to_js x191) "getTLSTicket" [||])
-        let (is_session_reused : t -> bool) =
+            fun (x192 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x191) "honorCipherOrder"
+                (Ojs.bool_to_js x192)
+        let (get_key :
+          t ->
+            (Buffer.t, (Buffer.t, KeyObject.t) union2 list) union2 or_string)
+          =
           fun (x193 : t) ->
-            Ojs.bool_of_js (Ojs.call (t_to_js x193) "isSessionReused" [||])
-        let (renegotiate :
+            or_string_of_js
+              (fun (x194 : Ojs.t) ->
+                 union2_of_js Buffer.t_of_js
+                   (fun (x196 : Ojs.t) ->
+                      Ojs.list_of_js
+                        (fun (x197 : Ojs.t) ->
+                           union2_of_js Buffer.t_of_js KeyObject.t_of_js x197)
+                        x196) x194) (Ojs.get_prop_ascii (t_to_js x193) "key")
+        let (set_key :
           t ->
-            options:AnonymousInterface0.t ->
-              callback:(err:Error.t or_null -> unit) -> bool or_undefined)
+            (Buffer.t, (Buffer.t, KeyObject.t) union2 list) union2 or_string
+              -> unit)
           =
-          fun (x198 : t) ->
-            fun ~options:(x194 : AnonymousInterface0.t) ->
-              fun ~callback:(x195 : err:Error.t or_null -> unit) ->
-                or_undefined_of_js Ojs.bool_of_js
-                  (Ojs.call (t_to_js x198) "renegotiate"
-                     [|(AnonymousInterface0.t_to_js x194);(Ojs.fun_to_js 1
-                                                             (fun
-                                                                (x196 :
-                                                                  Ojs.t)
-                                                                ->
-                                                                x195
-                                                                  ~err:(
-                                                                  or_null_of_js
-                                                                    Error.t_of_js
-                                                                    x196)))|])
-        let (set_max_send_fragment : t -> size:int -> bool) =
-          fun (x201 : t) ->
-            fun ~size:(x200 : int) ->
-              Ojs.bool_of_js
-                (Ojs.call (t_to_js x201) "setMaxSendFragment"
-                   [|(Ojs.int_to_js x200)|])
-        let (disable_renegotiation : t -> unit) =
-          fun (x202 : t) ->
-            ignore (Ojs.call (t_to_js x202) "disableRenegotiation" [||])
-        let (enable_trace : t -> unit) =
-          fun (x203 : t) ->
-            ignore (Ojs.call (t_to_js x203) "enableTrace" [||])
-        let (export_keying_material :
-          t -> length:int -> label:string -> context:Buffer.t -> Buffer.t) =
-          fun (x207 : t) ->
-            fun ~length:(x204 : int) ->
-              fun ~label:(x205 : string) ->
-                fun ~context:(x206 : Buffer.t) ->
-                  Buffer.t_of_js
-                    (Ojs.call (t_to_js x207) "exportKeyingMaterial"
-                       [|(Ojs.int_to_js x204);(Ojs.string_to_js x205);(
-                         Buffer.t_to_js x206)|])
-        let (add_listener :
-          t -> event:string -> listener:(args:any list -> unit) -> t) =
+          fun (x200 : t) ->
+            fun
+              (x201 :
+                (Buffer.t, (Buffer.t, KeyObject.t) union2 list) union2
+                  or_string)
+              ->
+              Ojs.set_prop_ascii (t_to_js x200) "key"
+                (or_string_to_js
+                   (fun
+                      (x202 :
+                        (Buffer.t, (Buffer.t, KeyObject.t) union2 list)
+                          union2)
+                      ->
+                      union2_to_js Buffer.t_to_js
+                        (fun (x204 : (Buffer.t, KeyObject.t) union2 list) ->
+                           Ojs.list_to_js
+                             (fun (x205 : (Buffer.t, KeyObject.t) union2) ->
+                                union2_to_js Buffer.t_to_js KeyObject.t_to_js
+                                  x205) x204) x202) x201)
+        let (get_private_key_engine : t -> string) =
+          fun (x208 : t) ->
+            Ojs.string_of_js
+              (Ojs.get_prop_ascii (t_to_js x208) "privateKeyEngine")
+        let (set_private_key_engine : t -> string -> unit) =
+          fun (x209 : t) ->
+            fun (x210 : string) ->
+              Ojs.set_prop_ascii (t_to_js x209) "privateKeyEngine"
+                (Ojs.string_to_js x210)
+        let (get_private_key_identifier : t -> string) =
+          fun (x211 : t) ->
+            Ojs.string_of_js
+              (Ojs.get_prop_ascii (t_to_js x211) "privateKeyIdentifier")
+        let (set_private_key_identifier : t -> string -> unit) =
           fun (x212 : t) ->
-            fun ~event:(x208 : string) ->
-              fun ~listener:(x209 : args:any list -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x212) "addListener"
-                     [|(Ojs.string_to_js x208);(Ojs.fun_to_js_args
-                                                  (fun (x210 : _) ->
-                                                     x209
-                                                       ~args:(Ojs.list_of_js_from
-                                                                any_of_js
-                                                                x210 0)))|])
-        let (add_listener' :
+            fun (x213 : string) ->
+              Ojs.set_prop_ascii (t_to_js x212) "privateKeyIdentifier"
+                (Ojs.string_to_js x213)
+        let (get_max_version : t -> SecureVersion.t) =
+          fun (x214 : t) ->
+            SecureVersion.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x214) "maxVersion")
+        let (set_max_version : t -> SecureVersion.t -> unit) =
+          fun (x215 : t) ->
+            fun (x216 : SecureVersion.t) ->
+              Ojs.set_prop_ascii (t_to_js x215) "maxVersion"
+                (SecureVersion.t_to_js x216)
+        let (get_min_version : t -> SecureVersion.t) =
+          fun (x217 : t) ->
+            SecureVersion.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x217) "minVersion")
+        let (set_min_version : t -> SecureVersion.t -> unit) =
+          fun (x218 : t) ->
+            fun (x219 : SecureVersion.t) ->
+              Ojs.set_prop_ascii (t_to_js x218) "minVersion"
+                (SecureVersion.t_to_js x219)
+        let (get_passphrase : t -> string) =
+          fun (x220 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x220) "passphrase")
+        let (set_passphrase : t -> string -> unit) =
+          fun (x221 : t) ->
+            fun (x222 : string) ->
+              Ojs.set_prop_ascii (t_to_js x221) "passphrase"
+                (Ojs.string_to_js x222)
+        let (get_pfx :
           t ->
-            event:[ `OCSPResponse ] ->
-              listener:(response:Buffer.t -> unit) -> t)
-          =
-          fun (x216 : t) ->
-            fun ~event:(x213 : [ `OCSPResponse ]) ->
-              fun ~listener:(x214 : response:Buffer.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x216) "addListener"
-                     [|((match x213 with
-                         | `OCSPResponse -> Ojs.string_to_js "OCSPResponse"));(
-                       Ojs.fun_to_js 1
-                         (fun (x215 : Ojs.t) ->
-                            x214 ~response:(Buffer.t_of_js x215)))|])
-        let (add_listener'' :
-          t -> event:[ `secureConnect ] -> listener:(unit -> unit) -> t) =
-          fun (x219 : t) ->
-            fun ~event:(x217 : [ `secureConnect ]) ->
-              fun ~listener:(x218 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x219) "addListener"
-                     [|((match x217 with
-                         | `secureConnect -> Ojs.string_to_js "secureConnect"));(
-                       Ojs.fun_to_js 1 (fun _ -> x218 ()))|])
-        let (add_listener''' :
-          t -> event:[ `session ] -> listener:(session:Buffer.t -> unit) -> t)
+            (Buffer.t, (Buffer.t, PxfObject.t) union2 or_string list) union2
+              or_string)
           =
           fun (x223 : t) ->
-            fun ~event:(x220 : [ `session ]) ->
-              fun ~listener:(x221 : session:Buffer.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x223) "addListener"
-                     [|((match x220 with
-                         | `session -> Ojs.string_to_js "session"));(
-                       Ojs.fun_to_js 1
-                         (fun (x222 : Ojs.t) ->
-                            x221 ~session:(Buffer.t_of_js x222)))|])
-        let (add_listener'''' :
-          t -> event:[ `keylog ] -> listener:(line:Buffer.t -> unit) -> t) =
-          fun (x227 : t) ->
-            fun ~event:(x224 : [ `keylog ]) ->
-              fun ~listener:(x225 : line:Buffer.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x227) "addListener"
-                     [|((match x224 with
-                         | `keylog -> Ojs.string_to_js "keylog"));(Ojs.fun_to_js
-                                                                    1
-                                                                    (fun
-                                                                    (x226 :
-                                                                    Ojs.t) ->
-                                                                    x225
-                                                                    ~line:(
-                                                                    Buffer.t_of_js
-                                                                    x226)))|])
-        let (emit : t -> event:symbol or_string -> args:any list -> bool) =
-          fun (x233 : t) ->
-            fun ~event:(x228 : symbol or_string) ->
-              fun ~args:(x229 : any list) ->
-                Ojs.bool_of_js
-                  (let x234 = t_to_js x233 in
-                   Ojs.call (Ojs.get_prop_ascii x234 "emit") "apply"
-                     [|x234;((let x230 =
-                                Ojs.new_obj
-                                  (Ojs.get_prop_ascii Ojs.global "Array")
-                                  [||] in
-                              ignore
-                                (Ojs.call x230 "push"
-                                   [|(or_string_to_js symbol_to_js x228)|]);
-                              List.iter
-                                (fun (x231 : any) ->
-                                   ignore
-                                     (Ojs.call x230 "push"
-                                        [|(any_to_js x231)|])) x229;
-                              x230))|])
-        let (emit' :
-          t -> event:[ `OCSPResponse ] -> response:Buffer.t -> bool) =
-          fun (x237 : t) ->
-            fun ~event:(x235 : [ `OCSPResponse ]) ->
-              fun ~response:(x236 : Buffer.t) ->
-                Ojs.bool_of_js
-                  (Ojs.call (t_to_js x237) "emit"
-                     [|((match x235 with
-                         | `OCSPResponse -> Ojs.string_to_js "OCSPResponse"));(
-                       Buffer.t_to_js x236)|])
-        let (emit'' : t -> event:[ `secureConnect ] -> bool) =
-          fun (x239 : t) ->
-            fun ~event:(x238 : [ `secureConnect ]) ->
-              Ojs.bool_of_js
-                (Ojs.call (t_to_js x239) "emit"
-                   [|((match x238 with
-                       | `secureConnect -> Ojs.string_to_js "secureConnect"))|])
-        let (emit''' : t -> event:[ `session ] -> session:Buffer.t -> bool) =
-          fun (x242 : t) ->
-            fun ~event:(x240 : [ `session ]) ->
-              fun ~session:(x241 : Buffer.t) ->
-                Ojs.bool_of_js
-                  (Ojs.call (t_to_js x242) "emit"
-                     [|((match x240 with
-                         | `session -> Ojs.string_to_js "session"));(
-                       Buffer.t_to_js x241)|])
-        let (emit'''' : t -> event:[ `keylog ] -> line:Buffer.t -> bool) =
-          fun (x245 : t) ->
-            fun ~event:(x243 : [ `keylog ]) ->
-              fun ~line:(x244 : Buffer.t) ->
-                Ojs.bool_of_js
-                  (Ojs.call (t_to_js x245) "emit"
-                     [|((match x243 with
-                         | `keylog -> Ojs.string_to_js "keylog"));(Buffer.t_to_js
-                                                                    x244)|])
-        let (on : t -> event:string -> listener:(args:any list -> unit) -> t)
+            or_string_of_js
+              (fun (x224 : Ojs.t) ->
+                 union2_of_js Buffer.t_of_js
+                   (fun (x226 : Ojs.t) ->
+                      Ojs.list_of_js
+                        (fun (x227 : Ojs.t) ->
+                           or_string_of_js
+                             (fun (x228 : Ojs.t) ->
+                                union2_of_js Buffer.t_of_js PxfObject.t_of_js
+                                  x228) x227) x226) x224)
+              (Ojs.get_prop_ascii (t_to_js x223) "pfx")
+        let (set_pfx :
+          t ->
+            (Buffer.t, (Buffer.t, PxfObject.t) union2 or_string list) union2
+              or_string -> unit)
           =
+          fun (x231 : t) ->
+            fun
+              (x232 :
+                (Buffer.t, (Buffer.t, PxfObject.t) union2 or_string list)
+                  union2 or_string)
+              ->
+              Ojs.set_prop_ascii (t_to_js x231) "pfx"
+                (or_string_to_js
+                   (fun
+                      (x233 :
+                        (Buffer.t,
+                          (Buffer.t, PxfObject.t) union2 or_string list)
+                          union2)
+                      ->
+                      union2_to_js Buffer.t_to_js
+                        (fun
+                           (x235 :
+                             (Buffer.t, PxfObject.t) union2 or_string list)
+                           ->
+                           Ojs.list_to_js
+                             (fun
+                                (x236 :
+                                  (Buffer.t, PxfObject.t) union2 or_string)
+                                ->
+                                or_string_to_js
+                                  (fun
+                                     (x237 : (Buffer.t, PxfObject.t) union2)
+                                     ->
+                                     union2_to_js Buffer.t_to_js
+                                       PxfObject.t_to_js x237) x236) x235)
+                        x233) x232)
+        let (get_secure_options : t -> int) =
+          fun (x240 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x240) "secureOptions")
+        let (set_secure_options : t -> int -> unit) =
+          fun (x241 : t) ->
+            fun (x242 : int) ->
+              Ojs.set_prop_ascii (t_to_js x241) "secureOptions"
+                (Ojs.int_to_js x242)
+        let (get_secure_protocol : t -> string) =
+          fun (x243 : t) ->
+            Ojs.string_of_js
+              (Ojs.get_prop_ascii (t_to_js x243) "secureProtocol")
+        let (set_secure_protocol : t -> string -> unit) =
+          fun (x244 : t) ->
+            fun (x245 : string) ->
+              Ojs.set_prop_ascii (t_to_js x244) "secureProtocol"
+                (Ojs.string_to_js x245)
+        let (get_session_id_context : t -> string) =
+          fun (x246 : t) ->
+            Ojs.string_of_js
+              (Ojs.get_prop_ascii (t_to_js x246) "sessionIdContext")
+        let (set_session_id_context : t -> string -> unit) =
+          fun (x247 : t) ->
+            fun (x248 : string) ->
+              Ojs.set_prop_ascii (t_to_js x247) "sessionIdContext"
+                (Ojs.string_to_js x248)
+        let (get_ticket_keys : t -> Buffer.t) =
+          fun (x249 : t) ->
+            Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x249) "ticketKeys")
+        let (set_ticket_keys : t -> Buffer.t -> unit) =
           fun (x250 : t) ->
-            fun ~event:(x246 : string) ->
-              fun ~listener:(x247 : args:any list -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x250) "on"
-                     [|(Ojs.string_to_js x246);(Ojs.fun_to_js_args
-                                                  (fun (x248 : _) ->
-                                                     x247
-                                                       ~args:(Ojs.list_of_js_from
-                                                                any_of_js
-                                                                x248 0)))|])
-        let (on' :
-          t ->
-            event:[ `OCSPResponse ] ->
-              listener:(response:Buffer.t -> unit) -> t)
-          =
-          fun (x254 : t) ->
-            fun ~event:(x251 : [ `OCSPResponse ]) ->
-              fun ~listener:(x252 : response:Buffer.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x254) "on"
-                     [|((match x251 with
-                         | `OCSPResponse -> Ojs.string_to_js "OCSPResponse"));(
-                       Ojs.fun_to_js 1
-                         (fun (x253 : Ojs.t) ->
-                            x252 ~response:(Buffer.t_of_js x253)))|])
-        let (on'' :
-          t -> event:[ `secureConnect ] -> listener:(unit -> unit) -> t) =
-          fun (x257 : t) ->
-            fun ~event:(x255 : [ `secureConnect ]) ->
-              fun ~listener:(x256 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x257) "on"
-                     [|((match x255 with
-                         | `secureConnect -> Ojs.string_to_js "secureConnect"));(
-                       Ojs.fun_to_js 1 (fun _ -> x256 ()))|])
-        let (on''' :
-          t -> event:[ `session ] -> listener:(session:Buffer.t -> unit) -> t)
-          =
-          fun (x261 : t) ->
-            fun ~event:(x258 : [ `session ]) ->
-              fun ~listener:(x259 : session:Buffer.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x261) "on"
-                     [|((match x258 with
-                         | `session -> Ojs.string_to_js "session"));(
-                       Ojs.fun_to_js 1
-                         (fun (x260 : Ojs.t) ->
-                            x259 ~session:(Buffer.t_of_js x260)))|])
-        let (on'''' :
-          t -> event:[ `keylog ] -> listener:(line:Buffer.t -> unit) -> t) =
-          fun (x265 : t) ->
-            fun ~event:(x262 : [ `keylog ]) ->
-              fun ~listener:(x263 : line:Buffer.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x265) "on"
-                     [|((match x262 with
-                         | `keylog -> Ojs.string_to_js "keylog"));(Ojs.fun_to_js
-                                                                    1
-                                                                    (fun
-                                                                    (x264 :
-                                                                    Ojs.t) ->
-                                                                    x263
-                                                                    ~line:(
-                                                                    Buffer.t_of_js
-                                                                    x264)))|])
-        let (once :
-          t -> event:string -> listener:(args:any list -> unit) -> t) =
-          fun (x270 : t) ->
-            fun ~event:(x266 : string) ->
-              fun ~listener:(x267 : args:any list -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x270) "once"
-                     [|(Ojs.string_to_js x266);(Ojs.fun_to_js_args
-                                                  (fun (x268 : _) ->
-                                                     x267
-                                                       ~args:(Ojs.list_of_js_from
-                                                                any_of_js
-                                                                x268 0)))|])
-        let (once' :
-          t ->
-            event:[ `OCSPResponse ] ->
-              listener:(response:Buffer.t -> unit) -> t)
-          =
-          fun (x274 : t) ->
-            fun ~event:(x271 : [ `OCSPResponse ]) ->
-              fun ~listener:(x272 : response:Buffer.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x274) "once"
-                     [|((match x271 with
-                         | `OCSPResponse -> Ojs.string_to_js "OCSPResponse"));(
-                       Ojs.fun_to_js 1
-                         (fun (x273 : Ojs.t) ->
-                            x272 ~response:(Buffer.t_of_js x273)))|])
-        let (once'' :
-          t -> event:[ `secureConnect ] -> listener:(unit -> unit) -> t) =
-          fun (x277 : t) ->
-            fun ~event:(x275 : [ `secureConnect ]) ->
-              fun ~listener:(x276 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x277) "once"
-                     [|((match x275 with
-                         | `secureConnect -> Ojs.string_to_js "secureConnect"));(
-                       Ojs.fun_to_js 1 (fun _ -> x276 ()))|])
-        let (once''' :
-          t -> event:[ `session ] -> listener:(session:Buffer.t -> unit) -> t)
-          =
-          fun (x281 : t) ->
-            fun ~event:(x278 : [ `session ]) ->
-              fun ~listener:(x279 : session:Buffer.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x281) "once"
-                     [|((match x278 with
-                         | `session -> Ojs.string_to_js "session"));(
-                       Ojs.fun_to_js 1
-                         (fun (x280 : Ojs.t) ->
-                            x279 ~session:(Buffer.t_of_js x280)))|])
-        let (once'''' :
-          t -> event:[ `keylog ] -> listener:(line:Buffer.t -> unit) -> t) =
-          fun (x285 : t) ->
-            fun ~event:(x282 : [ `keylog ]) ->
-              fun ~listener:(x283 : line:Buffer.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x285) "once"
-                     [|((match x282 with
-                         | `keylog -> Ojs.string_to_js "keylog"));(Ojs.fun_to_js
-                                                                    1
-                                                                    (fun
-                                                                    (x284 :
-                                                                    Ojs.t) ->
-                                                                    x283
-                                                                    ~line:(
-                                                                    Buffer.t_of_js
-                                                                    x284)))|])
-        let (prepend_listener :
-          t -> event:string -> listener:(args:any list -> unit) -> t) =
-          fun (x290 : t) ->
-            fun ~event:(x286 : string) ->
-              fun ~listener:(x287 : args:any list -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x290) "prependListener"
-                     [|(Ojs.string_to_js x286);(Ojs.fun_to_js_args
-                                                  (fun (x288 : _) ->
-                                                     x287
-                                                       ~args:(Ojs.list_of_js_from
-                                                                any_of_js
-                                                                x288 0)))|])
-        let (prepend_listener' :
-          t ->
-            event:[ `OCSPResponse ] ->
-              listener:(response:Buffer.t -> unit) -> t)
-          =
-          fun (x294 : t) ->
-            fun ~event:(x291 : [ `OCSPResponse ]) ->
-              fun ~listener:(x292 : response:Buffer.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x294) "prependListener"
-                     [|((match x291 with
-                         | `OCSPResponse -> Ojs.string_to_js "OCSPResponse"));(
-                       Ojs.fun_to_js 1
-                         (fun (x293 : Ojs.t) ->
-                            x292 ~response:(Buffer.t_of_js x293)))|])
-        let (prepend_listener'' :
-          t -> event:[ `secureConnect ] -> listener:(unit -> unit) -> t) =
-          fun (x297 : t) ->
-            fun ~event:(x295 : [ `secureConnect ]) ->
-              fun ~listener:(x296 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x297) "prependListener"
-                     [|((match x295 with
-                         | `secureConnect -> Ojs.string_to_js "secureConnect"));(
-                       Ojs.fun_to_js 1 (fun _ -> x296 ()))|])
-        let (prepend_listener''' :
-          t -> event:[ `session ] -> listener:(session:Buffer.t -> unit) -> t)
-          =
-          fun (x301 : t) ->
-            fun ~event:(x298 : [ `session ]) ->
-              fun ~listener:(x299 : session:Buffer.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x301) "prependListener"
-                     [|((match x298 with
-                         | `session -> Ojs.string_to_js "session"));(
-                       Ojs.fun_to_js 1
-                         (fun (x300 : Ojs.t) ->
-                            x299 ~session:(Buffer.t_of_js x300)))|])
-        let (prepend_listener'''' :
-          t -> event:[ `keylog ] -> listener:(line:Buffer.t -> unit) -> t) =
-          fun (x305 : t) ->
-            fun ~event:(x302 : [ `keylog ]) ->
-              fun ~listener:(x303 : line:Buffer.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x305) "prependListener"
-                     [|((match x302 with
-                         | `keylog -> Ojs.string_to_js "keylog"));(Ojs.fun_to_js
-                                                                    1
-                                                                    (fun
-                                                                    (x304 :
-                                                                    Ojs.t) ->
-                                                                    x303
-                                                                    ~line:(
-                                                                    Buffer.t_of_js
-                                                                    x304)))|])
-        let (prepend_once_listener :
-          t -> event:string -> listener:(args:any list -> unit) -> t) =
-          fun (x310 : t) ->
-            fun ~event:(x306 : string) ->
-              fun ~listener:(x307 : args:any list -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x310) "prependOnceListener"
-                     [|(Ojs.string_to_js x306);(Ojs.fun_to_js_args
-                                                  (fun (x308 : _) ->
-                                                     x307
-                                                       ~args:(Ojs.list_of_js_from
-                                                                any_of_js
-                                                                x308 0)))|])
-        let (prepend_once_listener' :
-          t ->
-            event:[ `OCSPResponse ] ->
-              listener:(response:Buffer.t -> unit) -> t)
-          =
-          fun (x314 : t) ->
-            fun ~event:(x311 : [ `OCSPResponse ]) ->
-              fun ~listener:(x312 : response:Buffer.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x314) "prependOnceListener"
-                     [|((match x311 with
-                         | `OCSPResponse -> Ojs.string_to_js "OCSPResponse"));(
-                       Ojs.fun_to_js 1
-                         (fun (x313 : Ojs.t) ->
-                            x312 ~response:(Buffer.t_of_js x313)))|])
-        let (prepend_once_listener'' :
-          t -> event:[ `secureConnect ] -> listener:(unit -> unit) -> t) =
-          fun (x317 : t) ->
-            fun ~event:(x315 : [ `secureConnect ]) ->
-              fun ~listener:(x316 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x317) "prependOnceListener"
-                     [|((match x315 with
-                         | `secureConnect -> Ojs.string_to_js "secureConnect"));(
-                       Ojs.fun_to_js 1 (fun _ -> x316 ()))|])
-        let (prepend_once_listener''' :
-          t -> event:[ `session ] -> listener:(session:Buffer.t -> unit) -> t)
-          =
-          fun (x321 : t) ->
-            fun ~event:(x318 : [ `session ]) ->
-              fun ~listener:(x319 : session:Buffer.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x321) "prependOnceListener"
-                     [|((match x318 with
-                         | `session -> Ojs.string_to_js "session"));(
-                       Ojs.fun_to_js 1
-                         (fun (x320 : Ojs.t) ->
-                            x319 ~session:(Buffer.t_of_js x320)))|])
-        let (prepend_once_listener'''' :
-          t -> event:[ `keylog ] -> listener:(line:Buffer.t -> unit) -> t) =
-          fun (x325 : t) ->
-            fun ~event:(x322 : [ `keylog ]) ->
-              fun ~listener:(x323 : line:Buffer.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x325) "prependOnceListener"
-                     [|((match x322 with
-                         | `keylog -> Ojs.string_to_js "keylog"));(Ojs.fun_to_js
-                                                                    1
-                                                                    (fun
-                                                                    (x324 :
-                                                                    Ojs.t) ->
-                                                                    x323
-                                                                    ~line:(
-                                                                    Buffer.t_of_js
-                                                                    x324)))|])
-        let (cast : t -> Net.Socket.t) =
-          fun (x326 : t) -> Net.Socket.t_of_js (t_to_js x326)
+            fun (x251 : Buffer.t) ->
+              Ojs.set_prop_ascii (t_to_js x250) "ticketKeys"
+                (Buffer.t_to_js x251)
+        let (get_session_timeout : t -> int) =
+          fun (x252 : t) ->
+            Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js x252) "sessionTimeout")
+        let (set_session_timeout : t -> int -> unit) =
+          fun (x253 : t) ->
+            fun (x254 : int) ->
+              Ojs.set_prop_ascii (t_to_js x253) "sessionTimeout"
+                (Ojs.int_to_js x254)
       end
     module CommonConnectionOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x328 : Ojs.t) -> x328
-        and t_to_js : t -> Ojs.t = fun (x327 : Ojs.t) -> x327
+        let rec t_of_js : Ojs.t -> t = fun (x256 : Ojs.t) -> x256
+        and t_to_js : t -> Ojs.t = fun (x255 : Ojs.t) -> x255
         let (get_secure_context : t -> SecureContext.t) =
-          fun (x329 : t) ->
+          fun (x257 : t) ->
             SecureContext.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x329) "secureContext")
+              (Ojs.get_prop_ascii (t_to_js x257) "secureContext")
         let (set_secure_context : t -> SecureContext.t -> unit) =
-          fun (x330 : t) ->
-            fun (x331 : SecureContext.t) ->
-              Ojs.set_prop_ascii (t_to_js x330) "secureContext"
-                (SecureContext.t_to_js x331)
+          fun (x258 : t) ->
+            fun (x259 : SecureContext.t) ->
+              Ojs.set_prop_ascii (t_to_js x258) "secureContext"
+                (SecureContext.t_to_js x259)
         let (get_enable_trace : t -> bool) =
-          fun (x332 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x332) "enableTrace")
+          fun (x260 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x260) "enableTrace")
         let (set_enable_trace : t -> bool -> unit) =
-          fun (x333 : t) ->
-            fun (x334 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x333) "enableTrace"
-                (Ojs.bool_to_js x334)
+          fun (x261 : t) ->
+            fun (x262 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x261) "enableTrace"
+                (Ojs.bool_to_js x262)
         let (get_request_cert : t -> bool) =
-          fun (x335 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x335) "requestCert")
+          fun (x263 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x263) "requestCert")
         let (set_request_cert : t -> bool -> unit) =
-          fun (x336 : t) ->
-            fun (x337 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x336) "requestCert"
-                (Ojs.bool_to_js x337)
+          fun (x264 : t) ->
+            fun (x265 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x264) "requestCert"
+                (Ojs.bool_to_js x265)
         let (get_alpn_protocols :
           t -> (Uint8Array.t, Uint8Array.t or_string) or_array) =
-          fun (x338 : t) ->
+          fun (x266 : t) ->
             or_array_of_js Uint8Array.t_of_js
-              (fun (x340 : Ojs.t) -> or_string_of_js Uint8Array.t_of_js x340)
-              (Ojs.get_prop_ascii (t_to_js x338) "ALPNProtocols")
+              (fun (x268 : Ojs.t) -> or_string_of_js Uint8Array.t_of_js x268)
+              (Ojs.get_prop_ascii (t_to_js x266) "ALPNProtocols")
         let (set_alpn_protocols :
           t -> (Uint8Array.t, Uint8Array.t or_string) or_array -> unit) =
-          fun (x342 : t) ->
-            fun (x343 : (Uint8Array.t, Uint8Array.t or_string) or_array) ->
-              Ojs.set_prop_ascii (t_to_js x342) "ALPNProtocols"
+          fun (x270 : t) ->
+            fun (x271 : (Uint8Array.t, Uint8Array.t or_string) or_array) ->
+              Ojs.set_prop_ascii (t_to_js x270) "ALPNProtocols"
                 (or_array_to_js Uint8Array.t_to_js
-                   (fun (x345 : Uint8Array.t or_string) ->
-                      or_string_to_js Uint8Array.t_to_js x345) x343)
+                   (fun (x273 : Uint8Array.t or_string) ->
+                      or_string_to_js Uint8Array.t_to_js x273) x271)
         let (s_ni_callback :
           t ->
             servername:string ->
               cb:(err:Error.t or_null -> ctx:SecureContext.t -> unit) -> unit)
           =
-          fun (x352 : t) ->
-            fun ~servername:(x347 : string) ->
+          fun (x280 : t) ->
+            fun ~servername:(x275 : string) ->
               fun
-                ~cb:(x348 :
+                ~cb:(x276 :
                       err:Error.t or_null -> ctx:SecureContext.t -> unit)
                 ->
                 ignore
-                  (Ojs.call (t_to_js x352) "SNICallback"
-                     [|(Ojs.string_to_js x347);(Ojs.fun_to_js 2
-                                                  (fun (x349 : Ojs.t) ->
-                                                     fun (x351 : Ojs.t) ->
-                                                       x348
+                  (Ojs.call (t_to_js x280) "SNICallback"
+                     [|(Ojs.string_to_js x275);(Ojs.fun_to_js 2
+                                                  (fun (x277 : Ojs.t) ->
+                                                     fun (x279 : Ojs.t) ->
+                                                       x276
                                                          ~err:(or_null_of_js
                                                                  Error.t_of_js
-                                                                 x349)
+                                                                 x277)
                                                          ~ctx:(SecureContext.t_of_js
-                                                                 x351)))|])
+                                                                 x279)))|])
         let (get_reject_unauthorized : t -> bool) =
-          fun (x353 : t) ->
+          fun (x281 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x353) "rejectUnauthorized")
+              (Ojs.get_prop_ascii (t_to_js x281) "rejectUnauthorized")
         let (set_reject_unauthorized : t -> bool -> unit) =
-          fun (x354 : t) ->
-            fun (x355 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x354) "rejectUnauthorized"
-                (Ojs.bool_to_js x355)
+          fun (x282 : t) ->
+            fun (x283 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x282) "rejectUnauthorized"
+                (Ojs.bool_to_js x283)
       end
-    module TlsOptions =
+    module TLSSocketOptions =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x357 : Ojs.t) -> x357
-        and t_to_js : t -> Ojs.t = fun (x356 : Ojs.t) -> x356
-        let (get_handshake_timeout : t -> int) =
-          fun (x358 : t) ->
-            Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x358) "handshakeTimeout")
-        let (set_handshake_timeout : t -> int -> unit) =
-          fun (x359 : t) ->
-            fun (x360 : int) ->
-              Ojs.set_prop_ascii (t_to_js x359) "handshakeTimeout"
-                (Ojs.int_to_js x360)
-        let (get_session_timeout : t -> int) =
-          fun (x361 : t) ->
-            Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x361) "sessionTimeout")
-        let (set_session_timeout : t -> int -> unit) =
-          fun (x362 : t) ->
-            fun (x363 : int) ->
-              Ojs.set_prop_ascii (t_to_js x362) "sessionTimeout"
-                (Ojs.int_to_js x363)
-        let (get_ticket_keys : t -> Buffer.t) =
-          fun (x364 : t) ->
-            Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x364) "ticketKeys")
-        let (set_ticket_keys : t -> Buffer.t -> unit) =
-          fun (x365 : t) ->
-            fun (x366 : Buffer.t) ->
-              Ojs.set_prop_ascii (t_to_js x365) "ticketKeys"
-                (Buffer.t_to_js x366)
-        let (psk_callback :
+        include SecureContextOptions
+        let (get_secure_context : t -> SecureContext.t) =
+          fun (x284 : t) ->
+            SecureContext.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x284) "secureContext")
+        let (set_secure_context : t -> SecureContext.t -> unit) =
+          fun (x285 : t) ->
+            fun (x286 : SecureContext.t) ->
+              Ojs.set_prop_ascii (t_to_js x285) "secureContext"
+                (SecureContext.t_to_js x286)
+        let (get_enable_trace : t -> bool) =
+          fun (x287 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x287) "enableTrace")
+        let (set_enable_trace : t -> bool -> unit) =
+          fun (x288 : t) ->
+            fun (x289 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x288) "enableTrace"
+                (Ojs.bool_to_js x289)
+        let (get_request_cert : t -> bool) =
+          fun (x290 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x290) "requestCert")
+        let (set_request_cert : t -> bool -> unit) =
+          fun (x291 : t) ->
+            fun (x292 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x291) "requestCert"
+                (Ojs.bool_to_js x292)
+        let (get_alpn_protocols :
+          t -> (Uint8Array.t, Uint8Array.t or_string) or_array) =
+          fun (x293 : t) ->
+            or_array_of_js Uint8Array.t_of_js
+              (fun (x295 : Ojs.t) -> or_string_of_js Uint8Array.t_of_js x295)
+              (Ojs.get_prop_ascii (t_to_js x293) "ALPNProtocols")
+        let (set_alpn_protocols :
+          t -> (Uint8Array.t, Uint8Array.t or_string) or_array -> unit) =
+          fun (x297 : t) ->
+            fun (x298 : (Uint8Array.t, Uint8Array.t or_string) or_array) ->
+              Ojs.set_prop_ascii (t_to_js x297) "ALPNProtocols"
+                (or_array_to_js Uint8Array.t_to_js
+                   (fun (x300 : Uint8Array.t or_string) ->
+                      or_string_to_js Uint8Array.t_to_js x300) x298)
+        let (s_ni_callback :
           t ->
-            socket:TLSSocket.t ->
-              identity:string -> (DataView.t, TypedArray.t) union2 or_null)
+            servername:string ->
+              cb:(err:Error.t or_null -> ctx:SecureContext.t -> unit) -> unit)
           =
-          fun (x369 : t) ->
-            fun ~socket:(x367 : TLSSocket.t) ->
-              fun ~identity:(x368 : string) ->
-                or_null_of_js
-                  (fun (x370 : Ojs.t) ->
-                     union2_of_js DataView.t_of_js TypedArray.t_of_js x370)
-                  (Ojs.call (t_to_js x369) "pskCallback"
-                     [|(TLSSocket.t_to_js x367);(Ojs.string_to_js x368)|])
-        let (get_psk_identity_hint : t -> string) =
-          fun (x373 : t) ->
-            Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x373) "pskIdentityHint")
-        let (set_psk_identity_hint : t -> string -> unit) =
-          fun (x374 : t) ->
-            fun (x375 : string) ->
-              Ojs.set_prop_ascii (t_to_js x374) "pskIdentityHint"
-                (Ojs.string_to_js x375)
-        let (cast : t -> SecureContextOptions.t) =
-          fun (x376 : t) -> SecureContextOptions.t_of_js (t_to_js x376)
-        let (cast' : t -> CommonConnectionOptions.t) =
-          fun (x377 : t) -> CommonConnectionOptions.t_of_js (t_to_js x377)
-        let (cast'' : t -> Net.ServerOpts.t) =
-          fun (x378 : t) -> Net.ServerOpts.t_of_js (t_to_js x378)
-      end
-    module PSKCallbackNegotation =
-      struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x380 : Ojs.t) -> x380
-        and t_to_js : t -> Ojs.t = fun (x379 : Ojs.t) -> x379
-        let (get_psk : t -> (DataView.t, TypedArray.t) union2) =
-          fun (x381 : t) ->
-            union2_of_js DataView.t_of_js TypedArray.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x381) "psk")
-        let (set_psk : t -> (DataView.t, TypedArray.t) union2 -> unit) =
-          fun (x384 : t) ->
-            fun (x385 : (DataView.t, TypedArray.t) union2) ->
-              Ojs.set_prop_ascii (t_to_js x384) "psk"
-                (union2_to_js DataView.t_to_js TypedArray.t_to_js x385)
-        let (get_identity : t -> string) =
-          fun (x388 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x388) "identity")
-        let (set_identity : t -> string -> unit) =
-          fun (x389 : t) ->
-            fun (x390 : string) ->
-              Ojs.set_prop_ascii (t_to_js x389) "identity"
-                (Ojs.string_to_js x390)
-      end
-    module ConnectionOptions =
-      struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x392 : Ojs.t) -> x392
-        and t_to_js : t -> Ojs.t = fun (x391 : Ojs.t) -> x391
-        let (get_host : t -> string) =
-          fun (x393 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x393) "host")
-        let (set_host : t -> string -> unit) =
-          fun (x394 : t) ->
-            fun (x395 : string) ->
-              Ojs.set_prop_ascii (t_to_js x394) "host"
-                (Ojs.string_to_js x395)
-        let (get_port : t -> int) =
-          fun (x396 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x396) "port")
-        let (set_port : t -> int -> unit) =
-          fun (x397 : t) ->
-            fun (x398 : int) ->
-              Ojs.set_prop_ascii (t_to_js x397) "port" (Ojs.int_to_js x398)
-        let (get_path : t -> string) =
-          fun (x399 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x399) "path")
-        let (set_path : t -> string -> unit) =
-          fun (x400 : t) ->
-            fun (x401 : string) ->
-              Ojs.set_prop_ascii (t_to_js x400) "path"
-                (Ojs.string_to_js x401)
-        let (get_socket : t -> Net.Socket.t) =
-          fun (x402 : t) ->
-            Net.Socket.t_of_js (Ojs.get_prop_ascii (t_to_js x402) "socket")
-        let (set_socket : t -> Net.Socket.t -> unit) =
-          fun (x403 : t) ->
-            fun (x404 : Net.Socket.t) ->
-              Ojs.set_prop_ascii (t_to_js x403) "socket"
-                (Net.Socket.t_to_js x404)
-        let (check_server_identity :
-          t -> host:string -> cert:PeerCertificate.t -> Error.t or_undefined)
-          =
-          fun (x407 : t) ->
-            fun ~host:(x405 : string) ->
-              fun ~cert:(x406 : PeerCertificate.t) ->
-                or_undefined_of_js Error.t_of_js
-                  (Ojs.call (t_to_js x407) "checkServerIdentity"
-                     [|(Ojs.string_to_js x405);(PeerCertificate.t_to_js x406)|])
-        let (get_servername : t -> string) =
-          fun (x409 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x409) "servername")
-        let (set_servername : t -> string -> unit) =
-          fun (x410 : t) ->
-            fun (x411 : string) ->
-              Ojs.set_prop_ascii (t_to_js x410) "servername"
-                (Ojs.string_to_js x411)
+          fun (x307 : t) ->
+            fun ~servername:(x302 : string) ->
+              fun
+                ~cb:(x303 :
+                      err:Error.t or_null -> ctx:SecureContext.t -> unit)
+                ->
+                ignore
+                  (Ojs.call (t_to_js x307) "SNICallback"
+                     [|(Ojs.string_to_js x302);(Ojs.fun_to_js 2
+                                                  (fun (x304 : Ojs.t) ->
+                                                     fun (x306 : Ojs.t) ->
+                                                       x303
+                                                         ~err:(or_null_of_js
+                                                                 Error.t_of_js
+                                                                 x304)
+                                                         ~ctx:(SecureContext.t_of_js
+                                                                 x306)))|])
+        let (get_reject_unauthorized : t -> bool) =
+          fun (x308 : t) ->
+            Ojs.bool_of_js
+              (Ojs.get_prop_ascii (t_to_js x308) "rejectUnauthorized")
+        let (set_reject_unauthorized : t -> bool -> unit) =
+          fun (x309 : t) ->
+            fun (x310 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x309) "rejectUnauthorized"
+                (Ojs.bool_to_js x310)
+        let (get_is_server : t -> bool) =
+          fun (x311 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x311) "isServer")
+        let (set_is_server : t -> bool -> unit) =
+          fun (x312 : t) ->
+            fun (x313 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x312) "isServer"
+                (Ojs.bool_to_js x313)
+        let (get_server : t -> Net.Server.t) =
+          fun (x314 : t) ->
+            Net.Server.t_of_js (Ojs.get_prop_ascii (t_to_js x314) "server")
+        let (set_server : t -> Net.Server.t -> unit) =
+          fun (x315 : t) ->
+            fun (x316 : Net.Server.t) ->
+              Ojs.set_prop_ascii (t_to_js x315) "server"
+                (Net.Server.t_to_js x316)
         let (get_session : t -> Buffer.t) =
-          fun (x412 : t) ->
-            Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x412) "session")
+          fun (x317 : t) ->
+            Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x317) "session")
         let (set_session : t -> Buffer.t -> unit) =
-          fun (x413 : t) ->
-            fun (x414 : Buffer.t) ->
-              Ojs.set_prop_ascii (t_to_js x413) "session"
-                (Buffer.t_to_js x414)
-        let (get_min_dh_size : t -> int) =
-          fun (x415 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x415) "minDHSize")
-        let (set_min_dh_size : t -> int -> unit) =
-          fun (x416 : t) ->
-            fun (x417 : int) ->
-              Ojs.set_prop_ascii (t_to_js x416) "minDHSize"
-                (Ojs.int_to_js x417)
-        let (get_lookup : t -> Net.LookupFunction.t) =
-          fun (x418 : t) ->
-            Net.LookupFunction.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x418) "lookup")
-        let (set_lookup : t -> Net.LookupFunction.t -> unit) =
-          fun (x419 : t) ->
-            fun (x420 : Net.LookupFunction.t) ->
-              Ojs.set_prop_ascii (t_to_js x419) "lookup"
-                (Net.LookupFunction.t_to_js x420)
-        let (get_timeout : t -> int) =
-          fun (x421 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x421) "timeout")
-        let (set_timeout : t -> int -> unit) =
-          fun (x422 : t) ->
-            fun (x423 : int) ->
-              Ojs.set_prop_ascii (t_to_js x422) "timeout"
-                (Ojs.int_to_js x423)
-        let (psk_callback :
-          t -> hint:string or_null -> PSKCallbackNegotation.t or_null) =
-          fun (x426 : t) ->
-            fun ~hint:(x424 : string or_null) ->
-              or_null_of_js PSKCallbackNegotation.t_of_js
-                (Ojs.call (t_to_js x426) "pskCallback"
-                   [|(or_null_to_js Ojs.string_to_js x424)|])
-        let (cast : t -> SecureContextOptions.t) =
-          fun (x428 : t) -> SecureContextOptions.t_of_js (t_to_js x428)
-        let (cast' : t -> CommonConnectionOptions.t) =
-          fun (x429 : t) -> CommonConnectionOptions.t_of_js (t_to_js x429)
+          fun (x318 : t) ->
+            fun (x319 : Buffer.t) ->
+              Ojs.set_prop_ascii (t_to_js x318) "session"
+                (Buffer.t_to_js x319)
+        let (get_request_ocsp : t -> bool) =
+          fun (x320 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x320) "requestOCSP")
+        let (set_request_ocsp : t -> bool -> unit) =
+          fun (x321 : t) ->
+            fun (x322 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x321) "requestOCSP"
+                (Ojs.bool_to_js x322)
       end
-    module Server =
+    module TLSSocket =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x431 : Ojs.t) -> x431
-        and t_to_js : t -> Ojs.t = fun (x430 : Ojs.t) -> x430
+        let rec t_of_js : Ojs.t -> t = fun (x324 : Ojs.t) -> x324
+        and t_to_js : t -> Ojs.t = fun (x323 : Ojs.t) -> x323
         let (create :
-          ?secure_connection_listener:(socket:TLSSocket.t -> unit) ->
-            unit -> t)
-          =
-          fun
-            ?secure_connection_listener:(x432 :
-                                          (socket:TLSSocket.t -> unit) option)
-            ->
-            fun () ->
-              t_of_js
-                (Ojs.new_obj_arr (Ojs.get_prop_ascii Import.tls "Server")
-                   (let x433 =
-                      Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
-                        [||] in
-                    (match x432 with
-                     | Some x434 ->
-                         ignore
-                           (Ojs.call x433 "push"
-                              [|(Ojs.fun_to_js 1
-                                   (fun (x435 : Ojs.t) ->
-                                      x434 ~socket:(TLSSocket.t_of_js x435)))|])
-                     | None -> ());
-                    x433))
-        let (create' :
-          options:TlsOptions.t ->
-            ?secure_connection_listener:(socket:TLSSocket.t -> unit) ->
-              unit -> t)
-          =
-          fun ~options:(x436 : TlsOptions.t) ->
-            fun
-              ?secure_connection_listener:(x437 :
-                                            (socket:TLSSocket.t -> unit)
-                                              option)
-              ->
+          socket:Net.Socket.t -> ?options:TLSSocketOptions.t -> unit -> t) =
+          fun ~socket:(x325 : Net.Socket.t) ->
+            fun ?options:(x326 : TLSSocketOptions.t option) ->
               fun () ->
                 t_of_js
-                  (Ojs.new_obj_arr (Ojs.get_prop_ascii Import.tls "Server")
-                     (let x438 =
+                  (Ojs.new_obj_arr
+                     (Ojs.get_prop_ascii Import.tls "TLSSocket")
+                     (let x327 =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
                       ignore
-                        (Ojs.call x438 "push" [|(TlsOptions.t_to_js x436)|]);
-                      (match x437 with
-                       | Some x439 ->
+                        (Ojs.call x327 "push" [|(Net.Socket.t_to_js x325)|]);
+                      (match x326 with
+                       | Some x328 ->
                            ignore
-                             (Ojs.call x438 "push"
-                                [|(Ojs.fun_to_js 1
-                                     (fun (x440 : Ojs.t) ->
-                                        x439 ~socket:(TLSSocket.t_of_js x440)))|])
+                             (Ojs.call x327 "push"
+                                [|(TLSSocketOptions.t_to_js x328)|])
                        | None -> ());
-                      x438))
-        let (add_context :
-          t -> host_name:string -> credentials:SecureContextOptions.t -> unit)
+                      x327))
+        let (get_authorized : t -> bool) =
+          fun (x329 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x329) "authorized")
+        let (set_authorized : t -> bool -> unit) =
+          fun (x330 : t) ->
+            fun (x331 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x330) "authorized"
+                (Ojs.bool_to_js x331)
+        let (get_authorization_error : t -> Error.t) =
+          fun (x332 : t) ->
+            Error.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x332) "authorizationError")
+        let (set_authorization_error : t -> Error.t -> unit) =
+          fun (x333 : t) ->
+            fun (x334 : Error.t) ->
+              Ojs.set_prop_ascii (t_to_js x333) "authorizationError"
+                (Error.t_to_js x334)
+        let (get_encrypted : t -> bool) =
+          fun (x335 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x335) "encrypted")
+        let (set_encrypted : t -> bool -> unit) =
+          fun (x336 : t) ->
+            fun (x337 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x336) "encrypted"
+                (Ojs.bool_to_js x337)
+        let (get_alpn_protocol : t -> string) =
+          fun (x338 : t) ->
+            Ojs.string_of_js
+              (Ojs.get_prop_ascii (t_to_js x338) "alpnProtocol")
+        let (set_alpn_protocol : t -> string -> unit) =
+          fun (x339 : t) ->
+            fun (x340 : string) ->
+              Ojs.set_prop_ascii (t_to_js x339) "alpnProtocol"
+                (Ojs.string_to_js x340)
+        let (get_certificate :
+          t -> (PeerCertificate.t, untyped_object) union2 or_null) =
+          fun (x341 : t) ->
+            or_null_of_js
+              (fun (x342 : Ojs.t) ->
+                 union2_of_js PeerCertificate.t_of_js untyped_object_of_js
+                   x342) (Ojs.call (t_to_js x341) "getCertificate" [||])
+        let (get_cipher : t -> CipherNameAndProtocol.t) =
+          fun (x345 : t) ->
+            CipherNameAndProtocol.t_of_js
+              (Ojs.call (t_to_js x345) "getCipher" [||])
+        let (get_ephemeral_key_info :
+          t -> (EphemeralKeyInfo.t, untyped_object) union2 or_null) =
+          fun (x346 : t) ->
+            or_null_of_js
+              (fun (x347 : Ojs.t) ->
+                 union2_of_js EphemeralKeyInfo.t_of_js untyped_object_of_js
+                   x347) (Ojs.call (t_to_js x346) "getEphemeralKeyInfo" [||])
+        let (get_finished : t -> Buffer.t or_undefined) =
+          fun (x350 : t) ->
+            or_undefined_of_js Buffer.t_of_js
+              (Ojs.call (t_to_js x350) "getFinished" [||])
+        let (get_peer_certificate :
+          t -> detailed:[ `L_b_true ] -> DetailedPeerCertificate.t) =
+          fun (x353 : t) ->
+            fun ~detailed:(x352 : [ `L_b_true ]) ->
+              DetailedPeerCertificate.t_of_js
+                (Ojs.call (t_to_js x353) "getPeerCertificate"
+                   [|((match x352 with
+                       | `L_b_true -> Ojs.string_to_js "LBTrue"))|])
+        let (get_peer_certificate' :
+          t -> ?detailed:[ `L_b_false ] -> unit -> PeerCertificate.t) =
+          fun (x357 : t) ->
+            fun ?detailed:(x354 : [ `L_b_false ] option) ->
+              fun () ->
+                PeerCertificate.t_of_js
+                  (let x358 = t_to_js x357 in
+                   Ojs.call (Ojs.get_prop_ascii x358 "getPeerCertificate")
+                     "apply"
+                     [|x358;((let x355 =
+                                Ojs.new_obj
+                                  (Ojs.get_prop_ascii Ojs.global "Array")
+                                  [||] in
+                              (match x354 with
+                               | Some x356 ->
+                                   ignore
+                                     (Ojs.call x355 "push"
+                                        [|((match x356 with
+                                            | `L_b_false ->
+                                                Ojs.string_to_js "LBFalse"))|])
+                               | None -> ());
+                              x355))|])
+        let (get_peer_certificate'' :
+          t ->
+            ?detailed:bool ->
+              unit -> (DetailedPeerCertificate.t, PeerCertificate.t) union2)
           =
-          fun (x443 : t) ->
-            fun ~host_name:(x441 : string) ->
-              fun ~credentials:(x442 : SecureContextOptions.t) ->
-                ignore
-                  (Ojs.call (t_to_js x443) "addContext"
-                     [|(Ojs.string_to_js x441);(SecureContextOptions.t_to_js
-                                                  x442)|])
-        let (get_ticket_keys : t -> Buffer.t) =
-          fun (x444 : t) ->
-            Buffer.t_of_js (Ojs.call (t_to_js x444) "getTicketKeys" [||])
-        let (set_secure_context :
-          t -> details:SecureContextOptions.t -> unit) =
-          fun (x446 : t) ->
-            fun ~details:(x445 : SecureContextOptions.t) ->
-              ignore
-                (Ojs.call (t_to_js x446) "setSecureContext"
-                   [|(SecureContextOptions.t_to_js x445)|])
-        let (set_ticket_keys : t -> keys:Buffer.t -> unit) =
-          fun (x448 : t) ->
-            fun ~keys:(x447 : Buffer.t) ->
-              ignore
-                (Ojs.call (t_to_js x448) "setTicketKeys"
-                   [|(Buffer.t_to_js x447)|])
+          fun (x362 : t) ->
+            fun ?detailed:(x359 : bool option) ->
+              fun () ->
+                union2_of_js DetailedPeerCertificate.t_of_js
+                  PeerCertificate.t_of_js
+                  (let x363 = t_to_js x362 in
+                   Ojs.call (Ojs.get_prop_ascii x363 "getPeerCertificate")
+                     "apply"
+                     [|x363;((let x360 =
+                                Ojs.new_obj
+                                  (Ojs.get_prop_ascii Ojs.global "Array")
+                                  [||] in
+                              (match x359 with
+                               | Some x361 ->
+                                   ignore
+                                     (Ojs.call x360 "push"
+                                        [|(Ojs.bool_to_js x361)|])
+                               | None -> ());
+                              x360))|])
+        let (get_peer_finished : t -> Buffer.t or_undefined) =
+          fun (x366 : t) ->
+            or_undefined_of_js Buffer.t_of_js
+              (Ojs.call (t_to_js x366) "getPeerFinished" [||])
+        let (get_protocol : t -> string or_null) =
+          fun (x368 : t) ->
+            or_null_of_js Ojs.string_of_js
+              (Ojs.call (t_to_js x368) "getProtocol" [||])
+        let (get_session : t -> Buffer.t or_undefined) =
+          fun (x370 : t) ->
+            or_undefined_of_js Buffer.t_of_js
+              (Ojs.call (t_to_js x370) "getSession" [||])
+        let (get_shared_sigalgs : t -> string list) =
+          fun (x372 : t) ->
+            Ojs.list_of_js Ojs.string_of_js
+              (Ojs.call (t_to_js x372) "getSharedSigalgs" [||])
+        let (get_tls_ticket : t -> Buffer.t or_undefined) =
+          fun (x374 : t) ->
+            or_undefined_of_js Buffer.t_of_js
+              (Ojs.call (t_to_js x374) "getTLSTicket" [||])
+        let (is_session_reused : t -> bool) =
+          fun (x376 : t) ->
+            Ojs.bool_of_js (Ojs.call (t_to_js x376) "isSessionReused" [||])
+        let (renegotiate :
+          t ->
+            options:AnonymousInterface0.t ->
+              callback:(err:Error.t or_null -> unit) -> bool or_undefined)
+          =
+          fun (x381 : t) ->
+            fun ~options:(x377 : AnonymousInterface0.t) ->
+              fun ~callback:(x378 : err:Error.t or_null -> unit) ->
+                or_undefined_of_js Ojs.bool_of_js
+                  (Ojs.call (t_to_js x381) "renegotiate"
+                     [|(AnonymousInterface0.t_to_js x377);(Ojs.fun_to_js 1
+                                                             (fun
+                                                                (x379 :
+                                                                  Ojs.t)
+                                                                ->
+                                                                x378
+                                                                  ~err:(
+                                                                  or_null_of_js
+                                                                    Error.t_of_js
+                                                                    x379)))|])
+        let (set_max_send_fragment : t -> size:int -> bool) =
+          fun (x384 : t) ->
+            fun ~size:(x383 : int) ->
+              Ojs.bool_of_js
+                (Ojs.call (t_to_js x384) "setMaxSendFragment"
+                   [|(Ojs.int_to_js x383)|])
+        let (disable_renegotiation : t -> unit) =
+          fun (x385 : t) ->
+            ignore (Ojs.call (t_to_js x385) "disableRenegotiation" [||])
+        let (enable_trace : t -> unit) =
+          fun (x386 : t) ->
+            ignore (Ojs.call (t_to_js x386) "enableTrace" [||])
+        let (export_keying_material :
+          t -> length:int -> label:string -> context:Buffer.t -> Buffer.t) =
+          fun (x390 : t) ->
+            fun ~length:(x387 : int) ->
+              fun ~label:(x388 : string) ->
+                fun ~context:(x389 : Buffer.t) ->
+                  Buffer.t_of_js
+                    (Ojs.call (t_to_js x390) "exportKeyingMaterial"
+                       [|(Ojs.int_to_js x387);(Ojs.string_to_js x388);(
+                         Buffer.t_to_js x389)|])
         let (add_listener :
+          t -> event:string -> listener:(args:any list -> unit) -> t) =
+          fun (x395 : t) ->
+            fun ~event:(x391 : string) ->
+              fun ~listener:(x392 : args:any list -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x395) "addListener"
+                     [|(Ojs.string_to_js x391);(Ojs.fun_to_js_args
+                                                  (fun (x393 : _) ->
+                                                     x392
+                                                       ~args:(Ojs.list_of_js_from
+                                                                any_of_js
+                                                                x393 0)))|])
+        let (add_listener' :
+          t ->
+            event:[ `OCSPResponse ] ->
+              listener:(response:Buffer.t -> unit) -> t)
+          =
+          fun (x399 : t) ->
+            fun ~event:(x396 : [ `OCSPResponse ]) ->
+              fun ~listener:(x397 : response:Buffer.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x399) "addListener"
+                     [|((match x396 with
+                         | `OCSPResponse -> Ojs.string_to_js "OCSPResponse"));(
+                       Ojs.fun_to_js 1
+                         (fun (x398 : Ojs.t) ->
+                            x397 ~response:(Buffer.t_of_js x398)))|])
+        let (add_listener'' :
+          t -> event:[ `secureConnect ] -> listener:(unit -> unit) -> t) =
+          fun (x402 : t) ->
+            fun ~event:(x400 : [ `secureConnect ]) ->
+              fun ~listener:(x401 : unit -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x402) "addListener"
+                     [|((match x400 with
+                         | `secureConnect -> Ojs.string_to_js "secureConnect"));(
+                       Ojs.fun_to_js 1 (fun _ -> x401 ()))|])
+        let (add_listener''' :
+          t -> event:[ `session ] -> listener:(session:Buffer.t -> unit) -> t)
+          =
+          fun (x406 : t) ->
+            fun ~event:(x403 : [ `session ]) ->
+              fun ~listener:(x404 : session:Buffer.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x406) "addListener"
+                     [|((match x403 with
+                         | `session -> Ojs.string_to_js "session"));(
+                       Ojs.fun_to_js 1
+                         (fun (x405 : Ojs.t) ->
+                            x404 ~session:(Buffer.t_of_js x405)))|])
+        let (add_listener'''' :
+          t -> event:[ `keylog ] -> listener:(line:Buffer.t -> unit) -> t) =
+          fun (x410 : t) ->
+            fun ~event:(x407 : [ `keylog ]) ->
+              fun ~listener:(x408 : line:Buffer.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x410) "addListener"
+                     [|((match x407 with
+                         | `keylog -> Ojs.string_to_js "keylog"));(Ojs.fun_to_js
+                                                                    1
+                                                                    (fun
+                                                                    (x409 :
+                                                                    Ojs.t) ->
+                                                                    x408
+                                                                    ~line:(
+                                                                    Buffer.t_of_js
+                                                                    x409)))|])
+        let (emit : t -> event:symbol or_string -> args:any list -> bool) =
+          fun (x416 : t) ->
+            fun ~event:(x411 : symbol or_string) ->
+              fun ~args:(x412 : any list) ->
+                Ojs.bool_of_js
+                  (let x417 = t_to_js x416 in
+                   Ojs.call (Ojs.get_prop_ascii x417 "emit") "apply"
+                     [|x417;((let x413 =
+                                Ojs.new_obj
+                                  (Ojs.get_prop_ascii Ojs.global "Array")
+                                  [||] in
+                              ignore
+                                (Ojs.call x413 "push"
+                                   [|(or_string_to_js symbol_to_js x411)|]);
+                              List.iter
+                                (fun (x414 : any) ->
+                                   ignore
+                                     (Ojs.call x413 "push"
+                                        [|(any_to_js x414)|])) x412;
+                              x413))|])
+        let (emit' :
+          t -> event:[ `OCSPResponse ] -> response:Buffer.t -> bool) =
+          fun (x420 : t) ->
+            fun ~event:(x418 : [ `OCSPResponse ]) ->
+              fun ~response:(x419 : Buffer.t) ->
+                Ojs.bool_of_js
+                  (Ojs.call (t_to_js x420) "emit"
+                     [|((match x418 with
+                         | `OCSPResponse -> Ojs.string_to_js "OCSPResponse"));(
+                       Buffer.t_to_js x419)|])
+        let (emit'' : t -> event:[ `secureConnect ] -> bool) =
+          fun (x422 : t) ->
+            fun ~event:(x421 : [ `secureConnect ]) ->
+              Ojs.bool_of_js
+                (Ojs.call (t_to_js x422) "emit"
+                   [|((match x421 with
+                       | `secureConnect -> Ojs.string_to_js "secureConnect"))|])
+        let (emit''' : t -> event:[ `session ] -> session:Buffer.t -> bool) =
+          fun (x425 : t) ->
+            fun ~event:(x423 : [ `session ]) ->
+              fun ~session:(x424 : Buffer.t) ->
+                Ojs.bool_of_js
+                  (Ojs.call (t_to_js x425) "emit"
+                     [|((match x423 with
+                         | `session -> Ojs.string_to_js "session"));(
+                       Buffer.t_to_js x424)|])
+        let (emit'''' : t -> event:[ `keylog ] -> line:Buffer.t -> bool) =
+          fun (x428 : t) ->
+            fun ~event:(x426 : [ `keylog ]) ->
+              fun ~line:(x427 : Buffer.t) ->
+                Ojs.bool_of_js
+                  (Ojs.call (t_to_js x428) "emit"
+                     [|((match x426 with
+                         | `keylog -> Ojs.string_to_js "keylog"));(Buffer.t_to_js
+                                                                    x427)|])
+        let (on : t -> event:string -> listener:(args:any list -> unit) -> t)
+          =
+          fun (x433 : t) ->
+            fun ~event:(x429 : string) ->
+              fun ~listener:(x430 : args:any list -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x433) "on"
+                     [|(Ojs.string_to_js x429);(Ojs.fun_to_js_args
+                                                  (fun (x431 : _) ->
+                                                     x430
+                                                       ~args:(Ojs.list_of_js_from
+                                                                any_of_js
+                                                                x431 0)))|])
+        let (on' :
+          t ->
+            event:[ `OCSPResponse ] ->
+              listener:(response:Buffer.t -> unit) -> t)
+          =
+          fun (x437 : t) ->
+            fun ~event:(x434 : [ `OCSPResponse ]) ->
+              fun ~listener:(x435 : response:Buffer.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x437) "on"
+                     [|((match x434 with
+                         | `OCSPResponse -> Ojs.string_to_js "OCSPResponse"));(
+                       Ojs.fun_to_js 1
+                         (fun (x436 : Ojs.t) ->
+                            x435 ~response:(Buffer.t_of_js x436)))|])
+        let (on'' :
+          t -> event:[ `secureConnect ] -> listener:(unit -> unit) -> t) =
+          fun (x440 : t) ->
+            fun ~event:(x438 : [ `secureConnect ]) ->
+              fun ~listener:(x439 : unit -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x440) "on"
+                     [|((match x438 with
+                         | `secureConnect -> Ojs.string_to_js "secureConnect"));(
+                       Ojs.fun_to_js 1 (fun _ -> x439 ()))|])
+        let (on''' :
+          t -> event:[ `session ] -> listener:(session:Buffer.t -> unit) -> t)
+          =
+          fun (x444 : t) ->
+            fun ~event:(x441 : [ `session ]) ->
+              fun ~listener:(x442 : session:Buffer.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x444) "on"
+                     [|((match x441 with
+                         | `session -> Ojs.string_to_js "session"));(
+                       Ojs.fun_to_js 1
+                         (fun (x443 : Ojs.t) ->
+                            x442 ~session:(Buffer.t_of_js x443)))|])
+        let (on'''' :
+          t -> event:[ `keylog ] -> listener:(line:Buffer.t -> unit) -> t) =
+          fun (x448 : t) ->
+            fun ~event:(x445 : [ `keylog ]) ->
+              fun ~listener:(x446 : line:Buffer.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x448) "on"
+                     [|((match x445 with
+                         | `keylog -> Ojs.string_to_js "keylog"));(Ojs.fun_to_js
+                                                                    1
+                                                                    (fun
+                                                                    (x447 :
+                                                                    Ojs.t) ->
+                                                                    x446
+                                                                    ~line:(
+                                                                    Buffer.t_of_js
+                                                                    x447)))|])
+        let (once :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
           fun (x453 : t) ->
             fun ~event:(x449 : string) ->
               fun ~listener:(x450 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x453) "addListener"
+                  (Ojs.call (t_to_js x453) "once"
                      [|(Ojs.string_to_js x449);(Ojs.fun_to_js_args
                                                   (fun (x451 : _) ->
                                                      x450
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
                                                                 x451 0)))|])
+        let (once' :
+          t ->
+            event:[ `OCSPResponse ] ->
+              listener:(response:Buffer.t -> unit) -> t)
+          =
+          fun (x457 : t) ->
+            fun ~event:(x454 : [ `OCSPResponse ]) ->
+              fun ~listener:(x455 : response:Buffer.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x457) "once"
+                     [|((match x454 with
+                         | `OCSPResponse -> Ojs.string_to_js "OCSPResponse"));(
+                       Ojs.fun_to_js 1
+                         (fun (x456 : Ojs.t) ->
+                            x455 ~response:(Buffer.t_of_js x456)))|])
+        let (once'' :
+          t -> event:[ `secureConnect ] -> listener:(unit -> unit) -> t) =
+          fun (x460 : t) ->
+            fun ~event:(x458 : [ `secureConnect ]) ->
+              fun ~listener:(x459 : unit -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x460) "once"
+                     [|((match x458 with
+                         | `secureConnect -> Ojs.string_to_js "secureConnect"));(
+                       Ojs.fun_to_js 1 (fun _ -> x459 ()))|])
+        let (once''' :
+          t -> event:[ `session ] -> listener:(session:Buffer.t -> unit) -> t)
+          =
+          fun (x464 : t) ->
+            fun ~event:(x461 : [ `session ]) ->
+              fun ~listener:(x462 : session:Buffer.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x464) "once"
+                     [|((match x461 with
+                         | `session -> Ojs.string_to_js "session"));(
+                       Ojs.fun_to_js 1
+                         (fun (x463 : Ojs.t) ->
+                            x462 ~session:(Buffer.t_of_js x463)))|])
+        let (once'''' :
+          t -> event:[ `keylog ] -> listener:(line:Buffer.t -> unit) -> t) =
+          fun (x468 : t) ->
+            fun ~event:(x465 : [ `keylog ]) ->
+              fun ~listener:(x466 : line:Buffer.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x468) "once"
+                     [|((match x465 with
+                         | `keylog -> Ojs.string_to_js "keylog"));(Ojs.fun_to_js
+                                                                    1
+                                                                    (fun
+                                                                    (x467 :
+                                                                    Ojs.t) ->
+                                                                    x466
+                                                                    ~line:(
+                                                                    Buffer.t_of_js
+                                                                    x467)))|])
+        let (prepend_listener :
+          t -> event:string -> listener:(args:any list -> unit) -> t) =
+          fun (x473 : t) ->
+            fun ~event:(x469 : string) ->
+              fun ~listener:(x470 : args:any list -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x473) "prependListener"
+                     [|(Ojs.string_to_js x469);(Ojs.fun_to_js_args
+                                                  (fun (x471 : _) ->
+                                                     x470
+                                                       ~args:(Ojs.list_of_js_from
+                                                                any_of_js
+                                                                x471 0)))|])
+        let (prepend_listener' :
+          t ->
+            event:[ `OCSPResponse ] ->
+              listener:(response:Buffer.t -> unit) -> t)
+          =
+          fun (x477 : t) ->
+            fun ~event:(x474 : [ `OCSPResponse ]) ->
+              fun ~listener:(x475 : response:Buffer.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x477) "prependListener"
+                     [|((match x474 with
+                         | `OCSPResponse -> Ojs.string_to_js "OCSPResponse"));(
+                       Ojs.fun_to_js 1
+                         (fun (x476 : Ojs.t) ->
+                            x475 ~response:(Buffer.t_of_js x476)))|])
+        let (prepend_listener'' :
+          t -> event:[ `secureConnect ] -> listener:(unit -> unit) -> t) =
+          fun (x480 : t) ->
+            fun ~event:(x478 : [ `secureConnect ]) ->
+              fun ~listener:(x479 : unit -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x480) "prependListener"
+                     [|((match x478 with
+                         | `secureConnect -> Ojs.string_to_js "secureConnect"));(
+                       Ojs.fun_to_js 1 (fun _ -> x479 ()))|])
+        let (prepend_listener''' :
+          t -> event:[ `session ] -> listener:(session:Buffer.t -> unit) -> t)
+          =
+          fun (x484 : t) ->
+            fun ~event:(x481 : [ `session ]) ->
+              fun ~listener:(x482 : session:Buffer.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x484) "prependListener"
+                     [|((match x481 with
+                         | `session -> Ojs.string_to_js "session"));(
+                       Ojs.fun_to_js 1
+                         (fun (x483 : Ojs.t) ->
+                            x482 ~session:(Buffer.t_of_js x483)))|])
+        let (prepend_listener'''' :
+          t -> event:[ `keylog ] -> listener:(line:Buffer.t -> unit) -> t) =
+          fun (x488 : t) ->
+            fun ~event:(x485 : [ `keylog ]) ->
+              fun ~listener:(x486 : line:Buffer.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x488) "prependListener"
+                     [|((match x485 with
+                         | `keylog -> Ojs.string_to_js "keylog"));(Ojs.fun_to_js
+                                                                    1
+                                                                    (fun
+                                                                    (x487 :
+                                                                    Ojs.t) ->
+                                                                    x486
+                                                                    ~line:(
+                                                                    Buffer.t_of_js
+                                                                    x487)))|])
+        let (prepend_once_listener :
+          t -> event:string -> listener:(args:any list -> unit) -> t) =
+          fun (x493 : t) ->
+            fun ~event:(x489 : string) ->
+              fun ~listener:(x490 : args:any list -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x493) "prependOnceListener"
+                     [|(Ojs.string_to_js x489);(Ojs.fun_to_js_args
+                                                  (fun (x491 : _) ->
+                                                     x490
+                                                       ~args:(Ojs.list_of_js_from
+                                                                any_of_js
+                                                                x491 0)))|])
+        let (prepend_once_listener' :
+          t ->
+            event:[ `OCSPResponse ] ->
+              listener:(response:Buffer.t -> unit) -> t)
+          =
+          fun (x497 : t) ->
+            fun ~event:(x494 : [ `OCSPResponse ]) ->
+              fun ~listener:(x495 : response:Buffer.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x497) "prependOnceListener"
+                     [|((match x494 with
+                         | `OCSPResponse -> Ojs.string_to_js "OCSPResponse"));(
+                       Ojs.fun_to_js 1
+                         (fun (x496 : Ojs.t) ->
+                            x495 ~response:(Buffer.t_of_js x496)))|])
+        let (prepend_once_listener'' :
+          t -> event:[ `secureConnect ] -> listener:(unit -> unit) -> t) =
+          fun (x500 : t) ->
+            fun ~event:(x498 : [ `secureConnect ]) ->
+              fun ~listener:(x499 : unit -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x500) "prependOnceListener"
+                     [|((match x498 with
+                         | `secureConnect -> Ojs.string_to_js "secureConnect"));(
+                       Ojs.fun_to_js 1 (fun _ -> x499 ()))|])
+        let (prepend_once_listener''' :
+          t -> event:[ `session ] -> listener:(session:Buffer.t -> unit) -> t)
+          =
+          fun (x504 : t) ->
+            fun ~event:(x501 : [ `session ]) ->
+              fun ~listener:(x502 : session:Buffer.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x504) "prependOnceListener"
+                     [|((match x501 with
+                         | `session -> Ojs.string_to_js "session"));(
+                       Ojs.fun_to_js 1
+                         (fun (x503 : Ojs.t) ->
+                            x502 ~session:(Buffer.t_of_js x503)))|])
+        let (prepend_once_listener'''' :
+          t -> event:[ `keylog ] -> listener:(line:Buffer.t -> unit) -> t) =
+          fun (x508 : t) ->
+            fun ~event:(x505 : [ `keylog ]) ->
+              fun ~listener:(x506 : line:Buffer.t -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x508) "prependOnceListener"
+                     [|((match x505 with
+                         | `keylog -> Ojs.string_to_js "keylog"));(Ojs.fun_to_js
+                                                                    1
+                                                                    (fun
+                                                                    (x507 :
+                                                                    Ojs.t) ->
+                                                                    x506
+                                                                    ~line:(
+                                                                    Buffer.t_of_js
+                                                                    x507)))|])
+        let (cast : t -> Net.Socket.t) =
+          fun (x509 : t) -> Net.Socket.t_of_js (t_to_js x509)
+      end
+    module SecurePair =
+      struct
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x511 : Ojs.t) -> x511
+        and t_to_js : t -> Ojs.t = fun (x510 : Ojs.t) -> x510
+        let (get_encrypted : t -> TLSSocket.t) =
+          fun (x512 : t) ->
+            TLSSocket.t_of_js (Ojs.get_prop_ascii (t_to_js x512) "encrypted")
+        let (set_encrypted : t -> TLSSocket.t -> unit) =
+          fun (x513 : t) ->
+            fun (x514 : TLSSocket.t) ->
+              Ojs.set_prop_ascii (t_to_js x513) "encrypted"
+                (TLSSocket.t_to_js x514)
+        let (get_cleartext : t -> TLSSocket.t) =
+          fun (x515 : t) ->
+            TLSSocket.t_of_js (Ojs.get_prop_ascii (t_to_js x515) "cleartext")
+        let (set_cleartext : t -> TLSSocket.t -> unit) =
+          fun (x516 : t) ->
+            fun (x517 : TLSSocket.t) ->
+              Ojs.set_prop_ascii (t_to_js x516) "cleartext"
+                (TLSSocket.t_to_js x517)
+      end
+    module TlsOptions =
+      struct
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x519 : Ojs.t) -> x519
+        and t_to_js : t -> Ojs.t = fun (x518 : Ojs.t) -> x518
+        let (get_handshake_timeout : t -> int) =
+          fun (x520 : t) ->
+            Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js x520) "handshakeTimeout")
+        let (set_handshake_timeout : t -> int -> unit) =
+          fun (x521 : t) ->
+            fun (x522 : int) ->
+              Ojs.set_prop_ascii (t_to_js x521) "handshakeTimeout"
+                (Ojs.int_to_js x522)
+        let (get_session_timeout : t -> int) =
+          fun (x523 : t) ->
+            Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js x523) "sessionTimeout")
+        let (set_session_timeout : t -> int -> unit) =
+          fun (x524 : t) ->
+            fun (x525 : int) ->
+              Ojs.set_prop_ascii (t_to_js x524) "sessionTimeout"
+                (Ojs.int_to_js x525)
+        let (get_ticket_keys : t -> Buffer.t) =
+          fun (x526 : t) ->
+            Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x526) "ticketKeys")
+        let (set_ticket_keys : t -> Buffer.t -> unit) =
+          fun (x527 : t) ->
+            fun (x528 : Buffer.t) ->
+              Ojs.set_prop_ascii (t_to_js x527) "ticketKeys"
+                (Buffer.t_to_js x528)
+        let (psk_callback :
+          t ->
+            socket:TLSSocket.t ->
+              identity:string -> (DataView.t, TypedArray.t) union2 or_null)
+          =
+          fun (x531 : t) ->
+            fun ~socket:(x529 : TLSSocket.t) ->
+              fun ~identity:(x530 : string) ->
+                or_null_of_js
+                  (fun (x532 : Ojs.t) ->
+                     union2_of_js DataView.t_of_js TypedArray.t_of_js x532)
+                  (Ojs.call (t_to_js x531) "pskCallback"
+                     [|(TLSSocket.t_to_js x529);(Ojs.string_to_js x530)|])
+        let (get_psk_identity_hint : t -> string) =
+          fun (x535 : t) ->
+            Ojs.string_of_js
+              (Ojs.get_prop_ascii (t_to_js x535) "pskIdentityHint")
+        let (set_psk_identity_hint : t -> string -> unit) =
+          fun (x536 : t) ->
+            fun (x537 : string) ->
+              Ojs.set_prop_ascii (t_to_js x536) "pskIdentityHint"
+                (Ojs.string_to_js x537)
+        let (cast : t -> SecureContextOptions.t) =
+          fun (x538 : t) -> SecureContextOptions.t_of_js (t_to_js x538)
+        let (cast' : t -> CommonConnectionOptions.t) =
+          fun (x539 : t) -> CommonConnectionOptions.t_of_js (t_to_js x539)
+        let (cast'' : t -> Net.ServerOpts.t) =
+          fun (x540 : t) -> Net.ServerOpts.t_of_js (t_to_js x540)
+      end
+    module PSKCallbackNegotation =
+      struct
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x542 : Ojs.t) -> x542
+        and t_to_js : t -> Ojs.t = fun (x541 : Ojs.t) -> x541
+        let (get_psk : t -> (DataView.t, TypedArray.t) union2) =
+          fun (x543 : t) ->
+            union2_of_js DataView.t_of_js TypedArray.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x543) "psk")
+        let (set_psk : t -> (DataView.t, TypedArray.t) union2 -> unit) =
+          fun (x546 : t) ->
+            fun (x547 : (DataView.t, TypedArray.t) union2) ->
+              Ojs.set_prop_ascii (t_to_js x546) "psk"
+                (union2_to_js DataView.t_to_js TypedArray.t_to_js x547)
+        let (get_identity : t -> string) =
+          fun (x550 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x550) "identity")
+        let (set_identity : t -> string -> unit) =
+          fun (x551 : t) ->
+            fun (x552 : string) ->
+              Ojs.set_prop_ascii (t_to_js x551) "identity"
+                (Ojs.string_to_js x552)
+      end
+    module ConnectionOptions =
+      struct
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x554 : Ojs.t) -> x554
+        and t_to_js : t -> Ojs.t = fun (x553 : Ojs.t) -> x553
+        let (get_host : t -> string) =
+          fun (x555 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x555) "host")
+        let (set_host : t -> string -> unit) =
+          fun (x556 : t) ->
+            fun (x557 : string) ->
+              Ojs.set_prop_ascii (t_to_js x556) "host"
+                (Ojs.string_to_js x557)
+        let (get_port : t -> int) =
+          fun (x558 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x558) "port")
+        let (set_port : t -> int -> unit) =
+          fun (x559 : t) ->
+            fun (x560 : int) ->
+              Ojs.set_prop_ascii (t_to_js x559) "port" (Ojs.int_to_js x560)
+        let (get_path : t -> string) =
+          fun (x561 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x561) "path")
+        let (set_path : t -> string -> unit) =
+          fun (x562 : t) ->
+            fun (x563 : string) ->
+              Ojs.set_prop_ascii (t_to_js x562) "path"
+                (Ojs.string_to_js x563)
+        let (get_socket : t -> Net.Socket.t) =
+          fun (x564 : t) ->
+            Net.Socket.t_of_js (Ojs.get_prop_ascii (t_to_js x564) "socket")
+        let (set_socket : t -> Net.Socket.t -> unit) =
+          fun (x565 : t) ->
+            fun (x566 : Net.Socket.t) ->
+              Ojs.set_prop_ascii (t_to_js x565) "socket"
+                (Net.Socket.t_to_js x566)
+        let (check_server_identity :
+          t -> host:string -> cert:PeerCertificate.t -> Error.t or_undefined)
+          =
+          fun (x569 : t) ->
+            fun ~host:(x567 : string) ->
+              fun ~cert:(x568 : PeerCertificate.t) ->
+                or_undefined_of_js Error.t_of_js
+                  (Ojs.call (t_to_js x569) "checkServerIdentity"
+                     [|(Ojs.string_to_js x567);(PeerCertificate.t_to_js x568)|])
+        let (get_servername : t -> string) =
+          fun (x571 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x571) "servername")
+        let (set_servername : t -> string -> unit) =
+          fun (x572 : t) ->
+            fun (x573 : string) ->
+              Ojs.set_prop_ascii (t_to_js x572) "servername"
+                (Ojs.string_to_js x573)
+        let (get_session : t -> Buffer.t) =
+          fun (x574 : t) ->
+            Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x574) "session")
+        let (set_session : t -> Buffer.t -> unit) =
+          fun (x575 : t) ->
+            fun (x576 : Buffer.t) ->
+              Ojs.set_prop_ascii (t_to_js x575) "session"
+                (Buffer.t_to_js x576)
+        let (get_min_dh_size : t -> int) =
+          fun (x577 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x577) "minDHSize")
+        let (set_min_dh_size : t -> int -> unit) =
+          fun (x578 : t) ->
+            fun (x579 : int) ->
+              Ojs.set_prop_ascii (t_to_js x578) "minDHSize"
+                (Ojs.int_to_js x579)
+        let (get_lookup : t -> Net.LookupFunction.t) =
+          fun (x580 : t) ->
+            Net.LookupFunction.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x580) "lookup")
+        let (set_lookup : t -> Net.LookupFunction.t -> unit) =
+          fun (x581 : t) ->
+            fun (x582 : Net.LookupFunction.t) ->
+              Ojs.set_prop_ascii (t_to_js x581) "lookup"
+                (Net.LookupFunction.t_to_js x582)
+        let (get_timeout : t -> int) =
+          fun (x583 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x583) "timeout")
+        let (set_timeout : t -> int -> unit) =
+          fun (x584 : t) ->
+            fun (x585 : int) ->
+              Ojs.set_prop_ascii (t_to_js x584) "timeout"
+                (Ojs.int_to_js x585)
+        let (psk_callback :
+          t -> hint:string or_null -> PSKCallbackNegotation.t or_null) =
+          fun (x588 : t) ->
+            fun ~hint:(x586 : string or_null) ->
+              or_null_of_js PSKCallbackNegotation.t_of_js
+                (Ojs.call (t_to_js x588) "pskCallback"
+                   [|(or_null_to_js Ojs.string_to_js x586)|])
+        let (cast : t -> SecureContextOptions.t) =
+          fun (x590 : t) -> SecureContextOptions.t_of_js (t_to_js x590)
+        let (cast' : t -> CommonConnectionOptions.t) =
+          fun (x591 : t) -> CommonConnectionOptions.t_of_js (t_to_js x591)
+      end
+    module Server =
+      struct
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x593 : Ojs.t) -> x593
+        and t_to_js : t -> Ojs.t = fun (x592 : Ojs.t) -> x592
+        let (create :
+          ?secure_connection_listener:(socket:TLSSocket.t -> unit) ->
+            unit -> t)
+          =
+          fun
+            ?secure_connection_listener:(x594 :
+                                          (socket:TLSSocket.t -> unit) option)
+            ->
+            fun () ->
+              t_of_js
+                (Ojs.new_obj_arr (Ojs.get_prop_ascii Import.tls "Server")
+                   (let x595 =
+                      Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
+                        [||] in
+                    (match x594 with
+                     | Some x596 ->
+                         ignore
+                           (Ojs.call x595 "push"
+                              [|(Ojs.fun_to_js 1
+                                   (fun (x597 : Ojs.t) ->
+                                      x596 ~socket:(TLSSocket.t_of_js x597)))|])
+                     | None -> ());
+                    x595))
+        let (create' :
+          options:TlsOptions.t ->
+            ?secure_connection_listener:(socket:TLSSocket.t -> unit) ->
+              unit -> t)
+          =
+          fun ~options:(x598 : TlsOptions.t) ->
+            fun
+              ?secure_connection_listener:(x599 :
+                                            (socket:TLSSocket.t -> unit)
+                                              option)
+              ->
+              fun () ->
+                t_of_js
+                  (Ojs.new_obj_arr (Ojs.get_prop_ascii Import.tls "Server")
+                     (let x600 =
+                        Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
+                          [||] in
+                      ignore
+                        (Ojs.call x600 "push" [|(TlsOptions.t_to_js x598)|]);
+                      (match x599 with
+                       | Some x601 ->
+                           ignore
+                             (Ojs.call x600 "push"
+                                [|(Ojs.fun_to_js 1
+                                     (fun (x602 : Ojs.t) ->
+                                        x601 ~socket:(TLSSocket.t_of_js x602)))|])
+                       | None -> ());
+                      x600))
+        let (add_context :
+          t -> host_name:string -> credentials:SecureContextOptions.t -> unit)
+          =
+          fun (x605 : t) ->
+            fun ~host_name:(x603 : string) ->
+              fun ~credentials:(x604 : SecureContextOptions.t) ->
+                ignore
+                  (Ojs.call (t_to_js x605) "addContext"
+                     [|(Ojs.string_to_js x603);(SecureContextOptions.t_to_js
+                                                  x604)|])
+        let (get_ticket_keys : t -> Buffer.t) =
+          fun (x606 : t) ->
+            Buffer.t_of_js (Ojs.call (t_to_js x606) "getTicketKeys" [||])
+        let (set_secure_context :
+          t -> details:SecureContextOptions.t -> unit) =
+          fun (x608 : t) ->
+            fun ~details:(x607 : SecureContextOptions.t) ->
+              ignore
+                (Ojs.call (t_to_js x608) "setSecureContext"
+                   [|(SecureContextOptions.t_to_js x607)|])
+        let (set_ticket_keys : t -> keys:Buffer.t -> unit) =
+          fun (x610 : t) ->
+            fun ~keys:(x609 : Buffer.t) ->
+              ignore
+                (Ojs.call (t_to_js x610) "setTicketKeys"
+                   [|(Buffer.t_to_js x609)|])
+        let (add_listener :
+          t -> event:string -> listener:(args:any list -> unit) -> t) =
+          fun (x615 : t) ->
+            fun ~event:(x611 : string) ->
+              fun ~listener:(x612 : args:any list -> unit) ->
+                t_of_js
+                  (Ojs.call (t_to_js x615) "addListener"
+                     [|(Ojs.string_to_js x611);(Ojs.fun_to_js_args
+                                                  (fun (x613 : _) ->
+                                                     x612
+                                                       ~args:(Ojs.list_of_js_from
+                                                                any_of_js
+                                                                x613 0)))|])
         let (add_listener' :
           t ->
             event:[ `tlsClientError ] ->
               listener:(err:Error.t -> tls_socket:TLSSocket.t -> unit) -> t)
           =
-          fun (x458 : t) ->
-            fun ~event:(x454 : [ `tlsClientError ]) ->
+          fun (x620 : t) ->
+            fun ~event:(x616 : [ `tlsClientError ]) ->
               fun
-                ~listener:(x455 :
+                ~listener:(x617 :
                             err:Error.t -> tls_socket:TLSSocket.t -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x458) "addListener"
-                     [|((match x454 with
+                  (Ojs.call (t_to_js x620) "addListener"
+                     [|((match x616 with
                          | `tlsClientError ->
                              Ojs.string_to_js "tlsClientError"));(Ojs.fun_to_js
                                                                     2
                                                                     (
                                                                     fun
-                                                                    (x456 :
+                                                                    (x618 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x457 :
+                                                                    (x619 :
                                                                     Ojs.t) ->
-                                                                    x455
+                                                                    x617
                                                                     ~err:(
                                                                     Error.t_of_js
-                                                                    x456)
+                                                                    x618)
                                                                     ~tls_socket:(
                                                                     TLSSocket.t_of_js
-                                                                    x457)))|])
+                                                                    x619)))|])
         let (add_listener'' :
           t ->
             event:[ `newSession ] ->
@@ -1347,10 +1781,10 @@ module Tls =
                               -> unit)
                 -> t)
           =
-          fun (x466 : t) ->
-            fun ~event:(x459 : [ `newSession ]) ->
+          fun (x628 : t) ->
+            fun ~event:(x621 : [ `newSession ]) ->
               fun
-                ~listener:(x460 :
+                ~listener:(x622 :
                             sessionId:Buffer.t ->
                               session_data:Buffer.t ->
                                 callback:(err:Error.t ->
@@ -1358,21 +1792,21 @@ module Tls =
                                   -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x466) "addListener"
-                     [|((match x459 with
+                  (Ojs.call (t_to_js x628) "addListener"
+                     [|((match x621 with
                          | `newSession -> Ojs.string_to_js "newSession"));(
                        Ojs.fun_to_js 3
-                         (fun (x461 : Ojs.t) ->
-                            fun (x462 : Ojs.t) ->
-                              fun (x463 : Ojs.t) ->
-                                x460 ~sessionId:(Buffer.t_of_js x461)
-                                  ~session_data:(Buffer.t_of_js x462)
-                                  ~callback:(fun ~err:(x464 : Error.t) ->
-                                               fun ~resp:(x465 : Buffer.t) ->
+                         (fun (x623 : Ojs.t) ->
+                            fun (x624 : Ojs.t) ->
+                              fun (x625 : Ojs.t) ->
+                                x622 ~sessionId:(Buffer.t_of_js x623)
+                                  ~session_data:(Buffer.t_of_js x624)
+                                  ~callback:(fun ~err:(x626 : Error.t) ->
+                                               fun ~resp:(x627 : Buffer.t) ->
                                                  ignore
-                                                   (Ojs.apply x463
-                                                      [|(Error.t_to_js x464);(
-                                                        Buffer.t_to_js x465)|]))))|])
+                                                   (Ojs.apply x625
+                                                      [|(Error.t_to_js x626);(
+                                                        Buffer.t_to_js x627)|]))))|])
         let (add_listener''' :
           t ->
             event:[ `OCSPRequest ] ->
@@ -1383,10 +1817,10 @@ module Tls =
                               -> unit)
                 -> t)
           =
-          fun (x475 : t) ->
-            fun ~event:(x467 : [ `OCSPRequest ]) ->
+          fun (x637 : t) ->
+            fun ~event:(x629 : [ `OCSPRequest ]) ->
               fun
-                ~listener:(x468 :
+                ~listener:(x630 :
                             certificate:Buffer.t ->
                               issuer:Buffer.t ->
                                 callback:(err:Error.t or_null ->
@@ -1394,24 +1828,24 @@ module Tls =
                                   -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x475) "addListener"
-                     [|((match x467 with
+                  (Ojs.call (t_to_js x637) "addListener"
+                     [|((match x629 with
                          | `OCSPRequest -> Ojs.string_to_js "OCSPRequest"));(
                        Ojs.fun_to_js 3
-                         (fun (x469 : Ojs.t) ->
-                            fun (x470 : Ojs.t) ->
-                              fun (x471 : Ojs.t) ->
-                                x468 ~certificate:(Buffer.t_of_js x469)
-                                  ~issuer:(Buffer.t_of_js x470)
+                         (fun (x631 : Ojs.t) ->
+                            fun (x632 : Ojs.t) ->
+                              fun (x633 : Ojs.t) ->
+                                x630 ~certificate:(Buffer.t_of_js x631)
+                                  ~issuer:(Buffer.t_of_js x632)
                                   ~callback:(fun
-                                               ~err:(x472 : Error.t or_null)
+                                               ~err:(x634 : Error.t or_null)
                                                ->
-                                               fun ~resp:(x474 : Buffer.t) ->
+                                               fun ~resp:(x636 : Buffer.t) ->
                                                  ignore
-                                                   (Ojs.apply x471
+                                                   (Ojs.apply x633
                                                       [|(or_null_to_js
-                                                           Error.t_to_js x472);(
-                                                        Buffer.t_to_js x474)|]))))|])
+                                                           Error.t_to_js x634);(
+                                                        Buffer.t_to_js x636)|]))))|])
         let (add_listener'''' :
           t ->
             event:[ `resumeSession ] ->
@@ -1421,118 +1855,118 @@ module Tls =
                             -> unit)
                 -> t)
           =
-          fun (x482 : t) ->
-            fun ~event:(x476 : [ `resumeSession ]) ->
+          fun (x644 : t) ->
+            fun ~event:(x638 : [ `resumeSession ]) ->
               fun
-                ~listener:(x477 :
+                ~listener:(x639 :
                             sessionId:Buffer.t ->
                               callback:(err:Error.t ->
                                           session_data:Buffer.t -> unit)
                                 -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x482) "addListener"
-                     [|((match x476 with
+                  (Ojs.call (t_to_js x644) "addListener"
+                     [|((match x638 with
                          | `resumeSession -> Ojs.string_to_js "resumeSession"));(
                        Ojs.fun_to_js 2
-                         (fun (x478 : Ojs.t) ->
-                            fun (x479 : Ojs.t) ->
-                              x477 ~sessionId:(Buffer.t_of_js x478)
-                                ~callback:(fun ~err:(x480 : Error.t) ->
+                         (fun (x640 : Ojs.t) ->
+                            fun (x641 : Ojs.t) ->
+                              x639 ~sessionId:(Buffer.t_of_js x640)
+                                ~callback:(fun ~err:(x642 : Error.t) ->
                                              fun
-                                               ~session_data:(x481 :
+                                               ~session_data:(x643 :
                                                                Buffer.t)
                                                ->
                                                ignore
-                                                 (Ojs.apply x479
-                                                    [|(Error.t_to_js x480);(
-                                                      Buffer.t_to_js x481)|]))))|])
+                                                 (Ojs.apply x641
+                                                    [|(Error.t_to_js x642);(
+                                                      Buffer.t_to_js x643)|]))))|])
         let (add_listener''''' :
           t ->
             event:[ `secureConnection ] ->
               listener:(tlsSocket:TLSSocket.t -> unit) -> t)
           =
-          fun (x486 : t) ->
-            fun ~event:(x483 : [ `secureConnection ]) ->
-              fun ~listener:(x484 : tlsSocket:TLSSocket.t -> unit) ->
+          fun (x648 : t) ->
+            fun ~event:(x645 : [ `secureConnection ]) ->
+              fun ~listener:(x646 : tlsSocket:TLSSocket.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x486) "addListener"
-                     [|((match x483 with
+                  (Ojs.call (t_to_js x648) "addListener"
+                     [|((match x645 with
                          | `secureConnection ->
                              Ojs.string_to_js "secureConnection"));(Ojs.fun_to_js
                                                                     1
                                                                     (fun
-                                                                    (x485 :
+                                                                    (x647 :
                                                                     Ojs.t) ->
-                                                                    x484
+                                                                    x646
                                                                     ~tlsSocket:(
                                                                     TLSSocket.t_of_js
-                                                                    x485)))|])
+                                                                    x647)))|])
         let (add_listener'''''' :
           t ->
             event:[ `keylog ] ->
               listener:(line:Buffer.t -> tls_socket:TLSSocket.t -> unit) -> t)
           =
-          fun (x491 : t) ->
-            fun ~event:(x487 : [ `keylog ]) ->
+          fun (x653 : t) ->
+            fun ~event:(x649 : [ `keylog ]) ->
               fun
-                ~listener:(x488 :
+                ~listener:(x650 :
                             line:Buffer.t -> tls_socket:TLSSocket.t -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x491) "addListener"
-                     [|((match x487 with
+                  (Ojs.call (t_to_js x653) "addListener"
+                     [|((match x649 with
                          | `keylog -> Ojs.string_to_js "keylog"));(Ojs.fun_to_js
                                                                     2
                                                                     (fun
-                                                                    (x489 :
+                                                                    (x651 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x490 :
+                                                                    (x652 :
                                                                     Ojs.t) ->
-                                                                    x488
+                                                                    x650
                                                                     ~line:(
                                                                     Buffer.t_of_js
-                                                                    x489)
+                                                                    x651)
                                                                     ~tls_socket:(
                                                                     TLSSocket.t_of_js
-                                                                    x490)))|])
+                                                                    x652)))|])
         let (emit : t -> event:symbol or_string -> args:any list -> bool) =
-          fun (x497 : t) ->
-            fun ~event:(x492 : symbol or_string) ->
-              fun ~args:(x493 : any list) ->
+          fun (x659 : t) ->
+            fun ~event:(x654 : symbol or_string) ->
+              fun ~args:(x655 : any list) ->
                 Ojs.bool_of_js
-                  (let x498 = t_to_js x497 in
-                   Ojs.call (Ojs.get_prop_ascii x498 "emit") "apply"
-                     [|x498;((let x494 =
+                  (let x660 = t_to_js x659 in
+                   Ojs.call (Ojs.get_prop_ascii x660 "emit") "apply"
+                     [|x660;((let x656 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x494 "push"
-                                   [|(or_string_to_js symbol_to_js x492)|]);
+                                (Ojs.call x656 "push"
+                                   [|(or_string_to_js symbol_to_js x654)|]);
                               List.iter
-                                (fun (x495 : any) ->
+                                (fun (x657 : any) ->
                                    ignore
-                                     (Ojs.call x494 "push"
-                                        [|(any_to_js x495)|])) x493;
-                              x494))|])
+                                     (Ojs.call x656 "push"
+                                        [|(any_to_js x657)|])) x655;
+                              x656))|])
         let (emit' :
           t ->
             event:[ `tlsClientError ] ->
               err:Error.t -> tls_socket:TLSSocket.t -> bool)
           =
-          fun (x502 : t) ->
-            fun ~event:(x499 : [ `tlsClientError ]) ->
-              fun ~err:(x500 : Error.t) ->
-                fun ~tls_socket:(x501 : TLSSocket.t) ->
+          fun (x664 : t) ->
+            fun ~event:(x661 : [ `tlsClientError ]) ->
+              fun ~err:(x662 : Error.t) ->
+                fun ~tls_socket:(x663 : TLSSocket.t) ->
                   Ojs.bool_of_js
-                    (Ojs.call (t_to_js x502) "emit"
-                       [|((match x499 with
+                    (Ojs.call (t_to_js x664) "emit"
+                       [|((match x661 with
                            | `tlsClientError ->
                                Ojs.string_to_js "tlsClientError"));(Error.t_to_js
-                                                                    x500);(
-                         TLSSocket.t_to_js x501)|])
+                                                                    x662);(
+                         TLSSocket.t_to_js x663)|])
         let (emit'' :
           t ->
             event:[ `newSession ] ->
@@ -1540,22 +1974,22 @@ module Tls =
                 session_data:Buffer.t ->
                   callback:(err:Error.t -> resp:Buffer.t -> unit) -> bool)
           =
-          fun (x509 : t) ->
-            fun ~event:(x503 : [ `newSession ]) ->
-              fun ~session_id:(x504 : Buffer.t) ->
-                fun ~session_data:(x505 : Buffer.t) ->
-                  fun ~callback:(x506 : err:Error.t -> resp:Buffer.t -> unit)
+          fun (x671 : t) ->
+            fun ~event:(x665 : [ `newSession ]) ->
+              fun ~session_id:(x666 : Buffer.t) ->
+                fun ~session_data:(x667 : Buffer.t) ->
+                  fun ~callback:(x668 : err:Error.t -> resp:Buffer.t -> unit)
                     ->
                     Ojs.bool_of_js
-                      (Ojs.call (t_to_js x509) "emit"
-                         [|((match x503 with
+                      (Ojs.call (t_to_js x671) "emit"
+                         [|((match x665 with
                              | `newSession -> Ojs.string_to_js "newSession"));(
-                           Buffer.t_to_js x504);(Buffer.t_to_js x505);(
+                           Buffer.t_to_js x666);(Buffer.t_to_js x667);(
                            Ojs.fun_to_js 2
-                             (fun (x507 : Ojs.t) ->
-                                fun (x508 : Ojs.t) ->
-                                  x506 ~err:(Error.t_of_js x507)
-                                    ~resp:(Buffer.t_of_js x508)))|])
+                             (fun (x669 : Ojs.t) ->
+                                fun (x670 : Ojs.t) ->
+                                  x668 ~err:(Error.t_of_js x669)
+                                    ~resp:(Buffer.t_of_js x670)))|])
         let (emit''' :
           t ->
             event:[ `OCSPRequest ] ->
@@ -1564,25 +1998,25 @@ module Tls =
                   callback:(err:Error.t or_null -> resp:Buffer.t -> unit) ->
                     bool)
           =
-          fun (x517 : t) ->
-            fun ~event:(x510 : [ `OCSPRequest ]) ->
-              fun ~certificate:(x511 : Buffer.t) ->
-                fun ~issuer:(x512 : Buffer.t) ->
+          fun (x679 : t) ->
+            fun ~event:(x672 : [ `OCSPRequest ]) ->
+              fun ~certificate:(x673 : Buffer.t) ->
+                fun ~issuer:(x674 : Buffer.t) ->
                   fun
-                    ~callback:(x513 :
+                    ~callback:(x675 :
                                 err:Error.t or_null -> resp:Buffer.t -> unit)
                     ->
                     Ojs.bool_of_js
-                      (Ojs.call (t_to_js x517) "emit"
-                         [|((match x510 with
+                      (Ojs.call (t_to_js x679) "emit"
+                         [|((match x672 with
                              | `OCSPRequest -> Ojs.string_to_js "OCSPRequest"));(
-                           Buffer.t_to_js x511);(Buffer.t_to_js x512);(
+                           Buffer.t_to_js x673);(Buffer.t_to_js x674);(
                            Ojs.fun_to_js 2
-                             (fun (x514 : Ojs.t) ->
-                                fun (x516 : Ojs.t) ->
-                                  x513
-                                    ~err:(or_null_of_js Error.t_of_js x514)
-                                    ~resp:(Buffer.t_of_js x516)))|])
+                             (fun (x676 : Ojs.t) ->
+                                fun (x678 : Ojs.t) ->
+                                  x675
+                                    ~err:(or_null_of_js Error.t_of_js x676)
+                                    ~resp:(Buffer.t_of_js x678)))|])
         let (emit'''' :
           t ->
             event:[ `resumeSession ] ->
@@ -1590,94 +2024,94 @@ module Tls =
                 callback:(err:Error.t -> session_data:Buffer.t -> unit) ->
                   bool)
           =
-          fun (x523 : t) ->
-            fun ~event:(x518 : [ `resumeSession ]) ->
-              fun ~session_id:(x519 : Buffer.t) ->
+          fun (x685 : t) ->
+            fun ~event:(x680 : [ `resumeSession ]) ->
+              fun ~session_id:(x681 : Buffer.t) ->
                 fun
-                  ~callback:(x520 :
+                  ~callback:(x682 :
                               err:Error.t -> session_data:Buffer.t -> unit)
                   ->
                   Ojs.bool_of_js
-                    (Ojs.call (t_to_js x523) "emit"
-                       [|((match x518 with
+                    (Ojs.call (t_to_js x685) "emit"
+                       [|((match x680 with
                            | `resumeSession ->
                                Ojs.string_to_js "resumeSession"));(Buffer.t_to_js
-                                                                    x519);(
+                                                                    x681);(
                          Ojs.fun_to_js 2
-                           (fun (x521 : Ojs.t) ->
-                              fun (x522 : Ojs.t) ->
-                                x520 ~err:(Error.t_of_js x521)
-                                  ~session_data:(Buffer.t_of_js x522)))|])
+                           (fun (x683 : Ojs.t) ->
+                              fun (x684 : Ojs.t) ->
+                                x682 ~err:(Error.t_of_js x683)
+                                  ~session_data:(Buffer.t_of_js x684)))|])
         let (emit''''' :
           t -> event:[ `secureConnection ] -> tls_socket:TLSSocket.t -> bool)
           =
-          fun (x526 : t) ->
-            fun ~event:(x524 : [ `secureConnection ]) ->
-              fun ~tls_socket:(x525 : TLSSocket.t) ->
+          fun (x688 : t) ->
+            fun ~event:(x686 : [ `secureConnection ]) ->
+              fun ~tls_socket:(x687 : TLSSocket.t) ->
                 Ojs.bool_of_js
-                  (Ojs.call (t_to_js x526) "emit"
-                     [|((match x524 with
+                  (Ojs.call (t_to_js x688) "emit"
+                     [|((match x686 with
                          | `secureConnection ->
                              Ojs.string_to_js "secureConnection"));(TLSSocket.t_to_js
-                                                                    x525)|])
+                                                                    x687)|])
         let (emit'''''' :
           t ->
             event:[ `keylog ] ->
               line:Buffer.t -> tls_socket:TLSSocket.t -> bool)
           =
-          fun (x530 : t) ->
-            fun ~event:(x527 : [ `keylog ]) ->
-              fun ~line:(x528 : Buffer.t) ->
-                fun ~tls_socket:(x529 : TLSSocket.t) ->
+          fun (x692 : t) ->
+            fun ~event:(x689 : [ `keylog ]) ->
+              fun ~line:(x690 : Buffer.t) ->
+                fun ~tls_socket:(x691 : TLSSocket.t) ->
                   Ojs.bool_of_js
-                    (Ojs.call (t_to_js x530) "emit"
-                       [|((match x527 with
+                    (Ojs.call (t_to_js x692) "emit"
+                       [|((match x689 with
                            | `keylog -> Ojs.string_to_js "keylog"));(
-                         Buffer.t_to_js x528);(TLSSocket.t_to_js x529)|])
+                         Buffer.t_to_js x690);(TLSSocket.t_to_js x691)|])
         let (on : t -> event:string -> listener:(args:any list -> unit) -> t)
           =
-          fun (x535 : t) ->
-            fun ~event:(x531 : string) ->
-              fun ~listener:(x532 : args:any list -> unit) ->
+          fun (x697 : t) ->
+            fun ~event:(x693 : string) ->
+              fun ~listener:(x694 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x535) "on"
-                     [|(Ojs.string_to_js x531);(Ojs.fun_to_js_args
-                                                  (fun (x533 : _) ->
-                                                     x532
+                  (Ojs.call (t_to_js x697) "on"
+                     [|(Ojs.string_to_js x693);(Ojs.fun_to_js_args
+                                                  (fun (x695 : _) ->
+                                                     x694
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
-                                                                x533 0)))|])
+                                                                x695 0)))|])
         let (on' :
           t ->
             event:[ `tlsClientError ] ->
               listener:(err:Error.t -> tls_socket:TLSSocket.t -> unit) -> t)
           =
-          fun (x540 : t) ->
-            fun ~event:(x536 : [ `tlsClientError ]) ->
+          fun (x702 : t) ->
+            fun ~event:(x698 : [ `tlsClientError ]) ->
               fun
-                ~listener:(x537 :
+                ~listener:(x699 :
                             err:Error.t -> tls_socket:TLSSocket.t -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x540) "on"
-                     [|((match x536 with
+                  (Ojs.call (t_to_js x702) "on"
+                     [|((match x698 with
                          | `tlsClientError ->
                              Ojs.string_to_js "tlsClientError"));(Ojs.fun_to_js
                                                                     2
                                                                     (
                                                                     fun
-                                                                    (x538 :
+                                                                    (x700 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x539 :
+                                                                    (x701 :
                                                                     Ojs.t) ->
-                                                                    x537
+                                                                    x699
                                                                     ~err:(
                                                                     Error.t_of_js
-                                                                    x538)
+                                                                    x700)
                                                                     ~tls_socket:(
                                                                     TLSSocket.t_of_js
-                                                                    x539)))|])
+                                                                    x701)))|])
         let (on'' :
           t ->
             event:[ `newSession ] ->
@@ -1687,10 +2121,10 @@ module Tls =
                               -> unit)
                 -> t)
           =
-          fun (x548 : t) ->
-            fun ~event:(x541 : [ `newSession ]) ->
+          fun (x710 : t) ->
+            fun ~event:(x703 : [ `newSession ]) ->
               fun
-                ~listener:(x542 :
+                ~listener:(x704 :
                             sessionId:Buffer.t ->
                               session_data:Buffer.t ->
                                 callback:(err:Error.t ->
@@ -1698,21 +2132,21 @@ module Tls =
                                   -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x548) "on"
-                     [|((match x541 with
+                  (Ojs.call (t_to_js x710) "on"
+                     [|((match x703 with
                          | `newSession -> Ojs.string_to_js "newSession"));(
                        Ojs.fun_to_js 3
-                         (fun (x543 : Ojs.t) ->
-                            fun (x544 : Ojs.t) ->
-                              fun (x545 : Ojs.t) ->
-                                x542 ~sessionId:(Buffer.t_of_js x543)
-                                  ~session_data:(Buffer.t_of_js x544)
-                                  ~callback:(fun ~err:(x546 : Error.t) ->
-                                               fun ~resp:(x547 : Buffer.t) ->
+                         (fun (x705 : Ojs.t) ->
+                            fun (x706 : Ojs.t) ->
+                              fun (x707 : Ojs.t) ->
+                                x704 ~sessionId:(Buffer.t_of_js x705)
+                                  ~session_data:(Buffer.t_of_js x706)
+                                  ~callback:(fun ~err:(x708 : Error.t) ->
+                                               fun ~resp:(x709 : Buffer.t) ->
                                                  ignore
-                                                   (Ojs.apply x545
-                                                      [|(Error.t_to_js x546);(
-                                                        Buffer.t_to_js x547)|]))))|])
+                                                   (Ojs.apply x707
+                                                      [|(Error.t_to_js x708);(
+                                                        Buffer.t_to_js x709)|]))))|])
         let (on''' :
           t ->
             event:[ `OCSPRequest ] ->
@@ -1723,10 +2157,10 @@ module Tls =
                               -> unit)
                 -> t)
           =
-          fun (x557 : t) ->
-            fun ~event:(x549 : [ `OCSPRequest ]) ->
+          fun (x719 : t) ->
+            fun ~event:(x711 : [ `OCSPRequest ]) ->
               fun
-                ~listener:(x550 :
+                ~listener:(x712 :
                             certificate:Buffer.t ->
                               issuer:Buffer.t ->
                                 callback:(err:Error.t or_null ->
@@ -1734,24 +2168,24 @@ module Tls =
                                   -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x557) "on"
-                     [|((match x549 with
+                  (Ojs.call (t_to_js x719) "on"
+                     [|((match x711 with
                          | `OCSPRequest -> Ojs.string_to_js "OCSPRequest"));(
                        Ojs.fun_to_js 3
-                         (fun (x551 : Ojs.t) ->
-                            fun (x552 : Ojs.t) ->
-                              fun (x553 : Ojs.t) ->
-                                x550 ~certificate:(Buffer.t_of_js x551)
-                                  ~issuer:(Buffer.t_of_js x552)
+                         (fun (x713 : Ojs.t) ->
+                            fun (x714 : Ojs.t) ->
+                              fun (x715 : Ojs.t) ->
+                                x712 ~certificate:(Buffer.t_of_js x713)
+                                  ~issuer:(Buffer.t_of_js x714)
                                   ~callback:(fun
-                                               ~err:(x554 : Error.t or_null)
+                                               ~err:(x716 : Error.t or_null)
                                                ->
-                                               fun ~resp:(x556 : Buffer.t) ->
+                                               fun ~resp:(x718 : Buffer.t) ->
                                                  ignore
-                                                   (Ojs.apply x553
+                                                   (Ojs.apply x715
                                                       [|(or_null_to_js
-                                                           Error.t_to_js x554);(
-                                                        Buffer.t_to_js x556)|]))))|])
+                                                           Error.t_to_js x716);(
+                                                        Buffer.t_to_js x718)|]))))|])
         let (on'''' :
           t ->
             event:[ `resumeSession ] ->
@@ -1761,126 +2195,126 @@ module Tls =
                             -> unit)
                 -> t)
           =
-          fun (x564 : t) ->
-            fun ~event:(x558 : [ `resumeSession ]) ->
+          fun (x726 : t) ->
+            fun ~event:(x720 : [ `resumeSession ]) ->
               fun
-                ~listener:(x559 :
+                ~listener:(x721 :
                             sessionId:Buffer.t ->
                               callback:(err:Error.t ->
                                           session_data:Buffer.t -> unit)
                                 -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x564) "on"
-                     [|((match x558 with
+                  (Ojs.call (t_to_js x726) "on"
+                     [|((match x720 with
                          | `resumeSession -> Ojs.string_to_js "resumeSession"));(
                        Ojs.fun_to_js 2
-                         (fun (x560 : Ojs.t) ->
-                            fun (x561 : Ojs.t) ->
-                              x559 ~sessionId:(Buffer.t_of_js x560)
-                                ~callback:(fun ~err:(x562 : Error.t) ->
+                         (fun (x722 : Ojs.t) ->
+                            fun (x723 : Ojs.t) ->
+                              x721 ~sessionId:(Buffer.t_of_js x722)
+                                ~callback:(fun ~err:(x724 : Error.t) ->
                                              fun
-                                               ~session_data:(x563 :
+                                               ~session_data:(x725 :
                                                                Buffer.t)
                                                ->
                                                ignore
-                                                 (Ojs.apply x561
-                                                    [|(Error.t_to_js x562);(
-                                                      Buffer.t_to_js x563)|]))))|])
+                                                 (Ojs.apply x723
+                                                    [|(Error.t_to_js x724);(
+                                                      Buffer.t_to_js x725)|]))))|])
         let (on''''' :
           t ->
             event:[ `secureConnection ] ->
               listener:(tlsSocket:TLSSocket.t -> unit) -> t)
           =
-          fun (x568 : t) ->
-            fun ~event:(x565 : [ `secureConnection ]) ->
-              fun ~listener:(x566 : tlsSocket:TLSSocket.t -> unit) ->
+          fun (x730 : t) ->
+            fun ~event:(x727 : [ `secureConnection ]) ->
+              fun ~listener:(x728 : tlsSocket:TLSSocket.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x568) "on"
-                     [|((match x565 with
+                  (Ojs.call (t_to_js x730) "on"
+                     [|((match x727 with
                          | `secureConnection ->
                              Ojs.string_to_js "secureConnection"));(Ojs.fun_to_js
                                                                     1
                                                                     (fun
-                                                                    (x567 :
+                                                                    (x729 :
                                                                     Ojs.t) ->
-                                                                    x566
+                                                                    x728
                                                                     ~tlsSocket:(
                                                                     TLSSocket.t_of_js
-                                                                    x567)))|])
+                                                                    x729)))|])
         let (on'''''' :
           t ->
             event:[ `keylog ] ->
               listener:(line:Buffer.t -> tls_socket:TLSSocket.t -> unit) -> t)
           =
-          fun (x573 : t) ->
-            fun ~event:(x569 : [ `keylog ]) ->
+          fun (x735 : t) ->
+            fun ~event:(x731 : [ `keylog ]) ->
               fun
-                ~listener:(x570 :
+                ~listener:(x732 :
                             line:Buffer.t -> tls_socket:TLSSocket.t -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x573) "on"
-                     [|((match x569 with
+                  (Ojs.call (t_to_js x735) "on"
+                     [|((match x731 with
                          | `keylog -> Ojs.string_to_js "keylog"));(Ojs.fun_to_js
                                                                     2
                                                                     (fun
-                                                                    (x571 :
+                                                                    (x733 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x572 :
+                                                                    (x734 :
                                                                     Ojs.t) ->
-                                                                    x570
+                                                                    x732
                                                                     ~line:(
                                                                     Buffer.t_of_js
-                                                                    x571)
+                                                                    x733)
                                                                     ~tls_socket:(
                                                                     TLSSocket.t_of_js
-                                                                    x572)))|])
+                                                                    x734)))|])
         let (once :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
-          fun (x578 : t) ->
-            fun ~event:(x574 : string) ->
-              fun ~listener:(x575 : args:any list -> unit) ->
+          fun (x740 : t) ->
+            fun ~event:(x736 : string) ->
+              fun ~listener:(x737 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x578) "once"
-                     [|(Ojs.string_to_js x574);(Ojs.fun_to_js_args
-                                                  (fun (x576 : _) ->
-                                                     x575
+                  (Ojs.call (t_to_js x740) "once"
+                     [|(Ojs.string_to_js x736);(Ojs.fun_to_js_args
+                                                  (fun (x738 : _) ->
+                                                     x737
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
-                                                                x576 0)))|])
+                                                                x738 0)))|])
         let (once' :
           t ->
             event:[ `tlsClientError ] ->
               listener:(err:Error.t -> tls_socket:TLSSocket.t -> unit) -> t)
           =
-          fun (x583 : t) ->
-            fun ~event:(x579 : [ `tlsClientError ]) ->
+          fun (x745 : t) ->
+            fun ~event:(x741 : [ `tlsClientError ]) ->
               fun
-                ~listener:(x580 :
+                ~listener:(x742 :
                             err:Error.t -> tls_socket:TLSSocket.t -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x583) "once"
-                     [|((match x579 with
+                  (Ojs.call (t_to_js x745) "once"
+                     [|((match x741 with
                          | `tlsClientError ->
                              Ojs.string_to_js "tlsClientError"));(Ojs.fun_to_js
                                                                     2
                                                                     (
                                                                     fun
-                                                                    (x581 :
+                                                                    (x743 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x582 :
+                                                                    (x744 :
                                                                     Ojs.t) ->
-                                                                    x580
+                                                                    x742
                                                                     ~err:(
                                                                     Error.t_of_js
-                                                                    x581)
+                                                                    x743)
                                                                     ~tls_socket:(
                                                                     TLSSocket.t_of_js
-                                                                    x582)))|])
+                                                                    x744)))|])
         let (once'' :
           t ->
             event:[ `newSession ] ->
@@ -1890,10 +2324,10 @@ module Tls =
                               -> unit)
                 -> t)
           =
-          fun (x591 : t) ->
-            fun ~event:(x584 : [ `newSession ]) ->
+          fun (x753 : t) ->
+            fun ~event:(x746 : [ `newSession ]) ->
               fun
-                ~listener:(x585 :
+                ~listener:(x747 :
                             sessionId:Buffer.t ->
                               session_data:Buffer.t ->
                                 callback:(err:Error.t ->
@@ -1901,21 +2335,21 @@ module Tls =
                                   -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x591) "once"
-                     [|((match x584 with
+                  (Ojs.call (t_to_js x753) "once"
+                     [|((match x746 with
                          | `newSession -> Ojs.string_to_js "newSession"));(
                        Ojs.fun_to_js 3
-                         (fun (x586 : Ojs.t) ->
-                            fun (x587 : Ojs.t) ->
-                              fun (x588 : Ojs.t) ->
-                                x585 ~sessionId:(Buffer.t_of_js x586)
-                                  ~session_data:(Buffer.t_of_js x587)
-                                  ~callback:(fun ~err:(x589 : Error.t) ->
-                                               fun ~resp:(x590 : Buffer.t) ->
+                         (fun (x748 : Ojs.t) ->
+                            fun (x749 : Ojs.t) ->
+                              fun (x750 : Ojs.t) ->
+                                x747 ~sessionId:(Buffer.t_of_js x748)
+                                  ~session_data:(Buffer.t_of_js x749)
+                                  ~callback:(fun ~err:(x751 : Error.t) ->
+                                               fun ~resp:(x752 : Buffer.t) ->
                                                  ignore
-                                                   (Ojs.apply x588
-                                                      [|(Error.t_to_js x589);(
-                                                        Buffer.t_to_js x590)|]))))|])
+                                                   (Ojs.apply x750
+                                                      [|(Error.t_to_js x751);(
+                                                        Buffer.t_to_js x752)|]))))|])
         let (once''' :
           t ->
             event:[ `OCSPRequest ] ->
@@ -1926,10 +2360,10 @@ module Tls =
                               -> unit)
                 -> t)
           =
-          fun (x600 : t) ->
-            fun ~event:(x592 : [ `OCSPRequest ]) ->
+          fun (x762 : t) ->
+            fun ~event:(x754 : [ `OCSPRequest ]) ->
               fun
-                ~listener:(x593 :
+                ~listener:(x755 :
                             certificate:Buffer.t ->
                               issuer:Buffer.t ->
                                 callback:(err:Error.t or_null ->
@@ -1937,24 +2371,24 @@ module Tls =
                                   -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x600) "once"
-                     [|((match x592 with
+                  (Ojs.call (t_to_js x762) "once"
+                     [|((match x754 with
                          | `OCSPRequest -> Ojs.string_to_js "OCSPRequest"));(
                        Ojs.fun_to_js 3
-                         (fun (x594 : Ojs.t) ->
-                            fun (x595 : Ojs.t) ->
-                              fun (x596 : Ojs.t) ->
-                                x593 ~certificate:(Buffer.t_of_js x594)
-                                  ~issuer:(Buffer.t_of_js x595)
+                         (fun (x756 : Ojs.t) ->
+                            fun (x757 : Ojs.t) ->
+                              fun (x758 : Ojs.t) ->
+                                x755 ~certificate:(Buffer.t_of_js x756)
+                                  ~issuer:(Buffer.t_of_js x757)
                                   ~callback:(fun
-                                               ~err:(x597 : Error.t or_null)
+                                               ~err:(x759 : Error.t or_null)
                                                ->
-                                               fun ~resp:(x599 : Buffer.t) ->
+                                               fun ~resp:(x761 : Buffer.t) ->
                                                  ignore
-                                                   (Ojs.apply x596
+                                                   (Ojs.apply x758
                                                       [|(or_null_to_js
-                                                           Error.t_to_js x597);(
-                                                        Buffer.t_to_js x599)|]))))|])
+                                                           Error.t_to_js x759);(
+                                                        Buffer.t_to_js x761)|]))))|])
         let (once'''' :
           t ->
             event:[ `resumeSession ] ->
@@ -1964,126 +2398,126 @@ module Tls =
                             -> unit)
                 -> t)
           =
-          fun (x607 : t) ->
-            fun ~event:(x601 : [ `resumeSession ]) ->
+          fun (x769 : t) ->
+            fun ~event:(x763 : [ `resumeSession ]) ->
               fun
-                ~listener:(x602 :
+                ~listener:(x764 :
                             sessionId:Buffer.t ->
                               callback:(err:Error.t ->
                                           session_data:Buffer.t -> unit)
                                 -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x607) "once"
-                     [|((match x601 with
+                  (Ojs.call (t_to_js x769) "once"
+                     [|((match x763 with
                          | `resumeSession -> Ojs.string_to_js "resumeSession"));(
                        Ojs.fun_to_js 2
-                         (fun (x603 : Ojs.t) ->
-                            fun (x604 : Ojs.t) ->
-                              x602 ~sessionId:(Buffer.t_of_js x603)
-                                ~callback:(fun ~err:(x605 : Error.t) ->
+                         (fun (x765 : Ojs.t) ->
+                            fun (x766 : Ojs.t) ->
+                              x764 ~sessionId:(Buffer.t_of_js x765)
+                                ~callback:(fun ~err:(x767 : Error.t) ->
                                              fun
-                                               ~session_data:(x606 :
+                                               ~session_data:(x768 :
                                                                Buffer.t)
                                                ->
                                                ignore
-                                                 (Ojs.apply x604
-                                                    [|(Error.t_to_js x605);(
-                                                      Buffer.t_to_js x606)|]))))|])
+                                                 (Ojs.apply x766
+                                                    [|(Error.t_to_js x767);(
+                                                      Buffer.t_to_js x768)|]))))|])
         let (once''''' :
           t ->
             event:[ `secureConnection ] ->
               listener:(tlsSocket:TLSSocket.t -> unit) -> t)
           =
-          fun (x611 : t) ->
-            fun ~event:(x608 : [ `secureConnection ]) ->
-              fun ~listener:(x609 : tlsSocket:TLSSocket.t -> unit) ->
+          fun (x773 : t) ->
+            fun ~event:(x770 : [ `secureConnection ]) ->
+              fun ~listener:(x771 : tlsSocket:TLSSocket.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x611) "once"
-                     [|((match x608 with
+                  (Ojs.call (t_to_js x773) "once"
+                     [|((match x770 with
                          | `secureConnection ->
                              Ojs.string_to_js "secureConnection"));(Ojs.fun_to_js
                                                                     1
                                                                     (fun
-                                                                    (x610 :
+                                                                    (x772 :
                                                                     Ojs.t) ->
-                                                                    x609
+                                                                    x771
                                                                     ~tlsSocket:(
                                                                     TLSSocket.t_of_js
-                                                                    x610)))|])
+                                                                    x772)))|])
         let (once'''''' :
           t ->
             event:[ `keylog ] ->
               listener:(line:Buffer.t -> tls_socket:TLSSocket.t -> unit) -> t)
           =
-          fun (x616 : t) ->
-            fun ~event:(x612 : [ `keylog ]) ->
+          fun (x778 : t) ->
+            fun ~event:(x774 : [ `keylog ]) ->
               fun
-                ~listener:(x613 :
+                ~listener:(x775 :
                             line:Buffer.t -> tls_socket:TLSSocket.t -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x616) "once"
-                     [|((match x612 with
+                  (Ojs.call (t_to_js x778) "once"
+                     [|((match x774 with
                          | `keylog -> Ojs.string_to_js "keylog"));(Ojs.fun_to_js
                                                                     2
                                                                     (fun
-                                                                    (x614 :
+                                                                    (x776 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x615 :
+                                                                    (x777 :
                                                                     Ojs.t) ->
-                                                                    x613
+                                                                    x775
                                                                     ~line:(
                                                                     Buffer.t_of_js
-                                                                    x614)
+                                                                    x776)
                                                                     ~tls_socket:(
                                                                     TLSSocket.t_of_js
-                                                                    x615)))|])
+                                                                    x777)))|])
         let (prepend_listener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
-          fun (x621 : t) ->
-            fun ~event:(x617 : string) ->
-              fun ~listener:(x618 : args:any list -> unit) ->
+          fun (x783 : t) ->
+            fun ~event:(x779 : string) ->
+              fun ~listener:(x780 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x621) "prependListener"
-                     [|(Ojs.string_to_js x617);(Ojs.fun_to_js_args
-                                                  (fun (x619 : _) ->
-                                                     x618
+                  (Ojs.call (t_to_js x783) "prependListener"
+                     [|(Ojs.string_to_js x779);(Ojs.fun_to_js_args
+                                                  (fun (x781 : _) ->
+                                                     x780
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
-                                                                x619 0)))|])
+                                                                x781 0)))|])
         let (prepend_listener' :
           t ->
             event:[ `tlsClientError ] ->
               listener:(err:Error.t -> tls_socket:TLSSocket.t -> unit) -> t)
           =
-          fun (x626 : t) ->
-            fun ~event:(x622 : [ `tlsClientError ]) ->
+          fun (x788 : t) ->
+            fun ~event:(x784 : [ `tlsClientError ]) ->
               fun
-                ~listener:(x623 :
+                ~listener:(x785 :
                             err:Error.t -> tls_socket:TLSSocket.t -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x626) "prependListener"
-                     [|((match x622 with
+                  (Ojs.call (t_to_js x788) "prependListener"
+                     [|((match x784 with
                          | `tlsClientError ->
                              Ojs.string_to_js "tlsClientError"));(Ojs.fun_to_js
                                                                     2
                                                                     (
                                                                     fun
-                                                                    (x624 :
+                                                                    (x786 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x625 :
+                                                                    (x787 :
                                                                     Ojs.t) ->
-                                                                    x623
+                                                                    x785
                                                                     ~err:(
                                                                     Error.t_of_js
-                                                                    x624)
+                                                                    x786)
                                                                     ~tls_socket:(
                                                                     TLSSocket.t_of_js
-                                                                    x625)))|])
+                                                                    x787)))|])
         let (prepend_listener'' :
           t ->
             event:[ `newSession ] ->
@@ -2093,10 +2527,10 @@ module Tls =
                               -> unit)
                 -> t)
           =
-          fun (x634 : t) ->
-            fun ~event:(x627 : [ `newSession ]) ->
+          fun (x796 : t) ->
+            fun ~event:(x789 : [ `newSession ]) ->
               fun
-                ~listener:(x628 :
+                ~listener:(x790 :
                             sessionId:Buffer.t ->
                               session_data:Buffer.t ->
                                 callback:(err:Error.t ->
@@ -2104,21 +2538,21 @@ module Tls =
                                   -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x634) "prependListener"
-                     [|((match x627 with
+                  (Ojs.call (t_to_js x796) "prependListener"
+                     [|((match x789 with
                          | `newSession -> Ojs.string_to_js "newSession"));(
                        Ojs.fun_to_js 3
-                         (fun (x629 : Ojs.t) ->
-                            fun (x630 : Ojs.t) ->
-                              fun (x631 : Ojs.t) ->
-                                x628 ~sessionId:(Buffer.t_of_js x629)
-                                  ~session_data:(Buffer.t_of_js x630)
-                                  ~callback:(fun ~err:(x632 : Error.t) ->
-                                               fun ~resp:(x633 : Buffer.t) ->
+                         (fun (x791 : Ojs.t) ->
+                            fun (x792 : Ojs.t) ->
+                              fun (x793 : Ojs.t) ->
+                                x790 ~sessionId:(Buffer.t_of_js x791)
+                                  ~session_data:(Buffer.t_of_js x792)
+                                  ~callback:(fun ~err:(x794 : Error.t) ->
+                                               fun ~resp:(x795 : Buffer.t) ->
                                                  ignore
-                                                   (Ojs.apply x631
-                                                      [|(Error.t_to_js x632);(
-                                                        Buffer.t_to_js x633)|]))))|])
+                                                   (Ojs.apply x793
+                                                      [|(Error.t_to_js x794);(
+                                                        Buffer.t_to_js x795)|]))))|])
         let (prepend_listener''' :
           t ->
             event:[ `OCSPRequest ] ->
@@ -2129,10 +2563,10 @@ module Tls =
                               -> unit)
                 -> t)
           =
-          fun (x643 : t) ->
-            fun ~event:(x635 : [ `OCSPRequest ]) ->
+          fun (x805 : t) ->
+            fun ~event:(x797 : [ `OCSPRequest ]) ->
               fun
-                ~listener:(x636 :
+                ~listener:(x798 :
                             certificate:Buffer.t ->
                               issuer:Buffer.t ->
                                 callback:(err:Error.t or_null ->
@@ -2140,24 +2574,24 @@ module Tls =
                                   -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x643) "prependListener"
-                     [|((match x635 with
+                  (Ojs.call (t_to_js x805) "prependListener"
+                     [|((match x797 with
                          | `OCSPRequest -> Ojs.string_to_js "OCSPRequest"));(
                        Ojs.fun_to_js 3
-                         (fun (x637 : Ojs.t) ->
-                            fun (x638 : Ojs.t) ->
-                              fun (x639 : Ojs.t) ->
-                                x636 ~certificate:(Buffer.t_of_js x637)
-                                  ~issuer:(Buffer.t_of_js x638)
+                         (fun (x799 : Ojs.t) ->
+                            fun (x800 : Ojs.t) ->
+                              fun (x801 : Ojs.t) ->
+                                x798 ~certificate:(Buffer.t_of_js x799)
+                                  ~issuer:(Buffer.t_of_js x800)
                                   ~callback:(fun
-                                               ~err:(x640 : Error.t or_null)
+                                               ~err:(x802 : Error.t or_null)
                                                ->
-                                               fun ~resp:(x642 : Buffer.t) ->
+                                               fun ~resp:(x804 : Buffer.t) ->
                                                  ignore
-                                                   (Ojs.apply x639
+                                                   (Ojs.apply x801
                                                       [|(or_null_to_js
-                                                           Error.t_to_js x640);(
-                                                        Buffer.t_to_js x642)|]))))|])
+                                                           Error.t_to_js x802);(
+                                                        Buffer.t_to_js x804)|]))))|])
         let (prepend_listener'''' :
           t ->
             event:[ `resumeSession ] ->
@@ -2167,126 +2601,126 @@ module Tls =
                             -> unit)
                 -> t)
           =
-          fun (x650 : t) ->
-            fun ~event:(x644 : [ `resumeSession ]) ->
+          fun (x812 : t) ->
+            fun ~event:(x806 : [ `resumeSession ]) ->
               fun
-                ~listener:(x645 :
+                ~listener:(x807 :
                             sessionId:Buffer.t ->
                               callback:(err:Error.t ->
                                           session_data:Buffer.t -> unit)
                                 -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x650) "prependListener"
-                     [|((match x644 with
+                  (Ojs.call (t_to_js x812) "prependListener"
+                     [|((match x806 with
                          | `resumeSession -> Ojs.string_to_js "resumeSession"));(
                        Ojs.fun_to_js 2
-                         (fun (x646 : Ojs.t) ->
-                            fun (x647 : Ojs.t) ->
-                              x645 ~sessionId:(Buffer.t_of_js x646)
-                                ~callback:(fun ~err:(x648 : Error.t) ->
+                         (fun (x808 : Ojs.t) ->
+                            fun (x809 : Ojs.t) ->
+                              x807 ~sessionId:(Buffer.t_of_js x808)
+                                ~callback:(fun ~err:(x810 : Error.t) ->
                                              fun
-                                               ~session_data:(x649 :
+                                               ~session_data:(x811 :
                                                                Buffer.t)
                                                ->
                                                ignore
-                                                 (Ojs.apply x647
-                                                    [|(Error.t_to_js x648);(
-                                                      Buffer.t_to_js x649)|]))))|])
+                                                 (Ojs.apply x809
+                                                    [|(Error.t_to_js x810);(
+                                                      Buffer.t_to_js x811)|]))))|])
         let (prepend_listener''''' :
           t ->
             event:[ `secureConnection ] ->
               listener:(tlsSocket:TLSSocket.t -> unit) -> t)
           =
-          fun (x654 : t) ->
-            fun ~event:(x651 : [ `secureConnection ]) ->
-              fun ~listener:(x652 : tlsSocket:TLSSocket.t -> unit) ->
+          fun (x816 : t) ->
+            fun ~event:(x813 : [ `secureConnection ]) ->
+              fun ~listener:(x814 : tlsSocket:TLSSocket.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x654) "prependListener"
-                     [|((match x651 with
+                  (Ojs.call (t_to_js x816) "prependListener"
+                     [|((match x813 with
                          | `secureConnection ->
                              Ojs.string_to_js "secureConnection"));(Ojs.fun_to_js
                                                                     1
                                                                     (fun
-                                                                    (x653 :
+                                                                    (x815 :
                                                                     Ojs.t) ->
-                                                                    x652
+                                                                    x814
                                                                     ~tlsSocket:(
                                                                     TLSSocket.t_of_js
-                                                                    x653)))|])
+                                                                    x815)))|])
         let (prepend_listener'''''' :
           t ->
             event:[ `keylog ] ->
               listener:(line:Buffer.t -> tls_socket:TLSSocket.t -> unit) -> t)
           =
-          fun (x659 : t) ->
-            fun ~event:(x655 : [ `keylog ]) ->
+          fun (x821 : t) ->
+            fun ~event:(x817 : [ `keylog ]) ->
               fun
-                ~listener:(x656 :
+                ~listener:(x818 :
                             line:Buffer.t -> tls_socket:TLSSocket.t -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x659) "prependListener"
-                     [|((match x655 with
+                  (Ojs.call (t_to_js x821) "prependListener"
+                     [|((match x817 with
                          | `keylog -> Ojs.string_to_js "keylog"));(Ojs.fun_to_js
                                                                     2
                                                                     (fun
-                                                                    (x657 :
+                                                                    (x819 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x658 :
+                                                                    (x820 :
                                                                     Ojs.t) ->
-                                                                    x656
+                                                                    x818
                                                                     ~line:(
                                                                     Buffer.t_of_js
-                                                                    x657)
+                                                                    x819)
                                                                     ~tls_socket:(
                                                                     TLSSocket.t_of_js
-                                                                    x658)))|])
+                                                                    x820)))|])
         let (prepend_once_listener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
-          fun (x664 : t) ->
-            fun ~event:(x660 : string) ->
-              fun ~listener:(x661 : args:any list -> unit) ->
+          fun (x826 : t) ->
+            fun ~event:(x822 : string) ->
+              fun ~listener:(x823 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x664) "prependOnceListener"
-                     [|(Ojs.string_to_js x660);(Ojs.fun_to_js_args
-                                                  (fun (x662 : _) ->
-                                                     x661
+                  (Ojs.call (t_to_js x826) "prependOnceListener"
+                     [|(Ojs.string_to_js x822);(Ojs.fun_to_js_args
+                                                  (fun (x824 : _) ->
+                                                     x823
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
-                                                                x662 0)))|])
+                                                                x824 0)))|])
         let (prepend_once_listener' :
           t ->
             event:[ `tlsClientError ] ->
               listener:(err:Error.t -> tls_socket:TLSSocket.t -> unit) -> t)
           =
-          fun (x669 : t) ->
-            fun ~event:(x665 : [ `tlsClientError ]) ->
+          fun (x831 : t) ->
+            fun ~event:(x827 : [ `tlsClientError ]) ->
               fun
-                ~listener:(x666 :
+                ~listener:(x828 :
                             err:Error.t -> tls_socket:TLSSocket.t -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x669) "prependOnceListener"
-                     [|((match x665 with
+                  (Ojs.call (t_to_js x831) "prependOnceListener"
+                     [|((match x827 with
                          | `tlsClientError ->
                              Ojs.string_to_js "tlsClientError"));(Ojs.fun_to_js
                                                                     2
                                                                     (
                                                                     fun
-                                                                    (x667 :
+                                                                    (x829 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x668 :
+                                                                    (x830 :
                                                                     Ojs.t) ->
-                                                                    x666
+                                                                    x828
                                                                     ~err:(
                                                                     Error.t_of_js
-                                                                    x667)
+                                                                    x829)
                                                                     ~tls_socket:(
                                                                     TLSSocket.t_of_js
-                                                                    x668)))|])
+                                                                    x830)))|])
         let (prepend_once_listener'' :
           t ->
             event:[ `newSession ] ->
@@ -2296,10 +2730,10 @@ module Tls =
                               -> unit)
                 -> t)
           =
-          fun (x677 : t) ->
-            fun ~event:(x670 : [ `newSession ]) ->
+          fun (x839 : t) ->
+            fun ~event:(x832 : [ `newSession ]) ->
               fun
-                ~listener:(x671 :
+                ~listener:(x833 :
                             sessionId:Buffer.t ->
                               session_data:Buffer.t ->
                                 callback:(err:Error.t ->
@@ -2307,21 +2741,21 @@ module Tls =
                                   -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x677) "prependOnceListener"
-                     [|((match x670 with
+                  (Ojs.call (t_to_js x839) "prependOnceListener"
+                     [|((match x832 with
                          | `newSession -> Ojs.string_to_js "newSession"));(
                        Ojs.fun_to_js 3
-                         (fun (x672 : Ojs.t) ->
-                            fun (x673 : Ojs.t) ->
-                              fun (x674 : Ojs.t) ->
-                                x671 ~sessionId:(Buffer.t_of_js x672)
-                                  ~session_data:(Buffer.t_of_js x673)
-                                  ~callback:(fun ~err:(x675 : Error.t) ->
-                                               fun ~resp:(x676 : Buffer.t) ->
+                         (fun (x834 : Ojs.t) ->
+                            fun (x835 : Ojs.t) ->
+                              fun (x836 : Ojs.t) ->
+                                x833 ~sessionId:(Buffer.t_of_js x834)
+                                  ~session_data:(Buffer.t_of_js x835)
+                                  ~callback:(fun ~err:(x837 : Error.t) ->
+                                               fun ~resp:(x838 : Buffer.t) ->
                                                  ignore
-                                                   (Ojs.apply x674
-                                                      [|(Error.t_to_js x675);(
-                                                        Buffer.t_to_js x676)|]))))|])
+                                                   (Ojs.apply x836
+                                                      [|(Error.t_to_js x837);(
+                                                        Buffer.t_to_js x838)|]))))|])
         let (prepend_once_listener''' :
           t ->
             event:[ `OCSPRequest ] ->
@@ -2332,10 +2766,10 @@ module Tls =
                               -> unit)
                 -> t)
           =
-          fun (x686 : t) ->
-            fun ~event:(x678 : [ `OCSPRequest ]) ->
+          fun (x848 : t) ->
+            fun ~event:(x840 : [ `OCSPRequest ]) ->
               fun
-                ~listener:(x679 :
+                ~listener:(x841 :
                             certificate:Buffer.t ->
                               issuer:Buffer.t ->
                                 callback:(err:Error.t or_null ->
@@ -2343,24 +2777,24 @@ module Tls =
                                   -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x686) "prependOnceListener"
-                     [|((match x678 with
+                  (Ojs.call (t_to_js x848) "prependOnceListener"
+                     [|((match x840 with
                          | `OCSPRequest -> Ojs.string_to_js "OCSPRequest"));(
                        Ojs.fun_to_js 3
-                         (fun (x680 : Ojs.t) ->
-                            fun (x681 : Ojs.t) ->
-                              fun (x682 : Ojs.t) ->
-                                x679 ~certificate:(Buffer.t_of_js x680)
-                                  ~issuer:(Buffer.t_of_js x681)
+                         (fun (x842 : Ojs.t) ->
+                            fun (x843 : Ojs.t) ->
+                              fun (x844 : Ojs.t) ->
+                                x841 ~certificate:(Buffer.t_of_js x842)
+                                  ~issuer:(Buffer.t_of_js x843)
                                   ~callback:(fun
-                                               ~err:(x683 : Error.t or_null)
+                                               ~err:(x845 : Error.t or_null)
                                                ->
-                                               fun ~resp:(x685 : Buffer.t) ->
+                                               fun ~resp:(x847 : Buffer.t) ->
                                                  ignore
-                                                   (Ojs.apply x682
+                                                   (Ojs.apply x844
                                                       [|(or_null_to_js
-                                                           Error.t_to_js x683);(
-                                                        Buffer.t_to_js x685)|]))))|])
+                                                           Error.t_to_js x845);(
+                                                        Buffer.t_to_js x847)|]))))|])
         let (prepend_once_listener'''' :
           t ->
             event:[ `resumeSession ] ->
@@ -2370,685 +2804,315 @@ module Tls =
                             -> unit)
                 -> t)
           =
-          fun (x693 : t) ->
-            fun ~event:(x687 : [ `resumeSession ]) ->
+          fun (x855 : t) ->
+            fun ~event:(x849 : [ `resumeSession ]) ->
               fun
-                ~listener:(x688 :
+                ~listener:(x850 :
                             sessionId:Buffer.t ->
                               callback:(err:Error.t ->
                                           session_data:Buffer.t -> unit)
                                 -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x693) "prependOnceListener"
-                     [|((match x687 with
+                  (Ojs.call (t_to_js x855) "prependOnceListener"
+                     [|((match x849 with
                          | `resumeSession -> Ojs.string_to_js "resumeSession"));(
                        Ojs.fun_to_js 2
-                         (fun (x689 : Ojs.t) ->
-                            fun (x690 : Ojs.t) ->
-                              x688 ~sessionId:(Buffer.t_of_js x689)
-                                ~callback:(fun ~err:(x691 : Error.t) ->
+                         (fun (x851 : Ojs.t) ->
+                            fun (x852 : Ojs.t) ->
+                              x850 ~sessionId:(Buffer.t_of_js x851)
+                                ~callback:(fun ~err:(x853 : Error.t) ->
                                              fun
-                                               ~session_data:(x692 :
+                                               ~session_data:(x854 :
                                                                Buffer.t)
                                                ->
                                                ignore
-                                                 (Ojs.apply x690
-                                                    [|(Error.t_to_js x691);(
-                                                      Buffer.t_to_js x692)|]))))|])
+                                                 (Ojs.apply x852
+                                                    [|(Error.t_to_js x853);(
+                                                      Buffer.t_to_js x854)|]))))|])
         let (prepend_once_listener''''' :
           t ->
             event:[ `secureConnection ] ->
               listener:(tlsSocket:TLSSocket.t -> unit) -> t)
           =
-          fun (x697 : t) ->
-            fun ~event:(x694 : [ `secureConnection ]) ->
-              fun ~listener:(x695 : tlsSocket:TLSSocket.t -> unit) ->
+          fun (x859 : t) ->
+            fun ~event:(x856 : [ `secureConnection ]) ->
+              fun ~listener:(x857 : tlsSocket:TLSSocket.t -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x697) "prependOnceListener"
-                     [|((match x694 with
+                  (Ojs.call (t_to_js x859) "prependOnceListener"
+                     [|((match x856 with
                          | `secureConnection ->
                              Ojs.string_to_js "secureConnection"));(Ojs.fun_to_js
                                                                     1
                                                                     (fun
-                                                                    (x696 :
+                                                                    (x858 :
                                                                     Ojs.t) ->
-                                                                    x695
+                                                                    x857
                                                                     ~tlsSocket:(
                                                                     TLSSocket.t_of_js
-                                                                    x696)))|])
+                                                                    x858)))|])
         let (prepend_once_listener'''''' :
           t ->
             event:[ `keylog ] ->
               listener:(line:Buffer.t -> tls_socket:TLSSocket.t -> unit) -> t)
           =
-          fun (x702 : t) ->
-            fun ~event:(x698 : [ `keylog ]) ->
+          fun (x864 : t) ->
+            fun ~event:(x860 : [ `keylog ]) ->
               fun
-                ~listener:(x699 :
+                ~listener:(x861 :
                             line:Buffer.t -> tls_socket:TLSSocket.t -> unit)
                 ->
                 t_of_js
-                  (Ojs.call (t_to_js x702) "prependOnceListener"
-                     [|((match x698 with
+                  (Ojs.call (t_to_js x864) "prependOnceListener"
+                     [|((match x860 with
                          | `keylog -> Ojs.string_to_js "keylog"));(Ojs.fun_to_js
                                                                     2
                                                                     (fun
-                                                                    (x700 :
+                                                                    (x862 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x701 :
+                                                                    (x863 :
                                                                     Ojs.t) ->
-                                                                    x699
+                                                                    x861
                                                                     ~line:(
                                                                     Buffer.t_of_js
-                                                                    x700)
+                                                                    x862)
                                                                     ~tls_socket:(
                                                                     TLSSocket.t_of_js
-                                                                    x701)))|])
+                                                                    x863)))|])
         let (cast : t -> Net.Server.t) =
-          fun (x703 : t) -> Net.Server.t_of_js (t_to_js x703)
-      end
-    module SecurePair =
-      struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x705 : Ojs.t) -> x705
-        and t_to_js : t -> Ojs.t = fun (x704 : Ojs.t) -> x704
-        let (get_encrypted : t -> TLSSocket.t) =
-          fun (x706 : t) ->
-            TLSSocket.t_of_js (Ojs.get_prop_ascii (t_to_js x706) "encrypted")
-        let (set_encrypted : t -> TLSSocket.t -> unit) =
-          fun (x707 : t) ->
-            fun (x708 : TLSSocket.t) ->
-              Ojs.set_prop_ascii (t_to_js x707) "encrypted"
-                (TLSSocket.t_to_js x708)
-        let (get_cleartext : t -> TLSSocket.t) =
-          fun (x709 : t) ->
-            TLSSocket.t_of_js (Ojs.get_prop_ascii (t_to_js x709) "cleartext")
-        let (set_cleartext : t -> TLSSocket.t -> unit) =
-          fun (x710 : t) ->
-            fun (x711 : TLSSocket.t) ->
-              Ojs.set_prop_ascii (t_to_js x710) "cleartext"
-                (TLSSocket.t_to_js x711)
-      end
-    module SecureVersion =
-      struct
-        type t = [ `TLSv1  | `TLSv1_1  | `TLSv1_2  | `TLSv1_3 ]
-        let rec t_of_js : Ojs.t -> t =
-          fun (x713 : Ojs.t) ->
-            let x714 = x713 in
-            match Ojs.string_of_js x714 with
-            | "TLSv1" -> `TLSv1
-            | "TLSv1.1" -> `TLSv1_1
-            | "TLSv1.2" -> `TLSv1_2
-            | "TLSv1.3" -> `TLSv1_3
-            | _ -> assert false
-        and t_to_js : t -> Ojs.t =
-          fun (x712 : [ `TLSv1  | `TLSv1_1  | `TLSv1_2  | `TLSv1_3 ]) ->
-            match x712 with
-            | `TLSv1 -> Ojs.string_to_js "TLSv1"
-            | `TLSv1_1 -> Ojs.string_to_js "TLSv1.1"
-            | `TLSv1_2 -> Ojs.string_to_js "TLSv1.2"
-            | `TLSv1_3 -> Ojs.string_to_js "TLSv1.3"
-      end
-    module SecureContextOptions =
-      struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x716 : Ojs.t) -> x716
-        and t_to_js : t -> Ojs.t = fun (x715 : Ojs.t) -> x715
-        let (get_ca :
-          t -> (Buffer.t, Buffer.t or_string list) union2 or_string) =
-          fun (x717 : t) ->
-            or_string_of_js
-              (fun (x718 : Ojs.t) ->
-                 union2_of_js Buffer.t_of_js
-                   (fun (x720 : Ojs.t) ->
-                      Ojs.list_of_js
-                        (fun (x721 : Ojs.t) ->
-                           or_string_of_js Buffer.t_of_js x721) x720) x718)
-              (Ojs.get_prop_ascii (t_to_js x717) "ca")
-        let (set_ca :
-          t -> (Buffer.t, Buffer.t or_string list) union2 or_string -> unit)
-          =
-          fun (x723 : t) ->
-            fun (x724 : (Buffer.t, Buffer.t or_string list) union2 or_string)
-              ->
-              Ojs.set_prop_ascii (t_to_js x723) "ca"
-                (or_string_to_js
-                   (fun (x725 : (Buffer.t, Buffer.t or_string list) union2)
-                      ->
-                      union2_to_js Buffer.t_to_js
-                        (fun (x727 : Buffer.t or_string list) ->
-                           Ojs.list_to_js
-                             (fun (x728 : Buffer.t or_string) ->
-                                or_string_to_js Buffer.t_to_js x728) x727)
-                        x725) x724)
-        let (get_cert :
-          t -> (Buffer.t, Buffer.t or_string list) union2 or_string) =
-          fun (x730 : t) ->
-            or_string_of_js
-              (fun (x731 : Ojs.t) ->
-                 union2_of_js Buffer.t_of_js
-                   (fun (x733 : Ojs.t) ->
-                      Ojs.list_of_js
-                        (fun (x734 : Ojs.t) ->
-                           or_string_of_js Buffer.t_of_js x734) x733) x731)
-              (Ojs.get_prop_ascii (t_to_js x730) "cert")
-        let (set_cert :
-          t -> (Buffer.t, Buffer.t or_string list) union2 or_string -> unit)
-          =
-          fun (x736 : t) ->
-            fun (x737 : (Buffer.t, Buffer.t or_string list) union2 or_string)
-              ->
-              Ojs.set_prop_ascii (t_to_js x736) "cert"
-                (or_string_to_js
-                   (fun (x738 : (Buffer.t, Buffer.t or_string list) union2)
-                      ->
-                      union2_to_js Buffer.t_to_js
-                        (fun (x740 : Buffer.t or_string list) ->
-                           Ojs.list_to_js
-                             (fun (x741 : Buffer.t or_string) ->
-                                or_string_to_js Buffer.t_to_js x741) x740)
-                        x738) x737)
-        let (get_sigalgs : t -> string) =
-          fun (x743 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x743) "sigalgs")
-        let (set_sigalgs : t -> string -> unit) =
-          fun (x744 : t) ->
-            fun (x745 : string) ->
-              Ojs.set_prop_ascii (t_to_js x744) "sigalgs"
-                (Ojs.string_to_js x745)
-        let (get_ciphers : t -> string) =
-          fun (x746 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x746) "ciphers")
-        let (set_ciphers : t -> string -> unit) =
-          fun (x747 : t) ->
-            fun (x748 : string) ->
-              Ojs.set_prop_ascii (t_to_js x747) "ciphers"
-                (Ojs.string_to_js x748)
-        let (get_client_cert_engine : t -> string) =
-          fun (x749 : t) ->
-            Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x749) "clientCertEngine")
-        let (set_client_cert_engine : t -> string -> unit) =
-          fun (x750 : t) ->
-            fun (x751 : string) ->
-              Ojs.set_prop_ascii (t_to_js x750) "clientCertEngine"
-                (Ojs.string_to_js x751)
-        let (get_crl :
-          t -> (Buffer.t, Buffer.t or_string list) union2 or_string) =
-          fun (x752 : t) ->
-            or_string_of_js
-              (fun (x753 : Ojs.t) ->
-                 union2_of_js Buffer.t_of_js
-                   (fun (x755 : Ojs.t) ->
-                      Ojs.list_of_js
-                        (fun (x756 : Ojs.t) ->
-                           or_string_of_js Buffer.t_of_js x756) x755) x753)
-              (Ojs.get_prop_ascii (t_to_js x752) "crl")
-        let (set_crl :
-          t -> (Buffer.t, Buffer.t or_string list) union2 or_string -> unit)
-          =
-          fun (x758 : t) ->
-            fun (x759 : (Buffer.t, Buffer.t or_string list) union2 or_string)
-              ->
-              Ojs.set_prop_ascii (t_to_js x758) "crl"
-                (or_string_to_js
-                   (fun (x760 : (Buffer.t, Buffer.t or_string list) union2)
-                      ->
-                      union2_to_js Buffer.t_to_js
-                        (fun (x762 : Buffer.t or_string list) ->
-                           Ojs.list_to_js
-                             (fun (x763 : Buffer.t or_string) ->
-                                or_string_to_js Buffer.t_to_js x763) x762)
-                        x760) x759)
-        let (get_dhparam : t -> Buffer.t or_string) =
-          fun (x765 : t) ->
-            or_string_of_js Buffer.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x765) "dhparam")
-        let (set_dhparam : t -> Buffer.t or_string -> unit) =
-          fun (x767 : t) ->
-            fun (x768 : Buffer.t or_string) ->
-              Ojs.set_prop_ascii (t_to_js x767) "dhparam"
-                (or_string_to_js Buffer.t_to_js x768)
-        let (get_ecdh_curve : t -> string) =
-          fun (x770 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x770) "ecdhCurve")
-        let (set_ecdh_curve : t -> string -> unit) =
-          fun (x771 : t) ->
-            fun (x772 : string) ->
-              Ojs.set_prop_ascii (t_to_js x771) "ecdhCurve"
-                (Ojs.string_to_js x772)
-        let (get_honor_cipher_order : t -> bool) =
-          fun (x773 : t) ->
-            Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x773) "honorCipherOrder")
-        let (set_honor_cipher_order : t -> bool -> unit) =
-          fun (x774 : t) ->
-            fun (x775 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x774) "honorCipherOrder"
-                (Ojs.bool_to_js x775)
-        let (get_key :
-          t ->
-            (Buffer.t, (Buffer.t, KeyObject.t) union2 list) union2 or_string)
-          =
-          fun (x776 : t) ->
-            or_string_of_js
-              (fun (x777 : Ojs.t) ->
-                 union2_of_js Buffer.t_of_js
-                   (fun (x779 : Ojs.t) ->
-                      Ojs.list_of_js
-                        (fun (x780 : Ojs.t) ->
-                           union2_of_js Buffer.t_of_js KeyObject.t_of_js x780)
-                        x779) x777) (Ojs.get_prop_ascii (t_to_js x776) "key")
-        let (set_key :
-          t ->
-            (Buffer.t, (Buffer.t, KeyObject.t) union2 list) union2 or_string
-              -> unit)
-          =
-          fun (x783 : t) ->
-            fun
-              (x784 :
-                (Buffer.t, (Buffer.t, KeyObject.t) union2 list) union2
-                  or_string)
-              ->
-              Ojs.set_prop_ascii (t_to_js x783) "key"
-                (or_string_to_js
-                   (fun
-                      (x785 :
-                        (Buffer.t, (Buffer.t, KeyObject.t) union2 list)
-                          union2)
-                      ->
-                      union2_to_js Buffer.t_to_js
-                        (fun (x787 : (Buffer.t, KeyObject.t) union2 list) ->
-                           Ojs.list_to_js
-                             (fun (x788 : (Buffer.t, KeyObject.t) union2) ->
-                                union2_to_js Buffer.t_to_js KeyObject.t_to_js
-                                  x788) x787) x785) x784)
-        let (get_private_key_engine : t -> string) =
-          fun (x791 : t) ->
-            Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x791) "privateKeyEngine")
-        let (set_private_key_engine : t -> string -> unit) =
-          fun (x792 : t) ->
-            fun (x793 : string) ->
-              Ojs.set_prop_ascii (t_to_js x792) "privateKeyEngine"
-                (Ojs.string_to_js x793)
-        let (get_private_key_identifier : t -> string) =
-          fun (x794 : t) ->
-            Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x794) "privateKeyIdentifier")
-        let (set_private_key_identifier : t -> string -> unit) =
-          fun (x795 : t) ->
-            fun (x796 : string) ->
-              Ojs.set_prop_ascii (t_to_js x795) "privateKeyIdentifier"
-                (Ojs.string_to_js x796)
-        let (get_max_version : t -> SecureVersion.t) =
-          fun (x797 : t) ->
-            SecureVersion.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x797) "maxVersion")
-        let (set_max_version : t -> SecureVersion.t -> unit) =
-          fun (x798 : t) ->
-            fun (x799 : SecureVersion.t) ->
-              Ojs.set_prop_ascii (t_to_js x798) "maxVersion"
-                (SecureVersion.t_to_js x799)
-        let (get_min_version : t -> SecureVersion.t) =
-          fun (x800 : t) ->
-            SecureVersion.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x800) "minVersion")
-        let (set_min_version : t -> SecureVersion.t -> unit) =
-          fun (x801 : t) ->
-            fun (x802 : SecureVersion.t) ->
-              Ojs.set_prop_ascii (t_to_js x801) "minVersion"
-                (SecureVersion.t_to_js x802)
-        let (get_passphrase : t -> string) =
-          fun (x803 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x803) "passphrase")
-        let (set_passphrase : t -> string -> unit) =
-          fun (x804 : t) ->
-            fun (x805 : string) ->
-              Ojs.set_prop_ascii (t_to_js x804) "passphrase"
-                (Ojs.string_to_js x805)
-        let (get_pfx :
-          t ->
-            (Buffer.t, (Buffer.t, PxfObject.t) union2 or_string list) union2
-              or_string)
-          =
-          fun (x806 : t) ->
-            or_string_of_js
-              (fun (x807 : Ojs.t) ->
-                 union2_of_js Buffer.t_of_js
-                   (fun (x809 : Ojs.t) ->
-                      Ojs.list_of_js
-                        (fun (x810 : Ojs.t) ->
-                           or_string_of_js
-                             (fun (x811 : Ojs.t) ->
-                                union2_of_js Buffer.t_of_js PxfObject.t_of_js
-                                  x811) x810) x809) x807)
-              (Ojs.get_prop_ascii (t_to_js x806) "pfx")
-        let (set_pfx :
-          t ->
-            (Buffer.t, (Buffer.t, PxfObject.t) union2 or_string list) union2
-              or_string -> unit)
-          =
-          fun (x814 : t) ->
-            fun
-              (x815 :
-                (Buffer.t, (Buffer.t, PxfObject.t) union2 or_string list)
-                  union2 or_string)
-              ->
-              Ojs.set_prop_ascii (t_to_js x814) "pfx"
-                (or_string_to_js
-                   (fun
-                      (x816 :
-                        (Buffer.t,
-                          (Buffer.t, PxfObject.t) union2 or_string list)
-                          union2)
-                      ->
-                      union2_to_js Buffer.t_to_js
-                        (fun
-                           (x818 :
-                             (Buffer.t, PxfObject.t) union2 or_string list)
-                           ->
-                           Ojs.list_to_js
-                             (fun
-                                (x819 :
-                                  (Buffer.t, PxfObject.t) union2 or_string)
-                                ->
-                                or_string_to_js
-                                  (fun
-                                     (x820 : (Buffer.t, PxfObject.t) union2)
-                                     ->
-                                     union2_to_js Buffer.t_to_js
-                                       PxfObject.t_to_js x820) x819) x818)
-                        x816) x815)
-        let (get_secure_options : t -> int) =
-          fun (x823 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x823) "secureOptions")
-        let (set_secure_options : t -> int -> unit) =
-          fun (x824 : t) ->
-            fun (x825 : int) ->
-              Ojs.set_prop_ascii (t_to_js x824) "secureOptions"
-                (Ojs.int_to_js x825)
-        let (get_secure_protocol : t -> string) =
-          fun (x826 : t) ->
-            Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x826) "secureProtocol")
-        let (set_secure_protocol : t -> string -> unit) =
-          fun (x827 : t) ->
-            fun (x828 : string) ->
-              Ojs.set_prop_ascii (t_to_js x827) "secureProtocol"
-                (Ojs.string_to_js x828)
-        let (get_session_id_context : t -> string) =
-          fun (x829 : t) ->
-            Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x829) "sessionIdContext")
-        let (set_session_id_context : t -> string -> unit) =
-          fun (x830 : t) ->
-            fun (x831 : string) ->
-              Ojs.set_prop_ascii (t_to_js x830) "sessionIdContext"
-                (Ojs.string_to_js x831)
-        let (get_ticket_keys : t -> Buffer.t) =
-          fun (x832 : t) ->
-            Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x832) "ticketKeys")
-        let (set_ticket_keys : t -> Buffer.t -> unit) =
-          fun (x833 : t) ->
-            fun (x834 : Buffer.t) ->
-              Ojs.set_prop_ascii (t_to_js x833) "ticketKeys"
-                (Buffer.t_to_js x834)
-        let (get_session_timeout : t -> int) =
-          fun (x835 : t) ->
-            Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x835) "sessionTimeout")
-        let (set_session_timeout : t -> int -> unit) =
-          fun (x836 : t) ->
-            fun (x837 : int) ->
-              Ojs.set_prop_ascii (t_to_js x836) "sessionTimeout"
-                (Ojs.int_to_js x837)
-      end
-    module SecureContext =
-      struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x839 : Ojs.t) -> x839
-        and t_to_js : t -> Ojs.t = fun (x838 : Ojs.t) -> x838
-        let (get_context : t -> any) =
-          fun (x840 : t) ->
-            any_of_js (Ojs.get_prop_ascii (t_to_js x840) "context")
-        let (set_context : t -> any -> unit) =
-          fun (x841 : t) ->
-            fun (x842 : any) ->
-              Ojs.set_prop_ascii (t_to_js x841) "context" (any_to_js x842)
+          fun (x865 : t) -> Net.Server.t_of_js (t_to_js x865)
       end
     let (check_server_identity :
       host:string -> cert:PeerCertificate.t -> Error.t or_undefined) =
-      fun ~host:(x843 : string) ->
-        fun ~cert:(x844 : PeerCertificate.t) ->
+      fun ~host:(x866 : string) ->
+        fun ~cert:(x867 : PeerCertificate.t) ->
           or_undefined_of_js Error.t_of_js
             (Ojs.call Import.tls "checkServerIdentity"
-               [|(Ojs.string_to_js x843);(PeerCertificate.t_to_js x844)|])
+               [|(Ojs.string_to_js x866);(PeerCertificate.t_to_js x867)|])
     let (create_server :
       ?secure_connection_listener:(socket:TLSSocket.t -> unit) ->
         unit -> Server.t)
       =
       fun
-        ?secure_connection_listener:(x846 :
+        ?secure_connection_listener:(x869 :
                                       (socket:TLSSocket.t -> unit) option)
         ->
         fun () ->
           Server.t_of_js
-            (let x850 = Import.tls in
-             Ojs.call (Ojs.get_prop_ascii x850 "createServer") "apply"
-               [|x850;((let x847 =
+            (let x873 = Import.tls in
+             Ojs.call (Ojs.get_prop_ascii x873 "createServer") "apply"
+               [|x873;((let x870 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
-                        (match x846 with
-                         | Some x848 ->
+                        (match x869 with
+                         | Some x871 ->
                              ignore
-                               (Ojs.call x847 "push"
+                               (Ojs.call x870 "push"
                                   [|(Ojs.fun_to_js 1
-                                       (fun (x849 : Ojs.t) ->
-                                          x848
-                                            ~socket:(TLSSocket.t_of_js x849)))|])
+                                       (fun (x872 : Ojs.t) ->
+                                          x871
+                                            ~socket:(TLSSocket.t_of_js x872)))|])
                          | None -> ());
-                        x847))|])
+                        x870))|])
     let (create_server :
       options:TlsOptions.t ->
         ?secure_connection_listener:(socket:TLSSocket.t -> unit) ->
           unit -> Server.t)
       =
-      fun ~options:(x851 : TlsOptions.t) ->
+      fun ~options:(x874 : TlsOptions.t) ->
         fun
-          ?secure_connection_listener:(x852 :
+          ?secure_connection_listener:(x875 :
                                         (socket:TLSSocket.t -> unit) option)
           ->
           fun () ->
             Server.t_of_js
-              (let x856 = Import.tls in
-               Ojs.call (Ojs.get_prop_ascii x856 "createServer") "apply"
-                 [|x856;((let x853 =
+              (let x879 = Import.tls in
+               Ojs.call (Ojs.get_prop_ascii x879 "createServer") "apply"
+                 [|x879;((let x876 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x853 "push"
-                               [|(TlsOptions.t_to_js x851)|]);
-                          (match x852 with
-                           | Some x854 ->
+                            (Ojs.call x876 "push"
+                               [|(TlsOptions.t_to_js x874)|]);
+                          (match x875 with
+                           | Some x877 ->
                                ignore
-                                 (Ojs.call x853 "push"
+                                 (Ojs.call x876 "push"
                                     [|(Ojs.fun_to_js 1
-                                         (fun (x855 : Ojs.t) ->
-                                            x854
-                                              ~socket:(TLSSocket.t_of_js x855)))|])
+                                         (fun (x878 : Ojs.t) ->
+                                            x877
+                                              ~socket:(TLSSocket.t_of_js x878)))|])
                            | None -> ());
-                          x853))|])
+                          x876))|])
     let (connect :
       options:ConnectionOptions.t ->
         ?secure_connect_listener:(unit -> unit) -> unit -> TLSSocket.t)
       =
-      fun ~options:(x857 : ConnectionOptions.t) ->
-        fun ?secure_connect_listener:(x858 : (unit -> unit) option) ->
+      fun ~options:(x880 : ConnectionOptions.t) ->
+        fun ?secure_connect_listener:(x881 : (unit -> unit) option) ->
           fun () ->
             TLSSocket.t_of_js
-              (let x861 = Import.tls in
-               Ojs.call (Ojs.get_prop_ascii x861 "connect") "apply"
-                 [|x861;((let x859 =
+              (let x884 = Import.tls in
+               Ojs.call (Ojs.get_prop_ascii x884 "connect") "apply"
+                 [|x884;((let x882 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x859 "push"
-                               [|(ConnectionOptions.t_to_js x857)|]);
-                          (match x858 with
-                           | Some x860 ->
+                            (Ojs.call x882 "push"
+                               [|(ConnectionOptions.t_to_js x880)|]);
+                          (match x881 with
+                           | Some x883 ->
                                ignore
-                                 (Ojs.call x859 "push"
-                                    [|(Ojs.fun_to_js 1 (fun _ -> x860 ()))|])
+                                 (Ojs.call x882 "push"
+                                    [|(Ojs.fun_to_js 1 (fun _ -> x883 ()))|])
                            | None -> ());
-                          x859))|])
+                          x882))|])
     let (connect :
       port:int ->
         ?host:string ->
           ?options:ConnectionOptions.t ->
             ?secure_connect_listener:(unit -> unit) -> unit -> TLSSocket.t)
       =
-      fun ~port:(x862 : int) ->
-        fun ?host:(x863 : string option) ->
-          fun ?options:(x864 : ConnectionOptions.t option) ->
-            fun ?secure_connect_listener:(x865 : (unit -> unit) option) ->
+      fun ~port:(x885 : int) ->
+        fun ?host:(x886 : string option) ->
+          fun ?options:(x887 : ConnectionOptions.t option) ->
+            fun ?secure_connect_listener:(x888 : (unit -> unit) option) ->
               fun () ->
                 TLSSocket.t_of_js
-                  (let x870 = Import.tls in
-                   Ojs.call (Ojs.get_prop_ascii x870 "connect") "apply"
-                     [|x870;((let x866 =
+                  (let x893 = Import.tls in
+                   Ojs.call (Ojs.get_prop_ascii x893 "connect") "apply"
+                     [|x893;((let x889 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x866 "push"
-                                   [|(Ojs.int_to_js x862)|]);
-                              (match x863 with
-                               | Some x869 ->
+                                (Ojs.call x889 "push"
+                                   [|(Ojs.int_to_js x885)|]);
+                              (match x886 with
+                               | Some x892 ->
                                    ignore
-                                     (Ojs.call x866 "push"
-                                        [|(Ojs.string_to_js x869)|])
+                                     (Ojs.call x889 "push"
+                                        [|(Ojs.string_to_js x892)|])
                                | None -> ());
-                              (match x864 with
-                               | Some x868 ->
+                              (match x887 with
+                               | Some x891 ->
                                    ignore
-                                     (Ojs.call x866 "push"
-                                        [|(ConnectionOptions.t_to_js x868)|])
+                                     (Ojs.call x889 "push"
+                                        [|(ConnectionOptions.t_to_js x891)|])
                                | None -> ());
-                              (match x865 with
-                               | Some x867 ->
+                              (match x888 with
+                               | Some x890 ->
                                    ignore
-                                     (Ojs.call x866 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x867 ()))|])
+                                     (Ojs.call x889 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x890 ()))|])
                                | None -> ());
-                              x866))|])
+                              x889))|])
     let (connect :
       port:int ->
         ?options:ConnectionOptions.t ->
           ?secure_connect_listener:(unit -> unit) -> unit -> TLSSocket.t)
       =
-      fun ~port:(x871 : int) ->
-        fun ?options:(x872 : ConnectionOptions.t option) ->
-          fun ?secure_connect_listener:(x873 : (unit -> unit) option) ->
+      fun ~port:(x894 : int) ->
+        fun ?options:(x895 : ConnectionOptions.t option) ->
+          fun ?secure_connect_listener:(x896 : (unit -> unit) option) ->
             fun () ->
               TLSSocket.t_of_js
-                (let x877 = Import.tls in
-                 Ojs.call (Ojs.get_prop_ascii x877 "connect") "apply"
-                   [|x877;((let x874 =
+                (let x900 = Import.tls in
+                 Ojs.call (Ojs.get_prop_ascii x900 "connect") "apply"
+                   [|x900;((let x897 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x874 "push" [|(Ojs.int_to_js x871)|]);
-                            (match x872 with
-                             | Some x876 ->
+                              (Ojs.call x897 "push" [|(Ojs.int_to_js x894)|]);
+                            (match x895 with
+                             | Some x899 ->
                                  ignore
-                                   (Ojs.call x874 "push"
-                                      [|(ConnectionOptions.t_to_js x876)|])
+                                   (Ojs.call x897 "push"
+                                      [|(ConnectionOptions.t_to_js x899)|])
                              | None -> ());
-                            (match x873 with
-                             | Some x875 ->
+                            (match x896 with
+                             | Some x898 ->
                                  ignore
-                                   (Ojs.call x874 "push"
-                                      [|(Ojs.fun_to_js 1 (fun _ -> x875 ()))|])
+                                   (Ojs.call x897 "push"
+                                      [|(Ojs.fun_to_js 1 (fun _ -> x898 ()))|])
                              | None -> ());
-                            x874))|])
+                            x897))|])
     let (create_secure_pair :
       ?credentials:SecureContext.t ->
         ?is_server:bool ->
           ?request_cert:bool ->
             ?reject_unauthorized:bool -> unit -> SecurePair.t)
       =
-      fun ?credentials:(x878 : SecureContext.t option) ->
-        fun ?is_server:(x879 : bool option) ->
-          fun ?request_cert:(x880 : bool option) ->
-            fun ?reject_unauthorized:(x881 : bool option) ->
+      fun ?credentials:(x901 : SecureContext.t option) ->
+        fun ?is_server:(x902 : bool option) ->
+          fun ?request_cert:(x903 : bool option) ->
+            fun ?reject_unauthorized:(x904 : bool option) ->
               fun () ->
                 SecurePair.t_of_js
-                  (let x887 = Import.tls in
-                   Ojs.call (Ojs.get_prop_ascii x887 "createSecurePair")
+                  (let x910 = Import.tls in
+                   Ojs.call (Ojs.get_prop_ascii x910 "createSecurePair")
                      "apply"
-                     [|x887;((let x882 =
+                     [|x910;((let x905 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x878 with
-                               | Some x886 ->
+                              (match x901 with
+                               | Some x909 ->
                                    ignore
-                                     (Ojs.call x882 "push"
-                                        [|(SecureContext.t_to_js x886)|])
+                                     (Ojs.call x905 "push"
+                                        [|(SecureContext.t_to_js x909)|])
                                | None -> ());
-                              (match x879 with
-                               | Some x885 ->
+                              (match x902 with
+                               | Some x908 ->
                                    ignore
-                                     (Ojs.call x882 "push"
-                                        [|(Ojs.bool_to_js x885)|])
+                                     (Ojs.call x905 "push"
+                                        [|(Ojs.bool_to_js x908)|])
                                | None -> ());
-                              (match x880 with
-                               | Some x884 ->
+                              (match x903 with
+                               | Some x907 ->
                                    ignore
-                                     (Ojs.call x882 "push"
-                                        [|(Ojs.bool_to_js x884)|])
+                                     (Ojs.call x905 "push"
+                                        [|(Ojs.bool_to_js x907)|])
                                | None -> ());
-                              (match x881 with
-                               | Some x883 ->
+                              (match x904 with
+                               | Some x906 ->
                                    ignore
-                                     (Ojs.call x882 "push"
-                                        [|(Ojs.bool_to_js x883)|])
+                                     (Ojs.call x905 "push"
+                                        [|(Ojs.bool_to_js x906)|])
                                | None -> ());
-                              x882))|])
+                              x905))|])
     let (create_secure_context :
       ?options:SecureContextOptions.t -> unit -> SecureContext.t) =
-      fun ?options:(x888 : SecureContextOptions.t option) ->
+      fun ?options:(x911 : SecureContextOptions.t option) ->
         fun () ->
           SecureContext.t_of_js
-            (let x891 = Import.tls in
-             Ojs.call (Ojs.get_prop_ascii x891 "createSecureContext") "apply"
-               [|x891;((let x889 =
+            (let x914 = Import.tls in
+             Ojs.call (Ojs.get_prop_ascii x914 "createSecureContext") "apply"
+               [|x914;((let x912 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
-                        (match x888 with
-                         | Some x890 ->
+                        (match x911 with
+                         | Some x913 ->
                              ignore
-                               (Ojs.call x889 "push"
-                                  [|(SecureContextOptions.t_to_js x890)|])
+                               (Ojs.call x912 "push"
+                                  [|(SecureContextOptions.t_to_js x913)|])
                          | None -> ());
-                        x889))|])
+                        x912))|])
     let (get_ciphers : unit -> string list) =
       fun () ->
         Ojs.list_of_js Ojs.string_of_js
           (Ojs.call Import.tls "getCiphers" [||])
-    let (d_efault_ecdh_curve : string) =
+    let (default_ecdh_curve : string) =
       Ojs.string_of_js (Ojs.get_prop_ascii Import.tls "DEFAULT_ECDH_CURVE")
-    let (d_efault_max_version : tls_SecureVersion) =
-      tls_SecureVersion_of_js
+    let (default_max_version : SecureVersion.t) =
+      SecureVersion.t_of_js
         (Ojs.get_prop_ascii Import.tls "DEFAULT_MAX_VERSION")
-    let (d_efault_min_version : tls_SecureVersion) =
-      tls_SecureVersion_of_js
+    let (default_min_version : SecureVersion.t) =
+      SecureVersion.t_of_js
         (Ojs.get_prop_ascii Import.tls "DEFAULT_MIN_VERSION")
     let (root_certificates : string list) =
       Ojs.list_of_js Ojs.string_of_js

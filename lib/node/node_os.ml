@@ -152,9 +152,9 @@ module Os =
       end
     module NetworkInterfaceInfoIPv4 =
       struct
-        type t4 = Ojs.t
-        let rec t4_of_js : Ojs.t -> t4 = fun (x60 : Ojs.t) -> x60
-        and t4_to_js : t4 -> Ojs.t = fun (x59 : Ojs.t) -> x59
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x60 : Ojs.t) -> x60
+        and t_to_js : t -> Ojs.t = fun (x59 : Ojs.t) -> x59
         let (get_family : t -> [ `IPv4 ]) =
           fun (x61 : t) ->
             let x62 = Ojs.get_prop_ascii (t_to_js x61) "family" in
@@ -171,9 +171,9 @@ module Os =
       end
     module NetworkInterfaceInfoIPv6 =
       struct
-        type t6 = Ojs.t
-        let rec t6_of_js : Ojs.t -> t6 = fun (x67 : Ojs.t) -> x67
-        and t6_to_js : t6 -> Ojs.t = fun (x66 : Ojs.t) -> x66
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x67 : Ojs.t) -> x67
+        and t_to_js : t -> Ojs.t = fun (x66 : Ojs.t) -> x66
         let (get_family : t -> [ `IPv6 ]) =
           fun (x68 : t) ->
             let x69 = Ojs.get_prop_ascii (t_to_js x68) "family" in
@@ -246,24 +246,24 @@ module Os =
     module NetworkInterfaceInfo =
       struct
         type t =
-          [ `U_s1_IPv4 of NetworkInterfaceInfoIPv.t4 
-          | `U_s2_IPv6 of NetworkInterfaceInfoIPv.t6 ]
+          [ `U_s1_IPv4 of NetworkInterfaceInfoIPv4.t 
+          | `U_s2_IPv6 of NetworkInterfaceInfoIPv6.t ]
         let rec t_of_js : Ojs.t -> t =
           fun (x106 : Ojs.t) ->
             let x107 = x106 in
             match Ojs.string_of_js (Ojs.get_prop_ascii x107 "family") with
-            | "IPv4" -> `U_s1_IPv4 (NetworkInterfaceInfoIPv.t4_of_js x107)
-            | "IPv6" -> `U_s2_IPv6 (NetworkInterfaceInfoIPv.t6_of_js x107)
+            | "IPv4" -> `U_s1_IPv4 (NetworkInterfaceInfoIPv4.t_of_js x107)
+            | "IPv6" -> `U_s2_IPv6 (NetworkInterfaceInfoIPv6.t_of_js x107)
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
           fun
             (x103 :
-              [ `U_s1_IPv4 of NetworkInterfaceInfoIPv.t4 
-              | `U_s2_IPv6 of NetworkInterfaceInfoIPv.t6 ])
+              [ `U_s1_IPv4 of NetworkInterfaceInfoIPv4.t 
+              | `U_s2_IPv6 of NetworkInterfaceInfoIPv6.t ])
             ->
             match x103 with
-            | `U_s1_IPv4 x104 -> NetworkInterfaceInfoIPv.t4_to_js x104
-            | `U_s2_IPv6 x105 -> NetworkInterfaceInfoIPv.t6_to_js x105
+            | `U_s1_IPv4 x104 -> NetworkInterfaceInfoIPv4.t_to_js x104
+            | `U_s2_IPv6 x105 -> NetworkInterfaceInfoIPv6.t_to_js x105
       end
     let (hostname : unit -> string) =
       fun () -> Ojs.string_of_js (Ojs.call Import.os "hostname" [||])
@@ -291,16 +291,16 @@ module Os =
           (Ojs.call Import.os "networkInterfaces" [||])
     let (homedir : unit -> string) =
       fun () -> Ojs.string_of_js (Ojs.call Import.os "homedir" [||])
-    let (user_info : options:AnonymousInterface1.t -> Buffer.t os_UserInfo) =
+    let (user_info : options:AnonymousInterface1.t -> Buffer.t UserInfo.t) =
       fun ~options:(x112 : AnonymousInterface1.t) ->
-        os_UserInfo_of_js Buffer.t_of_js
+        UserInfo.t_of_js Buffer.t_of_js
           (Ojs.call Import.os "userInfo"
              [|(AnonymousInterface1.t_to_js x112)|])
     let (user_info :
-      ?options:AnonymousInterface0.t -> unit -> string os_UserInfo) =
+      ?options:AnonymousInterface0.t -> unit -> string UserInfo.t) =
       fun ?options:(x114 : AnonymousInterface0.t option) ->
         fun () ->
-          os_UserInfo_of_js Ojs.string_of_js
+          UserInfo.t_of_js Ojs.string_of_js
             (let x117 = Import.os in
              Ojs.call (Ojs.get_prop_ascii x117 "userInfo") "apply"
                [|x117;((let x115 =
@@ -325,8 +325,8 @@ module Os =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.os "constants")
                "UV_UDP_REUSEADDR")
-        let (signals : os_SignalConstants) =
-          os_SignalConstants_of_js
+        let (signals : SignalConstants.t) =
+          SignalConstants.t_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.os "constants")
                "signals")
         module Errno =

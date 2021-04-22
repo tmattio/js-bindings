@@ -423,60 +423,60 @@ module Dns =
             fun (x126 : int) ->
               Ojs.set_prop_ascii (t_to_js x125) "ttl" (Ojs.int_to_js x126)
       end
-    module AnyRecordWithTtl =
-      struct
-        type t = [ `U_s0_A of AnyARecord.t  | `U_s1_AAAA of AnyAaaaRecord.t ]
-        let rec t_of_js : Ojs.t -> t =
-          fun (x130 : Ojs.t) ->
-            let x131 = x130 in
-            match Ojs.string_of_js (Ojs.get_prop_ascii x131 "type") with
-            | "A" -> `U_s0_A (AnyARecord.t_of_js x131)
-            | "AAAA" -> `U_s1_AAAA (AnyAaaaRecord.t_of_js x131)
-            | _ -> assert false
-        and t_to_js : t -> Ojs.t =
-          fun
-            (x127 :
-              [ `U_s0_A of AnyARecord.t  | `U_s1_AAAA of AnyAaaaRecord.t ])
-            ->
-            match x127 with
-            | `U_s0_A x128 -> AnyARecord.t_to_js x128
-            | `U_s1_AAAA x129 -> AnyAaaaRecord.t_to_js x129
-      end
     module AnyARecord =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x133 : Ojs.t) -> x133
-        and t_to_js : t -> Ojs.t = fun (x132 : Ojs.t) -> x132
+        let rec t_of_js : Ojs.t -> t = fun (x128 : Ojs.t) -> x128
+        and t_to_js : t -> Ojs.t = fun (x127 : Ojs.t) -> x127
         let (get_type : t -> [ `A ]) =
-          fun (x134 : t) ->
-            let x135 = Ojs.get_prop_ascii (t_to_js x134) "type" in
-            match Ojs.string_of_js x135 with | "A" -> `A | _ -> assert false
+          fun (x129 : t) ->
+            let x130 = Ojs.get_prop_ascii (t_to_js x129) "type" in
+            match Ojs.string_of_js x130 with | "A" -> `A | _ -> assert false
         let (set_type : t -> [ `A ] -> unit) =
-          fun (x136 : t) ->
-            fun (x137 : [ `A ]) ->
-              Ojs.set_prop_ascii (t_to_js x136) "type"
-                (match x137 with | `A -> Ojs.string_to_js "A")
+          fun (x131 : t) ->
+            fun (x132 : [ `A ]) ->
+              Ojs.set_prop_ascii (t_to_js x131) "type"
+                (match x132 with | `A -> Ojs.string_to_js "A")
         let (cast : t -> RecordWithTtl.t) =
-          fun (x138 : t) -> RecordWithTtl.t_of_js (t_to_js x138)
+          fun (x133 : t) -> RecordWithTtl.t_of_js (t_to_js x133)
       end
     module AnyAaaaRecord =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x140 : Ojs.t) -> x140
-        and t_to_js : t -> Ojs.t = fun (x139 : Ojs.t) -> x139
+        let rec t_of_js : Ojs.t -> t = fun (x135 : Ojs.t) -> x135
+        and t_to_js : t -> Ojs.t = fun (x134 : Ojs.t) -> x134
         let (get_type : t -> [ `AAAA ]) =
-          fun (x141 : t) ->
-            let x142 = Ojs.get_prop_ascii (t_to_js x141) "type" in
-            match Ojs.string_of_js x142 with
+          fun (x136 : t) ->
+            let x137 = Ojs.get_prop_ascii (t_to_js x136) "type" in
+            match Ojs.string_of_js x137 with
             | "AAAA" -> `AAAA
             | _ -> assert false
         let (set_type : t -> [ `AAAA ] -> unit) =
-          fun (x143 : t) ->
-            fun (x144 : [ `AAAA ]) ->
-              Ojs.set_prop_ascii (t_to_js x143) "type"
-                (match x144 with | `AAAA -> Ojs.string_to_js "AAAA")
+          fun (x138 : t) ->
+            fun (x139 : [ `AAAA ]) ->
+              Ojs.set_prop_ascii (t_to_js x138) "type"
+                (match x139 with | `AAAA -> Ojs.string_to_js "AAAA")
         let (cast : t -> RecordWithTtl.t) =
-          fun (x145 : t) -> RecordWithTtl.t_of_js (t_to_js x145)
+          fun (x140 : t) -> RecordWithTtl.t_of_js (t_to_js x140)
+      end
+    module AnyRecordWithTtl =
+      struct
+        type t = [ `U_s0_A of AnyARecord.t  | `U_s1_AAAA of AnyAaaaRecord.t ]
+        let rec t_of_js : Ojs.t -> t =
+          fun (x144 : Ojs.t) ->
+            let x145 = x144 in
+            match Ojs.string_of_js (Ojs.get_prop_ascii x145 "type") with
+            | "A" -> `U_s0_A (AnyARecord.t_of_js x145)
+            | "AAAA" -> `U_s1_AAAA (AnyAaaaRecord.t_of_js x145)
+            | _ -> assert false
+        and t_to_js : t -> Ojs.t =
+          fun
+            (x141 :
+              [ `U_s0_A of AnyARecord.t  | `U_s1_AAAA of AnyAaaaRecord.t ])
+            ->
+            match x141 with
+            | `U_s0_A x142 -> AnyARecord.t_to_js x142
+            | `U_s1_AAAA x143 -> AnyAaaaRecord.t_to_js x143
       end
     module MxRecord =
       struct
@@ -1168,8 +1168,8 @@ module Dns =
       hostname:string ->
         rrtype:string ->
           callback:(err:ErrnoException.t or_null ->
-                      addresses:(dns_SoaRecord,
-                        ((dns_AnyRecord, MxRecord.t, NaptrRecord.t,
+                      addresses:(SoaRecord.t,
+                        ((AnyRecord.t, MxRecord.t, NaptrRecord.t,
                            SrvRecord.t) union4,
                           string) or_array or_string)
                         or_array -> unit)
@@ -1180,8 +1180,8 @@ module Dns =
           fun
             ~callback:(x375 :
                         err:ErrnoException.t or_null ->
-                          addresses:(dns_SoaRecord,
-                            ((dns_AnyRecord, MxRecord.t, NaptrRecord.t,
+                          addresses:(SoaRecord.t,
+                            ((AnyRecord.t, MxRecord.t, NaptrRecord.t,
                                SrvRecord.t) union4,
                               string) or_array or_string)
                             or_array -> unit)
@@ -1203,7 +1203,7 @@ module Dns =
                                                                     x376)
                                                                     ~addresses:(
                                                                     or_array_of_js
-                                                                    dns_SoaRecord_of_js
+                                                                    SoaRecord.t_of_js
                                                                     (fun
                                                                     (x380 :
                                                                     Ojs.t) ->
@@ -1216,7 +1216,7 @@ module Dns =
                                                                     (x382 :
                                                                     Ojs.t) ->
                                                                     union4_of_js
-                                                                    dns_AnyRecord_of_js
+                                                                    AnyRecord.t_of_js
                                                                     MxRecord.t_of_js
                                                                     NaptrRecord.t_of_js
                                                                     SrvRecord.t_of_js
@@ -1336,7 +1336,7 @@ module Dns =
         let (__promisify__ :
           hostname:string ->
             rrtype:string ->
-              (dns_SoaRecord,
+              (SoaRecord.t,
                 ((AnyRecord.t, MxRecord.t, NaptrRecord.t, SrvRecord.t) union4,
                   string) or_array or_string)
                 or_array Promise.t)
@@ -1345,7 +1345,7 @@ module Dns =
             fun ~rrtype:(x420 : string) ->
               Promise.t_of_js
                 (fun (x421 : Ojs.t) ->
-                   or_array_of_js dns_SoaRecord_of_js
+                   or_array_of_js SoaRecord.t_of_js
                      (fun (x423 : Ojs.t) ->
                         or_string_of_js
                           (fun (x424 : Ojs.t) ->
@@ -2624,7 +2624,7 @@ module Dns =
         let (resolve :
           hostname:string ->
             rrtype:string ->
-              (dns_SoaRecord,
+              (SoaRecord.t,
                 ((AnyRecord.t, MxRecord.t, NaptrRecord.t, SrvRecord.t) union4,
                   string) or_array or_string)
                 or_array Promise.t)
@@ -2633,7 +2633,7 @@ module Dns =
             fun ~rrtype:(x776 : string) ->
               Promise.t_of_js
                 (fun (x777 : Ojs.t) ->
-                   or_array_of_js dns_SoaRecord_of_js
+                   or_array_of_js SoaRecord.t_of_js
                      (fun (x779 : Ojs.t) ->
                         or_string_of_js
                           (fun (x780 : Ojs.t) ->
@@ -2784,12 +2784,9 @@ module Dns =
                  "setServers" [|(Ojs.list_to_js Ojs.string_to_js x841)|])
         module Resolver =
           struct
-            type t = dns_promises_Resolver
-            let rec t_of_js : Ojs.t -> t =
-              fun (x844 : Ojs.t) -> dns_promises_Resolver_of_js x844
-            and t_to_js : t -> Ojs.t =
-              fun (x843 : dns_promises_Resolver) ->
-                dns_promises_Resolver_to_js x843
+            type t = Ojs.t
+            let rec t_of_js : Ojs.t -> t = fun (x844 : Ojs.t) -> x844
+            and t_to_js : t -> Ojs.t = fun (x843 : Ojs.t) -> x843
             let (create : ?options:ResolverOptions.t -> unit -> t) =
               fun ?options:(x845 : ResolverOptions.t option) ->
                 fun () ->

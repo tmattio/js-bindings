@@ -5,185 +5,134 @@
 open Es2020
 open Node_globals
 
-module AnonymousInterface0 : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val get_plaintext_length : t -> int [@@js.get "plaintextLength"]
-
-  val set_plaintext_length : t -> int -> unit [@@js.set "plaintextLength"]
-end
-
-module AnonymousInterface1 : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val get_private_key : t -> KeyObject.t [@@js.get "privateKey"]
-
-  val set_private_key : t -> KeyObject.t -> unit [@@js.set "privateKey"]
-
-  val get_public_key : t -> KeyObject.t [@@js.get "publicKey"]
-
-  val set_public_key : t -> KeyObject.t -> unit [@@js.set "publicKey"]
-end
-
-module AnonymousInterface2 : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val get_public_key : t -> Buffer.t [@@js.get "publicKey"]
-
-  val set_public_key : t -> Buffer.t -> unit [@@js.set "publicKey"]
-
-  val get_private_key : t -> Buffer.t [@@js.get "privateKey"]
-
-  val set_private_key : t -> Buffer.t -> unit [@@js.set "privateKey"]
-end
-
-module AnonymousInterface3 : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val get_public_key : t -> Buffer.t [@@js.get "publicKey"]
-
-  val set_public_key : t -> Buffer.t -> unit [@@js.set "publicKey"]
-
-  val get_private_key : t -> string [@@js.get "privateKey"]
-
-  val set_private_key : t -> string -> unit [@@js.set "privateKey"]
-end
-
-module AnonymousInterface4 : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val get_public_key : t -> string [@@js.get "publicKey"]
-
-  val set_public_key : t -> string -> unit [@@js.set "publicKey"]
-
-  val get_private_key : t -> Buffer.t [@@js.get "privateKey"]
-
-  val set_private_key : t -> Buffer.t -> unit [@@js.set "privateKey"]
-end
-
-module AnonymousInterface5 : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val get_public_key : t -> string [@@js.get "publicKey"]
-
-  val set_public_key : t -> string -> unit [@@js.set "publicKey"]
-
-  val get_private_key : t -> string [@@js.get "privateKey"]
-
-  val set_private_key : t -> string -> unit [@@js.set "privateKey"]
-end
-
-module AnonymousInterface6 : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val get_type : t -> ([ `pkcs8 [@js "pkcs8"] ][@js.enum]) [@@js.get "type"]
-
-  val set_type : t -> ([ `pkcs8 ][@js.enum]) -> unit [@@js.set "type"]
-end
-
-module AnonymousInterface7 : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val get_type : t -> ([ `spki [@js "spki"] ][@js.enum]) [@@js.get "type"]
-
-  val set_type : t -> ([ `spki ][@js.enum]) -> unit [@@js.set "type"]
-
-  val get_format : t -> 'PubF [@@js.get "format"]
-
-  val set_format : t -> 'PubF -> unit [@@js.set "format"]
-end
-
-module AnonymousInterface8 : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val get_type
-    :  t
-    -> ([ `pkcs1 [@js "pkcs1"] | `pkcs8 [@js "pkcs8"] ][@js.enum])
-    [@@js.get "type"]
-
-  val set_type : t -> ([ `pkcs1 | `pkcs8 ][@js.enum]) -> unit [@@js.set "type"]
-end
-
-module AnonymousInterface9 : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val get_type : t -> ([ `pkcs1 [@js "pkcs1"] | `spki [@js "spki"] ][@js.enum])
-    [@@js.get "type"]
-
-  val set_type : t -> ([ `pkcs1 | `spki ][@js.enum]) -> unit [@@js.set "type"]
-
-  val get_format : t -> 'PubF [@@js.get "format"]
-
-  val set_format : t -> 'PubF -> unit [@@js.set "format"]
-end
-
-module AnonymousInterface10 : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val get_type : t -> ([ `pkcs8 [@js "pkcs8"] | `sec1 [@js "sec1"] ][@js.enum])
-    [@@js.get "type"]
-
-  val set_type : t -> ([ `pkcs8 | `sec1 ][@js.enum]) -> unit [@@js.set "type"]
-end
-
-module AnonymousInterface11 : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val create : t -> Certificate.t [@@js.apply_newable]
-
-  val apply : t -> Certificate.t [@@js.apply]
-end
-
 module Crypto : sig
   open Node_stream
+
+  module BinaryLike : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+  end
+
+  module KeyObjectType : sig
+    type t =
+      ([ `private_ [@js "private"]
+       | `public [@js "public"]
+       | `secret [@js "secret"]
+       ]
+      [@js.enum])
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+  end
+
+  module KeyExportOptions : sig
+    type 'T t
+
+    val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+
+    val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+
+    val get_type
+      :  'T t
+      -> ([ `pkcs1 [@js "pkcs1"]
+          | `pkcs8 [@js "pkcs8"]
+          | `sec1 [@js "sec1"]
+          | `spki [@js "spki"]
+          ]
+         [@js.enum])
+      [@@js.get "type"]
+
+    val set_type
+      :  'T t
+      -> ([ `pkcs1 | `pkcs8 | `sec1 | `spki ][@js.enum])
+      -> unit
+      [@@js.set "type"]
+
+    val get_format : 'T t -> 'T [@@js.get "format"]
+
+    val set_format : 'T t -> 'T -> unit [@@js.set "format"]
+
+    val get_cipher : 'T t -> string [@@js.get "cipher"]
+
+    val set_cipher : 'T t -> string -> unit [@@js.set "cipher"]
+
+    val get_passphrase : 'T t -> Buffer.t or_string [@@js.get "passphrase"]
+
+    val set_passphrase : 'T t -> Buffer.t or_string -> unit
+      [@@js.set "passphrase"]
+  end
+  [@@js.scope "KeyExportOptions"]
+
+  module KeyType : sig
+    type t =
+      ([ `dsa [@js "dsa"]
+       | `ec [@js "ec"]
+       | `ed25519 [@js "ed25519"]
+       | `ed448 [@js "ed448"]
+       | `rsa [@js "rsa"]
+       | `x25519 [@js "x25519"]
+       | `x448 [@js "x448"]
+       ]
+      [@js.enum])
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+  end
+
+  module KeyObject : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val create : unit -> t [@@js.create]
+
+    val get_asymmetric_key_type : t -> KeyType.t [@@js.get "asymmetricKeyType"]
+
+    val set_asymmetric_key_type : t -> KeyType.t -> unit
+      [@@js.set "asymmetricKeyType"]
+
+    val get_asymmetric_key_size : t -> int [@@js.get "asymmetricKeySize"]
+
+    val set_asymmetric_key_size : t -> int -> unit
+      [@@js.set "asymmetricKeySize"]
+
+    val export
+      :  t
+      -> options:([ `pem ][@js.enum]) KeyExportOptions.t
+      -> Buffer.t or_string
+      [@@js.call "export"]
+
+    val export'
+      :  t
+      -> ?options:([ `der ][@js.enum]) KeyExportOptions.t
+      -> unit
+      -> Buffer.t
+      [@@js.call "export"]
+
+    val get_symmetric_key_size : t -> int [@@js.get "symmetricKeySize"]
+
+    val set_symmetric_key_size : t -> int -> unit [@@js.set "symmetricKeySize"]
+
+    val get_type : t -> KeyObjectType.t [@@js.get "type"]
+
+    val set_type : t -> KeyObjectType.t -> unit [@@js.set "type"]
+  end
+  [@@js.scope "KeyObject"]
+
+  module CipherKey : sig
+    type t = (BinaryLike.t, KeyObject.t) union2
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+  end
 
   module Certificate : sig
     type t
@@ -207,6 +156,18 @@ module Crypto : sig
       [@@js.call "verifySpkac"]
   end
   [@@js.scope "Certificate"]
+
+  module AnonymousInterface11 : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val create : t -> Certificate.t [@@js.apply_newable]
+
+    val apply : t -> Certificate.t [@@js.apply]
+  end
 
   val certificate : (Certificate.t, AnonymousInterface11.t) intersection2
     [@@js.global "Certificate"]
@@ -383,17 +344,6 @@ module Crypto : sig
 
   val fips : bool [@@js.global "fips"]
 
-  val create_hash : algorithm:string -> ?options:HashOptions.t -> unit -> Hash.t
-    [@@js.global "createHash"]
-
-  val create_hmac
-    :  algorithm:string
-    -> key:(BinaryLike.t, KeyObject.t) union2
-    -> ?options:Stream.TransformOptions.t
-    -> unit
-    -> Hmac.t
-    [@@js.global "createHmac"]
-
   module BinaryToTextEncoding : sig
     type t =
       ([ `base64 [@js "base64"]
@@ -520,98 +470,16 @@ module Crypto : sig
   end
   [@@js.scope "Hmac"]
 
-  module KeyObjectType : sig
-    type t =
-      ([ `private_ [@js "private"]
-       | `public [@js "public"]
-       | `secret [@js "secret"]
-       ]
-      [@js.enum])
+  val create_hash : algorithm:string -> ?options:HashOptions.t -> unit -> Hash.t
+    [@@js.global "createHash"]
 
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-  end
-
-  module KeyExportOptions : sig
-    type 'T t
-
-    val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
-
-    val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
-
-    val get_type
-      :  'T t
-      -> ([ `pkcs1 [@js "pkcs1"]
-          | `pkcs8 [@js "pkcs8"]
-          | `sec1 [@js "sec1"]
-          | `spki [@js "spki"]
-          ]
-         [@js.enum])
-      [@@js.get "type"]
-
-    val set_type
-      :  'T t
-      -> ([ `pkcs1 | `pkcs8 | `sec1 | `spki ][@js.enum])
-      -> unit
-      [@@js.set "type"]
-
-    val get_format : 'T t -> 'T [@@js.get "format"]
-
-    val set_format : 'T t -> 'T -> unit [@@js.set "format"]
-
-    val get_cipher : 'T t -> string [@@js.get "cipher"]
-
-    val set_cipher : 'T t -> string -> unit [@@js.set "cipher"]
-
-    val get_passphrase : 'T t -> Buffer.t or_string [@@js.get "passphrase"]
-
-    val set_passphrase : 'T t -> Buffer.t or_string -> unit
-      [@@js.set "passphrase"]
-  end
-  [@@js.scope "KeyExportOptions"]
-
-  module KeyObject : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val create : unit -> t [@@js.create]
-
-    val get_asymmetric_key_type : t -> KeyType.t [@@js.get "asymmetricKeyType"]
-
-    val set_asymmetric_key_type : t -> KeyType.t -> unit
-      [@@js.set "asymmetricKeyType"]
-
-    val get_asymmetric_key_size : t -> int [@@js.get "asymmetricKeySize"]
-
-    val set_asymmetric_key_size : t -> int -> unit
-      [@@js.set "asymmetricKeySize"]
-
-    val export
-      :  t
-      -> options:([ `pem ][@js.enum]) KeyExportOptions.t
-      -> Buffer.t or_string
-      [@@js.call "export"]
-
-    val export'
-      :  t
-      -> ?options:([ `der ][@js.enum]) KeyExportOptions.t
-      -> unit
-      -> Buffer.t
-      [@@js.call "export"]
-
-    val get_symmetric_key_size : t -> int [@@js.get "symmetricKeySize"]
-
-    val set_symmetric_key_size : t -> int -> unit [@@js.set "symmetricKeySize"]
-
-    val get_type : t -> KeyObjectType.t [@@js.get "type"]
-
-    val set_type : t -> KeyObjectType.t -> unit [@@js.set "type"]
-  end
-  [@@js.scope "KeyObject"]
+  val create_hmac
+    :  algorithm:string
+    -> key:(BinaryLike.t, KeyObject.t) union2
+    -> ?options:Stream.TransformOptions.t
+    -> unit
+    -> Hmac.t
+    [@@js.global "createHmac"]
 
   module CipherCCMTypes : sig
     type t =
@@ -634,22 +502,6 @@ module Crypto : sig
        | `aes_256_gcm [@js "aes-256-gcm"]
        ]
       [@js.enum])
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-  end
-
-  module BinaryLike : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-  end
-
-  module CipherKey : sig
-    type t = (BinaryLike.t, KeyObject.t) union2
 
     val t_to_js : t -> Ojs.t
 
@@ -685,55 +537,6 @@ module Crypto : sig
     val cast : t -> Stream.TransformOptions.t [@@js.cast]
   end
   [@@js.scope "CipherGCMOptions"]
-
-  val create_cipher
-    :  algorithm:CipherCCMTypes.t
-    -> password:BinaryLike.t
-    -> options:CipherCCMOptions.t
-    -> CipherCCM.t
-    [@@js.global "createCipher"]
-
-  val create_cipher
-    :  algorithm:CipherGCMTypes.t
-    -> password:BinaryLike.t
-    -> ?options:CipherGCMOptions.t
-    -> unit
-    -> CipherGCM.t
-    [@@js.global "createCipher"]
-
-  val create_cipher
-    :  algorithm:string
-    -> password:BinaryLike.t
-    -> ?options:Stream.TransformOptions.t
-    -> unit
-    -> Cipher.t
-    [@@js.global "createCipher"]
-
-  val create_cipheriv
-    :  algorithm:CipherCCMTypes.t
-    -> key:CipherKey.t
-    -> iv:BinaryLike.t or_null
-    -> options:CipherCCMOptions.t
-    -> CipherCCM.t
-    [@@js.global "createCipheriv"]
-
-  val create_cipheriv
-    :  algorithm:CipherGCMTypes.t
-    -> key:CipherKey.t
-    -> iv:BinaryLike.t or_null
-    -> ?options:CipherGCMOptions.t
-    -> unit
-    -> CipherGCM.t
-    [@@js.global "createCipheriv"]
-
-  val create_cipheriv
-    :  algorithm:string
-    -> key:CipherKey.t
-    -> iv:BinaryLike.t or_null
-    -> ?options:Stream.TransformOptions.t
-    -> unit
-    -> Cipher.t
-    [@@js.global "createCipheriv"]
 
   module Cipher : sig
     type t
@@ -777,6 +580,18 @@ module Crypto : sig
   end
   [@@js.scope "Cipher"]
 
+  module AnonymousInterface0 : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_plaintext_length : t -> int [@@js.get "plaintextLength"]
+
+    val set_plaintext_length : t -> int -> unit [@@js.set "plaintextLength"]
+  end
+
   module CipherCCM : sig
     type t
 
@@ -818,54 +633,54 @@ module Crypto : sig
   end
   [@@js.scope "CipherGCM"]
 
-  val create_decipher
+  val create_cipher
     :  algorithm:CipherCCMTypes.t
     -> password:BinaryLike.t
     -> options:CipherCCMOptions.t
-    -> DecipherCCM.t
-    [@@js.global "createDecipher"]
+    -> CipherCCM.t
+    [@@js.global "createCipher"]
 
-  val create_decipher
+  val create_cipher
     :  algorithm:CipherGCMTypes.t
     -> password:BinaryLike.t
     -> ?options:CipherGCMOptions.t
     -> unit
-    -> DecipherGCM.t
-    [@@js.global "createDecipher"]
+    -> CipherGCM.t
+    [@@js.global "createCipher"]
 
-  val create_decipher
+  val create_cipher
     :  algorithm:string
     -> password:BinaryLike.t
     -> ?options:Stream.TransformOptions.t
     -> unit
-    -> Decipher.t
-    [@@js.global "createDecipher"]
+    -> Cipher.t
+    [@@js.global "createCipher"]
 
-  val create_decipheriv
+  val create_cipheriv
     :  algorithm:CipherCCMTypes.t
     -> key:CipherKey.t
     -> iv:BinaryLike.t or_null
     -> options:CipherCCMOptions.t
-    -> DecipherCCM.t
-    [@@js.global "createDecipheriv"]
+    -> CipherCCM.t
+    [@@js.global "createCipheriv"]
 
-  val create_decipheriv
+  val create_cipheriv
     :  algorithm:CipherGCMTypes.t
     -> key:CipherKey.t
     -> iv:BinaryLike.t or_null
     -> ?options:CipherGCMOptions.t
     -> unit
-    -> DecipherGCM.t
-    [@@js.global "createDecipheriv"]
+    -> CipherGCM.t
+    [@@js.global "createCipheriv"]
 
-  val create_decipheriv
+  val create_cipheriv
     :  algorithm:string
     -> key:CipherKey.t
     -> iv:BinaryLike.t or_null
     -> ?options:Stream.TransformOptions.t
     -> unit
-    -> Decipher.t
-    [@@js.global "createDecipheriv"]
+    -> Cipher.t
+    [@@js.global "createCipheriv"]
 
   module Decipher : sig
     type t
@@ -952,6 +767,67 @@ module Crypto : sig
   end
   [@@js.scope "DecipherGCM"]
 
+  val create_decipher
+    :  algorithm:CipherCCMTypes.t
+    -> password:BinaryLike.t
+    -> options:CipherCCMOptions.t
+    -> DecipherCCM.t
+    [@@js.global "createDecipher"]
+
+  val create_decipher
+    :  algorithm:CipherGCMTypes.t
+    -> password:BinaryLike.t
+    -> ?options:CipherGCMOptions.t
+    -> unit
+    -> DecipherGCM.t
+    [@@js.global "createDecipher"]
+
+  val create_decipher
+    :  algorithm:string
+    -> password:BinaryLike.t
+    -> ?options:Stream.TransformOptions.t
+    -> unit
+    -> Decipher.t
+    [@@js.global "createDecipher"]
+
+  val create_decipheriv
+    :  algorithm:CipherCCMTypes.t
+    -> key:CipherKey.t
+    -> iv:BinaryLike.t or_null
+    -> options:CipherCCMOptions.t
+    -> DecipherCCM.t
+    [@@js.global "createDecipheriv"]
+
+  val create_decipheriv
+    :  algorithm:CipherGCMTypes.t
+    -> key:CipherKey.t
+    -> iv:BinaryLike.t or_null
+    -> ?options:CipherGCMOptions.t
+    -> unit
+    -> DecipherGCM.t
+    [@@js.global "createDecipheriv"]
+
+  val create_decipheriv
+    :  algorithm:string
+    -> key:CipherKey.t
+    -> iv:BinaryLike.t or_null
+    -> ?options:Stream.TransformOptions.t
+    -> unit
+    -> Decipher.t
+    [@@js.global "createDecipheriv"]
+
+  module KeyFormat : sig
+    type t =
+      ([ `der [@js "der"]
+       | `pem [@js "pem"]
+       ]
+      [@js.enum])
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+  end
+
   module PrivateKeyInput : sig
     type t
 
@@ -1028,13 +904,6 @@ module Crypto : sig
 
   val create_secret_key : key:ArrayBufferView.t -> KeyObject.t
     [@@js.global "createSecretKey"]
-
-  val create_sign
-    :  algorithm:string
-    -> ?options:Stream.WritableOptions.t
-    -> unit
-    -> Signer.t
-    [@@js.global "createSign"]
 
   module DSAEncoding : sig
     type t =
@@ -1190,12 +1059,12 @@ module Crypto : sig
   end
   [@@js.scope "Signer"]
 
-  val create_verify
+  val create_sign
     :  algorithm:string
     -> ?options:Stream.WritableOptions.t
     -> unit
-    -> Verify.t
-    [@@js.global "createVerify"]
+    -> Signer.t
+    [@@js.global "createSign"]
 
   module Verify : sig
     type t
@@ -1255,36 +1124,12 @@ module Crypto : sig
   end
   [@@js.scope "Verify"]
 
-  val create_diffie_hellman
-    :  prime_length:int
-    -> ?generator:ArrayBufferView.t or_number
+  val create_verify
+    :  algorithm:string
+    -> ?options:Stream.WritableOptions.t
     -> unit
-    -> DiffieHellman.t
-    [@@js.global "createDiffieHellman"]
-
-  val create_diffie_hellman : prime:ArrayBufferView.t -> DiffieHellman.t
-    [@@js.global "createDiffieHellman"]
-
-  val create_diffie_hellman
-    :  prime:string
-    -> prime_encoding:BinaryToTextEncoding.t
-    -> DiffieHellman.t
-    [@@js.global "createDiffieHellman"]
-
-  val create_diffie_hellman
-    :  prime:string
-    -> prime_encoding:BinaryToTextEncoding.t
-    -> generator:ArrayBufferView.t or_number
-    -> DiffieHellman.t
-    [@@js.global "createDiffieHellman"]
-
-  val create_diffie_hellman
-    :  prime:string
-    -> prime_encoding:BinaryToTextEncoding.t
-    -> generator:string
-    -> generator_encoding:BinaryToTextEncoding.t
-    -> DiffieHellman.t
-    [@@js.global "createDiffieHellman"]
+    -> Verify.t
+    [@@js.global "createVerify"]
 
   module DiffieHellman : sig
     type t
@@ -1370,6 +1215,37 @@ module Crypto : sig
     val set_verify_error : t -> int -> unit [@@js.set "verifyError"]
   end
   [@@js.scope "DiffieHellman"]
+
+  val create_diffie_hellman
+    :  prime_length:int
+    -> ?generator:ArrayBufferView.t or_number
+    -> unit
+    -> DiffieHellman.t
+    [@@js.global "createDiffieHellman"]
+
+  val create_diffie_hellman : prime:ArrayBufferView.t -> DiffieHellman.t
+    [@@js.global "createDiffieHellman"]
+
+  val create_diffie_hellman
+    :  prime:string
+    -> prime_encoding:BinaryToTextEncoding.t
+    -> DiffieHellman.t
+    [@@js.global "createDiffieHellman"]
+
+  val create_diffie_hellman
+    :  prime:string
+    -> prime_encoding:BinaryToTextEncoding.t
+    -> generator:ArrayBufferView.t or_number
+    -> DiffieHellman.t
+    [@@js.global "createDiffieHellman"]
+
+  val create_diffie_hellman
+    :  prime:string
+    -> prime_encoding:BinaryToTextEncoding.t
+    -> generator:string
+    -> generator_encoding:BinaryToTextEncoding.t
+    -> DiffieHellman.t
+    [@@js.global "createDiffieHellman"]
 
   val get_diffie_hellman : group_name:string -> DiffieHellman.t
     [@@js.global "getDiffieHellman"]
@@ -1681,33 +1557,146 @@ module Crypto : sig
 
   val d_efault_encoding : BufferEncoding.t [@@js.global "DEFAULT_ENCODING"]
 
-  module KeyType : sig
-    type t =
-      ([ `dsa [@js "dsa"]
-       | `ec [@js "ec"]
-       | `ed25519 [@js "ed25519"]
-       | `ed448 [@js "ed448"]
-       | `rsa [@js "rsa"]
-       | `x25519 [@js "x25519"]
-       | `x448 [@js "x448"]
-       ]
-      [@js.enum])
+  module AnonymousInterface2 : sig
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
+
+    val get_public_key : t -> Buffer.t [@@js.get "publicKey"]
+
+    val set_public_key : t -> Buffer.t -> unit [@@js.set "publicKey"]
+
+    val get_private_key : t -> Buffer.t [@@js.get "privateKey"]
+
+    val set_private_key : t -> Buffer.t -> unit [@@js.set "privateKey"]
   end
 
-  module KeyFormat : sig
-    type t =
-      ([ `der [@js "der"]
-       | `pem [@js "pem"]
-       ]
-      [@js.enum])
+  module AnonymousInterface3 : sig
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
+
+    val get_public_key : t -> Buffer.t [@@js.get "publicKey"]
+
+    val set_public_key : t -> Buffer.t -> unit [@@js.set "publicKey"]
+
+    val get_private_key : t -> string [@@js.get "privateKey"]
+
+    val set_private_key : t -> string -> unit [@@js.set "privateKey"]
+  end
+
+  module AnonymousInterface4 : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_public_key : t -> string [@@js.get "publicKey"]
+
+    val set_public_key : t -> string -> unit [@@js.set "publicKey"]
+
+    val get_private_key : t -> Buffer.t [@@js.get "privateKey"]
+
+    val set_private_key : t -> Buffer.t -> unit [@@js.set "privateKey"]
+  end
+
+  module AnonymousInterface5 : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_public_key : t -> string [@@js.get "publicKey"]
+
+    val set_public_key : t -> string -> unit [@@js.set "publicKey"]
+
+    val get_private_key : t -> string [@@js.get "privateKey"]
+
+    val set_private_key : t -> string -> unit [@@js.set "privateKey"]
+  end
+
+  module AnonymousInterface6 : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_type : t -> ([ `pkcs8 [@js "pkcs8"] ][@js.enum]) [@@js.get "type"]
+
+    val set_type : t -> ([ `pkcs8 ][@js.enum]) -> unit [@@js.set "type"]
+  end
+
+  module AnonymousInterface7 : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_type : t -> ([ `spki [@js "spki"] ][@js.enum]) [@@js.get "type"]
+
+    val set_type : t -> ([ `spki ][@js.enum]) -> unit [@@js.set "type"]
+
+    val get_format : t -> 'PubF [@@js.get "format"]
+
+    val set_format : t -> 'PubF -> unit [@@js.set "format"]
+  end
+
+  module AnonymousInterface8 : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_type
+      :  t
+      -> ([ `pkcs1 [@js "pkcs1"] | `pkcs8 [@js "pkcs8"] ][@js.enum])
+      [@@js.get "type"]
+
+    val set_type : t -> ([ `pkcs1 | `pkcs8 ][@js.enum]) -> unit
+      [@@js.set "type"]
+  end
+
+  module AnonymousInterface9 : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_type
+      :  t
+      -> ([ `pkcs1 [@js "pkcs1"] | `spki [@js "spki"] ][@js.enum])
+      [@@js.get "type"]
+
+    val set_type : t -> ([ `pkcs1 | `spki ][@js.enum]) -> unit [@@js.set "type"]
+
+    val get_format : t -> 'PubF [@@js.get "format"]
+
+    val set_format : t -> 'PubF -> unit [@@js.set "format"]
+  end
+
+  module AnonymousInterface10 : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_type
+      :  t
+      -> ([ `pkcs8 [@js "pkcs8"] | `sec1 [@js "sec1"] ][@js.enum])
+      [@@js.get "type"]
+
+    val set_type : t -> ([ `pkcs8 | `sec1 ][@js.enum]) -> unit [@@js.set "type"]
   end
 
   module BasePrivateKeyEncodingOptions : sig
@@ -1828,7 +1817,7 @@ module Crypto : sig
   [@@js.scope "DSAKeyPairKeyObjectOptions"]
 
   module RSAKeyPairOptions : sig
-    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) RSAKeyPairOptions.t
+    type ('PubF, 'PrivF) t
 
     val t_to_js
       :  ('PubF -> Ojs.t)
@@ -1880,7 +1869,7 @@ module Crypto : sig
   [@@js.scope "RSAKeyPairOptions"]
 
   module DSAKeyPairOptions : sig
-    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) DSAKeyPairOptions.t
+    type ('PubF, 'PrivF) t
 
     val t_to_js
       :  ('PubF -> Ojs.t)
@@ -1931,7 +1920,7 @@ module Crypto : sig
   [@@js.scope "DSAKeyPairOptions"]
 
   module ECKeyPairOptions : sig
-    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) ECKeyPairOptions.t
+    type ('PubF, 'PrivF) t
 
     val t_to_js
       :  ('PubF -> Ojs.t)
@@ -1977,7 +1966,7 @@ module Crypto : sig
   [@@js.scope "ECKeyPairOptions"]
 
   module ED25519KeyPairOptions : sig
-    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) ED25519KeyPairOptions.t
+    type ('PubF, 'PrivF) t
 
     val t_to_js
       :  ('PubF -> Ojs.t)
@@ -2018,7 +2007,7 @@ module Crypto : sig
   [@@js.scope "ED25519KeyPairOptions"]
 
   module ED448KeyPairOptions : sig
-    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) ED448KeyPairOptions.t
+    type ('PubF, 'PrivF) t
 
     val t_to_js
       :  ('PubF -> Ojs.t)
@@ -2059,7 +2048,7 @@ module Crypto : sig
   [@@js.scope "ED448KeyPairOptions"]
 
   module X25519KeyPairOptions : sig
-    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) X25519KeyPairOptions.t
+    type ('PubF, 'PrivF) t
 
     val t_to_js
       :  ('PubF -> Ojs.t)
@@ -2100,7 +2089,7 @@ module Crypto : sig
   [@@js.scope "X25519KeyPairOptions"]
 
   module X448KeyPairOptions : sig
-    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) X448KeyPairOptions.t
+    type ('PubF, 'PrivF) t
 
     val t_to_js
       :  ('PubF -> Ojs.t)
@@ -2141,7 +2130,7 @@ module Crypto : sig
   [@@js.scope "X448KeyPairOptions"]
 
   module KeyPairSyncResult : sig
-    type ('T1, 'T2) t = ('T1, 'T2) KeyPairSyncResult.t
+    type ('T1, 'T2) t
 
     val t_to_js : ('T1 -> Ojs.t) -> ('T2 -> Ojs.t) -> ('T1, 'T2) t -> Ojs.t
 
@@ -3060,6 +3049,22 @@ module Crypto : sig
     -> signature:ArrayBufferView.t
     -> bool
     [@@js.global "verify"]
+
+  module AnonymousInterface1 : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_private_key : t -> KeyObject.t [@@js.get "privateKey"]
+
+    val set_private_key : t -> KeyObject.t -> unit [@@js.set "privateKey"]
+
+    val get_public_key : t -> KeyObject.t [@@js.get "publicKey"]
+
+    val set_public_key : t -> KeyObject.t -> unit [@@js.set "publicKey"]
+  end
 
   val diffie_hellman : options:AnonymousInterface1.t -> Buffer.t
     [@@js.global "diffieHellman"]

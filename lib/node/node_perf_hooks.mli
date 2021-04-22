@@ -5,22 +5,6 @@
 open Es2020
 open Node_globals
 
-module AnonymousInterface0 : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val get_entry_types : t -> EntryType.t list [@@js.get "entryTypes"]
-
-  val set_entry_types : t -> EntryType.t list -> unit [@@js.set "entryTypes"]
-
-  val get_buffered : t -> bool [@@js.get "buffered"]
-
-  val set_buffered : t -> bool -> unit [@@js.set "buffered"]
-end
-
 module Perf_hooks : sig
   module EntryType : sig
     type t =
@@ -39,8 +23,24 @@ module Perf_hooks : sig
     val t_of_js : Ojs.t -> t
   end
 
+  module AnonymousInterface0 : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_entry_types : t -> EntryType.t list [@@js.get "entryTypes"]
+
+    val set_entry_types : t -> EntryType.t list -> unit [@@js.set "entryTypes"]
+
+    val get_buffered : t -> bool [@@js.get "buffered"]
+
+    val set_buffered : t -> bool -> unit [@@js.set "buffered"]
+  end
+
   module PerformanceEntry : sig
-    type t = perf_hooks_PerformanceEntry
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -61,7 +61,7 @@ module Perf_hooks : sig
   [@@js.scope "PerformanceEntry"]
 
   module PerformanceNodeTiming : sig
-    type t = perf_hooks_PerformanceNodeTiming
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -84,7 +84,7 @@ module Perf_hooks : sig
   [@@js.scope "PerformanceNodeTiming"]
 
   module EventLoopUtilization : sig
-    type t = perf_hooks_EventLoopUtilization
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -105,7 +105,7 @@ module Perf_hooks : sig
   [@@js.scope "EventLoopUtilization"]
 
   module Performance : sig
-    type t = perf_hooks_Performance
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -142,7 +142,7 @@ module Perf_hooks : sig
   [@@js.scope "Performance"]
 
   module PerformanceObserverEntryList : sig
-    type t = perf_hooks_PerformanceObserverEntryList
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -164,23 +164,19 @@ module Perf_hooks : sig
   [@@js.scope "PerformanceObserverEntryList"]
 
   module PerformanceObserverCallback : sig
-    type t = perf_hooks_PerformanceObserverCallback
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val apply
-      :  t
-      -> list:PerformanceObserverEntryList.t
-      -> observer:PerformanceObserver.t
-      -> unit
-      [@@js.apply]
+    (* val apply : t -> list:PerformanceObserverEntryList.t ->
+       observer:PerformanceObserver.t -> unit [@@js.apply] *)
   end
-  [@@js.scope "PerformanceObserverCallback"]
+  (* [@@js.scope "PerformanceObserverCallback"] *)
 
   module PerformanceObserver : sig
-    type t = perf_hooks_PerformanceObserver
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -198,45 +194,45 @@ module Perf_hooks : sig
   [@@js.scope "PerformanceObserver"]
 
   module Constants : sig
-    val n_ode_performance_gc_major : int
+    val node_performance_gc_major : int
       [@@js.global "NODE_PERFORMANCE_GC_MAJOR"]
 
-    val n_ode_performance_gc_minor : int
+    val node_performance_gc_minor : int
       [@@js.global "NODE_PERFORMANCE_GC_MINOR"]
 
-    val n_ode_performance_gc_incremental : int
+    val node_performance_gc_incremental : int
       [@@js.global "NODE_PERFORMANCE_GC_INCREMENTAL"]
 
-    val n_ode_performance_gc_weakcb : int
+    val node_performance_gc_weakcb : int
       [@@js.global "NODE_PERFORMANCE_GC_WEAKCB"]
 
-    val n_ode_performance_gc_flags_no : int
+    val node_performance_gc_flags_no : int
       [@@js.global "NODE_PERFORMANCE_GC_FLAGS_NO"]
 
-    val n_ode_performance_gc_flags_construct_retained : int
+    val node_performance_gc_flags_construct_retained : int
       [@@js.global "NODE_PERFORMANCE_GC_FLAGS_CONSTRUCT_RETAINED"]
 
-    val n_ode_performance_gc_flags_forced : int
+    val node_performance_gc_flags_forced : int
       [@@js.global "NODE_PERFORMANCE_GC_FLAGS_FORCED"]
 
-    val n_ode_performance_gc_flags_synchronous_phantom_processing : int
+    val node_performance_gc_flags_synchronous_phantom_processing : int
       [@@js.global "NODE_PERFORMANCE_GC_FLAGS_SYNCHRONOUS_PHANTOM_PROCESSING"]
 
-    val n_ode_performance_gc_flags_all_available_garbage : int
+    val node_performance_gc_flags_all_available_garbage : int
       [@@js.global "NODE_PERFORMANCE_GC_FLAGS_ALL_AVAILABLE_GARBAGE"]
 
-    val n_ode_performance_gc_flags_all_external_memory : int
+    val node_performance_gc_flags_all_external_memory : int
       [@@js.global "NODE_PERFORMANCE_GC_FLAGS_ALL_EXTERNAL_MEMORY"]
 
-    val n_ode_performance_gc_flags_schedule_idle : int
+    val node_performance_gc_flags_schedule_idle : int
       [@@js.global "NODE_PERFORMANCE_GC_FLAGS_SCHEDULE_IDLE"]
   end
   [@@js.scope "constants"]
 
-  val performance : perf_hooks_Performance [@@js.global "performance"]
+  val performance : Performance.t [@@js.global "performance"]
 
   module EventLoopMonitorOptions : sig
-    type t = perf_hooks_EventLoopMonitorOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -249,7 +245,7 @@ module Perf_hooks : sig
   [@@js.scope "EventLoopMonitorOptions"]
 
   module EventLoopDelayMonitor : sig
-    type t = perf_hooks_EventLoopDelayMonitor
+    type t
 
     val t_to_js : t -> Ojs.t
 

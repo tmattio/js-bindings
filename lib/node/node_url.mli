@@ -162,49 +162,6 @@ module Url : sig
   end
   [@@js.scope "UrlWithStringQuery"]
 
-  val parse : string -> UrlWithStringQuery.t [@@js.global "parse"]
-
-  val parse
-    :  url_str:string
-    -> parse_query_string:([ `L_b_false ][@js.enum]) or_undefined
-    -> ?slashes_denote_host:bool
-    -> unit
-    -> UrlWithStringQuery.t
-    [@@js.global "parse"]
-
-  val parse
-    :  url_str:string
-    -> parse_query_string:([ `L_b_true ][@js.enum])
-    -> ?slashes_denote_host:bool
-    -> unit
-    -> UrlWithParsedQuery.t
-    [@@js.global "parse"]
-
-  val parse
-    :  url_str:string
-    -> parse_query_string:bool
-    -> ?slashes_denote_host:bool
-    -> unit
-    -> Url.t
-    [@@js.global "parse"]
-
-  val format : url:URL.t -> ?options:URLFormatOptions.t -> unit -> string
-    [@@js.global "format"]
-
-  val format : url_object:UrlObject.t or_string -> string [@@js.global "format"]
-
-  val resolve : from:string -> to_:string -> string [@@js.global "resolve"]
-
-  val domain_to_ascii : domain:string -> string [@@js.global "domainToASCII"]
-
-  val domain_to_unicode : domain:string -> string
-    [@@js.global "domainToUnicode"]
-
-  val file_url_to_path : url:URL.t or_string -> string
-    [@@js.global "fileURLToPath"]
-
-  val path_to_file_url : url:string -> URL.t [@@js.global "pathToFileURL"]
-
   module URLFormatOptions : sig
     type t
 
@@ -229,6 +186,58 @@ module Url : sig
     val set_unicode : t -> bool -> unit [@@js.set "unicode"]
   end
   [@@js.scope "URLFormatOptions"]
+
+  module URLSearchParams : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val create
+      :  ?init:
+           ( t
+           , (string * string) Iterable.t
+           , string list or_string Dict.t
+           , (string * string) list )
+           union4
+           or_string
+      -> unit
+      -> t
+      [@@js.create]
+
+    val append : t -> name:string -> value:string -> unit [@@js.call "append"]
+
+    val delete : t -> name:string -> unit [@@js.call "delete"]
+
+    val entries : t -> (string * string) IterableIterator.t
+      [@@js.call "entries"]
+
+    val for_each
+      :  t
+      -> callback:(value:string -> name:string -> search_params:t -> unit)
+      -> unit
+      [@@js.call "forEach"]
+
+    val get_ : t -> name:string -> string or_null [@@js.call "get"]
+
+    val get_all : t -> name:string -> string list [@@js.call "getAll"]
+
+    val has : t -> name:string -> bool [@@js.call "has"]
+
+    val keys : t -> string IterableIterator.t [@@js.call "keys"]
+
+    val set_ : t -> name:string -> value:string -> unit [@@js.call "set"]
+
+    val sort : t -> unit [@@js.call "sort"]
+
+    val to_string : t -> string [@@js.call "toString"]
+
+    val values : t -> string IterableIterator.t [@@js.call "values"]
+
+    val cast : t -> (string * string) Iterable.t [@@js.cast]
+  end
+  [@@js.scope "URLSearchParams"]
 
   module URL : sig
     type t
@@ -289,56 +298,47 @@ module Url : sig
   end
   [@@js.scope "URL"]
 
-  module URLSearchParams : sig
-    type t
+  val parse : string -> UrlWithStringQuery.t [@@js.global "parse"]
 
-    val t_to_js : t -> Ojs.t
+  val parse
+    :  url_str:string
+    -> parse_query_string:([ `L_b_false ][@js.enum]) or_undefined
+    -> ?slashes_denote_host:bool
+    -> unit
+    -> UrlWithStringQuery.t
+    [@@js.global "parse"]
 
-    val t_of_js : Ojs.t -> t
+  val parse
+    :  url_str:string
+    -> parse_query_string:([ `L_b_true ][@js.enum])
+    -> ?slashes_denote_host:bool
+    -> unit
+    -> UrlWithParsedQuery.t
+    [@@js.global "parse"]
 
-    val create
-      :  ?init:
-           ( t
-           , (string * string) Iterable.t
-           , string list or_string Dict.t
-           , (string * string) list )
-           union4
-           or_string
-      -> unit
-      -> t
-      [@@js.create]
+  val parse
+    :  url_str:string
+    -> parse_query_string:bool
+    -> ?slashes_denote_host:bool
+    -> unit
+    -> Url.t
+    [@@js.global "parse"]
 
-    val append : t -> name:string -> value:string -> unit [@@js.call "append"]
+  val format : url:Url.t -> ?options:URLFormatOptions.t -> unit -> string
+    [@@js.global "format"]
 
-    val delete : t -> name:string -> unit [@@js.call "delete"]
+  val format : url_object:UrlObject.t or_string -> string [@@js.global "format"]
 
-    val entries : t -> (string * string) IterableIterator.t
-      [@@js.call "entries"]
+  val resolve : from:string -> to_:string -> string [@@js.global "resolve"]
 
-    val for_each
-      :  t
-      -> callback:(value:string -> name:string -> search_params:t -> unit)
-      -> unit
-      [@@js.call "forEach"]
+  val domain_to_ascii : domain:string -> string [@@js.global "domainToASCII"]
 
-    val get_ : t -> name:string -> string or_null [@@js.call "get"]
+  val domain_to_unicode : domain:string -> string
+    [@@js.global "domainToUnicode"]
 
-    val get_all : t -> name:string -> string list [@@js.call "getAll"]
+  val file_url_to_path : url:Url.t or_string -> string
+    [@@js.global "fileURLToPath"]
 
-    val has : t -> name:string -> bool [@@js.call "has"]
-
-    val keys : t -> string IterableIterator.t [@@js.call "keys"]
-
-    val set_ : t -> name:string -> value:string -> unit [@@js.call "set"]
-
-    val sort : t -> unit [@@js.call "sort"]
-
-    val to_string : t -> string [@@js.call "toString"]
-
-    val values : t -> string IterableIterator.t [@@js.call "values"]
-
-    val cast : t -> (string * string) Iterable.t [@@js.cast]
-  end
-  [@@js.scope "URLSearchParams"]
+  val path_to_file_url : url:string -> Url.t [@@js.global "pathToFileURL"]
 end
 [@@js.scope Import.url]

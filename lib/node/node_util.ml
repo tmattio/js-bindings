@@ -93,35 +93,35 @@ module Util =
             | `symbol -> Ojs.string_to_js "symbol"
             | `undefined -> Ojs.string_to_js "undefined"
       end
-    module CustomInspectFunction =
+    module InspectOptionsStylized =
       struct
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x23 : Ojs.t) -> x23
         and t_to_js : t -> Ojs.t = fun (x22 : Ojs.t) -> x22
-        let (apply :
-          t -> depth:int -> options:InspectOptionsStylized.t -> string) =
+        let (stylize : t -> text:string -> style_type:Style.t -> string) =
           fun (x26 : t) ->
-            fun ~depth:(x24 : int) ->
-              fun ~options:(x25 : InspectOptionsStylized.t) ->
+            fun ~text:(x24 : string) ->
+              fun ~style_type:(x25 : Style.t) ->
                 Ojs.string_of_js
-                  (Ojs.apply (t_to_js x26)
-                     [|(Ojs.int_to_js x24);(InspectOptionsStylized.t_to_js
-                                              x25)|])
+                  (Ojs.call (t_to_js x26) "stylize"
+                     [|(Ojs.string_to_js x24);(Style.t_to_js x25)|])
+        let (cast : t -> InspectOptions.t) =
+          fun (x27 : t) -> InspectOptions.t_of_js (t_to_js x27)
       end
-    module InspectOptionsStylized =
+    module CustomInspectFunction =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x28 : Ojs.t) -> x28
-        and t_to_js : t -> Ojs.t = fun (x27 : Ojs.t) -> x27
-        let (stylize : t -> text:string -> style_type:Style.t -> string) =
-          fun (x31 : t) ->
-            fun ~text:(x29 : string) ->
-              fun ~style_type:(x30 : Style.t) ->
+        let rec t_of_js : Ojs.t -> t = fun (x29 : Ojs.t) -> x29
+        and t_to_js : t -> Ojs.t = fun (x28 : Ojs.t) -> x28
+        let (apply :
+          t -> depth:int -> options:InspectOptionsStylized.t -> string) =
+          fun (x32 : t) ->
+            fun ~depth:(x30 : int) ->
+              fun ~options:(x31 : InspectOptionsStylized.t) ->
                 Ojs.string_of_js
-                  (Ojs.call (t_to_js x31) "stylize"
-                     [|(Ojs.string_to_js x29);(Style.t_to_js x30)|])
-        let (cast : t -> InspectOptions.t) =
-          fun (x32 : t) -> InspectOptions.t_of_js (t_to_js x32)
+                  (Ojs.apply (t_to_js x32)
+                     [|(Ojs.int_to_js x30);(InspectOptionsStylized.t_to_js
+                                              x31)|])
       end
     let (format : ?format:any -> param:any list -> string) =
       fun ?format:(x33 : any option) ->
@@ -229,12 +229,12 @@ module Util =
           any_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.util "inspect")
                "styles")
-        let (default_options : util_InspectOptions) =
-          util_InspectOptions_of_js
+        let (default_options : InspectOptions.t) =
+          InspectOptions.t_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.util "inspect")
                "defaultOptions")
-        let (repl_defaults : util_InspectOptions) =
-          util_InspectOptions_of_js
+        let (repl_defaults : InspectOptions.t) =
+          InspectOptions.t_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.util "inspect")
                "replDefaults")
         let (custom : any) =
@@ -904,8 +904,8 @@ module Util =
     module CustomPromisify =
       struct
         type 'TCustom t =
-          ('TCustom util_CustomPromisifyLegacy,
-            'TCustom util_CustomPromisifySymbol) union2
+          ('TCustom CustomPromisifyLegacy.t,
+            'TCustom CustomPromisifySymbol.t) union2
         let rec t_of_js :
           'TCustom . (Ojs.t -> 'TCustom) -> Ojs.t -> 'TCustom t = fun (type
           __TCustom) ->
@@ -913,30 +913,28 @@ module Util =
             fun (x266 : Ojs.t) ->
               union2_of_js
                 (fun (x267 : Ojs.t) ->
-                   util_CustomPromisifyLegacy_of_js __TCustom_of_js x267)
+                   CustomPromisifyLegacy.t_of_js __TCustom_of_js x267)
                 (fun (x269 : Ojs.t) ->
-                   util_CustomPromisifySymbol_of_js __TCustom_of_js x269)
-                x266
+                   CustomPromisifySymbol.t_of_js __TCustom_of_js x269) x266
         and t_to_js : 'TCustom . ('TCustom -> Ojs.t) -> 'TCustom t -> Ojs.t =
           fun (type __TCustom) ->
           fun (__TCustom_to_js : __TCustom -> Ojs.t) ->
             fun
               (x261 :
-                (__TCustom util_CustomPromisifyLegacy,
-                  __TCustom util_CustomPromisifySymbol) union2)
+                (__TCustom CustomPromisifyLegacy.t,
+                  __TCustom CustomPromisifySymbol.t) union2)
               ->
               union2_to_js
-                (fun (x262 : __TCustom util_CustomPromisifyLegacy) ->
-                   util_CustomPromisifyLegacy_to_js __TCustom_to_js x262)
-                (fun (x264 : __TCustom util_CustomPromisifySymbol) ->
-                   util_CustomPromisifySymbol_to_js __TCustom_to_js x264)
-                x261
+                (fun (x262 : __TCustom CustomPromisifyLegacy.t) ->
+                   CustomPromisifyLegacy.t_to_js __TCustom_to_js x262)
+                (fun (x264 : __TCustom CustomPromisifySymbol.t) ->
+                   CustomPromisifySymbol.t_to_js __TCustom_to_js x264) x261
       end
-    let (promisify : fn:'TCustom util_CustomPromisify -> 'TCustom) =
-      fun ~fn:(x271 : 'TCustom util_CustomPromisify) ->
+    let (promisify : fn:'TCustom CustomPromisify.t -> 'TCustom) =
+      fun ~fn:(x271 : 'TCustom CustomPromisify.t) ->
         Obj.magic
           (Ojs.call Import.util "promisify"
-             [|(util_CustomPromisify_to_js Obj.magic x271)|])
+             [|(CustomPromisify.t_to_js Obj.magic x271)|])
     let (promisify :
       fn:(callback:(err:any -> result:'TResult -> unit) -> unit) ->
         unit -> 'TResult Promise.t)

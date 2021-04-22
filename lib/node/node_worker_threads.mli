@@ -18,48 +18,8 @@ module AnonymousInterface0 : sig
 end
 
 module Worker_threads : sig
-  val is_main_thread : bool [@@js.global "isMainThread"]
-
-  val parent_port : worker_threads_MessagePort or_null
-    [@@js.global "parentPort"]
-
-  val resource_limits : worker_threads_ResourceLimits
-    [@@js.global "resourceLimits"]
-
-  val share_env : (* FIXME: unknown type 'unique symbol' *) any
-    [@@js.global "SHARE_ENV"]
-
-  val thread_id : int [@@js.global "threadId"]
-
-  val worker_data : any [@@js.global "workerData"]
-
-  module MessageChannel : sig
-    type t = worker_threads_MessageChannel
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val get_port1 : t -> MessagePort.t [@@js.get "port1"]
-
-    val get_port2 : t -> MessagePort.t [@@js.get "port2"]
-  end
-  [@@js.scope "MessageChannel"]
-
-  module TransferListItem : sig
-    type t =
-      ( ArrayBuffer.t
-      , Node_fs_promises.Fs_promises.FileHandle.t
-      , MessagePort.t )
-      union3
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-  end
-
   module MessagePort : sig
-    type t = worker_threads_MessagePort
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -69,8 +29,7 @@ module Worker_threads : sig
 
     val post_message
       :  t
-      -> value:any
-      -> ?transfer_list:TransferListItem.t list
+      -> value:any (* -> ?transfer_list:TransferListItem.t list *)
       -> unit
       -> unit
       [@@js.call "postMessage"]
@@ -288,8 +247,62 @@ module Worker_threads : sig
   end
   [@@js.scope "MessagePort"]
 
+  module MessageChannel : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_port1 : t -> MessagePort.t [@@js.get "port1"]
+
+    val get_port2 : t -> MessagePort.t [@@js.get "port2"]
+  end
+  [@@js.scope "MessageChannel"]
+
+  module TransferListItem : sig
+    type t =
+      ( ArrayBuffer.t
+      , Node_fs_promises.Fs_promises.FileHandle.t
+      , MessagePort.t )
+      union3
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+  end
+
+  module ResourceLimits : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_max_young_generation_size_mb : t -> int
+      [@@js.get "maxYoungGenerationSizeMb"]
+
+    val set_max_young_generation_size_mb : t -> int -> unit
+      [@@js.set "maxYoungGenerationSizeMb"]
+
+    val get_max_old_generation_size_mb : t -> int
+      [@@js.get "maxOldGenerationSizeMb"]
+
+    val set_max_old_generation_size_mb : t -> int -> unit
+      [@@js.set "maxOldGenerationSizeMb"]
+
+    val get_code_range_size_mb : t -> int [@@js.get "codeRangeSizeMb"]
+
+    val set_code_range_size_mb : t -> int -> unit [@@js.set "codeRangeSizeMb"]
+
+    val get_stack_size_mb : t -> int [@@js.get "stackSizeMb"]
+
+    val set_stack_size_mb : t -> int -> unit [@@js.set "stackSizeMb"]
+  end
+  [@@js.scope "ResourceLimits"]
+
   module WorkerOptions : sig
-    type t = worker_threads_WorkerOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -352,37 +365,8 @@ module Worker_threads : sig
   end
   [@@js.scope "WorkerOptions"]
 
-  module ResourceLimits : sig
-    type t = worker_threads_ResourceLimits
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val get_max_young_generation_size_mb : t -> int
-      [@@js.get "maxYoungGenerationSizeMb"]
-
-    val set_max_young_generation_size_mb : t -> int -> unit
-      [@@js.set "maxYoungGenerationSizeMb"]
-
-    val get_max_old_generation_size_mb : t -> int
-      [@@js.get "maxOldGenerationSizeMb"]
-
-    val set_max_old_generation_size_mb : t -> int -> unit
-      [@@js.set "maxOldGenerationSizeMb"]
-
-    val get_code_range_size_mb : t -> int [@@js.get "codeRangeSizeMb"]
-
-    val set_code_range_size_mb : t -> int -> unit [@@js.set "codeRangeSizeMb"]
-
-    val get_stack_size_mb : t -> int [@@js.get "stackSizeMb"]
-
-    val set_stack_size_mb : t -> int -> unit [@@js.set "stackSizeMb"]
-  end
-  [@@js.scope "ResourceLimits"]
-
   module Worker : sig
-    type t = worker_threads_Worker
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -759,5 +743,18 @@ module Worker_threads : sig
     :  port:MessagePort.t
     -> AnonymousInterface0.t or_undefined
     [@@js.global "receiveMessageOnPort"]
+
+  val is_main_thread : bool [@@js.global "isMainThread"]
+
+  val parent_port : MessagePort.t or_null [@@js.global "parentPort"]
+
+  val resource_limits : ResourceLimits.t [@@js.global "resourceLimits"]
+
+  val share_env : (* FIXME: unknown type 'unique symbol' *) any
+    [@@js.global "SHARE_ENV"]
+
+  val thread_id : int [@@js.global "threadId"]
+
+  val worker_data : any [@@js.global "workerData"]
 end
 [@@js.scope Import.worker_threads]

@@ -98,6 +98,19 @@ module Child_process : sig
     val t_of_js : Ojs.t -> t
   end
 
+  module MessageOptions : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_keep_open : t -> bool [@@js.get "keepOpen"]
+
+    val set_keep_open : t -> bool -> unit [@@js.set "keepOpen"]
+  end
+  [@@js.scope "MessageOptions"]
+
   module ChildProcess : sig
     type t
 
@@ -511,7 +524,7 @@ module Child_process : sig
   [@@js.scope "ChildProcessWithoutNullStreams"]
 
   module ChildProcessByStdio : sig
-    type ('I, 'O, 'E) t = ('I, 'O, 'E) ChildProcessByStdio.t
+    type ('I, 'O, 'E) t
 
     val t_to_js
       :  ('I -> Ojs.t)
@@ -553,19 +566,6 @@ module Child_process : sig
     val cast : ('I, 'O, 'E) t -> ChildProcess.t [@@js.cast]
   end
   [@@js.scope "ChildProcessByStdio"]
-
-  module MessageOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val get_keep_open : t -> bool [@@js.get "keepOpen"]
-
-    val set_keep_open : t -> bool -> unit [@@js.set "keepOpen"]
-  end
-  [@@js.scope "MessageOptions"]
 
   module StdioOptions : sig
     type t =
@@ -755,8 +755,7 @@ module Child_process : sig
   end
 
   module SpawnOptionsWithStdioTuple : sig
-    type ('Stdin, 'Stdout, 'Stderr) t =
-      ('Stdin, 'Stdout, 'Stderr) SpawnOptionsWithStdioTuple.t
+    type ('Stdin, 'Stdout, 'Stderr) t
 
     val t_to_js
       :  ('Stdin -> Ojs.t)
@@ -771,22 +770,6 @@ module Child_process : sig
       -> (Ojs.t -> 'Stderr)
       -> Ojs.t
       -> ('Stdin, 'Stdout, 'Stderr) t
-
-    type ('Stdin, 'Stdout, 'Stderr) t_3 = ('Stdin, 'Stdout, 'Stderr) t
-
-    val t_3_to_js
-      :  ('Stdin -> Ojs.t)
-      -> ('Stdout -> Ojs.t)
-      -> ('Stderr -> Ojs.t)
-      -> ('Stdin, 'Stdout, 'Stderr) t_3
-      -> Ojs.t
-
-    val t_3_of_js
-      :  (Ojs.t -> 'Stdin)
-      -> (Ojs.t -> 'Stdout)
-      -> (Ojs.t -> 'Stderr)
-      -> Ojs.t
-      -> ('Stdin, 'Stdout, 'Stderr) t_3
 
     val get_stdio : ('Stdin, 'Stdout, 'Stderr) t -> 'Stdin * 'Stdout * 'Stderr
       [@@js.get "stdio"]

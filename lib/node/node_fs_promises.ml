@@ -265,12 +265,9 @@ module Fs_promises =
   struct
     module FileHandle =
       struct
-        type t = node_fs_promises_FileHandle
-        let rec t_of_js : Ojs.t -> t =
-          fun (x103 : Ojs.t) -> node_fs_promises_FileHandle_of_js x103
-        and t_to_js : t -> Ojs.t =
-          fun (x102 : node_fs_promises_FileHandle) ->
-            node_fs_promises_FileHandle_to_js x102
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x103 : Ojs.t) -> x103
+        and t_to_js : t -> Ojs.t = fun (x102 : Ojs.t) -> x102
         let (get_fd : t -> int) =
           fun (x104 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x104) "fd")

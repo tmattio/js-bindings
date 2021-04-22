@@ -3,28 +3,6 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
 open Node_globals
-module AnonymousInterface0 =
-  struct
-    type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
-    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
-    let (get_entry_types : t -> EntryType.t list) =
-      fun (x3 : t) ->
-        Ojs.list_of_js EntryType.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x3) "entryTypes")
-    let (set_entry_types : t -> EntryType.t list -> unit) =
-      fun (x5 : t) ->
-        fun (x6 : EntryType.t list) ->
-          Ojs.set_prop_ascii (t_to_js x5) "entryTypes"
-            (Ojs.list_to_js EntryType.t_to_js x6)
-    let (get_buffered : t -> bool) =
-      fun (x8 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x8) "buffered")
-    let (set_buffered : t -> bool -> unit) =
-      fun (x9 : t) ->
-        fun (x10 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x9) "buffered" (Ojs.bool_to_js x10)
-  end
 module Perf_hooks =
   struct
     module EntryType =
@@ -33,9 +11,9 @@ module Perf_hooks =
           [ `function_  | `gc  | `http  | `http2  | `mark  | `measure 
           | `node ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x12 : Ojs.t) ->
-            let x13 = x12 in
-            match Ojs.string_of_js x13 with
+          fun (x2 : Ojs.t) ->
+            let x3 = x2 in
+            match Ojs.string_of_js x3 with
             | "function" -> `function_
             | "gc" -> `gc
             | "http" -> `http
@@ -46,11 +24,11 @@ module Perf_hooks =
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
           fun
-            (x11 :
+            (x1 :
               [ `function_  | `gc  | `http  | `http2  | `mark  | `measure 
               | `node ])
             ->
-            match x11 with
+            match x1 with
             | `function_ -> Ojs.string_to_js "function"
             | `gc -> Ojs.string_to_js "gc"
             | `http -> Ojs.string_to_js "http"
@@ -59,14 +37,34 @@ module Perf_hooks =
             | `measure -> Ojs.string_to_js "measure"
             | `node -> Ojs.string_to_js "node"
       end
+    module AnonymousInterface0 =
+      struct
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x5 : Ojs.t) -> x5
+        and t_to_js : t -> Ojs.t = fun (x4 : Ojs.t) -> x4
+        let (get_entry_types : t -> EntryType.t list) =
+          fun (x6 : t) ->
+            Ojs.list_of_js EntryType.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x6) "entryTypes")
+        let (set_entry_types : t -> EntryType.t list -> unit) =
+          fun (x8 : t) ->
+            fun (x9 : EntryType.t list) ->
+              Ojs.set_prop_ascii (t_to_js x8) "entryTypes"
+                (Ojs.list_to_js EntryType.t_to_js x9)
+        let (get_buffered : t -> bool) =
+          fun (x11 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x11) "buffered")
+        let (set_buffered : t -> bool -> unit) =
+          fun (x12 : t) ->
+            fun (x13 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x12) "buffered"
+                (Ojs.bool_to_js x13)
+      end
     module PerformanceEntry =
       struct
-        type t = perf_hooks_PerformanceEntry
-        let rec t_of_js : Ojs.t -> t =
-          fun (x15 : Ojs.t) -> perf_hooks_PerformanceEntry_of_js x15
-        and t_to_js : t -> Ojs.t =
-          fun (x14 : perf_hooks_PerformanceEntry) ->
-            perf_hooks_PerformanceEntry_to_js x14
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x15 : Ojs.t) -> x15
+        and t_to_js : t -> Ojs.t = fun (x14 : Ojs.t) -> x14
         let (get_duration : t -> int) =
           fun (x16 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x16) "duration")
@@ -88,12 +86,9 @@ module Perf_hooks =
       end
     module PerformanceNodeTiming =
       struct
-        type t = perf_hooks_PerformanceNodeTiming
-        let rec t_of_js : Ojs.t -> t =
-          fun (x23 : Ojs.t) -> perf_hooks_PerformanceNodeTiming_of_js x23
-        and t_to_js : t -> Ojs.t =
-          fun (x22 : perf_hooks_PerformanceNodeTiming) ->
-            perf_hooks_PerformanceNodeTiming_to_js x22
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x23 : Ojs.t) -> x23
+        and t_to_js : t -> Ojs.t = fun (x22 : Ojs.t) -> x22
         let (get_bootstrap_complete : t -> int) =
           fun (x24 : t) ->
             Ojs.int_of_js
@@ -118,12 +113,9 @@ module Perf_hooks =
       end
     module EventLoopUtilization =
       struct
-        type t = perf_hooks_EventLoopUtilization
-        let rec t_of_js : Ojs.t -> t =
-          fun (x32 : Ojs.t) -> perf_hooks_EventLoopUtilization_of_js x32
-        and t_to_js : t -> Ojs.t =
-          fun (x31 : perf_hooks_EventLoopUtilization) ->
-            perf_hooks_EventLoopUtilization_to_js x31
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x32 : Ojs.t) -> x32
+        and t_to_js : t -> Ojs.t = fun (x31 : Ojs.t) -> x31
         let (get_idle : t -> int) =
           fun (x33 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x33) "idle")
@@ -149,12 +141,9 @@ module Perf_hooks =
       end
     module Performance =
       struct
-        type t = perf_hooks_Performance
-        let rec t_of_js : Ojs.t -> t =
-          fun (x43 : Ojs.t) -> perf_hooks_Performance_of_js x43
-        and t_to_js : t -> Ojs.t =
-          fun (x42 : perf_hooks_Performance) ->
-            perf_hooks_Performance_to_js x42
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x43 : Ojs.t) -> x43
+        and t_to_js : t -> Ojs.t = fun (x42 : Ojs.t) -> x42
         let (clear_marks : t -> ?name:string -> unit -> unit) =
           fun (x47 : t) ->
             fun ?name:(x44 : string option) ->
@@ -248,13 +237,9 @@ module Perf_hooks =
       end
     module PerformanceObserverEntryList =
       struct
-        type t = perf_hooks_PerformanceObserverEntryList
-        let rec t_of_js : Ojs.t -> t =
-          fun (x71 : Ojs.t) ->
-            perf_hooks_PerformanceObserverEntryList_of_js x71
-        and t_to_js : t -> Ojs.t =
-          fun (x70 : perf_hooks_PerformanceObserverEntryList) ->
-            perf_hooks_PerformanceObserverEntryList_to_js x70
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x71 : Ojs.t) -> x71
+        and t_to_js : t -> Ojs.t = fun (x70 : Ojs.t) -> x70
         let (get_entries : t -> PerformanceEntry.t list) =
           fun (x72 : t) ->
             Ojs.list_of_js PerformanceEntry.t_of_js
@@ -296,190 +281,165 @@ module Perf_hooks =
       end
     module PerformanceObserverCallback =
       struct
-        type t = perf_hooks_PerformanceObserverCallback
-        let rec t_of_js : Ojs.t -> t =
-          fun (x85 : Ojs.t) ->
-            perf_hooks_PerformanceObserverCallback_of_js x85
-        and t_to_js : t -> Ojs.t =
-          fun (x84 : perf_hooks_PerformanceObserverCallback) ->
-            perf_hooks_PerformanceObserverCallback_to_js x84
-        let (apply :
-          t ->
-            list:PerformanceObserverEntryList.t ->
-              observer:PerformanceObserver.t -> unit)
-          =
-          fun (x88 : t) ->
-            fun ~list:(x86 : PerformanceObserverEntryList.t) ->
-              fun ~observer:(x87 : PerformanceObserver.t) ->
-                ignore
-                  (Ojs.apply (t_to_js x88)
-                     [|(PerformanceObserverEntryList.t_to_js x86);(PerformanceObserver.t_to_js
-                                                                    x87)|])
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x85 : Ojs.t) -> x85
+        and t_to_js : t -> Ojs.t = fun (x84 : Ojs.t) -> x84
       end
     module PerformanceObserver =
       struct
-        type t = perf_hooks_PerformanceObserver
-        let rec t_of_js : Ojs.t -> t =
-          fun (x90 : Ojs.t) -> perf_hooks_PerformanceObserver_of_js x90
-        and t_to_js : t -> Ojs.t =
-          fun (x89 : perf_hooks_PerformanceObserver) ->
-            perf_hooks_PerformanceObserver_to_js x89
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x87 : Ojs.t) -> x87
+        and t_to_js : t -> Ojs.t = fun (x86 : Ojs.t) -> x86
         let (create : callback:PerformanceObserverCallback.t -> t) =
-          fun ~callback:(x91 : PerformanceObserverCallback.t) ->
+          fun ~callback:(x88 : PerformanceObserverCallback.t) ->
             t_of_js
               (Ojs.new_obj
                  (Ojs.get_prop_ascii Import.perf_hooks "PerformanceObserver")
-                 [|(PerformanceObserverCallback.t_to_js x91)|])
+                 [|(PerformanceObserverCallback.t_to_js x88)|])
         let (disconnect : t -> unit) =
-          fun (x92 : t) -> ignore (Ojs.call (t_to_js x92) "disconnect" [||])
+          fun (x89 : t) -> ignore (Ojs.call (t_to_js x89) "disconnect" [||])
         let (observe : t -> options:AnonymousInterface0.t -> unit) =
-          fun (x94 : t) ->
-            fun ~options:(x93 : AnonymousInterface0.t) ->
+          fun (x91 : t) ->
+            fun ~options:(x90 : AnonymousInterface0.t) ->
               ignore
-                (Ojs.call (t_to_js x94) "observe"
-                   [|(AnonymousInterface0.t_to_js x93)|])
+                (Ojs.call (t_to_js x91) "observe"
+                   [|(AnonymousInterface0.t_to_js x90)|])
         let (cast : t -> Node_async_hooks.Async_hooks.AsyncResource.t) =
-          fun (x95 : t) ->
-            Node_async_hooks.Async_hooks.AsyncResource.t_of_js (t_to_js x95)
+          fun (x92 : t) ->
+            Node_async_hooks.Async_hooks.AsyncResource.t_of_js (t_to_js x92)
       end
     module Constants =
       struct
-        let (n_ode_performance_gc_major : int) =
+        let (node_performance_gc_major : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_MAJOR")
-        let (n_ode_performance_gc_minor : int) =
+        let (node_performance_gc_minor : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_MINOR")
-        let (n_ode_performance_gc_incremental : int) =
+        let (node_performance_gc_incremental : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_INCREMENTAL")
-        let (n_ode_performance_gc_weakcb : int) =
+        let (node_performance_gc_weakcb : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_WEAKCB")
-        let (n_ode_performance_gc_flags_no : int) =
+        let (node_performance_gc_flags_no : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_FLAGS_NO")
-        let (n_ode_performance_gc_flags_construct_retained : int) =
+        let (node_performance_gc_flags_construct_retained : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_FLAGS_CONSTRUCT_RETAINED")
-        let (n_ode_performance_gc_flags_forced : int) =
+        let (node_performance_gc_flags_forced : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_FLAGS_FORCED")
-        let (n_ode_performance_gc_flags_synchronous_phantom_processing : 
+        let (node_performance_gc_flags_synchronous_phantom_processing : 
           int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_FLAGS_SYNCHRONOUS_PHANTOM_PROCESSING")
-        let (n_ode_performance_gc_flags_all_available_garbage : int) =
+        let (node_performance_gc_flags_all_available_garbage : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_FLAGS_ALL_AVAILABLE_GARBAGE")
-        let (n_ode_performance_gc_flags_all_external_memory : int) =
+        let (node_performance_gc_flags_all_external_memory : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_FLAGS_ALL_EXTERNAL_MEMORY")
-        let (n_ode_performance_gc_flags_schedule_idle : int) =
+        let (node_performance_gc_flags_schedule_idle : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii Import.perf_hooks "constants")
                "NODE_PERFORMANCE_GC_FLAGS_SCHEDULE_IDLE")
       end
-    let (performance : perf_hooks_Performance) =
-      perf_hooks_Performance_of_js
+    let (performance : Performance.t) =
+      Performance.t_of_js
         (Ojs.get_prop_ascii Import.perf_hooks "performance")
     module EventLoopMonitorOptions =
       struct
-        type t = perf_hooks_EventLoopMonitorOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x97 : Ojs.t) -> perf_hooks_EventLoopMonitorOptions_of_js x97
-        and t_to_js : t -> Ojs.t =
-          fun (x96 : perf_hooks_EventLoopMonitorOptions) ->
-            perf_hooks_EventLoopMonitorOptions_to_js x96
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x94 : Ojs.t) -> x94
+        and t_to_js : t -> Ojs.t = fun (x93 : Ojs.t) -> x93
         let (get_resolution : t -> int) =
-          fun (x98 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x98) "resolution")
+          fun (x95 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x95) "resolution")
         let (set_resolution : t -> int -> unit) =
-          fun (x99 : t) ->
-            fun (x100 : int) ->
-              Ojs.set_prop_ascii (t_to_js x99) "resolution"
-                (Ojs.int_to_js x100)
+          fun (x96 : t) ->
+            fun (x97 : int) ->
+              Ojs.set_prop_ascii (t_to_js x96) "resolution"
+                (Ojs.int_to_js x97)
       end
     module EventLoopDelayMonitor =
       struct
-        type t = perf_hooks_EventLoopDelayMonitor
-        let rec t_of_js : Ojs.t -> t =
-          fun (x102 : Ojs.t) -> perf_hooks_EventLoopDelayMonitor_of_js x102
-        and t_to_js : t -> Ojs.t =
-          fun (x101 : perf_hooks_EventLoopDelayMonitor) ->
-            perf_hooks_EventLoopDelayMonitor_to_js x101
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x99 : Ojs.t) -> x99
+        and t_to_js : t -> Ojs.t = fun (x98 : Ojs.t) -> x98
         let (enable : t -> bool) =
-          fun (x103 : t) ->
-            Ojs.bool_of_js (Ojs.call (t_to_js x103) "enable" [||])
+          fun (x100 : t) ->
+            Ojs.bool_of_js (Ojs.call (t_to_js x100) "enable" [||])
         let (disable : t -> bool) =
-          fun (x104 : t) ->
-            Ojs.bool_of_js (Ojs.call (t_to_js x104) "disable" [||])
+          fun (x101 : t) ->
+            Ojs.bool_of_js (Ojs.call (t_to_js x101) "disable" [||])
         let (reset : t -> unit) =
-          fun (x105 : t) -> ignore (Ojs.call (t_to_js x105) "reset" [||])
+          fun (x102 : t) -> ignore (Ojs.call (t_to_js x102) "reset" [||])
         let (percentile : t -> percentile:int -> int) =
-          fun (x107 : t) ->
-            fun ~percentile:(x106 : int) ->
+          fun (x104 : t) ->
+            fun ~percentile:(x103 : int) ->
               Ojs.int_of_js
-                (Ojs.call (t_to_js x107) "percentile"
-                   [|(Ojs.int_to_js x106)|])
+                (Ojs.call (t_to_js x104) "percentile"
+                   [|(Ojs.int_to_js x103)|])
         let (get_percentiles : t -> (int, int) Map.t) =
-          fun (x108 : t) ->
+          fun (x105 : t) ->
             Map.t_of_js Ojs.int_of_js Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x108) "percentiles")
+              (Ojs.get_prop_ascii (t_to_js x105) "percentiles")
         let (get_exceeds : t -> int) =
-          fun (x111 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x111) "exceeds")
+          fun (x108 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x108) "exceeds")
         let (get_min : t -> int) =
-          fun (x112 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x112) "min")
+          fun (x109 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x109) "min")
         let (get_max : t -> int) =
-          fun (x113 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x113) "max")
+          fun (x110 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x110) "max")
         let (get_mean : t -> int) =
-          fun (x114 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x114) "mean")
+          fun (x111 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x111) "mean")
         let (get_stddev : t -> int) =
-          fun (x115 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x115) "stddev")
+          fun (x112 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x112) "stddev")
       end
     let (monitor_event_loop_delay :
       ?options:EventLoopMonitorOptions.t -> unit -> EventLoopDelayMonitor.t)
       =
-      fun ?options:(x116 : EventLoopMonitorOptions.t option) ->
+      fun ?options:(x113 : EventLoopMonitorOptions.t option) ->
         fun () ->
           EventLoopDelayMonitor.t_of_js
-            (let x119 = Import.perf_hooks in
-             Ojs.call (Ojs.get_prop_ascii x119 "monitorEventLoopDelay")
+            (let x116 = Import.perf_hooks in
+             Ojs.call (Ojs.get_prop_ascii x116 "monitorEventLoopDelay")
                "apply"
-               [|x119;((let x117 =
+               [|x116;((let x114 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
-                        (match x116 with
-                         | Some x118 ->
+                        (match x113 with
+                         | Some x115 ->
                              ignore
-                               (Ojs.call x117 "push"
-                                  [|(EventLoopMonitorOptions.t_to_js x118)|])
+                               (Ojs.call x114 "push"
+                                  [|(EventLoopMonitorOptions.t_to_js x115)|])
                          | None -> ());
-                        x117))|])
+                        x114))|])
   end

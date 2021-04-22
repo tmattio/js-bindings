@@ -110,7 +110,7 @@ module Os : sig
   [@@js.scope "NetworkInterfaceBase"]
 
   module NetworkInterfaceInfoIPv4 : sig
-    type t4
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -125,7 +125,7 @@ module Os : sig
   [@@js.scope "NetworkInterfaceInfoIPv4"]
 
   module NetworkInterfaceInfoIPv6 : sig
-    type t6
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -174,8 +174,8 @@ module Os : sig
 
   module NetworkInterfaceInfo : sig
     type t =
-      ([ `U_s1_IPv4 of NetworkInterfaceInfoIPv.t4 [@js "IPv4"]
-       | `U_s2_IPv6 of NetworkInterfaceInfoIPv.t6 [@js "IPv6"]
+      ([ `U_s1_IPv4 of NetworkInterfaceInfoIPv4.t [@js "IPv4"]
+       | `U_s2_IPv6 of NetworkInterfaceInfoIPv6.t [@js "IPv6"]
        ]
       [@js.union on_field "family"])
 
@@ -205,10 +205,10 @@ module Os : sig
 
   val homedir : unit -> string [@@js.global "homedir"]
 
-  val user_info : options:AnonymousInterface1.t -> Buffer.t os_UserInfo
+  val user_info : options:AnonymousInterface1.t -> Buffer.t UserInfo.t
     [@@js.global "userInfo"]
 
-  val user_info : ?options:AnonymousInterface0.t -> unit -> string os_UserInfo
+  val user_info : ?options:AnonymousInterface0.t -> unit -> string UserInfo.t
     [@@js.global "userInfo"]
 
   module SignalConstants : sig
@@ -222,7 +222,7 @@ module Os : sig
   module Constants : sig
     val uv_udp_reuseaddr : int [@@js.global "UV_UDP_REUSEADDR"]
 
-    val signals : os_SignalConstants [@@js.global "signals"]
+    val signals : SignalConstants.t [@@js.global "signals"]
 
     module Errno : sig
       val e2BIG : int [@@js.global "E2BIG"]

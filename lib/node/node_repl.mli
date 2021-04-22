@@ -19,117 +19,6 @@ module AnonymousInterface0 : sig
 end
 
 module Repl : sig
-  module ReplOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val get_prompt : t -> string [@@js.get "prompt"]
-
-    val set_prompt : t -> string -> unit [@@js.set "prompt"]
-
-    val get_input : t -> ReadableStream.t [@@js.get "input"]
-
-    val set_input : t -> ReadableStream.t -> unit [@@js.set "input"]
-
-    val get_output : t -> WritableStream.t [@@js.get "output"]
-
-    val set_output : t -> WritableStream.t -> unit [@@js.set "output"]
-
-    val get_terminal : t -> bool [@@js.get "terminal"]
-
-    val set_terminal : t -> bool -> unit [@@js.set "terminal"]
-
-    val get_eval : t -> REPLEval.t [@@js.get "eval"]
-
-    val set_eval : t -> REPLEval.t -> unit [@@js.set "eval"]
-
-    val get_preview : t -> bool [@@js.get "preview"]
-
-    val set_preview : t -> bool -> unit [@@js.set "preview"]
-
-    val get_use_colors : t -> bool [@@js.get "useColors"]
-
-    val set_use_colors : t -> bool -> unit [@@js.set "useColors"]
-
-    val get_use_global : t -> bool [@@js.get "useGlobal"]
-
-    val set_use_global : t -> bool -> unit [@@js.set "useGlobal"]
-
-    val get_ignore_undefined : t -> bool [@@js.get "ignoreUndefined"]
-
-    val set_ignore_undefined : t -> bool -> unit [@@js.set "ignoreUndefined"]
-
-    val get_writer : t -> REPLWriter.t [@@js.get "writer"]
-
-    val set_writer : t -> REPLWriter.t -> unit [@@js.set "writer"]
-
-    val get_completer
-      :  t
-      -> ( Node_readline.Readline.AsyncCompleter.t
-         , Node_readline.Readline.Completer.t )
-         union2
-      [@@js.get "completer"]
-
-    val set_completer
-      :  t
-      -> ( Node_readline.Readline.AsyncCompleter.t
-         , Node_readline.Readline.Completer.t )
-         union2
-      -> unit
-      [@@js.set "completer"]
-
-    val get_repl_mode : t -> (* FIXME: unknown type 'unique symbol' *) any
-      [@@js.get "replMode"]
-
-    val set_repl_mode
-      :  t
-      -> (* FIXME: unknown type 'unique symbol' *) any
-      -> unit
-      [@@js.set "replMode"]
-
-    val get_break_eval_on_sigint : t -> bool [@@js.get "breakEvalOnSigint"]
-
-    val set_break_eval_on_sigint : t -> bool -> unit
-      [@@js.set "breakEvalOnSigint"]
-  end
-  [@@js.scope "ReplOptions"]
-
-  module REPLEval : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val apply
-      :  t
-      -> this:REPLServer.t
-      -> eval_cmd:string
-      -> context:Node_vm.Vm.Context.t
-      -> file:string
-      -> cb:(err:Error.t or_null -> result:any -> unit)
-      -> unit
-      [@@js.apply]
-  end
-  [@@js.scope "REPLEval"]
-
-  module REPLWriter : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val apply : t -> this:REPLServer.t -> obj:any -> string [@@js.apply]
-  end
-  [@@js.scope "REPLWriter"]
-
-  val writer : (REPLWriter.t, AnonymousInterface0.t) intersection2
-    [@@js.global "writer"]
-
   module REPLCommandAction : sig
     type t
 
@@ -137,9 +26,9 @@ module Repl : sig
 
     val t_of_js : Ojs.t -> t
 
-    val apply : t -> this:REPLServer.t -> text:string -> unit [@@js.apply]
+    (* val apply : t -> this:REPLServer.t -> text:string -> unit [@@js.apply] *)
   end
-  [@@js.scope "REPLCommandAction"]
+  (* [@@js.scope "REPLCommandAction"] *)
 
   module REPLCommand : sig
     type t
@@ -157,6 +46,30 @@ module Repl : sig
     val set_action : t -> REPLCommandAction.t -> unit [@@js.set "action"]
   end
   [@@js.scope "REPLCommand"]
+
+  module REPLEval : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    (* val apply : t -> this:REPLServer.t -> eval_cmd:string ->
+       context:Node_vm.Vm.Context.t -> file:string -> cb:(err:Error.t or_null ->
+       result:any -> unit) -> unit [@@js.apply] *)
+  end
+  (* [@@js.scope "REPLEval"] *)
+
+  module REPLWriter : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    (* val apply : t -> this:REPLServer.t -> obj:any -> string [@@js.apply] *)
+  end
+  (* [@@js.scope "REPLWriter"] *)
 
   module REPLServer : sig
     type t
@@ -613,6 +526,87 @@ module Repl : sig
     val cast : t -> Node_readline.Readline.Interface.t [@@js.cast]
   end
   [@@js.scope "REPLServer"]
+
+  val writer : (REPLWriter.t, AnonymousInterface0.t) intersection2
+    [@@js.global "writer"]
+
+  module ReplOptions : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_prompt : t -> string [@@js.get "prompt"]
+
+    val set_prompt : t -> string -> unit [@@js.set "prompt"]
+
+    val get_input : t -> ReadableStream.t [@@js.get "input"]
+
+    val set_input : t -> ReadableStream.t -> unit [@@js.set "input"]
+
+    val get_output : t -> WritableStream.t [@@js.get "output"]
+
+    val set_output : t -> WritableStream.t -> unit [@@js.set "output"]
+
+    val get_terminal : t -> bool [@@js.get "terminal"]
+
+    val set_terminal : t -> bool -> unit [@@js.set "terminal"]
+
+    val get_eval : t -> REPLEval.t [@@js.get "eval"]
+
+    val set_eval : t -> REPLEval.t -> unit [@@js.set "eval"]
+
+    val get_preview : t -> bool [@@js.get "preview"]
+
+    val set_preview : t -> bool -> unit [@@js.set "preview"]
+
+    val get_use_colors : t -> bool [@@js.get "useColors"]
+
+    val set_use_colors : t -> bool -> unit [@@js.set "useColors"]
+
+    val get_use_global : t -> bool [@@js.get "useGlobal"]
+
+    val set_use_global : t -> bool -> unit [@@js.set "useGlobal"]
+
+    val get_ignore_undefined : t -> bool [@@js.get "ignoreUndefined"]
+
+    val set_ignore_undefined : t -> bool -> unit [@@js.set "ignoreUndefined"]
+
+    val get_writer : t -> REPLWriter.t [@@js.get "writer"]
+
+    val set_writer : t -> REPLWriter.t -> unit [@@js.set "writer"]
+
+    val get_completer
+      :  t
+      -> ( Node_readline.Readline.AsyncCompleter.t
+         , Node_readline.Readline.Completer.t )
+         union2
+      [@@js.get "completer"]
+
+    val set_completer
+      :  t
+      -> ( Node_readline.Readline.AsyncCompleter.t
+         , Node_readline.Readline.Completer.t )
+         union2
+      -> unit
+      [@@js.set "completer"]
+
+    val get_repl_mode : t -> (* FIXME: unknown type 'unique symbol' *) any
+      [@@js.get "replMode"]
+
+    val set_repl_mode
+      :  t
+      -> (* FIXME: unknown type 'unique symbol' *) any
+      -> unit
+      [@@js.set "replMode"]
+
+    val get_break_eval_on_sigint : t -> bool [@@js.get "breakEvalOnSigint"]
+
+    val set_break_eval_on_sigint : t -> bool -> unit
+      [@@js.set "breakEvalOnSigint"]
+  end
+  [@@js.scope "ReplOptions"]
 
   val r_epl_mode_sloppy : (* FIXME: unknown type 'unique symbol' *) any
     [@@js.global "REPL_MODE_SLOPPY"]

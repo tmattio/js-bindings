@@ -74,18 +74,6 @@ module Util : sig
     val t_of_js : Ojs.t -> t
   end
 
-  module CustomInspectFunction : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val apply : t -> depth:int -> options:InspectOptionsStylized.t -> string
-      [@@js.apply]
-  end
-  [@@js.scope "CustomInspectFunction"]
-
   module InspectOptionsStylized : sig
     type t
 
@@ -99,6 +87,18 @@ module Util : sig
     val cast : t -> InspectOptions.t [@@js.cast]
   end
   [@@js.scope "InspectOptionsStylized"]
+
+  module CustomInspectFunction : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val apply : t -> depth:int -> options:InspectOptionsStylized.t -> string
+      [@@js.apply]
+  end
+  [@@js.scope "CustomInspectFunction"]
 
   val format : ?format:any -> param:(any list[@js.variadic]) -> string
     [@@js.global "format"]
@@ -130,9 +130,9 @@ module Util : sig
     val styles : (* FIXME: unknown type '{ [K in Style]: string }' *) any
       [@@js.global "styles"]
 
-    val default_options : util_InspectOptions [@@js.global "defaultOptions"]
+    val default_options : InspectOptions.t [@@js.global "defaultOptions"]
 
-    val repl_defaults : util_InspectOptions [@@js.global "replDefaults"]
+    val repl_defaults : InspectOptions.t [@@js.global "replDefaults"]
 
     val custom : (* FIXME: unknown type 'unique symbol' *) any
       [@@js.global "custom"]
@@ -376,8 +376,8 @@ module Util : sig
 
   module CustomPromisify : sig
     type 'TCustom t =
-      ( 'TCustom util_CustomPromisifyLegacy
-      , 'TCustom util_CustomPromisifySymbol )
+      ( 'TCustom CustomPromisifyLegacy.t
+      , 'TCustom CustomPromisifySymbol.t )
       union2
 
     val t_to_js : ('TCustom -> Ojs.t) -> 'TCustom t -> Ojs.t
@@ -385,7 +385,7 @@ module Util : sig
     val t_of_js : (Ojs.t -> 'TCustom) -> Ojs.t -> 'TCustom t
   end
 
-  val promisify : fn:'TCustom util_CustomPromisify -> 'TCustom
+  val promisify : fn:'TCustom CustomPromisify.t -> 'TCustom
     [@@js.global "promisify"]
 
   val promisify

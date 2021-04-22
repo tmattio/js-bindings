@@ -11,278 +11,289 @@ module Console =
         let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
         and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
         let (assert_ :
-          t -> value:any -> ?message:string -> ?params:any list -> unit) =
-          fun (x10 : t) ->
+          t -> value:any -> ?message:string -> params:any list -> unit) =
+          fun (x9 : t) ->
             fun ~value:(x3 : any) ->
               fun ?message:(x4 : string option) ->
-                fun ?params:(x5 : any list) ->
+                fun ~params:(x5 : any list) ->
                   ignore
-                    (let x11 = t_to_js x10 in
-                     Ojs.call (Ojs.get_prop_ascii x11 "assert") "apply"
-                       [|x11;((let x6 =
+                    (let x10 = t_to_js x9 in
+                     Ojs.call (Ojs.get_prop_ascii x10 "assert") "apply"
+                       [|x10;((let x6 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore (Ojs.call x6 "push" [|(any_to_js x3)|]);
                                (match x4 with
-                                | Some x9 ->
+                                | Some x8 ->
                                     ignore
                                       (Ojs.call x6 "push"
-                                         [|(Ojs.string_to_js x9)|])
+                                         [|(Ojs.string_to_js x8)|])
                                 | None -> ());
-                               (match x5 with
-                                | Some x8 ->
-                                    List.iter
-                                      (fun (x7 : any) ->
-                                         ignore
-                                           (Ojs.call x6 "push"
-                                              [|(any_to_js x7)|])) x8
-                                | None -> ());
+                               List.iter
+                                 (fun (x7 : any) ->
+                                    ignore
+                                      (Ojs.call x6 "push" [|(any_to_js x7)|]))
+                                 x5;
                                x6))|])
         let (clear : t -> unit) =
-          fun (x12 : t) -> ignore (Ojs.call (t_to_js x12) "clear" [||])
+          fun (x11 : t) -> ignore (Ojs.call (t_to_js x11) "clear" [||])
         let (count : t -> ?label:string -> unit -> unit) =
-          fun (x16 : t) ->
-            fun ?label:(x13 : string option) ->
+          fun (x15 : t) ->
+            fun ?label:(x12 : string option) ->
               fun () ->
                 ignore
-                  (let x17 = t_to_js x16 in
-                   Ojs.call (Ojs.get_prop_ascii x17 "count") "apply"
-                     [|x17;((let x14 =
+                  (let x16 = t_to_js x15 in
+                   Ojs.call (Ojs.get_prop_ascii x16 "count") "apply"
+                     [|x16;((let x13 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
-                             (match x13 with
-                              | Some x15 ->
+                             (match x12 with
+                              | Some x14 ->
                                   ignore
-                                    (Ojs.call x14 "push"
-                                       [|(Ojs.string_to_js x15)|])
+                                    (Ojs.call x13 "push"
+                                       [|(Ojs.string_to_js x14)|])
                               | None -> ());
-                             x14))|])
+                             x13))|])
         let (count_reset : t -> ?label:string -> unit -> unit) =
-          fun (x21 : t) ->
-            fun ?label:(x18 : string option) ->
+          fun (x20 : t) ->
+            fun ?label:(x17 : string option) ->
               fun () ->
                 ignore
-                  (let x22 = t_to_js x21 in
-                   Ojs.call (Ojs.get_prop_ascii x22 "countReset") "apply"
-                     [|x22;((let x19 =
+                  (let x21 = t_to_js x20 in
+                   Ojs.call (Ojs.get_prop_ascii x21 "countReset") "apply"
+                     [|x21;((let x18 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
-                             (match x18 with
-                              | Some x20 ->
+                             (match x17 with
+                              | Some x19 ->
                                   ignore
-                                    (Ojs.call x19 "push"
-                                       [|(Ojs.string_to_js x20)|])
+                                    (Ojs.call x18 "push"
+                                       [|(Ojs.string_to_js x19)|])
                               | None -> ());
-                             x19))|])
-        let (debug : t -> ?message:any -> ?params:any list -> unit) =
-          fun (x29 : t) ->
-            fun ?message:(x23 : any option) ->
-              fun ?params:(x24 : any list) ->
-                ignore
-                  (let x30 = t_to_js x29 in
-                   Ojs.call (Ojs.get_prop_ascii x30 "debug") "apply"
-                     [|x30;((let x25 =
-                               Ojs.new_obj
-                                 (Ojs.get_prop_ascii Ojs.global "Array") 
-                                 [||] in
-                             (match x23 with
-                              | Some x28 ->
-                                  ignore
-                                    (Ojs.call x25 "push" [|(any_to_js x28)|])
-                              | None -> ());
-                             (match x24 with
-                              | Some x27 ->
-                                  List.iter
-                                    (fun (x26 : any) ->
-                                       ignore
-                                         (Ojs.call x25 "push"
-                                            [|(any_to_js x26)|])) x27
-                              | None -> ());
-                             x25))|])
+                             x18))|])
+        let (debug : t -> ?message:any -> params:any list -> unit -> unit) =
+          fun (x27 : t) ->
+            fun ?message:(x22 : any option) ->
+              fun ~params:(x23 : any list) ->
+                fun () ->
+                  ignore
+                    (let x28 = t_to_js x27 in
+                     Ojs.call (Ojs.get_prop_ascii x28 "debug") "apply"
+                       [|x28;((let x24 =
+                                 Ojs.new_obj
+                                   (Ojs.get_prop_ascii Ojs.global "Array")
+                                   [||] in
+                               (match x22 with
+                                | Some x26 ->
+                                    ignore
+                                      (Ojs.call x24 "push"
+                                         [|(any_to_js x26)|])
+                                | None -> ());
+                               List.iter
+                                 (fun (x25 : any) ->
+                                    ignore
+                                      (Ojs.call x24 "push"
+                                         [|(any_to_js x25)|])) x23;
+                               x24))|])
         let (dir :
           t ->
             obj:any ->
               ?options:Node_util.Util.InspectOptions.t -> unit -> unit)
           =
-          fun (x35 : t) ->
-            fun ~obj:(x31 : any) ->
-              fun ?options:(x32 : Node_util.Util.InspectOptions.t option) ->
+          fun (x33 : t) ->
+            fun ~obj:(x29 : any) ->
+              fun ?options:(x30 : Node_util.Util.InspectOptions.t option) ->
                 fun () ->
                   ignore
-                    (let x36 = t_to_js x35 in
-                     Ojs.call (Ojs.get_prop_ascii x36 "dir") "apply"
-                       [|x36;((let x33 =
+                    (let x34 = t_to_js x33 in
+                     Ojs.call (Ojs.get_prop_ascii x34 "dir") "apply"
+                       [|x34;((let x31 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x33 "push" [|(any_to_js x31)|]);
-                               (match x32 with
-                                | Some x34 ->
+                                 (Ojs.call x31 "push" [|(any_to_js x29)|]);
+                               (match x30 with
+                                | Some x32 ->
                                     ignore
-                                      (Ojs.call x33 "push"
+                                      (Ojs.call x31 "push"
                                          [|(Node_util.Util.InspectOptions.t_to_js
-                                              x34)|])
+                                              x32)|])
                                 | None -> ());
-                               x33))|])
+                               x31))|])
         let (dirxml : t -> data:any list -> unit) =
-          fun (x40 : t) ->
-            fun ~data:(x37 : any list) ->
+          fun (x38 : t) ->
+            fun ~data:(x35 : any list) ->
               ignore
-                (let x41 = t_to_js x40 in
-                 Ojs.call (Ojs.get_prop_ascii x41 "dirxml") "apply"
-                   [|x41;((let x38 =
+                (let x39 = t_to_js x38 in
+                 Ojs.call (Ojs.get_prop_ascii x39 "dirxml") "apply"
+                   [|x39;((let x36 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            List.iter
-                             (fun (x39 : any) ->
+                             (fun (x37 : any) ->
                                 ignore
-                                  (Ojs.call x38 "push" [|(any_to_js x39)|]))
-                             x37;
-                           x38))|])
-        let (error : t -> ?message:any -> ?params:any list -> unit) =
-          fun (x48 : t) ->
-            fun ?message:(x42 : any option) ->
-              fun ?params:(x43 : any list) ->
-                ignore
-                  (let x49 = t_to_js x48 in
-                   Ojs.call (Ojs.get_prop_ascii x49 "error") "apply"
-                     [|x49;((let x44 =
-                               Ojs.new_obj
-                                 (Ojs.get_prop_ascii Ojs.global "Array") 
-                                 [||] in
-                             (match x42 with
-                              | Some x47 ->
-                                  ignore
-                                    (Ojs.call x44 "push" [|(any_to_js x47)|])
-                              | None -> ());
-                             (match x43 with
-                              | Some x46 ->
-                                  List.iter
-                                    (fun (x45 : any) ->
-                                       ignore
-                                         (Ojs.call x44 "push"
-                                            [|(any_to_js x45)|])) x46
-                              | None -> ());
-                             x44))|])
+                                  (Ojs.call x36 "push" [|(any_to_js x37)|]))
+                             x35;
+                           x36))|])
+        let (error : t -> ?message:any -> params:any list -> unit -> unit) =
+          fun (x45 : t) ->
+            fun ?message:(x40 : any option) ->
+              fun ~params:(x41 : any list) ->
+                fun () ->
+                  ignore
+                    (let x46 = t_to_js x45 in
+                     Ojs.call (Ojs.get_prop_ascii x46 "error") "apply"
+                       [|x46;((let x42 =
+                                 Ojs.new_obj
+                                   (Ojs.get_prop_ascii Ojs.global "Array")
+                                   [||] in
+                               (match x40 with
+                                | Some x44 ->
+                                    ignore
+                                      (Ojs.call x42 "push"
+                                         [|(any_to_js x44)|])
+                                | None -> ());
+                               List.iter
+                                 (fun (x43 : any) ->
+                                    ignore
+                                      (Ojs.call x42 "push"
+                                         [|(any_to_js x43)|])) x41;
+                               x42))|])
         let (group : t -> label:any list -> unit) =
-          fun (x53 : t) ->
-            fun ~label:(x50 : any list) ->
+          fun (x50 : t) ->
+            fun ~label:(x47 : any list) ->
               ignore
-                (let x54 = t_to_js x53 in
-                 Ojs.call (Ojs.get_prop_ascii x54 "group") "apply"
-                   [|x54;((let x51 =
+                (let x51 = t_to_js x50 in
+                 Ojs.call (Ojs.get_prop_ascii x51 "group") "apply"
+                   [|x51;((let x48 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            List.iter
-                             (fun (x52 : any) ->
+                             (fun (x49 : any) ->
                                 ignore
-                                  (Ojs.call x51 "push" [|(any_to_js x52)|]))
-                             x50;
-                           x51))|])
+                                  (Ojs.call x48 "push" [|(any_to_js x49)|]))
+                             x47;
+                           x48))|])
         let (group_collapsed : t -> label:any list -> unit) =
-          fun (x58 : t) ->
-            fun ~label:(x55 : any list) ->
+          fun (x55 : t) ->
+            fun ~label:(x52 : any list) ->
               ignore
-                (let x59 = t_to_js x58 in
-                 Ojs.call (Ojs.get_prop_ascii x59 "groupCollapsed") "apply"
-                   [|x59;((let x56 =
+                (let x56 = t_to_js x55 in
+                 Ojs.call (Ojs.get_prop_ascii x56 "groupCollapsed") "apply"
+                   [|x56;((let x53 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            List.iter
-                             (fun (x57 : any) ->
+                             (fun (x54 : any) ->
                                 ignore
-                                  (Ojs.call x56 "push" [|(any_to_js x57)|]))
-                             x55;
-                           x56))|])
+                                  (Ojs.call x53 "push" [|(any_to_js x54)|]))
+                             x52;
+                           x53))|])
         let (group_end : t -> unit) =
-          fun (x60 : t) -> ignore (Ojs.call (t_to_js x60) "groupEnd" [||])
-        let (info : t -> ?message:any -> ?params:any list -> unit) =
-          fun (x67 : t) ->
-            fun ?message:(x61 : any option) ->
-              fun ?params:(x62 : any list) ->
-                ignore
-                  (let x68 = t_to_js x67 in
-                   Ojs.call (Ojs.get_prop_ascii x68 "info") "apply"
-                     [|x68;((let x63 =
-                               Ojs.new_obj
-                                 (Ojs.get_prop_ascii Ojs.global "Array") 
-                                 [||] in
-                             (match x61 with
-                              | Some x66 ->
-                                  ignore
-                                    (Ojs.call x63 "push" [|(any_to_js x66)|])
-                              | None -> ());
-                             (match x62 with
-                              | Some x65 ->
-                                  List.iter
-                                    (fun (x64 : any) ->
-                                       ignore
-                                         (Ojs.call x63 "push"
-                                            [|(any_to_js x64)|])) x65
-                              | None -> ());
-                             x63))|])
-        let (log : t -> ?message:any -> ?params:any list -> unit) =
-          fun (x75 : t) ->
-            fun ?message:(x69 : any option) ->
-              fun ?params:(x70 : any list) ->
-                ignore
-                  (let x76 = t_to_js x75 in
-                   Ojs.call (Ojs.get_prop_ascii x76 "log") "apply"
-                     [|x76;((let x71 =
-                               Ojs.new_obj
-                                 (Ojs.get_prop_ascii Ojs.global "Array") 
-                                 [||] in
-                             (match x69 with
-                              | Some x74 ->
-                                  ignore
-                                    (Ojs.call x71 "push" [|(any_to_js x74)|])
-                              | None -> ());
-                             (match x70 with
-                              | Some x73 ->
-                                  List.iter
-                                    (fun (x72 : any) ->
-                                       ignore
-                                         (Ojs.call x71 "push"
-                                            [|(any_to_js x72)|])) x73
-                              | None -> ());
-                             x71))|])
+          fun (x57 : t) -> ignore (Ojs.call (t_to_js x57) "groupEnd" [||])
+        let (info : t -> ?message:any -> params:any list -> unit -> unit) =
+          fun (x63 : t) ->
+            fun ?message:(x58 : any option) ->
+              fun ~params:(x59 : any list) ->
+                fun () ->
+                  ignore
+                    (let x64 = t_to_js x63 in
+                     Ojs.call (Ojs.get_prop_ascii x64 "info") "apply"
+                       [|x64;((let x60 =
+                                 Ojs.new_obj
+                                   (Ojs.get_prop_ascii Ojs.global "Array")
+                                   [||] in
+                               (match x58 with
+                                | Some x62 ->
+                                    ignore
+                                      (Ojs.call x60 "push"
+                                         [|(any_to_js x62)|])
+                                | None -> ());
+                               List.iter
+                                 (fun (x61 : any) ->
+                                    ignore
+                                      (Ojs.call x60 "push"
+                                         [|(any_to_js x61)|])) x59;
+                               x60))|])
+        let (log : t -> ?message:any -> params:any list -> unit -> unit) =
+          fun (x70 : t) ->
+            fun ?message:(x65 : any option) ->
+              fun ~params:(x66 : any list) ->
+                fun () ->
+                  ignore
+                    (let x71 = t_to_js x70 in
+                     Ojs.call (Ojs.get_prop_ascii x71 "log") "apply"
+                       [|x71;((let x67 =
+                                 Ojs.new_obj
+                                   (Ojs.get_prop_ascii Ojs.global "Array")
+                                   [||] in
+                               (match x65 with
+                                | Some x69 ->
+                                    ignore
+                                      (Ojs.call x67 "push"
+                                         [|(any_to_js x69)|])
+                                | None -> ());
+                               List.iter
+                                 (fun (x68 : any) ->
+                                    ignore
+                                      (Ojs.call x67 "push"
+                                         [|(any_to_js x68)|])) x66;
+                               x67))|])
         let (table :
           t -> tabular_data:any -> ?properties:string list -> unit -> unit) =
-          fun (x82 : t) ->
-            fun ~tabular_data:(x77 : any) ->
-              fun ?properties:(x78 : string list option) ->
+          fun (x77 : t) ->
+            fun ~tabular_data:(x72 : any) ->
+              fun ?properties:(x73 : string list option) ->
                 fun () ->
                   ignore
-                    (let x83 = t_to_js x82 in
-                     Ojs.call (Ojs.get_prop_ascii x83 "table") "apply"
-                       [|x83;((let x79 =
+                    (let x78 = t_to_js x77 in
+                     Ojs.call (Ojs.get_prop_ascii x78 "table") "apply"
+                       [|x78;((let x74 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x79 "push" [|(any_to_js x77)|]);
-                               (match x78 with
-                                | Some x80 ->
+                                 (Ojs.call x74 "push" [|(any_to_js x72)|]);
+                               (match x73 with
+                                | Some x75 ->
                                     ignore
-                                      (Ojs.call x79 "push"
+                                      (Ojs.call x74 "push"
                                          [|(Ojs.list_to_js Ojs.string_to_js
-                                              x80)|])
+                                              x75)|])
                                 | None -> ());
-                               x79))|])
+                               x74))|])
         let (time : t -> ?label:string -> unit -> unit) =
+          fun (x82 : t) ->
+            fun ?label:(x79 : string option) ->
+              fun () ->
+                ignore
+                  (let x83 = t_to_js x82 in
+                   Ojs.call (Ojs.get_prop_ascii x83 "time") "apply"
+                     [|x83;((let x80 =
+                               Ojs.new_obj
+                                 (Ojs.get_prop_ascii Ojs.global "Array") 
+                                 [||] in
+                             (match x79 with
+                              | Some x81 ->
+                                  ignore
+                                    (Ojs.call x80 "push"
+                                       [|(Ojs.string_to_js x81)|])
+                              | None -> ());
+                             x80))|])
+        let (time_end : t -> ?label:string -> unit -> unit) =
           fun (x87 : t) ->
             fun ?label:(x84 : string option) ->
               fun () ->
                 ignore
                   (let x88 = t_to_js x87 in
-                   Ojs.call (Ojs.get_prop_ascii x88 "time") "apply"
+                   Ojs.call (Ojs.get_prop_ascii x88 "timeEnd") "apply"
                      [|x88;((let x85 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
@@ -294,385 +305,392 @@ module Console =
                                        [|(Ojs.string_to_js x86)|])
                               | None -> ());
                              x85))|])
-        let (time_end : t -> ?label:string -> unit -> unit) =
-          fun (x92 : t) ->
+        let (time_log : t -> ?label:string -> data:any list -> unit) =
+          fun (x94 : t) ->
             fun ?label:(x89 : string option) ->
-              fun () ->
+              fun ~data:(x90 : any list) ->
                 ignore
-                  (let x93 = t_to_js x92 in
-                   Ojs.call (Ojs.get_prop_ascii x93 "timeEnd") "apply"
-                     [|x93;((let x90 =
+                  (let x95 = t_to_js x94 in
+                   Ojs.call (Ojs.get_prop_ascii x95 "timeLog") "apply"
+                     [|x95;((let x91 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              (match x89 with
-                              | Some x91 ->
+                              | Some x93 ->
                                   ignore
-                                    (Ojs.call x90 "push"
-                                       [|(Ojs.string_to_js x91)|])
+                                    (Ojs.call x91 "push"
+                                       [|(Ojs.string_to_js x93)|])
                               | None -> ());
-                             x90))|])
-        let (time_log : t -> ?label:string -> data:any list -> unit) =
-          fun (x99 : t) ->
-            fun ?label:(x94 : string option) ->
-              fun ~data:(x95 : any list) ->
+                             List.iter
+                               (fun (x92 : any) ->
+                                  ignore
+                                    (Ojs.call x91 "push" [|(any_to_js x92)|]))
+                               x90;
+                             x91))|])
+        let (trace : t -> ?message:any -> params:any list -> unit) =
+          fun (x101 : t) ->
+            fun ?message:(x96 : any option) ->
+              fun ~params:(x97 : any list) ->
                 ignore
-                  (let x100 = t_to_js x99 in
-                   Ojs.call (Ojs.get_prop_ascii x100 "timeLog") "apply"
-                     [|x100;((let x96 =
+                  (let x102 = t_to_js x101 in
+                   Ojs.call (Ojs.get_prop_ascii x102 "trace") "apply"
+                     [|x102;((let x98 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x94 with
-                               | Some x98 ->
+                              (match x96 with
+                               | Some x100 ->
                                    ignore
-                                     (Ojs.call x96 "push"
-                                        [|(Ojs.string_to_js x98)|])
+                                     (Ojs.call x98 "push"
+                                        [|(any_to_js x100)|])
                                | None -> ());
                               List.iter
-                                (fun (x97 : any) ->
+                                (fun (x99 : any) ->
                                    ignore
-                                     (Ojs.call x96 "push" [|(any_to_js x97)|]))
-                                x95;
-                              x96))|])
-        let (trace : t -> ?message:any -> ?params:any list -> unit) =
-          fun (x107 : t) ->
-            fun ?message:(x101 : any option) ->
-              fun ?params:(x102 : any list) ->
+                                     (Ojs.call x98 "push" [|(any_to_js x99)|]))
+                                x97;
+                              x98))|])
+        let (warn : t -> ?message:any -> params:any list -> unit -> unit) =
+          fun (x108 : t) ->
+            fun ?message:(x103 : any option) ->
+              fun ~params:(x104 : any list) ->
+                fun () ->
+                  ignore
+                    (let x109 = t_to_js x108 in
+                     Ojs.call (Ojs.get_prop_ascii x109 "warn") "apply"
+                       [|x109;((let x105 =
+                                  Ojs.new_obj
+                                    (Ojs.get_prop_ascii Ojs.global "Array")
+                                    [||] in
+                                (match x103 with
+                                 | Some x107 ->
+                                     ignore
+                                       (Ojs.call x105 "push"
+                                          [|(any_to_js x107)|])
+                                 | None -> ());
+                                List.iter
+                                  (fun (x106 : any) ->
+                                     ignore
+                                       (Ojs.call x105 "push"
+                                          [|(any_to_js x106)|])) x104;
+                                x105))|])
+        let (profile : t -> ?label:string -> unit -> unit) =
+          fun (x113 : t) ->
+            fun ?label:(x110 : string option) ->
+              fun () ->
                 ignore
-                  (let x108 = t_to_js x107 in
-                   Ojs.call (Ojs.get_prop_ascii x108 "trace") "apply"
-                     [|x108;((let x103 =
+                  (let x114 = t_to_js x113 in
+                   Ojs.call (Ojs.get_prop_ascii x114 "profile") "apply"
+                     [|x114;((let x111 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x101 with
-                               | Some x106 ->
-                                   ignore
-                                     (Ojs.call x103 "push"
-                                        [|(any_to_js x106)|])
-                               | None -> ());
-                              (match x102 with
-                               | Some x105 ->
-                                   List.iter
-                                     (fun (x104 : any) ->
-                                        ignore
-                                          (Ojs.call x103 "push"
-                                             [|(any_to_js x104)|])) x105
-                               | None -> ());
-                              x103))|])
-        let (warn : t -> ?message:any -> ?params:any list -> unit) =
-          fun (x115 : t) ->
-            fun ?message:(x109 : any option) ->
-              fun ?params:(x110 : any list) ->
-                ignore
-                  (let x116 = t_to_js x115 in
-                   Ojs.call (Ojs.get_prop_ascii x116 "warn") "apply"
-                     [|x116;((let x111 =
-                                Ojs.new_obj
-                                  (Ojs.get_prop_ascii Ojs.global "Array")
-                                  [||] in
-                              (match x109 with
-                               | Some x114 ->
+                              (match x110 with
+                               | Some x112 ->
                                    ignore
                                      (Ojs.call x111 "push"
-                                        [|(any_to_js x114)|])
-                               | None -> ());
-                              (match x110 with
-                               | Some x113 ->
-                                   List.iter
-                                     (fun (x112 : any) ->
-                                        ignore
-                                          (Ojs.call x111 "push"
-                                             [|(any_to_js x112)|])) x113
+                                        [|(Ojs.string_to_js x112)|])
                                | None -> ());
                               x111))|])
-        let (profile : t -> ?label:string -> unit -> unit) =
-          fun (x120 : t) ->
-            fun ?label:(x117 : string option) ->
-              fun () ->
-                ignore
-                  (let x121 = t_to_js x120 in
-                   Ojs.call (Ojs.get_prop_ascii x121 "profile") "apply"
-                     [|x121;((let x118 =
-                                Ojs.new_obj
-                                  (Ojs.get_prop_ascii Ojs.global "Array")
-                                  [||] in
-                              (match x117 with
-                               | Some x119 ->
-                                   ignore
-                                     (Ojs.call x118 "push"
-                                        [|(Ojs.string_to_js x119)|])
-                               | None -> ());
-                              x118))|])
         let (profile_end : t -> ?label:string -> unit -> unit) =
-          fun (x125 : t) ->
-            fun ?label:(x122 : string option) ->
+          fun (x118 : t) ->
+            fun ?label:(x115 : string option) ->
               fun () ->
                 ignore
-                  (let x126 = t_to_js x125 in
-                   Ojs.call (Ojs.get_prop_ascii x126 "profileEnd") "apply"
-                     [|x126;((let x123 =
+                  (let x119 = t_to_js x118 in
+                   Ojs.call (Ojs.get_prop_ascii x119 "profileEnd") "apply"
+                     [|x119;((let x116 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x122 with
-                               | Some x124 ->
+                              (match x115 with
+                               | Some x117 ->
                                    ignore
-                                     (Ojs.call x123 "push"
-                                        [|(Ojs.string_to_js x124)|])
+                                     (Ojs.call x116 "push"
+                                        [|(Ojs.string_to_js x117)|])
                                | None -> ());
-                              x123))|])
+                              x116))|])
         let (time_stamp : t -> ?label:string -> unit -> unit) =
-          fun (x130 : t) ->
-            fun ?label:(x127 : string option) ->
+          fun (x123 : t) ->
+            fun ?label:(x120 : string option) ->
               fun () ->
                 ignore
-                  (let x131 = t_to_js x130 in
-                   Ojs.call (Ojs.get_prop_ascii x131 "timeStamp") "apply"
-                     [|x131;((let x128 =
+                  (let x124 = t_to_js x123 in
+                   Ojs.call (Ojs.get_prop_ascii x124 "timeStamp") "apply"
+                     [|x124;((let x121 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x127 with
-                               | Some x129 ->
+                              (match x120 with
+                               | Some x122 ->
                                    ignore
-                                     (Ojs.call x128 "push"
-                                        [|(Ojs.string_to_js x129)|])
+                                     (Ojs.call x121 "push"
+                                        [|(Ojs.string_to_js x122)|])
                                | None -> ());
-                              x128))|])
+                              x121))|])
         module ConsoleConstructorOptions =
           struct
             type t = Ojs.t
-            let rec t_of_js : Ojs.t -> t = fun (x133 : Ojs.t) -> x133
-            and t_to_js : t -> Ojs.t = fun (x132 : Ojs.t) -> x132
+            let rec t_of_js : Ojs.t -> t = fun (x126 : Ojs.t) -> x126
+            and t_to_js : t -> Ojs.t = fun (x125 : Ojs.t) -> x125
             let (get_stdout : t -> WritableStream.t) =
-              fun (x134 : t) ->
+              fun (x127 : t) ->
                 WritableStream.t_of_js
-                  (Ojs.get_prop_ascii (t_to_js x134) "stdout")
+                  (Ojs.get_prop_ascii (t_to_js x127) "stdout")
             let (set_stdout : t -> WritableStream.t -> unit) =
-              fun (x135 : t) ->
-                fun (x136 : WritableStream.t) ->
-                  Ojs.set_prop_ascii (t_to_js x135) "stdout"
-                    (WritableStream.t_to_js x136)
+              fun (x128 : t) ->
+                fun (x129 : WritableStream.t) ->
+                  Ojs.set_prop_ascii (t_to_js x128) "stdout"
+                    (WritableStream.t_to_js x129)
             let (get_stderr : t -> WritableStream.t) =
-              fun (x137 : t) ->
+              fun (x130 : t) ->
                 WritableStream.t_of_js
-                  (Ojs.get_prop_ascii (t_to_js x137) "stderr")
+                  (Ojs.get_prop_ascii (t_to_js x130) "stderr")
             let (set_stderr : t -> WritableStream.t -> unit) =
-              fun (x138 : t) ->
-                fun (x139 : WritableStream.t) ->
-                  Ojs.set_prop_ascii (t_to_js x138) "stderr"
-                    (WritableStream.t_to_js x139)
+              fun (x131 : t) ->
+                fun (x132 : WritableStream.t) ->
+                  Ojs.set_prop_ascii (t_to_js x131) "stderr"
+                    (WritableStream.t_to_js x132)
             let (get_ignore_errors : t -> bool) =
-              fun (x140 : t) ->
+              fun (x133 : t) ->
                 Ojs.bool_of_js
-                  (Ojs.get_prop_ascii (t_to_js x140) "ignoreErrors")
+                  (Ojs.get_prop_ascii (t_to_js x133) "ignoreErrors")
             let (set_ignore_errors : t -> bool -> unit) =
-              fun (x141 : t) ->
-                fun (x142 : bool) ->
-                  Ojs.set_prop_ascii (t_to_js x141) "ignoreErrors"
-                    (Ojs.bool_to_js x142)
+              fun (x134 : t) ->
+                fun (x135 : bool) ->
+                  Ojs.set_prop_ascii (t_to_js x134) "ignoreErrors"
+                    (Ojs.bool_to_js x135)
             let (get_color_mode : t -> [ `auto ] or_boolean) =
-              fun (x143 : t) ->
+              fun (x136 : t) ->
                 or_boolean_of_js
-                  (fun (x144 : Ojs.t) ->
-                     let x145 = x144 in
-                     match Ojs.string_of_js x145 with
+                  (fun (x137 : Ojs.t) ->
+                     let x138 = x137 in
+                     match Ojs.string_of_js x138 with
                      | "auto" -> `auto
                      | _ -> assert false)
-                  (Ojs.get_prop_ascii (t_to_js x143) "colorMode")
+                  (Ojs.get_prop_ascii (t_to_js x136) "colorMode")
             let (set_color_mode : t -> [ `auto ] or_boolean -> unit) =
-              fun (x146 : t) ->
-                fun (x147 : [ `auto ] or_boolean) ->
-                  Ojs.set_prop_ascii (t_to_js x146) "colorMode"
+              fun (x139 : t) ->
+                fun (x140 : [ `auto ] or_boolean) ->
+                  Ojs.set_prop_ascii (t_to_js x139) "colorMode"
                     (or_boolean_to_js
-                       (fun (x148 : [ `auto ]) ->
-                          match x148 with | `auto -> Ojs.string_to_js "auto")
-                       x147)
+                       (fun (x141 : [ `auto ]) ->
+                          match x141 with | `auto -> Ojs.string_to_js "auto")
+                       x140)
             let (get_inspect_options : t -> Node_util.Util.InspectOptions.t)
               =
-              fun (x149 : t) ->
+              fun (x142 : t) ->
                 Node_util.Util.InspectOptions.t_of_js
-                  (Ojs.get_prop_ascii (t_to_js x149) "inspectOptions")
+                  (Ojs.get_prop_ascii (t_to_js x142) "inspectOptions")
             let (set_inspect_options :
               t -> Node_util.Util.InspectOptions.t -> unit) =
-              fun (x150 : t) ->
-                fun (x151 : Node_util.Util.InspectOptions.t) ->
-                  Ojs.set_prop_ascii (t_to_js x150) "inspectOptions"
-                    (Node_util.Util.InspectOptions.t_to_js x151)
+              fun (x143 : t) ->
+                fun (x144 : Node_util.Util.InspectOptions.t) ->
+                  Ojs.set_prop_ascii (t_to_js x143) "inspectOptions"
+                    (Node_util.Util.InspectOptions.t_to_js x144)
           end
         module ConsoleConstructor =
           struct
             type t = Ojs.t
-            let rec t_of_js : Ojs.t -> t = fun (x153 : Ojs.t) -> x153
-            and t_to_js : t -> Ojs.t = fun (x152 : Ojs.t) -> x152
+            let rec t_of_js : Ojs.t -> t = fun (x146 : Ojs.t) -> x146
+            and t_to_js : t -> Ojs.t = fun (x145 : Ojs.t) -> x145
             let (get_prototype : t -> t) =
-              fun (x154 : t) ->
-                t_of_js (Ojs.get_prop_ascii (t_to_js x154) "prototype")
+              fun (x147 : t) ->
+                t_of_js (Ojs.get_prop_ascii (t_to_js x147) "prototype")
             let (set_prototype : t -> t -> unit) =
-              fun (x155 : t) ->
-                fun (x156 : t) ->
-                  Ojs.set_prop_ascii (t_to_js x155) "prototype"
-                    (t_to_js x156)
+              fun (x148 : t) ->
+                fun (x149 : t) ->
+                  Ojs.set_prop_ascii (t_to_js x148) "prototype"
+                    (t_to_js x149)
             let (create :
               t ->
                 stdout:WritableStream.t ->
                   ?stderr:WritableStream.t ->
                     ?ignore_errors:bool -> unit -> t)
               =
-              fun (x163 : t) ->
-                fun ~stdout:(x157 : WritableStream.t) ->
-                  fun ?stderr:(x158 : WritableStream.t option) ->
-                    fun ?ignore_errors:(x159 : bool option) ->
+              fun (x156 : t) ->
+                fun ~stdout:(x150 : WritableStream.t) ->
+                  fun ?stderr:(x151 : WritableStream.t option) ->
+                    fun ?ignore_errors:(x152 : bool option) ->
                       fun () ->
                         t_of_js
-                          (Ojs.new_obj_arr (t_to_js x163)
-                             (let x160 =
+                          (Ojs.new_obj_arr (t_to_js x156)
+                             (let x153 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x160 "push"
-                                   [|(WritableStream.t_to_js x157)|]);
-                              (match x158 with
-                               | Some x162 ->
+                                (Ojs.call x153 "push"
+                                   [|(WritableStream.t_to_js x150)|]);
+                              (match x151 with
+                               | Some x155 ->
                                    ignore
-                                     (Ojs.call x160 "push"
-                                        [|(WritableStream.t_to_js x162)|])
+                                     (Ojs.call x153 "push"
+                                        [|(WritableStream.t_to_js x155)|])
                                | None -> ());
-                              (match x159 with
-                               | Some x161 ->
+                              (match x152 with
+                               | Some x154 ->
                                    ignore
-                                     (Ojs.call x160 "push"
-                                        [|(Ojs.bool_to_js x161)|])
+                                     (Ojs.call x153 "push"
+                                        [|(Ojs.bool_to_js x154)|])
                                | None -> ());
-                              x160))
+                              x153))
             let (create' : t -> options:ConsoleConstructorOptions.t -> t) =
-              fun (x165 : t) ->
-                fun ~options:(x164 : ConsoleConstructorOptions.t) ->
+              fun (x158 : t) ->
+                fun ~options:(x157 : ConsoleConstructorOptions.t) ->
                   t_of_js
-                    (Ojs.new_obj (t_to_js x165)
-                       [|(ConsoleConstructorOptions.t_to_js x164)|])
+                    (Ojs.new_obj (t_to_js x158)
+                       [|(ConsoleConstructorOptions.t_to_js x157)|])
           end
         let (get_console : t -> ConsoleConstructor.t) =
-          fun (x166 : t) ->
+          fun (x159 : t) ->
             ConsoleConstructor.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x166) "Console")
+              (Ojs.get_prop_ascii (t_to_js x159) "Console")
         let (set_console : t -> ConsoleConstructor.t -> unit) =
-          fun (x167 : t) ->
-            fun (x168 : ConsoleConstructor.t) ->
-              Ojs.set_prop_ascii (t_to_js x167) "Console"
-                (ConsoleConstructor.t_to_js x168)
+          fun (x160 : t) ->
+            fun (x161 : ConsoleConstructor.t) ->
+              Ojs.set_prop_ascii (t_to_js x160) "Console"
+                (ConsoleConstructor.t_to_js x161)
       end
-    let (assert_ : bool -> ?message:string -> ?params:any list -> unit) =
-      fun (x169 : bool) ->
-        fun ?message:(x170 : string option) ->
-          fun ?params:(x171 : any list) ->
+    let (assert_ :
+      bool -> ?message:string -> params:any list -> unit -> unit) =
+      fun (x162 : bool) ->
+        fun ?message:(x163 : string option) ->
+          fun ~params:(x164 : any list) ->
+            fun () ->
+              ignore
+                (let x168 = Import.console in
+                 Ojs.call (Ojs.get_prop_ascii x168 "assert") "apply"
+                   [|x168;((let x165 =
+                              Ojs.new_obj
+                                (Ojs.get_prop_ascii Ojs.global "Array") 
+                                [||] in
+                            ignore
+                              (Ojs.call x165 "push" [|(Ojs.bool_to_js x162)|]);
+                            (match x163 with
+                             | Some x167 ->
+                                 ignore
+                                   (Ojs.call x165 "push"
+                                      [|(Ojs.string_to_js x167)|])
+                             | None -> ());
+                            List.iter
+                              (fun (x166 : any) ->
+                                 ignore
+                                   (Ojs.call x165 "push" [|(any_to_js x166)|]))
+                              x164;
+                            x165))|])
+    let (clear : unit) =
+      Ojs.unit_of_js (Ojs.get_prop_ascii Import.console "clear")
+    let (count : ?label:string -> unit -> unit) =
+      fun ?label:(x169 : string option) ->
+        fun () ->
+          ignore
+            (let x172 = Import.console in
+             Ojs.call (Ojs.get_prop_ascii x172 "count") "apply"
+               [|x172;((let x170 =
+                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
+                            [||] in
+                        (match x169 with
+                         | Some x171 ->
+                             ignore
+                               (Ojs.call x170 "push"
+                                  [|(Ojs.string_to_js x171)|])
+                         | None -> ());
+                        x170))|])
+    let (count_reset : ?label:string -> unit -> unit) =
+      fun ?label:(x173 : string option) ->
+        fun () ->
+          ignore
+            (let x176 = Import.console in
+             Ojs.call (Ojs.get_prop_ascii x176 "countReset") "apply"
+               [|x176;((let x174 =
+                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
+                            [||] in
+                        (match x173 with
+                         | Some x175 ->
+                             ignore
+                               (Ojs.call x174 "push"
+                                  [|(Ojs.string_to_js x175)|])
+                         | None -> ());
+                        x174))|])
+    let (debug : string -> params:any list -> unit -> unit) =
+      fun (x177 : string) ->
+        fun ~params:(x178 : any list) ->
+          fun () ->
             ignore
-              (let x176 = Import.console in
-               Ojs.call (Ojs.get_prop_ascii x176 "assert") "apply"
-                 [|x176;((let x172 =
+              (let x181 = Import.console in
+               Ojs.call (Ojs.get_prop_ascii x181 "debug") "apply"
+                 [|x181;((let x179 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x172 "push" [|(Ojs.bool_to_js x169)|]);
-                          (match x170 with
-                           | Some x175 ->
+                            (Ojs.call x179 "push" [|(Ojs.string_to_js x177)|]);
+                          List.iter
+                            (fun (x180 : any) ->
                                ignore
-                                 (Ojs.call x172 "push"
-                                    [|(Ojs.string_to_js x175)|])
-                           | None -> ());
-                          (match x171 with
-                           | Some x174 ->
-                               List.iter
-                                 (fun (x173 : any) ->
-                                    ignore
-                                      (Ojs.call x172 "push"
-                                         [|(any_to_js x173)|])) x174
-                           | None -> ());
-                          x172))|])
-    let (clear : unit) =
-      Ojs.unit_of_js (Ojs.get_prop_ascii Import.console "clear")
-    let (count : ?label:string -> unit -> unit) =
-      fun ?label:(x177 : string option) ->
-        fun () ->
-          ignore
-            (let x180 = Import.console in
-             Ojs.call (Ojs.get_prop_ascii x180 "count") "apply"
-               [|x180;((let x178 =
-                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
-                            [||] in
-                        (match x177 with
-                         | Some x179 ->
-                             ignore
-                               (Ojs.call x178 "push"
-                                  [|(Ojs.string_to_js x179)|])
-                         | None -> ());
-                        x178))|])
-    let (count_reset : ?label:string -> unit -> unit) =
-      fun ?label:(x181 : string option) ->
-        fun () ->
-          ignore
-            (let x184 = Import.console in
-             Ojs.call (Ojs.get_prop_ascii x184 "countReset") "apply"
-               [|x184;((let x182 =
-                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
-                            [||] in
-                        (match x181 with
-                         | Some x183 ->
-                             ignore
-                               (Ojs.call x182 "push"
-                                  [|(Ojs.string_to_js x183)|])
-                         | None -> ());
-                        x182))|])
-    let (debug : string -> ?params:any list -> unit) =
-      fun (x185 : string) ->
-        fun ?params:(x186 : any list) ->
-          ignore
-            (let x190 = Import.console in
-             Ojs.call (Ojs.get_prop_ascii x190 "debug") "apply"
-               [|x190;((let x187 =
-                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
-                            [||] in
-                        ignore
-                          (Ojs.call x187 "push" [|(Ojs.string_to_js x185)|]);
-                        (match x186 with
-                         | Some x189 ->
-                             List.iter
-                               (fun (x188 : any) ->
-                                  ignore
-                                    (Ojs.call x187 "push"
-                                       [|(any_to_js x188)|])) x189
-                         | None -> ());
-                        x187))|])
+                                 (Ojs.call x179 "push" [|(any_to_js x180)|]))
+                            x178;
+                          x179))|])
     let (dir :
       any -> ?options:Node_util.Util.InspectOptions.t -> unit -> unit) =
-      fun (x191 : any) ->
-        fun ?options:(x192 : Node_util.Util.InspectOptions.t option) ->
+      fun (x182 : any) ->
+        fun ?options:(x183 : Node_util.Util.InspectOptions.t option) ->
+          fun () ->
+            ignore
+              (let x186 = Import.console in
+               Ojs.call (Ojs.get_prop_ascii x186 "dir") "apply"
+                 [|x186;((let x184 =
+                            Ojs.new_obj
+                              (Ojs.get_prop_ascii Ojs.global "Array") 
+                              [||] in
+                          ignore (Ojs.call x184 "push" [|(any_to_js x182)|]);
+                          (match x183 with
+                           | Some x185 ->
+                               ignore
+                                 (Ojs.call x184 "push"
+                                    [|(Node_util.Util.InspectOptions.t_to_js
+                                         x185)|])
+                           | None -> ());
+                          x184))|])
+    let (dirxml : any list -> unit) =
+      fun (x187 : any list) ->
+        ignore
+          (let x190 = Import.console in
+           Ojs.call (Ojs.get_prop_ascii x190 "dirxml") "apply"
+             [|x190;((let x188 =
+                        Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
+                          [||] in
+                      List.iter
+                        (fun (x189 : any) ->
+                           ignore (Ojs.call x188 "push" [|(any_to_js x189)|]))
+                        x187;
+                      x188))|])
+    let (error : string -> params:any list -> unit -> unit) =
+      fun (x191 : string) ->
+        fun ~params:(x192 : any list) ->
           fun () ->
             ignore
               (let x195 = Import.console in
-               Ojs.call (Ojs.get_prop_ascii x195 "dir") "apply"
+               Ojs.call (Ojs.get_prop_ascii x195 "error") "apply"
                  [|x195;((let x193 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
-                          ignore (Ojs.call x193 "push" [|(any_to_js x191)|]);
-                          (match x192 with
-                           | Some x194 ->
+                          ignore
+                            (Ojs.call x193 "push" [|(Ojs.string_to_js x191)|]);
+                          List.iter
+                            (fun (x194 : any) ->
                                ignore
-                                 (Ojs.call x193 "push"
-                                    [|(Node_util.Util.InspectOptions.t_to_js
-                                         x194)|])
-                           | None -> ());
+                                 (Ojs.call x193 "push" [|(any_to_js x194)|]))
+                            x192;
                           x193))|])
-    let (dirxml : any list -> unit) =
+    let (group : any list -> unit) =
       fun (x196 : any list) ->
         ignore
           (let x199 = Import.console in
-           Ojs.call (Ojs.get_prop_ascii x199 "dirxml") "apply"
+           Ojs.call (Ojs.get_prop_ascii x199 "group") "apply"
              [|x199;((let x197 =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
@@ -681,253 +699,214 @@ module Console =
                            ignore (Ojs.call x197 "push" [|(any_to_js x198)|]))
                         x196;
                       x197))|])
-    let (error : string -> ?params:any list -> unit) =
-      fun (x200 : string) ->
-        fun ?params:(x201 : any list) ->
-          ignore
-            (let x205 = Import.console in
-             Ojs.call (Ojs.get_prop_ascii x205 "error") "apply"
-               [|x205;((let x202 =
-                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
-                            [||] in
-                        ignore
-                          (Ojs.call x202 "push" [|(Ojs.string_to_js x200)|]);
-                        (match x201 with
-                         | Some x204 ->
-                             List.iter
-                               (fun (x203 : any) ->
-                                  ignore
-                                    (Ojs.call x202 "push"
-                                       [|(any_to_js x203)|])) x204
-                         | None -> ());
-                        x202))|])
-    let (group : any list -> unit) =
-      fun (x206 : any list) ->
-        ignore
-          (let x209 = Import.console in
-           Ojs.call (Ojs.get_prop_ascii x209 "group") "apply"
-             [|x209;((let x207 =
-                        Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
-                          [||] in
-                      List.iter
-                        (fun (x208 : any) ->
-                           ignore (Ojs.call x207 "push" [|(any_to_js x208)|]))
-                        x206;
-                      x207))|])
     let (group_collapsed : any list -> unit) =
-      fun (x210 : any list) ->
+      fun (x200 : any list) ->
         ignore
-          (let x213 = Import.console in
-           Ojs.call (Ojs.get_prop_ascii x213 "groupCollapsed") "apply"
-             [|x213;((let x211 =
+          (let x203 = Import.console in
+           Ojs.call (Ojs.get_prop_ascii x203 "groupCollapsed") "apply"
+             [|x203;((let x201 =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
                       List.iter
-                        (fun (x212 : any) ->
-                           ignore (Ojs.call x211 "push" [|(any_to_js x212)|]))
-                        x210;
-                      x211))|])
+                        (fun (x202 : any) ->
+                           ignore (Ojs.call x201 "push" [|(any_to_js x202)|]))
+                        x200;
+                      x201))|])
     let (group_end : unit) =
       Ojs.unit_of_js (Ojs.get_prop_ascii Import.console "groupEnd")
-    let (info : string -> ?params:any list -> unit) =
-      fun (x214 : string) ->
-        fun ?params:(x215 : any list) ->
+    let (info : string -> params:any list -> unit) =
+      fun (x204 : string) ->
+        fun ~params:(x205 : any list) ->
           ignore
-            (let x219 = Import.console in
-             Ojs.call (Ojs.get_prop_ascii x219 "info") "apply"
-               [|x219;((let x216 =
+            (let x208 = Import.console in
+             Ojs.call (Ojs.get_prop_ascii x208 "info") "apply"
+               [|x208;((let x206 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
                         ignore
-                          (Ojs.call x216 "push" [|(Ojs.string_to_js x214)|]);
-                        (match x215 with
-                         | Some x218 ->
-                             List.iter
-                               (fun (x217 : any) ->
-                                  ignore
-                                    (Ojs.call x216 "push"
-                                       [|(any_to_js x217)|])) x218
-                         | None -> ());
-                        x216))|])
-    let (log : string -> ?params:any list -> unit) =
-      fun (x220 : string) ->
-        fun ?params:(x221 : any list) ->
-          ignore
-            (let x225 = Import.console in
-             Ojs.call (Ojs.get_prop_ascii x225 "log") "apply"
-               [|x225;((let x222 =
-                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
-                            [||] in
-                        ignore
-                          (Ojs.call x222 "push" [|(Ojs.string_to_js x220)|]);
-                        (match x221 with
-                         | Some x224 ->
-                             List.iter
-                               (fun (x223 : any) ->
-                                  ignore
-                                    (Ojs.call x222 "push"
-                                       [|(any_to_js x223)|])) x224
-                         | None -> ());
-                        x222))|])
-    let (table : tabular_data:any -> ?properties:string list -> unit -> unit)
-      =
-      fun ~tabular_data:(x226 : any) ->
-        fun ?properties:(x227 : string list option) ->
+                          (Ojs.call x206 "push" [|(Ojs.string_to_js x204)|]);
+                        List.iter
+                          (fun (x207 : any) ->
+                             ignore
+                               (Ojs.call x206 "push" [|(any_to_js x207)|]))
+                          x205;
+                        x206))|])
+    let (log : string -> params:any list -> unit -> unit) =
+      fun (x209 : string) ->
+        fun ~params:(x210 : any list) ->
           fun () ->
             ignore
-              (let x231 = Import.console in
-               Ojs.call (Ojs.get_prop_ascii x231 "table") "apply"
-                 [|x231;((let x228 =
+              (let x213 = Import.console in
+               Ojs.call (Ojs.get_prop_ascii x213 "log") "apply"
+                 [|x213;((let x211 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
-                          ignore (Ojs.call x228 "push" [|(any_to_js x226)|]);
-                          (match x227 with
-                           | Some x229 ->
+                          ignore
+                            (Ojs.call x211 "push" [|(Ojs.string_to_js x209)|]);
+                          List.iter
+                            (fun (x212 : any) ->
                                ignore
-                                 (Ojs.call x228 "push"
-                                    [|(Ojs.list_to_js Ojs.string_to_js x229)|])
+                                 (Ojs.call x211 "push" [|(any_to_js x212)|]))
+                            x210;
+                          x211))|])
+    let (table : tabular_data:any -> ?properties:string list -> unit -> unit)
+      =
+      fun ~tabular_data:(x214 : any) ->
+        fun ?properties:(x215 : string list option) ->
+          fun () ->
+            ignore
+              (let x219 = Import.console in
+               Ojs.call (Ojs.get_prop_ascii x219 "table") "apply"
+                 [|x219;((let x216 =
+                            Ojs.new_obj
+                              (Ojs.get_prop_ascii Ojs.global "Array") 
+                              [||] in
+                          ignore (Ojs.call x216 "push" [|(any_to_js x214)|]);
+                          (match x215 with
+                           | Some x217 ->
+                               ignore
+                                 (Ojs.call x216 "push"
+                                    [|(Ojs.list_to_js Ojs.string_to_js x217)|])
                            | None -> ());
-                          x228))|])
+                          x216))|])
     let (time : ?label:string -> unit -> unit) =
-      fun ?label:(x232 : string option) ->
+      fun ?label:(x220 : string option) ->
         fun () ->
           ignore
-            (let x235 = Import.console in
-             Ojs.call (Ojs.get_prop_ascii x235 "time") "apply"
-               [|x235;((let x233 =
+            (let x223 = Import.console in
+             Ojs.call (Ojs.get_prop_ascii x223 "time") "apply"
+               [|x223;((let x221 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
-                        (match x232 with
-                         | Some x234 ->
+                        (match x220 with
+                         | Some x222 ->
                              ignore
-                               (Ojs.call x233 "push"
-                                  [|(Ojs.string_to_js x234)|])
+                               (Ojs.call x221 "push"
+                                  [|(Ojs.string_to_js x222)|])
                          | None -> ());
-                        x233))|])
+                        x221))|])
     let (time_end : ?label:string -> unit -> unit) =
-      fun ?label:(x236 : string option) ->
+      fun ?label:(x224 : string option) ->
         fun () ->
           ignore
-            (let x239 = Import.console in
-             Ojs.call (Ojs.get_prop_ascii x239 "timeEnd") "apply"
-               [|x239;((let x237 =
+            (let x227 = Import.console in
+             Ojs.call (Ojs.get_prop_ascii x227 "timeEnd") "apply"
+               [|x227;((let x225 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
-                        (match x236 with
-                         | Some x238 ->
+                        (match x224 with
+                         | Some x226 ->
                              ignore
-                               (Ojs.call x237 "push"
-                                  [|(Ojs.string_to_js x238)|])
+                               (Ojs.call x225 "push"
+                                  [|(Ojs.string_to_js x226)|])
                          | None -> ());
-                        x237))|])
+                        x225))|])
     let (time_log : ?label:string -> data:any list -> unit) =
-      fun ?label:(x240 : string option) ->
-        fun ~data:(x241 : any list) ->
+      fun ?label:(x228 : string option) ->
+        fun ~data:(x229 : any list) ->
           ignore
-            (let x245 = Import.console in
-             Ojs.call (Ojs.get_prop_ascii x245 "timeLog") "apply"
-               [|x245;((let x242 =
+            (let x233 = Import.console in
+             Ojs.call (Ojs.get_prop_ascii x233 "timeLog") "apply"
+               [|x233;((let x230 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
-                        (match x240 with
-                         | Some x244 ->
+                        (match x228 with
+                         | Some x232 ->
                              ignore
-                               (Ojs.call x242 "push"
-                                  [|(Ojs.string_to_js x244)|])
+                               (Ojs.call x230 "push"
+                                  [|(Ojs.string_to_js x232)|])
                          | None -> ());
                         List.iter
-                          (fun (x243 : any) ->
+                          (fun (x231 : any) ->
                              ignore
-                               (Ojs.call x242 "push" [|(any_to_js x243)|]))
-                          x241;
-                        x242))|])
-    let (trace : string -> ?params:any list -> unit) =
-      fun (x246 : string) ->
-        fun ?params:(x247 : any list) ->
+                               (Ojs.call x230 "push" [|(any_to_js x231)|]))
+                          x229;
+                        x230))|])
+    let (trace : string -> params:any list -> unit -> unit) =
+      fun (x234 : string) ->
+        fun ~params:(x235 : any list) ->
+          fun () ->
+            ignore
+              (let x238 = Import.console in
+               Ojs.call (Ojs.get_prop_ascii x238 "trace") "apply"
+                 [|x238;((let x236 =
+                            Ojs.new_obj
+                              (Ojs.get_prop_ascii Ojs.global "Array") 
+                              [||] in
+                          ignore
+                            (Ojs.call x236 "push" [|(Ojs.string_to_js x234)|]);
+                          List.iter
+                            (fun (x237 : any) ->
+                               ignore
+                                 (Ojs.call x236 "push" [|(any_to_js x237)|]))
+                            x235;
+                          x236))|])
+    let (warn : string -> params:any list -> unit -> unit) =
+      fun (x239 : string) ->
+        fun ~params:(x240 : any list) ->
+          fun () ->
+            ignore
+              (let x243 = Import.console in
+               Ojs.call (Ojs.get_prop_ascii x243 "warn") "apply"
+                 [|x243;((let x241 =
+                            Ojs.new_obj
+                              (Ojs.get_prop_ascii Ojs.global "Array") 
+                              [||] in
+                          ignore
+                            (Ojs.call x241 "push" [|(Ojs.string_to_js x239)|]);
+                          List.iter
+                            (fun (x242 : any) ->
+                               ignore
+                                 (Ojs.call x241 "push" [|(any_to_js x242)|]))
+                            x240;
+                          x241))|])
+    let (profile : ?label:string -> unit -> unit) =
+      fun ?label:(x244 : string option) ->
+        fun () ->
+          ignore
+            (let x247 = Import.console in
+             Ojs.call (Ojs.get_prop_ascii x247 "profile") "apply"
+               [|x247;((let x245 =
+                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
+                            [||] in
+                        (match x244 with
+                         | Some x246 ->
+                             ignore
+                               (Ojs.call x245 "push"
+                                  [|(Ojs.string_to_js x246)|])
+                         | None -> ());
+                        x245))|])
+    let (profile_end : ?label:string -> unit -> unit) =
+      fun ?label:(x248 : string option) ->
+        fun () ->
           ignore
             (let x251 = Import.console in
-             Ojs.call (Ojs.get_prop_ascii x251 "trace") "apply"
-               [|x251;((let x248 =
+             Ojs.call (Ojs.get_prop_ascii x251 "profileEnd") "apply"
+               [|x251;((let x249 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
-                        ignore
-                          (Ojs.call x248 "push" [|(Ojs.string_to_js x246)|]);
-                        (match x247 with
+                        (match x248 with
                          | Some x250 ->
-                             List.iter
-                               (fun (x249 : any) ->
-                                  ignore
-                                    (Ojs.call x248 "push"
-                                       [|(any_to_js x249)|])) x250
-                         | None -> ());
-                        x248))|])
-    let (warn : string -> ?params:any list -> unit) =
-      fun (x252 : string) ->
-        fun ?params:(x253 : any list) ->
-          ignore
-            (let x257 = Import.console in
-             Ojs.call (Ojs.get_prop_ascii x257 "warn") "apply"
-               [|x257;((let x254 =
-                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
-                            [||] in
-                        ignore
-                          (Ojs.call x254 "push" [|(Ojs.string_to_js x252)|]);
-                        (match x253 with
-                         | Some x256 ->
-                             List.iter
-                               (fun (x255 : any) ->
-                                  ignore
-                                    (Ojs.call x254 "push"
-                                       [|(any_to_js x255)|])) x256
-                         | None -> ());
-                        x254))|])
-    let (profile : ?label:string -> unit -> unit) =
-      fun ?label:(x258 : string option) ->
-        fun () ->
-          ignore
-            (let x261 = Import.console in
-             Ojs.call (Ojs.get_prop_ascii x261 "profile") "apply"
-               [|x261;((let x259 =
-                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
-                            [||] in
-                        (match x258 with
-                         | Some x260 ->
                              ignore
-                               (Ojs.call x259 "push"
-                                  [|(Ojs.string_to_js x260)|])
+                               (Ojs.call x249 "push"
+                                  [|(Ojs.string_to_js x250)|])
                          | None -> ());
-                        x259))|])
-    let (profile_end : ?label:string -> unit -> unit) =
-      fun ?label:(x262 : string option) ->
-        fun () ->
-          ignore
-            (let x265 = Import.console in
-             Ojs.call (Ojs.get_prop_ascii x265 "profileEnd") "apply"
-               [|x265;((let x263 =
-                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
-                            [||] in
-                        (match x262 with
-                         | Some x264 ->
-                             ignore
-                               (Ojs.call x263 "push"
-                                  [|(Ojs.string_to_js x264)|])
-                         | None -> ());
-                        x263))|])
+                        x249))|])
     let (time_stamp : ?label:string -> unit -> unit) =
-      fun ?label:(x266 : string option) ->
+      fun ?label:(x252 : string option) ->
         fun () ->
           ignore
-            (let x269 = Import.console in
-             Ojs.call (Ojs.get_prop_ascii x269 "timeStamp") "apply"
-               [|x269;((let x267 =
+            (let x255 = Import.console in
+             Ojs.call (Ojs.get_prop_ascii x255 "timeStamp") "apply"
+               [|x255;((let x253 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
-                        (match x266 with
-                         | Some x268 ->
+                        (match x252 with
+                         | Some x254 ->
                              ignore
-                               (Ojs.call x267 "push"
-                                  [|(Ojs.string_to_js x268)|])
+                               (Ojs.call x253 "push"
+                                  [|(Ojs.string_to_js x254)|])
                          | None -> ());
-                        x267))|])
+                        x253))|])
   end

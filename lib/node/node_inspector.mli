@@ -56,9 +56,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_domains : t -> Schema_Domain.t list [@@js.get "domains"]
+      val get_domains : t -> Domain.t list [@@js.get "domains"]
 
-      val set_domains : t -> Schema_Domain.t list -> unit [@@js.set "domains"]
+      val set_domains : t -> Domain.t list -> unit [@@js.set "domains"]
     end
     [@@js.scope "GetDomainsReturnType"]
   end
@@ -89,57 +89,6 @@ module Inspector : sig
       val t_of_js : Ojs.t -> t
     end
 
-    module RemoteObject : sig
-      type t
-
-      val t_to_js : t -> Ojs.t
-
-      val t_of_js : Ojs.t -> t
-
-      val get_type : t -> string [@@js.get "type"]
-
-      val set_type : t -> string -> unit [@@js.set "type"]
-
-      val get_subtype : t -> string [@@js.get "subtype"]
-
-      val set_subtype : t -> string -> unit [@@js.set "subtype"]
-
-      val get_class_name : t -> string [@@js.get "className"]
-
-      val set_class_name : t -> string -> unit [@@js.set "className"]
-
-      val get_value : t -> any [@@js.get "value"]
-
-      val set_value : t -> any -> unit [@@js.set "value"]
-
-      val get_unserializable_value : t -> Runtime_UnserializableValue.t
-        [@@js.get "unserializableValue"]
-
-      val set_unserializable_value : t -> Runtime_UnserializableValue.t -> unit
-        [@@js.set "unserializableValue"]
-
-      val get_description : t -> string [@@js.get "description"]
-
-      val set_description : t -> string -> unit [@@js.set "description"]
-
-      val get_object_id : t -> Runtime_RemoteObjectId.t [@@js.get "objectId"]
-
-      val set_object_id : t -> Runtime_RemoteObjectId.t -> unit
-        [@@js.set "objectId"]
-
-      val get_preview : t -> Runtime_ObjectPreview.t [@@js.get "preview"]
-
-      val set_preview : t -> Runtime_ObjectPreview.t -> unit
-        [@@js.set "preview"]
-
-      val get_custom_preview : t -> Runtime_CustomPreview.t
-        [@@js.get "customPreview"]
-
-      val set_custom_preview : t -> Runtime_CustomPreview.t -> unit
-        [@@js.set "customPreview"]
-    end
-    [@@js.scope "RemoteObject"]
-
     module CustomPreview : sig
       type t
 
@@ -155,28 +104,72 @@ module Inspector : sig
 
       val set_has_body : t -> bool -> unit [@@js.set "hasBody"]
 
-      val get_formatter_object_id : t -> Runtime_RemoteObjectId.t
+      val get_formatter_object_id : t -> RemoteObjectId.t
         [@@js.get "formatterObjectId"]
 
-      val set_formatter_object_id : t -> Runtime_RemoteObjectId.t -> unit
+      val set_formatter_object_id : t -> RemoteObjectId.t -> unit
         [@@js.set "formatterObjectId"]
 
-      val get_bind_remote_object_function_id : t -> Runtime_RemoteObjectId.t
+      val get_bind_remote_object_function_id : t -> RemoteObjectId.t
         [@@js.get "bindRemoteObjectFunctionId"]
 
-      val set_bind_remote_object_function_id
-        :  t
-        -> Runtime_RemoteObjectId.t
-        -> unit
+      val set_bind_remote_object_function_id : t -> RemoteObjectId.t -> unit
         [@@js.set "bindRemoteObjectFunctionId"]
 
-      val get_config_object_id : t -> Runtime_RemoteObjectId.t
+      val get_config_object_id : t -> RemoteObjectId.t
         [@@js.get "configObjectId"]
 
-      val set_config_object_id : t -> Runtime_RemoteObjectId.t -> unit
+      val set_config_object_id : t -> RemoteObjectId.t -> unit
         [@@js.set "configObjectId"]
     end
     [@@js.scope "CustomPreview"]
+
+    module PropertyPreview : sig
+      type t
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_name : t -> string [@@js.get "name"]
+
+      val set_name : t -> string -> unit [@@js.set "name"]
+
+      val get_type : t -> string [@@js.get "type"]
+
+      val set_type : t -> string -> unit [@@js.set "type"]
+
+      val get_value : t -> string [@@js.get "value"]
+
+      val set_value : t -> string -> unit [@@js.set "value"]
+
+      (* val get_value_preview : t -> ObjectPreview.t [@@js.get "valuePreview"] *)
+
+      (* val set_value_preview : t -> ObjectPreview.t -> unit [@@js.set
+         "valuePreview"] *)
+
+      val get_subtype : t -> string [@@js.get "subtype"]
+
+      val set_subtype : t -> string -> unit [@@js.set "subtype"]
+    end
+    [@@js.scope "PropertyPreview"]
+
+    module EntryPreview : sig
+      type t
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      (* val get_key : t -> ObjectPreview.t [@@js.get "key"] *)
+
+      (* val set_key : t -> ObjectPreview.t -> unit [@@js.set "key"] *)
+
+      (* val get_value : t -> ObjectPreview.t [@@js.get "value"] *)
+
+      (* val set_value : t -> ObjectPreview.t -> unit [@@js.set "value"] *)
+    end
+    (* [@@js.scope "EntryPreview"] *)
 
     module ObjectPreview : sig
       type t
@@ -201,66 +194,64 @@ module Inspector : sig
 
       val set_overflow : t -> bool -> unit [@@js.set "overflow"]
 
-      val get_properties : t -> Runtime_PropertyPreview.t list
-        [@@js.get "properties"]
+      val get_properties : t -> PropertyPreview.t list [@@js.get "properties"]
 
-      val set_properties : t -> Runtime_PropertyPreview.t list -> unit
+      val set_properties : t -> PropertyPreview.t list -> unit
         [@@js.set "properties"]
 
-      val get_entries : t -> Runtime_EntryPreview.t list [@@js.get "entries"]
+      val get_entries : t -> EntryPreview.t list [@@js.get "entries"]
 
-      val set_entries : t -> Runtime_EntryPreview.t list -> unit
-        [@@js.set "entries"]
+      val set_entries : t -> EntryPreview.t list -> unit [@@js.set "entries"]
     end
     [@@js.scope "ObjectPreview"]
 
-    module PropertyPreview : sig
+    module RemoteObject : sig
       type t
 
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
-
-      val get_name : t -> string [@@js.get "name"]
-
-      val set_name : t -> string -> unit [@@js.set "name"]
 
       val get_type : t -> string [@@js.get "type"]
 
       val set_type : t -> string -> unit [@@js.set "type"]
 
-      val get_value : t -> string [@@js.get "value"]
-
-      val set_value : t -> string -> unit [@@js.set "value"]
-
-      val get_value_preview : t -> Runtime_ObjectPreview.t
-        [@@js.get "valuePreview"]
-
-      val set_value_preview : t -> Runtime_ObjectPreview.t -> unit
-        [@@js.set "valuePreview"]
-
       val get_subtype : t -> string [@@js.get "subtype"]
 
       val set_subtype : t -> string -> unit [@@js.set "subtype"]
+
+      val get_class_name : t -> string [@@js.get "className"]
+
+      val set_class_name : t -> string -> unit [@@js.set "className"]
+
+      val get_value : t -> any [@@js.get "value"]
+
+      val set_value : t -> any -> unit [@@js.set "value"]
+
+      val get_unserializable_value : t -> UnserializableValue.t
+        [@@js.get "unserializableValue"]
+
+      val set_unserializable_value : t -> UnserializableValue.t -> unit
+        [@@js.set "unserializableValue"]
+
+      val get_description : t -> string [@@js.get "description"]
+
+      val set_description : t -> string -> unit [@@js.set "description"]
+
+      val get_object_id : t -> RemoteObjectId.t [@@js.get "objectId"]
+
+      val set_object_id : t -> RemoteObjectId.t -> unit [@@js.set "objectId"]
+
+      val get_preview : t -> ObjectPreview.t [@@js.get "preview"]
+
+      val set_preview : t -> ObjectPreview.t -> unit [@@js.set "preview"]
+
+      val get_custom_preview : t -> CustomPreview.t [@@js.get "customPreview"]
+
+      val set_custom_preview : t -> CustomPreview.t -> unit
+        [@@js.set "customPreview"]
     end
-    [@@js.scope "PropertyPreview"]
-
-    module EntryPreview : sig
-      type t
-
-      val t_to_js : t -> Ojs.t
-
-      val t_of_js : Ojs.t -> t
-
-      val get_key : t -> Runtime_ObjectPreview.t [@@js.get "key"]
-
-      val set_key : t -> Runtime_ObjectPreview.t -> unit [@@js.set "key"]
-
-      val get_value : t -> Runtime_ObjectPreview.t [@@js.get "value"]
-
-      val set_value : t -> Runtime_ObjectPreview.t -> unit [@@js.set "value"]
-    end
-    [@@js.scope "EntryPreview"]
+    [@@js.scope "RemoteObject"]
 
     module PropertyDescriptor : sig
       type t
@@ -273,21 +264,21 @@ module Inspector : sig
 
       val set_name : t -> string -> unit [@@js.set "name"]
 
-      val get_value : t -> Runtime_RemoteObject.t [@@js.get "value"]
+      val get_value : t -> RemoteObject.t [@@js.get "value"]
 
-      val set_value : t -> Runtime_RemoteObject.t -> unit [@@js.set "value"]
+      val set_value : t -> RemoteObject.t -> unit [@@js.set "value"]
 
       val get_writable : t -> bool [@@js.get "writable"]
 
       val set_writable : t -> bool -> unit [@@js.set "writable"]
 
-      val get_get : t -> Runtime_RemoteObject.t [@@js.get "get"]
+      val get_get : t -> RemoteObject.t [@@js.get "get"]
 
-      val set_get : t -> Runtime_RemoteObject.t -> unit [@@js.set "get"]
+      val set_get : t -> RemoteObject.t -> unit [@@js.set "get"]
 
-      val get_set : t -> Runtime_RemoteObject.t [@@js.get "set"]
+      val get_set : t -> RemoteObject.t [@@js.get "set"]
 
-      val set_set : t -> Runtime_RemoteObject.t -> unit [@@js.set "set"]
+      val set_set : t -> RemoteObject.t -> unit [@@js.set "set"]
 
       val get_configurable : t -> bool [@@js.get "configurable"]
 
@@ -305,9 +296,9 @@ module Inspector : sig
 
       val set_is_own : t -> bool -> unit [@@js.set "isOwn"]
 
-      val get_symbol : t -> Runtime_RemoteObject.t [@@js.get "symbol"]
+      val get_symbol : t -> RemoteObject.t [@@js.get "symbol"]
 
-      val set_symbol : t -> Runtime_RemoteObject.t -> unit [@@js.set "symbol"]
+      val set_symbol : t -> RemoteObject.t -> unit [@@js.set "symbol"]
     end
     [@@js.scope "PropertyDescriptor"]
 
@@ -322,9 +313,9 @@ module Inspector : sig
 
       val set_name : t -> string -> unit [@@js.set "name"]
 
-      val get_value : t -> Runtime_RemoteObject.t [@@js.get "value"]
+      val get_value : t -> RemoteObject.t [@@js.get "value"]
 
-      val set_value : t -> Runtime_RemoteObject.t -> unit [@@js.set "value"]
+      val set_value : t -> RemoteObject.t -> unit [@@js.set "value"]
     end
     [@@js.scope "InternalPropertyDescriptor"]
 
@@ -339,16 +330,15 @@ module Inspector : sig
 
       val set_value : t -> any -> unit [@@js.set "value"]
 
-      val get_unserializable_value : t -> Runtime_UnserializableValue.t
+      val get_unserializable_value : t -> UnserializableValue.t
         [@@js.get "unserializableValue"]
 
-      val set_unserializable_value : t -> Runtime_UnserializableValue.t -> unit
+      val set_unserializable_value : t -> UnserializableValue.t -> unit
         [@@js.set "unserializableValue"]
 
-      val get_object_id : t -> Runtime_RemoteObjectId.t [@@js.get "objectId"]
+      val get_object_id : t -> RemoteObjectId.t [@@js.get "objectId"]
 
-      val set_object_id : t -> Runtime_RemoteObjectId.t -> unit
-        [@@js.set "objectId"]
+      val set_object_id : t -> RemoteObjectId.t -> unit [@@js.set "objectId"]
     end
     [@@js.scope "CallArgument"]
 
@@ -367,9 +357,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_id : t -> Runtime_ExecutionContextId.t [@@js.get "id"]
+      val get_id : t -> ExecutionContextId.t [@@js.get "id"]
 
-      val set_id : t -> Runtime_ExecutionContextId.t -> unit [@@js.set "id"]
+      val set_id : t -> ExecutionContextId.t -> unit [@@js.set "id"]
 
       val get_origin : t -> string [@@js.get "origin"]
 
@@ -384,6 +374,95 @@ module Inspector : sig
       val set_aux_data : t -> AnonymousInterface0.t -> unit [@@js.set "auxData"]
     end
     [@@js.scope "ExecutionContextDescription"]
+
+    module Timestamp : sig
+      type t = int
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module CallFrame : sig
+      type t
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_function_name : t -> string [@@js.get "functionName"]
+
+      val set_function_name : t -> string -> unit [@@js.set "functionName"]
+
+      val get_script_id : t -> ScriptId.t [@@js.get "scriptId"]
+
+      val set_script_id : t -> ScriptId.t -> unit [@@js.set "scriptId"]
+
+      val get_url : t -> string [@@js.get "url"]
+
+      val set_url : t -> string -> unit [@@js.set "url"]
+
+      val get_line_number : t -> int [@@js.get "lineNumber"]
+
+      val set_line_number : t -> int -> unit [@@js.set "lineNumber"]
+
+      val get_column_number : t -> int [@@js.get "columnNumber"]
+
+      val set_column_number : t -> int -> unit [@@js.set "columnNumber"]
+    end
+    [@@js.scope "CallFrame"]
+
+    module UniqueDebuggerId : sig
+      type t = string
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module StackTraceId : sig
+      type t
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_id : t -> string [@@js.get "id"]
+
+      val set_id : t -> string -> unit [@@js.set "id"]
+
+      val get_debugger_id : t -> UniqueDebuggerId.t [@@js.get "debuggerId"]
+
+      val set_debugger_id : t -> UniqueDebuggerId.t -> unit
+        [@@js.set "debuggerId"]
+    end
+    [@@js.scope "StackTraceId"]
+
+    module StackTrace : sig
+      type t
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_description : t -> string [@@js.get "description"]
+
+      val set_description : t -> string -> unit [@@js.set "description"]
+
+      val get_call_frames : t -> CallFrame.t list [@@js.get "callFrames"]
+
+      val set_call_frames : t -> CallFrame.t list -> unit
+        [@@js.set "callFrames"]
+
+      val get_parent : t -> t [@@js.get "parent"]
+
+      val set_parent : t -> t -> unit [@@js.set "parent"]
+
+      val get_parent_id : t -> StackTraceId.t [@@js.get "parentId"]
+
+      val set_parent_id : t -> StackTraceId.t -> unit [@@js.set "parentId"]
+    end
+    [@@js.scope "StackTrace"]
 
     module ExceptionDetails : sig
       type t
@@ -408,123 +487,29 @@ module Inspector : sig
 
       val set_column_number : t -> int -> unit [@@js.set "columnNumber"]
 
-      val get_script_id : t -> Runtime_ScriptId.t [@@js.get "scriptId"]
+      val get_script_id : t -> ScriptId.t [@@js.get "scriptId"]
 
-      val set_script_id : t -> Runtime_ScriptId.t -> unit [@@js.set "scriptId"]
+      val set_script_id : t -> ScriptId.t -> unit [@@js.set "scriptId"]
 
       val get_url : t -> string [@@js.get "url"]
 
       val set_url : t -> string -> unit [@@js.set "url"]
 
-      val get_stack_trace : t -> Runtime_StackTrace.t [@@js.get "stackTrace"]
+      val get_stack_trace : t -> StackTrace.t [@@js.get "stackTrace"]
 
-      val set_stack_trace : t -> Runtime_StackTrace.t -> unit
-        [@@js.set "stackTrace"]
+      val set_stack_trace : t -> StackTrace.t -> unit [@@js.set "stackTrace"]
 
-      val get_exception : t -> Runtime_RemoteObject.t [@@js.get "exception"]
+      val get_exception : t -> RemoteObject.t [@@js.get "exception"]
 
-      val set_exception : t -> Runtime_RemoteObject.t -> unit
-        [@@js.set "exception"]
+      val set_exception : t -> RemoteObject.t -> unit [@@js.set "exception"]
 
-      val get_execution_context_id : t -> Runtime_ExecutionContextId.t
+      val get_execution_context_id : t -> ExecutionContextId.t
         [@@js.get "executionContextId"]
 
-      val set_execution_context_id : t -> Runtime_ExecutionContextId.t -> unit
+      val set_execution_context_id : t -> ExecutionContextId.t -> unit
         [@@js.set "executionContextId"]
     end
     [@@js.scope "ExceptionDetails"]
-
-    module Timestamp : sig
-      type t = int
-
-      val t_to_js : t -> Ojs.t
-
-      val t_of_js : Ojs.t -> t
-    end
-
-    module CallFrame : sig
-      type t
-
-      val t_to_js : t -> Ojs.t
-
-      val t_of_js : Ojs.t -> t
-
-      val get_function_name : t -> string [@@js.get "functionName"]
-
-      val set_function_name : t -> string -> unit [@@js.set "functionName"]
-
-      val get_script_id : t -> Runtime_ScriptId.t [@@js.get "scriptId"]
-
-      val set_script_id : t -> Runtime_ScriptId.t -> unit [@@js.set "scriptId"]
-
-      val get_url : t -> string [@@js.get "url"]
-
-      val set_url : t -> string -> unit [@@js.set "url"]
-
-      val get_line_number : t -> int [@@js.get "lineNumber"]
-
-      val set_line_number : t -> int -> unit [@@js.set "lineNumber"]
-
-      val get_column_number : t -> int [@@js.get "columnNumber"]
-
-      val set_column_number : t -> int -> unit [@@js.set "columnNumber"]
-    end
-    [@@js.scope "CallFrame"]
-
-    module StackTrace : sig
-      type t
-
-      val t_to_js : t -> Ojs.t
-
-      val t_of_js : Ojs.t -> t
-
-      val get_description : t -> string [@@js.get "description"]
-
-      val set_description : t -> string -> unit [@@js.set "description"]
-
-      val get_call_frames : t -> Runtime_CallFrame.t list
-        [@@js.get "callFrames"]
-
-      val set_call_frames : t -> Runtime_CallFrame.t list -> unit
-        [@@js.set "callFrames"]
-
-      val get_parent : t -> t [@@js.get "parent"]
-
-      val set_parent : t -> t -> unit [@@js.set "parent"]
-
-      val get_parent_id : t -> Runtime_StackTraceId.t [@@js.get "parentId"]
-
-      val set_parent_id : t -> Runtime_StackTraceId.t -> unit
-        [@@js.set "parentId"]
-    end
-    [@@js.scope "StackTrace"]
-
-    module UniqueDebuggerId : sig
-      type t = string
-
-      val t_to_js : t -> Ojs.t
-
-      val t_of_js : Ojs.t -> t
-    end
-
-    module StackTraceId : sig
-      type t
-
-      val t_to_js : t -> Ojs.t
-
-      val t_of_js : Ojs.t -> t
-
-      val get_id : t -> string [@@js.get "id"]
-
-      val set_id : t -> string -> unit [@@js.set "id"]
-
-      val get_debugger_id : t -> Runtime_UniqueDebuggerId.t
-        [@@js.get "debuggerId"]
-
-      val set_debugger_id : t -> Runtime_UniqueDebuggerId.t -> unit
-        [@@js.set "debuggerId"]
-    end
-    [@@js.scope "StackTraceId"]
 
     module EvaluateParameterType : sig
       type t
@@ -551,10 +536,9 @@ module Inspector : sig
 
       val set_silent : t -> bool -> unit [@@js.set "silent"]
 
-      val get_context_id : t -> Runtime_ExecutionContextId.t
-        [@@js.get "contextId"]
+      val get_context_id : t -> ExecutionContextId.t [@@js.get "contextId"]
 
-      val set_context_id : t -> Runtime_ExecutionContextId.t -> unit
+      val set_context_id : t -> ExecutionContextId.t -> unit
         [@@js.set "contextId"]
 
       val get_return_by_value : t -> bool [@@js.get "returnByValue"]
@@ -582,10 +566,10 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_promise_object_id : t -> Runtime_RemoteObjectId.t
+      val get_promise_object_id : t -> RemoteObjectId.t
         [@@js.get "promiseObjectId"]
 
-      val set_promise_object_id : t -> Runtime_RemoteObjectId.t -> unit
+      val set_promise_object_id : t -> RemoteObjectId.t -> unit
         [@@js.set "promiseObjectId"]
 
       val get_return_by_value : t -> bool [@@js.get "returnByValue"]
@@ -611,15 +595,13 @@ module Inspector : sig
       val set_function_declaration : t -> string -> unit
         [@@js.set "functionDeclaration"]
 
-      val get_object_id : t -> Runtime_RemoteObjectId.t [@@js.get "objectId"]
+      val get_object_id : t -> RemoteObjectId.t [@@js.get "objectId"]
 
-      val set_object_id : t -> Runtime_RemoteObjectId.t -> unit
-        [@@js.set "objectId"]
+      val set_object_id : t -> RemoteObjectId.t -> unit [@@js.set "objectId"]
 
-      val get_arguments : t -> Runtime_CallArgument.t list
-        [@@js.get "arguments"]
+      val get_arguments : t -> CallArgument.t list [@@js.get "arguments"]
 
-      val set_arguments : t -> Runtime_CallArgument.t list -> unit
+      val set_arguments : t -> CallArgument.t list -> unit
         [@@js.set "arguments"]
 
       val get_silent : t -> bool [@@js.get "silent"]
@@ -642,10 +624,10 @@ module Inspector : sig
 
       val set_await_promise : t -> bool -> unit [@@js.set "awaitPromise"]
 
-      val get_execution_context_id : t -> Runtime_ExecutionContextId.t
+      val get_execution_context_id : t -> ExecutionContextId.t
         [@@js.get "executionContextId"]
 
-      val set_execution_context_id : t -> Runtime_ExecutionContextId.t -> unit
+      val set_execution_context_id : t -> ExecutionContextId.t -> unit
         [@@js.set "executionContextId"]
 
       val get_object_group : t -> string [@@js.get "objectGroup"]
@@ -661,10 +643,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_object_id : t -> Runtime_RemoteObjectId.t [@@js.get "objectId"]
+      val get_object_id : t -> RemoteObjectId.t [@@js.get "objectId"]
 
-      val set_object_id : t -> Runtime_RemoteObjectId.t -> unit
-        [@@js.set "objectId"]
+      val set_object_id : t -> RemoteObjectId.t -> unit [@@js.set "objectId"]
 
       val get_own_properties : t -> bool [@@js.get "ownProperties"]
 
@@ -689,10 +670,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_object_id : t -> Runtime_RemoteObjectId.t [@@js.get "objectId"]
+      val get_object_id : t -> RemoteObjectId.t [@@js.get "objectId"]
 
-      val set_object_id : t -> Runtime_RemoteObjectId.t -> unit
-        [@@js.set "objectId"]
+      val set_object_id : t -> RemoteObjectId.t -> unit [@@js.set "objectId"]
     end
     [@@js.scope "ReleaseObjectParameterType"]
 
@@ -741,10 +721,10 @@ module Inspector : sig
 
       val set_persist_script : t -> bool -> unit [@@js.set "persistScript"]
 
-      val get_execution_context_id : t -> Runtime_ExecutionContextId.t
+      val get_execution_context_id : t -> ExecutionContextId.t
         [@@js.get "executionContextId"]
 
-      val set_execution_context_id : t -> Runtime_ExecutionContextId.t -> unit
+      val set_execution_context_id : t -> ExecutionContextId.t -> unit
         [@@js.set "executionContextId"]
     end
     [@@js.scope "CompileScriptParameterType"]
@@ -756,14 +736,14 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_script_id : t -> Runtime_ScriptId.t [@@js.get "scriptId"]
+      val get_script_id : t -> ScriptId.t [@@js.get "scriptId"]
 
-      val set_script_id : t -> Runtime_ScriptId.t -> unit [@@js.set "scriptId"]
+      val set_script_id : t -> ScriptId.t -> unit [@@js.set "scriptId"]
 
-      val get_execution_context_id : t -> Runtime_ExecutionContextId.t
+      val get_execution_context_id : t -> ExecutionContextId.t
         [@@js.get "executionContextId"]
 
-      val set_execution_context_id : t -> Runtime_ExecutionContextId.t -> unit
+      val set_execution_context_id : t -> ExecutionContextId.t -> unit
         [@@js.set "executionContextId"]
 
       val get_object_group : t -> string [@@js.get "objectGroup"]
@@ -801,10 +781,10 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_prototype_object_id : t -> Runtime_RemoteObjectId.t
+      val get_prototype_object_id : t -> RemoteObjectId.t
         [@@js.get "prototypeObjectId"]
 
-      val set_prototype_object_id : t -> Runtime_RemoteObjectId.t -> unit
+      val set_prototype_object_id : t -> RemoteObjectId.t -> unit
         [@@js.set "prototypeObjectId"]
     end
     [@@js.scope "QueryObjectsParameterType"]
@@ -816,10 +796,10 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_execution_context_id : t -> Runtime_ExecutionContextId.t
+      val get_execution_context_id : t -> ExecutionContextId.t
         [@@js.get "executionContextId"]
 
-      val set_execution_context_id : t -> Runtime_ExecutionContextId.t -> unit
+      val set_execution_context_id : t -> ExecutionContextId.t -> unit
         [@@js.set "executionContextId"]
     end
     [@@js.scope "GlobalLexicalScopeNamesParameterType"]
@@ -831,14 +811,14 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_result : t -> Runtime_RemoteObject.t [@@js.get "result"]
+      val get_result : t -> RemoteObject.t [@@js.get "result"]
 
-      val set_result : t -> Runtime_RemoteObject.t -> unit [@@js.set "result"]
+      val set_result : t -> RemoteObject.t -> unit [@@js.set "result"]
 
-      val get_exception_details : t -> Runtime_ExceptionDetails.t
+      val get_exception_details : t -> ExceptionDetails.t
         [@@js.get "exceptionDetails"]
 
-      val set_exception_details : t -> Runtime_ExceptionDetails.t -> unit
+      val set_exception_details : t -> ExceptionDetails.t -> unit
         [@@js.set "exceptionDetails"]
     end
     [@@js.scope "EvaluateReturnType"]
@@ -850,14 +830,14 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_result : t -> Runtime_RemoteObject.t [@@js.get "result"]
+      val get_result : t -> RemoteObject.t [@@js.get "result"]
 
-      val set_result : t -> Runtime_RemoteObject.t -> unit [@@js.set "result"]
+      val set_result : t -> RemoteObject.t -> unit [@@js.set "result"]
 
-      val get_exception_details : t -> Runtime_ExceptionDetails.t
+      val get_exception_details : t -> ExceptionDetails.t
         [@@js.get "exceptionDetails"]
 
-      val set_exception_details : t -> Runtime_ExceptionDetails.t -> unit
+      val set_exception_details : t -> ExceptionDetails.t -> unit
         [@@js.set "exceptionDetails"]
     end
     [@@js.scope "AwaitPromiseReturnType"]
@@ -869,14 +849,14 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_result : t -> Runtime_RemoteObject.t [@@js.get "result"]
+      val get_result : t -> RemoteObject.t [@@js.get "result"]
 
-      val set_result : t -> Runtime_RemoteObject.t -> unit [@@js.set "result"]
+      val set_result : t -> RemoteObject.t -> unit [@@js.set "result"]
 
-      val get_exception_details : t -> Runtime_ExceptionDetails.t
+      val get_exception_details : t -> ExceptionDetails.t
         [@@js.get "exceptionDetails"]
 
-      val set_exception_details : t -> Runtime_ExceptionDetails.t -> unit
+      val set_exception_details : t -> ExceptionDetails.t -> unit
         [@@js.set "exceptionDetails"]
     end
     [@@js.scope "CallFunctionOnReturnType"]
@@ -888,27 +868,24 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_result : t -> Runtime_PropertyDescriptor.t list
-        [@@js.get "result"]
+      val get_result : t -> PropertyDescriptor.t list [@@js.get "result"]
 
-      val set_result : t -> Runtime_PropertyDescriptor.t list -> unit
+      val set_result : t -> PropertyDescriptor.t list -> unit
         [@@js.set "result"]
 
-      val get_internal_properties
-        :  t
-        -> Runtime_InternalPropertyDescriptor.t list
+      val get_internal_properties : t -> InternalPropertyDescriptor.t list
         [@@js.get "internalProperties"]
 
       val set_internal_properties
         :  t
-        -> Runtime_InternalPropertyDescriptor.t list
+        -> InternalPropertyDescriptor.t list
         -> unit
         [@@js.set "internalProperties"]
 
-      val get_exception_details : t -> Runtime_ExceptionDetails.t
+      val get_exception_details : t -> ExceptionDetails.t
         [@@js.get "exceptionDetails"]
 
-      val set_exception_details : t -> Runtime_ExceptionDetails.t -> unit
+      val set_exception_details : t -> ExceptionDetails.t -> unit
         [@@js.set "exceptionDetails"]
     end
     [@@js.scope "GetPropertiesReturnType"]
@@ -920,14 +897,14 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_script_id : t -> Runtime_ScriptId.t [@@js.get "scriptId"]
+      val get_script_id : t -> ScriptId.t [@@js.get "scriptId"]
 
-      val set_script_id : t -> Runtime_ScriptId.t -> unit [@@js.set "scriptId"]
+      val set_script_id : t -> ScriptId.t -> unit [@@js.set "scriptId"]
 
-      val get_exception_details : t -> Runtime_ExceptionDetails.t
+      val get_exception_details : t -> ExceptionDetails.t
         [@@js.get "exceptionDetails"]
 
-      val set_exception_details : t -> Runtime_ExceptionDetails.t -> unit
+      val set_exception_details : t -> ExceptionDetails.t -> unit
         [@@js.set "exceptionDetails"]
     end
     [@@js.scope "CompileScriptReturnType"]
@@ -939,14 +916,14 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_result : t -> Runtime_RemoteObject.t [@@js.get "result"]
+      val get_result : t -> RemoteObject.t [@@js.get "result"]
 
-      val set_result : t -> Runtime_RemoteObject.t -> unit [@@js.set "result"]
+      val set_result : t -> RemoteObject.t -> unit [@@js.set "result"]
 
-      val get_exception_details : t -> Runtime_ExceptionDetails.t
+      val get_exception_details : t -> ExceptionDetails.t
         [@@js.get "exceptionDetails"]
 
-      val set_exception_details : t -> Runtime_ExceptionDetails.t -> unit
+      val set_exception_details : t -> ExceptionDetails.t -> unit
         [@@js.set "exceptionDetails"]
     end
     [@@js.scope "RunScriptReturnType"]
@@ -958,9 +935,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_objects : t -> Runtime_RemoteObject.t [@@js.get "objects"]
+      val get_objects : t -> RemoteObject.t [@@js.get "objects"]
 
-      val set_objects : t -> Runtime_RemoteObject.t -> unit [@@js.set "objects"]
+      val set_objects : t -> RemoteObject.t -> unit [@@js.set "objects"]
     end
     [@@js.scope "QueryObjectsReturnType"]
 
@@ -984,10 +961,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_context : t -> Runtime_ExecutionContextDescription.t
-        [@@js.get "context"]
+      val get_context : t -> ExecutionContextDescription.t [@@js.get "context"]
 
-      val set_context : t -> Runtime_ExecutionContextDescription.t -> unit
+      val set_context : t -> ExecutionContextDescription.t -> unit
         [@@js.set "context"]
     end
     [@@js.scope "ExecutionContextCreatedEventDataType"]
@@ -999,10 +975,10 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_execution_context_id : t -> Runtime_ExecutionContextId.t
+      val get_execution_context_id : t -> ExecutionContextId.t
         [@@js.get "executionContextId"]
 
-      val set_execution_context_id : t -> Runtime_ExecutionContextId.t -> unit
+      val set_execution_context_id : t -> ExecutionContextId.t -> unit
         [@@js.set "executionContextId"]
     end
     [@@js.scope "ExecutionContextDestroyedEventDataType"]
@@ -1014,15 +990,14 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_timestamp : t -> Runtime_Timestamp.t [@@js.get "timestamp"]
+      val get_timestamp : t -> Timestamp.t [@@js.get "timestamp"]
 
-      val set_timestamp : t -> Runtime_Timestamp.t -> unit
-        [@@js.set "timestamp"]
+      val set_timestamp : t -> Timestamp.t -> unit [@@js.set "timestamp"]
 
-      val get_exception_details : t -> Runtime_ExceptionDetails.t
+      val get_exception_details : t -> ExceptionDetails.t
         [@@js.get "exceptionDetails"]
 
-      val set_exception_details : t -> Runtime_ExceptionDetails.t -> unit
+      val set_exception_details : t -> ExceptionDetails.t -> unit
         [@@js.set "exceptionDetails"]
     end
     [@@js.scope "ExceptionThrownEventDataType"]
@@ -1055,25 +1030,23 @@ module Inspector : sig
 
       val set_type : t -> string -> unit [@@js.set "type"]
 
-      val get_args : t -> Runtime_RemoteObject.t list [@@js.get "args"]
+      val get_args : t -> RemoteObject.t list [@@js.get "args"]
 
-      val set_args : t -> Runtime_RemoteObject.t list -> unit [@@js.set "args"]
+      val set_args : t -> RemoteObject.t list -> unit [@@js.set "args"]
 
-      val get_execution_context_id : t -> Runtime_ExecutionContextId.t
+      val get_execution_context_id : t -> ExecutionContextId.t
         [@@js.get "executionContextId"]
 
-      val set_execution_context_id : t -> Runtime_ExecutionContextId.t -> unit
+      val set_execution_context_id : t -> ExecutionContextId.t -> unit
         [@@js.set "executionContextId"]
 
-      val get_timestamp : t -> Runtime_Timestamp.t [@@js.get "timestamp"]
+      val get_timestamp : t -> Timestamp.t [@@js.get "timestamp"]
 
-      val set_timestamp : t -> Runtime_Timestamp.t -> unit
-        [@@js.set "timestamp"]
+      val set_timestamp : t -> Timestamp.t -> unit [@@js.set "timestamp"]
 
-      val get_stack_trace : t -> Runtime_StackTrace.t [@@js.get "stackTrace"]
+      val get_stack_trace : t -> StackTrace.t [@@js.get "stackTrace"]
 
-      val set_stack_trace : t -> Runtime_StackTrace.t -> unit
-        [@@js.set "stackTrace"]
+      val set_stack_trace : t -> StackTrace.t -> unit [@@js.set "stackTrace"]
 
       val get_context : t -> string [@@js.get "context"]
 
@@ -1088,9 +1061,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_object : t -> Runtime_RemoteObject.t [@@js.get "object"]
+      val get_object : t -> RemoteObject.t [@@js.get "object"]
 
-      val set_object : t -> Runtime_RemoteObject.t -> unit [@@js.set "object"]
+      val set_object : t -> RemoteObject.t -> unit [@@js.set "object"]
 
       val get_hints : t -> AnonymousInterface0.t [@@js.get "hints"]
 
@@ -1124,9 +1097,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_script_id : t -> Runtime_ScriptId.t [@@js.get "scriptId"]
+      val get_script_id : t -> Runtime.ScriptId.t [@@js.get "scriptId"]
 
-      val set_script_id : t -> Runtime_ScriptId.t -> unit [@@js.set "scriptId"]
+      val set_script_id : t -> Runtime.ScriptId.t -> unit [@@js.set "scriptId"]
 
       val get_line_number : t -> int [@@js.get "lineNumber"]
 
@@ -1155,54 +1128,6 @@ module Inspector : sig
     end
     [@@js.scope "ScriptPosition"]
 
-    module CallFrame : sig
-      type t
-
-      val t_to_js : t -> Ojs.t
-
-      val t_of_js : Ojs.t -> t
-
-      val get_call_frame_id : t -> Debugger_CallFrameId.t
-        [@@js.get "callFrameId"]
-
-      val set_call_frame_id : t -> Debugger_CallFrameId.t -> unit
-        [@@js.set "callFrameId"]
-
-      val get_function_name : t -> string [@@js.get "functionName"]
-
-      val set_function_name : t -> string -> unit [@@js.set "functionName"]
-
-      val get_function_location : t -> Debugger_Location.t
-        [@@js.get "functionLocation"]
-
-      val set_function_location : t -> Debugger_Location.t -> unit
-        [@@js.set "functionLocation"]
-
-      val get_location : t -> Debugger_Location.t [@@js.get "location"]
-
-      val set_location : t -> Debugger_Location.t -> unit [@@js.set "location"]
-
-      val get_url : t -> string [@@js.get "url"]
-
-      val set_url : t -> string -> unit [@@js.set "url"]
-
-      val get_scope_chain : t -> Debugger_Scope.t list [@@js.get "scopeChain"]
-
-      val set_scope_chain : t -> Debugger_Scope.t list -> unit
-        [@@js.set "scopeChain"]
-
-      val get_this : t -> Runtime_RemoteObject.t [@@js.get "this"]
-
-      val set_this : t -> Runtime_RemoteObject.t -> unit [@@js.set "this"]
-
-      val get_return_value : t -> Runtime_RemoteObject.t
-        [@@js.get "returnValue"]
-
-      val set_return_value : t -> Runtime_RemoteObject.t -> unit
-        [@@js.set "returnValue"]
-    end
-    [@@js.scope "CallFrame"]
-
     module Scope : sig
       type t
 
@@ -1214,26 +1139,69 @@ module Inspector : sig
 
       val set_type : t -> string -> unit [@@js.set "type"]
 
-      val get_object : t -> Runtime_RemoteObject.t [@@js.get "object"]
+      val get_object : t -> Runtime.RemoteObject.t [@@js.get "object"]
 
-      val set_object : t -> Runtime_RemoteObject.t -> unit [@@js.set "object"]
+      val set_object : t -> Runtime.RemoteObject.t -> unit [@@js.set "object"]
 
       val get_name : t -> string [@@js.get "name"]
 
       val set_name : t -> string -> unit [@@js.set "name"]
 
-      val get_start_location : t -> Debugger_Location.t
-        [@@js.get "startLocation"]
+      val get_start_location : t -> Location.t [@@js.get "startLocation"]
 
-      val set_start_location : t -> Debugger_Location.t -> unit
+      val set_start_location : t -> Location.t -> unit
         [@@js.set "startLocation"]
 
-      val get_end_location : t -> Debugger_Location.t [@@js.get "endLocation"]
+      val get_end_location : t -> Location.t [@@js.get "endLocation"]
 
-      val set_end_location : t -> Debugger_Location.t -> unit
-        [@@js.set "endLocation"]
+      val set_end_location : t -> Location.t -> unit [@@js.set "endLocation"]
     end
     [@@js.scope "Scope"]
+
+    module CallFrame : sig
+      type t
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_call_frame_id : t -> CallFrameId.t [@@js.get "callFrameId"]
+
+      val set_call_frame_id : t -> CallFrameId.t -> unit
+        [@@js.set "callFrameId"]
+
+      val get_function_name : t -> string [@@js.get "functionName"]
+
+      val set_function_name : t -> string -> unit [@@js.set "functionName"]
+
+      val get_function_location : t -> Location.t [@@js.get "functionLocation"]
+
+      val set_function_location : t -> Location.t -> unit
+        [@@js.set "functionLocation"]
+
+      val get_location : t -> Location.t [@@js.get "location"]
+
+      val set_location : t -> Location.t -> unit [@@js.set "location"]
+
+      val get_url : t -> string [@@js.get "url"]
+
+      val set_url : t -> string -> unit [@@js.set "url"]
+
+      val get_scope_chain : t -> Scope.t list [@@js.get "scopeChain"]
+
+      val set_scope_chain : t -> Scope.t list -> unit [@@js.set "scopeChain"]
+
+      val get_this : t -> Runtime.RemoteObject.t [@@js.get "this"]
+
+      val set_this : t -> Runtime.RemoteObject.t -> unit [@@js.set "this"]
+
+      val get_return_value : t -> Runtime.RemoteObject.t
+        [@@js.get "returnValue"]
+
+      val set_return_value : t -> Runtime.RemoteObject.t -> unit
+        [@@js.set "returnValue"]
+    end
+    [@@js.scope "CallFrame"]
 
     module SearchMatch : sig
       type t
@@ -1259,9 +1227,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_script_id : t -> Runtime_ScriptId.t [@@js.get "scriptId"]
+      val get_script_id : t -> Runtime.ScriptId.t [@@js.get "scriptId"]
 
-      val set_script_id : t -> Runtime_ScriptId.t -> unit [@@js.set "scriptId"]
+      val set_script_id : t -> Runtime.ScriptId.t -> unit [@@js.set "scriptId"]
 
       val get_line_number : t -> int [@@js.get "lineNumber"]
 
@@ -1343,9 +1311,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_location : t -> Debugger_Location.t [@@js.get "location"]
+      val get_location : t -> Location.t [@@js.get "location"]
 
-      val set_location : t -> Debugger_Location.t -> unit [@@js.set "location"]
+      val set_location : t -> Location.t -> unit [@@js.set "location"]
 
       val get_condition : t -> string [@@js.get "condition"]
 
@@ -1360,10 +1328,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_breakpoint_id : t -> Debugger_BreakpointId.t
-        [@@js.get "breakpointId"]
+      val get_breakpoint_id : t -> BreakpointId.t [@@js.get "breakpointId"]
 
-      val set_breakpoint_id : t -> Debugger_BreakpointId.t -> unit
+      val set_breakpoint_id : t -> BreakpointId.t -> unit
         [@@js.set "breakpointId"]
     end
     [@@js.scope "RemoveBreakpointParameterType"]
@@ -1375,13 +1342,13 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_start : t -> Debugger_Location.t [@@js.get "start"]
+      val get_start : t -> Location.t [@@js.get "start"]
 
-      val set_start : t -> Debugger_Location.t -> unit [@@js.set "start"]
+      val set_start : t -> Location.t -> unit [@@js.set "start"]
 
-      val get_end : t -> Debugger_Location.t [@@js.get "end"]
+      val get_end : t -> Location.t [@@js.get "end"]
 
-      val set_end : t -> Debugger_Location.t -> unit [@@js.set "end"]
+      val set_end : t -> Location.t -> unit [@@js.set "end"]
 
       val get_restrict_to_function : t -> bool [@@js.get "restrictToFunction"]
 
@@ -1397,9 +1364,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_location : t -> Debugger_Location.t [@@js.get "location"]
+      val get_location : t -> Location.t [@@js.get "location"]
 
-      val set_location : t -> Debugger_Location.t -> unit [@@js.set "location"]
+      val set_location : t -> Location.t -> unit [@@js.set "location"]
 
       val get_target_call_frames : t -> string [@@js.get "targetCallFrames"]
 
@@ -1415,10 +1382,10 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_parent_stack_trace_id : t -> Runtime_StackTraceId.t
+      val get_parent_stack_trace_id : t -> Runtime.StackTraceId.t
         [@@js.get "parentStackTraceId"]
 
-      val set_parent_stack_trace_id : t -> Runtime_StackTraceId.t -> unit
+      val set_parent_stack_trace_id : t -> Runtime.StackTraceId.t -> unit
         [@@js.set "parentStackTraceId"]
     end
     [@@js.scope "PauseOnAsyncCallParameterType"]
@@ -1444,10 +1411,10 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_stack_trace_id : t -> Runtime_StackTraceId.t
+      val get_stack_trace_id : t -> Runtime.StackTraceId.t
         [@@js.get "stackTraceId"]
 
-      val set_stack_trace_id : t -> Runtime_StackTraceId.t -> unit
+      val set_stack_trace_id : t -> Runtime.StackTraceId.t -> unit
         [@@js.set "stackTraceId"]
     end
     [@@js.scope "GetStackTraceParameterType"]
@@ -1459,9 +1426,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_script_id : t -> Runtime_ScriptId.t [@@js.get "scriptId"]
+      val get_script_id : t -> Runtime.ScriptId.t [@@js.get "scriptId"]
 
-      val set_script_id : t -> Runtime_ScriptId.t -> unit [@@js.set "scriptId"]
+      val set_script_id : t -> Runtime.ScriptId.t -> unit [@@js.set "scriptId"]
 
       val get_query : t -> string [@@js.get "query"]
 
@@ -1484,9 +1451,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_script_id : t -> Runtime_ScriptId.t [@@js.get "scriptId"]
+      val get_script_id : t -> Runtime.ScriptId.t [@@js.get "scriptId"]
 
-      val set_script_id : t -> Runtime_ScriptId.t -> unit [@@js.set "scriptId"]
+      val set_script_id : t -> Runtime.ScriptId.t -> unit [@@js.set "scriptId"]
 
       val get_script_source : t -> string [@@js.get "scriptSource"]
 
@@ -1505,10 +1472,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_call_frame_id : t -> Debugger_CallFrameId.t
-        [@@js.get "callFrameId"]
+      val get_call_frame_id : t -> CallFrameId.t [@@js.get "callFrameId"]
 
-      val set_call_frame_id : t -> Debugger_CallFrameId.t -> unit
+      val set_call_frame_id : t -> CallFrameId.t -> unit
         [@@js.set "callFrameId"]
     end
     [@@js.scope "RestartFrameParameterType"]
@@ -1520,9 +1486,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_script_id : t -> Runtime_ScriptId.t [@@js.get "scriptId"]
+      val get_script_id : t -> Runtime.ScriptId.t [@@js.get "scriptId"]
 
-      val set_script_id : t -> Runtime_ScriptId.t -> unit [@@js.set "scriptId"]
+      val set_script_id : t -> Runtime.ScriptId.t -> unit [@@js.set "scriptId"]
     end
     [@@js.scope "GetScriptSourceParameterType"]
 
@@ -1546,10 +1512,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_call_frame_id : t -> Debugger_CallFrameId.t
-        [@@js.get "callFrameId"]
+      val get_call_frame_id : t -> CallFrameId.t [@@js.get "callFrameId"]
 
-      val set_call_frame_id : t -> Debugger_CallFrameId.t -> unit
+      val set_call_frame_id : t -> CallFrameId.t -> unit
         [@@js.set "callFrameId"]
 
       val get_expression : t -> string [@@js.get "expression"]
@@ -1600,15 +1565,14 @@ module Inspector : sig
 
       val set_variable_name : t -> string -> unit [@@js.set "variableName"]
 
-      val get_new_value : t -> Runtime_CallArgument.t [@@js.get "newValue"]
+      val get_new_value : t -> Runtime.CallArgument.t [@@js.get "newValue"]
 
-      val set_new_value : t -> Runtime_CallArgument.t -> unit
+      val set_new_value : t -> Runtime.CallArgument.t -> unit
         [@@js.set "newValue"]
 
-      val get_call_frame_id : t -> Debugger_CallFrameId.t
-        [@@js.get "callFrameId"]
+      val get_call_frame_id : t -> CallFrameId.t [@@js.get "callFrameId"]
 
-      val set_call_frame_id : t -> Debugger_CallFrameId.t -> unit
+      val set_call_frame_id : t -> CallFrameId.t -> unit
         [@@js.set "callFrameId"]
     end
     [@@js.scope "SetVariableValueParameterType"]
@@ -1620,9 +1584,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_new_value : t -> Runtime_CallArgument.t [@@js.get "newValue"]
+      val get_new_value : t -> Runtime.CallArgument.t [@@js.get "newValue"]
 
-      val set_new_value : t -> Runtime_CallArgument.t -> unit
+      val set_new_value : t -> Runtime.CallArgument.t -> unit
         [@@js.set "newValue"]
     end
     [@@js.scope "SetReturnValueParameterType"]
@@ -1660,14 +1624,13 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_script_id : t -> Runtime_ScriptId.t [@@js.get "scriptId"]
+      val get_script_id : t -> Runtime.ScriptId.t [@@js.get "scriptId"]
 
-      val set_script_id : t -> Runtime_ScriptId.t -> unit [@@js.set "scriptId"]
+      val set_script_id : t -> Runtime.ScriptId.t -> unit [@@js.set "scriptId"]
 
-      val get_positions : t -> Debugger_ScriptPosition.t list
-        [@@js.get "positions"]
+      val get_positions : t -> ScriptPosition.t list [@@js.get "positions"]
 
-      val set_positions : t -> Debugger_ScriptPosition.t list -> unit
+      val set_positions : t -> ScriptPosition.t list -> unit
         [@@js.set "positions"]
     end
     [@@js.scope "SetBlackboxedRangesParameterType"]
@@ -1679,10 +1642,10 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_debugger_id : t -> Runtime_UniqueDebuggerId.t
+      val get_debugger_id : t -> Runtime.UniqueDebuggerId.t
         [@@js.get "debuggerId"]
 
-      val set_debugger_id : t -> Runtime_UniqueDebuggerId.t -> unit
+      val set_debugger_id : t -> Runtime.UniqueDebuggerId.t -> unit
         [@@js.set "debuggerId"]
     end
     [@@js.scope "EnableReturnType"]
@@ -1694,16 +1657,14 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_breakpoint_id : t -> Debugger_BreakpointId.t
-        [@@js.get "breakpointId"]
+      val get_breakpoint_id : t -> BreakpointId.t [@@js.get "breakpointId"]
 
-      val set_breakpoint_id : t -> Debugger_BreakpointId.t -> unit
+      val set_breakpoint_id : t -> BreakpointId.t -> unit
         [@@js.set "breakpointId"]
 
-      val get_locations : t -> Debugger_Location.t list [@@js.get "locations"]
+      val get_locations : t -> Location.t list [@@js.get "locations"]
 
-      val set_locations : t -> Debugger_Location.t list -> unit
-        [@@js.set "locations"]
+      val set_locations : t -> Location.t list -> unit [@@js.set "locations"]
     end
     [@@js.scope "SetBreakpointByUrlReturnType"]
 
@@ -1714,16 +1675,14 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_breakpoint_id : t -> Debugger_BreakpointId.t
-        [@@js.get "breakpointId"]
+      val get_breakpoint_id : t -> BreakpointId.t [@@js.get "breakpointId"]
 
-      val set_breakpoint_id : t -> Debugger_BreakpointId.t -> unit
+      val set_breakpoint_id : t -> BreakpointId.t -> unit
         [@@js.set "breakpointId"]
 
-      val get_actual_location : t -> Debugger_Location.t
-        [@@js.get "actualLocation"]
+      val get_actual_location : t -> Location.t [@@js.get "actualLocation"]
 
-      val set_actual_location : t -> Debugger_Location.t -> unit
+      val set_actual_location : t -> Location.t -> unit
         [@@js.set "actualLocation"]
     end
     [@@js.scope "SetBreakpointReturnType"]
@@ -1735,10 +1694,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_locations : t -> Debugger_BreakLocation.t list
-        [@@js.get "locations"]
+      val get_locations : t -> BreakLocation.t list [@@js.get "locations"]
 
-      val set_locations : t -> Debugger_BreakLocation.t list -> unit
+      val set_locations : t -> BreakLocation.t list -> unit
         [@@js.set "locations"]
     end
     [@@js.scope "GetPossibleBreakpointsReturnType"]
@@ -1750,9 +1708,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_stack_trace : t -> Runtime_StackTrace.t [@@js.get "stackTrace"]
+      val get_stack_trace : t -> Runtime.StackTrace.t [@@js.get "stackTrace"]
 
-      val set_stack_trace : t -> Runtime_StackTrace.t -> unit
+      val set_stack_trace : t -> Runtime.StackTrace.t -> unit
         [@@js.set "stackTrace"]
     end
     [@@js.scope "GetStackTraceReturnType"]
@@ -1764,10 +1722,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_result : t -> Debugger_SearchMatch.t list [@@js.get "result"]
+      val get_result : t -> SearchMatch.t list [@@js.get "result"]
 
-      val set_result : t -> Debugger_SearchMatch.t list -> unit
-        [@@js.set "result"]
+      val set_result : t -> SearchMatch.t list -> unit [@@js.set "result"]
     end
     [@@js.scope "SearchInContentReturnType"]
 
@@ -1778,32 +1735,31 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_call_frames : t -> Debugger_CallFrame.t list
-        [@@js.get "callFrames"]
+      val get_call_frames : t -> CallFrame.t list [@@js.get "callFrames"]
 
-      val set_call_frames : t -> Debugger_CallFrame.t list -> unit
+      val set_call_frames : t -> CallFrame.t list -> unit
         [@@js.set "callFrames"]
 
       val get_stack_changed : t -> bool [@@js.get "stackChanged"]
 
       val set_stack_changed : t -> bool -> unit [@@js.set "stackChanged"]
 
-      val get_async_stack_trace : t -> Runtime_StackTrace.t
+      val get_async_stack_trace : t -> Runtime.StackTrace.t
         [@@js.get "asyncStackTrace"]
 
-      val set_async_stack_trace : t -> Runtime_StackTrace.t -> unit
+      val set_async_stack_trace : t -> Runtime.StackTrace.t -> unit
         [@@js.set "asyncStackTrace"]
 
-      val get_async_stack_trace_id : t -> Runtime_StackTraceId.t
+      val get_async_stack_trace_id : t -> Runtime.StackTraceId.t
         [@@js.get "asyncStackTraceId"]
 
-      val set_async_stack_trace_id : t -> Runtime_StackTraceId.t -> unit
+      val set_async_stack_trace_id : t -> Runtime.StackTraceId.t -> unit
         [@@js.set "asyncStackTraceId"]
 
-      val get_exception_details : t -> Runtime_ExceptionDetails.t
+      val get_exception_details : t -> Runtime.ExceptionDetails.t
         [@@js.get "exceptionDetails"]
 
-      val set_exception_details : t -> Runtime_ExceptionDetails.t -> unit
+      val set_exception_details : t -> Runtime.ExceptionDetails.t -> unit
         [@@js.set "exceptionDetails"]
     end
     [@@js.scope "SetScriptSourceReturnType"]
@@ -1815,22 +1771,21 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_call_frames : t -> Debugger_CallFrame.t list
-        [@@js.get "callFrames"]
+      val get_call_frames : t -> CallFrame.t list [@@js.get "callFrames"]
 
-      val set_call_frames : t -> Debugger_CallFrame.t list -> unit
+      val set_call_frames : t -> CallFrame.t list -> unit
         [@@js.set "callFrames"]
 
-      val get_async_stack_trace : t -> Runtime_StackTrace.t
+      val get_async_stack_trace : t -> Runtime.StackTrace.t
         [@@js.get "asyncStackTrace"]
 
-      val set_async_stack_trace : t -> Runtime_StackTrace.t -> unit
+      val set_async_stack_trace : t -> Runtime.StackTrace.t -> unit
         [@@js.set "asyncStackTrace"]
 
-      val get_async_stack_trace_id : t -> Runtime_StackTraceId.t
+      val get_async_stack_trace_id : t -> Runtime.StackTraceId.t
         [@@js.get "asyncStackTraceId"]
 
-      val set_async_stack_trace_id : t -> Runtime_StackTraceId.t -> unit
+      val set_async_stack_trace_id : t -> Runtime.StackTraceId.t -> unit
         [@@js.set "asyncStackTraceId"]
     end
     [@@js.scope "RestartFrameReturnType"]
@@ -1855,14 +1810,14 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_result : t -> Runtime_RemoteObject.t [@@js.get "result"]
+      val get_result : t -> Runtime.RemoteObject.t [@@js.get "result"]
 
-      val set_result : t -> Runtime_RemoteObject.t -> unit [@@js.set "result"]
+      val set_result : t -> Runtime.RemoteObject.t -> unit [@@js.set "result"]
 
-      val get_exception_details : t -> Runtime_ExceptionDetails.t
+      val get_exception_details : t -> Runtime.ExceptionDetails.t
         [@@js.get "exceptionDetails"]
 
-      val set_exception_details : t -> Runtime_ExceptionDetails.t -> unit
+      val set_exception_details : t -> Runtime.ExceptionDetails.t -> unit
         [@@js.set "exceptionDetails"]
     end
     [@@js.scope "EvaluateOnCallFrameReturnType"]
@@ -1874,9 +1829,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_script_id : t -> Runtime_ScriptId.t [@@js.get "scriptId"]
+      val get_script_id : t -> Runtime.ScriptId.t [@@js.get "scriptId"]
 
-      val set_script_id : t -> Runtime_ScriptId.t -> unit [@@js.set "scriptId"]
+      val set_script_id : t -> Runtime.ScriptId.t -> unit [@@js.set "scriptId"]
 
       val get_url : t -> string [@@js.get "url"]
 
@@ -1898,10 +1853,10 @@ module Inspector : sig
 
       val set_end_column : t -> int -> unit [@@js.set "endColumn"]
 
-      val get_execution_context_id : t -> Runtime_ExecutionContextId.t
+      val get_execution_context_id : t -> Runtime.ExecutionContextId.t
         [@@js.get "executionContextId"]
 
-      val set_execution_context_id : t -> Runtime_ExecutionContextId.t -> unit
+      val set_execution_context_id : t -> Runtime.ExecutionContextId.t -> unit
         [@@js.set "executionContextId"]
 
       val get_hash : t -> string [@@js.get "hash"]
@@ -1934,9 +1889,9 @@ module Inspector : sig
 
       val set_length : t -> int -> unit [@@js.set "length"]
 
-      val get_stack_trace : t -> Runtime_StackTrace.t [@@js.get "stackTrace"]
+      val get_stack_trace : t -> Runtime.StackTrace.t [@@js.get "stackTrace"]
 
-      val set_stack_trace : t -> Runtime_StackTrace.t -> unit
+      val set_stack_trace : t -> Runtime.StackTrace.t -> unit
         [@@js.set "stackTrace"]
     end
     [@@js.scope "ScriptParsedEventDataType"]
@@ -1948,9 +1903,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_script_id : t -> Runtime_ScriptId.t [@@js.get "scriptId"]
+      val get_script_id : t -> Runtime.ScriptId.t [@@js.get "scriptId"]
 
-      val set_script_id : t -> Runtime_ScriptId.t -> unit [@@js.set "scriptId"]
+      val set_script_id : t -> Runtime.ScriptId.t -> unit [@@js.set "scriptId"]
 
       val get_url : t -> string [@@js.get "url"]
 
@@ -1972,10 +1927,10 @@ module Inspector : sig
 
       val set_end_column : t -> int -> unit [@@js.set "endColumn"]
 
-      val get_execution_context_id : t -> Runtime_ExecutionContextId.t
+      val get_execution_context_id : t -> Runtime.ExecutionContextId.t
         [@@js.get "executionContextId"]
 
-      val set_execution_context_id : t -> Runtime_ExecutionContextId.t -> unit
+      val set_execution_context_id : t -> Runtime.ExecutionContextId.t -> unit
         [@@js.set "executionContextId"]
 
       val get_hash : t -> string [@@js.get "hash"]
@@ -2004,9 +1959,9 @@ module Inspector : sig
 
       val set_length : t -> int -> unit [@@js.set "length"]
 
-      val get_stack_trace : t -> Runtime_StackTrace.t [@@js.get "stackTrace"]
+      val get_stack_trace : t -> Runtime.StackTrace.t [@@js.get "stackTrace"]
 
-      val set_stack_trace : t -> Runtime_StackTrace.t -> unit
+      val set_stack_trace : t -> Runtime.StackTrace.t -> unit
         [@@js.set "stackTrace"]
     end
     [@@js.scope "ScriptFailedToParseEventDataType"]
@@ -2018,15 +1973,14 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_breakpoint_id : t -> Debugger_BreakpointId.t
-        [@@js.get "breakpointId"]
+      val get_breakpoint_id : t -> BreakpointId.t [@@js.get "breakpointId"]
 
-      val set_breakpoint_id : t -> Debugger_BreakpointId.t -> unit
+      val set_breakpoint_id : t -> BreakpointId.t -> unit
         [@@js.set "breakpointId"]
 
-      val get_location : t -> Debugger_Location.t [@@js.get "location"]
+      val get_location : t -> Location.t [@@js.get "location"]
 
-      val set_location : t -> Debugger_Location.t -> unit [@@js.set "location"]
+      val set_location : t -> Location.t -> unit [@@js.set "location"]
     end
     [@@js.scope "BreakpointResolvedEventDataType"]
 
@@ -2037,10 +1991,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_call_frames : t -> Debugger_CallFrame.t list
-        [@@js.get "callFrames"]
+      val get_call_frames : t -> CallFrame.t list [@@js.get "callFrames"]
 
-      val set_call_frames : t -> Debugger_CallFrame.t list -> unit
+      val set_call_frames : t -> CallFrame.t list -> unit
         [@@js.set "callFrames"]
 
       val get_reason : t -> string [@@js.get "reason"]
@@ -2056,22 +2009,22 @@ module Inspector : sig
       val set_hit_breakpoints : t -> string list -> unit
         [@@js.set "hitBreakpoints"]
 
-      val get_async_stack_trace : t -> Runtime_StackTrace.t
+      val get_async_stack_trace : t -> Runtime.StackTrace.t
         [@@js.get "asyncStackTrace"]
 
-      val set_async_stack_trace : t -> Runtime_StackTrace.t -> unit
+      val set_async_stack_trace : t -> Runtime.StackTrace.t -> unit
         [@@js.set "asyncStackTrace"]
 
-      val get_async_stack_trace_id : t -> Runtime_StackTraceId.t
+      val get_async_stack_trace_id : t -> Runtime.StackTraceId.t
         [@@js.get "asyncStackTraceId"]
 
-      val set_async_stack_trace_id : t -> Runtime_StackTraceId.t -> unit
+      val set_async_stack_trace_id : t -> Runtime.StackTraceId.t -> unit
         [@@js.set "asyncStackTraceId"]
 
-      val get_async_call_stack_trace_id : t -> Runtime_StackTraceId.t
+      val get_async_call_stack_trace_id : t -> Runtime.StackTraceId.t
         [@@js.get "asyncCallStackTraceId"]
 
-      val set_async_call_stack_trace_id : t -> Runtime_StackTraceId.t -> unit
+      val set_async_call_stack_trace_id : t -> Runtime.StackTraceId.t -> unit
         [@@js.set "asyncCallStackTraceId"]
     end
     [@@js.scope "PausedEventDataType"]
@@ -2119,16 +2072,32 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_message : t -> Console_ConsoleMessage.t [@@js.get "message"]
+      val get_message : t -> ConsoleMessage.t [@@js.get "message"]
 
-      val set_message : t -> Console_ConsoleMessage.t -> unit
-        [@@js.set "message"]
+      val set_message : t -> ConsoleMessage.t -> unit [@@js.set "message"]
     end
     [@@js.scope "MessageAddedEventDataType"]
   end
   [@@js.scope "Console"]
 
   module Profiler : sig
+    module PositionTickInfo : sig
+      type t
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_line : t -> int [@@js.get "line"]
+
+      val set_line : t -> int -> unit [@@js.set "line"]
+
+      val get_ticks : t -> int [@@js.get "ticks"]
+
+      val set_ticks : t -> int -> unit [@@js.set "ticks"]
+    end
+    [@@js.scope "PositionTickInfo"]
+
     module ProfileNode : sig
       type t
 
@@ -2140,9 +2109,9 @@ module Inspector : sig
 
       val set_id : t -> int -> unit [@@js.set "id"]
 
-      val get_call_frame : t -> Runtime_CallFrame.t [@@js.get "callFrame"]
+      val get_call_frame : t -> Runtime.CallFrame.t [@@js.get "callFrame"]
 
-      val set_call_frame : t -> Runtime_CallFrame.t -> unit
+      val set_call_frame : t -> Runtime.CallFrame.t -> unit
         [@@js.set "callFrame"]
 
       val get_hit_count : t -> int [@@js.get "hitCount"]
@@ -2157,10 +2126,10 @@ module Inspector : sig
 
       val set_deopt_reason : t -> string -> unit [@@js.set "deoptReason"]
 
-      val get_position_ticks : t -> Profiler_PositionTickInfo.t list
+      val get_position_ticks : t -> PositionTickInfo.t list
         [@@js.get "positionTicks"]
 
-      val set_position_ticks : t -> Profiler_PositionTickInfo.t list -> unit
+      val set_position_ticks : t -> PositionTickInfo.t list -> unit
         [@@js.set "positionTicks"]
     end
     [@@js.scope "ProfileNode"]
@@ -2172,10 +2141,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_nodes : t -> Profiler_ProfileNode.t list [@@js.get "nodes"]
+      val get_nodes : t -> ProfileNode.t list [@@js.get "nodes"]
 
-      val set_nodes : t -> Profiler_ProfileNode.t list -> unit
-        [@@js.set "nodes"]
+      val set_nodes : t -> ProfileNode.t list -> unit [@@js.set "nodes"]
 
       val get_start_time : t -> int [@@js.get "startTime"]
 
@@ -2194,23 +2162,6 @@ module Inspector : sig
       val set_time_deltas : t -> int list -> unit [@@js.set "timeDeltas"]
     end
     [@@js.scope "Profile"]
-
-    module PositionTickInfo : sig
-      type t
-
-      val t_to_js : t -> Ojs.t
-
-      val t_of_js : Ojs.t -> t
-
-      val get_line : t -> int [@@js.get "line"]
-
-      val set_line : t -> int -> unit [@@js.set "line"]
-
-      val get_ticks : t -> int [@@js.get "ticks"]
-
-      val set_ticks : t -> int -> unit [@@js.set "ticks"]
-    end
-    [@@js.scope "PositionTickInfo"]
 
     module CoverageRange : sig
       type t
@@ -2244,10 +2195,9 @@ module Inspector : sig
 
       val set_function_name : t -> string -> unit [@@js.set "functionName"]
 
-      val get_ranges : t -> Profiler_CoverageRange.t list [@@js.get "ranges"]
+      val get_ranges : t -> CoverageRange.t list [@@js.get "ranges"]
 
-      val set_ranges : t -> Profiler_CoverageRange.t list -> unit
-        [@@js.set "ranges"]
+      val set_ranges : t -> CoverageRange.t list -> unit [@@js.set "ranges"]
 
       val get_is_block_coverage : t -> bool [@@js.get "isBlockCoverage"]
 
@@ -2262,18 +2212,17 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_script_id : t -> Runtime_ScriptId.t [@@js.get "scriptId"]
+      val get_script_id : t -> Runtime.ScriptId.t [@@js.get "scriptId"]
 
-      val set_script_id : t -> Runtime_ScriptId.t -> unit [@@js.set "scriptId"]
+      val set_script_id : t -> Runtime.ScriptId.t -> unit [@@js.set "scriptId"]
 
       val get_url : t -> string [@@js.get "url"]
 
       val set_url : t -> string -> unit [@@js.set "url"]
 
-      val get_functions : t -> Profiler_FunctionCoverage.t list
-        [@@js.get "functions"]
+      val get_functions : t -> FunctionCoverage.t list [@@js.get "functions"]
 
-      val set_functions : t -> Profiler_FunctionCoverage.t list -> unit
+      val set_functions : t -> FunctionCoverage.t list -> unit
         [@@js.set "functions"]
     end
     [@@js.scope "ScriptCoverage"]
@@ -2302,9 +2251,9 @@ module Inspector : sig
 
       val set_offset : t -> int -> unit [@@js.set "offset"]
 
-      val get_types : t -> Profiler_TypeObject.t list [@@js.get "types"]
+      val get_types : t -> TypeObject.t list [@@js.get "types"]
 
-      val set_types : t -> Profiler_TypeObject.t list -> unit [@@js.set "types"]
+      val set_types : t -> TypeObject.t list -> unit [@@js.set "types"]
     end
     [@@js.scope "TypeProfileEntry"]
 
@@ -2315,18 +2264,17 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_script_id : t -> Runtime_ScriptId.t [@@js.get "scriptId"]
+      val get_script_id : t -> Runtime.ScriptId.t [@@js.get "scriptId"]
 
-      val set_script_id : t -> Runtime_ScriptId.t -> unit [@@js.set "scriptId"]
+      val set_script_id : t -> Runtime.ScriptId.t -> unit [@@js.set "scriptId"]
 
       val get_url : t -> string [@@js.get "url"]
 
       val set_url : t -> string -> unit [@@js.set "url"]
 
-      val get_entries : t -> Profiler_TypeProfileEntry.t list
-        [@@js.get "entries"]
+      val get_entries : t -> TypeProfileEntry.t list [@@js.get "entries"]
 
-      val set_entries : t -> Profiler_TypeProfileEntry.t list -> unit
+      val set_entries : t -> TypeProfileEntry.t list -> unit
         [@@js.set "entries"]
     end
     [@@js.scope "ScriptTypeProfile"]
@@ -2368,9 +2316,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_profile : t -> Profiler_Profile.t [@@js.get "profile"]
+      val get_profile : t -> Profile.t [@@js.get "profile"]
 
-      val set_profile : t -> Profiler_Profile.t -> unit [@@js.set "profile"]
+      val set_profile : t -> Profile.t -> unit [@@js.set "profile"]
     end
     [@@js.scope "StopReturnType"]
 
@@ -2381,10 +2329,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_result : t -> Profiler_ScriptCoverage.t list [@@js.get "result"]
+      val get_result : t -> ScriptCoverage.t list [@@js.get "result"]
 
-      val set_result : t -> Profiler_ScriptCoverage.t list -> unit
-        [@@js.set "result"]
+      val set_result : t -> ScriptCoverage.t list -> unit [@@js.set "result"]
     end
     [@@js.scope "TakePreciseCoverageReturnType"]
 
@@ -2395,10 +2342,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_result : t -> Profiler_ScriptCoverage.t list [@@js.get "result"]
+      val get_result : t -> ScriptCoverage.t list [@@js.get "result"]
 
-      val set_result : t -> Profiler_ScriptCoverage.t list -> unit
-        [@@js.set "result"]
+      val set_result : t -> ScriptCoverage.t list -> unit [@@js.set "result"]
     end
     [@@js.scope "GetBestEffortCoverageReturnType"]
 
@@ -2409,11 +2355,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_result : t -> Profiler_ScriptTypeProfile.t list
-        [@@js.get "result"]
+      val get_result : t -> ScriptTypeProfile.t list [@@js.get "result"]
 
-      val set_result : t -> Profiler_ScriptTypeProfile.t list -> unit
-        [@@js.set "result"]
+      val set_result : t -> ScriptTypeProfile.t list -> unit [@@js.set "result"]
     end
     [@@js.scope "TakeTypeProfileReturnType"]
 
@@ -2428,9 +2372,9 @@ module Inspector : sig
 
       val set_id : t -> string -> unit [@@js.set "id"]
 
-      val get_location : t -> Debugger_Location.t [@@js.get "location"]
+      val get_location : t -> Debugger.Location.t [@@js.get "location"]
 
-      val set_location : t -> Debugger_Location.t -> unit [@@js.set "location"]
+      val set_location : t -> Debugger.Location.t -> unit [@@js.set "location"]
 
       val get_title : t -> string [@@js.get "title"]
 
@@ -2449,13 +2393,13 @@ module Inspector : sig
 
       val set_id : t -> string -> unit [@@js.set "id"]
 
-      val get_location : t -> Debugger_Location.t [@@js.get "location"]
+      val get_location : t -> Debugger.Location.t [@@js.get "location"]
 
-      val set_location : t -> Debugger_Location.t -> unit [@@js.set "location"]
+      val set_location : t -> Debugger.Location.t -> unit [@@js.set "location"]
 
-      val get_profile : t -> Profiler_Profile.t [@@js.get "profile"]
+      val get_profile : t -> Profile.t [@@js.get "profile"]
 
-      val set_profile : t -> Profiler_Profile.t -> unit [@@js.set "profile"]
+      val set_profile : t -> Profile.t -> unit [@@js.set "profile"]
 
       val get_title : t -> string [@@js.get "title"]
 
@@ -2481,9 +2425,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_call_frame : t -> Runtime_CallFrame.t [@@js.get "callFrame"]
+      val get_call_frame : t -> Runtime.CallFrame.t [@@js.get "callFrame"]
 
-      val set_call_frame : t -> Runtime_CallFrame.t -> unit
+      val set_call_frame : t -> Runtime.CallFrame.t -> unit
         [@@js.set "callFrame"]
 
       val get_self_size : t -> int [@@js.get "selfSize"]
@@ -2503,11 +2447,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_head : t -> HeapProfiler_SamplingHeapProfileNode.t
-        [@@js.get "head"]
+      val get_head : t -> SamplingHeapProfileNode.t [@@js.get "head"]
 
-      val set_head : t -> HeapProfiler_SamplingHeapProfileNode.t -> unit
-        [@@js.set "head"]
+      val set_head : t -> SamplingHeapProfileNode.t -> unit [@@js.set "head"]
     end
     [@@js.scope "SamplingHeapProfile"]
 
@@ -2558,10 +2500,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_object_id : t -> HeapProfiler_HeapSnapshotObjectId.t
-        [@@js.get "objectId"]
+      val get_object_id : t -> HeapSnapshotObjectId.t [@@js.get "objectId"]
 
-      val set_object_id : t -> HeapProfiler_HeapSnapshotObjectId.t -> unit
+      val set_object_id : t -> HeapSnapshotObjectId.t -> unit
         [@@js.set "objectId"]
 
       val get_object_group : t -> string [@@js.get "objectGroup"]
@@ -2577,10 +2518,10 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_heap_object_id : t -> HeapProfiler_HeapSnapshotObjectId.t
+      val get_heap_object_id : t -> HeapSnapshotObjectId.t
         [@@js.get "heapObjectId"]
 
-      val set_heap_object_id : t -> HeapProfiler_HeapSnapshotObjectId.t -> unit
+      val set_heap_object_id : t -> HeapSnapshotObjectId.t -> unit
         [@@js.set "heapObjectId"]
     end
     [@@js.scope "AddInspectedHeapObjectParameterType"]
@@ -2592,9 +2533,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_object_id : t -> Runtime_RemoteObjectId.t [@@js.get "objectId"]
+      val get_object_id : t -> Runtime.RemoteObjectId.t [@@js.get "objectId"]
 
-      val set_object_id : t -> Runtime_RemoteObjectId.t -> unit
+      val set_object_id : t -> Runtime.RemoteObjectId.t -> unit
         [@@js.set "objectId"]
     end
     [@@js.scope "GetHeapObjectIdParameterType"]
@@ -2619,9 +2560,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_result : t -> Runtime_RemoteObject.t [@@js.get "result"]
+      val get_result : t -> Runtime.RemoteObject.t [@@js.get "result"]
 
-      val set_result : t -> Runtime_RemoteObject.t -> unit [@@js.set "result"]
+      val set_result : t -> Runtime.RemoteObject.t -> unit [@@js.set "result"]
     end
     [@@js.scope "GetObjectByHeapObjectIdReturnType"]
 
@@ -2632,13 +2573,10 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_heap_snapshot_object_id : t -> HeapProfiler_HeapSnapshotObjectId.t
+      val get_heap_snapshot_object_id : t -> HeapSnapshotObjectId.t
         [@@js.get "heapSnapshotObjectId"]
 
-      val set_heap_snapshot_object_id
-        :  t
-        -> HeapProfiler_HeapSnapshotObjectId.t
-        -> unit
+      val set_heap_snapshot_object_id : t -> HeapSnapshotObjectId.t -> unit
         [@@js.set "heapSnapshotObjectId"]
     end
     [@@js.scope "GetHeapObjectIdReturnType"]
@@ -2650,11 +2588,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_profile : t -> HeapProfiler_SamplingHeapProfile.t
-        [@@js.get "profile"]
+      val get_profile : t -> SamplingHeapProfile.t [@@js.get "profile"]
 
-      val set_profile : t -> HeapProfiler_SamplingHeapProfile.t -> unit
-        [@@js.set "profile"]
+      val set_profile : t -> SamplingHeapProfile.t -> unit [@@js.set "profile"]
     end
     [@@js.scope "StopSamplingReturnType"]
 
@@ -2665,11 +2601,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_profile : t -> HeapProfiler_SamplingHeapProfile.t
-        [@@js.get "profile"]
+      val get_profile : t -> SamplingHeapProfile.t [@@js.get "profile"]
 
-      val set_profile : t -> HeapProfiler_SamplingHeapProfile.t -> unit
-        [@@js.set "profile"]
+      val set_profile : t -> SamplingHeapProfile.t -> unit [@@js.set "profile"]
     end
     [@@js.scope "GetSamplingProfileReturnType"]
 
@@ -2767,11 +2701,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_trace_config : t -> NodeTracing_TraceConfig.t
-        [@@js.get "traceConfig"]
+      val get_trace_config : t -> TraceConfig.t [@@js.get "traceConfig"]
 
-      val set_trace_config : t -> NodeTracing_TraceConfig.t -> unit
-        [@@js.set "traceConfig"]
+      val set_trace_config : t -> TraceConfig.t -> unit [@@js.set "traceConfig"]
     end
     [@@js.scope "StartParameterType"]
 
@@ -2827,10 +2759,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_worker_id : t -> NodeWorker_WorkerID.t [@@js.get "workerId"]
+      val get_worker_id : t -> WorkerID.t [@@js.get "workerId"]
 
-      val set_worker_id : t -> NodeWorker_WorkerID.t -> unit
-        [@@js.set "workerId"]
+      val set_worker_id : t -> WorkerID.t -> unit [@@js.set "workerId"]
 
       val get_type : t -> string [@@js.get "type"]
 
@@ -2857,10 +2788,9 @@ module Inspector : sig
 
       val set_message : t -> string -> unit [@@js.set "message"]
 
-      val get_session_id : t -> NodeWorker_SessionID.t [@@js.get "sessionId"]
+      val get_session_id : t -> SessionID.t [@@js.get "sessionId"]
 
-      val set_session_id : t -> NodeWorker_SessionID.t -> unit
-        [@@js.set "sessionId"]
+      val set_session_id : t -> SessionID.t -> unit [@@js.set "sessionId"]
     end
     [@@js.scope "SendMessageToWorkerParameterType"]
 
@@ -2886,10 +2816,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_session_id : t -> NodeWorker_SessionID.t [@@js.get "sessionId"]
+      val get_session_id : t -> SessionID.t [@@js.get "sessionId"]
 
-      val set_session_id : t -> NodeWorker_SessionID.t -> unit
-        [@@js.set "sessionId"]
+      val set_session_id : t -> SessionID.t -> unit [@@js.set "sessionId"]
     end
     [@@js.scope "DetachParameterType"]
 
@@ -2900,15 +2829,13 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_session_id : t -> NodeWorker_SessionID.t [@@js.get "sessionId"]
+      val get_session_id : t -> SessionID.t [@@js.get "sessionId"]
 
-      val set_session_id : t -> NodeWorker_SessionID.t -> unit
-        [@@js.set "sessionId"]
+      val set_session_id : t -> SessionID.t -> unit [@@js.set "sessionId"]
 
-      val get_worker_info : t -> NodeWorker_WorkerInfo.t [@@js.get "workerInfo"]
+      val get_worker_info : t -> WorkerInfo.t [@@js.get "workerInfo"]
 
-      val set_worker_info : t -> NodeWorker_WorkerInfo.t -> unit
-        [@@js.set "workerInfo"]
+      val set_worker_info : t -> WorkerInfo.t -> unit [@@js.set "workerInfo"]
 
       val get_waiting_for_debugger : t -> bool [@@js.get "waitingForDebugger"]
 
@@ -2924,10 +2851,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_session_id : t -> NodeWorker_SessionID.t [@@js.get "sessionId"]
+      val get_session_id : t -> SessionID.t [@@js.get "sessionId"]
 
-      val set_session_id : t -> NodeWorker_SessionID.t -> unit
-        [@@js.set "sessionId"]
+      val set_session_id : t -> SessionID.t -> unit [@@js.set "sessionId"]
     end
     [@@js.scope "DetachedFromWorkerEventDataType"]
 
@@ -2938,10 +2864,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_session_id : t -> NodeWorker_SessionID.t [@@js.get "sessionId"]
+      val get_session_id : t -> SessionID.t [@@js.get "sessionId"]
 
-      val set_session_id : t -> NodeWorker_SessionID.t -> unit
-        [@@js.set "sessionId"]
+      val set_session_id : t -> SessionID.t -> unit [@@js.set "sessionId"]
 
       val get_message : t -> string [@@js.get "message"]
 
@@ -3009,7 +2934,7 @@ module Inspector : sig
       :  t
       -> method_:([ `Schema_getDomains ][@js.enum])
       -> ?callback:
-           (err:Error.t or_null -> params:Schema_GetDomainsReturnType.t -> unit)
+           (err:Error.t or_null -> params:Schema.GetDomainsReturnType.t -> unit)
       -> unit
       -> unit
       [@@js.call "post"]
@@ -3017,9 +2942,9 @@ module Inspector : sig
     val post'''
       :  t
       -> method_:([ `Runtime_evaluate ][@js.enum])
-      -> ?params:Runtime_EvaluateParameterType.t
+      -> ?params:Runtime.EvaluateParameterType.t
       -> ?callback:
-           (err:Error.t or_null -> params:Runtime_EvaluateReturnType.t -> unit)
+           (err:Error.t or_null -> params:Runtime.EvaluateReturnType.t -> unit)
       -> unit
       -> unit
       [@@js.call "post"]
@@ -3028,7 +2953,7 @@ module Inspector : sig
       :  t
       -> method_:([ `Runtime_evaluate ][@js.enum])
       -> ?callback:
-           (err:Error.t or_null -> params:Runtime_EvaluateReturnType.t -> unit)
+           (err:Error.t or_null -> params:Runtime.EvaluateReturnType.t -> unit)
       -> unit
       -> unit
       [@@js.call "post"]
@@ -3036,10 +2961,10 @@ module Inspector : sig
     val post'''''
       :  t
       -> method_:([ `Runtime_awaitPromise ][@js.enum])
-      -> ?params:Runtime_AwaitPromiseParameterType.t
+      -> ?params:Runtime.AwaitPromiseParameterType.t
       -> ?callback:
            (err:Error.t or_null
-            -> params:Runtime_AwaitPromiseReturnType.t
+            -> params:Runtime.AwaitPromiseReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3050,7 +2975,7 @@ module Inspector : sig
       -> method_:([ `Runtime_awaitPromise ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:Runtime_AwaitPromiseReturnType.t
+            -> params:Runtime.AwaitPromiseReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3059,10 +2984,10 @@ module Inspector : sig
     val post'''''''
       :  t
       -> method_:([ `Runtime_callFunctionOn ][@js.enum])
-      -> ?params:Runtime_CallFunctionOnParameterType.t
+      -> ?params:Runtime.CallFunctionOnParameterType.t
       -> ?callback:
            (err:Error.t or_null
-            -> params:Runtime_CallFunctionOnReturnType.t
+            -> params:Runtime.CallFunctionOnReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3073,7 +2998,7 @@ module Inspector : sig
       -> method_:([ `Runtime_callFunctionOn ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:Runtime_CallFunctionOnReturnType.t
+            -> params:Runtime.CallFunctionOnReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3082,10 +3007,10 @@ module Inspector : sig
     val post'''''''''
       :  t
       -> method_:([ `Runtime_getProperties ][@js.enum])
-      -> ?params:Runtime_GetPropertiesParameterType.t
+      -> ?params:Runtime.GetPropertiesParameterType.t
       -> ?callback:
            (err:Error.t or_null
-            -> params:Runtime_GetPropertiesReturnType.t
+            -> params:Runtime.GetPropertiesReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3096,7 +3021,7 @@ module Inspector : sig
       -> method_:([ `Runtime_getProperties ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:Runtime_GetPropertiesReturnType.t
+            -> params:Runtime.GetPropertiesReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3105,7 +3030,7 @@ module Inspector : sig
     val post'''''''''''
       :  t
       -> method_:([ `Runtime_releaseObject ][@js.enum])
-      -> ?params:Runtime_ReleaseObjectParameterType.t
+      -> ?params:Runtime.ReleaseObjectParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -3122,7 +3047,7 @@ module Inspector : sig
     val post'''''''''''''
       :  t
       -> method_:([ `Runtime_releaseObjectGroup ][@js.enum])
-      -> ?params:Runtime_ReleaseObjectGroupParameterType.t
+      -> ?params:Runtime.ReleaseObjectGroupParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -3171,7 +3096,7 @@ module Inspector : sig
     val post'''''''''''''''''''
       :  t
       -> method_:([ `Runtime_setCustomObjectFormatterEnabled ][@js.enum])
-      -> ?params:Runtime_SetCustomObjectFormatterEnabledParameterType.t
+      -> ?params:Runtime.SetCustomObjectFormatterEnabledParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -3188,10 +3113,10 @@ module Inspector : sig
     val post'''''''''''''''''''''
       :  t
       -> method_:([ `Runtime_compileScript ][@js.enum])
-      -> ?params:Runtime_CompileScriptParameterType.t
+      -> ?params:Runtime.CompileScriptParameterType.t
       -> ?callback:
            (err:Error.t or_null
-            -> params:Runtime_CompileScriptReturnType.t
+            -> params:Runtime.CompileScriptReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3202,7 +3127,7 @@ module Inspector : sig
       -> method_:([ `Runtime_compileScript ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:Runtime_CompileScriptReturnType.t
+            -> params:Runtime.CompileScriptReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3211,9 +3136,9 @@ module Inspector : sig
     val post'''''''''''''''''''''''
       :  t
       -> method_:([ `Runtime_runScript ][@js.enum])
-      -> ?params:Runtime_RunScriptParameterType.t
+      -> ?params:Runtime.RunScriptParameterType.t
       -> ?callback:
-           (err:Error.t or_null -> params:Runtime_RunScriptReturnType.t -> unit)
+           (err:Error.t or_null -> params:Runtime.RunScriptReturnType.t -> unit)
       -> unit
       -> unit
       [@@js.call "post"]
@@ -3222,7 +3147,7 @@ module Inspector : sig
       :  t
       -> method_:([ `Runtime_runScript ][@js.enum])
       -> ?callback:
-           (err:Error.t or_null -> params:Runtime_RunScriptReturnType.t -> unit)
+           (err:Error.t or_null -> params:Runtime.RunScriptReturnType.t -> unit)
       -> unit
       -> unit
       [@@js.call "post"]
@@ -3230,10 +3155,10 @@ module Inspector : sig
     val post'''''''''''''''''''''''''
       :  t
       -> method_:([ `Runtime_queryObjects ][@js.enum])
-      -> ?params:Runtime_QueryObjectsParameterType.t
+      -> ?params:Runtime.QueryObjectsParameterType.t
       -> ?callback:
            (err:Error.t or_null
-            -> params:Runtime_QueryObjectsReturnType.t
+            -> params:Runtime.QueryObjectsReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3244,7 +3169,7 @@ module Inspector : sig
       -> method_:([ `Runtime_queryObjects ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:Runtime_QueryObjectsReturnType.t
+            -> params:Runtime.QueryObjectsReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3253,10 +3178,10 @@ module Inspector : sig
     val post'''''''''''''''''''''''''''
       :  t
       -> method_:([ `Runtime_globalLexicalScopeNames ][@js.enum])
-      -> ?params:Runtime_GlobalLexicalScopeNamesParameterType.t
+      -> ?params:Runtime.GlobalLexicalScopeNamesParameterType.t
       -> ?callback:
            (err:Error.t or_null
-            -> params:Runtime_GlobalLexicalScopeNamesReturnType.t
+            -> params:Runtime.GlobalLexicalScopeNamesReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3267,7 +3192,7 @@ module Inspector : sig
       -> method_:([ `Runtime_globalLexicalScopeNames ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:Runtime_GlobalLexicalScopeNamesReturnType.t
+            -> params:Runtime.GlobalLexicalScopeNamesReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3277,7 +3202,7 @@ module Inspector : sig
       :  t
       -> method_:([ `Debugger_enable ][@js.enum])
       -> ?callback:
-           (err:Error.t or_null -> params:Debugger_EnableReturnType.t -> unit)
+           (err:Error.t or_null -> params:Debugger.EnableReturnType.t -> unit)
       -> unit
       -> unit
       [@@js.call "post"]
@@ -3293,7 +3218,7 @@ module Inspector : sig
     val post'''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_setBreakpointsActive ][@js.enum])
-      -> ?params:Debugger_SetBreakpointsActiveParameterType.t
+      -> ?params:Debugger.SetBreakpointsActiveParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -3310,7 +3235,7 @@ module Inspector : sig
     val post'''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_setSkipAllPauses ][@js.enum])
-      -> ?params:Debugger_SetSkipAllPausesParameterType.t
+      -> ?params:Debugger.SetSkipAllPausesParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -3327,10 +3252,10 @@ module Inspector : sig
     val post'''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_setBreakpointByUrl ][@js.enum])
-      -> ?params:Debugger_SetBreakpointByUrlParameterType.t
+      -> ?params:Debugger.SetBreakpointByUrlParameterType.t
       -> ?callback:
            (err:Error.t or_null
-            -> params:Debugger_SetBreakpointByUrlReturnType.t
+            -> params:Debugger.SetBreakpointByUrlReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3341,7 +3266,7 @@ module Inspector : sig
       -> method_:([ `Debugger_setBreakpointByUrl ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:Debugger_SetBreakpointByUrlReturnType.t
+            -> params:Debugger.SetBreakpointByUrlReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3350,10 +3275,10 @@ module Inspector : sig
     val post'''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_setBreakpoint ][@js.enum])
-      -> ?params:Debugger_SetBreakpointParameterType.t
+      -> ?params:Debugger.SetBreakpointParameterType.t
       -> ?callback:
            (err:Error.t or_null
-            -> params:Debugger_SetBreakpointReturnType.t
+            -> params:Debugger.SetBreakpointReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3364,7 +3289,7 @@ module Inspector : sig
       -> method_:([ `Debugger_setBreakpoint ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:Debugger_SetBreakpointReturnType.t
+            -> params:Debugger.SetBreakpointReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3373,7 +3298,7 @@ module Inspector : sig
     val post'''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_removeBreakpoint ][@js.enum])
-      -> ?params:Debugger_RemoveBreakpointParameterType.t
+      -> ?params:Debugger.RemoveBreakpointParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -3390,10 +3315,10 @@ module Inspector : sig
     val post'''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_getPossibleBreakpoints ][@js.enum])
-      -> ?params:Debugger_GetPossibleBreakpointsParameterType.t
+      -> ?params:Debugger.GetPossibleBreakpointsParameterType.t
       -> ?callback:
            (err:Error.t or_null
-            -> params:Debugger_GetPossibleBreakpointsReturnType.t
+            -> params:Debugger.GetPossibleBreakpointsReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3404,7 +3329,7 @@ module Inspector : sig
       -> method_:([ `Debugger_getPossibleBreakpoints ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:Debugger_GetPossibleBreakpointsReturnType.t
+            -> params:Debugger.GetPossibleBreakpointsReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3413,7 +3338,7 @@ module Inspector : sig
     val post'''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_continueToLocation ][@js.enum])
-      -> ?params:Debugger_ContinueToLocationParameterType.t
+      -> ?params:Debugger.ContinueToLocationParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -3430,7 +3355,7 @@ module Inspector : sig
     val post'''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_pauseOnAsyncCall ][@js.enum])
-      -> ?params:Debugger_PauseOnAsyncCallParameterType.t
+      -> ?params:Debugger.PauseOnAsyncCallParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -3455,7 +3380,7 @@ module Inspector : sig
     val post''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_stepInto ][@js.enum])
-      -> ?params:Debugger_StepIntoParameterType.t
+      -> ?params:Debugger.StepIntoParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -3504,10 +3429,10 @@ module Inspector : sig
     val post''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_getStackTrace ][@js.enum])
-      -> ?params:Debugger_GetStackTraceParameterType.t
+      -> ?params:Debugger.GetStackTraceParameterType.t
       -> ?callback:
            (err:Error.t or_null
-            -> params:Debugger_GetStackTraceReturnType.t
+            -> params:Debugger.GetStackTraceReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3518,7 +3443,7 @@ module Inspector : sig
       -> method_:([ `Debugger_getStackTrace ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:Debugger_GetStackTraceReturnType.t
+            -> params:Debugger.GetStackTraceReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3527,10 +3452,10 @@ module Inspector : sig
     val post''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_searchInContent ][@js.enum])
-      -> ?params:Debugger_SearchInContentParameterType.t
+      -> ?params:Debugger.SearchInContentParameterType.t
       -> ?callback:
            (err:Error.t or_null
-            -> params:Debugger_SearchInContentReturnType.t
+            -> params:Debugger.SearchInContentReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3541,7 +3466,7 @@ module Inspector : sig
       -> method_:([ `Debugger_searchInContent ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:Debugger_SearchInContentReturnType.t
+            -> params:Debugger.SearchInContentReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3550,10 +3475,10 @@ module Inspector : sig
     val post''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_setScriptSource ][@js.enum])
-      -> ?params:Debugger_SetScriptSourceParameterType.t
+      -> ?params:Debugger.SetScriptSourceParameterType.t
       -> ?callback:
            (err:Error.t or_null
-            -> params:Debugger_SetScriptSourceReturnType.t
+            -> params:Debugger.SetScriptSourceReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3564,7 +3489,7 @@ module Inspector : sig
       -> method_:([ `Debugger_setScriptSource ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:Debugger_SetScriptSourceReturnType.t
+            -> params:Debugger.SetScriptSourceReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3573,10 +3498,10 @@ module Inspector : sig
     val post''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_restartFrame ][@js.enum])
-      -> ?params:Debugger_RestartFrameParameterType.t
+      -> ?params:Debugger.RestartFrameParameterType.t
       -> ?callback:
            (err:Error.t or_null
-            -> params:Debugger_RestartFrameReturnType.t
+            -> params:Debugger.RestartFrameReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3587,7 +3512,7 @@ module Inspector : sig
       -> method_:([ `Debugger_restartFrame ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:Debugger_RestartFrameReturnType.t
+            -> params:Debugger.RestartFrameReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3596,10 +3521,10 @@ module Inspector : sig
     val post''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_getScriptSource ][@js.enum])
-      -> ?params:Debugger_GetScriptSourceParameterType.t
+      -> ?params:Debugger.GetScriptSourceParameterType.t
       -> ?callback:
            (err:Error.t or_null
-            -> params:Debugger_GetScriptSourceReturnType.t
+            -> params:Debugger.GetScriptSourceReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3610,7 +3535,7 @@ module Inspector : sig
       -> method_:([ `Debugger_getScriptSource ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:Debugger_GetScriptSourceReturnType.t
+            -> params:Debugger.GetScriptSourceReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3619,7 +3544,7 @@ module Inspector : sig
     val post''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_setPauseOnExceptions ][@js.enum])
-      -> ?params:Debugger_SetPauseOnExceptionsParameterType.t
+      -> ?params:Debugger.SetPauseOnExceptionsParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -3636,10 +3561,10 @@ module Inspector : sig
     val post''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_evaluateOnCallFrame ][@js.enum])
-      -> ?params:Debugger_EvaluateOnCallFrameParameterType.t
+      -> ?params:Debugger.EvaluateOnCallFrameParameterType.t
       -> ?callback:
            (err:Error.t or_null
-            -> params:Debugger_EvaluateOnCallFrameReturnType.t
+            -> params:Debugger.EvaluateOnCallFrameReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3650,7 +3575,7 @@ module Inspector : sig
       -> method_:([ `Debugger_evaluateOnCallFrame ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:Debugger_EvaluateOnCallFrameReturnType.t
+            -> params:Debugger.EvaluateOnCallFrameReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3659,7 +3584,7 @@ module Inspector : sig
     val post''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_setVariableValue ][@js.enum])
-      -> ?params:Debugger_SetVariableValueParameterType.t
+      -> ?params:Debugger.SetVariableValueParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -3676,7 +3601,7 @@ module Inspector : sig
     val post''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_setReturnValue ][@js.enum])
-      -> ?params:Debugger_SetReturnValueParameterType.t
+      -> ?params:Debugger.SetReturnValueParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -3693,7 +3618,7 @@ module Inspector : sig
     val post''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_setAsyncCallStackDepth ][@js.enum])
-      -> ?params:Debugger_SetAsyncCallStackDepthParameterType.t
+      -> ?params:Debugger.SetAsyncCallStackDepthParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -3710,7 +3635,7 @@ module Inspector : sig
     val post''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_setBlackboxPatterns ][@js.enum])
-      -> ?params:Debugger_SetBlackboxPatternsParameterType.t
+      -> ?params:Debugger.SetBlackboxPatternsParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -3727,7 +3652,7 @@ module Inspector : sig
     val post''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Debugger_setBlackboxedRanges ][@js.enum])
-      -> ?params:Debugger_SetBlackboxedRangesParameterType.t
+      -> ?params:Debugger.SetBlackboxedRangesParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -3784,7 +3709,7 @@ module Inspector : sig
     val post'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Profiler_setSamplingInterval ][@js.enum])
-      -> ?params:Profiler_SetSamplingIntervalParameterType.t
+      -> ?params:Profiler.SetSamplingIntervalParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -3810,7 +3735,7 @@ module Inspector : sig
       :  t
       -> method_:([ `Profiler_stop ][@js.enum])
       -> ?callback:
-           (err:Error.t or_null -> params:Profiler_StopReturnType.t -> unit)
+           (err:Error.t or_null -> params:Profiler.StopReturnType.t -> unit)
       -> unit
       -> unit
       [@@js.call "post"]
@@ -3818,7 +3743,7 @@ module Inspector : sig
     val post'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `Profiler_startPreciseCoverage ][@js.enum])
-      -> ?params:Profiler_StartPreciseCoverageParameterType.t
+      -> ?params:Profiler.StartPreciseCoverageParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -3845,7 +3770,7 @@ module Inspector : sig
       -> method_:([ `Profiler_takePreciseCoverage ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:Profiler_TakePreciseCoverageReturnType.t
+            -> params:Profiler.TakePreciseCoverageReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3856,7 +3781,7 @@ module Inspector : sig
       -> method_:([ `Profiler_getBestEffortCoverage ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:Profiler_GetBestEffortCoverageReturnType.t
+            -> params:Profiler.GetBestEffortCoverageReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3883,7 +3808,7 @@ module Inspector : sig
       -> method_:([ `Profiler_takeTypeProfile ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:Profiler_TakeTypeProfileReturnType.t
+            -> params:Profiler.TakeTypeProfileReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3908,7 +3833,7 @@ module Inspector : sig
     val post'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `HeapProfiler_startTrackingHeapObjects ][@js.enum])
-      -> ?params:HeapProfiler_StartTrackingHeapObjectsParameterType.t
+      -> ?params:HeapProfiler.StartTrackingHeapObjectsParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -3925,7 +3850,7 @@ module Inspector : sig
     val post'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `HeapProfiler_stopTrackingHeapObjects ][@js.enum])
-      -> ?params:HeapProfiler_StopTrackingHeapObjectsParameterType.t
+      -> ?params:HeapProfiler.StopTrackingHeapObjectsParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -3942,7 +3867,7 @@ module Inspector : sig
     val post'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `HeapProfiler_takeHeapSnapshot ][@js.enum])
-      -> ?params:HeapProfiler_TakeHeapSnapshotParameterType.t
+      -> ?params:HeapProfiler.TakeHeapSnapshotParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -3967,10 +3892,10 @@ module Inspector : sig
     val post''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `HeapProfiler_getObjectByHeapObjectId ][@js.enum])
-      -> ?params:HeapProfiler_GetObjectByHeapObjectIdParameterType.t
+      -> ?params:HeapProfiler.GetObjectByHeapObjectIdParameterType.t
       -> ?callback:
            (err:Error.t or_null
-            -> params:HeapProfiler_GetObjectByHeapObjectIdReturnType.t
+            -> params:HeapProfiler.GetObjectByHeapObjectIdReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3981,7 +3906,7 @@ module Inspector : sig
       -> method_:([ `HeapProfiler_getObjectByHeapObjectId ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:HeapProfiler_GetObjectByHeapObjectIdReturnType.t
+            -> params:HeapProfiler.GetObjectByHeapObjectIdReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -3990,7 +3915,7 @@ module Inspector : sig
     val post''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `HeapProfiler_addInspectedHeapObject ][@js.enum])
-      -> ?params:HeapProfiler_AddInspectedHeapObjectParameterType.t
+      -> ?params:HeapProfiler.AddInspectedHeapObjectParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -4007,10 +3932,10 @@ module Inspector : sig
     val post''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `HeapProfiler_getHeapObjectId ][@js.enum])
-      -> ?params:HeapProfiler_GetHeapObjectIdParameterType.t
+      -> ?params:HeapProfiler.GetHeapObjectIdParameterType.t
       -> ?callback:
            (err:Error.t or_null
-            -> params:HeapProfiler_GetHeapObjectIdReturnType.t
+            -> params:HeapProfiler.GetHeapObjectIdReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -4021,7 +3946,7 @@ module Inspector : sig
       -> method_:([ `HeapProfiler_getHeapObjectId ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:HeapProfiler_GetHeapObjectIdReturnType.t
+            -> params:HeapProfiler.GetHeapObjectIdReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -4030,7 +3955,7 @@ module Inspector : sig
     val post''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `HeapProfiler_startSampling ][@js.enum])
-      -> ?params:HeapProfiler_StartSamplingParameterType.t
+      -> ?params:HeapProfiler.StartSamplingParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -4049,7 +3974,7 @@ module Inspector : sig
       -> method_:([ `HeapProfiler_stopSampling ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:HeapProfiler_StopSamplingReturnType.t
+            -> params:HeapProfiler.StopSamplingReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -4060,7 +3985,7 @@ module Inspector : sig
       -> method_:([ `HeapProfiler_getSamplingProfile ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:HeapProfiler_GetSamplingProfileReturnType.t
+            -> params:HeapProfiler.GetSamplingProfileReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -4071,7 +3996,7 @@ module Inspector : sig
       -> method_:([ `NodeTracing_getCategories ][@js.enum])
       -> ?callback:
            (err:Error.t or_null
-            -> params:NodeTracing_GetCategoriesReturnType.t
+            -> params:NodeTracing.GetCategoriesReturnType.t
             -> unit)
       -> unit
       -> unit
@@ -4080,7 +4005,7 @@ module Inspector : sig
     val post'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `NodeTracing_start ][@js.enum])
-      -> ?params:NodeTracing_StartParameterType.t
+      -> ?params:NodeTracing.StartParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -4105,7 +4030,7 @@ module Inspector : sig
     val post''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `NodeWorker_sendMessageToWorker ][@js.enum])
-      -> ?params:NodeWorker_SendMessageToWorkerParameterType.t
+      -> ?params:NodeWorker.SendMessageToWorkerParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -4122,7 +4047,7 @@ module Inspector : sig
     val post''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `NodeWorker_enable ][@js.enum])
-      -> ?params:NodeWorker_EnableParameterType.t
+      -> ?params:NodeWorker.EnableParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -4147,7 +4072,7 @@ module Inspector : sig
     val post'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `NodeWorker_detach ][@js.enum])
-      -> ?params:NodeWorker_DetachParameterType.t
+      -> ?params:NodeWorker.DetachParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -4164,8 +4089,7 @@ module Inspector : sig
     val post'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
       :  t
       -> method_:([ `NodeRuntime_notifyWhenWaitingForDisconnect ][@js.enum])
-      -> ?params:
-           inspector_NodeRuntime_NotifyWhenWaitingForDisconnectParameterType
+      -> ?params:NodeRuntime.NotifyWhenWaitingForDisconnectParameterType.t
       -> ?callback:(err:Error.t or_null -> unit)
       -> unit
       -> unit
@@ -4190,8 +4114,7 @@ module Inspector : sig
       :  t
       -> event:([ `inspectorNotification ][@js.enum])
       -> listener:
-           (message:AnonymousInterface0.t inspector_InspectorNotification
-            -> unit)
+           (message:AnonymousInterface0.t InspectorNotification.t -> unit)
       -> t
       [@@js.call "addListener"]
 
@@ -4200,8 +4123,8 @@ module Inspector : sig
       -> event:([ `Runtime_executionContextCreated ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ExecutionContextCreatedEventDataType
-              inspector_InspectorNotification
+              Runtime.ExecutionContextCreatedEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4211,8 +4134,8 @@ module Inspector : sig
       -> event:([ `Runtime_executionContextDestroyed ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ExecutionContextDestroyedEventDataType
-              inspector_InspectorNotification
+              Runtime.ExecutionContextDestroyedEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4229,8 +4152,7 @@ module Inspector : sig
       -> event:([ `Runtime_exceptionThrown ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ExceptionThrownEventDataType
-              inspector_InspectorNotification
+              Runtime.ExceptionThrownEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4240,8 +4162,7 @@ module Inspector : sig
       -> event:([ `Runtime_exceptionRevoked ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ExceptionRevokedEventDataType
-              inspector_InspectorNotification
+              Runtime.ExceptionRevokedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4251,8 +4172,7 @@ module Inspector : sig
       -> event:([ `Runtime_consoleAPICalled ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ConsoleAPICalledEventDataType
-              inspector_InspectorNotification
+              Runtime.ConsoleAPICalledEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4262,8 +4182,7 @@ module Inspector : sig
       -> event:([ `Runtime_inspectRequested ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_InspectRequestedEventDataType
-              inspector_InspectorNotification
+              Runtime.InspectRequestedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4272,9 +4191,7 @@ module Inspector : sig
       :  t
       -> event:([ `Debugger_scriptParsed ][@js.enum])
       -> listener:
-           (message:
-              inspector_Debugger_ScriptParsedEventDataType
-              inspector_InspectorNotification
+           (message:Debugger.ScriptParsedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4284,8 +4201,8 @@ module Inspector : sig
       -> event:([ `Debugger_scriptFailedToParse ][@js.enum])
       -> listener:
            (message:
-              inspector_Debugger_ScriptFailedToParseEventDataType
-              inspector_InspectorNotification
+              Debugger.ScriptFailedToParseEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4295,8 +4212,7 @@ module Inspector : sig
       -> event:([ `Debugger_breakpointResolved ][@js.enum])
       -> listener:
            (message:
-              inspector_Debugger_BreakpointResolvedEventDataType
-              inspector_InspectorNotification
+              Debugger.BreakpointResolvedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4305,9 +4221,7 @@ module Inspector : sig
       :  t
       -> event:([ `Debugger_paused ][@js.enum])
       -> listener:
-           (message:
-              inspector_Debugger_PausedEventDataType
-              inspector_InspectorNotification
+           (message:Debugger.PausedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4323,9 +4237,7 @@ module Inspector : sig
       :  t
       -> event:([ `Console_messageAdded ][@js.enum])
       -> listener:
-           (message:
-              inspector_Console_MessageAddedEventDataType
-              inspector_InspectorNotification
+           (message:Console.MessageAddedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4335,8 +4247,8 @@ module Inspector : sig
       -> event:([ `Profiler_consoleProfileStarted ][@js.enum])
       -> listener:
            (message:
-              inspector_Profiler_ConsoleProfileStartedEventDataType
-              inspector_InspectorNotification
+              Profiler.ConsoleProfileStartedEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4346,8 +4258,8 @@ module Inspector : sig
       -> event:([ `Profiler_consoleProfileFinished ][@js.enum])
       -> listener:
            (message:
-              inspector_Profiler_ConsoleProfileFinishedEventDataType
-              inspector_InspectorNotification
+              Profiler.ConsoleProfileFinishedEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4357,8 +4269,8 @@ module Inspector : sig
       -> event:([ `HeapProfiler_addHeapSnapshotChunk ][@js.enum])
       -> listener:
            (message:
-              inspector_HeapProfiler_AddHeapSnapshotChunkEventDataType
-              inspector_InspectorNotification
+              HeapProfiler.AddHeapSnapshotChunkEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4375,8 +4287,8 @@ module Inspector : sig
       -> event:([ `HeapProfiler_reportHeapSnapshotProgress ][@js.enum])
       -> listener:
            (message:
-              inspector_HeapProfiler_ReportHeapSnapshotProgressEventDataType
-              inspector_InspectorNotification
+              HeapProfiler.ReportHeapSnapshotProgressEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4386,8 +4298,8 @@ module Inspector : sig
       -> event:([ `HeapProfiler_lastSeenObjectId ][@js.enum])
       -> listener:
            (message:
-              inspector_HeapProfiler_LastSeenObjectIdEventDataType
-              inspector_InspectorNotification
+              HeapProfiler.LastSeenObjectIdEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4397,8 +4309,8 @@ module Inspector : sig
       -> event:([ `HeapProfiler_heapStatsUpdate ][@js.enum])
       -> listener:
            (message:
-              inspector_HeapProfiler_HeapStatsUpdateEventDataType
-              inspector_InspectorNotification
+              HeapProfiler.HeapStatsUpdateEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4408,8 +4320,7 @@ module Inspector : sig
       -> event:([ `NodeTracing_dataCollected ][@js.enum])
       -> listener:
            (message:
-              inspector_NodeTracing_DataCollectedEventDataType
-              inspector_InspectorNotification
+              NodeTracing.DataCollectedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4426,8 +4337,7 @@ module Inspector : sig
       -> event:([ `NodeWorker_attachedToWorker ][@js.enum])
       -> listener:
            (message:
-              inspector_NodeWorker_AttachedToWorkerEventDataType
-              inspector_InspectorNotification
+              NodeWorker.AttachedToWorkerEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4437,8 +4347,8 @@ module Inspector : sig
       -> event:([ `NodeWorker_detachedFromWorker ][@js.enum])
       -> listener:
            (message:
-              inspector_NodeWorker_DetachedFromWorkerEventDataType
-              inspector_InspectorNotification
+              NodeWorker.DetachedFromWorkerEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4448,8 +4358,8 @@ module Inspector : sig
       -> event:([ `NodeWorker_receivedMessageFromWorker ][@js.enum])
       -> listener:
            (message:
-              inspector_NodeWorker_ReceivedMessageFromWorkerEventDataType
-              inspector_InspectorNotification
+              NodeWorker.ReceivedMessageFromWorkerEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -4471,7 +4381,7 @@ module Inspector : sig
     val emit'
       :  t
       -> event:([ `inspectorNotification ][@js.enum])
-      -> message:AnonymousInterface0.t inspector_InspectorNotification
+      -> message:AnonymousInterface0.t InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
@@ -4479,8 +4389,8 @@ module Inspector : sig
       :  t
       -> event:([ `Runtime_executionContextCreated ][@js.enum])
       -> message:
-           inspector_Runtime_ExecutionContextCreatedEventDataType
-           inspector_InspectorNotification
+           Runtime.ExecutionContextCreatedEventDataType.t
+           InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
@@ -4488,8 +4398,8 @@ module Inspector : sig
       :  t
       -> event:([ `Runtime_executionContextDestroyed ][@js.enum])
       -> message:
-           inspector_Runtime_ExecutionContextDestroyedEventDataType
-           inspector_InspectorNotification
+           Runtime.ExecutionContextDestroyedEventDataType.t
+           InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
@@ -4502,45 +4412,35 @@ module Inspector : sig
     val emit'''''
       :  t
       -> event:([ `Runtime_exceptionThrown ][@js.enum])
-      -> message:
-           inspector_Runtime_ExceptionThrownEventDataType
-           inspector_InspectorNotification
+      -> message:Runtime.ExceptionThrownEventDataType.t InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
     val emit''''''
       :  t
       -> event:([ `Runtime_exceptionRevoked ][@js.enum])
-      -> message:
-           inspector_Runtime_ExceptionRevokedEventDataType
-           inspector_InspectorNotification
+      -> message:Runtime.ExceptionRevokedEventDataType.t InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
     val emit'''''''
       :  t
       -> event:([ `Runtime_consoleAPICalled ][@js.enum])
-      -> message:
-           inspector_Runtime_ConsoleAPICalledEventDataType
-           inspector_InspectorNotification
+      -> message:Runtime.ConsoleAPICalledEventDataType.t InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
     val emit''''''''
       :  t
       -> event:([ `Runtime_inspectRequested ][@js.enum])
-      -> message:
-           inspector_Runtime_InspectRequestedEventDataType
-           inspector_InspectorNotification
+      -> message:Runtime.InspectRequestedEventDataType.t InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
     val emit'''''''''
       :  t
       -> event:([ `Debugger_scriptParsed ][@js.enum])
-      -> message:
-           inspector_Debugger_ScriptParsedEventDataType
-           inspector_InspectorNotification
+      -> message:Debugger.ScriptParsedEventDataType.t InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
@@ -4548,8 +4448,7 @@ module Inspector : sig
       :  t
       -> event:([ `Debugger_scriptFailedToParse ][@js.enum])
       -> message:
-           inspector_Debugger_ScriptFailedToParseEventDataType
-           inspector_InspectorNotification
+           Debugger.ScriptFailedToParseEventDataType.t InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
@@ -4557,17 +4456,14 @@ module Inspector : sig
       :  t
       -> event:([ `Debugger_breakpointResolved ][@js.enum])
       -> message:
-           inspector_Debugger_BreakpointResolvedEventDataType
-           inspector_InspectorNotification
+           Debugger.BreakpointResolvedEventDataType.t InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
     val emit''''''''''''
       :  t
       -> event:([ `Debugger_paused ][@js.enum])
-      -> message:
-           inspector_Debugger_PausedEventDataType
-           inspector_InspectorNotification
+      -> message:Debugger.PausedEventDataType.t InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
@@ -4577,9 +4473,7 @@ module Inspector : sig
     val emit''''''''''''''
       :  t
       -> event:([ `Console_messageAdded ][@js.enum])
-      -> message:
-           inspector_Console_MessageAddedEventDataType
-           inspector_InspectorNotification
+      -> message:Console.MessageAddedEventDataType.t InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
@@ -4587,8 +4481,7 @@ module Inspector : sig
       :  t
       -> event:([ `Profiler_consoleProfileStarted ][@js.enum])
       -> message:
-           inspector_Profiler_ConsoleProfileStartedEventDataType
-           inspector_InspectorNotification
+           Profiler.ConsoleProfileStartedEventDataType.t InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
@@ -4596,8 +4489,8 @@ module Inspector : sig
       :  t
       -> event:([ `Profiler_consoleProfileFinished ][@js.enum])
       -> message:
-           inspector_Profiler_ConsoleProfileFinishedEventDataType
-           inspector_InspectorNotification
+           Profiler.ConsoleProfileFinishedEventDataType.t
+           InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
@@ -4605,8 +4498,8 @@ module Inspector : sig
       :  t
       -> event:([ `HeapProfiler_addHeapSnapshotChunk ][@js.enum])
       -> message:
-           inspector_HeapProfiler_AddHeapSnapshotChunkEventDataType
-           inspector_InspectorNotification
+           HeapProfiler.AddHeapSnapshotChunkEventDataType.t
+           InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
@@ -4620,8 +4513,8 @@ module Inspector : sig
       :  t
       -> event:([ `HeapProfiler_reportHeapSnapshotProgress ][@js.enum])
       -> message:
-           inspector_HeapProfiler_ReportHeapSnapshotProgressEventDataType
-           inspector_InspectorNotification
+           HeapProfiler.ReportHeapSnapshotProgressEventDataType.t
+           InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
@@ -4629,8 +4522,7 @@ module Inspector : sig
       :  t
       -> event:([ `HeapProfiler_lastSeenObjectId ][@js.enum])
       -> message:
-           inspector_HeapProfiler_LastSeenObjectIdEventDataType
-           inspector_InspectorNotification
+           HeapProfiler.LastSeenObjectIdEventDataType.t InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
@@ -4638,8 +4530,7 @@ module Inspector : sig
       :  t
       -> event:([ `HeapProfiler_heapStatsUpdate ][@js.enum])
       -> message:
-           inspector_HeapProfiler_HeapStatsUpdateEventDataType
-           inspector_InspectorNotification
+           HeapProfiler.HeapStatsUpdateEventDataType.t InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
@@ -4647,8 +4538,7 @@ module Inspector : sig
       :  t
       -> event:([ `NodeTracing_dataCollected ][@js.enum])
       -> message:
-           inspector_NodeTracing_DataCollectedEventDataType
-           inspector_InspectorNotification
+           NodeTracing.DataCollectedEventDataType.t InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
@@ -4662,8 +4552,7 @@ module Inspector : sig
       :  t
       -> event:([ `NodeWorker_attachedToWorker ][@js.enum])
       -> message:
-           inspector_NodeWorker_AttachedToWorkerEventDataType
-           inspector_InspectorNotification
+           NodeWorker.AttachedToWorkerEventDataType.t InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
@@ -4671,8 +4560,7 @@ module Inspector : sig
       :  t
       -> event:([ `NodeWorker_detachedFromWorker ][@js.enum])
       -> message:
-           inspector_NodeWorker_DetachedFromWorkerEventDataType
-           inspector_InspectorNotification
+           NodeWorker.DetachedFromWorkerEventDataType.t InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
@@ -4680,8 +4568,8 @@ module Inspector : sig
       :  t
       -> event:([ `NodeWorker_receivedMessageFromWorker ][@js.enum])
       -> message:
-           inspector_NodeWorker_ReceivedMessageFromWorkerEventDataType
-           inspector_InspectorNotification
+           NodeWorker.ReceivedMessageFromWorkerEventDataType.t
+           InspectorNotification.t
       -> bool
       [@@js.call "emit"]
 
@@ -4702,8 +4590,7 @@ module Inspector : sig
       :  t
       -> event:([ `inspectorNotification ][@js.enum])
       -> listener:
-           (message:AnonymousInterface0.t inspector_InspectorNotification
-            -> unit)
+           (message:AnonymousInterface0.t InspectorNotification.t -> unit)
       -> t
       [@@js.call "on"]
 
@@ -4712,8 +4599,8 @@ module Inspector : sig
       -> event:([ `Runtime_executionContextCreated ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ExecutionContextCreatedEventDataType
-              inspector_InspectorNotification
+              Runtime.ExecutionContextCreatedEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4723,8 +4610,8 @@ module Inspector : sig
       -> event:([ `Runtime_executionContextDestroyed ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ExecutionContextDestroyedEventDataType
-              inspector_InspectorNotification
+              Runtime.ExecutionContextDestroyedEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4741,8 +4628,7 @@ module Inspector : sig
       -> event:([ `Runtime_exceptionThrown ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ExceptionThrownEventDataType
-              inspector_InspectorNotification
+              Runtime.ExceptionThrownEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4752,8 +4638,7 @@ module Inspector : sig
       -> event:([ `Runtime_exceptionRevoked ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ExceptionRevokedEventDataType
-              inspector_InspectorNotification
+              Runtime.ExceptionRevokedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4763,8 +4648,7 @@ module Inspector : sig
       -> event:([ `Runtime_consoleAPICalled ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ConsoleAPICalledEventDataType
-              inspector_InspectorNotification
+              Runtime.ConsoleAPICalledEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4774,8 +4658,7 @@ module Inspector : sig
       -> event:([ `Runtime_inspectRequested ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_InspectRequestedEventDataType
-              inspector_InspectorNotification
+              Runtime.InspectRequestedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4784,9 +4667,7 @@ module Inspector : sig
       :  t
       -> event:([ `Debugger_scriptParsed ][@js.enum])
       -> listener:
-           (message:
-              inspector_Debugger_ScriptParsedEventDataType
-              inspector_InspectorNotification
+           (message:Debugger.ScriptParsedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4796,8 +4677,8 @@ module Inspector : sig
       -> event:([ `Debugger_scriptFailedToParse ][@js.enum])
       -> listener:
            (message:
-              inspector_Debugger_ScriptFailedToParseEventDataType
-              inspector_InspectorNotification
+              Debugger.ScriptFailedToParseEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4807,8 +4688,7 @@ module Inspector : sig
       -> event:([ `Debugger_breakpointResolved ][@js.enum])
       -> listener:
            (message:
-              inspector_Debugger_BreakpointResolvedEventDataType
-              inspector_InspectorNotification
+              Debugger.BreakpointResolvedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4817,9 +4697,7 @@ module Inspector : sig
       :  t
       -> event:([ `Debugger_paused ][@js.enum])
       -> listener:
-           (message:
-              inspector_Debugger_PausedEventDataType
-              inspector_InspectorNotification
+           (message:Debugger.PausedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4835,9 +4713,7 @@ module Inspector : sig
       :  t
       -> event:([ `Console_messageAdded ][@js.enum])
       -> listener:
-           (message:
-              inspector_Console_MessageAddedEventDataType
-              inspector_InspectorNotification
+           (message:Console.MessageAddedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4847,8 +4723,8 @@ module Inspector : sig
       -> event:([ `Profiler_consoleProfileStarted ][@js.enum])
       -> listener:
            (message:
-              inspector_Profiler_ConsoleProfileStartedEventDataType
-              inspector_InspectorNotification
+              Profiler.ConsoleProfileStartedEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4858,8 +4734,8 @@ module Inspector : sig
       -> event:([ `Profiler_consoleProfileFinished ][@js.enum])
       -> listener:
            (message:
-              inspector_Profiler_ConsoleProfileFinishedEventDataType
-              inspector_InspectorNotification
+              Profiler.ConsoleProfileFinishedEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4869,8 +4745,8 @@ module Inspector : sig
       -> event:([ `HeapProfiler_addHeapSnapshotChunk ][@js.enum])
       -> listener:
            (message:
-              inspector_HeapProfiler_AddHeapSnapshotChunkEventDataType
-              inspector_InspectorNotification
+              HeapProfiler.AddHeapSnapshotChunkEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4887,8 +4763,8 @@ module Inspector : sig
       -> event:([ `HeapProfiler_reportHeapSnapshotProgress ][@js.enum])
       -> listener:
            (message:
-              inspector_HeapProfiler_ReportHeapSnapshotProgressEventDataType
-              inspector_InspectorNotification
+              HeapProfiler.ReportHeapSnapshotProgressEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4898,8 +4774,8 @@ module Inspector : sig
       -> event:([ `HeapProfiler_lastSeenObjectId ][@js.enum])
       -> listener:
            (message:
-              inspector_HeapProfiler_LastSeenObjectIdEventDataType
-              inspector_InspectorNotification
+              HeapProfiler.LastSeenObjectIdEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4909,8 +4785,8 @@ module Inspector : sig
       -> event:([ `HeapProfiler_heapStatsUpdate ][@js.enum])
       -> listener:
            (message:
-              inspector_HeapProfiler_HeapStatsUpdateEventDataType
-              inspector_InspectorNotification
+              HeapProfiler.HeapStatsUpdateEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4920,8 +4796,7 @@ module Inspector : sig
       -> event:([ `NodeTracing_dataCollected ][@js.enum])
       -> listener:
            (message:
-              inspector_NodeTracing_DataCollectedEventDataType
-              inspector_InspectorNotification
+              NodeTracing.DataCollectedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4938,8 +4813,7 @@ module Inspector : sig
       -> event:([ `NodeWorker_attachedToWorker ][@js.enum])
       -> listener:
            (message:
-              inspector_NodeWorker_AttachedToWorkerEventDataType
-              inspector_InspectorNotification
+              NodeWorker.AttachedToWorkerEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4949,8 +4823,8 @@ module Inspector : sig
       -> event:([ `NodeWorker_detachedFromWorker ][@js.enum])
       -> listener:
            (message:
-              inspector_NodeWorker_DetachedFromWorkerEventDataType
-              inspector_InspectorNotification
+              NodeWorker.DetachedFromWorkerEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4960,8 +4834,8 @@ module Inspector : sig
       -> event:([ `NodeWorker_receivedMessageFromWorker ][@js.enum])
       -> listener:
            (message:
-              inspector_NodeWorker_ReceivedMessageFromWorkerEventDataType
-              inspector_InspectorNotification
+              NodeWorker.ReceivedMessageFromWorkerEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "on"]
@@ -4984,8 +4858,7 @@ module Inspector : sig
       :  t
       -> event:([ `inspectorNotification ][@js.enum])
       -> listener:
-           (message:AnonymousInterface0.t inspector_InspectorNotification
-            -> unit)
+           (message:AnonymousInterface0.t InspectorNotification.t -> unit)
       -> t
       [@@js.call "once"]
 
@@ -4994,8 +4867,8 @@ module Inspector : sig
       -> event:([ `Runtime_executionContextCreated ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ExecutionContextCreatedEventDataType
-              inspector_InspectorNotification
+              Runtime.ExecutionContextCreatedEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5005,8 +4878,8 @@ module Inspector : sig
       -> event:([ `Runtime_executionContextDestroyed ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ExecutionContextDestroyedEventDataType
-              inspector_InspectorNotification
+              Runtime.ExecutionContextDestroyedEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5023,8 +4896,7 @@ module Inspector : sig
       -> event:([ `Runtime_exceptionThrown ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ExceptionThrownEventDataType
-              inspector_InspectorNotification
+              Runtime.ExceptionThrownEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5034,8 +4906,7 @@ module Inspector : sig
       -> event:([ `Runtime_exceptionRevoked ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ExceptionRevokedEventDataType
-              inspector_InspectorNotification
+              Runtime.ExceptionRevokedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5045,8 +4916,7 @@ module Inspector : sig
       -> event:([ `Runtime_consoleAPICalled ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ConsoleAPICalledEventDataType
-              inspector_InspectorNotification
+              Runtime.ConsoleAPICalledEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5056,8 +4926,7 @@ module Inspector : sig
       -> event:([ `Runtime_inspectRequested ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_InspectRequestedEventDataType
-              inspector_InspectorNotification
+              Runtime.InspectRequestedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5066,9 +4935,7 @@ module Inspector : sig
       :  t
       -> event:([ `Debugger_scriptParsed ][@js.enum])
       -> listener:
-           (message:
-              inspector_Debugger_ScriptParsedEventDataType
-              inspector_InspectorNotification
+           (message:Debugger.ScriptParsedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5078,8 +4945,8 @@ module Inspector : sig
       -> event:([ `Debugger_scriptFailedToParse ][@js.enum])
       -> listener:
            (message:
-              inspector_Debugger_ScriptFailedToParseEventDataType
-              inspector_InspectorNotification
+              Debugger.ScriptFailedToParseEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5089,8 +4956,7 @@ module Inspector : sig
       -> event:([ `Debugger_breakpointResolved ][@js.enum])
       -> listener:
            (message:
-              inspector_Debugger_BreakpointResolvedEventDataType
-              inspector_InspectorNotification
+              Debugger.BreakpointResolvedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5099,9 +4965,7 @@ module Inspector : sig
       :  t
       -> event:([ `Debugger_paused ][@js.enum])
       -> listener:
-           (message:
-              inspector_Debugger_PausedEventDataType
-              inspector_InspectorNotification
+           (message:Debugger.PausedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5117,9 +4981,7 @@ module Inspector : sig
       :  t
       -> event:([ `Console_messageAdded ][@js.enum])
       -> listener:
-           (message:
-              inspector_Console_MessageAddedEventDataType
-              inspector_InspectorNotification
+           (message:Console.MessageAddedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5129,8 +4991,8 @@ module Inspector : sig
       -> event:([ `Profiler_consoleProfileStarted ][@js.enum])
       -> listener:
            (message:
-              inspector_Profiler_ConsoleProfileStartedEventDataType
-              inspector_InspectorNotification
+              Profiler.ConsoleProfileStartedEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5140,8 +5002,8 @@ module Inspector : sig
       -> event:([ `Profiler_consoleProfileFinished ][@js.enum])
       -> listener:
            (message:
-              inspector_Profiler_ConsoleProfileFinishedEventDataType
-              inspector_InspectorNotification
+              Profiler.ConsoleProfileFinishedEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5151,8 +5013,8 @@ module Inspector : sig
       -> event:([ `HeapProfiler_addHeapSnapshotChunk ][@js.enum])
       -> listener:
            (message:
-              inspector_HeapProfiler_AddHeapSnapshotChunkEventDataType
-              inspector_InspectorNotification
+              HeapProfiler.AddHeapSnapshotChunkEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5169,8 +5031,8 @@ module Inspector : sig
       -> event:([ `HeapProfiler_reportHeapSnapshotProgress ][@js.enum])
       -> listener:
            (message:
-              inspector_HeapProfiler_ReportHeapSnapshotProgressEventDataType
-              inspector_InspectorNotification
+              HeapProfiler.ReportHeapSnapshotProgressEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5180,8 +5042,8 @@ module Inspector : sig
       -> event:([ `HeapProfiler_lastSeenObjectId ][@js.enum])
       -> listener:
            (message:
-              inspector_HeapProfiler_LastSeenObjectIdEventDataType
-              inspector_InspectorNotification
+              HeapProfiler.LastSeenObjectIdEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5191,8 +5053,8 @@ module Inspector : sig
       -> event:([ `HeapProfiler_heapStatsUpdate ][@js.enum])
       -> listener:
            (message:
-              inspector_HeapProfiler_HeapStatsUpdateEventDataType
-              inspector_InspectorNotification
+              HeapProfiler.HeapStatsUpdateEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5202,8 +5064,7 @@ module Inspector : sig
       -> event:([ `NodeTracing_dataCollected ][@js.enum])
       -> listener:
            (message:
-              inspector_NodeTracing_DataCollectedEventDataType
-              inspector_InspectorNotification
+              NodeTracing.DataCollectedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5220,8 +5081,7 @@ module Inspector : sig
       -> event:([ `NodeWorker_attachedToWorker ][@js.enum])
       -> listener:
            (message:
-              inspector_NodeWorker_AttachedToWorkerEventDataType
-              inspector_InspectorNotification
+              NodeWorker.AttachedToWorkerEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5231,8 +5091,8 @@ module Inspector : sig
       -> event:([ `NodeWorker_detachedFromWorker ][@js.enum])
       -> listener:
            (message:
-              inspector_NodeWorker_DetachedFromWorkerEventDataType
-              inspector_InspectorNotification
+              NodeWorker.DetachedFromWorkerEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5242,8 +5102,8 @@ module Inspector : sig
       -> event:([ `NodeWorker_receivedMessageFromWorker ][@js.enum])
       -> listener:
            (message:
-              inspector_NodeWorker_ReceivedMessageFromWorkerEventDataType
-              inspector_InspectorNotification
+              NodeWorker.ReceivedMessageFromWorkerEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5266,8 +5126,7 @@ module Inspector : sig
       :  t
       -> event:([ `inspectorNotification ][@js.enum])
       -> listener:
-           (message:AnonymousInterface0.t inspector_InspectorNotification
-            -> unit)
+           (message:AnonymousInterface0.t InspectorNotification.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
@@ -5276,8 +5135,8 @@ module Inspector : sig
       -> event:([ `Runtime_executionContextCreated ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ExecutionContextCreatedEventDataType
-              inspector_InspectorNotification
+              Runtime.ExecutionContextCreatedEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5287,8 +5146,8 @@ module Inspector : sig
       -> event:([ `Runtime_executionContextDestroyed ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ExecutionContextDestroyedEventDataType
-              inspector_InspectorNotification
+              Runtime.ExecutionContextDestroyedEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5305,8 +5164,7 @@ module Inspector : sig
       -> event:([ `Runtime_exceptionThrown ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ExceptionThrownEventDataType
-              inspector_InspectorNotification
+              Runtime.ExceptionThrownEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5316,8 +5174,7 @@ module Inspector : sig
       -> event:([ `Runtime_exceptionRevoked ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ExceptionRevokedEventDataType
-              inspector_InspectorNotification
+              Runtime.ExceptionRevokedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5327,8 +5184,7 @@ module Inspector : sig
       -> event:([ `Runtime_consoleAPICalled ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ConsoleAPICalledEventDataType
-              inspector_InspectorNotification
+              Runtime.ConsoleAPICalledEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5338,8 +5194,7 @@ module Inspector : sig
       -> event:([ `Runtime_inspectRequested ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_InspectRequestedEventDataType
-              inspector_InspectorNotification
+              Runtime.InspectRequestedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5348,9 +5203,7 @@ module Inspector : sig
       :  t
       -> event:([ `Debugger_scriptParsed ][@js.enum])
       -> listener:
-           (message:
-              inspector_Debugger_ScriptParsedEventDataType
-              inspector_InspectorNotification
+           (message:Debugger.ScriptParsedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5360,8 +5213,8 @@ module Inspector : sig
       -> event:([ `Debugger_scriptFailedToParse ][@js.enum])
       -> listener:
            (message:
-              inspector_Debugger_ScriptFailedToParseEventDataType
-              inspector_InspectorNotification
+              Debugger.ScriptFailedToParseEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5371,8 +5224,7 @@ module Inspector : sig
       -> event:([ `Debugger_breakpointResolved ][@js.enum])
       -> listener:
            (message:
-              inspector_Debugger_BreakpointResolvedEventDataType
-              inspector_InspectorNotification
+              Debugger.BreakpointResolvedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5381,9 +5233,7 @@ module Inspector : sig
       :  t
       -> event:([ `Debugger_paused ][@js.enum])
       -> listener:
-           (message:
-              inspector_Debugger_PausedEventDataType
-              inspector_InspectorNotification
+           (message:Debugger.PausedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5399,9 +5249,7 @@ module Inspector : sig
       :  t
       -> event:([ `Console_messageAdded ][@js.enum])
       -> listener:
-           (message:
-              inspector_Console_MessageAddedEventDataType
-              inspector_InspectorNotification
+           (message:Console.MessageAddedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5411,8 +5259,8 @@ module Inspector : sig
       -> event:([ `Profiler_consoleProfileStarted ][@js.enum])
       -> listener:
            (message:
-              inspector_Profiler_ConsoleProfileStartedEventDataType
-              inspector_InspectorNotification
+              Profiler.ConsoleProfileStartedEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5422,8 +5270,8 @@ module Inspector : sig
       -> event:([ `Profiler_consoleProfileFinished ][@js.enum])
       -> listener:
            (message:
-              inspector_Profiler_ConsoleProfileFinishedEventDataType
-              inspector_InspectorNotification
+              Profiler.ConsoleProfileFinishedEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5433,8 +5281,8 @@ module Inspector : sig
       -> event:([ `HeapProfiler_addHeapSnapshotChunk ][@js.enum])
       -> listener:
            (message:
-              inspector_HeapProfiler_AddHeapSnapshotChunkEventDataType
-              inspector_InspectorNotification
+              HeapProfiler.AddHeapSnapshotChunkEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5451,8 +5299,8 @@ module Inspector : sig
       -> event:([ `HeapProfiler_reportHeapSnapshotProgress ][@js.enum])
       -> listener:
            (message:
-              inspector_HeapProfiler_ReportHeapSnapshotProgressEventDataType
-              inspector_InspectorNotification
+              HeapProfiler.ReportHeapSnapshotProgressEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5462,8 +5310,8 @@ module Inspector : sig
       -> event:([ `HeapProfiler_lastSeenObjectId ][@js.enum])
       -> listener:
            (message:
-              inspector_HeapProfiler_LastSeenObjectIdEventDataType
-              inspector_InspectorNotification
+              HeapProfiler.LastSeenObjectIdEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5473,8 +5321,8 @@ module Inspector : sig
       -> event:([ `HeapProfiler_heapStatsUpdate ][@js.enum])
       -> listener:
            (message:
-              inspector_HeapProfiler_HeapStatsUpdateEventDataType
-              inspector_InspectorNotification
+              HeapProfiler.HeapStatsUpdateEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5484,8 +5332,7 @@ module Inspector : sig
       -> event:([ `NodeTracing_dataCollected ][@js.enum])
       -> listener:
            (message:
-              inspector_NodeTracing_DataCollectedEventDataType
-              inspector_InspectorNotification
+              NodeTracing.DataCollectedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5502,8 +5349,7 @@ module Inspector : sig
       -> event:([ `NodeWorker_attachedToWorker ][@js.enum])
       -> listener:
            (message:
-              inspector_NodeWorker_AttachedToWorkerEventDataType
-              inspector_InspectorNotification
+              NodeWorker.AttachedToWorkerEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5513,8 +5359,8 @@ module Inspector : sig
       -> event:([ `NodeWorker_detachedFromWorker ][@js.enum])
       -> listener:
            (message:
-              inspector_NodeWorker_DetachedFromWorkerEventDataType
-              inspector_InspectorNotification
+              NodeWorker.DetachedFromWorkerEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5524,8 +5370,8 @@ module Inspector : sig
       -> event:([ `NodeWorker_receivedMessageFromWorker ][@js.enum])
       -> listener:
            (message:
-              inspector_NodeWorker_ReceivedMessageFromWorkerEventDataType
-              inspector_InspectorNotification
+              NodeWorker.ReceivedMessageFromWorkerEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -5548,8 +5394,7 @@ module Inspector : sig
       :  t
       -> event:([ `inspectorNotification ][@js.enum])
       -> listener:
-           (message:AnonymousInterface0.t inspector_InspectorNotification
-            -> unit)
+           (message:AnonymousInterface0.t InspectorNotification.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
@@ -5558,8 +5403,8 @@ module Inspector : sig
       -> event:([ `Runtime_executionContextCreated ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ExecutionContextCreatedEventDataType
-              inspector_InspectorNotification
+              Runtime.ExecutionContextCreatedEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
@@ -5569,8 +5414,8 @@ module Inspector : sig
       -> event:([ `Runtime_executionContextDestroyed ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ExecutionContextDestroyedEventDataType
-              inspector_InspectorNotification
+              Runtime.ExecutionContextDestroyedEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
@@ -5587,8 +5432,7 @@ module Inspector : sig
       -> event:([ `Runtime_exceptionThrown ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ExceptionThrownEventDataType
-              inspector_InspectorNotification
+              Runtime.ExceptionThrownEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
@@ -5598,8 +5442,7 @@ module Inspector : sig
       -> event:([ `Runtime_exceptionRevoked ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ExceptionRevokedEventDataType
-              inspector_InspectorNotification
+              Runtime.ExceptionRevokedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
@@ -5609,8 +5452,7 @@ module Inspector : sig
       -> event:([ `Runtime_consoleAPICalled ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_ConsoleAPICalledEventDataType
-              inspector_InspectorNotification
+              Runtime.ConsoleAPICalledEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
@@ -5620,8 +5462,7 @@ module Inspector : sig
       -> event:([ `Runtime_inspectRequested ][@js.enum])
       -> listener:
            (message:
-              inspector_Runtime_InspectRequestedEventDataType
-              inspector_InspectorNotification
+              Runtime.InspectRequestedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
@@ -5630,9 +5471,7 @@ module Inspector : sig
       :  t
       -> event:([ `Debugger_scriptParsed ][@js.enum])
       -> listener:
-           (message:
-              inspector_Debugger_ScriptParsedEventDataType
-              inspector_InspectorNotification
+           (message:Debugger.ScriptParsedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
@@ -5642,8 +5481,8 @@ module Inspector : sig
       -> event:([ `Debugger_scriptFailedToParse ][@js.enum])
       -> listener:
            (message:
-              inspector_Debugger_ScriptFailedToParseEventDataType
-              inspector_InspectorNotification
+              Debugger.ScriptFailedToParseEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
@@ -5653,8 +5492,7 @@ module Inspector : sig
       -> event:([ `Debugger_breakpointResolved ][@js.enum])
       -> listener:
            (message:
-              inspector_Debugger_BreakpointResolvedEventDataType
-              inspector_InspectorNotification
+              Debugger.BreakpointResolvedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
@@ -5663,9 +5501,7 @@ module Inspector : sig
       :  t
       -> event:([ `Debugger_paused ][@js.enum])
       -> listener:
-           (message:
-              inspector_Debugger_PausedEventDataType
-              inspector_InspectorNotification
+           (message:Debugger.PausedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
@@ -5681,9 +5517,7 @@ module Inspector : sig
       :  t
       -> event:([ `Console_messageAdded ][@js.enum])
       -> listener:
-           (message:
-              inspector_Console_MessageAddedEventDataType
-              inspector_InspectorNotification
+           (message:Console.MessageAddedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
@@ -5693,8 +5527,8 @@ module Inspector : sig
       -> event:([ `Profiler_consoleProfileStarted ][@js.enum])
       -> listener:
            (message:
-              inspector_Profiler_ConsoleProfileStartedEventDataType
-              inspector_InspectorNotification
+              Profiler.ConsoleProfileStartedEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
@@ -5704,8 +5538,8 @@ module Inspector : sig
       -> event:([ `Profiler_consoleProfileFinished ][@js.enum])
       -> listener:
            (message:
-              inspector_Profiler_ConsoleProfileFinishedEventDataType
-              inspector_InspectorNotification
+              Profiler.ConsoleProfileFinishedEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
@@ -5715,8 +5549,8 @@ module Inspector : sig
       -> event:([ `HeapProfiler_addHeapSnapshotChunk ][@js.enum])
       -> listener:
            (message:
-              inspector_HeapProfiler_AddHeapSnapshotChunkEventDataType
-              inspector_InspectorNotification
+              HeapProfiler.AddHeapSnapshotChunkEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
@@ -5733,8 +5567,8 @@ module Inspector : sig
       -> event:([ `HeapProfiler_reportHeapSnapshotProgress ][@js.enum])
       -> listener:
            (message:
-              inspector_HeapProfiler_ReportHeapSnapshotProgressEventDataType
-              inspector_InspectorNotification
+              HeapProfiler.ReportHeapSnapshotProgressEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
@@ -5744,8 +5578,8 @@ module Inspector : sig
       -> event:([ `HeapProfiler_lastSeenObjectId ][@js.enum])
       -> listener:
            (message:
-              inspector_HeapProfiler_LastSeenObjectIdEventDataType
-              inspector_InspectorNotification
+              HeapProfiler.LastSeenObjectIdEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
@@ -5755,8 +5589,8 @@ module Inspector : sig
       -> event:([ `HeapProfiler_heapStatsUpdate ][@js.enum])
       -> listener:
            (message:
-              inspector_HeapProfiler_HeapStatsUpdateEventDataType
-              inspector_InspectorNotification
+              HeapProfiler.HeapStatsUpdateEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
@@ -5766,8 +5600,7 @@ module Inspector : sig
       -> event:([ `NodeTracing_dataCollected ][@js.enum])
       -> listener:
            (message:
-              inspector_NodeTracing_DataCollectedEventDataType
-              inspector_InspectorNotification
+              NodeTracing.DataCollectedEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
@@ -5784,8 +5617,7 @@ module Inspector : sig
       -> event:([ `NodeWorker_attachedToWorker ][@js.enum])
       -> listener:
            (message:
-              inspector_NodeWorker_AttachedToWorkerEventDataType
-              inspector_InspectorNotification
+              NodeWorker.AttachedToWorkerEventDataType.t InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
@@ -5795,8 +5627,8 @@ module Inspector : sig
       -> event:([ `NodeWorker_detachedFromWorker ][@js.enum])
       -> listener:
            (message:
-              inspector_NodeWorker_DetachedFromWorkerEventDataType
-              inspector_InspectorNotification
+              NodeWorker.DetachedFromWorkerEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
@@ -5806,8 +5638,8 @@ module Inspector : sig
       -> event:([ `NodeWorker_receivedMessageFromWorker ][@js.enum])
       -> listener:
            (message:
-              inspector_NodeWorker_ReceivedMessageFromWorkerEventDataType
-              inspector_InspectorNotification
+              NodeWorker.ReceivedMessageFromWorkerEventDataType.t
+              InspectorNotification.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]

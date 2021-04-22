@@ -138,6 +138,6 @@ module Https : sig
     -> Http.ClientRequest.t
     [@@js.global "get"]
 
-  val global_agent : https_Agent [@@js.global "globalAgent"]
+  val global_agent : Agent.t [@@js.global "globalAgent"]
 end
 [@@js.scope Import.https]

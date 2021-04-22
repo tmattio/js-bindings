@@ -17,7 +17,7 @@ module Console : sig
       :  t
       -> value:any
       -> ?message:string
-      -> ?params:(any list[@js.variadic])
+      -> params:(any list[@js.variadic])
       -> unit
       [@@js.call "assert"]
 
@@ -28,7 +28,12 @@ module Console : sig
     val count_reset : t -> ?label:string -> unit -> unit
       [@@js.call "countReset"]
 
-    val debug : t -> ?message:any -> ?params:(any list[@js.variadic]) -> unit
+    val debug
+      :  t
+      -> ?message:any
+      -> params:(any list[@js.variadic])
+      -> unit
+      -> unit
       [@@js.call "debug"]
 
     val dir
@@ -41,7 +46,12 @@ module Console : sig
 
     val dirxml : t -> data:(any list[@js.variadic]) -> unit [@@js.call "dirxml"]
 
-    val error : t -> ?message:any -> ?params:(any list[@js.variadic]) -> unit
+    val error
+      :  t
+      -> ?message:any
+      -> params:(any list[@js.variadic])
+      -> unit
+      -> unit
       [@@js.call "error"]
 
     val group : t -> label:(any list[@js.variadic]) -> unit [@@js.call "group"]
@@ -51,10 +61,20 @@ module Console : sig
 
     val group_end : t -> unit [@@js.call "groupEnd"]
 
-    val info : t -> ?message:any -> ?params:(any list[@js.variadic]) -> unit
+    val info
+      :  t
+      -> ?message:any
+      -> params:(any list[@js.variadic])
+      -> unit
+      -> unit
       [@@js.call "info"]
 
-    val log : t -> ?message:any -> ?params:(any list[@js.variadic]) -> unit
+    val log
+      :  t
+      -> ?message:any
+      -> params:(any list[@js.variadic])
+      -> unit
+      -> unit
       [@@js.call "log"]
 
     val table : t -> tabular_data:any -> ?properties:string list -> unit -> unit
@@ -67,10 +87,15 @@ module Console : sig
     val time_log : t -> ?label:string -> data:(any list[@js.variadic]) -> unit
       [@@js.call "timeLog"]
 
-    val trace : t -> ?message:any -> ?params:(any list[@js.variadic]) -> unit
+    val trace : t -> ?message:any -> params:(any list[@js.variadic]) -> unit
       [@@js.call "trace"]
 
-    val warn : t -> ?message:any -> ?params:(any list[@js.variadic]) -> unit
+    val warn
+      :  t
+      -> ?message:any
+      -> params:(any list[@js.variadic])
+      -> unit
+      -> unit
       [@@js.call "warn"]
 
     val profile : t -> ?label:string -> unit -> unit [@@js.call "profile"]
@@ -147,7 +172,8 @@ module Console : sig
   val assert_
     :  bool
     -> ?message:string
-    -> ?params:(any list[@js.variadic])
+    -> params:(any list[@js.variadic])
+    -> unit
     -> unit
     [@@js.global "assert"]
 
@@ -157,7 +183,7 @@ module Console : sig
 
   val count_reset : ?label:string -> unit -> unit [@@js.global "countReset"]
 
-  val debug : string -> ?params:(any list[@js.variadic]) -> unit
+  val debug : string -> params:(any list[@js.variadic]) -> unit -> unit
     [@@js.global "debug"]
 
   val dir : any -> ?options:Node_util.Util.InspectOptions.t -> unit -> unit
@@ -165,7 +191,7 @@ module Console : sig
 
   val dirxml : (any list[@js.variadic]) -> unit [@@js.global "dirxml"]
 
-  val error : string -> ?params:(any list[@js.variadic]) -> unit
+  val error : string -> params:(any list[@js.variadic]) -> unit -> unit
     [@@js.global "error"]
 
   val group : (any list[@js.variadic]) -> unit [@@js.global "group"]
@@ -175,10 +201,10 @@ module Console : sig
 
   val group_end : unit [@@js.global "groupEnd"]
 
-  val info : string -> ?params:(any list[@js.variadic]) -> unit
+  val info : string -> params:(any list[@js.variadic]) -> unit
     [@@js.global "info"]
 
-  val log : string -> ?params:(any list[@js.variadic]) -> unit
+  val log : string -> params:(any list[@js.variadic]) -> unit -> unit
     [@@js.global "log"]
 
   val table : tabular_data:any -> ?properties:string list -> unit -> unit
@@ -191,10 +217,10 @@ module Console : sig
   val time_log : ?label:string -> data:(any list[@js.variadic]) -> unit
     [@@js.global "timeLog"]
 
-  val trace : string -> ?params:(any list[@js.variadic]) -> unit
+  val trace : string -> params:(any list[@js.variadic]) -> unit -> unit
     [@@js.global "trace"]
 
-  val warn : string -> ?params:(any list[@js.variadic]) -> unit
+  val warn : string -> params:(any list[@js.variadic]) -> unit -> unit
     [@@js.global "warn"]
 
   val profile : ?label:string -> unit -> unit [@@js.global "profile"]

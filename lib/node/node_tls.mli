@@ -215,12 +215,245 @@ module Tls : sig
   end
   [@@js.scope "PxfObject"]
 
-  module TLSSocketOptions : sig
+  module SecureVersion : sig
+    type t =
+      ([ `TLSv1 [@js "TLSv1"]
+       | `TLSv1_1 [@js "TLSv1.1"]
+       | `TLSv1_2 [@js "TLSv1.2"]
+       | `TLSv1_3 [@js "TLSv1.3"]
+       ]
+      [@js.enum])
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+  end
+
+  module SecureContext : sig
     type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
+
+    val get_context : t -> any [@@js.get "context"]
+
+    val set_context : t -> any -> unit [@@js.set "context"]
+  end
+  [@@js.scope "SecureContext"]
+
+  module SecureContextOptions : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_ca : t -> (Buffer.t, Buffer.t or_string list) union2 or_string
+      [@@js.get "ca"]
+
+    val set_ca
+      :  t
+      -> (Buffer.t, Buffer.t or_string list) union2 or_string
+      -> unit
+      [@@js.set "ca"]
+
+    val get_cert : t -> (Buffer.t, Buffer.t or_string list) union2 or_string
+      [@@js.get "cert"]
+
+    val set_cert
+      :  t
+      -> (Buffer.t, Buffer.t or_string list) union2 or_string
+      -> unit
+      [@@js.set "cert"]
+
+    val get_sigalgs : t -> string [@@js.get "sigalgs"]
+
+    val set_sigalgs : t -> string -> unit [@@js.set "sigalgs"]
+
+    val get_ciphers : t -> string [@@js.get "ciphers"]
+
+    val set_ciphers : t -> string -> unit [@@js.set "ciphers"]
+
+    val get_client_cert_engine : t -> string [@@js.get "clientCertEngine"]
+
+    val set_client_cert_engine : t -> string -> unit
+      [@@js.set "clientCertEngine"]
+
+    val get_crl : t -> (Buffer.t, Buffer.t or_string list) union2 or_string
+      [@@js.get "crl"]
+
+    val set_crl
+      :  t
+      -> (Buffer.t, Buffer.t or_string list) union2 or_string
+      -> unit
+      [@@js.set "crl"]
+
+    val get_dhparam : t -> Buffer.t or_string [@@js.get "dhparam"]
+
+    val set_dhparam : t -> Buffer.t or_string -> unit [@@js.set "dhparam"]
+
+    val get_ecdh_curve : t -> string [@@js.get "ecdhCurve"]
+
+    val set_ecdh_curve : t -> string -> unit [@@js.set "ecdhCurve"]
+
+    val get_honor_cipher_order : t -> bool [@@js.get "honorCipherOrder"]
+
+    val set_honor_cipher_order : t -> bool -> unit [@@js.set "honorCipherOrder"]
+
+    val get_key
+      :  t
+      -> (Buffer.t, (Buffer.t, KeyObject.t) union2 list) union2 or_string
+      [@@js.get "key"]
+
+    val set_key
+      :  t
+      -> (Buffer.t, (Buffer.t, KeyObject.t) union2 list) union2 or_string
+      -> unit
+      [@@js.set "key"]
+
+    val get_private_key_engine : t -> string [@@js.get "privateKeyEngine"]
+
+    val set_private_key_engine : t -> string -> unit
+      [@@js.set "privateKeyEngine"]
+
+    val get_private_key_identifier : t -> string
+      [@@js.get "privateKeyIdentifier"]
+
+    val set_private_key_identifier : t -> string -> unit
+      [@@js.set "privateKeyIdentifier"]
+
+    val get_max_version : t -> SecureVersion.t [@@js.get "maxVersion"]
+
+    val set_max_version : t -> SecureVersion.t -> unit [@@js.set "maxVersion"]
+
+    val get_min_version : t -> SecureVersion.t [@@js.get "minVersion"]
+
+    val set_min_version : t -> SecureVersion.t -> unit [@@js.set "minVersion"]
+
+    val get_passphrase : t -> string [@@js.get "passphrase"]
+
+    val set_passphrase : t -> string -> unit [@@js.set "passphrase"]
+
+    val get_pfx
+      :  t
+      -> (Buffer.t, (Buffer.t, PxfObject.t) union2 or_string list) union2
+         or_string
+      [@@js.get "pfx"]
+
+    val set_pfx
+      :  t
+      -> (Buffer.t, (Buffer.t, PxfObject.t) union2 or_string list) union2
+         or_string
+      -> unit
+      [@@js.set "pfx"]
+
+    val get_secure_options : t -> int [@@js.get "secureOptions"]
+
+    val set_secure_options : t -> int -> unit [@@js.set "secureOptions"]
+
+    val get_secure_protocol : t -> string [@@js.get "secureProtocol"]
+
+    val set_secure_protocol : t -> string -> unit [@@js.set "secureProtocol"]
+
+    val get_session_id_context : t -> string [@@js.get "sessionIdContext"]
+
+    val set_session_id_context : t -> string -> unit
+      [@@js.set "sessionIdContext"]
+
+    val get_ticket_keys : t -> Buffer.t [@@js.get "ticketKeys"]
+
+    val set_ticket_keys : t -> Buffer.t -> unit [@@js.set "ticketKeys"]
+
+    val get_session_timeout : t -> int [@@js.get "sessionTimeout"]
+
+    val set_session_timeout : t -> int -> unit [@@js.set "sessionTimeout"]
+  end
+  [@@js.scope "SecureContextOptions"]
+
+  module CommonConnectionOptions : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val get_secure_context : t -> SecureContext.t [@@js.get "secureContext"]
+
+    val set_secure_context : t -> SecureContext.t -> unit
+      [@@js.set "secureContext"]
+
+    val get_enable_trace : t -> bool [@@js.get "enableTrace"]
+
+    val set_enable_trace : t -> bool -> unit [@@js.set "enableTrace"]
+
+    val get_request_cert : t -> bool [@@js.get "requestCert"]
+
+    val set_request_cert : t -> bool -> unit [@@js.set "requestCert"]
+
+    val get_alpn_protocols
+      :  t
+      -> (Uint8Array.t, Uint8Array.t or_string) or_array
+      [@@js.get "ALPNProtocols"]
+
+    val set_alpn_protocols
+      :  t
+      -> (Uint8Array.t, Uint8Array.t or_string) or_array
+      -> unit
+      [@@js.set "ALPNProtocols"]
+
+    val s_ni_callback
+      :  t
+      -> servername:string
+      -> cb:(err:Error.t or_null -> ctx:SecureContext.t -> unit)
+      -> unit
+      [@@js.call "SNICallback"]
+
+    val get_reject_unauthorized : t -> bool [@@js.get "rejectUnauthorized"]
+
+    val set_reject_unauthorized : t -> bool -> unit
+      [@@js.set "rejectUnauthorized"]
+  end
+  [@@js.scope "CommonConnectionOptions"]
+
+  module TLSSocketOptions : sig
+    include module type of SecureContextOptions
+
+    val get_secure_context : t -> SecureContext.t [@@js.get "secureContext"]
+
+    val set_secure_context : t -> SecureContext.t -> unit
+      [@@js.set "secureContext"]
+
+    val get_enable_trace : t -> bool [@@js.get "enableTrace"]
+
+    val set_enable_trace : t -> bool -> unit [@@js.set "enableTrace"]
+
+    val get_request_cert : t -> bool [@@js.get "requestCert"]
+
+    val set_request_cert : t -> bool -> unit [@@js.set "requestCert"]
+
+    val get_alpn_protocols
+      :  t
+      -> (Uint8Array.t, Uint8Array.t or_string) or_array
+      [@@js.get "ALPNProtocols"]
+
+    val set_alpn_protocols
+      :  t
+      -> (Uint8Array.t, Uint8Array.t or_string) or_array
+      -> unit
+      [@@js.set "ALPNProtocols"]
+
+    val s_ni_callback
+      :  t
+      -> servername:string
+      -> cb:(err:Error.t or_null -> ctx:SecureContext.t -> unit)
+      -> unit
+      [@@js.call "SNICallback"]
+
+    val get_reject_unauthorized : t -> bool [@@js.get "rejectUnauthorized"]
+
+    val set_reject_unauthorized : t -> bool -> unit
+      [@@js.set "rejectUnauthorized"]
 
     val get_is_server : t -> bool [@@js.get "isServer"]
 
@@ -237,10 +470,6 @@ module Tls : sig
     val get_request_ocsp : t -> bool [@@js.get "requestOCSP"]
 
     val set_request_ocsp : t -> bool -> unit [@@js.set "requestOCSP"]
-
-    val cast : t -> SecureContextOptions.t [@@js.cast]
-
-    val cast' : t -> CommonConnectionOptions.t [@@js.cast]
   end
   [@@js.scope "TLSSocketOptions"]
 
@@ -546,50 +775,22 @@ module Tls : sig
   end
   [@@js.scope "TLSSocket"]
 
-  module CommonConnectionOptions : sig
+  module SecurePair : sig
     type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_secure_context : t -> SecureContext.t [@@js.get "secureContext"]
+    val get_encrypted : t -> TLSSocket.t [@@js.get "encrypted"]
 
-    val set_secure_context : t -> SecureContext.t -> unit
-      [@@js.set "secureContext"]
+    val set_encrypted : t -> TLSSocket.t -> unit [@@js.set "encrypted"]
 
-    val get_enable_trace : t -> bool [@@js.get "enableTrace"]
+    val get_cleartext : t -> TLSSocket.t [@@js.get "cleartext"]
 
-    val set_enable_trace : t -> bool -> unit [@@js.set "enableTrace"]
-
-    val get_request_cert : t -> bool [@@js.get "requestCert"]
-
-    val set_request_cert : t -> bool -> unit [@@js.set "requestCert"]
-
-    val get_alpn_protocols
-      :  t
-      -> (Uint8Array.t, Uint8Array.t or_string) or_array
-      [@@js.get "ALPNProtocols"]
-
-    val set_alpn_protocols
-      :  t
-      -> (Uint8Array.t, Uint8Array.t or_string) or_array
-      -> unit
-      [@@js.set "ALPNProtocols"]
-
-    val s_ni_callback
-      :  t
-      -> servername:string
-      -> cb:(err:Error.t or_null -> ctx:SecureContext.t -> unit)
-      -> unit
-      [@@js.call "SNICallback"]
-
-    val get_reject_unauthorized : t -> bool [@@js.get "rejectUnauthorized"]
-
-    val set_reject_unauthorized : t -> bool -> unit
-      [@@js.set "rejectUnauthorized"]
+    val set_cleartext : t -> TLSSocket.t -> unit [@@js.set "cleartext"]
   end
-  [@@js.scope "CommonConnectionOptions"]
+  [@@js.scope "SecurePair"]
 
   module TlsOptions : sig
     type t
@@ -1103,179 +1304,6 @@ module Tls : sig
   end
   [@@js.scope "Server"]
 
-  module SecurePair : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val get_encrypted : t -> TLSSocket.t [@@js.get "encrypted"]
-
-    val set_encrypted : t -> TLSSocket.t -> unit [@@js.set "encrypted"]
-
-    val get_cleartext : t -> TLSSocket.t [@@js.get "cleartext"]
-
-    val set_cleartext : t -> TLSSocket.t -> unit [@@js.set "cleartext"]
-  end
-  [@@js.scope "SecurePair"]
-
-  module SecureVersion : sig
-    type t =
-      ([ `TLSv1 [@js "TLSv1"]
-       | `TLSv1_1 [@js "TLSv1.1"]
-       | `TLSv1_2 [@js "TLSv1.2"]
-       | `TLSv1_3 [@js "TLSv1.3"]
-       ]
-      [@js.enum])
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-  end
-
-  module SecureContextOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val get_ca : t -> (Buffer.t, Buffer.t or_string list) union2 or_string
-      [@@js.get "ca"]
-
-    val set_ca
-      :  t
-      -> (Buffer.t, Buffer.t or_string list) union2 or_string
-      -> unit
-      [@@js.set "ca"]
-
-    val get_cert : t -> (Buffer.t, Buffer.t or_string list) union2 or_string
-      [@@js.get "cert"]
-
-    val set_cert
-      :  t
-      -> (Buffer.t, Buffer.t or_string list) union2 or_string
-      -> unit
-      [@@js.set "cert"]
-
-    val get_sigalgs : t -> string [@@js.get "sigalgs"]
-
-    val set_sigalgs : t -> string -> unit [@@js.set "sigalgs"]
-
-    val get_ciphers : t -> string [@@js.get "ciphers"]
-
-    val set_ciphers : t -> string -> unit [@@js.set "ciphers"]
-
-    val get_client_cert_engine : t -> string [@@js.get "clientCertEngine"]
-
-    val set_client_cert_engine : t -> string -> unit
-      [@@js.set "clientCertEngine"]
-
-    val get_crl : t -> (Buffer.t, Buffer.t or_string list) union2 or_string
-      [@@js.get "crl"]
-
-    val set_crl
-      :  t
-      -> (Buffer.t, Buffer.t or_string list) union2 or_string
-      -> unit
-      [@@js.set "crl"]
-
-    val get_dhparam : t -> Buffer.t or_string [@@js.get "dhparam"]
-
-    val set_dhparam : t -> Buffer.t or_string -> unit [@@js.set "dhparam"]
-
-    val get_ecdh_curve : t -> string [@@js.get "ecdhCurve"]
-
-    val set_ecdh_curve : t -> string -> unit [@@js.set "ecdhCurve"]
-
-    val get_honor_cipher_order : t -> bool [@@js.get "honorCipherOrder"]
-
-    val set_honor_cipher_order : t -> bool -> unit [@@js.set "honorCipherOrder"]
-
-    val get_key
-      :  t
-      -> (Buffer.t, (Buffer.t, KeyObject.t) union2 list) union2 or_string
-      [@@js.get "key"]
-
-    val set_key
-      :  t
-      -> (Buffer.t, (Buffer.t, KeyObject.t) union2 list) union2 or_string
-      -> unit
-      [@@js.set "key"]
-
-    val get_private_key_engine : t -> string [@@js.get "privateKeyEngine"]
-
-    val set_private_key_engine : t -> string -> unit
-      [@@js.set "privateKeyEngine"]
-
-    val get_private_key_identifier : t -> string
-      [@@js.get "privateKeyIdentifier"]
-
-    val set_private_key_identifier : t -> string -> unit
-      [@@js.set "privateKeyIdentifier"]
-
-    val get_max_version : t -> SecureVersion.t [@@js.get "maxVersion"]
-
-    val set_max_version : t -> SecureVersion.t -> unit [@@js.set "maxVersion"]
-
-    val get_min_version : t -> SecureVersion.t [@@js.get "minVersion"]
-
-    val set_min_version : t -> SecureVersion.t -> unit [@@js.set "minVersion"]
-
-    val get_passphrase : t -> string [@@js.get "passphrase"]
-
-    val set_passphrase : t -> string -> unit [@@js.set "passphrase"]
-
-    val get_pfx
-      :  t
-      -> (Buffer.t, (Buffer.t, PxfObject.t) union2 or_string list) union2
-         or_string
-      [@@js.get "pfx"]
-
-    val set_pfx
-      :  t
-      -> (Buffer.t, (Buffer.t, PxfObject.t) union2 or_string list) union2
-         or_string
-      -> unit
-      [@@js.set "pfx"]
-
-    val get_secure_options : t -> int [@@js.get "secureOptions"]
-
-    val set_secure_options : t -> int -> unit [@@js.set "secureOptions"]
-
-    val get_secure_protocol : t -> string [@@js.get "secureProtocol"]
-
-    val set_secure_protocol : t -> string -> unit [@@js.set "secureProtocol"]
-
-    val get_session_id_context : t -> string [@@js.get "sessionIdContext"]
-
-    val set_session_id_context : t -> string -> unit
-      [@@js.set "sessionIdContext"]
-
-    val get_ticket_keys : t -> Buffer.t [@@js.get "ticketKeys"]
-
-    val set_ticket_keys : t -> Buffer.t -> unit [@@js.set "ticketKeys"]
-
-    val get_session_timeout : t -> int [@@js.get "sessionTimeout"]
-
-    val set_session_timeout : t -> int -> unit [@@js.set "sessionTimeout"]
-  end
-  [@@js.scope "SecureContextOptions"]
-
-  module SecureContext : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val get_context : t -> any [@@js.get "context"]
-
-    val set_context : t -> any -> unit [@@js.set "context"]
-  end
-  [@@js.scope "SecureContext"]
-
   val check_server_identity
     :  host:string
     -> cert:PeerCertificate.t
@@ -1336,13 +1364,11 @@ module Tls : sig
 
   val get_ciphers : unit -> string list [@@js.global "getCiphers"]
 
-  val d_efault_ecdh_curve : string [@@js.global "DEFAULT_ECDH_CURVE"]
+  val default_ecdh_curve : string [@@js.global "DEFAULT_ECDH_CURVE"]
 
-  val d_efault_max_version : tls_SecureVersion
-    [@@js.global "DEFAULT_MAX_VERSION"]
+  val default_max_version : SecureVersion.t [@@js.global "DEFAULT_MAX_VERSION"]
 
-  val d_efault_min_version : tls_SecureVersion
-    [@@js.global "DEFAULT_MIN_VERSION"]
+  val default_min_version : SecureVersion.t [@@js.global "DEFAULT_MIN_VERSION"]
 
   val root_certificates : string list [@@js.global "rootCertificates"]
 end
