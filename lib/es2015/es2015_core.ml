@@ -310,8 +310,8 @@ module Math =
         Ojs.int_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Math") "atanh"
              [|(Ojs.int_to_js x101)|])
-    let (hypot : values:int list -> int) =
-      fun ~values:(x102 : int list) ->
+    let (hypot : int list -> int) =
+      fun (x102 : int list) ->
         Ojs.int_of_js
           (let x105 = Ojs.get_prop_ascii Ojs.global "Math" in
            Ojs.call (Ojs.get_prop_ascii x105 "hypot") "apply"

@@ -64,9 +64,9 @@ include
     module ConnectionStrategy = Vscode_jsonrpc_connection.ConnectionStrategy
     module ConnectionOptions = Vscode_jsonrpc_connection.ConnectionOptions
     module MessageConnection = Vscode_jsonrpc_connection.MessageConnection
-    let nullLogger = Vscode_jsonrpc_connection.nullLogger
-    let createMessageConnection =
-      Vscode_jsonrpc_connection.createMessageConnection
+    let null_logger = Vscode_jsonrpc_connection.null_logger
+    let create_message_connection =
+      Vscode_jsonrpc_connection.create_message_connection
     module ProgressToken = Vscode_jsonrpc_connection.ProgressToken
     module ProgressType = Vscode_jsonrpc_connection.ProgressType
     module HandlerResult = Vscode_jsonrpc_connection.HandlerResult

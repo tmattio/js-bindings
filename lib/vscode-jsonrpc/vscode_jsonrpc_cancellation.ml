@@ -16,15 +16,15 @@ module CancellationToken =
       fun (x4 : t) ->
         Vscode_jsonrpc_events.Event.t_of_js any_of_js
           (Ojs.get_prop_ascii (t_to_js x4) "onCancellationRequested")
-    let (none : CancellationToken.t) =
-      CancellationToken.t_of_js
+    let (none : t) =
+      t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii
               (Ojs.get_prop_ascii Ojs.global
                  "__LIB__VSCODE_JSONRPC__IMPORTS.cancellation")
               "CancellationToken") "None")
-    let (cancelled : CancellationToken.t) =
-      CancellationToken.t_of_js
+    let (cancelled : t) =
+      t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii
               (Ojs.get_prop_ascii Ojs.global

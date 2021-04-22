@@ -171,6 +171,25 @@ module LSPMessageType : sig
   val t_of_js : Ojs.t -> t
 end
 
+module NotificationMessage : sig
+  type t
+
+  val t_to_js : t -> Ojs.t
+
+  val t_of_js : Ojs.t -> t
+
+  val get_method : t -> string [@@js.get "method"]
+
+  val set_method : t -> string -> unit [@@js.set "method"]
+
+  val get_params : t -> (untyped_object, unit) union2 [@@js.get "params"]
+
+  val set_params : t -> (untyped_object, unit) union2 -> unit
+    [@@js.set "params"]
+
+  val cast : t -> Message.t [@@js.cast]
+end
+
 module LSPLogMessage : sig
   type t
 
@@ -272,7 +291,7 @@ end
 [@@js.scope "_EM"]
 
 module RequestType0 : sig
-  type ('R, 'E) t = ('R, 'E) RequestType.t0
+  type ('R, 'E) t
 
   val t_to_js : ('R -> Ojs.t) -> ('E -> Ojs.t) -> ('R, 'E) t -> Ojs.t
 
@@ -287,7 +306,7 @@ end
 [@@js.scope "RequestType0"]
 
 module RequestType : sig
-  type ('P, 'R, 'E) t = ('P, 'R, 'E) RequestType.t
+  type ('P, 'R, 'E) t
 
   val t_to_js
     :  ('P -> Ojs.t)
@@ -330,7 +349,7 @@ end
 [@@js.scope "RequestType"]
 
 module RequestType1 : sig
-  type ('P1, 'R, 'E) t = ('P1, 'R, 'E) RequestType.t1
+  type ('P1, 'R, 'E) t
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -375,7 +394,7 @@ end
 [@@js.scope "RequestType1"]
 
 module RequestType2 : sig
-  type ('P1, 'P2, 'R, 'E) t = ('P1, 'P2, 'R, 'E) RequestType.t2
+  type ('P1, 'P2, 'R, 'E) t
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -403,7 +422,7 @@ end
 [@@js.scope "RequestType2"]
 
 module RequestType3 : sig
-  type ('P1, 'P2, 'P3, 'R, 'E) t = ('P1, 'P2, 'P3, 'R, 'E) RequestType.t3
+  type ('P1, 'P2, 'P3, 'R, 'E) t
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -435,8 +454,7 @@ end
 [@@js.scope "RequestType3"]
 
 module RequestType4 : sig
-  type ('P1, 'P2, 'P3, 'P4, 'R, 'E) t =
-    ('P1, 'P2, 'P3, 'P4, 'R, 'E) RequestType.t4
+  type ('P1, 'P2, 'P3, 'P4, 'R, 'E) t
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -471,8 +489,7 @@ end
 [@@js.scope "RequestType4"]
 
 module RequestType5 : sig
-  type ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t =
-    ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) RequestType.t5
+  type ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -510,8 +527,7 @@ end
 [@@js.scope "RequestType5"]
 
 module RequestType6 : sig
-  type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) t =
-    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) RequestType.t6
+  type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) t
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -553,8 +569,7 @@ end
 [@@js.scope "RequestType6"]
 
 module RequestType7 : sig
-  type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) t =
-    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) RequestType.t7
+  type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) t
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -598,8 +613,7 @@ end
 [@@js.scope "RequestType7"]
 
 module RequestType8 : sig
-  type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) t =
-    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) RequestType.t8
+  type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) t
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -648,8 +662,7 @@ end
 [@@js.scope "RequestType8"]
 
 module RequestType9 : sig
-  type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) t =
-    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) RequestType.t9
+  type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) t
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -697,27 +710,7 @@ module RequestType9 : sig
     -> AbstractMessageSignature.t
     [@@js.cast]
 end
-[@@js.scope "RequestType9"]
-
-module NotificationMessage : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val get_method : t -> string [@@js.get "method"]
-
-  val set_method : t -> string -> unit [@@js.set "method"]
-
-  val get_params : t -> (untyped_object, unit) union2 [@@js.get "params"]
-
-  val set_params : t -> (untyped_object, unit) union2 -> unit
-    [@@js.set "params"]
-
-  val cast : t -> Message.t [@@js.cast]
-end
-[@@js.scope "NotificationMessage"]
+[@@js.scope "RequestType9"] [@@js.scope "NotificationMessage"]
 
 module NotificationType : sig
   type 'P t
@@ -764,7 +757,7 @@ end
 [@@js.scope "NotificationType0"]
 
 module NotificationType1 : sig
-  type 'P1 t = 'P1 NotificationType.t1
+  type 'P1 t
 
   val t_to_js : ('P1 -> Ojs.t) -> 'P1 t -> Ojs.t
 
@@ -793,7 +786,7 @@ end
 [@@js.scope "NotificationType1"]
 
 module NotificationType2 : sig
-  type ('P1, 'P2) t = ('P1, 'P2) NotificationType.t2
+  type ('P1, 'P2) t
 
   val t_to_js : ('P1 -> Ojs.t) -> ('P2 -> Ojs.t) -> ('P1, 'P2) t -> Ojs.t
 
@@ -808,7 +801,7 @@ end
 [@@js.scope "NotificationType2"]
 
 module NotificationType3 : sig
-  type ('P1, 'P2, 'P3) t = ('P1, 'P2, 'P3) NotificationType.t3
+  type ('P1, 'P2, 'P3) t
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -834,7 +827,7 @@ end
 [@@js.scope "NotificationType3"]
 
 module NotificationType4 : sig
-  type ('P1, 'P2, 'P3, 'P4) t = ('P1, 'P2, 'P3, 'P4) NotificationType.t4
+  type ('P1, 'P2, 'P3, 'P4) t
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -864,8 +857,7 @@ end
 [@@js.scope "NotificationType4"]
 
 module NotificationType5 : sig
-  type ('P1, 'P2, 'P3, 'P4, 'P5) t =
-    ('P1, 'P2, 'P3, 'P4, 'P5) NotificationType.t5
+  type ('P1, 'P2, 'P3, 'P4, 'P5) t
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -898,8 +890,7 @@ end
 [@@js.scope "NotificationType5"]
 
 module NotificationType6 : sig
-  type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t =
-    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) NotificationType.t6
+  type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -934,8 +925,7 @@ end
 [@@js.scope "NotificationType6"]
 
 module NotificationType7 : sig
-  type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t =
-    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) NotificationType.t7
+  type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -973,8 +963,7 @@ end
 [@@js.scope "NotificationType7"]
 
 module NotificationType8 : sig
-  type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) t =
-    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) NotificationType.t8
+  type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) t
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -1016,8 +1005,7 @@ end
 [@@js.scope "NotificationType8"]
 
 module NotificationType9 : sig
-  type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) t =
-    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) NotificationType.t9
+  type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) t
 
   val t_to_js
     :  ('P1 -> Ojs.t)

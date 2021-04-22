@@ -19,9 +19,9 @@ module CancellationToken : sig
   val get_on_cancellation_requested : t -> any Vscode_jsonrpc_events.Event.t
     [@@js.get "onCancellationRequested"]
 
-  val none : CancellationToken.t [@@js.global "None"]
+  val none : t [@@js.global "None"]
 
-  val cancelled : CancellationToken.t [@@js.global "Cancelled"]
+  val cancelled : t [@@js.global "Cancelled"]
 
   val is : value:any -> bool [@@js.global "is"]
 end

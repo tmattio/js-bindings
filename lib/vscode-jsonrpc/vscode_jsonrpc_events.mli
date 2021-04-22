@@ -20,7 +20,7 @@ module Event : sig
     -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.apply]
 
-  val none : any Event.t [@@js.global "None"]
+  val none : any t [@@js.global "None"]
 end
 [@@js.scope "Event"]
 

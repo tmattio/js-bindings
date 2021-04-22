@@ -296,56 +296,80 @@ module LSPMessageType =
         | `L_s4_send_request -> Ojs.string_to_js "send-request"
         | `L_s5_send_response -> Ojs.string_to_js "send-response"
   end
-module LSPLogMessage =
+module NotificationMessage =
   struct
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x103 : Ojs.t) -> x103
     and t_to_js : t -> Ojs.t = fun (x102 : Ojs.t) -> x102
-    let (get_type : t -> LSPMessageType.t) =
+    let (get_method : t -> string) =
       fun (x104 : t) ->
-        LSPMessageType.t_of_js (Ojs.get_prop_ascii (t_to_js x104) "type")
-    let (set_type : t -> LSPMessageType.t -> unit) =
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x104) "method")
+    let (set_method : t -> string -> unit) =
       fun (x105 : t) ->
-        fun (x106 : LSPMessageType.t) ->
-          Ojs.set_prop_ascii (t_to_js x105) "type"
-            (LSPMessageType.t_to_js x106)
+        fun (x106 : string) ->
+          Ojs.set_prop_ascii (t_to_js x105) "method" (Ojs.string_to_js x106)
+    let (get_params : t -> (untyped_object, unit) union2) =
+      fun (x107 : t) ->
+        union2_of_js untyped_object_of_js Ojs.unit_of_js
+          (Ojs.get_prop_ascii (t_to_js x107) "params")
+    let (set_params : t -> (untyped_object, unit) union2 -> unit) =
+      fun (x110 : t) ->
+        fun (x111 : (untyped_object, unit) union2) ->
+          Ojs.set_prop_ascii (t_to_js x110) "params"
+            (union2_to_js untyped_object_to_js Ojs.unit_to_js x111)
+    let (cast : t -> Message.t) =
+      fun (x114 : t) -> Message.t_of_js (t_to_js x114)
+  end
+module LSPLogMessage =
+  struct
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x116 : Ojs.t) -> x116
+    and t_to_js : t -> Ojs.t = fun (x115 : Ojs.t) -> x115
+    let (get_type : t -> LSPMessageType.t) =
+      fun (x117 : t) ->
+        LSPMessageType.t_of_js (Ojs.get_prop_ascii (t_to_js x117) "type")
+    let (set_type : t -> LSPMessageType.t -> unit) =
+      fun (x118 : t) ->
+        fun (x119 : LSPMessageType.t) ->
+          Ojs.set_prop_ascii (t_to_js x118) "type"
+            (LSPMessageType.t_to_js x119)
     let (get_message :
       t ->
         (NotificationMessage.t, RequestMessage.t, ResponseMessage.t) union3)
       =
-      fun (x107 : t) ->
+      fun (x120 : t) ->
         union3_of_js NotificationMessage.t_of_js RequestMessage.t_of_js
           ResponseMessage.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x107) "message")
+          (Ojs.get_prop_ascii (t_to_js x120) "message")
     let (set_message :
       t ->
         (NotificationMessage.t, RequestMessage.t, ResponseMessage.t) union3
           -> unit)
       =
-      fun (x111 : t) ->
+      fun (x124 : t) ->
         fun
-          (x112 :
+          (x125 :
             (NotificationMessage.t, RequestMessage.t, ResponseMessage.t)
               union3)
           ->
-          Ojs.set_prop_ascii (t_to_js x111) "message"
+          Ojs.set_prop_ascii (t_to_js x124) "message"
             (union3_to_js NotificationMessage.t_to_js RequestMessage.t_to_js
-               ResponseMessage.t_to_js x112)
+               ResponseMessage.t_to_js x125)
     let (get_timestamp : t -> int) =
-      fun (x116 : t) ->
-        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x116) "timestamp")
+      fun (x129 : t) ->
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x129) "timestamp")
     let (set_timestamp : t -> int -> unit) =
-      fun (x117 : t) ->
-        fun (x118 : int) ->
-          Ojs.set_prop_ascii (t_to_js x117) "timestamp" (Ojs.int_to_js x118)
+      fun (x130 : t) ->
+        fun (x131 : int) ->
+          Ojs.set_prop_ascii (t_to_js x130) "timestamp" (Ojs.int_to_js x131)
   end
 module ParameterStructures =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x120 : Ojs.t) -> x120
-    and t_to_js : t -> Ojs.t = fun (x119 : Ojs.t) -> x119
+    let rec t_of_js : Ojs.t -> t = fun (x133 : Ojs.t) -> x133
+    and t_to_js : t -> Ojs.t = fun (x132 : Ojs.t) -> x132
     let (get_kind : t -> any) =
-      fun (x121 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x121) "kind")
+      fun (x134 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x134) "kind")
     let (get_auto : unit -> t) =
       fun () ->
         t_of_js
@@ -368,106 +392,103 @@ module ParameterStructures =
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "ParameterStructures")
              [||])
     let (is : value:any -> bool) =
-      fun ~value:(x122 : any) ->
+      fun ~value:(x135 : any) ->
         Ojs.bool_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "ParameterStructures")
-             "is" [|(any_to_js x122)|])
+             "is" [|(any_to_js x135)|])
     let (to_string : t -> string) =
-      fun (x123 : t) ->
-        Ojs.string_of_js (Ojs.call (t_to_js x123) "toString" [||])
+      fun (x136 : t) ->
+        Ojs.string_of_js (Ojs.call (t_to_js x136) "toString" [||])
   end
 module MessageSignature =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x125 : Ojs.t) -> x125
-    and t_to_js : t -> Ojs.t = fun (x124 : Ojs.t) -> x124
+    let rec t_of_js : Ojs.t -> t = fun (x138 : Ojs.t) -> x138
+    and t_to_js : t -> Ojs.t = fun (x137 : Ojs.t) -> x137
     let (get_method : t -> string) =
-      fun (x126 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x126) "method")
+      fun (x139 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x139) "method")
     let (get_number_of_params : t -> int) =
-      fun (x127 : t) ->
-        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x127) "numberOfParams")
+      fun (x140 : t) ->
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x140) "numberOfParams")
     let (get_parameter_structures : t -> ParameterStructures.t) =
-      fun (x128 : t) ->
+      fun (x141 : t) ->
         ParameterStructures.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x128) "parameterStructures")
+          (Ojs.get_prop_ascii (t_to_js x141) "parameterStructures")
   end
 module AbstractMessageSignature =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x130 : Ojs.t) -> x130
-    and t_to_js : t -> Ojs.t = fun (x129 : Ojs.t) -> x129
+    let rec t_of_js : Ojs.t -> t = fun (x143 : Ojs.t) -> x143
+    and t_to_js : t -> Ojs.t = fun (x142 : Ojs.t) -> x142
     let (get_method : t -> string) =
-      fun (x131 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x131) "method")
+      fun (x144 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x144) "method")
     let (get_number_of_params : t -> int) =
-      fun (x132 : t) ->
-        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x132) "numberOfParams")
+      fun (x145 : t) ->
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x145) "numberOfParams")
     let (create : method_:string -> number_of_params:int -> t) =
-      fun ~method_:(x133 : string) ->
-        fun ~number_of_params:(x134 : int) ->
+      fun ~method_:(x146 : string) ->
+        fun ~number_of_params:(x147 : int) ->
           t_of_js
             (Ojs.new_obj
                (Ojs.get_prop_ascii Ojs.global "AbstractMessageSignature")
-               [|(Ojs.string_to_js x133);(Ojs.int_to_js x134)|])
+               [|(Ojs.string_to_js x146);(Ojs.int_to_js x147)|])
     let (get_parameter_structures : t -> ParameterStructures.t) =
-      fun (x135 : t) ->
+      fun (x148 : t) ->
         ParameterStructures.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x135) "parameterStructures")
+          (Ojs.get_prop_ascii (t_to_js x148) "parameterStructures")
     let (cast : t -> MessageSignature.t) =
-      fun (x136 : t) -> MessageSignature.t_of_js (t_to_js x136)
+      fun (x149 : t) -> MessageSignature.t_of_js (t_to_js x149)
   end
 module EM =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x138 : Ojs.t) -> x138
-    and t_to_js : t -> Ojs.t = fun (x137 : Ojs.t) -> x137
+    let rec t_of_js : Ojs.t -> t = fun (x151 : Ojs.t) -> x151
+    and t_to_js : t -> Ojs.t = fun (x150 : Ojs.t) -> x150
     let (get_end_marker : t -> int) =
-      fun (x139 : t) ->
-        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x139) "_$endMarker$_")
+      fun (x152 : t) ->
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x152) "_$endMarker$_")
     let (set_end_marker : t -> int -> unit) =
-      fun (x140 : t) ->
-        fun (x141 : int) ->
-          Ojs.set_prop_ascii (t_to_js x140) "_$endMarker$_"
-            (Ojs.int_to_js x141)
+      fun (x153 : t) ->
+        fun (x154 : int) ->
+          Ojs.set_prop_ascii (t_to_js x153) "_$endMarker$_"
+            (Ojs.int_to_js x154)
   end
 module RequestType0 =
   struct
-    type ('R, 'E) t = ('R, 'E) RequestType.t0
+    type ('R, 'E) t = Ojs.t
     let rec t_of_js :
       'R 'E . (Ojs.t -> 'R) -> (Ojs.t -> 'E) -> Ojs.t -> ('R, 'E) t = fun
       (type __R) -> fun (type __E) ->
       fun (__R_of_js : Ojs.t -> __R) ->
-        fun (__E_of_js : Ojs.t -> __E) ->
-          fun (x145 : Ojs.t) -> RequestType.t0_of_js __R_of_js __E_of_js x145
+        fun (__E_of_js : Ojs.t -> __E) -> fun (x156 : Ojs.t) -> x156
     and t_to_js :
       'R 'E . ('R -> Ojs.t) -> ('E -> Ojs.t) -> ('R, 'E) t -> Ojs.t = fun
       (type __R) -> fun (type __E) ->
       fun (__R_to_js : __R -> Ojs.t) ->
-        fun (__E_to_js : __E -> Ojs.t) ->
-          fun (x142 : (__R, __E) RequestType.t0) ->
-            RequestType.t0_to_js __R_to_js __E_to_js x142
+        fun (__E_to_js : __E -> Ojs.t) -> fun (x155 : Ojs.t) -> x155
     let (get__ : ('R, 'E) t -> ('R * 'E * EM.t) or_undefined) =
-      fun (x148 : ('R, 'E) t) ->
+      fun (x157 : ('R, 'E) t) ->
         or_undefined_of_js
-          (fun (x151 : Ojs.t) ->
-             let x152 = x151 in
-             ((Obj.magic (Ojs.array_get x152 0)),
-               (Obj.magic (Ojs.array_get x152 1)),
-               (EM.t_of_js (Ojs.array_get x152 2))))
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x148) "_")
+          (fun (x160 : Ojs.t) ->
+             let x161 = x160 in
+             ((Obj.magic (Ojs.array_get x161 0)),
+               (Obj.magic (Ojs.array_get x161 1)),
+               (EM.t_of_js (Ojs.array_get x161 2))))
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x157) "_")
     let (create : method_:string -> ('R, 'E) t) =
-      fun ~method_:(x153 : string) ->
+      fun ~method_:(x162 : string) ->
         t_of_js Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "RequestType0")
-             [|(Ojs.string_to_js x153)|])
+             [|(Ojs.string_to_js x162)|])
     let (cast : ('R, 'E) t -> AbstractMessageSignature.t) =
-      fun (x156 : ('R, 'E) t) ->
-        AbstractMessageSignature.t_of_js (t_to_js Obj.magic Obj.magic x156)
+      fun (x165 : ('R, 'E) t) ->
+        AbstractMessageSignature.t_of_js (t_to_js Obj.magic Obj.magic x165)
   end
 module RequestType =
   struct
-    type ('P, 'R, 'E) t = ('P, 'R, 'E) RequestType.t
+    type ('P, 'R, 'E) t = Ojs.t
     let rec t_of_js :
       'P 'R 'E .
         (Ojs.t -> 'P) ->
@@ -475,9 +496,7 @@ module RequestType =
       = fun (type __P) -> fun (type __R) -> fun (type __E) ->
       fun (__P_of_js : Ojs.t -> __P) ->
         fun (__R_of_js : Ojs.t -> __R) ->
-          fun (__E_of_js : Ojs.t -> __E) ->
-            fun (x163 : Ojs.t) ->
-              RequestType.t_of_js __P_of_js __R_of_js __E_of_js x163
+          fun (__E_of_js : Ojs.t -> __E) -> fun (x169 : Ojs.t) -> x169
     and t_to_js :
       'P 'R 'E .
         ('P -> Ojs.t) ->
@@ -485,63 +504,61 @@ module RequestType =
       = fun (type __P) -> fun (type __R) -> fun (type __E) ->
       fun (__P_to_js : __P -> Ojs.t) ->
         fun (__R_to_js : __R -> Ojs.t) ->
-          fun (__E_to_js : __E -> Ojs.t) ->
-            fun (x159 : (__P, __R, __E) RequestType.t) ->
-              RequestType.t_to_js __P_to_js __R_to_js __E_to_js x159
+          fun (__E_to_js : __E -> Ojs.t) -> fun (x168 : Ojs.t) -> x168
     let (get_parameter_structures : ('P, 'R, 'E) t -> any) =
-      fun (x167 : ('P, 'R, 'E) t) ->
+      fun (x170 : ('P, 'R, 'E) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x167)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x170)
              "_parameterStructures")
     let (set_parameter_structures : ('P, 'R, 'E) t -> any -> unit) =
-      fun (x171 : ('P, 'R, 'E) t) ->
-        fun (x172 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x171)
-            "_parameterStructures" (any_to_js x172)
+      fun (x174 : ('P, 'R, 'E) t) ->
+        fun (x175 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x174)
+            "_parameterStructures" (any_to_js x175)
     let (get__ : ('P, 'R, 'E) t -> ('P * 'R * 'E * EM.t) or_undefined) =
-      fun (x176 : ('P, 'R, 'E) t) ->
+      fun (x179 : ('P, 'R, 'E) t) ->
         or_undefined_of_js
-          (fun (x180 : Ojs.t) ->
-             let x181 = x180 in
-             ((Obj.magic (Ojs.array_get x181 0)),
-               (Obj.magic (Ojs.array_get x181 1)),
-               (Obj.magic (Ojs.array_get x181 2)),
-               (EM.t_of_js (Ojs.array_get x181 3))))
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x176)
+          (fun (x183 : Ojs.t) ->
+             let x184 = x183 in
+             ((Obj.magic (Ojs.array_get x184 0)),
+               (Obj.magic (Ojs.array_get x184 1)),
+               (Obj.magic (Ojs.array_get x184 2)),
+               (EM.t_of_js (Ojs.array_get x184 3))))
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x179)
              "_")
     let (create :
       method_:string ->
         ?_parameterStructures:ParameterStructures.t -> unit -> ('P, 'R, 'E) t)
       =
-      fun ~method_:(x182 : string) ->
-        fun ?_parameterStructures:(x183 : ParameterStructures.t option) ->
+      fun ~method_:(x185 : string) ->
+        fun ?_parameterStructures:(x186 : ParameterStructures.t option) ->
           fun () ->
             t_of_js Obj.magic Obj.magic Obj.magic
               (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "RequestType")
-                 (let x184 =
+                 (let x187 =
                     Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
-                  ignore (Ojs.call x184 "push" [|(Ojs.string_to_js x182)|]);
-                  (match x183 with
-                   | Some x185 ->
+                  ignore (Ojs.call x187 "push" [|(Ojs.string_to_js x185)|]);
+                  (match x186 with
+                   | Some x188 ->
                        ignore
-                         (Ojs.call x184 "push"
-                            [|(ParameterStructures.t_to_js x185)|])
+                         (Ojs.call x187 "push"
+                            [|(ParameterStructures.t_to_js x188)|])
                    | None -> ());
-                  x184))
+                  x187))
     let (get_parameter_structures : ('P, 'R, 'E) t -> ParameterStructures.t)
       =
-      fun (x189 : ('P, 'R, 'E) t) ->
+      fun (x192 : ('P, 'R, 'E) t) ->
         ParameterStructures.t_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x189)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x192)
              "parameterStructures")
     let (cast : ('P, 'R, 'E) t -> AbstractMessageSignature.t) =
-      fun (x193 : ('P, 'R, 'E) t) ->
+      fun (x196 : ('P, 'R, 'E) t) ->
         AbstractMessageSignature.t_of_js
-          (t_to_js Obj.magic Obj.magic Obj.magic x193)
+          (t_to_js Obj.magic Obj.magic Obj.magic x196)
   end
 module RequestType1 =
   struct
-    type ('P1, 'R, 'E) t = ('P1, 'R, 'E) RequestType.t1
+    type ('P1, 'R, 'E) t = Ojs.t
     let rec t_of_js :
       'P1 'R 'E .
         (Ojs.t -> 'P1) ->
@@ -549,9 +566,7 @@ module RequestType1 =
       = fun (type __P1) -> fun (type __R) -> fun (type __E) ->
       fun (__P1_of_js : Ojs.t -> __P1) ->
         fun (__R_of_js : Ojs.t -> __R) ->
-          fun (__E_of_js : Ojs.t -> __E) ->
-            fun (x201 : Ojs.t) ->
-              RequestType.t1_of_js __P1_of_js __R_of_js __E_of_js x201
+          fun (__E_of_js : Ojs.t -> __E) -> fun (x201 : Ojs.t) -> x201
     and t_to_js :
       'P1 'R 'E .
         ('P1 -> Ojs.t) ->
@@ -559,64 +574,62 @@ module RequestType1 =
       = fun (type __P1) -> fun (type __R) -> fun (type __E) ->
       fun (__P1_to_js : __P1 -> Ojs.t) ->
         fun (__R_to_js : __R -> Ojs.t) ->
-          fun (__E_to_js : __E -> Ojs.t) ->
-            fun (x197 : (__P1, __R, __E) RequestType.t1) ->
-              RequestType.t1_to_js __P1_to_js __R_to_js __E_to_js x197
+          fun (__E_to_js : __E -> Ojs.t) -> fun (x200 : Ojs.t) -> x200
     let (get_parameter_structures : ('P1, 'R, 'E) t -> any) =
-      fun (x205 : ('P1, 'R, 'E) t) ->
+      fun (x202 : ('P1, 'R, 'E) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x205)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x202)
              "_parameterStructures")
     let (set_parameter_structures : ('P1, 'R, 'E) t -> any -> unit) =
-      fun (x209 : ('P1, 'R, 'E) t) ->
-        fun (x210 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x209)
-            "_parameterStructures" (any_to_js x210)
+      fun (x206 : ('P1, 'R, 'E) t) ->
+        fun (x207 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x206)
+            "_parameterStructures" (any_to_js x207)
     let (get__ : ('P1, 'R, 'E) t -> ('P1 * 'R * 'E * EM.t) or_undefined) =
-      fun (x214 : ('P1, 'R, 'E) t) ->
+      fun (x211 : ('P1, 'R, 'E) t) ->
         or_undefined_of_js
-          (fun (x218 : Ojs.t) ->
-             let x219 = x218 in
-             ((Obj.magic (Ojs.array_get x219 0)),
-               (Obj.magic (Ojs.array_get x219 1)),
-               (Obj.magic (Ojs.array_get x219 2)),
-               (EM.t_of_js (Ojs.array_get x219 3))))
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x214)
+          (fun (x215 : Ojs.t) ->
+             let x216 = x215 in
+             ((Obj.magic (Ojs.array_get x216 0)),
+               (Obj.magic (Ojs.array_get x216 1)),
+               (Obj.magic (Ojs.array_get x216 2)),
+               (EM.t_of_js (Ojs.array_get x216 3))))
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x211)
              "_")
     let (create :
       method_:string ->
         ?_parameterStructures:ParameterStructures.t ->
           unit -> ('P1, 'R, 'E) t)
       =
-      fun ~method_:(x220 : string) ->
-        fun ?_parameterStructures:(x221 : ParameterStructures.t option) ->
+      fun ~method_:(x217 : string) ->
+        fun ?_parameterStructures:(x218 : ParameterStructures.t option) ->
           fun () ->
             t_of_js Obj.magic Obj.magic Obj.magic
               (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "RequestType1")
-                 (let x222 =
+                 (let x219 =
                     Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
-                  ignore (Ojs.call x222 "push" [|(Ojs.string_to_js x220)|]);
-                  (match x221 with
-                   | Some x223 ->
+                  ignore (Ojs.call x219 "push" [|(Ojs.string_to_js x217)|]);
+                  (match x218 with
+                   | Some x220 ->
                        ignore
-                         (Ojs.call x222 "push"
-                            [|(ParameterStructures.t_to_js x223)|])
+                         (Ojs.call x219 "push"
+                            [|(ParameterStructures.t_to_js x220)|])
                    | None -> ());
-                  x222))
+                  x219))
     let (get_parameter_structures : ('P1, 'R, 'E) t -> ParameterStructures.t)
       =
-      fun (x227 : ('P1, 'R, 'E) t) ->
+      fun (x224 : ('P1, 'R, 'E) t) ->
         ParameterStructures.t_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x227)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x224)
              "parameterStructures")
     let (cast : ('P1, 'R, 'E) t -> AbstractMessageSignature.t) =
-      fun (x231 : ('P1, 'R, 'E) t) ->
+      fun (x228 : ('P1, 'R, 'E) t) ->
         AbstractMessageSignature.t_of_js
-          (t_to_js Obj.magic Obj.magic Obj.magic x231)
+          (t_to_js Obj.magic Obj.magic Obj.magic x228)
   end
 module RequestType2 =
   struct
-    type ('P1, 'P2, 'R, 'E) t = ('P1, 'P2, 'R, 'E) RequestType.t2
+    type ('P1, 'P2, 'R, 'E) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'R 'E .
         (Ojs.t -> 'P1) ->
@@ -627,10 +640,7 @@ module RequestType2 =
       fun (__P1_of_js : Ojs.t -> __P1) ->
         fun (__P2_of_js : Ojs.t -> __P2) ->
           fun (__R_of_js : Ojs.t -> __R) ->
-            fun (__E_of_js : Ojs.t -> __E) ->
-              fun (x240 : Ojs.t) ->
-                RequestType.t2_of_js __P1_of_js __P2_of_js __R_of_js
-                  __E_of_js x240
+            fun (__E_of_js : Ojs.t -> __E) -> fun (x233 : Ojs.t) -> x233
     and t_to_js :
       'P1 'P2 'R 'E .
         ('P1 -> Ojs.t) ->
@@ -641,36 +651,33 @@ module RequestType2 =
       fun (__P1_to_js : __P1 -> Ojs.t) ->
         fun (__P2_to_js : __P2 -> Ojs.t) ->
           fun (__R_to_js : __R -> Ojs.t) ->
-            fun (__E_to_js : __E -> Ojs.t) ->
-              fun (x235 : (__P1, __P2, __R, __E) RequestType.t2) ->
-                RequestType.t2_to_js __P1_to_js __P2_to_js __R_to_js
-                  __E_to_js x235
+            fun (__E_to_js : __E -> Ojs.t) -> fun (x232 : Ojs.t) -> x232
     let (get__ :
       ('P1, 'P2, 'R, 'E) t -> ('P1 * 'P2 * 'R * 'E * EM.t) or_undefined) =
-      fun (x245 : ('P1, 'P2, 'R, 'E) t) ->
+      fun (x234 : ('P1, 'P2, 'R, 'E) t) ->
         or_undefined_of_js
-          (fun (x250 : Ojs.t) ->
-             let x251 = x250 in
-             ((Obj.magic (Ojs.array_get x251 0)),
-               (Obj.magic (Ojs.array_get x251 1)),
-               (Obj.magic (Ojs.array_get x251 2)),
-               (Obj.magic (Ojs.array_get x251 3)),
-               (EM.t_of_js (Ojs.array_get x251 4))))
+          (fun (x239 : Ojs.t) ->
+             let x240 = x239 in
+             ((Obj.magic (Ojs.array_get x240 0)),
+               (Obj.magic (Ojs.array_get x240 1)),
+               (Obj.magic (Ojs.array_get x240 2)),
+               (Obj.magic (Ojs.array_get x240 3)),
+               (EM.t_of_js (Ojs.array_get x240 4))))
           (Ojs.get_prop_ascii
-             (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x245) "_")
+             (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x234) "_")
     let (create : method_:string -> ('P1, 'P2, 'R, 'E) t) =
-      fun ~method_:(x252 : string) ->
+      fun ~method_:(x241 : string) ->
         t_of_js Obj.magic Obj.magic Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "RequestType2")
-             [|(Ojs.string_to_js x252)|])
+             [|(Ojs.string_to_js x241)|])
     let (cast : ('P1, 'P2, 'R, 'E) t -> AbstractMessageSignature.t) =
-      fun (x257 : ('P1, 'P2, 'R, 'E) t) ->
+      fun (x246 : ('P1, 'P2, 'R, 'E) t) ->
         AbstractMessageSignature.t_of_js
-          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x257)
+          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x246)
   end
 module RequestType3 =
   struct
-    type ('P1, 'P2, 'P3, 'R, 'E) t = ('P1, 'P2, 'P3, 'R, 'E) RequestType.t3
+    type ('P1, 'P2, 'P3, 'R, 'E) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'R 'E .
         (Ojs.t -> 'P1) ->
@@ -684,10 +691,7 @@ module RequestType3 =
         fun (__P2_of_js : Ojs.t -> __P2) ->
           fun (__P3_of_js : Ojs.t -> __P3) ->
             fun (__R_of_js : Ojs.t -> __R) ->
-              fun (__E_of_js : Ojs.t -> __E) ->
-                fun (x268 : Ojs.t) ->
-                  RequestType.t3_of_js __P1_of_js __P2_of_js __P3_of_js
-                    __R_of_js __E_of_js x268
+              fun (__E_of_js : Ojs.t -> __E) -> fun (x252 : Ojs.t) -> x252
     and t_to_js :
       'P1 'P2 'P3 'R 'E .
         ('P1 -> Ojs.t) ->
@@ -701,41 +705,37 @@ module RequestType3 =
         fun (__P2_to_js : __P2 -> Ojs.t) ->
           fun (__P3_to_js : __P3 -> Ojs.t) ->
             fun (__R_to_js : __R -> Ojs.t) ->
-              fun (__E_to_js : __E -> Ojs.t) ->
-                fun (x262 : (__P1, __P2, __P3, __R, __E) RequestType.t3) ->
-                  RequestType.t3_to_js __P1_to_js __P2_to_js __P3_to_js
-                    __R_to_js __E_to_js x262
+              fun (__E_to_js : __E -> Ojs.t) -> fun (x251 : Ojs.t) -> x251
     let (get__ :
       ('P1, 'P2, 'P3, 'R, 'E) t ->
         ('P1 * 'P2 * 'P3 * 'R * 'E * EM.t) or_undefined)
       =
-      fun (x274 : ('P1, 'P2, 'P3, 'R, 'E) t) ->
+      fun (x253 : ('P1, 'P2, 'P3, 'R, 'E) t) ->
         or_undefined_of_js
-          (fun (x280 : Ojs.t) ->
-             let x281 = x280 in
-             ((Obj.magic (Ojs.array_get x281 0)),
-               (Obj.magic (Ojs.array_get x281 1)),
-               (Obj.magic (Ojs.array_get x281 2)),
-               (Obj.magic (Ojs.array_get x281 3)),
-               (Obj.magic (Ojs.array_get x281 4)),
-               (EM.t_of_js (Ojs.array_get x281 5))))
+          (fun (x259 : Ojs.t) ->
+             let x260 = x259 in
+             ((Obj.magic (Ojs.array_get x260 0)),
+               (Obj.magic (Ojs.array_get x260 1)),
+               (Obj.magic (Ojs.array_get x260 2)),
+               (Obj.magic (Ojs.array_get x260 3)),
+               (Obj.magic (Ojs.array_get x260 4)),
+               (EM.t_of_js (Ojs.array_get x260 5))))
           (Ojs.get_prop_ascii
-             (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x274)
+             (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x253)
              "_")
     let (create : method_:string -> ('P1, 'P2, 'P3, 'R, 'E) t) =
-      fun ~method_:(x282 : string) ->
+      fun ~method_:(x261 : string) ->
         t_of_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "RequestType3")
-             [|(Ojs.string_to_js x282)|])
+             [|(Ojs.string_to_js x261)|])
     let (cast : ('P1, 'P2, 'P3, 'R, 'E) t -> AbstractMessageSignature.t) =
-      fun (x288 : ('P1, 'P2, 'P3, 'R, 'E) t) ->
+      fun (x267 : ('P1, 'P2, 'P3, 'R, 'E) t) ->
         AbstractMessageSignature.t_of_js
-          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x288)
+          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x267)
   end
 module RequestType4 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'R, 'E) t =
-      ('P1, 'P2, 'P3, 'P4, 'R, 'E) RequestType.t4
+    type ('P1, 'P2, 'P3, 'P4, 'R, 'E) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'R 'E .
         (Ojs.t -> 'P1) ->
@@ -751,10 +751,7 @@ module RequestType4 =
           fun (__P3_of_js : Ojs.t -> __P3) ->
             fun (__P4_of_js : Ojs.t -> __P4) ->
               fun (__R_of_js : Ojs.t -> __R) ->
-                fun (__E_of_js : Ojs.t -> __E) ->
-                  fun (x301 : Ojs.t) ->
-                    RequestType.t4_of_js __P1_of_js __P2_of_js __P3_of_js
-                      __P4_of_js __R_of_js __E_of_js x301
+                fun (__E_of_js : Ojs.t -> __E) -> fun (x274 : Ojs.t) -> x274
     and t_to_js :
       'P1 'P2 'P3 'P4 'R 'E .
         ('P1 -> Ojs.t) ->
@@ -770,47 +767,40 @@ module RequestType4 =
           fun (__P3_to_js : __P3 -> Ojs.t) ->
             fun (__P4_to_js : __P4 -> Ojs.t) ->
               fun (__R_to_js : __R -> Ojs.t) ->
-                fun (__E_to_js : __E -> Ojs.t) ->
-                  fun
-                    (x294 :
-                      (__P1, __P2, __P3, __P4, __R, __E) RequestType.t4)
-                    ->
-                    RequestType.t4_to_js __P1_to_js __P2_to_js __P3_to_js
-                      __P4_to_js __R_to_js __E_to_js x294
+                fun (__E_to_js : __E -> Ojs.t) -> fun (x273 : Ojs.t) -> x273
     let (get__ :
       ('P1, 'P2, 'P3, 'P4, 'R, 'E) t ->
         ('P1 * 'P2 * 'P3 * 'P4 * 'R * 'E * EM.t) or_undefined)
       =
-      fun (x308 : ('P1, 'P2, 'P3, 'P4, 'R, 'E) t) ->
+      fun (x275 : ('P1, 'P2, 'P3, 'P4, 'R, 'E) t) ->
         or_undefined_of_js
-          (fun (x315 : Ojs.t) ->
-             let x316 = x315 in
-             ((Obj.magic (Ojs.array_get x316 0)),
-               (Obj.magic (Ojs.array_get x316 1)),
-               (Obj.magic (Ojs.array_get x316 2)),
-               (Obj.magic (Ojs.array_get x316 3)),
-               (Obj.magic (Ojs.array_get x316 4)),
-               (Obj.magic (Ojs.array_get x316 5)),
-               (EM.t_of_js (Ojs.array_get x316 6))))
+          (fun (x282 : Ojs.t) ->
+             let x283 = x282 in
+             ((Obj.magic (Ojs.array_get x283 0)),
+               (Obj.magic (Ojs.array_get x283 1)),
+               (Obj.magic (Ojs.array_get x283 2)),
+               (Obj.magic (Ojs.array_get x283 3)),
+               (Obj.magic (Ojs.array_get x283 4)),
+               (Obj.magic (Ojs.array_get x283 5)),
+               (EM.t_of_js (Ojs.array_get x283 6))))
           (Ojs.get_prop_ascii
              (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-                Obj.magic x308) "_")
+                Obj.magic x275) "_")
     let (create : method_:string -> ('P1, 'P2, 'P3, 'P4, 'R, 'E) t) =
-      fun ~method_:(x317 : string) ->
+      fun ~method_:(x284 : string) ->
         t_of_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "RequestType4")
-             [|(Ojs.string_to_js x317)|])
+             [|(Ojs.string_to_js x284)|])
     let (cast : ('P1, 'P2, 'P3, 'P4, 'R, 'E) t -> AbstractMessageSignature.t)
       =
-      fun (x324 : ('P1, 'P2, 'P3, 'P4, 'R, 'E) t) ->
+      fun (x291 : ('P1, 'P2, 'P3, 'P4, 'R, 'E) t) ->
         AbstractMessageSignature.t_of_js
           (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-             Obj.magic x324)
+             Obj.magic x291)
   end
 module RequestType5 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t =
-      ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) RequestType.t5
+    type ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'P5 'R 'E .
         (Ojs.t -> 'P1) ->
@@ -830,9 +820,7 @@ module RequestType5 =
               fun (__P5_of_js : Ojs.t -> __P5) ->
                 fun (__R_of_js : Ojs.t -> __R) ->
                   fun (__E_of_js : Ojs.t -> __E) ->
-                    fun (x339 : Ojs.t) ->
-                      RequestType.t5_of_js __P1_of_js __P2_of_js __P3_of_js
-                        __P4_of_js __P5_of_js __R_of_js __E_of_js x339
+                    fun (x299 : Ojs.t) -> x299
     and t_to_js :
       'P1 'P2 'P3 'P4 'P5 'R 'E .
         ('P1 -> Ojs.t) ->
@@ -852,49 +840,42 @@ module RequestType5 =
               fun (__P5_to_js : __P5 -> Ojs.t) ->
                 fun (__R_to_js : __R -> Ojs.t) ->
                   fun (__E_to_js : __E -> Ojs.t) ->
-                    fun
-                      (x331 :
-                        (__P1, __P2, __P3, __P4, __P5, __R, __E)
-                          RequestType.t5)
-                      ->
-                      RequestType.t5_to_js __P1_to_js __P2_to_js __P3_to_js
-                        __P4_to_js __P5_to_js __R_to_js __E_to_js x331
+                    fun (x298 : Ojs.t) -> x298
     let (get__ :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t ->
         ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'R * 'E * EM.t) or_undefined)
       =
-      fun (x347 : ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t) ->
+      fun (x300 : ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t) ->
         or_undefined_of_js
-          (fun (x355 : Ojs.t) ->
-             let x356 = x355 in
-             ((Obj.magic (Ojs.array_get x356 0)),
-               (Obj.magic (Ojs.array_get x356 1)),
-               (Obj.magic (Ojs.array_get x356 2)),
-               (Obj.magic (Ojs.array_get x356 3)),
-               (Obj.magic (Ojs.array_get x356 4)),
-               (Obj.magic (Ojs.array_get x356 5)),
-               (Obj.magic (Ojs.array_get x356 6)),
-               (EM.t_of_js (Ojs.array_get x356 7))))
+          (fun (x308 : Ojs.t) ->
+             let x309 = x308 in
+             ((Obj.magic (Ojs.array_get x309 0)),
+               (Obj.magic (Ojs.array_get x309 1)),
+               (Obj.magic (Ojs.array_get x309 2)),
+               (Obj.magic (Ojs.array_get x309 3)),
+               (Obj.magic (Ojs.array_get x309 4)),
+               (Obj.magic (Ojs.array_get x309 5)),
+               (Obj.magic (Ojs.array_get x309 6)),
+               (EM.t_of_js (Ojs.array_get x309 7))))
           (Ojs.get_prop_ascii
              (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-                Obj.magic Obj.magic x347) "_")
+                Obj.magic Obj.magic x300) "_")
     let (create : method_:string -> ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t) =
-      fun ~method_:(x357 : string) ->
+      fun ~method_:(x310 : string) ->
         t_of_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
           Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "RequestType5")
-             [|(Ojs.string_to_js x357)|])
+             [|(Ojs.string_to_js x310)|])
     let (cast :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t -> AbstractMessageSignature.t) =
-      fun (x365 : ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t) ->
+      fun (x318 : ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t) ->
         AbstractMessageSignature.t_of_js
           (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-             Obj.magic Obj.magic x365)
+             Obj.magic Obj.magic x318)
   end
 module RequestType6 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) t =
-      ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) RequestType.t6
+    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'R 'E .
         (Ojs.t -> 'P1) ->
@@ -917,10 +898,7 @@ module RequestType6 =
                 fun (__P6_of_js : Ojs.t -> __P6) ->
                   fun (__R_of_js : Ojs.t -> __R) ->
                     fun (__E_of_js : Ojs.t -> __E) ->
-                      fun (x382 : Ojs.t) ->
-                        RequestType.t6_of_js __P1_of_js __P2_of_js __P3_of_js
-                          __P4_of_js __P5_of_js __P6_of_js __R_of_js
-                          __E_of_js x382
+                      fun (x327 : Ojs.t) -> x327
     and t_to_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'R 'E .
         ('P1 -> Ojs.t) ->
@@ -943,53 +921,45 @@ module RequestType6 =
                 fun (__P6_to_js : __P6 -> Ojs.t) ->
                   fun (__R_to_js : __R -> Ojs.t) ->
                     fun (__E_to_js : __E -> Ojs.t) ->
-                      fun
-                        (x373 :
-                          (__P1, __P2, __P3, __P4, __P5, __P6, __R, __E)
-                            RequestType.t6)
-                        ->
-                        RequestType.t6_to_js __P1_to_js __P2_to_js __P3_to_js
-                          __P4_to_js __P5_to_js __P6_to_js __R_to_js
-                          __E_to_js x373
+                      fun (x326 : Ojs.t) -> x326
     let (get__ :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) t ->
         ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'R * 'E * EM.t) or_undefined)
       =
-      fun (x391 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) t) ->
+      fun (x328 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) t) ->
         or_undefined_of_js
-          (fun (x400 : Ojs.t) ->
-             let x401 = x400 in
-             ((Obj.magic (Ojs.array_get x401 0)),
-               (Obj.magic (Ojs.array_get x401 1)),
-               (Obj.magic (Ojs.array_get x401 2)),
-               (Obj.magic (Ojs.array_get x401 3)),
-               (Obj.magic (Ojs.array_get x401 4)),
-               (Obj.magic (Ojs.array_get x401 5)),
-               (Obj.magic (Ojs.array_get x401 6)),
-               (Obj.magic (Ojs.array_get x401 7)),
-               (EM.t_of_js (Ojs.array_get x401 8))))
+          (fun (x337 : Ojs.t) ->
+             let x338 = x337 in
+             ((Obj.magic (Ojs.array_get x338 0)),
+               (Obj.magic (Ojs.array_get x338 1)),
+               (Obj.magic (Ojs.array_get x338 2)),
+               (Obj.magic (Ojs.array_get x338 3)),
+               (Obj.magic (Ojs.array_get x338 4)),
+               (Obj.magic (Ojs.array_get x338 5)),
+               (Obj.magic (Ojs.array_get x338 6)),
+               (Obj.magic (Ojs.array_get x338 7)),
+               (EM.t_of_js (Ojs.array_get x338 8))))
           (Ojs.get_prop_ascii
              (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-                Obj.magic Obj.magic Obj.magic x391) "_")
+                Obj.magic Obj.magic Obj.magic x328) "_")
     let (create : method_:string -> ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) t)
       =
-      fun ~method_:(x402 : string) ->
+      fun ~method_:(x339 : string) ->
         t_of_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
           Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "RequestType6")
-             [|(Ojs.string_to_js x402)|])
+             [|(Ojs.string_to_js x339)|])
     let (cast :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) t -> AbstractMessageSignature.t)
       =
-      fun (x411 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) t) ->
+      fun (x348 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) t) ->
         AbstractMessageSignature.t_of_js
           (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-             Obj.magic Obj.magic Obj.magic x411)
+             Obj.magic Obj.magic Obj.magic x348)
   end
 module RequestType7 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) t =
-      ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) RequestType.t7
+    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 'R 'E .
         (Ojs.t -> 'P1) ->
@@ -1015,10 +985,7 @@ module RequestType7 =
                   fun (__P7_of_js : Ojs.t -> __P7) ->
                     fun (__R_of_js : Ojs.t -> __R) ->
                       fun (__E_of_js : Ojs.t -> __E) ->
-                        fun (x430 : Ojs.t) ->
-                          RequestType.t7_of_js __P1_of_js __P2_of_js
-                            __P3_of_js __P4_of_js __P5_of_js __P6_of_js
-                            __P7_of_js __R_of_js __E_of_js x430
+                        fun (x358 : Ojs.t) -> x358
     and t_to_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 'R 'E .
         ('P1 -> Ojs.t) ->
@@ -1044,56 +1011,48 @@ module RequestType7 =
                   fun (__P7_to_js : __P7 -> Ojs.t) ->
                     fun (__R_to_js : __R -> Ojs.t) ->
                       fun (__E_to_js : __E -> Ojs.t) ->
-                        fun
-                          (x420 :
-                            (__P1, __P2, __P3, __P4, __P5, __P6, __P7, 
-                              __R, __E) RequestType.t7)
-                          ->
-                          RequestType.t7_to_js __P1_to_js __P2_to_js
-                            __P3_to_js __P4_to_js __P5_to_js __P6_to_js
-                            __P7_to_js __R_to_js __E_to_js x420
+                        fun (x357 : Ojs.t) -> x357
     let (get__ :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) t ->
         ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * 'R * 'E * EM.t)
           or_undefined)
       =
-      fun (x440 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) t) ->
+      fun (x359 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) t) ->
         or_undefined_of_js
-          (fun (x450 : Ojs.t) ->
-             let x451 = x450 in
-             ((Obj.magic (Ojs.array_get x451 0)),
-               (Obj.magic (Ojs.array_get x451 1)),
-               (Obj.magic (Ojs.array_get x451 2)),
-               (Obj.magic (Ojs.array_get x451 3)),
-               (Obj.magic (Ojs.array_get x451 4)),
-               (Obj.magic (Ojs.array_get x451 5)),
-               (Obj.magic (Ojs.array_get x451 6)),
-               (Obj.magic (Ojs.array_get x451 7)),
-               (Obj.magic (Ojs.array_get x451 8)),
-               (EM.t_of_js (Ojs.array_get x451 9))))
+          (fun (x369 : Ojs.t) ->
+             let x370 = x369 in
+             ((Obj.magic (Ojs.array_get x370 0)),
+               (Obj.magic (Ojs.array_get x370 1)),
+               (Obj.magic (Ojs.array_get x370 2)),
+               (Obj.magic (Ojs.array_get x370 3)),
+               (Obj.magic (Ojs.array_get x370 4)),
+               (Obj.magic (Ojs.array_get x370 5)),
+               (Obj.magic (Ojs.array_get x370 6)),
+               (Obj.magic (Ojs.array_get x370 7)),
+               (Obj.magic (Ojs.array_get x370 8)),
+               (EM.t_of_js (Ojs.array_get x370 9))))
           (Ojs.get_prop_ascii
              (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-                Obj.magic Obj.magic Obj.magic Obj.magic x440) "_")
+                Obj.magic Obj.magic Obj.magic Obj.magic x359) "_")
     let (create :
       method_:string -> ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) t) =
-      fun ~method_:(x452 : string) ->
+      fun ~method_:(x371 : string) ->
         t_of_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
           Obj.magic Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "RequestType7")
-             [|(Ojs.string_to_js x452)|])
+             [|(Ojs.string_to_js x371)|])
     let (cast :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) t ->
         AbstractMessageSignature.t)
       =
-      fun (x462 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) t) ->
+      fun (x381 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) t) ->
         AbstractMessageSignature.t_of_js
           (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-             Obj.magic Obj.magic Obj.magic Obj.magic x462)
+             Obj.magic Obj.magic Obj.magic Obj.magic x381)
   end
 module RequestType8 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) t =
-      ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) RequestType.t8
+    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 'P8 'R 'E .
         (Ojs.t -> 'P1) ->
@@ -1122,10 +1081,7 @@ module RequestType8 =
                     fun (__P8_of_js : Ojs.t -> __P8) ->
                       fun (__R_of_js : Ojs.t -> __R) ->
                         fun (__E_of_js : Ojs.t -> __E) ->
-                          fun (x483 : Ojs.t) ->
-                            RequestType.t8_of_js __P1_of_js __P2_of_js
-                              __P3_of_js __P4_of_js __P5_of_js __P6_of_js
-                              __P7_of_js __P8_of_js __R_of_js __E_of_js x483
+                          fun (x392 : Ojs.t) -> x392
     and t_to_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 'P8 'R 'E .
         ('P1 -> Ojs.t) ->
@@ -1153,57 +1109,49 @@ module RequestType8 =
                     fun (__P8_to_js : __P8 -> Ojs.t) ->
                       fun (__R_to_js : __R -> Ojs.t) ->
                         fun (__E_to_js : __E -> Ojs.t) ->
-                          fun
-                            (x472 :
-                              (__P1, __P2, __P3, __P4, __P5, __P6, __P7,
-                                __P8, __R, __E) RequestType.t8)
-                            ->
-                            RequestType.t8_to_js __P1_to_js __P2_to_js
-                              __P3_to_js __P4_to_js __P5_to_js __P6_to_js
-                              __P7_to_js __P8_to_js __R_to_js __E_to_js x472
+                          fun (x391 : Ojs.t) -> x391
     let (get__ :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) t ->
         ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * 'P8 * 'R * 'E * EM.t)
           or_undefined)
       =
-      fun (x494 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) t) ->
+      fun (x393 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) t) ->
         or_undefined_of_js
-          (fun (x505 : Ojs.t) ->
-             let x506 = x505 in
-             ((Obj.magic (Ojs.array_get x506 0)),
-               (Obj.magic (Ojs.array_get x506 1)),
-               (Obj.magic (Ojs.array_get x506 2)),
-               (Obj.magic (Ojs.array_get x506 3)),
-               (Obj.magic (Ojs.array_get x506 4)),
-               (Obj.magic (Ojs.array_get x506 5)),
-               (Obj.magic (Ojs.array_get x506 6)),
-               (Obj.magic (Ojs.array_get x506 7)),
-               (Obj.magic (Ojs.array_get x506 8)),
-               (Obj.magic (Ojs.array_get x506 9)),
-               (EM.t_of_js (Ojs.array_get x506 10))))
+          (fun (x404 : Ojs.t) ->
+             let x405 = x404 in
+             ((Obj.magic (Ojs.array_get x405 0)),
+               (Obj.magic (Ojs.array_get x405 1)),
+               (Obj.magic (Ojs.array_get x405 2)),
+               (Obj.magic (Ojs.array_get x405 3)),
+               (Obj.magic (Ojs.array_get x405 4)),
+               (Obj.magic (Ojs.array_get x405 5)),
+               (Obj.magic (Ojs.array_get x405 6)),
+               (Obj.magic (Ojs.array_get x405 7)),
+               (Obj.magic (Ojs.array_get x405 8)),
+               (Obj.magic (Ojs.array_get x405 9)),
+               (EM.t_of_js (Ojs.array_get x405 10))))
           (Ojs.get_prop_ascii
              (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-                Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x494) "_")
+                Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x393) "_")
     let (create :
       method_:string -> ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) t) =
-      fun ~method_:(x507 : string) ->
+      fun ~method_:(x406 : string) ->
         t_of_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
           Obj.magic Obj.magic Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "RequestType8")
-             [|(Ojs.string_to_js x507)|])
+             [|(Ojs.string_to_js x406)|])
     let (cast :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) t ->
         AbstractMessageSignature.t)
       =
-      fun (x518 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) t) ->
+      fun (x417 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) t) ->
         AbstractMessageSignature.t_of_js
           (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-             Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x518)
+             Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x417)
   end
 module RequestType9 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) t =
-      ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) RequestType.t9
+    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 'P8 'P9 'R 'E .
         (Ojs.t -> 'P1) ->
@@ -1234,11 +1182,7 @@ module RequestType9 =
                       fun (__P9_of_js : Ojs.t -> __P9) ->
                         fun (__R_of_js : Ojs.t -> __R) ->
                           fun (__E_of_js : Ojs.t -> __E) ->
-                            fun (x541 : Ojs.t) ->
-                              RequestType.t9_of_js __P1_of_js __P2_of_js
-                                __P3_of_js __P4_of_js __P5_of_js __P6_of_js
-                                __P7_of_js __P8_of_js __P9_of_js __R_of_js
-                                __E_of_js x541
+                            fun (x429 : Ojs.t) -> x429
     and t_to_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 'P8 'P9 'R 'E .
         ('P1 -> Ojs.t) ->
@@ -1268,244 +1212,206 @@ module RequestType9 =
                       fun (__P9_to_js : __P9 -> Ojs.t) ->
                         fun (__R_to_js : __R -> Ojs.t) ->
                           fun (__E_to_js : __E -> Ojs.t) ->
-                            fun
-                              (x529 :
-                                (__P1, __P2, __P3, __P4, __P5, __P6, 
-                                  __P7, __P8, __P9, __R, __E) RequestType.t9)
-                              ->
-                              RequestType.t9_to_js __P1_to_js __P2_to_js
-                                __P3_to_js __P4_to_js __P5_to_js __P6_to_js
-                                __P7_to_js __P8_to_js __P9_to_js __R_to_js
-                                __E_to_js x529
+                            fun (x428 : Ojs.t) -> x428
     let (get__ :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) t ->
         ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * 'P8 * 'P9 * 'R * 'E *
           EM.t) or_undefined)
       =
-      fun (x553 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) t) ->
+      fun (x430 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) t) ->
         or_undefined_of_js
-          (fun (x565 : Ojs.t) ->
-             let x566 = x565 in
-             ((Obj.magic (Ojs.array_get x566 0)),
-               (Obj.magic (Ojs.array_get x566 1)),
-               (Obj.magic (Ojs.array_get x566 2)),
-               (Obj.magic (Ojs.array_get x566 3)),
-               (Obj.magic (Ojs.array_get x566 4)),
-               (Obj.magic (Ojs.array_get x566 5)),
-               (Obj.magic (Ojs.array_get x566 6)),
-               (Obj.magic (Ojs.array_get x566 7)),
-               (Obj.magic (Ojs.array_get x566 8)),
-               (Obj.magic (Ojs.array_get x566 9)),
-               (Obj.magic (Ojs.array_get x566 10)),
-               (EM.t_of_js (Ojs.array_get x566 11))))
+          (fun (x442 : Ojs.t) ->
+             let x443 = x442 in
+             ((Obj.magic (Ojs.array_get x443 0)),
+               (Obj.magic (Ojs.array_get x443 1)),
+               (Obj.magic (Ojs.array_get x443 2)),
+               (Obj.magic (Ojs.array_get x443 3)),
+               (Obj.magic (Ojs.array_get x443 4)),
+               (Obj.magic (Ojs.array_get x443 5)),
+               (Obj.magic (Ojs.array_get x443 6)),
+               (Obj.magic (Ojs.array_get x443 7)),
+               (Obj.magic (Ojs.array_get x443 8)),
+               (Obj.magic (Ojs.array_get x443 9)),
+               (Obj.magic (Ojs.array_get x443 10)),
+               (EM.t_of_js (Ojs.array_get x443 11))))
           (Ojs.get_prop_ascii
              (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
                 Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-                x553) "_")
+                x430) "_")
     let (create :
       method_:string ->
         ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) t)
       =
-      fun ~method_:(x567 : string) ->
+      fun ~method_:(x444 : string) ->
         t_of_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
           Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-          (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "RequestType9")
-             [|(Ojs.string_to_js x567)|])
+          (Ojs.new_obj
+             (Ojs.get_prop_ascii
+                (Ojs.get_prop_ascii Ojs.global "NotificationMessage")
+                "RequestType9") [|(Ojs.string_to_js x444)|])
     let (cast :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) t ->
         AbstractMessageSignature.t)
       =
-      fun (x579 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) t) ->
+      fun (x456 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) t) ->
         AbstractMessageSignature.t_of_js
           (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-             Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x579)
-  end
-module NotificationMessage =
-  struct
-    type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x592 : Ojs.t) -> x592
-    and t_to_js : t -> Ojs.t = fun (x591 : Ojs.t) -> x591
-    let (get_method : t -> string) =
-      fun (x593 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x593) "method")
-    let (set_method : t -> string -> unit) =
-      fun (x594 : t) ->
-        fun (x595 : string) ->
-          Ojs.set_prop_ascii (t_to_js x594) "method" (Ojs.string_to_js x595)
-    let (get_params : t -> (untyped_object, unit) union2) =
-      fun (x596 : t) ->
-        union2_of_js untyped_object_of_js Ojs.unit_of_js
-          (Ojs.get_prop_ascii (t_to_js x596) "params")
-    let (set_params : t -> (untyped_object, unit) union2 -> unit) =
-      fun (x599 : t) ->
-        fun (x600 : (untyped_object, unit) union2) ->
-          Ojs.set_prop_ascii (t_to_js x599) "params"
-            (union2_to_js untyped_object_to_js Ojs.unit_to_js x600)
-    let (cast : t -> Message.t) =
-      fun (x603 : t) -> Message.t_of_js (t_to_js x603)
+             Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x456)
   end
 module NotificationType =
   struct
     type 'P t = Ojs.t
     let rec t_of_js : 'P . (Ojs.t -> 'P) -> Ojs.t -> 'P t = fun (type __P) ->
-      fun (__P_of_js : Ojs.t -> __P) -> fun (x605 : Ojs.t) -> x605
+      fun (__P_of_js : Ojs.t -> __P) -> fun (x469 : Ojs.t) -> x469
     and t_to_js : 'P . ('P -> Ojs.t) -> 'P t -> Ojs.t = fun (type __P) ->
-      fun (__P_to_js : __P -> Ojs.t) -> fun (x604 : Ojs.t) -> x604
+      fun (__P_to_js : __P -> Ojs.t) -> fun (x468 : Ojs.t) -> x468
     let (get_parameter_structures : 'P t -> any) =
-      fun (x606 : 'P t) ->
+      fun (x470 : 'P t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x606) "_parameterStructures")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x470) "_parameterStructures")
     let (set_parameter_structures : 'P t -> any -> unit) =
-      fun (x608 : 'P t) ->
-        fun (x609 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x608) "_parameterStructures"
-            (any_to_js x609)
+      fun (x472 : 'P t) ->
+        fun (x473 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x472) "_parameterStructures"
+            (any_to_js x473)
     let (get__ : 'P t -> ('P * EM.t) or_undefined) =
-      fun (x611 : 'P t) ->
+      fun (x475 : 'P t) ->
         or_undefined_of_js
-          (fun (x613 : Ojs.t) ->
-             let x614 = x613 in
-             ((Obj.magic (Ojs.array_get x614 0)),
-               (EM.t_of_js (Ojs.array_get x614 1))))
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x611) "_")
+          (fun (x477 : Ojs.t) ->
+             let x478 = x477 in
+             ((Obj.magic (Ojs.array_get x478 0)),
+               (EM.t_of_js (Ojs.array_get x478 1))))
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x475) "_")
     let (create :
       method_:string ->
         ?_parameterStructures:ParameterStructures.t -> unit -> 'P t)
       =
-      fun ~method_:(x615 : string) ->
-        fun ?_parameterStructures:(x616 : ParameterStructures.t option) ->
+      fun ~method_:(x479 : string) ->
+        fun ?_parameterStructures:(x480 : ParameterStructures.t option) ->
           fun () ->
             t_of_js Obj.magic
               (Ojs.new_obj_arr
                  (Ojs.get_prop_ascii Ojs.global "NotificationType")
-                 (let x617 =
+                 (let x481 =
                     Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
-                  ignore (Ojs.call x617 "push" [|(Ojs.string_to_js x615)|]);
-                  (match x616 with
-                   | Some x618 ->
+                  ignore (Ojs.call x481 "push" [|(Ojs.string_to_js x479)|]);
+                  (match x480 with
+                   | Some x482 ->
                        ignore
-                         (Ojs.call x617 "push"
-                            [|(ParameterStructures.t_to_js x618)|])
+                         (Ojs.call x481 "push"
+                            [|(ParameterStructures.t_to_js x482)|])
                    | None -> ());
-                  x617))
+                  x481))
     let (get_parameter_structures : 'P t -> ParameterStructures.t) =
-      fun (x620 : 'P t) ->
+      fun (x484 : 'P t) ->
         ParameterStructures.t_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x620) "parameterStructures")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x484) "parameterStructures")
     let (cast : 'P t -> AbstractMessageSignature.t) =
-      fun (x622 : 'P t) ->
-        AbstractMessageSignature.t_of_js (t_to_js Obj.magic x622)
+      fun (x486 : 'P t) ->
+        AbstractMessageSignature.t_of_js (t_to_js Obj.magic x486)
   end
 module NotificationType0 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x625 : Ojs.t) -> x625
-    and t_to_js : t -> Ojs.t = fun (x624 : Ojs.t) -> x624
+    let rec t_of_js : Ojs.t -> t = fun (x489 : Ojs.t) -> x489
+    and t_to_js : t -> Ojs.t = fun (x488 : Ojs.t) -> x488
     let (get__ : t -> EM.t or_undefined) =
-      fun (x626 : t) ->
-        or_undefined_of_js EM.t_of_js (Ojs.get_prop_ascii (t_to_js x626) "_")
+      fun (x490 : t) ->
+        or_undefined_of_js EM.t_of_js (Ojs.get_prop_ascii (t_to_js x490) "_")
     let (create : method_:string -> t) =
-      fun ~method_:(x628 : string) ->
+      fun ~method_:(x492 : string) ->
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "NotificationType0")
-             [|(Ojs.string_to_js x628)|])
+             [|(Ojs.string_to_js x492)|])
     let (cast : t -> AbstractMessageSignature.t) =
-      fun (x629 : t) -> AbstractMessageSignature.t_of_js (t_to_js x629)
+      fun (x493 : t) -> AbstractMessageSignature.t_of_js (t_to_js x493)
   end
 module NotificationType1 =
   struct
-    type 'P1 t = 'P1 NotificationType.t1
+    type 'P1 t = Ojs.t
     let rec t_of_js : 'P1 . (Ojs.t -> 'P1) -> Ojs.t -> 'P1 t = fun (type
-      __P1) ->
-      fun (__P1_of_js : Ojs.t -> __P1) ->
-        fun (x632 : Ojs.t) -> NotificationType.t1_of_js __P1_of_js x632
+      __P1) -> fun (__P1_of_js : Ojs.t -> __P1) -> fun (x495 : Ojs.t) -> x495
     and t_to_js : 'P1 . ('P1 -> Ojs.t) -> 'P1 t -> Ojs.t = fun (type __P1) ->
-      fun (__P1_to_js : __P1 -> Ojs.t) ->
-        fun (x630 : __P1 NotificationType.t1) ->
-          NotificationType.t1_to_js __P1_to_js x630
+      fun (__P1_to_js : __P1 -> Ojs.t) -> fun (x494 : Ojs.t) -> x494
     let (get_parameter_structures : 'P1 t -> any) =
-      fun (x634 : 'P1 t) ->
+      fun (x496 : 'P1 t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x634) "_parameterStructures")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x496) "_parameterStructures")
     let (set_parameter_structures : 'P1 t -> any -> unit) =
-      fun (x636 : 'P1 t) ->
-        fun (x637 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x636) "_parameterStructures"
-            (any_to_js x637)
+      fun (x498 : 'P1 t) ->
+        fun (x499 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x498) "_parameterStructures"
+            (any_to_js x499)
     let (get__ : 'P1 t -> ('P1 * EM.t) or_undefined) =
-      fun (x639 : 'P1 t) ->
+      fun (x501 : 'P1 t) ->
         or_undefined_of_js
-          (fun (x641 : Ojs.t) ->
-             let x642 = x641 in
-             ((Obj.magic (Ojs.array_get x642 0)),
-               (EM.t_of_js (Ojs.array_get x642 1))))
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x639) "_")
+          (fun (x503 : Ojs.t) ->
+             let x504 = x503 in
+             ((Obj.magic (Ojs.array_get x504 0)),
+               (EM.t_of_js (Ojs.array_get x504 1))))
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x501) "_")
     let (create :
       method_:string ->
         ?_parameterStructures:ParameterStructures.t -> unit -> 'P1 t)
       =
-      fun ~method_:(x643 : string) ->
-        fun ?_parameterStructures:(x644 : ParameterStructures.t option) ->
+      fun ~method_:(x505 : string) ->
+        fun ?_parameterStructures:(x506 : ParameterStructures.t option) ->
           fun () ->
             t_of_js Obj.magic
               (Ojs.new_obj_arr
                  (Ojs.get_prop_ascii Ojs.global "NotificationType1")
-                 (let x645 =
+                 (let x507 =
                     Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
-                  ignore (Ojs.call x645 "push" [|(Ojs.string_to_js x643)|]);
-                  (match x644 with
-                   | Some x646 ->
+                  ignore (Ojs.call x507 "push" [|(Ojs.string_to_js x505)|]);
+                  (match x506 with
+                   | Some x508 ->
                        ignore
-                         (Ojs.call x645 "push"
-                            [|(ParameterStructures.t_to_js x646)|])
+                         (Ojs.call x507 "push"
+                            [|(ParameterStructures.t_to_js x508)|])
                    | None -> ());
-                  x645))
+                  x507))
     let (get_parameter_structures : 'P1 t -> ParameterStructures.t) =
-      fun (x648 : 'P1 t) ->
+      fun (x510 : 'P1 t) ->
         ParameterStructures.t_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x648) "parameterStructures")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x510) "parameterStructures")
     let (cast : 'P1 t -> AbstractMessageSignature.t) =
-      fun (x650 : 'P1 t) ->
-        AbstractMessageSignature.t_of_js (t_to_js Obj.magic x650)
+      fun (x512 : 'P1 t) ->
+        AbstractMessageSignature.t_of_js (t_to_js Obj.magic x512)
   end
 module NotificationType2 =
   struct
-    type ('P1, 'P2) t = ('P1, 'P2) NotificationType.t2
+    type ('P1, 'P2) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 . (Ojs.t -> 'P1) -> (Ojs.t -> 'P2) -> Ojs.t -> ('P1, 'P2) t =
       fun (type __P1) -> fun (type __P2) ->
       fun (__P1_of_js : Ojs.t -> __P1) ->
-        fun (__P2_of_js : Ojs.t -> __P2) ->
-          fun (x655 : Ojs.t) ->
-            NotificationType.t2_of_js __P1_of_js __P2_of_js x655
+        fun (__P2_of_js : Ojs.t -> __P2) -> fun (x515 : Ojs.t) -> x515
     and t_to_js :
       'P1 'P2 . ('P1 -> Ojs.t) -> ('P2 -> Ojs.t) -> ('P1, 'P2) t -> Ojs.t =
       fun (type __P1) -> fun (type __P2) ->
       fun (__P1_to_js : __P1 -> Ojs.t) ->
-        fun (__P2_to_js : __P2 -> Ojs.t) ->
-          fun (x652 : (__P1, __P2) NotificationType.t2) ->
-            NotificationType.t2_to_js __P1_to_js __P2_to_js x652
+        fun (__P2_to_js : __P2 -> Ojs.t) -> fun (x514 : Ojs.t) -> x514
     let (get__ : ('P1, 'P2) t -> ('P1 * 'P2 * EM.t) or_undefined) =
-      fun (x658 : ('P1, 'P2) t) ->
+      fun (x516 : ('P1, 'P2) t) ->
         or_undefined_of_js
-          (fun (x661 : Ojs.t) ->
-             let x662 = x661 in
-             ((Obj.magic (Ojs.array_get x662 0)),
-               (Obj.magic (Ojs.array_get x662 1)),
-               (EM.t_of_js (Ojs.array_get x662 2))))
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x658) "_")
+          (fun (x519 : Ojs.t) ->
+             let x520 = x519 in
+             ((Obj.magic (Ojs.array_get x520 0)),
+               (Obj.magic (Ojs.array_get x520 1)),
+               (EM.t_of_js (Ojs.array_get x520 2))))
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x516) "_")
     let (create : method_:string -> ('P1, 'P2) t) =
-      fun ~method_:(x663 : string) ->
+      fun ~method_:(x521 : string) ->
         t_of_js Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "NotificationType2")
-             [|(Ojs.string_to_js x663)|])
+             [|(Ojs.string_to_js x521)|])
     let (cast : ('P1, 'P2) t -> AbstractMessageSignature.t) =
-      fun (x666 : ('P1, 'P2) t) ->
-        AbstractMessageSignature.t_of_js (t_to_js Obj.magic Obj.magic x666)
+      fun (x524 : ('P1, 'P2) t) ->
+        AbstractMessageSignature.t_of_js (t_to_js Obj.magic Obj.magic x524)
   end
 module NotificationType3 =
   struct
-    type ('P1, 'P2, 'P3) t = ('P1, 'P2, 'P3) NotificationType.t3
+    type ('P1, 'P2, 'P3) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 .
         (Ojs.t -> 'P1) ->
@@ -1513,9 +1419,7 @@ module NotificationType3 =
       = fun (type __P1) -> fun (type __P2) -> fun (type __P3) ->
       fun (__P1_of_js : Ojs.t -> __P1) ->
         fun (__P2_of_js : Ojs.t -> __P2) ->
-          fun (__P3_of_js : Ojs.t -> __P3) ->
-            fun (x673 : Ojs.t) ->
-              NotificationType.t3_of_js __P1_of_js __P2_of_js __P3_of_js x673
+          fun (__P3_of_js : Ojs.t -> __P3) -> fun (x528 : Ojs.t) -> x528
     and t_to_js :
       'P1 'P2 'P3 .
         ('P1 -> Ojs.t) ->
@@ -1523,34 +1427,32 @@ module NotificationType3 =
       = fun (type __P1) -> fun (type __P2) -> fun (type __P3) ->
       fun (__P1_to_js : __P1 -> Ojs.t) ->
         fun (__P2_to_js : __P2 -> Ojs.t) ->
-          fun (__P3_to_js : __P3 -> Ojs.t) ->
-            fun (x669 : (__P1, __P2, __P3) NotificationType.t3) ->
-              NotificationType.t3_to_js __P1_to_js __P2_to_js __P3_to_js x669
+          fun (__P3_to_js : __P3 -> Ojs.t) -> fun (x527 : Ojs.t) -> x527
     let (get__ : ('P1, 'P2, 'P3) t -> ('P1 * 'P2 * 'P3 * EM.t) or_undefined)
       =
-      fun (x677 : ('P1, 'P2, 'P3) t) ->
+      fun (x529 : ('P1, 'P2, 'P3) t) ->
         or_undefined_of_js
-          (fun (x681 : Ojs.t) ->
-             let x682 = x681 in
-             ((Obj.magic (Ojs.array_get x682 0)),
-               (Obj.magic (Ojs.array_get x682 1)),
-               (Obj.magic (Ojs.array_get x682 2)),
-               (EM.t_of_js (Ojs.array_get x682 3))))
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x677)
+          (fun (x533 : Ojs.t) ->
+             let x534 = x533 in
+             ((Obj.magic (Ojs.array_get x534 0)),
+               (Obj.magic (Ojs.array_get x534 1)),
+               (Obj.magic (Ojs.array_get x534 2)),
+               (EM.t_of_js (Ojs.array_get x534 3))))
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x529)
              "_")
     let (create : method_:string -> ('P1, 'P2, 'P3) t) =
-      fun ~method_:(x683 : string) ->
+      fun ~method_:(x535 : string) ->
         t_of_js Obj.magic Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "NotificationType3")
-             [|(Ojs.string_to_js x683)|])
+             [|(Ojs.string_to_js x535)|])
     let (cast : ('P1, 'P2, 'P3) t -> AbstractMessageSignature.t) =
-      fun (x687 : ('P1, 'P2, 'P3) t) ->
+      fun (x539 : ('P1, 'P2, 'P3) t) ->
         AbstractMessageSignature.t_of_js
-          (t_to_js Obj.magic Obj.magic Obj.magic x687)
+          (t_to_js Obj.magic Obj.magic Obj.magic x539)
   end
 module NotificationType4 =
   struct
-    type ('P1, 'P2, 'P3, 'P4) t = ('P1, 'P2, 'P3, 'P4) NotificationType.t4
+    type ('P1, 'P2, 'P3, 'P4) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 .
         (Ojs.t -> 'P1) ->
@@ -1562,10 +1464,7 @@ module NotificationType4 =
       fun (__P1_of_js : Ojs.t -> __P1) ->
         fun (__P2_of_js : Ojs.t -> __P2) ->
           fun (__P3_of_js : Ojs.t -> __P3) ->
-            fun (__P4_of_js : Ojs.t -> __P4) ->
-              fun (x696 : Ojs.t) ->
-                NotificationType.t4_of_js __P1_of_js __P2_of_js __P3_of_js
-                  __P4_of_js x696
+            fun (__P4_of_js : Ojs.t -> __P4) -> fun (x544 : Ojs.t) -> x544
     and t_to_js :
       'P1 'P2 'P3 'P4 .
         ('P1 -> Ojs.t) ->
@@ -1577,38 +1476,34 @@ module NotificationType4 =
       fun (__P1_to_js : __P1 -> Ojs.t) ->
         fun (__P2_to_js : __P2 -> Ojs.t) ->
           fun (__P3_to_js : __P3 -> Ojs.t) ->
-            fun (__P4_to_js : __P4 -> Ojs.t) ->
-              fun (x691 : (__P1, __P2, __P3, __P4) NotificationType.t4) ->
-                NotificationType.t4_to_js __P1_to_js __P2_to_js __P3_to_js
-                  __P4_to_js x691
+            fun (__P4_to_js : __P4 -> Ojs.t) -> fun (x543 : Ojs.t) -> x543
     let (get__ :
       ('P1, 'P2, 'P3, 'P4) t -> ('P1 * 'P2 * 'P3 * 'P4 * EM.t) or_undefined)
       =
-      fun (x701 : ('P1, 'P2, 'P3, 'P4) t) ->
+      fun (x545 : ('P1, 'P2, 'P3, 'P4) t) ->
         or_undefined_of_js
-          (fun (x706 : Ojs.t) ->
-             let x707 = x706 in
-             ((Obj.magic (Ojs.array_get x707 0)),
-               (Obj.magic (Ojs.array_get x707 1)),
-               (Obj.magic (Ojs.array_get x707 2)),
-               (Obj.magic (Ojs.array_get x707 3)),
-               (EM.t_of_js (Ojs.array_get x707 4))))
+          (fun (x550 : Ojs.t) ->
+             let x551 = x550 in
+             ((Obj.magic (Ojs.array_get x551 0)),
+               (Obj.magic (Ojs.array_get x551 1)),
+               (Obj.magic (Ojs.array_get x551 2)),
+               (Obj.magic (Ojs.array_get x551 3)),
+               (EM.t_of_js (Ojs.array_get x551 4))))
           (Ojs.get_prop_ascii
-             (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x701) "_")
+             (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x545) "_")
     let (create : method_:string -> ('P1, 'P2, 'P3, 'P4) t) =
-      fun ~method_:(x708 : string) ->
+      fun ~method_:(x552 : string) ->
         t_of_js Obj.magic Obj.magic Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "NotificationType4")
-             [|(Ojs.string_to_js x708)|])
+             [|(Ojs.string_to_js x552)|])
     let (cast : ('P1, 'P2, 'P3, 'P4) t -> AbstractMessageSignature.t) =
-      fun (x713 : ('P1, 'P2, 'P3, 'P4) t) ->
+      fun (x557 : ('P1, 'P2, 'P3, 'P4) t) ->
         AbstractMessageSignature.t_of_js
-          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x713)
+          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x557)
   end
 module NotificationType5 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'P5) t =
-      ('P1, 'P2, 'P3, 'P4, 'P5) NotificationType.t5
+    type ('P1, 'P2, 'P3, 'P4, 'P5) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'P5 .
         (Ojs.t -> 'P1) ->
@@ -1622,10 +1517,7 @@ module NotificationType5 =
         fun (__P2_of_js : Ojs.t -> __P2) ->
           fun (__P3_of_js : Ojs.t -> __P3) ->
             fun (__P4_of_js : Ojs.t -> __P4) ->
-              fun (__P5_of_js : Ojs.t -> __P5) ->
-                fun (x724 : Ojs.t) ->
-                  NotificationType.t5_of_js __P1_of_js __P2_of_js __P3_of_js
-                    __P4_of_js __P5_of_js x724
+              fun (__P5_of_js : Ojs.t -> __P5) -> fun (x563 : Ojs.t) -> x563
     and t_to_js :
       'P1 'P2 'P3 'P4 'P5 .
         ('P1 -> Ojs.t) ->
@@ -1639,43 +1531,37 @@ module NotificationType5 =
         fun (__P2_to_js : __P2 -> Ojs.t) ->
           fun (__P3_to_js : __P3 -> Ojs.t) ->
             fun (__P4_to_js : __P4 -> Ojs.t) ->
-              fun (__P5_to_js : __P5 -> Ojs.t) ->
-                fun
-                  (x718 : (__P1, __P2, __P3, __P4, __P5) NotificationType.t5)
-                  ->
-                  NotificationType.t5_to_js __P1_to_js __P2_to_js __P3_to_js
-                    __P4_to_js __P5_to_js x718
+              fun (__P5_to_js : __P5 -> Ojs.t) -> fun (x562 : Ojs.t) -> x562
     let (get__ :
       ('P1, 'P2, 'P3, 'P4, 'P5) t ->
         ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * EM.t) or_undefined)
       =
-      fun (x730 : ('P1, 'P2, 'P3, 'P4, 'P5) t) ->
+      fun (x564 : ('P1, 'P2, 'P3, 'P4, 'P5) t) ->
         or_undefined_of_js
-          (fun (x736 : Ojs.t) ->
-             let x737 = x736 in
-             ((Obj.magic (Ojs.array_get x737 0)),
-               (Obj.magic (Ojs.array_get x737 1)),
-               (Obj.magic (Ojs.array_get x737 2)),
-               (Obj.magic (Ojs.array_get x737 3)),
-               (Obj.magic (Ojs.array_get x737 4)),
-               (EM.t_of_js (Ojs.array_get x737 5))))
+          (fun (x570 : Ojs.t) ->
+             let x571 = x570 in
+             ((Obj.magic (Ojs.array_get x571 0)),
+               (Obj.magic (Ojs.array_get x571 1)),
+               (Obj.magic (Ojs.array_get x571 2)),
+               (Obj.magic (Ojs.array_get x571 3)),
+               (Obj.magic (Ojs.array_get x571 4)),
+               (EM.t_of_js (Ojs.array_get x571 5))))
           (Ojs.get_prop_ascii
-             (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x730)
+             (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x564)
              "_")
     let (create : method_:string -> ('P1, 'P2, 'P3, 'P4, 'P5) t) =
-      fun ~method_:(x738 : string) ->
+      fun ~method_:(x572 : string) ->
         t_of_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "NotificationType5")
-             [|(Ojs.string_to_js x738)|])
+             [|(Ojs.string_to_js x572)|])
     let (cast : ('P1, 'P2, 'P3, 'P4, 'P5) t -> AbstractMessageSignature.t) =
-      fun (x744 : ('P1, 'P2, 'P3, 'P4, 'P5) t) ->
+      fun (x578 : ('P1, 'P2, 'P3, 'P4, 'P5) t) ->
         AbstractMessageSignature.t_of_js
-          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x744)
+          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x578)
   end
 module NotificationType6 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t =
-      ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) NotificationType.t6
+    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'P5 'P6 .
         (Ojs.t -> 'P1) ->
@@ -1692,9 +1578,7 @@ module NotificationType6 =
             fun (__P4_of_js : Ojs.t -> __P4) ->
               fun (__P5_of_js : Ojs.t -> __P5) ->
                 fun (__P6_of_js : Ojs.t -> __P6) ->
-                  fun (x757 : Ojs.t) ->
-                    NotificationType.t6_of_js __P1_of_js __P2_of_js
-                      __P3_of_js __P4_of_js __P5_of_js __P6_of_js x757
+                  fun (x585 : Ojs.t) -> x585
     and t_to_js :
       'P1 'P2 'P3 'P4 'P5 'P6 .
         ('P1 -> Ojs.t) ->
@@ -1711,47 +1595,40 @@ module NotificationType6 =
             fun (__P4_to_js : __P4 -> Ojs.t) ->
               fun (__P5_to_js : __P5 -> Ojs.t) ->
                 fun (__P6_to_js : __P6 -> Ojs.t) ->
-                  fun
-                    (x750 :
-                      (__P1, __P2, __P3, __P4, __P5, __P6)
-                        NotificationType.t6)
-                    ->
-                    NotificationType.t6_to_js __P1_to_js __P2_to_js
-                      __P3_to_js __P4_to_js __P5_to_js __P6_to_js x750
+                  fun (x584 : Ojs.t) -> x584
     let (get__ :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t ->
         ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * EM.t) or_undefined)
       =
-      fun (x764 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t) ->
+      fun (x586 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t) ->
         or_undefined_of_js
-          (fun (x771 : Ojs.t) ->
-             let x772 = x771 in
-             ((Obj.magic (Ojs.array_get x772 0)),
-               (Obj.magic (Ojs.array_get x772 1)),
-               (Obj.magic (Ojs.array_get x772 2)),
-               (Obj.magic (Ojs.array_get x772 3)),
-               (Obj.magic (Ojs.array_get x772 4)),
-               (Obj.magic (Ojs.array_get x772 5)),
-               (EM.t_of_js (Ojs.array_get x772 6))))
+          (fun (x593 : Ojs.t) ->
+             let x594 = x593 in
+             ((Obj.magic (Ojs.array_get x594 0)),
+               (Obj.magic (Ojs.array_get x594 1)),
+               (Obj.magic (Ojs.array_get x594 2)),
+               (Obj.magic (Ojs.array_get x594 3)),
+               (Obj.magic (Ojs.array_get x594 4)),
+               (Obj.magic (Ojs.array_get x594 5)),
+               (EM.t_of_js (Ojs.array_get x594 6))))
           (Ojs.get_prop_ascii
              (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-                Obj.magic x764) "_")
+                Obj.magic x586) "_")
     let (create : method_:string -> ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t) =
-      fun ~method_:(x773 : string) ->
+      fun ~method_:(x595 : string) ->
         t_of_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "NotificationType6")
-             [|(Ojs.string_to_js x773)|])
+             [|(Ojs.string_to_js x595)|])
     let (cast :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t -> AbstractMessageSignature.t) =
-      fun (x780 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t) ->
+      fun (x602 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t) ->
         AbstractMessageSignature.t_of_js
           (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-             Obj.magic x780)
+             Obj.magic x602)
   end
 module NotificationType7 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t =
-      ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) NotificationType.t7
+    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 .
         (Ojs.t -> 'P1) ->
@@ -1771,10 +1648,7 @@ module NotificationType7 =
               fun (__P5_of_js : Ojs.t -> __P5) ->
                 fun (__P6_of_js : Ojs.t -> __P6) ->
                   fun (__P7_of_js : Ojs.t -> __P7) ->
-                    fun (x795 : Ojs.t) ->
-                      NotificationType.t7_of_js __P1_of_js __P2_of_js
-                        __P3_of_js __P4_of_js __P5_of_js __P6_of_js
-                        __P7_of_js x795
+                    fun (x610 : Ojs.t) -> x610
     and t_to_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 .
         ('P1 -> Ojs.t) ->
@@ -1794,50 +1668,42 @@ module NotificationType7 =
               fun (__P5_to_js : __P5 -> Ojs.t) ->
                 fun (__P6_to_js : __P6 -> Ojs.t) ->
                   fun (__P7_to_js : __P7 -> Ojs.t) ->
-                    fun
-                      (x787 :
-                        (__P1, __P2, __P3, __P4, __P5, __P6, __P7)
-                          NotificationType.t7)
-                      ->
-                      NotificationType.t7_to_js __P1_to_js __P2_to_js
-                        __P3_to_js __P4_to_js __P5_to_js __P6_to_js
-                        __P7_to_js x787
+                    fun (x609 : Ojs.t) -> x609
     let (get__ :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t ->
         ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * EM.t) or_undefined)
       =
-      fun (x803 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t) ->
+      fun (x611 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t) ->
         or_undefined_of_js
-          (fun (x811 : Ojs.t) ->
-             let x812 = x811 in
-             ((Obj.magic (Ojs.array_get x812 0)),
-               (Obj.magic (Ojs.array_get x812 1)),
-               (Obj.magic (Ojs.array_get x812 2)),
-               (Obj.magic (Ojs.array_get x812 3)),
-               (Obj.magic (Ojs.array_get x812 4)),
-               (Obj.magic (Ojs.array_get x812 5)),
-               (Obj.magic (Ojs.array_get x812 6)),
-               (EM.t_of_js (Ojs.array_get x812 7))))
+          (fun (x619 : Ojs.t) ->
+             let x620 = x619 in
+             ((Obj.magic (Ojs.array_get x620 0)),
+               (Obj.magic (Ojs.array_get x620 1)),
+               (Obj.magic (Ojs.array_get x620 2)),
+               (Obj.magic (Ojs.array_get x620 3)),
+               (Obj.magic (Ojs.array_get x620 4)),
+               (Obj.magic (Ojs.array_get x620 5)),
+               (Obj.magic (Ojs.array_get x620 6)),
+               (EM.t_of_js (Ojs.array_get x620 7))))
           (Ojs.get_prop_ascii
              (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-                Obj.magic Obj.magic x803) "_")
+                Obj.magic Obj.magic x611) "_")
     let (create : method_:string -> ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t) =
-      fun ~method_:(x813 : string) ->
+      fun ~method_:(x621 : string) ->
         t_of_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
           Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "NotificationType7")
-             [|(Ojs.string_to_js x813)|])
+             [|(Ojs.string_to_js x621)|])
     let (cast :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t -> AbstractMessageSignature.t) =
-      fun (x821 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t) ->
+      fun (x629 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t) ->
         AbstractMessageSignature.t_of_js
           (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-             Obj.magic Obj.magic x821)
+             Obj.magic Obj.magic x629)
   end
 module NotificationType8 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) t =
-      ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) NotificationType.t8
+    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 'P8 .
         (Ojs.t -> 'P1) ->
@@ -1860,10 +1726,7 @@ module NotificationType8 =
                 fun (__P6_of_js : Ojs.t -> __P6) ->
                   fun (__P7_of_js : Ojs.t -> __P7) ->
                     fun (__P8_of_js : Ojs.t -> __P8) ->
-                      fun (x838 : Ojs.t) ->
-                        NotificationType.t8_of_js __P1_of_js __P2_of_js
-                          __P3_of_js __P4_of_js __P5_of_js __P6_of_js
-                          __P7_of_js __P8_of_js x838
+                      fun (x638 : Ojs.t) -> x638
     and t_to_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 'P8 .
         ('P1 -> Ojs.t) ->
@@ -1886,54 +1749,46 @@ module NotificationType8 =
                 fun (__P6_to_js : __P6 -> Ojs.t) ->
                   fun (__P7_to_js : __P7 -> Ojs.t) ->
                     fun (__P8_to_js : __P8 -> Ojs.t) ->
-                      fun
-                        (x829 :
-                          (__P1, __P2, __P3, __P4, __P5, __P6, __P7, 
-                            __P8) NotificationType.t8)
-                        ->
-                        NotificationType.t8_to_js __P1_to_js __P2_to_js
-                          __P3_to_js __P4_to_js __P5_to_js __P6_to_js
-                          __P7_to_js __P8_to_js x829
+                      fun (x637 : Ojs.t) -> x637
     let (get__ :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) t ->
         ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * 'P8 * EM.t) or_undefined)
       =
-      fun (x847 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) t) ->
+      fun (x639 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) t) ->
         or_undefined_of_js
-          (fun (x856 : Ojs.t) ->
-             let x857 = x856 in
-             ((Obj.magic (Ojs.array_get x857 0)),
-               (Obj.magic (Ojs.array_get x857 1)),
-               (Obj.magic (Ojs.array_get x857 2)),
-               (Obj.magic (Ojs.array_get x857 3)),
-               (Obj.magic (Ojs.array_get x857 4)),
-               (Obj.magic (Ojs.array_get x857 5)),
-               (Obj.magic (Ojs.array_get x857 6)),
-               (Obj.magic (Ojs.array_get x857 7)),
-               (EM.t_of_js (Ojs.array_get x857 8))))
+          (fun (x648 : Ojs.t) ->
+             let x649 = x648 in
+             ((Obj.magic (Ojs.array_get x649 0)),
+               (Obj.magic (Ojs.array_get x649 1)),
+               (Obj.magic (Ojs.array_get x649 2)),
+               (Obj.magic (Ojs.array_get x649 3)),
+               (Obj.magic (Ojs.array_get x649 4)),
+               (Obj.magic (Ojs.array_get x649 5)),
+               (Obj.magic (Ojs.array_get x649 6)),
+               (Obj.magic (Ojs.array_get x649 7)),
+               (EM.t_of_js (Ojs.array_get x649 8))))
           (Ojs.get_prop_ascii
              (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-                Obj.magic Obj.magic Obj.magic x847) "_")
+                Obj.magic Obj.magic Obj.magic x639) "_")
     let (create :
       method_:string -> ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) t) =
-      fun ~method_:(x858 : string) ->
+      fun ~method_:(x650 : string) ->
         t_of_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
           Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "NotificationType8")
-             [|(Ojs.string_to_js x858)|])
+             [|(Ojs.string_to_js x650)|])
     let (cast :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) t ->
         AbstractMessageSignature.t)
       =
-      fun (x867 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) t) ->
+      fun (x659 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) t) ->
         AbstractMessageSignature.t_of_js
           (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-             Obj.magic Obj.magic Obj.magic x867)
+             Obj.magic Obj.magic Obj.magic x659)
   end
 module NotificationType9 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) t =
-      ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) NotificationType.t9
+    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 'P8 'P9 .
         (Ojs.t -> 'P1) ->
@@ -1959,10 +1814,7 @@ module NotificationType9 =
                   fun (__P7_of_js : Ojs.t -> __P7) ->
                     fun (__P8_of_js : Ojs.t -> __P8) ->
                       fun (__P9_of_js : Ojs.t -> __P9) ->
-                        fun (x886 : Ojs.t) ->
-                          NotificationType.t9_of_js __P1_of_js __P2_of_js
-                            __P3_of_js __P4_of_js __P5_of_js __P6_of_js
-                            __P7_of_js __P8_of_js __P9_of_js x886
+                        fun (x669 : Ojs.t) -> x669
     and t_to_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 'P8 'P9 .
         ('P1 -> Ojs.t) ->
@@ -1988,64 +1840,57 @@ module NotificationType9 =
                   fun (__P7_to_js : __P7 -> Ojs.t) ->
                     fun (__P8_to_js : __P8 -> Ojs.t) ->
                       fun (__P9_to_js : __P9 -> Ojs.t) ->
-                        fun
-                          (x876 :
-                            (__P1, __P2, __P3, __P4, __P5, __P6, __P7, 
-                              __P8, __P9) NotificationType.t9)
-                          ->
-                          NotificationType.t9_to_js __P1_to_js __P2_to_js
-                            __P3_to_js __P4_to_js __P5_to_js __P6_to_js
-                            __P7_to_js __P8_to_js __P9_to_js x876
+                        fun (x668 : Ojs.t) -> x668
     let (get__ :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) t ->
         ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * 'P8 * 'P9 * EM.t)
           or_undefined)
       =
-      fun (x896 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) t) ->
+      fun (x670 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) t) ->
         or_undefined_of_js
-          (fun (x906 : Ojs.t) ->
-             let x907 = x906 in
-             ((Obj.magic (Ojs.array_get x907 0)),
-               (Obj.magic (Ojs.array_get x907 1)),
-               (Obj.magic (Ojs.array_get x907 2)),
-               (Obj.magic (Ojs.array_get x907 3)),
-               (Obj.magic (Ojs.array_get x907 4)),
-               (Obj.magic (Ojs.array_get x907 5)),
-               (Obj.magic (Ojs.array_get x907 6)),
-               (Obj.magic (Ojs.array_get x907 7)),
-               (Obj.magic (Ojs.array_get x907 8)),
-               (EM.t_of_js (Ojs.array_get x907 9))))
+          (fun (x680 : Ojs.t) ->
+             let x681 = x680 in
+             ((Obj.magic (Ojs.array_get x681 0)),
+               (Obj.magic (Ojs.array_get x681 1)),
+               (Obj.magic (Ojs.array_get x681 2)),
+               (Obj.magic (Ojs.array_get x681 3)),
+               (Obj.magic (Ojs.array_get x681 4)),
+               (Obj.magic (Ojs.array_get x681 5)),
+               (Obj.magic (Ojs.array_get x681 6)),
+               (Obj.magic (Ojs.array_get x681 7)),
+               (Obj.magic (Ojs.array_get x681 8)),
+               (EM.t_of_js (Ojs.array_get x681 9))))
           (Ojs.get_prop_ascii
              (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-                Obj.magic Obj.magic Obj.magic Obj.magic x896) "_")
+                Obj.magic Obj.magic Obj.magic Obj.magic x670) "_")
     let (create :
       method_:string -> ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) t) =
-      fun ~method_:(x908 : string) ->
+      fun ~method_:(x682 : string) ->
         t_of_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
           Obj.magic Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "NotificationType9")
-             [|(Ojs.string_to_js x908)|])
+             [|(Ojs.string_to_js x682)|])
     let (cast :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) t ->
         AbstractMessageSignature.t)
       =
-      fun (x918 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) t) ->
+      fun (x692 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) t) ->
         AbstractMessageSignature.t_of_js
           (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-             Obj.magic Obj.magic Obj.magic Obj.magic x918)
+             Obj.magic Obj.magic Obj.magic Obj.magic x692)
   end
 let (is_request_message : message:Message.t or_undefined -> bool) =
-  fun ~message:(x928 : Message.t or_undefined) ->
+  fun ~message:(x702 : Message.t or_undefined) ->
     Ojs.bool_of_js
       (Ojs.call Ojs.global "isRequestMessage"
-         [|(or_undefined_to_js Message.t_to_js x928)|])
+         [|(or_undefined_to_js Message.t_to_js x702)|])
 let (is_notification_message : message:Message.t or_undefined -> bool) =
-  fun ~message:(x930 : Message.t or_undefined) ->
+  fun ~message:(x704 : Message.t or_undefined) ->
     Ojs.bool_of_js
       (Ojs.call Ojs.global "isNotificationMessage"
-         [|(or_undefined_to_js Message.t_to_js x930)|])
+         [|(or_undefined_to_js Message.t_to_js x704)|])
 let (is_response_message : message:Message.t or_undefined -> bool) =
-  fun ~message:(x932 : Message.t or_undefined) ->
+  fun ~message:(x706 : Message.t or_undefined) ->
     Ojs.bool_of_js
       (Ojs.call Ojs.global "isResponseMessage"
-         [|(or_undefined_to_js Message.t_to_js x932)|])
+         [|(or_undefined_to_js Message.t_to_js x706)|])

@@ -115,7 +115,7 @@ module Math : sig
 
   val atanh : int -> int [@@js.global "Math.atanh"]
 
-  val hypot : values:(int list[@js.variadic]) -> int [@@js.global "Math.hypot"]
+  val hypot : (int list[@js.variadic]) -> int [@@js.global "Math.hypot"]
 
   val trunc : int -> int [@@js.global "Math.trunc"]
 

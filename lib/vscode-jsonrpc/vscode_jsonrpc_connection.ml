@@ -166,68 +166,60 @@ module StarRequestHandler =
   end
 module GenericRequestHandler =
   struct
-    type ('R, 'E) t = ('R, 'E) GenericRequestHandler.t
+    type ('R, 'E) t = Ojs.t
     let rec t_of_js :
       'R 'E . (Ojs.t -> 'R) -> (Ojs.t -> 'E) -> Ojs.t -> ('R, 'E) t = fun
       (type __R) -> fun (type __E) ->
       fun (__R_of_js : Ojs.t -> __R) ->
-        fun (__E_of_js : Ojs.t -> __E) ->
-          fun (x75 : Ojs.t) ->
-            GenericRequestHandler.t_of_js __R_of_js __E_of_js x75
+        fun (__E_of_js : Ojs.t -> __E) -> fun (x73 : Ojs.t) -> x73
     and t_to_js :
       'R 'E . ('R -> Ojs.t) -> ('E -> Ojs.t) -> ('R, 'E) t -> Ojs.t = fun
       (type __R) -> fun (type __E) ->
       fun (__R_to_js : __R -> Ojs.t) ->
-        fun (__E_to_js : __E -> Ojs.t) ->
-          fun (x72 : (__R, __E) GenericRequestHandler.t) ->
-            GenericRequestHandler.t_to_js __R_to_js __E_to_js x72
+        fun (__E_to_js : __E -> Ojs.t) -> fun (x72 : Ojs.t) -> x72
     let (apply : ('R, 'E) t -> params:any list -> ('R, 'E) HandlerResult.t) =
-      fun (x81 : ('R, 'E) t) ->
-        fun ~params:(x78 : any list) ->
+      fun (x77 : ('R, 'E) t) ->
+        fun ~params:(x74 : any list) ->
           HandlerResult.t_of_js Obj.magic Obj.magic
-            (Ojs.call (t_to_js Obj.magic Obj.magic x81) "apply"
-               [|Ojs.null;((let x79 =
+            (Ojs.call (t_to_js Obj.magic Obj.magic x77) "apply"
+               [|Ojs.null;((let x75 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             List.iter
-                              (fun (x80 : any) ->
+                              (fun (x76 : any) ->
                                  ignore
-                                   (Ojs.call x79 "push" [|(any_to_js x80)|]))
-                              x78;
-                            x79))|])
+                                   (Ojs.call x75 "push" [|(any_to_js x76)|]))
+                              x74;
+                            x75))|])
   end
 module RequestHandler0 =
   struct
-    type ('R, 'E) t = ('R, 'E) RequestHandler.t0
+    type ('R, 'E) t = Ojs.t
     let rec t_of_js :
       'R 'E . (Ojs.t -> 'R) -> (Ojs.t -> 'E) -> Ojs.t -> ('R, 'E) t = fun
       (type __R) -> fun (type __E) ->
       fun (__R_of_js : Ojs.t -> __R) ->
-        fun (__E_of_js : Ojs.t -> __E) ->
-          fun (x89 : Ojs.t) ->
-            RequestHandler.t0_of_js __R_of_js __E_of_js x89
+        fun (__E_of_js : Ojs.t -> __E) -> fun (x83 : Ojs.t) -> x83
     and t_to_js :
       'R 'E . ('R -> Ojs.t) -> ('E -> Ojs.t) -> ('R, 'E) t -> Ojs.t = fun
       (type __R) -> fun (type __E) ->
       fun (__R_to_js : __R -> Ojs.t) ->
-        fun (__E_to_js : __E -> Ojs.t) ->
-          fun (x86 : (__R, __E) RequestHandler.t0) ->
-            RequestHandler.t0_to_js __R_to_js __E_to_js x86
+        fun (__E_to_js : __E -> Ojs.t) -> fun (x82 : Ojs.t) -> x82
     let (apply :
       ('R, 'E) t ->
         token:Vscode_jsonrpc_cancellation.CancellationToken.t ->
           ('R, 'E) HandlerResult.t)
       =
-      fun (x93 : ('R, 'E) t) ->
-        fun ~token:(x92 : Vscode_jsonrpc_cancellation.CancellationToken.t) ->
+      fun (x85 : ('R, 'E) t) ->
+        fun ~token:(x84 : Vscode_jsonrpc_cancellation.CancellationToken.t) ->
           HandlerResult.t_of_js Obj.magic Obj.magic
-            (Ojs.apply (t_to_js Obj.magic Obj.magic x93)
-               [|(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js x92)|])
+            (Ojs.apply (t_to_js Obj.magic Obj.magic x85)
+               [|(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js x84)|])
   end
 module RequestHandler =
   struct
-    type ('P, 'R, 'E) t = ('P, 'R, 'E) RequestHandler.t
+    type ('P, 'R, 'E) t = Ojs.t
     let rec t_of_js :
       'P 'R 'E .
         (Ojs.t -> 'P) ->
@@ -235,9 +227,7 @@ module RequestHandler =
       = fun (type __P) -> fun (type __R) -> fun (type __E) ->
       fun (__P_of_js : Ojs.t -> __P) ->
         fun (__R_of_js : Ojs.t -> __R) ->
-          fun (__E_of_js : Ojs.t -> __E) ->
-            fun (x102 : Ojs.t) ->
-              RequestHandler.t_of_js __P_of_js __R_of_js __E_of_js x102
+          fun (__E_of_js : Ojs.t -> __E) -> fun (x91 : Ojs.t) -> x91
     and t_to_js :
       'P 'R 'E .
         ('P -> Ojs.t) ->
@@ -245,27 +235,25 @@ module RequestHandler =
       = fun (type __P) -> fun (type __R) -> fun (type __E) ->
       fun (__P_to_js : __P -> Ojs.t) ->
         fun (__R_to_js : __R -> Ojs.t) ->
-          fun (__E_to_js : __E -> Ojs.t) ->
-            fun (x98 : (__P, __R, __E) RequestHandler.t) ->
-              RequestHandler.t_to_js __P_to_js __R_to_js __E_to_js x98
+          fun (__E_to_js : __E -> Ojs.t) -> fun (x90 : Ojs.t) -> x90
     let (apply :
       ('P, 'R, 'E) t ->
         params:'P ->
           token:Vscode_jsonrpc_cancellation.CancellationToken.t ->
             ('R, 'E) HandlerResult.t)
       =
-      fun (x108 : ('P, 'R, 'E) t) ->
-        fun ~params:(x106 : 'P) ->
-          fun ~token:(x107 : Vscode_jsonrpc_cancellation.CancellationToken.t)
+      fun (x94 : ('P, 'R, 'E) t) ->
+        fun ~params:(x92 : 'P) ->
+          fun ~token:(x93 : Vscode_jsonrpc_cancellation.CancellationToken.t)
             ->
             HandlerResult.t_of_js Obj.magic Obj.magic
-              (Ojs.apply (t_to_js Obj.magic Obj.magic Obj.magic x108)
-                 [|(Obj.magic x106);(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                                       x107)|])
+              (Ojs.apply (t_to_js Obj.magic Obj.magic Obj.magic x94)
+                 [|(Obj.magic x92);(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
+                                      x93)|])
   end
 module RequestHandler1 =
   struct
-    type ('P1, 'R, 'E) t = ('P1, 'R, 'E) RequestHandler.t1
+    type ('P1, 'R, 'E) t = Ojs.t
     let rec t_of_js :
       'P1 'R 'E .
         (Ojs.t -> 'P1) ->
@@ -273,9 +261,7 @@ module RequestHandler1 =
       = fun (type __P1) -> fun (type __R) -> fun (type __E) ->
       fun (__P1_of_js : Ojs.t -> __P1) ->
         fun (__R_of_js : Ojs.t -> __R) ->
-          fun (__E_of_js : Ojs.t -> __E) ->
-            fun (x118 : Ojs.t) ->
-              RequestHandler.t1_of_js __P1_of_js __R_of_js __E_of_js x118
+          fun (__E_of_js : Ojs.t -> __E) -> fun (x101 : Ojs.t) -> x101
     and t_to_js :
       'P1 'R 'E .
         ('P1 -> Ojs.t) ->
@@ -283,27 +269,25 @@ module RequestHandler1 =
       = fun (type __P1) -> fun (type __R) -> fun (type __E) ->
       fun (__P1_to_js : __P1 -> Ojs.t) ->
         fun (__R_to_js : __R -> Ojs.t) ->
-          fun (__E_to_js : __E -> Ojs.t) ->
-            fun (x114 : (__P1, __R, __E) RequestHandler.t1) ->
-              RequestHandler.t1_to_js __P1_to_js __R_to_js __E_to_js x114
+          fun (__E_to_js : __E -> Ojs.t) -> fun (x100 : Ojs.t) -> x100
     let (apply :
       ('P1, 'R, 'E) t ->
         p1:'P1 ->
           token:Vscode_jsonrpc_cancellation.CancellationToken.t ->
             ('R, 'E) HandlerResult.t)
       =
-      fun (x124 : ('P1, 'R, 'E) t) ->
-        fun ~p1:(x122 : 'P1) ->
-          fun ~token:(x123 : Vscode_jsonrpc_cancellation.CancellationToken.t)
+      fun (x104 : ('P1, 'R, 'E) t) ->
+        fun ~p1:(x102 : 'P1) ->
+          fun ~token:(x103 : Vscode_jsonrpc_cancellation.CancellationToken.t)
             ->
             HandlerResult.t_of_js Obj.magic Obj.magic
-              (Ojs.apply (t_to_js Obj.magic Obj.magic Obj.magic x124)
-                 [|(Obj.magic x122);(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                                       x123)|])
+              (Ojs.apply (t_to_js Obj.magic Obj.magic Obj.magic x104)
+                 [|(Obj.magic x102);(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
+                                       x103)|])
   end
 module RequestHandler2 =
   struct
-    type ('P1, 'P2, 'R, 'E) t = ('P1, 'P2, 'R, 'E) RequestHandler.t2
+    type ('P1, 'P2, 'R, 'E) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'R 'E .
         (Ojs.t -> 'P1) ->
@@ -314,10 +298,7 @@ module RequestHandler2 =
       fun (__P1_of_js : Ojs.t -> __P1) ->
         fun (__P2_of_js : Ojs.t -> __P2) ->
           fun (__R_of_js : Ojs.t -> __R) ->
-            fun (__E_of_js : Ojs.t -> __E) ->
-              fun (x135 : Ojs.t) ->
-                RequestHandler.t2_of_js __P1_of_js __P2_of_js __R_of_js
-                  __E_of_js x135
+            fun (__E_of_js : Ojs.t -> __E) -> fun (x111 : Ojs.t) -> x111
     and t_to_js :
       'P1 'P2 'R 'E .
         ('P1 -> Ojs.t) ->
@@ -328,10 +309,7 @@ module RequestHandler2 =
       fun (__P1_to_js : __P1 -> Ojs.t) ->
         fun (__P2_to_js : __P2 -> Ojs.t) ->
           fun (__R_to_js : __R -> Ojs.t) ->
-            fun (__E_to_js : __E -> Ojs.t) ->
-              fun (x130 : (__P1, __P2, __R, __E) RequestHandler.t2) ->
-                RequestHandler.t2_to_js __P1_to_js __P2_to_js __R_to_js
-                  __E_to_js x130
+            fun (__E_to_js : __E -> Ojs.t) -> fun (x110 : Ojs.t) -> x110
     let (apply :
       ('P1, 'P2, 'R, 'E) t ->
         p1:'P1 ->
@@ -339,22 +317,21 @@ module RequestHandler2 =
             token:Vscode_jsonrpc_cancellation.CancellationToken.t ->
               ('R, 'E) HandlerResult.t)
       =
-      fun (x143 : ('P1, 'P2, 'R, 'E) t) ->
-        fun ~p1:(x140 : 'P1) ->
-          fun ~p2:(x141 : 'P2) ->
+      fun (x115 : ('P1, 'P2, 'R, 'E) t) ->
+        fun ~p1:(x112 : 'P1) ->
+          fun ~p2:(x113 : 'P2) ->
             fun
-              ~token:(x142 : Vscode_jsonrpc_cancellation.CancellationToken.t)
+              ~token:(x114 : Vscode_jsonrpc_cancellation.CancellationToken.t)
               ->
               HandlerResult.t_of_js Obj.magic Obj.magic
                 (Ojs.apply
-                   (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x143)
-                   [|(Obj.magic x140);(Obj.magic x141);(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                                                          x142)|])
+                   (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x115)
+                   [|(Obj.magic x112);(Obj.magic x113);(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
+                                                          x114)|])
   end
 module RequestHandler3 =
   struct
-    type ('P1, 'P2, 'P3, 'R, 'E) t =
-      ('P1, 'P2, 'P3, 'R, 'E) RequestHandler.t3
+    type ('P1, 'P2, 'P3, 'R, 'E) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'R 'E .
         (Ojs.t -> 'P1) ->
@@ -368,10 +345,7 @@ module RequestHandler3 =
         fun (__P2_of_js : Ojs.t -> __P2) ->
           fun (__P3_of_js : Ojs.t -> __P3) ->
             fun (__R_of_js : Ojs.t -> __R) ->
-              fun (__E_of_js : Ojs.t -> __E) ->
-                fun (x156 : Ojs.t) ->
-                  RequestHandler.t3_of_js __P1_of_js __P2_of_js __P3_of_js
-                    __R_of_js __E_of_js x156
+              fun (__E_of_js : Ojs.t -> __E) -> fun (x123 : Ojs.t) -> x123
     and t_to_js :
       'P1 'P2 'P3 'R 'E .
         ('P1 -> Ojs.t) ->
@@ -385,11 +359,7 @@ module RequestHandler3 =
         fun (__P2_to_js : __P2 -> Ojs.t) ->
           fun (__P3_to_js : __P3 -> Ojs.t) ->
             fun (__R_to_js : __R -> Ojs.t) ->
-              fun (__E_to_js : __E -> Ojs.t) ->
-                fun (x150 : (__P1, __P2, __P3, __R, __E) RequestHandler.t3)
-                  ->
-                  RequestHandler.t3_to_js __P1_to_js __P2_to_js __P3_to_js
-                    __R_to_js __E_to_js x150
+              fun (__E_to_js : __E -> Ojs.t) -> fun (x122 : Ojs.t) -> x122
     let (apply :
       ('P1, 'P2, 'P3, 'R, 'E) t ->
         p1:'P1 ->
@@ -398,26 +368,25 @@ module RequestHandler3 =
               token:Vscode_jsonrpc_cancellation.CancellationToken.t ->
                 ('R, 'E) HandlerResult.t)
       =
-      fun (x166 : ('P1, 'P2, 'P3, 'R, 'E) t) ->
-        fun ~p1:(x162 : 'P1) ->
-          fun ~p2:(x163 : 'P2) ->
-            fun ~p3:(x164 : 'P3) ->
+      fun (x128 : ('P1, 'P2, 'P3, 'R, 'E) t) ->
+        fun ~p1:(x124 : 'P1) ->
+          fun ~p2:(x125 : 'P2) ->
+            fun ~p3:(x126 : 'P3) ->
               fun
-                ~token:(x165 :
+                ~token:(x127 :
                          Vscode_jsonrpc_cancellation.CancellationToken.t)
                 ->
                 HandlerResult.t_of_js Obj.magic Obj.magic
                   (Ojs.apply
                      (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic
-                        Obj.magic x166)
-                     [|(Obj.magic x162);(Obj.magic x163);(Obj.magic x164);(
+                        Obj.magic x128)
+                     [|(Obj.magic x124);(Obj.magic x125);(Obj.magic x126);(
                        Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                         x165)|])
+                         x127)|])
   end
 module RequestHandler4 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'R, 'E) t =
-      ('P1, 'P2, 'P3, 'P4, 'R, 'E) RequestHandler.t4
+    type ('P1, 'P2, 'P3, 'P4, 'R, 'E) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'R 'E .
         (Ojs.t -> 'P1) ->
@@ -433,10 +402,7 @@ module RequestHandler4 =
           fun (__P3_of_js : Ojs.t -> __P3) ->
             fun (__P4_of_js : Ojs.t -> __P4) ->
               fun (__R_of_js : Ojs.t -> __R) ->
-                fun (__E_of_js : Ojs.t -> __E) ->
-                  fun (x181 : Ojs.t) ->
-                    RequestHandler.t4_of_js __P1_of_js __P2_of_js __P3_of_js
-                      __P4_of_js __R_of_js __E_of_js x181
+                fun (__E_of_js : Ojs.t -> __E) -> fun (x137 : Ojs.t) -> x137
     and t_to_js :
       'P1 'P2 'P3 'P4 'R 'E .
         ('P1 -> Ojs.t) ->
@@ -452,13 +418,7 @@ module RequestHandler4 =
           fun (__P3_to_js : __P3 -> Ojs.t) ->
             fun (__P4_to_js : __P4 -> Ojs.t) ->
               fun (__R_to_js : __R -> Ojs.t) ->
-                fun (__E_to_js : __E -> Ojs.t) ->
-                  fun
-                    (x174 :
-                      (__P1, __P2, __P3, __P4, __R, __E) RequestHandler.t4)
-                    ->
-                    RequestHandler.t4_to_js __P1_to_js __P2_to_js __P3_to_js
-                      __P4_to_js __R_to_js __E_to_js x174
+                fun (__E_to_js : __E -> Ojs.t) -> fun (x136 : Ojs.t) -> x136
     let (apply :
       ('P1, 'P2, 'P3, 'P4, 'R, 'E) t ->
         p1:'P1 ->
@@ -468,27 +428,26 @@ module RequestHandler4 =
                 token:Vscode_jsonrpc_cancellation.CancellationToken.t ->
                   ('R, 'E) HandlerResult.t)
       =
-      fun (x193 : ('P1, 'P2, 'P3, 'P4, 'R, 'E) t) ->
-        fun ~p1:(x188 : 'P1) ->
-          fun ~p2:(x189 : 'P2) ->
-            fun ~p3:(x190 : 'P3) ->
-              fun ~p4:(x191 : 'P4) ->
+      fun (x143 : ('P1, 'P2, 'P3, 'P4, 'R, 'E) t) ->
+        fun ~p1:(x138 : 'P1) ->
+          fun ~p2:(x139 : 'P2) ->
+            fun ~p3:(x140 : 'P3) ->
+              fun ~p4:(x141 : 'P4) ->
                 fun
-                  ~token:(x192 :
+                  ~token:(x142 :
                            Vscode_jsonrpc_cancellation.CancellationToken.t)
                   ->
                   HandlerResult.t_of_js Obj.magic Obj.magic
                     (Ojs.apply
                        (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic
-                          Obj.magic Obj.magic x193)
-                       [|(Obj.magic x188);(Obj.magic x189);(Obj.magic x190);(
-                         Obj.magic x191);(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                                            x192)|])
+                          Obj.magic Obj.magic x143)
+                       [|(Obj.magic x138);(Obj.magic x139);(Obj.magic x140);(
+                         Obj.magic x141);(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
+                                            x142)|])
   end
 module RequestHandler5 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t =
-      ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) RequestHandler.t5
+    type ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'P5 'R 'E .
         (Ojs.t -> 'P1) ->
@@ -508,10 +467,7 @@ module RequestHandler5 =
               fun (__P5_of_js : Ojs.t -> __P5) ->
                 fun (__R_of_js : Ojs.t -> __R) ->
                   fun (__E_of_js : Ojs.t -> __E) ->
-                    fun (x210 : Ojs.t) ->
-                      RequestHandler.t5_of_js __P1_of_js __P2_of_js
-                        __P3_of_js __P4_of_js __P5_of_js __R_of_js __E_of_js
-                        x210
+                    fun (x153 : Ojs.t) -> x153
     and t_to_js :
       'P1 'P2 'P3 'P4 'P5 'R 'E .
         ('P1 -> Ojs.t) ->
@@ -531,14 +487,7 @@ module RequestHandler5 =
               fun (__P5_to_js : __P5 -> Ojs.t) ->
                 fun (__R_to_js : __R -> Ojs.t) ->
                   fun (__E_to_js : __E -> Ojs.t) ->
-                    fun
-                      (x202 :
-                        (__P1, __P2, __P3, __P4, __P5, __R, __E)
-                          RequestHandler.t5)
-                      ->
-                      RequestHandler.t5_to_js __P1_to_js __P2_to_js
-                        __P3_to_js __P4_to_js __P5_to_js __R_to_js __E_to_js
-                        x202
+                    fun (x152 : Ojs.t) -> x152
     let (apply :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t ->
         p1:'P1 ->
@@ -549,28 +498,27 @@ module RequestHandler5 =
                   token:Vscode_jsonrpc_cancellation.CancellationToken.t ->
                     ('R, 'E) HandlerResult.t)
       =
-      fun (x224 : ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t) ->
-        fun ~p1:(x218 : 'P1) ->
-          fun ~p2:(x219 : 'P2) ->
-            fun ~p3:(x220 : 'P3) ->
-              fun ~p4:(x221 : 'P4) ->
-                fun ~p5:(x222 : 'P5) ->
+      fun (x160 : ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t) ->
+        fun ~p1:(x154 : 'P1) ->
+          fun ~p2:(x155 : 'P2) ->
+            fun ~p3:(x156 : 'P3) ->
+              fun ~p4:(x157 : 'P4) ->
+                fun ~p5:(x158 : 'P5) ->
                   fun
-                    ~token:(x223 :
+                    ~token:(x159 :
                              Vscode_jsonrpc_cancellation.CancellationToken.t)
                     ->
                     HandlerResult.t_of_js Obj.magic Obj.magic
                       (Ojs.apply
                          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic
-                            Obj.magic Obj.magic Obj.magic x224)
-                         [|(Obj.magic x218);(Obj.magic x219);(Obj.magic x220);(
-                           Obj.magic x221);(Obj.magic x222);(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                                                               x223)|])
+                            Obj.magic Obj.magic Obj.magic x160)
+                         [|(Obj.magic x154);(Obj.magic x155);(Obj.magic x156);(
+                           Obj.magic x157);(Obj.magic x158);(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
+                                                               x159)|])
   end
 module RequestHandler6 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) t =
-      ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) RequestHandler.t6
+    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'R 'E .
         (Ojs.t -> 'P1) ->
@@ -593,10 +541,7 @@ module RequestHandler6 =
                 fun (__P6_of_js : Ojs.t -> __P6) ->
                   fun (__R_of_js : Ojs.t -> __R) ->
                     fun (__E_of_js : Ojs.t -> __E) ->
-                      fun (x243 : Ojs.t) ->
-                        RequestHandler.t6_of_js __P1_of_js __P2_of_js
-                          __P3_of_js __P4_of_js __P5_of_js __P6_of_js
-                          __R_of_js __E_of_js x243
+                      fun (x171 : Ojs.t) -> x171
     and t_to_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'R 'E .
         ('P1 -> Ojs.t) ->
@@ -619,14 +564,7 @@ module RequestHandler6 =
                 fun (__P6_to_js : __P6 -> Ojs.t) ->
                   fun (__R_to_js : __R -> Ojs.t) ->
                     fun (__E_to_js : __E -> Ojs.t) ->
-                      fun
-                        (x234 :
-                          (__P1, __P2, __P3, __P4, __P5, __P6, __R, __E)
-                            RequestHandler.t6)
-                        ->
-                        RequestHandler.t6_to_js __P1_to_js __P2_to_js
-                          __P3_to_js __P4_to_js __P5_to_js __P6_to_js
-                          __R_to_js __E_to_js x234
+                      fun (x170 : Ojs.t) -> x170
     let (apply :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) t ->
         p1:'P1 ->
@@ -638,31 +576,30 @@ module RequestHandler6 =
                     token:Vscode_jsonrpc_cancellation.CancellationToken.t ->
                       ('R, 'E) HandlerResult.t)
       =
-      fun (x259 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) t) ->
-        fun ~p1:(x252 : 'P1) ->
-          fun ~p2:(x253 : 'P2) ->
-            fun ~p3:(x254 : 'P3) ->
-              fun ~p4:(x255 : 'P4) ->
-                fun ~p5:(x256 : 'P5) ->
-                  fun ~p6:(x257 : 'P6) ->
+      fun (x179 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) t) ->
+        fun ~p1:(x172 : 'P1) ->
+          fun ~p2:(x173 : 'P2) ->
+            fun ~p3:(x174 : 'P3) ->
+              fun ~p4:(x175 : 'P4) ->
+                fun ~p5:(x176 : 'P5) ->
+                  fun ~p6:(x177 : 'P6) ->
                     fun
-                      ~token:(x258 :
+                      ~token:(x178 :
                                Vscode_jsonrpc_cancellation.CancellationToken.t)
                       ->
                       HandlerResult.t_of_js Obj.magic Obj.magic
                         (Ojs.apply
                            (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic
-                              Obj.magic Obj.magic Obj.magic Obj.magic x259)
-                           [|(Obj.magic x252);(Obj.magic x253);(Obj.magic
-                                                                  x254);(
-                             Obj.magic x255);(Obj.magic x256);(Obj.magic x257);(
+                              Obj.magic Obj.magic Obj.magic Obj.magic x179)
+                           [|(Obj.magic x172);(Obj.magic x173);(Obj.magic
+                                                                  x174);(
+                             Obj.magic x175);(Obj.magic x176);(Obj.magic x177);(
                              Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                               x258)|])
+                               x178)|])
   end
 module RequestHandler7 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) t =
-      ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) RequestHandler.t7
+    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 'R 'E .
         (Ojs.t -> 'P1) ->
@@ -688,10 +625,7 @@ module RequestHandler7 =
                   fun (__P7_of_js : Ojs.t -> __P7) ->
                     fun (__R_of_js : Ojs.t -> __R) ->
                       fun (__E_of_js : Ojs.t -> __E) ->
-                        fun (x280 : Ojs.t) ->
-                          RequestHandler.t7_of_js __P1_of_js __P2_of_js
-                            __P3_of_js __P4_of_js __P5_of_js __P6_of_js
-                            __P7_of_js __R_of_js __E_of_js x280
+                        fun (x191 : Ojs.t) -> x191
     and t_to_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 'R 'E .
         ('P1 -> Ojs.t) ->
@@ -717,14 +651,7 @@ module RequestHandler7 =
                   fun (__P7_to_js : __P7 -> Ojs.t) ->
                     fun (__R_to_js : __R -> Ojs.t) ->
                       fun (__E_to_js : __E -> Ojs.t) ->
-                        fun
-                          (x270 :
-                            (__P1, __P2, __P3, __P4, __P5, __P6, __P7, 
-                              __R, __E) RequestHandler.t7)
-                          ->
-                          RequestHandler.t7_to_js __P1_to_js __P2_to_js
-                            __P3_to_js __P4_to_js __P5_to_js __P6_to_js
-                            __P7_to_js __R_to_js __E_to_js x270
+                        fun (x190 : Ojs.t) -> x190
     let (apply :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) t ->
         p1:'P1 ->
@@ -737,34 +664,33 @@ module RequestHandler7 =
                       token:Vscode_jsonrpc_cancellation.CancellationToken.t
                         -> ('R, 'E) HandlerResult.t)
       =
-      fun (x298 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) t) ->
-        fun ~p1:(x290 : 'P1) ->
-          fun ~p2:(x291 : 'P2) ->
-            fun ~p3:(x292 : 'P3) ->
-              fun ~p4:(x293 : 'P4) ->
-                fun ~p5:(x294 : 'P5) ->
-                  fun ~p6:(x295 : 'P6) ->
-                    fun ~p7:(x296 : 'P7) ->
+      fun (x200 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) t) ->
+        fun ~p1:(x192 : 'P1) ->
+          fun ~p2:(x193 : 'P2) ->
+            fun ~p3:(x194 : 'P3) ->
+              fun ~p4:(x195 : 'P4) ->
+                fun ~p5:(x196 : 'P5) ->
+                  fun ~p6:(x197 : 'P6) ->
+                    fun ~p7:(x198 : 'P7) ->
                       fun
-                        ~token:(x297 :
+                        ~token:(x199 :
                                  Vscode_jsonrpc_cancellation.CancellationToken.t)
                         ->
                         HandlerResult.t_of_js Obj.magic Obj.magic
                           (Ojs.apply
                              (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic
                                 Obj.magic Obj.magic Obj.magic Obj.magic
-                                Obj.magic x298)
-                             [|(Obj.magic x290);(Obj.magic x291);(Obj.magic
-                                                                    x292);(
-                               Obj.magic x293);(Obj.magic x294);(Obj.magic
-                                                                   x295);(
-                               Obj.magic x296);(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                                                  x297)|])
+                                Obj.magic x200)
+                             [|(Obj.magic x192);(Obj.magic x193);(Obj.magic
+                                                                    x194);(
+                               Obj.magic x195);(Obj.magic x196);(Obj.magic
+                                                                   x197);(
+                               Obj.magic x198);(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
+                                                  x199)|])
   end
 module RequestHandler8 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) t =
-      ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) RequestHandler.t8
+    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 'P8 'R 'E .
         (Ojs.t -> 'P1) ->
@@ -793,10 +719,7 @@ module RequestHandler8 =
                     fun (__P8_of_js : Ojs.t -> __P8) ->
                       fun (__R_of_js : Ojs.t -> __R) ->
                         fun (__E_of_js : Ojs.t -> __E) ->
-                          fun (x321 : Ojs.t) ->
-                            RequestHandler.t8_of_js __P1_of_js __P2_of_js
-                              __P3_of_js __P4_of_js __P5_of_js __P6_of_js
-                              __P7_of_js __P8_of_js __R_of_js __E_of_js x321
+                          fun (x213 : Ojs.t) -> x213
     and t_to_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 'P8 'R 'E .
         ('P1 -> Ojs.t) ->
@@ -824,14 +747,7 @@ module RequestHandler8 =
                     fun (__P8_to_js : __P8 -> Ojs.t) ->
                       fun (__R_to_js : __R -> Ojs.t) ->
                         fun (__E_to_js : __E -> Ojs.t) ->
-                          fun
-                            (x310 :
-                              (__P1, __P2, __P3, __P4, __P5, __P6, __P7,
-                                __P8, __R, __E) RequestHandler.t8)
-                            ->
-                            RequestHandler.t8_to_js __P1_to_js __P2_to_js
-                              __P3_to_js __P4_to_js __P5_to_js __P6_to_js
-                              __P7_to_js __P8_to_js __R_to_js __E_to_js x310
+                          fun (x212 : Ojs.t) -> x212
     let (apply :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) t ->
         p1:'P1 ->
@@ -845,35 +761,34 @@ module RequestHandler8 =
                         token:Vscode_jsonrpc_cancellation.CancellationToken.t
                           -> ('R, 'E) HandlerResult.t)
       =
-      fun (x341 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) t) ->
-        fun ~p1:(x332 : 'P1) ->
-          fun ~p2:(x333 : 'P2) ->
-            fun ~p3:(x334 : 'P3) ->
-              fun ~p4:(x335 : 'P4) ->
-                fun ~p5:(x336 : 'P5) ->
-                  fun ~p6:(x337 : 'P6) ->
-                    fun ~p7:(x338 : 'P7) ->
-                      fun ~p8:(x339 : 'P8) ->
+      fun (x223 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) t) ->
+        fun ~p1:(x214 : 'P1) ->
+          fun ~p2:(x215 : 'P2) ->
+            fun ~p3:(x216 : 'P3) ->
+              fun ~p4:(x217 : 'P4) ->
+                fun ~p5:(x218 : 'P5) ->
+                  fun ~p6:(x219 : 'P6) ->
+                    fun ~p7:(x220 : 'P7) ->
+                      fun ~p8:(x221 : 'P8) ->
                         fun
-                          ~token:(x340 :
+                          ~token:(x222 :
                                    Vscode_jsonrpc_cancellation.CancellationToken.t)
                           ->
                           HandlerResult.t_of_js Obj.magic Obj.magic
                             (Ojs.apply
                                (t_to_js Obj.magic Obj.magic Obj.magic
                                   Obj.magic Obj.magic Obj.magic Obj.magic
-                                  Obj.magic Obj.magic Obj.magic x341)
-                               [|(Obj.magic x332);(Obj.magic x333);(Obj.magic
-                                                                    x334);(
-                                 Obj.magic x335);(Obj.magic x336);(Obj.magic
-                                                                    x337);(
-                                 Obj.magic x338);(Obj.magic x339);(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                                                                    x340)|])
+                                  Obj.magic Obj.magic Obj.magic x223)
+                               [|(Obj.magic x214);(Obj.magic x215);(Obj.magic
+                                                                    x216);(
+                                 Obj.magic x217);(Obj.magic x218);(Obj.magic
+                                                                    x219);(
+                                 Obj.magic x220);(Obj.magic x221);(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
+                                                                    x222)|])
   end
 module RequestHandler9 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) t =
-      ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) RequestHandler.t9
+    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 'P8 'P9 'R 'E .
         (Ojs.t -> 'P1) ->
@@ -904,11 +819,7 @@ module RequestHandler9 =
                       fun (__P9_of_js : Ojs.t -> __P9) ->
                         fun (__R_of_js : Ojs.t -> __R) ->
                           fun (__E_of_js : Ojs.t -> __E) ->
-                            fun (x366 : Ojs.t) ->
-                              RequestHandler.t9_of_js __P1_of_js __P2_of_js
-                                __P3_of_js __P4_of_js __P5_of_js __P6_of_js
-                                __P7_of_js __P8_of_js __P9_of_js __R_of_js
-                                __E_of_js x366
+                            fun (x237 : Ojs.t) -> x237
     and t_to_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 'P8 'P9 'R 'E .
         ('P1 -> Ojs.t) ->
@@ -938,16 +849,7 @@ module RequestHandler9 =
                       fun (__P9_to_js : __P9 -> Ojs.t) ->
                         fun (__R_to_js : __R -> Ojs.t) ->
                           fun (__E_to_js : __E -> Ojs.t) ->
-                            fun
-                              (x354 :
-                                (__P1, __P2, __P3, __P4, __P5, __P6, 
-                                  __P7, __P8, __P9, __R, __E)
-                                  RequestHandler.t9)
-                              ->
-                              RequestHandler.t9_to_js __P1_to_js __P2_to_js
-                                __P3_to_js __P4_to_js __P5_to_js __P6_to_js
-                                __P7_to_js __P8_to_js __P9_to_js __R_to_js
-                                __E_to_js x354
+                            fun (x236 : Ojs.t) -> x236
     let (apply :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) t ->
         p1:'P1 ->
@@ -962,18 +864,18 @@ module RequestHandler9 =
                           token:Vscode_jsonrpc_cancellation.CancellationToken.t
                             -> ('R, 'E) HandlerResult.t)
       =
-      fun (x388 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) t) ->
-        fun ~p1:(x378 : 'P1) ->
-          fun ~p2:(x379 : 'P2) ->
-            fun ~p3:(x380 : 'P3) ->
-              fun ~p4:(x381 : 'P4) ->
-                fun ~p5:(x382 : 'P5) ->
-                  fun ~p6:(x383 : 'P6) ->
-                    fun ~p7:(x384 : 'P7) ->
-                      fun ~p8:(x385 : 'P8) ->
-                        fun ~p9:(x386 : 'P9) ->
+      fun (x248 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) t) ->
+        fun ~p1:(x238 : 'P1) ->
+          fun ~p2:(x239 : 'P2) ->
+            fun ~p3:(x240 : 'P3) ->
+              fun ~p4:(x241 : 'P4) ->
+                fun ~p5:(x242 : 'P5) ->
+                  fun ~p6:(x243 : 'P6) ->
+                    fun ~p7:(x244 : 'P7) ->
+                      fun ~p8:(x245 : 'P8) ->
+                        fun ~p9:(x246 : 'P9) ->
                           fun
-                            ~token:(x387 :
+                            ~token:(x247 :
                                      Vscode_jsonrpc_cancellation.CancellationToken.t)
                             ->
                             HandlerResult.t_of_js Obj.magic Obj.magic
@@ -981,124 +883,116 @@ module RequestHandler9 =
                                  (t_to_js Obj.magic Obj.magic Obj.magic
                                     Obj.magic Obj.magic Obj.magic Obj.magic
                                     Obj.magic Obj.magic Obj.magic Obj.magic
-                                    x388)
-                                 [|(Obj.magic x378);(Obj.magic x379);(
-                                   Obj.magic x380);(Obj.magic x381);(
-                                   Obj.magic x382);(Obj.magic x383);(
-                                   Obj.magic x384);(Obj.magic x385);(
-                                   Obj.magic x386);(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                                                      x387)|])
+                                    x248)
+                                 [|(Obj.magic x238);(Obj.magic x239);(
+                                   Obj.magic x240);(Obj.magic x241);(
+                                   Obj.magic x242);(Obj.magic x243);(
+                                   Obj.magic x244);(Obj.magic x245);(
+                                   Obj.magic x246);(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
+                                                      x247)|])
   end
 module StarNotificationHandler =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x403 : Ojs.t) -> x403
-    and t_to_js : t -> Ojs.t = fun (x402 : Ojs.t) -> x402
+    let rec t_of_js : Ojs.t -> t = fun (x263 : Ojs.t) -> x263
+    and t_to_js : t -> Ojs.t = fun (x262 : Ojs.t) -> x262
     let (apply :
       t ->
         method_:string ->
           params:(untyped_object, any) or_array or_undefined -> unit)
       =
-      fun (x409 : t) ->
-        fun ~method_:(x404 : string) ->
-          fun ~params:(x405 : (untyped_object, any) or_array or_undefined) ->
+      fun (x269 : t) ->
+        fun ~method_:(x264 : string) ->
+          fun ~params:(x265 : (untyped_object, any) or_array or_undefined) ->
             ignore
-              (Ojs.apply (t_to_js x409)
-                 [|(Ojs.string_to_js x404);(or_undefined_to_js
+              (Ojs.apply (t_to_js x269)
+                 [|(Ojs.string_to_js x264);(or_undefined_to_js
                                               (fun
-                                                 (x406 :
+                                                 (x266 :
                                                    (untyped_object, any)
                                                      or_array)
                                                  ->
                                                  or_array_to_js
                                                    untyped_object_to_js
-                                                   any_to_js x406) x405)|])
+                                                   any_to_js x266) x265)|])
   end
 module GenericNotificationHandler =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x411 : Ojs.t) -> x411
-    and t_to_js : t -> Ojs.t = fun (x410 : Ojs.t) -> x410
+    let rec t_of_js : Ojs.t -> t = fun (x271 : Ojs.t) -> x271
+    and t_to_js : t -> Ojs.t = fun (x270 : Ojs.t) -> x270
     let (apply : t -> params:any list -> unit) =
-      fun (x415 : t) ->
-        fun ~params:(x412 : any list) ->
+      fun (x275 : t) ->
+        fun ~params:(x272 : any list) ->
           ignore
-            (Ojs.call (t_to_js x415) "apply"
-               [|Ojs.null;((let x413 =
+            (Ojs.call (t_to_js x275) "apply"
+               [|Ojs.null;((let x273 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             List.iter
-                              (fun (x414 : any) ->
+                              (fun (x274 : any) ->
                                  ignore
-                                   (Ojs.call x413 "push" [|(any_to_js x414)|]))
-                              x412;
-                            x413))|])
+                                   (Ojs.call x273 "push" [|(any_to_js x274)|]))
+                              x272;
+                            x273))|])
   end
 module NotificationHandler0 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x417 : Ojs.t) -> x417
-    and t_to_js : t -> Ojs.t = fun (x416 : Ojs.t) -> x416
+    let rec t_of_js : Ojs.t -> t = fun (x277 : Ojs.t) -> x277
+    and t_to_js : t -> Ojs.t = fun (x276 : Ojs.t) -> x276
     let (apply : t -> unit) =
-      fun (x418 : t) -> ignore (Ojs.apply (t_to_js x418) [||])
+      fun (x278 : t) -> ignore (Ojs.apply (t_to_js x278) [||])
   end
 module NotificationHandler =
   struct
     type 'P t = Ojs.t
     let rec t_of_js : 'P . (Ojs.t -> 'P) -> Ojs.t -> 'P t = fun (type __P) ->
-      fun (__P_of_js : Ojs.t -> __P) -> fun (x420 : Ojs.t) -> x420
+      fun (__P_of_js : Ojs.t -> __P) -> fun (x280 : Ojs.t) -> x280
     and t_to_js : 'P . ('P -> Ojs.t) -> 'P t -> Ojs.t = fun (type __P) ->
-      fun (__P_to_js : __P -> Ojs.t) -> fun (x419 : Ojs.t) -> x419
+      fun (__P_to_js : __P -> Ojs.t) -> fun (x279 : Ojs.t) -> x279
     let (apply : 'P t -> params:'P -> unit) =
-      fun (x422 : 'P t) ->
-        fun ~params:(x421 : 'P) ->
-          ignore (Ojs.apply (t_to_js Obj.magic x422) [|(Obj.magic x421)|])
+      fun (x282 : 'P t) ->
+        fun ~params:(x281 : 'P) ->
+          ignore (Ojs.apply (t_to_js Obj.magic x282) [|(Obj.magic x281)|])
   end
 module NotificationHandler1 =
   struct
-    type 'P1 t = 'P1 NotificationHandler.t1
+    type 'P1 t = Ojs.t
     let rec t_of_js : 'P1 . (Ojs.t -> 'P1) -> Ojs.t -> 'P1 t = fun (type
-      __P1) ->
-      fun (__P1_of_js : Ojs.t -> __P1) ->
-        fun (x426 : Ojs.t) -> NotificationHandler.t1_of_js __P1_of_js x426
+      __P1) -> fun (__P1_of_js : Ojs.t -> __P1) -> fun (x285 : Ojs.t) -> x285
     and t_to_js : 'P1 . ('P1 -> Ojs.t) -> 'P1 t -> Ojs.t = fun (type __P1) ->
-      fun (__P1_to_js : __P1 -> Ojs.t) ->
-        fun (x424 : __P1 NotificationHandler.t1) ->
-          NotificationHandler.t1_to_js __P1_to_js x424
+      fun (__P1_to_js : __P1 -> Ojs.t) -> fun (x284 : Ojs.t) -> x284
     let (apply : 'P1 t -> p1:'P1 -> unit) =
-      fun (x429 : 'P1 t) ->
-        fun ~p1:(x428 : 'P1) ->
-          ignore (Ojs.apply (t_to_js Obj.magic x429) [|(Obj.magic x428)|])
+      fun (x287 : 'P1 t) ->
+        fun ~p1:(x286 : 'P1) ->
+          ignore (Ojs.apply (t_to_js Obj.magic x287) [|(Obj.magic x286)|])
   end
 module NotificationHandler2 =
   struct
-    type ('P1, 'P2) t = ('P1, 'P2) NotificationHandler.t2
+    type ('P1, 'P2) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 . (Ojs.t -> 'P1) -> (Ojs.t -> 'P2) -> Ojs.t -> ('P1, 'P2) t =
       fun (type __P1) -> fun (type __P2) ->
       fun (__P1_of_js : Ojs.t -> __P1) ->
-        fun (__P2_of_js : Ojs.t -> __P2) ->
-          fun (x434 : Ojs.t) ->
-            NotificationHandler.t2_of_js __P1_of_js __P2_of_js x434
+        fun (__P2_of_js : Ojs.t -> __P2) -> fun (x290 : Ojs.t) -> x290
     and t_to_js :
       'P1 'P2 . ('P1 -> Ojs.t) -> ('P2 -> Ojs.t) -> ('P1, 'P2) t -> Ojs.t =
       fun (type __P1) -> fun (type __P2) ->
       fun (__P1_to_js : __P1 -> Ojs.t) ->
-        fun (__P2_to_js : __P2 -> Ojs.t) ->
-          fun (x431 : (__P1, __P2) NotificationHandler.t2) ->
-            NotificationHandler.t2_to_js __P1_to_js __P2_to_js x431
+        fun (__P2_to_js : __P2 -> Ojs.t) -> fun (x289 : Ojs.t) -> x289
     let (apply : ('P1, 'P2) t -> p1:'P1 -> p2:'P2 -> unit) =
-      fun (x439 : ('P1, 'P2) t) ->
-        fun ~p1:(x437 : 'P1) ->
-          fun ~p2:(x438 : 'P2) ->
+      fun (x293 : ('P1, 'P2) t) ->
+        fun ~p1:(x291 : 'P1) ->
+          fun ~p2:(x292 : 'P2) ->
             ignore
-              (Ojs.apply (t_to_js Obj.magic Obj.magic x439)
-                 [|(Obj.magic x437);(Obj.magic x438)|])
+              (Ojs.apply (t_to_js Obj.magic Obj.magic x293)
+                 [|(Obj.magic x291);(Obj.magic x292)|])
   end
 module NotificationHandler3 =
   struct
-    type ('P1, 'P2, 'P3) t = ('P1, 'P2, 'P3) NotificationHandler.t3
+    type ('P1, 'P2, 'P3) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 .
         (Ojs.t -> 'P1) ->
@@ -1106,10 +1000,7 @@ module NotificationHandler3 =
       = fun (type __P1) -> fun (type __P2) -> fun (type __P3) ->
       fun (__P1_of_js : Ojs.t -> __P1) ->
         fun (__P2_of_js : Ojs.t -> __P2) ->
-          fun (__P3_of_js : Ojs.t -> __P3) ->
-            fun (x446 : Ojs.t) ->
-              NotificationHandler.t3_of_js __P1_of_js __P2_of_js __P3_of_js
-                x446
+          fun (__P3_of_js : Ojs.t -> __P3) -> fun (x297 : Ojs.t) -> x297
     and t_to_js :
       'P1 'P2 'P3 .
         ('P1 -> Ojs.t) ->
@@ -1117,22 +1008,19 @@ module NotificationHandler3 =
       = fun (type __P1) -> fun (type __P2) -> fun (type __P3) ->
       fun (__P1_to_js : __P1 -> Ojs.t) ->
         fun (__P2_to_js : __P2 -> Ojs.t) ->
-          fun (__P3_to_js : __P3 -> Ojs.t) ->
-            fun (x442 : (__P1, __P2, __P3) NotificationHandler.t3) ->
-              NotificationHandler.t3_to_js __P1_to_js __P2_to_js __P3_to_js
-                x442
+          fun (__P3_to_js : __P3 -> Ojs.t) -> fun (x296 : Ojs.t) -> x296
     let (apply : ('P1, 'P2, 'P3) t -> p1:'P1 -> p2:'P2 -> p3:'P3 -> unit) =
-      fun (x453 : ('P1, 'P2, 'P3) t) ->
-        fun ~p1:(x450 : 'P1) ->
-          fun ~p2:(x451 : 'P2) ->
-            fun ~p3:(x452 : 'P3) ->
+      fun (x301 : ('P1, 'P2, 'P3) t) ->
+        fun ~p1:(x298 : 'P1) ->
+          fun ~p2:(x299 : 'P2) ->
+            fun ~p3:(x300 : 'P3) ->
               ignore
-                (Ojs.apply (t_to_js Obj.magic Obj.magic Obj.magic x453)
-                   [|(Obj.magic x450);(Obj.magic x451);(Obj.magic x452)|])
+                (Ojs.apply (t_to_js Obj.magic Obj.magic Obj.magic x301)
+                   [|(Obj.magic x298);(Obj.magic x299);(Obj.magic x300)|])
   end
 module NotificationHandler4 =
   struct
-    type ('P1, 'P2, 'P3, 'P4) t = ('P1, 'P2, 'P3, 'P4) NotificationHandler.t4
+    type ('P1, 'P2, 'P3, 'P4) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 .
         (Ojs.t -> 'P1) ->
@@ -1144,10 +1032,7 @@ module NotificationHandler4 =
       fun (__P1_of_js : Ojs.t -> __P1) ->
         fun (__P2_of_js : Ojs.t -> __P2) ->
           fun (__P3_of_js : Ojs.t -> __P3) ->
-            fun (__P4_of_js : Ojs.t -> __P4) ->
-              fun (x462 : Ojs.t) ->
-                NotificationHandler.t4_of_js __P1_of_js __P2_of_js __P3_of_js
-                  __P4_of_js x462
+            fun (__P4_of_js : Ojs.t -> __P4) -> fun (x306 : Ojs.t) -> x306
     and t_to_js :
       'P1 'P2 'P3 'P4 .
         ('P1 -> Ojs.t) ->
@@ -1159,28 +1044,24 @@ module NotificationHandler4 =
       fun (__P1_to_js : __P1 -> Ojs.t) ->
         fun (__P2_to_js : __P2 -> Ojs.t) ->
           fun (__P3_to_js : __P3 -> Ojs.t) ->
-            fun (__P4_to_js : __P4 -> Ojs.t) ->
-              fun (x457 : (__P1, __P2, __P3, __P4) NotificationHandler.t4) ->
-                NotificationHandler.t4_to_js __P1_to_js __P2_to_js __P3_to_js
-                  __P4_to_js x457
+            fun (__P4_to_js : __P4 -> Ojs.t) -> fun (x305 : Ojs.t) -> x305
     let (apply :
       ('P1, 'P2, 'P3, 'P4) t -> p1:'P1 -> p2:'P2 -> p3:'P3 -> p4:'P4 -> unit)
       =
-      fun (x471 : ('P1, 'P2, 'P3, 'P4) t) ->
-        fun ~p1:(x467 : 'P1) ->
-          fun ~p2:(x468 : 'P2) ->
-            fun ~p3:(x469 : 'P3) ->
-              fun ~p4:(x470 : 'P4) ->
+      fun (x311 : ('P1, 'P2, 'P3, 'P4) t) ->
+        fun ~p1:(x307 : 'P1) ->
+          fun ~p2:(x308 : 'P2) ->
+            fun ~p3:(x309 : 'P3) ->
+              fun ~p4:(x310 : 'P4) ->
                 ignore
                   (Ojs.apply
-                     (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x471)
-                     [|(Obj.magic x467);(Obj.magic x468);(Obj.magic x469);(
-                       Obj.magic x470)|])
+                     (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x311)
+                     [|(Obj.magic x307);(Obj.magic x308);(Obj.magic x309);(
+                       Obj.magic x310)|])
   end
 module NotificationHandler5 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'P5) t =
-      ('P1, 'P2, 'P3, 'P4, 'P5) NotificationHandler.t5
+    type ('P1, 'P2, 'P3, 'P4, 'P5) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'P5 .
         (Ojs.t -> 'P1) ->
@@ -1194,10 +1075,7 @@ module NotificationHandler5 =
         fun (__P2_of_js : Ojs.t -> __P2) ->
           fun (__P3_of_js : Ojs.t -> __P3) ->
             fun (__P4_of_js : Ojs.t -> __P4) ->
-              fun (__P5_of_js : Ojs.t -> __P5) ->
-                fun (x482 : Ojs.t) ->
-                  NotificationHandler.t5_of_js __P1_of_js __P2_of_js
-                    __P3_of_js __P4_of_js __P5_of_js x482
+              fun (__P5_of_js : Ojs.t -> __P5) -> fun (x317 : Ojs.t) -> x317
     and t_to_js :
       'P1 'P2 'P3 'P4 'P5 .
         ('P1 -> Ojs.t) ->
@@ -1211,34 +1089,27 @@ module NotificationHandler5 =
         fun (__P2_to_js : __P2 -> Ojs.t) ->
           fun (__P3_to_js : __P3 -> Ojs.t) ->
             fun (__P4_to_js : __P4 -> Ojs.t) ->
-              fun (__P5_to_js : __P5 -> Ojs.t) ->
-                fun
-                  (x476 :
-                    (__P1, __P2, __P3, __P4, __P5) NotificationHandler.t5)
-                  ->
-                  NotificationHandler.t5_to_js __P1_to_js __P2_to_js
-                    __P3_to_js __P4_to_js __P5_to_js x476
+              fun (__P5_to_js : __P5 -> Ojs.t) -> fun (x316 : Ojs.t) -> x316
     let (apply :
       ('P1, 'P2, 'P3, 'P4, 'P5) t ->
         p1:'P1 -> p2:'P2 -> p3:'P3 -> p4:'P4 -> p5:'P5 -> unit)
       =
-      fun (x493 : ('P1, 'P2, 'P3, 'P4, 'P5) t) ->
-        fun ~p1:(x488 : 'P1) ->
-          fun ~p2:(x489 : 'P2) ->
-            fun ~p3:(x490 : 'P3) ->
-              fun ~p4:(x491 : 'P4) ->
-                fun ~p5:(x492 : 'P5) ->
+      fun (x323 : ('P1, 'P2, 'P3, 'P4, 'P5) t) ->
+        fun ~p1:(x318 : 'P1) ->
+          fun ~p2:(x319 : 'P2) ->
+            fun ~p3:(x320 : 'P3) ->
+              fun ~p4:(x321 : 'P4) ->
+                fun ~p5:(x322 : 'P5) ->
                   ignore
                     (Ojs.apply
                        (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic
-                          Obj.magic x493)
-                       [|(Obj.magic x488);(Obj.magic x489);(Obj.magic x490);(
-                         Obj.magic x491);(Obj.magic x492)|])
+                          Obj.magic x323)
+                       [|(Obj.magic x318);(Obj.magic x319);(Obj.magic x320);(
+                         Obj.magic x321);(Obj.magic x322)|])
   end
 module NotificationHandler6 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t =
-      ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) NotificationHandler.t6
+    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'P5 'P6 .
         (Ojs.t -> 'P1) ->
@@ -1255,9 +1126,7 @@ module NotificationHandler6 =
             fun (__P4_of_js : Ojs.t -> __P4) ->
               fun (__P5_of_js : Ojs.t -> __P5) ->
                 fun (__P6_of_js : Ojs.t -> __P6) ->
-                  fun (x506 : Ojs.t) ->
-                    NotificationHandler.t6_of_js __P1_of_js __P2_of_js
-                      __P3_of_js __P4_of_js __P5_of_js __P6_of_js x506
+                  fun (x330 : Ojs.t) -> x330
     and t_to_js :
       'P1 'P2 'P3 'P4 'P5 'P6 .
         ('P1 -> Ojs.t) ->
@@ -1274,35 +1143,28 @@ module NotificationHandler6 =
             fun (__P4_to_js : __P4 -> Ojs.t) ->
               fun (__P5_to_js : __P5 -> Ojs.t) ->
                 fun (__P6_to_js : __P6 -> Ojs.t) ->
-                  fun
-                    (x499 :
-                      (__P1, __P2, __P3, __P4, __P5, __P6)
-                        NotificationHandler.t6)
-                    ->
-                    NotificationHandler.t6_to_js __P1_to_js __P2_to_js
-                      __P3_to_js __P4_to_js __P5_to_js __P6_to_js x499
+                  fun (x329 : Ojs.t) -> x329
     let (apply :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t ->
         p1:'P1 -> p2:'P2 -> p3:'P3 -> p4:'P4 -> p5:'P5 -> p6:'P6 -> unit)
       =
-      fun (x519 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t) ->
-        fun ~p1:(x513 : 'P1) ->
-          fun ~p2:(x514 : 'P2) ->
-            fun ~p3:(x515 : 'P3) ->
-              fun ~p4:(x516 : 'P4) ->
-                fun ~p5:(x517 : 'P5) ->
-                  fun ~p6:(x518 : 'P6) ->
+      fun (x337 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t) ->
+        fun ~p1:(x331 : 'P1) ->
+          fun ~p2:(x332 : 'P2) ->
+            fun ~p3:(x333 : 'P3) ->
+              fun ~p4:(x334 : 'P4) ->
+                fun ~p5:(x335 : 'P5) ->
+                  fun ~p6:(x336 : 'P6) ->
                     ignore
                       (Ojs.apply
                          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic
-                            Obj.magic Obj.magic x519)
-                         [|(Obj.magic x513);(Obj.magic x514);(Obj.magic x515);(
-                           Obj.magic x516);(Obj.magic x517);(Obj.magic x518)|])
+                            Obj.magic Obj.magic x337)
+                         [|(Obj.magic x331);(Obj.magic x332);(Obj.magic x333);(
+                           Obj.magic x334);(Obj.magic x335);(Obj.magic x336)|])
   end
 module NotificationHandler7 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t =
-      ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) NotificationHandler.t7
+    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 .
         (Ojs.t -> 'P1) ->
@@ -1322,10 +1184,7 @@ module NotificationHandler7 =
               fun (__P5_of_js : Ojs.t -> __P5) ->
                 fun (__P6_of_js : Ojs.t -> __P6) ->
                   fun (__P7_of_js : Ojs.t -> __P7) ->
-                    fun (x534 : Ojs.t) ->
-                      NotificationHandler.t7_of_js __P1_of_js __P2_of_js
-                        __P3_of_js __P4_of_js __P5_of_js __P6_of_js
-                        __P7_of_js x534
+                    fun (x345 : Ojs.t) -> x345
     and t_to_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 .
         ('P1 -> Ojs.t) ->
@@ -1345,40 +1204,32 @@ module NotificationHandler7 =
               fun (__P5_to_js : __P5 -> Ojs.t) ->
                 fun (__P6_to_js : __P6 -> Ojs.t) ->
                   fun (__P7_to_js : __P7 -> Ojs.t) ->
-                    fun
-                      (x526 :
-                        (__P1, __P2, __P3, __P4, __P5, __P6, __P7)
-                          NotificationHandler.t7)
-                      ->
-                      NotificationHandler.t7_to_js __P1_to_js __P2_to_js
-                        __P3_to_js __P4_to_js __P5_to_js __P6_to_js
-                        __P7_to_js x526
+                    fun (x344 : Ojs.t) -> x344
     let (apply :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t ->
         p1:'P1 ->
           p2:'P2 -> p3:'P3 -> p4:'P4 -> p5:'P5 -> p6:'P6 -> p7:'P7 -> unit)
       =
-      fun (x549 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t) ->
-        fun ~p1:(x542 : 'P1) ->
-          fun ~p2:(x543 : 'P2) ->
-            fun ~p3:(x544 : 'P3) ->
-              fun ~p4:(x545 : 'P4) ->
-                fun ~p5:(x546 : 'P5) ->
-                  fun ~p6:(x547 : 'P6) ->
-                    fun ~p7:(x548 : 'P7) ->
+      fun (x353 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t) ->
+        fun ~p1:(x346 : 'P1) ->
+          fun ~p2:(x347 : 'P2) ->
+            fun ~p3:(x348 : 'P3) ->
+              fun ~p4:(x349 : 'P4) ->
+                fun ~p5:(x350 : 'P5) ->
+                  fun ~p6:(x351 : 'P6) ->
+                    fun ~p7:(x352 : 'P7) ->
                       ignore
                         (Ojs.apply
                            (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic
-                              Obj.magic Obj.magic Obj.magic x549)
-                           [|(Obj.magic x542);(Obj.magic x543);(Obj.magic
-                                                                  x544);(
-                             Obj.magic x545);(Obj.magic x546);(Obj.magic x547);(
-                             Obj.magic x548)|])
+                              Obj.magic Obj.magic Obj.magic x353)
+                           [|(Obj.magic x346);(Obj.magic x347);(Obj.magic
+                                                                  x348);(
+                             Obj.magic x349);(Obj.magic x350);(Obj.magic x351);(
+                             Obj.magic x352)|])
   end
 module NotificationHandler8 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) t =
-      ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) NotificationHandler.t8
+    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 'P8 .
         (Ojs.t -> 'P1) ->
@@ -1401,10 +1252,7 @@ module NotificationHandler8 =
                 fun (__P6_of_js : Ojs.t -> __P6) ->
                   fun (__P7_of_js : Ojs.t -> __P7) ->
                     fun (__P8_of_js : Ojs.t -> __P8) ->
-                      fun (x566 : Ojs.t) ->
-                        NotificationHandler.t8_of_js __P1_of_js __P2_of_js
-                          __P3_of_js __P4_of_js __P5_of_js __P6_of_js
-                          __P7_of_js __P8_of_js x566
+                      fun (x362 : Ojs.t) -> x362
     and t_to_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 'P8 .
         ('P1 -> Ojs.t) ->
@@ -1427,43 +1275,35 @@ module NotificationHandler8 =
                 fun (__P6_to_js : __P6 -> Ojs.t) ->
                   fun (__P7_to_js : __P7 -> Ojs.t) ->
                     fun (__P8_to_js : __P8 -> Ojs.t) ->
-                      fun
-                        (x557 :
-                          (__P1, __P2, __P3, __P4, __P5, __P6, __P7, 
-                            __P8) NotificationHandler.t8)
-                        ->
-                        NotificationHandler.t8_to_js __P1_to_js __P2_to_js
-                          __P3_to_js __P4_to_js __P5_to_js __P6_to_js
-                          __P7_to_js __P8_to_js x557
+                      fun (x361 : Ojs.t) -> x361
     let (apply :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) t ->
         p1:'P1 ->
           p2:'P2 ->
             p3:'P3 -> p4:'P4 -> p5:'P5 -> p6:'P6 -> p7:'P7 -> p8:'P8 -> unit)
       =
-      fun (x583 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) t) ->
-        fun ~p1:(x575 : 'P1) ->
-          fun ~p2:(x576 : 'P2) ->
-            fun ~p3:(x577 : 'P3) ->
-              fun ~p4:(x578 : 'P4) ->
-                fun ~p5:(x579 : 'P5) ->
-                  fun ~p6:(x580 : 'P6) ->
-                    fun ~p7:(x581 : 'P7) ->
-                      fun ~p8:(x582 : 'P8) ->
+      fun (x371 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) t) ->
+        fun ~p1:(x363 : 'P1) ->
+          fun ~p2:(x364 : 'P2) ->
+            fun ~p3:(x365 : 'P3) ->
+              fun ~p4:(x366 : 'P4) ->
+                fun ~p5:(x367 : 'P5) ->
+                  fun ~p6:(x368 : 'P6) ->
+                    fun ~p7:(x369 : 'P7) ->
+                      fun ~p8:(x370 : 'P8) ->
                         ignore
                           (Ojs.apply
                              (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic
-                                Obj.magic Obj.magic Obj.magic Obj.magic x583)
-                             [|(Obj.magic x575);(Obj.magic x576);(Obj.magic
-                                                                    x577);(
-                               Obj.magic x578);(Obj.magic x579);(Obj.magic
-                                                                   x580);(
-                               Obj.magic x581);(Obj.magic x582)|])
+                                Obj.magic Obj.magic Obj.magic Obj.magic x371)
+                             [|(Obj.magic x363);(Obj.magic x364);(Obj.magic
+                                                                    x365);(
+                               Obj.magic x366);(Obj.magic x367);(Obj.magic
+                                                                   x368);(
+                               Obj.magic x369);(Obj.magic x370)|])
   end
 module NotificationHandler9 =
   struct
-    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) t =
-      ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) NotificationHandler.t9
+    type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) t = Ojs.t
     let rec t_of_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 'P8 'P9 .
         (Ojs.t -> 'P1) ->
@@ -1489,10 +1329,7 @@ module NotificationHandler9 =
                   fun (__P7_of_js : Ojs.t -> __P7) ->
                     fun (__P8_of_js : Ojs.t -> __P8) ->
                       fun (__P9_of_js : Ojs.t -> __P9) ->
-                        fun (x602 : Ojs.t) ->
-                          NotificationHandler.t9_of_js __P1_of_js __P2_of_js
-                            __P3_of_js __P4_of_js __P5_of_js __P6_of_js
-                            __P7_of_js __P8_of_js __P9_of_js x602
+                        fun (x381 : Ojs.t) -> x381
     and t_to_js :
       'P1 'P2 'P3 'P4 'P5 'P6 'P7 'P8 'P9 .
         ('P1 -> Ojs.t) ->
@@ -1518,14 +1355,7 @@ module NotificationHandler9 =
                   fun (__P7_to_js : __P7 -> Ojs.t) ->
                     fun (__P8_to_js : __P8 -> Ojs.t) ->
                       fun (__P9_to_js : __P9 -> Ojs.t) ->
-                        fun
-                          (x592 :
-                            (__P1, __P2, __P3, __P4, __P5, __P6, __P7, 
-                              __P8, __P9) NotificationHandler.t9)
-                          ->
-                          NotificationHandler.t9_to_js __P1_to_js __P2_to_js
-                            __P3_to_js __P4_to_js __P5_to_js __P6_to_js
-                            __P7_to_js __P8_to_js __P9_to_js x592
+                        fun (x380 : Ojs.t) -> x380
     let (apply :
       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) t ->
         p1:'P1 ->
@@ -1534,50 +1364,50 @@ module NotificationHandler9 =
               p4:'P4 ->
                 p5:'P5 -> p6:'P6 -> p7:'P7 -> p8:'P8 -> p9:'P9 -> unit)
       =
-      fun (x621 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) t) ->
-        fun ~p1:(x612 : 'P1) ->
-          fun ~p2:(x613 : 'P2) ->
-            fun ~p3:(x614 : 'P3) ->
-              fun ~p4:(x615 : 'P4) ->
-                fun ~p5:(x616 : 'P5) ->
-                  fun ~p6:(x617 : 'P6) ->
-                    fun ~p7:(x618 : 'P7) ->
-                      fun ~p8:(x619 : 'P8) ->
-                        fun ~p9:(x620 : 'P9) ->
+      fun (x391 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) t) ->
+        fun ~p1:(x382 : 'P1) ->
+          fun ~p2:(x383 : 'P2) ->
+            fun ~p3:(x384 : 'P3) ->
+              fun ~p4:(x385 : 'P4) ->
+                fun ~p5:(x386 : 'P5) ->
+                  fun ~p6:(x387 : 'P6) ->
+                    fun ~p7:(x388 : 'P7) ->
+                      fun ~p8:(x389 : 'P8) ->
+                        fun ~p9:(x390 : 'P9) ->
                           ignore
                             (Ojs.apply
                                (t_to_js Obj.magic Obj.magic Obj.magic
                                   Obj.magic Obj.magic Obj.magic Obj.magic
-                                  Obj.magic Obj.magic x621)
-                               [|(Obj.magic x612);(Obj.magic x613);(Obj.magic
-                                                                    x614);(
-                                 Obj.magic x615);(Obj.magic x616);(Obj.magic
-                                                                    x617);(
-                                 Obj.magic x618);(Obj.magic x619);(Obj.magic
-                                                                    x620)|])
+                                  Obj.magic Obj.magic x391)
+                               [|(Obj.magic x382);(Obj.magic x383);(Obj.magic
+                                                                    x384);(
+                                 Obj.magic x385);(Obj.magic x386);(Obj.magic
+                                                                    x387);(
+                                 Obj.magic x388);(Obj.magic x389);(Obj.magic
+                                                                    x390)|])
   end
 module Logger =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x632 : Ojs.t) -> x632
-    and t_to_js : t -> Ojs.t = fun (x631 : Ojs.t) -> x631
+    let rec t_of_js : Ojs.t -> t = fun (x402 : Ojs.t) -> x402
+    and t_to_js : t -> Ojs.t = fun (x401 : Ojs.t) -> x401
     let (error : t -> message:string -> unit) =
-      fun (x634 : t) ->
-        fun ~message:(x633 : string) ->
+      fun (x404 : t) ->
+        fun ~message:(x403 : string) ->
           ignore
-            (Ojs.call (t_to_js x634) "error" [|(Ojs.string_to_js x633)|])
+            (Ojs.call (t_to_js x404) "error" [|(Ojs.string_to_js x403)|])
     let (warn : t -> message:string -> unit) =
-      fun (x636 : t) ->
-        fun ~message:(x635 : string) ->
-          ignore (Ojs.call (t_to_js x636) "warn" [|(Ojs.string_to_js x635)|])
+      fun (x406 : t) ->
+        fun ~message:(x405 : string) ->
+          ignore (Ojs.call (t_to_js x406) "warn" [|(Ojs.string_to_js x405)|])
     let (info : t -> message:string -> unit) =
-      fun (x638 : t) ->
-        fun ~message:(x637 : string) ->
-          ignore (Ojs.call (t_to_js x638) "info" [|(Ojs.string_to_js x637)|])
+      fun (x408 : t) ->
+        fun ~message:(x407 : string) ->
+          ignore (Ojs.call (t_to_js x408) "info" [|(Ojs.string_to_js x407)|])
     let (log : t -> message:string -> unit) =
-      fun (x640 : t) ->
-        fun ~message:(x639 : string) ->
-          ignore (Ojs.call (t_to_js x640) "log" [|(Ojs.string_to_js x639)|])
+      fun (x410 : t) ->
+        fun ~message:(x409 : string) ->
+          ignore (Ojs.call (t_to_js x410) "log" [|(Ojs.string_to_js x409)|])
   end
 let (null_logger : Logger.t) =
   Logger.t_of_js (Ojs.get_prop_ascii Ojs.global "NullLogger")
@@ -1585,16 +1415,16 @@ module TraceValues =
   struct
     type t = [ `L_s1_messages  | `L_s2_off  | `L_s4_verbose ]
     let rec t_of_js : Ojs.t -> t =
-      fun (x642 : Ojs.t) ->
-        let x643 = x642 in
-        match Ojs.string_of_js x643 with
+      fun (x412 : Ojs.t) ->
+        let x413 = x412 in
+        match Ojs.string_of_js x413 with
         | "messages" -> `L_s1_messages
         | "off" -> `L_s2_off
         | "verbose" -> `L_s4_verbose
         | _ -> assert false
     and t_to_js : t -> Ojs.t =
-      fun (x641 : [ `L_s1_messages  | `L_s2_off  | `L_s4_verbose ]) ->
-        match x641 with
+      fun (x411 : [ `L_s1_messages  | `L_s2_off  | `L_s4_verbose ]) ->
+        match x411 with
         | `L_s1_messages -> Ojs.string_to_js "messages"
         | `L_s2_off -> Ojs.string_to_js "off"
         | `L_s4_verbose -> Ojs.string_to_js "verbose"
@@ -1603,86 +1433,86 @@ module Trace =
   struct
     type t = [ `Off  | `Messages  | `Verbose ]
     let rec t_of_js : Ojs.t -> t =
-      fun (x645 : Ojs.t) ->
-        let x646 = x645 in
-        match Ojs.int_of_js x646 with
+      fun (x415 : Ojs.t) ->
+        let x416 = x415 in
+        match Ojs.int_of_js x416 with
         | 0 -> `Off
         | 1 -> `Messages
         | 2 -> `Verbose
         | _ -> assert false
     and t_to_js : t -> Ojs.t =
-      fun (x644 : [ `Off  | `Messages  | `Verbose ]) ->
-        match x644 with
+      fun (x414 : [ `Off  | `Messages  | `Verbose ]) ->
+        match x414 with
         | `Off -> Ojs.int_to_js 0
         | `Messages -> Ojs.int_to_js 1
         | `Verbose -> Ojs.int_to_js 2
-    let (from_string : value:string -> Trace.t) =
-      fun ~value:(x647 : string) ->
-        Trace.t_of_js
+    let (from_string : value:string -> t) =
+      fun ~value:(x417 : string) ->
+        t_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Trace") "fromString"
-             [|(Ojs.string_to_js x647)|])
-    let (to_string : value:Trace.t -> TraceValues.t) =
-      fun ~value:(x648 : Trace.t) ->
+             [|(Ojs.string_to_js x417)|])
+    let (to_string : value:t -> TraceValues.t) =
+      fun ~value:(x418 : t) ->
         TraceValues.t_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Trace") "toString"
-             [|(Trace.t_to_js x648)|])
+             [|(t_to_js x418)|])
   end
 module TraceFormat =
   struct
     type t = [ `Text  | `JSON ]
     let rec t_of_js : Ojs.t -> t =
-      fun (x650 : Ojs.t) ->
-        let x651 = x650 in
-        match Ojs.string_of_js x651 with
+      fun (x420 : Ojs.t) ->
+        let x421 = x420 in
+        match Ojs.string_of_js x421 with
         | "text" -> `Text
         | "json" -> `JSON
         | _ -> assert false
     and t_to_js : t -> Ojs.t =
-      fun (x649 : [ `Text  | `JSON ]) ->
-        match x649 with
+      fun (x419 : [ `Text  | `JSON ]) ->
+        match x419 with
         | `Text -> Ojs.string_to_js "text"
         | `JSON -> Ojs.string_to_js "json"
-    let (from_string : value:string -> TraceFormat.t) =
-      fun ~value:(x652 : string) ->
-        TraceFormat.t_of_js
+    let (from_string : value:string -> t) =
+      fun ~value:(x422 : string) ->
+        t_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "TraceFormat")
-             "fromString" [|(Ojs.string_to_js x652)|])
+             "fromString" [|(Ojs.string_to_js x422)|])
   end
 module TraceOptions =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x654 : Ojs.t) -> x654
-    and t_to_js : t -> Ojs.t = fun (x653 : Ojs.t) -> x653
+    let rec t_of_js : Ojs.t -> t = fun (x424 : Ojs.t) -> x424
+    and t_to_js : t -> Ojs.t = fun (x423 : Ojs.t) -> x423
     let (get_send_notification : t -> bool) =
-      fun (x655 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x655) "sendNotification")
+      fun (x425 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x425) "sendNotification")
     let (set_send_notification : t -> bool -> unit) =
-      fun (x656 : t) ->
-        fun (x657 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x656) "sendNotification"
-            (Ojs.bool_to_js x657)
+      fun (x426 : t) ->
+        fun (x427 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x426) "sendNotification"
+            (Ojs.bool_to_js x427)
     let (get_trace_format : t -> TraceFormat.t) =
-      fun (x658 : t) ->
-        TraceFormat.t_of_js (Ojs.get_prop_ascii (t_to_js x658) "traceFormat")
+      fun (x428 : t) ->
+        TraceFormat.t_of_js (Ojs.get_prop_ascii (t_to_js x428) "traceFormat")
     let (set_trace_format : t -> TraceFormat.t -> unit) =
-      fun (x659 : t) ->
-        fun (x660 : TraceFormat.t) ->
-          Ojs.set_prop_ascii (t_to_js x659) "traceFormat"
-            (TraceFormat.t_to_js x660)
+      fun (x429 : t) ->
+        fun (x430 : TraceFormat.t) ->
+          Ojs.set_prop_ascii (t_to_js x429) "traceFormat"
+            (TraceFormat.t_to_js x430)
   end
 module SetTraceParams =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x662 : Ojs.t) -> x662
-    and t_to_js : t -> Ojs.t = fun (x661 : Ojs.t) -> x661
+    let rec t_of_js : Ojs.t -> t = fun (x432 : Ojs.t) -> x432
+    and t_to_js : t -> Ojs.t = fun (x431 : Ojs.t) -> x431
     let (get_value : t -> TraceValues.t) =
-      fun (x663 : t) ->
-        TraceValues.t_of_js (Ojs.get_prop_ascii (t_to_js x663) "value")
+      fun (x433 : t) ->
+        TraceValues.t_of_js (Ojs.get_prop_ascii (t_to_js x433) "value")
     let (set_value : t -> TraceValues.t -> unit) =
-      fun (x664 : t) ->
-        fun (x665 : TraceValues.t) ->
-          Ojs.set_prop_ascii (t_to_js x664) "value"
-            (TraceValues.t_to_js x665)
+      fun (x434 : t) ->
+        fun (x435 : TraceValues.t) ->
+          Ojs.set_prop_ascii (t_to_js x434) "value"
+            (TraceValues.t_to_js x435)
   end
 module SetTraceNotification =
   struct
@@ -1694,22 +1524,22 @@ module SetTraceNotification =
 module LogTraceParams =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x668 : Ojs.t) -> x668
-    and t_to_js : t -> Ojs.t = fun (x667 : Ojs.t) -> x667
+    let rec t_of_js : Ojs.t -> t = fun (x438 : Ojs.t) -> x438
+    and t_to_js : t -> Ojs.t = fun (x437 : Ojs.t) -> x437
     let (get_message : t -> string) =
-      fun (x669 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x669) "message")
+      fun (x439 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x439) "message")
     let (set_message : t -> string -> unit) =
-      fun (x670 : t) ->
-        fun (x671 : string) ->
-          Ojs.set_prop_ascii (t_to_js x670) "message" (Ojs.string_to_js x671)
+      fun (x440 : t) ->
+        fun (x441 : string) ->
+          Ojs.set_prop_ascii (t_to_js x440) "message" (Ojs.string_to_js x441)
     let (get_verbose : t -> string) =
-      fun (x672 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x672) "verbose")
+      fun (x442 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x442) "verbose")
     let (set_verbose : t -> string -> unit) =
-      fun (x673 : t) ->
-        fun (x674 : string) ->
-          Ojs.set_prop_ascii (t_to_js x673) "verbose" (Ojs.string_to_js x674)
+      fun (x443 : t) ->
+        fun (x444 : string) ->
+          Ojs.set_prop_ascii (t_to_js x443) "verbose" (Ojs.string_to_js x444)
   end
 module LogTraceNotification =
   struct
@@ -1721,49 +1551,49 @@ module LogTraceNotification =
 module Tracer =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x677 : Ojs.t) -> x677
-    and t_to_js : t -> Ojs.t = fun (x676 : Ojs.t) -> x676
+    let rec t_of_js : Ojs.t -> t = fun (x447 : Ojs.t) -> x447
+    and t_to_js : t -> Ojs.t = fun (x446 : Ojs.t) -> x446
     let (log : t -> data_object:any -> unit) =
-      fun (x679 : t) ->
-        fun ~data_object:(x678 : any) ->
-          ignore (Ojs.call (t_to_js x679) "log" [|(any_to_js x678)|])
+      fun (x449 : t) ->
+        fun ~data_object:(x448 : any) ->
+          ignore (Ojs.call (t_to_js x449) "log" [|(any_to_js x448)|])
     let (log' : t -> message:string -> ?data:string -> unit -> unit) =
-      fun (x684 : t) ->
-        fun ~message:(x680 : string) ->
-          fun ?data:(x681 : string option) ->
+      fun (x454 : t) ->
+        fun ~message:(x450 : string) ->
+          fun ?data:(x451 : string option) ->
             fun () ->
               ignore
-                (let x685 = t_to_js x684 in
-                 Ojs.call (Ojs.get_prop_ascii x685 "log") "apply"
-                   [|x685;((let x682 =
+                (let x455 = t_to_js x454 in
+                 Ojs.call (Ojs.get_prop_ascii x455 "log") "apply"
+                   [|x455;((let x452 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x682 "push"
-                                 [|(Ojs.string_to_js x680)|]);
-                            (match x681 with
-                             | Some x683 ->
+                              (Ojs.call x452 "push"
+                                 [|(Ojs.string_to_js x450)|]);
+                            (match x451 with
+                             | Some x453 ->
                                  ignore
-                                   (Ojs.call x682 "push"
-                                      [|(Ojs.string_to_js x683)|])
+                                   (Ojs.call x452 "push"
+                                      [|(Ojs.string_to_js x453)|])
                              | None -> ());
-                            x682))|])
+                            x452))|])
   end
 module ConnectionErrors =
   struct
     type t = [ `Closed  | `Disposed  | `AlreadyListening ]
     let rec t_of_js : Ojs.t -> t =
-      fun (x687 : Ojs.t) ->
-        let x688 = x687 in
-        match Ojs.int_of_js x688 with
+      fun (x457 : Ojs.t) ->
+        let x458 = x457 in
+        match Ojs.int_of_js x458 with
         | 1 -> `Closed
         | 2 -> `Disposed
         | 3 -> `AlreadyListening
         | _ -> assert false
     and t_to_js : t -> Ojs.t =
-      fun (x686 : [ `Closed  | `Disposed  | `AlreadyListening ]) ->
-        match x686 with
+      fun (x456 : [ `Closed  | `Disposed  | `AlreadyListening ]) ->
+        match x456 with
         | `Closed -> Ojs.int_to_js 1
         | `Disposed -> Ojs.int_to_js 2
         | `AlreadyListening -> Ojs.int_to_js 3
@@ -1771,203 +1601,57 @@ module ConnectionErrors =
 module ConnectionError =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x690 : Ojs.t) -> x690
-    and t_to_js : t -> Ojs.t = fun (x689 : Ojs.t) -> x689
+    let rec t_of_js : Ojs.t -> t = fun (x460 : Ojs.t) -> x460
+    and t_to_js : t -> Ojs.t = fun (x459 : Ojs.t) -> x459
     let (get_code : t -> ConnectionErrors.t) =
-      fun (x691 : t) ->
-        ConnectionErrors.t_of_js (Ojs.get_prop_ascii (t_to_js x691) "code")
+      fun (x461 : t) ->
+        ConnectionErrors.t_of_js (Ojs.get_prop_ascii (t_to_js x461) "code")
     let (create : code:ConnectionErrors.t -> message:string -> t) =
-      fun ~code:(x692 : ConnectionErrors.t) ->
-        fun ~message:(x693 : string) ->
+      fun ~code:(x462 : ConnectionErrors.t) ->
+        fun ~message:(x463 : string) ->
           t_of_js
             (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "ConnectionError")
-               [|(ConnectionErrors.t_to_js x692);(Ojs.string_to_js x693)|])
+               [|(ConnectionErrors.t_to_js x462);(Ojs.string_to_js x463)|])
     let (cast : t -> Error.t) =
-      fun (x694 : t) -> Error.t_of_js (t_to_js x694)
-  end
-module ConnectionStrategy =
-  struct
-    type t = AnonymousInterface0.t
-    let rec t_of_js : Ojs.t -> t =
-      fun (x696 : Ojs.t) -> AnonymousInterface0.t_of_js x696
-    and t_to_js : t -> Ojs.t =
-      fun (x695 : AnonymousInterface0.t) -> AnonymousInterface0.t_to_js x695
-    let (is : value:any -> bool) =
-      fun ~value:(x697 : any) ->
-        Ojs.bool_of_js
-          (Ojs.call (Ojs.get_prop_ascii Ojs.global "ConnectionStrategy") "is"
-             [|(any_to_js x697)|])
-  end
-module CancellationId =
-  struct
-    type t = string or_number
-    let rec t_of_js : Ojs.t -> t =
-      fun (x700 : Ojs.t) -> or_number_of_js Ojs.string_of_js x700
-    and t_to_js : t -> Ojs.t =
-      fun (x698 : string or_number) -> or_number_to_js Ojs.string_to_js x698
-  end
-module CancellationReceiverStrategy =
-  struct
-    type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x703 : Ojs.t) -> x703
-    and t_to_js : t -> Ojs.t = fun (x702 : Ojs.t) -> x702
-    let (create_cancellation_token_source :
-      t ->
-        id:CancellationId.t ->
-          Vscode_jsonrpc_cancellation.AbstractCancellationTokenSource.t)
-      =
-      fun (x705 : t) ->
-        fun ~id:(x704 : CancellationId.t) ->
-          Vscode_jsonrpc_cancellation.AbstractCancellationTokenSource.t_of_js
-            (Ojs.call (t_to_js x705) "createCancellationTokenSource"
-               [|(CancellationId.t_to_js x704)|])
-    let (dispose : t -> unit) =
-      fun (x706 : t) -> ignore (Ojs.call (t_to_js x706) "dispose" [||])
-    let (message : CancellationReceiverStrategy.t) =
-      CancellationReceiverStrategy.t_of_js
-        (Ojs.get_prop_ascii
-           (Ojs.get_prop_ascii Ojs.global "CancellationReceiverStrategy")
-           "Message")
-    let (is : value:any -> bool) =
-      fun ~value:(x707 : any) ->
-        Ojs.bool_of_js
-          (Ojs.call
-             (Ojs.get_prop_ascii Ojs.global "CancellationReceiverStrategy")
-             "is" [|(any_to_js x707)|])
-  end
-module CancellationSenderStrategy =
-  struct
-    type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x709 : Ojs.t) -> x709
-    and t_to_js : t -> Ojs.t = fun (x708 : Ojs.t) -> x708
-    let (send_cancellation :
-      t -> conn:MessageConnection.t -> id:CancellationId.t -> unit) =
-      fun (x712 : t) ->
-        fun ~conn:(x710 : MessageConnection.t) ->
-          fun ~id:(x711 : CancellationId.t) ->
-            ignore
-              (Ojs.call (t_to_js x712) "sendCancellation"
-                 [|(MessageConnection.t_to_js x710);(CancellationId.t_to_js
-                                                       x711)|])
-    let (cleanup : t -> id:CancellationId.t -> unit) =
-      fun (x714 : t) ->
-        fun ~id:(x713 : CancellationId.t) ->
-          ignore
-            (Ojs.call (t_to_js x714) "cleanup"
-               [|(CancellationId.t_to_js x713)|])
-    let (dispose : t -> unit) =
-      fun (x715 : t) -> ignore (Ojs.call (t_to_js x715) "dispose" [||])
-    let (message : CancellationSenderStrategy.t) =
-      CancellationSenderStrategy.t_of_js
-        (Ojs.get_prop_ascii
-           (Ojs.get_prop_ascii Ojs.global "CancellationSenderStrategy")
-           "Message")
-    let (is : value:any -> bool) =
-      fun ~value:(x716 : any) ->
-        Ojs.bool_of_js
-          (Ojs.call
-             (Ojs.get_prop_ascii Ojs.global "CancellationSenderStrategy")
-             "is" [|(any_to_js x716)|])
-  end
-module CancellationStrategy =
-  struct
-    type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x718 : Ojs.t) -> x718
-    and t_to_js : t -> Ojs.t = fun (x717 : Ojs.t) -> x717
-    let (get_receiver : t -> CancellationReceiverStrategy.t) =
-      fun (x719 : t) ->
-        CancellationReceiverStrategy.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x719) "receiver")
-    let (set_receiver : t -> CancellationReceiverStrategy.t -> unit) =
-      fun (x720 : t) ->
-        fun (x721 : CancellationReceiverStrategy.t) ->
-          Ojs.set_prop_ascii (t_to_js x720) "receiver"
-            (CancellationReceiverStrategy.t_to_js x721)
-    let (get_sender : t -> CancellationSenderStrategy.t) =
-      fun (x722 : t) ->
-        CancellationSenderStrategy.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x722) "sender")
-    let (set_sender : t -> CancellationSenderStrategy.t -> unit) =
-      fun (x723 : t) ->
-        fun (x724 : CancellationSenderStrategy.t) ->
-          Ojs.set_prop_ascii (t_to_js x723) "sender"
-            (CancellationSenderStrategy.t_to_js x724)
-    let (message : CancellationStrategy.t) =
-      CancellationStrategy.t_of_js
-        (Ojs.get_prop_ascii
-           (Ojs.get_prop_ascii Ojs.global "CancellationStrategy") "Message")
-    let (is : value:any -> bool) =
-      fun ~value:(x725 : any) ->
-        Ojs.bool_of_js
-          (Ojs.call (Ojs.get_prop_ascii Ojs.global "CancellationStrategy")
-             "is" [|(any_to_js x725)|])
-  end
-module ConnectionOptions =
-  struct
-    type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x727 : Ojs.t) -> x727
-    and t_to_js : t -> Ojs.t = fun (x726 : Ojs.t) -> x726
-    let (get_cancellation_strategy : t -> CancellationStrategy.t) =
-      fun (x728 : t) ->
-        CancellationStrategy.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x728) "cancellationStrategy")
-    let (set_cancellation_strategy : t -> CancellationStrategy.t -> unit) =
-      fun (x729 : t) ->
-        fun (x730 : CancellationStrategy.t) ->
-          Ojs.set_prop_ascii (t_to_js x729) "cancellationStrategy"
-            (CancellationStrategy.t_to_js x730)
-    let (get_connection_strategy : t -> ConnectionStrategy.t) =
-      fun (x731 : t) ->
-        ConnectionStrategy.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x731) "connectionStrategy")
-    let (set_connection_strategy : t -> ConnectionStrategy.t -> unit) =
-      fun (x732 : t) ->
-        fun (x733 : ConnectionStrategy.t) ->
-          Ojs.set_prop_ascii (t_to_js x732) "connectionStrategy"
-            (ConnectionStrategy.t_to_js x733)
-    let (is : value:any -> bool) =
-      fun ~value:(x734 : any) ->
-        Ojs.bool_of_js
-          (Ojs.call (Ojs.get_prop_ascii Ojs.global "ConnectionOptions") "is"
-             [|(any_to_js x734)|])
+      fun (x464 : t) -> Error.t_of_js (t_to_js x464)
   end
 module MessageConnection =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x736 : Ojs.t) -> x736
-    and t_to_js : t -> Ojs.t = fun (x735 : Ojs.t) -> x735
+    let rec t_of_js : Ojs.t -> t = fun (x466 : Ojs.t) -> x466
+    and t_to_js : t -> Ojs.t = fun (x465 : Ojs.t) -> x465
     let (send_request :
       t ->
         type_:('R, 'E) RequestType0.t ->
           ?token:Vscode_jsonrpc_cancellation.CancellationToken.t ->
             unit -> 'R Promise.t)
       =
-      fun (x743 : t) ->
-        fun ~type_:(x737 : ('R, 'E) RequestType0.t) ->
+      fun (x473 : t) ->
+        fun ~type_:(x467 : ('R, 'E) RequestType0.t) ->
           fun
-            ?token:(x738 :
+            ?token:(x468 :
                      Vscode_jsonrpc_cancellation.CancellationToken.t option)
             ->
             fun () ->
               Promise.t_of_js Obj.magic
-                (let x744 = t_to_js x743 in
-                 Ojs.call (Ojs.get_prop_ascii x744 "sendRequest") "apply"
-                   [|x744;((let x739 =
+                (let x474 = t_to_js x473 in
+                 Ojs.call (Ojs.get_prop_ascii x474 "sendRequest") "apply"
+                   [|x474;((let x469 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x739 "push"
+                              (Ojs.call x469 "push"
                                  [|(RequestType0.t_to_js Obj.magic Obj.magic
-                                      x737)|]);
-                            (match x738 with
-                             | Some x740 ->
+                                      x467)|]);
+                            (match x468 with
+                             | Some x470 ->
                                  ignore
-                                   (Ojs.call x739 "push"
+                                   (Ojs.call x469 "push"
                                       [|(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                                           x740)|])
+                                           x470)|])
                              | None -> ());
-                            x739))|])
+                            x469))|])
     let (send_request' :
       t ->
         type_:('P, 'R, 'E) RequestType.t ->
@@ -1975,35 +1659,35 @@ module MessageConnection =
             ?token:Vscode_jsonrpc_cancellation.CancellationToken.t ->
               unit -> 'R Promise.t)
       =
-      fun (x754 : t) ->
-        fun ~type_:(x746 : ('P, 'R, 'E) RequestType.t) ->
-          fun ~params:(x747 : 'P) ->
+      fun (x484 : t) ->
+        fun ~type_:(x476 : ('P, 'R, 'E) RequestType.t) ->
+          fun ~params:(x477 : 'P) ->
             fun
-              ?token:(x748 :
+              ?token:(x478 :
                        Vscode_jsonrpc_cancellation.CancellationToken.t option)
               ->
               fun () ->
                 Promise.t_of_js Obj.magic
-                  (let x755 = t_to_js x754 in
-                   Ojs.call (Ojs.get_prop_ascii x755 "sendRequest") "apply"
-                     [|x755;((let x749 =
+                  (let x485 = t_to_js x484 in
+                   Ojs.call (Ojs.get_prop_ascii x485 "sendRequest") "apply"
+                     [|x485;((let x479 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x749 "push"
+                                (Ojs.call x479 "push"
                                    [|(RequestType.t_to_js Obj.magic Obj.magic
-                                        Obj.magic x746)|]);
+                                        Obj.magic x476)|]);
                               ignore
-                                (Ojs.call x749 "push" [|(Obj.magic x747)|]);
-                              (match x748 with
-                               | Some x750 ->
+                                (Ojs.call x479 "push" [|(Obj.magic x477)|]);
+                              (match x478 with
+                               | Some x480 ->
                                    ignore
-                                     (Ojs.call x749 "push"
+                                     (Ojs.call x479 "push"
                                         [|(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                                             x750)|])
+                                             x480)|])
                                | None -> ());
-                              x749))|])
+                              x479))|])
     let (send_request'' :
       t ->
         type_:('P1, 'R, 'E) RequestType1.t ->
@@ -2011,35 +1695,35 @@ module MessageConnection =
             ?token:Vscode_jsonrpc_cancellation.CancellationToken.t ->
               unit -> 'R Promise.t)
       =
-      fun (x765 : t) ->
-        fun ~type_:(x757 : ('P1, 'R, 'E) RequestType1.t) ->
-          fun ~p1:(x758 : 'P1) ->
+      fun (x495 : t) ->
+        fun ~type_:(x487 : ('P1, 'R, 'E) RequestType1.t) ->
+          fun ~p1:(x488 : 'P1) ->
             fun
-              ?token:(x759 :
+              ?token:(x489 :
                        Vscode_jsonrpc_cancellation.CancellationToken.t option)
               ->
               fun () ->
                 Promise.t_of_js Obj.magic
-                  (let x766 = t_to_js x765 in
-                   Ojs.call (Ojs.get_prop_ascii x766 "sendRequest") "apply"
-                     [|x766;((let x760 =
+                  (let x496 = t_to_js x495 in
+                   Ojs.call (Ojs.get_prop_ascii x496 "sendRequest") "apply"
+                     [|x496;((let x490 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x760 "push"
+                                (Ojs.call x490 "push"
                                    [|(RequestType1.t_to_js Obj.magic
-                                        Obj.magic Obj.magic x757)|]);
+                                        Obj.magic Obj.magic x487)|]);
                               ignore
-                                (Ojs.call x760 "push" [|(Obj.magic x758)|]);
-                              (match x759 with
-                               | Some x761 ->
+                                (Ojs.call x490 "push" [|(Obj.magic x488)|]);
+                              (match x489 with
+                               | Some x491 ->
                                    ignore
-                                     (Ojs.call x760 "push"
+                                     (Ojs.call x490 "push"
                                         [|(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                                             x761)|])
+                                             x491)|])
                                | None -> ());
-                              x760))|])
+                              x490))|])
     let (send_request''' :
       t ->
         type_:('P1, 'P2, 'R, 'E) RequestType2.t ->
@@ -2048,39 +1732,39 @@ module MessageConnection =
               ?token:Vscode_jsonrpc_cancellation.CancellationToken.t ->
                 unit -> 'R Promise.t)
       =
-      fun (x778 : t) ->
-        fun ~type_:(x768 : ('P1, 'P2, 'R, 'E) RequestType2.t) ->
-          fun ~p1:(x769 : 'P1) ->
-            fun ~p2:(x770 : 'P2) ->
+      fun (x508 : t) ->
+        fun ~type_:(x498 : ('P1, 'P2, 'R, 'E) RequestType2.t) ->
+          fun ~p1:(x499 : 'P1) ->
+            fun ~p2:(x500 : 'P2) ->
               fun
-                ?token:(x771 :
+                ?token:(x501 :
                          Vscode_jsonrpc_cancellation.CancellationToken.t
                            option)
                 ->
                 fun () ->
                   Promise.t_of_js Obj.magic
-                    (let x779 = t_to_js x778 in
-                     Ojs.call (Ojs.get_prop_ascii x779 "sendRequest") "apply"
-                       [|x779;((let x772 =
+                    (let x509 = t_to_js x508 in
+                     Ojs.call (Ojs.get_prop_ascii x509 "sendRequest") "apply"
+                       [|x509;((let x502 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
                                 ignore
-                                  (Ojs.call x772 "push"
+                                  (Ojs.call x502 "push"
                                      [|(RequestType2.t_to_js Obj.magic
-                                          Obj.magic Obj.magic Obj.magic x768)|]);
+                                          Obj.magic Obj.magic Obj.magic x498)|]);
                                 ignore
-                                  (Ojs.call x772 "push" [|(Obj.magic x769)|]);
+                                  (Ojs.call x502 "push" [|(Obj.magic x499)|]);
                                 ignore
-                                  (Ojs.call x772 "push" [|(Obj.magic x770)|]);
-                                (match x771 with
-                                 | Some x773 ->
+                                  (Ojs.call x502 "push" [|(Obj.magic x500)|]);
+                                (match x501 with
+                                 | Some x503 ->
                                      ignore
-                                       (Ojs.call x772 "push"
+                                       (Ojs.call x502 "push"
                                           [|(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                                               x773)|])
+                                               x503)|])
                                  | None -> ());
-                                x772))|])
+                                x502))|])
     let (send_request'''' :
       t ->
         type_:('P1, 'P2, 'P3, 'R, 'E) RequestType3.t ->
@@ -2090,47 +1774,47 @@ module MessageConnection =
                 ?token:Vscode_jsonrpc_cancellation.CancellationToken.t ->
                   unit -> 'R Promise.t)
       =
-      fun (x793 : t) ->
-        fun ~type_:(x781 : ('P1, 'P2, 'P3, 'R, 'E) RequestType3.t) ->
-          fun ~p1:(x782 : 'P1) ->
-            fun ~p2:(x783 : 'P2) ->
-              fun ~p3:(x784 : 'P3) ->
+      fun (x523 : t) ->
+        fun ~type_:(x511 : ('P1, 'P2, 'P3, 'R, 'E) RequestType3.t) ->
+          fun ~p1:(x512 : 'P1) ->
+            fun ~p2:(x513 : 'P2) ->
+              fun ~p3:(x514 : 'P3) ->
                 fun
-                  ?token:(x785 :
+                  ?token:(x515 :
                            Vscode_jsonrpc_cancellation.CancellationToken.t
                              option)
                   ->
                   fun () ->
                     Promise.t_of_js Obj.magic
-                      (let x794 = t_to_js x793 in
-                       Ojs.call (Ojs.get_prop_ascii x794 "sendRequest")
+                      (let x524 = t_to_js x523 in
+                       Ojs.call (Ojs.get_prop_ascii x524 "sendRequest")
                          "apply"
-                         [|x794;((let x786 =
+                         [|x524;((let x516 =
                                     Ojs.new_obj
                                       (Ojs.get_prop_ascii Ojs.global "Array")
                                       [||] in
                                   ignore
-                                    (Ojs.call x786 "push"
+                                    (Ojs.call x516 "push"
                                        [|(RequestType3.t_to_js Obj.magic
                                             Obj.magic Obj.magic Obj.magic
-                                            Obj.magic x781)|]);
+                                            Obj.magic x511)|]);
                                   ignore
-                                    (Ojs.call x786 "push"
-                                       [|(Obj.magic x782)|]);
+                                    (Ojs.call x516 "push"
+                                       [|(Obj.magic x512)|]);
                                   ignore
-                                    (Ojs.call x786 "push"
-                                       [|(Obj.magic x783)|]);
+                                    (Ojs.call x516 "push"
+                                       [|(Obj.magic x513)|]);
                                   ignore
-                                    (Ojs.call x786 "push"
-                                       [|(Obj.magic x784)|]);
-                                  (match x785 with
-                                   | Some x787 ->
+                                    (Ojs.call x516 "push"
+                                       [|(Obj.magic x514)|]);
+                                  (match x515 with
+                                   | Some x517 ->
                                        ignore
-                                         (Ojs.call x786 "push"
+                                         (Ojs.call x516 "push"
                                             [|(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                                                 x787)|])
+                                                 x517)|])
                                    | None -> ());
-                                  x786))|])
+                                  x516))|])
     let (send_request''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'R, 'E) RequestType4.t ->
@@ -2141,51 +1825,51 @@ module MessageConnection =
                   ?token:Vscode_jsonrpc_cancellation.CancellationToken.t ->
                     unit -> 'R Promise.t)
       =
-      fun (x810 : t) ->
-        fun ~type_:(x796 : ('P1, 'P2, 'P3, 'P4, 'R, 'E) RequestType4.t) ->
-          fun ~p1:(x797 : 'P1) ->
-            fun ~p2:(x798 : 'P2) ->
-              fun ~p3:(x799 : 'P3) ->
-                fun ~p4:(x800 : 'P4) ->
+      fun (x540 : t) ->
+        fun ~type_:(x526 : ('P1, 'P2, 'P3, 'P4, 'R, 'E) RequestType4.t) ->
+          fun ~p1:(x527 : 'P1) ->
+            fun ~p2:(x528 : 'P2) ->
+              fun ~p3:(x529 : 'P3) ->
+                fun ~p4:(x530 : 'P4) ->
                   fun
-                    ?token:(x801 :
+                    ?token:(x531 :
                              Vscode_jsonrpc_cancellation.CancellationToken.t
                                option)
                     ->
                     fun () ->
                       Promise.t_of_js Obj.magic
-                        (let x811 = t_to_js x810 in
-                         Ojs.call (Ojs.get_prop_ascii x811 "sendRequest")
+                        (let x541 = t_to_js x540 in
+                         Ojs.call (Ojs.get_prop_ascii x541 "sendRequest")
                            "apply"
-                           [|x811;((let x802 =
+                           [|x541;((let x532 =
                                       Ojs.new_obj
                                         (Ojs.get_prop_ascii Ojs.global
                                            "Array") [||] in
                                     ignore
-                                      (Ojs.call x802 "push"
+                                      (Ojs.call x532 "push"
                                          [|(RequestType4.t_to_js Obj.magic
                                               Obj.magic Obj.magic Obj.magic
-                                              Obj.magic Obj.magic x796)|]);
+                                              Obj.magic Obj.magic x526)|]);
                                     ignore
-                                      (Ojs.call x802 "push"
-                                         [|(Obj.magic x797)|]);
+                                      (Ojs.call x532 "push"
+                                         [|(Obj.magic x527)|]);
                                     ignore
-                                      (Ojs.call x802 "push"
-                                         [|(Obj.magic x798)|]);
+                                      (Ojs.call x532 "push"
+                                         [|(Obj.magic x528)|]);
                                     ignore
-                                      (Ojs.call x802 "push"
-                                         [|(Obj.magic x799)|]);
+                                      (Ojs.call x532 "push"
+                                         [|(Obj.magic x529)|]);
                                     ignore
-                                      (Ojs.call x802 "push"
-                                         [|(Obj.magic x800)|]);
-                                    (match x801 with
-                                     | Some x803 ->
+                                      (Ojs.call x532 "push"
+                                         [|(Obj.magic x530)|]);
+                                    (match x531 with
+                                     | Some x533 ->
                                          ignore
-                                           (Ojs.call x802 "push"
+                                           (Ojs.call x532 "push"
                                               [|(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                                                   x803)|])
+                                                   x533)|])
                                      | None -> ());
-                                    x802))|])
+                                    x532))|])
     let (send_request'''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) RequestType5.t ->
@@ -2197,57 +1881,57 @@ module MessageConnection =
                     ?token:Vscode_jsonrpc_cancellation.CancellationToken.t ->
                       unit -> 'R Promise.t)
       =
-      fun (x829 : t) ->
-        fun ~type_:(x813 : ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) RequestType5.t)
+      fun (x559 : t) ->
+        fun ~type_:(x543 : ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) RequestType5.t)
           ->
-          fun ~p1:(x814 : 'P1) ->
-            fun ~p2:(x815 : 'P2) ->
-              fun ~p3:(x816 : 'P3) ->
-                fun ~p4:(x817 : 'P4) ->
-                  fun ~p5:(x818 : 'P5) ->
+          fun ~p1:(x544 : 'P1) ->
+            fun ~p2:(x545 : 'P2) ->
+              fun ~p3:(x546 : 'P3) ->
+                fun ~p4:(x547 : 'P4) ->
+                  fun ~p5:(x548 : 'P5) ->
                     fun
-                      ?token:(x819 :
+                      ?token:(x549 :
                                Vscode_jsonrpc_cancellation.CancellationToken.t
                                  option)
                       ->
                       fun () ->
                         Promise.t_of_js Obj.magic
-                          (let x830 = t_to_js x829 in
-                           Ojs.call (Ojs.get_prop_ascii x830 "sendRequest")
+                          (let x560 = t_to_js x559 in
+                           Ojs.call (Ojs.get_prop_ascii x560 "sendRequest")
                              "apply"
-                             [|x830;((let x820 =
+                             [|x560;((let x550 =
                                         Ojs.new_obj
                                           (Ojs.get_prop_ascii Ojs.global
                                              "Array") [||] in
                                       ignore
-                                        (Ojs.call x820 "push"
+                                        (Ojs.call x550 "push"
                                            [|(RequestType5.t_to_js Obj.magic
                                                 Obj.magic Obj.magic Obj.magic
                                                 Obj.magic Obj.magic Obj.magic
-                                                x813)|]);
+                                                x543)|]);
                                       ignore
-                                        (Ojs.call x820 "push"
-                                           [|(Obj.magic x814)|]);
+                                        (Ojs.call x550 "push"
+                                           [|(Obj.magic x544)|]);
                                       ignore
-                                        (Ojs.call x820 "push"
-                                           [|(Obj.magic x815)|]);
+                                        (Ojs.call x550 "push"
+                                           [|(Obj.magic x545)|]);
                                       ignore
-                                        (Ojs.call x820 "push"
-                                           [|(Obj.magic x816)|]);
+                                        (Ojs.call x550 "push"
+                                           [|(Obj.magic x546)|]);
                                       ignore
-                                        (Ojs.call x820 "push"
-                                           [|(Obj.magic x817)|]);
+                                        (Ojs.call x550 "push"
+                                           [|(Obj.magic x547)|]);
                                       ignore
-                                        (Ojs.call x820 "push"
-                                           [|(Obj.magic x818)|]);
-                                      (match x819 with
-                                       | Some x821 ->
+                                        (Ojs.call x550 "push"
+                                           [|(Obj.magic x548)|]);
+                                      (match x549 with
+                                       | Some x551 ->
                                            ignore
-                                             (Ojs.call x820 "push"
+                                             (Ojs.call x550 "push"
                                                 [|(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                                                     x821)|])
+                                                     x551)|])
                                        | None -> ());
-                                      x820))|])
+                                      x550))|])
     let (send_request''''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) RequestType6.t ->
@@ -2260,64 +1944,64 @@ module MessageConnection =
                       ?token:Vscode_jsonrpc_cancellation.CancellationToken.t
                         -> unit -> 'R Promise.t)
       =
-      fun (x850 : t) ->
+      fun (x580 : t) ->
         fun
-          ~type_:(x832 :
+          ~type_:(x562 :
                    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) RequestType6.t)
           ->
-          fun ~p1:(x833 : 'P1) ->
-            fun ~p2:(x834 : 'P2) ->
-              fun ~p3:(x835 : 'P3) ->
-                fun ~p4:(x836 : 'P4) ->
-                  fun ~p5:(x837 : 'P5) ->
-                    fun ~p6:(x838 : 'P6) ->
+          fun ~p1:(x563 : 'P1) ->
+            fun ~p2:(x564 : 'P2) ->
+              fun ~p3:(x565 : 'P3) ->
+                fun ~p4:(x566 : 'P4) ->
+                  fun ~p5:(x567 : 'P5) ->
+                    fun ~p6:(x568 : 'P6) ->
                       fun
-                        ?token:(x839 :
+                        ?token:(x569 :
                                  Vscode_jsonrpc_cancellation.CancellationToken.t
                                    option)
                         ->
                         fun () ->
                           Promise.t_of_js Obj.magic
-                            (let x851 = t_to_js x850 in
-                             Ojs.call (Ojs.get_prop_ascii x851 "sendRequest")
+                            (let x581 = t_to_js x580 in
+                             Ojs.call (Ojs.get_prop_ascii x581 "sendRequest")
                                "apply"
-                               [|x851;((let x840 =
+                               [|x581;((let x570 =
                                           Ojs.new_obj
                                             (Ojs.get_prop_ascii Ojs.global
                                                "Array") [||] in
                                         ignore
-                                          (Ojs.call x840 "push"
+                                          (Ojs.call x570 "push"
                                              [|(RequestType6.t_to_js
                                                   Obj.magic Obj.magic
                                                   Obj.magic Obj.magic
                                                   Obj.magic Obj.magic
-                                                  Obj.magic Obj.magic x832)|]);
+                                                  Obj.magic Obj.magic x562)|]);
                                         ignore
-                                          (Ojs.call x840 "push"
-                                             [|(Obj.magic x833)|]);
+                                          (Ojs.call x570 "push"
+                                             [|(Obj.magic x563)|]);
                                         ignore
-                                          (Ojs.call x840 "push"
-                                             [|(Obj.magic x834)|]);
+                                          (Ojs.call x570 "push"
+                                             [|(Obj.magic x564)|]);
                                         ignore
-                                          (Ojs.call x840 "push"
-                                             [|(Obj.magic x835)|]);
+                                          (Ojs.call x570 "push"
+                                             [|(Obj.magic x565)|]);
                                         ignore
-                                          (Ojs.call x840 "push"
-                                             [|(Obj.magic x836)|]);
+                                          (Ojs.call x570 "push"
+                                             [|(Obj.magic x566)|]);
                                         ignore
-                                          (Ojs.call x840 "push"
-                                             [|(Obj.magic x837)|]);
+                                          (Ojs.call x570 "push"
+                                             [|(Obj.magic x567)|]);
                                         ignore
-                                          (Ojs.call x840 "push"
-                                             [|(Obj.magic x838)|]);
-                                        (match x839 with
-                                         | Some x841 ->
+                                          (Ojs.call x570 "push"
+                                             [|(Obj.magic x568)|]);
+                                        (match x569 with
+                                         | Some x571 ->
                                              ignore
-                                               (Ojs.call x840 "push"
+                                               (Ojs.call x570 "push"
                                                   [|(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                                                       x841)|])
+                                                       x571)|])
                                          | None -> ());
-                                        x840))|])
+                                        x570))|])
     let (send_request'''''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) RequestType7.t ->
@@ -2331,70 +2015,70 @@ module MessageConnection =
                         ?token:Vscode_jsonrpc_cancellation.CancellationToken.t
                           -> unit -> 'R Promise.t)
       =
-      fun (x873 : t) ->
+      fun (x603 : t) ->
         fun
-          ~type_:(x853 :
+          ~type_:(x583 :
                    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) RequestType7.t)
           ->
-          fun ~p1:(x854 : 'P1) ->
-            fun ~p2:(x855 : 'P2) ->
-              fun ~p3:(x856 : 'P3) ->
-                fun ~p4:(x857 : 'P4) ->
-                  fun ~p5:(x858 : 'P5) ->
-                    fun ~p6:(x859 : 'P6) ->
-                      fun ~p7:(x860 : 'P7) ->
+          fun ~p1:(x584 : 'P1) ->
+            fun ~p2:(x585 : 'P2) ->
+              fun ~p3:(x586 : 'P3) ->
+                fun ~p4:(x587 : 'P4) ->
+                  fun ~p5:(x588 : 'P5) ->
+                    fun ~p6:(x589 : 'P6) ->
+                      fun ~p7:(x590 : 'P7) ->
                         fun
-                          ?token:(x861 :
+                          ?token:(x591 :
                                    Vscode_jsonrpc_cancellation.CancellationToken.t
                                      option)
                           ->
                           fun () ->
                             Promise.t_of_js Obj.magic
-                              (let x874 = t_to_js x873 in
+                              (let x604 = t_to_js x603 in
                                Ojs.call
-                                 (Ojs.get_prop_ascii x874 "sendRequest")
+                                 (Ojs.get_prop_ascii x604 "sendRequest")
                                  "apply"
-                                 [|x874;((let x862 =
+                                 [|x604;((let x592 =
                                             Ojs.new_obj
                                               (Ojs.get_prop_ascii Ojs.global
                                                  "Array") [||] in
                                           ignore
-                                            (Ojs.call x862 "push"
+                                            (Ojs.call x592 "push"
                                                [|(RequestType7.t_to_js
                                                     Obj.magic Obj.magic
                                                     Obj.magic Obj.magic
                                                     Obj.magic Obj.magic
                                                     Obj.magic Obj.magic
-                                                    Obj.magic x853)|]);
+                                                    Obj.magic x583)|]);
                                           ignore
-                                            (Ojs.call x862 "push"
-                                               [|(Obj.magic x854)|]);
+                                            (Ojs.call x592 "push"
+                                               [|(Obj.magic x584)|]);
                                           ignore
-                                            (Ojs.call x862 "push"
-                                               [|(Obj.magic x855)|]);
+                                            (Ojs.call x592 "push"
+                                               [|(Obj.magic x585)|]);
                                           ignore
-                                            (Ojs.call x862 "push"
-                                               [|(Obj.magic x856)|]);
+                                            (Ojs.call x592 "push"
+                                               [|(Obj.magic x586)|]);
                                           ignore
-                                            (Ojs.call x862 "push"
-                                               [|(Obj.magic x857)|]);
+                                            (Ojs.call x592 "push"
+                                               [|(Obj.magic x587)|]);
                                           ignore
-                                            (Ojs.call x862 "push"
-                                               [|(Obj.magic x858)|]);
+                                            (Ojs.call x592 "push"
+                                               [|(Obj.magic x588)|]);
                                           ignore
-                                            (Ojs.call x862 "push"
-                                               [|(Obj.magic x859)|]);
+                                            (Ojs.call x592 "push"
+                                               [|(Obj.magic x589)|]);
                                           ignore
-                                            (Ojs.call x862 "push"
-                                               [|(Obj.magic x860)|]);
-                                          (match x861 with
-                                           | Some x863 ->
+                                            (Ojs.call x592 "push"
+                                               [|(Obj.magic x590)|]);
+                                          (match x591 with
+                                           | Some x593 ->
                                                ignore
-                                                 (Ojs.call x862 "push"
+                                                 (Ojs.call x592 "push"
                                                     [|(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                                                         x863)|])
+                                                         x593)|])
                                            | None -> ());
-                                          x862))|])
+                                          x592))|])
     let (send_request''''''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) RequestType8.t
@@ -2410,77 +2094,77 @@ module MessageConnection =
                           ?token:Vscode_jsonrpc_cancellation.CancellationToken.t
                             -> unit -> 'R Promise.t)
       =
-      fun (x898 : t) ->
+      fun (x628 : t) ->
         fun
-          ~type_:(x876 :
+          ~type_:(x606 :
                    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E)
                      RequestType8.t)
           ->
-          fun ~p1:(x877 : 'P1) ->
-            fun ~p2:(x878 : 'P2) ->
-              fun ~p3:(x879 : 'P3) ->
-                fun ~p4:(x880 : 'P4) ->
-                  fun ~p5:(x881 : 'P5) ->
-                    fun ~p6:(x882 : 'P6) ->
-                      fun ~p7:(x883 : 'P7) ->
-                        fun ~p8:(x884 : 'P8) ->
+          fun ~p1:(x607 : 'P1) ->
+            fun ~p2:(x608 : 'P2) ->
+              fun ~p3:(x609 : 'P3) ->
+                fun ~p4:(x610 : 'P4) ->
+                  fun ~p5:(x611 : 'P5) ->
+                    fun ~p6:(x612 : 'P6) ->
+                      fun ~p7:(x613 : 'P7) ->
+                        fun ~p8:(x614 : 'P8) ->
                           fun
-                            ?token:(x885 :
+                            ?token:(x615 :
                                      Vscode_jsonrpc_cancellation.CancellationToken.t
                                        option)
                             ->
                             fun () ->
                               Promise.t_of_js Obj.magic
-                                (let x899 = t_to_js x898 in
+                                (let x629 = t_to_js x628 in
                                  Ojs.call
-                                   (Ojs.get_prop_ascii x899 "sendRequest")
+                                   (Ojs.get_prop_ascii x629 "sendRequest")
                                    "apply"
-                                   [|x899;((let x886 =
+                                   [|x629;((let x616 =
                                               Ojs.new_obj
                                                 (Ojs.get_prop_ascii
                                                    Ojs.global "Array") 
                                                 [||] in
                                             ignore
-                                              (Ojs.call x886 "push"
+                                              (Ojs.call x616 "push"
                                                  [|(RequestType8.t_to_js
                                                       Obj.magic Obj.magic
                                                       Obj.magic Obj.magic
                                                       Obj.magic Obj.magic
                                                       Obj.magic Obj.magic
                                                       Obj.magic Obj.magic
-                                                      x876)|]);
+                                                      x606)|]);
                                             ignore
-                                              (Ojs.call x886 "push"
-                                                 [|(Obj.magic x877)|]);
+                                              (Ojs.call x616 "push"
+                                                 [|(Obj.magic x607)|]);
                                             ignore
-                                              (Ojs.call x886 "push"
-                                                 [|(Obj.magic x878)|]);
+                                              (Ojs.call x616 "push"
+                                                 [|(Obj.magic x608)|]);
                                             ignore
-                                              (Ojs.call x886 "push"
-                                                 [|(Obj.magic x879)|]);
+                                              (Ojs.call x616 "push"
+                                                 [|(Obj.magic x609)|]);
                                             ignore
-                                              (Ojs.call x886 "push"
-                                                 [|(Obj.magic x880)|]);
+                                              (Ojs.call x616 "push"
+                                                 [|(Obj.magic x610)|]);
                                             ignore
-                                              (Ojs.call x886 "push"
-                                                 [|(Obj.magic x881)|]);
+                                              (Ojs.call x616 "push"
+                                                 [|(Obj.magic x611)|]);
                                             ignore
-                                              (Ojs.call x886 "push"
-                                                 [|(Obj.magic x882)|]);
+                                              (Ojs.call x616 "push"
+                                                 [|(Obj.magic x612)|]);
                                             ignore
-                                              (Ojs.call x886 "push"
-                                                 [|(Obj.magic x883)|]);
+                                              (Ojs.call x616 "push"
+                                                 [|(Obj.magic x613)|]);
                                             ignore
-                                              (Ojs.call x886 "push"
-                                                 [|(Obj.magic x884)|]);
-                                            (match x885 with
-                                             | Some x887 ->
+                                              (Ojs.call x616 "push"
+                                                 [|(Obj.magic x614)|]);
+                                            (match x615 with
+                                             | Some x617 ->
                                                  ignore
-                                                   (Ojs.call x886 "push"
+                                                   (Ojs.call x616 "push"
                                                       [|(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                                                           x887)|])
+                                                           x617)|])
                                              | None -> ());
-                                            x886))|])
+                                            x616))|])
     let (send_request'''''''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E)
@@ -2497,508 +2181,503 @@ module MessageConnection =
                             ?token:Vscode_jsonrpc_cancellation.CancellationToken.t
                               -> unit -> 'R Promise.t)
       =
-      fun (x925 : t) ->
+      fun (x655 : t) ->
         fun
-          ~type_:(x901 :
+          ~type_:(x631 :
                    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 
                      'E) RequestType9.t)
           ->
-          fun ~p1:(x902 : 'P1) ->
-            fun ~p2:(x903 : 'P2) ->
-              fun ~p3:(x904 : 'P3) ->
-                fun ~p4:(x905 : 'P4) ->
-                  fun ~p5:(x906 : 'P5) ->
-                    fun ~p6:(x907 : 'P6) ->
-                      fun ~p7:(x908 : 'P7) ->
-                        fun ~p8:(x909 : 'P8) ->
-                          fun ~p9:(x910 : 'P9) ->
+          fun ~p1:(x632 : 'P1) ->
+            fun ~p2:(x633 : 'P2) ->
+              fun ~p3:(x634 : 'P3) ->
+                fun ~p4:(x635 : 'P4) ->
+                  fun ~p5:(x636 : 'P5) ->
+                    fun ~p6:(x637 : 'P6) ->
+                      fun ~p7:(x638 : 'P7) ->
+                        fun ~p8:(x639 : 'P8) ->
+                          fun ~p9:(x640 : 'P9) ->
                             fun
-                              ?token:(x911 :
+                              ?token:(x641 :
                                        Vscode_jsonrpc_cancellation.CancellationToken.t
                                          option)
                               ->
                               fun () ->
                                 Promise.t_of_js Obj.magic
-                                  (let x926 = t_to_js x925 in
+                                  (let x656 = t_to_js x655 in
                                    Ojs.call
-                                     (Ojs.get_prop_ascii x926 "sendRequest")
+                                     (Ojs.get_prop_ascii x656 "sendRequest")
                                      "apply"
-                                     [|x926;((let x912 =
+                                     [|x656;((let x642 =
                                                 Ojs.new_obj
                                                   (Ojs.get_prop_ascii
                                                      Ojs.global "Array") 
                                                   [||] in
                                               ignore
-                                                (Ojs.call x912 "push"
+                                                (Ojs.call x642 "push"
                                                    [|(RequestType9.t_to_js
                                                         Obj.magic Obj.magic
                                                         Obj.magic Obj.magic
                                                         Obj.magic Obj.magic
                                                         Obj.magic Obj.magic
                                                         Obj.magic Obj.magic
-                                                        Obj.magic x901)|]);
+                                                        Obj.magic x631)|]);
                                               ignore
-                                                (Ojs.call x912 "push"
-                                                   [|(Obj.magic x902)|]);
+                                                (Ojs.call x642 "push"
+                                                   [|(Obj.magic x632)|]);
                                               ignore
-                                                (Ojs.call x912 "push"
-                                                   [|(Obj.magic x903)|]);
+                                                (Ojs.call x642 "push"
+                                                   [|(Obj.magic x633)|]);
                                               ignore
-                                                (Ojs.call x912 "push"
-                                                   [|(Obj.magic x904)|]);
+                                                (Ojs.call x642 "push"
+                                                   [|(Obj.magic x634)|]);
                                               ignore
-                                                (Ojs.call x912 "push"
-                                                   [|(Obj.magic x905)|]);
+                                                (Ojs.call x642 "push"
+                                                   [|(Obj.magic x635)|]);
                                               ignore
-                                                (Ojs.call x912 "push"
-                                                   [|(Obj.magic x906)|]);
+                                                (Ojs.call x642 "push"
+                                                   [|(Obj.magic x636)|]);
                                               ignore
-                                                (Ojs.call x912 "push"
-                                                   [|(Obj.magic x907)|]);
+                                                (Ojs.call x642 "push"
+                                                   [|(Obj.magic x637)|]);
                                               ignore
-                                                (Ojs.call x912 "push"
-                                                   [|(Obj.magic x908)|]);
+                                                (Ojs.call x642 "push"
+                                                   [|(Obj.magic x638)|]);
                                               ignore
-                                                (Ojs.call x912 "push"
-                                                   [|(Obj.magic x909)|]);
+                                                (Ojs.call x642 "push"
+                                                   [|(Obj.magic x639)|]);
                                               ignore
-                                                (Ojs.call x912 "push"
-                                                   [|(Obj.magic x910)|]);
-                                              (match x911 with
-                                               | Some x913 ->
+                                                (Ojs.call x642 "push"
+                                                   [|(Obj.magic x640)|]);
+                                              (match x641 with
+                                               | Some x643 ->
                                                    ignore
-                                                     (Ojs.call x912 "push"
+                                                     (Ojs.call x642 "push"
                                                         [|(Vscode_jsonrpc_cancellation.CancellationToken.t_to_js
-                                                             x913)|])
+                                                             x643)|])
                                                | None -> ());
-                                              x912))|])
+                                              x642))|])
     let (send_request''''''''''' :
       t ->
         method_:string ->
           ?r0:(ParameterStructures.t, any) union2 ->
             rest:any list -> 'R Promise.t)
       =
-      fun (x936 : t) ->
-        fun ~method_:(x928 : string) ->
-          fun ?r0:(x929 : (ParameterStructures.t, any) union2 option) ->
-            fun ~rest:(x930 : any list) ->
+      fun (x666 : t) ->
+        fun ~method_:(x658 : string) ->
+          fun ?r0:(x659 : (ParameterStructures.t, any) union2 option) ->
+            fun ~rest:(x660 : any list) ->
               Promise.t_of_js Obj.magic
-                (let x937 = t_to_js x936 in
-                 Ojs.call (Ojs.get_prop_ascii x937 "sendRequest") "apply"
-                   [|x937;((let x931 =
+                (let x667 = t_to_js x666 in
+                 Ojs.call (Ojs.get_prop_ascii x667 "sendRequest") "apply"
+                   [|x667;((let x661 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x931 "push"
-                                 [|(Ojs.string_to_js x928)|]);
-                            (match x929 with
-                             | Some x933 ->
+                              (Ojs.call x661 "push"
+                                 [|(Ojs.string_to_js x658)|]);
+                            (match x659 with
+                             | Some x663 ->
                                  ignore
-                                   (Ojs.call x931 "push"
+                                   (Ojs.call x661 "push"
                                       [|(union2_to_js
                                            ParameterStructures.t_to_js
-                                           any_to_js x933)|])
+                                           any_to_js x663)|])
                              | None -> ());
                             List.iter
-                              (fun (x932 : any) ->
+                              (fun (x662 : any) ->
                                  ignore
-                                   (Ojs.call x931 "push" [|(any_to_js x932)|]))
-                              x930;
-                            x931))|])
+                                   (Ojs.call x661 "push" [|(any_to_js x662)|]))
+                              x660;
+                            x661))|])
     let (on_request :
       t ->
         type_:('R, 'E) RequestType0.t ->
-          handler:('R, 'E) RequestHandler.t0 ->
+          handler:('R, 'E) RequestHandler0.t ->
             Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x945 : t) ->
-        fun ~type_:(x939 : ('R, 'E) RequestType0.t) ->
-          fun ~handler:(x942 : ('R, 'E) RequestHandler.t0) ->
+      fun (x675 : t) ->
+        fun ~type_:(x669 : ('R, 'E) RequestType0.t) ->
+          fun ~handler:(x672 : ('R, 'E) RequestHandler0.t) ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x945) "onRequest"
-                 [|(RequestType0.t_to_js Obj.magic Obj.magic x939);(RequestHandler.t0_to_js
+              (Ojs.call (t_to_js x675) "onRequest"
+                 [|(RequestType0.t_to_js Obj.magic Obj.magic x669);(RequestHandler0.t_to_js
                                                                     Obj.magic
                                                                     Obj.magic
-                                                                    x942)|])
+                                                                    x672)|])
     let (on_request' :
       t ->
         type_:('P, 'R, 'E) RequestType.t ->
           handler:('P, 'R, 'E) RequestHandler.t ->
             Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x954 : t) ->
-        fun ~type_:(x946 : ('P, 'R, 'E) RequestType.t) ->
-          fun ~handler:(x950 : ('P, 'R, 'E) RequestHandler.t) ->
+      fun (x684 : t) ->
+        fun ~type_:(x676 : ('P, 'R, 'E) RequestType.t) ->
+          fun ~handler:(x680 : ('P, 'R, 'E) RequestHandler.t) ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x954) "onRequest"
-                 [|(RequestType.t_to_js Obj.magic Obj.magic Obj.magic x946);(
-                   RequestHandler.t_to_js Obj.magic Obj.magic Obj.magic x950)|])
+              (Ojs.call (t_to_js x684) "onRequest"
+                 [|(RequestType.t_to_js Obj.magic Obj.magic Obj.magic x676);(
+                   RequestHandler.t_to_js Obj.magic Obj.magic Obj.magic x680)|])
     let (on_request'' :
       t ->
         type_:('P1, 'R, 'E) RequestType1.t ->
-          handler:('P1, 'R, 'E) RequestHandler.t1 ->
+          handler:('P1, 'R, 'E) RequestHandler1.t ->
             Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x963 : t) ->
-        fun ~type_:(x955 : ('P1, 'R, 'E) RequestType1.t) ->
-          fun ~handler:(x959 : ('P1, 'R, 'E) RequestHandler.t1) ->
+      fun (x693 : t) ->
+        fun ~type_:(x685 : ('P1, 'R, 'E) RequestType1.t) ->
+          fun ~handler:(x689 : ('P1, 'R, 'E) RequestHandler1.t) ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x963) "onRequest"
-                 [|(RequestType1.t_to_js Obj.magic Obj.magic Obj.magic x955);(
-                   RequestHandler.t1_to_js Obj.magic Obj.magic Obj.magic x959)|])
+              (Ojs.call (t_to_js x693) "onRequest"
+                 [|(RequestType1.t_to_js Obj.magic Obj.magic Obj.magic x685);(
+                   RequestHandler1.t_to_js Obj.magic Obj.magic Obj.magic x689)|])
     let (on_request''' :
       t ->
         type_:('P1, 'P2, 'R, 'E) RequestType2.t ->
-          handler:('P1, 'P2, 'R, 'E) RequestHandler.t2 ->
+          handler:('P1, 'P2, 'R, 'E) RequestHandler2.t ->
             Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x974 : t) ->
-        fun ~type_:(x964 : ('P1, 'P2, 'R, 'E) RequestType2.t) ->
-          fun ~handler:(x969 : ('P1, 'P2, 'R, 'E) RequestHandler.t2) ->
+      fun (x704 : t) ->
+        fun ~type_:(x694 : ('P1, 'P2, 'R, 'E) RequestType2.t) ->
+          fun ~handler:(x699 : ('P1, 'P2, 'R, 'E) RequestHandler2.t) ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x974) "onRequest"
+              (Ojs.call (t_to_js x704) "onRequest"
                  [|(RequestType2.t_to_js Obj.magic Obj.magic Obj.magic
-                      Obj.magic x964);(RequestHandler.t2_to_js Obj.magic
-                                         Obj.magic Obj.magic Obj.magic x969)|])
+                      Obj.magic x694);(RequestHandler2.t_to_js Obj.magic
+                                         Obj.magic Obj.magic Obj.magic x699)|])
     let (on_request'''' :
       t ->
         type_:('P1, 'P2, 'P3, 'R, 'E) RequestType3.t ->
-          handler:('P1, 'P2, 'P3, 'R, 'E) RequestHandler.t3 ->
+          handler:('P1, 'P2, 'P3, 'R, 'E) RequestHandler3.t ->
             Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x987 : t) ->
-        fun ~type_:(x975 : ('P1, 'P2, 'P3, 'R, 'E) RequestType3.t) ->
-          fun ~handler:(x981 : ('P1, 'P2, 'P3, 'R, 'E) RequestHandler.t3) ->
+      fun (x717 : t) ->
+        fun ~type_:(x705 : ('P1, 'P2, 'P3, 'R, 'E) RequestType3.t) ->
+          fun ~handler:(x711 : ('P1, 'P2, 'P3, 'R, 'E) RequestHandler3.t) ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x987) "onRequest"
+              (Ojs.call (t_to_js x717) "onRequest"
                  [|(RequestType3.t_to_js Obj.magic Obj.magic Obj.magic
-                      Obj.magic Obj.magic x975);(RequestHandler.t3_to_js
+                      Obj.magic Obj.magic x705);(RequestHandler3.t_to_js
                                                    Obj.magic Obj.magic
                                                    Obj.magic Obj.magic
-                                                   Obj.magic x981)|])
+                                                   Obj.magic x711)|])
     let (on_request''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'R, 'E) RequestType4.t ->
-          handler:('P1, 'P2, 'P3, 'P4, 'R, 'E) RequestHandler.t4 ->
+          handler:('P1, 'P2, 'P3, 'P4, 'R, 'E) RequestHandler4.t ->
             Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1002 : t) ->
-        fun ~type_:(x988 : ('P1, 'P2, 'P3, 'P4, 'R, 'E) RequestType4.t) ->
+      fun (x732 : t) ->
+        fun ~type_:(x718 : ('P1, 'P2, 'P3, 'P4, 'R, 'E) RequestType4.t) ->
           fun
-            ~handler:(x995 : ('P1, 'P2, 'P3, 'P4, 'R, 'E) RequestHandler.t4)
+            ~handler:(x725 : ('P1, 'P2, 'P3, 'P4, 'R, 'E) RequestHandler4.t)
             ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x1002) "onRequest"
+              (Ojs.call (t_to_js x732) "onRequest"
                  [|(RequestType4.t_to_js Obj.magic Obj.magic Obj.magic
-                      Obj.magic Obj.magic Obj.magic x988);(RequestHandler.t4_to_js
+                      Obj.magic Obj.magic Obj.magic x718);(RequestHandler4.t_to_js
                                                              Obj.magic
                                                              Obj.magic
                                                              Obj.magic
                                                              Obj.magic
                                                              Obj.magic
-                                                             Obj.magic x995)|])
+                                                             Obj.magic x725)|])
     let (on_request'''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) RequestType5.t ->
-          handler:('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) RequestHandler.t5 ->
+          handler:('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) RequestHandler5.t ->
             Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1019 : t) ->
-        fun ~type_:(x1003 : ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) RequestType5.t)
+      fun (x749 : t) ->
+        fun ~type_:(x733 : ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) RequestType5.t)
           ->
           fun
-            ~handler:(x1011 :
-                       ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) RequestHandler.t5)
+            ~handler:(x741 :
+                       ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) RequestHandler5.t)
             ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x1019) "onRequest"
+              (Ojs.call (t_to_js x749) "onRequest"
                  [|(RequestType5.t_to_js Obj.magic Obj.magic Obj.magic
-                      Obj.magic Obj.magic Obj.magic Obj.magic x1003);(
-                   RequestHandler.t5_to_js Obj.magic Obj.magic Obj.magic
-                     Obj.magic Obj.magic Obj.magic Obj.magic x1011)|])
+                      Obj.magic Obj.magic Obj.magic Obj.magic x733);(
+                   RequestHandler5.t_to_js Obj.magic Obj.magic Obj.magic
+                     Obj.magic Obj.magic Obj.magic Obj.magic x741)|])
     let (on_request''''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) RequestType6.t ->
-          handler:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) RequestHandler.t6 ->
+          handler:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) RequestHandler6.t ->
             Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1038 : t) ->
+      fun (x768 : t) ->
         fun
-          ~type_:(x1020 :
+          ~type_:(x750 :
                    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) RequestType6.t)
           ->
           fun
-            ~handler:(x1029 :
+            ~handler:(x759 :
                        ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E)
-                         RequestHandler.t6)
+                         RequestHandler6.t)
             ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x1038) "onRequest"
+              (Ojs.call (t_to_js x768) "onRequest"
                  [|(RequestType6.t_to_js Obj.magic Obj.magic Obj.magic
-                      Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x1020);(
-                   RequestHandler.t6_to_js Obj.magic Obj.magic Obj.magic
-                     Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x1029)|])
+                      Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x750);(
+                   RequestHandler6.t_to_js Obj.magic Obj.magic Obj.magic
+                     Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x759)|])
     let (on_request'''''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) RequestType7.t ->
           handler:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E)
-            RequestHandler.t7 -> Vscode_jsonrpc_disposable.Disposable.t)
+            RequestHandler7.t -> Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1059 : t) ->
+      fun (x789 : t) ->
         fun
-          ~type_:(x1039 :
+          ~type_:(x769 :
                    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) RequestType7.t)
           ->
           fun
-            ~handler:(x1049 :
+            ~handler:(x779 :
                        ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E)
-                         RequestHandler.t7)
+                         RequestHandler7.t)
             ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x1059) "onRequest"
+              (Ojs.call (t_to_js x789) "onRequest"
                  [|(RequestType7.t_to_js Obj.magic Obj.magic Obj.magic
                       Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-                      Obj.magic x1039);(RequestHandler.t7_to_js Obj.magic
-                                          Obj.magic Obj.magic Obj.magic
-                                          Obj.magic Obj.magic Obj.magic
-                                          Obj.magic Obj.magic x1049)|])
+                      Obj.magic x769);(RequestHandler7.t_to_js Obj.magic
+                                         Obj.magic Obj.magic Obj.magic
+                                         Obj.magic Obj.magic Obj.magic
+                                         Obj.magic Obj.magic x779)|])
     let (on_request''''''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) RequestType8.t
           ->
           handler:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E)
-            RequestHandler.t8 -> Vscode_jsonrpc_disposable.Disposable.t)
+            RequestHandler8.t -> Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1082 : t) ->
+      fun (x812 : t) ->
         fun
-          ~type_:(x1060 :
+          ~type_:(x790 :
                    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E)
                      RequestType8.t)
           ->
           fun
-            ~handler:(x1071 :
+            ~handler:(x801 :
                        ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E)
-                         RequestHandler.t8)
+                         RequestHandler8.t)
             ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x1082) "onRequest"
+              (Ojs.call (t_to_js x812) "onRequest"
                  [|(RequestType8.t_to_js Obj.magic Obj.magic Obj.magic
                       Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-                      Obj.magic Obj.magic x1060);(RequestHandler.t8_to_js
-                                                    Obj.magic Obj.magic
-                                                    Obj.magic Obj.magic
-                                                    Obj.magic Obj.magic
-                                                    Obj.magic Obj.magic
-                                                    Obj.magic Obj.magic x1071)|])
+                      Obj.magic Obj.magic x790);(RequestHandler8.t_to_js
+                                                   Obj.magic Obj.magic
+                                                   Obj.magic Obj.magic
+                                                   Obj.magic Obj.magic
+                                                   Obj.magic Obj.magic
+                                                   Obj.magic Obj.magic x801)|])
     let (on_request'''''''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E)
           RequestType9.t ->
           handler:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E)
-            RequestHandler.t9 -> Vscode_jsonrpc_disposable.Disposable.t)
+            RequestHandler9.t -> Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1107 : t) ->
+      fun (x837 : t) ->
         fun
-          ~type_:(x1083 :
+          ~type_:(x813 :
                    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 
                      'E) RequestType9.t)
           ->
           fun
-            ~handler:(x1095 :
+            ~handler:(x825 :
                        ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 
-                         'R, 'E) RequestHandler.t9)
+                         'R, 'E) RequestHandler9.t)
             ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x1107) "onRequest"
+              (Ojs.call (t_to_js x837) "onRequest"
                  [|(RequestType9.t_to_js Obj.magic Obj.magic Obj.magic
                       Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-                      Obj.magic Obj.magic Obj.magic x1083);(RequestHandler.t9_to_js
-                                                              Obj.magic
-                                                              Obj.magic
-                                                              Obj.magic
-                                                              Obj.magic
-                                                              Obj.magic
-                                                              Obj.magic
-                                                              Obj.magic
-                                                              Obj.magic
-                                                              Obj.magic
-                                                              Obj.magic
-                                                              Obj.magic x1095)|])
+                      Obj.magic Obj.magic Obj.magic x813);(RequestHandler9.t_to_js
+                                                             Obj.magic
+                                                             Obj.magic
+                                                             Obj.magic
+                                                             Obj.magic
+                                                             Obj.magic
+                                                             Obj.magic
+                                                             Obj.magic
+                                                             Obj.magic
+                                                             Obj.magic
+                                                             Obj.magic
+                                                             Obj.magic x825)|])
     let (on_request''''''''''' :
       t ->
         method_:string ->
           handler:('R, 'E) GenericRequestHandler.t ->
             Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1112 : t) ->
-        fun ~method_:(x1108 : string) ->
-          fun ~handler:(x1109 : ('R, 'E) GenericRequestHandler.t) ->
+      fun (x842 : t) ->
+        fun ~method_:(x838 : string) ->
+          fun ~handler:(x839 : ('R, 'E) GenericRequestHandler.t) ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x1112) "onRequest"
-                 [|(Ojs.string_to_js x1108);(GenericRequestHandler.t_to_js
-                                               Obj.magic Obj.magic x1109)|])
+              (Ojs.call (t_to_js x842) "onRequest"
+                 [|(Ojs.string_to_js x838);(GenericRequestHandler.t_to_js
+                                              Obj.magic Obj.magic x839)|])
     let (on_request'''''''''''' :
       t ->
         handler:StarRequestHandler.t ->
           Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1114 : t) ->
-        fun ~handler:(x1113 : StarRequestHandler.t) ->
+      fun (x844 : t) ->
+        fun ~handler:(x843 : StarRequestHandler.t) ->
           Vscode_jsonrpc_disposable.Disposable.t_of_js
-            (Ojs.call (t_to_js x1114) "onRequest"
-               [|(StarRequestHandler.t_to_js x1113)|])
+            (Ojs.call (t_to_js x844) "onRequest"
+               [|(StarRequestHandler.t_to_js x843)|])
     let (send_notification : t -> type_:NotificationType0.t -> unit) =
-      fun (x1116 : t) ->
-        fun ~type_:(x1115 : NotificationType0.t) ->
+      fun (x846 : t) ->
+        fun ~type_:(x845 : NotificationType0.t) ->
           ignore
-            (Ojs.call (t_to_js x1116) "sendNotification"
-               [|(NotificationType0.t_to_js x1115)|])
+            (Ojs.call (t_to_js x846) "sendNotification"
+               [|(NotificationType0.t_to_js x845)|])
     let (send_notification' :
       t -> type_:'P NotificationType.t -> ?params:'P -> unit -> unit) =
-      fun (x1122 : t) ->
-        fun ~type_:(x1117 : 'P NotificationType.t) ->
-          fun ?params:(x1118 : 'P option) ->
+      fun (x852 : t) ->
+        fun ~type_:(x847 : 'P NotificationType.t) ->
+          fun ?params:(x848 : 'P option) ->
             fun () ->
               ignore
-                (let x1123 = t_to_js x1122 in
-                 Ojs.call (Ojs.get_prop_ascii x1123 "sendNotification")
+                (let x853 = t_to_js x852 in
+                 Ojs.call (Ojs.get_prop_ascii x853 "sendNotification")
                    "apply"
-                   [|x1123;((let x1119 =
-                               Ojs.new_obj
-                                 (Ojs.get_prop_ascii Ojs.global "Array") 
-                                 [||] in
-                             ignore
-                               (Ojs.call x1119 "push"
-                                  [|(NotificationType.t_to_js Obj.magic x1117)|]);
-                             (match x1118 with
-                              | Some x1120 ->
-                                  ignore
-                                    (Ojs.call x1119 "push"
-                                       [|(Obj.magic x1120)|])
-                              | None -> ());
-                             x1119))|])
+                   [|x853;((let x849 =
+                              Ojs.new_obj
+                                (Ojs.get_prop_ascii Ojs.global "Array") 
+                                [||] in
+                            ignore
+                              (Ojs.call x849 "push"
+                                 [|(NotificationType.t_to_js Obj.magic x847)|]);
+                            (match x848 with
+                             | Some x850 ->
+                                 ignore
+                                   (Ojs.call x849 "push" [|(Obj.magic x850)|])
+                             | None -> ());
+                            x849))|])
     let (send_notification'' :
       t -> type_:'P1 NotificationType1.t -> p1:'P1 -> unit) =
-      fun (x1127 : t) ->
-        fun ~type_:(x1124 : 'P1 NotificationType1.t) ->
-          fun ~p1:(x1126 : 'P1) ->
+      fun (x857 : t) ->
+        fun ~type_:(x854 : 'P1 NotificationType1.t) ->
+          fun ~p1:(x856 : 'P1) ->
             ignore
-              (Ojs.call (t_to_js x1127) "sendNotification"
-                 [|(NotificationType1.t_to_js Obj.magic x1124);(Obj.magic
-                                                                  x1126)|])
+              (Ojs.call (t_to_js x857) "sendNotification"
+                 [|(NotificationType1.t_to_js Obj.magic x854);(Obj.magic x856)|])
     let (send_notification''' :
       t -> type_:('P1, 'P2) NotificationType2.t -> p1:'P1 -> p2:'P2 -> unit)
       =
-      fun (x1133 : t) ->
-        fun ~type_:(x1128 : ('P1, 'P2) NotificationType2.t) ->
-          fun ~p1:(x1131 : 'P1) ->
-            fun ~p2:(x1132 : 'P2) ->
+      fun (x863 : t) ->
+        fun ~type_:(x858 : ('P1, 'P2) NotificationType2.t) ->
+          fun ~p1:(x861 : 'P1) ->
+            fun ~p2:(x862 : 'P2) ->
               ignore
-                (Ojs.call (t_to_js x1133) "sendNotification"
-                   [|(NotificationType2.t_to_js Obj.magic Obj.magic x1128);(
-                     Obj.magic x1131);(Obj.magic x1132)|])
+                (Ojs.call (t_to_js x863) "sendNotification"
+                   [|(NotificationType2.t_to_js Obj.magic Obj.magic x858);(
+                     Obj.magic x861);(Obj.magic x862)|])
     let (send_notification'''' :
       t ->
         type_:('P1, 'P2, 'P3) NotificationType3.t ->
           p1:'P1 -> p2:'P2 -> p3:'P3 -> unit)
       =
-      fun (x1141 : t) ->
-        fun ~type_:(x1134 : ('P1, 'P2, 'P3) NotificationType3.t) ->
-          fun ~p1:(x1138 : 'P1) ->
-            fun ~p2:(x1139 : 'P2) ->
-              fun ~p3:(x1140 : 'P3) ->
+      fun (x871 : t) ->
+        fun ~type_:(x864 : ('P1, 'P2, 'P3) NotificationType3.t) ->
+          fun ~p1:(x868 : 'P1) ->
+            fun ~p2:(x869 : 'P2) ->
+              fun ~p3:(x870 : 'P3) ->
                 ignore
-                  (Ojs.call (t_to_js x1141) "sendNotification"
+                  (Ojs.call (t_to_js x871) "sendNotification"
                      [|(NotificationType3.t_to_js Obj.magic Obj.magic
-                          Obj.magic x1134);(Obj.magic x1138);(Obj.magic x1139);(
-                       Obj.magic x1140)|])
+                          Obj.magic x864);(Obj.magic x868);(Obj.magic x869);(
+                       Obj.magic x870)|])
     let (send_notification''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4) NotificationType4.t ->
           p1:'P1 -> p2:'P2 -> p3:'P3 -> p4:'P4 -> unit)
       =
-      fun (x1151 : t) ->
-        fun ~type_:(x1142 : ('P1, 'P2, 'P3, 'P4) NotificationType4.t) ->
-          fun ~p1:(x1147 : 'P1) ->
-            fun ~p2:(x1148 : 'P2) ->
-              fun ~p3:(x1149 : 'P3) ->
-                fun ~p4:(x1150 : 'P4) ->
+      fun (x881 : t) ->
+        fun ~type_:(x872 : ('P1, 'P2, 'P3, 'P4) NotificationType4.t) ->
+          fun ~p1:(x877 : 'P1) ->
+            fun ~p2:(x878 : 'P2) ->
+              fun ~p3:(x879 : 'P3) ->
+                fun ~p4:(x880 : 'P4) ->
                   ignore
-                    (Ojs.call (t_to_js x1151) "sendNotification"
+                    (Ojs.call (t_to_js x881) "sendNotification"
                        [|(NotificationType4.t_to_js Obj.magic Obj.magic
-                            Obj.magic Obj.magic x1142);(Obj.magic x1147);(
-                         Obj.magic x1148);(Obj.magic x1149);(Obj.magic x1150)|])
+                            Obj.magic Obj.magic x872);(Obj.magic x877);(
+                         Obj.magic x878);(Obj.magic x879);(Obj.magic x880)|])
     let (send_notification'''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'P5) NotificationType5.t ->
           p1:'P1 -> p2:'P2 -> p3:'P3 -> p4:'P4 -> p5:'P5 -> unit)
       =
-      fun (x1163 : t) ->
-        fun ~type_:(x1152 : ('P1, 'P2, 'P3, 'P4, 'P5) NotificationType5.t) ->
-          fun ~p1:(x1158 : 'P1) ->
-            fun ~p2:(x1159 : 'P2) ->
-              fun ~p3:(x1160 : 'P3) ->
-                fun ~p4:(x1161 : 'P4) ->
-                  fun ~p5:(x1162 : 'P5) ->
+      fun (x893 : t) ->
+        fun ~type_:(x882 : ('P1, 'P2, 'P3, 'P4, 'P5) NotificationType5.t) ->
+          fun ~p1:(x888 : 'P1) ->
+            fun ~p2:(x889 : 'P2) ->
+              fun ~p3:(x890 : 'P3) ->
+                fun ~p4:(x891 : 'P4) ->
+                  fun ~p5:(x892 : 'P5) ->
                     ignore
-                      (Ojs.call (t_to_js x1163) "sendNotification"
+                      (Ojs.call (t_to_js x893) "sendNotification"
                          [|(NotificationType5.t_to_js Obj.magic Obj.magic
-                              Obj.magic Obj.magic Obj.magic x1152);(Obj.magic
-                                                                    x1158);(
-                           Obj.magic x1159);(Obj.magic x1160);(Obj.magic
-                                                                 x1161);(
-                           Obj.magic x1162)|])
+                              Obj.magic Obj.magic Obj.magic x882);(Obj.magic
+                                                                    x888);(
+                           Obj.magic x889);(Obj.magic x890);(Obj.magic x891);(
+                           Obj.magic x892)|])
     let (send_notification''''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6) NotificationType6.t ->
           p1:'P1 -> p2:'P2 -> p3:'P3 -> p4:'P4 -> p5:'P5 -> p6:'P6 -> unit)
       =
-      fun (x1177 : t) ->
+      fun (x907 : t) ->
         fun
-          ~type_:(x1164 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) NotificationType6.t)
+          ~type_:(x894 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) NotificationType6.t)
           ->
-          fun ~p1:(x1171 : 'P1) ->
-            fun ~p2:(x1172 : 'P2) ->
-              fun ~p3:(x1173 : 'P3) ->
-                fun ~p4:(x1174 : 'P4) ->
-                  fun ~p5:(x1175 : 'P5) ->
-                    fun ~p6:(x1176 : 'P6) ->
+          fun ~p1:(x901 : 'P1) ->
+            fun ~p2:(x902 : 'P2) ->
+              fun ~p3:(x903 : 'P3) ->
+                fun ~p4:(x904 : 'P4) ->
+                  fun ~p5:(x905 : 'P5) ->
+                    fun ~p6:(x906 : 'P6) ->
                       ignore
-                        (Ojs.call (t_to_js x1177) "sendNotification"
+                        (Ojs.call (t_to_js x907) "sendNotification"
                            [|(NotificationType6.t_to_js Obj.magic Obj.magic
-                                Obj.magic Obj.magic Obj.magic Obj.magic x1164);(
-                             Obj.magic x1171);(Obj.magic x1172);(Obj.magic
-                                                                   x1173);(
-                             Obj.magic x1174);(Obj.magic x1175);(Obj.magic
-                                                                   x1176)|])
+                                Obj.magic Obj.magic Obj.magic Obj.magic x894);(
+                             Obj.magic x901);(Obj.magic x902);(Obj.magic x903);(
+                             Obj.magic x904);(Obj.magic x905);(Obj.magic x906)|])
     let (send_notification'''''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) NotificationType7.t ->
           p1:'P1 ->
             p2:'P2 -> p3:'P3 -> p4:'P4 -> p5:'P5 -> p6:'P6 -> p7:'P7 -> unit)
       =
-      fun (x1193 : t) ->
+      fun (x923 : t) ->
         fun
-          ~type_:(x1178 :
+          ~type_:(x908 :
                    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) NotificationType7.t)
           ->
-          fun ~p1:(x1186 : 'P1) ->
-            fun ~p2:(x1187 : 'P2) ->
-              fun ~p3:(x1188 : 'P3) ->
-                fun ~p4:(x1189 : 'P4) ->
-                  fun ~p5:(x1190 : 'P5) ->
-                    fun ~p6:(x1191 : 'P6) ->
-                      fun ~p7:(x1192 : 'P7) ->
+          fun ~p1:(x916 : 'P1) ->
+            fun ~p2:(x917 : 'P2) ->
+              fun ~p3:(x918 : 'P3) ->
+                fun ~p4:(x919 : 'P4) ->
+                  fun ~p5:(x920 : 'P5) ->
+                    fun ~p6:(x921 : 'P6) ->
+                      fun ~p7:(x922 : 'P7) ->
                         ignore
-                          (Ojs.call (t_to_js x1193) "sendNotification"
+                          (Ojs.call (t_to_js x923) "sendNotification"
                              [|(NotificationType7.t_to_js Obj.magic Obj.magic
                                   Obj.magic Obj.magic Obj.magic Obj.magic
-                                  Obj.magic x1178);(Obj.magic x1186);(
-                               Obj.magic x1187);(Obj.magic x1188);(Obj.magic
-                                                                    x1189);(
-                               Obj.magic x1190);(Obj.magic x1191);(Obj.magic
-                                                                    x1192)|])
+                                  Obj.magic x908);(Obj.magic x916);(Obj.magic
+                                                                    x917);(
+                               Obj.magic x918);(Obj.magic x919);(Obj.magic
+                                                                   x920);(
+                               Obj.magic x921);(Obj.magic x922)|])
     let (send_notification''''''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) NotificationType8.t ->
@@ -3007,29 +2686,30 @@ module MessageConnection =
               p3:'P3 ->
                 p4:'P4 -> p5:'P5 -> p6:'P6 -> p7:'P7 -> p8:'P8 -> unit)
       =
-      fun (x1211 : t) ->
+      fun (x941 : t) ->
         fun
-          ~type_:(x1194 :
+          ~type_:(x924 :
                    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8)
                      NotificationType8.t)
           ->
-          fun ~p1:(x1203 : 'P1) ->
-            fun ~p2:(x1204 : 'P2) ->
-              fun ~p3:(x1205 : 'P3) ->
-                fun ~p4:(x1206 : 'P4) ->
-                  fun ~p5:(x1207 : 'P5) ->
-                    fun ~p6:(x1208 : 'P6) ->
-                      fun ~p7:(x1209 : 'P7) ->
-                        fun ~p8:(x1210 : 'P8) ->
+          fun ~p1:(x933 : 'P1) ->
+            fun ~p2:(x934 : 'P2) ->
+              fun ~p3:(x935 : 'P3) ->
+                fun ~p4:(x936 : 'P4) ->
+                  fun ~p5:(x937 : 'P5) ->
+                    fun ~p6:(x938 : 'P6) ->
+                      fun ~p7:(x939 : 'P7) ->
+                        fun ~p8:(x940 : 'P8) ->
                           ignore
-                            (Ojs.call (t_to_js x1211) "sendNotification"
+                            (Ojs.call (t_to_js x941) "sendNotification"
                                [|(NotificationType8.t_to_js Obj.magic
                                     Obj.magic Obj.magic Obj.magic Obj.magic
-                                    Obj.magic Obj.magic Obj.magic x1194);(
-                                 Obj.magic x1203);(Obj.magic x1204);(
-                                 Obj.magic x1205);(Obj.magic x1206);(
-                                 Obj.magic x1207);(Obj.magic x1208);(
-                                 Obj.magic x1209);(Obj.magic x1210)|])
+                                    Obj.magic Obj.magic Obj.magic x924);(
+                                 Obj.magic x933);(Obj.magic x934);(Obj.magic
+                                                                    x935);(
+                                 Obj.magic x936);(Obj.magic x937);(Obj.magic
+                                                                    x938);(
+                                 Obj.magic x939);(Obj.magic x940)|])
     let (send_notification'''''''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9)
@@ -3040,299 +2720,298 @@ module MessageConnection =
                 p4:'P4 ->
                   p5:'P5 -> p6:'P6 -> p7:'P7 -> p8:'P8 -> p9:'P9 -> unit)
       =
-      fun (x1231 : t) ->
+      fun (x961 : t) ->
         fun
-          ~type_:(x1212 :
+          ~type_:(x942 :
                    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9)
                      NotificationType9.t)
           ->
-          fun ~p1:(x1222 : 'P1) ->
-            fun ~p2:(x1223 : 'P2) ->
-              fun ~p3:(x1224 : 'P3) ->
-                fun ~p4:(x1225 : 'P4) ->
-                  fun ~p5:(x1226 : 'P5) ->
-                    fun ~p6:(x1227 : 'P6) ->
-                      fun ~p7:(x1228 : 'P7) ->
-                        fun ~p8:(x1229 : 'P8) ->
-                          fun ~p9:(x1230 : 'P9) ->
+          fun ~p1:(x952 : 'P1) ->
+            fun ~p2:(x953 : 'P2) ->
+              fun ~p3:(x954 : 'P3) ->
+                fun ~p4:(x955 : 'P4) ->
+                  fun ~p5:(x956 : 'P5) ->
+                    fun ~p6:(x957 : 'P6) ->
+                      fun ~p7:(x958 : 'P7) ->
+                        fun ~p8:(x959 : 'P8) ->
+                          fun ~p9:(x960 : 'P9) ->
                             ignore
-                              (Ojs.call (t_to_js x1231) "sendNotification"
+                              (Ojs.call (t_to_js x961) "sendNotification"
                                  [|(NotificationType9.t_to_js Obj.magic
                                       Obj.magic Obj.magic Obj.magic Obj.magic
                                       Obj.magic Obj.magic Obj.magic Obj.magic
-                                      x1212);(Obj.magic x1222);(Obj.magic
-                                                                  x1223);(
-                                   Obj.magic x1224);(Obj.magic x1225);(
-                                   Obj.magic x1226);(Obj.magic x1227);(
-                                   Obj.magic x1228);(Obj.magic x1229);(
-                                   Obj.magic x1230)|])
+                                      x942);(Obj.magic x952);(Obj.magic x953);(
+                                   Obj.magic x954);(Obj.magic x955);(
+                                   Obj.magic x956);(Obj.magic x957);(
+                                   Obj.magic x958);(Obj.magic x959);(
+                                   Obj.magic x960)|])
     let (send_notification''''''''''' :
       t ->
         method_:string ->
           ?r0:(ParameterStructures.t, any) union2 -> rest:any list -> unit)
       =
-      fun (x1240 : t) ->
-        fun ~method_:(x1232 : string) ->
-          fun ?r0:(x1233 : (ParameterStructures.t, any) union2 option) ->
-            fun ~rest:(x1234 : any list) ->
+      fun (x970 : t) ->
+        fun ~method_:(x962 : string) ->
+          fun ?r0:(x963 : (ParameterStructures.t, any) union2 option) ->
+            fun ~rest:(x964 : any list) ->
               ignore
-                (let x1241 = t_to_js x1240 in
-                 Ojs.call (Ojs.get_prop_ascii x1241 "sendNotification")
+                (let x971 = t_to_js x970 in
+                 Ojs.call (Ojs.get_prop_ascii x971 "sendNotification")
                    "apply"
-                   [|x1241;((let x1235 =
-                               Ojs.new_obj
-                                 (Ojs.get_prop_ascii Ojs.global "Array") 
-                                 [||] in
-                             ignore
-                               (Ojs.call x1235 "push"
-                                  [|(Ojs.string_to_js x1232)|]);
-                             (match x1233 with
-                              | Some x1237 ->
-                                  ignore
-                                    (Ojs.call x1235 "push"
-                                       [|(union2_to_js
-                                            ParameterStructures.t_to_js
-                                            any_to_js x1237)|])
-                              | None -> ());
-                             List.iter
-                               (fun (x1236 : any) ->
-                                  ignore
-                                    (Ojs.call x1235 "push"
-                                       [|(any_to_js x1236)|])) x1234;
-                             x1235))|])
+                   [|x971;((let x965 =
+                              Ojs.new_obj
+                                (Ojs.get_prop_ascii Ojs.global "Array") 
+                                [||] in
+                            ignore
+                              (Ojs.call x965 "push"
+                                 [|(Ojs.string_to_js x962)|]);
+                            (match x963 with
+                             | Some x967 ->
+                                 ignore
+                                   (Ojs.call x965 "push"
+                                      [|(union2_to_js
+                                           ParameterStructures.t_to_js
+                                           any_to_js x967)|])
+                             | None -> ());
+                            List.iter
+                              (fun (x966 : any) ->
+                                 ignore
+                                   (Ojs.call x965 "push" [|(any_to_js x966)|]))
+                              x964;
+                            x965))|])
     let (on_notification :
       t ->
         type_:NotificationType0.t ->
-          handler:NotificationHandler.t0 ->
+          handler:NotificationHandler0.t ->
             Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1244 : t) ->
-        fun ~type_:(x1242 : NotificationType0.t) ->
-          fun ~handler:(x1243 : NotificationHandler.t0) ->
+      fun (x974 : t) ->
+        fun ~type_:(x972 : NotificationType0.t) ->
+          fun ~handler:(x973 : NotificationHandler0.t) ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x1244) "onNotification"
-                 [|(NotificationType0.t_to_js x1242);(NotificationHandler.t0_to_js
-                                                        x1243)|])
+              (Ojs.call (t_to_js x974) "onNotification"
+                 [|(NotificationType0.t_to_js x972);(NotificationHandler0.t_to_js
+                                                       x973)|])
     let (on_notification' :
       t ->
         type_:'P NotificationType.t ->
           handler:'P NotificationHandler.t ->
             Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1249 : t) ->
-        fun ~type_:(x1245 : 'P NotificationType.t) ->
-          fun ~handler:(x1247 : 'P NotificationHandler.t) ->
+      fun (x979 : t) ->
+        fun ~type_:(x975 : 'P NotificationType.t) ->
+          fun ~handler:(x977 : 'P NotificationHandler.t) ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x1249) "onNotification"
-                 [|(NotificationType.t_to_js Obj.magic x1245);(NotificationHandler.t_to_js
-                                                                 Obj.magic
-                                                                 x1247)|])
+              (Ojs.call (t_to_js x979) "onNotification"
+                 [|(NotificationType.t_to_js Obj.magic x975);(NotificationHandler.t_to_js
+                                                                Obj.magic
+                                                                x977)|])
     let (on_notification'' :
       t ->
         type_:'P1 NotificationType1.t ->
-          handler:'P1 NotificationHandler.t1 ->
+          handler:'P1 NotificationHandler1.t ->
             Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1254 : t) ->
-        fun ~type_:(x1250 : 'P1 NotificationType1.t) ->
-          fun ~handler:(x1252 : 'P1 NotificationHandler.t1) ->
+      fun (x984 : t) ->
+        fun ~type_:(x980 : 'P1 NotificationType1.t) ->
+          fun ~handler:(x982 : 'P1 NotificationHandler1.t) ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x1254) "onNotification"
-                 [|(NotificationType1.t_to_js Obj.magic x1250);(NotificationHandler.t1_to_js
-                                                                  Obj.magic
-                                                                  x1252)|])
+              (Ojs.call (t_to_js x984) "onNotification"
+                 [|(NotificationType1.t_to_js Obj.magic x980);(NotificationHandler1.t_to_js
+                                                                 Obj.magic
+                                                                 x982)|])
     let (on_notification''' :
       t ->
         type_:('P1, 'P2) NotificationType2.t ->
-          handler:('P1, 'P2) NotificationHandler.t2 ->
+          handler:('P1, 'P2) NotificationHandler2.t ->
             Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1261 : t) ->
-        fun ~type_:(x1255 : ('P1, 'P2) NotificationType2.t) ->
-          fun ~handler:(x1258 : ('P1, 'P2) NotificationHandler.t2) ->
+      fun (x991 : t) ->
+        fun ~type_:(x985 : ('P1, 'P2) NotificationType2.t) ->
+          fun ~handler:(x988 : ('P1, 'P2) NotificationHandler2.t) ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x1261) "onNotification"
-                 [|(NotificationType2.t_to_js Obj.magic Obj.magic x1255);(
-                   NotificationHandler.t2_to_js Obj.magic Obj.magic x1258)|])
+              (Ojs.call (t_to_js x991) "onNotification"
+                 [|(NotificationType2.t_to_js Obj.magic Obj.magic x985);(
+                   NotificationHandler2.t_to_js Obj.magic Obj.magic x988)|])
     let (on_notification'''' :
       t ->
         type_:('P1, 'P2, 'P3) NotificationType3.t ->
-          handler:('P1, 'P2, 'P3) NotificationHandler.t3 ->
+          handler:('P1, 'P2, 'P3) NotificationHandler3.t ->
             Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1270 : t) ->
-        fun ~type_:(x1262 : ('P1, 'P2, 'P3) NotificationType3.t) ->
-          fun ~handler:(x1266 : ('P1, 'P2, 'P3) NotificationHandler.t3) ->
+      fun (x1000 : t) ->
+        fun ~type_:(x992 : ('P1, 'P2, 'P3) NotificationType3.t) ->
+          fun ~handler:(x996 : ('P1, 'P2, 'P3) NotificationHandler3.t) ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x1270) "onNotification"
+              (Ojs.call (t_to_js x1000) "onNotification"
                  [|(NotificationType3.t_to_js Obj.magic Obj.magic Obj.magic
-                      x1262);(NotificationHandler.t3_to_js Obj.magic
-                                Obj.magic Obj.magic x1266)|])
+                      x992);(NotificationHandler3.t_to_js Obj.magic Obj.magic
+                               Obj.magic x996)|])
     let (on_notification''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4) NotificationType4.t ->
-          handler:('P1, 'P2, 'P3, 'P4) NotificationHandler.t4 ->
+          handler:('P1, 'P2, 'P3, 'P4) NotificationHandler4.t ->
             Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1281 : t) ->
-        fun ~type_:(x1271 : ('P1, 'P2, 'P3, 'P4) NotificationType4.t) ->
-          fun ~handler:(x1276 : ('P1, 'P2, 'P3, 'P4) NotificationHandler.t4)
+      fun (x1011 : t) ->
+        fun ~type_:(x1001 : ('P1, 'P2, 'P3, 'P4) NotificationType4.t) ->
+          fun ~handler:(x1006 : ('P1, 'P2, 'P3, 'P4) NotificationHandler4.t)
             ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x1281) "onNotification"
+              (Ojs.call (t_to_js x1011) "onNotification"
                  [|(NotificationType4.t_to_js Obj.magic Obj.magic Obj.magic
-                      Obj.magic x1271);(NotificationHandler.t4_to_js
+                      Obj.magic x1001);(NotificationHandler4.t_to_js
                                           Obj.magic Obj.magic Obj.magic
-                                          Obj.magic x1276)|])
+                                          Obj.magic x1006)|])
     let (on_notification'''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'P5) NotificationType5.t ->
-          handler:('P1, 'P2, 'P3, 'P4, 'P5) NotificationHandler.t5 ->
+          handler:('P1, 'P2, 'P3, 'P4, 'P5) NotificationHandler5.t ->
             Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1294 : t) ->
-        fun ~type_:(x1282 : ('P1, 'P2, 'P3, 'P4, 'P5) NotificationType5.t) ->
+      fun (x1024 : t) ->
+        fun ~type_:(x1012 : ('P1, 'P2, 'P3, 'P4, 'P5) NotificationType5.t) ->
           fun
-            ~handler:(x1288 :
-                       ('P1, 'P2, 'P3, 'P4, 'P5) NotificationHandler.t5)
+            ~handler:(x1018 :
+                       ('P1, 'P2, 'P3, 'P4, 'P5) NotificationHandler5.t)
             ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x1294) "onNotification"
+              (Ojs.call (t_to_js x1024) "onNotification"
                  [|(NotificationType5.t_to_js Obj.magic Obj.magic Obj.magic
-                      Obj.magic Obj.magic x1282);(NotificationHandler.t5_to_js
+                      Obj.magic Obj.magic x1012);(NotificationHandler5.t_to_js
                                                     Obj.magic Obj.magic
                                                     Obj.magic Obj.magic
-                                                    Obj.magic x1288)|])
+                                                    Obj.magic x1018)|])
     let (on_notification''''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6) NotificationType6.t ->
-          handler:('P1, 'P2, 'P3, 'P4, 'P5, 'P6) NotificationHandler.t6 ->
+          handler:('P1, 'P2, 'P3, 'P4, 'P5, 'P6) NotificationHandler6.t ->
             Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1309 : t) ->
+      fun (x1039 : t) ->
         fun
-          ~type_:(x1295 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) NotificationType6.t)
+          ~type_:(x1025 : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) NotificationType6.t)
           ->
           fun
-            ~handler:(x1302 :
-                       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) NotificationHandler.t6)
+            ~handler:(x1032 :
+                       ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) NotificationHandler6.t)
             ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x1309) "onNotification"
+              (Ojs.call (t_to_js x1039) "onNotification"
                  [|(NotificationType6.t_to_js Obj.magic Obj.magic Obj.magic
-                      Obj.magic Obj.magic Obj.magic x1295);(NotificationHandler.t6_to_js
+                      Obj.magic Obj.magic Obj.magic x1025);(NotificationHandler6.t_to_js
                                                               Obj.magic
                                                               Obj.magic
                                                               Obj.magic
                                                               Obj.magic
                                                               Obj.magic
-                                                              Obj.magic x1302)|])
+                                                              Obj.magic x1032)|])
     let (on_notification'''''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) NotificationType7.t ->
-          handler:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) NotificationHandler.t7
+          handler:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) NotificationHandler7.t
             -> Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1326 : t) ->
+      fun (x1056 : t) ->
         fun
-          ~type_:(x1310 :
+          ~type_:(x1040 :
                    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) NotificationType7.t)
           ->
           fun
-            ~handler:(x1318 :
+            ~handler:(x1048 :
                        ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7)
-                         NotificationHandler.t7)
+                         NotificationHandler7.t)
             ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x1326) "onNotification"
+              (Ojs.call (t_to_js x1056) "onNotification"
                  [|(NotificationType7.t_to_js Obj.magic Obj.magic Obj.magic
-                      Obj.magic Obj.magic Obj.magic Obj.magic x1310);(
-                   NotificationHandler.t7_to_js Obj.magic Obj.magic Obj.magic
-                     Obj.magic Obj.magic Obj.magic Obj.magic x1318)|])
+                      Obj.magic Obj.magic Obj.magic Obj.magic x1040);(
+                   NotificationHandler7.t_to_js Obj.magic Obj.magic Obj.magic
+                     Obj.magic Obj.magic Obj.magic Obj.magic x1048)|])
     let (on_notification''''''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) NotificationType8.t ->
           handler:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8)
-            NotificationHandler.t8 -> Vscode_jsonrpc_disposable.Disposable.t)
+            NotificationHandler8.t -> Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1345 : t) ->
+      fun (x1075 : t) ->
         fun
-          ~type_:(x1327 :
+          ~type_:(x1057 :
                    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8)
                      NotificationType8.t)
           ->
           fun
-            ~handler:(x1336 :
+            ~handler:(x1066 :
                        ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8)
-                         NotificationHandler.t8)
+                         NotificationHandler8.t)
             ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x1345) "onNotification"
+              (Ojs.call (t_to_js x1075) "onNotification"
                  [|(NotificationType8.t_to_js Obj.magic Obj.magic Obj.magic
-                      Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x1327);(
-                   NotificationHandler.t8_to_js Obj.magic Obj.magic Obj.magic
-                     Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x1336)|])
+                      Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x1057);(
+                   NotificationHandler8.t_to_js Obj.magic Obj.magic Obj.magic
+                     Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x1066)|])
     let (on_notification'''''''''' :
       t ->
         type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9)
           NotificationType9.t ->
           handler:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9)
-            NotificationHandler.t9 -> Vscode_jsonrpc_disposable.Disposable.t)
+            NotificationHandler9.t -> Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1366 : t) ->
+      fun (x1096 : t) ->
         fun
-          ~type_:(x1346 :
+          ~type_:(x1076 :
                    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9)
                      NotificationType9.t)
           ->
           fun
-            ~handler:(x1356 :
+            ~handler:(x1086 :
                        ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9)
-                         NotificationHandler.t9)
+                         NotificationHandler9.t)
             ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x1366) "onNotification"
+              (Ojs.call (t_to_js x1096) "onNotification"
                  [|(NotificationType9.t_to_js Obj.magic Obj.magic Obj.magic
                       Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
-                      Obj.magic x1346);(NotificationHandler.t9_to_js
+                      Obj.magic x1076);(NotificationHandler9.t_to_js
                                           Obj.magic Obj.magic Obj.magic
                                           Obj.magic Obj.magic Obj.magic
-                                          Obj.magic Obj.magic Obj.magic x1356)|])
+                                          Obj.magic Obj.magic Obj.magic x1086)|])
     let (on_notification''''''''''' :
       t ->
         method_:string ->
           handler:GenericNotificationHandler.t ->
             Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1369 : t) ->
-        fun ~method_:(x1367 : string) ->
-          fun ~handler:(x1368 : GenericNotificationHandler.t) ->
+      fun (x1099 : t) ->
+        fun ~method_:(x1097 : string) ->
+          fun ~handler:(x1098 : GenericNotificationHandler.t) ->
             Vscode_jsonrpc_disposable.Disposable.t_of_js
-              (Ojs.call (t_to_js x1369) "onNotification"
-                 [|(Ojs.string_to_js x1367);(GenericNotificationHandler.t_to_js
-                                               x1368)|])
+              (Ojs.call (t_to_js x1099) "onNotification"
+                 [|(Ojs.string_to_js x1097);(GenericNotificationHandler.t_to_js
+                                               x1098)|])
     let (on_notification'''''''''''' :
       t ->
         handler:StarNotificationHandler.t ->
           Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1371 : t) ->
-        fun ~handler:(x1370 : StarNotificationHandler.t) ->
+      fun (x1101 : t) ->
+        fun ~handler:(x1100 : StarNotificationHandler.t) ->
           Vscode_jsonrpc_disposable.Disposable.t_of_js
-            (Ojs.call (t_to_js x1371) "onNotification"
-               [|(StarNotificationHandler.t_to_js x1370)|])
+            (Ojs.call (t_to_js x1101) "onNotification"
+               [|(StarNotificationHandler.t_to_js x1100)|])
     let (get_on_unhandled_notification :
       t -> NotificationMessage.t Vscode_jsonrpc_events.Event.t) =
-      fun (x1372 : t) ->
+      fun (x1102 : t) ->
         Vscode_jsonrpc_events.Event.t_of_js NotificationMessage.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1372) "onUnhandledNotification")
+          (Ojs.get_prop_ascii (t_to_js x1102) "onUnhandledNotification")
     let (set_on_unhandled_notification :
       t -> NotificationMessage.t Vscode_jsonrpc_events.Event.t -> unit) =
-      fun (x1374 : t) ->
-        fun (x1375 : NotificationMessage.t Vscode_jsonrpc_events.Event.t) ->
-          Ojs.set_prop_ascii (t_to_js x1374) "onUnhandledNotification"
+      fun (x1104 : t) ->
+        fun (x1105 : NotificationMessage.t Vscode_jsonrpc_events.Event.t) ->
+          Ojs.set_prop_ascii (t_to_js x1104) "onUnhandledNotification"
             (Vscode_jsonrpc_events.Event.t_to_js NotificationMessage.t_to_js
-               x1375)
+               x1105)
     let (on_progress :
       t ->
         type_:'P ProgressType.t ->
@@ -3340,168 +3019,316 @@ module MessageConnection =
             handler:'P NotificationHandler.t ->
               Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x1383 : t) ->
-        fun ~type_:(x1377 : 'P ProgressType.t) ->
-          fun ~token:(x1379 : string or_number) ->
-            fun ~handler:(x1381 : 'P NotificationHandler.t) ->
+      fun (x1113 : t) ->
+        fun ~type_:(x1107 : 'P ProgressType.t) ->
+          fun ~token:(x1109 : string or_number) ->
+            fun ~handler:(x1111 : 'P NotificationHandler.t) ->
               Vscode_jsonrpc_disposable.Disposable.t_of_js
-                (Ojs.call (t_to_js x1383) "onProgress"
-                   [|(ProgressType.t_to_js Obj.magic x1377);(or_number_to_js
+                (Ojs.call (t_to_js x1113) "onProgress"
+                   [|(ProgressType.t_to_js Obj.magic x1107);(or_number_to_js
                                                                Ojs.string_to_js
-                                                               x1379);(
-                     NotificationHandler.t_to_js Obj.magic x1381)|])
+                                                               x1109);(
+                     NotificationHandler.t_to_js Obj.magic x1111)|])
     let (send_progress :
       t ->
         type_:'P ProgressType.t -> token:string or_number -> value:'P -> unit)
       =
-      fun (x1389 : t) ->
-        fun ~type_:(x1384 : 'P ProgressType.t) ->
-          fun ~token:(x1386 : string or_number) ->
-            fun ~value:(x1388 : 'P) ->
+      fun (x1119 : t) ->
+        fun ~type_:(x1114 : 'P ProgressType.t) ->
+          fun ~token:(x1116 : string or_number) ->
+            fun ~value:(x1118 : 'P) ->
               ignore
-                (Ojs.call (t_to_js x1389) "sendProgress"
-                   [|(ProgressType.t_to_js Obj.magic x1384);(or_number_to_js
+                (Ojs.call (t_to_js x1119) "sendProgress"
+                   [|(ProgressType.t_to_js Obj.magic x1114);(or_number_to_js
                                                                Ojs.string_to_js
-                                                               x1386);(
-                     Obj.magic x1388)|])
+                                                               x1116);(
+                     Obj.magic x1118)|])
     let (get_on_unhandled_progress :
       t -> any ProgressParams.t Vscode_jsonrpc_events.Event.t) =
-      fun (x1390 : t) ->
+      fun (x1120 : t) ->
         Vscode_jsonrpc_events.Event.t_of_js
-          (fun (x1391 : Ojs.t) -> ProgressParams.t_of_js any_of_js x1391)
-          (Ojs.get_prop_ascii (t_to_js x1390) "onUnhandledProgress")
+          (fun (x1121 : Ojs.t) -> ProgressParams.t_of_js any_of_js x1121)
+          (Ojs.get_prop_ascii (t_to_js x1120) "onUnhandledProgress")
     let (set_on_unhandled_progress :
       t -> any ProgressParams.t Vscode_jsonrpc_events.Event.t -> unit) =
-      fun (x1393 : t) ->
-        fun (x1394 : any ProgressParams.t Vscode_jsonrpc_events.Event.t) ->
-          Ojs.set_prop_ascii (t_to_js x1393) "onUnhandledProgress"
+      fun (x1123 : t) ->
+        fun (x1124 : any ProgressParams.t Vscode_jsonrpc_events.Event.t) ->
+          Ojs.set_prop_ascii (t_to_js x1123) "onUnhandledProgress"
             (Vscode_jsonrpc_events.Event.t_to_js
-               (fun (x1395 : any ProgressParams.t) ->
-                  ProgressParams.t_to_js any_to_js x1395) x1394)
+               (fun (x1125 : any ProgressParams.t) ->
+                  ProgressParams.t_to_js any_to_js x1125) x1124)
     let (trace :
       t ->
         value:Trace.t ->
           tracer:Tracer.t -> ?send_notification:bool -> unit -> unit)
       =
-      fun (x1402 : t) ->
-        fun ~value:(x1397 : Trace.t) ->
-          fun ~tracer:(x1398 : Tracer.t) ->
-            fun ?send_notification:(x1399 : bool option) ->
+      fun (x1132 : t) ->
+        fun ~value:(x1127 : Trace.t) ->
+          fun ~tracer:(x1128 : Tracer.t) ->
+            fun ?send_notification:(x1129 : bool option) ->
               fun () ->
                 ignore
-                  (let x1403 = t_to_js x1402 in
-                   Ojs.call (Ojs.get_prop_ascii x1403 "trace") "apply"
-                     [|x1403;((let x1400 =
+                  (let x1133 = t_to_js x1132 in
+                   Ojs.call (Ojs.get_prop_ascii x1133 "trace") "apply"
+                     [|x1133;((let x1130 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x1400 "push"
-                                    [|(Trace.t_to_js x1397)|]);
+                                 (Ojs.call x1130 "push"
+                                    [|(Trace.t_to_js x1127)|]);
                                ignore
-                                 (Ojs.call x1400 "push"
-                                    [|(Tracer.t_to_js x1398)|]);
-                               (match x1399 with
-                                | Some x1401 ->
+                                 (Ojs.call x1130 "push"
+                                    [|(Tracer.t_to_js x1128)|]);
+                               (match x1129 with
+                                | Some x1131 ->
                                     ignore
-                                      (Ojs.call x1400 "push"
-                                         [|(Ojs.bool_to_js x1401)|])
+                                      (Ojs.call x1130 "push"
+                                         [|(Ojs.bool_to_js x1131)|])
                                 | None -> ());
-                               x1400))|])
+                               x1130))|])
     let (trace' :
       t ->
         value:Trace.t ->
           tracer:Tracer.t -> ?trace_options:TraceOptions.t -> unit -> unit)
       =
-      fun (x1409 : t) ->
-        fun ~value:(x1404 : Trace.t) ->
-          fun ~tracer:(x1405 : Tracer.t) ->
-            fun ?trace_options:(x1406 : TraceOptions.t option) ->
+      fun (x1139 : t) ->
+        fun ~value:(x1134 : Trace.t) ->
+          fun ~tracer:(x1135 : Tracer.t) ->
+            fun ?trace_options:(x1136 : TraceOptions.t option) ->
               fun () ->
                 ignore
-                  (let x1410 = t_to_js x1409 in
-                   Ojs.call (Ojs.get_prop_ascii x1410 "trace") "apply"
-                     [|x1410;((let x1407 =
+                  (let x1140 = t_to_js x1139 in
+                   Ojs.call (Ojs.get_prop_ascii x1140 "trace") "apply"
+                     [|x1140;((let x1137 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x1407 "push"
-                                    [|(Trace.t_to_js x1404)|]);
+                                 (Ojs.call x1137 "push"
+                                    [|(Trace.t_to_js x1134)|]);
                                ignore
-                                 (Ojs.call x1407 "push"
-                                    [|(Tracer.t_to_js x1405)|]);
-                               (match x1406 with
-                                | Some x1408 ->
+                                 (Ojs.call x1137 "push"
+                                    [|(Tracer.t_to_js x1135)|]);
+                               (match x1136 with
+                                | Some x1138 ->
                                     ignore
-                                      (Ojs.call x1407 "push"
-                                         [|(TraceOptions.t_to_js x1408)|])
+                                      (Ojs.call x1137 "push"
+                                         [|(TraceOptions.t_to_js x1138)|])
                                 | None -> ());
-                               x1407))|])
+                               x1137))|])
     let (get_on_error :
       t ->
         (Error.t * Message.t or_undefined * int or_undefined)
           Vscode_jsonrpc_events.Event.t)
       =
-      fun (x1411 : t) ->
+      fun (x1141 : t) ->
         Vscode_jsonrpc_events.Event.t_of_js
-          (fun (x1412 : Ojs.t) ->
-             let x1413 = x1412 in
-             ((Error.t_of_js (Ojs.array_get x1413 0)),
-               (or_undefined_of_js Message.t_of_js (Ojs.array_get x1413 1)),
-               (or_undefined_of_js Ojs.int_of_js (Ojs.array_get x1413 2))))
-          (Ojs.get_prop_ascii (t_to_js x1411) "onError")
+          (fun (x1142 : Ojs.t) ->
+             let x1143 = x1142 in
+             ((Error.t_of_js (Ojs.array_get x1143 0)),
+               (or_undefined_of_js Message.t_of_js (Ojs.array_get x1143 1)),
+               (or_undefined_of_js Ojs.int_of_js (Ojs.array_get x1143 2))))
+          (Ojs.get_prop_ascii (t_to_js x1141) "onError")
     let (set_on_error :
       t ->
         (Error.t * Message.t or_undefined * int or_undefined)
           Vscode_jsonrpc_events.Event.t -> unit)
       =
-      fun (x1416 : t) ->
+      fun (x1146 : t) ->
         fun
-          (x1417 :
+          (x1147 :
             (Error.t * Message.t or_undefined * int or_undefined)
               Vscode_jsonrpc_events.Event.t)
           ->
-          Ojs.set_prop_ascii (t_to_js x1416) "onError"
+          Ojs.set_prop_ascii (t_to_js x1146) "onError"
             (Vscode_jsonrpc_events.Event.t_to_js
                (fun
-                  (x1418 :
+                  (x1148 :
                     (Error.t * Message.t or_undefined * int or_undefined))
                   ->
-                  let (x1419, x1420, x1421) = x1418 in
-                  let x1422 = Ojs.array_make 3 in
-                  Ojs.array_set x1422 0 (Error.t_to_js x1419);
-                  Ojs.array_set x1422 1
-                    (or_undefined_to_js Message.t_to_js x1420);
-                  Ojs.array_set x1422 2
-                    (or_undefined_to_js Ojs.int_to_js x1421);
-                  x1422) x1417)
+                  let (x1149, x1150, x1151) = x1148 in
+                  let x1152 = Ojs.array_make 3 in
+                  Ojs.array_set x1152 0 (Error.t_to_js x1149);
+                  Ojs.array_set x1152 1
+                    (or_undefined_to_js Message.t_to_js x1150);
+                  Ojs.array_set x1152 2
+                    (or_undefined_to_js Ojs.int_to_js x1151);
+                  x1152) x1147)
     let (get_on_close : t -> unit Vscode_jsonrpc_events.Event.t) =
-      fun (x1425 : t) ->
+      fun (x1155 : t) ->
         Vscode_jsonrpc_events.Event.t_of_js Ojs.unit_of_js
-          (Ojs.get_prop_ascii (t_to_js x1425) "onClose")
+          (Ojs.get_prop_ascii (t_to_js x1155) "onClose")
     let (set_on_close : t -> unit Vscode_jsonrpc_events.Event.t -> unit) =
-      fun (x1427 : t) ->
-        fun (x1428 : unit Vscode_jsonrpc_events.Event.t) ->
-          Ojs.set_prop_ascii (t_to_js x1427) "onClose"
-            (Vscode_jsonrpc_events.Event.t_to_js Ojs.unit_to_js x1428)
+      fun (x1157 : t) ->
+        fun (x1158 : unit Vscode_jsonrpc_events.Event.t) ->
+          Ojs.set_prop_ascii (t_to_js x1157) "onClose"
+            (Vscode_jsonrpc_events.Event.t_to_js Ojs.unit_to_js x1158)
     let (listen : t -> unit) =
-      fun (x1430 : t) -> ignore (Ojs.call (t_to_js x1430) "listen" [||])
+      fun (x1160 : t) -> ignore (Ojs.call (t_to_js x1160) "listen" [||])
     let (end_ : t -> unit) =
-      fun (x1431 : t) -> ignore (Ojs.call (t_to_js x1431) "end" [||])
+      fun (x1161 : t) -> ignore (Ojs.call (t_to_js x1161) "end" [||])
     let (get_on_dispose : t -> unit Vscode_jsonrpc_events.Event.t) =
-      fun (x1432 : t) ->
+      fun (x1162 : t) ->
         Vscode_jsonrpc_events.Event.t_of_js Ojs.unit_of_js
-          (Ojs.get_prop_ascii (t_to_js x1432) "onDispose")
+          (Ojs.get_prop_ascii (t_to_js x1162) "onDispose")
     let (set_on_dispose : t -> unit Vscode_jsonrpc_events.Event.t -> unit) =
-      fun (x1434 : t) ->
-        fun (x1435 : unit Vscode_jsonrpc_events.Event.t) ->
-          Ojs.set_prop_ascii (t_to_js x1434) "onDispose"
-            (Vscode_jsonrpc_events.Event.t_to_js Ojs.unit_to_js x1435)
+      fun (x1164 : t) ->
+        fun (x1165 : unit Vscode_jsonrpc_events.Event.t) ->
+          Ojs.set_prop_ascii (t_to_js x1164) "onDispose"
+            (Vscode_jsonrpc_events.Event.t_to_js Ojs.unit_to_js x1165)
     let (dispose : t -> unit) =
-      fun (x1437 : t) -> ignore (Ojs.call (t_to_js x1437) "dispose" [||])
+      fun (x1167 : t) -> ignore (Ojs.call (t_to_js x1167) "dispose" [||])
     let (inspect : t -> unit) =
-      fun (x1438 : t) -> ignore (Ojs.call (t_to_js x1438) "inspect" [||])
+      fun (x1168 : t) -> ignore (Ojs.call (t_to_js x1168) "inspect" [||])
+  end
+module ConnectionStrategy =
+  struct
+    type t = AnonymousInterface0.t
+    let rec t_of_js : Ojs.t -> t =
+      fun (x1170 : Ojs.t) -> AnonymousInterface0.t_of_js x1170
+    and t_to_js : t -> Ojs.t =
+      fun (x1169 : AnonymousInterface0.t) ->
+        AnonymousInterface0.t_to_js x1169
+    let (is : value:any -> bool) =
+      fun ~value:(x1171 : any) ->
+        Ojs.bool_of_js
+          (Ojs.call (Ojs.get_prop_ascii Ojs.global "ConnectionStrategy") "is"
+             [|(any_to_js x1171)|])
+  end
+module CancellationId =
+  struct
+    type t = string or_number
+    let rec t_of_js : Ojs.t -> t =
+      fun (x1174 : Ojs.t) -> or_number_of_js Ojs.string_of_js x1174
+    and t_to_js : t -> Ojs.t =
+      fun (x1172 : string or_number) ->
+        or_number_to_js Ojs.string_to_js x1172
+  end
+module CancellationReceiverStrategy =
+  struct
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1177 : Ojs.t) -> x1177
+    and t_to_js : t -> Ojs.t = fun (x1176 : Ojs.t) -> x1176
+    let (create_cancellation_token_source :
+      t ->
+        id:CancellationId.t ->
+          Vscode_jsonrpc_cancellation.AbstractCancellationTokenSource.t)
+      =
+      fun (x1179 : t) ->
+        fun ~id:(x1178 : CancellationId.t) ->
+          Vscode_jsonrpc_cancellation.AbstractCancellationTokenSource.t_of_js
+            (Ojs.call (t_to_js x1179) "createCancellationTokenSource"
+               [|(CancellationId.t_to_js x1178)|])
+    let (dispose : t -> unit) =
+      fun (x1180 : t) -> ignore (Ojs.call (t_to_js x1180) "dispose" [||])
+    let (message : t) =
+      t_of_js
+        (Ojs.get_prop_ascii
+           (Ojs.get_prop_ascii Ojs.global "CancellationReceiverStrategy")
+           "Message")
+    let (is : value:any -> bool) =
+      fun ~value:(x1181 : any) ->
+        Ojs.bool_of_js
+          (Ojs.call
+             (Ojs.get_prop_ascii Ojs.global "CancellationReceiverStrategy")
+             "is" [|(any_to_js x1181)|])
+  end
+module CancellationSenderStrategy =
+  struct
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1183 : Ojs.t) -> x1183
+    and t_to_js : t -> Ojs.t = fun (x1182 : Ojs.t) -> x1182
+    let (send_cancellation :
+      t -> conn:MessageConnection.t -> id:CancellationId.t -> unit) =
+      fun (x1186 : t) ->
+        fun ~conn:(x1184 : MessageConnection.t) ->
+          fun ~id:(x1185 : CancellationId.t) ->
+            ignore
+              (Ojs.call (t_to_js x1186) "sendCancellation"
+                 [|(MessageConnection.t_to_js x1184);(CancellationId.t_to_js
+                                                        x1185)|])
+    let (cleanup : t -> id:CancellationId.t -> unit) =
+      fun (x1188 : t) ->
+        fun ~id:(x1187 : CancellationId.t) ->
+          ignore
+            (Ojs.call (t_to_js x1188) "cleanup"
+               [|(CancellationId.t_to_js x1187)|])
+    let (dispose : t -> unit) =
+      fun (x1189 : t) -> ignore (Ojs.call (t_to_js x1189) "dispose" [||])
+    let (message : t) =
+      t_of_js
+        (Ojs.get_prop_ascii
+           (Ojs.get_prop_ascii Ojs.global "CancellationSenderStrategy")
+           "Message")
+    let (is : value:any -> bool) =
+      fun ~value:(x1190 : any) ->
+        Ojs.bool_of_js
+          (Ojs.call
+             (Ojs.get_prop_ascii Ojs.global "CancellationSenderStrategy")
+             "is" [|(any_to_js x1190)|])
+  end
+module CancellationStrategy =
+  struct
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1192 : Ojs.t) -> x1192
+    and t_to_js : t -> Ojs.t = fun (x1191 : Ojs.t) -> x1191
+    let (get_receiver : t -> CancellationReceiverStrategy.t) =
+      fun (x1193 : t) ->
+        CancellationReceiverStrategy.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x1193) "receiver")
+    let (set_receiver : t -> CancellationReceiverStrategy.t -> unit) =
+      fun (x1194 : t) ->
+        fun (x1195 : CancellationReceiverStrategy.t) ->
+          Ojs.set_prop_ascii (t_to_js x1194) "receiver"
+            (CancellationReceiverStrategy.t_to_js x1195)
+    let (get_sender : t -> CancellationSenderStrategy.t) =
+      fun (x1196 : t) ->
+        CancellationSenderStrategy.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x1196) "sender")
+    let (set_sender : t -> CancellationSenderStrategy.t -> unit) =
+      fun (x1197 : t) ->
+        fun (x1198 : CancellationSenderStrategy.t) ->
+          Ojs.set_prop_ascii (t_to_js x1197) "sender"
+            (CancellationSenderStrategy.t_to_js x1198)
+    let (message : t) =
+      t_of_js
+        (Ojs.get_prop_ascii
+           (Ojs.get_prop_ascii Ojs.global "CancellationStrategy") "Message")
+    let (is : value:any -> bool) =
+      fun ~value:(x1199 : any) ->
+        Ojs.bool_of_js
+          (Ojs.call (Ojs.get_prop_ascii Ojs.global "CancellationStrategy")
+             "is" [|(any_to_js x1199)|])
+  end
+module ConnectionOptions =
+  struct
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1201 : Ojs.t) -> x1201
+    and t_to_js : t -> Ojs.t = fun (x1200 : Ojs.t) -> x1200
+    let (get_cancellation_strategy : t -> CancellationStrategy.t) =
+      fun (x1202 : t) ->
+        CancellationStrategy.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x1202) "cancellationStrategy")
+    let (set_cancellation_strategy : t -> CancellationStrategy.t -> unit) =
+      fun (x1203 : t) ->
+        fun (x1204 : CancellationStrategy.t) ->
+          Ojs.set_prop_ascii (t_to_js x1203) "cancellationStrategy"
+            (CancellationStrategy.t_to_js x1204)
+    let (get_connection_strategy : t -> ConnectionStrategy.t) =
+      fun (x1205 : t) ->
+        ConnectionStrategy.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x1205) "connectionStrategy")
+    let (set_connection_strategy : t -> ConnectionStrategy.t -> unit) =
+      fun (x1206 : t) ->
+        fun (x1207 : ConnectionStrategy.t) ->
+          Ojs.set_prop_ascii (t_to_js x1206) "connectionStrategy"
+            (ConnectionStrategy.t_to_js x1207)
+    let (is : value:any -> bool) =
+      fun ~value:(x1208 : any) ->
+        Ojs.bool_of_js
+          (Ojs.call (Ojs.get_prop_ascii Ojs.global "ConnectionOptions") "is"
+             [|(any_to_js x1208)|])
   end
 let (create_message_connection :
   message_reader:Vscode_jsonrpc_messageReader.MessageReader.t ->
@@ -3509,40 +3336,40 @@ let (create_message_connection :
       ?_logger:Logger.t ->
         ?options:ConnectionOptions.t -> unit -> MessageConnection.t)
   =
-  fun ~message_reader:(x1439 : Vscode_jsonrpc_messageReader.MessageReader.t)
+  fun ~message_reader:(x1209 : Vscode_jsonrpc_messageReader.MessageReader.t)
     ->
     fun
-      ~message_writer:(x1440 : Vscode_jsonrpc_messageWriter.MessageWriter.t)
+      ~message_writer:(x1210 : Vscode_jsonrpc_messageWriter.MessageWriter.t)
       ->
-      fun ?_logger:(x1441 : Logger.t option) ->
-        fun ?options:(x1442 : ConnectionOptions.t option) ->
+      fun ?_logger:(x1211 : Logger.t option) ->
+        fun ?options:(x1212 : ConnectionOptions.t option) ->
           fun () ->
             MessageConnection.t_of_js
-              (let x1446 = Ojs.global in
-               Ojs.call (Ojs.get_prop_ascii x1446 "createMessageConnection")
+              (let x1216 = Ojs.global in
+               Ojs.call (Ojs.get_prop_ascii x1216 "createMessageConnection")
                  "apply"
-                 [|x1446;((let x1443 =
+                 [|x1216;((let x1213 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1443 "push"
+                             (Ojs.call x1213 "push"
                                 [|(Vscode_jsonrpc_messageReader.MessageReader.t_to_js
-                                     x1439)|]);
+                                     x1209)|]);
                            ignore
-                             (Ojs.call x1443 "push"
+                             (Ojs.call x1213 "push"
                                 [|(Vscode_jsonrpc_messageWriter.MessageWriter.t_to_js
-                                     x1440)|]);
-                           (match x1441 with
-                            | Some x1445 ->
+                                     x1210)|]);
+                           (match x1211 with
+                            | Some x1215 ->
                                 ignore
-                                  (Ojs.call x1443 "push"
-                                     [|(Logger.t_to_js x1445)|])
+                                  (Ojs.call x1213 "push"
+                                     [|(Logger.t_to_js x1215)|])
                             | None -> ());
-                           (match x1442 with
-                            | Some x1444 ->
+                           (match x1212 with
+                            | Some x1214 ->
                                 ignore
-                                  (Ojs.call x1443 "push"
-                                     [|(ConnectionOptions.t_to_js x1444)|])
+                                  (Ojs.call x1213 "push"
+                                     [|(ConnectionOptions.t_to_js x1214)|])
                             | None -> ());
-                           x1443))|])
+                           x1213))|])

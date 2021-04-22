@@ -78,7 +78,7 @@ module SocketMessageReader : sig
   val t_of_js : Ojs.t -> t
 
   val create
-    :  socket:Node.Net.Socket.t
+    :  Node.Net.Socket.t
     -> ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
     -> unit
     -> t
@@ -101,7 +101,7 @@ module SocketMessageWriter : sig
     [@@js.set "socket"]
 
   val create
-    :  socket:Node.Net.Socket.t
+    :  Node.Net.Socket.t
     -> ?options:
          ( MessageWriterOptions.t
          , Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t )
@@ -124,7 +124,7 @@ module StreamMessageReader : sig
   val t_of_js : Ojs.t -> t
 
   val create
-    :  readble:Node.ReadableStream.t
+    :  Node.ReadableStream.t
     -> ?encoding:
          ( MessageReaderOptions.t
          , Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t )
@@ -145,7 +145,7 @@ module StreamMessageWriter : sig
   val t_of_js : Ojs.t -> t
 
   val create
-    :  writable:Node.WritableStream.t
+    :  Node.WritableStream.t
     -> ?options:
          ( MessageWriterOptions.t
          , Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t )
@@ -174,14 +174,14 @@ end
 [@@js.scope "PipeTransport"]
 
 val create_client_pipe_transport
-  :  pipe_name:string
+  :  string
   -> ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
   -> unit
   -> PipeTransport.t Promise.t
   [@@js.global "createClientPipeTransport"]
 
 val create_server_pipe_transport
-  :  pipe_name:string
+  :  string
   -> ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
   -> unit
   -> MessageReader.t * MessageWriter.t
@@ -200,14 +200,14 @@ end
 [@@js.scope "SocketTransport"]
 
 val create_client_socket_transport
-  :  port:int
+  :  int
   -> ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
   -> unit
   -> SocketTransport.t Promise.t
   [@@js.global "createClientSocketTransport"]
 
 val create_server_socket_transport
-  :  port:int
+  :  int
   -> ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
   -> unit
   -> MessageReader.t * MessageWriter.t

@@ -16,17 +16,6 @@ module AnonymousInterface0 : sig
   val get_decoder : t -> any [@@js.get "decoder"]
 end
 
-module AnonymousInterface1 : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val create_ : t -> encoding:RAL_MessageBufferEncoding.t -> RAL_MessageBuffer.t
-    [@@js.call "create"]
-end
-
 module AnonymousInterface2 : sig
   type t
 
@@ -63,54 +52,6 @@ module AnonymousInterface2 : sig
     [@@js.call "error"]
 end
 
-module AnonymousInterface3 : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val set_timeout
-    :  t
-    -> callback:(args:(any list[@js.variadic]) -> unit)
-    -> ms:int
-    -> args:(any list[@js.variadic])
-    -> RAL_TimeoutHandle.t
-    [@@js.call "setTimeout"]
-
-  val clear_timeout : t -> handle:RAL_TimeoutHandle.t -> unit
-    [@@js.call "clearTimeout"]
-
-  val set_immediate
-    :  t
-    -> callback:(args:(any list[@js.variadic]) -> unit)
-    -> args:(any list[@js.variadic])
-    -> RAL_ImmediateHandle.t
-    [@@js.call "setImmediate"]
-
-  val clear_immediate : t -> handle:RAL_ImmediateHandle.t -> unit
-    [@@js.call "clearImmediate"]
-end
-
-module MessageBuffer : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val get_encoding : t -> RAL_MessageBufferEncoding.t [@@js.get "encoding"]
-
-  val append : t -> chunk:Uint8Array.t or_string -> unit [@@js.call "append"]
-
-  val try_read_headers : t -> (string, string) Map.t or_undefined
-    [@@js.call "tryReadHeaders"]
-
-  val try_read_body : t -> length:int -> Uint8Array.t or_undefined
-    [@@js.call "tryReadBody"]
-end
-[@@js.scope "_MessageBuffer"]
-
 module MessageBufferEncoding : sig
   type t =
     ([ `L_s0_ascii [@js "ascii"]
@@ -122,6 +63,25 @@ module MessageBufferEncoding : sig
 
   val t_of_js : Ojs.t -> t
 end
+
+module MessageBuffer : sig
+  type t
+
+  val t_to_js : t -> Ojs.t
+
+  val t_of_js : Ojs.t -> t
+
+  val get_encoding : t -> MessageBufferEncoding.t [@@js.get "encoding"]
+
+  val append : t -> chunk:Uint8Array.t or_string -> unit [@@js.call "append"]
+
+  val try_read_headers : t -> (string, string) Map.t or_undefined
+    [@@js.call "tryReadHeaders"]
+
+  val try_read_body : t -> length:int -> Uint8Array.t or_undefined
+    [@@js.call "tryReadBody"]
+end
+[@@js.scope "_MessageBuffer"]
 
 module ReadableStream : sig
   type t
@@ -241,15 +201,6 @@ module RAL : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_application_json : t -> AnonymousInterface0.t
-    [@@js.get "applicationJson"]
-
-  val get_message_buffer : t -> AnonymousInterface1.t [@@js.get "messageBuffer"]
-
-  val get_console : t -> AnonymousInterface2.t [@@js.get "console"]
-
-  val get_timer : t -> AnonymousInterface3.t [@@js.get "timer"]
-
   module MessageBuffer : sig
     type t = MessageBuffer.t
 
@@ -306,7 +257,56 @@ module RAL : sig
     val t_of_js : Ojs.t -> t
   end
 
-  val install : ral:RAL.t -> unit [@@js.global "install"]
+  val install : ral:t -> unit [@@js.global "install"]
+
+  module AnonymousInterface1 : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val create_ : t -> encoding:MessageBufferEncoding.t -> MessageBuffer.t
+      [@@js.call "create"]
+  end
+
+  val get_application_json : t -> AnonymousInterface0.t
+    [@@js.get "applicationJson"]
+
+  val get_message_buffer : t -> AnonymousInterface1.t [@@js.get "messageBuffer"]
+
+  val get_console : t -> AnonymousInterface2.t [@@js.get "console"]
+
+  module AnonymousInterface3 : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val set_timeout
+      :  t
+      -> callback:(args:(any list[@js.variadic]) -> unit)
+      -> ms:int
+      -> args:(any list[@js.variadic])
+      -> TimeoutHandle.t
+      [@@js.call "setTimeout"]
+
+    val clear_timeout : t -> handle:TimeoutHandle.t -> unit
+      [@@js.call "clearTimeout"]
+
+    val set_immediate
+      :  t
+      -> callback:(args:(any list[@js.variadic]) -> unit)
+      -> args:(any list[@js.variadic])
+      -> ImmediateHandle.t
+      [@@js.call "setImmediate"]
+
+    val clear_immediate : t -> handle:ImmediateHandle.t -> unit
+      [@@js.call "clearImmediate"]
+  end
+
+  val get_timer : t -> AnonymousInterface3.t [@@js.get "timer"]
 end
 [@@js.scope "RAL"]
 

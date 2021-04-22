@@ -13,6 +13,6 @@ module Disposable : sig
 
   val dispose : t -> unit [@@js.call "dispose"]
 
-  val create_ : func:(unit -> unit) -> Disposable.t [@@js.global "create"]
+  val create_ : func:(unit -> unit) -> t [@@js.global "create"]
 end
 [@@js.scope "Disposable"]

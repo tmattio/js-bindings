@@ -52,8 +52,8 @@ module Event =
                                                  x7)|])
                                    | None -> ());
                                   x6))|])
-    let (none : any Event.t) =
-      Event.t_of_js any_of_js
+    let (none : any t) =
+      t_of_js any_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "Event") "None")
   end
 module EmitterOptions =

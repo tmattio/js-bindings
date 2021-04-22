@@ -9,9 +9,9 @@ module Disposable =
     and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (dispose : t -> unit) =
       fun (x3 : t) -> ignore (Ojs.call (t_to_js x3) "dispose" [||])
-    let (create_ : func:(unit -> unit) -> Disposable.t) =
+    let (create_ : func:(unit -> unit) -> t) =
       fun ~func:(x4 : unit -> unit) ->
-        Disposable.t_of_js
+        t_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Disposable") "create"
              [|(Ojs.fun_to_js 1 (fun _ -> x4 ()))|])
   end

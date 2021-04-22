@@ -91,10 +91,10 @@ module SocketMessageReader =
     let rec t_of_js : Ojs.t -> t = fun (x33 : Ojs.t) -> x33
     and t_to_js : t -> Ojs.t = fun (x32 : Ojs.t) -> x32
     let (create :
-      socket:Node.Net.Socket.t ->
+      Node.Net.Socket.t ->
         ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t -> unit -> t)
       =
-      fun ~socket:(x34 : Node.Net.Socket.t) ->
+      fun (x34 : Node.Net.Socket.t) ->
         fun
           ?encoding:(x35 :
                       Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t option)
@@ -130,11 +130,11 @@ module SocketMessageWriter =
         fun (x43 : any) ->
           Ojs.set_prop_ascii (t_to_js x42) "socket" (any_to_js x43)
     let (create :
-      socket:Node.Net.Socket.t ->
+      Node.Net.Socket.t ->
         ?options:(MessageWriterOptions.t,
           Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t) union2 -> unit -> t)
       =
-      fun ~socket:(x44 : Node.Net.Socket.t) ->
+      fun (x44 : Node.Net.Socket.t) ->
         fun
           ?options:(x45 :
                      (MessageWriterOptions.t,
@@ -169,11 +169,11 @@ module StreamMessageReader =
     let rec t_of_js : Ojs.t -> t = fun (x53 : Ojs.t) -> x53
     and t_to_js : t -> Ojs.t = fun (x52 : Ojs.t) -> x52
     let (create :
-      readble:Node.ReadableStream.t ->
+      Node.ReadableStream.t ->
         ?encoding:(MessageReaderOptions.t,
           Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t) union2 -> unit -> t)
       =
-      fun ~readble:(x54 : Node.ReadableStream.t) ->
+      fun (x54 : Node.ReadableStream.t) ->
         fun
           ?encoding:(x55 :
                       (MessageReaderOptions.t,
@@ -207,11 +207,11 @@ module StreamMessageWriter =
     let rec t_of_js : Ojs.t -> t = fun (x62 : Ojs.t) -> x62
     and t_to_js : t -> Ojs.t = fun (x61 : Ojs.t) -> x61
     let (create :
-      writable:Node.WritableStream.t ->
+      Node.WritableStream.t ->
         ?options:(MessageWriterOptions.t,
           Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t) union2 -> unit -> t)
       =
-      fun ~writable:(x63 : Node.WritableStream.t) ->
+      fun (x63 : Node.WritableStream.t) ->
         fun
           ?options:(x64 :
                      (MessageWriterOptions.t,
@@ -257,11 +257,11 @@ module PipeTransport =
           (Ojs.call (t_to_js x72) "onConnected" [||])
   end
 let (create_client_pipe_transport :
-  pipe_name:string ->
+  string ->
     ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t ->
       unit -> PipeTransport.t Promise.t)
   =
-  fun ~pipe_name:(x75 : string) ->
+  fun (x75 : string) ->
     fun
       ?encoding:(x76 : Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t option)
       ->
@@ -283,11 +283,11 @@ let (create_client_pipe_transport :
                       | None -> ());
                      x77))|])
 let (create_server_pipe_transport :
-  pipe_name:string ->
+  string ->
     ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t ->
       unit -> (MessageReader.t * MessageWriter.t))
   =
-  fun ~pipe_name:(x81 : string) ->
+  fun (x81 : string) ->
     fun
       ?encoding:(x82 : Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t option)
       ->
@@ -325,11 +325,11 @@ module SocketTransport =
           (Ojs.call (t_to_js x89) "onConnected" [||])
   end
 let (create_client_socket_transport :
-  port:int ->
+  int ->
     ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t ->
       unit -> SocketTransport.t Promise.t)
   =
-  fun ~port:(x92 : int) ->
+  fun (x92 : int) ->
     fun
       ?encoding:(x93 : Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t option)
       ->
@@ -351,11 +351,11 @@ let (create_client_socket_transport :
                       | None -> ());
                      x94))|])
 let (create_server_socket_transport :
-  port:int ->
+  int ->
     ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t ->
       unit -> (MessageReader.t * MessageWriter.t))
   =
-  fun ~port:(x98 : int) ->
+  fun (x98 : int) ->
     fun
       ?encoding:(x99 : Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t option)
       ->

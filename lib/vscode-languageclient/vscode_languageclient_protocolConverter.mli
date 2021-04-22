@@ -48,7 +48,7 @@ module Converter : sig
     -> Code.Range.t or_undefined
     [@@js.call "asRange"]
 
-  val as_ranges : t -> values:Ls.Range.t list -> Code.Range.t list
+  val as_ranges : t -> Ls.Range.t list -> Code.Range.t list
     [@@js.call "asRanges"]
 
   val as_diagnostic_severity
@@ -230,18 +230,18 @@ module Converter : sig
     -> (Code.Definition.t, Code.DefinitionLink.t) or_array or_undefined
     [@@js.call "asDefinitionResult"]
 
-  val as_references : t -> values:Ls.Location.t list -> Code.Location.t list
+  val as_references : t -> Ls.Location.t list -> Code.Location.t list
     [@@js.call "asReferences"]
 
   val as_references'
     :  t
-    -> values:never or_null_or_undefined
+    -> never or_null_or_undefined
     -> Code.Location.t list or_undefined
     [@@js.call "asReferences"]
 
   val as_references''
     :  t
-    -> values:Ls.Location.t list or_null_or_undefined
+    -> Ls.Location.t list or_null_or_undefined
     -> Code.Location.t list or_undefined
     [@@js.call "asReferences"]
 
@@ -256,19 +256,19 @@ module Converter : sig
 
   val as_document_highlights
     :  t
-    -> values:Ls.DocumentHighlight.t list
+    -> Ls.DocumentHighlight.t list
     -> Code.DocumentHighlight.t list
     [@@js.call "asDocumentHighlights"]
 
   val as_document_highlights'
     :  t
-    -> values:never or_null_or_undefined
+    -> never or_null_or_undefined
     -> never or_undefined
     [@@js.call "asDocumentHighlights"]
 
   val as_document_highlights''
     :  t
-    -> values:Ls.DocumentHighlight.t list or_null_or_undefined
+    -> Ls.DocumentHighlight.t list or_null_or_undefined
     -> Code.DocumentHighlight.t list or_undefined
     [@@js.call "asDocumentHighlights"]
 
@@ -303,7 +303,7 @@ module Converter : sig
 
   val as_symbol_informations
     :  t
-    -> values:Ls.SymbolInformation.t list
+    -> Ls.SymbolInformation.t list
     -> ?uri:Code.Uri.t
     -> unit
     -> Code.SymbolInformation.t list
@@ -311,7 +311,7 @@ module Converter : sig
 
   val as_symbol_informations'
     :  t
-    -> values:never or_null_or_undefined
+    -> never or_null_or_undefined
     -> ?uri:Code.Uri.t
     -> unit
     -> never or_undefined
@@ -319,7 +319,7 @@ module Converter : sig
 
   val as_symbol_informations''
     :  t
-    -> values:Ls.SymbolInformation.t list or_null_or_undefined
+    -> Ls.SymbolInformation.t list or_null_or_undefined
     -> ?uri:Code.Uri.t
     -> unit
     -> Code.SymbolInformation.t list or_undefined

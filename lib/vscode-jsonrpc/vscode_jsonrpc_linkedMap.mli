@@ -29,7 +29,7 @@ end
 [@@js.scope "Touch"]
 
 module LinkedMap : sig
-  type ('K, 'V) t = ('K, 'V) LinkedMap.t
+  type ('K, 'V) t
 
   val t_to_js : ('K -> Ojs.t) -> ('V -> Ojs.t) -> ('K, 'V) t -> Ojs.t
 
@@ -148,7 +148,7 @@ end
 [@@js.scope "LinkedMap"]
 
 module LRUCache : sig
-  type ('K, 'V) t = ('K, 'V) LRUCache.t
+  type ('K, 'V) t
 
   val t_to_js : ('K -> Ojs.t) -> ('V -> Ojs.t) -> ('K, 'V) t -> Ojs.t
 
