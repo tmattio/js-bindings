@@ -8,12 +8,12 @@ module Array =
     let (find :
       'T t ->
         (this:unit -> value:'T -> index:int -> obj:'T list -> bool) ->
-          ?thisArg:any -> unit -> 'S or_undefined)
+          ?this_arg:any -> unit -> 'S or_undefined)
       =
       fun (x10 : 'T t) ->
         fun (x1 : this:unit -> value:'T -> index:int -> obj:'T list -> bool)
           ->
-          fun ?thisArg:(x2 : any option) ->
+          fun ?this_arg:(x2 : any option) ->
             fun () ->
               or_undefined_of_js Obj.magic
                 (let x12 = t_to_js Obj.magic x10 in
@@ -44,11 +44,11 @@ module Array =
     let (find' :
       'T t ->
         (value:'T -> index:int -> obj:'T list -> unknown) ->
-          ?thisArg:any -> unit -> 'T or_undefined)
+          ?this_arg:any -> unit -> 'T or_undefined)
       =
       fun (x22 : 'T t) ->
         fun (x14 : value:'T -> index:int -> obj:'T list -> unknown) ->
-          fun ?thisArg:(x15 : any option) ->
+          fun ?this_arg:(x15 : any option) ->
             fun () ->
               or_undefined_of_js Obj.magic
                 (let x24 = t_to_js Obj.magic x22 in
@@ -77,11 +77,11 @@ module Array =
     let (find_index :
       'T t ->
         (value:'T -> index:int -> obj:'T list -> unknown) ->
-          ?thisArg:any -> unit -> int)
+          ?this_arg:any -> unit -> int)
       =
       fun (x34 : 'T t) ->
         fun (x26 : value:'T -> index:int -> obj:'T list -> unknown) ->
-          fun ?thisArg:(x27 : any option) ->
+          fun ?this_arg:(x27 : any option) ->
             fun () ->
               Ojs.int_of_js
                 (let x36 = t_to_js Obj.magic x34 in
@@ -176,12 +176,12 @@ module ArrayConstructor =
     let (from' :
       t ->
         array:'T Array.t ->
-          mapfn:(v:'T -> k:int -> 'U) -> ?thisArg:any -> unit -> 'U list)
+          mapfn:(v:'T -> k:int -> 'U) -> ?this_arg:any -> unit -> 'U list)
       =
       fun (x74 : t) ->
         fun ~array:(x66 : 'T Array.t) ->
           fun ~mapfn:(x67 : v:'T -> k:int -> 'U) ->
-            fun ?thisArg:(x68 : any option) ->
+            fun ?this_arg:(x68 : any option) ->
               fun () ->
                 Ojs.list_of_js Obj.magic
                   (let x75 = t_to_js x74 in
@@ -489,13 +489,13 @@ module ReadonlyArray =
     let (find :
       'T t ->
         (this:unit -> value:'T -> index:int -> obj:'T list -> bool) ->
-          ?thisArg:any -> unit -> 'S or_undefined)
+          ?this_arg:any -> unit -> 'S or_undefined)
       =
       fun (x177 : 'T t) ->
         fun
           (x168 : this:unit -> value:'T -> index:int -> obj:'T list -> bool)
           ->
-          fun ?thisArg:(x169 : any option) ->
+          fun ?this_arg:(x169 : any option) ->
             fun () ->
               or_undefined_of_js Obj.magic
                 (let x179 = t_to_js Obj.magic x177 in
@@ -529,11 +529,11 @@ module ReadonlyArray =
     let (find' :
       'T t ->
         (value:'T -> index:int -> obj:'T list -> unknown) ->
-          ?thisArg:any -> unit -> 'T or_undefined)
+          ?this_arg:any -> unit -> 'T or_undefined)
       =
       fun (x189 : 'T t) ->
         fun (x181 : value:'T -> index:int -> obj:'T list -> unknown) ->
-          fun ?thisArg:(x182 : any option) ->
+          fun ?this_arg:(x182 : any option) ->
             fun () ->
               or_undefined_of_js Obj.magic
                 (let x191 = t_to_js Obj.magic x189 in
@@ -562,11 +562,11 @@ module ReadonlyArray =
     let (find_index :
       'T t ->
         (value:'T -> index:int -> obj:'T list -> unknown) ->
-          ?thisArg:any -> unit -> int)
+          ?this_arg:any -> unit -> int)
       =
       fun (x201 : 'T t) ->
         fun (x193 : value:'T -> index:int -> obj:'T list -> unknown) ->
-          fun ?thisArg:(x194 : any option) ->
+          fun ?this_arg:(x194 : any option) ->
             fun () ->
               Ojs.int_of_js
                 (let x203 = t_to_js Obj.magic x201 in
@@ -666,9 +666,9 @@ module String =
           or_undefined_of_js Ojs.int_of_js
             (Ojs.call (t_to_js x226) "codePointAt" [|(Ojs.int_to_js x225)|])
     let (includes :
-      t -> searchString:string -> ?position:int -> unit -> bool) =
+      t -> search_string:string -> ?position:int -> unit -> bool) =
       fun (x232 : t) ->
-        fun ~searchString:(x228 : string) ->
+        fun ~search_string:(x228 : string) ->
           fun ?position:(x229 : int option) ->
             fun () ->
               Ojs.bool_of_js
@@ -689,10 +689,10 @@ module String =
                              | None -> ());
                             x230))|])
     let (ends_with :
-      t -> searchString:string -> ?endPosition:int -> unit -> bool) =
+      t -> search_string:string -> ?end_position:int -> unit -> bool) =
       fun (x238 : t) ->
-        fun ~searchString:(x234 : string) ->
-          fun ?endPosition:(x235 : int option) ->
+        fun ~search_string:(x234 : string) ->
+          fun ?end_position:(x235 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x239 = t_to_js x238 in
@@ -746,9 +746,9 @@ module String =
           Ojs.string_of_js
             (Ojs.call (t_to_js x248) "repeat" [|(Ojs.int_to_js x247)|])
     let (starts_with :
-      t -> searchString:string -> ?position:int -> unit -> bool) =
+      t -> search_string:string -> ?position:int -> unit -> bool) =
       fun (x253 : t) ->
-        fun ~searchString:(x249 : string) ->
+        fun ~search_string:(x249 : string) ->
           fun ?position:(x250 : int option) ->
             fun () ->
               Ojs.bool_of_js
@@ -825,9 +825,9 @@ module String =
 module StringConstructor =
   struct
     include struct include StringConstructor end
-    let (from_code_point : t -> codePoints:int list -> string) =
+    let (from_code_point : t -> code_points:int list -> string) =
       fun (x279 : t) ->
-        fun ~codePoints:(x276 : int list) ->
+        fun ~code_points:(x276 : int list) ->
           Ojs.string_of_js
             (let x280 = t_to_js x279 in
              Ojs.call (Ojs.get_prop_ascii x280 "fromCodePoint") "apply"

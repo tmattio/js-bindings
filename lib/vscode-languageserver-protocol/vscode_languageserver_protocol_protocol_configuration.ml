@@ -2,148 +2,121 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module Types =
-      struct
-        type _ConfigurationRequest_HandlerSignature =
-          (_ConfigurationParams, any list, unit) RequestHandler.t
-        let rec _ConfigurationRequest_HandlerSignature_of_js :
-          Ojs.t -> _ConfigurationRequest_HandlerSignature =
-          fun (x6 : Ojs.t) ->
-            RequestHandler.t_of_js _ConfigurationParams_of_js
-              (fun (x8 : Ojs.t) -> Ojs.list_of_js any_of_js x8)
-              Ojs.unit_of_js x6
-        and _ConfigurationRequest_HandlerSignature_to_js :
-          _ConfigurationRequest_HandlerSignature -> Ojs.t =
-          fun (x1 : (_ConfigurationParams, any list, unit) RequestHandler.t)
-            ->
-            RequestHandler.t_to_js _ConfigurationParams_to_js
-              (fun (x3 : any list) -> Ojs.list_to_js any_to_js x3)
-              Ojs.unit_to_js x1
-      end
-  end
 module AnonymousInterface0 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x12 : Ojs.t) -> x12
-    and t_to_js : t -> Ojs.t = fun (x11 : Ojs.t) -> x11
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get_configuration : t -> bool) =
-      fun (x13 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x13) "configuration")
+      fun (x3 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x3) "configuration")
     let (set_configuration : t -> bool -> unit) =
-      fun (x14 : t) ->
-        fun (x15 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x14) "configuration"
-            (Ojs.bool_to_js x15)
+      fun (x4 : t) ->
+        fun (x5 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x4) "configuration" (Ojs.bool_to_js x5)
   end
 module ConfigurationClientCapabilities =
   struct
-    type t = _ConfigurationClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x17 : Ojs.t) -> _ConfigurationClientCapabilities_of_js x17
-    and t_to_js : t -> Ojs.t =
-      fun (x16 : _ConfigurationClientCapabilities) ->
-        _ConfigurationClientCapabilities_to_js x16
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x7 : Ojs.t) -> x7
+    and t_to_js : t -> Ojs.t = fun (x6 : Ojs.t) -> x6
     let (get_workspace : t -> AnonymousInterface0.t) =
-      fun (x18 : t) ->
+      fun (x8 : t) ->
         AnonymousInterface0.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x18) "workspace")
+          (Ojs.get_prop_ascii (t_to_js x8) "workspace")
     let (set_workspace : t -> AnonymousInterface0.t -> unit) =
-      fun (x19 : t) ->
-        fun (x20 : AnonymousInterface0.t) ->
-          Ojs.set_prop_ascii (t_to_js x19) "workspace"
-            (AnonymousInterface0.t_to_js x20)
+      fun (x9 : t) ->
+        fun (x10 : AnonymousInterface0.t) ->
+          Ojs.set_prop_ascii (t_to_js x9) "workspace"
+            (AnonymousInterface0.t_to_js x10)
   end
 module ConfigurationRequest =
   struct
     let (type_ :
-      ((_ConfigurationParams, PartialResultParams.t) intersection2, any list,
-        never, unit, unit) ProtocolRequestType.t)
+      ((ConfigurationParams.t, PartialResultParams.t) intersection2,
+        any list, never, unit, unit) ProtocolRequestType.t)
       =
       ProtocolRequestType.t_of_js
-        (fun (x21 : Ojs.t) ->
-           intersection2_of_js _ConfigurationParams_of_js
-             PartialResultParams.t_of_js x21)
-        (fun (x24 : Ojs.t) -> Ojs.list_of_js any_of_js x24) never_of_js
+        (fun (x11 : Ojs.t) ->
+           intersection2_of_js ConfigurationParams.t_of_js
+             PartialResultParams.t_of_js x11)
+        (fun (x14 : Ojs.t) -> Ojs.list_of_js any_of_js x14) never_of_js
         Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "ConfigurationRequest") "type")
     module HandlerSignature =
       struct
-        type t = _ConfigurationRequest_HandlerSignature
+        type t = (ConfigurationParams.t, any list, unit) RequestHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x30 : Ojs.t) ->
-            _ConfigurationRequest_HandlerSignature_of_js x30
+          fun (x24 : Ojs.t) ->
+            RequestHandler.t_of_js ConfigurationParams.t_of_js
+              (fun (x26 : Ojs.t) -> Ojs.list_of_js any_of_js x26)
+              Ojs.unit_of_js x24
         and t_to_js : t -> Ojs.t =
-          fun (x29 : _ConfigurationRequest_HandlerSignature) ->
-            _ConfigurationRequest_HandlerSignature_to_js x29
+          fun
+            (x19 : (ConfigurationParams.t, any list, unit) RequestHandler.t)
+            ->
+            RequestHandler.t_to_js ConfigurationParams.t_to_js
+              (fun (x21 : any list) -> Ojs.list_to_js any_to_js x21)
+              Ojs.unit_to_js x19
       end
     module MiddlewareSignature =
       struct
-        type t = _ConfigurationRequest_MiddlewareSignature
-        let rec t_of_js : Ojs.t -> t =
-          fun (x32 : Ojs.t) ->
-            _ConfigurationRequest_MiddlewareSignature_of_js x32
-        and t_to_js : t -> Ojs.t =
-          fun (x31 : _ConfigurationRequest_MiddlewareSignature) ->
-            _ConfigurationRequest_MiddlewareSignature_to_js x31
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x30 : Ojs.t) -> x30
+        and t_to_js : t -> Ojs.t = fun (x29 : Ojs.t) -> x29
         let (apply :
           t ->
-            params:_ConfigurationParams ->
+            params:ConfigurationParams.t ->
               token:CancellationToken.t ->
-                next:_ConfigurationRequest_HandlerSignature ->
+                next:ConfigurationRequest_HandlerSignature.t ->
                   (any list, unit) HandlerResult.t)
           =
-          fun (x36 : t) ->
-            fun ~params:(x33 : _ConfigurationParams) ->
-              fun ~token:(x34 : CancellationToken.t) ->
-                fun ~next:(x35 : _ConfigurationRequest_HandlerSignature) ->
+          fun (x34 : t) ->
+            fun ~params:(x31 : ConfigurationParams.t) ->
+              fun ~token:(x32 : CancellationToken.t) ->
+                fun ~next:(x33 : ConfigurationRequest_HandlerSignature.t) ->
                   HandlerResult.t_of_js
-                    (fun (x37 : Ojs.t) -> Ojs.list_of_js any_of_js x37)
+                    (fun (x35 : Ojs.t) -> Ojs.list_of_js any_of_js x35)
                     Ojs.unit_of_js
-                    (Ojs.apply (t_to_js x36)
-                       [|(_ConfigurationParams_to_js x33);(CancellationToken.t_to_js
-                                                             x34);(_ConfigurationRequest_HandlerSignature_to_js
-                                                                    x35)|])
+                    (Ojs.apply (t_to_js x34)
+                       [|(ConfigurationParams.t_to_js x31);(CancellationToken.t_to_js
+                                                              x32);(ConfigurationRequest_HandlerSignature.t_to_js
+                                                                    x33)|])
       end
   end
 module ConfigurationItem =
   struct
-    type t = _ConfigurationItem
-    let rec t_of_js : Ojs.t -> t =
-      fun (x41 : Ojs.t) -> _ConfigurationItem_of_js x41
-    and t_to_js : t -> Ojs.t =
-      fun (x40 : _ConfigurationItem) -> _ConfigurationItem_to_js x40
-    let (get_scopeUri : t -> string) =
-      fun (x42 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x42) "scopeUri")
-    let (set_scopeUri : t -> string -> unit) =
-      fun (x43 : t) ->
-        fun (x44 : string) ->
-          Ojs.set_prop_ascii (t_to_js x43) "scopeUri" (Ojs.string_to_js x44)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x39 : Ojs.t) -> x39
+    and t_to_js : t -> Ojs.t = fun (x38 : Ojs.t) -> x38
+    let (get_scope_uri : t -> string) =
+      fun (x40 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x40) "scopeUri")
+    let (set_scope_uri : t -> string -> unit) =
+      fun (x41 : t) ->
+        fun (x42 : string) ->
+          Ojs.set_prop_ascii (t_to_js x41) "scopeUri" (Ojs.string_to_js x42)
     let (get_section : t -> string) =
-      fun (x45 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x45) "section")
+      fun (x43 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x43) "section")
     let (set_section : t -> string -> unit) =
-      fun (x46 : t) ->
-        fun (x47 : string) ->
-          Ojs.set_prop_ascii (t_to_js x46) "section" (Ojs.string_to_js x47)
+      fun (x44 : t) ->
+        fun (x45 : string) ->
+          Ojs.set_prop_ascii (t_to_js x44) "section" (Ojs.string_to_js x45)
   end
 module ConfigurationParams =
   struct
-    type t = _ConfigurationParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x49 : Ojs.t) -> _ConfigurationParams_of_js x49
-    and t_to_js : t -> Ojs.t =
-      fun (x48 : _ConfigurationParams) -> _ConfigurationParams_to_js x48
-    let (get_items : t -> _ConfigurationItem list) =
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x47 : Ojs.t) -> x47
+    and t_to_js : t -> Ojs.t = fun (x46 : Ojs.t) -> x46
+    let (get_items : t -> ConfigurationItem.t list) =
+      fun (x48 : t) ->
+        Ojs.list_of_js ConfigurationItem.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x48) "items")
+    let (set_items : t -> ConfigurationItem.t list -> unit) =
       fun (x50 : t) ->
-        Ojs.list_of_js _ConfigurationItem_of_js
-          (Ojs.get_prop_ascii (t_to_js x50) "items")
-    let (set_items : t -> _ConfigurationItem list -> unit) =
-      fun (x52 : t) ->
-        fun (x53 : _ConfigurationItem list) ->
-          Ojs.set_prop_ascii (t_to_js x52) "items"
-            (Ojs.list_to_js _ConfigurationItem_to_js x53)
+        fun (x51 : ConfigurationItem.t list) ->
+          Ojs.set_prop_ascii (t_to_js x50) "items"
+            (Ojs.list_to_js ConfigurationItem.t_to_js x51)
   end

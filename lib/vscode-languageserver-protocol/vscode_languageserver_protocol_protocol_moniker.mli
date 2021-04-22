@@ -37,7 +37,7 @@ module MonikerKind : sig
 end
 
 module Moniker : sig
-  type t = _Moniker
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -51,32 +51,32 @@ module Moniker : sig
 
   val set_identifier : t -> string -> unit [@@js.set "identifier"]
 
-  val get_unique : t -> _UniquenessLevel [@@js.get "unique"]
+  val get_unique : t -> UniquenessLevel.t [@@js.get "unique"]
 
-  val set_unique : t -> _UniquenessLevel -> unit [@@js.set "unique"]
+  val set_unique : t -> UniquenessLevel.t -> unit [@@js.set "unique"]
 
-  val get_kind : t -> _MonikerKind [@@js.get "kind"]
+  val get_kind : t -> MonikerKind.t [@@js.get "kind"]
 
-  val set_kind : t -> _MonikerKind -> unit [@@js.set "kind"]
+  val set_kind : t -> MonikerKind.t -> unit [@@js.set "kind"]
 end
 [@@js.scope "Moniker"]
 
 module MonikerClientCapabilities : sig
-  type t = _MonikerClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 end
 [@@js.scope "MonikerClientCapabilities"]
 
 module MonikerServerCapabilities : sig
-  type t = _MonikerServerCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -84,7 +84,7 @@ module MonikerServerCapabilities : sig
 end
 
 module MonikerOptions : sig
-  type t = _MonikerOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -95,7 +95,7 @@ end
 [@@js.scope "MonikerOptions"]
 
 module MonikerRegistrationOptions : sig
-  type t = _MonikerRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -103,12 +103,12 @@ module MonikerRegistrationOptions : sig
 
   val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _MonikerOptions [@@js.cast]
+  val cast' : t -> MonikerOptions.t [@@js.cast]
 end
 [@@js.scope "MonikerRegistrationOptions"]
 
 module MonikerParams : sig
-  type t = _MonikerParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -128,11 +128,11 @@ module MonikerRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _MonikerParams
-      , _Moniker list or_null
-      , _Moniker list
+    : ( MonikerParams.t
+      , Moniker.t list or_null
+      , Moniker.t list
       , unit
-      , _MonikerRegistrationOptions )
+      , MonikerRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 end

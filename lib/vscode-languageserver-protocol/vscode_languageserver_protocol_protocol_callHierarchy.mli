@@ -12,21 +12,21 @@ open Es5
    TextDocumentPositionParams, PartialResultParams, WorkDoneProgressParams,
    WorkDoneProgressOptions } from './protocol'; *)
 module CallHierarchyClientCapabilities : sig
-  type t = _CallHierarchyClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 end
 [@@js.scope "CallHierarchyClientCapabilities"]
 
 module CallHierarchyOptions : sig
-  type t = _CallHierarchyOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -37,7 +37,7 @@ end
 [@@js.scope "CallHierarchyOptions"]
 
 module CallHierarchyRegistrationOptions : sig
-  type t = _CallHierarchyRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -45,14 +45,14 @@ module CallHierarchyRegistrationOptions : sig
 
   val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _CallHierarchyOptions [@@js.cast]
+  val cast' : t -> CallHierarchyOptions.t [@@js.cast]
 
   val cast'' : t -> StaticRegistrationOptions.t [@@js.cast]
 end
 [@@js.scope "CallHierarchyRegistrationOptions"]
 
 module CallHierarchyPrepareParams : sig
-  type t = _CallHierarchyPrepareParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -73,17 +73,17 @@ module CallHierarchyPrepareRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _CallHierarchyPrepareParams
+    : ( CallHierarchyPrepareParams.t
       , CallHierarchyItem.t list or_null
       , never
       , unit
-      , _CallHierarchyRegistrationOptions )
+      , CallHierarchyRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
     type t =
-      ( _CallHierarchyPrepareParams
+      ( CallHierarchyPrepareParams.t
       , CallHierarchyItem.t list or_null
       , unit )
       RequestHandler.t
@@ -96,7 +96,7 @@ end
 [@@js.scope "CallHierarchyPrepareRequest"]
 
 module CallHierarchyIncomingCallsParams : sig
-  type t = _CallHierarchyIncomingCallsParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -119,7 +119,7 @@ module CallHierarchyIncomingCallsRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _CallHierarchyIncomingCallsParams
+    : ( CallHierarchyIncomingCallsParams.t
       , CallHierarchyIncomingCall.t list or_null
       , CallHierarchyIncomingCall.t list
       , unit
@@ -129,7 +129,7 @@ module CallHierarchyIncomingCallsRequest : sig
 
   module HandlerSignature : sig
     type t =
-      ( _CallHierarchyIncomingCallsParams
+      ( CallHierarchyIncomingCallsParams.t
       , CallHierarchyIncomingCall.t list or_null
       , unit )
       RequestHandler.t
@@ -142,7 +142,7 @@ end
 [@@js.scope "CallHierarchyIncomingCallsRequest"]
 
 module CallHierarchyOutgoingCallsParams : sig
-  type t = _CallHierarchyOutgoingCallsParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -165,7 +165,7 @@ module CallHierarchyOutgoingCallsRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _CallHierarchyOutgoingCallsParams
+    : ( CallHierarchyOutgoingCallsParams.t
       , CallHierarchyOutgoingCall.t list or_null
       , CallHierarchyOutgoingCall.t list
       , unit
@@ -175,7 +175,7 @@ module CallHierarchyOutgoingCallsRequest : sig
 
   module HandlerSignature : sig
     type t =
-      ( _CallHierarchyOutgoingCallsParams
+      ( CallHierarchyOutgoingCallsParams.t
       , CallHierarchyOutgoingCall.t list or_null
       , unit )
       RequestHandler.t

@@ -7,7 +7,7 @@ open Node_globals
 
 module Url : sig
   module UrlObject : sig
-    type t = url_UrlObject
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -67,7 +67,7 @@ module Url : sig
   [@@js.scope "UrlObject"]
 
   module Url : sig
-    type t = url_Url
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -131,7 +131,7 @@ module Url : sig
   [@@js.scope "Url"]
 
   module UrlWithParsedQuery : sig
-    type t = url_UrlWithParsedQuery
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -143,12 +143,12 @@ module Url : sig
     val set_query : t -> Node_querystring.Querystring.ParsedUrlQuery.t -> unit
       [@@js.set "query"]
 
-    val cast : t -> url_Url [@@js.cast]
+    val cast : t -> Url.t [@@js.cast]
   end
   [@@js.scope "UrlWithParsedQuery"]
 
   module UrlWithStringQuery : sig
-    type t = url_UrlWithStringQuery
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -158,55 +158,55 @@ module Url : sig
 
     val set_query : t -> string or_null -> unit [@@js.set "query"]
 
-    val cast : t -> url_Url [@@js.cast]
+    val cast : t -> Url.t [@@js.cast]
   end
   [@@js.scope "UrlWithStringQuery"]
 
-  val parse : urlStr:string -> url_UrlWithStringQuery [@@js.global "parse"]
+  val parse : string -> UrlWithStringQuery.t [@@js.global "parse"]
 
   val parse
-    :  urlStr:string
-    -> parseQueryString:([ `L_b_false ][@js.enum]) or_undefined
-    -> ?slashesDenoteHost:bool
+    :  url_str:string
+    -> parse_query_string:([ `L_b_false ][@js.enum]) or_undefined
+    -> ?slashes_denote_host:bool
     -> unit
-    -> url_UrlWithStringQuery
+    -> UrlWithStringQuery.t
     [@@js.global "parse"]
 
   val parse
-    :  urlStr:string
-    -> parseQueryString:([ `L_b_true ][@js.enum])
-    -> ?slashesDenoteHost:bool
+    :  url_str:string
+    -> parse_query_string:([ `L_b_true ][@js.enum])
+    -> ?slashes_denote_host:bool
     -> unit
-    -> url_UrlWithParsedQuery
+    -> UrlWithParsedQuery.t
     [@@js.global "parse"]
 
   val parse
-    :  urlStr:string
-    -> parseQueryString:bool
-    -> ?slashesDenoteHost:bool
+    :  url_str:string
+    -> parse_query_string:bool
+    -> ?slashes_denote_host:bool
     -> unit
-    -> url_Url
+    -> Url.t
     [@@js.global "parse"]
 
-  val format : uRL:url_URL -> ?options:url_URLFormatOptions -> unit -> string
+  val format : url:URL.t -> ?options:URLFormatOptions.t -> unit -> string
     [@@js.global "format"]
 
-  val format : urlObject:url_UrlObject or_string -> string
-    [@@js.global "format"]
+  val format : url_object:UrlObject.t or_string -> string [@@js.global "format"]
 
   val resolve : from:string -> to_:string -> string [@@js.global "resolve"]
 
-  val domainToASCII : domain:string -> string [@@js.global "domainToASCII"]
+  val domain_to_ascii : domain:string -> string [@@js.global "domainToASCII"]
 
-  val domainToUnicode : domain:string -> string [@@js.global "domainToUnicode"]
+  val domain_to_unicode : domain:string -> string
+    [@@js.global "domainToUnicode"]
 
-  val fileURLToPath : url:url_URL or_string -> string
+  val file_url_to_path : url:URL.t or_string -> string
     [@@js.global "fileURLToPath"]
 
-  val pathToFileURL : url:string -> url_URL [@@js.global "pathToFileURL"]
+  val path_to_file_url : url:string -> URL.t [@@js.global "pathToFileURL"]
 
   module URLFormatOptions : sig
-    type t = url_URLFormatOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -231,7 +231,7 @@ module Url : sig
   [@@js.scope "URLFormatOptions"]
 
   module URL : sig
-    type t = url_URL
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -277,20 +277,20 @@ module Url : sig
 
     val set_search : t -> string -> unit [@@js.set "search"]
 
-    val get_searchParams : t -> url_URLSearchParams [@@js.get "searchParams"]
+    val get_search_params : t -> URLSearchParams.t [@@js.get "searchParams"]
 
     val get_username : t -> string [@@js.get "username"]
 
     val set_username : t -> string -> unit [@@js.set "username"]
 
-    val toString : t -> string [@@js.call "toString"]
+    val to_string : t -> string [@@js.call "toString"]
 
-    val toJSON : t -> string [@@js.call "toJSON"]
+    val to_json : t -> string [@@js.call "toJSON"]
   end
   [@@js.scope "URL"]
 
   module URLSearchParams : sig
-    type t = url_URLSearchParams
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -315,15 +315,15 @@ module Url : sig
     val entries : t -> (string * string) IterableIterator.t
       [@@js.call "entries"]
 
-    val forEach
+    val for_each
       :  t
-      -> callback:(value:string -> name:string -> searchParams:t -> unit)
+      -> callback:(value:string -> name:string -> search_params:t -> unit)
       -> unit
       [@@js.call "forEach"]
 
     val get_ : t -> name:string -> string or_null [@@js.call "get"]
 
-    val getAll : t -> name:string -> string list [@@js.call "getAll"]
+    val get_all : t -> name:string -> string list [@@js.call "getAll"]
 
     val has : t -> name:string -> bool [@@js.call "has"]
 
@@ -333,7 +333,7 @@ module Url : sig
 
     val sort : t -> unit [@@js.call "sort"]
 
-    val toString : t -> string [@@js.call "toString"]
+    val to_string : t -> string [@@js.call "toString"]
 
     val values : t -> string IterableIterator.t [@@js.call "values"]
 

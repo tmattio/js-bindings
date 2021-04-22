@@ -25,7 +25,7 @@ module DownloadVersion : sig
     ( ([ `L_s1_insiders [@js "insiders"] | `L_s3_stable [@js "stable"] ]
       [@js.enum])
     , string )
-    _StringLiteralUnion
+    StringLiteralUnion.t
 
   val t_to_js : t -> Ojs.t
 
@@ -41,16 +41,16 @@ module DownloadPlatform : sig
        ]
       [@js.enum])
     , string )
-    _StringLiteralUnion
+    StringLiteralUnion.t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 end
 
-val downloadAndUnzipVSCode
-  :  ?version:_DownloadVersion
-  -> ?platform:_DownloadPlatform
+val download_and_unzip_vs_code
+  :  ?version:DownloadVersion.t
+  -> ?platform:DownloadPlatform.t
   -> unit
   -> string Promise.t
   [@@js.global "downloadAndUnzipVSCode"]

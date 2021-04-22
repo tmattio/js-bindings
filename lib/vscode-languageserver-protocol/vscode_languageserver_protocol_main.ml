@@ -2,7 +2,7 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-let (createProtocolConnection :
+let (create_protocol_connection :
   input:MessageReader.t ->
     output:MessageWriter.t ->
       ?logger:Logger.t ->
@@ -43,7 +43,7 @@ let (createProtocolConnection :
                                         ConnectionStrategy.t_to_js x6)|])
                           | None -> ());
                          x5))|])
-let (createProtocolConnection :
+let (create_protocol_connection :
   input:Node.ReadableStream.t ->
     output:Node.WritableStream.t ->
       ?logger:Logger.t ->

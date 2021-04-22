@@ -11,10 +11,10 @@ module AnonymousInterface0 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_diagnostic : t -> _DiagnosticClientCapabilities
+  val get_diagnostic : t -> DiagnosticClientCapabilities.t
     [@@js.get "diagnostic"]
 
-  val set_diagnostic : t -> _DiagnosticClientCapabilities -> unit
+  val set_diagnostic : t -> DiagnosticClientCapabilities.t -> unit
     [@@js.set "diagnostic"]
 end
 
@@ -25,14 +25,14 @@ module AnonymousInterface1 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_kind : t -> _DocumentDiagnosticReportKind_new [@@js.get "kind"]
+  val get_kind : t -> DocumentDiagnosticReportKind_new.t [@@js.get "kind"]
 
-  val set_kind : t -> _DocumentDiagnosticReportKind_new -> unit
+  val set_kind : t -> DocumentDiagnosticReportKind_new.t -> unit
     [@@js.set "kind"]
 
-  val get_resultId : t -> string [@@js.get "resultId"]
+  val get_result_id : t -> string [@@js.get "resultId"]
 
-  val set_resultId : t -> string -> unit [@@js.set "resultId"]
+  val set_result_id : t -> string -> unit [@@js.set "resultId"]
 
   val get_items : t -> Diagnostic.t list [@@js.get "items"]
 
@@ -46,14 +46,14 @@ module AnonymousInterface2 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_kind : t -> _DocumentDiagnosticReportKind_unChanged [@@js.get "kind"]
+  val get_kind : t -> DocumentDiagnosticReportKind_unChanged.t [@@js.get "kind"]
 
-  val set_kind : t -> _DocumentDiagnosticReportKind_unChanged -> unit
+  val set_kind : t -> DocumentDiagnosticReportKind_unChanged.t -> unit
     [@@js.set "kind"]
 
-  val get_resultId : t -> string [@@js.get "resultId"]
+  val get_result_id : t -> string [@@js.get "resultId"]
 
-  val set_resultId : t -> string -> unit [@@js.set "resultId"]
+  val set_result_id : t -> string -> unit [@@js.set "resultId"]
 end
 
 module AnonymousInterface3 : sig
@@ -96,32 +96,32 @@ end
    WorkDoneProgressParams, TextDocumentRegistrationOptions,
    WorkDoneProgressOptions, TextDocumentClientCapabilities } from './protocol'; *)
 module DiagnosticClientCapabilities : sig
-  type t = _DiagnosticClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 end
 [@@js.scope "DiagnosticClientCapabilities"]
 
 module M_DiagnosticClientCapabilities : sig
-  type t = _DiagnosticClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument
+  val get_text_document
     :  t
     -> (TextDocumentClientCapabilities.t, AnonymousInterface0.t) intersection2
     [@@js.get "textDocument"]
 
-  val set_textDocument
+  val set_text_document
     :  t
     -> (TextDocumentClientCapabilities.t, AnonymousInterface0.t) intersection2
     -> unit
@@ -130,7 +130,7 @@ end
 [@@js.scope "$DiagnosticClientCapabilities"]
 
 module DiagnosticOptions : sig
-  type t = _DiagnosticOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -140,21 +140,21 @@ module DiagnosticOptions : sig
 
   val set_identifier : t -> string -> unit [@@js.set "identifier"]
 
-  val get_interFileDependencies : t -> bool [@@js.get "interFileDependencies"]
+  val get_inter_file_dependencies : t -> bool [@@js.get "interFileDependencies"]
 
-  val set_interFileDependencies : t -> bool -> unit
+  val set_inter_file_dependencies : t -> bool -> unit
     [@@js.set "interFileDependencies"]
 
-  val get_workspaceProvider : t -> bool [@@js.get "workspaceProvider"]
+  val get_workspace_provider : t -> bool [@@js.get "workspaceProvider"]
 
-  val set_workspaceProvider : t -> bool -> unit [@@js.set "workspaceProvider"]
+  val set_workspace_provider : t -> bool -> unit [@@js.set "workspaceProvider"]
 
   val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
 end
 [@@js.scope "DiagnosticOptions"]
 
 module DiagnosticRegistrationOptions : sig
-  type t = _DiagnosticRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -162,37 +162,37 @@ module DiagnosticRegistrationOptions : sig
 
   val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _DiagnosticOptions [@@js.cast]
+  val cast' : t -> DiagnosticOptions.t [@@js.cast]
 
   val cast'' : t -> StaticRegistrationOptions.t [@@js.cast]
 end
 [@@js.scope "DiagnosticRegistrationOptions"]
 
 module M_DiagnosticServerCapabilities : sig
-  type t = _DiagnosticServerCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_diagnosticProvider : t -> _DiagnosticOptions
+  val get_diagnostic_provider : t -> DiagnosticOptions.t
     [@@js.get "diagnosticProvider"]
 
-  val set_diagnosticProvider : t -> _DiagnosticOptions -> unit
+  val set_diagnostic_provider : t -> DiagnosticOptions.t -> unit
     [@@js.set "diagnosticProvider"]
 end
 [@@js.scope "$DiagnosticServerCapabilities"]
 
 module DiagnosticServerCancellationData : sig
-  type t = _DiagnosticServerCancellationData
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_retriggerRequest : t -> bool [@@js.get "retriggerRequest"]
+  val get_retrigger_request : t -> bool [@@js.get "retriggerRequest"]
 
-  val set_retriggerRequest : t -> bool -> unit [@@js.set "retriggerRequest"]
+  val set_retrigger_request : t -> bool -> unit [@@js.set "retriggerRequest"]
 end
 [@@js.scope "DiagnosticServerCancellationData"]
 
@@ -202,24 +202,25 @@ end
 [@@js.scope "DiagnosticServerCancellationData"]
 
 module DocumentDiagnosticParams : sig
-  type t = _DocumentDiagnosticParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentIdentifier.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentIdentifier.t
+    [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentIdentifier.t -> unit
+  val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
   val get_identifier : t -> string [@@js.get "identifier"]
 
   val set_identifier : t -> string -> unit [@@js.set "identifier"]
 
-  val get_previousResultId : t -> string [@@js.get "previousResultId"]
+  val get_previous_result_id : t -> string [@@js.get "previousResultId"]
 
-  val set_previousResultId : t -> string -> unit [@@js.set "previousResultId"]
+  val set_previous_result_id : t -> string -> unit [@@js.set "previousResultId"]
 
   val cast : t -> WorkDoneProgressParams.t [@@js.cast]
 
@@ -252,7 +253,7 @@ module DocumentDiagnosticReport : sig
 end
 
 module DocumentDiagnosticReportPartialResult : sig
-  type t = _DocumentDiagnosticReportPartialResult
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -271,18 +272,18 @@ module DocumentDiagnosticRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _DocumentDiagnosticParams
-      , _DocumentDiagnosticReport
-      , _DocumentDiagnosticReportPartialResult
-      , _DiagnosticServerCancellationData
-      , _DiagnosticRegistrationOptions )
+    : ( DocumentDiagnosticParams.t
+      , DocumentDiagnosticReport.t
+      , DocumentDiagnosticReportPartialResult.t
+      , DiagnosticServerCancellationData.t
+      , DiagnosticRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
     type t =
-      ( _DocumentDiagnosticParams
-      , _DocumentDiagnosticReport
+      ( DocumentDiagnosticParams.t
+      , DocumentDiagnosticReport.t
       , unit )
       RequestHandler.t
 
@@ -294,7 +295,7 @@ end
 [@@js.scope "DocumentDiagnosticRequest"]
 
 module WorkspaceDiagnosticParams : sig
-  type t = _WorkspaceDiagnosticParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -304,10 +305,10 @@ module WorkspaceDiagnosticParams : sig
 
   val set_identifier : t -> string -> unit [@@js.set "identifier"]
 
-  val get_previousResultIds : t -> AnonymousInterface3.t list
+  val get_previous_result_ids : t -> AnonymousInterface3.t list
     [@@js.get "previousResultIds"]
 
-  val set_previousResultIds : t -> AnonymousInterface3.t list -> unit
+  val set_previous_result_ids : t -> AnonymousInterface3.t list -> unit
     [@@js.set "previousResultIds"]
 
   val cast : t -> WorkDoneProgressParams.t [@@js.cast]
@@ -317,7 +318,7 @@ end
 [@@js.scope "WorkspaceDiagnosticParams"]
 
 module WorkspaceDocumentDiagnosticReport : sig
-  type t = (AnonymousInterface4.t, _DocumentDiagnosticReport) intersection2
+  type t = (AnonymousInterface4.t, DocumentDiagnosticReport.t) intersection2
 
   val t_to_js : t -> Ojs.t
 
@@ -325,31 +326,31 @@ module WorkspaceDocumentDiagnosticReport : sig
 end
 
 module WorkspaceDiagnosticReport : sig
-  type t = _WorkspaceDiagnosticReport
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_items : t -> _WorkspaceDocumentDiagnosticReport list
+  val get_items : t -> WorkspaceDocumentDiagnosticReport.t list
     [@@js.get "items"]
 
-  val set_items : t -> _WorkspaceDocumentDiagnosticReport list -> unit
+  val set_items : t -> WorkspaceDocumentDiagnosticReport.t list -> unit
     [@@js.set "items"]
 end
 [@@js.scope "WorkspaceDiagnosticReport"]
 
 module WorkspaceDiagnosticReportPartialResult : sig
-  type t = _WorkspaceDiagnosticReportPartialResult
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_items : t -> _WorkspaceDocumentDiagnosticReport list
+  val get_items : t -> WorkspaceDocumentDiagnosticReport.t list
     [@@js.get "items"]
 
-  val set_items : t -> _WorkspaceDocumentDiagnosticReport list -> unit
+  val set_items : t -> WorkspaceDocumentDiagnosticReport.t list -> unit
     [@@js.set "items"]
 end
 [@@js.scope "WorkspaceDiagnosticReportPartialResult"]
@@ -360,18 +361,18 @@ module WorkspaceDiagnosticRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _WorkspaceDiagnosticParams
-      , _WorkspaceDiagnosticReport
-      , _WorkspaceDiagnosticReportPartialResult
-      , _DiagnosticServerCancellationData
+    : ( WorkspaceDiagnosticParams.t
+      , WorkspaceDiagnosticReport.t
+      , WorkspaceDiagnosticReportPartialResult.t
+      , DiagnosticServerCancellationData.t
       , unit )
       ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
     type t =
-      ( _WorkspaceDiagnosticParams
-      , _WorkspaceDiagnosticReport or_null
+      ( WorkspaceDiagnosticParams.t
+      , WorkspaceDiagnosticReport.t or_null
       , unit )
       RequestHandler.t
 

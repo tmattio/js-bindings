@@ -4,35 +4,31 @@
 open Es5
 module RegistrationType =
   struct
-    type 'RO t = 'RO _RegistrationType
+    type 'RO t = Ojs.t
     let rec t_of_js : 'RO . (Ojs.t -> 'RO) -> Ojs.t -> 'RO t = fun (type
-      __RO) ->
-      fun (__RO_of_js : Ojs.t -> __RO) ->
-        fun (x3 : Ojs.t) -> _RegistrationType_of_js __RO_of_js x3
+      __RO) -> fun (__RO_of_js : Ojs.t -> __RO) -> fun (x2 : Ojs.t) -> x2
     and t_to_js : 'RO . ('RO -> Ojs.t) -> 'RO t -> Ojs.t = fun (type __RO) ->
-      fun (__RO_to_js : __RO -> Ojs.t) ->
-        fun (x1 : __RO _RegistrationType) ->
-          _RegistrationType_to_js __RO_to_js x1
+      fun (__RO_to_js : __RO -> Ojs.t) -> fun (x1 : Ojs.t) -> x1
     let (get_____ : 'RO t -> ('RO * EM.t) or_undefined) =
-      fun (x5 : 'RO t) ->
+      fun (x3 : 'RO t) ->
         or_undefined_of_js
-          (fun (x7 : Ojs.t) ->
-             let x8 = x7 in
-             ((Obj.magic (Ojs.array_get x8 0)),
-               (EM.t_of_js (Ojs.array_get x8 1))))
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x5) "____")
+          (fun (x5 : Ojs.t) ->
+             let x6 = x5 in
+             ((Obj.magic (Ojs.array_get x6 0)),
+               (EM.t_of_js (Ojs.array_get x6 1))))
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x3) "____")
     let (get_method : 'RO t -> string) =
-      fun (x9 : 'RO t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x9) "method")
+      fun (x7 : 'RO t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x7) "method")
     let (create : method_:string -> 'RO t) =
-      fun ~method_:(x11 : string) ->
+      fun ~method_:(x9 : string) ->
         t_of_js Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "RegistrationType")
-             [|(Ojs.string_to_js x11)|])
+             [|(Ojs.string_to_js x9)|])
   end
 module ProtocolRequestType0 =
   struct
-    type ('R, 'PR, 'E, 'RO) t = ('R, 'PR, 'E, 'RO) _ProtocolRequestType0
+    type ('R, 'PR, 'E, 'RO) t = Ojs.t
     let rec t_of_js :
       'R 'PR 'E 'RO .
         (Ojs.t -> 'R) ->
@@ -43,10 +39,7 @@ module ProtocolRequestType0 =
       fun (__R_of_js : Ojs.t -> __R) ->
         fun (__PR_of_js : Ojs.t -> __PR) ->
           fun (__E_of_js : Ojs.t -> __E) ->
-            fun (__RO_of_js : Ojs.t -> __RO) ->
-              fun (x18 : Ojs.t) ->
-                _ProtocolRequestType0_of_js __R_of_js __PR_of_js __E_of_js
-                  __RO_of_js x18
+            fun (__RO_of_js : Ojs.t -> __RO) -> fun (x12 : Ojs.t) -> x12
     and t_to_js :
       'R 'PR 'E 'RO .
         ('R -> Ojs.t) ->
@@ -57,56 +50,53 @@ module ProtocolRequestType0 =
       fun (__R_to_js : __R -> Ojs.t) ->
         fun (__PR_to_js : __PR -> Ojs.t) ->
           fun (__E_to_js : __E -> Ojs.t) ->
-            fun (__RO_to_js : __RO -> Ojs.t) ->
-              fun (x13 : (__R, __PR, __E, __RO) _ProtocolRequestType0) ->
-                _ProtocolRequestType0_to_js __R_to_js __PR_to_js __E_to_js
-                  __RO_to_js x13
+            fun (__RO_to_js : __RO -> Ojs.t) -> fun (x11 : Ojs.t) -> x11
     let (get____ : ('R, 'PR, 'E, 'RO) t -> ('PR * 'RO * EM.t) or_undefined) =
-      fun (x23 : ('R, 'PR, 'E, 'RO) t) ->
+      fun (x13 : ('R, 'PR, 'E, 'RO) t) ->
         or_undefined_of_js
-          (fun (x28 : Ojs.t) ->
-             let x29 = x28 in
-             ((Obj.magic (Ojs.array_get x29 0)),
-               (Obj.magic (Ojs.array_get x29 1)),
-               (EM.t_of_js (Ojs.array_get x29 2))))
+          (fun (x18 : Ojs.t) ->
+             let x19 = x18 in
+             ((Obj.magic (Ojs.array_get x19 0)),
+               (Obj.magic (Ojs.array_get x19 1)),
+               (EM.t_of_js (Ojs.array_get x19 2))))
           (Ojs.get_prop_ascii
-             (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x23) "___")
+             (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x13) "___")
     let (get_____ : ('R, 'PR, 'E, 'RO) t -> ('RO * EM.t) or_undefined) =
-      fun (x30 : ('R, 'PR, 'E, 'RO) t) ->
+      fun (x20 : ('R, 'PR, 'E, 'RO) t) ->
         or_undefined_of_js
-          (fun (x35 : Ojs.t) ->
-             let x36 = x35 in
-             ((Obj.magic (Ojs.array_get x36 0)),
-               (EM.t_of_js (Ojs.array_get x36 1))))
+          (fun (x25 : Ojs.t) ->
+             let x26 = x25 in
+             ((Obj.magic (Ojs.array_get x26 0)),
+               (EM.t_of_js (Ojs.array_get x26 1))))
           (Ojs.get_prop_ascii
-             (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x30) "____")
+             (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x20) "____")
     let (get__pr : ('R, 'PR, 'E, 'RO) t -> 'PR or_undefined) =
-      fun (x37 : ('R, 'PR, 'E, 'RO) t) ->
+      fun (x27 : ('R, 'PR, 'E, 'RO) t) ->
         or_undefined_of_js Obj.magic
           (Ojs.get_prop_ascii
-             (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x37) "_pr")
+             (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x27) "_pr")
     let (create : method_:string -> ('R, 'PR, 'E, 'RO) t) =
-      fun ~method_:(x43 : string) ->
+      fun ~method_:(x33 : string) ->
         t_of_js Obj.magic Obj.magic Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "ProtocolRequestType0")
-             [|(Ojs.string_to_js x43)|])
+             [|(Ojs.string_to_js x33)|])
     let (cast : ('R, 'PR, 'E, 'RO) t -> ('R, 'E) RequestType0.t) =
-      fun (x48 : ('R, 'PR, 'E, 'RO) t) ->
+      fun (x38 : ('R, 'PR, 'E, 'RO) t) ->
         RequestType0.t_of_js Obj.magic Obj.magic
-          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x48)
+          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x38)
     let (cast' : ('R, 'PR, 'E, 'RO) t -> 'PR ProgressType.t) =
-      fun (x55 : ('R, 'PR, 'E, 'RO) t) ->
+      fun (x45 : ('R, 'PR, 'E, 'RO) t) ->
         ProgressType.t_of_js Obj.magic
-          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x55)
-    let (cast'' : ('R, 'PR, 'E, 'RO) t -> 'RO _RegistrationType) =
-      fun (x61 : ('R, 'PR, 'E, 'RO) t) ->
-        _RegistrationType_of_js Obj.magic
-          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x61)
+          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x45)
+    let (cast'' : ('R, 'PR, 'E, 'RO) t -> 'RO RegistrationType.t) =
+      fun (x51 : ('R, 'PR, 'E, 'RO) t) ->
+        RegistrationType.t_of_js Obj.magic
+          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic x51)
   end
 module ProtocolRequestType =
   struct
     type ('P, 'R, 'PR, 'E, 'RO) t =
-      ('P, 'R, 'PR, 'E, 'RO) _ProtocolRequestType
+      ('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t
     let rec t_of_js :
       'P 'R 'PR 'E 'RO .
         (Ojs.t -> 'P) ->
@@ -121,9 +111,9 @@ module ProtocolRequestType =
           fun (__PR_of_js : Ojs.t -> __PR) ->
             fun (__E_of_js : Ojs.t -> __E) ->
               fun (__RO_of_js : Ojs.t -> __RO) ->
-                fun (x73 : Ojs.t) ->
-                  _ProtocolRequestType_of_js __P_of_js __R_of_js __PR_of_js
-                    __E_of_js __RO_of_js x73
+                fun (x63 : Ojs.t) ->
+                  ProtocolRequestType.t_of_js __P_of_js __R_of_js __PR_of_js
+                    __E_of_js __RO_of_js x63
     and t_to_js :
       'P 'R 'PR 'E 'RO .
         ('P -> Ojs.t) ->
@@ -138,140 +128,136 @@ module ProtocolRequestType =
           fun (__PR_to_js : __PR -> Ojs.t) ->
             fun (__E_to_js : __E -> Ojs.t) ->
               fun (__RO_to_js : __RO -> Ojs.t) ->
-                fun (x67 : (__P, __R, __PR, __E, __RO) _ProtocolRequestType)
+                fun (x57 : (__P, __R, __PR, __E, __RO) ProtocolRequestType.t)
                   ->
-                  _ProtocolRequestType_to_js __P_to_js __R_to_js __PR_to_js
-                    __E_to_js __RO_to_js x67
+                  ProtocolRequestType.t_to_js __P_to_js __R_to_js __PR_to_js
+                    __E_to_js __RO_to_js x57
     let (get____ :
       ('P, 'R, 'PR, 'E, 'RO) t -> ('PR * 'RO * EM.t) or_undefined) =
-      fun (x79 : ('P, 'R, 'PR, 'E, 'RO) t) ->
+      fun (x69 : ('P, 'R, 'PR, 'E, 'RO) t) ->
         or_undefined_of_js
-          (fun (x85 : Ojs.t) ->
-             let x86 = x85 in
-             ((Obj.magic (Ojs.array_get x86 0)),
-               (Obj.magic (Ojs.array_get x86 1)),
-               (EM.t_of_js (Ojs.array_get x86 2))))
+          (fun (x75 : Ojs.t) ->
+             let x76 = x75 in
+             ((Obj.magic (Ojs.array_get x76 0)),
+               (Obj.magic (Ojs.array_get x76 1)),
+               (EM.t_of_js (Ojs.array_get x76 2))))
           (Ojs.get_prop_ascii
-             (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x79)
+             (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x69)
              "___")
     let (get_____ : ('P, 'R, 'PR, 'E, 'RO) t -> ('RO * EM.t) or_undefined) =
-      fun (x87 : ('P, 'R, 'PR, 'E, 'RO) t) ->
+      fun (x77 : ('P, 'R, 'PR, 'E, 'RO) t) ->
         or_undefined_of_js
-          (fun (x93 : Ojs.t) ->
-             let x94 = x93 in
-             ((Obj.magic (Ojs.array_get x94 0)),
-               (EM.t_of_js (Ojs.array_get x94 1))))
+          (fun (x83 : Ojs.t) ->
+             let x84 = x83 in
+             ((Obj.magic (Ojs.array_get x84 0)),
+               (EM.t_of_js (Ojs.array_get x84 1))))
           (Ojs.get_prop_ascii
-             (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x87)
+             (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x77)
              "____")
     let (get__pr : ('P, 'R, 'PR, 'E, 'RO) t -> 'PR or_undefined) =
-      fun (x95 : ('P, 'R, 'PR, 'E, 'RO) t) ->
+      fun (x85 : ('P, 'R, 'PR, 'E, 'RO) t) ->
         or_undefined_of_js Obj.magic
           (Ojs.get_prop_ascii
-             (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x95)
+             (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x85)
              "_pr")
     let (create : method_:string -> ('P, 'R, 'PR, 'E, 'RO) t) =
-      fun ~method_:(x102 : string) ->
+      fun ~method_:(x92 : string) ->
         t_of_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "ProtocolRequestType")
-             [|(Ojs.string_to_js x102)|])
+             [|(Ojs.string_to_js x92)|])
     let (cast : ('P, 'R, 'PR, 'E, 'RO) t -> ('P, 'R, 'E) RequestType.t) =
-      fun (x108 : ('P, 'R, 'PR, 'E, 'RO) t) ->
+      fun (x98 : ('P, 'R, 'PR, 'E, 'RO) t) ->
         RequestType.t_of_js Obj.magic Obj.magic Obj.magic
-          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x108)
+          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x98)
     let (cast' : ('P, 'R, 'PR, 'E, 'RO) t -> 'PR ProgressType.t) =
-      fun (x117 : ('P, 'R, 'PR, 'E, 'RO) t) ->
+      fun (x107 : ('P, 'R, 'PR, 'E, 'RO) t) ->
         ProgressType.t_of_js Obj.magic
-          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x117)
-    let (cast'' : ('P, 'R, 'PR, 'E, 'RO) t -> 'RO _RegistrationType) =
-      fun (x124 : ('P, 'R, 'PR, 'E, 'RO) t) ->
-        _RegistrationType_of_js Obj.magic
-          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x124)
+          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x107)
+    let (cast'' : ('P, 'R, 'PR, 'E, 'RO) t -> 'RO RegistrationType.t) =
+      fun (x114 : ('P, 'R, 'PR, 'E, 'RO) t) ->
+        RegistrationType.t_of_js Obj.magic
+          (t_to_js Obj.magic Obj.magic Obj.magic Obj.magic Obj.magic x114)
   end
 module ProtocolNotificationType0 =
   struct
-    type 'RO t = 'RO _ProtocolNotificationType0
+    type 'RO t = 'RO ProtocolNotificationType.t
     let rec t_of_js : 'RO . (Ojs.t -> 'RO) -> Ojs.t -> 'RO t = fun (type
       __RO) ->
       fun (__RO_of_js : Ojs.t -> __RO) ->
-        fun (x133 : Ojs.t) ->
-          _ProtocolNotificationType0_of_js __RO_of_js x133
+        fun (x123 : Ojs.t) ->
+          ProtocolNotificationType.t_of_js __RO_of_js x123
     and t_to_js : 'RO . ('RO -> Ojs.t) -> 'RO t -> Ojs.t = fun (type __RO) ->
       fun (__RO_to_js : __RO -> Ojs.t) ->
-        fun (x131 : __RO _ProtocolNotificationType0) ->
-          _ProtocolNotificationType0_to_js __RO_to_js x131
+        fun (x121 : __RO ProtocolNotificationType.t) ->
+          ProtocolNotificationType.t_to_js __RO_to_js x121
     let (get____ : 'RO t -> ('RO * EM.t) or_undefined) =
-      fun (x135 : 'RO t) ->
+      fun (x125 : 'RO t) ->
         or_undefined_of_js
-          (fun (x137 : Ojs.t) ->
-             let x138 = x137 in
-             ((Obj.magic (Ojs.array_get x138 0)),
-               (EM.t_of_js (Ojs.array_get x138 1))))
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x135) "___")
+          (fun (x127 : Ojs.t) ->
+             let x128 = x127 in
+             ((Obj.magic (Ojs.array_get x128 0)),
+               (EM.t_of_js (Ojs.array_get x128 1))))
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x125) "___")
     let (get_____ : 'RO t -> ('RO * EM.t) or_undefined) =
-      fun (x139 : 'RO t) ->
+      fun (x129 : 'RO t) ->
         or_undefined_of_js
-          (fun (x141 : Ojs.t) ->
-             let x142 = x141 in
-             ((Obj.magic (Ojs.array_get x142 0)),
-               (EM.t_of_js (Ojs.array_get x142 1))))
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x139) "____")
+          (fun (x131 : Ojs.t) ->
+             let x132 = x131 in
+             ((Obj.magic (Ojs.array_get x132 0)),
+               (EM.t_of_js (Ojs.array_get x132 1))))
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x129) "____")
     let (create : method_:string -> 'RO t) =
-      fun ~method_:(x143 : string) ->
+      fun ~method_:(x133 : string) ->
         t_of_js Obj.magic
           (Ojs.new_obj
              (Ojs.get_prop_ascii Ojs.global "ProtocolNotificationType0")
-             [|(Ojs.string_to_js x143)|])
+             [|(Ojs.string_to_js x133)|])
     let (cast : 'RO t -> NotificationType0.t) =
-      fun (x145 : 'RO t) ->
-        NotificationType0.t_of_js (t_to_js Obj.magic x145)
-    let (cast' : 'RO t -> 'RO _RegistrationType) =
-      fun (x147 : 'RO t) ->
-        _RegistrationType_of_js Obj.magic (t_to_js Obj.magic x147)
+      fun (x135 : 'RO t) ->
+        NotificationType0.t_of_js (t_to_js Obj.magic x135)
+    let (cast' : 'RO t -> 'RO RegistrationType.t) =
+      fun (x137 : 'RO t) ->
+        RegistrationType.t_of_js Obj.magic (t_to_js Obj.magic x137)
   end
 module ProtocolNotificationType =
   struct
-    type ('P, 'RO) t = ('P, 'RO) _ProtocolNotificationType
+    type ('P, 'RO) t = Ojs.t
     let rec t_of_js :
       'P 'RO . (Ojs.t -> 'P) -> (Ojs.t -> 'RO) -> Ojs.t -> ('P, 'RO) t = fun
       (type __P) -> fun (type __RO) ->
       fun (__P_of_js : Ojs.t -> __P) ->
-        fun (__RO_of_js : Ojs.t -> __RO) ->
-          fun (x153 : Ojs.t) ->
-            _ProtocolNotificationType_of_js __P_of_js __RO_of_js x153
+        fun (__RO_of_js : Ojs.t -> __RO) -> fun (x141 : Ojs.t) -> x141
     and t_to_js :
       'P 'RO . ('P -> Ojs.t) -> ('RO -> Ojs.t) -> ('P, 'RO) t -> Ojs.t = fun
       (type __P) -> fun (type __RO) ->
       fun (__P_to_js : __P -> Ojs.t) ->
-        fun (__RO_to_js : __RO -> Ojs.t) ->
-          fun (x150 : (__P, __RO) _ProtocolNotificationType) ->
-            _ProtocolNotificationType_to_js __P_to_js __RO_to_js x150
+        fun (__RO_to_js : __RO -> Ojs.t) -> fun (x140 : Ojs.t) -> x140
     let (get____ : ('P, 'RO) t -> ('RO * EM.t) or_undefined) =
-      fun (x156 : ('P, 'RO) t) ->
+      fun (x142 : ('P, 'RO) t) ->
         or_undefined_of_js
-          (fun (x159 : Ojs.t) ->
-             let x160 = x159 in
-             ((Obj.magic (Ojs.array_get x160 0)),
-               (EM.t_of_js (Ojs.array_get x160 1))))
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x156) "___")
+          (fun (x145 : Ojs.t) ->
+             let x146 = x145 in
+             ((Obj.magic (Ojs.array_get x146 0)),
+               (EM.t_of_js (Ojs.array_get x146 1))))
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x142) "___")
     let (get_____ : ('P, 'RO) t -> ('RO * EM.t) or_undefined) =
-      fun (x161 : ('P, 'RO) t) ->
+      fun (x147 : ('P, 'RO) t) ->
         or_undefined_of_js
-          (fun (x164 : Ojs.t) ->
-             let x165 = x164 in
-             ((Obj.magic (Ojs.array_get x165 0)),
-               (EM.t_of_js (Ojs.array_get x165 1))))
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x161) "____")
+          (fun (x150 : Ojs.t) ->
+             let x151 = x150 in
+             ((Obj.magic (Ojs.array_get x151 0)),
+               (EM.t_of_js (Ojs.array_get x151 1))))
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x147) "____")
     let (create : method_:string -> ('P, 'RO) t) =
-      fun ~method_:(x166 : string) ->
+      fun ~method_:(x152 : string) ->
         t_of_js Obj.magic Obj.magic
           (Ojs.new_obj
              (Ojs.get_prop_ascii Ojs.global "ProtocolNotificationType")
-             [|(Ojs.string_to_js x166)|])
+             [|(Ojs.string_to_js x152)|])
     let (cast : ('P, 'RO) t -> 'P NotificationType.t) =
-      fun (x169 : ('P, 'RO) t) ->
-        NotificationType.t_of_js Obj.magic (t_to_js Obj.magic Obj.magic x169)
-    let (cast' : ('P, 'RO) t -> 'RO _RegistrationType) =
-      fun (x173 : ('P, 'RO) t) ->
-        _RegistrationType_of_js Obj.magic (t_to_js Obj.magic Obj.magic x173)
+      fun (x155 : ('P, 'RO) t) ->
+        NotificationType.t_of_js Obj.magic (t_to_js Obj.magic Obj.magic x155)
+    let (cast' : ('P, 'RO) t -> 'RO RegistrationType.t) =
+      fun (x159 : ('P, 'RO) t) ->
+        RegistrationType.t_of_js Obj.magic (t_to_js Obj.magic Obj.magic x159)
   end

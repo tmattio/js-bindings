@@ -143,9 +143,9 @@ module Child_process : sig
 
     val get_connected : t -> bool [@@js.get "connected"]
 
-    val get_exitCode : t -> int or_null [@@js.get "exitCode"]
+    val get_exit_code : t -> int or_null [@@js.get "exitCode"]
 
-    val get_signalCode : t -> Node_process.Process.Signals.t or_null
+    val get_signal_code : t -> Node_process.Process.Signals.t or_null
       [@@js.get "signalCode"]
 
     val get_spawnargs : t -> string list [@@js.get "spawnargs"]
@@ -170,7 +170,7 @@ module Child_process : sig
     val send'
       :  t
       -> message:Serializable.t
-      -> ?sendHandle:SendHandle.t
+      -> ?send_handle:SendHandle.t
       -> ?callback:(error:Error.t or_null -> unit)
       -> unit
       -> bool
@@ -179,7 +179,7 @@ module Child_process : sig
     val send''
       :  t
       -> message:Serializable.t
-      -> ?sendHandle:SendHandle.t
+      -> ?send_handle:SendHandle.t
       -> ?options:MessageOptions.t
       -> ?callback:(error:Error.t or_null -> unit)
       -> unit
@@ -192,14 +192,14 @@ module Child_process : sig
 
     val ref : t -> unit [@@js.call "ref"]
 
-    val addListener
+    val add_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'
+    val add_listener'
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:
@@ -209,21 +209,21 @@ module Child_process : sig
       -> t
       [@@js.call "addListener"]
 
-    val addListener''
+    val add_listener''
       :  t
       -> event:([ `disconnect ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''
+    val add_listener'''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''
+    val add_listener''''
       :  t
       -> event:([ `exit ][@js.enum])
       -> listener:
@@ -233,10 +233,10 @@ module Child_process : sig
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''
+    val add_listener'''''
       :  t
       -> event:([ `message ][@js.enum])
-      -> listener:(message:Serializable.t -> sendHandle:SendHandle.t -> unit)
+      -> listener:(message:Serializable.t -> send_handle:SendHandle.t -> unit)
       -> t
       [@@js.call "addListener"]
 
@@ -273,7 +273,7 @@ module Child_process : sig
       :  t
       -> event:([ `message ][@js.enum])
       -> message:Serializable.t
-      -> sendHandle:SendHandle.t
+      -> send_handle:SendHandle.t
       -> bool
       [@@js.call "emit"]
 
@@ -321,7 +321,7 @@ module Child_process : sig
     val on'''''
       :  t
       -> event:([ `message ][@js.enum])
-      -> listener:(message:Serializable.t -> sendHandle:SendHandle.t -> unit)
+      -> listener:(message:Serializable.t -> send_handle:SendHandle.t -> unit)
       -> t
       [@@js.call "on"]
 
@@ -369,18 +369,18 @@ module Child_process : sig
     val once'''''
       :  t
       -> event:([ `message ][@js.enum])
-      -> listener:(message:Serializable.t -> sendHandle:SendHandle.t -> unit)
+      -> listener:(message:Serializable.t -> send_handle:SendHandle.t -> unit)
       -> t
       [@@js.call "once"]
 
-    val prependListener
+    val prepend_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'
+    val prepend_listener'
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:
@@ -390,21 +390,21 @@ module Child_process : sig
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''
+    val prepend_listener''
       :  t
       -> event:([ `disconnect ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''
+    val prepend_listener'''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''
+    val prepend_listener''''
       :  t
       -> event:([ `exit ][@js.enum])
       -> listener:
@@ -414,21 +414,21 @@ module Child_process : sig
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''
+    val prepend_listener'''''
       :  t
       -> event:([ `message ][@js.enum])
-      -> listener:(message:Serializable.t -> sendHandle:SendHandle.t -> unit)
+      -> listener:(message:Serializable.t -> send_handle:SendHandle.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependOnceListener
+    val prepend_once_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'
+    val prepend_once_listener'
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:
@@ -438,21 +438,21 @@ module Child_process : sig
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''
+    val prepend_once_listener''
       :  t
       -> event:([ `disconnect ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''
+    val prepend_once_listener'''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''
+    val prepend_once_listener''''
       :  t
       -> event:([ `exit ][@js.enum])
       -> listener:
@@ -462,10 +462,10 @@ module Child_process : sig
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''
+    val prepend_once_listener'''''
       :  t
       -> event:([ `message ][@js.enum])
-      -> listener:(message:Serializable.t -> sendHandle:SendHandle.t -> unit)
+      -> listener:(message:Serializable.t -> send_handle:SendHandle.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
@@ -561,9 +561,9 @@ module Child_process : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_keepOpen : t -> bool [@@js.get "keepOpen"]
+    val get_keep_open : t -> bool [@@js.get "keepOpen"]
 
-    val set_keepOpen : t -> bool -> unit [@@js.set "keepOpen"]
+    val set_keep_open : t -> bool -> unit [@@js.set "keepOpen"]
   end
   [@@js.scope "MessageOptions"]
 
@@ -651,9 +651,9 @@ module Child_process : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_windowsHide : t -> bool [@@js.get "windowsHide"]
+    val get_windows_hide : t -> bool [@@js.get "windowsHide"]
 
-    val set_windowsHide : t -> bool -> unit [@@js.set "windowsHide"]
+    val set_windows_hide : t -> bool -> unit [@@js.set "windowsHide"]
 
     val get_timeout : t -> int [@@js.get "timeout"]
 
@@ -682,10 +682,10 @@ module Child_process : sig
 
     val set_shell : t -> bool or_string -> unit [@@js.set "shell"]
 
-    val get_windowsVerbatimArguments : t -> bool
+    val get_windows_verbatim_arguments : t -> bool
       [@@js.get "windowsVerbatimArguments"]
 
-    val set_windowsVerbatimArguments : t -> bool -> unit
+    val set_windows_verbatim_arguments : t -> bool -> unit
       [@@js.set "windowsVerbatimArguments"]
 
     val cast : t -> CommonOptions.t [@@js.cast]
@@ -1000,14 +1000,14 @@ module Child_process : sig
 
     val set_shell : t -> string -> unit [@@js.set "shell"]
 
-    val get_maxBuffer : t -> int [@@js.get "maxBuffer"]
+    val get_max_buffer : t -> int [@@js.get "maxBuffer"]
 
-    val set_maxBuffer : t -> int -> unit [@@js.set "maxBuffer"]
+    val set_max_buffer : t -> int -> unit [@@js.set "maxBuffer"]
 
-    val get_killSignal : t -> Node_process.Process.Signals.t or_number
+    val get_kill_signal : t -> Node_process.Process.Signals.t or_number
       [@@js.get "killSignal"]
 
-    val set_killSignal : t -> Node_process.Process.Signals.t or_number -> unit
+    val set_kill_signal : t -> Node_process.Process.Signals.t or_number -> unit
       [@@js.set "killSignal"]
 
     val cast : t -> CommonOptions.t [@@js.cast]
@@ -1203,20 +1203,20 @@ module Child_process : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_maxBuffer : t -> int [@@js.get "maxBuffer"]
+    val get_max_buffer : t -> int [@@js.get "maxBuffer"]
 
-    val set_maxBuffer : t -> int -> unit [@@js.set "maxBuffer"]
+    val set_max_buffer : t -> int -> unit [@@js.set "maxBuffer"]
 
-    val get_killSignal : t -> Node_process.Process.Signals.t or_number
+    val get_kill_signal : t -> Node_process.Process.Signals.t or_number
       [@@js.get "killSignal"]
 
-    val set_killSignal : t -> Node_process.Process.Signals.t or_number -> unit
+    val set_kill_signal : t -> Node_process.Process.Signals.t or_number -> unit
       [@@js.set "killSignal"]
 
-    val get_windowsVerbatimArguments : t -> bool
+    val get_windows_verbatim_arguments : t -> bool
       [@@js.get "windowsVerbatimArguments"]
 
-    val set_windowsVerbatimArguments : t -> bool -> unit
+    val set_windows_verbatim_arguments : t -> bool -> unit
       [@@js.set "windowsVerbatimArguments"]
 
     val get_shell : t -> bool or_string [@@js.get "shell"]
@@ -1282,9 +1282,9 @@ module Child_process : sig
     val t_of_js : Ojs.t -> t
   end
 
-  val execFile : file:string -> ChildProcess.t [@@js.global "execFile"]
+  val exec_file : file:string -> ChildProcess.t [@@js.global "execFile"]
 
-  val execFile
+  val exec_file
     :  file:string
     -> options:
          (Node_fs.Fs.BaseEncodingOptions.t, ExecFileOptions.t) intersection2
@@ -1292,14 +1292,14 @@ module Child_process : sig
     -> ChildProcess.t
     [@@js.global "execFile"]
 
-  val execFile
+  val exec_file
     :  file:string
     -> ?args:string list or_null
     -> unit
     -> ChildProcess.t
     [@@js.global "execFile"]
 
-  val execFile
+  val exec_file
     :  file:string
     -> args:string list or_null_or_undefined
     -> options:
@@ -1308,7 +1308,7 @@ module Child_process : sig
     -> ChildProcess.t
     [@@js.global "execFile"]
 
-  val execFile
+  val exec_file
     :  file:string
     -> callback:
          (error:ExecFileException.t or_null
@@ -1318,7 +1318,7 @@ module Child_process : sig
     -> ChildProcess.t
     [@@js.global "execFile"]
 
-  val execFile
+  val exec_file
     :  file:string
     -> args:string list or_null_or_undefined
     -> callback:
@@ -1329,7 +1329,7 @@ module Child_process : sig
     -> ChildProcess.t
     [@@js.global "execFile"]
 
-  val execFile
+  val exec_file
     :  file:string
     -> options:ExecFileOptionsWithBufferEncoding.t
     -> callback:
@@ -1340,7 +1340,7 @@ module Child_process : sig
     -> ChildProcess.t
     [@@js.global "execFile"]
 
-  val execFile
+  val exec_file
     :  file:string
     -> args:string list or_null_or_undefined
     -> options:ExecFileOptionsWithBufferEncoding.t
@@ -1352,7 +1352,7 @@ module Child_process : sig
     -> ChildProcess.t
     [@@js.global "execFile"]
 
-  val execFile
+  val exec_file
     :  file:string
     -> options:ExecFileOptionsWithStringEncoding.t
     -> callback:
@@ -1363,7 +1363,7 @@ module Child_process : sig
     -> ChildProcess.t
     [@@js.global "execFile"]
 
-  val execFile
+  val exec_file
     :  file:string
     -> args:string list or_null_or_undefined
     -> options:ExecFileOptionsWithStringEncoding.t
@@ -1375,7 +1375,7 @@ module Child_process : sig
     -> ChildProcess.t
     [@@js.global "execFile"]
 
-  val execFile
+  val exec_file
     :  file:string
     -> options:ExecFileOptionsWithOtherEncoding.t
     -> callback:
@@ -1386,7 +1386,7 @@ module Child_process : sig
     -> ChildProcess.t
     [@@js.global "execFile"]
 
-  val execFile
+  val exec_file
     :  file:string
     -> args:string list or_null_or_undefined
     -> options:ExecFileOptionsWithOtherEncoding.t
@@ -1398,7 +1398,7 @@ module Child_process : sig
     -> ChildProcess.t
     [@@js.global "execFile"]
 
-  val execFile
+  val exec_file
     :  file:string
     -> options:ExecFileOptions.t
     -> callback:
@@ -1409,7 +1409,7 @@ module Child_process : sig
     -> ChildProcess.t
     [@@js.global "execFile"]
 
-  val execFile
+  val exec_file
     :  file:string
     -> args:string list or_null_or_undefined
     -> options:ExecFileOptions.t
@@ -1421,7 +1421,7 @@ module Child_process : sig
     -> ChildProcess.t
     [@@js.global "execFile"]
 
-  val execFile
+  val exec_file
     :  file:string
     -> options:
          (Node_fs.Fs.BaseEncodingOptions.t, ExecFileOptions.t) intersection2
@@ -1435,7 +1435,7 @@ module Child_process : sig
     -> ChildProcess.t
     [@@js.global "execFile"]
 
-  val execFile
+  val exec_file
     :  file:string
     -> args:string list or_null_or_undefined
     -> options:
@@ -1538,13 +1538,13 @@ module Child_process : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_execPath : t -> string [@@js.get "execPath"]
+    val get_exec_path : t -> string [@@js.get "execPath"]
 
-    val set_execPath : t -> string -> unit [@@js.set "execPath"]
+    val set_exec_path : t -> string -> unit [@@js.set "execPath"]
 
-    val get_execArgv : t -> string list [@@js.get "execArgv"]
+    val get_exec_argv : t -> string list [@@js.get "execArgv"]
 
-    val set_execArgv : t -> string list -> unit [@@js.set "execArgv"]
+    val set_exec_argv : t -> string list -> unit [@@js.set "execArgv"]
 
     val get_silent : t -> bool [@@js.get "silent"]
 
@@ -1558,10 +1558,10 @@ module Child_process : sig
 
     val set_detached : t -> bool -> unit [@@js.set "detached"]
 
-    val get_windowsVerbatimArguments : t -> bool
+    val get_windows_verbatim_arguments : t -> bool
       [@@js.get "windowsVerbatimArguments"]
 
-    val set_windowsVerbatimArguments : t -> bool -> unit
+    val set_windows_verbatim_arguments : t -> bool -> unit
       [@@js.set "windowsVerbatimArguments"]
 
     val cast : t -> ProcessEnvOptions.t [@@js.cast]
@@ -1571,14 +1571,14 @@ module Child_process : sig
   [@@js.scope "ForkOptions"]
 
   val fork
-    :  modulePath:string
+    :  module_path:string
     -> ?options:ForkOptions.t
     -> unit
     -> ChildProcess.t
     [@@js.global "fork"]
 
   val fork
-    :  modulePath:string
+    :  module_path:string
     -> ?args:string list
     -> ?options:ForkOptions.t
     -> unit
@@ -1596,15 +1596,15 @@ module Child_process : sig
 
     val set_input : t -> ArrayBufferView.t or_string -> unit [@@js.set "input"]
 
-    val get_killSignal : t -> Node_process.Process.Signals.t or_number
+    val get_kill_signal : t -> Node_process.Process.Signals.t or_number
       [@@js.get "killSignal"]
 
-    val set_killSignal : t -> Node_process.Process.Signals.t or_number -> unit
+    val set_kill_signal : t -> Node_process.Process.Signals.t or_number -> unit
       [@@js.set "killSignal"]
 
-    val get_maxBuffer : t -> int [@@js.get "maxBuffer"]
+    val get_max_buffer : t -> int [@@js.get "maxBuffer"]
 
-    val set_maxBuffer : t -> int -> unit [@@js.set "maxBuffer"]
+    val set_max_buffer : t -> int -> unit [@@js.set "maxBuffer"]
 
     val get_encoding
       :  t
@@ -1760,15 +1760,15 @@ module Child_process : sig
 
     val set_shell : t -> string -> unit [@@js.set "shell"]
 
-    val get_killSignal : t -> Node_process.Process.Signals.t or_number
+    val get_kill_signal : t -> Node_process.Process.Signals.t or_number
       [@@js.get "killSignal"]
 
-    val set_killSignal : t -> Node_process.Process.Signals.t or_number -> unit
+    val set_kill_signal : t -> Node_process.Process.Signals.t or_number -> unit
       [@@js.set "killSignal"]
 
-    val get_maxBuffer : t -> int [@@js.get "maxBuffer"]
+    val get_max_buffer : t -> int [@@js.get "maxBuffer"]
 
-    val set_maxBuffer : t -> int -> unit [@@js.set "maxBuffer"]
+    val set_max_buffer : t -> int -> unit [@@js.set "maxBuffer"]
 
     val get_encoding
       :  t
@@ -1818,23 +1818,23 @@ module Child_process : sig
   end
   [@@js.scope "ExecSyncOptionsWithBufferEncoding"]
 
-  val execSync : command:string -> Buffer.t [@@js.global "execSync"]
+  val exec_sync : command:string -> Buffer.t [@@js.global "execSync"]
 
-  val execSync
+  val exec_sync
     :  command:string
     -> ?options:ExecSyncOptionsWithStringEncoding.t
     -> unit
     -> string
     [@@js.global "execSync"]
 
-  val execSync
+  val exec_sync
     :  command:string
     -> ?options:ExecSyncOptionsWithBufferEncoding.t
     -> unit
     -> Buffer.t
     [@@js.global "execSync"]
 
-  val execSync
+  val exec_sync
     :  command:string
     -> ?options:ExecSyncOptions.t
     -> unit
@@ -1856,15 +1856,15 @@ module Child_process : sig
 
     val set_stdio : t -> StdioOptions.t -> unit [@@js.set "stdio"]
 
-    val get_killSignal : t -> Node_process.Process.Signals.t or_number
+    val get_kill_signal : t -> Node_process.Process.Signals.t or_number
       [@@js.get "killSignal"]
 
-    val set_killSignal : t -> Node_process.Process.Signals.t or_number -> unit
+    val set_kill_signal : t -> Node_process.Process.Signals.t or_number -> unit
       [@@js.set "killSignal"]
 
-    val get_maxBuffer : t -> int [@@js.get "maxBuffer"]
+    val get_max_buffer : t -> int [@@js.get "maxBuffer"]
 
-    val set_maxBuffer : t -> int -> unit [@@js.set "maxBuffer"]
+    val set_max_buffer : t -> int -> unit [@@js.set "maxBuffer"]
 
     val get_encoding : t -> BufferEncoding.t [@@js.get "encoding"]
 
@@ -1908,30 +1908,30 @@ module Child_process : sig
   end
   [@@js.scope "ExecFileSyncOptionsWithBufferEncoding"]
 
-  val execFileSync : command:string -> Buffer.t [@@js.global "execFileSync"]
+  val exec_file_sync : command:string -> Buffer.t [@@js.global "execFileSync"]
 
-  val execFileSync
+  val exec_file_sync
     :  command:string
     -> ?options:ExecFileSyncOptionsWithStringEncoding.t
     -> unit
     -> string
     [@@js.global "execFileSync"]
 
-  val execFileSync
+  val exec_file_sync
     :  command:string
     -> ?options:ExecFileSyncOptionsWithBufferEncoding.t
     -> unit
     -> Buffer.t
     [@@js.global "execFileSync"]
 
-  val execFileSync
+  val exec_file_sync
     :  command:string
     -> ?options:ExecFileSyncOptions.t
     -> unit
     -> Buffer.t
     [@@js.global "execFileSync"]
 
-  val execFileSync
+  val exec_file_sync
     :  command:string
     -> ?args:string list
     -> ?options:ExecFileSyncOptionsWithStringEncoding.t
@@ -1939,7 +1939,7 @@ module Child_process : sig
     -> string
     [@@js.global "execFileSync"]
 
-  val execFileSync
+  val exec_file_sync
     :  command:string
     -> ?args:string list
     -> ?options:ExecFileSyncOptionsWithBufferEncoding.t
@@ -1947,7 +1947,7 @@ module Child_process : sig
     -> Buffer.t
     [@@js.global "execFileSync"]
 
-  val execFileSync
+  val exec_file_sync
     :  command:string
     -> ?args:string list
     -> ?options:ExecFileSyncOptions.t

@@ -9,7 +9,7 @@ module Dgram : sig
   open Node_dns
 
   module RemoteInfo : sig
-    type t = dgram_RemoteInfo
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -38,7 +38,7 @@ module Dgram : sig
   [@@js.scope "RemoteInfo"]
 
   module BindOptions : sig
-    type t = dgram_BindOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -75,31 +75,31 @@ module Dgram : sig
   end
 
   module SocketOptions : sig
-    type t = dgram_SocketOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_type : t -> dgram_SocketType [@@js.get "type"]
+    val get_type : t -> SocketType.t [@@js.get "type"]
 
-    val set_type : t -> dgram_SocketType -> unit [@@js.set "type"]
+    val set_type : t -> SocketType.t -> unit [@@js.set "type"]
 
-    val get_reuseAddr : t -> bool [@@js.get "reuseAddr"]
+    val get_reuse_addr : t -> bool [@@js.get "reuseAddr"]
 
-    val set_reuseAddr : t -> bool -> unit [@@js.set "reuseAddr"]
+    val set_reuse_addr : t -> bool -> unit [@@js.set "reuseAddr"]
 
     val get_ipv6Only : t -> bool [@@js.get "ipv6Only"]
 
     val set_ipv6Only : t -> bool -> unit [@@js.set "ipv6Only"]
 
-    val get_recvBufferSize : t -> int [@@js.get "recvBufferSize"]
+    val get_recv_buffer_size : t -> int [@@js.get "recvBufferSize"]
 
-    val set_recvBufferSize : t -> int -> unit [@@js.set "recvBufferSize"]
+    val set_recv_buffer_size : t -> int -> unit [@@js.set "recvBufferSize"]
 
-    val get_sendBufferSize : t -> int [@@js.get "sendBufferSize"]
+    val get_send_buffer_size : t -> int [@@js.get "sendBufferSize"]
 
-    val set_sendBufferSize : t -> int -> unit [@@js.set "sendBufferSize"]
+    val set_send_buffer_size : t -> int -> unit [@@js.set "sendBufferSize"]
 
     val lookup
       :  t
@@ -115,31 +115,31 @@ module Dgram : sig
   end
   [@@js.scope "SocketOptions"]
 
-  val createSocket
-    :  type_:dgram_SocketType
-    -> ?callback:(msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit)
+  val create_socket
+    :  type_:SocketType.t
+    -> ?callback:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
     -> unit
-    -> dgram_Socket
+    -> Socket.t
     [@@js.global "createSocket"]
 
-  val createSocket
-    :  options:dgram_SocketOptions
-    -> ?callback:(msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit)
+  val create_socket
+    :  options:SocketOptions.t
+    -> ?callback:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
     -> unit
-    -> dgram_Socket
+    -> Socket.t
     [@@js.global "createSocket"]
 
   module Socket : sig
-    type t = dgram_Socket
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val addMembership
+    val add_membership
       :  t
-      -> multicastAddress:string
-      -> ?multicastInterface:string
+      -> multicast_address:string
+      -> ?multicast_interface:string
       -> unit
       -> unit
       [@@js.call "addMembership"]
@@ -163,7 +163,7 @@ module Dgram : sig
 
     val bind'''
       :  t
-      -> options:dgram_BindOptions
+      -> options:BindOptions.t
       -> ?callback:(unit -> unit)
       -> unit
       -> unit
@@ -186,21 +186,21 @@ module Dgram : sig
 
     val disconnect : t -> unit [@@js.call "disconnect"]
 
-    val dropMembership
+    val drop_membership
       :  t
-      -> multicastAddress:string
-      -> ?multicastInterface:string
+      -> multicast_address:string
+      -> ?multicast_interface:string
       -> unit
       -> unit
       [@@js.call "dropMembership"]
 
-    val getRecvBufferSize : t -> int [@@js.call "getRecvBufferSize"]
+    val get_recv_buffer_size : t -> int [@@js.call "getRecvBufferSize"]
 
-    val getSendBufferSize : t -> int [@@js.call "getSendBufferSize"]
+    val get_send_buffer_size : t -> int [@@js.call "getSendBufferSize"]
 
     val ref : t -> t [@@js.call "ref"]
 
-    val remoteAddress : t -> Node_net.Net.AddressInfo.t
+    val remote_address : t -> Node_net.Net.AddressInfo.t
       [@@js.call "remoteAddress"]
 
     val send
@@ -263,83 +263,83 @@ module Dgram : sig
       -> unit
       [@@js.call "send"]
 
-    val setBroadcast : t -> flag:bool -> unit [@@js.call "setBroadcast"]
+    val set_broadcast : t -> flag:bool -> unit [@@js.call "setBroadcast"]
 
-    val setMulticastInterface : t -> multicastInterface:string -> unit
+    val set_multicast_interface : t -> multicast_interface:string -> unit
       [@@js.call "setMulticastInterface"]
 
-    val setMulticastLoopback : t -> flag:bool -> unit
+    val set_multicast_loopback : t -> flag:bool -> unit
       [@@js.call "setMulticastLoopback"]
 
-    val setMulticastTTL : t -> ttl:int -> unit [@@js.call "setMulticastTTL"]
+    val set_multicast_ttl : t -> ttl:int -> unit [@@js.call "setMulticastTTL"]
 
-    val setRecvBufferSize : t -> size:int -> unit
+    val set_recv_buffer_size : t -> size:int -> unit
       [@@js.call "setRecvBufferSize"]
 
-    val setSendBufferSize : t -> size:int -> unit
+    val set_send_buffer_size : t -> size:int -> unit
       [@@js.call "setSendBufferSize"]
 
-    val setTTL : t -> ttl:int -> unit [@@js.call "setTTL"]
+    val set_ttl : t -> ttl:int -> unit [@@js.call "setTTL"]
 
     val unref : t -> t [@@js.call "unref"]
 
-    val addSourceSpecificMembership
+    val add_source_specific_membership
       :  t
-      -> sourceAddress:string
-      -> groupAddress:string
-      -> ?multicastInterface:string
+      -> source_address:string
+      -> group_address:string
+      -> ?multicast_interface:string
       -> unit
       -> unit
       [@@js.call "addSourceSpecificMembership"]
 
-    val dropSourceSpecificMembership
+    val drop_source_specific_membership
       :  t
-      -> sourceAddress:string
-      -> groupAddress:string
-      -> ?multicastInterface:string
+      -> source_address:string
+      -> group_address:string
+      -> ?multicast_interface:string
       -> unit
       -> unit
       [@@js.call "dropSourceSpecificMembership"]
 
-    val addListener
+    val add_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'
+    val add_listener'
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''
+    val add_listener''
       :  t
       -> event:([ `connect ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''
+    val add_listener'''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''
+    val add_listener''''
       :  t
       -> event:([ `listening ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''
+    val add_listener'''''
       :  t
       -> event:([ `message ][@js.enum])
-      -> listener:(msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit)
+      -> listener:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
       -> t
       [@@js.call "addListener"]
 
@@ -364,7 +364,7 @@ module Dgram : sig
       :  t
       -> event:([ `message ][@js.enum])
       -> msg:Buffer.t
-      -> rinfo:dgram_RemoteInfo
+      -> rinfo:RemoteInfo.t
       -> bool
       [@@js.call "emit"]
 
@@ -402,7 +402,7 @@ module Dgram : sig
     val on'''''
       :  t
       -> event:([ `message ][@js.enum])
-      -> listener:(msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit)
+      -> listener:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
       -> t
       [@@js.call "on"]
 
@@ -444,91 +444,91 @@ module Dgram : sig
     val once'''''
       :  t
       -> event:([ `message ][@js.enum])
-      -> listener:(msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit)
+      -> listener:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
       -> t
       [@@js.call "once"]
 
-    val prependListener
+    val prepend_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'
+    val prepend_listener'
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''
+    val prepend_listener''
       :  t
       -> event:([ `connect ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''
+    val prepend_listener'''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''
+    val prepend_listener''''
       :  t
       -> event:([ `listening ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''
+    val prepend_listener'''''
       :  t
       -> event:([ `message ][@js.enum])
-      -> listener:(msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit)
+      -> listener:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependOnceListener
+    val prepend_once_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'
+    val prepend_once_listener'
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''
+    val prepend_once_listener''
       :  t
       -> event:([ `connect ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''
+    val prepend_once_listener'''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''
+    val prepend_once_listener''''
       :  t
       -> event:([ `listening ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''
+    val prepend_once_listener'''''
       :  t
       -> event:([ `message ][@js.enum])
-      -> listener:(msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit)
+      -> listener:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 

@@ -16,42 +16,39 @@ module AnonymousInterface1 =
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x6 : Ojs.t) -> x6
     and t_to_js : t -> Ojs.t = fun (x5 : Ojs.t) -> x5
-    let (get_oldUri : t -> Code.Uri.t) =
+    let (get_old_uri : t -> Code.Uri.t) =
       fun (x7 : t) ->
         Code.Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x7) "oldUri")
-    let (set_oldUri : t -> Code.Uri.t -> unit) =
+    let (set_old_uri : t -> Code.Uri.t -> unit) =
       fun (x8 : t) ->
         fun (x9 : Code.Uri.t) ->
           Ojs.set_prop_ascii (t_to_js x8) "oldUri" (Code.Uri.t_to_js x9)
-    let (get_newUri : t -> Code.Uri.t) =
+    let (get_new_uri : t -> Code.Uri.t) =
       fun (x10 : t) ->
         Code.Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x10) "newUri")
-    let (set_newUri : t -> Code.Uri.t -> unit) =
+    let (set_new_uri : t -> Code.Uri.t -> unit) =
       fun (x11 : t) ->
         fun (x12 : Code.Uri.t) ->
           Ojs.set_prop_ascii (t_to_js x11) "newUri" (Code.Uri.t_to_js x12)
   end
 module FileOperationsMiddleware =
   struct
-    type t = _FileOperationsMiddleware
-    let rec t_of_js : Ojs.t -> t =
-      fun (x14 : Ojs.t) -> _FileOperationsMiddleware_of_js x14
-    and t_to_js : t -> Ojs.t =
-      fun (x13 : _FileOperationsMiddleware) ->
-        _FileOperationsMiddleware_to_js x13
-    let (get_didCreateFiles :
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x14 : Ojs.t) -> x14
+    and t_to_js : t -> Ojs.t = fun (x13 : Ojs.t) -> x13
+    let (get_did_create_files :
       t -> (Code.FileCreateEvent.t, unit) NextSignature.t) =
       fun (x15 : t) ->
         NextSignature.t_of_js Code.FileCreateEvent.t_of_js Ojs.unit_of_js
           (Ojs.get_prop_ascii (t_to_js x15) "didCreateFiles")
-    let (set_didCreateFiles :
+    let (set_did_create_files :
       t -> (Code.FileCreateEvent.t, unit) NextSignature.t -> unit) =
       fun (x18 : t) ->
         fun (x19 : (Code.FileCreateEvent.t, unit) NextSignature.t) ->
           Ojs.set_prop_ascii (t_to_js x18) "didCreateFiles"
             (NextSignature.t_to_js Code.FileCreateEvent.t_to_js
                Ojs.unit_to_js x19)
-    let (get_willCreateFiles :
+    let (get_will_create_files :
       t ->
         (Code.FileCreateEvent.t,
           Code.WorkspaceEdit.t or_null_or_undefined Promise.t)
@@ -64,7 +61,7 @@ module FileOperationsMiddleware =
                (fun (x25 : Ojs.t) ->
                   or_null_or_undefined_of_js Code.WorkspaceEdit.t_of_js x25)
                x24) (Ojs.get_prop_ascii (t_to_js x22) "willCreateFiles")
-    let (set_willCreateFiles :
+    let (set_will_create_files :
       t ->
         (Code.FileCreateEvent.t,
           Code.WorkspaceEdit.t or_null_or_undefined Promise.t)
@@ -86,19 +83,19 @@ module FileOperationsMiddleware =
                     (fun (x31 : Code.WorkspaceEdit.t or_null_or_undefined) ->
                        or_null_or_undefined_to_js Code.WorkspaceEdit.t_to_js
                          x31) x30) x28)
-    let (get_didRenameFiles :
+    let (get_did_rename_files :
       t -> (Code.FileRenameEvent.t, unit) NextSignature.t) =
       fun (x33 : t) ->
         NextSignature.t_of_js Code.FileRenameEvent.t_of_js Ojs.unit_of_js
           (Ojs.get_prop_ascii (t_to_js x33) "didRenameFiles")
-    let (set_didRenameFiles :
+    let (set_did_rename_files :
       t -> (Code.FileRenameEvent.t, unit) NextSignature.t -> unit) =
       fun (x36 : t) ->
         fun (x37 : (Code.FileRenameEvent.t, unit) NextSignature.t) ->
           Ojs.set_prop_ascii (t_to_js x36) "didRenameFiles"
             (NextSignature.t_to_js Code.FileRenameEvent.t_to_js
                Ojs.unit_to_js x37)
-    let (get_willRenameFiles :
+    let (get_will_rename_files :
       t ->
         (Code.FileRenameEvent.t,
           Code.WorkspaceEdit.t or_null_or_undefined Promise.t)
@@ -111,7 +108,7 @@ module FileOperationsMiddleware =
                (fun (x43 : Ojs.t) ->
                   or_null_or_undefined_of_js Code.WorkspaceEdit.t_of_js x43)
                x42) (Ojs.get_prop_ascii (t_to_js x40) "willRenameFiles")
-    let (set_willRenameFiles :
+    let (set_will_rename_files :
       t ->
         (Code.FileRenameEvent.t,
           Code.WorkspaceEdit.t or_null_or_undefined Promise.t)
@@ -133,19 +130,19 @@ module FileOperationsMiddleware =
                     (fun (x49 : Code.WorkspaceEdit.t or_null_or_undefined) ->
                        or_null_or_undefined_to_js Code.WorkspaceEdit.t_to_js
                          x49) x48) x46)
-    let (get_didDeleteFiles :
+    let (get_did_delete_files :
       t -> (Code.FileDeleteEvent.t, unit) NextSignature.t) =
       fun (x51 : t) ->
         NextSignature.t_of_js Code.FileDeleteEvent.t_of_js Ojs.unit_of_js
           (Ojs.get_prop_ascii (t_to_js x51) "didDeleteFiles")
-    let (set_didDeleteFiles :
+    let (set_did_delete_files :
       t -> (Code.FileDeleteEvent.t, unit) NextSignature.t -> unit) =
       fun (x54 : t) ->
         fun (x55 : (Code.FileDeleteEvent.t, unit) NextSignature.t) ->
           Ojs.set_prop_ascii (t_to_js x54) "didDeleteFiles"
             (NextSignature.t_to_js Code.FileDeleteEvent.t_to_js
                Ojs.unit_to_js x55)
-    let (get_willDeleteFiles :
+    let (get_will_delete_files :
       t ->
         (Code.FileDeleteEvent.t,
           Code.WorkspaceEdit.t or_null_or_undefined Promise.t)
@@ -158,7 +155,7 @@ module FileOperationsMiddleware =
                (fun (x61 : Ojs.t) ->
                   or_null_or_undefined_of_js Code.WorkspaceEdit.t_of_js x61)
                x60) (Ojs.get_prop_ascii (t_to_js x58) "willDeleteFiles")
-    let (set_willDeleteFiles :
+    let (set_will_delete_files :
       t ->
         (Code.FileDeleteEvent.t,
           Code.WorkspaceEdit.t or_null_or_undefined Promise.t)
@@ -183,221 +180,215 @@ module FileOperationsMiddleware =
   end
 module Event =
   struct
-    type 'I t = 'I _Event
+    type 'I t = Ojs.t
     let rec t_of_js : 'I . (Ojs.t -> 'I) -> Ojs.t -> 'I t = fun (type __I) ->
-      fun (__I_of_js : Ojs.t -> __I) ->
-        fun (x71 : Ojs.t) -> _Event_of_js __I_of_js x71
+      fun (__I_of_js : Ojs.t -> __I) -> fun (x70 : Ojs.t) -> x70
     and t_to_js : 'I . ('I -> Ojs.t) -> 'I t -> Ojs.t = fun (type __I) ->
-      fun (__I_to_js : __I -> Ojs.t) ->
-        fun (x69 : __I _Event) -> _Event_to_js __I_to_js x69
+      fun (__I_to_js : __I -> Ojs.t) -> fun (x69 : Ojs.t) -> x69
     let (get_files : 'I t -> 'I list) =
-      fun (x73 : 'I t) ->
+      fun (x71 : 'I t) ->
         Ojs.list_of_js Obj.magic
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x73) "files")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x71) "files")
   end
 module FileOperationFeature =
   struct
-    type ('I, 'E) t = ('I, 'E) _FileOperationFeature
+    type ('I, 'E) t = Ojs.t
     let rec t_of_js :
       'I 'E . (Ojs.t -> 'I) -> (Ojs.t -> 'E) -> Ojs.t -> ('I, 'E) t = fun
       (type __I) -> fun (type __E) ->
       fun (__I_of_js : Ojs.t -> __I) ->
-        fun (__E_of_js : Ojs.t -> __E) ->
-          fun (x79 : Ojs.t) ->
-            _FileOperationFeature_of_js __I_of_js __E_of_js x79
+        fun (__E_of_js : Ojs.t -> __E) -> fun (x75 : Ojs.t) -> x75
     and t_to_js :
       'I 'E . ('I -> Ojs.t) -> ('E -> Ojs.t) -> ('I, 'E) t -> Ojs.t = fun
       (type __I) -> fun (type __E) ->
       fun (__I_to_js : __I -> Ojs.t) ->
-        fun (__E_to_js : __E -> Ojs.t) ->
-          fun (x76 : (__I, __E) _FileOperationFeature) ->
-            _FileOperationFeature_to_js __I_to_js __E_to_js x76
+        fun (__E_to_js : __E -> Ojs.t) -> fun (x74 : Ojs.t) -> x74
     let (get__client : ('I, 'E) t -> BaseLanguageClient.t) =
-      fun (x82 : ('I, 'E) t) ->
+      fun (x76 : ('I, 'E) t) ->
         BaseLanguageClient.t_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x82) "_client")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x76) "_client")
     let (set__client : ('I, 'E) t -> BaseLanguageClient.t -> unit) =
-      fun (x85 : ('I, 'E) t) ->
-        fun (x86 : BaseLanguageClient.t) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x85) "_client"
-            (BaseLanguageClient.t_to_js x86)
+      fun (x79 : ('I, 'E) t) ->
+        fun (x80 : BaseLanguageClient.t) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x79) "_client"
+            (BaseLanguageClient.t_to_js x80)
     let (get__event : ('I, 'E) t -> any) =
-      fun (x89 : ('I, 'E) t) ->
+      fun (x83 : ('I, 'E) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x89) "_event")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x83) "_event")
     let (set__event : ('I, 'E) t -> any -> unit) =
-      fun (x92 : ('I, 'E) t) ->
-        fun (x93 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x92) "_event"
-            (any_to_js x93)
-    let (get__registrationType : ('I, 'E) t -> any) =
-      fun (x96 : ('I, 'E) t) ->
+      fun (x86 : ('I, 'E) t) ->
+        fun (x87 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x86) "_event"
+            (any_to_js x87)
+    let (get_registration_type : ('I, 'E) t -> any) =
+      fun (x90 : ('I, 'E) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x96)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x90)
              "_registrationType")
-    let (set__registrationType : ('I, 'E) t -> any -> unit) =
-      fun (x99 : ('I, 'E) t) ->
-        fun (x100 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x99)
-            "_registrationType" (any_to_js x100)
-    let (get__clientCapability : ('I, 'E) t -> any) =
-      fun (x103 : ('I, 'E) t) ->
+    let (set_registration_type : ('I, 'E) t -> any -> unit) =
+      fun (x93 : ('I, 'E) t) ->
+        fun (x94 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x93)
+            "_registrationType" (any_to_js x94)
+    let (get_client_capability : ('I, 'E) t -> any) =
+      fun (x97 : ('I, 'E) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x103)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x97)
              "_clientCapability")
-    let (set__clientCapability : ('I, 'E) t -> any -> unit) =
-      fun (x106 : ('I, 'E) t) ->
-        fun (x107 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x106)
-            "_clientCapability" (any_to_js x107)
-    let (get__serverCapability : ('I, 'E) t -> any) =
-      fun (x110 : ('I, 'E) t) ->
+    let (set_client_capability : ('I, 'E) t -> any -> unit) =
+      fun (x100 : ('I, 'E) t) ->
+        fun (x101 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x100)
+            "_clientCapability" (any_to_js x101)
+    let (get_server_capability : ('I, 'E) t -> any) =
+      fun (x104 : ('I, 'E) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x110)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x104)
              "_serverCapability")
-    let (set__serverCapability : ('I, 'E) t -> any -> unit) =
-      fun (x113 : ('I, 'E) t) ->
-        fun (x114 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x113)
-            "_serverCapability" (any_to_js x114)
+    let (set_server_capability : ('I, 'E) t -> any -> unit) =
+      fun (x107 : ('I, 'E) t) ->
+        fun (x108 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x107)
+            "_serverCapability" (any_to_js x108)
     let (get__listener : ('I, 'E) t -> any) =
-      fun (x117 : ('I, 'E) t) ->
+      fun (x111 : ('I, 'E) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x117) "_listener")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x111) "_listener")
     let (set__listener : ('I, 'E) t -> any -> unit) =
-      fun (x120 : ('I, 'E) t) ->
-        fun (x121 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x120) "_listener"
-            (any_to_js x121)
+      fun (x114 : ('I, 'E) t) ->
+        fun (x115 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x114) "_listener"
+            (any_to_js x115)
     let (get__filters : ('I, 'E) t -> any) =
-      fun (x124 : ('I, 'E) t) ->
+      fun (x118 : ('I, 'E) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x124) "_filters")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x118) "_filters")
     let (set__filters : ('I, 'E) t -> any -> unit) =
-      fun (x127 : ('I, 'E) t) ->
-        fun (x128 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x127) "_filters"
-            (any_to_js x128)
+      fun (x121 : ('I, 'E) t) ->
+        fun (x122 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x121) "_filters"
+            (any_to_js x122)
     let (create :
       client:BaseLanguageClient.t ->
         event:'E Code.Event.t ->
-          registrationType:Proto.FileOperationRegistrationOptions.t
+          registration_type:Proto.FileOperationRegistrationOptions.t
             Proto.RegistrationType.t ->
-            clientCapability:any -> serverCapability:any -> ('I, 'E) t)
+            client_capability:any -> server_capability:any -> ('I, 'E) t)
       =
-      fun ~client:(x131 : BaseLanguageClient.t) ->
-        fun ~event:(x132 : 'E Code.Event.t) ->
+      fun ~client:(x125 : BaseLanguageClient.t) ->
+        fun ~event:(x126 : 'E Code.Event.t) ->
           fun
-            ~registrationType:(x134 :
-                                Proto.FileOperationRegistrationOptions.t
-                                  Proto.RegistrationType.t)
+            ~registration_type:(x128 :
+                                 Proto.FileOperationRegistrationOptions.t
+                                   Proto.RegistrationType.t)
             ->
-            fun ~clientCapability:(x136 : any) ->
-              fun ~serverCapability:(x137 : any) ->
+            fun ~client_capability:(x130 : any) ->
+              fun ~server_capability:(x131 : any) ->
                 t_of_js Obj.magic Obj.magic
                   (Ojs.new_obj
                      (Ojs.get_prop_ascii Ojs.global "FileOperationFeature")
-                     [|(BaseLanguageClient.t_to_js x131);(Code.Event.t_to_js
-                                                            Obj.magic x132);(
+                     [|(BaseLanguageClient.t_to_js x125);(Code.Event.t_to_js
+                                                            Obj.magic x126);(
                        Proto.RegistrationType.t_to_js
-                         Proto.FileOperationRegistrationOptions.t_to_js x134);(
-                       any_to_js x136);(any_to_js x137)|])
-    let (get_registrationType :
+                         Proto.FileOperationRegistrationOptions.t_to_js x128);(
+                       any_to_js x130);(any_to_js x131)|])
+    let (get_registration_type :
       ('I, 'E) t ->
         Proto.FileOperationRegistrationOptions.t Proto.RegistrationType.t)
       =
-      fun (x140 : ('I, 'E) t) ->
+      fun (x134 : ('I, 'E) t) ->
         Proto.RegistrationType.t_of_js
           Proto.FileOperationRegistrationOptions.t_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x140)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x134)
              "registrationType")
-    let (fillClientCapabilities :
+    let (fill_client_capabilities :
       ('I, 'E) t -> capabilities:Proto.ClientCapabilities.t -> unit) =
-      fun (x145 : ('I, 'E) t) ->
-        fun ~capabilities:(x144 : Proto.ClientCapabilities.t) ->
+      fun (x139 : ('I, 'E) t) ->
+        fun ~capabilities:(x138 : Proto.ClientCapabilities.t) ->
           ignore
-            (Ojs.call (t_to_js Obj.magic Obj.magic x145)
+            (Ojs.call (t_to_js Obj.magic Obj.magic x139)
                "fillClientCapabilities"
-               [|(Proto.ClientCapabilities.t_to_js x144)|])
+               [|(Proto.ClientCapabilities.t_to_js x138)|])
     let (initialize :
       ('I, 'E) t -> capabilities:Proto.ServerCapabilities.t -> unit) =
-      fun (x149 : ('I, 'E) t) ->
-        fun ~capabilities:(x148 : Proto.ServerCapabilities.t) ->
+      fun (x143 : ('I, 'E) t) ->
+        fun ~capabilities:(x142 : Proto.ServerCapabilities.t) ->
           ignore
-            (Ojs.call (t_to_js Obj.magic Obj.magic x149) "initialize"
-               [|(Proto.ServerCapabilities.t_to_js x148)|])
+            (Ojs.call (t_to_js Obj.magic Obj.magic x143) "initialize"
+               [|(Proto.ServerCapabilities.t_to_js x142)|])
     let (register :
       ('I, 'E) t ->
         data:Proto.FileOperationRegistrationOptions.t RegistrationData.t ->
           unit)
       =
-      fun (x154 : ('I, 'E) t) ->
+      fun (x148 : ('I, 'E) t) ->
         fun
-          ~data:(x152 :
+          ~data:(x146 :
                   Proto.FileOperationRegistrationOptions.t RegistrationData.t)
           ->
           ignore
-            (Ojs.call (t_to_js Obj.magic Obj.magic x154) "register"
+            (Ojs.call (t_to_js Obj.magic Obj.magic x148) "register"
                [|(RegistrationData.t_to_js
-                    Proto.FileOperationRegistrationOptions.t_to_js x152)|])
+                    Proto.FileOperationRegistrationOptions.t_to_js x146)|])
     let (send : ('I, 'E) t -> data:'E -> unit Promise.t) =
-      fun (x158 : ('I, 'E) t) ->
-        fun ~data:(x157 : 'E) ->
+      fun (x152 : ('I, 'E) t) ->
+        fun ~data:(x151 : 'E) ->
           Promise.t_of_js Ojs.unit_of_js
-            (Ojs.call (t_to_js Obj.magic Obj.magic x158) "send"
-               [|(Obj.magic x157)|])
+            (Ojs.call (t_to_js Obj.magic Obj.magic x152) "send"
+               [|(Obj.magic x151)|])
     let (unregister : ('I, 'E) t -> id:string -> unit) =
-      fun (x163 : ('I, 'E) t) ->
-        fun ~id:(x162 : string) ->
+      fun (x157 : ('I, 'E) t) ->
+        fun ~id:(x156 : string) ->
           ignore
-            (Ojs.call (t_to_js Obj.magic Obj.magic x163) "unregister"
-               [|(Ojs.string_to_js x162)|])
+            (Ojs.call (t_to_js Obj.magic Obj.magic x157) "unregister"
+               [|(Ojs.string_to_js x156)|])
     let (dispose : ('I, 'E) t -> unit) =
-      fun (x166 : ('I, 'E) t) ->
-        ignore (Ojs.call (t_to_js Obj.magic Obj.magic x166) "dispose" [||])
+      fun (x160 : ('I, 'E) t) ->
+        ignore (Ojs.call (t_to_js Obj.magic Obj.magic x160) "dispose" [||])
     let (filter :
       ('I, 'E) t -> event:'E -> prop:(i:'I -> Code.Uri.t) -> 'E Promise.t) =
-      fun (x172 : ('I, 'E) t) ->
-        fun ~event:(x169 : 'E) ->
-          fun ~prop:(x170 : i:'I -> Code.Uri.t) ->
+      fun (x166 : ('I, 'E) t) ->
+        fun ~event:(x163 : 'E) ->
+          fun ~prop:(x164 : i:'I -> Code.Uri.t) ->
             Promise.t_of_js Obj.magic
-              (Ojs.call (t_to_js Obj.magic Obj.magic x172) "filter"
-                 [|(Obj.magic x169);(Ojs.fun_to_js 1
-                                       (fun (x171 : Ojs.t) ->
+              (Ojs.call (t_to_js Obj.magic Obj.magic x166) "filter"
+                 [|(Obj.magic x163);(Ojs.fun_to_js 1
+                                       (fun (x165 : Ojs.t) ->
                                           Code.Uri.t_to_js
-                                            (x170 ~i:(Obj.magic x171))))|])
-    let (get_getFileType : unit -> any) =
+                                            (x164 ~i:(Obj.magic x165))))|])
+    let (get_get_file_type : unit -> any) =
       fun () ->
         any_of_js
           (Ojs.get_prop_ascii
              (Ojs.get_prop_ascii Ojs.global "FileOperationFeature")
              "getFileType")
-    let (set_getFileType : any -> unit) =
-      fun (x176 : any) ->
+    let (set_get_file_type : any -> unit) =
+      fun (x170 : any) ->
         Ojs.set_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "FileOperationFeature")
-          "getFileType" (any_to_js x176)
-    let (get_asMinimatchOptions : unit -> any) =
+          "getFileType" (any_to_js x170)
+    let (get_as_minimatch_options : unit -> any) =
       fun () ->
         any_of_js
           (Ojs.get_prop_ascii
              (Ojs.get_prop_ascii Ojs.global "FileOperationFeature")
              "asMinimatchOptions")
-    let (set_asMinimatchOptions : any -> unit) =
-      fun (x177 : any) ->
+    let (set_as_minimatch_options : any -> unit) =
+      fun (x171 : any) ->
         Ojs.set_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "FileOperationFeature")
-          "asMinimatchOptions" (any_to_js x177)
+          "asMinimatchOptions" (any_to_js x171)
     let (cast :
       ('I, 'E) t -> Proto.FileOperationRegistrationOptions.t DynamicFeature.t)
       =
-      fun (x178 : ('I, 'E) t) ->
+      fun (x172 : ('I, 'E) t) ->
         DynamicFeature.t_of_js Proto.FileOperationRegistrationOptions.t_of_js
-          (t_to_js Obj.magic Obj.magic x178)
+          (t_to_js Obj.magic Obj.magic x172)
   end
 module NotificationFileOperationFeature =
   struct
-    type ('I, 'E, 'P) t = ('I, 'E, 'P) _NotificationFileOperationFeature
+    type ('I, 'E, 'P) t = ('I, 'E, 'P) NotificationFileOperationFeature.t
     let rec t_of_js :
       'I 'E 'P .
         (Ojs.t -> 'I) ->
@@ -406,9 +397,9 @@ module NotificationFileOperationFeature =
       fun (__I_of_js : Ojs.t -> __I) ->
         fun (__E_of_js : Ojs.t -> __E) ->
           fun (__P_of_js : Ojs.t -> __P) ->
-            fun (x186 : Ojs.t) ->
-              _NotificationFileOperationFeature_of_js __I_of_js __E_of_js
-                __P_of_js x186
+            fun (x180 : Ojs.t) ->
+              NotificationFileOperationFeature.t_of_js __I_of_js __E_of_js
+                __P_of_js x180
     and t_to_js :
       'I 'E 'P .
         ('I -> Ojs.t) ->
@@ -417,251 +408,241 @@ module NotificationFileOperationFeature =
       fun (__I_to_js : __I -> Ojs.t) ->
         fun (__E_to_js : __E -> Ojs.t) ->
           fun (__P_to_js : __P -> Ojs.t) ->
-            fun (x182 : (__I, __E, __P) _NotificationFileOperationFeature) ->
-              _NotificationFileOperationFeature_to_js __I_to_js __E_to_js
-                __P_to_js x182
-    let (get__notificationType : ('I, 'E, 'P) t -> any) =
-      fun (x190 : ('I, 'E, 'P) t) ->
+            fun (x176 : (__I, __E, __P) NotificationFileOperationFeature.t)
+              ->
+              NotificationFileOperationFeature.t_to_js __I_to_js __E_to_js
+                __P_to_js x176
+    let (get_notification_type : ('I, 'E, 'P) t -> any) =
+      fun (x184 : ('I, 'E, 'P) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x190)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x184)
              "_notificationType")
-    let (set__notificationType : ('I, 'E, 'P) t -> any -> unit) =
-      fun (x194 : ('I, 'E, 'P) t) ->
-        fun (x195 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x194)
-            "_notificationType" (any_to_js x195)
-    let (get__accessUri : ('I, 'E, 'P) t -> any) =
-      fun (x199 : ('I, 'E, 'P) t) ->
+    let (set_notification_type : ('I, 'E, 'P) t -> any -> unit) =
+      fun (x188 : ('I, 'E, 'P) t) ->
+        fun (x189 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x188)
+            "_notificationType" (any_to_js x189)
+    let (get_access_uri : ('I, 'E, 'P) t -> any) =
+      fun (x193 : ('I, 'E, 'P) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x199)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x193)
              "_accessUri")
-    let (set__accessUri : ('I, 'E, 'P) t -> any -> unit) =
-      fun (x203 : ('I, 'E, 'P) t) ->
-        fun (x204 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x203)
-            "_accessUri" (any_to_js x204)
-    let (get__createParams : ('I, 'E, 'P) t -> any) =
-      fun (x208 : ('I, 'E, 'P) t) ->
+    let (set_access_uri : ('I, 'E, 'P) t -> any -> unit) =
+      fun (x197 : ('I, 'E, 'P) t) ->
+        fun (x198 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x197)
+            "_accessUri" (any_to_js x198)
+    let (get_create_params : ('I, 'E, 'P) t -> any) =
+      fun (x202 : ('I, 'E, 'P) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x208)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x202)
              "_createParams")
-    let (set__createParams : ('I, 'E, 'P) t -> any -> unit) =
-      fun (x212 : ('I, 'E, 'P) t) ->
-        fun (x213 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x212)
-            "_createParams" (any_to_js x213)
+    let (set_create_params : ('I, 'E, 'P) t -> any -> unit) =
+      fun (x206 : ('I, 'E, 'P) t) ->
+        fun (x207 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x206)
+            "_createParams" (any_to_js x207)
     let (create :
       client:BaseLanguageClient.t ->
         event:'E Code.Event.t ->
-          notificationType:('P, Proto.FileOperationRegistrationOptions.t)
+          notification_type:('P, Proto.FileOperationRegistrationOptions.t)
             Proto.ProtocolNotificationType.t ->
-            clientCapability:any ->
-              serverCapability:any ->
-                accessUri:(i:'I -> Code.Uri.t) ->
-                  createParams:(e:'E -> 'P) -> ('I, 'E, 'P) t)
+            client_capability:any ->
+              server_capability:any ->
+                access_uri:(i:'I -> Code.Uri.t) ->
+                  create_params:(e:'E -> 'P) -> ('I, 'E, 'P) t)
       =
-      fun ~client:(x217 : BaseLanguageClient.t) ->
-        fun ~event:(x218 : 'E Code.Event.t) ->
+      fun ~client:(x211 : BaseLanguageClient.t) ->
+        fun ~event:(x212 : 'E Code.Event.t) ->
           fun
-            ~notificationType:(x220 :
-                                ('P,
-                                  Proto.FileOperationRegistrationOptions.t)
-                                  Proto.ProtocolNotificationType.t)
+            ~notification_type:(x214 :
+                                 ('P,
+                                   Proto.FileOperationRegistrationOptions.t)
+                                   Proto.ProtocolNotificationType.t)
             ->
-            fun ~clientCapability:(x223 : any) ->
-              fun ~serverCapability:(x224 : any) ->
-                fun ~accessUri:(x225 : i:'I -> Code.Uri.t) ->
-                  fun ~createParams:(x227 : e:'E -> 'P) ->
+            fun ~client_capability:(x217 : any) ->
+              fun ~server_capability:(x218 : any) ->
+                fun ~access_uri:(x219 : i:'I -> Code.Uri.t) ->
+                  fun ~create_params:(x221 : e:'E -> 'P) ->
                     t_of_js Obj.magic Obj.magic Obj.magic
                       (Ojs.new_obj
                          (Ojs.get_prop_ascii Ojs.global
                             "NotificationFileOperationFeature")
-                         [|(BaseLanguageClient.t_to_js x217);(Code.Event.t_to_js
+                         [|(BaseLanguageClient.t_to_js x211);(Code.Event.t_to_js
                                                                 Obj.magic
-                                                                x218);(
+                                                                x212);(
                            Proto.ProtocolNotificationType.t_to_js Obj.magic
                              Proto.FileOperationRegistrationOptions.t_to_js
-                             x220);(any_to_js x223);(any_to_js x224);(
+                             x214);(any_to_js x217);(any_to_js x218);(
                            Ojs.fun_to_js 1
-                             (fun (x226 : Ojs.t) ->
-                                Code.Uri.t_to_js (x225 ~i:(Obj.magic x226))));(
+                             (fun (x220 : Ojs.t) ->
+                                Code.Uri.t_to_js (x219 ~i:(Obj.magic x220))));(
                            Ojs.fun_to_js 1
-                             (fun (x228 : Ojs.t) ->
-                                Obj.magic (x227 ~e:(Obj.magic x228))))|])
-    let (send : ('I, 'E, 'P) t -> originalEvent:'E -> unit Promise.t) =
-      fun (x233 : ('I, 'E, 'P) t) ->
-        fun ~originalEvent:(x232 : 'E) ->
+                             (fun (x222 : Ojs.t) ->
+                                Obj.magic (x221 ~e:(Obj.magic x222))))|])
+    let (send : ('I, 'E, 'P) t -> original_event:'E -> unit Promise.t) =
+      fun (x227 : ('I, 'E, 'P) t) ->
+        fun ~original_event:(x226 : 'E) ->
           Promise.t_of_js Ojs.unit_of_js
-            (Ojs.call (t_to_js Obj.magic Obj.magic Obj.magic x233) "send"
-               [|(Obj.magic x232)|])
-    let (doSend :
+            (Ojs.call (t_to_js Obj.magic Obj.magic Obj.magic x227) "send"
+               [|(Obj.magic x226)|])
+    let (do_send :
       ('I, 'E, 'P) t -> event:'E -> next:(event:'E -> unit) -> unit) =
-      fun (x241 : ('I, 'E, 'P) t) ->
-        fun ~event:(x238 : 'E) ->
-          fun ~next:(x239 : event:'E -> unit) ->
+      fun (x235 : ('I, 'E, 'P) t) ->
+        fun ~event:(x232 : 'E) ->
+          fun ~next:(x233 : event:'E -> unit) ->
             ignore
-              (Ojs.call (t_to_js Obj.magic Obj.magic Obj.magic x241) "doSend"
-                 [|(Obj.magic x238);(Ojs.fun_to_js 1
-                                       (fun (x240 : Ojs.t) ->
-                                          x239 ~event:(Obj.magic x240)))|])
-    let (cast : ('I, 'E, 'P) t -> ('I, 'E) _FileOperationFeature) =
-      fun (x245 : ('I, 'E, 'P) t) ->
-        _FileOperationFeature_of_js Obj.magic Obj.magic
-          (t_to_js Obj.magic Obj.magic Obj.magic x245)
+              (Ojs.call (t_to_js Obj.magic Obj.magic Obj.magic x235) "doSend"
+                 [|(Obj.magic x232);(Ojs.fun_to_js 1
+                                       (fun (x234 : Ojs.t) ->
+                                          x233 ~event:(Obj.magic x234)))|])
+    let (cast : ('I, 'E, 'P) t -> ('I, 'E) FileOperationFeature.t) =
+      fun (x239 : ('I, 'E, 'P) t) ->
+        FileOperationFeature.t_of_js Obj.magic Obj.magic
+          (t_to_js Obj.magic Obj.magic Obj.magic x239)
   end
 module DidCreateFilesFeature =
   struct
-    type t = _DidCreateFilesFeature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x252 : Ojs.t) -> _DidCreateFilesFeature_of_js x252
-    and t_to_js : t -> Ojs.t =
-      fun (x251 : _DidCreateFilesFeature) ->
-        _DidCreateFilesFeature_to_js x251
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x246 : Ojs.t) -> x246
+    and t_to_js : t -> Ojs.t = fun (x245 : Ojs.t) -> x245
     let (create : client:BaseLanguageClient.t -> t) =
-      fun ~client:(x253 : BaseLanguageClient.t) ->
+      fun ~client:(x247 : BaseLanguageClient.t) ->
         t_of_js
           (Ojs.new_obj
              (Ojs.get_prop_ascii Ojs.global "DidCreateFilesFeature")
-             [|(BaseLanguageClient.t_to_js x253)|])
-    let (doSend :
+             [|(BaseLanguageClient.t_to_js x247)|])
+    let (do_send :
       t ->
         event:Code.FileCreateEvent.t ->
           next:(event:Code.FileCreateEvent.t -> unit) -> unit)
       =
-      fun (x257 : t) ->
-        fun ~event:(x254 : Code.FileCreateEvent.t) ->
-          fun ~next:(x255 : event:Code.FileCreateEvent.t -> unit) ->
+      fun (x251 : t) ->
+        fun ~event:(x248 : Code.FileCreateEvent.t) ->
+          fun ~next:(x249 : event:Code.FileCreateEvent.t -> unit) ->
             ignore
-              (Ojs.call (t_to_js x257) "doSend"
-                 [|(Code.FileCreateEvent.t_to_js x254);(Ojs.fun_to_js 1
-                                                          (fun (x256 : Ojs.t)
+              (Ojs.call (t_to_js x251) "doSend"
+                 [|(Code.FileCreateEvent.t_to_js x248);(Ojs.fun_to_js 1
+                                                          (fun (x250 : Ojs.t)
                                                              ->
-                                                             x255
+                                                             x249
                                                                ~event:(
                                                                Code.FileCreateEvent.t_of_js
-                                                                 x256)))|])
+                                                                 x250)))|])
     let (cast :
       t ->
         (Code.Uri.t, Code.FileCreateEvent.t, Proto.CreateFilesParams.t)
-          _NotificationFileOperationFeature)
+          NotificationFileOperationFeature.t)
       =
-      fun (x258 : t) ->
-        _NotificationFileOperationFeature_of_js Code.Uri.t_of_js
+      fun (x252 : t) ->
+        NotificationFileOperationFeature.t_of_js Code.Uri.t_of_js
           Code.FileCreateEvent.t_of_js Proto.CreateFilesParams.t_of_js
-          (t_to_js x258)
+          (t_to_js x252)
   end
 module DidRenameFilesFeature =
   struct
-    type t = _DidRenameFilesFeature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x263 : Ojs.t) -> _DidRenameFilesFeature_of_js x263
-    and t_to_js : t -> Ojs.t =
-      fun (x262 : _DidRenameFilesFeature) ->
-        _DidRenameFilesFeature_to_js x262
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x257 : Ojs.t) -> x257
+    and t_to_js : t -> Ojs.t = fun (x256 : Ojs.t) -> x256
     let (create : client:BaseLanguageClient.t -> t) =
-      fun ~client:(x264 : BaseLanguageClient.t) ->
+      fun ~client:(x258 : BaseLanguageClient.t) ->
         t_of_js
           (Ojs.new_obj
              (Ojs.get_prop_ascii Ojs.global "DidRenameFilesFeature")
-             [|(BaseLanguageClient.t_to_js x264)|])
-    let (doSend :
+             [|(BaseLanguageClient.t_to_js x258)|])
+    let (do_send :
       t ->
         event:Code.FileRenameEvent.t ->
           next:(event:Code.FileRenameEvent.t -> unit) -> unit)
       =
-      fun (x268 : t) ->
-        fun ~event:(x265 : Code.FileRenameEvent.t) ->
-          fun ~next:(x266 : event:Code.FileRenameEvent.t -> unit) ->
+      fun (x262 : t) ->
+        fun ~event:(x259 : Code.FileRenameEvent.t) ->
+          fun ~next:(x260 : event:Code.FileRenameEvent.t -> unit) ->
             ignore
-              (Ojs.call (t_to_js x268) "doSend"
-                 [|(Code.FileRenameEvent.t_to_js x265);(Ojs.fun_to_js 1
-                                                          (fun (x267 : Ojs.t)
+              (Ojs.call (t_to_js x262) "doSend"
+                 [|(Code.FileRenameEvent.t_to_js x259);(Ojs.fun_to_js 1
+                                                          (fun (x261 : Ojs.t)
                                                              ->
-                                                             x266
+                                                             x260
                                                                ~event:(
                                                                Code.FileRenameEvent.t_of_js
-                                                                 x267)))|])
+                                                                 x261)))|])
     let (cast :
       t ->
         (AnonymousInterface1.t, Code.FileRenameEvent.t,
-          Proto.RenameFilesParams.t) _NotificationFileOperationFeature)
+          Proto.RenameFilesParams.t) NotificationFileOperationFeature.t)
       =
-      fun (x269 : t) ->
-        _NotificationFileOperationFeature_of_js AnonymousInterface1.t_of_js
+      fun (x263 : t) ->
+        NotificationFileOperationFeature.t_of_js AnonymousInterface1.t_of_js
           Code.FileRenameEvent.t_of_js Proto.RenameFilesParams.t_of_js
-          (t_to_js x269)
+          (t_to_js x263)
   end
 module DidDeleteFilesFeature =
   struct
-    type t = _DidDeleteFilesFeature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x274 : Ojs.t) -> _DidDeleteFilesFeature_of_js x274
-    and t_to_js : t -> Ojs.t =
-      fun (x273 : _DidDeleteFilesFeature) ->
-        _DidDeleteFilesFeature_to_js x273
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x268 : Ojs.t) -> x268
+    and t_to_js : t -> Ojs.t = fun (x267 : Ojs.t) -> x267
     let (create : client:BaseLanguageClient.t -> t) =
-      fun ~client:(x275 : BaseLanguageClient.t) ->
+      fun ~client:(x269 : BaseLanguageClient.t) ->
         t_of_js
           (Ojs.new_obj
              (Ojs.get_prop_ascii Ojs.global "DidDeleteFilesFeature")
-             [|(BaseLanguageClient.t_to_js x275)|])
-    let (doSend :
+             [|(BaseLanguageClient.t_to_js x269)|])
+    let (do_send :
       t ->
         event:Code.FileCreateEvent.t ->
           next:(event:Code.FileCreateEvent.t -> unit) -> unit)
       =
-      fun (x279 : t) ->
-        fun ~event:(x276 : Code.FileCreateEvent.t) ->
-          fun ~next:(x277 : event:Code.FileCreateEvent.t -> unit) ->
+      fun (x273 : t) ->
+        fun ~event:(x270 : Code.FileCreateEvent.t) ->
+          fun ~next:(x271 : event:Code.FileCreateEvent.t -> unit) ->
             ignore
-              (Ojs.call (t_to_js x279) "doSend"
-                 [|(Code.FileCreateEvent.t_to_js x276);(Ojs.fun_to_js 1
-                                                          (fun (x278 : Ojs.t)
+              (Ojs.call (t_to_js x273) "doSend"
+                 [|(Code.FileCreateEvent.t_to_js x270);(Ojs.fun_to_js 1
+                                                          (fun (x272 : Ojs.t)
                                                              ->
-                                                             x277
+                                                             x271
                                                                ~event:(
                                                                Code.FileCreateEvent.t_of_js
-                                                                 x278)))|])
+                                                                 x272)))|])
     let (cast :
       t ->
         (Code.Uri.t, Code.FileDeleteEvent.t, Proto.DeleteFilesParams.t)
-          _NotificationFileOperationFeature)
+          NotificationFileOperationFeature.t)
       =
-      fun (x280 : t) ->
-        _NotificationFileOperationFeature_of_js Code.Uri.t_of_js
+      fun (x274 : t) ->
+        NotificationFileOperationFeature.t_of_js Code.Uri.t_of_js
           Code.FileDeleteEvent.t_of_js Proto.DeleteFilesParams.t_of_js
-          (t_to_js x280)
+          (t_to_js x274)
   end
 module RequestEvent =
   struct
-    type 'I t = 'I _RequestEvent
+    type 'I t = Ojs.t
     let rec t_of_js : 'I . (Ojs.t -> 'I) -> Ojs.t -> 'I t = fun (type __I) ->
-      fun (__I_of_js : Ojs.t -> __I) ->
-        fun (x286 : Ojs.t) -> _RequestEvent_of_js __I_of_js x286
+      fun (__I_of_js : Ojs.t -> __I) -> fun (x279 : Ojs.t) -> x279
     and t_to_js : 'I . ('I -> Ojs.t) -> 'I t -> Ojs.t = fun (type __I) ->
-      fun (__I_to_js : __I -> Ojs.t) ->
-        fun (x284 : __I _RequestEvent) -> _RequestEvent_to_js __I_to_js x284
+      fun (__I_to_js : __I -> Ojs.t) -> fun (x278 : Ojs.t) -> x278
     let (get_files : 'I t -> 'I list) =
-      fun (x288 : 'I t) ->
+      fun (x280 : 'I t) ->
         Ojs.list_of_js Obj.magic
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x288) "files")
-    let (waitUntil : 'I t -> thenable:Code.WorkspaceEdit.t Promise.t -> unit)
-      =
-      fun (x293 : 'I t) ->
-        fun ~thenable:(x291 : Code.WorkspaceEdit.t Promise.t) ->
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x280) "files")
+    let (wait_until :
+      'I t -> thenable:Code.WorkspaceEdit.t Promise.t -> unit) =
+      fun (x285 : 'I t) ->
+        fun ~thenable:(x283 : Code.WorkspaceEdit.t Promise.t) ->
           ignore
-            (Ojs.call (t_to_js Obj.magic x293) "waitUntil"
-               [|(Promise.t_to_js Code.WorkspaceEdit.t_to_js x291)|])
-    let (waitUntil' : 'I t -> thenable:any Promise.t -> unit) =
-      fun (x297 : 'I t) ->
-        fun ~thenable:(x295 : any Promise.t) ->
+            (Ojs.call (t_to_js Obj.magic x285) "waitUntil"
+               [|(Promise.t_to_js Code.WorkspaceEdit.t_to_js x283)|])
+    let (wait_until' : 'I t -> thenable:any Promise.t -> unit) =
+      fun (x289 : 'I t) ->
+        fun ~thenable:(x287 : any Promise.t) ->
           ignore
-            (Ojs.call (t_to_js Obj.magic x297) "waitUntil"
-               [|(Promise.t_to_js any_to_js x295)|])
+            (Ojs.call (t_to_js Obj.magic x289) "waitUntil"
+               [|(Promise.t_to_js any_to_js x287)|])
   end
 module RequestFileOperationFeature =
   struct
-    type ('I, 'E, 'P) t = ('I, 'E, 'P) _RequestFileOperationFeature
+    type ('I, 'E, 'P) t = Ojs.t
     let rec t_of_js :
       'I 'E 'P .
         (Ojs.t -> 'I) ->
@@ -669,10 +650,7 @@ module RequestFileOperationFeature =
       = fun (type __I) -> fun (type __E) -> fun (type __P) ->
       fun (__I_of_js : Ojs.t -> __I) ->
         fun (__E_of_js : Ojs.t -> __E) ->
-          fun (__P_of_js : Ojs.t -> __P) ->
-            fun (x303 : Ojs.t) ->
-              _RequestFileOperationFeature_of_js __I_of_js __E_of_js
-                __P_of_js x303
+          fun (__P_of_js : Ojs.t -> __P) -> fun (x292 : Ojs.t) -> x292
     and t_to_js :
       'I 'E 'P .
         ('I -> Ojs.t) ->
@@ -680,348 +658,337 @@ module RequestFileOperationFeature =
       = fun (type __I) -> fun (type __E) -> fun (type __P) ->
       fun (__I_to_js : __I -> Ojs.t) ->
         fun (__E_to_js : __E -> Ojs.t) ->
-          fun (__P_to_js : __P -> Ojs.t) ->
-            fun (x299 : (__I, __E, __P) _RequestFileOperationFeature) ->
-              _RequestFileOperationFeature_to_js __I_to_js __E_to_js
-                __P_to_js x299
-    let (get__requestType : ('I, 'E, 'P) t -> any) =
-      fun (x307 : ('I, 'E, 'P) t) ->
+          fun (__P_to_js : __P -> Ojs.t) -> fun (x291 : Ojs.t) -> x291
+    let (get_request_type : ('I, 'E, 'P) t -> any) =
+      fun (x293 : ('I, 'E, 'P) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x307)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x293)
              "_requestType")
-    let (set__requestType : ('I, 'E, 'P) t -> any -> unit) =
-      fun (x311 : ('I, 'E, 'P) t) ->
-        fun (x312 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x311)
-            "_requestType" (any_to_js x312)
-    let (get__accessUri : ('I, 'E, 'P) t -> any) =
-      fun (x316 : ('I, 'E, 'P) t) ->
+    let (set_request_type : ('I, 'E, 'P) t -> any -> unit) =
+      fun (x297 : ('I, 'E, 'P) t) ->
+        fun (x298 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x297)
+            "_requestType" (any_to_js x298)
+    let (get_access_uri : ('I, 'E, 'P) t -> any) =
+      fun (x302 : ('I, 'E, 'P) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x316)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x302)
              "_accessUri")
-    let (set__accessUri : ('I, 'E, 'P) t -> any -> unit) =
-      fun (x320 : ('I, 'E, 'P) t) ->
-        fun (x321 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x320)
-            "_accessUri" (any_to_js x321)
-    let (get__createParams : ('I, 'E, 'P) t -> any) =
-      fun (x325 : ('I, 'E, 'P) t) ->
+    let (set_access_uri : ('I, 'E, 'P) t -> any -> unit) =
+      fun (x306 : ('I, 'E, 'P) t) ->
+        fun (x307 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x306)
+            "_accessUri" (any_to_js x307)
+    let (get_create_params : ('I, 'E, 'P) t -> any) =
+      fun (x311 : ('I, 'E, 'P) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x325)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x311)
              "_createParams")
-    let (set__createParams : ('I, 'E, 'P) t -> any -> unit) =
-      fun (x329 : ('I, 'E, 'P) t) ->
-        fun (x330 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x329)
-            "_createParams" (any_to_js x330)
+    let (set_create_params : ('I, 'E, 'P) t -> any -> unit) =
+      fun (x315 : ('I, 'E, 'P) t) ->
+        fun (x316 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x315)
+            "_createParams" (any_to_js x316)
     let (create :
       client:BaseLanguageClient.t ->
         event:'E Code.Event.t ->
-          requestType:('P, Proto.WorkspaceEdit.t or_null, never, unit,
+          request_type:('P, Proto.WorkspaceEdit.t or_null, never, unit,
             Proto.FileOperationRegistrationOptions.t)
             Proto.ProtocolRequestType.t ->
-            clientCapability:any ->
-              serverCapability:any ->
-                accessUri:(i:'I -> Code.Uri.t) ->
-                  createParams:(e:'I _Event -> 'P) -> ('I, 'E, 'P) t)
+            client_capability:any ->
+              server_capability:any ->
+                access_uri:(i:'I -> Code.Uri.t) ->
+                  create_params:(e:'I Event.t -> 'P) -> ('I, 'E, 'P) t)
       =
-      fun ~client:(x334 : BaseLanguageClient.t) ->
-        fun ~event:(x335 : 'E Code.Event.t) ->
+      fun ~client:(x320 : BaseLanguageClient.t) ->
+        fun ~event:(x321 : 'E Code.Event.t) ->
           fun
-            ~requestType:(x337 :
-                           ('P, Proto.WorkspaceEdit.t or_null, never, 
-                             unit, Proto.FileOperationRegistrationOptions.t)
-                             Proto.ProtocolRequestType.t)
+            ~request_type:(x323 :
+                            ('P, Proto.WorkspaceEdit.t or_null, never, 
+                              unit, Proto.FileOperationRegistrationOptions.t)
+                              Proto.ProtocolRequestType.t)
             ->
-            fun ~clientCapability:(x344 : any) ->
-              fun ~serverCapability:(x345 : any) ->
-                fun ~accessUri:(x346 : i:'I -> Code.Uri.t) ->
-                  fun ~createParams:(x348 : e:'I _Event -> 'P) ->
+            fun ~client_capability:(x330 : any) ->
+              fun ~server_capability:(x331 : any) ->
+                fun ~access_uri:(x332 : i:'I -> Code.Uri.t) ->
+                  fun ~create_params:(x334 : e:'I Event.t -> 'P) ->
                     t_of_js Obj.magic Obj.magic Obj.magic
                       (Ojs.new_obj
                          (Ojs.get_prop_ascii Ojs.global
                             "RequestFileOperationFeature")
-                         [|(BaseLanguageClient.t_to_js x334);(Code.Event.t_to_js
+                         [|(BaseLanguageClient.t_to_js x320);(Code.Event.t_to_js
                                                                 Obj.magic
-                                                                x335);(
+                                                                x321);(
                            Proto.ProtocolRequestType.t_to_js Obj.magic
-                             (fun (x339 : Proto.WorkspaceEdit.t or_null) ->
+                             (fun (x325 : Proto.WorkspaceEdit.t or_null) ->
                                 or_null_to_js Proto.WorkspaceEdit.t_to_js
-                                  x339) never_to_js Ojs.unit_to_js
+                                  x325) never_to_js Ojs.unit_to_js
                              Proto.FileOperationRegistrationOptions.t_to_js
-                             x337);(any_to_js x344);(any_to_js x345);(
+                             x323);(any_to_js x330);(any_to_js x331);(
                            Ojs.fun_to_js 1
-                             (fun (x347 : Ojs.t) ->
-                                Code.Uri.t_to_js (x346 ~i:(Obj.magic x347))));(
+                             (fun (x333 : Ojs.t) ->
+                                Code.Uri.t_to_js (x332 ~i:(Obj.magic x333))));(
                            Ojs.fun_to_js 1
-                             (fun (x349 : Ojs.t) ->
+                             (fun (x335 : Ojs.t) ->
                                 Obj.magic
-                                  (x348 ~e:(_Event_of_js Obj.magic x349))))|])
+                                  (x334 ~e:(Event.t_of_js Obj.magic x335))))|])
     let (send :
       ('I, 'E, 'P) t ->
-        originalEvent:('E, 'I _RequestEvent) intersection2 -> unit Promise.t)
+        original_event:('E, 'I RequestEvent.t) intersection2 ->
+          unit Promise.t)
       =
-      fun (x358 : ('I, 'E, 'P) t) ->
-        fun ~originalEvent:(x354 : ('E, 'I _RequestEvent) intersection2) ->
+      fun (x344 : ('I, 'E, 'P) t) ->
+        fun ~original_event:(x340 : ('E, 'I RequestEvent.t) intersection2) ->
           Promise.t_of_js Ojs.unit_of_js
-            (Ojs.call (t_to_js Obj.magic Obj.magic Obj.magic x358) "send"
+            (Ojs.call (t_to_js Obj.magic Obj.magic Obj.magic x344) "send"
                [|(intersection2_to_js Obj.magic
-                    (fun (x356 : 'I _RequestEvent) ->
-                       _RequestEvent_to_js Obj.magic x356) x354)|])
-    let (get_waitUntil : ('I, 'E, 'P) t -> any) =
-      fun (x363 : ('I, 'E, 'P) t) ->
+                    (fun (x342 : 'I RequestEvent.t) ->
+                       RequestEvent.t_to_js Obj.magic x342) x340)|])
+    let (get_wait_until : ('I, 'E, 'P) t -> any) =
+      fun (x349 : ('I, 'E, 'P) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x363)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x349)
              "waitUntil")
-    let (set_waitUntil : ('I, 'E, 'P) t -> any -> unit) =
-      fun (x367 : ('I, 'E, 'P) t) ->
-        fun (x368 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x367)
-            "waitUntil" (any_to_js x368)
-    let (doSend :
+    let (set_wait_until : ('I, 'E, 'P) t -> any -> unit) =
+      fun (x353 : ('I, 'E, 'P) t) ->
+        fun (x354 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic Obj.magic x353)
+            "waitUntil" (any_to_js x354)
+    let (do_send :
       ('I, 'E, 'P) t ->
         event:'E ->
-          next:(event:'I _Event ->
+          next:(event:'I Event.t ->
                   (Code.WorkspaceEdit.t Promise.t, any Promise.t) union2)
             -> (Code.WorkspaceEdit.t Promise.t, any Promise.t) union2)
       =
-      fun (x380 : ('I, 'E, 'P) t) ->
-        fun ~event:(x372 : 'E) ->
+      fun (x366 : ('I, 'E, 'P) t) ->
+        fun ~event:(x358 : 'E) ->
           fun
-            ~next:(x373 :
-                    event:'I _Event ->
+            ~next:(x359 :
+                    event:'I Event.t ->
                       (Code.WorkspaceEdit.t Promise.t, any Promise.t) union2)
             ->
             union2_of_js
-              (fun (x384 : Ojs.t) ->
-                 Promise.t_of_js Code.WorkspaceEdit.t_of_js x384)
-              (fun (x386 : Ojs.t) -> Promise.t_of_js any_of_js x386)
-              (Ojs.call (t_to_js Obj.magic Obj.magic Obj.magic x380) "doSend"
-                 [|(Obj.magic x372);(Ojs.fun_to_js 1
-                                       (fun (x374 : Ojs.t) ->
+              (fun (x370 : Ojs.t) ->
+                 Promise.t_of_js Code.WorkspaceEdit.t_of_js x370)
+              (fun (x372 : Ojs.t) -> Promise.t_of_js any_of_js x372)
+              (Ojs.call (t_to_js Obj.magic Obj.magic Obj.magic x366) "doSend"
+                 [|(Obj.magic x358);(Ojs.fun_to_js 1
+                                       (fun (x360 : Ojs.t) ->
                                           union2_to_js
                                             (fun
-                                               (x376 :
+                                               (x362 :
                                                  Code.WorkspaceEdit.t
                                                    Promise.t)
                                                ->
                                                Promise.t_to_js
                                                  Code.WorkspaceEdit.t_to_js
-                                                 x376)
-                                            (fun (x378 : any Promise.t) ->
-                                               Promise.t_to_js any_to_js x378)
-                                            (x373
-                                               ~event:(_Event_of_js Obj.magic
-                                                         x374))))|])
-    let (cast : ('I, 'E, 'P) t -> ('I, 'E) _FileOperationFeature) =
-      fun (x388 : ('I, 'E, 'P) t) ->
-        _FileOperationFeature_of_js Obj.magic Obj.magic
-          (t_to_js Obj.magic Obj.magic Obj.magic x388)
+                                                 x362)
+                                            (fun (x364 : any Promise.t) ->
+                                               Promise.t_to_js any_to_js x364)
+                                            (x359
+                                               ~event:(Event.t_of_js
+                                                         Obj.magic x360))))|])
+    let (cast : ('I, 'E, 'P) t -> ('I, 'E) FileOperationFeature.t) =
+      fun (x374 : ('I, 'E, 'P) t) ->
+        FileOperationFeature.t_of_js Obj.magic Obj.magic
+          (t_to_js Obj.magic Obj.magic Obj.magic x374)
   end
 module WillCreateFilesFeature =
   struct
-    type t = _WillCreateFilesFeature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x395 : Ojs.t) -> _WillCreateFilesFeature_of_js x395
-    and t_to_js : t -> Ojs.t =
-      fun (x394 : _WillCreateFilesFeature) ->
-        _WillCreateFilesFeature_to_js x394
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x381 : Ojs.t) -> x381
+    and t_to_js : t -> Ojs.t = fun (x380 : Ojs.t) -> x380
     let (create : client:BaseLanguageClient.t -> t) =
-      fun ~client:(x396 : BaseLanguageClient.t) ->
+      fun ~client:(x382 : BaseLanguageClient.t) ->
         t_of_js
           (Ojs.new_obj
              (Ojs.get_prop_ascii Ojs.global "WillCreateFilesFeature")
-             [|(BaseLanguageClient.t_to_js x396)|])
-    let (doSend :
+             [|(BaseLanguageClient.t_to_js x382)|])
+    let (do_send :
       t ->
         event:Code.FileWillCreateEvent.t ->
           next:(event:Code.FileCreateEvent.t ->
                   (Code.WorkspaceEdit.t Promise.t, any Promise.t) union2)
             -> (Code.WorkspaceEdit.t Promise.t, any Promise.t) union2)
       =
-      fun (x404 : t) ->
-        fun ~event:(x397 : Code.FileWillCreateEvent.t) ->
+      fun (x390 : t) ->
+        fun ~event:(x383 : Code.FileWillCreateEvent.t) ->
           fun
-            ~next:(x398 :
+            ~next:(x384 :
                     event:Code.FileCreateEvent.t ->
                       (Code.WorkspaceEdit.t Promise.t, any Promise.t) union2)
             ->
             union2_of_js
-              (fun (x405 : Ojs.t) ->
-                 Promise.t_of_js Code.WorkspaceEdit.t_of_js x405)
-              (fun (x407 : Ojs.t) -> Promise.t_of_js any_of_js x407)
-              (Ojs.call (t_to_js x404) "doSend"
-                 [|(Code.FileWillCreateEvent.t_to_js x397);(Ojs.fun_to_js 1
+              (fun (x391 : Ojs.t) ->
+                 Promise.t_of_js Code.WorkspaceEdit.t_of_js x391)
+              (fun (x393 : Ojs.t) -> Promise.t_of_js any_of_js x393)
+              (Ojs.call (t_to_js x390) "doSend"
+                 [|(Code.FileWillCreateEvent.t_to_js x383);(Ojs.fun_to_js 1
                                                               (fun
-                                                                 (x399 :
+                                                                 (x385 :
                                                                    Ojs.t)
                                                                  ->
                                                                  union2_to_js
                                                                    (fun
-                                                                    (x400 :
+                                                                    (x386 :
                                                                     Code.WorkspaceEdit.t
                                                                     Promise.t)
                                                                     ->
                                                                     Promise.t_to_js
                                                                     Code.WorkspaceEdit.t_to_js
-                                                                    x400)
+                                                                    x386)
                                                                    (fun
-                                                                    (x402 :
+                                                                    (x388 :
                                                                     any
                                                                     Promise.t)
                                                                     ->
                                                                     Promise.t_to_js
                                                                     any_to_js
-                                                                    x402)
-                                                                   (x398
+                                                                    x388)
+                                                                   (x384
                                                                     ~event:(
                                                                     Code.FileCreateEvent.t_of_js
-                                                                    x399))))|])
+                                                                    x385))))|])
     let (cast :
       t ->
         (Code.Uri.t, Code.FileWillCreateEvent.t, Proto.CreateFilesParams.t)
-          _RequestFileOperationFeature)
+          RequestFileOperationFeature.t)
       =
-      fun (x409 : t) ->
-        _RequestFileOperationFeature_of_js Code.Uri.t_of_js
+      fun (x395 : t) ->
+        RequestFileOperationFeature.t_of_js Code.Uri.t_of_js
           Code.FileWillCreateEvent.t_of_js Proto.CreateFilesParams.t_of_js
-          (t_to_js x409)
+          (t_to_js x395)
   end
 module WillRenameFilesFeature =
   struct
-    type t = _WillRenameFilesFeature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x414 : Ojs.t) -> _WillRenameFilesFeature_of_js x414
-    and t_to_js : t -> Ojs.t =
-      fun (x413 : _WillRenameFilesFeature) ->
-        _WillRenameFilesFeature_to_js x413
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x400 : Ojs.t) -> x400
+    and t_to_js : t -> Ojs.t = fun (x399 : Ojs.t) -> x399
     let (create : client:BaseLanguageClient.t -> t) =
-      fun ~client:(x415 : BaseLanguageClient.t) ->
+      fun ~client:(x401 : BaseLanguageClient.t) ->
         t_of_js
           (Ojs.new_obj
              (Ojs.get_prop_ascii Ojs.global "WillRenameFilesFeature")
-             [|(BaseLanguageClient.t_to_js x415)|])
-    let (doSend :
+             [|(BaseLanguageClient.t_to_js x401)|])
+    let (do_send :
       t ->
         event:Code.FileWillRenameEvent.t ->
           next:(event:Code.FileRenameEvent.t ->
                   (Code.WorkspaceEdit.t Promise.t, any Promise.t) union2)
             -> (Code.WorkspaceEdit.t Promise.t, any Promise.t) union2)
       =
-      fun (x423 : t) ->
-        fun ~event:(x416 : Code.FileWillRenameEvent.t) ->
+      fun (x409 : t) ->
+        fun ~event:(x402 : Code.FileWillRenameEvent.t) ->
           fun
-            ~next:(x417 :
+            ~next:(x403 :
                     event:Code.FileRenameEvent.t ->
                       (Code.WorkspaceEdit.t Promise.t, any Promise.t) union2)
             ->
             union2_of_js
-              (fun (x424 : Ojs.t) ->
-                 Promise.t_of_js Code.WorkspaceEdit.t_of_js x424)
-              (fun (x426 : Ojs.t) -> Promise.t_of_js any_of_js x426)
-              (Ojs.call (t_to_js x423) "doSend"
-                 [|(Code.FileWillRenameEvent.t_to_js x416);(Ojs.fun_to_js 1
+              (fun (x410 : Ojs.t) ->
+                 Promise.t_of_js Code.WorkspaceEdit.t_of_js x410)
+              (fun (x412 : Ojs.t) -> Promise.t_of_js any_of_js x412)
+              (Ojs.call (t_to_js x409) "doSend"
+                 [|(Code.FileWillRenameEvent.t_to_js x402);(Ojs.fun_to_js 1
                                                               (fun
-                                                                 (x418 :
+                                                                 (x404 :
                                                                    Ojs.t)
                                                                  ->
                                                                  union2_to_js
                                                                    (fun
-                                                                    (x419 :
+                                                                    (x405 :
                                                                     Code.WorkspaceEdit.t
                                                                     Promise.t)
                                                                     ->
                                                                     Promise.t_to_js
                                                                     Code.WorkspaceEdit.t_to_js
-                                                                    x419)
+                                                                    x405)
                                                                    (fun
-                                                                    (x421 :
+                                                                    (x407 :
                                                                     any
                                                                     Promise.t)
                                                                     ->
                                                                     Promise.t_to_js
                                                                     any_to_js
-                                                                    x421)
-                                                                   (x417
+                                                                    x407)
+                                                                   (x403
                                                                     ~event:(
                                                                     Code.FileRenameEvent.t_of_js
-                                                                    x418))))|])
+                                                                    x404))))|])
     let (cast :
       t ->
         (AnonymousInterface1.t, Code.FileWillRenameEvent.t,
-          Proto.RenameFilesParams.t) _RequestFileOperationFeature)
+          Proto.RenameFilesParams.t) RequestFileOperationFeature.t)
       =
-      fun (x428 : t) ->
-        _RequestFileOperationFeature_of_js AnonymousInterface1.t_of_js
+      fun (x414 : t) ->
+        RequestFileOperationFeature.t_of_js AnonymousInterface1.t_of_js
           Code.FileWillRenameEvent.t_of_js Proto.RenameFilesParams.t_of_js
-          (t_to_js x428)
+          (t_to_js x414)
   end
 module WillDeleteFilesFeature =
   struct
-    type t = _WillDeleteFilesFeature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x433 : Ojs.t) -> _WillDeleteFilesFeature_of_js x433
-    and t_to_js : t -> Ojs.t =
-      fun (x432 : _WillDeleteFilesFeature) ->
-        _WillDeleteFilesFeature_to_js x432
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x419 : Ojs.t) -> x419
+    and t_to_js : t -> Ojs.t = fun (x418 : Ojs.t) -> x418
     let (create : client:BaseLanguageClient.t -> t) =
-      fun ~client:(x434 : BaseLanguageClient.t) ->
+      fun ~client:(x420 : BaseLanguageClient.t) ->
         t_of_js
           (Ojs.new_obj
              (Ojs.get_prop_ascii Ojs.global "WillDeleteFilesFeature")
-             [|(BaseLanguageClient.t_to_js x434)|])
-    let (doSend :
+             [|(BaseLanguageClient.t_to_js x420)|])
+    let (do_send :
       t ->
         event:Code.FileWillDeleteEvent.t ->
           next:(event:Code.FileDeleteEvent.t ->
                   (Code.WorkspaceEdit.t Promise.t, any Promise.t) union2)
             -> (Code.WorkspaceEdit.t Promise.t, any Promise.t) union2)
       =
-      fun (x442 : t) ->
-        fun ~event:(x435 : Code.FileWillDeleteEvent.t) ->
+      fun (x428 : t) ->
+        fun ~event:(x421 : Code.FileWillDeleteEvent.t) ->
           fun
-            ~next:(x436 :
+            ~next:(x422 :
                     event:Code.FileDeleteEvent.t ->
                       (Code.WorkspaceEdit.t Promise.t, any Promise.t) union2)
             ->
             union2_of_js
-              (fun (x443 : Ojs.t) ->
-                 Promise.t_of_js Code.WorkspaceEdit.t_of_js x443)
-              (fun (x445 : Ojs.t) -> Promise.t_of_js any_of_js x445)
-              (Ojs.call (t_to_js x442) "doSend"
-                 [|(Code.FileWillDeleteEvent.t_to_js x435);(Ojs.fun_to_js 1
+              (fun (x429 : Ojs.t) ->
+                 Promise.t_of_js Code.WorkspaceEdit.t_of_js x429)
+              (fun (x431 : Ojs.t) -> Promise.t_of_js any_of_js x431)
+              (Ojs.call (t_to_js x428) "doSend"
+                 [|(Code.FileWillDeleteEvent.t_to_js x421);(Ojs.fun_to_js 1
                                                               (fun
-                                                                 (x437 :
+                                                                 (x423 :
                                                                    Ojs.t)
                                                                  ->
                                                                  union2_to_js
                                                                    (fun
-                                                                    (x438 :
+                                                                    (x424 :
                                                                     Code.WorkspaceEdit.t
                                                                     Promise.t)
                                                                     ->
                                                                     Promise.t_to_js
                                                                     Code.WorkspaceEdit.t_to_js
-                                                                    x438)
+                                                                    x424)
                                                                    (fun
-                                                                    (x440 :
+                                                                    (x426 :
                                                                     any
                                                                     Promise.t)
                                                                     ->
                                                                     Promise.t_to_js
                                                                     any_to_js
-                                                                    x440)
-                                                                   (x436
+                                                                    x426)
+                                                                   (x422
                                                                     ~event:(
                                                                     Code.FileDeleteEvent.t_of_js
-                                                                    x437))))|])
+                                                                    x423))))|])
     let (cast :
       t ->
         (Code.Uri.t, Code.FileWillDeleteEvent.t, Proto.DeleteFilesParams.t)
-          _RequestFileOperationFeature)
+          RequestFileOperationFeature.t)
       =
-      fun (x447 : t) ->
-        _RequestFileOperationFeature_of_js Code.Uri.t_of_js
+      fun (x433 : t) ->
+        RequestFileOperationFeature.t_of_js Code.Uri.t_of_js
           Code.FileWillDeleteEvent.t_of_js Proto.DeleteFilesParams.t_of_js
-          (t_to_js x447)
+          (t_to_js x433)
   end

@@ -7,18 +7,18 @@ open Node_globals
 
 module Module : sig
   module Module : sig
-    val syncBuiltinESMExports : unit -> unit
+    val sync_builtin_esm_exports : unit -> unit
       [@@js.global "syncBuiltinESMExports"]
 
-    val findSourceMap
+    val find_source_map
       :  path:string
       -> ?error:Error.t
       -> unit
-      -> module_Module_SourceMap
+      -> Module_SourceMap.t
       [@@js.global "findSourceMap"]
 
     module SourceMapPayload : sig
-      type t = module_Module_SourceMapPayload
+      type t_SourceMapPayload
 
       val t_to_js : t -> Ojs.t
 
@@ -36,9 +36,9 @@ module Module : sig
 
       val set_sources : t -> string list -> unit [@@js.set "sources"]
 
-      val get_sourcesContent : t -> string list [@@js.get "sourcesContent"]
+      val get_sources_content : t -> string list [@@js.get "sourcesContent"]
 
-      val set_sourcesContent : t -> string list -> unit
+      val set_sources_content : t -> string list -> unit
         [@@js.set "sourcesContent"]
 
       val get_names : t -> string list [@@js.get "names"]
@@ -49,81 +49,81 @@ module Module : sig
 
       val set_mappings : t -> string -> unit [@@js.set "mappings"]
 
-      val get_sourceRoot : t -> string [@@js.get "sourceRoot"]
+      val get_source_root : t -> string [@@js.get "sourceRoot"]
 
-      val set_sourceRoot : t -> string -> unit [@@js.set "sourceRoot"]
+      val set_source_root : t -> string -> unit [@@js.set "sourceRoot"]
     end
     [@@js.scope "SourceMapPayload"]
 
     module SourceMapping : sig
-      type t = module_Module_SourceMapping
+      type t_SourceMapping
 
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
 
-      val get_generatedLine : t -> int [@@js.get "generatedLine"]
+      val get_generated_line : t -> int [@@js.get "generatedLine"]
 
-      val set_generatedLine : t -> int -> unit [@@js.set "generatedLine"]
+      val set_generated_line : t -> int -> unit [@@js.set "generatedLine"]
 
-      val get_generatedColumn : t -> int [@@js.get "generatedColumn"]
+      val get_generated_column : t -> int [@@js.get "generatedColumn"]
 
-      val set_generatedColumn : t -> int -> unit [@@js.set "generatedColumn"]
+      val set_generated_column : t -> int -> unit [@@js.set "generatedColumn"]
 
-      val get_originalSource : t -> string [@@js.get "originalSource"]
+      val get_original_source : t -> string [@@js.get "originalSource"]
 
-      val set_originalSource : t -> string -> unit [@@js.set "originalSource"]
+      val set_original_source : t -> string -> unit [@@js.set "originalSource"]
 
-      val get_originalLine : t -> int [@@js.get "originalLine"]
+      val get_original_line : t -> int [@@js.get "originalLine"]
 
-      val set_originalLine : t -> int -> unit [@@js.set "originalLine"]
+      val set_original_line : t -> int -> unit [@@js.set "originalLine"]
 
-      val get_originalColumn : t -> int [@@js.get "originalColumn"]
+      val get_original_column : t -> int [@@js.get "originalColumn"]
 
-      val set_originalColumn : t -> int -> unit [@@js.set "originalColumn"]
+      val set_original_column : t -> int -> unit [@@js.set "originalColumn"]
     end
     [@@js.scope "SourceMapping"]
 
     module SourceMap : sig
-      type t = module_Module_SourceMap
+      type t_SourceMap
 
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
 
-      val get_payload : t -> module_Module_SourceMapPayload [@@js.get "payload"]
+      val get_payload : t -> Module_SourceMapPayload.t [@@js.get "payload"]
 
-      val create : payload:module_Module_SourceMapPayload -> t [@@js.create]
+      val create : payload:Module_SourceMapPayload.t -> t [@@js.create]
 
-      val findEntry : t -> line:int -> column:int -> module_Module_SourceMapping
+      val find_entry : t -> line:int -> column:int -> Module_SourceMapping.t
         [@@js.call "findEntry"]
     end
     [@@js.scope "SourceMap"]
 
-    type t = module_Module
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val runMain : unit -> unit [@@js.global "runMain"]
+    val run_main : unit -> unit [@@js.global "runMain"]
 
     val wrap : code:string -> string [@@js.global "wrap"]
 
-    val createRequireFromPath : path:string -> NodeRequire.t
+    val create_require_from_path : path:string -> NodeRequire.t
       [@@js.global "createRequireFromPath"]
 
-    val createRequire : path:Node_url.Url.Url.t or_string -> NodeRequire.t
+    val create_require : path:Node_url.Url.Url.t or_string -> NodeRequire.t
       [@@js.global "createRequire"]
 
-    val get_builtinModules : unit -> string list [@@js.get "builtinModules"]
+    val get_builtin_modules : unit -> string list [@@js.get "builtinModules"]
 
-    val set_builtinModules : string list -> unit [@@js.set "builtinModules"]
+    val set_builtin_modules : string list -> unit [@@js.set "builtinModules"]
 
-    val get_Module : unit -> (* FIXME: unknown type 'typeof Module' *) any
+    val get_module : unit -> (* FIXME: unknown type 'typeof Module' *) any
       [@@js.get "Module"]
 
-    val set_Module : (* FIXME: unknown type 'typeof Module' *) any -> unit
+    val set_module : (* FIXME: unknown type 'typeof Module' *) any -> unit
       [@@js.set "Module"]
 
     val create : id:string -> ?parent:t -> unit -> t [@@js.create]

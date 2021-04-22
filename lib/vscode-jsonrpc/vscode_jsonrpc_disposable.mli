@@ -5,7 +5,7 @@
 open Es5
 
 module Disposable : sig
-  type t = _Disposable
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -13,6 +13,6 @@ module Disposable : sig
 
   val dispose : t -> unit [@@js.call "dispose"]
 
-  val create_ : func:(unit -> unit) -> _Disposable [@@js.global "create"]
+  val create_ : func:(unit -> unit) -> Disposable.t [@@js.global "create"]
 end
 [@@js.scope "Disposable"]

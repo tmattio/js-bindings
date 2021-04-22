@@ -18,7 +18,7 @@ module Net : sig
   open Node_dns
 
   module LookupFunction : sig
-    type t = net_LookupFunction
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -39,7 +39,7 @@ module Net : sig
   [@@js.scope "LookupFunction"]
 
   module AddressInfo : sig
-    type t = net_AddressInfo
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -60,7 +60,7 @@ module Net : sig
   [@@js.scope "AddressInfo"]
 
   module SocketConstructorOpts : sig
-    type t = net_SocketConstructorOpts
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -70,9 +70,9 @@ module Net : sig
 
     val set_fd : t -> int -> unit [@@js.set "fd"]
 
-    val get_allowHalfOpen : t -> bool [@@js.get "allowHalfOpen"]
+    val get_allow_half_open : t -> bool [@@js.get "allowHalfOpen"]
 
-    val set_allowHalfOpen : t -> bool -> unit [@@js.set "allowHalfOpen"]
+    val set_allow_half_open : t -> bool -> unit [@@js.set "allowHalfOpen"]
 
     val get_readable : t -> bool [@@js.get "readable"]
 
@@ -85,7 +85,7 @@ module Net : sig
   [@@js.scope "SocketConstructorOpts"]
 
   module OnReadOpts : sig
-    type t = net_OnReadOpts
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -97,26 +97,26 @@ module Net : sig
     val set_buffer : t -> (Uint8Array.t, unit -> Uint8Array.t) union2 -> unit
       [@@js.set "buffer"]
 
-    val callback : t -> bytesWritten:int -> buf:Uint8Array.t -> bool
+    val callback : t -> bytes_written:int -> buf:Uint8Array.t -> bool
       [@@js.call "callback"]
   end
   [@@js.scope "OnReadOpts"]
 
   module ConnectOpts : sig
-    type t = net_ConnectOpts
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_onread : t -> net_OnReadOpts [@@js.get "onread"]
+    val get_onread : t -> OnReadOpts.t [@@js.get "onread"]
 
-    val set_onread : t -> net_OnReadOpts -> unit [@@js.set "onread"]
+    val set_onread : t -> OnReadOpts.t -> unit [@@js.set "onread"]
   end
   [@@js.scope "ConnectOpts"]
 
   module TcpSocketConnectOpts : sig
-    type t = net_TcpSocketConnectOpts
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -130,13 +130,13 @@ module Net : sig
 
     val set_host : t -> string -> unit [@@js.set "host"]
 
-    val get_localAddress : t -> string [@@js.get "localAddress"]
+    val get_local_address : t -> string [@@js.get "localAddress"]
 
-    val set_localAddress : t -> string -> unit [@@js.set "localAddress"]
+    val set_local_address : t -> string -> unit [@@js.set "localAddress"]
 
-    val get_localPort : t -> int [@@js.get "localPort"]
+    val get_local_port : t -> int [@@js.get "localPort"]
 
-    val set_localPort : t -> int -> unit [@@js.set "localPort"]
+    val set_local_port : t -> int -> unit [@@js.set "localPort"]
 
     val get_hints : t -> int [@@js.get "hints"]
 
@@ -146,16 +146,16 @@ module Net : sig
 
     val set_family : t -> int -> unit [@@js.set "family"]
 
-    val get_lookup : t -> net_LookupFunction [@@js.get "lookup"]
+    val get_lookup : t -> LookupFunction.t [@@js.get "lookup"]
 
-    val set_lookup : t -> net_LookupFunction -> unit [@@js.set "lookup"]
+    val set_lookup : t -> LookupFunction.t -> unit [@@js.set "lookup"]
 
-    val cast : t -> net_ConnectOpts [@@js.cast]
+    val cast : t -> ConnectOpts.t [@@js.cast]
   end
   [@@js.scope "TcpSocketConnectOpts"]
 
   module IpcSocketConnectOpts : sig
-    type t = net_IpcSocketConnectOpts
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -165,12 +165,12 @@ module Net : sig
 
     val set_path : t -> string -> unit [@@js.set "path"]
 
-    val cast : t -> net_ConnectOpts [@@js.cast]
+    val cast : t -> ConnectOpts.t [@@js.cast]
   end
   [@@js.scope "IpcSocketConnectOpts"]
 
   module SocketConnectOpts : sig
-    type t = (net_IpcSocketConnectOpts, net_TcpSocketConnectOpts) union2
+    type t = (IpcSocketConnectOpts.t, TcpSocketConnectOpts.t) union2
 
     val t_to_js : t -> Ojs.t
 
@@ -178,13 +178,13 @@ module Net : sig
   end
 
   module Socket : sig
-    type t = net_Socket
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val create : ?options:net_SocketConstructorOpts -> unit -> t [@@js.create]
+    val create : ?options:SocketConstructorOpts.t -> unit -> t [@@js.create]
 
     val write
       :  t
@@ -205,8 +205,8 @@ module Net : sig
 
     val connect
       :  t
-      -> options:net_SocketConnectOpts
-      -> ?connectionListener:(unit -> unit)
+      -> options:SocketConnectOpts.t
+      -> ?connection_listener:(unit -> unit)
       -> unit
       -> t
       [@@js.call "connect"]
@@ -215,7 +215,7 @@ module Net : sig
       :  t
       -> port:int
       -> host:string
-      -> ?connectionListener:(unit -> unit)
+      -> ?connection_listener:(unit -> unit)
       -> unit
       -> t
       [@@js.call "connect"]
@@ -223,7 +223,7 @@ module Net : sig
     val connect''
       :  t
       -> port:int
-      -> ?connectionListener:(unit -> unit)
+      -> ?connection_listener:(unit -> unit)
       -> unit
       -> t
       [@@js.call "connect"]
@@ -231,52 +231,52 @@ module Net : sig
     val connect'''
       :  t
       -> path:string
-      -> ?connectionListener:(unit -> unit)
+      -> ?connection_listener:(unit -> unit)
       -> unit
       -> t
       [@@js.call "connect"]
 
-    val setEncoding : t -> ?encoding:BufferEncoding.t -> unit -> t
+    val set_encoding : t -> ?encoding:BufferEncoding.t -> unit -> t
       [@@js.call "setEncoding"]
 
     val pause : t -> t [@@js.call "pause"]
 
     val resume : t -> t [@@js.call "resume"]
 
-    val setTimeout : t -> timeout:int -> ?callback:(unit -> unit) -> unit -> t
+    val set_timeout : t -> timeout:int -> ?callback:(unit -> unit) -> unit -> t
       [@@js.call "setTimeout"]
 
-    val setNoDelay : t -> ?noDelay:bool -> unit -> t [@@js.call "setNoDelay"]
+    val set_no_delay : t -> ?no_delay:bool -> unit -> t [@@js.call "setNoDelay"]
 
-    val setKeepAlive : t -> ?enable:bool -> ?initialDelay:int -> unit -> t
+    val set_keep_alive : t -> ?enable:bool -> ?initial_delay:int -> unit -> t
       [@@js.call "setKeepAlive"]
 
-    val address : t -> (net_AddressInfo, AnonymousInterface0.t) union2
+    val address : t -> (AddressInfo.t, AnonymousInterface0.t) union2
       [@@js.call "address"]
 
     val unref : t -> t [@@js.call "unref"]
 
     val ref : t -> t [@@js.call "ref"]
 
-    val get_bufferSize : t -> int [@@js.get "bufferSize"]
+    val get_buffer_size : t -> int [@@js.get "bufferSize"]
 
-    val get_bytesRead : t -> int [@@js.get "bytesRead"]
+    val get_bytes_read : t -> int [@@js.get "bytesRead"]
 
-    val get_bytesWritten : t -> int [@@js.get "bytesWritten"]
+    val get_bytes_written : t -> int [@@js.get "bytesWritten"]
 
     val get_connecting : t -> bool [@@js.get "connecting"]
 
     val get_destroyed : t -> bool [@@js.get "destroyed"]
 
-    val get_localAddress : t -> string [@@js.get "localAddress"]
+    val get_local_address : t -> string [@@js.get "localAddress"]
 
-    val get_localPort : t -> int [@@js.get "localPort"]
+    val get_local_port : t -> int [@@js.get "localPort"]
 
-    val get_remoteAddress : t -> string [@@js.get "remoteAddress"]
+    val get_remote_address : t -> string [@@js.get "remoteAddress"]
 
-    val get_remoteFamily : t -> string [@@js.get "remoteFamily"]
+    val get_remote_family : t -> string [@@js.get "remoteFamily"]
 
-    val get_remotePort : t -> int [@@js.get "remotePort"]
+    val get_remote_port : t -> int [@@js.get "remotePort"]
 
     val end_ : t -> ?cb:(unit -> unit) -> unit -> unit [@@js.call "end"]
 
@@ -297,56 +297,56 @@ module Net : sig
       -> unit
       [@@js.call "end"]
 
-    val addListener
+    val add_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'
+    val add_listener'
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(had_error:bool -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''
+    val add_listener''
       :  t
       -> event:([ `connect ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''
+    val add_listener'''
       :  t
       -> event:([ `data ][@js.enum])
       -> listener:(data:Buffer.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''
+    val add_listener''''
       :  t
       -> event:([ `drain ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''
+    val add_listener'''''
       :  t
       -> event:([ `end_ ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''''
+    val add_listener''''''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''''
+    val add_listener'''''''
       :  t
       -> event:([ `lookup ][@js.enum])
       -> listener:
@@ -358,7 +358,7 @@ module Net : sig
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''''''
+    val add_listener''''''''
       :  t
       -> event:([ `timeout ][@js.enum])
       -> listener:(unit -> unit)
@@ -536,56 +536,56 @@ module Net : sig
       -> t
       [@@js.call "once"]
 
-    val prependListener
+    val prepend_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'
+    val prepend_listener'
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(had_error:bool -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''
+    val prepend_listener''
       :  t
       -> event:([ `connect ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''
+    val prepend_listener'''
       :  t
       -> event:([ `data ][@js.enum])
       -> listener:(data:Buffer.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''
+    val prepend_listener''''
       :  t
       -> event:([ `drain ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''
+    val prepend_listener'''''
       :  t
       -> event:([ `end_ ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''''
+    val prepend_listener''''''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''''
+    val prepend_listener'''''''
       :  t
       -> event:([ `lookup ][@js.enum])
       -> listener:
@@ -597,63 +597,63 @@ module Net : sig
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''''''
+    val prepend_listener''''''''
       :  t
       -> event:([ `timeout ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependOnceListener
+    val prepend_once_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'
+    val prepend_once_listener'
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(had_error:bool -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''
+    val prepend_once_listener''
       :  t
       -> event:([ `connect ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''
+    val prepend_once_listener'''
       :  t
       -> event:([ `data ][@js.enum])
       -> listener:(data:Buffer.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''
+    val prepend_once_listener''''
       :  t
       -> event:([ `drain ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''
+    val prepend_once_listener'''''
       :  t
       -> event:([ `end_ ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''''
+    val prepend_once_listener''''''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''''
+    val prepend_once_listener'''''''
       :  t
       -> event:([ `lookup ][@js.enum])
       -> listener:
@@ -665,7 +665,7 @@ module Net : sig
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''''''
+    val prepend_once_listener''''''''
       :  t
       -> event:([ `timeout ][@js.enum])
       -> listener:(unit -> unit)
@@ -677,7 +677,7 @@ module Net : sig
   [@@js.scope "Socket"]
 
   module ListenOptions : sig
-    type t = net_ListenOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -703,13 +703,13 @@ module Net : sig
 
     val set_exclusive : t -> bool -> unit [@@js.set "exclusive"]
 
-    val get_readableAll : t -> bool [@@js.get "readableAll"]
+    val get_readable_all : t -> bool [@@js.get "readableAll"]
 
-    val set_readableAll : t -> bool -> unit [@@js.set "readableAll"]
+    val set_readable_all : t -> bool -> unit [@@js.set "readableAll"]
 
-    val get_writableAll : t -> bool [@@js.get "writableAll"]
+    val get_writable_all : t -> bool [@@js.get "writableAll"]
 
-    val set_writableAll : t -> bool -> unit [@@js.set "writableAll"]
+    val set_writable_all : t -> bool -> unit [@@js.set "writableAll"]
 
     val get_ipv6Only : t -> bool [@@js.get "ipv6Only"]
 
@@ -718,35 +718,35 @@ module Net : sig
   [@@js.scope "ListenOptions"]
 
   module ServerOpts : sig
-    type t = net_ServerOpts
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_allowHalfOpen : t -> bool [@@js.get "allowHalfOpen"]
+    val get_allow_half_open : t -> bool [@@js.get "allowHalfOpen"]
 
-    val set_allowHalfOpen : t -> bool -> unit [@@js.set "allowHalfOpen"]
+    val set_allow_half_open : t -> bool -> unit [@@js.set "allowHalfOpen"]
 
-    val get_pauseOnConnect : t -> bool [@@js.get "pauseOnConnect"]
+    val get_pause_on_connect : t -> bool [@@js.get "pauseOnConnect"]
 
-    val set_pauseOnConnect : t -> bool -> unit [@@js.set "pauseOnConnect"]
+    val set_pause_on_connect : t -> bool -> unit [@@js.set "pauseOnConnect"]
   end
   [@@js.scope "ServerOpts"]
 
   module Server : sig
-    type t = net_Server
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val create : ?connectionListener:(socket:net_Socket -> unit) -> unit -> t
+    val create : ?connection_listener:(socket:Socket.t -> unit) -> unit -> t
       [@@js.create]
 
     val create'
-      :  ?options:net_ServerOpts
-      -> ?connectionListener:(socket:net_Socket -> unit)
+      :  ?options:ServerOpts.t
+      -> ?connection_listener:(socket:Socket.t -> unit)
       -> unit
       -> t
       [@@js.create]
@@ -756,7 +756,7 @@ module Net : sig
       -> ?port:int
       -> ?hostname:string
       -> ?backlog:int
-      -> ?listeningListener:(unit -> unit)
+      -> ?listening_listener:(unit -> unit)
       -> unit
       -> t
       [@@js.call "listen"]
@@ -765,7 +765,7 @@ module Net : sig
       :  t
       -> ?port:int
       -> ?hostname:string
-      -> ?listeningListener:(unit -> unit)
+      -> ?listening_listener:(unit -> unit)
       -> unit
       -> t
       [@@js.call "listen"]
@@ -774,7 +774,7 @@ module Net : sig
       :  t
       -> ?port:int
       -> ?backlog:int
-      -> ?listeningListener:(unit -> unit)
+      -> ?listening_listener:(unit -> unit)
       -> unit
       -> t
       [@@js.call "listen"]
@@ -782,7 +782,7 @@ module Net : sig
     val listen'''
       :  t
       -> ?port:int
-      -> ?listeningListener:(unit -> unit)
+      -> ?listening_listener:(unit -> unit)
       -> unit
       -> t
       [@@js.call "listen"]
@@ -791,7 +791,7 @@ module Net : sig
       :  t
       -> path:string
       -> ?backlog:int
-      -> ?listeningListener:(unit -> unit)
+      -> ?listening_listener:(unit -> unit)
       -> unit
       -> t
       [@@js.call "listen"]
@@ -799,15 +799,15 @@ module Net : sig
     val listen'''''
       :  t
       -> path:string
-      -> ?listeningListener:(unit -> unit)
+      -> ?listening_listener:(unit -> unit)
       -> unit
       -> t
       [@@js.call "listen"]
 
     val listen''''''
       :  t
-      -> options:net_ListenOptions
-      -> ?listeningListener:(unit -> unit)
+      -> options:ListenOptions.t
+      -> ?listening_listener:(unit -> unit)
       -> unit
       -> t
       [@@js.call "listen"]
@@ -816,7 +816,7 @@ module Net : sig
       :  t
       -> handle:any
       -> ?backlog:int
-      -> ?listeningListener:(unit -> unit)
+      -> ?listening_listener:(unit -> unit)
       -> unit
       -> t
       [@@js.call "listen"]
@@ -824,7 +824,7 @@ module Net : sig
     val listen''''''''
       :  t
       -> handle:any
-      -> ?listeningListener:(unit -> unit)
+      -> ?listening_listener:(unit -> unit)
       -> unit
       -> t
       [@@js.call "listen"]
@@ -832,9 +832,9 @@ module Net : sig
     val close : t -> ?callback:(?err:Error.t -> unit -> unit) -> unit -> t
       [@@js.call "close"]
 
-    val address : t -> net_AddressInfo or_string or_null [@@js.call "address"]
+    val address : t -> AddressInfo.t or_string or_null [@@js.call "address"]
 
-    val getConnections
+    val get_connections
       :  t
       -> cb:(error:Error.t or_null -> count:int -> unit)
       -> unit
@@ -844,9 +844,9 @@ module Net : sig
 
     val unref : t -> t [@@js.call "unref"]
 
-    val get_maxConnections : t -> int [@@js.get "maxConnections"]
+    val get_max_connections : t -> int [@@js.get "maxConnections"]
 
-    val set_maxConnections : t -> int -> unit [@@js.set "maxConnections"]
+    val set_max_connections : t -> int -> unit [@@js.set "maxConnections"]
 
     val get_connections : t -> int [@@js.get "connections"]
 
@@ -856,35 +856,35 @@ module Net : sig
 
     val set_listening : t -> bool -> unit [@@js.set "listening"]
 
-    val addListener
+    val add_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'
+    val add_listener'
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''
+    val add_listener''
       :  t
       -> event:([ `connection ][@js.enum])
-      -> listener:(socket:net_Socket -> unit)
+      -> listener:(socket:Socket.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''
+    val add_listener'''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''
+    val add_listener''''
       :  t
       -> event:([ `listening ][@js.enum])
       -> listener:(unit -> unit)
@@ -903,7 +903,7 @@ module Net : sig
     val emit''
       :  t
       -> event:([ `connection ][@js.enum])
-      -> socket:net_Socket
+      -> socket:Socket.t
       -> bool
       [@@js.call "emit"]
 
@@ -926,7 +926,7 @@ module Net : sig
     val on''
       :  t
       -> event:([ `connection ][@js.enum])
-      -> listener:(socket:net_Socket -> unit)
+      -> listener:(socket:Socket.t -> unit)
       -> t
       [@@js.call "on"]
 
@@ -961,7 +961,7 @@ module Net : sig
     val once''
       :  t
       -> event:([ `connection ][@js.enum])
-      -> listener:(socket:net_Socket -> unit)
+      -> listener:(socket:Socket.t -> unit)
       -> t
       [@@js.call "once"]
 
@@ -979,70 +979,70 @@ module Net : sig
       -> t
       [@@js.call "once"]
 
-    val prependListener
+    val prepend_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'
+    val prepend_listener'
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''
+    val prepend_listener''
       :  t
       -> event:([ `connection ][@js.enum])
-      -> listener:(socket:net_Socket -> unit)
+      -> listener:(socket:Socket.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''
+    val prepend_listener'''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''
+    val prepend_listener''''
       :  t
       -> event:([ `listening ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependOnceListener
+    val prepend_once_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'
+    val prepend_once_listener'
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''
+    val prepend_once_listener''
       :  t
       -> event:([ `connection ][@js.enum])
-      -> listener:(socket:net_Socket -> unit)
+      -> listener:(socket:Socket.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''
+    val prepend_once_listener'''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''
+    val prepend_once_listener''''
       :  t
       -> event:([ `listening ][@js.enum])
       -> listener:(unit -> unit)
@@ -1054,7 +1054,7 @@ module Net : sig
   [@@js.scope "Server"]
 
   module TcpNetConnectOpts : sig
-    type t = net_TcpNetConnectOpts
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -1064,14 +1064,14 @@ module Net : sig
 
     val set_timeout : t -> int -> unit [@@js.set "timeout"]
 
-    val cast : t -> net_TcpSocketConnectOpts [@@js.cast]
+    val cast : t -> TcpSocketConnectOpts.t [@@js.cast]
 
-    val cast' : t -> net_SocketConstructorOpts [@@js.cast]
+    val cast' : t -> SocketConstructorOpts.t [@@js.cast]
   end
   [@@js.scope "TcpNetConnectOpts"]
 
   module IpcNetConnectOpts : sig
-    type t = net_IpcNetConnectOpts
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -1081,81 +1081,81 @@ module Net : sig
 
     val set_timeout : t -> int -> unit [@@js.set "timeout"]
 
-    val cast : t -> net_IpcSocketConnectOpts [@@js.cast]
+    val cast : t -> IpcSocketConnectOpts.t [@@js.cast]
 
-    val cast' : t -> net_SocketConstructorOpts [@@js.cast]
+    val cast' : t -> SocketConstructorOpts.t [@@js.cast]
   end
   [@@js.scope "IpcNetConnectOpts"]
 
   module NetConnectOpts : sig
-    type t = (net_IpcNetConnectOpts, net_TcpNetConnectOpts) union2
+    type t = (IpcNetConnectOpts.t, TcpNetConnectOpts.t) union2
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
   end
 
-  val createServer
-    :  ?connectionListener:(socket:net_Socket -> unit)
+  val create_server
+    :  ?connection_listener:(socket:Socket.t -> unit)
     -> unit
-    -> net_Server
+    -> Server.t
     [@@js.global "createServer"]
 
-  val createServer
-    :  ?options:net_ServerOpts
-    -> ?connectionListener:(socket:net_Socket -> unit)
+  val create_server
+    :  ?options:ServerOpts.t
+    -> ?connection_listener:(socket:Socket.t -> unit)
     -> unit
-    -> net_Server
+    -> Server.t
     [@@js.global "createServer"]
 
   val connect
-    :  options:net_NetConnectOpts
-    -> ?connectionListener:(unit -> unit)
+    :  options:NetConnectOpts.t
+    -> ?connection_listener:(unit -> unit)
     -> unit
-    -> net_Socket
+    -> Socket.t
     [@@js.global "connect"]
 
   val connect
     :  port:int
     -> ?host:string
-    -> ?connectionListener:(unit -> unit)
+    -> ?connection_listener:(unit -> unit)
     -> unit
-    -> net_Socket
+    -> Socket.t
     [@@js.global "connect"]
 
   val connect
     :  path:string
-    -> ?connectionListener:(unit -> unit)
+    -> ?connection_listener:(unit -> unit)
     -> unit
-    -> net_Socket
+    -> Socket.t
     [@@js.global "connect"]
 
-  val createConnection
-    :  options:net_NetConnectOpts
-    -> ?connectionListener:(unit -> unit)
+  val create_connection
+    :  options:NetConnectOpts.t
+    -> ?connection_listener:(unit -> unit)
     -> unit
-    -> net_Socket
+    -> Socket.t
     [@@js.global "createConnection"]
 
-  val createConnection
+  val create_connection
     :  port:int
     -> ?host:string
-    -> ?connectionListener:(unit -> unit)
+    -> ?connection_listener:(unit -> unit)
     -> unit
-    -> net_Socket
+    -> Socket.t
     [@@js.global "createConnection"]
 
-  val createConnection
+  val create_connection
     :  path:string
-    -> ?connectionListener:(unit -> unit)
+    -> ?connection_listener:(unit -> unit)
     -> unit
-    -> net_Socket
+    -> Socket.t
     [@@js.global "createConnection"]
 
-  val isIP : input:string -> int [@@js.global "isIP"]
+  val is_ip : input:string -> int [@@js.global "isIP"]
 
-  val isIPv4 : input:string -> bool [@@js.global "isIPv4"]
+  val is_i_pv4 : input:string -> bool [@@js.global "isIPv4"]
 
-  val isIPv6 : input:string -> bool [@@js.global "isIPv6"]
+  val is_i_pv6 : input:string -> bool [@@js.global "isIPv6"]
 end
 [@@js.scope Import.net]

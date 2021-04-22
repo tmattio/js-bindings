@@ -4,26 +4,24 @@
 open Es5
 module CommonLanguageClient =
   struct
-    type t = _CommonLanguageClient
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> _CommonLanguageClient_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : _CommonLanguageClient) -> _CommonLanguageClient_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (create :
-      id:string -> name:string -> clientOptions:LanguageClientOptions.t -> t)
+      id:string -> name:string -> client_options:LanguageClientOptions.t -> t)
       =
       fun ~id:(x3 : string) ->
         fun ~name:(x4 : string) ->
-          fun ~clientOptions:(x5 : LanguageClientOptions.t) ->
+          fun ~client_options:(x5 : LanguageClientOptions.t) ->
             t_of_js
               (Ojs.new_obj
                  (Ojs.get_prop_ascii Ojs.global "CommonLanguageClient")
                  [|(Ojs.string_to_js x3);(Ojs.string_to_js x4);(LanguageClientOptions.t_to_js
                                                                   x5)|])
-    let (registerProposedFeatures : t -> unit) =
+    let (register_proposed_features : t -> unit) =
       fun (x6 : t) ->
         ignore (Ojs.call (t_to_js x6) "registerProposedFeatures" [||])
-    let (registerBuiltinFeatures : t -> unit) =
+    let (register_builtin_features : t -> unit) =
       fun (x7 : t) ->
         ignore (Ojs.call (t_to_js x7) "registerBuiltinFeatures" [||])
     let (cast : t -> BaseLanguageClient.t) =
@@ -31,7 +29,7 @@ module CommonLanguageClient =
   end
 module ProposedFeatures =
   struct
-    let (createAll :
+    let (create_all :
       _client:BaseLanguageClient.t ->
         (StaticFeature.t, any DynamicFeature.t) union2 list)
       =

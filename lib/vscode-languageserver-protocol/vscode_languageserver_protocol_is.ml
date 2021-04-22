@@ -20,10 +20,10 @@ let (func : value:any -> bool) =
 let (array : value:any -> bool) =
   fun ~value:(x6 : any) ->
     Ojs.bool_of_js (Ojs.call Ojs.global "array" [|(any_to_js x6)|])
-let (stringArray : value:any -> bool) =
+let (string_array : value:any -> bool) =
   fun ~value:(x7 : any) ->
     Ojs.bool_of_js (Ojs.call Ojs.global "stringArray" [|(any_to_js x7)|])
-let (typedArray : value:any -> check:(value:any -> bool) -> bool) =
+let (typed_array : value:any -> check:(value:any -> bool) -> bool) =
   fun ~value:(x8 : any) ->
     fun ~check:(x9 : value:any -> bool) ->
       Ojs.bool_of_js
@@ -31,6 +31,6 @@ let (typedArray : value:any -> check:(value:any -> bool) -> bool) =
            [|(any_to_js x8);(Ojs.fun_to_js 1
                                (fun (x10 : Ojs.t) ->
                                   Ojs.bool_to_js (x9 ~value:(any_of_js x10))))|])
-let (objectLiteral : value:any -> bool) =
+let (object_literal : value:any -> bool) =
   fun ~value:(x11 : any) ->
     Ojs.bool_of_js (Ojs.call Ojs.global "objectLiteral" [|(any_to_js x11)|])

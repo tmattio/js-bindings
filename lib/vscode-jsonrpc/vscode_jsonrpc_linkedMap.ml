@@ -27,7 +27,7 @@ module Touch =
       let x5 =
         Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "Touch") "First" in
       match Ojs.int_of_js x5 with | 1 -> `L_n_1 | _ -> assert false
-    let (asOld : [ `L_n_1 ]) =
+    let (as_old : [ `L_n_1 ]) =
       let x6 =
         Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "Touch") "AsOld" in
       match Ojs.int_of_js x6 with | 1 -> `L_n_1 | _ -> assert false
@@ -35,404 +35,392 @@ module Touch =
       let x7 =
         Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "Touch") "Last" in
       match Ojs.int_of_js x7 with | 2 -> `L_n_2 | _ -> assert false
-    let (asNew : [ `L_n_2 ]) =
+    let (as_new : [ `L_n_2 ]) =
       let x8 =
         Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "Touch") "AsNew" in
       match Ojs.int_of_js x8 with | 2 -> `L_n_2 | _ -> assert false
   end
 module LinkedMap =
   struct
-    type ('K, 'V) t = ('K, 'V) _LinkedMap
+    type ('K, 'V) t = ('K, 'V) LinkedMap.t
     let rec t_of_js :
       'K 'V . (Ojs.t -> 'K) -> (Ojs.t -> 'V) -> Ojs.t -> ('K, 'V) t = fun
       (type __K) -> fun (type __V) ->
       fun (__K_of_js : Ojs.t -> __K) ->
         fun (__V_of_js : Ojs.t -> __V) ->
-          fun (x12 : Ojs.t) -> _LinkedMap_of_js __K_of_js __V_of_js x12
+          fun (x12 : Ojs.t) -> LinkedMap.t_of_js __K_of_js __V_of_js x12
     and t_to_js :
       'K 'V . ('K -> Ojs.t) -> ('V -> Ojs.t) -> ('K, 'V) t -> Ojs.t = fun
       (type __K) -> fun (type __V) ->
       fun (__K_to_js : __K -> Ojs.t) ->
         fun (__V_to_js : __V -> Ojs.t) ->
-          fun (x9 : (__K, __V) _LinkedMap) ->
-            _LinkedMap_to_js __K_to_js __V_to_js x9
-    let (get__Symbol_toStringTag_ : ('K, 'V) t -> any) =
+          fun (x9 : (__K, __V) LinkedMap.t) ->
+            LinkedMap.t_to_js __K_to_js __V_to_js x9
+    let (get__map : ('K, 'V) t -> any) =
       fun (x15 : ('K, 'V) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x15)
-             "[Symbol.toStringTag]")
-    let (get__map : ('K, 'V) t -> any) =
-      fun (x18 : ('K, 'V) t) ->
-        any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x18) "_map")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x15) "_map")
     let (set__map : ('K, 'V) t -> any -> unit) =
-      fun (x21 : ('K, 'V) t) ->
-        fun (x22 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x21) "_map"
-            (any_to_js x22)
+      fun (x18 : ('K, 'V) t) ->
+        fun (x19 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x18) "_map"
+            (any_to_js x19)
     let (get__head : ('K, 'V) t -> any) =
-      fun (x25 : ('K, 'V) t) ->
+      fun (x22 : ('K, 'V) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x25) "_head")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x22) "_head")
     let (set__head : ('K, 'V) t -> any -> unit) =
-      fun (x28 : ('K, 'V) t) ->
-        fun (x29 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x28) "_head"
-            (any_to_js x29)
+      fun (x25 : ('K, 'V) t) ->
+        fun (x26 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x25) "_head"
+            (any_to_js x26)
     let (get__tail : ('K, 'V) t -> any) =
-      fun (x32 : ('K, 'V) t) ->
+      fun (x29 : ('K, 'V) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x32) "_tail")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x29) "_tail")
     let (set__tail : ('K, 'V) t -> any -> unit) =
-      fun (x35 : ('K, 'V) t) ->
-        fun (x36 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x35) "_tail"
-            (any_to_js x36)
+      fun (x32 : ('K, 'V) t) ->
+        fun (x33 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x32) "_tail"
+            (any_to_js x33)
     let (get__size : ('K, 'V) t -> any) =
-      fun (x39 : ('K, 'V) t) ->
+      fun (x36 : ('K, 'V) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x39) "_size")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x36) "_size")
     let (set__size : ('K, 'V) t -> any -> unit) =
-      fun (x42 : ('K, 'V) t) ->
-        fun (x43 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x42) "_size"
-            (any_to_js x43)
+      fun (x39 : ('K, 'V) t) ->
+        fun (x40 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x39) "_size"
+            (any_to_js x40)
     let (get__state : ('K, 'V) t -> any) =
-      fun (x46 : ('K, 'V) t) ->
+      fun (x43 : ('K, 'V) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x46) "_state")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x43) "_state")
     let (set__state : ('K, 'V) t -> any -> unit) =
-      fun (x49 : ('K, 'V) t) ->
-        fun (x50 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x49) "_state"
-            (any_to_js x50)
+      fun (x46 : ('K, 'V) t) ->
+        fun (x47 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x46) "_state"
+            (any_to_js x47)
     let (create : unit -> ('K, 'V) t) =
       fun () ->
         t_of_js Obj.magic Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "LinkedMap") [||])
     let (clear : ('K, 'V) t -> unit) =
+      fun (x52 : ('K, 'V) t) ->
+        ignore (Ojs.call (t_to_js Obj.magic Obj.magic x52) "clear" [||])
+    let (is_empty : ('K, 'V) t -> bool) =
       fun (x55 : ('K, 'V) t) ->
-        ignore (Ojs.call (t_to_js Obj.magic Obj.magic x55) "clear" [||])
-    let (isEmpty : ('K, 'V) t -> bool) =
-      fun (x58 : ('K, 'V) t) ->
         Ojs.bool_of_js
-          (Ojs.call (t_to_js Obj.magic Obj.magic x58) "isEmpty" [||])
+          (Ojs.call (t_to_js Obj.magic Obj.magic x55) "isEmpty" [||])
     let (get_size : ('K, 'V) t -> int) =
-      fun (x61 : ('K, 'V) t) ->
+      fun (x58 : ('K, 'V) t) ->
         Ojs.int_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x61) "size")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x58) "size")
     let (get_first : ('K, 'V) t -> 'V or_undefined) =
-      fun (x64 : ('K, 'V) t) ->
+      fun (x61 : ('K, 'V) t) ->
         or_undefined_of_js Obj.magic
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x64) "first")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x61) "first")
     let (get_last : ('K, 'V) t -> 'V or_undefined) =
-      fun (x68 : ('K, 'V) t) ->
+      fun (x65 : ('K, 'V) t) ->
         or_undefined_of_js Obj.magic
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x68) "last")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x65) "last")
     let (has : ('K, 'V) t -> key:'K -> bool) =
-      fun (x73 : ('K, 'V) t) ->
-        fun ~key:(x72 : 'K) ->
+      fun (x70 : ('K, 'V) t) ->
+        fun ~key:(x69 : 'K) ->
           Ojs.bool_of_js
-            (Ojs.call (t_to_js Obj.magic Obj.magic x73) "has"
-               [|(Obj.magic x72)|])
+            (Ojs.call (t_to_js Obj.magic Obj.magic x70) "has"
+               [|(Obj.magic x69)|])
     let (get_ :
-      ('K, 'V) t -> key:'K -> ?touch:_Touch -> unit -> 'V or_undefined) =
-      fun (x80 : ('K, 'V) t) ->
-        fun ~key:(x76 : 'K) ->
-          fun ?touch:(x77 : _Touch option) ->
+      ('K, 'V) t -> key:'K -> ?touch:Touch.t -> unit -> 'V or_undefined) =
+      fun (x77 : ('K, 'V) t) ->
+        fun ~key:(x73 : 'K) ->
+          fun ?touch:(x74 : Touch.t option) ->
             fun () ->
               or_undefined_of_js Obj.magic
-                (let x83 = t_to_js Obj.magic Obj.magic x80 in
-                 Ojs.call (Ojs.get_prop_ascii x83 "get") "apply"
-                   [|x83;((let x78 =
+                (let x80 = t_to_js Obj.magic Obj.magic x77 in
+                 Ojs.call (Ojs.get_prop_ascii x80 "get") "apply"
+                   [|x80;((let x75 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
-                           ignore (Ojs.call x78 "push" [|(Obj.magic x76)|]);
-                           (match x77 with
-                            | Some x79 ->
+                           ignore (Ojs.call x75 "push" [|(Obj.magic x73)|]);
+                           (match x74 with
+                            | Some x76 ->
                                 ignore
-                                  (Ojs.call x78 "push" [|(_Touch_to_js x79)|])
+                                  (Ojs.call x75 "push"
+                                     [|(Touch.t_to_js x76)|])
                             | None -> ());
-                           x78))|])
+                           x75))|])
     let (set_ :
-      ('K, 'V) t -> key:'K -> value:'V -> ?touch:_Touch -> unit -> ('K, 'V) t)
+      ('K, 'V) t ->
+        key:'K -> value:'V -> ?touch:Touch.t -> unit -> ('K, 'V) t)
       =
-      fun (x90 : ('K, 'V) t) ->
-        fun ~key:(x85 : 'K) ->
-          fun ~value:(x86 : 'V) ->
-            fun ?touch:(x87 : _Touch option) ->
+      fun (x87 : ('K, 'V) t) ->
+        fun ~key:(x82 : 'K) ->
+          fun ~value:(x83 : 'V) ->
+            fun ?touch:(x84 : Touch.t option) ->
               fun () ->
                 t_of_js Obj.magic Obj.magic
-                  (let x93 = t_to_js Obj.magic Obj.magic x90 in
-                   Ojs.call (Ojs.get_prop_ascii x93 "set") "apply"
-                     [|x93;((let x88 =
+                  (let x90 = t_to_js Obj.magic Obj.magic x87 in
+                   Ojs.call (Ojs.get_prop_ascii x90 "set") "apply"
+                     [|x90;((let x85 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
-                             ignore (Ojs.call x88 "push" [|(Obj.magic x85)|]);
-                             ignore (Ojs.call x88 "push" [|(Obj.magic x86)|]);
-                             (match x87 with
-                              | Some x89 ->
+                             ignore (Ojs.call x85 "push" [|(Obj.magic x82)|]);
+                             ignore (Ojs.call x85 "push" [|(Obj.magic x83)|]);
+                             (match x84 with
+                              | Some x86 ->
                                   ignore
-                                    (Ojs.call x88 "push"
-                                       [|(_Touch_to_js x89)|])
+                                    (Ojs.call x85 "push"
+                                       [|(Touch.t_to_js x86)|])
                               | None -> ());
-                             x88))|])
+                             x85))|])
     let (delete : ('K, 'V) t -> key:'K -> bool) =
-      fun (x97 : ('K, 'V) t) ->
-        fun ~key:(x96 : 'K) ->
+      fun (x94 : ('K, 'V) t) ->
+        fun ~key:(x93 : 'K) ->
           Ojs.bool_of_js
-            (Ojs.call (t_to_js Obj.magic Obj.magic x97) "delete"
-               [|(Obj.magic x96)|])
+            (Ojs.call (t_to_js Obj.magic Obj.magic x94) "delete"
+               [|(Obj.magic x93)|])
     let (remove : ('K, 'V) t -> key:'K -> 'V or_undefined) =
-      fun (x101 : ('K, 'V) t) ->
-        fun ~key:(x100 : 'K) ->
+      fun (x98 : ('K, 'V) t) ->
+        fun ~key:(x97 : 'K) ->
           or_undefined_of_js Obj.magic
-            (Ojs.call (t_to_js Obj.magic Obj.magic x101) "remove"
-               [|(Obj.magic x100)|])
+            (Ojs.call (t_to_js Obj.magic Obj.magic x98) "remove"
+               [|(Obj.magic x97)|])
     let (shift : ('K, 'V) t -> 'V or_undefined) =
-      fun (x105 : ('K, 'V) t) ->
+      fun (x102 : ('K, 'V) t) ->
         or_undefined_of_js Obj.magic
-          (Ojs.call (t_to_js Obj.magic Obj.magic x105) "shift" [||])
-    let (forEach :
+          (Ojs.call (t_to_js Obj.magic Obj.magic x102) "shift" [||])
+    let (for_each :
       ('K, 'V) t ->
         callbackfn:(value:'V -> key:'K -> map:('K, 'V) t -> unit) ->
-          ?thisArg:any -> unit -> unit)
+          ?this_arg:any -> unit -> unit)
       =
-      fun (x118 : ('K, 'V) t) ->
-        fun ~callbackfn:(x109 : value:'V -> key:'K -> map:('K, 'V) t -> unit)
+      fun (x115 : ('K, 'V) t) ->
+        fun ~callbackfn:(x106 : value:'V -> key:'K -> map:('K, 'V) t -> unit)
           ->
-          fun ?thisArg:(x110 : any option) ->
+          fun ?this_arg:(x107 : any option) ->
             fun () ->
               ignore
-                (let x121 = t_to_js Obj.magic Obj.magic x118 in
-                 Ojs.call (Ojs.get_prop_ascii x121 "forEach") "apply"
-                   [|x121;((let x111 =
+                (let x118 = t_to_js Obj.magic Obj.magic x115 in
+                 Ojs.call (Ojs.get_prop_ascii x118 "forEach") "apply"
+                   [|x118;((let x108 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x111 "push"
+                              (Ojs.call x108 "push"
                                  [|(Ojs.fun_to_js 3
-                                      (fun (x113 : Ojs.t) ->
-                                         fun (x114 : Ojs.t) ->
-                                           fun (x115 : Ojs.t) ->
-                                             x109 ~value:(Obj.magic x113)
-                                               ~key:(Obj.magic x114)
+                                      (fun (x110 : Ojs.t) ->
+                                         fun (x111 : Ojs.t) ->
+                                           fun (x112 : Ojs.t) ->
+                                             x106 ~value:(Obj.magic x110)
+                                               ~key:(Obj.magic x111)
                                                ~map:(t_of_js Obj.magic
-                                                       Obj.magic x115)))|]);
-                            (match x110 with
-                             | Some x112 ->
+                                                       Obj.magic x112)))|]);
+                            (match x107 with
+                             | Some x109 ->
                                  ignore
-                                   (Ojs.call x111 "push" [|(any_to_js x112)|])
+                                   (Ojs.call x108 "push" [|(any_to_js x109)|])
                              | None -> ());
-                            x111))|])
+                            x108))|])
     let (keys : ('K, 'V) t -> 'K IterableIterator.t) =
-      fun (x122 : ('K, 'V) t) ->
+      fun (x119 : ('K, 'V) t) ->
         IterableIterator.t_of_js Obj.magic
-          (Ojs.call (t_to_js Obj.magic Obj.magic x122) "keys" [||])
+          (Ojs.call (t_to_js Obj.magic Obj.magic x119) "keys" [||])
     let (values : ('K, 'V) t -> 'V IterableIterator.t) =
-      fun (x126 : ('K, 'V) t) ->
+      fun (x123 : ('K, 'V) t) ->
         IterableIterator.t_of_js Obj.magic
-          (Ojs.call (t_to_js Obj.magic Obj.magic x126) "values" [||])
+          (Ojs.call (t_to_js Obj.magic Obj.magic x123) "values" [||])
     let (entries : ('K, 'V) t -> ('K * 'V) IterableIterator.t) =
-      fun (x130 : ('K, 'V) t) ->
+      fun (x127 : ('K, 'V) t) ->
         IterableIterator.t_of_js
-          (fun (x133 : Ojs.t) ->
-             let x134 = x133 in
-             ((Obj.magic (Ojs.array_get x134 0)),
-               (Obj.magic (Ojs.array_get x134 1))))
-          (Ojs.call (t_to_js Obj.magic Obj.magic x130) "entries" [||])
-    let (_Symbol_iterator_ : ('K, 'V) t -> ('K * 'V) IterableIterator.t) =
-      fun (x135 : ('K, 'V) t) ->
-        IterableIterator.t_of_js
-          (fun (x138 : Ojs.t) ->
-             let x139 = x138 in
-             ((Obj.magic (Ojs.array_get x139 0)),
-               (Obj.magic (Ojs.array_get x139 1))))
-          (Ojs.call (t_to_js Obj.magic Obj.magic x135) "[Symbol.iterator]"
-             [||])
-    let (trimOld : ('K, 'V) t -> newSize:int -> unit) =
-      fun (x141 : ('K, 'V) t) ->
-        fun ~newSize:(x140 : int) ->
+          (fun (x130 : Ojs.t) ->
+             let x131 = x130 in
+             ((Obj.magic (Ojs.array_get x131 0)),
+               (Obj.magic (Ojs.array_get x131 1))))
+          (Ojs.call (t_to_js Obj.magic Obj.magic x127) "entries" [||])
+    let (trim_old : ('K, 'V) t -> new_size:int -> unit) =
+      fun (x133 : ('K, 'V) t) ->
+        fun ~new_size:(x132 : int) ->
           ignore
-            (Ojs.call (t_to_js Obj.magic Obj.magic x141) "trimOld"
-               [|(Ojs.int_to_js x140)|])
-    let (get_addItemFirst : ('K, 'V) t -> any) =
-      fun (x144 : ('K, 'V) t) ->
+            (Ojs.call (t_to_js Obj.magic Obj.magic x133) "trimOld"
+               [|(Ojs.int_to_js x132)|])
+    let (get_add_item_first : ('K, 'V) t -> any) =
+      fun (x136 : ('K, 'V) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x144)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x136)
              "addItemFirst")
-    let (set_addItemFirst : ('K, 'V) t -> any -> unit) =
-      fun (x147 : ('K, 'V) t) ->
-        fun (x148 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x147)
-            "addItemFirst" (any_to_js x148)
-    let (get_addItemLast : ('K, 'V) t -> any) =
-      fun (x151 : ('K, 'V) t) ->
+    let (set_add_item_first : ('K, 'V) t -> any -> unit) =
+      fun (x139 : ('K, 'V) t) ->
+        fun (x140 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x139)
+            "addItemFirst" (any_to_js x140)
+    let (get_add_item_last : ('K, 'V) t -> any) =
+      fun (x143 : ('K, 'V) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x151)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x143)
              "addItemLast")
-    let (set_addItemLast : ('K, 'V) t -> any -> unit) =
-      fun (x154 : ('K, 'V) t) ->
-        fun (x155 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x154) "addItemLast"
-            (any_to_js x155)
-    let (get_removeItem : ('K, 'V) t -> any) =
-      fun (x158 : ('K, 'V) t) ->
+    let (set_add_item_last : ('K, 'V) t -> any -> unit) =
+      fun (x146 : ('K, 'V) t) ->
+        fun (x147 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x146) "addItemLast"
+            (any_to_js x147)
+    let (get_remove_item : ('K, 'V) t -> any) =
+      fun (x150 : ('K, 'V) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x158) "removeItem")
-    let (set_removeItem : ('K, 'V) t -> any -> unit) =
-      fun (x161 : ('K, 'V) t) ->
-        fun (x162 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x161) "removeItem"
-            (any_to_js x162)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x150) "removeItem")
+    let (set_remove_item : ('K, 'V) t -> any -> unit) =
+      fun (x153 : ('K, 'V) t) ->
+        fun (x154 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x153) "removeItem"
+            (any_to_js x154)
     let (get_touch : ('K, 'V) t -> any) =
-      fun (x165 : ('K, 'V) t) ->
+      fun (x157 : ('K, 'V) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x165) "touch")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x157) "touch")
     let (set_touch : ('K, 'V) t -> any -> unit) =
-      fun (x168 : ('K, 'V) t) ->
-        fun (x169 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x168) "touch"
-            (any_to_js x169)
-    let (toJSON : ('K, 'V) t -> ('K * 'V) list) =
-      fun (x172 : ('K, 'V) t) ->
+      fun (x160 : ('K, 'V) t) ->
+        fun (x161 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x160) "touch"
+            (any_to_js x161)
+    let (to_json : ('K, 'V) t -> ('K * 'V) list) =
+      fun (x164 : ('K, 'V) t) ->
         Ojs.list_of_js
-          (fun (x175 : Ojs.t) ->
-             let x176 = x175 in
-             ((Obj.magic (Ojs.array_get x176 0)),
-               (Obj.magic (Ojs.array_get x176 1))))
-          (Ojs.call (t_to_js Obj.magic Obj.magic x172) "toJSON" [||])
-    let (fromJSON : ('K, 'V) t -> data:('K * 'V) list -> unit) =
-      fun (x182 : ('K, 'V) t) ->
-        fun ~data:(x177 : ('K * 'V) list) ->
+          (fun (x167 : Ojs.t) ->
+             let x168 = x167 in
+             ((Obj.magic (Ojs.array_get x168 0)),
+               (Obj.magic (Ojs.array_get x168 1))))
+          (Ojs.call (t_to_js Obj.magic Obj.magic x164) "toJSON" [||])
+    let (from_json : ('K, 'V) t -> data:('K * 'V) list -> unit) =
+      fun (x174 : ('K, 'V) t) ->
+        fun ~data:(x169 : ('K * 'V) list) ->
           ignore
-            (Ojs.call (t_to_js Obj.magic Obj.magic x182) "fromJSON"
+            (Ojs.call (t_to_js Obj.magic Obj.magic x174) "fromJSON"
                [|(Ojs.list_to_js
-                    (fun (x178 : ('K * 'V)) ->
-                       let (x179, x180) = x178 in
-                       let x181 = Ojs.array_make 2 in
-                       Ojs.array_set x181 0 (Obj.magic x179);
-                       Ojs.array_set x181 1 (Obj.magic x180);
-                       x181) x177)|])
+                    (fun (x170 : ('K * 'V)) ->
+                       let (x171, x172) = x170 in
+                       let x173 = Ojs.array_make 2 in
+                       Ojs.array_set x173 0 (Obj.magic x171);
+                       Ojs.array_set x173 1 (Obj.magic x172);
+                       x173) x169)|])
     let (cast : ('K, 'V) t -> ('K, 'V) Map.t) =
-      fun (x185 : ('K, 'V) t) ->
-        Map.t_of_js Obj.magic Obj.magic (t_to_js Obj.magic Obj.magic x185)
+      fun (x177 : ('K, 'V) t) ->
+        Map.t_of_js Obj.magic Obj.magic (t_to_js Obj.magic Obj.magic x177)
   end
 module LRUCache =
   struct
-    type ('K, 'V) t = ('K, 'V) _LRUCache
+    type ('K, 'V) t = ('K, 'V) LRUCache.t
     let rec t_of_js :
       'K 'V . (Ojs.t -> 'K) -> (Ojs.t -> 'V) -> Ojs.t -> ('K, 'V) t = fun
       (type __K) -> fun (type __V) ->
       fun (__K_of_js : Ojs.t -> __K) ->
         fun (__V_of_js : Ojs.t -> __V) ->
-          fun (x193 : Ojs.t) -> _LRUCache_of_js __K_of_js __V_of_js x193
+          fun (x185 : Ojs.t) -> LRUCache.t_of_js __K_of_js __V_of_js x185
     and t_to_js :
       'K 'V . ('K -> Ojs.t) -> ('V -> Ojs.t) -> ('K, 'V) t -> Ojs.t = fun
       (type __K) -> fun (type __V) ->
       fun (__K_to_js : __K -> Ojs.t) ->
         fun (__V_to_js : __V -> Ojs.t) ->
-          fun (x190 : (__K, __V) _LRUCache) ->
-            _LRUCache_to_js __K_to_js __V_to_js x190
+          fun (x182 : (__K, __V) LRUCache.t) ->
+            LRUCache.t_to_js __K_to_js __V_to_js x182
     let (get__limit : ('K, 'V) t -> any) =
-      fun (x196 : ('K, 'V) t) ->
+      fun (x188 : ('K, 'V) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x196) "_limit")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x188) "_limit")
     let (set__limit : ('K, 'V) t -> any -> unit) =
-      fun (x199 : ('K, 'V) t) ->
-        fun (x200 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x199) "_limit"
-            (any_to_js x200)
+      fun (x191 : ('K, 'V) t) ->
+        fun (x192 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x191) "_limit"
+            (any_to_js x192)
     let (get__ratio : ('K, 'V) t -> any) =
-      fun (x203 : ('K, 'V) t) ->
+      fun (x195 : ('K, 'V) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x203) "_ratio")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x195) "_ratio")
     let (set__ratio : ('K, 'V) t -> any -> unit) =
-      fun (x206 : ('K, 'V) t) ->
-        fun (x207 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x206) "_ratio"
-            (any_to_js x207)
+      fun (x198 : ('K, 'V) t) ->
+        fun (x199 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x198) "_ratio"
+            (any_to_js x199)
     let (create : limit:int -> ?ratio:int -> unit -> ('K, 'V) t) =
-      fun ~limit:(x210 : int) ->
-        fun ?ratio:(x211 : int option) ->
+      fun ~limit:(x202 : int) ->
+        fun ?ratio:(x203 : int option) ->
           fun () ->
             t_of_js Obj.magic Obj.magic
               (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "LRUCache")
-                 (let x212 =
+                 (let x204 =
                     Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
-                  ignore (Ojs.call x212 "push" [|(Ojs.int_to_js x210)|]);
-                  (match x211 with
-                   | Some x213 ->
-                       ignore (Ojs.call x212 "push" [|(Ojs.int_to_js x213)|])
+                  ignore (Ojs.call x204 "push" [|(Ojs.int_to_js x202)|]);
+                  (match x203 with
+                   | Some x205 ->
+                       ignore (Ojs.call x204 "push" [|(Ojs.int_to_js x205)|])
                    | None -> ());
-                  x212))
+                  x204))
     let (get_limit : ('K, 'V) t -> int) =
-      fun (x216 : ('K, 'V) t) ->
+      fun (x208 : ('K, 'V) t) ->
         Ojs.int_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x216) "limit")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x208) "limit")
     let (set_limit : ('K, 'V) t -> int -> unit) =
-      fun (x219 : ('K, 'V) t) ->
-        fun (x220 : int) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x219) "limit"
-            (Ojs.int_to_js x220)
+      fun (x211 : ('K, 'V) t) ->
+        fun (x212 : int) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x211) "limit"
+            (Ojs.int_to_js x212)
     let (get_ratio : ('K, 'V) t -> int) =
-      fun (x223 : ('K, 'V) t) ->
+      fun (x215 : ('K, 'V) t) ->
         Ojs.int_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x223) "ratio")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x215) "ratio")
     let (set_ratio : ('K, 'V) t -> int -> unit) =
-      fun (x226 : ('K, 'V) t) ->
-        fun (x227 : int) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x226) "ratio"
-            (Ojs.int_to_js x227)
+      fun (x218 : ('K, 'V) t) ->
+        fun (x219 : int) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x218) "ratio"
+            (Ojs.int_to_js x219)
     let (get_ :
-      ('K, 'V) t -> key:'K -> ?touch:_Touch -> unit -> 'V or_undefined) =
-      fun (x234 : ('K, 'V) t) ->
-        fun ~key:(x230 : 'K) ->
-          fun ?touch:(x231 : _Touch option) ->
+      ('K, 'V) t -> key:'K -> ?touch:Touch.t -> unit -> 'V or_undefined) =
+      fun (x226 : ('K, 'V) t) ->
+        fun ~key:(x222 : 'K) ->
+          fun ?touch:(x223 : Touch.t option) ->
             fun () ->
               or_undefined_of_js Obj.magic
-                (let x237 = t_to_js Obj.magic Obj.magic x234 in
-                 Ojs.call (Ojs.get_prop_ascii x237 "get") "apply"
-                   [|x237;((let x232 =
+                (let x229 = t_to_js Obj.magic Obj.magic x226 in
+                 Ojs.call (Ojs.get_prop_ascii x229 "get") "apply"
+                   [|x229;((let x224 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x232 "push" [|(Obj.magic x230)|]);
-                            (match x231 with
-                             | Some x233 ->
+                              (Ojs.call x224 "push" [|(Obj.magic x222)|]);
+                            (match x223 with
+                             | Some x225 ->
                                  ignore
-                                   (Ojs.call x232 "push"
-                                      [|(_Touch_to_js x233)|])
+                                   (Ojs.call x224 "push"
+                                      [|(Touch.t_to_js x225)|])
                              | None -> ());
-                            x232))|])
+                            x224))|])
     let (peek : ('K, 'V) t -> key:'K -> 'V or_undefined) =
-      fun (x240 : ('K, 'V) t) ->
-        fun ~key:(x239 : 'K) ->
+      fun (x232 : ('K, 'V) t) ->
+        fun ~key:(x231 : 'K) ->
           or_undefined_of_js Obj.magic
-            (Ojs.call (t_to_js Obj.magic Obj.magic x240) "peek"
-               [|(Obj.magic x239)|])
+            (Ojs.call (t_to_js Obj.magic Obj.magic x232) "peek"
+               [|(Obj.magic x231)|])
     let (set_ : ('K, 'V) t -> key:'K -> value:'V -> ('K, 'V) t) =
-      fun (x246 : ('K, 'V) t) ->
-        fun ~key:(x244 : 'K) ->
-          fun ~value:(x245 : 'V) ->
+      fun (x238 : ('K, 'V) t) ->
+        fun ~key:(x236 : 'K) ->
+          fun ~value:(x237 : 'V) ->
             t_of_js Obj.magic Obj.magic
-              (Ojs.call (t_to_js Obj.magic Obj.magic x246) "set"
-                 [|(Obj.magic x244);(Obj.magic x245)|])
-    let (get_checkTrim : ('K, 'V) t -> any) =
-      fun (x251 : ('K, 'V) t) ->
+              (Ojs.call (t_to_js Obj.magic Obj.magic x238) "set"
+                 [|(Obj.magic x236);(Obj.magic x237)|])
+    let (get_check_trim : ('K, 'V) t -> any) =
+      fun (x243 : ('K, 'V) t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x251) "checkTrim")
-    let (set_checkTrim : ('K, 'V) t -> any -> unit) =
-      fun (x254 : ('K, 'V) t) ->
-        fun (x255 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x254) "checkTrim"
-            (any_to_js x255)
-    let (cast : ('K, 'V) t -> ('K, 'V) _LinkedMap) =
-      fun (x258 : ('K, 'V) t) ->
-        _LinkedMap_of_js Obj.magic Obj.magic
-          (t_to_js Obj.magic Obj.magic x258)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x243) "checkTrim")
+    let (set_check_trim : ('K, 'V) t -> any -> unit) =
+      fun (x246 : ('K, 'V) t) ->
+        fun (x247 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x246) "checkTrim"
+            (any_to_js x247)
+    let (cast : ('K, 'V) t -> ('K, 'V) LinkedMap.t) =
+      fun (x250 : ('K, 'V) t) ->
+        LinkedMap.t_of_js Obj.magic Obj.magic
+          (t_to_js Obj.magic Obj.magic x250)
   end

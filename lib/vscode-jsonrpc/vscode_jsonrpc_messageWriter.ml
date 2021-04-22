@@ -4,12 +4,10 @@
 open Es2020
 module MessageWriter =
   struct
-    type t = _MessageWriter
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> _MessageWriter_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : _MessageWriter) -> _MessageWriter_to_js x1
-    let (get_onError :
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
+    let (get_on_error :
       t ->
         (Error.t * Vscode_jsonrpc_messages.Message.t or_undefined * int
           or_undefined) Vscode_jsonrpc_events.Event.t)
@@ -23,7 +21,7 @@ module MessageWriter =
                   (Ojs.array_get x5 1)),
                (or_undefined_of_js Ojs.int_of_js (Ojs.array_get x5 2))))
           (Ojs.get_prop_ascii (t_to_js x3) "onError")
-    let (get_onClose : t -> unit Vscode_jsonrpc_events.Event.t) =
+    let (get_on_close : t -> unit Vscode_jsonrpc_events.Event.t) =
       fun (x8 : t) ->
         Vscode_jsonrpc_events.Event.t_of_js Ojs.unit_of_js
           (Ojs.get_prop_ascii (t_to_js x8) "onClose")
@@ -46,22 +44,20 @@ module MessageWriter =
   end
 module AbstractMessageWriter =
   struct
-    type t = _AbstractMessageWriter
-    let rec t_of_js : Ojs.t -> t =
-      fun (x17 : Ojs.t) -> _AbstractMessageWriter_of_js x17
-    and t_to_js : t -> Ojs.t =
-      fun (x16 : _AbstractMessageWriter) -> _AbstractMessageWriter_to_js x16
-    let (get_errorEmitter : t -> any) =
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x17 : Ojs.t) -> x17
+    and t_to_js : t -> Ojs.t = fun (x16 : Ojs.t) -> x16
+    let (get_error_emitter : t -> any) =
       fun (x18 : t) ->
         any_of_js (Ojs.get_prop_ascii (t_to_js x18) "errorEmitter")
-    let (set_errorEmitter : t -> any -> unit) =
+    let (set_error_emitter : t -> any -> unit) =
       fun (x19 : t) ->
         fun (x20 : any) ->
           Ojs.set_prop_ascii (t_to_js x19) "errorEmitter" (any_to_js x20)
-    let (get_closeEmitter : t -> any) =
+    let (get_close_emitter : t -> any) =
       fun (x21 : t) ->
         any_of_js (Ojs.get_prop_ascii (t_to_js x21) "closeEmitter")
-    let (set_closeEmitter : t -> any -> unit) =
+    let (set_close_emitter : t -> any -> unit) =
       fun (x22 : t) ->
         fun (x23 : any) ->
           Ojs.set_prop_ascii (t_to_js x22) "closeEmitter" (any_to_js x23)
@@ -73,7 +69,7 @@ module AbstractMessageWriter =
              [||])
     let (dispose : t -> unit) =
       fun (x24 : t) -> ignore (Ojs.call (t_to_js x24) "dispose" [||])
-    let (get_onError :
+    let (get_on_error :
       t ->
         (Error.t * Vscode_jsonrpc_messages.Message.t or_undefined * int
           or_undefined) Vscode_jsonrpc_events.Event.t)
@@ -87,7 +83,7 @@ module AbstractMessageWriter =
                   (Ojs.array_get x27 1)),
                (or_undefined_of_js Ojs.int_of_js (Ojs.array_get x27 2))))
           (Ojs.get_prop_ascii (t_to_js x25) "onError")
-    let (fireError :
+    let (fire_error :
       t ->
         error:any ->
           ?message:Vscode_jsonrpc_messages.Message.t ->
@@ -120,26 +116,24 @@ module AbstractMessageWriter =
                                        [|(Ojs.int_to_js x34)|])
                               | None -> ());
                              x33))|])
-    let (get_onClose : t -> unit Vscode_jsonrpc_events.Event.t) =
+    let (get_on_close : t -> unit Vscode_jsonrpc_events.Event.t) =
       fun (x38 : t) ->
         Vscode_jsonrpc_events.Event.t_of_js Ojs.unit_of_js
           (Ojs.get_prop_ascii (t_to_js x38) "onClose")
-    let (fireClose : t -> unit) =
+    let (fire_close : t -> unit) =
       fun (x40 : t) -> ignore (Ojs.call (t_to_js x40) "fireClose" [||])
-    let (get_asError : t -> any) =
+    let (get_as_error : t -> any) =
       fun (x41 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x41) "asError")
-    let (set_asError : t -> any -> unit) =
+    let (set_as_error : t -> any -> unit) =
       fun (x42 : t) ->
         fun (x43 : any) ->
           Ojs.set_prop_ascii (t_to_js x42) "asError" (any_to_js x43)
   end
 module MessageWriterOptions =
   struct
-    type t = _MessageWriterOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x45 : Ojs.t) -> _MessageWriterOptions_of_js x45
-    and t_to_js : t -> Ojs.t =
-      fun (x44 : _MessageWriterOptions) -> _MessageWriterOptions_to_js x44
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x45 : Ojs.t) -> x45
+    and t_to_js : t -> Ojs.t = fun (x44 : Ojs.t) -> x44
     let (get_charset : t -> Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t) =
       fun (x46 : t) ->
         Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t_of_js
@@ -150,23 +144,23 @@ module MessageWriterOptions =
         fun (x48 : Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t) ->
           Ojs.set_prop_ascii (t_to_js x47) "charset"
             (Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t_to_js x48)
-    let (get_contentEncoder : t -> Vscode_jsonrpc_encoding.ContentEncoder.t)
+    let (get_content_encoder : t -> Vscode_jsonrpc_encoding.ContentEncoder.t)
       =
       fun (x49 : t) ->
         Vscode_jsonrpc_encoding.ContentEncoder.t_of_js
           (Ojs.get_prop_ascii (t_to_js x49) "contentEncoder")
-    let (set_contentEncoder :
+    let (set_content_encoder :
       t -> Vscode_jsonrpc_encoding.ContentEncoder.t -> unit) =
       fun (x50 : t) ->
         fun (x51 : Vscode_jsonrpc_encoding.ContentEncoder.t) ->
           Ojs.set_prop_ascii (t_to_js x50) "contentEncoder"
             (Vscode_jsonrpc_encoding.ContentEncoder.t_to_js x51)
-    let (get_contentTypeEncoder :
+    let (get_content_type_encoder :
       t -> Vscode_jsonrpc_encoding.ContentTypeEncoder.t) =
       fun (x52 : t) ->
         Vscode_jsonrpc_encoding.ContentTypeEncoder.t_of_js
           (Ojs.get_prop_ascii (t_to_js x52) "contentTypeEncoder")
-    let (set_contentTypeEncoder :
+    let (set_content_type_encoder :
       t -> Vscode_jsonrpc_encoding.ContentTypeEncoder.t -> unit) =
       fun (x53 : t) ->
         fun (x54 : Vscode_jsonrpc_encoding.ContentTypeEncoder.t) ->
@@ -175,12 +169,9 @@ module MessageWriterOptions =
   end
 module WriteableStreamMessageWriter =
   struct
-    type t = _WriteableStreamMessageWriter
-    let rec t_of_js : Ojs.t -> t =
-      fun (x56 : Ojs.t) -> _WriteableStreamMessageWriter_of_js x56
-    and t_to_js : t -> Ojs.t =
-      fun (x55 : _WriteableStreamMessageWriter) ->
-        _WriteableStreamMessageWriter_to_js x55
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x56 : Ojs.t) -> x56
+    and t_to_js : t -> Ojs.t = fun (x55 : Ojs.t) -> x55
     let (get_writable : t -> any) =
       fun (x57 : t) ->
         any_of_js (Ojs.get_prop_ascii (t_to_js x57) "writable")
@@ -194,29 +185,29 @@ module WriteableStreamMessageWriter =
       fun (x61 : t) ->
         fun (x62 : any) ->
           Ojs.set_prop_ascii (t_to_js x61) "options" (any_to_js x62)
-    let (get_errorCount : t -> any) =
+    let (get_error_count : t -> any) =
       fun (x63 : t) ->
         any_of_js (Ojs.get_prop_ascii (t_to_js x63) "errorCount")
-    let (set_errorCount : t -> any -> unit) =
+    let (set_error_count : t -> any -> unit) =
       fun (x64 : t) ->
         fun (x65 : any) ->
           Ojs.set_prop_ascii (t_to_js x64) "errorCount" (any_to_js x65)
-    let (get_writeSemaphore : t -> any) =
+    let (get_write_semaphore : t -> any) =
       fun (x66 : t) ->
         any_of_js (Ojs.get_prop_ascii (t_to_js x66) "writeSemaphore")
-    let (set_writeSemaphore : t -> any -> unit) =
+    let (set_write_semaphore : t -> any -> unit) =
       fun (x67 : t) ->
         fun (x68 : any) ->
           Ojs.set_prop_ascii (t_to_js x67) "writeSemaphore" (any_to_js x68)
     let (create :
       writable:Vscode_jsonrpc_ral.RAL.WritableStream.t ->
-        ?options:(_MessageWriterOptions,
+        ?options:(MessageWriterOptions.t,
           Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t) union2 -> unit -> t)
       =
       fun ~writable:(x69 : Vscode_jsonrpc_ral.RAL.WritableStream.t) ->
         fun
           ?options:(x70 :
-                     (_MessageWriterOptions,
+                     (MessageWriterOptions.t,
                        Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t) union2
                        option)
           ->
@@ -234,7 +225,7 @@ module WriteableStreamMessageWriter =
                    | Some x72 ->
                        ignore
                          (Ojs.call x71 "push"
-                            [|(union2_to_js _MessageWriterOptions_to_js
+                            [|(union2_to_js MessageWriterOptions.t_to_js
                                  Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t_to_js
                                  x72)|])
                    | None -> ());
@@ -246,23 +237,23 @@ module WriteableStreamMessageWriter =
           Promise.t_of_js Ojs.unit_of_js
             (Ojs.call (t_to_js x76) "write"
                [|(Vscode_jsonrpc_messages.Message.t_to_js x75)|])
-    let (get_doWrite : t -> any) =
+    let (get_do_write : t -> any) =
       fun (x78 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x78) "doWrite")
-    let (set_doWrite : t -> any -> unit) =
+    let (set_do_write : t -> any -> unit) =
       fun (x79 : t) ->
         fun (x80 : any) ->
           Ojs.set_prop_ascii (t_to_js x79) "doWrite" (any_to_js x80)
-    let (get_handleError : t -> any) =
+    let (get_handle_error : t -> any) =
       fun (x81 : t) ->
         any_of_js (Ojs.get_prop_ascii (t_to_js x81) "handleError")
-    let (set_handleError : t -> any -> unit) =
+    let (set_handle_error : t -> any -> unit) =
       fun (x82 : t) ->
         fun (x83 : any) ->
           Ojs.set_prop_ascii (t_to_js x82) "handleError" (any_to_js x83)
     let (end_ : t -> unit) =
       fun (x84 : t) -> ignore (Ojs.call (t_to_js x84) "end" [||])
-    let (cast : t -> _AbstractMessageWriter) =
-      fun (x85 : t) -> _AbstractMessageWriter_of_js (t_to_js x85)
-    let (cast' : t -> _MessageWriter) =
-      fun (x86 : t) -> _MessageWriter_of_js (t_to_js x86)
+    let (cast : t -> AbstractMessageWriter.t) =
+      fun (x85 : t) -> AbstractMessageWriter.t_of_js (t_to_js x85)
+    let (cast' : t -> MessageWriter.t) =
+      fun (x86 : t) -> MessageWriter.t_of_js (t_to_js x86)
   end

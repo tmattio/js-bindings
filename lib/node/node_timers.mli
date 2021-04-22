@@ -6,7 +6,7 @@ open Es2020
 open Node_globals
 
 module Timers : sig
-  val setTimeout
+  val set_timeout
     :  callback:(args:(any list[@js.variadic]) -> unit)
     -> ?ms:int
     -> args:(any list[@js.variadic])
@@ -21,18 +21,19 @@ module Timers : sig
   end
   [@@js.scope "setTimeout"]
 
-  val clearTimeout : timeoutId:Timeout.t -> unit [@@js.global "clearTimeout"]
+  val clear_timeout : timeout_id:Timeout.t -> unit [@@js.global "clearTimeout"]
 
-  val setInterval
+  val set_interval
     :  callback:(args:(any list[@js.variadic]) -> unit)
     -> ?ms:int
     -> args:(any list[@js.variadic])
     -> Timeout.t
     [@@js.global "setInterval"]
 
-  val clearInterval : intervalId:Timeout.t -> unit [@@js.global "clearInterval"]
+  val clear_interval : interval_id:Timeout.t -> unit
+    [@@js.global "clearInterval"]
 
-  val setImmediate
+  val set_immediate
     :  callback:(args:(any list[@js.variadic]) -> unit)
     -> args:(any list[@js.variadic])
     -> Immediate.t
@@ -45,7 +46,7 @@ module Timers : sig
   end
   [@@js.scope "setImmediate"]
 
-  val clearImmediate : immediateId:Immediate.t -> unit
+  val clear_immediate : immediate_id:Immediate.t -> unit
     [@@js.global "clearImmediate"]
 end
 [@@js.scope Import.timers]

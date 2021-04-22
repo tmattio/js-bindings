@@ -17,7 +17,7 @@ module SharedArrayBuffer : sig
 
   (* Constructor *)
 
-  val create : byteLength:int -> t [@@js.new "SharedArrayBuffer"]
+  val create : byte_length:int -> t [@@js.new "SharedArrayBuffer"]
 end
 
 module SharedArrayBufferConstructor : sig
@@ -29,7 +29,7 @@ module SharedArrayBufferConstructor : sig
 
   val get_prototype : t -> SharedArrayBuffer.t [@@js.get "prototype"]
 
-  val create : t -> byteLength:int -> SharedArrayBuffer.t [@@js.apply_newable]
+  val create : t -> byte_length:int -> SharedArrayBuffer.t [@@js.apply_newable]
 end
 [@@js.scope "SharedArrayBufferConstructor"]
 
@@ -60,7 +60,7 @@ module Atomics : sig
 
   val add
     :  t
-    -> typedArray:
+    -> typed_array:
          ( Int16Array.t
          , Int32Array.t
          , Int8Array.t
@@ -75,7 +75,7 @@ module Atomics : sig
 
   val and_
     :  t
-    -> typedArray:
+    -> typed_array:
          ( Int16Array.t
          , Int32Array.t
          , Int8Array.t
@@ -90,7 +90,7 @@ module Atomics : sig
 
   val compare_exchange
     :  t
-    -> typedArray:
+    -> typed_array:
          ( Int16Array.t
          , Int32Array.t
          , Int8Array.t
@@ -99,14 +99,14 @@ module Atomics : sig
          , Uint8Array.t )
          union6
     -> index:int
-    -> expectedValue:int
-    -> replacementValue:int
+    -> expected_value:int
+    -> replacement_value:int
     -> int
     [@@js.call "compareExchange"]
 
   val exchange
     :  t
-    -> typedArray:
+    -> typed_array:
          ( Int16Array.t
          , Int32Array.t
          , Int8Array.t
@@ -123,7 +123,7 @@ module Atomics : sig
 
   val load
     :  t
-    -> typedArray:
+    -> typed_array:
          ( Int16Array.t
          , Int32Array.t
          , Int8Array.t
@@ -137,7 +137,7 @@ module Atomics : sig
 
   val or_
     :  t
-    -> typedArray:
+    -> typed_array:
          ( Int16Array.t
          , Int32Array.t
          , Int8Array.t
@@ -152,7 +152,7 @@ module Atomics : sig
 
   val store
     :  t
-    -> typedArray:
+    -> typed_array:
          ( Int16Array.t
          , Int32Array.t
          , Int8Array.t
@@ -167,7 +167,7 @@ module Atomics : sig
 
   val sub
     :  t
-    -> typedArray:
+    -> typed_array:
          ( Int16Array.t
          , Int32Array.t
          , Int8Array.t
@@ -182,7 +182,7 @@ module Atomics : sig
 
   val wait
     :  t
-    -> typedArray:Int32Array.t
+    -> typed_array:Int32Array.t
     -> index:int
     -> value:int
     -> ?timeout:int
@@ -196,7 +196,7 @@ module Atomics : sig
 
   val notify
     :  t
-    -> typedArray:Int32Array.t
+    -> typed_array:Int32Array.t
     -> index:int
     -> ?count:int
     -> unit
@@ -205,7 +205,7 @@ module Atomics : sig
 
   val xor
     :  t
-    -> typedArray:
+    -> typed_array:
          ( Int16Array.t
          , Int32Array.t
          , Int8Array.t

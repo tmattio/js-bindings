@@ -29,8 +29,8 @@ module SharedArrayBuffer =
                                  (Ojs.call x6 "push" [|(Ojs.int_to_js x7)|])
                            | None -> ());
                           x6))|])
-    let (create : byteLength:int -> t) =
-      fun ~byteLength:(x10 : int) ->
+    let (create : byte_length:int -> t) =
+      fun ~byte_length:(x10 : int) ->
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "SharedArrayBuffer")
              [|(Ojs.int_to_js x10)|])
@@ -44,9 +44,9 @@ module SharedArrayBufferConstructor =
       fun (x13 : t) ->
         SharedArrayBuffer.t_of_js
           (Ojs.get_prop_ascii (t_to_js x13) "prototype")
-    let (create : t -> byteLength:int -> SharedArrayBuffer.t) =
+    let (create : t -> byte_length:int -> SharedArrayBuffer.t) =
       fun (x15 : t) ->
-        fun ~byteLength:(x14 : int) ->
+        fun ~byte_length:(x14 : int) ->
           SharedArrayBuffer.t_of_js
             (Ojs.new_obj (t_to_js x15) [|(Ojs.int_to_js x14)|])
   end
@@ -75,15 +75,15 @@ module Atomics =
     and t_to_js : t -> Ojs.t = fun (x21 : Ojs.t) -> x21
     let (add :
       t ->
-        typedArray:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
+        typed_array:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
           Uint32Array.t, Uint8Array.t) union6 ->
           index:int -> value:int -> int)
       =
       fun (x32 : t) ->
         fun
-          ~typedArray:(x23 :
-                        (Int16Array.t, Int32Array.t, Int8Array.t,
-                          Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
+          ~typed_array:(x23 :
+                         (Int16Array.t, Int32Array.t, Int8Array.t,
+                           Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
           ->
           fun ~index:(x30 : int) ->
             fun ~value:(x31 : int) ->
@@ -95,15 +95,15 @@ module Atomics =
                      Ojs.int_to_js x30);(Ojs.int_to_js x31)|])
     let (and_ :
       t ->
-        typedArray:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
+        typed_array:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
           Uint32Array.t, Uint8Array.t) union6 ->
           index:int -> value:int -> int)
       =
       fun (x42 : t) ->
         fun
-          ~typedArray:(x33 :
-                        (Int16Array.t, Int32Array.t, Int8Array.t,
-                          Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
+          ~typed_array:(x33 :
+                         (Int16Array.t, Int32Array.t, Int8Array.t,
+                           Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
           ->
           fun ~index:(x40 : int) ->
             fun ~value:(x41 : int) ->
@@ -115,19 +115,19 @@ module Atomics =
                      Ojs.int_to_js x40);(Ojs.int_to_js x41)|])
     let (compare_exchange :
       t ->
-        typedArray:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
+        typed_array:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
           Uint32Array.t, Uint8Array.t) union6 ->
-          index:int -> expectedValue:int -> replacementValue:int -> int)
+          index:int -> expected_value:int -> replacement_value:int -> int)
       =
       fun (x53 : t) ->
         fun
-          ~typedArray:(x43 :
-                        (Int16Array.t, Int32Array.t, Int8Array.t,
-                          Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
+          ~typed_array:(x43 :
+                         (Int16Array.t, Int32Array.t, Int8Array.t,
+                           Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
           ->
           fun ~index:(x50 : int) ->
-            fun ~expectedValue:(x51 : int) ->
-              fun ~replacementValue:(x52 : int) ->
+            fun ~expected_value:(x51 : int) ->
+              fun ~replacement_value:(x52 : int) ->
                 Ojs.int_of_js
                   (Ojs.call (t_to_js x53) "compareExchange"
                      [|(union6_to_js Int16Array.t_to_js Int32Array.t_to_js
@@ -137,15 +137,15 @@ module Atomics =
                                                                  x52)|])
     let (exchange :
       t ->
-        typedArray:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
+        typed_array:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
           Uint32Array.t, Uint8Array.t) union6 ->
           index:int -> value:int -> int)
       =
       fun (x63 : t) ->
         fun
-          ~typedArray:(x54 :
-                        (Int16Array.t, Int32Array.t, Int8Array.t,
-                          Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
+          ~typed_array:(x54 :
+                         (Int16Array.t, Int32Array.t, Int8Array.t,
+                           Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
           ->
           fun ~index:(x61 : int) ->
             fun ~value:(x62 : int) ->
@@ -162,14 +162,14 @@ module Atomics =
             (Ojs.call (t_to_js x65) "isLockFree" [|(Ojs.int_to_js x64)|])
     let (load :
       t ->
-        typedArray:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
+        typed_array:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
           Uint32Array.t, Uint8Array.t) union6 -> index:int -> int)
       =
       fun (x74 : t) ->
         fun
-          ~typedArray:(x66 :
-                        (Int16Array.t, Int32Array.t, Int8Array.t,
-                          Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
+          ~typed_array:(x66 :
+                         (Int16Array.t, Int32Array.t, Int8Array.t,
+                           Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
           ->
           fun ~index:(x73 : int) ->
             Ojs.int_of_js
@@ -180,15 +180,15 @@ module Atomics =
                                                                     x73)|])
     let (or_ :
       t ->
-        typedArray:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
+        typed_array:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
           Uint32Array.t, Uint8Array.t) union6 ->
           index:int -> value:int -> int)
       =
       fun (x84 : t) ->
         fun
-          ~typedArray:(x75 :
-                        (Int16Array.t, Int32Array.t, Int8Array.t,
-                          Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
+          ~typed_array:(x75 :
+                         (Int16Array.t, Int32Array.t, Int8Array.t,
+                           Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
           ->
           fun ~index:(x82 : int) ->
             fun ~value:(x83 : int) ->
@@ -200,15 +200,15 @@ module Atomics =
                      Ojs.int_to_js x82);(Ojs.int_to_js x83)|])
     let (store :
       t ->
-        typedArray:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
+        typed_array:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
           Uint32Array.t, Uint8Array.t) union6 ->
           index:int -> value:int -> int)
       =
       fun (x94 : t) ->
         fun
-          ~typedArray:(x85 :
-                        (Int16Array.t, Int32Array.t, Int8Array.t,
-                          Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
+          ~typed_array:(x85 :
+                         (Int16Array.t, Int32Array.t, Int8Array.t,
+                           Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
           ->
           fun ~index:(x92 : int) ->
             fun ~value:(x93 : int) ->
@@ -220,15 +220,15 @@ module Atomics =
                      Ojs.int_to_js x92);(Ojs.int_to_js x93)|])
     let (sub :
       t ->
-        typedArray:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
+        typed_array:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
           Uint32Array.t, Uint8Array.t) union6 ->
           index:int -> value:int -> int)
       =
       fun (x104 : t) ->
         fun
-          ~typedArray:(x95 :
-                        (Int16Array.t, Int32Array.t, Int8Array.t,
-                          Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
+          ~typed_array:(x95 :
+                         (Int16Array.t, Int32Array.t, Int8Array.t,
+                           Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
           ->
           fun ~index:(x102 : int) ->
             fun ~value:(x103 : int) ->
@@ -240,13 +240,13 @@ module Atomics =
                      Ojs.int_to_js x102);(Ojs.int_to_js x103)|])
     let (wait :
       t ->
-        typedArray:Int32Array.t ->
+        typed_array:Int32Array.t ->
           index:int ->
             value:int ->
               ?timeout:int -> unit -> [ `not_equal  | `ok  | `timed_out ])
       =
       fun (x111 : t) ->
-        fun ~typedArray:(x105 : Int32Array.t) ->
+        fun ~typed_array:(x105 : Int32Array.t) ->
           fun ~index:(x106 : int) ->
             fun ~value:(x107 : int) ->
               fun ?timeout:(x108 : int option) ->
@@ -280,10 +280,10 @@ module Atomics =
                   | "timed-out" -> `timed_out
                   | _ -> assert false
     let (notify :
-      t -> typedArray:Int32Array.t -> index:int -> ?count:int -> unit -> int)
+      t -> typed_array:Int32Array.t -> index:int -> ?count:int -> unit -> int)
       =
       fun (x119 : t) ->
-        fun ~typedArray:(x114 : Int32Array.t) ->
+        fun ~typed_array:(x114 : Int32Array.t) ->
           fun ~index:(x115 : int) ->
             fun ?count:(x116 : int option) ->
               fun () ->
@@ -309,15 +309,15 @@ module Atomics =
                               x117))|])
     let (xor :
       t ->
-        typedArray:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
+        typed_array:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
           Uint32Array.t, Uint8Array.t) union6 ->
           index:int -> value:int -> int)
       =
       fun (x130 : t) ->
         fun
-          ~typedArray:(x121 :
-                        (Int16Array.t, Int32Array.t, Int8Array.t,
-                          Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
+          ~typed_array:(x121 :
+                         (Int16Array.t, Int32Array.t, Int8Array.t,
+                           Uint16Array.t, Uint32Array.t, Uint8Array.t) union6)
           ->
           fun ~index:(x128 : int) ->
             fun ~value:(x129 : int) ->

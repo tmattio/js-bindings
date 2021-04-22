@@ -2,86 +2,82 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct module Types = struct open AnonymousInterfaces end end
 module Semaphore =
   struct
-    type 'T t = 'T _Semaphore
+    type 'T t = Ojs.t
     let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type __T) ->
-      fun (__T_of_js : Ojs.t -> __T) ->
-        fun (x3 : Ojs.t) -> _Semaphore_of_js __T_of_js x3
+      fun (__T_of_js : Ojs.t -> __T) -> fun (x2 : Ojs.t) -> x2
     and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-      fun (__T_to_js : __T -> Ojs.t) ->
-        fun (x1 : __T _Semaphore) -> _Semaphore_to_js __T_to_js x1
+      fun (__T_to_js : __T -> Ojs.t) -> fun (x1 : Ojs.t) -> x1
     type t_0 = unit t
     let rec t_0_of_js : Ojs.t -> t_0 =
-      fun (x7 : Ojs.t) -> t_of_js Ojs.unit_of_js x7
+      fun (x5 : Ojs.t) -> t_of_js Ojs.unit_of_js x5
     and t_0_to_js : t_0 -> Ojs.t =
-      fun (x5 : unit t) -> t_to_js Ojs.unit_to_js x5
+      fun (x3 : unit t) -> t_to_js Ojs.unit_to_js x3
     let (get__capacity : 'T t -> any) =
-      fun (x9 : 'T t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x9) "_capacity")
+      fun (x7 : 'T t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x7) "_capacity")
     let (set__capacity : 'T t -> any -> unit) =
-      fun (x11 : 'T t) ->
-        fun (x12 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x11) "_capacity"
-            (any_to_js x12)
+      fun (x9 : 'T t) ->
+        fun (x10 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x9) "_capacity"
+            (any_to_js x10)
     let (get__active : 'T t -> any) =
-      fun (x14 : 'T t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x14) "_active")
+      fun (x12 : 'T t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x12) "_active")
     let (set__active : 'T t -> any -> unit) =
-      fun (x16 : 'T t) ->
-        fun (x17 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x16) "_active"
-            (any_to_js x17)
+      fun (x14 : 'T t) ->
+        fun (x15 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x14) "_active"
+            (any_to_js x15)
     let (get__waiting : 'T t -> any) =
-      fun (x19 : 'T t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x19) "_waiting")
+      fun (x17 : 'T t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x17) "_waiting")
     let (set__waiting : 'T t -> any -> unit) =
-      fun (x21 : 'T t) ->
-        fun (x22 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x21) "_waiting"
-            (any_to_js x22)
+      fun (x19 : 'T t) ->
+        fun (x20 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x19) "_waiting"
+            (any_to_js x20)
     let (create : ?capacity:int -> unit -> 'T t) =
-      fun ?capacity:(x24 : int option) ->
+      fun ?capacity:(x22 : int option) ->
         fun () ->
           t_of_js Obj.magic
             (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "Semaphore")
-               (let x25 =
+               (let x23 =
                   Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
-                (match x24 with
-                 | Some x26 ->
-                     ignore (Ojs.call x25 "push" [|(Ojs.int_to_js x26)|])
+                (match x22 with
+                 | Some x24 ->
+                     ignore (Ojs.call x23 "push" [|(Ojs.int_to_js x24)|])
                  | None -> ());
-                x25))
+                x23))
     let (lock :
       'T t -> thunk:(unit -> ('T, 'T Promise.t) union2) -> 'T Promise.t) =
-      fun (x32 : 'T t) ->
-        fun ~thunk:(x28 : unit -> ('T, 'T Promise.t) union2) ->
+      fun (x30 : 'T t) ->
+        fun ~thunk:(x26 : unit -> ('T, 'T Promise.t) union2) ->
           Promise.t_of_js Obj.magic
-            (Ojs.call (t_to_js Obj.magic x32) "lock"
+            (Ojs.call (t_to_js Obj.magic x30) "lock"
                [|(Ojs.fun_to_js 1
                     (fun _ ->
                        union2_to_js Obj.magic
-                         (fun (x30 : 'T Promise.t) ->
-                            Promise.t_to_js Obj.magic x30) (x28 ())))|])
+                         (fun (x28 : 'T Promise.t) ->
+                            Promise.t_to_js Obj.magic x28) (x26 ())))|])
     let (get_active : 'T t -> int) =
+      fun (x33 : 'T t) ->
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x33) "active")
+    let (get_run_next : 'T t -> any) =
       fun (x35 : 'T t) ->
-        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x35) "active")
-    let (get_runNext : 'T t -> any) =
+        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x35) "runNext")
+    let (set_run_next : 'T t -> any -> unit) =
       fun (x37 : 'T t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x37) "runNext")
-    let (set_runNext : 'T t -> any -> unit) =
-      fun (x39 : 'T t) ->
-        fun (x40 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x39) "runNext"
-            (any_to_js x40)
-    let (get_doRunNext : 'T t -> any) =
+        fun (x38 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x37) "runNext"
+            (any_to_js x38)
+    let (get_do_run_next : 'T t -> any) =
+      fun (x40 : 'T t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x40) "doRunNext")
+    let (set_do_run_next : 'T t -> any -> unit) =
       fun (x42 : 'T t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x42) "doRunNext")
-    let (set_doRunNext : 'T t -> any -> unit) =
-      fun (x44 : 'T t) ->
-        fun (x45 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x44) "doRunNext"
-            (any_to_js x45)
+        fun (x43 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x42) "doRunNext"
+            (any_to_js x43)
   end

@@ -7,13 +7,10 @@ module Querystring =
   struct
     module StringifyOptions =
       struct
-        type t = querystring_StringifyOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x2 : Ojs.t) -> querystring_StringifyOptions_of_js x2
-        and t_to_js : t -> Ojs.t =
-          fun (x1 : querystring_StringifyOptions) ->
-            querystring_StringifyOptions_to_js x1
-        let (encodeURIComponent : t -> str:string -> string) =
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+        and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
+        let (encode_uri_component : t -> str:string -> string) =
           fun (x4 : t) ->
             fun ~str:(x3 : string) ->
               Ojs.string_of_js
@@ -22,20 +19,17 @@ module Querystring =
       end
     module ParseOptions =
       struct
-        type t = querystring_ParseOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x6 : Ojs.t) -> querystring_ParseOptions_of_js x6
-        and t_to_js : t -> Ojs.t =
-          fun (x5 : querystring_ParseOptions) ->
-            querystring_ParseOptions_to_js x5
-        let (get_maxKeys : t -> int) =
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x6 : Ojs.t) -> x6
+        and t_to_js : t -> Ojs.t = fun (x5 : Ojs.t) -> x5
+        let (get_max_keys : t -> int) =
           fun (x7 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x7) "maxKeys")
-        let (set_maxKeys : t -> int -> unit) =
+        let (set_max_keys : t -> int -> unit) =
           fun (x8 : t) ->
             fun (x9 : int) ->
               Ojs.set_prop_ascii (t_to_js x8) "maxKeys" (Ojs.int_to_js x9)
-        let (decodeURIComponent : t -> str:string -> string) =
+        let (decode_uri_component : t -> str:string -> string) =
           fun (x11 : t) ->
             fun ~str:(x10 : string) ->
               Ojs.string_of_js
@@ -44,12 +38,9 @@ module Querystring =
       end
     module ParsedUrlQuery =
       struct
-        type t = querystring_ParsedUrlQuery
-        let rec t_of_js : Ojs.t -> t =
-          fun (x13 : Ojs.t) -> querystring_ParsedUrlQuery_of_js x13
-        and t_to_js : t -> Ojs.t =
-          fun (x12 : querystring_ParsedUrlQuery) ->
-            querystring_ParsedUrlQuery_to_js x12
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x13 : Ojs.t) -> x13
+        and t_to_js : t -> Ojs.t = fun (x12 : Ojs.t) -> x12
         let (cast : t -> string list or_string Dict.t) =
           fun (x14 : t) ->
             Dict.t_of_js
@@ -60,12 +51,9 @@ module Querystring =
       end
     module ParsedUrlQueryInput =
       struct
-        type t = querystring_ParsedUrlQueryInput
-        let rec t_of_js : Ojs.t -> t =
-          fun (x19 : Ojs.t) -> querystring_ParsedUrlQueryInput_of_js x19
-        and t_to_js : t -> Ojs.t =
-          fun (x18 : querystring_ParsedUrlQueryInput) ->
-            querystring_ParsedUrlQueryInput_to_js x18
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x19 : Ojs.t) -> x19
+        and t_to_js : t -> Ojs.t = fun (x18 : Ojs.t) -> x18
         let (cast :
           t ->
             (string list, bool list, int list) union3 or_boolean or_string
@@ -92,15 +80,14 @@ module Querystring =
                                        x25) x24) x23) x22) x21) (t_to_js x20)
       end
     let (stringify :
-      ?obj:querystring_ParsedUrlQueryInput ->
+      ?obj:ParsedUrlQueryInput.t ->
         ?sep:string ->
-          ?eq:string ->
-            ?options:querystring_StringifyOptions -> unit -> string)
+          ?eq:string -> ?options:StringifyOptions.t -> unit -> string)
       =
-      fun ?obj:(x32 : querystring_ParsedUrlQueryInput option) ->
+      fun ?obj:(x32 : ParsedUrlQueryInput.t option) ->
         fun ?sep:(x33 : string option) ->
           fun ?eq:(x34 : string option) ->
-            fun ?options:(x35 : querystring_StringifyOptions option) ->
+            fun ?options:(x35 : StringifyOptions.t option) ->
               fun () ->
                 Ojs.string_of_js
                   (let x41 = Import.querystring in
@@ -113,8 +100,7 @@ module Querystring =
                               | Some x40 ->
                                   ignore
                                     (Ojs.call x36 "push"
-                                       [|(querystring_ParsedUrlQueryInput_to_js
-                                            x40)|])
+                                       [|(ParsedUrlQueryInput.t_to_js x40)|])
                               | None -> ());
                              (match x33 with
                               | Some x39 ->
@@ -132,23 +118,20 @@ module Querystring =
                               | Some x37 ->
                                   ignore
                                     (Ojs.call x36 "push"
-                                       [|(querystring_StringifyOptions_to_js
-                                            x37)|])
+                                       [|(StringifyOptions.t_to_js x37)|])
                               | None -> ());
                              x36))|])
     let (parse :
       str:string ->
         ?sep:string ->
-          ?eq:string ->
-            ?options:querystring_ParseOptions ->
-              unit -> querystring_ParsedUrlQuery)
+          ?eq:string -> ?options:ParseOptions.t -> unit -> ParsedUrlQuery.t)
       =
       fun ~str:(x42 : string) ->
         fun ?sep:(x43 : string option) ->
           fun ?eq:(x44 : string option) ->
-            fun ?options:(x45 : querystring_ParseOptions option) ->
+            fun ?options:(x45 : ParseOptions.t option) ->
               fun () ->
-                querystring_ParsedUrlQuery_of_js
+                ParsedUrlQuery.t_of_js
                   (let x50 = Import.querystring in
                    Ojs.call (Ojs.get_prop_ascii x50 "parse") "apply"
                      [|x50;((let x46 =
@@ -174,19 +157,18 @@ module Querystring =
                               | Some x47 ->
                                   ignore
                                     (Ojs.call x46 "push"
-                                       [|(querystring_ParseOptions_to_js x47)|])
+                                       [|(ParseOptions.t_to_js x47)|])
                               | None -> ());
                              x46))|])
     let (encode :
-      ?obj:querystring_ParsedUrlQueryInput ->
+      ?obj:ParsedUrlQueryInput.t ->
         ?sep:string ->
-          ?eq:string ->
-            ?options:querystring_StringifyOptions -> unit -> string)
+          ?eq:string -> ?options:StringifyOptions.t -> unit -> string)
       =
-      fun ?obj:(x51 : querystring_ParsedUrlQueryInput option) ->
+      fun ?obj:(x51 : ParsedUrlQueryInput.t option) ->
         fun ?sep:(x52 : string option) ->
           fun ?eq:(x53 : string option) ->
-            fun ?options:(x54 : querystring_StringifyOptions option) ->
+            fun ?options:(x54 : StringifyOptions.t option) ->
               fun () ->
                 Ojs.string_of_js
                   (let x60 = Import.querystring in
@@ -199,8 +181,7 @@ module Querystring =
                               | Some x59 ->
                                   ignore
                                     (Ojs.call x55 "push"
-                                       [|(querystring_ParsedUrlQueryInput_to_js
-                                            x59)|])
+                                       [|(ParsedUrlQueryInput.t_to_js x59)|])
                               | None -> ());
                              (match x52 with
                               | Some x58 ->
@@ -218,23 +199,20 @@ module Querystring =
                               | Some x56 ->
                                   ignore
                                     (Ojs.call x55 "push"
-                                       [|(querystring_StringifyOptions_to_js
-                                            x56)|])
+                                       [|(StringifyOptions.t_to_js x56)|])
                               | None -> ());
                              x55))|])
     let (decode :
       str:string ->
         ?sep:string ->
-          ?eq:string ->
-            ?options:querystring_ParseOptions ->
-              unit -> querystring_ParsedUrlQuery)
+          ?eq:string -> ?options:ParseOptions.t -> unit -> ParsedUrlQuery.t)
       =
       fun ~str:(x61 : string) ->
         fun ?sep:(x62 : string option) ->
           fun ?eq:(x63 : string option) ->
-            fun ?options:(x64 : querystring_ParseOptions option) ->
+            fun ?options:(x64 : ParseOptions.t option) ->
               fun () ->
-                querystring_ParsedUrlQuery_of_js
+                ParsedUrlQuery.t_of_js
                   (let x69 = Import.querystring in
                    Ojs.call (Ojs.get_prop_ascii x69 "decode") "apply"
                      [|x69;((let x65 =
@@ -260,7 +238,7 @@ module Querystring =
                               | Some x66 ->
                                   ignore
                                     (Ojs.call x65 "push"
-                                       [|(querystring_ParseOptions_to_js x66)|])
+                                       [|(ParseOptions.t_to_js x66)|])
                               | None -> ());
                              x65))|])
     let (escape : str:string -> string) =

@@ -5,7 +5,7 @@
 open Es2020
 
 module FunctionContentEncoder : sig
-  type t = _FunctionContentEncoder
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -21,7 +21,7 @@ end
 [@@js.scope "FunctionContentEncoder"]
 
 module StreamContentEncoder : sig
-  type t = _StreamContentEncoder
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -45,7 +45,7 @@ module ContentEncoder : sig
 end
 
 module FunctionContentDecoder : sig
-  type t = _FunctionContentDecoder
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -61,7 +61,7 @@ end
 [@@js.scope "FunctionContentDecoder"]
 
 module StreamContentDecoder : sig
-  type t = _StreamContentDecoder
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -85,7 +85,7 @@ module ContentDecoder : sig
 end
 
 module ContentTypeEncoderOptions : sig
-  type t = _ContentTypeEncoderOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -100,7 +100,7 @@ end
 [@@js.scope "ContentTypeEncoderOptions"]
 
 module FunctionContentTypeEncoder : sig
-  type t = _FunctionContentTypeEncoder
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -113,14 +113,14 @@ module FunctionContentTypeEncoder : sig
   val encode
     :  t
     -> msg:Vscode_jsonrpc_messages.Message.t
-    -> options:_ContentTypeEncoderOptions
+    -> options:ContentTypeEncoderOptions.t
     -> Uint8Array.t Promise.t
     [@@js.call "encode"]
 end
 [@@js.scope "FunctionContentTypeEncoder"]
 
 module StreamContentTypeEncoder : sig
-  type t = _StreamContentTypeEncoder
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -132,7 +132,7 @@ module StreamContentTypeEncoder : sig
 
   val create_
     :  t
-    -> options:_ContentTypeEncoderOptions
+    -> options:ContentTypeEncoderOptions.t
     -> Vscode_jsonrpc_ral.RAL.WritableStream.t
     [@@js.call "create"]
 end
@@ -147,7 +147,7 @@ module ContentTypeEncoder : sig
 end
 
 module ContentTypeDecoderOptions : sig
-  type t = _ContentTypeDecoderOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -162,7 +162,7 @@ end
 [@@js.scope "ContentTypeDecoderOptions"]
 
 module FunctionContentTypeDecoder : sig
-  type t = _FunctionContentTypeDecoder
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -175,14 +175,14 @@ module FunctionContentTypeDecoder : sig
   val decode
     :  t
     -> buffer:Uint8Array.t
-    -> options:_ContentTypeDecoderOptions
+    -> options:ContentTypeDecoderOptions.t
     -> Vscode_jsonrpc_messages.Message.t Promise.t
     [@@js.call "decode"]
 end
 [@@js.scope "FunctionContentTypeDecoder"]
 
 module StreamContentTypeDecoder : sig
-  type t = _StreamContentTypeDecoder
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -194,7 +194,7 @@ module StreamContentTypeDecoder : sig
 
   val create_
     :  t
-    -> options:_ContentTypeDecoderOptions
+    -> options:ContentTypeDecoderOptions.t
     -> Vscode_jsonrpc_ral.RAL.WritableStream.t
     [@@js.call "create"]
 end
@@ -209,7 +209,7 @@ module ContentTypeDecoder : sig
 end
 
 module Named : sig
-  type t = _Named
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -222,10 +222,10 @@ end
 [@@js.scope "Named"]
 
 module Encodings : sig
-  val getEncodingHeaderValue : encodings:_Named list -> string or_undefined
+  val get_encoding_header_value : encodings:Named.t list -> string or_undefined
     [@@js.global "getEncodingHeaderValue"]
 
-  val parseEncodingHeaderValue : value:string -> string list
+  val parse_encoding_header_value : value:string -> string list
     [@@js.global "parseEncodingHeaderValue"]
 end
 [@@js.scope "Encodings"]

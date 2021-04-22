@@ -4,21 +4,19 @@
 open Es5
 module ProgressFeature =
   struct
-    type t = _ProgressFeature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> _ProgressFeature_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : _ProgressFeature) -> _ProgressFeature_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get__client : t -> any) =
       fun (x3 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x3) "_client")
     let (set__client : t -> any -> unit) =
       fun (x4 : t) ->
         fun (x5 : any) ->
           Ojs.set_prop_ascii (t_to_js x4) "_client" (any_to_js x5)
-    let (get_activeParts : t -> any) =
+    let (get_active_parts : t -> any) =
       fun (x6 : t) ->
         any_of_js (Ojs.get_prop_ascii (t_to_js x6) "activeParts")
-    let (set_activeParts : t -> any -> unit) =
+    let (set_active_parts : t -> any -> unit) =
       fun (x7 : t) ->
         fun (x8 : any) ->
           Ojs.set_prop_ascii (t_to_js x7) "activeParts" (any_to_js x8)
@@ -27,7 +25,7 @@ module ProgressFeature =
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "ProgressFeature")
              [|(BaseLanguageClient.t_to_js x9)|])
-    let (fillClientCapabilities :
+    let (fill_client_capabilities :
       t -> capabilities:ClientCapabilities.t -> unit) =
       fun (x11 : t) ->
         fun ~capabilities:(x10 : ClientCapabilities.t) ->

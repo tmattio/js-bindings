@@ -11,14 +11,14 @@ module AnonymousInterface0 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_kind : t -> _VDocumentDiagnosticReportKind_new [@@js.get "kind"]
+  val get_kind : t -> VDocumentDiagnosticReportKind_new.t [@@js.get "kind"]
 
-  val set_kind : t -> _VDocumentDiagnosticReportKind_new -> unit
+  val set_kind : t -> VDocumentDiagnosticReportKind_new.t -> unit
     [@@js.set "kind"]
 
-  val get_resultId : t -> string [@@js.get "resultId"]
+  val get_result_id : t -> string [@@js.get "resultId"]
 
-  val set_resultId : t -> string -> unit [@@js.set "resultId"]
+  val set_result_id : t -> string -> unit [@@js.set "resultId"]
 
   val get_items : t -> VDiagnostic.t list [@@js.get "items"]
 
@@ -32,14 +32,15 @@ module AnonymousInterface1 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_kind : t -> _VDocumentDiagnosticReportKind_unChanged [@@js.get "kind"]
+  val get_kind : t -> VDocumentDiagnosticReportKind_unChanged.t
+    [@@js.get "kind"]
 
-  val set_kind : t -> _VDocumentDiagnosticReportKind_unChanged -> unit
+  val set_kind : t -> VDocumentDiagnosticReportKind_unChanged.t -> unit
     [@@js.set "kind"]
 
-  val get_resultId : t -> string [@@js.get "resultId"]
+  val get_result_id : t -> string [@@js.get "resultId"]
 
-  val set_resultId : t -> string -> unit [@@js.set "resultId"]
+  val set_result_id : t -> string -> unit [@@js.set "resultId"]
 end
 
 (* import { Disposable, CancellationToken, ProviderResult, Diagnostic as
@@ -72,29 +73,29 @@ module VDocumentDiagnosticReport : sig
 end
 
 module DiagnosticProvider : sig
-  type t = _DiagnosticProvider
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_onDidChangeDiagnostics : t -> unit VEvent.t
+  val get_on_did_change_diagnostics : t -> unit VEvent.t
     [@@js.get "onDidChangeDiagnostics"]
 
-  val set_onDidChangeDiagnostics : t -> unit VEvent.t -> unit
+  val set_on_did_change_diagnostics : t -> unit VEvent.t -> unit
     [@@js.set "onDidChangeDiagnostics"]
 
-  val provideDiagnostics
+  val provide_diagnostics
     :  t
-    -> textDocument:TextDocument.t
+    -> text_document:TextDocument.t
     -> token:CancellationToken.t
-    -> _VDocumentDiagnosticReport ProviderResult.t
+    -> VDocumentDiagnosticReport.t ProviderResult.t
     [@@js.call "provideDiagnostics"]
 end
 [@@js.scope "DiagnosticProvider"]
 
 module ProvideDiagnosticSignature : sig
-  type t = _ProvideDiagnosticSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -103,52 +104,52 @@ module ProvideDiagnosticSignature : sig
   val apply
     :  t
     -> this:unit
-    -> textDocument:TextDocument.t
+    -> text_document:TextDocument.t
     -> token:CancellationToken.t
-    -> _VDocumentDiagnosticReport ProviderResult.t
+    -> VDocumentDiagnosticReport.t ProviderResult.t
     [@@js.apply]
 end
 [@@js.scope "ProvideDiagnosticSignature"]
 
 module DiagnosticProviderMiddleware : sig
-  type t = _DiagnosticProviderMiddleware
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val provideDiagnostics
+  val provide_diagnostics
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> token:CancellationToken.t
-    -> next:_ProvideDiagnosticSignature
-    -> _VDocumentDiagnosticReport ProviderResult.t
+    -> next:ProvideDiagnosticSignature.t
+    -> VDocumentDiagnosticReport.t ProviderResult.t
     [@@js.call "provideDiagnostics"]
 end
 [@@js.scope "DiagnosticProviderMiddleware"]
 
 module DiagnosticFeatureProvider : sig
-  type t = _DiagnosticFeatureProvider
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_onDidChangeDiagnosticsEmitter : t -> unit EventEmitter.t
+  val get_on_did_change_diagnostics_emitter : t -> unit EventEmitter.t
     [@@js.get "onDidChangeDiagnosticsEmitter"]
 
-  val set_onDidChangeDiagnosticsEmitter : t -> unit EventEmitter.t -> unit
+  val set_on_did_change_diagnostics_emitter : t -> unit EventEmitter.t -> unit
     [@@js.set "onDidChangeDiagnosticsEmitter"]
 
-  val get_provider : t -> _DiagnosticProvider [@@js.get "provider"]
+  val get_provider : t -> DiagnosticProvider.t [@@js.get "provider"]
 
-  val set_provider : t -> _DiagnosticProvider -> unit [@@js.set "provider"]
+  val set_provider : t -> DiagnosticProvider.t -> unit [@@js.set "provider"]
 end
 [@@js.scope "DiagnosticFeatureProvider"]
 
 module DiagnosticFeature : sig
-  type t = _DiagnosticFeature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -156,7 +157,7 @@ module DiagnosticFeature : sig
 
   val create : client:BaseLanguageClient.t -> t [@@js.create]
 
-  val fillClientCapabilities
+  val fill_client_capabilities
     :  t
     -> capabilities:
          ( ClientCapabilities.t
@@ -171,21 +172,21 @@ module DiagnosticFeature : sig
          ( ServerCapabilities.t
          , Proposed.DiagnosticServerCapabilities.t )
          intersection2
-    -> documentSelector:DocumentSelector.t
+    -> document_selector:DocumentSelector.t
     -> unit
     [@@js.call "initialize"]
 
-  val registerLanguageProvider
+  val register_language_provider
     :  t
     -> options:Proposed.DiagnosticRegistrationOptions.t
-    -> Disposable.t * _DiagnosticFeatureProvider
+    -> Disposable.t * DiagnosticFeatureProvider.t
     [@@js.call "registerLanguageProvider"]
 
   val cast
     :  t
     -> ( Proposed.DiagnosticOptions.t
        , Proposed.DiagnosticRegistrationOptions.t
-       , _DiagnosticFeatureProvider )
+       , DiagnosticFeatureProvider.t )
        TextDocumentFeature.t
     [@@js.cast]
 end

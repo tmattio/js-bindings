@@ -2,17 +2,15 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct module Types = struct open AnonymousInterfaces end end
 module AnonymousInterface0 =
   struct
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
     and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
-    let (get_includeDeclaration : t -> bool) =
+    let (get_include_declaration : t -> bool) =
       fun (x3 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x3) "includeDeclaration")
-    let (set_includeDeclaration : t -> bool -> unit) =
+    let (set_include_declaration : t -> bool -> unit) =
       fun (x4 : t) ->
         fun (x5 : bool) ->
           Ojs.set_prop_ascii (t_to_js x4) "includeDeclaration"
@@ -20,33 +18,31 @@ module AnonymousInterface0 =
   end
 module FileFormattingOptions =
   struct
-    type t = _FileFormattingOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x7 : Ojs.t) -> _FileFormattingOptions_of_js x7
-    and t_to_js : t -> Ojs.t =
-      fun (x6 : _FileFormattingOptions) -> _FileFormattingOptions_to_js x6
-    let (get_trimTrailingWhitespace : t -> bool) =
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x7 : Ojs.t) -> x7
+    and t_to_js : t -> Ojs.t = fun (x6 : Ojs.t) -> x6
+    let (get_trim_trailing_whitespace : t -> bool) =
       fun (x8 : t) ->
         Ojs.bool_of_js
           (Ojs.get_prop_ascii (t_to_js x8) "trimTrailingWhitespace")
-    let (set_trimTrailingWhitespace : t -> bool -> unit) =
+    let (set_trim_trailing_whitespace : t -> bool -> unit) =
       fun (x9 : t) ->
         fun (x10 : bool) ->
           Ojs.set_prop_ascii (t_to_js x9) "trimTrailingWhitespace"
             (Ojs.bool_to_js x10)
-    let (get_trimFinalNewlines : t -> bool) =
+    let (get_trim_final_newlines : t -> bool) =
       fun (x11 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x11) "trimFinalNewlines")
-    let (set_trimFinalNewlines : t -> bool -> unit) =
+    let (set_trim_final_newlines : t -> bool -> unit) =
       fun (x12 : t) ->
         fun (x13 : bool) ->
           Ojs.set_prop_ascii (t_to_js x12) "trimFinalNewlines"
             (Ojs.bool_to_js x13)
-    let (get_insertFinalNewline : t -> bool) =
+    let (get_insert_final_newline : t -> bool) =
       fun (x14 : t) ->
         Ojs.bool_of_js
           (Ojs.get_prop_ascii (t_to_js x14) "insertFinalNewline")
-    let (set_insertFinalNewline : t -> bool -> unit) =
+    let (set_insert_final_newline : t -> bool -> unit) =
       fun (x15 : t) ->
         fun (x16 : bool) ->
           Ojs.set_prop_ascii (t_to_js x15) "insertFinalNewline"
@@ -54,52 +50,54 @@ module FileFormattingOptions =
   end
 module Converter =
   struct
-    type t = _Converter
-    let rec t_of_js : Ojs.t -> t = fun (x18 : Ojs.t) -> _Converter_of_js x18
-    and t_to_js : t -> Ojs.t = fun (x17 : _Converter) -> _Converter_to_js x17
-    let (asUri : t -> uri:Code.Uri.t -> string) =
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x18 : Ojs.t) -> x18
+    and t_to_js : t -> Ojs.t = fun (x17 : Ojs.t) -> x17
+    let (as_uri : t -> uri:Code.Uri.t -> string) =
       fun (x20 : t) ->
         fun ~uri:(x19 : Code.Uri.t) ->
           Ojs.string_of_js
             (Ojs.call (t_to_js x20) "asUri" [|(Code.Uri.t_to_js x19)|])
-    let (asTextDocumentIdentifier :
-      t -> textDocument:Code.TextDocument.t -> Proto.TextDocumentIdentifier.t)
+    let (as_text_document_identifier :
+      t ->
+        text_document:Code.TextDocument.t -> Proto.TextDocumentIdentifier.t)
       =
       fun (x22 : t) ->
-        fun ~textDocument:(x21 : Code.TextDocument.t) ->
+        fun ~text_document:(x21 : Code.TextDocument.t) ->
           Proto.TextDocumentIdentifier.t_of_js
             (Ojs.call (t_to_js x22) "asTextDocumentIdentifier"
                [|(Code.TextDocument.t_to_js x21)|])
-    let (asVersionedTextDocumentIdentifier :
+    let (as_versioned_text_document_identifier :
       t ->
-        textDocument:Code.TextDocument.t ->
+        text_document:Code.TextDocument.t ->
           Proto.VersionedTextDocumentIdentifier.t)
       =
       fun (x24 : t) ->
-        fun ~textDocument:(x23 : Code.TextDocument.t) ->
+        fun ~text_document:(x23 : Code.TextDocument.t) ->
           Proto.VersionedTextDocumentIdentifier.t_of_js
             (Ojs.call (t_to_js x24) "asVersionedTextDocumentIdentifier"
                [|(Code.TextDocument.t_to_js x23)|])
-    let (asOpenTextDocumentParams :
+    let (as_open_text_document_params :
       t ->
-        textDocument:Code.TextDocument.t -> Proto.DidOpenTextDocumentParams.t)
+        text_document:Code.TextDocument.t ->
+          Proto.DidOpenTextDocumentParams.t)
       =
       fun (x26 : t) ->
-        fun ~textDocument:(x25 : Code.TextDocument.t) ->
+        fun ~text_document:(x25 : Code.TextDocument.t) ->
           Proto.DidOpenTextDocumentParams.t_of_js
             (Ojs.call (t_to_js x26) "asOpenTextDocumentParams"
                [|(Code.TextDocument.t_to_js x25)|])
-    let (asChangeTextDocumentParams :
+    let (as_change_text_document_params :
       t ->
-        textDocument:Code.TextDocument.t ->
+        text_document:Code.TextDocument.t ->
           Proto.DidChangeTextDocumentParams.t)
       =
       fun (x28 : t) ->
-        fun ~textDocument:(x27 : Code.TextDocument.t) ->
+        fun ~text_document:(x27 : Code.TextDocument.t) ->
           Proto.DidChangeTextDocumentParams.t_of_js
             (Ojs.call (t_to_js x28) "asChangeTextDocumentParams"
                [|(Code.TextDocument.t_to_js x27)|])
-    let (asChangeTextDocumentParams' :
+    let (as_change_text_document_params' :
       t ->
         event:Code.TextDocumentChangeEvent.t ->
           Proto.DidChangeTextDocumentParams.t)
@@ -109,24 +107,24 @@ module Converter =
           Proto.DidChangeTextDocumentParams.t_of_js
             (Ojs.call (t_to_js x30) "asChangeTextDocumentParams"
                [|(Code.TextDocumentChangeEvent.t_to_js x29)|])
-    let (asCloseTextDocumentParams :
+    let (as_close_text_document_params :
       t ->
-        textDocument:Code.TextDocument.t ->
+        text_document:Code.TextDocument.t ->
           Proto.DidCloseTextDocumentParams.t)
       =
       fun (x32 : t) ->
-        fun ~textDocument:(x31 : Code.TextDocument.t) ->
+        fun ~text_document:(x31 : Code.TextDocument.t) ->
           Proto.DidCloseTextDocumentParams.t_of_js
             (Ojs.call (t_to_js x32) "asCloseTextDocumentParams"
                [|(Code.TextDocument.t_to_js x31)|])
-    let (asSaveTextDocumentParams :
+    let (as_save_text_document_params :
       t ->
-        textDocument:Code.TextDocument.t ->
-          ?includeContent:bool -> unit -> Proto.DidSaveTextDocumentParams.t)
+        text_document:Code.TextDocument.t ->
+          ?include_content:bool -> unit -> Proto.DidSaveTextDocumentParams.t)
       =
       fun (x37 : t) ->
-        fun ~textDocument:(x33 : Code.TextDocument.t) ->
-          fun ?includeContent:(x34 : bool option) ->
+        fun ~text_document:(x33 : Code.TextDocument.t) ->
+          fun ?include_content:(x34 : bool option) ->
             fun () ->
               Proto.DidSaveTextDocumentParams.t_of_js
                 (let x38 = t_to_js x37 in
@@ -146,7 +144,7 @@ module Converter =
                                      [|(Ojs.bool_to_js x36)|])
                             | None -> ());
                            x35))|])
-    let (asWillSaveTextDocumentParams :
+    let (as_will_save_text_document_params :
       t ->
         event:Code.TextDocumentWillSaveEvent.t ->
           Proto.WillSaveTextDocumentParams.t)
@@ -156,67 +154,67 @@ module Converter =
           Proto.WillSaveTextDocumentParams.t_of_js
             (Ojs.call (t_to_js x40) "asWillSaveTextDocumentParams"
                [|(Code.TextDocumentWillSaveEvent.t_to_js x39)|])
-    let (asDidCreateFilesParams :
+    let (as_did_create_files_params :
       t -> event:Code.FileCreateEvent.t -> CreateFilesParams.t) =
       fun (x42 : t) ->
         fun ~event:(x41 : Code.FileCreateEvent.t) ->
           CreateFilesParams.t_of_js
             (Ojs.call (t_to_js x42) "asDidCreateFilesParams"
                [|(Code.FileCreateEvent.t_to_js x41)|])
-    let (asDidRenameFilesParams :
+    let (as_did_rename_files_params :
       t -> event:Code.FileRenameEvent.t -> RenameFilesParams.t) =
       fun (x44 : t) ->
         fun ~event:(x43 : Code.FileRenameEvent.t) ->
           RenameFilesParams.t_of_js
             (Ojs.call (t_to_js x44) "asDidRenameFilesParams"
                [|(Code.FileRenameEvent.t_to_js x43)|])
-    let (asDidDeleteFilesParams :
+    let (as_did_delete_files_params :
       t -> event:Code.FileDeleteEvent.t -> DeleteFilesParams.t) =
       fun (x46 : t) ->
         fun ~event:(x45 : Code.FileDeleteEvent.t) ->
           DeleteFilesParams.t_of_js
             (Ojs.call (t_to_js x46) "asDidDeleteFilesParams"
                [|(Code.FileDeleteEvent.t_to_js x45)|])
-    let (asWillCreateFilesParams :
+    let (as_will_create_files_params :
       t -> event:Code.FileCreateEvent.t -> CreateFilesParams.t) =
       fun (x48 : t) ->
         fun ~event:(x47 : Code.FileCreateEvent.t) ->
           CreateFilesParams.t_of_js
             (Ojs.call (t_to_js x48) "asWillCreateFilesParams"
                [|(Code.FileCreateEvent.t_to_js x47)|])
-    let (asWillRenameFilesParams :
+    let (as_will_rename_files_params :
       t -> event:Code.FileRenameEvent.t -> RenameFilesParams.t) =
       fun (x50 : t) ->
         fun ~event:(x49 : Code.FileRenameEvent.t) ->
           RenameFilesParams.t_of_js
             (Ojs.call (t_to_js x50) "asWillRenameFilesParams"
                [|(Code.FileRenameEvent.t_to_js x49)|])
-    let (asWillDeleteFilesParams :
+    let (as_will_delete_files_params :
       t -> event:Code.FileDeleteEvent.t -> DeleteFilesParams.t) =
       fun (x52 : t) ->
         fun ~event:(x51 : Code.FileDeleteEvent.t) ->
           DeleteFilesParams.t_of_js
             (Ojs.call (t_to_js x52) "asWillDeleteFilesParams"
                [|(Code.FileDeleteEvent.t_to_js x51)|])
-    let (asTextDocumentPositionParams :
+    let (as_text_document_position_params :
       t ->
-        textDocument:Code.TextDocument.t ->
+        text_document:Code.TextDocument.t ->
           position:Code.Position.t -> Proto.TextDocumentPositionParams.t)
       =
       fun (x55 : t) ->
-        fun ~textDocument:(x53 : Code.TextDocument.t) ->
+        fun ~text_document:(x53 : Code.TextDocument.t) ->
           fun ~position:(x54 : Code.Position.t) ->
             Proto.TextDocumentPositionParams.t_of_js
               (Ojs.call (t_to_js x55) "asTextDocumentPositionParams"
                  [|(Code.TextDocument.t_to_js x53);(Code.Position.t_to_js x54)|])
-    let (asCompletionParams :
+    let (as_completion_params :
       t ->
-        textDocument:Code.TextDocument.t ->
+        text_document:Code.TextDocument.t ->
           position:Code.Position.t ->
             context:Code.CompletionContext.t -> Proto.CompletionParams.t)
       =
       fun (x59 : t) ->
-        fun ~textDocument:(x56 : Code.TextDocument.t) ->
+        fun ~text_document:(x56 : Code.TextDocument.t) ->
           fun ~position:(x57 : Code.Position.t) ->
             fun ~context:(x58 : Code.CompletionContext.t) ->
               Proto.CompletionParams.t_of_js
@@ -224,15 +222,15 @@ module Converter =
                    [|(Code.TextDocument.t_to_js x56);(Code.Position.t_to_js
                                                         x57);(Code.CompletionContext.t_to_js
                                                                 x58)|])
-    let (asSignatureHelpParams :
+    let (as_signature_help_params :
       t ->
-        textDocument:Code.TextDocument.t ->
+        text_document:Code.TextDocument.t ->
           position:Code.Position.t ->
             context:Code.SignatureHelpContext.t ->
               Proto.SignatureHelpParams.t)
       =
       fun (x63 : t) ->
-        fun ~textDocument:(x60 : Code.TextDocument.t) ->
+        fun ~text_document:(x60 : Code.TextDocument.t) ->
           fun ~position:(x61 : Code.Position.t) ->
             fun ~context:(x62 : Code.SignatureHelpContext.t) ->
               Proto.SignatureHelpParams.t_of_js
@@ -240,32 +238,33 @@ module Converter =
                    [|(Code.TextDocument.t_to_js x60);(Code.Position.t_to_js
                                                         x61);(Code.SignatureHelpContext.t_to_js
                                                                 x62)|])
-    let (asWorkerPosition :
+    let (as_worker_position :
       t -> position:Code.Position.t -> Proto.Position.t) =
       fun (x65 : t) ->
         fun ~position:(x64 : Code.Position.t) ->
           Proto.Position.t_of_js
             (Ojs.call (t_to_js x65) "asWorkerPosition"
                [|(Code.Position.t_to_js x64)|])
-    let (asPosition : t -> value:Code.Position.t -> Proto.Position.t) =
+    let (as_position : t -> value:Code.Position.t -> Proto.Position.t) =
       fun (x67 : t) ->
         fun ~value:(x66 : Code.Position.t) ->
           Proto.Position.t_of_js
             (Ojs.call (t_to_js x67) "asPosition"
                [|(Code.Position.t_to_js x66)|])
-    let (asPosition' : t -> value:never or_undefined -> never or_undefined) =
+    let (as_position' : t -> value:never or_undefined -> never or_undefined)
+      =
       fun (x70 : t) ->
         fun ~value:(x68 : never or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x70) "asPosition"
                [|(or_undefined_to_js never_to_js x68)|])
-    let (asPosition'' : t -> value:never or_null -> never or_null) =
+    let (as_position'' : t -> value:never or_null -> never or_null) =
       fun (x74 : t) ->
         fun ~value:(x72 : never or_null) ->
           or_null_of_js never_of_js
             (Ojs.call (t_to_js x74) "asPosition"
                [|(or_null_to_js never_to_js x72)|])
-    let (asPosition''' :
+    let (as_position''' :
       t ->
         value:Code.Position.t or_null_or_undefined ->
           Proto.Position.t or_null_or_undefined)
@@ -275,31 +274,31 @@ module Converter =
           or_null_or_undefined_of_js Proto.Position.t_of_js
             (Ojs.call (t_to_js x78) "asPosition"
                [|(or_null_or_undefined_to_js Code.Position.t_to_js x76)|])
-    let (asPositions :
+    let (as_positions :
       t -> value:Code.Position.t list -> Proto.Position.t list) =
       fun (x82 : t) ->
         fun ~value:(x80 : Code.Position.t list) ->
           Ojs.list_of_js Proto.Position.t_of_js
             (Ojs.call (t_to_js x82) "asPositions"
                [|(Ojs.list_to_js Code.Position.t_to_js x80)|])
-    let (asRange : t -> value:Code.Range.t -> Proto.Range.t) =
+    let (as_range : t -> value:Code.Range.t -> Proto.Range.t) =
       fun (x85 : t) ->
         fun ~value:(x84 : Code.Range.t) ->
           Proto.Range.t_of_js
             (Ojs.call (t_to_js x85) "asRange" [|(Code.Range.t_to_js x84)|])
-    let (asRange' : t -> value:never or_undefined -> never or_undefined) =
+    let (as_range' : t -> value:never or_undefined -> never or_undefined) =
       fun (x88 : t) ->
         fun ~value:(x86 : never or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x88) "asRange"
                [|(or_undefined_to_js never_to_js x86)|])
-    let (asRange'' : t -> value:never or_null -> never or_null) =
+    let (as_range'' : t -> value:never or_null -> never or_null) =
       fun (x92 : t) ->
         fun ~value:(x90 : never or_null) ->
           or_null_of_js never_of_js
             (Ojs.call (t_to_js x92) "asRange"
                [|(or_null_to_js never_to_js x90)|])
-    let (asRange''' :
+    let (as_range''' :
       t ->
         value:Code.Range.t or_null_or_undefined ->
           Proto.Range.t or_null_or_undefined)
@@ -309,25 +308,26 @@ module Converter =
           or_null_or_undefined_of_js Proto.Range.t_of_js
             (Ojs.call (t_to_js x96) "asRange"
                [|(or_null_or_undefined_to_js Code.Range.t_to_js x94)|])
-    let (asLocation : t -> value:Code.Location.t -> Proto.Location.t) =
+    let (as_location : t -> value:Code.Location.t -> Proto.Location.t) =
       fun (x99 : t) ->
         fun ~value:(x98 : Code.Location.t) ->
           Proto.Location.t_of_js
             (Ojs.call (t_to_js x99) "asLocation"
                [|(Code.Location.t_to_js x98)|])
-    let (asLocation' : t -> value:never or_undefined -> never or_undefined) =
+    let (as_location' : t -> value:never or_undefined -> never or_undefined)
+      =
       fun (x102 : t) ->
         fun ~value:(x100 : never or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x102) "asLocation"
                [|(or_undefined_to_js never_to_js x100)|])
-    let (asLocation'' : t -> value:never or_null -> never or_null) =
+    let (as_location'' : t -> value:never or_null -> never or_null) =
       fun (x106 : t) ->
         fun ~value:(x104 : never or_null) ->
           or_null_of_js never_of_js
             (Ojs.call (t_to_js x106) "asLocation"
                [|(or_null_to_js never_to_js x104)|])
-    let (asLocation''' :
+    let (as_location''' :
       t ->
         value:Code.Location.t or_null_or_undefined ->
           Proto.Location.t or_null_or_undefined)
@@ -337,41 +337,41 @@ module Converter =
           or_null_or_undefined_of_js Proto.Location.t_of_js
             (Ojs.call (t_to_js x110) "asLocation"
                [|(or_null_or_undefined_to_js Code.Location.t_to_js x108)|])
-    let (asDiagnosticSeverity : t -> value:Code.DiagnosticSeverity.t -> int)
-      =
+    let (as_diagnostic_severity :
+      t -> value:Code.DiagnosticSeverity.t -> int) =
       fun (x113 : t) ->
         fun ~value:(x112 : Code.DiagnosticSeverity.t) ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x113) "asDiagnosticSeverity"
                [|(Code.DiagnosticSeverity.t_to_js x112)|])
-    let (asDiagnosticTag :
+    let (as_diagnostic_tag :
       t -> value:Code.DiagnosticTag.t -> int or_undefined) =
       fun (x115 : t) ->
         fun ~value:(x114 : Code.DiagnosticTag.t) ->
           or_undefined_of_js Ojs.int_of_js
             (Ojs.call (t_to_js x115) "asDiagnosticTag"
                [|(Code.DiagnosticTag.t_to_js x114)|])
-    let (asDiagnostic : t -> item:Code.Diagnostic.t -> Proto.Diagnostic.t) =
+    let (as_diagnostic : t -> item:Code.Diagnostic.t -> Proto.Diagnostic.t) =
       fun (x118 : t) ->
         fun ~item:(x117 : Code.Diagnostic.t) ->
           Proto.Diagnostic.t_of_js
             (Ojs.call (t_to_js x118) "asDiagnostic"
                [|(Code.Diagnostic.t_to_js x117)|])
-    let (asDiagnostics :
+    let (as_diagnostics :
       t -> items:Code.Diagnostic.t list -> Proto.Diagnostic.t list) =
       fun (x121 : t) ->
         fun ~items:(x119 : Code.Diagnostic.t list) ->
           Ojs.list_of_js Proto.Diagnostic.t_of_js
             (Ojs.call (t_to_js x121) "asDiagnostics"
                [|(Ojs.list_to_js Code.Diagnostic.t_to_js x119)|])
-    let (asCompletionItem :
+    let (as_completion_item :
       t ->
         item:Code.CompletionItem.t ->
-          ?labelDetailsSupport:bool -> unit -> Proto.CompletionItem.t)
+          ?label_details_support:bool -> unit -> Proto.CompletionItem.t)
       =
       fun (x127 : t) ->
         fun ~item:(x123 : Code.CompletionItem.t) ->
-          fun ?labelDetailsSupport:(x124 : bool option) ->
+          fun ?label_details_support:(x124 : bool option) ->
             fun () ->
               Proto.CompletionItem.t_of_js
                 (let x128 = t_to_js x127 in
@@ -391,39 +391,40 @@ module Converter =
                                       [|(Ojs.bool_to_js x126)|])
                              | None -> ());
                             x125))|])
-    let (asSymbolKind : t -> item:Code.SymbolKind.t -> Proto.SymbolKind.t) =
+    let (as_symbol_kind : t -> item:Code.SymbolKind.t -> Proto.SymbolKind.t)
+      =
       fun (x130 : t) ->
         fun ~item:(x129 : Code.SymbolKind.t) ->
           Proto.SymbolKind.t_of_js
             (Ojs.call (t_to_js x130) "asSymbolKind"
                [|(Code.SymbolKind.t_to_js x129)|])
-    let (asSymbolTag : t -> item:Code.SymbolTag.t -> Proto.SymbolTag.t) =
+    let (as_symbol_tag : t -> item:Code.SymbolTag.t -> Proto.SymbolTag.t) =
       fun (x132 : t) ->
         fun ~item:(x131 : Code.SymbolTag.t) ->
           Proto.SymbolTag.t_of_js
             (Ojs.call (t_to_js x132) "asSymbolTag"
                [|(Code.SymbolTag.t_to_js x131)|])
-    let (asSymbolTags :
+    let (as_symbol_tags :
       t -> items:Code.SymbolTag.t list -> Proto.SymbolTag.t list) =
       fun (x135 : t) ->
         fun ~items:(x133 : Code.SymbolTag.t list) ->
           Ojs.list_of_js Proto.SymbolTag.t_of_js
             (Ojs.call (t_to_js x135) "asSymbolTags"
                [|(Ojs.list_to_js Code.SymbolTag.t_to_js x133)|])
-    let (asTextEdit : t -> edit:Code.TextEdit.t -> Proto.TextEdit.t) =
+    let (as_text_edit : t -> edit:Code.TextEdit.t -> Proto.TextEdit.t) =
       fun (x138 : t) ->
         fun ~edit:(x137 : Code.TextEdit.t) ->
           Proto.TextEdit.t_of_js
             (Ojs.call (t_to_js x138) "asTextEdit"
                [|(Code.TextEdit.t_to_js x137)|])
-    let (asReferenceParams :
+    let (as_reference_params :
       t ->
-        textDocument:Code.TextDocument.t ->
+        text_document:Code.TextDocument.t ->
           position:Code.Position.t ->
             options:AnonymousInterface0.t -> Proto.ReferenceParams.t)
       =
       fun (x142 : t) ->
-        fun ~textDocument:(x139 : Code.TextDocument.t) ->
+        fun ~text_document:(x139 : Code.TextDocument.t) ->
           fun ~position:(x140 : Code.Position.t) ->
             fun ~options:(x141 : AnonymousInterface0.t) ->
               Proto.ReferenceParams.t_of_js
@@ -431,73 +432,74 @@ module Converter =
                    [|(Code.TextDocument.t_to_js x139);(Code.Position.t_to_js
                                                          x140);(AnonymousInterface0.t_to_js
                                                                   x141)|])
-    let (asCodeAction : t -> item:Code.CodeAction.t -> Proto.CodeAction.t) =
+    let (as_code_action : t -> item:Code.CodeAction.t -> Proto.CodeAction.t)
+      =
       fun (x144 : t) ->
         fun ~item:(x143 : Code.CodeAction.t) ->
           Proto.CodeAction.t_of_js
             (Ojs.call (t_to_js x144) "asCodeAction"
                [|(Code.CodeAction.t_to_js x143)|])
-    let (asCodeActionContext :
+    let (as_code_action_context :
       t -> context:Code.CodeActionContext.t -> Proto.CodeActionContext.t) =
       fun (x146 : t) ->
         fun ~context:(x145 : Code.CodeActionContext.t) ->
           Proto.CodeActionContext.t_of_js
             (Ojs.call (t_to_js x146) "asCodeActionContext"
                [|(Code.CodeActionContext.t_to_js x145)|])
-    let (asCommand : t -> item:Code.Command.t -> Proto.Command.t) =
+    let (as_command : t -> item:Code.Command.t -> Proto.Command.t) =
       fun (x148 : t) ->
         fun ~item:(x147 : Code.Command.t) ->
           Proto.Command.t_of_js
             (Ojs.call (t_to_js x148) "asCommand"
                [|(Code.Command.t_to_js x147)|])
-    let (asCodeLens : t -> item:Code.CodeLens.t -> Proto.CodeLens.t) =
+    let (as_code_lens : t -> item:Code.CodeLens.t -> Proto.CodeLens.t) =
       fun (x150 : t) ->
         fun ~item:(x149 : Code.CodeLens.t) ->
           Proto.CodeLens.t_of_js
             (Ojs.call (t_to_js x150) "asCodeLens"
                [|(Code.CodeLens.t_to_js x149)|])
-    let (asFormattingOptions :
+    let (as_formatting_options :
       t ->
         options:Code.FormattingOptions.t ->
-          fileOptions:_FileFormattingOptions -> Proto.FormattingOptions.t)
+          file_options:FileFormattingOptions.t -> Proto.FormattingOptions.t)
       =
       fun (x153 : t) ->
         fun ~options:(x151 : Code.FormattingOptions.t) ->
-          fun ~fileOptions:(x152 : _FileFormattingOptions) ->
+          fun ~file_options:(x152 : FileFormattingOptions.t) ->
             Proto.FormattingOptions.t_of_js
               (Ojs.call (t_to_js x153) "asFormattingOptions"
-                 [|(Code.FormattingOptions.t_to_js x151);(_FileFormattingOptions_to_js
+                 [|(Code.FormattingOptions.t_to_js x151);(FileFormattingOptions.t_to_js
                                                             x152)|])
-    let (asDocumentSymbolParams :
-      t -> textDocument:Code.TextDocument.t -> Proto.DocumentSymbolParams.t)
+    let (as_document_symbol_params :
+      t -> text_document:Code.TextDocument.t -> Proto.DocumentSymbolParams.t)
       =
       fun (x155 : t) ->
-        fun ~textDocument:(x154 : Code.TextDocument.t) ->
+        fun ~text_document:(x154 : Code.TextDocument.t) ->
           Proto.DocumentSymbolParams.t_of_js
             (Ojs.call (t_to_js x155) "asDocumentSymbolParams"
                [|(Code.TextDocument.t_to_js x154)|])
-    let (asCodeLensParams :
-      t -> textDocument:Code.TextDocument.t -> Proto.CodeLensParams.t) =
+    let (as_code_lens_params :
+      t -> text_document:Code.TextDocument.t -> Proto.CodeLensParams.t) =
       fun (x157 : t) ->
-        fun ~textDocument:(x156 : Code.TextDocument.t) ->
+        fun ~text_document:(x156 : Code.TextDocument.t) ->
           Proto.CodeLensParams.t_of_js
             (Ojs.call (t_to_js x157) "asCodeLensParams"
                [|(Code.TextDocument.t_to_js x156)|])
-    let (asDocumentLink :
+    let (as_document_link :
       t -> item:Code.DocumentLink.t -> Proto.DocumentLink.t) =
       fun (x159 : t) ->
         fun ~item:(x158 : Code.DocumentLink.t) ->
           Proto.DocumentLink.t_of_js
             (Ojs.call (t_to_js x159) "asDocumentLink"
                [|(Code.DocumentLink.t_to_js x158)|])
-    let (asDocumentLinkParams :
-      t -> textDocument:Code.TextDocument.t -> Proto.DocumentLinkParams.t) =
+    let (as_document_link_params :
+      t -> text_document:Code.TextDocument.t -> Proto.DocumentLinkParams.t) =
       fun (x161 : t) ->
-        fun ~textDocument:(x160 : Code.TextDocument.t) ->
+        fun ~text_document:(x160 : Code.TextDocument.t) ->
           Proto.DocumentLinkParams.t_of_js
             (Ojs.call (t_to_js x161) "asDocumentLinkParams"
                [|(Code.TextDocument.t_to_js x160)|])
-    let (asCallHierarchyItem :
+    let (as_call_hierarchy_item :
       t -> value:Code.CallHierarchyItem.t -> Proto.CallHierarchyItem.t) =
       fun (x163 : t) ->
         fun ~value:(x162 : Code.CallHierarchyItem.t) ->
@@ -507,21 +509,20 @@ module Converter =
   end
 module URIConverter =
   struct
-    type t = _URIConverter
-    let rec t_of_js : Ojs.t -> t =
-      fun (x165 : Ojs.t) -> _URIConverter_of_js x165
-    and t_to_js : t -> Ojs.t =
-      fun (x164 : _URIConverter) -> _URIConverter_to_js x164
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x165 : Ojs.t) -> x165
+    and t_to_js : t -> Ojs.t = fun (x164 : Ojs.t) -> x164
     let (apply : t -> value:Code.Uri.t -> string) =
       fun (x167 : t) ->
         fun ~value:(x166 : Code.Uri.t) ->
           Ojs.string_of_js
             (Ojs.apply (t_to_js x167) [|(Code.Uri.t_to_js x166)|])
   end
-let (createConverter : ?uriConverter:_URIConverter -> unit -> _Converter) =
-  fun ?uriConverter:(x168 : _URIConverter option) ->
+let (create_converter : ?uri_converter:URIConverter.t -> unit -> Converter.t)
+  =
+  fun ?uri_converter:(x168 : URIConverter.t option) ->
     fun () ->
-      _Converter_of_js
+      Converter.t_of_js
         (let x171 = Ojs.global in
          Ojs.call (Ojs.get_prop_ascii x171 "createConverter") "apply"
            [|x171;((let x169 =
@@ -531,6 +532,6 @@ let (createConverter : ?uriConverter:_URIConverter -> unit -> _Converter) =
                      | Some x170 ->
                          ignore
                            (Ojs.call x169 "push"
-                              [|(_URIConverter_to_js x170)|])
+                              [|(URIConverter.t_to_js x170)|])
                      | None -> ());
                     x169))|])

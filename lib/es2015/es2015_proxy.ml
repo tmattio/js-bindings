@@ -24,11 +24,11 @@ module ProxyHandler =
     and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
       fun (__T_to_js : __T -> Ojs.t) -> fun (x7 : Ojs.t) -> x7
     let (apply :
-      'T t -> target:'T -> thisArg:any -> argArray:any list -> any) =
+      'T t -> target:'T -> this_arg:any -> arg_array:any list -> any) =
       fun (x13 : 'T t) ->
         fun ~target:(x9 : 'T) ->
-          fun ~thisArg:(x10 : any) ->
-            fun ~argArray:(x11 : any list) ->
+          fun ~this_arg:(x10 : any) ->
+            fun ~arg_array:(x11 : any list) ->
               any_of_js
                 (Ojs.call (t_to_js Obj.magic x13) "apply"
                    [|(Obj.magic x9);(any_to_js x10);(Ojs.list_to_js any_to_js
@@ -36,12 +36,12 @@ module ProxyHandler =
     let (construct :
       'T t ->
         target:'T ->
-          argArray:any list -> newTarget:untyped_function -> untyped_object)
+          arg_array:any list -> new_target:untyped_function -> untyped_object)
       =
       fun (x19 : 'T t) ->
         fun ~target:(x15 : 'T) ->
-          fun ~argArray:(x16 : any list) ->
-            fun ~newTarget:(x18 : untyped_function) ->
+          fun ~arg_array:(x16 : any list) ->
+            fun ~new_target:(x18 : untyped_function) ->
               untyped_object_of_js
                 (Ojs.call (t_to_js Obj.magic x19) "construct"
                    [|(Obj.magic x15);(Ojs.list_to_js any_to_js x16);(

@@ -4,12 +4,9 @@
 open Es5
 module ProvideLinkedEditingRangeSignature =
   struct
-    type t = _ProvideLinkedEditingRangeSignature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> _ProvideLinkedEditingRangeSignature_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : _ProvideLinkedEditingRangeSignature) ->
-        _ProvideLinkedEditingRangeSignature_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (apply :
       t ->
         this:unit ->
@@ -31,19 +28,16 @@ module ProvideLinkedEditingRangeSignature =
   end
 module LinkedEditingRangeMiddleware =
   struct
-    type t = _LinkedEditingRangeMiddleware
-    let rec t_of_js : Ojs.t -> t =
-      fun (x10 : Ojs.t) -> _LinkedEditingRangeMiddleware_of_js x10
-    and t_to_js : t -> Ojs.t =
-      fun (x9 : _LinkedEditingRangeMiddleware) ->
-        _LinkedEditingRangeMiddleware_to_js x9
-    let (provideLinkedEditingRange :
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x10 : Ojs.t) -> x10
+    and t_to_js : t -> Ojs.t = fun (x9 : Ojs.t) -> x9
+    let (provide_linked_editing_range :
       t ->
         this:unit ->
           document:Code.TextDocument.t ->
             position:Code.Position.t ->
               token:Code.CancellationToken.t ->
-                next:_ProvideLinkedEditingRangeSignature ->
+                next:ProvideLinkedEditingRangeSignature.t ->
                   Code.LinkedEditingRanges.t Code.ProviderResult.t)
       =
       fun (x16 : t) ->
@@ -51,28 +45,26 @@ module LinkedEditingRangeMiddleware =
           fun ~document:(x12 : Code.TextDocument.t) ->
             fun ~position:(x13 : Code.Position.t) ->
               fun ~token:(x14 : Code.CancellationToken.t) ->
-                fun ~next:(x15 : _ProvideLinkedEditingRangeSignature) ->
+                fun ~next:(x15 : ProvideLinkedEditingRangeSignature.t) ->
                   Code.ProviderResult.t_of_js
                     Code.LinkedEditingRanges.t_of_js
                     (Ojs.call (t_to_js x16) "provideLinkedEditingRange"
                        [|(Ojs.unit_to_js x11);(Code.TextDocument.t_to_js x12);(
                          Code.Position.t_to_js x13);(Code.CancellationToken.t_to_js
-                                                       x14);(_ProvideLinkedEditingRangeSignature_to_js
+                                                       x14);(ProvideLinkedEditingRangeSignature.t_to_js
                                                                x15)|])
   end
 module LinkedEditingFeature =
   struct
-    type t = _LinkedEditingFeature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x19 : Ojs.t) -> _LinkedEditingFeature_of_js x19
-    and t_to_js : t -> Ojs.t =
-      fun (x18 : _LinkedEditingFeature) -> _LinkedEditingFeature_to_js x18
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x19 : Ojs.t) -> x19
+    and t_to_js : t -> Ojs.t = fun (x18 : Ojs.t) -> x18
     let (create : client:BaseLanguageClient.t -> t) =
       fun ~client:(x20 : BaseLanguageClient.t) ->
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "LinkedEditingFeature")
              [|(BaseLanguageClient.t_to_js x20)|])
-    let (fillClientCapabilities :
+    let (fill_client_capabilities :
       t -> capabilities:Proto.ClientCapabilities.t -> unit) =
       fun (x22 : t) ->
         fun ~capabilities:(x21 : Proto.ClientCapabilities.t) ->
@@ -82,16 +74,16 @@ module LinkedEditingFeature =
     let (initialize :
       t ->
         capabilities:Proto.ServerCapabilities.t ->
-          documentSelector:Proto.DocumentSelector.t -> unit)
+          document_selector:Proto.DocumentSelector.t -> unit)
       =
       fun (x25 : t) ->
         fun ~capabilities:(x23 : Proto.ServerCapabilities.t) ->
-          fun ~documentSelector:(x24 : Proto.DocumentSelector.t) ->
+          fun ~document_selector:(x24 : Proto.DocumentSelector.t) ->
             ignore
               (Ojs.call (t_to_js x25) "initialize"
                  [|(Proto.ServerCapabilities.t_to_js x23);(Proto.DocumentSelector.t_to_js
                                                              x24)|])
-    let (registerLanguageProvider :
+    let (register_language_provider :
       t ->
         options:Proto.LinkedEditingRangeRegistrationOptions.t ->
           (Code.Disposable.t * Code.LinkedEditingRangeProvider.t))

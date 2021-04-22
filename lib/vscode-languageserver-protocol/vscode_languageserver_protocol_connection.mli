@@ -13,13 +13,13 @@ open Es5
 (* import { ProtocolRequestType, ProtocolRequestType0, ProtocolNotificationType,
    ProtocolNotificationType0 } from './messages'; *)
 module ProtocolConnection : sig
-  type t = _ProtocolConnection
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val sendRequest
+  val send_request
     :  t
     -> type_:('R, 'PR, 'E, 'RO) ProtocolRequestType0.t
     -> ?token:CancellationToken.t
@@ -27,7 +27,7 @@ module ProtocolConnection : sig
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
-  val sendRequest'
+  val send_request'
     :  t
     -> type_:('R, 'E) RequestType0.t
     -> ?token:CancellationToken.t
@@ -35,7 +35,7 @@ module ProtocolConnection : sig
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
-  val sendRequest''
+  val send_request''
     :  t
     -> type_:('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t
     -> params:'P
@@ -44,7 +44,7 @@ module ProtocolConnection : sig
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
-  val sendRequest'''
+  val send_request'''
     :  t
     -> type_:('P, 'R, 'E) RequestType.t
     -> params:'P
@@ -53,7 +53,7 @@ module ProtocolConnection : sig
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
-  val sendRequest''''
+  val send_request''''
     :  t
     -> method_:string
     -> ?token:CancellationToken.t
@@ -61,7 +61,7 @@ module ProtocolConnection : sig
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
-  val sendRequest'''''
+  val send_request'''''
     :  t
     -> method_:string
     -> param:any
@@ -70,48 +70,48 @@ module ProtocolConnection : sig
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
-  val onRequest
+  val on_request
     :  t
     -> type_:('R, 'PR, 'E, 'RO) ProtocolRequestType0.t
     -> handler:('R, 'E) RequestHandler0.t
     -> Disposable.t
     [@@js.call "onRequest"]
 
-  val onRequest'
+  val on_request'
     :  t
     -> type_:('R, 'E) RequestType0.t
     -> handler:('R, 'E) RequestHandler0.t
     -> Disposable.t
     [@@js.call "onRequest"]
 
-  val onRequest''
+  val on_request''
     :  t
     -> type_:('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t
     -> handler:('P, 'R, 'E) RequestHandler.t
     -> Disposable.t
     [@@js.call "onRequest"]
 
-  val onRequest'''
+  val on_request'''
     :  t
     -> type_:('P, 'R, 'E) RequestType.t
     -> handler:('P, 'R, 'E) RequestHandler.t
     -> Disposable.t
     [@@js.call "onRequest"]
 
-  val onRequest''''
+  val on_request''''
     :  t
     -> method_:string
     -> handler:('R, 'E) GenericRequestHandler.t
     -> Disposable.t
     [@@js.call "onRequest"]
 
-  val sendNotification : t -> type_:NotificationType0.t -> unit
+  val send_notification : t -> type_:NotificationType0.t -> unit
     [@@js.call "sendNotification"]
 
-  val sendNotification' : t -> type_:'RO ProtocolNotificationType0.t -> unit
+  val send_notification' : t -> type_:'RO ProtocolNotificationType0.t -> unit
     [@@js.call "sendNotification"]
 
-  val sendNotification''
+  val send_notification''
     :  t
     -> type_:('P, 'RO) ProtocolNotificationType.t
     -> ?params:'P
@@ -119,7 +119,7 @@ module ProtocolConnection : sig
     -> unit
     [@@js.call "sendNotification"]
 
-  val sendNotification'''
+  val send_notification'''
     :  t
     -> type_:'P NotificationType.t
     -> ?params:'P
@@ -127,48 +127,48 @@ module ProtocolConnection : sig
     -> unit
     [@@js.call "sendNotification"]
 
-  val sendNotification'''' : t -> method_:string -> unit
+  val send_notification'''' : t -> method_:string -> unit
     [@@js.call "sendNotification"]
 
-  val sendNotification''''' : t -> method_:string -> params:any -> unit
+  val send_notification''''' : t -> method_:string -> params:any -> unit
     [@@js.call "sendNotification"]
 
-  val onNotification
+  val on_notification
     :  t
     -> type_:'RO ProtocolNotificationType0.t
     -> handler:NotificationHandler0.t
     -> Disposable.t
     [@@js.call "onNotification"]
 
-  val onNotification'
+  val on_notification'
     :  t
     -> type_:NotificationType0.t
     -> handler:NotificationHandler0.t
     -> Disposable.t
     [@@js.call "onNotification"]
 
-  val onNotification''
+  val on_notification''
     :  t
     -> type_:('P, 'RO) ProtocolNotificationType.t
     -> handler:'P NotificationHandler.t
     -> Disposable.t
     [@@js.call "onNotification"]
 
-  val onNotification'''
+  val on_notification'''
     :  t
     -> type_:'P NotificationType.t
     -> handler:'P NotificationHandler.t
     -> Disposable.t
     [@@js.call "onNotification"]
 
-  val onNotification''''
+  val on_notification''''
     :  t
     -> method_:string
     -> handler:GenericNotificationHandler.t
     -> Disposable.t
     [@@js.call "onNotification"]
 
-  val onProgress
+  val on_progress
     :  t
     -> type_:'P ProgressType.t
     -> token:string or_number
@@ -176,7 +176,7 @@ module ProtocolConnection : sig
     -> Disposable.t
     [@@js.call "onProgress"]
 
-  val sendProgress
+  val send_progress
     :  t
     -> type_:'P ProgressType.t
     -> token:string or_number
@@ -188,7 +188,7 @@ module ProtocolConnection : sig
     :  t
     -> value:Trace.t
     -> tracer:Tracer.t
-    -> ?sendNotification:bool
+    -> ?send_notification:bool
     -> unit
     -> unit
     [@@js.call "trace"]
@@ -197,35 +197,35 @@ module ProtocolConnection : sig
     :  t
     -> value:Trace.t
     -> tracer:Tracer.t
-    -> ?traceOptions:TraceOptions.t
+    -> ?trace_options:TraceOptions.t
     -> unit
     -> unit
     [@@js.call "trace"]
 
-  val get_onError
+  val get_on_error
     :  t
     -> (Error.t * Message.t or_undefined * int or_undefined) Event.t
     [@@js.get "onError"]
 
-  val set_onError
+  val set_on_error
     :  t
     -> (Error.t * Message.t or_undefined * int or_undefined) Event.t
     -> unit
     [@@js.set "onError"]
 
-  val get_onClose : t -> unit Event.t [@@js.get "onClose"]
+  val get_on_close : t -> unit Event.t [@@js.get "onClose"]
 
-  val set_onClose : t -> unit Event.t -> unit [@@js.set "onClose"]
+  val set_on_close : t -> unit Event.t -> unit [@@js.set "onClose"]
 
-  val get_onUnhandledNotification : t -> NotificationMessage.t Event.t
+  val get_on_unhandled_notification : t -> NotificationMessage.t Event.t
     [@@js.get "onUnhandledNotification"]
 
-  val set_onUnhandledNotification : t -> NotificationMessage.t Event.t -> unit
+  val set_on_unhandled_notification : t -> NotificationMessage.t Event.t -> unit
     [@@js.set "onUnhandledNotification"]
 
-  val get_onDispose : t -> unit Event.t [@@js.get "onDispose"]
+  val get_on_dispose : t -> unit Event.t [@@js.get "onDispose"]
 
-  val set_onDispose : t -> unit Event.t -> unit [@@js.set "onDispose"]
+  val set_on_dispose : t -> unit Event.t -> unit [@@js.set "onDispose"]
 
   val end_ : t -> unit [@@js.call "end"]
 
@@ -235,11 +235,11 @@ module ProtocolConnection : sig
 end
 [@@js.scope "ProtocolConnection"]
 
-val createProtocolConnection
+val create_protocol_connection
   :  input:MessageReader.t
   -> output:MessageWriter.t
   -> ?logger:Logger.t
   -> ?options:(ConnectionOptions.t, ConnectionStrategy.t) union2
   -> unit
-  -> _ProtocolConnection
+  -> ProtocolConnection.t
   [@@js.global "createProtocolConnection"]

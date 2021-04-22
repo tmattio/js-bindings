@@ -8,7 +8,7 @@ open Es5
    ConnectionOptions, ProtocolConnection } from '../common/api'; *)
 (* export * from 'vscode-jsonrpc/node'; *)
 (* export * from '../common/api'; *)
-val createProtocolConnection
+val create_protocol_connection
   :  input:MessageReader.t
   -> output:MessageWriter.t
   -> ?logger:Logger.t
@@ -17,7 +17,7 @@ val createProtocolConnection
   -> ProtocolConnection.t
   [@@js.global "createProtocolConnection"]
 
-val createProtocolConnection
+val create_protocol_connection
   :  input:Node.ReadableStream.t
   -> output:Node.WritableStream.t
   -> ?logger:Logger.t

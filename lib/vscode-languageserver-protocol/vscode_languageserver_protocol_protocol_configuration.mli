@@ -21,7 +21,7 @@ end
 (* import { ProtocolRequestType } from './messages'; *)
 (* import { PartialResultParams } from './protocol'; *)
 module ConfigurationClientCapabilities : sig
-  type t = _ConfigurationClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -35,7 +35,7 @@ end
 
 module ConfigurationRequest : sig
   val type_
-    : ( (_ConfigurationParams, PartialResultParams.t) intersection2
+    : ( (ConfigurationParams.t, PartialResultParams.t) intersection2
       , any list
       , never
       , unit
@@ -44,7 +44,7 @@ module ConfigurationRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = (_ConfigurationParams, any list, unit) RequestHandler.t
+    type t = (ConfigurationParams.t, any list, unit) RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -52,7 +52,7 @@ module ConfigurationRequest : sig
   end
 
   module MiddlewareSignature : sig
-    type t = _ConfigurationRequest_MiddlewareSignature
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -60,9 +60,9 @@ module ConfigurationRequest : sig
 
     val apply
       :  t
-      -> params:_ConfigurationParams
+      -> params:ConfigurationParams.t
       -> token:CancellationToken.t
-      -> next:_ConfigurationRequest_HandlerSignature
+      -> next:ConfigurationRequest_HandlerSignature.t
       -> (any list, unit) HandlerResult.t
       [@@js.apply]
   end
@@ -71,15 +71,15 @@ end
 [@@js.scope "ConfigurationRequest"]
 
 module ConfigurationItem : sig
-  type t = _ConfigurationItem
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_scopeUri : t -> string [@@js.get "scopeUri"]
+  val get_scope_uri : t -> string [@@js.get "scopeUri"]
 
-  val set_scopeUri : t -> string -> unit [@@js.set "scopeUri"]
+  val set_scope_uri : t -> string -> unit [@@js.set "scopeUri"]
 
   val get_section : t -> string [@@js.get "section"]
 
@@ -88,14 +88,14 @@ end
 [@@js.scope "ConfigurationItem"]
 
 module ConfigurationParams : sig
-  type t = _ConfigurationParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_items : t -> _ConfigurationItem list [@@js.get "items"]
+  val get_items : t -> ConfigurationItem.t list [@@js.get "items"]
 
-  val set_items : t -> _ConfigurationItem list -> unit [@@js.set "items"]
+  val set_items : t -> ConfigurationItem.t list -> unit [@@js.set "items"]
 end
 [@@js.scope "ConfigurationParams"]

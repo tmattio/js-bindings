@@ -4,8 +4,6 @@
 
 open Es5
 
-
-
 (* import { Disposable, TextDocument, ProviderResult, Position as VPosition,
    Definition as VDefinition, DefinitionLink as VDefinitionLink,
    TypeDefinitionProvider } from 'vscode'; *)
@@ -14,7 +12,7 @@ open Es5
    from 'vscode-languageserver-protocol'; *)
 (* import { TextDocumentFeature, BaseLanguageClient } from './client'; *)
 module ProvideTypeDefinitionSignature : sig
-  type t = _ProvideTypeDefinitionSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -32,26 +30,26 @@ end
 [@@js.scope "ProvideTypeDefinitionSignature"]
 
 module TypeDefinitionMiddleware : sig
-  type t = _TypeDefinitionMiddleware
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val provideTypeDefinition
+  val provide_type_definition
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> position:VPosition.t
     -> token:CancellationToken.t
-    -> next:_ProvideTypeDefinitionSignature
+    -> next:ProvideTypeDefinitionSignature.t
     -> (VDefinition.t, VDefinitionLink.t) or_array ProviderResult.t
     [@@js.call "provideTypeDefinition"]
 end
 [@@js.scope "TypeDefinitionMiddleware"]
 
 module TypeDefinitionFeature : sig
-  type t = _TypeDefinitionFeature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -59,17 +57,17 @@ module TypeDefinitionFeature : sig
 
   val create : client:BaseLanguageClient.t -> t [@@js.create]
 
-  val fillClientCapabilities : t -> capabilities:ClientCapabilities.t -> unit
+  val fill_client_capabilities : t -> capabilities:ClientCapabilities.t -> unit
     [@@js.call "fillClientCapabilities"]
 
   val initialize
     :  t
     -> capabilities:ServerCapabilities.t
-    -> documentSelector:DocumentSelector.t
+    -> document_selector:DocumentSelector.t
     -> unit
     [@@js.call "initialize"]
 
-  val registerLanguageProvider
+  val register_language_provider
     :  t
     -> options:TypeDefinitionRegistrationOptions.t
     -> Disposable.t * TypeDefinitionProvider.t

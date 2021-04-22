@@ -2,144 +2,118 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module Types =
-      struct
-        type _ShowDocumentRequest_HandlerSignature =
-          (_ShowDocumentParams, _ShowDocumentResult, unit) RequestHandler.t
-        let rec _ShowDocumentRequest_HandlerSignature_of_js :
-          Ojs.t -> _ShowDocumentRequest_HandlerSignature =
-          fun (x5 : Ojs.t) ->
-            RequestHandler.t_of_js _ShowDocumentParams_of_js
-              _ShowDocumentResult_of_js Ojs.unit_of_js x5
-        and _ShowDocumentRequest_HandlerSignature_to_js :
-          _ShowDocumentRequest_HandlerSignature -> Ojs.t =
-          fun
-            (x1 :
-              (_ShowDocumentParams, _ShowDocumentResult, unit)
-                RequestHandler.t)
-            ->
-            RequestHandler.t_to_js _ShowDocumentParams_to_js
-              _ShowDocumentResult_to_js Ojs.unit_to_js x1
-      end
-  end
 module ShowDocumentClientCapabilities =
   struct
-    type t = _ShowDocumentClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x10 : Ojs.t) -> _ShowDocumentClientCapabilities_of_js x10
-    and t_to_js : t -> Ojs.t =
-      fun (x9 : _ShowDocumentClientCapabilities) ->
-        _ShowDocumentClientCapabilities_to_js x9
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get_support : t -> bool) =
-      fun (x11 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x11) "support")
+      fun (x3 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x3) "support")
     let (set_support : t -> bool -> unit) =
-      fun (x12 : t) ->
-        fun (x13 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x12) "support" (Ojs.bool_to_js x13)
+      fun (x4 : t) ->
+        fun (x5 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x4) "support" (Ojs.bool_to_js x5)
   end
 module ShowDocumentParams =
   struct
-    type t = _ShowDocumentParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x15 : Ojs.t) -> _ShowDocumentParams_of_js x15
-    and t_to_js : t -> Ojs.t =
-      fun (x14 : _ShowDocumentParams) -> _ShowDocumentParams_to_js x14
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x7 : Ojs.t) -> x7
+    and t_to_js : t -> Ojs.t = fun (x6 : Ojs.t) -> x6
     let (get_uri : t -> URI.t) =
-      fun (x16 : t) -> URI.t_of_js (Ojs.get_prop_ascii (t_to_js x16) "uri")
+      fun (x8 : t) -> URI.t_of_js (Ojs.get_prop_ascii (t_to_js x8) "uri")
     let (set_uri : t -> URI.t -> unit) =
-      fun (x17 : t) ->
-        fun (x18 : URI.t) ->
-          Ojs.set_prop_ascii (t_to_js x17) "uri" (URI.t_to_js x18)
+      fun (x9 : t) ->
+        fun (x10 : URI.t) ->
+          Ojs.set_prop_ascii (t_to_js x9) "uri" (URI.t_to_js x10)
     let (get_external : t -> bool) =
-      fun (x19 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x19) "external")
+      fun (x11 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x11) "external")
     let (set_external : t -> bool -> unit) =
-      fun (x20 : t) ->
-        fun (x21 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x20) "external" (Ojs.bool_to_js x21)
-    let (get_takeFocus : t -> bool) =
-      fun (x22 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x22) "takeFocus")
-    let (set_takeFocus : t -> bool -> unit) =
-      fun (x23 : t) ->
-        fun (x24 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x23) "takeFocus" (Ojs.bool_to_js x24)
+      fun (x12 : t) ->
+        fun (x13 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x12) "external" (Ojs.bool_to_js x13)
+    let (get_take_focus : t -> bool) =
+      fun (x14 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x14) "takeFocus")
+    let (set_take_focus : t -> bool -> unit) =
+      fun (x15 : t) ->
+        fun (x16 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x15) "takeFocus" (Ojs.bool_to_js x16)
     let (get_selection : t -> Range.t) =
-      fun (x25 : t) ->
-        Range.t_of_js (Ojs.get_prop_ascii (t_to_js x25) "selection")
+      fun (x17 : t) ->
+        Range.t_of_js (Ojs.get_prop_ascii (t_to_js x17) "selection")
     let (set_selection : t -> Range.t -> unit) =
-      fun (x26 : t) ->
-        fun (x27 : Range.t) ->
-          Ojs.set_prop_ascii (t_to_js x26) "selection" (Range.t_to_js x27)
+      fun (x18 : t) ->
+        fun (x19 : Range.t) ->
+          Ojs.set_prop_ascii (t_to_js x18) "selection" (Range.t_to_js x19)
   end
 module ShowDocumentResult =
   struct
-    type t = _ShowDocumentResult
-    let rec t_of_js : Ojs.t -> t =
-      fun (x29 : Ojs.t) -> _ShowDocumentResult_of_js x29
-    and t_to_js : t -> Ojs.t =
-      fun (x28 : _ShowDocumentResult) -> _ShowDocumentResult_to_js x28
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x21 : Ojs.t) -> x21
+    and t_to_js : t -> Ojs.t = fun (x20 : Ojs.t) -> x20
     let (get_success : t -> bool) =
-      fun (x30 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x30) "success")
+      fun (x22 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x22) "success")
     let (set_success : t -> bool -> unit) =
-      fun (x31 : t) ->
-        fun (x32 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x31) "success" (Ojs.bool_to_js x32)
+      fun (x23 : t) ->
+        fun (x24 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x23) "success" (Ojs.bool_to_js x24)
   end
 module ShowDocumentRequest =
   struct
     let (method_ : [ `L_s0_window_showDocument ]) =
-      let x33 =
+      let x25 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "ShowDocumentRequest") "method" in
-      match Ojs.string_of_js x33 with
+      match Ojs.string_of_js x25 with
       | "window/showDocument" -> `L_s0_window_showDocument
       | _ -> assert false
     let (type_ :
-      (_ShowDocumentParams, _ShowDocumentResult, unit, unit, unit)
+      (ShowDocumentParams.t, ShowDocumentResult.t, unit, unit, unit)
         ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _ShowDocumentParams_of_js
-        _ShowDocumentResult_of_js Ojs.unit_of_js Ojs.unit_of_js
+      ProtocolRequestType.t_of_js ShowDocumentParams.t_of_js
+        ShowDocumentResult.t_of_js Ojs.unit_of_js Ojs.unit_of_js
         Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "ShowDocumentRequest") "type")
     module HandlerSignature =
       struct
-        type t = _ShowDocumentRequest_HandlerSignature
+        type t =
+          (ShowDocumentParams.t, ShowDocumentResult.t, unit) RequestHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x40 : Ojs.t) ->
-            _ShowDocumentRequest_HandlerSignature_of_js x40
+          fun (x35 : Ojs.t) ->
+            RequestHandler.t_of_js ShowDocumentParams.t_of_js
+              ShowDocumentResult.t_of_js Ojs.unit_of_js x35
         and t_to_js : t -> Ojs.t =
-          fun (x39 : _ShowDocumentRequest_HandlerSignature) ->
-            _ShowDocumentRequest_HandlerSignature_to_js x39
+          fun
+            (x31 :
+              (ShowDocumentParams.t, ShowDocumentResult.t, unit)
+                RequestHandler.t)
+            ->
+            RequestHandler.t_to_js ShowDocumentParams.t_to_js
+              ShowDocumentResult.t_to_js Ojs.unit_to_js x31
       end
     module MiddlewareSignature =
       struct
-        type t = _ShowDocumentRequest_MiddlewareSignature
-        let rec t_of_js : Ojs.t -> t =
-          fun (x42 : Ojs.t) ->
-            _ShowDocumentRequest_MiddlewareSignature_of_js x42
-        and t_to_js : t -> Ojs.t =
-          fun (x41 : _ShowDocumentRequest_MiddlewareSignature) ->
-            _ShowDocumentRequest_MiddlewareSignature_to_js x41
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x40 : Ojs.t) -> x40
+        and t_to_js : t -> Ojs.t = fun (x39 : Ojs.t) -> x39
         let (apply :
           t ->
-            params:_ShowDocumentParams ->
-              next:_ShowDocumentRequest_HandlerSignature ->
-                (_ShowDocumentResult, unit) HandlerResult.t)
+            params:ShowDocumentParams.t ->
+              next:ShowDocumentRequest_HandlerSignature.t ->
+                (ShowDocumentResult.t, unit) HandlerResult.t)
           =
-          fun (x45 : t) ->
-            fun ~params:(x43 : _ShowDocumentParams) ->
-              fun ~next:(x44 : _ShowDocumentRequest_HandlerSignature) ->
-                HandlerResult.t_of_js _ShowDocumentResult_of_js
+          fun (x43 : t) ->
+            fun ~params:(x41 : ShowDocumentParams.t) ->
+              fun ~next:(x42 : ShowDocumentRequest_HandlerSignature.t) ->
+                HandlerResult.t_of_js ShowDocumentResult.t_of_js
                   Ojs.unit_of_js
-                  (Ojs.apply (t_to_js x45)
-                     [|(_ShowDocumentParams_to_js x43);(_ShowDocumentRequest_HandlerSignature_to_js
-                                                          x44)|])
+                  (Ojs.apply (t_to_js x43)
+                     [|(ShowDocumentParams.t_to_js x41);(ShowDocumentRequest_HandlerSignature.t_to_js
+                                                           x42)|])
       end
   end

@@ -8,11 +8,9 @@ module Dgram =
     open Node_dns
     module RemoteInfo =
       struct
-        type t = dgram_RemoteInfo
-        let rec t_of_js : Ojs.t -> t =
-          fun (x2 : Ojs.t) -> dgram_RemoteInfo_of_js x2
-        and t_to_js : t -> Ojs.t =
-          fun (x1 : dgram_RemoteInfo) -> dgram_RemoteInfo_to_js x1
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+        and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
         let (get_address : t -> string) =
           fun (x3 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x3) "address")
@@ -51,11 +49,9 @@ module Dgram =
       end
     module BindOptions =
       struct
-        type t = dgram_BindOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x17 : Ojs.t) -> dgram_BindOptions_of_js x17
-        and t_to_js : t -> Ojs.t =
-          fun (x16 : dgram_BindOptions) -> dgram_BindOptions_to_js x16
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x17 : Ojs.t) -> x17
+        and t_to_js : t -> Ojs.t = fun (x16 : Ojs.t) -> x16
         let (get_port : t -> int) =
           fun (x18 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x18) "port")
@@ -105,23 +101,21 @@ module Dgram =
       end
     module SocketOptions =
       struct
-        type t = dgram_SocketOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x34 : Ojs.t) -> dgram_SocketOptions_of_js x34
-        and t_to_js : t -> Ojs.t =
-          fun (x33 : dgram_SocketOptions) -> dgram_SocketOptions_to_js x33
-        let (get_type : t -> dgram_SocketType) =
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x34 : Ojs.t) -> x34
+        and t_to_js : t -> Ojs.t = fun (x33 : Ojs.t) -> x33
+        let (get_type : t -> SocketType.t) =
           fun (x35 : t) ->
-            dgram_SocketType_of_js (Ojs.get_prop_ascii (t_to_js x35) "type")
-        let (set_type : t -> dgram_SocketType -> unit) =
+            SocketType.t_of_js (Ojs.get_prop_ascii (t_to_js x35) "type")
+        let (set_type : t -> SocketType.t -> unit) =
           fun (x36 : t) ->
-            fun (x37 : dgram_SocketType) ->
+            fun (x37 : SocketType.t) ->
               Ojs.set_prop_ascii (t_to_js x36) "type"
-                (dgram_SocketType_to_js x37)
-        let (get_reuseAddr : t -> bool) =
+                (SocketType.t_to_js x37)
+        let (get_reuse_addr : t -> bool) =
           fun (x38 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x38) "reuseAddr")
-        let (set_reuseAddr : t -> bool -> unit) =
+        let (set_reuse_addr : t -> bool -> unit) =
           fun (x39 : t) ->
             fun (x40 : bool) ->
               Ojs.set_prop_ascii (t_to_js x39) "reuseAddr"
@@ -134,18 +128,18 @@ module Dgram =
             fun (x43 : bool) ->
               Ojs.set_prop_ascii (t_to_js x42) "ipv6Only"
                 (Ojs.bool_to_js x43)
-        let (get_recvBufferSize : t -> int) =
+        let (get_recv_buffer_size : t -> int) =
           fun (x44 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x44) "recvBufferSize")
-        let (set_recvBufferSize : t -> int -> unit) =
+        let (set_recv_buffer_size : t -> int -> unit) =
           fun (x45 : t) ->
             fun (x46 : int) ->
               Ojs.set_prop_ascii (t_to_js x45) "recvBufferSize"
                 (Ojs.int_to_js x46)
-        let (get_sendBufferSize : t -> int) =
+        let (get_send_buffer_size : t -> int) =
           fun (x47 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x47) "sendBufferSize")
-        let (set_sendBufferSize : t -> int -> unit) =
+        let (set_send_buffer_size : t -> int -> unit) =
           fun (x48 : t) ->
             fun (x49 : int) ->
               Ojs.set_prop_ascii (t_to_js x48) "sendBufferSize"
@@ -191,18 +185,18 @@ module Dgram =
                                                                     Ojs.int_of_js
                                                                     x56)))|])
       end
-    let (createSocket :
-      type_:dgram_SocketType ->
-        ?callback:(msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit) ->
-          unit -> dgram_Socket)
+    let (create_socket :
+      type_:SocketType.t ->
+        ?callback:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit) ->
+          unit -> Socket.t)
       =
-      fun ~type_:(x58 : dgram_SocketType) ->
+      fun ~type_:(x58 : SocketType.t) ->
         fun
           ?callback:(x59 :
-                      (msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit) option)
+                      (msg:Buffer.t -> rinfo:RemoteInfo.t -> unit) option)
           ->
           fun () ->
-            dgram_Socket_of_js
+            Socket.t_of_js
               (let x64 = Import.dgram in
                Ojs.call (Ojs.get_prop_ascii x64 "createSocket") "apply"
                  [|x64;((let x60 =
@@ -210,8 +204,7 @@ module Dgram =
                              (Ojs.get_prop_ascii Ojs.global "Array") 
                              [||] in
                          ignore
-                           (Ojs.call x60 "push"
-                              [|(dgram_SocketType_to_js x58)|]);
+                           (Ojs.call x60 "push" [|(SocketType.t_to_js x58)|]);
                          (match x59 with
                           | Some x61 ->
                               ignore
@@ -220,22 +213,21 @@ module Dgram =
                                         (fun (x62 : Ojs.t) ->
                                            fun (x63 : Ojs.t) ->
                                              x61 ~msg:(Buffer.t_of_js x62)
-                                               ~rinfo:(dgram_RemoteInfo_of_js
-                                                         x63)))|])
+                                               ~rinfo:(RemoteInfo.t_of_js x63)))|])
                           | None -> ());
                          x60))|])
-    let (createSocket :
-      options:dgram_SocketOptions ->
-        ?callback:(msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit) ->
-          unit -> dgram_Socket)
+    let (create_socket :
+      options:SocketOptions.t ->
+        ?callback:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit) ->
+          unit -> Socket.t)
       =
-      fun ~options:(x65 : dgram_SocketOptions) ->
+      fun ~options:(x65 : SocketOptions.t) ->
         fun
           ?callback:(x66 :
-                      (msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit) option)
+                      (msg:Buffer.t -> rinfo:RemoteInfo.t -> unit) option)
           ->
           fun () ->
-            dgram_Socket_of_js
+            Socket.t_of_js
               (let x71 = Import.dgram in
                Ojs.call (Ojs.get_prop_ascii x71 "createSocket") "apply"
                  [|x71;((let x67 =
@@ -244,7 +236,7 @@ module Dgram =
                              [||] in
                          ignore
                            (Ojs.call x67 "push"
-                              [|(dgram_SocketOptions_to_js x65)|]);
+                              [|(SocketOptions.t_to_js x65)|]);
                          (match x66 with
                           | Some x68 ->
                               ignore
@@ -253,25 +245,22 @@ module Dgram =
                                         (fun (x69 : Ojs.t) ->
                                            fun (x70 : Ojs.t) ->
                                              x68 ~msg:(Buffer.t_of_js x69)
-                                               ~rinfo:(dgram_RemoteInfo_of_js
-                                                         x70)))|])
+                                               ~rinfo:(RemoteInfo.t_of_js x70)))|])
                           | None -> ());
                          x67))|])
     module Socket =
       struct
-        type t = dgram_Socket
-        let rec t_of_js : Ojs.t -> t =
-          fun (x73 : Ojs.t) -> dgram_Socket_of_js x73
-        and t_to_js : t -> Ojs.t =
-          fun (x72 : dgram_Socket) -> dgram_Socket_to_js x72
-        let (addMembership :
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x73 : Ojs.t) -> x73
+        and t_to_js : t -> Ojs.t = fun (x72 : Ojs.t) -> x72
+        let (add_membership :
           t ->
-            multicastAddress:string ->
-              ?multicastInterface:string -> unit -> unit)
+            multicast_address:string ->
+              ?multicast_interface:string -> unit -> unit)
           =
           fun (x78 : t) ->
-            fun ~multicastAddress:(x74 : string) ->
-              fun ?multicastInterface:(x75 : string option) ->
+            fun ~multicast_address:(x74 : string) ->
+              fun ?multicast_interface:(x75 : string option) ->
                 fun () ->
                   ignore
                     (let x79 = t_to_js x78 in
@@ -378,11 +367,10 @@ module Dgram =
                               x98))|])
         let (bind''' :
           t ->
-            options:dgram_BindOptions ->
-              ?callback:(unit -> unit) -> unit -> unit)
+            options:BindOptions.t -> ?callback:(unit -> unit) -> unit -> unit)
           =
           fun (x106 : t) ->
-            fun ~options:(x102 : dgram_BindOptions) ->
+            fun ~options:(x102 : BindOptions.t) ->
               fun ?callback:(x103 : (unit -> unit) option) ->
                 fun () ->
                   ignore
@@ -394,7 +382,7 @@ module Dgram =
                                     [||] in
                                 ignore
                                   (Ojs.call x104 "push"
-                                     [|(dgram_BindOptions_to_js x102)|]);
+                                     [|(BindOptions.t_to_js x102)|]);
                                 (match x103 with
                                  | Some x105 ->
                                      ignore
@@ -466,14 +454,14 @@ module Dgram =
         let (disconnect : t -> unit) =
           fun (x124 : t) ->
             ignore (Ojs.call (t_to_js x124) "disconnect" [||])
-        let (dropMembership :
+        let (drop_membership :
           t ->
-            multicastAddress:string ->
-              ?multicastInterface:string -> unit -> unit)
+            multicast_address:string ->
+              ?multicast_interface:string -> unit -> unit)
           =
           fun (x129 : t) ->
-            fun ~multicastAddress:(x125 : string) ->
-              fun ?multicastInterface:(x126 : string option) ->
+            fun ~multicast_address:(x125 : string) ->
+              fun ?multicast_interface:(x126 : string option) ->
                 fun () ->
                   ignore
                     (let x130 = t_to_js x129 in
@@ -493,15 +481,15 @@ module Dgram =
                                           [|(Ojs.string_to_js x128)|])
                                  | None -> ());
                                 x127))|])
-        let (getRecvBufferSize : t -> int) =
+        let (get_recv_buffer_size : t -> int) =
           fun (x131 : t) ->
             Ojs.int_of_js (Ojs.call (t_to_js x131) "getRecvBufferSize" [||])
-        let (getSendBufferSize : t -> int) =
+        let (get_send_buffer_size : t -> int) =
           fun (x132 : t) ->
             Ojs.int_of_js (Ojs.call (t_to_js x132) "getSendBufferSize" [||])
         let (ref : t -> t) =
           fun (x133 : t) -> t_of_js (Ojs.call (t_to_js x133) "ref" [||])
-        let (remoteAddress : t -> Node_net.Net.AddressInfo.t) =
+        let (remote_address : t -> Node_net.Net.AddressInfo.t) =
           fun (x134 : t) ->
             Node_net.Net.AddressInfo.t_of_js
               (Ojs.call (t_to_js x134) "remoteAddress" [||])
@@ -855,60 +843,60 @@ module Dgram =
                                                                     x218)))|])
                                      | None -> ());
                                     x214))|])
-        let (setBroadcast : t -> flag:bool -> unit) =
+        let (set_broadcast : t -> flag:bool -> unit) =
           fun (x223 : t) ->
             fun ~flag:(x222 : bool) ->
               ignore
                 (Ojs.call (t_to_js x223) "setBroadcast"
                    [|(Ojs.bool_to_js x222)|])
-        let (setMulticastInterface : t -> multicastInterface:string -> unit)
-          =
+        let (set_multicast_interface :
+          t -> multicast_interface:string -> unit) =
           fun (x225 : t) ->
-            fun ~multicastInterface:(x224 : string) ->
+            fun ~multicast_interface:(x224 : string) ->
               ignore
                 (Ojs.call (t_to_js x225) "setMulticastInterface"
                    [|(Ojs.string_to_js x224)|])
-        let (setMulticastLoopback : t -> flag:bool -> unit) =
+        let (set_multicast_loopback : t -> flag:bool -> unit) =
           fun (x227 : t) ->
             fun ~flag:(x226 : bool) ->
               ignore
                 (Ojs.call (t_to_js x227) "setMulticastLoopback"
                    [|(Ojs.bool_to_js x226)|])
-        let (setMulticastTTL : t -> ttl:int -> unit) =
+        let (set_multicast_ttl : t -> ttl:int -> unit) =
           fun (x229 : t) ->
             fun ~ttl:(x228 : int) ->
               ignore
                 (Ojs.call (t_to_js x229) "setMulticastTTL"
                    [|(Ojs.int_to_js x228)|])
-        let (setRecvBufferSize : t -> size:int -> unit) =
+        let (set_recv_buffer_size : t -> size:int -> unit) =
           fun (x231 : t) ->
             fun ~size:(x230 : int) ->
               ignore
                 (Ojs.call (t_to_js x231) "setRecvBufferSize"
                    [|(Ojs.int_to_js x230)|])
-        let (setSendBufferSize : t -> size:int -> unit) =
+        let (set_send_buffer_size : t -> size:int -> unit) =
           fun (x233 : t) ->
             fun ~size:(x232 : int) ->
               ignore
                 (Ojs.call (t_to_js x233) "setSendBufferSize"
                    [|(Ojs.int_to_js x232)|])
-        let (setTTL : t -> ttl:int -> unit) =
+        let (set_ttl : t -> ttl:int -> unit) =
           fun (x235 : t) ->
             fun ~ttl:(x234 : int) ->
               ignore
                 (Ojs.call (t_to_js x235) "setTTL" [|(Ojs.int_to_js x234)|])
         let (unref : t -> t) =
           fun (x236 : t) -> t_of_js (Ojs.call (t_to_js x236) "unref" [||])
-        let (addSourceSpecificMembership :
+        let (add_source_specific_membership :
           t ->
-            sourceAddress:string ->
-              groupAddress:string ->
-                ?multicastInterface:string -> unit -> unit)
+            source_address:string ->
+              group_address:string ->
+                ?multicast_interface:string -> unit -> unit)
           =
           fun (x242 : t) ->
-            fun ~sourceAddress:(x237 : string) ->
-              fun ~groupAddress:(x238 : string) ->
-                fun ?multicastInterface:(x239 : string option) ->
+            fun ~source_address:(x237 : string) ->
+              fun ~group_address:(x238 : string) ->
+                fun ?multicast_interface:(x239 : string option) ->
                   fun () ->
                     ignore
                       (let x243 = t_to_js x242 in
@@ -932,16 +920,16 @@ module Dgram =
                                             [|(Ojs.string_to_js x241)|])
                                    | None -> ());
                                   x240))|])
-        let (dropSourceSpecificMembership :
+        let (drop_source_specific_membership :
           t ->
-            sourceAddress:string ->
-              groupAddress:string ->
-                ?multicastInterface:string -> unit -> unit)
+            source_address:string ->
+              group_address:string ->
+                ?multicast_interface:string -> unit -> unit)
           =
           fun (x249 : t) ->
-            fun ~sourceAddress:(x244 : string) ->
-              fun ~groupAddress:(x245 : string) ->
-                fun ?multicastInterface:(x246 : string option) ->
+            fun ~source_address:(x244 : string) ->
+              fun ~group_address:(x245 : string) ->
+                fun ?multicast_interface:(x246 : string option) ->
                   fun () ->
                     ignore
                       (let x250 = t_to_js x249 in
@@ -965,7 +953,7 @@ module Dgram =
                                             [|(Ojs.string_to_js x248)|])
                                    | None -> ());
                                   x247))|])
-        let (addListener :
+        let (add_listener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
           fun (x255 : t) ->
             fun ~event:(x251 : string) ->
@@ -978,7 +966,7 @@ module Dgram =
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
                                                                 x253 0)))|])
-        let (addListener' :
+        let (add_listener' :
           t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
           fun (x258 : t) ->
             fun ~event:(x256 : [ `close ]) ->
@@ -987,7 +975,7 @@ module Dgram =
                   (Ojs.call (t_to_js x258) "addListener"
                      [|((match x256 with | `close -> Ojs.string_to_js "close"));(
                        Ojs.fun_to_js 1 (fun _ -> x257 ()))|])
-        let (addListener'' :
+        let (add_listener'' :
           t -> event:[ `connect ] -> listener:(unit -> unit) -> t) =
           fun (x261 : t) ->
             fun ~event:(x259 : [ `connect ]) ->
@@ -997,7 +985,7 @@ module Dgram =
                      [|((match x259 with
                          | `connect -> Ojs.string_to_js "connect"));(
                        Ojs.fun_to_js 1 (fun _ -> x260 ()))|])
-        let (addListener''' :
+        let (add_listener''' :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
           fun (x265 : t) ->
             fun ~event:(x262 : [ `error ]) ->
@@ -1008,7 +996,7 @@ module Dgram =
                        Ojs.fun_to_js 1
                          (fun (x264 : Ojs.t) ->
                             x263 ~err:(Error.t_of_js x264)))|])
-        let (addListener'''' :
+        let (add_listener'''' :
           t -> event:[ `listening ] -> listener:(unit -> unit) -> t) =
           fun (x268 : t) ->
             fun ~event:(x266 : [ `listening ]) ->
@@ -1018,16 +1006,15 @@ module Dgram =
                      [|((match x266 with
                          | `listening -> Ojs.string_to_js "listening"));(
                        Ojs.fun_to_js 1 (fun _ -> x267 ()))|])
-        let (addListener''''' :
+        let (add_listener''''' :
           t ->
             event:[ `message ] ->
-              listener:(msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit) -> t)
+              listener:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit) -> t)
           =
           fun (x273 : t) ->
             fun ~event:(x269 : [ `message ]) ->
               fun
-                ~listener:(x270 :
-                            msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit)
+                ~listener:(x270 : msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x273) "addListener"
@@ -1037,7 +1024,7 @@ module Dgram =
                          (fun (x271 : Ojs.t) ->
                             fun (x272 : Ojs.t) ->
                               x270 ~msg:(Buffer.t_of_js x271)
-                                ~rinfo:(dgram_RemoteInfo_of_js x272)))|])
+                                ~rinfo:(RemoteInfo.t_of_js x272)))|])
         let (emit : t -> event:symbol or_string -> args:any list -> bool) =
           fun (x279 : t) ->
             fun ~event:(x274 : symbol or_string) ->
@@ -1088,18 +1075,17 @@ module Dgram =
                        | `listening -> Ojs.string_to_js "listening"))|])
         let (emit''''' :
           t ->
-            event:[ `message ] ->
-              msg:Buffer.t -> rinfo:dgram_RemoteInfo -> bool)
+            event:[ `message ] -> msg:Buffer.t -> rinfo:RemoteInfo.t -> bool)
           =
           fun (x293 : t) ->
             fun ~event:(x290 : [ `message ]) ->
               fun ~msg:(x291 : Buffer.t) ->
-                fun ~rinfo:(x292 : dgram_RemoteInfo) ->
+                fun ~rinfo:(x292 : RemoteInfo.t) ->
                   Ojs.bool_of_js
                     (Ojs.call (t_to_js x293) "emit"
                        [|((match x290 with
                            | `message -> Ojs.string_to_js "message"));(
-                         Buffer.t_to_js x291);(dgram_RemoteInfo_to_js x292)|])
+                         Buffer.t_to_js x291);(RemoteInfo.t_to_js x292)|])
         let (on : t -> event:string -> listener:(args:any list -> unit) -> t)
           =
           fun (x298 : t) ->
@@ -1155,13 +1141,12 @@ module Dgram =
         let (on''''' :
           t ->
             event:[ `message ] ->
-              listener:(msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit) -> t)
+              listener:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit) -> t)
           =
           fun (x316 : t) ->
             fun ~event:(x312 : [ `message ]) ->
               fun
-                ~listener:(x313 :
-                            msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit)
+                ~listener:(x313 : msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x316) "on"
@@ -1171,7 +1156,7 @@ module Dgram =
                          (fun (x314 : Ojs.t) ->
                             fun (x315 : Ojs.t) ->
                               x313 ~msg:(Buffer.t_of_js x314)
-                                ~rinfo:(dgram_RemoteInfo_of_js x315)))|])
+                                ~rinfo:(RemoteInfo.t_of_js x315)))|])
         let (once :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
           fun (x321 : t) ->
@@ -1227,13 +1212,12 @@ module Dgram =
         let (once''''' :
           t ->
             event:[ `message ] ->
-              listener:(msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit) -> t)
+              listener:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit) -> t)
           =
           fun (x339 : t) ->
             fun ~event:(x335 : [ `message ]) ->
               fun
-                ~listener:(x336 :
-                            msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit)
+                ~listener:(x336 : msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x339) "once"
@@ -1243,8 +1227,8 @@ module Dgram =
                          (fun (x337 : Ojs.t) ->
                             fun (x338 : Ojs.t) ->
                               x336 ~msg:(Buffer.t_of_js x337)
-                                ~rinfo:(dgram_RemoteInfo_of_js x338)))|])
-        let (prependListener :
+                                ~rinfo:(RemoteInfo.t_of_js x338)))|])
+        let (prepend_listener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
           fun (x344 : t) ->
             fun ~event:(x340 : string) ->
@@ -1257,7 +1241,7 @@ module Dgram =
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
                                                                 x342 0)))|])
-        let (prependListener' :
+        let (prepend_listener' :
           t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
           fun (x347 : t) ->
             fun ~event:(x345 : [ `close ]) ->
@@ -1266,7 +1250,7 @@ module Dgram =
                   (Ojs.call (t_to_js x347) "prependListener"
                      [|((match x345 with | `close -> Ojs.string_to_js "close"));(
                        Ojs.fun_to_js 1 (fun _ -> x346 ()))|])
-        let (prependListener'' :
+        let (prepend_listener'' :
           t -> event:[ `connect ] -> listener:(unit -> unit) -> t) =
           fun (x350 : t) ->
             fun ~event:(x348 : [ `connect ]) ->
@@ -1276,7 +1260,7 @@ module Dgram =
                      [|((match x348 with
                          | `connect -> Ojs.string_to_js "connect"));(
                        Ojs.fun_to_js 1 (fun _ -> x349 ()))|])
-        let (prependListener''' :
+        let (prepend_listener''' :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
           fun (x354 : t) ->
             fun ~event:(x351 : [ `error ]) ->
@@ -1287,7 +1271,7 @@ module Dgram =
                        Ojs.fun_to_js 1
                          (fun (x353 : Ojs.t) ->
                             x352 ~err:(Error.t_of_js x353)))|])
-        let (prependListener'''' :
+        let (prepend_listener'''' :
           t -> event:[ `listening ] -> listener:(unit -> unit) -> t) =
           fun (x357 : t) ->
             fun ~event:(x355 : [ `listening ]) ->
@@ -1297,16 +1281,15 @@ module Dgram =
                      [|((match x355 with
                          | `listening -> Ojs.string_to_js "listening"));(
                        Ojs.fun_to_js 1 (fun _ -> x356 ()))|])
-        let (prependListener''''' :
+        let (prepend_listener''''' :
           t ->
             event:[ `message ] ->
-              listener:(msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit) -> t)
+              listener:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit) -> t)
           =
           fun (x362 : t) ->
             fun ~event:(x358 : [ `message ]) ->
               fun
-                ~listener:(x359 :
-                            msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit)
+                ~listener:(x359 : msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x362) "prependListener"
@@ -1316,8 +1299,8 @@ module Dgram =
                          (fun (x360 : Ojs.t) ->
                             fun (x361 : Ojs.t) ->
                               x359 ~msg:(Buffer.t_of_js x360)
-                                ~rinfo:(dgram_RemoteInfo_of_js x361)))|])
-        let (prependOnceListener :
+                                ~rinfo:(RemoteInfo.t_of_js x361)))|])
+        let (prepend_once_listener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
           fun (x367 : t) ->
             fun ~event:(x363 : string) ->
@@ -1330,7 +1313,7 @@ module Dgram =
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
                                                                 x365 0)))|])
-        let (prependOnceListener' :
+        let (prepend_once_listener' :
           t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
           fun (x370 : t) ->
             fun ~event:(x368 : [ `close ]) ->
@@ -1339,7 +1322,7 @@ module Dgram =
                   (Ojs.call (t_to_js x370) "prependOnceListener"
                      [|((match x368 with | `close -> Ojs.string_to_js "close"));(
                        Ojs.fun_to_js 1 (fun _ -> x369 ()))|])
-        let (prependOnceListener'' :
+        let (prepend_once_listener'' :
           t -> event:[ `connect ] -> listener:(unit -> unit) -> t) =
           fun (x373 : t) ->
             fun ~event:(x371 : [ `connect ]) ->
@@ -1349,7 +1332,7 @@ module Dgram =
                      [|((match x371 with
                          | `connect -> Ojs.string_to_js "connect"));(
                        Ojs.fun_to_js 1 (fun _ -> x372 ()))|])
-        let (prependOnceListener''' :
+        let (prepend_once_listener''' :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
           fun (x377 : t) ->
             fun ~event:(x374 : [ `error ]) ->
@@ -1360,7 +1343,7 @@ module Dgram =
                        Ojs.fun_to_js 1
                          (fun (x376 : Ojs.t) ->
                             x375 ~err:(Error.t_of_js x376)))|])
-        let (prependOnceListener'''' :
+        let (prepend_once_listener'''' :
           t -> event:[ `listening ] -> listener:(unit -> unit) -> t) =
           fun (x380 : t) ->
             fun ~event:(x378 : [ `listening ]) ->
@@ -1370,16 +1353,15 @@ module Dgram =
                      [|((match x378 with
                          | `listening -> Ojs.string_to_js "listening"));(
                        Ojs.fun_to_js 1 (fun _ -> x379 ()))|])
-        let (prependOnceListener''''' :
+        let (prepend_once_listener''''' :
           t ->
             event:[ `message ] ->
-              listener:(msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit) -> t)
+              listener:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit) -> t)
           =
           fun (x385 : t) ->
             fun ~event:(x381 : [ `message ]) ->
               fun
-                ~listener:(x382 :
-                            msg:Buffer.t -> rinfo:dgram_RemoteInfo -> unit)
+                ~listener:(x382 : msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x385) "prependOnceListener"
@@ -1389,7 +1371,7 @@ module Dgram =
                          (fun (x383 : Ojs.t) ->
                             fun (x384 : Ojs.t) ->
                               x382 ~msg:(Buffer.t_of_js x383)
-                                ~rinfo:(dgram_RemoteInfo_of_js x384)))|])
+                                ~rinfo:(RemoteInfo.t_of_js x384)))|])
         let (cast : t -> Node_events.Events.EventEmitter.t) =
           fun (x386 : t) ->
             Node_events.Events.EventEmitter.t_of_js (t_to_js x386)

@@ -14,9 +14,10 @@ module AnonymousInterface0 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_rejectUnauthorized : t -> bool [@@js.get "rejectUnauthorized"]
+  val get_reject_unauthorized : t -> bool [@@js.get "rejectUnauthorized"]
 
-  val set_rejectUnauthorized : t -> bool -> unit [@@js.set "rejectUnauthorized"]
+  val set_reject_unauthorized : t -> bool -> unit
+    [@@js.set "rejectUnauthorized"]
 
   val get_servername : t -> string [@@js.get "servername"]
 
@@ -52,20 +53,21 @@ module Https : sig
   end
 
   module AgentOptions : sig
-    type t = https_AgentOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_rejectUnauthorized : t -> bool [@@js.get "rejectUnauthorized"]
+    val get_reject_unauthorized : t -> bool [@@js.get "rejectUnauthorized"]
 
-    val set_rejectUnauthorized : t -> bool -> unit
+    val set_reject_unauthorized : t -> bool -> unit
       [@@js.set "rejectUnauthorized"]
 
-    val get_maxCachedSessions : t -> int [@@js.get "maxCachedSessions"]
+    val get_max_cached_sessions : t -> int [@@js.get "maxCachedSessions"]
 
-    val set_maxCachedSessions : t -> int -> unit [@@js.set "maxCachedSessions"]
+    val set_max_cached_sessions : t -> int -> unit
+      [@@js.set "maxCachedSessions"]
 
     val cast : t -> Http.AgentOptions.t [@@js.cast]
 
@@ -74,24 +76,24 @@ module Https : sig
   [@@js.scope "AgentOptions"]
 
   module Agent : sig
-    type t = https_Agent
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val create : ?options:https_AgentOptions -> unit -> t [@@js.create]
+    val create : ?options:AgentOptions.t -> unit -> t [@@js.create]
 
-    val get_options : t -> https_AgentOptions [@@js.get "options"]
+    val get_options : t -> AgentOptions.t [@@js.get "options"]
 
-    val set_options : t -> https_AgentOptions -> unit [@@js.set "options"]
+    val set_options : t -> AgentOptions.t -> unit [@@js.set "options"]
 
     val cast : t -> Http.Agent.t [@@js.cast]
   end
   [@@js.scope "Agent"]
 
   module Server : sig
-    type t = https_Server
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -99,12 +101,12 @@ module Https : sig
 
     val cast : t -> Http.HttpBase.t [@@js.cast]
 
-    val create : ?requestListener:Http.RequestListener.t -> unit -> t
+    val create : ?request_listener:Http.RequestListener.t -> unit -> t
       [@@js.create]
 
     val create'
-      :  options:https_ServerOptions
-      -> ?requestListener:Http.RequestListener.t
+      :  options:ServerOptions.t
+      -> ?request_listener:Http.RequestListener.t
       -> unit
       -> t
       [@@js.create]
@@ -113,16 +115,16 @@ module Https : sig
   end
   [@@js.scope "Server"]
 
-  val createServer
-    :  options:https_ServerOptions
-    -> ?requestListener:Http.RequestListener.t
+  val create_server
+    :  options:ServerOptions.t
+    -> ?request_listener:Http.RequestListener.t
     -> unit
-    -> https_Server
+    -> Server.t
     [@@js.global "createServer"]
 
   val request
     :  url:Node_url.Url.Url.t or_string
-    -> ?options:https_RequestOptions
+    -> ?options:RequestOptions.t
     -> ?callback:(res:Http.IncomingMessage.t -> unit)
     -> unit
     -> Http.ClientRequest.t
@@ -130,12 +132,12 @@ module Https : sig
 
   val get
     :  url:Node_url.Url.Url.t or_string
-    -> ?options:https_RequestOptions
+    -> ?options:RequestOptions.t
     -> ?callback:(res:Http.IncomingMessage.t -> unit)
     -> unit
     -> Http.ClientRequest.t
     [@@js.global "get"]
 
-  val globalAgent : https_Agent [@@js.global "globalAgent"]
+  val global_agent : https_Agent [@@js.global "globalAgent"]
 end
 [@@js.scope Import.https]

@@ -4,12 +4,10 @@
 open Es5
 module ProgressContext =
   struct
-    type t = _ProgressContext
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> _ProgressContext_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : _ProgressContext) -> _ProgressContext_to_js x1
-    let (onProgress :
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
+    let (on_progress :
       t ->
         type_:'P ProgressType.t ->
           token:string or_number ->
@@ -26,7 +24,7 @@ module ProgressContext =
                                                             x5);(NotificationHandler.t_to_js
                                                                    Obj.magic
                                                                    x7)|])
-    let (sendNotification :
+    let (send_notification :
       t ->
         type_:('P, 'RO) ProtocolNotificationType.t ->
           ?params:'P -> unit -> unit)
@@ -55,11 +53,9 @@ module ProgressContext =
   end
 module ProgressPart =
   struct
-    type t = _ProgressPart
-    let rec t_of_js : Ojs.t -> t =
-      fun (x19 : Ojs.t) -> _ProgressPart_of_js x19
-    and t_to_js : t -> Ojs.t =
-      fun (x18 : _ProgressPart) -> _ProgressPart_to_js x18
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x19 : Ojs.t) -> x19
+    and t_to_js : t -> Ojs.t = fun (x18 : Ojs.t) -> x18
     let (get__client : t -> any) =
       fun (x20 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x20) "_client")
     let (set__client : t -> any -> unit) =
@@ -93,10 +89,10 @@ module ProgressPart =
       fun (x33 : t) ->
         fun (x34 : any) ->
           Ojs.set_prop_ascii (t_to_js x33) "_progress" (any_to_js x34)
-    let (get__cancellationToken : t -> any) =
+    let (get_cancellation_token : t -> any) =
       fun (x35 : t) ->
         any_of_js (Ojs.get_prop_ascii (t_to_js x35) "_cancellationToken")
-    let (set__cancellationToken : t -> any -> unit) =
+    let (set_cancellation_token : t -> any -> unit) =
       fun (x36 : t) ->
         fun (x37 : any) ->
           Ojs.set_prop_ascii (t_to_js x36) "_cancellationToken"
@@ -122,10 +118,10 @@ module ProgressPart =
         fun (x46 : any) ->
           Ojs.set_prop_ascii (t_to_js x45) "_reject" (any_to_js x46)
     let (create :
-      _client:_ProgressContext ->
+      _client:ProgressContext.t ->
         _token:ProgressToken.t -> ?done_:(part:t -> unit) -> unit -> t)
       =
-      fun ~_client:(x47 : _ProgressContext) ->
+      fun ~_client:(x47 : ProgressContext.t) ->
         fun ~_token:(x48 : ProgressToken.t) ->
           fun ?done_:(x49 : (part:t -> unit) option) ->
             fun () ->
@@ -136,7 +132,7 @@ module ProgressPart =
                       Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                         [||] in
                     ignore
-                      (Ojs.call x50 "push" [|(_ProgressContext_to_js x47)|]);
+                      (Ojs.call x50 "push" [|(ProgressContext.t_to_js x47)|]);
                     ignore
                       (Ojs.call x50 "push" [|(ProgressToken.t_to_js x48)|]);
                     (match x49 with

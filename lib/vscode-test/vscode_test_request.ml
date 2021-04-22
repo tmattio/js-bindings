@@ -2,11 +2,11 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-let (getStream : api:string -> IncomingMessage.t Promise.t) =
+let (get_stream : api:string -> IncomingMessage.t Promise.t) =
   fun ~api:(x1 : string) ->
     Promise.t_of_js IncomingMessage.t_of_js
       (Ojs.call Ojs.global "getStream" [|(Ojs.string_to_js x1)|])
-let (getJSON : api:string -> 'T Promise.t) =
+let (get_json : api:string -> 'T Promise.t) =
   fun ~api:(x3 : string) ->
     Promise.t_of_js Obj.magic
       (Ojs.call Ojs.global "getJSON" [|(Ojs.string_to_js x3)|])

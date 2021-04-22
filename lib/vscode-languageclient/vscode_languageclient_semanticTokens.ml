@@ -2,16 +2,11 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct module Types = struct open AnonymousInterfaces end end
 module DocumentSemanticsTokensSignature =
   struct
-    type t = _DocumentSemanticsTokensSignature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> _DocumentSemanticsTokensSignature_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : _DocumentSemanticsTokensSignature) ->
-        _DocumentSemanticsTokensSignature_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (apply :
       t ->
         this:unit ->
@@ -30,17 +25,14 @@ module DocumentSemanticsTokensSignature =
   end
 module DocumentSemanticsTokensEditsSignature =
   struct
-    type t = _DocumentSemanticsTokensEditsSignature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x9 : Ojs.t) -> _DocumentSemanticsTokensEditsSignature_of_js x9
-    and t_to_js : t -> Ojs.t =
-      fun (x8 : _DocumentSemanticsTokensEditsSignature) ->
-        _DocumentSemanticsTokensEditsSignature_to_js x8
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x9 : Ojs.t) -> x9
+    and t_to_js : t -> Ojs.t = fun (x8 : Ojs.t) -> x8
     let (apply :
       t ->
         this:unit ->
           document:Vscode.TextDocument.t ->
-            previousResultId:string ->
+            previous_result_id:string ->
               token:Vscode.CancellationToken.t ->
                 (Vscode.SemanticTokens.t, Vscode.SemanticTokensEdits.t)
                   union2 Vscode.ProviderResult.t)
@@ -48,7 +40,7 @@ module DocumentSemanticsTokensEditsSignature =
       fun (x14 : t) ->
         fun ~this:(x10 : unit) ->
           fun ~document:(x11 : Vscode.TextDocument.t) ->
-            fun ~previousResultId:(x12 : string) ->
+            fun ~previous_result_id:(x12 : string) ->
               fun ~token:(x13 : Vscode.CancellationToken.t) ->
                 Vscode.ProviderResult.t_of_js
                   (fun (x15 : Ojs.t) ->
@@ -61,12 +53,9 @@ module DocumentSemanticsTokensEditsSignature =
   end
 module DocumentRangeSemanticTokensSignature =
   struct
-    type t = _DocumentRangeSemanticTokensSignature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x19 : Ojs.t) -> _DocumentRangeSemanticTokensSignature_of_js x19
-    and t_to_js : t -> Ojs.t =
-      fun (x18 : _DocumentRangeSemanticTokensSignature) ->
-        _DocumentRangeSemanticTokensSignature_to_js x18
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x19 : Ojs.t) -> x19
+    and t_to_js : t -> Ojs.t = fun (x18 : Ojs.t) -> x18
     let (apply :
       t ->
         this:unit ->
@@ -88,46 +77,43 @@ module DocumentRangeSemanticTokensSignature =
   end
 module SemanticTokensMiddleware =
   struct
-    type t = _SemanticTokensMiddleware
-    let rec t_of_js : Ojs.t -> t =
-      fun (x27 : Ojs.t) -> _SemanticTokensMiddleware_of_js x27
-    and t_to_js : t -> Ojs.t =
-      fun (x26 : _SemanticTokensMiddleware) ->
-        _SemanticTokensMiddleware_to_js x26
-    let (provideDocumentSemanticTokens :
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x27 : Ojs.t) -> x27
+    and t_to_js : t -> Ojs.t = fun (x26 : Ojs.t) -> x26
+    let (provide_document_semantic_tokens :
       t ->
         this:unit ->
           document:Vscode.TextDocument.t ->
             token:Vscode.CancellationToken.t ->
-              next:_DocumentSemanticsTokensSignature ->
+              next:DocumentSemanticsTokensSignature.t ->
                 Vscode.SemanticTokens.t Vscode.ProviderResult.t)
       =
       fun (x32 : t) ->
         fun ~this:(x28 : unit) ->
           fun ~document:(x29 : Vscode.TextDocument.t) ->
             fun ~token:(x30 : Vscode.CancellationToken.t) ->
-              fun ~next:(x31 : _DocumentSemanticsTokensSignature) ->
+              fun ~next:(x31 : DocumentSemanticsTokensSignature.t) ->
                 Vscode.ProviderResult.t_of_js Vscode.SemanticTokens.t_of_js
                   (Ojs.call (t_to_js x32) "provideDocumentSemanticTokens"
                      [|(Ojs.unit_to_js x28);(Vscode.TextDocument.t_to_js x29);(
-                       Vscode.CancellationToken.t_to_js x30);(_DocumentSemanticsTokensSignature_to_js
+                       Vscode.CancellationToken.t_to_js x30);(DocumentSemanticsTokensSignature.t_to_js
                                                                 x31)|])
-    let (provideDocumentSemanticTokensEdits :
+    let (provide_document_semantic_tokens_edits :
       t ->
         this:unit ->
           document:Vscode.TextDocument.t ->
-            previousResultId:string ->
+            previous_result_id:string ->
               token:Vscode.CancellationToken.t ->
-                next:_DocumentSemanticsTokensEditsSignature ->
+                next:DocumentSemanticsTokensEditsSignature.t ->
                   (Vscode.SemanticTokens.t, Vscode.SemanticTokensEdits.t)
                     union2 Vscode.ProviderResult.t)
       =
       fun (x39 : t) ->
         fun ~this:(x34 : unit) ->
           fun ~document:(x35 : Vscode.TextDocument.t) ->
-            fun ~previousResultId:(x36 : string) ->
+            fun ~previous_result_id:(x36 : string) ->
               fun ~token:(x37 : Vscode.CancellationToken.t) ->
-                fun ~next:(x38 : _DocumentSemanticsTokensEditsSignature) ->
+                fun ~next:(x38 : DocumentSemanticsTokensEditsSignature.t) ->
                   Vscode.ProviderResult.t_of_js
                     (fun (x40 : Ojs.t) ->
                        union2_of_js Vscode.SemanticTokens.t_of_js
@@ -136,15 +122,15 @@ module SemanticTokensMiddleware =
                        "provideDocumentSemanticTokensEdits"
                        [|(Ojs.unit_to_js x34);(Vscode.TextDocument.t_to_js
                                                  x35);(Ojs.string_to_js x36);(
-                         Vscode.CancellationToken.t_to_js x37);(_DocumentSemanticsTokensEditsSignature_to_js
+                         Vscode.CancellationToken.t_to_js x37);(DocumentSemanticsTokensEditsSignature.t_to_js
                                                                   x38)|])
-    let (provideDocumentRangeSemanticTokens :
+    let (provide_document_range_semantic_tokens :
       t ->
         this:unit ->
           document:Vscode.TextDocument.t ->
             range:Vscode.Range.t ->
               token:Vscode.CancellationToken.t ->
-                next:_DocumentRangeSemanticTokensSignature ->
+                next:DocumentRangeSemanticTokensSignature.t ->
                   Vscode.SemanticTokens.t Vscode.ProviderResult.t)
       =
       fun (x48 : t) ->
@@ -152,7 +138,7 @@ module SemanticTokensMiddleware =
           fun ~document:(x44 : Vscode.TextDocument.t) ->
             fun ~range:(x45 : Vscode.Range.t) ->
               fun ~token:(x46 : Vscode.CancellationToken.t) ->
-                fun ~next:(x47 : _DocumentRangeSemanticTokensSignature) ->
+                fun ~next:(x47 : DocumentRangeSemanticTokensSignature.t) ->
                   Vscode.ProviderResult.t_of_js Vscode.SemanticTokens.t_of_js
                     (Ojs.call (t_to_js x48)
                        "provideDocumentRangeSemanticTokens"
@@ -160,16 +146,13 @@ module SemanticTokensMiddleware =
                                                  x44);(Vscode.Range.t_to_js
                                                          x45);(Vscode.CancellationToken.t_to_js
                                                                  x46);(
-                         _DocumentRangeSemanticTokensSignature_to_js x47)|])
+                         DocumentRangeSemanticTokensSignature.t_to_js x47)|])
   end
 module SemanticTokensProviders =
   struct
-    type t = _SemanticTokensProviders
-    let rec t_of_js : Ojs.t -> t =
-      fun (x51 : Ojs.t) -> _SemanticTokensProviders_of_js x51
-    and t_to_js : t -> Ojs.t =
-      fun (x50 : _SemanticTokensProviders) ->
-        _SemanticTokensProviders_to_js x50
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x51 : Ojs.t) -> x51
+    and t_to_js : t -> Ojs.t = fun (x50 : Ojs.t) -> x50
     let (get_range : t -> Vscode.DocumentRangeSemanticTokensProvider.t) =
       fun (x52 : t) ->
         Vscode.DocumentRangeSemanticTokensProvider.t_of_js
@@ -189,13 +172,13 @@ module SemanticTokensProviders =
         fun (x57 : Vscode.DocumentSemanticTokensProvider.t) ->
           Ojs.set_prop_ascii (t_to_js x56) "full"
             (Vscode.DocumentSemanticTokensProvider.t_to_js x57)
-    let (get_onDidChangeSemanticTokensEmitter :
+    let (get_on_did_change_semantic_tokens_emitter :
       t -> unit Vscode.EventEmitter.t) =
       fun (x58 : t) ->
         Vscode.EventEmitter.t_of_js Ojs.unit_of_js
           (Ojs.get_prop_ascii (t_to_js x58)
              "onDidChangeSemanticTokensEmitter")
-    let (set_onDidChangeSemanticTokensEmitter :
+    let (set_on_did_change_semantic_tokens_emitter :
       t -> unit Vscode.EventEmitter.t -> unit) =
       fun (x60 : t) ->
         fun (x61 : unit Vscode.EventEmitter.t) ->
@@ -204,18 +187,16 @@ module SemanticTokensProviders =
   end
 module SemanticTokensFeature =
   struct
-    type t = _SemanticTokensFeature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x64 : Ojs.t) -> _SemanticTokensFeature_of_js x64
-    and t_to_js : t -> Ojs.t =
-      fun (x63 : _SemanticTokensFeature) -> _SemanticTokensFeature_to_js x63
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x64 : Ojs.t) -> x64
+    and t_to_js : t -> Ojs.t = fun (x63 : Ojs.t) -> x63
     let (create : client:BaseLanguageClient.t -> t) =
       fun ~client:(x65 : BaseLanguageClient.t) ->
         t_of_js
           (Ojs.new_obj
              (Ojs.get_prop_ascii Ojs.global "SemanticTokensFeature")
              [|(BaseLanguageClient.t_to_js x65)|])
-    let (fillClientCapabilities :
+    let (fill_client_capabilities :
       t -> capabilities:ClientCapabilities.t -> unit) =
       fun (x67 : t) ->
         fun ~capabilities:(x66 : ClientCapabilities.t) ->
@@ -225,19 +206,19 @@ module SemanticTokensFeature =
     let (initialize :
       t ->
         capabilities:ServerCapabilities.t ->
-          documentSelector:DocumentSelector.t -> unit)
+          document_selector:DocumentSelector.t -> unit)
       =
       fun (x70 : t) ->
         fun ~capabilities:(x68 : ServerCapabilities.t) ->
-          fun ~documentSelector:(x69 : DocumentSelector.t) ->
+          fun ~document_selector:(x69 : DocumentSelector.t) ->
             ignore
               (Ojs.call (t_to_js x70) "initialize"
                  [|(ServerCapabilities.t_to_js x68);(DocumentSelector.t_to_js
                                                        x69)|])
-    let (registerLanguageProvider :
+    let (register_language_provider :
       t ->
         options:SemanticTokensRegistrationOptions.t ->
-          (Vscode.Disposable.t * _SemanticTokensProviders))
+          (Vscode.Disposable.t * SemanticTokensProviders.t))
       =
       fun (x72 : t) ->
         fun ~options:(x71 : SemanticTokensRegistrationOptions.t) ->
@@ -245,11 +226,11 @@ module SemanticTokensFeature =
             Ojs.call (t_to_js x72) "registerLanguageProvider"
               [|(SemanticTokensRegistrationOptions.t_to_js x71)|] in
           ((Vscode.Disposable.t_of_js (Ojs.array_get x73 0)),
-            (_SemanticTokensProviders_of_js (Ojs.array_get x73 1)))
+            (SemanticTokensProviders.t_of_js (Ojs.array_get x73 1)))
     let (cast :
       t ->
         (SemanticTokensOptions.t or_boolean,
-          SemanticTokensRegistrationOptions.t, _SemanticTokensProviders)
+          SemanticTokensRegistrationOptions.t, SemanticTokensProviders.t)
           TextDocumentFeature.t)
       =
       fun (x74 : t) ->
@@ -257,5 +238,5 @@ module SemanticTokensFeature =
           (fun (x75 : Ojs.t) ->
              or_boolean_of_js SemanticTokensOptions.t_of_js x75)
           SemanticTokensRegistrationOptions.t_of_js
-          _SemanticTokensProviders_of_js (t_to_js x74)
+          SemanticTokensProviders.t_of_js (t_to_js x74)
   end

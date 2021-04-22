@@ -5,7 +5,7 @@
 open Es5
 
 module Message : sig
-  type t = _Message
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -18,7 +18,7 @@ end
 [@@js.scope "Message"]
 
 module RequestMessage : sig
-  type t = _RequestMessage
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -37,43 +37,43 @@ module RequestMessage : sig
   val set_params : t -> (untyped_object, any) or_array -> unit
     [@@js.set "params"]
 
-  val cast : t -> _Message [@@js.cast]
+  val cast : t -> Message.t [@@js.cast]
 end
 [@@js.scope "RequestMessage"]
 
 module ErrorCodes : sig
-  val parseError : int [@@js.global "ParseError"]
+  val parse_error : int [@@js.global "ParseError"]
 
-  val invalidRequest : int [@@js.global "InvalidRequest"]
+  val invalid_request : int [@@js.global "InvalidRequest"]
 
-  val methodNotFound : int [@@js.global "MethodNotFound"]
+  val method_not_found : int [@@js.global "MethodNotFound"]
 
-  val invalidParams : int [@@js.global "InvalidParams"]
+  val invalid_params : int [@@js.global "InvalidParams"]
 
-  val internalError : int [@@js.global "InternalError"]
+  val internal_error : int [@@js.global "InternalError"]
 
-  val jsonrpcReservedErrorRangeStart : int
+  val jsonrpc_reserved_error_range_start : int
     [@@js.global "jsonrpcReservedErrorRangeStart"]
 
-  val serverErrorStart : int [@@js.global "serverErrorStart"]
+  val server_error_start : int [@@js.global "serverErrorStart"]
 
-  val messageWriteError : int [@@js.global "MessageWriteError"]
+  val message_write_error : int [@@js.global "MessageWriteError"]
 
-  val messageReadError : int [@@js.global "MessageReadError"]
+  val message_read_error : int [@@js.global "MessageReadError"]
 
-  val serverNotInitialized : int [@@js.global "ServerNotInitialized"]
+  val server_not_initialized : int [@@js.global "ServerNotInitialized"]
 
-  val unknownErrorCode : int [@@js.global "UnknownErrorCode"]
+  val unknown_error_code : int [@@js.global "UnknownErrorCode"]
 
-  val jsonrpcReservedErrorRangeEnd : (* FIXME: unknown type *) any
+  val jsonrpc_reserved_error_range_end : (* FIXME: unknown type *) any
     [@@js.global "jsonrpcReservedErrorRangeEnd"]
 
-  val serverErrorEnd : int [@@js.global "serverErrorEnd"]
+  val server_error_end : int [@@js.global "serverErrorEnd"]
 end
 [@@js.scope "ErrorCodes"]
 
 module ResponseErrorLiteral : sig
-  type 'D t = 'D _ResponseErrorLiteral
+  type 'D t
 
   val t_to_js : ('D -> Ojs.t) -> 'D t -> Ojs.t
 
@@ -100,7 +100,7 @@ end
 [@@js.scope "ResponseErrorLiteral"]
 
 module ResponseError : sig
-  type 'D t = 'D _ResponseError
+  type 'D t
 
   val t_to_js : ('D -> Ojs.t) -> 'D t -> Ojs.t
 
@@ -119,14 +119,14 @@ module ResponseError : sig
   val create : code:int -> message:string -> ?data:'D -> unit -> 'D t
     [@@js.create]
 
-  val toJson : 'D t -> 'D _ResponseErrorLiteral [@@js.call "toJson"]
+  val to_json : 'D t -> 'D ResponseErrorLiteral.t [@@js.call "toJson"]
 
   val cast : 'D t -> Error.t [@@js.cast]
 end
 [@@js.scope "ResponseError"]
 
 module ResponseMessage : sig
-  type t = _ResponseMessage
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -147,11 +147,11 @@ module ResponseMessage : sig
     -> unit
     [@@js.set "result"]
 
-  val get_error : t -> any _ResponseErrorLiteral [@@js.get "error"]
+  val get_error : t -> any ResponseErrorLiteral.t [@@js.get "error"]
 
-  val set_error : t -> any _ResponseErrorLiteral -> unit [@@js.set "error"]
+  val set_error : t -> any ResponseErrorLiteral.t -> unit [@@js.set "error"]
 
-  val cast : t -> _Message [@@js.cast]
+  val cast : t -> Message.t [@@js.cast]
 end
 [@@js.scope "ResponseMessage"]
 
@@ -172,24 +172,24 @@ module LSPMessageType : sig
 end
 
 module LSPLogMessage : sig
-  type t = _LSPLogMessage
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_type : t -> _LSPMessageType [@@js.get "type"]
+  val get_type : t -> LSPMessageType.t [@@js.get "type"]
 
-  val set_type : t -> _LSPMessageType -> unit [@@js.set "type"]
+  val set_type : t -> LSPMessageType.t -> unit [@@js.set "type"]
 
   val get_message
     :  t
-    -> (_NotificationMessage, _RequestMessage, _ResponseMessage) union3
+    -> (NotificationMessage.t, RequestMessage.t, ResponseMessage.t) union3
     [@@js.get "message"]
 
   val set_message
     :  t
-    -> (_NotificationMessage, _RequestMessage, _ResponseMessage) union3
+    -> (NotificationMessage.t, RequestMessage.t, ResponseMessage.t) union3
     -> unit
     [@@js.set "message"]
 
@@ -200,7 +200,7 @@ end
 [@@js.scope "LSPLogMessage"]
 
 module ParameterStructures : sig
-  type t = _ParameterStructures
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -210,20 +210,20 @@ module ParameterStructures : sig
 
   val get_auto : unit -> t [@@js.get "auto"]
 
-  val get_byPosition : unit -> t [@@js.get "byPosition"]
+  val get_by_position : unit -> t [@@js.get "byPosition"]
 
-  val get_byName : unit -> t [@@js.get "byName"]
+  val get_by_name : unit -> t [@@js.get "byName"]
 
   val create : unit -> t [@@js.create]
 
   val is : value:any -> bool [@@js.global "is"]
 
-  val toString : t -> string [@@js.call "toString"]
+  val to_string : t -> string [@@js.call "toString"]
 end
 [@@js.scope "ParameterStructures"]
 
 module MessageSignature : sig
-  type t = _MessageSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -231,15 +231,15 @@ module MessageSignature : sig
 
   val get_method : t -> string [@@js.get "method"]
 
-  val get_numberOfParams : t -> int [@@js.get "numberOfParams"]
+  val get_number_of_params : t -> int [@@js.get "numberOfParams"]
 
-  val get_parameterStructures : t -> _ParameterStructures
+  val get_parameter_structures : t -> ParameterStructures.t
     [@@js.get "parameterStructures"]
 end
 [@@js.scope "MessageSignature"]
 
 module AbstractMessageSignature : sig
-  type t = _AbstractMessageSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -247,47 +247,47 @@ module AbstractMessageSignature : sig
 
   val get_method : t -> string [@@js.get "method"]
 
-  val get_numberOfParams : t -> int [@@js.get "numberOfParams"]
+  val get_number_of_params : t -> int [@@js.get "numberOfParams"]
 
-  val create : method_:string -> numberOfParams:int -> t [@@js.create]
+  val create : method_:string -> number_of_params:int -> t [@@js.create]
 
-  val get_parameterStructures : t -> _ParameterStructures
+  val get_parameter_structures : t -> ParameterStructures.t
     [@@js.get "parameterStructures"]
 
-  val cast : t -> _MessageSignature [@@js.cast]
+  val cast : t -> MessageSignature.t [@@js.cast]
 end
 [@@js.scope "AbstractMessageSignature"]
 
 module EM : sig
-  type t = _EM
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get___endMarker__ : t -> int [@@js.get "_$endMarker$_"]
+  val get_end_marker : t -> int [@@js.get "_$endMarker$_"]
 
-  val set___endMarker__ : t -> int -> unit [@@js.set "_$endMarker$_"]
+  val set_end_marker : t -> int -> unit [@@js.set "_$endMarker$_"]
 end
 [@@js.scope "_EM"]
 
 module RequestType0 : sig
-  type ('R, 'E) t = ('R, 'E) _RequestType0
+  type ('R, 'E) t = ('R, 'E) RequestType.t0
 
   val t_to_js : ('R -> Ojs.t) -> ('E -> Ojs.t) -> ('R, 'E) t -> Ojs.t
 
   val t_of_js : (Ojs.t -> 'R) -> (Ojs.t -> 'E) -> Ojs.t -> ('R, 'E) t
 
-  val get__ : ('R, 'E) t -> ('R * 'E * _EM) or_undefined [@@js.get "_"]
+  val get__ : ('R, 'E) t -> ('R * 'E * EM.t) or_undefined [@@js.get "_"]
 
   val create : method_:string -> ('R, 'E) t [@@js.create]
 
-  val cast : ('R, 'E) t -> _AbstractMessageSignature [@@js.cast]
+  val cast : ('R, 'E) t -> AbstractMessageSignature.t [@@js.cast]
 end
 [@@js.scope "RequestType0"]
 
 module RequestType : sig
-  type ('P, 'R, 'E) t = ('P, 'R, 'E) _RequestType
+  type ('P, 'R, 'E) t = ('P, 'R, 'E) RequestType.t
 
   val t_to_js
     :  ('P -> Ojs.t)
@@ -303,33 +303,34 @@ module RequestType : sig
     -> Ojs.t
     -> ('P, 'R, 'E) t
 
-  val get__parameterStructures : ('P, 'R, 'E) t -> (* FIXME: unknown type *) any
+  val get_parameter_structures : ('P, 'R, 'E) t -> (* FIXME: unknown type *) any
     [@@js.get "_parameterStructures"]
 
-  val set__parameterStructures
+  val set_parameter_structures
     :  ('P, 'R, 'E) t
     -> (* FIXME: unknown type *) any
     -> unit
     [@@js.set "_parameterStructures"]
 
-  val get__ : ('P, 'R, 'E) t -> ('P * 'R * 'E * _EM) or_undefined [@@js.get "_"]
+  val get__ : ('P, 'R, 'E) t -> ('P * 'R * 'E * EM.t) or_undefined
+    [@@js.get "_"]
 
   val create
     :  method_:string
-    -> ?_parameterStructures:_ParameterStructures
+    -> ?_parameterStructures:ParameterStructures.t
     -> unit
     -> ('P, 'R, 'E) t
     [@@js.create]
 
-  val get_parameterStructures : ('P, 'R, 'E) t -> _ParameterStructures
+  val get_parameter_structures : ('P, 'R, 'E) t -> ParameterStructures.t
     [@@js.get "parameterStructures"]
 
-  val cast : ('P, 'R, 'E) t -> _AbstractMessageSignature [@@js.cast]
+  val cast : ('P, 'R, 'E) t -> AbstractMessageSignature.t [@@js.cast]
 end
 [@@js.scope "RequestType"]
 
 module RequestType1 : sig
-  type ('P1, 'R, 'E) t = ('P1, 'R, 'E) _RequestType1
+  type ('P1, 'R, 'E) t = ('P1, 'R, 'E) RequestType.t1
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -345,36 +346,36 @@ module RequestType1 : sig
     -> Ojs.t
     -> ('P1, 'R, 'E) t
 
-  val get__parameterStructures
+  val get_parameter_structures
     :  ('P1, 'R, 'E) t
     -> (* FIXME: unknown type *) any
     [@@js.get "_parameterStructures"]
 
-  val set__parameterStructures
+  val set_parameter_structures
     :  ('P1, 'R, 'E) t
     -> (* FIXME: unknown type *) any
     -> unit
     [@@js.set "_parameterStructures"]
 
-  val get__ : ('P1, 'R, 'E) t -> ('P1 * 'R * 'E * _EM) or_undefined
+  val get__ : ('P1, 'R, 'E) t -> ('P1 * 'R * 'E * EM.t) or_undefined
     [@@js.get "_"]
 
   val create
     :  method_:string
-    -> ?_parameterStructures:_ParameterStructures
+    -> ?_parameterStructures:ParameterStructures.t
     -> unit
     -> ('P1, 'R, 'E) t
     [@@js.create]
 
-  val get_parameterStructures : ('P1, 'R, 'E) t -> _ParameterStructures
+  val get_parameter_structures : ('P1, 'R, 'E) t -> ParameterStructures.t
     [@@js.get "parameterStructures"]
 
-  val cast : ('P1, 'R, 'E) t -> _AbstractMessageSignature [@@js.cast]
+  val cast : ('P1, 'R, 'E) t -> AbstractMessageSignature.t [@@js.cast]
 end
 [@@js.scope "RequestType1"]
 
 module RequestType2 : sig
-  type ('P1, 'P2, 'R, 'E) t = ('P1, 'P2, 'R, 'E) _RequestType2
+  type ('P1, 'P2, 'R, 'E) t = ('P1, 'P2, 'R, 'E) RequestType.t2
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -392,17 +393,17 @@ module RequestType2 : sig
     -> Ojs.t
     -> ('P1, 'P2, 'R, 'E) t
 
-  val get__ : ('P1, 'P2, 'R, 'E) t -> ('P1 * 'P2 * 'R * 'E * _EM) or_undefined
+  val get__ : ('P1, 'P2, 'R, 'E) t -> ('P1 * 'P2 * 'R * 'E * EM.t) or_undefined
     [@@js.get "_"]
 
   val create : method_:string -> ('P1, 'P2, 'R, 'E) t [@@js.create]
 
-  val cast : ('P1, 'P2, 'R, 'E) t -> _AbstractMessageSignature [@@js.cast]
+  val cast : ('P1, 'P2, 'R, 'E) t -> AbstractMessageSignature.t [@@js.cast]
 end
 [@@js.scope "RequestType2"]
 
 module RequestType3 : sig
-  type ('P1, 'P2, 'P3, 'R, 'E) t = ('P1, 'P2, 'P3, 'R, 'E) _RequestType3
+  type ('P1, 'P2, 'P3, 'R, 'E) t = ('P1, 'P2, 'P3, 'R, 'E) RequestType.t3
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -424,18 +425,18 @@ module RequestType3 : sig
 
   val get__
     :  ('P1, 'P2, 'P3, 'R, 'E) t
-    -> ('P1 * 'P2 * 'P3 * 'R * 'E * _EM) or_undefined
+    -> ('P1 * 'P2 * 'P3 * 'R * 'E * EM.t) or_undefined
     [@@js.get "_"]
 
   val create : method_:string -> ('P1, 'P2, 'P3, 'R, 'E) t [@@js.create]
 
-  val cast : ('P1, 'P2, 'P3, 'R, 'E) t -> _AbstractMessageSignature [@@js.cast]
+  val cast : ('P1, 'P2, 'P3, 'R, 'E) t -> AbstractMessageSignature.t [@@js.cast]
 end
 [@@js.scope "RequestType3"]
 
 module RequestType4 : sig
   type ('P1, 'P2, 'P3, 'P4, 'R, 'E) t =
-    ('P1, 'P2, 'P3, 'P4, 'R, 'E) _RequestType4
+    ('P1, 'P2, 'P3, 'P4, 'R, 'E) RequestType.t4
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -459,19 +460,19 @@ module RequestType4 : sig
 
   val get__
     :  ('P1, 'P2, 'P3, 'P4, 'R, 'E) t
-    -> ('P1 * 'P2 * 'P3 * 'P4 * 'R * 'E * _EM) or_undefined
+    -> ('P1 * 'P2 * 'P3 * 'P4 * 'R * 'E * EM.t) or_undefined
     [@@js.get "_"]
 
   val create : method_:string -> ('P1, 'P2, 'P3, 'P4, 'R, 'E) t [@@js.create]
 
-  val cast : ('P1, 'P2, 'P3, 'P4, 'R, 'E) t -> _AbstractMessageSignature
+  val cast : ('P1, 'P2, 'P3, 'P4, 'R, 'E) t -> AbstractMessageSignature.t
     [@@js.cast]
 end
 [@@js.scope "RequestType4"]
 
 module RequestType5 : sig
   type ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t =
-    ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) _RequestType5
+    ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) RequestType.t5
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -497,20 +498,20 @@ module RequestType5 : sig
 
   val get__
     :  ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t
-    -> ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'R * 'E * _EM) or_undefined
+    -> ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'R * 'E * EM.t) or_undefined
     [@@js.get "_"]
 
   val create : method_:string -> ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t
     [@@js.create]
 
-  val cast : ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t -> _AbstractMessageSignature
+  val cast : ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) t -> AbstractMessageSignature.t
     [@@js.cast]
 end
 [@@js.scope "RequestType5"]
 
 module RequestType6 : sig
   type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) t =
-    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) _RequestType6
+    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) RequestType.t6
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -538,7 +539,7 @@ module RequestType6 : sig
 
   val get__
     :  ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) t
-    -> ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'R * 'E * _EM) or_undefined
+    -> ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'R * 'E * EM.t) or_undefined
     [@@js.get "_"]
 
   val create : method_:string -> ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) t
@@ -546,14 +547,14 @@ module RequestType6 : sig
 
   val cast
     :  ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) t
-    -> _AbstractMessageSignature
+    -> AbstractMessageSignature.t
     [@@js.cast]
 end
 [@@js.scope "RequestType6"]
 
 module RequestType7 : sig
   type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) t =
-    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) _RequestType7
+    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) RequestType.t7
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -583,7 +584,7 @@ module RequestType7 : sig
 
   val get__
     :  ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) t
-    -> ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * 'R * 'E * _EM) or_undefined
+    -> ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * 'R * 'E * EM.t) or_undefined
     [@@js.get "_"]
 
   val create : method_:string -> ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) t
@@ -591,14 +592,14 @@ module RequestType7 : sig
 
   val cast
     :  ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) t
-    -> _AbstractMessageSignature
+    -> AbstractMessageSignature.t
     [@@js.cast]
 end
 [@@js.scope "RequestType7"]
 
 module RequestType8 : sig
   type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) t =
-    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) _RequestType8
+    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) RequestType.t8
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -630,7 +631,7 @@ module RequestType8 : sig
 
   val get__
     :  ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) t
-    -> ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * 'P8 * 'R * 'E * _EM)
+    -> ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * 'P8 * 'R * 'E * EM.t)
        or_undefined
     [@@js.get "_"]
 
@@ -641,14 +642,14 @@ module RequestType8 : sig
 
   val cast
     :  ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) t
-    -> _AbstractMessageSignature
+    -> AbstractMessageSignature.t
     [@@js.cast]
 end
 [@@js.scope "RequestType8"]
 
 module RequestType9 : sig
   type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) t =
-    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) _RequestType9
+    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) RequestType.t9
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -682,7 +683,7 @@ module RequestType9 : sig
 
   val get__
     :  ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) t
-    -> ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * 'P8 * 'P9 * 'R * 'E * _EM)
+    -> ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * 'P8 * 'P9 * 'R * 'E * EM.t)
        or_undefined
     [@@js.get "_"]
 
@@ -693,13 +694,13 @@ module RequestType9 : sig
 
   val cast
     :  ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) t
-    -> _AbstractMessageSignature
+    -> AbstractMessageSignature.t
     [@@js.cast]
 end
 [@@js.scope "RequestType9"]
 
 module NotificationMessage : sig
-  type t = _NotificationMessage
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -714,100 +715,100 @@ module NotificationMessage : sig
   val set_params : t -> (untyped_object, unit) union2 -> unit
     [@@js.set "params"]
 
-  val cast : t -> _Message [@@js.cast]
+  val cast : t -> Message.t [@@js.cast]
 end
 [@@js.scope "NotificationMessage"]
 
 module NotificationType : sig
-  type 'P t = 'P _NotificationType
+  type 'P t
 
   val t_to_js : ('P -> Ojs.t) -> 'P t -> Ojs.t
 
   val t_of_js : (Ojs.t -> 'P) -> Ojs.t -> 'P t
 
-  val get__parameterStructures : 'P t -> (* FIXME: unknown type *) any
+  val get_parameter_structures : 'P t -> (* FIXME: unknown type *) any
     [@@js.get "_parameterStructures"]
 
-  val set__parameterStructures : 'P t -> (* FIXME: unknown type *) any -> unit
+  val set_parameter_structures : 'P t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_parameterStructures"]
 
-  val get__ : 'P t -> ('P * _EM) or_undefined [@@js.get "_"]
+  val get__ : 'P t -> ('P * EM.t) or_undefined [@@js.get "_"]
 
   val create
     :  method_:string
-    -> ?_parameterStructures:_ParameterStructures
+    -> ?_parameterStructures:ParameterStructures.t
     -> unit
     -> 'P t
     [@@js.create]
 
-  val get_parameterStructures : 'P t -> _ParameterStructures
+  val get_parameter_structures : 'P t -> ParameterStructures.t
     [@@js.get "parameterStructures"]
 
-  val cast : 'P t -> _AbstractMessageSignature [@@js.cast]
+  val cast : 'P t -> AbstractMessageSignature.t [@@js.cast]
 end
 [@@js.scope "NotificationType"]
 
 module NotificationType0 : sig
-  type t = _NotificationType0
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get__ : t -> _EM or_undefined [@@js.get "_"]
+  val get__ : t -> EM.t or_undefined [@@js.get "_"]
 
   val create : method_:string -> t [@@js.create]
 
-  val cast : t -> _AbstractMessageSignature [@@js.cast]
+  val cast : t -> AbstractMessageSignature.t [@@js.cast]
 end
 [@@js.scope "NotificationType0"]
 
 module NotificationType1 : sig
-  type 'P1 t = 'P1 _NotificationType1
+  type 'P1 t = 'P1 NotificationType.t1
 
   val t_to_js : ('P1 -> Ojs.t) -> 'P1 t -> Ojs.t
 
   val t_of_js : (Ojs.t -> 'P1) -> Ojs.t -> 'P1 t
 
-  val get__parameterStructures : 'P1 t -> (* FIXME: unknown type *) any
+  val get_parameter_structures : 'P1 t -> (* FIXME: unknown type *) any
     [@@js.get "_parameterStructures"]
 
-  val set__parameterStructures : 'P1 t -> (* FIXME: unknown type *) any -> unit
+  val set_parameter_structures : 'P1 t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_parameterStructures"]
 
-  val get__ : 'P1 t -> ('P1 * _EM) or_undefined [@@js.get "_"]
+  val get__ : 'P1 t -> ('P1 * EM.t) or_undefined [@@js.get "_"]
 
   val create
     :  method_:string
-    -> ?_parameterStructures:_ParameterStructures
+    -> ?_parameterStructures:ParameterStructures.t
     -> unit
     -> 'P1 t
     [@@js.create]
 
-  val get_parameterStructures : 'P1 t -> _ParameterStructures
+  val get_parameter_structures : 'P1 t -> ParameterStructures.t
     [@@js.get "parameterStructures"]
 
-  val cast : 'P1 t -> _AbstractMessageSignature [@@js.cast]
+  val cast : 'P1 t -> AbstractMessageSignature.t [@@js.cast]
 end
 [@@js.scope "NotificationType1"]
 
 module NotificationType2 : sig
-  type ('P1, 'P2) t = ('P1, 'P2) _NotificationType2
+  type ('P1, 'P2) t = ('P1, 'P2) NotificationType.t2
 
   val t_to_js : ('P1 -> Ojs.t) -> ('P2 -> Ojs.t) -> ('P1, 'P2) t -> Ojs.t
 
   val t_of_js : (Ojs.t -> 'P1) -> (Ojs.t -> 'P2) -> Ojs.t -> ('P1, 'P2) t
 
-  val get__ : ('P1, 'P2) t -> ('P1 * 'P2 * _EM) or_undefined [@@js.get "_"]
+  val get__ : ('P1, 'P2) t -> ('P1 * 'P2 * EM.t) or_undefined [@@js.get "_"]
 
   val create : method_:string -> ('P1, 'P2) t [@@js.create]
 
-  val cast : ('P1, 'P2) t -> _AbstractMessageSignature [@@js.cast]
+  val cast : ('P1, 'P2) t -> AbstractMessageSignature.t [@@js.cast]
 end
 [@@js.scope "NotificationType2"]
 
 module NotificationType3 : sig
-  type ('P1, 'P2, 'P3) t = ('P1, 'P2, 'P3) _NotificationType3
+  type ('P1, 'P2, 'P3) t = ('P1, 'P2, 'P3) NotificationType.t3
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -823,17 +824,17 @@ module NotificationType3 : sig
     -> Ojs.t
     -> ('P1, 'P2, 'P3) t
 
-  val get__ : ('P1, 'P2, 'P3) t -> ('P1 * 'P2 * 'P3 * _EM) or_undefined
+  val get__ : ('P1, 'P2, 'P3) t -> ('P1 * 'P2 * 'P3 * EM.t) or_undefined
     [@@js.get "_"]
 
   val create : method_:string -> ('P1, 'P2, 'P3) t [@@js.create]
 
-  val cast : ('P1, 'P2, 'P3) t -> _AbstractMessageSignature [@@js.cast]
+  val cast : ('P1, 'P2, 'P3) t -> AbstractMessageSignature.t [@@js.cast]
 end
 [@@js.scope "NotificationType3"]
 
 module NotificationType4 : sig
-  type ('P1, 'P2, 'P3, 'P4) t = ('P1, 'P2, 'P3, 'P4) _NotificationType4
+  type ('P1, 'P2, 'P3, 'P4) t = ('P1, 'P2, 'P3, 'P4) NotificationType.t4
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -853,18 +854,18 @@ module NotificationType4 : sig
 
   val get__
     :  ('P1, 'P2, 'P3, 'P4) t
-    -> ('P1 * 'P2 * 'P3 * 'P4 * _EM) or_undefined
+    -> ('P1 * 'P2 * 'P3 * 'P4 * EM.t) or_undefined
     [@@js.get "_"]
 
   val create : method_:string -> ('P1, 'P2, 'P3, 'P4) t [@@js.create]
 
-  val cast : ('P1, 'P2, 'P3, 'P4) t -> _AbstractMessageSignature [@@js.cast]
+  val cast : ('P1, 'P2, 'P3, 'P4) t -> AbstractMessageSignature.t [@@js.cast]
 end
 [@@js.scope "NotificationType4"]
 
 module NotificationType5 : sig
   type ('P1, 'P2, 'P3, 'P4, 'P5) t =
-    ('P1, 'P2, 'P3, 'P4, 'P5) _NotificationType5
+    ('P1, 'P2, 'P3, 'P4, 'P5) NotificationType.t5
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -886,19 +887,19 @@ module NotificationType5 : sig
 
   val get__
     :  ('P1, 'P2, 'P3, 'P4, 'P5) t
-    -> ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * _EM) or_undefined
+    -> ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * EM.t) or_undefined
     [@@js.get "_"]
 
   val create : method_:string -> ('P1, 'P2, 'P3, 'P4, 'P5) t [@@js.create]
 
-  val cast : ('P1, 'P2, 'P3, 'P4, 'P5) t -> _AbstractMessageSignature
+  val cast : ('P1, 'P2, 'P3, 'P4, 'P5) t -> AbstractMessageSignature.t
     [@@js.cast]
 end
 [@@js.scope "NotificationType5"]
 
 module NotificationType6 : sig
   type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t =
-    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) _NotificationType6
+    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) NotificationType.t6
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -922,19 +923,19 @@ module NotificationType6 : sig
 
   val get__
     :  ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t
-    -> ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * _EM) or_undefined
+    -> ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * EM.t) or_undefined
     [@@js.get "_"]
 
   val create : method_:string -> ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t [@@js.create]
 
-  val cast : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t -> _AbstractMessageSignature
+  val cast : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) t -> AbstractMessageSignature.t
     [@@js.cast]
 end
 [@@js.scope "NotificationType6"]
 
 module NotificationType7 : sig
   type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t =
-    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) _NotificationType7
+    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) NotificationType.t7
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -960,20 +961,20 @@ module NotificationType7 : sig
 
   val get__
     :  ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t
-    -> ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * _EM) or_undefined
+    -> ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * EM.t) or_undefined
     [@@js.get "_"]
 
   val create : method_:string -> ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t
     [@@js.create]
 
-  val cast : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t -> _AbstractMessageSignature
+  val cast : ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) t -> AbstractMessageSignature.t
     [@@js.cast]
 end
 [@@js.scope "NotificationType7"]
 
 module NotificationType8 : sig
   type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) t =
-    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) _NotificationType8
+    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) NotificationType.t8
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -1001,7 +1002,7 @@ module NotificationType8 : sig
 
   val get__
     :  ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) t
-    -> ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * 'P8 * _EM) or_undefined
+    -> ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * 'P8 * EM.t) or_undefined
     [@@js.get "_"]
 
   val create : method_:string -> ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) t
@@ -1009,14 +1010,14 @@ module NotificationType8 : sig
 
   val cast
     :  ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) t
-    -> _AbstractMessageSignature
+    -> AbstractMessageSignature.t
     [@@js.cast]
 end
 [@@js.scope "NotificationType8"]
 
 module NotificationType9 : sig
   type ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) t =
-    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) _NotificationType9
+    ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) NotificationType.t9
 
   val t_to_js
     :  ('P1 -> Ojs.t)
@@ -1046,7 +1047,7 @@ module NotificationType9 : sig
 
   val get__
     :  ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) t
-    -> ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * 'P8 * 'P9 * _EM) or_undefined
+    -> ('P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * 'P8 * 'P9 * EM.t) or_undefined
     [@@js.get "_"]
 
   val create : method_:string -> ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) t
@@ -1054,16 +1055,16 @@ module NotificationType9 : sig
 
   val cast
     :  ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) t
-    -> _AbstractMessageSignature
+    -> AbstractMessageSignature.t
     [@@js.cast]
 end
 [@@js.scope "NotificationType9"]
 
-val isRequestMessage : message:_Message or_undefined -> bool
+val is_request_message : message:Message.t or_undefined -> bool
   [@@js.global "isRequestMessage"]
 
-val isNotificationMessage : message:_Message or_undefined -> bool
+val is_notification_message : message:Message.t or_undefined -> bool
   [@@js.global "isNotificationMessage"]
 
-val isResponseMessage : message:_Message or_undefined -> bool
+val is_response_message : message:Message.t or_undefined -> bool
   [@@js.global "isResponseMessage"]

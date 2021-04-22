@@ -18,7 +18,7 @@ module Map : sig
   val for_each
     :  ('K, 'V) t
     -> callbackfn:(value:'V -> key:'K -> map:('K, 'V) t -> unit)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> unit
     [@@js.call "forEach"]
@@ -67,7 +67,7 @@ module ReadonlyMap : sig
   val for_each
     :  ('K, 'V) t
     -> callbackfn:(value:'V -> key:'K -> map:('K, 'V) t -> unit)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> unit
     [@@js.call "forEach"]
@@ -138,7 +138,7 @@ module Set : sig
   val for_each
     :  'T t
     -> callbackfn:(value:'T -> value2:'T -> set_:'T t -> unit)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> unit
     [@@js.call "forEach"]
@@ -178,7 +178,7 @@ module ReadonlySet : sig
   val for_each
     :  'T t
     -> callbackfn:(value:'T -> value2:'T -> set_:'T t -> unit)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> unit
     [@@js.call "forEach"]

@@ -8,7 +8,7 @@ open Es5
 (* import { Range, URI } from 'vscode-languageserver-types'; *)
 (* import { ProtocolRequestType } from './messages'; *)
 module ShowDocumentClientCapabilities : sig
-  type t = _ShowDocumentClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -21,7 +21,7 @@ end
 [@@js.scope "ShowDocumentClientCapabilities"]
 
 module ShowDocumentParams : sig
-  type t = _ShowDocumentParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -35,9 +35,9 @@ module ShowDocumentParams : sig
 
   val set_external : t -> bool -> unit [@@js.set "external"]
 
-  val get_takeFocus : t -> bool [@@js.get "takeFocus"]
+  val get_take_focus : t -> bool [@@js.get "takeFocus"]
 
-  val set_takeFocus : t -> bool -> unit [@@js.set "takeFocus"]
+  val set_take_focus : t -> bool -> unit [@@js.set "takeFocus"]
 
   val get_selection : t -> Range.t [@@js.get "selection"]
 
@@ -46,7 +46,7 @@ end
 [@@js.scope "ShowDocumentParams"]
 
 module ShowDocumentResult : sig
-  type t = _ShowDocumentResult
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -64,8 +64,8 @@ module ShowDocumentRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _ShowDocumentParams
-      , _ShowDocumentResult
+    : ( ShowDocumentParams.t
+      , ShowDocumentResult.t
       , unit
       , unit
       , unit )
@@ -73,7 +73,7 @@ module ShowDocumentRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = (_ShowDocumentParams, _ShowDocumentResult, unit) RequestHandler.t
+    type t = (ShowDocumentParams.t, ShowDocumentResult.t, unit) RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -81,7 +81,7 @@ module ShowDocumentRequest : sig
   end
 
   module MiddlewareSignature : sig
-    type t = _ShowDocumentRequest_MiddlewareSignature
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -89,9 +89,9 @@ module ShowDocumentRequest : sig
 
     val apply
       :  t
-      -> params:_ShowDocumentParams
-      -> next:_ShowDocumentRequest_HandlerSignature
-      -> (_ShowDocumentResult, unit) HandlerResult.t
+      -> params:ShowDocumentParams.t
+      -> next:ShowDocumentRequest_HandlerSignature.t
+      -> (ShowDocumentResult.t, unit) HandlerResult.t
       [@@js.apply]
   end
   [@@js.scope "MiddlewareSignature"]

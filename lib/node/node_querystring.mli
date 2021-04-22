@@ -7,35 +7,35 @@ open Node_globals
 
 module Querystring : sig
   module StringifyOptions : sig
-    type t = querystring_StringifyOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val encodeURIComponent : t -> str:string -> string
+    val encode_uri_component : t -> str:string -> string
       [@@js.call "encodeURIComponent"]
   end
   [@@js.scope "StringifyOptions"]
 
   module ParseOptions : sig
-    type t = querystring_ParseOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_maxKeys : t -> int [@@js.get "maxKeys"]
+    val get_max_keys : t -> int [@@js.get "maxKeys"]
 
-    val set_maxKeys : t -> int -> unit [@@js.set "maxKeys"]
+    val set_max_keys : t -> int -> unit [@@js.set "maxKeys"]
 
-    val decodeURIComponent : t -> str:string -> string
+    val decode_uri_component : t -> str:string -> string
       [@@js.call "decodeURIComponent"]
   end
   [@@js.scope "ParseOptions"]
 
   module ParsedUrlQuery : sig
-    type t = querystring_ParsedUrlQuery
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -46,7 +46,7 @@ module Querystring : sig
   [@@js.scope "ParsedUrlQuery"]
 
   module ParsedUrlQueryInput : sig
-    type t = querystring_ParsedUrlQueryInput
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -63,10 +63,10 @@ module Querystring : sig
   [@@js.scope "ParsedUrlQueryInput"]
 
   val stringify
-    :  ?obj:querystring_ParsedUrlQueryInput
+    :  ?obj:ParsedUrlQueryInput.t
     -> ?sep:string
     -> ?eq:string
-    -> ?options:querystring_StringifyOptions
+    -> ?options:StringifyOptions.t
     -> unit
     -> string
     [@@js.global "stringify"]
@@ -75,16 +75,16 @@ module Querystring : sig
     :  str:string
     -> ?sep:string
     -> ?eq:string
-    -> ?options:querystring_ParseOptions
+    -> ?options:ParseOptions.t
     -> unit
-    -> querystring_ParsedUrlQuery
+    -> ParsedUrlQuery.t
     [@@js.global "parse"]
 
   val encode
-    :  ?obj:querystring_ParsedUrlQueryInput
+    :  ?obj:ParsedUrlQueryInput.t
     -> ?sep:string
     -> ?eq:string
-    -> ?options:querystring_StringifyOptions
+    -> ?options:StringifyOptions.t
     -> unit
     -> string
     [@@js.global "encode"]
@@ -93,9 +93,9 @@ module Querystring : sig
     :  str:string
     -> ?sep:string
     -> ?eq:string
-    -> ?options:querystring_ParseOptions
+    -> ?options:ParseOptions.t
     -> unit
-    -> querystring_ParsedUrlQuery
+    -> ParsedUrlQuery.t
     [@@js.global "decode"]
 
   val escape : str:string -> string [@@js.global "escape"]

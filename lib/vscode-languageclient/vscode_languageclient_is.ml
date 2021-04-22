@@ -20,10 +20,10 @@ let (func : value:any -> bool) =
 let (array : value:any -> bool) =
   fun ~value:(x6 : any) ->
     Ojs.bool_of_js (Ojs.call Ojs.global "array" [|(any_to_js x6)|])
-let (stringArray : value:any -> bool) =
+let (string_array : value:any -> bool) =
   fun ~value:(x7 : any) ->
     Ojs.bool_of_js (Ojs.call Ojs.global "stringArray" [|(any_to_js x7)|])
-let (typedArray : value:any -> check:(value:any -> bool) -> bool) =
+let (typed_array : value:any -> check:(value:any -> bool) -> bool) =
   fun ~value:(x8 : any) ->
     fun ~check:(x9 : value:any -> bool) ->
       Ojs.bool_of_js
@@ -34,15 +34,15 @@ let (typedArray : value:any -> check:(value:any -> bool) -> bool) =
 let (thenable : value:any -> bool) =
   fun ~value:(x11 : any) ->
     Ojs.bool_of_js (Ojs.call Ojs.global "thenable" [|(any_to_js x11)|])
-let (asPromise : value:'T Promise.t -> 'T Promise.t) =
+let (as_promise : value:'T Promise.t -> 'T Promise.t) =
   fun ~value:(x12 : 'T Promise.t) ->
     Promise.t_of_js Obj.magic
       (Ojs.call Ojs.global "asPromise" [|(Promise.t_to_js Obj.magic x12)|])
-let (asPromise : value:'T Promise.t -> 'T Promise.t) =
+let (as_promise : value:'T Promise.t -> 'T Promise.t) =
   fun ~value:(x15 : 'T Promise.t) ->
     Promise.t_of_js Obj.magic
       (Ojs.call Ojs.global "asPromise" [|(Promise.t_to_js Obj.magic x15)|])
-let (asPromise : value:'T -> 'T Promise.t) =
+let (as_promise : value:'T -> 'T Promise.t) =
   fun ~value:(x18 : 'T) ->
     Promise.t_of_js Obj.magic
       (Ojs.call Ojs.global "asPromise" [|(Obj.magic x18)|])

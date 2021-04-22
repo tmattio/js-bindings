@@ -4,12 +4,9 @@
 open Es5
 module ProvideImplementationSignature =
   struct
-    type t = _ProvideImplementationSignature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> _ProvideImplementationSignature_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : _ProvideImplementationSignature) ->
-        _ProvideImplementationSignature_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (apply :
       t ->
         this:unit ->
@@ -33,19 +30,16 @@ module ProvideImplementationSignature =
   end
 module ImplementationMiddleware =
   struct
-    type t = _ImplementationMiddleware
-    let rec t_of_js : Ojs.t -> t =
-      fun (x12 : Ojs.t) -> _ImplementationMiddleware_of_js x12
-    and t_to_js : t -> Ojs.t =
-      fun (x11 : _ImplementationMiddleware) ->
-        _ImplementationMiddleware_to_js x11
-    let (provideImplementation :
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x12 : Ojs.t) -> x12
+    and t_to_js : t -> Ojs.t = fun (x11 : Ojs.t) -> x11
+    let (provide_implementation :
       t ->
         this:unit ->
           document:TextDocument.t ->
             position:VPosition.t ->
               token:CancellationToken.t ->
-                next:_ProvideImplementationSignature ->
+                next:ProvideImplementationSignature.t ->
                   (VDefinition.t, VDefinitionLink.t) or_array
                     ProviderResult.t)
       =
@@ -54,7 +48,7 @@ module ImplementationMiddleware =
           fun ~document:(x14 : TextDocument.t) ->
             fun ~position:(x15 : VPosition.t) ->
               fun ~token:(x16 : CancellationToken.t) ->
-                fun ~next:(x17 : _ProvideImplementationSignature) ->
+                fun ~next:(x17 : ProvideImplementationSignature.t) ->
                   ProviderResult.t_of_js
                     (fun (x19 : Ojs.t) ->
                        or_array_of_js VDefinition.t_of_js
@@ -62,23 +56,21 @@ module ImplementationMiddleware =
                     (Ojs.call (t_to_js x18) "provideImplementation"
                        [|(Ojs.unit_to_js x13);(TextDocument.t_to_js x14);(
                          VPosition.t_to_js x15);(CancellationToken.t_to_js
-                                                   x16);(_ProvideImplementationSignature_to_js
+                                                   x16);(ProvideImplementationSignature.t_to_js
                                                            x17)|])
   end
 module ImplementationFeature =
   struct
-    type t = _ImplementationFeature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x23 : Ojs.t) -> _ImplementationFeature_of_js x23
-    and t_to_js : t -> Ojs.t =
-      fun (x22 : _ImplementationFeature) -> _ImplementationFeature_to_js x22
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x23 : Ojs.t) -> x23
+    and t_to_js : t -> Ojs.t = fun (x22 : Ojs.t) -> x22
     let (create : client:BaseLanguageClient.t -> t) =
       fun ~client:(x24 : BaseLanguageClient.t) ->
         t_of_js
           (Ojs.new_obj
              (Ojs.get_prop_ascii Ojs.global "ImplementationFeature")
              [|(BaseLanguageClient.t_to_js x24)|])
-    let (fillClientCapabilities :
+    let (fill_client_capabilities :
       t -> capabilities:ClientCapabilities.t -> unit) =
       fun (x26 : t) ->
         fun ~capabilities:(x25 : ClientCapabilities.t) ->
@@ -88,16 +80,16 @@ module ImplementationFeature =
     let (initialize :
       t ->
         capabilities:ServerCapabilities.t ->
-          documentSelector:DocumentSelector.t -> unit)
+          document_selector:DocumentSelector.t -> unit)
       =
       fun (x29 : t) ->
         fun ~capabilities:(x27 : ServerCapabilities.t) ->
-          fun ~documentSelector:(x28 : DocumentSelector.t) ->
+          fun ~document_selector:(x28 : DocumentSelector.t) ->
             ignore
               (Ojs.call (t_to_js x29) "initialize"
                  [|(ServerCapabilities.t_to_js x27);(DocumentSelector.t_to_js
                                                        x28)|])
-    let (registerLanguageProvider :
+    let (register_language_provider :
       t ->
         options:ImplementationRegistrationOptions.t ->
           (Disposable.t * ImplementationProvider.t))

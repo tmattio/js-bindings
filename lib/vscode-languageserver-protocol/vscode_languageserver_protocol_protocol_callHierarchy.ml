@@ -2,293 +2,244 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module Types =
-      struct
-        type _CallHierarchyIncomingCallsRequest_HandlerSignature =
-          (_CallHierarchyIncomingCallsParams,
-            CallHierarchyIncomingCall.t list or_null, unit) RequestHandler.t
-        and _CallHierarchyOutgoingCallsRequest_HandlerSignature =
-          (_CallHierarchyOutgoingCallsParams,
-            CallHierarchyOutgoingCall.t list or_null, unit) RequestHandler.t
-        and _CallHierarchyPrepareRequest_HandlerSignature =
-          (_CallHierarchyPrepareParams, CallHierarchyItem.t list or_null,
-            unit) RequestHandler.t
-        let rec _CallHierarchyIncomingCallsRequest_HandlerSignature_of_js :
-          Ojs.t -> _CallHierarchyIncomingCallsRequest_HandlerSignature =
-          fun (x7 : Ojs.t) ->
-            RequestHandler.t_of_js _CallHierarchyIncomingCallsParams_of_js
-              (fun (x9 : Ojs.t) ->
-                 or_null_of_js
-                   (fun (x10 : Ojs.t) ->
-                      Ojs.list_of_js CallHierarchyIncomingCall.t_of_js x10)
-                   x9) Ojs.unit_of_js x7
-        and _CallHierarchyIncomingCallsRequest_HandlerSignature_to_js :
-          _CallHierarchyIncomingCallsRequest_HandlerSignature -> Ojs.t =
-          fun
-            (x1 :
-              (_CallHierarchyIncomingCallsParams,
-                CallHierarchyIncomingCall.t list or_null, unit)
-                RequestHandler.t)
-            ->
-            RequestHandler.t_to_js _CallHierarchyIncomingCallsParams_to_js
-              (fun (x3 : CallHierarchyIncomingCall.t list or_null) ->
-                 or_null_to_js
-                   (fun (x4 : CallHierarchyIncomingCall.t list) ->
-                      Ojs.list_to_js CallHierarchyIncomingCall.t_to_js x4) x3)
-              Ojs.unit_to_js x1
-        and _CallHierarchyOutgoingCallsRequest_HandlerSignature_of_js :
-          Ojs.t -> _CallHierarchyOutgoingCallsRequest_HandlerSignature =
-          fun (x19 : Ojs.t) ->
-            RequestHandler.t_of_js _CallHierarchyOutgoingCallsParams_of_js
-              (fun (x21 : Ojs.t) ->
-                 or_null_of_js
-                   (fun (x22 : Ojs.t) ->
-                      Ojs.list_of_js CallHierarchyOutgoingCall.t_of_js x22)
-                   x21) Ojs.unit_of_js x19
-        and _CallHierarchyOutgoingCallsRequest_HandlerSignature_to_js :
-          _CallHierarchyOutgoingCallsRequest_HandlerSignature -> Ojs.t =
-          fun
-            (x13 :
-              (_CallHierarchyOutgoingCallsParams,
-                CallHierarchyOutgoingCall.t list or_null, unit)
-                RequestHandler.t)
-            ->
-            RequestHandler.t_to_js _CallHierarchyOutgoingCallsParams_to_js
-              (fun (x15 : CallHierarchyOutgoingCall.t list or_null) ->
-                 or_null_to_js
-                   (fun (x16 : CallHierarchyOutgoingCall.t list) ->
-                      Ojs.list_to_js CallHierarchyOutgoingCall.t_to_js x16)
-                   x15) Ojs.unit_to_js x13
-        and _CallHierarchyPrepareRequest_HandlerSignature_of_js :
-          Ojs.t -> _CallHierarchyPrepareRequest_HandlerSignature =
-          fun (x31 : Ojs.t) ->
-            RequestHandler.t_of_js _CallHierarchyPrepareParams_of_js
-              (fun (x33 : Ojs.t) ->
-                 or_null_of_js
-                   (fun (x34 : Ojs.t) ->
-                      Ojs.list_of_js CallHierarchyItem.t_of_js x34) x33)
-              Ojs.unit_of_js x31
-        and _CallHierarchyPrepareRequest_HandlerSignature_to_js :
-          _CallHierarchyPrepareRequest_HandlerSignature -> Ojs.t =
-          fun
-            (x25 :
-              (_CallHierarchyPrepareParams, CallHierarchyItem.t list or_null,
-                unit) RequestHandler.t)
-            ->
-            RequestHandler.t_to_js _CallHierarchyPrepareParams_to_js
-              (fun (x27 : CallHierarchyItem.t list or_null) ->
-                 or_null_to_js
-                   (fun (x28 : CallHierarchyItem.t list) ->
-                      Ojs.list_to_js CallHierarchyItem.t_to_js x28) x27)
-              Ojs.unit_to_js x25
-      end
-  end
 module CallHierarchyClientCapabilities =
   struct
-    type t = _CallHierarchyClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x38 : Ojs.t) -> _CallHierarchyClientCapabilities_of_js x38
-    and t_to_js : t -> Ojs.t =
-      fun (x37 : _CallHierarchyClientCapabilities) ->
-        _CallHierarchyClientCapabilities_to_js x37
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x39 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
+    let (get_dynamic_registration : t -> bool) =
+      fun (x3 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x39) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x40 : t) ->
-        fun (x41 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x40) "dynamicRegistration"
-            (Ojs.bool_to_js x41)
+          (Ojs.get_prop_ascii (t_to_js x3) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x4 : t) ->
+        fun (x5 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x4) "dynamicRegistration"
+            (Ojs.bool_to_js x5)
   end
 module CallHierarchyOptions =
   struct
-    type t = _CallHierarchyOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x43 : Ojs.t) -> _CallHierarchyOptions_of_js x43
-    and t_to_js : t -> Ojs.t =
-      fun (x42 : _CallHierarchyOptions) -> _CallHierarchyOptions_to_js x42
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x7 : Ojs.t) -> x7
+    and t_to_js : t -> Ojs.t = fun (x6 : Ojs.t) -> x6
     let (cast : t -> WorkDoneProgressOptions.t) =
-      fun (x44 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x44)
+      fun (x8 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x8)
   end
 module CallHierarchyRegistrationOptions =
   struct
-    type t = _CallHierarchyRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x46 : Ojs.t) -> _CallHierarchyRegistrationOptions_of_js x46
-    and t_to_js : t -> Ojs.t =
-      fun (x45 : _CallHierarchyRegistrationOptions) ->
-        _CallHierarchyRegistrationOptions_to_js x45
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x10 : Ojs.t) -> x10
+    and t_to_js : t -> Ojs.t = fun (x9 : Ojs.t) -> x9
     let (cast : t -> TextDocumentRegistrationOptions.t) =
-      fun (x47 : t) -> TextDocumentRegistrationOptions.t_of_js (t_to_js x47)
-    let (cast' : t -> _CallHierarchyOptions) =
-      fun (x48 : t) -> _CallHierarchyOptions_of_js (t_to_js x48)
+      fun (x11 : t) -> TextDocumentRegistrationOptions.t_of_js (t_to_js x11)
+    let (cast' : t -> CallHierarchyOptions.t) =
+      fun (x12 : t) -> CallHierarchyOptions.t_of_js (t_to_js x12)
     let (cast'' : t -> StaticRegistrationOptions.t) =
-      fun (x49 : t) -> StaticRegistrationOptions.t_of_js (t_to_js x49)
+      fun (x13 : t) -> StaticRegistrationOptions.t_of_js (t_to_js x13)
   end
 module CallHierarchyPrepareParams =
   struct
-    type t = _CallHierarchyPrepareParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x51 : Ojs.t) -> _CallHierarchyPrepareParams_of_js x51
-    and t_to_js : t -> Ojs.t =
-      fun (x50 : _CallHierarchyPrepareParams) ->
-        _CallHierarchyPrepareParams_to_js x50
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x15 : Ojs.t) -> x15
+    and t_to_js : t -> Ojs.t = fun (x14 : Ojs.t) -> x14
     let (cast : t -> TextDocumentPositionParams.t) =
-      fun (x52 : t) -> TextDocumentPositionParams.t_of_js (t_to_js x52)
+      fun (x16 : t) -> TextDocumentPositionParams.t_of_js (t_to_js x16)
     let (cast' : t -> WorkDoneProgressParams.t) =
-      fun (x53 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x53)
+      fun (x17 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x17)
   end
 module CallHierarchyPrepareRequest =
   struct
     let (method_ : [ `L_s2_textDocument_prepareCallHierarchy ]) =
-      let x54 =
+      let x18 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "CallHierarchyPrepareRequest")
           "method" in
-      match Ojs.string_of_js x54 with
+      match Ojs.string_of_js x18 with
       | "textDocument/prepareCallHierarchy" ->
           `L_s2_textDocument_prepareCallHierarchy
       | _ -> assert false
     let (type_ :
-      (_CallHierarchyPrepareParams, CallHierarchyItem.t list or_null, 
-        never, unit, _CallHierarchyRegistrationOptions) ProtocolRequestType.t)
+      (CallHierarchyPrepareParams.t, CallHierarchyItem.t list or_null, 
+        never, unit, CallHierarchyRegistrationOptions.t)
+        ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _CallHierarchyPrepareParams_of_js
-        (fun (x56 : Ojs.t) ->
+      ProtocolRequestType.t_of_js CallHierarchyPrepareParams.t_of_js
+        (fun (x20 : Ojs.t) ->
            or_null_of_js
-             (fun (x57 : Ojs.t) ->
-                Ojs.list_of_js CallHierarchyItem.t_of_js x57) x56)
-        never_of_js Ojs.unit_of_js _CallHierarchyRegistrationOptions_of_js
+             (fun (x21 : Ojs.t) ->
+                Ojs.list_of_js CallHierarchyItem.t_of_js x21) x20)
+        never_of_js Ojs.unit_of_js CallHierarchyRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "CallHierarchyPrepareRequest")
            "type")
     module HandlerSignature =
       struct
-        type t = _CallHierarchyPrepareRequest_HandlerSignature
+        type t =
+          (CallHierarchyPrepareParams.t, CallHierarchyItem.t list or_null,
+            unit) RequestHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x63 : Ojs.t) ->
-            _CallHierarchyPrepareRequest_HandlerSignature_of_js x63
+          fun (x32 : Ojs.t) ->
+            RequestHandler.t_of_js CallHierarchyPrepareParams.t_of_js
+              (fun (x34 : Ojs.t) ->
+                 or_null_of_js
+                   (fun (x35 : Ojs.t) ->
+                      Ojs.list_of_js CallHierarchyItem.t_of_js x35) x34)
+              Ojs.unit_of_js x32
         and t_to_js : t -> Ojs.t =
-          fun (x62 : _CallHierarchyPrepareRequest_HandlerSignature) ->
-            _CallHierarchyPrepareRequest_HandlerSignature_to_js x62
+          fun
+            (x26 :
+              (CallHierarchyPrepareParams.t,
+                CallHierarchyItem.t list or_null, unit) RequestHandler.t)
+            ->
+            RequestHandler.t_to_js CallHierarchyPrepareParams.t_to_js
+              (fun (x28 : CallHierarchyItem.t list or_null) ->
+                 or_null_to_js
+                   (fun (x29 : CallHierarchyItem.t list) ->
+                      Ojs.list_to_js CallHierarchyItem.t_to_js x29) x28)
+              Ojs.unit_to_js x26
       end
   end
 module CallHierarchyIncomingCallsParams =
   struct
-    type t = _CallHierarchyIncomingCallsParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x65 : Ojs.t) -> _CallHierarchyIncomingCallsParams_of_js x65
-    and t_to_js : t -> Ojs.t =
-      fun (x64 : _CallHierarchyIncomingCallsParams) ->
-        _CallHierarchyIncomingCallsParams_to_js x64
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x39 : Ojs.t) -> x39
+    and t_to_js : t -> Ojs.t = fun (x38 : Ojs.t) -> x38
     let (get_item : t -> CallHierarchyItem.t) =
-      fun (x66 : t) ->
-        CallHierarchyItem.t_of_js (Ojs.get_prop_ascii (t_to_js x66) "item")
+      fun (x40 : t) ->
+        CallHierarchyItem.t_of_js (Ojs.get_prop_ascii (t_to_js x40) "item")
     let (set_item : t -> CallHierarchyItem.t -> unit) =
-      fun (x67 : t) ->
-        fun (x68 : CallHierarchyItem.t) ->
-          Ojs.set_prop_ascii (t_to_js x67) "item"
-            (CallHierarchyItem.t_to_js x68)
+      fun (x41 : t) ->
+        fun (x42 : CallHierarchyItem.t) ->
+          Ojs.set_prop_ascii (t_to_js x41) "item"
+            (CallHierarchyItem.t_to_js x42)
     let (cast : t -> WorkDoneProgressParams.t) =
-      fun (x69 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x69)
+      fun (x43 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x43)
     let (cast' : t -> PartialResultParams.t) =
-      fun (x70 : t) -> PartialResultParams.t_of_js (t_to_js x70)
+      fun (x44 : t) -> PartialResultParams.t_of_js (t_to_js x44)
   end
 module CallHierarchyIncomingCallsRequest =
   struct
     let (method_ : [ `L_s0_callHierarchy_incomingCalls ]) =
-      let x71 =
+      let x45 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "CallHierarchyIncomingCallsRequest")
           "method" in
-      match Ojs.string_of_js x71 with
+      match Ojs.string_of_js x45 with
       | "callHierarchy/incomingCalls" -> `L_s0_callHierarchy_incomingCalls
       | _ -> assert false
     let (type_ :
-      (_CallHierarchyIncomingCallsParams,
+      (CallHierarchyIncomingCallsParams.t,
         CallHierarchyIncomingCall.t list or_null,
         CallHierarchyIncomingCall.t list, unit, unit) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _CallHierarchyIncomingCallsParams_of_js
-        (fun (x73 : Ojs.t) ->
+      ProtocolRequestType.t_of_js CallHierarchyIncomingCallsParams.t_of_js
+        (fun (x47 : Ojs.t) ->
            or_null_of_js
-             (fun (x74 : Ojs.t) ->
-                Ojs.list_of_js CallHierarchyIncomingCall.t_of_js x74) x73)
-        (fun (x76 : Ojs.t) ->
-           Ojs.list_of_js CallHierarchyIncomingCall.t_of_js x76)
+             (fun (x48 : Ojs.t) ->
+                Ojs.list_of_js CallHierarchyIncomingCall.t_of_js x48) x47)
+        (fun (x50 : Ojs.t) ->
+           Ojs.list_of_js CallHierarchyIncomingCall.t_of_js x50)
         Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "CallHierarchyIncomingCallsRequest")
            "type")
     module HandlerSignature =
       struct
-        type t = _CallHierarchyIncomingCallsRequest_HandlerSignature
+        type t =
+          (CallHierarchyIncomingCallsParams.t,
+            CallHierarchyIncomingCall.t list or_null, unit) RequestHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x81 : Ojs.t) ->
-            _CallHierarchyIncomingCallsRequest_HandlerSignature_of_js x81
+          fun (x60 : Ojs.t) ->
+            RequestHandler.t_of_js CallHierarchyIncomingCallsParams.t_of_js
+              (fun (x62 : Ojs.t) ->
+                 or_null_of_js
+                   (fun (x63 : Ojs.t) ->
+                      Ojs.list_of_js CallHierarchyIncomingCall.t_of_js x63)
+                   x62) Ojs.unit_of_js x60
         and t_to_js : t -> Ojs.t =
-          fun (x80 : _CallHierarchyIncomingCallsRequest_HandlerSignature) ->
-            _CallHierarchyIncomingCallsRequest_HandlerSignature_to_js x80
+          fun
+            (x54 :
+              (CallHierarchyIncomingCallsParams.t,
+                CallHierarchyIncomingCall.t list or_null, unit)
+                RequestHandler.t)
+            ->
+            RequestHandler.t_to_js CallHierarchyIncomingCallsParams.t_to_js
+              (fun (x56 : CallHierarchyIncomingCall.t list or_null) ->
+                 or_null_to_js
+                   (fun (x57 : CallHierarchyIncomingCall.t list) ->
+                      Ojs.list_to_js CallHierarchyIncomingCall.t_to_js x57)
+                   x56) Ojs.unit_to_js x54
       end
   end
 module CallHierarchyOutgoingCallsParams =
   struct
-    type t = _CallHierarchyOutgoingCallsParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x83 : Ojs.t) -> _CallHierarchyOutgoingCallsParams_of_js x83
-    and t_to_js : t -> Ojs.t =
-      fun (x82 : _CallHierarchyOutgoingCallsParams) ->
-        _CallHierarchyOutgoingCallsParams_to_js x82
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x67 : Ojs.t) -> x67
+    and t_to_js : t -> Ojs.t = fun (x66 : Ojs.t) -> x66
     let (get_item : t -> CallHierarchyItem.t) =
-      fun (x84 : t) ->
-        CallHierarchyItem.t_of_js (Ojs.get_prop_ascii (t_to_js x84) "item")
+      fun (x68 : t) ->
+        CallHierarchyItem.t_of_js (Ojs.get_prop_ascii (t_to_js x68) "item")
     let (set_item : t -> CallHierarchyItem.t -> unit) =
-      fun (x85 : t) ->
-        fun (x86 : CallHierarchyItem.t) ->
-          Ojs.set_prop_ascii (t_to_js x85) "item"
-            (CallHierarchyItem.t_to_js x86)
+      fun (x69 : t) ->
+        fun (x70 : CallHierarchyItem.t) ->
+          Ojs.set_prop_ascii (t_to_js x69) "item"
+            (CallHierarchyItem.t_to_js x70)
     let (cast : t -> WorkDoneProgressParams.t) =
-      fun (x87 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x87)
+      fun (x71 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x71)
     let (cast' : t -> PartialResultParams.t) =
-      fun (x88 : t) -> PartialResultParams.t_of_js (t_to_js x88)
+      fun (x72 : t) -> PartialResultParams.t_of_js (t_to_js x72)
   end
 module CallHierarchyOutgoingCallsRequest =
   struct
     let (method_ : [ `L_s1_callHierarchy_outgoingCalls ]) =
-      let x89 =
+      let x73 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "CallHierarchyOutgoingCallsRequest")
           "method" in
-      match Ojs.string_of_js x89 with
+      match Ojs.string_of_js x73 with
       | "callHierarchy/outgoingCalls" -> `L_s1_callHierarchy_outgoingCalls
       | _ -> assert false
     let (type_ :
-      (_CallHierarchyOutgoingCallsParams,
+      (CallHierarchyOutgoingCallsParams.t,
         CallHierarchyOutgoingCall.t list or_null,
         CallHierarchyOutgoingCall.t list, unit, unit) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _CallHierarchyOutgoingCallsParams_of_js
-        (fun (x91 : Ojs.t) ->
+      ProtocolRequestType.t_of_js CallHierarchyOutgoingCallsParams.t_of_js
+        (fun (x75 : Ojs.t) ->
            or_null_of_js
-             (fun (x92 : Ojs.t) ->
-                Ojs.list_of_js CallHierarchyOutgoingCall.t_of_js x92) x91)
-        (fun (x94 : Ojs.t) ->
-           Ojs.list_of_js CallHierarchyOutgoingCall.t_of_js x94)
+             (fun (x76 : Ojs.t) ->
+                Ojs.list_of_js CallHierarchyOutgoingCall.t_of_js x76) x75)
+        (fun (x78 : Ojs.t) ->
+           Ojs.list_of_js CallHierarchyOutgoingCall.t_of_js x78)
         Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "CallHierarchyOutgoingCallsRequest")
            "type")
     module HandlerSignature =
       struct
-        type t = _CallHierarchyOutgoingCallsRequest_HandlerSignature
+        type t =
+          (CallHierarchyOutgoingCallsParams.t,
+            CallHierarchyOutgoingCall.t list or_null, unit) RequestHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x99 : Ojs.t) ->
-            _CallHierarchyOutgoingCallsRequest_HandlerSignature_of_js x99
+          fun (x88 : Ojs.t) ->
+            RequestHandler.t_of_js CallHierarchyOutgoingCallsParams.t_of_js
+              (fun (x90 : Ojs.t) ->
+                 or_null_of_js
+                   (fun (x91 : Ojs.t) ->
+                      Ojs.list_of_js CallHierarchyOutgoingCall.t_of_js x91)
+                   x90) Ojs.unit_of_js x88
         and t_to_js : t -> Ojs.t =
-          fun (x98 : _CallHierarchyOutgoingCallsRequest_HandlerSignature) ->
-            _CallHierarchyOutgoingCallsRequest_HandlerSignature_to_js x98
+          fun
+            (x82 :
+              (CallHierarchyOutgoingCallsParams.t,
+                CallHierarchyOutgoingCall.t list or_null, unit)
+                RequestHandler.t)
+            ->
+            RequestHandler.t_to_js CallHierarchyOutgoingCallsParams.t_to_js
+              (fun (x84 : CallHierarchyOutgoingCall.t list or_null) ->
+                 or_null_to_js
+                   (fun (x85 : CallHierarchyOutgoingCall.t list) ->
+                      Ojs.list_to_js CallHierarchyOutgoingCall.t_to_js x85)
+                   x84) Ojs.unit_to_js x82
       end
   end

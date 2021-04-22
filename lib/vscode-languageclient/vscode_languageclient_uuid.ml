@@ -4,24 +4,24 @@
 open Es5
 module UUID =
   struct
-    type t = _UUID
-    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> _UUID_of_js x2
-    and t_to_js : t -> Ojs.t = fun (x1 : _UUID) -> _UUID_to_js x1
-    let (asHex : t -> string) =
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
+    let (as_hex : t -> string) =
       fun (x3 : t) -> Ojs.string_of_js (Ojs.call (t_to_js x3) "asHex" [||])
     let (equals : t -> other:t -> bool) =
       fun (x5 : t) ->
         fun ~other:(x4 : t) ->
           Ojs.bool_of_js (Ojs.call (t_to_js x5) "equals" [|(t_to_js x4)|])
   end
-let (empty : _UUID) = _UUID_of_js (Ojs.get_prop_ascii Ojs.global "empty")
-let (v4 : unit -> _UUID) =
-  fun () -> _UUID_of_js (Ojs.call Ojs.global "v4" [||])
-let (isUUID : value:string -> bool) =
+let (empty : UUID.t) = UUID.t_of_js (Ojs.get_prop_ascii Ojs.global "empty")
+let (v4 : unit -> UUID.t) =
+  fun () -> UUID.t_of_js (Ojs.call Ojs.global "v4" [||])
+let (is_uuid : value:string -> bool) =
   fun ~value:(x6 : string) ->
     Ojs.bool_of_js (Ojs.call Ojs.global "isUUID" [|(Ojs.string_to_js x6)|])
-let (parse : value:string -> _UUID) =
+let (parse : value:string -> UUID.t) =
   fun ~value:(x7 : string) ->
-    _UUID_of_js (Ojs.call Ojs.global "parse" [|(Ojs.string_to_js x7)|])
-let (generateUuid : unit -> string) =
+    UUID.t_of_js (Ojs.call Ojs.global "parse" [|(Ojs.string_to_js x7)|])
+let (generate_uuid : unit -> string) =
   fun () -> Ojs.string_of_js (Ojs.call Ojs.global "generateUuid" [||])

@@ -12,21 +12,21 @@ open Es5
    StaticRegistrationOptions, WorkDoneProgressParams, PartialResultParams } from
    './protocol'; *)
 module SelectionRangeClientCapabilities : sig
-  type t = _SelectionRangeClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 end
 [@@js.scope "SelectionRangeClientCapabilities"]
 
 module SelectionRangeOptions : sig
-  type t = _SelectionRangeOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -37,13 +37,13 @@ end
 [@@js.scope "SelectionRangeOptions"]
 
 module SelectionRangeRegistrationOptions : sig
-  type t = _SelectionRangeRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _SelectionRangeOptions [@@js.cast]
+  val cast : t -> SelectionRangeOptions.t [@@js.cast]
 
   val cast' : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
@@ -52,15 +52,16 @@ end
 [@@js.scope "SelectionRangeRegistrationOptions"]
 
 module SelectionRangeParams : sig
-  type t = _SelectionRangeParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentIdentifier.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentIdentifier.t
+    [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentIdentifier.t -> unit
+  val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
   val get_positions : t -> Position.t list [@@js.get "positions"]
@@ -80,17 +81,17 @@ module SelectionRangeRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _SelectionRangeParams
+    : ( SelectionRangeParams.t
       , SelectionRange.t list or_null
       , SelectionRange.t list
       , any
-      , _SelectionRangeRegistrationOptions )
+      , SelectionRangeRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
     type t =
-      ( _SelectionRangeParams
+      ( SelectionRangeParams.t
       , SelectionRange.t list or_null
       , unit )
       RequestHandler.t

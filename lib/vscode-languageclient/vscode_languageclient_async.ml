@@ -2,115 +2,109 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct module Types = struct open AnonymousInterfaces end end
 module ITask =
   struct
-    type 'T t = 'T _ITask
+    type 'T t = Ojs.t
     let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type __T) ->
-      fun (__T_of_js : Ojs.t -> __T) ->
-        fun (x3 : Ojs.t) -> _ITask_of_js __T_of_js x3
+      fun (__T_of_js : Ojs.t -> __T) -> fun (x2 : Ojs.t) -> x2
     and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-      fun (__T_to_js : __T -> Ojs.t) ->
-        fun (x1 : __T _ITask) -> _ITask_to_js __T_to_js x1
+      fun (__T_to_js : __T -> Ojs.t) -> fun (x1 : Ojs.t) -> x1
     let (apply : 'T t -> 'T) =
-      fun (x5 : 'T t) -> Obj.magic (Ojs.apply (t_to_js Obj.magic x5) [||])
+      fun (x3 : 'T t) -> Obj.magic (Ojs.apply (t_to_js Obj.magic x3) [||])
   end
 module Delayer =
   struct
-    type 'T t = 'T _Delayer
+    type 'T t = Ojs.t
     let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type __T) ->
-      fun (__T_of_js : Ojs.t -> __T) ->
-        fun (x9 : Ojs.t) -> _Delayer_of_js __T_of_js x9
+      fun (__T_of_js : Ojs.t -> __T) -> fun (x6 : Ojs.t) -> x6
     and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-      fun (__T_to_js : __T -> Ojs.t) ->
-        fun (x7 : __T _Delayer) -> _Delayer_to_js __T_to_js x7
-    let (get_defaultDelay : 'T t -> int) =
-      fun (x11 : 'T t) ->
+      fun (__T_to_js : __T -> Ojs.t) -> fun (x5 : Ojs.t) -> x5
+    let (get_default_delay : 'T t -> int) =
+      fun (x7 : 'T t) ->
         Ojs.int_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x11) "defaultDelay")
-    let (set_defaultDelay : 'T t -> int -> unit) =
-      fun (x13 : 'T t) ->
-        fun (x14 : int) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x13) "defaultDelay"
-            (Ojs.int_to_js x14)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x7) "defaultDelay")
+    let (set_default_delay : 'T t -> int -> unit) =
+      fun (x9 : 'T t) ->
+        fun (x10 : int) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x9) "defaultDelay"
+            (Ojs.int_to_js x10)
     let (get_timeout : 'T t -> any) =
-      fun (x16 : 'T t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x16) "timeout")
+      fun (x12 : 'T t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x12) "timeout")
     let (set_timeout : 'T t -> any -> unit) =
-      fun (x18 : 'T t) ->
-        fun (x19 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x18) "timeout"
-            (any_to_js x19)
-    let (get_completionPromise : 'T t -> any) =
-      fun (x21 : 'T t) ->
+      fun (x14 : 'T t) ->
+        fun (x15 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x14) "timeout"
+            (any_to_js x15)
+    let (get_completion_promise : 'T t -> any) =
+      fun (x17 : 'T t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x21) "completionPromise")
-    let (set_completionPromise : 'T t -> any -> unit) =
-      fun (x23 : 'T t) ->
-        fun (x24 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x23) "completionPromise"
-            (any_to_js x24)
-    let (get_onSuccess : 'T t -> any) =
-      fun (x26 : 'T t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x26) "onSuccess")
-    let (set_onSuccess : 'T t -> any -> unit) =
-      fun (x28 : 'T t) ->
-        fun (x29 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x28) "onSuccess"
-            (any_to_js x29)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x17) "completionPromise")
+    let (set_completion_promise : 'T t -> any -> unit) =
+      fun (x19 : 'T t) ->
+        fun (x20 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x19) "completionPromise"
+            (any_to_js x20)
+    let (get_on_success : 'T t -> any) =
+      fun (x22 : 'T t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x22) "onSuccess")
+    let (set_on_success : 'T t -> any -> unit) =
+      fun (x24 : 'T t) ->
+        fun (x25 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x24) "onSuccess"
+            (any_to_js x25)
     let (get_task : 'T t -> any) =
-      fun (x31 : 'T t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x31) "task")
+      fun (x27 : 'T t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x27) "task")
     let (set_task : 'T t -> any -> unit) =
-      fun (x33 : 'T t) ->
-        fun (x34 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x33) "task" (any_to_js x34)
-    let (create : defaultDelay:int -> 'T t) =
-      fun ~defaultDelay:(x36 : int) ->
+      fun (x29 : 'T t) ->
+        fun (x30 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x29) "task" (any_to_js x30)
+    let (create : default_delay:int -> 'T t) =
+      fun ~default_delay:(x32 : int) ->
         t_of_js Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Delayer")
-             [|(Ojs.int_to_js x36)|])
+             [|(Ojs.int_to_js x32)|])
     let (trigger :
-      'T t -> task:'T _ITask -> ?delay:int -> unit -> 'T Promise.t) =
-      fun (x43 : 'T t) ->
-        fun ~task:(x38 : 'T _ITask) ->
-          fun ?delay:(x39 : int option) ->
+      'T t -> task:'T ITask.t -> ?delay:int -> unit -> 'T Promise.t) =
+      fun (x39 : 'T t) ->
+        fun ~task:(x34 : 'T ITask.t) ->
+          fun ?delay:(x35 : int option) ->
             fun () ->
               Promise.t_of_js Obj.magic
-                (let x45 = t_to_js Obj.magic x43 in
-                 Ojs.call (Ojs.get_prop_ascii x45 "trigger") "apply"
-                   [|x45;((let x40 =
+                (let x41 = t_to_js Obj.magic x39 in
+                 Ojs.call (Ojs.get_prop_ascii x41 "trigger") "apply"
+                   [|x41;((let x36 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x40 "push"
-                                [|(_ITask_to_js Obj.magic x38)|]);
-                           (match x39 with
-                            | Some x41 ->
+                             (Ojs.call x36 "push"
+                                [|(ITask.t_to_js Obj.magic x34)|]);
+                           (match x35 with
+                            | Some x37 ->
                                 ignore
-                                  (Ojs.call x40 "push"
-                                     [|(Ojs.int_to_js x41)|])
+                                  (Ojs.call x36 "push"
+                                     [|(Ojs.int_to_js x37)|])
                             | None -> ());
-                           x40))|])
-    let (forceDelivery : 'T t -> 'T or_undefined) =
-      fun (x47 : 'T t) ->
+                           x36))|])
+    let (force_delivery : 'T t -> 'T or_undefined) =
+      fun (x43 : 'T t) ->
         or_undefined_of_js Obj.magic
-          (Ojs.call (t_to_js Obj.magic x47) "forceDelivery" [||])
-    let (isTriggered : 'T t -> bool) =
-      fun (x50 : 'T t) ->
-        Ojs.bool_of_js (Ojs.call (t_to_js Obj.magic x50) "isTriggered" [||])
+          (Ojs.call (t_to_js Obj.magic x43) "forceDelivery" [||])
+    let (is_triggered : 'T t -> bool) =
+      fun (x46 : 'T t) ->
+        Ojs.bool_of_js (Ojs.call (t_to_js Obj.magic x46) "isTriggered" [||])
     let (cancel : 'T t -> unit) =
-      fun (x52 : 'T t) ->
-        ignore (Ojs.call (t_to_js Obj.magic x52) "cancel" [||])
-    let (get_cancelTimeout : 'T t -> any) =
-      fun (x54 : 'T t) ->
+      fun (x48 : 'T t) ->
+        ignore (Ojs.call (t_to_js Obj.magic x48) "cancel" [||])
+    let (get_cancel_timeout : 'T t -> any) =
+      fun (x50 : 'T t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x54) "cancelTimeout")
-    let (set_cancelTimeout : 'T t -> any -> unit) =
-      fun (x56 : 'T t) ->
-        fun (x57 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x56) "cancelTimeout"
-            (any_to_js x57)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x50) "cancelTimeout")
+    let (set_cancel_timeout : 'T t -> any -> unit) =
+      fun (x52 : 'T t) ->
+        fun (x53 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x52) "cancelTimeout"
+            (any_to_js x53)
   end

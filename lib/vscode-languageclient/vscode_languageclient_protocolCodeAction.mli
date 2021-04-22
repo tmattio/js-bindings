@@ -6,7 +6,7 @@ open Es5
 
 (* import * as vscode from 'vscode'; *)
 module ProtocolCodeAction : sig
-  type t = _ProtocolCodeAction
+  type t
 
   val t_to_js : t -> Ojs.t
 

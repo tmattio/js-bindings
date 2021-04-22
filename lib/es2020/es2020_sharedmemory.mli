@@ -12,7 +12,7 @@ module Atomics : sig
 
   val add
     :  t
-    -> typedArray:(BigInt64Array.t, BigUint64Array.t) union2
+    -> typed_array:(BigInt64Array.t, BigUint64Array.t) union2
     -> index:int
     -> value:bigint
     -> bigint
@@ -20,7 +20,7 @@ module Atomics : sig
 
   val and_
     :  t
-    -> typedArray:(BigInt64Array.t, BigUint64Array.t) union2
+    -> typed_array:(BigInt64Array.t, BigUint64Array.t) union2
     -> index:int
     -> value:bigint
     -> bigint
@@ -28,16 +28,16 @@ module Atomics : sig
 
   val compare_exchange
     :  t
-    -> typedArray:(BigInt64Array.t, BigUint64Array.t) union2
+    -> typed_array:(BigInt64Array.t, BigUint64Array.t) union2
     -> index:int
-    -> expectedValue:bigint
-    -> replacementValue:bigint
+    -> expected_value:bigint
+    -> replacement_value:bigint
     -> bigint
     [@@js.call "compareExchange"]
 
   val exchange
     :  t
-    -> typedArray:(BigInt64Array.t, BigUint64Array.t) union2
+    -> typed_array:(BigInt64Array.t, BigUint64Array.t) union2
     -> index:int
     -> value:bigint
     -> bigint
@@ -45,14 +45,14 @@ module Atomics : sig
 
   val load
     :  t
-    -> typedArray:(BigInt64Array.t, BigUint64Array.t) union2
+    -> typed_array:(BigInt64Array.t, BigUint64Array.t) union2
     -> index:int
     -> bigint
     [@@js.call "load"]
 
   val or_
     :  t
-    -> typedArray:(BigInt64Array.t, BigUint64Array.t) union2
+    -> typed_array:(BigInt64Array.t, BigUint64Array.t) union2
     -> index:int
     -> value:bigint
     -> bigint
@@ -60,7 +60,7 @@ module Atomics : sig
 
   val store
     :  t
-    -> typedArray:(BigInt64Array.t, BigUint64Array.t) union2
+    -> typed_array:(BigInt64Array.t, BigUint64Array.t) union2
     -> index:int
     -> value:bigint
     -> bigint
@@ -68,7 +68,7 @@ module Atomics : sig
 
   val sub
     :  t
-    -> typedArray:(BigInt64Array.t, BigUint64Array.t) union2
+    -> typed_array:(BigInt64Array.t, BigUint64Array.t) union2
     -> index:int
     -> value:bigint
     -> bigint
@@ -76,7 +76,7 @@ module Atomics : sig
 
   val wait
     :  t
-    -> typedArray:BigInt64Array.t
+    -> typed_array:BigInt64Array.t
     -> index:int
     -> value:bigint
     -> ?timeout:int
@@ -90,7 +90,7 @@ module Atomics : sig
 
   val notify
     :  t
-    -> typedArray:BigInt64Array.t
+    -> typed_array:BigInt64Array.t
     -> index:int
     -> ?count:int
     -> unit
@@ -99,7 +99,7 @@ module Atomics : sig
 
   val xor
     :  t
-    -> typedArray:(BigInt64Array.t, BigUint64Array.t) union2
+    -> typed_array:(BigInt64Array.t, BigUint64Array.t) union2
     -> index:int
     -> value:bigint
     -> bigint

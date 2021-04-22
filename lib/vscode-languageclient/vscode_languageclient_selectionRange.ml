@@ -2,16 +2,11 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct module Types = struct open AnonymousInterfaces end end
 module ProvideSelectionRangeSignature =
   struct
-    type t = _ProvideSelectionRangeSignature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> _ProvideSelectionRangeSignature_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : _ProvideSelectionRangeSignature) ->
-        _ProvideSelectionRangeSignature_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (apply :
       t ->
         this:unit ->
@@ -35,19 +30,16 @@ module ProvideSelectionRangeSignature =
   end
 module SelectionRangeProviderMiddleware =
   struct
-    type t = _SelectionRangeProviderMiddleware
-    let rec t_of_js : Ojs.t -> t =
-      fun (x12 : Ojs.t) -> _SelectionRangeProviderMiddleware_of_js x12
-    and t_to_js : t -> Ojs.t =
-      fun (x11 : _SelectionRangeProviderMiddleware) ->
-        _SelectionRangeProviderMiddleware_to_js x11
-    let (provideSelectionRanges :
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x12 : Ojs.t) -> x12
+    and t_to_js : t -> Ojs.t = fun (x11 : Ojs.t) -> x11
+    let (provide_selection_ranges :
       t ->
         this:unit ->
           document:TextDocument.t ->
             positions:VPosition.t list ->
               token:CancellationToken.t ->
-                next:_ProvideSelectionRangeSignature ->
+                next:ProvideSelectionRangeSignature.t ->
                   VSelectionRange.t list ProviderResult.t)
       =
       fun (x19 : t) ->
@@ -55,7 +47,7 @@ module SelectionRangeProviderMiddleware =
           fun ~document:(x14 : TextDocument.t) ->
             fun ~positions:(x15 : VPosition.t list) ->
               fun ~token:(x17 : CancellationToken.t) ->
-                fun ~next:(x18 : _ProvideSelectionRangeSignature) ->
+                fun ~next:(x18 : ProvideSelectionRangeSignature.t) ->
                   ProviderResult.t_of_js
                     (fun (x20 : Ojs.t) ->
                        Ojs.list_of_js VSelectionRange.t_of_js x20)
@@ -63,22 +55,20 @@ module SelectionRangeProviderMiddleware =
                        [|(Ojs.unit_to_js x13);(TextDocument.t_to_js x14);(
                          Ojs.list_to_js VPosition.t_to_js x15);(CancellationToken.t_to_js
                                                                   x17);(
-                         _ProvideSelectionRangeSignature_to_js x18)|])
+                         ProvideSelectionRangeSignature.t_to_js x18)|])
   end
 module SelectionRangeFeature =
   struct
-    type t = _SelectionRangeFeature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x23 : Ojs.t) -> _SelectionRangeFeature_of_js x23
-    and t_to_js : t -> Ojs.t =
-      fun (x22 : _SelectionRangeFeature) -> _SelectionRangeFeature_to_js x22
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x23 : Ojs.t) -> x23
+    and t_to_js : t -> Ojs.t = fun (x22 : Ojs.t) -> x22
     let (create : client:BaseLanguageClient.t -> t) =
       fun ~client:(x24 : BaseLanguageClient.t) ->
         t_of_js
           (Ojs.new_obj
              (Ojs.get_prop_ascii Ojs.global "SelectionRangeFeature")
              [|(BaseLanguageClient.t_to_js x24)|])
-    let (fillClientCapabilities :
+    let (fill_client_capabilities :
       t -> capabilities:ClientCapabilities.t -> unit) =
       fun (x26 : t) ->
         fun ~capabilities:(x25 : ClientCapabilities.t) ->
@@ -88,16 +78,16 @@ module SelectionRangeFeature =
     let (initialize :
       t ->
         capabilities:ServerCapabilities.t ->
-          documentSelector:DocumentSelector.t -> unit)
+          document_selector:DocumentSelector.t -> unit)
       =
       fun (x29 : t) ->
         fun ~capabilities:(x27 : ServerCapabilities.t) ->
-          fun ~documentSelector:(x28 : DocumentSelector.t) ->
+          fun ~document_selector:(x28 : DocumentSelector.t) ->
             ignore
               (Ojs.call (t_to_js x29) "initialize"
                  [|(ServerCapabilities.t_to_js x27);(DocumentSelector.t_to_js
                                                        x28)|])
-    let (registerLanguageProvider :
+    let (register_language_provider :
       t ->
         options:SelectionRangeRegistrationOptions.t ->
           (Disposable.t * SelectionRangeProvider.t))

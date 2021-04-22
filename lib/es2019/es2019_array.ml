@@ -26,7 +26,7 @@ module ReadonlyArray =
         callback:(this:'This ->
                     value:'T ->
                       index:int -> array:'T list -> ('U, 'U t) union2)
-          -> ?thisArg:'This -> unit -> 'U list)
+          -> ?this_arg:'This -> unit -> 'U list)
       =
       fun (x15 : 'T t) ->
         fun
@@ -35,7 +35,7 @@ module ReadonlyArray =
                         value:'T ->
                           index:int -> array:'T list -> ('U, 'U t) union2)
           ->
-          fun ?thisArg:(x4 : 'This option) ->
+          fun ?this_arg:(x4 : 'This option) ->
             fun () ->
               Ojs.list_of_js Obj.magic
                 (let x17 = t_to_js Obj.magic x15 in
@@ -101,7 +101,7 @@ module Array =
                     value:'T ->
                       index:int ->
                         array:'T list -> ('U, 'U ReadonlyArray.t) union2)
-          -> ?thisArg:'This -> unit -> 'U list)
+          -> ?this_arg:'This -> unit -> 'U list)
       =
       fun (x47 : 'T t) ->
         fun
@@ -111,7 +111,7 @@ module Array =
                           index:int ->
                             array:'T list -> ('U, 'U ReadonlyArray.t) union2)
           ->
-          fun ?thisArg:(x36 : 'This option) ->
+          fun ?this_arg:(x36 : 'This option) ->
             fun () ->
               Ojs.list_of_js Obj.magic
                 (let x49 = t_to_js Obj.magic x47 in

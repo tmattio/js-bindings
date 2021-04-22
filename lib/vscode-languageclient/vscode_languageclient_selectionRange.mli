@@ -4,8 +4,6 @@
 
 open Es5
 
-
-
 (* import { Disposable, TextDocument, ProviderResult, Position as VPosition,
    SelectionRange as VSelectionRange, SelectionRangeProvider } from 'vscode'; *)
 (* import { ClientCapabilities, CancellationToken, ServerCapabilities,
@@ -13,7 +11,7 @@ open Es5
    from 'vscode-languageserver-protocol'; *)
 (* import { TextDocumentFeature, BaseLanguageClient } from './client'; *)
 module ProvideSelectionRangeSignature : sig
-  type t = _ProvideSelectionRangeSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -31,26 +29,26 @@ end
 [@@js.scope "ProvideSelectionRangeSignature"]
 
 module SelectionRangeProviderMiddleware : sig
-  type t = _SelectionRangeProviderMiddleware
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val provideSelectionRanges
+  val provide_selection_ranges
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> positions:VPosition.t list
     -> token:CancellationToken.t
-    -> next:_ProvideSelectionRangeSignature
+    -> next:ProvideSelectionRangeSignature.t
     -> VSelectionRange.t list ProviderResult.t
     [@@js.call "provideSelectionRanges"]
 end
 [@@js.scope "SelectionRangeProviderMiddleware"]
 
 module SelectionRangeFeature : sig
-  type t = _SelectionRangeFeature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -58,17 +56,17 @@ module SelectionRangeFeature : sig
 
   val create : client:BaseLanguageClient.t -> t [@@js.create]
 
-  val fillClientCapabilities : t -> capabilities:ClientCapabilities.t -> unit
+  val fill_client_capabilities : t -> capabilities:ClientCapabilities.t -> unit
     [@@js.call "fillClientCapabilities"]
 
   val initialize
     :  t
     -> capabilities:ServerCapabilities.t
-    -> documentSelector:DocumentSelector.t
+    -> document_selector:DocumentSelector.t
     -> unit
     [@@js.call "initialize"]
 
-  val registerLanguageProvider
+  val register_language_provider
     :  t
     -> options:SelectionRangeRegistrationOptions.t
     -> Disposable.t * SelectionRangeProvider.t

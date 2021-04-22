@@ -9,7 +9,7 @@ include module type of struct
 end
 
 module IPCMessageReader : sig
-  type t = _IPCMessageReader
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -32,7 +32,7 @@ end
 [@@js.scope "IPCMessageReader"]
 
 module IPCMessageWriter : sig
-  type t = _IPCMessageWriter
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -43,10 +43,10 @@ module IPCMessageWriter : sig
   val set_process : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "process"]
 
-  val get_errorCount : t -> (* FIXME: unknown type *) any
+  val get_error_count : t -> (* FIXME: unknown type *) any
     [@@js.get "errorCount"]
 
-  val set_errorCount : t -> (* FIXME: unknown type *) any -> unit
+  val set_error_count : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "errorCount"]
 
   val create
@@ -56,10 +56,10 @@ module IPCMessageWriter : sig
 
   val write : t -> msg:Message.t -> unit Promise.t [@@js.call "write"]
 
-  val get_handleError : t -> (* FIXME: unknown type *) any
+  val get_handle_error : t -> (* FIXME: unknown type *) any
     [@@js.get "handleError"]
 
-  val set_handleError : t -> (* FIXME: unknown type *) any -> unit
+  val set_handle_error : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "handleError"]
 
   val end_ : t -> unit [@@js.call "end"]
@@ -71,7 +71,7 @@ end
 [@@js.scope "IPCMessageWriter"]
 
 module SocketMessageReader : sig
-  type t = _SocketMessageReader
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -89,7 +89,7 @@ end
 [@@js.scope "SocketMessageReader"]
 
 module SocketMessageWriter : sig
-  type t = _SocketMessageWriter
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -117,7 +117,7 @@ end
 [@@js.scope "SocketMessageWriter"]
 
 module StreamMessageReader : sig
-  type t = _StreamMessageReader
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -138,7 +138,7 @@ end
 [@@js.scope "StreamMessageReader"]
 
 module StreamMessageWriter : sig
-  type t = _StreamMessageWriter
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -158,62 +158,62 @@ module StreamMessageWriter : sig
 end
 [@@js.scope "StreamMessageWriter"]
 
-val generateRandomPipeName : unit -> string
+val generate_random_pipe_name : unit -> string
   [@@js.global "generateRandomPipeName"]
 
 module PipeTransport : sig
-  type t = _PipeTransport
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val onConnected : t -> (MessageReader.t * MessageWriter.t) Promise.t
+  val on_connected : t -> (MessageReader.t * MessageWriter.t) Promise.t
     [@@js.call "onConnected"]
 end
 [@@js.scope "PipeTransport"]
 
-val createClientPipeTransport
-  :  pipeName:string
+val create_client_pipe_transport
+  :  pipe_name:string
   -> ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
   -> unit
-  -> _PipeTransport Promise.t
+  -> PipeTransport.t Promise.t
   [@@js.global "createClientPipeTransport"]
 
-val createServerPipeTransport
-  :  pipeName:string
+val create_server_pipe_transport
+  :  pipe_name:string
   -> ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
   -> unit
   -> MessageReader.t * MessageWriter.t
   [@@js.global "createServerPipeTransport"]
 
 module SocketTransport : sig
-  type t = _SocketTransport
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val onConnected : t -> (MessageReader.t * MessageWriter.t) Promise.t
+  val on_connected : t -> (MessageReader.t * MessageWriter.t) Promise.t
     [@@js.call "onConnected"]
 end
 [@@js.scope "SocketTransport"]
 
-val createClientSocketTransport
+val create_client_socket_transport
   :  port:int
   -> ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
   -> unit
-  -> _SocketTransport Promise.t
+  -> SocketTransport.t Promise.t
   [@@js.global "createClientSocketTransport"]
 
-val createServerSocketTransport
+val create_server_socket_transport
   :  port:int
   -> ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t
   -> unit
   -> MessageReader.t * MessageWriter.t
   [@@js.global "createServerSocketTransport"]
 
-val createMessageConnection
+val create_message_connection
   :  reader:MessageReader.t
   -> writer:MessageWriter.t
   -> ?logger:Logger.t
@@ -222,9 +222,9 @@ val createMessageConnection
   -> MessageConnection.t
   [@@js.global "createMessageConnection"]
 
-val createMessageConnection
-  :  inputStream:Node.ReadableStream.t
-  -> outputStream:Node.WritableStream.t
+val create_message_connection
+  :  input_stream:Node.ReadableStream.t
+  -> output_stream:Node.WritableStream.t
   -> ?logger:Logger.t
   -> ?options:(ConnectionOptions.t, ConnectionStrategy.t) union2
   -> unit

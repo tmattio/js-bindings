@@ -4,42 +4,42 @@
 open Es5
 module Converter =
   struct
-    type t = _Converter
-    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> _Converter_of_js x2
-    and t_to_js : t -> Ojs.t = fun (x1 : _Converter) -> _Converter_to_js x1
-    let (asUri : t -> value:string -> Code.Uri.t) =
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
+    let (as_uri : t -> value:string -> Code.Uri.t) =
       fun (x4 : t) ->
         fun ~value:(x3 : string) ->
           Code.Uri.t_of_js
             (Ojs.call (t_to_js x4) "asUri" [|(Ojs.string_to_js x3)|])
-    let (asDiagnostic : t -> diagnostic:Ls.Diagnostic.t -> Code.Diagnostic.t)
-      =
+    let (as_diagnostic :
+      t -> diagnostic:Ls.Diagnostic.t -> Code.Diagnostic.t) =
       fun (x6 : t) ->
         fun ~diagnostic:(x5 : Ls.Diagnostic.t) ->
           Code.Diagnostic.t_of_js
             (Ojs.call (t_to_js x6) "asDiagnostic"
                [|(Ls.Diagnostic.t_to_js x5)|])
-    let (asDiagnostics :
+    let (as_diagnostics :
       t -> diagnostics:Ls.Diagnostic.t list -> Code.Diagnostic.t list) =
       fun (x9 : t) ->
         fun ~diagnostics:(x7 : Ls.Diagnostic.t list) ->
           Ojs.list_of_js Code.Diagnostic.t_of_js
             (Ojs.call (t_to_js x9) "asDiagnostics"
                [|(Ojs.list_to_js Ls.Diagnostic.t_to_js x7)|])
-    let (asPosition :
+    let (as_position :
       t -> value:never or_null_or_undefined -> never or_undefined) =
       fun (x13 : t) ->
         fun ~value:(x11 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x13) "asPosition"
                [|(or_null_or_undefined_to_js never_to_js x11)|])
-    let (asPosition' : t -> value:Ls.Position.t -> Code.Position.t) =
+    let (as_position' : t -> value:Ls.Position.t -> Code.Position.t) =
       fun (x16 : t) ->
         fun ~value:(x15 : Ls.Position.t) ->
           Code.Position.t_of_js
             (Ojs.call (t_to_js x16) "asPosition"
                [|(Ls.Position.t_to_js x15)|])
-    let (asPosition'' :
+    let (as_position'' :
       t ->
         value:Ls.Position.t or_null_or_undefined ->
           Code.Position.t or_undefined)
@@ -49,19 +49,19 @@ module Converter =
           or_undefined_of_js Code.Position.t_of_js
             (Ojs.call (t_to_js x19) "asPosition"
                [|(or_null_or_undefined_to_js Ls.Position.t_to_js x17)|])
-    let (asRange :
+    let (as_range :
       t -> value:never or_null_or_undefined -> never or_undefined) =
       fun (x23 : t) ->
         fun ~value:(x21 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x23) "asRange"
                [|(or_null_or_undefined_to_js never_to_js x21)|])
-    let (asRange' : t -> value:Ls.Range.t -> Code.Range.t) =
+    let (as_range' : t -> value:Ls.Range.t -> Code.Range.t) =
       fun (x26 : t) ->
         fun ~value:(x25 : Ls.Range.t) ->
           Code.Range.t_of_js
             (Ojs.call (t_to_js x26) "asRange" [|(Ls.Range.t_to_js x25)|])
-    let (asRange'' :
+    let (as_range'' :
       t -> value:Ls.Range.t or_null_or_undefined -> Code.Range.t or_undefined)
       =
       fun (x29 : t) ->
@@ -69,39 +69,39 @@ module Converter =
           or_undefined_of_js Code.Range.t_of_js
             (Ojs.call (t_to_js x29) "asRange"
                [|(or_null_or_undefined_to_js Ls.Range.t_to_js x27)|])
-    let (asRanges : t -> values:Ls.Range.t list -> Code.Range.t list) =
+    let (as_ranges : t -> values:Ls.Range.t list -> Code.Range.t list) =
       fun (x33 : t) ->
         fun ~values:(x31 : Ls.Range.t list) ->
           Ojs.list_of_js Code.Range.t_of_js
             (Ojs.call (t_to_js x33) "asRanges"
                [|(Ojs.list_to_js Ls.Range.t_to_js x31)|])
-    let (asDiagnosticSeverity :
+    let (as_diagnostic_severity :
       t -> value:int or_null_or_undefined -> Code.DiagnosticSeverity.t) =
       fun (x37 : t) ->
         fun ~value:(x35 : int or_null_or_undefined) ->
           Code.DiagnosticSeverity.t_of_js
             (Ojs.call (t_to_js x37) "asDiagnosticSeverity"
                [|(or_null_or_undefined_to_js Ojs.int_to_js x35)|])
-    let (asDiagnosticTag :
+    let (as_diagnostic_tag :
       t -> tag:Ls.DiagnosticTag.t -> Code.DiagnosticTag.t or_undefined) =
       fun (x39 : t) ->
         fun ~tag:(x38 : Ls.DiagnosticTag.t) ->
           or_undefined_of_js Code.DiagnosticTag.t_of_js
             (Ojs.call (t_to_js x39) "asDiagnosticTag"
                [|(Ls.DiagnosticTag.t_to_js x38)|])
-    let (asHover : t -> hover:Ls.Hover.t -> Code.Hover.t) =
+    let (as_hover : t -> hover:Ls.Hover.t -> Code.Hover.t) =
       fun (x42 : t) ->
         fun ~hover:(x41 : Ls.Hover.t) ->
           Code.Hover.t_of_js
             (Ojs.call (t_to_js x42) "asHover" [|(Ls.Hover.t_to_js x41)|])
-    let (asHover' :
+    let (as_hover' :
       t -> hover:never or_null_or_undefined -> never or_undefined) =
       fun (x45 : t) ->
         fun ~hover:(x43 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x45) "asHover"
                [|(or_null_or_undefined_to_js never_to_js x43)|])
-    let (asHover'' :
+    let (as_hover'' :
       t -> hover:Ls.Hover.t or_null_or_undefined -> Code.Hover.t or_undefined)
       =
       fun (x49 : t) ->
@@ -109,28 +109,28 @@ module Converter =
           or_undefined_of_js Code.Hover.t_of_js
             (Ojs.call (t_to_js x49) "asHover"
                [|(or_null_or_undefined_to_js Ls.Hover.t_to_js x47)|])
-    let (asCompletionResult :
+    let (as_completion_result :
       t -> result:Ls.CompletionList.t -> Code.CompletionList.t) =
       fun (x52 : t) ->
         fun ~result:(x51 : Ls.CompletionList.t) ->
           Code.CompletionList.t_of_js
             (Ojs.call (t_to_js x52) "asCompletionResult"
                [|(Ls.CompletionList.t_to_js x51)|])
-    let (asCompletionResult' :
+    let (as_completion_result' :
       t -> result:Ls.CompletionItem.t list -> Code.CompletionItem.t list) =
       fun (x55 : t) ->
         fun ~result:(x53 : Ls.CompletionItem.t list) ->
           Ojs.list_of_js Code.CompletionItem.t_of_js
             (Ojs.call (t_to_js x55) "asCompletionResult"
                [|(Ojs.list_to_js Ls.CompletionItem.t_to_js x53)|])
-    let (asCompletionResult'' :
+    let (as_completion_result'' :
       t -> result:never or_null_or_undefined -> never or_undefined) =
       fun (x59 : t) ->
         fun ~result:(x57 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x59) "asCompletionResult"
                [|(or_null_or_undefined_to_js never_to_js x57)|])
-    let (asCompletionResult''' :
+    let (as_completion_result''' :
       t ->
         result:(Ls.CompletionList.t, Ls.CompletionItem.t) or_array
           or_null_or_undefined ->
@@ -155,27 +155,27 @@ module Converter =
                        ->
                        or_array_to_js Ls.CompletionList.t_to_js
                          Ls.CompletionItem.t_to_js x62) x61)|])
-    let (asCompletionItem :
+    let (as_completion_item :
       t -> item:Ls.CompletionItem.t -> ProtocolCompletionItem.t) =
       fun (x70 : t) ->
         fun ~item:(x69 : Ls.CompletionItem.t) ->
           ProtocolCompletionItem.t_of_js
             (Ojs.call (t_to_js x70) "asCompletionItem"
                [|(Ls.CompletionItem.t_to_js x69)|])
-    let (asTextEdit :
+    let (as_text_edit :
       t -> edit:never or_null_or_undefined -> never or_undefined) =
       fun (x73 : t) ->
         fun ~edit:(x71 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x73) "asTextEdit"
                [|(or_null_or_undefined_to_js never_to_js x71)|])
-    let (asTextEdit' : t -> edit:Ls.TextEdit.t -> Code.TextEdit.t) =
+    let (as_text_edit' : t -> edit:Ls.TextEdit.t -> Code.TextEdit.t) =
       fun (x76 : t) ->
         fun ~edit:(x75 : Ls.TextEdit.t) ->
           Code.TextEdit.t_of_js
             (Ojs.call (t_to_js x76) "asTextEdit"
                [|(Ls.TextEdit.t_to_js x75)|])
-    let (asTextEdit'' :
+    let (as_text_edit'' :
       t ->
         edit:Ls.TextEdit.t or_null_or_undefined ->
           Code.TextEdit.t or_undefined)
@@ -185,21 +185,21 @@ module Converter =
           or_undefined_of_js Code.TextEdit.t_of_js
             (Ojs.call (t_to_js x79) "asTextEdit"
                [|(or_null_or_undefined_to_js Ls.TextEdit.t_to_js x77)|])
-    let (asTextEdits : t -> items:Ls.TextEdit.t list -> Code.TextEdit.t list)
-      =
+    let (as_text_edits :
+      t -> items:Ls.TextEdit.t list -> Code.TextEdit.t list) =
       fun (x83 : t) ->
         fun ~items:(x81 : Ls.TextEdit.t list) ->
           Ojs.list_of_js Code.TextEdit.t_of_js
             (Ojs.call (t_to_js x83) "asTextEdits"
                [|(Ojs.list_to_js Ls.TextEdit.t_to_js x81)|])
-    let (asTextEdits' :
+    let (as_text_edits' :
       t -> items:never or_null_or_undefined -> never or_undefined) =
       fun (x87 : t) ->
         fun ~items:(x85 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x87) "asTextEdits"
                [|(or_null_or_undefined_to_js never_to_js x85)|])
-    let (asTextEdits'' :
+    let (as_text_edits'' :
       t ->
         items:Ls.TextEdit.t list or_null_or_undefined ->
           Code.TextEdit.t list or_undefined)
@@ -212,21 +212,21 @@ module Converter =
                [|(or_null_or_undefined_to_js
                     (fun (x90 : Ls.TextEdit.t list) ->
                        Ojs.list_to_js Ls.TextEdit.t_to_js x90) x89)|])
-    let (asSignatureHelp :
+    let (as_signature_help :
       t -> item:never or_null_or_undefined -> never or_undefined) =
       fun (x97 : t) ->
         fun ~item:(x95 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x97) "asSignatureHelp"
                [|(or_null_or_undefined_to_js never_to_js x95)|])
-    let (asSignatureHelp' :
+    let (as_signature_help' :
       t -> item:Ls.SignatureHelp.t -> Code.SignatureHelp.t) =
       fun (x100 : t) ->
         fun ~item:(x99 : Ls.SignatureHelp.t) ->
           Code.SignatureHelp.t_of_js
             (Ojs.call (t_to_js x100) "asSignatureHelp"
                [|(Ls.SignatureHelp.t_to_js x99)|])
-    let (asSignatureHelp'' :
+    let (as_signature_help'' :
       t ->
         item:Ls.SignatureHelp.t or_null_or_undefined ->
           Code.SignatureHelp.t or_undefined)
@@ -236,14 +236,14 @@ module Converter =
           or_undefined_of_js Code.SignatureHelp.t_of_js
             (Ojs.call (t_to_js x103) "asSignatureHelp"
                [|(or_null_or_undefined_to_js Ls.SignatureHelp.t_to_js x101)|])
-    let (asSignatureInformation :
+    let (as_signature_information :
       t -> item:Ls.SignatureInformation.t -> Code.SignatureInformation.t) =
       fun (x106 : t) ->
         fun ~item:(x105 : Ls.SignatureInformation.t) ->
           Code.SignatureInformation.t_of_js
             (Ojs.call (t_to_js x106) "asSignatureInformation"
                [|(Ls.SignatureInformation.t_to_js x105)|])
-    let (asSignatureInformations :
+    let (as_signature_informations :
       t ->
         items:Ls.SignatureInformation.t list ->
           Code.SignatureInformation.t list)
@@ -253,14 +253,14 @@ module Converter =
           Ojs.list_of_js Code.SignatureInformation.t_of_js
             (Ojs.call (t_to_js x109) "asSignatureInformations"
                [|(Ojs.list_to_js Ls.SignatureInformation.t_to_js x107)|])
-    let (asParameterInformation :
+    let (as_parameter_information :
       t -> item:Ls.ParameterInformation.t -> Code.ParameterInformation.t) =
       fun (x112 : t) ->
         fun ~item:(x111 : Ls.ParameterInformation.t) ->
           Code.ParameterInformation.t_of_js
             (Ojs.call (t_to_js x112) "asParameterInformation"
                [|(Ls.ParameterInformation.t_to_js x111)|])
-    let (asParameterInformations :
+    let (as_parameter_informations :
       t ->
         item:Ls.ParameterInformation.t list ->
           Code.ParameterInformation.t list)
@@ -270,20 +270,20 @@ module Converter =
           Ojs.list_of_js Code.ParameterInformation.t_of_js
             (Ojs.call (t_to_js x115) "asParameterInformations"
                [|(Ojs.list_to_js Ls.ParameterInformation.t_to_js x113)|])
-    let (asLocation : t -> item:Ls.Location.t -> Code.Location.t) =
+    let (as_location : t -> item:Ls.Location.t -> Code.Location.t) =
       fun (x118 : t) ->
         fun ~item:(x117 : Ls.Location.t) ->
           Code.Location.t_of_js
             (Ojs.call (t_to_js x118) "asLocation"
                [|(Ls.Location.t_to_js x117)|])
-    let (asLocation' :
+    let (as_location' :
       t -> item:never or_null_or_undefined -> never or_undefined) =
       fun (x121 : t) ->
         fun ~item:(x119 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x121) "asLocation"
                [|(or_null_or_undefined_to_js never_to_js x119)|])
-    let (asLocation'' :
+    let (as_location'' :
       t ->
         item:Ls.Location.t or_null_or_undefined ->
           Code.Location.t or_undefined)
@@ -293,7 +293,7 @@ module Converter =
           or_undefined_of_js Code.Location.t_of_js
             (Ojs.call (t_to_js x125) "asLocation"
                [|(or_null_or_undefined_to_js Ls.Location.t_to_js x123)|])
-    let (asDeclarationResult :
+    let (as_declaration_result :
       t ->
         item:Ls.Declaration.t -> (Code.Location.t, Code.Location.t) or_array)
       =
@@ -302,21 +302,21 @@ module Converter =
           or_array_of_js Code.Location.t_of_js Code.Location.t_of_js
             (Ojs.call (t_to_js x128) "asDeclarationResult"
                [|(Ls.Declaration.t_to_js x127)|])
-    let (asDeclarationResult' :
+    let (as_declaration_result' :
       t -> item:Ls.DeclarationLink.t list -> Code.LocationLink.t list) =
       fun (x133 : t) ->
         fun ~item:(x131 : Ls.DeclarationLink.t list) ->
           Ojs.list_of_js Code.LocationLink.t_of_js
             (Ojs.call (t_to_js x133) "asDeclarationResult"
                [|(Ojs.list_to_js Ls.DeclarationLink.t_to_js x131)|])
-    let (asDeclarationResult'' :
+    let (as_declaration_result'' :
       t -> item:never or_null_or_undefined -> never or_undefined) =
       fun (x137 : t) ->
         fun ~item:(x135 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x137) "asDeclarationResult"
                [|(or_null_or_undefined_to_js never_to_js x135)|])
-    let (asDeclarationResult''' :
+    let (as_declaration_result''' :
       t ->
         item:(Ls.Declaration.t, Ls.DeclarationLink.t) or_array
           or_null_or_undefined -> Code.Declaration.t or_undefined)
@@ -336,28 +336,28 @@ module Converter =
                        ->
                        or_array_to_js Ls.Declaration.t_to_js
                          Ls.DeclarationLink.t_to_js x140) x139)|])
-    let (asDefinitionResult : t -> item:Ls.Definition.t -> Code.Definition.t)
-      =
+    let (as_definition_result :
+      t -> item:Ls.Definition.t -> Code.Definition.t) =
       fun (x146 : t) ->
         fun ~item:(x145 : Ls.Definition.t) ->
           Code.Definition.t_of_js
             (Ojs.call (t_to_js x146) "asDefinitionResult"
                [|(Ls.Definition.t_to_js x145)|])
-    let (asDefinitionResult' :
+    let (as_definition_result' :
       t -> item:Ls.DefinitionLink.t list -> Code.DefinitionLink.t list) =
       fun (x149 : t) ->
         fun ~item:(x147 : Ls.DefinitionLink.t list) ->
           Ojs.list_of_js Code.DefinitionLink.t_of_js
             (Ojs.call (t_to_js x149) "asDefinitionResult"
                [|(Ojs.list_to_js Ls.DefinitionLink.t_to_js x147)|])
-    let (asDefinitionResult'' :
+    let (as_definition_result'' :
       t -> item:never or_null_or_undefined -> never or_undefined) =
       fun (x153 : t) ->
         fun ~item:(x151 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x153) "asDefinitionResult"
                [|(or_null_or_undefined_to_js never_to_js x151)|])
-    let (asDefinitionResult''' :
+    let (as_definition_result''' :
       t ->
         item:(Ls.Definition.t, Ls.DefinitionLink.t) or_array
           or_null_or_undefined ->
@@ -381,14 +381,14 @@ module Converter =
                        ->
                        or_array_to_js Ls.Definition.t_to_js
                          Ls.DefinitionLink.t_to_js x156) x155)|])
-    let (asReferences :
+    let (as_references :
       t -> values:Ls.Location.t list -> Code.Location.t list) =
       fun (x165 : t) ->
         fun ~values:(x163 : Ls.Location.t list) ->
           Ojs.list_of_js Code.Location.t_of_js
             (Ojs.call (t_to_js x165) "asReferences"
                [|(Ojs.list_to_js Ls.Location.t_to_js x163)|])
-    let (asReferences' :
+    let (as_references' :
       t ->
         values:never or_null_or_undefined ->
           Code.Location.t list or_undefined)
@@ -399,7 +399,7 @@ module Converter =
             (fun (x170 : Ojs.t) -> Ojs.list_of_js Code.Location.t_of_js x170)
             (Ojs.call (t_to_js x169) "asReferences"
                [|(or_null_or_undefined_to_js never_to_js x167)|])
-    let (asReferences'' :
+    let (as_references'' :
       t ->
         values:Ls.Location.t list or_null_or_undefined ->
           Code.Location.t list or_undefined)
@@ -412,21 +412,21 @@ module Converter =
                [|(or_null_or_undefined_to_js
                     (fun (x173 : Ls.Location.t list) ->
                        Ojs.list_to_js Ls.Location.t_to_js x173) x172)|])
-    let (asDocumentHighlightKind :
+    let (as_document_highlight_kind :
       t -> item:int -> Code.DocumentHighlightKind.t) =
       fun (x179 : t) ->
         fun ~item:(x178 : int) ->
           Code.DocumentHighlightKind.t_of_js
             (Ojs.call (t_to_js x179) "asDocumentHighlightKind"
                [|(Ojs.int_to_js x178)|])
-    let (asDocumentHighlight :
+    let (as_document_highlight :
       t -> item:Ls.DocumentHighlight.t -> Code.DocumentHighlight.t) =
       fun (x181 : t) ->
         fun ~item:(x180 : Ls.DocumentHighlight.t) ->
           Code.DocumentHighlight.t_of_js
             (Ojs.call (t_to_js x181) "asDocumentHighlight"
                [|(Ls.DocumentHighlight.t_to_js x180)|])
-    let (asDocumentHighlights :
+    let (as_document_highlights :
       t ->
         values:Ls.DocumentHighlight.t list -> Code.DocumentHighlight.t list)
       =
@@ -435,14 +435,14 @@ module Converter =
           Ojs.list_of_js Code.DocumentHighlight.t_of_js
             (Ojs.call (t_to_js x184) "asDocumentHighlights"
                [|(Ojs.list_to_js Ls.DocumentHighlight.t_to_js x182)|])
-    let (asDocumentHighlights' :
+    let (as_document_highlights' :
       t -> values:never or_null_or_undefined -> never or_undefined) =
       fun (x188 : t) ->
         fun ~values:(x186 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x188) "asDocumentHighlights"
                [|(or_null_or_undefined_to_js never_to_js x186)|])
-    let (asDocumentHighlights'' :
+    let (as_document_highlights'' :
       t ->
         values:Ls.DocumentHighlight.t list or_null_or_undefined ->
           Code.DocumentHighlight.t list or_undefined)
@@ -457,34 +457,34 @@ module Converter =
                [|(or_null_or_undefined_to_js
                     (fun (x191 : Ls.DocumentHighlight.t list) ->
                        Ojs.list_to_js Ls.DocumentHighlight.t_to_js x191) x190)|])
-    let (asSymbolKind : t -> item:Ls.SymbolKind.t -> Code.SymbolKind.t) =
+    let (as_symbol_kind : t -> item:Ls.SymbolKind.t -> Code.SymbolKind.t) =
       fun (x197 : t) ->
         fun ~item:(x196 : Ls.SymbolKind.t) ->
           Code.SymbolKind.t_of_js
             (Ojs.call (t_to_js x197) "asSymbolKind"
                [|(Ls.SymbolKind.t_to_js x196)|])
-    let (asSymbolTag :
+    let (as_symbol_tag :
       t -> item:Ls.SymbolTag.t -> Code.SymbolTag.t or_undefined) =
       fun (x199 : t) ->
         fun ~item:(x198 : Ls.SymbolTag.t) ->
           or_undefined_of_js Code.SymbolTag.t_of_js
             (Ojs.call (t_to_js x199) "asSymbolTag"
                [|(Ls.SymbolTag.t_to_js x198)|])
-    let (asSymbolTags :
+    let (as_symbol_tags :
       t -> items:never or_null_or_undefined -> never or_undefined) =
       fun (x203 : t) ->
         fun ~items:(x201 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x203) "asSymbolTags"
                [|(or_null_or_undefined_to_js never_to_js x201)|])
-    let (asSymbolTags' :
+    let (as_symbol_tags' :
       t -> items:Ls.SymbolTag.t list -> Code.SymbolTag.t list) =
       fun (x207 : t) ->
         fun ~items:(x205 : Ls.SymbolTag.t list) ->
           Ojs.list_of_js Code.SymbolTag.t_of_js
             (Ojs.call (t_to_js x207) "asSymbolTags"
                [|(Ojs.list_to_js Ls.SymbolTag.t_to_js x205)|])
-    let (asSymbolTags'' :
+    let (as_symbol_tags'' :
       t ->
         items:Ls.SymbolTag.t list or_null_or_undefined ->
           Code.SymbolTag.t list or_undefined)
@@ -497,7 +497,7 @@ module Converter =
                [|(or_null_or_undefined_to_js
                     (fun (x210 : Ls.SymbolTag.t list) ->
                        Ojs.list_to_js Ls.SymbolTag.t_to_js x210) x209)|])
-    let (asSymbolInformation :
+    let (as_symbol_information :
       t ->
         item:Ls.SymbolInformation.t ->
           ?uri:Code.Uri.t -> unit -> Code.SymbolInformation.t)
@@ -524,7 +524,7 @@ module Converter =
                                       [|(Code.Uri.t_to_js x218)|])
                              | None -> ());
                             x217))|])
-    let (asSymbolInformations :
+    let (as_symbol_informations :
       t ->
         values:Ls.SymbolInformation.t list ->
           ?uri:Code.Uri.t -> unit -> Code.SymbolInformation.t list)
@@ -552,7 +552,7 @@ module Converter =
                                       [|(Code.Uri.t_to_js x224)|])
                              | None -> ());
                             x223))|])
-    let (asSymbolInformations' :
+    let (as_symbol_informations' :
       t ->
         values:never or_null_or_undefined ->
           ?uri:Code.Uri.t -> unit -> never or_undefined)
@@ -580,7 +580,7 @@ module Converter =
                                       [|(Code.Uri.t_to_js x232)|])
                              | None -> ());
                             x231))|])
-    let (asSymbolInformations'' :
+    let (as_symbol_informations'' :
       t ->
         values:Ls.SymbolInformation.t list or_null_or_undefined ->
           ?uri:Code.Uri.t ->
@@ -617,28 +617,28 @@ module Converter =
                                       [|(Code.Uri.t_to_js x240)|])
                              | None -> ());
                             x239))|])
-    let (asDocumentSymbol :
+    let (as_document_symbol :
       t -> value:Ls.DocumentSymbol.t -> Code.DocumentSymbol.t) =
       fun (x248 : t) ->
         fun ~value:(x247 : Ls.DocumentSymbol.t) ->
           Code.DocumentSymbol.t_of_js
             (Ojs.call (t_to_js x248) "asDocumentSymbol"
                [|(Ls.DocumentSymbol.t_to_js x247)|])
-    let (asDocumentSymbols :
+    let (as_document_symbols :
       t -> value:never or_null_or_undefined -> never or_undefined) =
       fun (x251 : t) ->
         fun ~value:(x249 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x251) "asDocumentSymbols"
                [|(or_null_or_undefined_to_js never_to_js x249)|])
-    let (asDocumentSymbols' :
+    let (as_document_symbols' :
       t -> value:Ls.DocumentSymbol.t list -> Code.DocumentSymbol.t list) =
       fun (x255 : t) ->
         fun ~value:(x253 : Ls.DocumentSymbol.t list) ->
           Ojs.list_of_js Code.DocumentSymbol.t_of_js
             (Ojs.call (t_to_js x255) "asDocumentSymbols"
                [|(Ojs.list_to_js Ls.DocumentSymbol.t_to_js x253)|])
-    let (asDocumentSymbols'' :
+    let (as_document_symbols'' :
       t ->
         value:Ls.DocumentSymbol.t list or_null_or_undefined ->
           Code.DocumentSymbol.t list or_undefined)
@@ -652,26 +652,26 @@ module Converter =
                [|(or_null_or_undefined_to_js
                     (fun (x258 : Ls.DocumentSymbol.t list) ->
                        Ojs.list_to_js Ls.DocumentSymbol.t_to_js x258) x257)|])
-    let (asCommand : t -> item:Ls.Command.t -> Code.Command.t) =
+    let (as_command : t -> item:Ls.Command.t -> Code.Command.t) =
       fun (x264 : t) ->
         fun ~item:(x263 : Ls.Command.t) ->
           Code.Command.t_of_js
             (Ojs.call (t_to_js x264) "asCommand"
                [|(Ls.Command.t_to_js x263)|])
-    let (asCommands : t -> items:Ls.Command.t list -> Code.Command.t list) =
+    let (as_commands : t -> items:Ls.Command.t list -> Code.Command.t list) =
       fun (x267 : t) ->
         fun ~items:(x265 : Ls.Command.t list) ->
           Ojs.list_of_js Code.Command.t_of_js
             (Ojs.call (t_to_js x267) "asCommands"
                [|(Ojs.list_to_js Ls.Command.t_to_js x265)|])
-    let (asCommands' :
+    let (as_commands' :
       t -> items:never or_null_or_undefined -> never or_undefined) =
       fun (x271 : t) ->
         fun ~items:(x269 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x271) "asCommands"
                [|(or_null_or_undefined_to_js never_to_js x269)|])
-    let (asCommands'' :
+    let (as_commands'' :
       t ->
         items:Ls.Command.t list or_null_or_undefined ->
           Code.Command.t list or_undefined)
@@ -684,20 +684,20 @@ module Converter =
                [|(or_null_or_undefined_to_js
                     (fun (x274 : Ls.Command.t list) ->
                        Ojs.list_to_js Ls.Command.t_to_js x274) x273)|])
-    let (asCodeAction : t -> item:Ls.CodeAction.t -> Code.CodeAction.t) =
+    let (as_code_action : t -> item:Ls.CodeAction.t -> Code.CodeAction.t) =
       fun (x280 : t) ->
         fun ~item:(x279 : Ls.CodeAction.t) ->
           Code.CodeAction.t_of_js
             (Ojs.call (t_to_js x280) "asCodeAction"
                [|(Ls.CodeAction.t_to_js x279)|])
-    let (asCodeAction' :
+    let (as_code_action' :
       t -> item:never or_null_or_undefined -> never or_undefined) =
       fun (x283 : t) ->
         fun ~item:(x281 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x283) "asCodeAction"
                [|(or_null_or_undefined_to_js never_to_js x281)|])
-    let (asCodeAction'' :
+    let (as_code_action'' :
       t ->
         item:Ls.CodeAction.t or_null_or_undefined ->
           Code.CodeAction.t or_undefined)
@@ -707,21 +707,21 @@ module Converter =
           or_undefined_of_js Code.CodeAction.t_of_js
             (Ojs.call (t_to_js x287) "asCodeAction"
                [|(or_null_or_undefined_to_js Ls.CodeAction.t_to_js x285)|])
-    let (asCodeActionKind :
+    let (as_code_action_kind :
       t -> item:never or_null_or_undefined -> never or_undefined) =
       fun (x291 : t) ->
         fun ~item:(x289 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x291) "asCodeActionKind"
                [|(or_null_or_undefined_to_js never_to_js x289)|])
-    let (asCodeActionKind' :
+    let (as_code_action_kind' :
       t -> item:Ls.CodeActionKind.t -> Code.CodeActionKind.t) =
       fun (x294 : t) ->
         fun ~item:(x293 : Ls.CodeActionKind.t) ->
           Code.CodeActionKind.t_of_js
             (Ojs.call (t_to_js x294) "asCodeActionKind"
                [|(Ls.CodeActionKind.t_to_js x293)|])
-    let (asCodeActionKind'' :
+    let (as_code_action_kind'' :
       t ->
         item:Ls.CodeActionKind.t or_null_or_undefined ->
           Code.CodeActionKind.t or_undefined)
@@ -731,21 +731,21 @@ module Converter =
           or_undefined_of_js Code.CodeActionKind.t_of_js
             (Ojs.call (t_to_js x297) "asCodeActionKind"
                [|(or_null_or_undefined_to_js Ls.CodeActionKind.t_to_js x295)|])
-    let (asCodeActionKinds :
+    let (as_code_action_kinds :
       t -> item:never or_null_or_undefined -> never or_undefined) =
       fun (x301 : t) ->
         fun ~item:(x299 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x301) "asCodeActionKinds"
                [|(or_null_or_undefined_to_js never_to_js x299)|])
-    let (asCodeActionKinds' :
+    let (as_code_action_kinds' :
       t -> items:Ls.CodeActionKind.t list -> Code.CodeActionKind.t list) =
       fun (x305 : t) ->
         fun ~items:(x303 : Ls.CodeActionKind.t list) ->
           Ojs.list_of_js Code.CodeActionKind.t_of_js
             (Ojs.call (t_to_js x305) "asCodeActionKinds"
                [|(Ojs.list_to_js Ls.CodeActionKind.t_to_js x303)|])
-    let (asCodeActionKinds'' :
+    let (as_code_action_kinds'' :
       t ->
         item:Ls.CodeActionKind.t list or_null_or_undefined ->
           Code.CodeActionKind.t list or_undefined)
@@ -759,20 +759,20 @@ module Converter =
                [|(or_null_or_undefined_to_js
                     (fun (x308 : Ls.CodeActionKind.t list) ->
                        Ojs.list_to_js Ls.CodeActionKind.t_to_js x308) x307)|])
-    let (asCodeLens : t -> item:Ls.CodeLens.t -> Code.CodeLens.t) =
+    let (as_code_lens : t -> item:Ls.CodeLens.t -> Code.CodeLens.t) =
       fun (x314 : t) ->
         fun ~item:(x313 : Ls.CodeLens.t) ->
           Code.CodeLens.t_of_js
             (Ojs.call (t_to_js x314) "asCodeLens"
                [|(Ls.CodeLens.t_to_js x313)|])
-    let (asCodeLens' :
+    let (as_code_lens' :
       t -> item:never or_null_or_undefined -> never or_undefined) =
       fun (x317 : t) ->
         fun ~item:(x315 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x317) "asCodeLens"
                [|(or_null_or_undefined_to_js never_to_js x315)|])
-    let (asCodeLens'' :
+    let (as_code_lens'' :
       t ->
         item:Ls.CodeLens.t or_null_or_undefined ->
           Code.CodeLens.t or_undefined)
@@ -782,21 +782,21 @@ module Converter =
           or_undefined_of_js Code.CodeLens.t_of_js
             (Ojs.call (t_to_js x321) "asCodeLens"
                [|(or_null_or_undefined_to_js Ls.CodeLens.t_to_js x319)|])
-    let (asCodeLenses :
+    let (as_code_lenses :
       t -> items:Ls.CodeLens.t list -> Code.CodeLens.t list) =
       fun (x325 : t) ->
         fun ~items:(x323 : Ls.CodeLens.t list) ->
           Ojs.list_of_js Code.CodeLens.t_of_js
             (Ojs.call (t_to_js x325) "asCodeLenses"
                [|(Ojs.list_to_js Ls.CodeLens.t_to_js x323)|])
-    let (asCodeLenses' :
+    let (as_code_lenses' :
       t -> items:never or_null_or_undefined -> never or_undefined) =
       fun (x329 : t) ->
         fun ~items:(x327 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x329) "asCodeLenses"
                [|(or_null_or_undefined_to_js never_to_js x327)|])
-    let (asCodeLenses'' :
+    let (as_code_lenses'' :
       t ->
         items:Ls.CodeLens.t list or_null_or_undefined ->
           Code.CodeLens.t list or_undefined)
@@ -809,21 +809,21 @@ module Converter =
                [|(or_null_or_undefined_to_js
                     (fun (x332 : Ls.CodeLens.t list) ->
                        Ojs.list_to_js Ls.CodeLens.t_to_js x332) x331)|])
-    let (asWorkspaceEdit :
+    let (as_workspace_edit :
       t -> item:Ls.WorkspaceEdit.t -> Code.WorkspaceEdit.t) =
       fun (x338 : t) ->
         fun ~item:(x337 : Ls.WorkspaceEdit.t) ->
           Code.WorkspaceEdit.t_of_js
             (Ojs.call (t_to_js x338) "asWorkspaceEdit"
                [|(Ls.WorkspaceEdit.t_to_js x337)|])
-    let (asWorkspaceEdit' :
+    let (as_workspace_edit' :
       t -> item:never or_null_or_undefined -> never or_undefined) =
       fun (x341 : t) ->
         fun ~item:(x339 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x341) "asWorkspaceEdit"
                [|(or_null_or_undefined_to_js never_to_js x339)|])
-    let (asWorkspaceEdit'' :
+    let (as_workspace_edit'' :
       t ->
         item:Ls.WorkspaceEdit.t or_null_or_undefined ->
           Code.WorkspaceEdit.t or_undefined)
@@ -833,28 +833,28 @@ module Converter =
           or_undefined_of_js Code.WorkspaceEdit.t_of_js
             (Ojs.call (t_to_js x345) "asWorkspaceEdit"
                [|(or_null_or_undefined_to_js Ls.WorkspaceEdit.t_to_js x343)|])
-    let (asDocumentLink : t -> item:Ls.DocumentLink.t -> Code.DocumentLink.t)
-      =
+    let (as_document_link :
+      t -> item:Ls.DocumentLink.t -> Code.DocumentLink.t) =
       fun (x348 : t) ->
         fun ~item:(x347 : Ls.DocumentLink.t) ->
           Code.DocumentLink.t_of_js
             (Ojs.call (t_to_js x348) "asDocumentLink"
                [|(Ls.DocumentLink.t_to_js x347)|])
-    let (asDocumentLinks :
+    let (as_document_links :
       t -> items:Ls.DocumentLink.t list -> Code.DocumentLink.t list) =
       fun (x351 : t) ->
         fun ~items:(x349 : Ls.DocumentLink.t list) ->
           Ojs.list_of_js Code.DocumentLink.t_of_js
             (Ojs.call (t_to_js x351) "asDocumentLinks"
                [|(Ojs.list_to_js Ls.DocumentLink.t_to_js x349)|])
-    let (asDocumentLinks' :
+    let (as_document_links' :
       t -> items:never or_null_or_undefined -> never or_undefined) =
       fun (x355 : t) ->
         fun ~items:(x353 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x355) "asDocumentLinks"
                [|(or_null_or_undefined_to_js never_to_js x353)|])
-    let (asDocumentLinks'' :
+    let (as_document_links'' :
       t ->
         items:Ls.DocumentLink.t list or_null_or_undefined ->
           Code.DocumentLink.t list or_undefined)
@@ -868,95 +868,96 @@ module Converter =
                [|(or_null_or_undefined_to_js
                     (fun (x358 : Ls.DocumentLink.t list) ->
                        Ojs.list_to_js Ls.DocumentLink.t_to_js x358) x357)|])
-    let (asColor : t -> color:Ls.Color.t -> Code.Color.t) =
+    let (as_color : t -> color:Ls.Color.t -> Code.Color.t) =
       fun (x364 : t) ->
         fun ~color:(x363 : Ls.Color.t) ->
           Code.Color.t_of_js
             (Ojs.call (t_to_js x364) "asColor" [|(Ls.Color.t_to_js x363)|])
-    let (asColorInformation :
+    let (as_color_information :
       t -> ci:Ls.ColorInformation.t -> Code.ColorInformation.t) =
       fun (x366 : t) ->
         fun ~ci:(x365 : Ls.ColorInformation.t) ->
           Code.ColorInformation.t_of_js
             (Ojs.call (t_to_js x366) "asColorInformation"
                [|(Ls.ColorInformation.t_to_js x365)|])
-    let (asColorInformations :
+    let (as_color_informations :
       t ->
-        colorPresentations:Ls.ColorInformation.t list ->
+        color_presentations:Ls.ColorInformation.t list ->
           Code.ColorInformation.t list)
       =
       fun (x369 : t) ->
-        fun ~colorPresentations:(x367 : Ls.ColorInformation.t list) ->
+        fun ~color_presentations:(x367 : Ls.ColorInformation.t list) ->
           Ojs.list_of_js Code.ColorInformation.t_of_js
             (Ojs.call (t_to_js x369) "asColorInformations"
                [|(Ojs.list_to_js Ls.ColorInformation.t_to_js x367)|])
-    let (asColorInformations' :
+    let (as_color_informations' :
       t ->
-        colorPresentations:never or_null_or_undefined -> never or_undefined)
+        color_presentations:never or_null_or_undefined -> never or_undefined)
       =
       fun (x373 : t) ->
-        fun ~colorPresentations:(x371 : never or_null_or_undefined) ->
+        fun ~color_presentations:(x371 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x373) "asColorInformations"
                [|(or_null_or_undefined_to_js never_to_js x371)|])
-    let (asColorInformations'' :
+    let (as_color_informations'' :
       t ->
-        colorInformation:Ls.ColorInformation.t list or_null_or_undefined ->
+        color_information:Ls.ColorInformation.t list or_null_or_undefined ->
           Code.ColorInformation.t list)
       =
       fun (x378 : t) ->
         fun
-          ~colorInformation:(x375 :
-                              Ls.ColorInformation.t list or_null_or_undefined)
+          ~color_information:(x375 :
+                               Ls.ColorInformation.t list
+                                 or_null_or_undefined)
           ->
           Ojs.list_of_js Code.ColorInformation.t_of_js
             (Ojs.call (t_to_js x378) "asColorInformations"
                [|(or_null_or_undefined_to_js
                     (fun (x376 : Ls.ColorInformation.t list) ->
                        Ojs.list_to_js Ls.ColorInformation.t_to_js x376) x375)|])
-    let (asColorPresentation :
+    let (as_color_presentation :
       t -> cp:Ls.ColorPresentation.t -> Code.ColorPresentation.t) =
       fun (x381 : t) ->
         fun ~cp:(x380 : Ls.ColorPresentation.t) ->
           Code.ColorPresentation.t_of_js
             (Ojs.call (t_to_js x381) "asColorPresentation"
                [|(Ls.ColorPresentation.t_to_js x380)|])
-    let (asColorPresentations :
+    let (as_color_presentations :
       t ->
-        colorPresentations:Ls.ColorPresentation.t list ->
+        color_presentations:Ls.ColorPresentation.t list ->
           Code.ColorPresentation.t list)
       =
       fun (x384 : t) ->
-        fun ~colorPresentations:(x382 : Ls.ColorPresentation.t list) ->
+        fun ~color_presentations:(x382 : Ls.ColorPresentation.t list) ->
           Ojs.list_of_js Code.ColorPresentation.t_of_js
             (Ojs.call (t_to_js x384) "asColorPresentations"
                [|(Ojs.list_to_js Ls.ColorPresentation.t_to_js x382)|])
-    let (asColorPresentations' :
+    let (as_color_presentations' :
       t ->
-        colorPresentations:never or_null_or_undefined -> never or_undefined)
+        color_presentations:never or_null_or_undefined -> never or_undefined)
       =
       fun (x388 : t) ->
-        fun ~colorPresentations:(x386 : never or_null_or_undefined) ->
+        fun ~color_presentations:(x386 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x388) "asColorPresentations"
                [|(or_null_or_undefined_to_js never_to_js x386)|])
-    let (asColorPresentations'' :
+    let (as_color_presentations'' :
       t ->
-        colorPresentations:Ls.ColorPresentation.t list or_null_or_undefined
+        color_presentations:Ls.ColorPresentation.t list or_null_or_undefined
           -> never or_undefined)
       =
       fun (x393 : t) ->
         fun
-          ~colorPresentations:(x390 :
-                                Ls.ColorPresentation.t list
-                                  or_null_or_undefined)
+          ~color_presentations:(x390 :
+                                 Ls.ColorPresentation.t list
+                                   or_null_or_undefined)
           ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x393) "asColorPresentations"
                [|(or_null_or_undefined_to_js
                     (fun (x391 : Ls.ColorPresentation.t list) ->
                        Ojs.list_to_js Ls.ColorPresentation.t_to_js x391) x390)|])
-    let (asFoldingRangeKind :
+    let (as_folding_range_kind :
       t -> kind:string or_undefined -> Code.FoldingRangeKind.t or_undefined)
       =
       fun (x397 : t) ->
@@ -964,35 +965,37 @@ module Converter =
           or_undefined_of_js Code.FoldingRangeKind.t_of_js
             (Ojs.call (t_to_js x397) "asFoldingRangeKind"
                [|(or_undefined_to_js Ojs.string_to_js x395)|])
-    let (asFoldingRange : t -> r:Ls.FoldingRange.t -> Code.FoldingRange.t) =
+    let (as_folding_range : t -> r:Ls.FoldingRange.t -> Code.FoldingRange.t)
+      =
       fun (x400 : t) ->
         fun ~r:(x399 : Ls.FoldingRange.t) ->
           Code.FoldingRange.t_of_js
             (Ojs.call (t_to_js x400) "asFoldingRange"
                [|(Ls.FoldingRange.t_to_js x399)|])
-    let (asFoldingRanges :
-      t -> foldingRanges:Ls.FoldingRange.t list -> Code.FoldingRange.t list)
+    let (as_folding_ranges :
+      t -> folding_ranges:Ls.FoldingRange.t list -> Code.FoldingRange.t list)
       =
       fun (x403 : t) ->
-        fun ~foldingRanges:(x401 : Ls.FoldingRange.t list) ->
+        fun ~folding_ranges:(x401 : Ls.FoldingRange.t list) ->
           Ojs.list_of_js Code.FoldingRange.t_of_js
             (Ojs.call (t_to_js x403) "asFoldingRanges"
                [|(Ojs.list_to_js Ls.FoldingRange.t_to_js x401)|])
-    let (asFoldingRanges' :
-      t -> foldingRanges:never or_null_or_undefined -> never or_undefined) =
+    let (as_folding_ranges' :
+      t -> folding_ranges:never or_null_or_undefined -> never or_undefined) =
       fun (x407 : t) ->
-        fun ~foldingRanges:(x405 : never or_null_or_undefined) ->
+        fun ~folding_ranges:(x405 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x407) "asFoldingRanges"
                [|(or_null_or_undefined_to_js never_to_js x405)|])
-    let (asFoldingRanges'' :
+    let (as_folding_ranges'' :
       t ->
-        foldingRanges:Ls.FoldingRange.t list or_null_or_undefined ->
+        folding_ranges:Ls.FoldingRange.t list or_null_or_undefined ->
           Code.FoldingRange.t list or_undefined)
       =
       fun (x412 : t) ->
         fun
-          ~foldingRanges:(x409 : Ls.FoldingRange.t list or_null_or_undefined)
+          ~folding_ranges:(x409 :
+                            Ls.FoldingRange.t list or_null_or_undefined)
           ->
           or_undefined_of_js
             (fun (x413 : Ojs.t) ->
@@ -1001,14 +1004,15 @@ module Converter =
                [|(or_null_or_undefined_to_js
                     (fun (x410 : Ls.FoldingRange.t list) ->
                        Ojs.list_to_js Ls.FoldingRange.t_to_js x410) x409)|])
-    let (asFoldingRanges''' :
+    let (as_folding_ranges''' :
       t ->
-        foldingRanges:Ls.FoldingRange.t list or_null_or_undefined ->
+        folding_ranges:Ls.FoldingRange.t list or_null_or_undefined ->
           Code.FoldingRange.t list or_undefined)
       =
       fun (x418 : t) ->
         fun
-          ~foldingRanges:(x415 : Ls.FoldingRange.t list or_null_or_undefined)
+          ~folding_ranges:(x415 :
+                            Ls.FoldingRange.t list or_null_or_undefined)
           ->
           or_undefined_of_js
             (fun (x419 : Ojs.t) ->
@@ -1017,40 +1021,40 @@ module Converter =
                [|(or_null_or_undefined_to_js
                     (fun (x416 : Ls.FoldingRange.t list) ->
                        Ojs.list_to_js Ls.FoldingRange.t_to_js x416) x415)|])
-    let (asSelectionRange :
-      t -> selectionRange:Ls.SelectionRange.t -> Code.SelectionRange.t) =
+    let (as_selection_range :
+      t -> selection_range:Ls.SelectionRange.t -> Code.SelectionRange.t) =
       fun (x422 : t) ->
-        fun ~selectionRange:(x421 : Ls.SelectionRange.t) ->
+        fun ~selection_range:(x421 : Ls.SelectionRange.t) ->
           Code.SelectionRange.t_of_js
             (Ojs.call (t_to_js x422) "asSelectionRange"
                [|(Ls.SelectionRange.t_to_js x421)|])
-    let (asSelectionRanges :
+    let (as_selection_ranges :
       t ->
-        selectionRanges:Ls.SelectionRange.t list ->
+        selection_ranges:Ls.SelectionRange.t list ->
           Code.SelectionRange.t list)
       =
       fun (x425 : t) ->
-        fun ~selectionRanges:(x423 : Ls.SelectionRange.t list) ->
+        fun ~selection_ranges:(x423 : Ls.SelectionRange.t list) ->
           Ojs.list_of_js Code.SelectionRange.t_of_js
             (Ojs.call (t_to_js x425) "asSelectionRanges"
                [|(Ojs.list_to_js Ls.SelectionRange.t_to_js x423)|])
-    let (asSelectionRanges' :
-      t -> selectionRanges:never or_null_or_undefined -> never or_undefined)
+    let (as_selection_ranges' :
+      t -> selection_ranges:never or_null_or_undefined -> never or_undefined)
       =
       fun (x429 : t) ->
-        fun ~selectionRanges:(x427 : never or_null_or_undefined) ->
+        fun ~selection_ranges:(x427 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x429) "asSelectionRanges"
                [|(or_null_or_undefined_to_js never_to_js x427)|])
-    let (asSelectionRanges'' :
+    let (as_selection_ranges'' :
       t ->
-        selectionRanges:Ls.SelectionRange.t list or_null_or_undefined ->
+        selection_ranges:Ls.SelectionRange.t list or_null_or_undefined ->
           Code.SelectionRange.t list or_undefined)
       =
       fun (x434 : t) ->
         fun
-          ~selectionRanges:(x431 :
-                             Ls.SelectionRange.t list or_null_or_undefined)
+          ~selection_ranges:(x431 :
+                              Ls.SelectionRange.t list or_null_or_undefined)
           ->
           or_undefined_of_js
             (fun (x435 : Ojs.t) ->
@@ -1059,15 +1063,15 @@ module Converter =
                [|(or_null_or_undefined_to_js
                     (fun (x432 : Ls.SelectionRange.t list) ->
                        Ojs.list_to_js Ls.SelectionRange.t_to_js x432) x431)|])
-    let (asSelectionRanges''' :
+    let (as_selection_ranges''' :
       t ->
-        selectionRanges:Ls.SelectionRange.t list or_null_or_undefined ->
+        selection_ranges:Ls.SelectionRange.t list or_null_or_undefined ->
           Code.SelectionRange.t list or_undefined)
       =
       fun (x440 : t) ->
         fun
-          ~selectionRanges:(x437 :
-                             Ls.SelectionRange.t list or_null_or_undefined)
+          ~selection_ranges:(x437 :
+                              Ls.SelectionRange.t list or_null_or_undefined)
           ->
           or_undefined_of_js
             (fun (x441 : Ojs.t) ->
@@ -1076,28 +1080,28 @@ module Converter =
                [|(or_null_or_undefined_to_js
                     (fun (x438 : Ls.SelectionRange.t list) ->
                        Ojs.list_to_js Ls.SelectionRange.t_to_js x438) x437)|])
-    let (asSemanticTokensLegend :
+    let (as_semantic_tokens_legend :
       t -> value:Ls.SemanticTokensLegend.t -> Code.SemanticTokensLegend.t) =
       fun (x444 : t) ->
         fun ~value:(x443 : Ls.SemanticTokensLegend.t) ->
           Code.SemanticTokensLegend.t_of_js
             (Ojs.call (t_to_js x444) "asSemanticTokensLegend"
                [|(Ls.SemanticTokensLegend.t_to_js x443)|])
-    let (asSemanticTokens :
+    let (as_semantic_tokens :
       t -> value:Ls.SemanticTokens.t -> Code.SemanticTokens.t) =
       fun (x446 : t) ->
         fun ~value:(x445 : Ls.SemanticTokens.t) ->
           Code.SemanticTokens.t_of_js
             (Ojs.call (t_to_js x446) "asSemanticTokens"
                [|(Ls.SemanticTokens.t_to_js x445)|])
-    let (asSemanticTokens' :
+    let (as_semantic_tokens' :
       t -> value:never or_null_or_undefined -> never or_undefined) =
       fun (x449 : t) ->
         fun ~value:(x447 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x449) "asSemanticTokens"
                [|(or_null_or_undefined_to_js never_to_js x447)|])
-    let (asSemanticTokens'' :
+    let (as_semantic_tokens'' :
       t ->
         value:Ls.SemanticTokens.t or_null_or_undefined ->
           Code.SemanticTokens.t or_undefined)
@@ -1107,7 +1111,7 @@ module Converter =
           or_undefined_of_js Code.SemanticTokens.t_of_js
             (Ojs.call (t_to_js x453) "asSemanticTokens"
                [|(or_null_or_undefined_to_js Ls.SemanticTokens.t_to_js x451)|])
-    let (asSemanticTokens''' :
+    let (as_semantic_tokens''' :
       t ->
         value:Ls.SemanticTokens.t or_null_or_undefined ->
           Code.SemanticTokens.t or_undefined)
@@ -1117,28 +1121,28 @@ module Converter =
           or_undefined_of_js Code.SemanticTokens.t_of_js
             (Ojs.call (t_to_js x457) "asSemanticTokens"
                [|(or_null_or_undefined_to_js Ls.SemanticTokens.t_to_js x455)|])
-    let (asSemanticTokensEdit :
+    let (as_semantic_tokens_edit :
       t -> value:Ls.SemanticTokensEdit.t -> Code.SemanticTokensEdit.t) =
       fun (x460 : t) ->
         fun ~value:(x459 : Ls.SemanticTokensEdit.t) ->
           Code.SemanticTokensEdit.t_of_js
             (Ojs.call (t_to_js x460) "asSemanticTokensEdit"
                [|(Ls.SemanticTokensEdit.t_to_js x459)|])
-    let (asSemanticTokensEdits :
+    let (as_semantic_tokens_edits :
       t -> value:Ls.SemanticTokensDelta.t -> Code.SemanticTokensEdits.t) =
       fun (x462 : t) ->
         fun ~value:(x461 : Ls.SemanticTokensDelta.t) ->
           Code.SemanticTokensEdits.t_of_js
             (Ojs.call (t_to_js x462) "asSemanticTokensEdits"
                [|(Ls.SemanticTokensDelta.t_to_js x461)|])
-    let (asSemanticTokensEdits' :
+    let (as_semantic_tokens_edits' :
       t -> value:never or_null_or_undefined -> never or_undefined) =
       fun (x465 : t) ->
         fun ~value:(x463 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x465) "asSemanticTokensEdits"
                [|(or_null_or_undefined_to_js never_to_js x463)|])
-    let (asSemanticTokensEdits'' :
+    let (as_semantic_tokens_edits'' :
       t ->
         value:Ls.SemanticTokensDelta.t or_null_or_undefined ->
           Code.SemanticTokensEdits.t or_undefined)
@@ -1149,7 +1153,7 @@ module Converter =
             (Ojs.call (t_to_js x469) "asSemanticTokensEdits"
                [|(or_null_or_undefined_to_js Ls.SemanticTokensDelta.t_to_js
                     x467)|])
-    let (asSemanticTokensEdits''' :
+    let (as_semantic_tokens_edits''' :
       t ->
         value:Ls.SemanticTokensDelta.t or_null_or_undefined ->
           Code.SemanticTokensEdits.t or_undefined)
@@ -1160,21 +1164,21 @@ module Converter =
             (Ojs.call (t_to_js x473) "asSemanticTokensEdits"
                [|(or_null_or_undefined_to_js Ls.SemanticTokensDelta.t_to_js
                     x471)|])
-    let (asCallHierarchyItem : t -> item:never or_null -> never or_undefined)
-      =
+    let (as_call_hierarchy_item :
+      t -> item:never or_null -> never or_undefined) =
       fun (x477 : t) ->
         fun ~item:(x475 : never or_null) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x477) "asCallHierarchyItem"
                [|(or_null_to_js never_to_js x475)|])
-    let (asCallHierarchyItem' :
+    let (as_call_hierarchy_item' :
       t -> item:Ls.CallHierarchyItem.t -> Code.CallHierarchyItem.t) =
       fun (x480 : t) ->
         fun ~item:(x479 : Ls.CallHierarchyItem.t) ->
           Code.CallHierarchyItem.t_of_js
             (Ojs.call (t_to_js x480) "asCallHierarchyItem"
                [|(Ls.CallHierarchyItem.t_to_js x479)|])
-    let (asCallHierarchyItem'' :
+    let (as_call_hierarchy_item'' :
       t ->
         item:Ls.CallHierarchyItem.t or_null ->
           Code.CallHierarchyItem.t or_undefined)
@@ -1184,7 +1188,7 @@ module Converter =
           or_undefined_of_js Code.CallHierarchyItem.t_of_js
             (Ojs.call (t_to_js x483) "asCallHierarchyItem"
                [|(or_null_to_js Ls.CallHierarchyItem.t_to_js x481)|])
-    let (asCallHierarchyItem''' :
+    let (as_call_hierarchy_item''' :
       t ->
         item:Ls.CallHierarchyItem.t or_null ->
           Code.CallHierarchyItem.t or_undefined)
@@ -1194,14 +1198,14 @@ module Converter =
           or_undefined_of_js Code.CallHierarchyItem.t_of_js
             (Ojs.call (t_to_js x487) "asCallHierarchyItem"
                [|(or_null_to_js Ls.CallHierarchyItem.t_to_js x485)|])
-    let (asCallHierarchyItems :
+    let (as_call_hierarchy_items :
       t -> items:never or_null -> never or_undefined) =
       fun (x491 : t) ->
         fun ~items:(x489 : never or_null) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x491) "asCallHierarchyItems"
                [|(or_null_to_js never_to_js x489)|])
-    let (asCallHierarchyItems' :
+    let (as_call_hierarchy_items' :
       t -> items:Ls.CallHierarchyItem.t list -> Code.CallHierarchyItem.t list)
       =
       fun (x495 : t) ->
@@ -1209,7 +1213,7 @@ module Converter =
           Ojs.list_of_js Code.CallHierarchyItem.t_of_js
             (Ojs.call (t_to_js x495) "asCallHierarchyItems"
                [|(Ojs.list_to_js Ls.CallHierarchyItem.t_to_js x493)|])
-    let (asCallHierarchyItems'' :
+    let (as_call_hierarchy_items'' :
       t ->
         items:Ls.CallHierarchyItem.t list or_null ->
           Code.CallHierarchyItem.t list or_undefined)
@@ -1223,7 +1227,7 @@ module Converter =
                [|(or_null_to_js
                     (fun (x498 : Ls.CallHierarchyItem.t list) ->
                        Ojs.list_to_js Ls.CallHierarchyItem.t_to_js x498) x497)|])
-    let (asCallHierarchyItems''' :
+    let (as_call_hierarchy_items''' :
       t ->
         items:Ls.CallHierarchyItem.t list or_null ->
           Code.CallHierarchyItem.t list or_undefined)
@@ -1237,7 +1241,7 @@ module Converter =
                [|(or_null_to_js
                     (fun (x504 : Ls.CallHierarchyItem.t list) ->
                        Ojs.list_to_js Ls.CallHierarchyItem.t_to_js x504) x503)|])
-    let (asCallHierarchyIncomingCall :
+    let (as_call_hierarchy_incoming_call :
       t ->
         item:Ls.CallHierarchyIncomingCall.t ->
           Code.CallHierarchyIncomingCall.t)
@@ -1247,14 +1251,14 @@ module Converter =
           Code.CallHierarchyIncomingCall.t_of_js
             (Ojs.call (t_to_js x510) "asCallHierarchyIncomingCall"
                [|(Ls.CallHierarchyIncomingCall.t_to_js x509)|])
-    let (asCallHierarchyIncomingCalls :
+    let (as_call_hierarchy_incoming_calls :
       t -> items:never or_null -> never or_undefined) =
       fun (x513 : t) ->
         fun ~items:(x511 : never or_null) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x513) "asCallHierarchyIncomingCalls"
                [|(or_null_to_js never_to_js x511)|])
-    let (asCallHierarchyIncomingCalls' :
+    let (as_call_hierarchy_incoming_calls' :
       t ->
         items:Ls.CallHierarchyIncomingCall.t list ->
           Code.CallHierarchyIncomingCall.t list)
@@ -1264,7 +1268,7 @@ module Converter =
           Ojs.list_of_js Code.CallHierarchyIncomingCall.t_of_js
             (Ojs.call (t_to_js x517) "asCallHierarchyIncomingCalls"
                [|(Ojs.list_to_js Ls.CallHierarchyIncomingCall.t_to_js x515)|])
-    let (asCallHierarchyIncomingCalls'' :
+    let (as_call_hierarchy_incoming_calls'' :
       t ->
         items:Ls.CallHierarchyIncomingCall.t list or_null ->
           Code.CallHierarchyIncomingCall.t list or_undefined)
@@ -1279,7 +1283,7 @@ module Converter =
                     (fun (x520 : Ls.CallHierarchyIncomingCall.t list) ->
                        Ojs.list_to_js Ls.CallHierarchyIncomingCall.t_to_js
                          x520) x519)|])
-    let (asCallHierarchyIncomingCalls''' :
+    let (as_call_hierarchy_incoming_calls''' :
       t ->
         items:Ls.CallHierarchyIncomingCall.t list or_null ->
           Code.CallHierarchyIncomingCall.t list or_undefined)
@@ -1294,7 +1298,7 @@ module Converter =
                     (fun (x526 : Ls.CallHierarchyIncomingCall.t list) ->
                        Ojs.list_to_js Ls.CallHierarchyIncomingCall.t_to_js
                          x526) x525)|])
-    let (asCallHierarchyOutgoingCall :
+    let (as_call_hierarchy_outgoing_call :
       t ->
         item:Ls.CallHierarchyOutgoingCall.t ->
           Code.CallHierarchyOutgoingCall.t)
@@ -1304,14 +1308,14 @@ module Converter =
           Code.CallHierarchyOutgoingCall.t_of_js
             (Ojs.call (t_to_js x532) "asCallHierarchyOutgoingCall"
                [|(Ls.CallHierarchyOutgoingCall.t_to_js x531)|])
-    let (asCallHierarchyOutgoingCalls :
+    let (as_call_hierarchy_outgoing_calls :
       t -> items:never or_null -> never or_undefined) =
       fun (x535 : t) ->
         fun ~items:(x533 : never or_null) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x535) "asCallHierarchyOutgoingCalls"
                [|(or_null_to_js never_to_js x533)|])
-    let (asCallHierarchyOutgoingCalls' :
+    let (as_call_hierarchy_outgoing_calls' :
       t ->
         items:Ls.CallHierarchyOutgoingCall.t list ->
           Code.CallHierarchyOutgoingCall.t list)
@@ -1321,7 +1325,7 @@ module Converter =
           Ojs.list_of_js Code.CallHierarchyOutgoingCall.t_of_js
             (Ojs.call (t_to_js x539) "asCallHierarchyOutgoingCalls"
                [|(Ojs.list_to_js Ls.CallHierarchyOutgoingCall.t_to_js x537)|])
-    let (asCallHierarchyOutgoingCalls'' :
+    let (as_call_hierarchy_outgoing_calls'' :
       t ->
         items:Ls.CallHierarchyOutgoingCall.t list or_null ->
           Code.CallHierarchyOutgoingCall.t list or_undefined)
@@ -1336,7 +1340,7 @@ module Converter =
                     (fun (x542 : Ls.CallHierarchyOutgoingCall.t list) ->
                        Ojs.list_to_js Ls.CallHierarchyOutgoingCall.t_to_js
                          x542) x541)|])
-    let (asCallHierarchyOutgoingCalls''' :
+    let (as_call_hierarchy_outgoing_calls''' :
       t ->
         items:Ls.CallHierarchyOutgoingCall.t list or_null ->
           Code.CallHierarchyOutgoingCall.t list or_undefined)
@@ -1351,21 +1355,21 @@ module Converter =
                     (fun (x548 : Ls.CallHierarchyOutgoingCall.t list) ->
                        Ojs.list_to_js Ls.CallHierarchyOutgoingCall.t_to_js
                          x548) x547)|])
-    let (asLinkedEditingRanges :
+    let (as_linked_editing_ranges :
       t -> value:never or_null_or_undefined -> never or_undefined) =
       fun (x555 : t) ->
         fun ~value:(x553 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x555) "asLinkedEditingRanges"
                [|(or_null_or_undefined_to_js never_to_js x553)|])
-    let (asLinkedEditingRanges' :
+    let (as_linked_editing_ranges' :
       t -> value:Ls.LinkedEditingRanges.t -> Code.LinkedEditingRanges.t) =
       fun (x558 : t) ->
         fun ~value:(x557 : Ls.LinkedEditingRanges.t) ->
           Code.LinkedEditingRanges.t_of_js
             (Ojs.call (t_to_js x558) "asLinkedEditingRanges"
                [|(Ls.LinkedEditingRanges.t_to_js x557)|])
-    let (asLinkedEditingRanges'' :
+    let (as_linked_editing_ranges'' :
       t ->
         value:Ls.LinkedEditingRanges.t or_null_or_undefined ->
           Code.LinkedEditingRanges.t or_undefined)
@@ -1379,25 +1383,23 @@ module Converter =
   end
 module URIConverter =
   struct
-    type t = _URIConverter
-    let rec t_of_js : Ojs.t -> t =
-      fun (x564 : Ojs.t) -> _URIConverter_of_js x564
-    and t_to_js : t -> Ojs.t =
-      fun (x563 : _URIConverter) -> _URIConverter_to_js x563
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x564 : Ojs.t) -> x564
+    and t_to_js : t -> Ojs.t = fun (x563 : Ojs.t) -> x563
     let (apply : t -> value:string -> Code.Uri.t) =
       fun (x566 : t) ->
         fun ~value:(x565 : string) ->
           Code.Uri.t_of_js
             (Ojs.apply (t_to_js x566) [|(Ojs.string_to_js x565)|])
   end
-let (createConverter :
-  uriConverter:_URIConverter or_undefined ->
-    trustMarkdown:bool or_undefined -> _Converter)
+let (create_converter :
+  uri_converter:URIConverter.t or_undefined ->
+    trust_markdown:bool or_undefined -> Converter.t)
   =
-  fun ~uriConverter:(x567 : _URIConverter or_undefined) ->
-    fun ~trustMarkdown:(x569 : bool or_undefined) ->
-      _Converter_of_js
+  fun ~uri_converter:(x567 : URIConverter.t or_undefined) ->
+    fun ~trust_markdown:(x569 : bool or_undefined) ->
+      Converter.t_of_js
         (Ojs.call Ojs.global "createConverter"
-           [|(or_undefined_to_js _URIConverter_to_js x567);(or_undefined_to_js
-                                                              Ojs.bool_to_js
-                                                              x569)|])
+           [|(or_undefined_to_js URIConverter.t_to_js x567);(or_undefined_to_js
+                                                               Ojs.bool_to_js
+                                                               x569)|])

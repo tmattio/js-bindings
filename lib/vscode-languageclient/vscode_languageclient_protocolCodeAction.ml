@@ -4,11 +4,9 @@
 open Es5
 module ProtocolCodeAction =
   struct
-    type t = _ProtocolCodeAction
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> _ProtocolCodeAction_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : _ProtocolCodeAction) -> _ProtocolCodeAction_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get_data : t -> unknown or_undefined) =
       fun (x3 : t) ->
         or_undefined_of_js unknown_of_js

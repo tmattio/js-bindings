@@ -49,46 +49,44 @@ module Stream : sig
         include Base
       end
 
-      val create : ?opts:stream_internal_ReadableOptions -> unit -> t
-        [@@js.create]
+      val create : ?opts:ReadableOptions.t -> unit -> t [@@js.create]
 
       val cast : t -> stream_internal [@@js.cast]
     end
     [@@js.scope "Stream"]
 
     module ReadableOptions : sig
-      type t = stream_internal_ReadableOptions
+      type t
 
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
 
-      val get_highWaterMark : t -> int [@@js.get "highWaterMark"]
+      val get_high_water_mark : t -> int [@@js.get "highWaterMark"]
 
-      val set_highWaterMark : t -> int -> unit [@@js.set "highWaterMark"]
+      val set_high_water_mark : t -> int -> unit [@@js.set "highWaterMark"]
 
       val get_encoding : t -> BufferEncoding.t [@@js.get "encoding"]
 
       val set_encoding : t -> BufferEncoding.t -> unit [@@js.set "encoding"]
 
-      val get_objectMode : t -> bool [@@js.get "objectMode"]
+      val get_object_mode : t -> bool [@@js.get "objectMode"]
 
-      val set_objectMode : t -> bool -> unit [@@js.set "objectMode"]
+      val set_object_mode : t -> bool -> unit [@@js.set "objectMode"]
 
-      val read : t -> this:stream_internal_Readable -> size:int -> unit
-        [@@js.call "read"]
+      val read : t -> this:Readable.t -> size:int -> unit [@@js.call "read"]
 
       val destroy
         :  t
-        -> this:stream_internal_Readable
+        -> this:Readable.t
         -> error:Error.t or_null
         -> callback:(error:Error.t or_null -> unit)
         -> unit
         [@@js.call "destroy"]
 
-      val get_autoDestroy : t -> bool [@@js.get "autoDestroy"]
+      val get_auto_destroy : t -> bool [@@js.get "autoDestroy"]
 
-      val set_autoDestroy : t -> bool -> unit [@@js.set "autoDestroy"]
+      val set_auto_destroy : t -> bool -> unit [@@js.set "autoDestroy"]
     end
     [@@js.scope "ReadableOptions"]
 
@@ -99,7 +97,7 @@ module Stream : sig
 
       val from
         :  iterable:(any AsyncIterable.t, any Iterable.t) union2
-        -> ?options:stream_internal_ReadableOptions
+        -> ?options:ReadableOptions.t
         -> unit
         -> t
         [@@js.global "from"]
@@ -108,39 +106,38 @@ module Stream : sig
 
       val set_readable : t -> bool -> unit [@@js.set "readable"]
 
-      val get_readableEncoding : t -> BufferEncoding.t or_null
+      val get_readable_encoding : t -> BufferEncoding.t or_null
         [@@js.get "readableEncoding"]
 
-      val get_readableEnded : t -> bool [@@js.get "readableEnded"]
+      val get_readable_ended : t -> bool [@@js.get "readableEnded"]
 
-      val get_readableFlowing : t -> bool or_null [@@js.get "readableFlowing"]
+      val get_readable_flowing : t -> bool or_null [@@js.get "readableFlowing"]
 
-      val get_readableHighWaterMark : t -> int
+      val get_readable_high_water_mark : t -> int
         [@@js.get "readableHighWaterMark"]
 
-      val get_readableLength : t -> int [@@js.get "readableLength"]
+      val get_readable_length : t -> int [@@js.get "readableLength"]
 
-      val get_readableObjectMode : t -> bool [@@js.get "readableObjectMode"]
+      val get_readable_object_mode : t -> bool [@@js.get "readableObjectMode"]
 
       val get_destroyed : t -> bool [@@js.get "destroyed"]
 
       val set_destroyed : t -> bool -> unit [@@js.set "destroyed"]
 
-      val create : ?opts:stream_internal_ReadableOptions -> unit -> t
-        [@@js.create]
+      val create : ?opts:ReadableOptions.t -> unit -> t [@@js.create]
 
       val _read : t -> size:int -> unit [@@js.call "_read"]
 
       val read : t -> ?size:int -> unit -> any [@@js.call "read"]
 
-      val setEncoding : t -> encoding:BufferEncoding.t -> t
+      val set_encoding : t -> encoding:BufferEncoding.t -> t
         [@@js.call "setEncoding"]
 
       val pause : t -> t [@@js.call "pause"]
 
       val resume : t -> t [@@js.call "resume"]
 
-      val isPaused : t -> bool [@@js.call "isPaused"]
+      val is_paused : t -> bool [@@js.call "isPaused"]
 
       val unpipe : t -> ?destination:WritableStream.t -> unit -> t
         [@@js.call "unpipe"]
@@ -148,7 +145,7 @@ module Stream : sig
       val unshift : t -> chunk:any -> ?encoding:BufferEncoding.t -> unit -> unit
         [@@js.call "unshift"]
 
-      val wrap : t -> oldStream:ReadableStream.t -> t [@@js.call "wrap"]
+      val wrap : t -> old_stream:ReadableStream.t -> t [@@js.call "wrap"]
 
       val push : t -> chunk:any -> ?encoding:BufferEncoding.t -> unit -> bool
         [@@js.call "push"]
@@ -162,56 +159,56 @@ module Stream : sig
 
       val destroy : t -> ?error:Error.t -> unit -> unit [@@js.call "destroy"]
 
-      val addListener
+      val add_listener
         :  t
         -> event:([ `close ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "addListener"]
 
-      val addListener'
+      val add_listener'
         :  t
         -> event:([ `data ][@js.enum])
         -> listener:(chunk:any -> unit)
         -> t
         [@@js.call "addListener"]
 
-      val addListener''
+      val add_listener''
         :  t
         -> event:([ `end_ ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "addListener"]
 
-      val addListener'''
+      val add_listener'''
         :  t
         -> event:([ `error ][@js.enum])
         -> listener:(err:Error.t -> unit)
         -> t
         [@@js.call "addListener"]
 
-      val addListener''''
+      val add_listener''''
         :  t
         -> event:([ `pause ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "addListener"]
 
-      val addListener'''''
+      val add_listener'''''
         :  t
         -> event:([ `readable ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "addListener"]
 
-      val addListener''''''
+      val add_listener''''''
         :  t
         -> event:([ `resume ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "addListener"]
 
-      val addListener'''''''
+      val add_listener'''''''
         :  t
         -> event:symbol or_string
         -> listener:(args:(any list[@js.variadic]) -> unit)
@@ -352,212 +349,212 @@ module Stream : sig
         -> t
         [@@js.call "once"]
 
-      val prependListener
+      val prepend_listener
         :  t
         -> event:([ `close ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "prependListener"]
 
-      val prependListener'
+      val prepend_listener'
         :  t
         -> event:([ `data ][@js.enum])
         -> listener:(chunk:any -> unit)
         -> t
         [@@js.call "prependListener"]
 
-      val prependListener''
+      val prepend_listener''
         :  t
         -> event:([ `end_ ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "prependListener"]
 
-      val prependListener'''
+      val prepend_listener'''
         :  t
         -> event:([ `error ][@js.enum])
         -> listener:(err:Error.t -> unit)
         -> t
         [@@js.call "prependListener"]
 
-      val prependListener''''
+      val prepend_listener''''
         :  t
         -> event:([ `pause ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "prependListener"]
 
-      val prependListener'''''
+      val prepend_listener'''''
         :  t
         -> event:([ `readable ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "prependListener"]
 
-      val prependListener''''''
+      val prepend_listener''''''
         :  t
         -> event:([ `resume ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "prependListener"]
 
-      val prependListener'''''''
+      val prepend_listener'''''''
         :  t
         -> event:symbol or_string
         -> listener:(args:(any list[@js.variadic]) -> unit)
         -> t
         [@@js.call "prependListener"]
 
-      val prependOnceListener
+      val prepend_once_listener
         :  t
         -> event:([ `close ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "prependOnceListener"]
 
-      val prependOnceListener'
+      val prepend_once_listener'
         :  t
         -> event:([ `data ][@js.enum])
         -> listener:(chunk:any -> unit)
         -> t
         [@@js.call "prependOnceListener"]
 
-      val prependOnceListener''
+      val prepend_once_listener''
         :  t
         -> event:([ `end_ ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "prependOnceListener"]
 
-      val prependOnceListener'''
+      val prepend_once_listener'''
         :  t
         -> event:([ `error ][@js.enum])
         -> listener:(err:Error.t -> unit)
         -> t
         [@@js.call "prependOnceListener"]
 
-      val prependOnceListener''''
+      val prepend_once_listener''''
         :  t
         -> event:([ `pause ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "prependOnceListener"]
 
-      val prependOnceListener'''''
+      val prepend_once_listener'''''
         :  t
         -> event:([ `readable ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "prependOnceListener"]
 
-      val prependOnceListener''''''
+      val prepend_once_listener''''''
         :  t
         -> event:([ `resume ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "prependOnceListener"]
 
-      val prependOnceListener'''''''
+      val prepend_once_listener'''''''
         :  t
         -> event:symbol or_string
         -> listener:(args:(any list[@js.variadic]) -> unit)
         -> t
         [@@js.call "prependOnceListener"]
 
-      val removeListener
+      val remove_listener
         :  t
         -> event:([ `close ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "removeListener"]
 
-      val removeListener'
+      val remove_listener'
         :  t
         -> event:([ `data ][@js.enum])
         -> listener:(chunk:any -> unit)
         -> t
         [@@js.call "removeListener"]
 
-      val removeListener''
+      val remove_listener''
         :  t
         -> event:([ `end_ ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "removeListener"]
 
-      val removeListener'''
+      val remove_listener'''
         :  t
         -> event:([ `error ][@js.enum])
         -> listener:(err:Error.t -> unit)
         -> t
         [@@js.call "removeListener"]
 
-      val removeListener''''
+      val remove_listener''''
         :  t
         -> event:([ `pause ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "removeListener"]
 
-      val removeListener'''''
+      val remove_listener'''''
         :  t
         -> event:([ `readable ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "removeListener"]
 
-      val removeListener''''''
+      val remove_listener''''''
         :  t
         -> event:([ `resume ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "removeListener"]
 
-      val removeListener'''''''
+      val remove_listener'''''''
         :  t
         -> event:symbol or_string
         -> listener:(args:(any list[@js.variadic]) -> unit)
         -> t
         [@@js.call "removeListener"]
 
-      val cast : t -> stream_internal_Stream [@@js.cast]
+      val cast : t -> Stream.t [@@js.cast]
 
       val cast' : t -> ReadableStream.t [@@js.cast]
     end
     [@@js.scope "Readable"]
 
     module WritableOptions : sig
-      type t = stream_internal_WritableOptions
+      type t
 
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
 
-      val get_highWaterMark : t -> int [@@js.get "highWaterMark"]
+      val get_high_water_mark : t -> int [@@js.get "highWaterMark"]
 
-      val set_highWaterMark : t -> int -> unit [@@js.set "highWaterMark"]
+      val set_high_water_mark : t -> int -> unit [@@js.set "highWaterMark"]
 
-      val get_decodeStrings : t -> bool [@@js.get "decodeStrings"]
+      val get_decode_strings : t -> bool [@@js.get "decodeStrings"]
 
-      val set_decodeStrings : t -> bool -> unit [@@js.set "decodeStrings"]
+      val set_decode_strings : t -> bool -> unit [@@js.set "decodeStrings"]
 
-      val get_defaultEncoding : t -> BufferEncoding.t
+      val get_default_encoding : t -> BufferEncoding.t
         [@@js.get "defaultEncoding"]
 
-      val set_defaultEncoding : t -> BufferEncoding.t -> unit
+      val set_default_encoding : t -> BufferEncoding.t -> unit
         [@@js.set "defaultEncoding"]
 
-      val get_objectMode : t -> bool [@@js.get "objectMode"]
+      val get_object_mode : t -> bool [@@js.get "objectMode"]
 
-      val set_objectMode : t -> bool -> unit [@@js.set "objectMode"]
+      val set_object_mode : t -> bool -> unit [@@js.set "objectMode"]
 
-      val get_emitClose : t -> bool [@@js.get "emitClose"]
+      val get_emit_close : t -> bool [@@js.get "emitClose"]
 
-      val set_emitClose : t -> bool -> unit [@@js.set "emitClose"]
+      val set_emit_close : t -> bool -> unit [@@js.set "emitClose"]
 
       val write
         :  t
-        -> this:stream_internal_Writable
+        -> this:Writable.t
         -> chunk:any
         -> encoding:BufferEncoding.t
         -> callback:(?error:Error.t or_null -> unit -> unit)
@@ -566,7 +563,7 @@ module Stream : sig
 
       val writev
         :  t
-        -> this:stream_internal_Writable
+        -> this:Writable.t
         -> chunks:AnonymousInterface0.t list
         -> callback:(?error:Error.t or_null -> unit -> unit)
         -> unit
@@ -574,7 +571,7 @@ module Stream : sig
 
       val destroy
         :  t
-        -> this:stream_internal_Writable
+        -> this:Writable.t
         -> error:Error.t or_null
         -> callback:(error:Error.t or_null -> unit)
         -> unit
@@ -582,14 +579,14 @@ module Stream : sig
 
       val final
         :  t
-        -> this:stream_internal_Writable
+        -> this:Writable.t
         -> callback:(?error:Error.t or_null -> unit -> unit)
         -> unit
         [@@js.call "final"]
 
-      val get_autoDestroy : t -> bool [@@js.get "autoDestroy"]
+      val get_auto_destroy : t -> bool [@@js.get "autoDestroy"]
 
-      val set_autoDestroy : t -> bool -> unit [@@js.set "autoDestroy"]
+      val set_auto_destroy : t -> bool -> unit [@@js.set "autoDestroy"]
     end
     [@@js.scope "WritableOptions"]
 
@@ -600,25 +597,24 @@ module Stream : sig
 
       val get_writable : t -> bool [@@js.get "writable"]
 
-      val get_writableEnded : t -> bool [@@js.get "writableEnded"]
+      val get_writable_ended : t -> bool [@@js.get "writableEnded"]
 
-      val get_writableFinished : t -> bool [@@js.get "writableFinished"]
+      val get_writable_finished : t -> bool [@@js.get "writableFinished"]
 
-      val get_writableHighWaterMark : t -> int
+      val get_writable_high_water_mark : t -> int
         [@@js.get "writableHighWaterMark"]
 
-      val get_writableLength : t -> int [@@js.get "writableLength"]
+      val get_writable_length : t -> int [@@js.get "writableLength"]
 
-      val get_writableObjectMode : t -> bool [@@js.get "writableObjectMode"]
+      val get_writable_object_mode : t -> bool [@@js.get "writableObjectMode"]
 
-      val get_writableCorked : t -> int [@@js.get "writableCorked"]
+      val get_writable_corked : t -> int [@@js.get "writableCorked"]
 
       val get_destroyed : t -> bool [@@js.get "destroyed"]
 
       val set_destroyed : t -> bool -> unit [@@js.set "destroyed"]
 
-      val create : ?opts:stream_internal_WritableOptions -> unit -> t
-        [@@js.create]
+      val create : ?opts:WritableOptions.t -> unit -> t [@@js.create]
 
       val _write
         :  t
@@ -665,7 +661,7 @@ module Stream : sig
         -> bool
         [@@js.call "write"]
 
-      val setDefaultEncoding : t -> encoding:BufferEncoding.t -> t
+      val set_default_encoding : t -> encoding:BufferEncoding.t -> t
         [@@js.call "setDefaultEncoding"]
 
       val end_ : t -> ?cb:(unit -> unit) -> unit -> unit [@@js.call "end"]
@@ -688,49 +684,49 @@ module Stream : sig
 
       val destroy : t -> ?error:Error.t -> unit -> unit [@@js.call "destroy"]
 
-      val addListener
+      val add_listener
         :  t
         -> event:([ `close ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "addListener"]
 
-      val addListener'
+      val add_listener'
         :  t
         -> event:([ `drain ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "addListener"]
 
-      val addListener''
+      val add_listener''
         :  t
         -> event:([ `error ][@js.enum])
         -> listener:(err:Error.t -> unit)
         -> t
         [@@js.call "addListener"]
 
-      val addListener'''
+      val add_listener'''
         :  t
         -> event:([ `finish ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "addListener"]
 
-      val addListener''''
+      val add_listener''''
         :  t
         -> event:([ `pipe ][@js.enum])
-        -> listener:(src:stream_internal_Readable -> unit)
+        -> listener:(src:Readable.t -> unit)
         -> t
         [@@js.call "addListener"]
 
-      val addListener'''''
+      val add_listener'''''
         :  t
         -> event:([ `unpipe ][@js.enum])
-        -> listener:(src:stream_internal_Readable -> unit)
+        -> listener:(src:Readable.t -> unit)
         -> t
         [@@js.call "addListener"]
 
-      val addListener''''''
+      val add_listener''''''
         :  t
         -> event:symbol or_string
         -> listener:(args:(any list[@js.variadic]) -> unit)
@@ -747,17 +743,13 @@ module Stream : sig
       val emit''' : t -> event:([ `finish ][@js.enum]) -> bool
         [@@js.call "emit"]
 
-      val emit''''
-        :  t
-        -> event:([ `pipe ][@js.enum])
-        -> src:stream_internal_Readable
-        -> bool
+      val emit'''' : t -> event:([ `pipe ][@js.enum]) -> src:Readable.t -> bool
         [@@js.call "emit"]
 
       val emit'''''
         :  t
         -> event:([ `unpipe ][@js.enum])
-        -> src:stream_internal_Readable
+        -> src:Readable.t
         -> bool
         [@@js.call "emit"]
 
@@ -795,14 +787,14 @@ module Stream : sig
       val on''''
         :  t
         -> event:([ `pipe ][@js.enum])
-        -> listener:(src:stream_internal_Readable -> unit)
+        -> listener:(src:Readable.t -> unit)
         -> t
         [@@js.call "on"]
 
       val on'''''
         :  t
         -> event:([ `unpipe ][@js.enum])
-        -> listener:(src:stream_internal_Readable -> unit)
+        -> listener:(src:Readable.t -> unit)
         -> t
         [@@js.call "on"]
 
@@ -844,14 +836,14 @@ module Stream : sig
       val once''''
         :  t
         -> event:([ `pipe ][@js.enum])
-        -> listener:(src:stream_internal_Readable -> unit)
+        -> listener:(src:Readable.t -> unit)
         -> t
         [@@js.call "once"]
 
       val once'''''
         :  t
         -> event:([ `unpipe ][@js.enum])
-        -> listener:(src:stream_internal_Readable -> unit)
+        -> listener:(src:Readable.t -> unit)
         -> t
         [@@js.call "once"]
 
@@ -862,202 +854,201 @@ module Stream : sig
         -> t
         [@@js.call "once"]
 
-      val prependListener
+      val prepend_listener
         :  t
         -> event:([ `close ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "prependListener"]
 
-      val prependListener'
+      val prepend_listener'
         :  t
         -> event:([ `drain ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "prependListener"]
 
-      val prependListener''
+      val prepend_listener''
         :  t
         -> event:([ `error ][@js.enum])
         -> listener:(err:Error.t -> unit)
         -> t
         [@@js.call "prependListener"]
 
-      val prependListener'''
+      val prepend_listener'''
         :  t
         -> event:([ `finish ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "prependListener"]
 
-      val prependListener''''
+      val prepend_listener''''
         :  t
         -> event:([ `pipe ][@js.enum])
-        -> listener:(src:stream_internal_Readable -> unit)
+        -> listener:(src:Readable.t -> unit)
         -> t
         [@@js.call "prependListener"]
 
-      val prependListener'''''
+      val prepend_listener'''''
         :  t
         -> event:([ `unpipe ][@js.enum])
-        -> listener:(src:stream_internal_Readable -> unit)
+        -> listener:(src:Readable.t -> unit)
         -> t
         [@@js.call "prependListener"]
 
-      val prependListener''''''
+      val prepend_listener''''''
         :  t
         -> event:symbol or_string
         -> listener:(args:(any list[@js.variadic]) -> unit)
         -> t
         [@@js.call "prependListener"]
 
-      val prependOnceListener
+      val prepend_once_listener
         :  t
         -> event:([ `close ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "prependOnceListener"]
 
-      val prependOnceListener'
+      val prepend_once_listener'
         :  t
         -> event:([ `drain ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "prependOnceListener"]
 
-      val prependOnceListener''
+      val prepend_once_listener''
         :  t
         -> event:([ `error ][@js.enum])
         -> listener:(err:Error.t -> unit)
         -> t
         [@@js.call "prependOnceListener"]
 
-      val prependOnceListener'''
+      val prepend_once_listener'''
         :  t
         -> event:([ `finish ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "prependOnceListener"]
 
-      val prependOnceListener''''
+      val prepend_once_listener''''
         :  t
         -> event:([ `pipe ][@js.enum])
-        -> listener:(src:stream_internal_Readable -> unit)
+        -> listener:(src:Readable.t -> unit)
         -> t
         [@@js.call "prependOnceListener"]
 
-      val prependOnceListener'''''
+      val prepend_once_listener'''''
         :  t
         -> event:([ `unpipe ][@js.enum])
-        -> listener:(src:stream_internal_Readable -> unit)
+        -> listener:(src:Readable.t -> unit)
         -> t
         [@@js.call "prependOnceListener"]
 
-      val prependOnceListener''''''
+      val prepend_once_listener''''''
         :  t
         -> event:symbol or_string
         -> listener:(args:(any list[@js.variadic]) -> unit)
         -> t
         [@@js.call "prependOnceListener"]
 
-      val removeListener
+      val remove_listener
         :  t
         -> event:([ `close ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "removeListener"]
 
-      val removeListener'
+      val remove_listener'
         :  t
         -> event:([ `drain ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "removeListener"]
 
-      val removeListener''
+      val remove_listener''
         :  t
         -> event:([ `error ][@js.enum])
         -> listener:(err:Error.t -> unit)
         -> t
         [@@js.call "removeListener"]
 
-      val removeListener'''
+      val remove_listener'''
         :  t
         -> event:([ `finish ][@js.enum])
         -> listener:(unit -> unit)
         -> t
         [@@js.call "removeListener"]
 
-      val removeListener''''
+      val remove_listener''''
         :  t
         -> event:([ `pipe ][@js.enum])
-        -> listener:(src:stream_internal_Readable -> unit)
+        -> listener:(src:Readable.t -> unit)
         -> t
         [@@js.call "removeListener"]
 
-      val removeListener'''''
+      val remove_listener'''''
         :  t
         -> event:([ `unpipe ][@js.enum])
-        -> listener:(src:stream_internal_Readable -> unit)
+        -> listener:(src:Readable.t -> unit)
         -> t
         [@@js.call "removeListener"]
 
-      val removeListener''''''
+      val remove_listener''''''
         :  t
         -> event:symbol or_string
         -> listener:(args:(any list[@js.variadic]) -> unit)
         -> t
         [@@js.call "removeListener"]
 
-      val cast : t -> stream_internal_Stream [@@js.cast]
+      val cast : t -> Stream.t [@@js.cast]
 
       val cast' : t -> WritableStream.t [@@js.cast]
     end
     [@@js.scope "Writable"]
 
     module DuplexOptions : sig
-      type t = stream_internal_DuplexOptions
+      type t
 
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
 
-      val get_allowHalfOpen : t -> bool [@@js.get "allowHalfOpen"]
+      val get_allow_half_open : t -> bool [@@js.get "allowHalfOpen"]
 
-      val set_allowHalfOpen : t -> bool -> unit [@@js.set "allowHalfOpen"]
+      val set_allow_half_open : t -> bool -> unit [@@js.set "allowHalfOpen"]
 
-      val get_readableObjectMode : t -> bool [@@js.get "readableObjectMode"]
+      val get_readable_object_mode : t -> bool [@@js.get "readableObjectMode"]
 
-      val set_readableObjectMode : t -> bool -> unit
+      val set_readable_object_mode : t -> bool -> unit
         [@@js.set "readableObjectMode"]
 
-      val get_writableObjectMode : t -> bool [@@js.get "writableObjectMode"]
+      val get_writable_object_mode : t -> bool [@@js.get "writableObjectMode"]
 
-      val set_writableObjectMode : t -> bool -> unit
+      val set_writable_object_mode : t -> bool -> unit
         [@@js.set "writableObjectMode"]
 
-      val get_readableHighWaterMark : t -> int
+      val get_readable_high_water_mark : t -> int
         [@@js.get "readableHighWaterMark"]
 
-      val set_readableHighWaterMark : t -> int -> unit
+      val set_readable_high_water_mark : t -> int -> unit
         [@@js.set "readableHighWaterMark"]
 
-      val get_writableHighWaterMark : t -> int
+      val get_writable_high_water_mark : t -> int
         [@@js.get "writableHighWaterMark"]
 
-      val set_writableHighWaterMark : t -> int -> unit
+      val set_writable_high_water_mark : t -> int -> unit
         [@@js.set "writableHighWaterMark"]
 
-      val get_writableCorked : t -> int [@@js.get "writableCorked"]
+      val get_writable_corked : t -> int [@@js.get "writableCorked"]
 
-      val set_writableCorked : t -> int -> unit [@@js.set "writableCorked"]
+      val set_writable_corked : t -> int -> unit [@@js.set "writableCorked"]
 
-      val read : t -> this:stream_internal_Duplex -> size:int -> unit
-        [@@js.call "read"]
+      val read : t -> this:Duplex.t -> size:int -> unit [@@js.call "read"]
 
       val write
         :  t
-        -> this:stream_internal_Duplex
+        -> this:Duplex.t
         -> chunk:any
         -> encoding:BufferEncoding.t
         -> callback:(?error:Error.t or_null -> unit -> unit)
@@ -1066,7 +1057,7 @@ module Stream : sig
 
       val writev
         :  t
-        -> this:stream_internal_Duplex
+        -> this:Duplex.t
         -> chunks:AnonymousInterface0.t list
         -> callback:(?error:Error.t or_null -> unit -> unit)
         -> unit
@@ -1074,22 +1065,22 @@ module Stream : sig
 
       val final
         :  t
-        -> this:stream_internal_Duplex
+        -> this:Duplex.t
         -> callback:(?error:Error.t or_null -> unit -> unit)
         -> unit
         [@@js.call "final"]
 
       val destroy
         :  t
-        -> this:stream_internal_Duplex
+        -> this:Duplex.t
         -> error:Error.t or_null
         -> callback:(error:Error.t or_null -> unit)
         -> unit
         [@@js.call "destroy"]
 
-      val cast : t -> stream_internal_ReadableOptions [@@js.cast]
+      val cast : t -> ReadableOptions.t [@@js.cast]
 
-      val cast' : t -> stream_internal_WritableOptions [@@js.cast]
+      val cast' : t -> WritableOptions.t [@@js.cast]
     end
     [@@js.scope "DuplexOptions"]
 
@@ -1100,21 +1091,20 @@ module Stream : sig
 
       val get_writable : t -> bool [@@js.get "writable"]
 
-      val get_writableEnded : t -> bool [@@js.get "writableEnded"]
+      val get_writable_ended : t -> bool [@@js.get "writableEnded"]
 
-      val get_writableFinished : t -> bool [@@js.get "writableFinished"]
+      val get_writable_finished : t -> bool [@@js.get "writableFinished"]
 
-      val get_writableHighWaterMark : t -> int
+      val get_writable_high_water_mark : t -> int
         [@@js.get "writableHighWaterMark"]
 
-      val get_writableLength : t -> int [@@js.get "writableLength"]
+      val get_writable_length : t -> int [@@js.get "writableLength"]
 
-      val get_writableObjectMode : t -> bool [@@js.get "writableObjectMode"]
+      val get_writable_object_mode : t -> bool [@@js.get "writableObjectMode"]
 
-      val get_writableCorked : t -> int [@@js.get "writableCorked"]
+      val get_writable_corked : t -> int [@@js.get "writableCorked"]
 
-      val create : ?opts:stream_internal_DuplexOptions -> unit -> t
-        [@@js.create]
+      val create : ?opts:DuplexOptions.t -> unit -> t [@@js.create]
 
       val _write
         :  t
@@ -1161,7 +1151,7 @@ module Stream : sig
         -> bool
         [@@js.call "write"]
 
-      val setDefaultEncoding : t -> encoding:BufferEncoding.t -> t
+      val set_default_encoding : t -> encoding:BufferEncoding.t -> t
         [@@js.call "setDefaultEncoding"]
 
       val end_ : t -> ?cb:(unit -> unit) -> unit -> unit [@@js.call "end"]
@@ -1182,14 +1172,14 @@ module Stream : sig
 
       val uncork : t -> unit [@@js.call "uncork"]
 
-      val cast : t -> stream_internal_Readable [@@js.cast]
+      val cast : t -> Readable.t [@@js.cast]
 
-      val cast' : t -> stream_internal_Writable [@@js.cast]
+      val cast' : t -> Writable.t [@@js.cast]
     end
     [@@js.scope "Duplex"]
 
     module TransformCallback : sig
-      type t = stream_internal_TransformCallback
+      type t
 
       val t_to_js : t -> Ojs.t
 
@@ -1205,12 +1195,11 @@ module Stream : sig
         include DuplexOptions
       end
 
-      val read : t -> this:stream_internal_Transform -> size:int -> unit
-        [@@js.call "read"]
+      val read : t -> this:Transform.t -> size:int -> unit [@@js.call "read"]
 
       val write
         :  t
-        -> this:stream_internal_Transform
+        -> this:Transform.t
         -> chunk:any
         -> encoding:BufferEncoding.t
         -> callback:(?error:Error.t or_null -> unit -> unit)
@@ -1219,7 +1208,7 @@ module Stream : sig
 
       val writev
         :  t
-        -> this:stream_internal_Transform
+        -> this:Transform.t
         -> chunks:AnonymousInterface0.t list
         -> callback:(?error:Error.t or_null -> unit -> unit)
         -> unit
@@ -1227,14 +1216,14 @@ module Stream : sig
 
       val final
         :  t
-        -> this:stream_internal_Transform
+        -> this:Transform.t
         -> callback:(?error:Error.t or_null -> unit -> unit)
         -> unit
         [@@js.call "final"]
 
       val destroy
         :  t
-        -> this:stream_internal_Transform
+        -> this:Transform.t
         -> error:Error.t or_null
         -> callback:(error:Error.t or_null -> unit)
         -> unit
@@ -1242,18 +1231,14 @@ module Stream : sig
 
       val transform
         :  t
-        -> this:stream_internal_Transform
+        -> this:Transform.t
         -> chunk:any
         -> encoding:BufferEncoding.t
-        -> callback:stream_internal_TransformCallback
+        -> callback:TransformCallback.t
         -> unit
         [@@js.call "transform"]
 
-      val flush
-        :  t
-        -> this:stream_internal_Transform
-        -> callback:stream_internal_TransformCallback
-        -> unit
+      val flush : t -> this:Transform.t -> callback:TransformCallback.t -> unit
         [@@js.call "flush"]
     end
     [@@js.scope "TransformOptions"]
@@ -1263,18 +1248,17 @@ module Stream : sig
         include Duplex
       end
 
-      val create : ?opts:stream_internal_TransformOptions -> unit -> t
-        [@@js.create]
+      val create : ?opts:TransformOptions.t -> unit -> t [@@js.create]
 
       val _transform
         :  t
         -> chunk:any
         -> encoding:BufferEncoding.t
-        -> callback:stream_internal_TransformCallback
+        -> callback:TransformCallback.t
         -> unit
         [@@js.call "_transform"]
 
-      val _flush : t -> callback:stream_internal_TransformCallback -> unit
+      val _flush : t -> callback:TransformCallback.t -> unit
         [@@js.call "_flush"]
     end
     [@@js.scope "Transform"]
@@ -1286,7 +1270,7 @@ module Stream : sig
     end
 
     module FinishedOptions : sig
-      type t = stream_internal_FinishedOptions
+      type t
 
       val t_to_js : t -> Ojs.t
 
@@ -1308,7 +1292,7 @@ module Stream : sig
 
     val finished
       :  stream:(ReadWriteStream.t, ReadableStream.t, WritableStream.t) union3
-      -> options:stream_internal_FinishedOptions
+      -> options:FinishedOptions.t
       -> callback:(?err:ErrnoException.t or_null -> unit -> unit)
       -> (unit -> unit[@js.dummy])
       [@@js.global "finished"]
@@ -1322,7 +1306,7 @@ module Stream : sig
     module Finished : sig
       val __promisify__
         :  stream:(ReadWriteStream.t, ReadableStream.t, WritableStream.t) union3
-        -> ?options:stream_internal_FinishedOptions
+        -> ?options:FinishedOptions.t
         -> unit
         -> unit Promise.t
         [@@js.global "__promisify__"]
@@ -1436,7 +1420,7 @@ module Stream : sig
     [@@js.scope "pipeline"]
 
     module Pipe : sig
-      type t = stream_internal_Pipe
+      type t
 
       val t_to_js : t -> Ojs.t
 
@@ -1444,7 +1428,7 @@ module Stream : sig
 
       val close : t -> unit [@@js.call "close"]
 
-      val hasRef : t -> bool [@@js.call "hasRef"]
+      val has_ref : t -> bool [@@js.call "hasRef"]
 
       val ref : t -> unit [@@js.call "ref"]
 

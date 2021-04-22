@@ -5,11 +5,9 @@ open Es2020
 include struct include Vscode_jsonrpc_api end
 module IPCMessageReader =
   struct
-    type t = _IPCMessageReader
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> _IPCMessageReader_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : _IPCMessageReader) -> _IPCMessageReader_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get_process : t -> any) =
       fun (x3 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x3) "process")
     let (set_process : t -> any -> unit) =
@@ -39,21 +37,19 @@ module IPCMessageReader =
   end
 module IPCMessageWriter =
   struct
-    type t = _IPCMessageWriter
-    let rec t_of_js : Ojs.t -> t =
-      fun (x13 : Ojs.t) -> _IPCMessageWriter_of_js x13
-    and t_to_js : t -> Ojs.t =
-      fun (x12 : _IPCMessageWriter) -> _IPCMessageWriter_to_js x12
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x13 : Ojs.t) -> x13
+    and t_to_js : t -> Ojs.t = fun (x12 : Ojs.t) -> x12
     let (get_process : t -> any) =
       fun (x14 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x14) "process")
     let (set_process : t -> any -> unit) =
       fun (x15 : t) ->
         fun (x16 : any) ->
           Ojs.set_prop_ascii (t_to_js x15) "process" (any_to_js x16)
-    let (get_errorCount : t -> any) =
+    let (get_error_count : t -> any) =
       fun (x17 : t) ->
         any_of_js (Ojs.get_prop_ascii (t_to_js x17) "errorCount")
-    let (set_errorCount : t -> any -> unit) =
+    let (set_error_count : t -> any -> unit) =
       fun (x18 : t) ->
         fun (x19 : any) ->
           Ojs.set_prop_ascii (t_to_js x18) "errorCount" (any_to_js x19)
@@ -75,10 +71,10 @@ module IPCMessageWriter =
         fun ~msg:(x23 : Message.t) ->
           Promise.t_of_js Ojs.unit_of_js
             (Ojs.call (t_to_js x24) "write" [|(Message.t_to_js x23)|])
-    let (get_handleError : t -> any) =
+    let (get_handle_error : t -> any) =
       fun (x26 : t) ->
         any_of_js (Ojs.get_prop_ascii (t_to_js x26) "handleError")
-    let (set_handleError : t -> any -> unit) =
+    let (set_handle_error : t -> any -> unit) =
       fun (x27 : t) ->
         fun (x28 : any) ->
           Ojs.set_prop_ascii (t_to_js x27) "handleError" (any_to_js x28)
@@ -91,11 +87,9 @@ module IPCMessageWriter =
   end
 module SocketMessageReader =
   struct
-    type t = _SocketMessageReader
-    let rec t_of_js : Ojs.t -> t =
-      fun (x33 : Ojs.t) -> _SocketMessageReader_of_js x33
-    and t_to_js : t -> Ojs.t =
-      fun (x32 : _SocketMessageReader) -> _SocketMessageReader_to_js x32
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x33 : Ojs.t) -> x33
+    and t_to_js : t -> Ojs.t = fun (x32 : Ojs.t) -> x32
     let (create :
       socket:Node.Net.Socket.t ->
         ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t -> unit -> t)
@@ -126,11 +120,9 @@ module SocketMessageReader =
   end
 module SocketMessageWriter =
   struct
-    type t = _SocketMessageWriter
-    let rec t_of_js : Ojs.t -> t =
-      fun (x40 : Ojs.t) -> _SocketMessageWriter_of_js x40
-    and t_to_js : t -> Ojs.t =
-      fun (x39 : _SocketMessageWriter) -> _SocketMessageWriter_to_js x39
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x40 : Ojs.t) -> x40
+    and t_to_js : t -> Ojs.t = fun (x39 : Ojs.t) -> x39
     let (get_socket : t -> any) =
       fun (x41 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x41) "socket")
     let (set_socket : t -> any -> unit) =
@@ -173,11 +165,9 @@ module SocketMessageWriter =
   end
 module StreamMessageReader =
   struct
-    type t = _StreamMessageReader
-    let rec t_of_js : Ojs.t -> t =
-      fun (x53 : Ojs.t) -> _StreamMessageReader_of_js x53
-    and t_to_js : t -> Ojs.t =
-      fun (x52 : _StreamMessageReader) -> _StreamMessageReader_to_js x52
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x53 : Ojs.t) -> x53
+    and t_to_js : t -> Ojs.t = fun (x52 : Ojs.t) -> x52
     let (create :
       readble:Node.ReadableStream.t ->
         ?encoding:(MessageReaderOptions.t,
@@ -213,11 +203,9 @@ module StreamMessageReader =
   end
 module StreamMessageWriter =
   struct
-    type t = _StreamMessageWriter
-    let rec t_of_js : Ojs.t -> t =
-      fun (x62 : Ojs.t) -> _StreamMessageWriter_of_js x62
-    and t_to_js : t -> Ojs.t =
-      fun (x61 : _StreamMessageWriter) -> _StreamMessageWriter_to_js x61
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x62 : Ojs.t) -> x62
+    and t_to_js : t -> Ojs.t = fun (x61 : Ojs.t) -> x61
     let (create :
       writable:Node.WritableStream.t ->
         ?options:(MessageWriterOptions.t,
@@ -251,17 +239,15 @@ module StreamMessageWriter =
     let (cast : t -> WriteableStreamMessageWriter.t) =
       fun (x69 : t) -> WriteableStreamMessageWriter.t_of_js (t_to_js x69)
   end
-let (generateRandomPipeName : unit -> string) =
+let (generate_random_pipe_name : unit -> string) =
   fun () ->
     Ojs.string_of_js (Ojs.call Ojs.global "generateRandomPipeName" [||])
 module PipeTransport =
   struct
-    type t = _PipeTransport
-    let rec t_of_js : Ojs.t -> t =
-      fun (x71 : Ojs.t) -> _PipeTransport_of_js x71
-    and t_to_js : t -> Ojs.t =
-      fun (x70 : _PipeTransport) -> _PipeTransport_to_js x70
-    let (onConnected : t -> (MessageReader.t * MessageWriter.t) Promise.t) =
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x71 : Ojs.t) -> x71
+    and t_to_js : t -> Ojs.t = fun (x70 : Ojs.t) -> x70
+    let (on_connected : t -> (MessageReader.t * MessageWriter.t) Promise.t) =
       fun (x72 : t) ->
         Promise.t_of_js
           (fun (x73 : Ojs.t) ->
@@ -270,17 +256,17 @@ module PipeTransport =
                (MessageWriter.t_of_js (Ojs.array_get x74 1))))
           (Ojs.call (t_to_js x72) "onConnected" [||])
   end
-let (createClientPipeTransport :
-  pipeName:string ->
+let (create_client_pipe_transport :
+  pipe_name:string ->
     ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t ->
-      unit -> _PipeTransport Promise.t)
+      unit -> PipeTransport.t Promise.t)
   =
-  fun ~pipeName:(x75 : string) ->
+  fun ~pipe_name:(x75 : string) ->
     fun
       ?encoding:(x76 : Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t option)
       ->
       fun () ->
-        Promise.t_of_js _PipeTransport_of_js
+        Promise.t_of_js PipeTransport.t_of_js
           (let x79 = Ojs.global in
            Ojs.call (Ojs.get_prop_ascii x79 "createClientPipeTransport")
              "apply"
@@ -296,12 +282,12 @@ let (createClientPipeTransport :
                                     x78)|])
                       | None -> ());
                      x77))|])
-let (createServerPipeTransport :
-  pipeName:string ->
+let (create_server_pipe_transport :
+  pipe_name:string ->
     ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t ->
       unit -> (MessageReader.t * MessageWriter.t))
   =
-  fun ~pipeName:(x81 : string) ->
+  fun ~pipe_name:(x81 : string) ->
     fun
       ?encoding:(x82 : Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t option)
       ->
@@ -326,12 +312,10 @@ let (createServerPipeTransport :
           (MessageWriter.t_of_js (Ojs.array_get x86 1)))
 module SocketTransport =
   struct
-    type t = _SocketTransport
-    let rec t_of_js : Ojs.t -> t =
-      fun (x88 : Ojs.t) -> _SocketTransport_of_js x88
-    and t_to_js : t -> Ojs.t =
-      fun (x87 : _SocketTransport) -> _SocketTransport_to_js x87
-    let (onConnected : t -> (MessageReader.t * MessageWriter.t) Promise.t) =
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x88 : Ojs.t) -> x88
+    and t_to_js : t -> Ojs.t = fun (x87 : Ojs.t) -> x87
+    let (on_connected : t -> (MessageReader.t * MessageWriter.t) Promise.t) =
       fun (x89 : t) ->
         Promise.t_of_js
           (fun (x90 : Ojs.t) ->
@@ -340,17 +324,17 @@ module SocketTransport =
                (MessageWriter.t_of_js (Ojs.array_get x91 1))))
           (Ojs.call (t_to_js x89) "onConnected" [||])
   end
-let (createClientSocketTransport :
+let (create_client_socket_transport :
   port:int ->
     ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t ->
-      unit -> _SocketTransport Promise.t)
+      unit -> SocketTransport.t Promise.t)
   =
   fun ~port:(x92 : int) ->
     fun
       ?encoding:(x93 : Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t option)
       ->
       fun () ->
-        Promise.t_of_js _SocketTransport_of_js
+        Promise.t_of_js SocketTransport.t_of_js
           (let x96 = Ojs.global in
            Ojs.call (Ojs.get_prop_ascii x96 "createClientSocketTransport")
              "apply"
@@ -366,7 +350,7 @@ let (createClientSocketTransport :
                                     x95)|])
                       | None -> ());
                      x94))|])
-let (createServerSocketTransport :
+let (create_server_socket_transport :
   port:int ->
     ?encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t ->
       unit -> (MessageReader.t * MessageWriter.t))
@@ -394,7 +378,7 @@ let (createServerSocketTransport :
                      x100))|] in
         ((MessageReader.t_of_js (Ojs.array_get x103 0)),
           (MessageWriter.t_of_js (Ojs.array_get x103 1)))
-let (createMessageConnection :
+let (create_message_connection :
   reader:MessageReader.t ->
     writer:MessageWriter.t ->
       ?logger:Logger.t ->
@@ -438,15 +422,15 @@ let (createMessageConnection :
                                          ConnectionStrategy.t_to_js x109)|])
                            | None -> ());
                           x108))|])
-let (createMessageConnection :
-  inputStream:Node.ReadableStream.t ->
-    outputStream:Node.WritableStream.t ->
+let (create_message_connection :
+  input_stream:Node.ReadableStream.t ->
+    output_stream:Node.WritableStream.t ->
       ?logger:Logger.t ->
         ?options:(ConnectionOptions.t, ConnectionStrategy.t) union2 ->
           unit -> MessageConnection.t)
   =
-  fun ~inputStream:(x114 : Node.ReadableStream.t) ->
-    fun ~outputStream:(x115 : Node.WritableStream.t) ->
+  fun ~input_stream:(x114 : Node.ReadableStream.t) ->
+    fun ~output_stream:(x115 : Node.WritableStream.t) ->
       fun ?logger:(x116 : Logger.t option) ->
         fun
           ?options:(x117 :

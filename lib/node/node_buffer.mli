@@ -12,13 +12,13 @@ module AnonymousInterface0 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_MAX_LENGTH : t -> int [@@js.get "MAX_LENGTH"]
+  val get_max_length : t -> int [@@js.get "MAX_LENGTH"]
 
-  val set_MAX_LENGTH : t -> int -> unit [@@js.set "MAX_LENGTH"]
+  val set_max_length : t -> int -> unit [@@js.set "MAX_LENGTH"]
 
-  val get_MAX_STRING_LENGTH : t -> int [@@js.get "MAX_STRING_LENGTH"]
+  val get_max_string_length : t -> int [@@js.get "MAX_STRING_LENGTH"]
 
-  val set_MAX_STRING_LENGTH : t -> int -> unit [@@js.set "MAX_STRING_LENGTH"]
+  val set_max_string_length : t -> int -> unit [@@js.set "MAX_STRING_LENGTH"]
 end
 
 module AnonymousInterface1 : sig
@@ -38,13 +38,13 @@ end
 module Buffer : sig
   val inspect_max_bytes : int [@@js.global "INSPECT_MAX_BYTES"]
 
-  val kMaxLength : int [@@js.global "kMaxLength"]
+  val k_max_length : int [@@js.global "kMaxLength"]
 
-  val kStringMaxLength : int [@@js.global "kStringMaxLength"]
+  val k_string_max_length : int [@@js.global "kStringMaxLength"]
 
   val constants : AnonymousInterface0.t [@@js.global "constants"]
 
-  val buffType : (* FIXME: unknown type 'typeof Buffer' *) any
+  val buff_type : (* FIXME: unknown type 'typeof Buffer' *) any
     [@@js.global "BuffType"]
 
   module TranscodeEncoding : sig
@@ -65,12 +65,12 @@ module Buffer : sig
 
   val transcode
     :  source:Uint8Array.t
-    -> fromEnc:TranscodeEncoding.t
-    -> toEnc:TranscodeEncoding.t
+    -> from_enc:TranscodeEncoding.t
+    -> to_enc:TranscodeEncoding.t
     -> Buffer.t
     [@@js.global "transcode"]
 
-  val slowBuffer : AnonymousInterface1.t [@@js.global "SlowBuffer"]
+  val slow_buffer : AnonymousInterface1.t [@@js.global "SlowBuffer"]
   (* export { BuffType as Buffer }; *)
 end
 [@@js.scope Import.buffer]

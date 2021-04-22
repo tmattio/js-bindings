@@ -4,12 +4,9 @@
 open Es5
 module ProvideFoldingRangeSignature =
   struct
-    type t = _ProvideFoldingRangeSignature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> _ProvideFoldingRangeSignature_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : _ProvideFoldingRangeSignature) ->
-        _ProvideFoldingRangeSignature_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (apply :
       t ->
         this:unit ->
@@ -33,19 +30,16 @@ module ProvideFoldingRangeSignature =
   end
 module FoldingRangeProviderMiddleware =
   struct
-    type t = _FoldingRangeProviderMiddleware
-    let rec t_of_js : Ojs.t -> t =
-      fun (x11 : Ojs.t) -> _FoldingRangeProviderMiddleware_of_js x11
-    and t_to_js : t -> Ojs.t =
-      fun (x10 : _FoldingRangeProviderMiddleware) ->
-        _FoldingRangeProviderMiddleware_to_js x10
-    let (provideFoldingRanges :
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x11 : Ojs.t) -> x11
+    and t_to_js : t -> Ojs.t = fun (x10 : Ojs.t) -> x10
+    let (provide_folding_ranges :
       t ->
         this:unit ->
           document:TextDocument.t ->
             context:FoldingContext.t ->
               token:CancellationToken.t ->
-                next:_ProvideFoldingRangeSignature ->
+                next:ProvideFoldingRangeSignature.t ->
                   VFoldingRange.t list ProviderResult.t)
       =
       fun (x17 : t) ->
@@ -53,29 +47,27 @@ module FoldingRangeProviderMiddleware =
           fun ~document:(x13 : TextDocument.t) ->
             fun ~context:(x14 : FoldingContext.t) ->
               fun ~token:(x15 : CancellationToken.t) ->
-                fun ~next:(x16 : _ProvideFoldingRangeSignature) ->
+                fun ~next:(x16 : ProvideFoldingRangeSignature.t) ->
                   ProviderResult.t_of_js
                     (fun (x18 : Ojs.t) ->
                        Ojs.list_of_js VFoldingRange.t_of_js x18)
                     (Ojs.call (t_to_js x17) "provideFoldingRanges"
                        [|(Ojs.unit_to_js x12);(TextDocument.t_to_js x13);(
                          FoldingContext.t_to_js x14);(CancellationToken.t_to_js
-                                                        x15);(_ProvideFoldingRangeSignature_to_js
+                                                        x15);(ProvideFoldingRangeSignature.t_to_js
                                                                 x16)|])
   end
 module FoldingRangeFeature =
   struct
-    type t = _FoldingRangeFeature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x21 : Ojs.t) -> _FoldingRangeFeature_of_js x21
-    and t_to_js : t -> Ojs.t =
-      fun (x20 : _FoldingRangeFeature) -> _FoldingRangeFeature_to_js x20
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x21 : Ojs.t) -> x21
+    and t_to_js : t -> Ojs.t = fun (x20 : Ojs.t) -> x20
     let (create : client:BaseLanguageClient.t -> t) =
       fun ~client:(x22 : BaseLanguageClient.t) ->
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "FoldingRangeFeature")
              [|(BaseLanguageClient.t_to_js x22)|])
-    let (fillClientCapabilities :
+    let (fill_client_capabilities :
       t -> capabilities:ClientCapabilities.t -> unit) =
       fun (x24 : t) ->
         fun ~capabilities:(x23 : ClientCapabilities.t) ->
@@ -85,16 +77,16 @@ module FoldingRangeFeature =
     let (initialize :
       t ->
         capabilities:ServerCapabilities.t ->
-          documentSelector:DocumentSelector.t -> unit)
+          document_selector:DocumentSelector.t -> unit)
       =
       fun (x27 : t) ->
         fun ~capabilities:(x25 : ServerCapabilities.t) ->
-          fun ~documentSelector:(x26 : DocumentSelector.t) ->
+          fun ~document_selector:(x26 : DocumentSelector.t) ->
             ignore
               (Ojs.call (t_to_js x27) "initialize"
                  [|(ServerCapabilities.t_to_js x25);(DocumentSelector.t_to_js
                                                        x26)|])
-    let (registerLanguageProvider :
+    let (register_language_provider :
       t ->
         options:FoldingRangeRegistrationOptions.t ->
           (Disposable.t * FoldingRangeProvider.t))
@@ -106,24 +98,24 @@ module FoldingRangeFeature =
               [|(FoldingRangeRegistrationOptions.t_to_js x28)|] in
           ((Disposable.t_of_js (Ojs.array_get x30 0)),
             (FoldingRangeProvider.t_of_js (Ojs.array_get x30 1)))
-    let (get_asFoldingRangeKind : unit -> any) =
+    let (get_as_folding_range_kind : unit -> any) =
       fun () ->
         any_of_js
           (Ojs.get_prop_ascii
              (Ojs.get_prop_ascii Ojs.global "FoldingRangeFeature")
              "asFoldingRangeKind")
-    let (set_asFoldingRangeKind : any -> unit) =
+    let (set_as_folding_range_kind : any -> unit) =
       fun (x31 : any) ->
         Ojs.set_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "FoldingRangeFeature")
           "asFoldingRangeKind" (any_to_js x31)
-    let (get_asFoldingRanges : unit -> any) =
+    let (get_as_folding_ranges : unit -> any) =
       fun () ->
         any_of_js
           (Ojs.get_prop_ascii
              (Ojs.get_prop_ascii Ojs.global "FoldingRangeFeature")
              "asFoldingRanges")
-    let (set_asFoldingRanges : any -> unit) =
+    let (set_as_folding_ranges : any -> unit) =
       fun (x32 : any) ->
         Ojs.set_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "FoldingRangeFeature")

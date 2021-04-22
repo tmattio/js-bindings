@@ -18,19 +18,20 @@ module AnonymousInterface0 : sig
 end
 
 module Worker_threads : sig
-  val isMainThread : bool [@@js.global "isMainThread"]
+  val is_main_thread : bool [@@js.global "isMainThread"]
 
-  val parentPort : worker_threads_MessagePort or_null [@@js.global "parentPort"]
+  val parent_port : worker_threads_MessagePort or_null
+    [@@js.global "parentPort"]
 
-  val resourceLimits : worker_threads_ResourceLimits
+  val resource_limits : worker_threads_ResourceLimits
     [@@js.global "resourceLimits"]
 
-  val sHARE_ENV : (* FIXME: unknown type 'unique symbol' *) any
+  val share_env : (* FIXME: unknown type 'unique symbol' *) any
     [@@js.global "SHARE_ENV"]
 
-  val threadId : int [@@js.global "threadId"]
+  val thread_id : int [@@js.global "threadId"]
 
-  val workerData : any [@@js.global "workerData"]
+  val worker_data : any [@@js.global "workerData"]
 
   module MessageChannel : sig
     type t = worker_threads_MessageChannel
@@ -39,9 +40,9 @@ module Worker_threads : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_port1 : t -> worker_threads_MessagePort [@@js.get "port1"]
+    val get_port1 : t -> MessagePort.t [@@js.get "port1"]
 
-    val get_port2 : t -> worker_threads_MessagePort [@@js.get "port2"]
+    val get_port2 : t -> MessagePort.t [@@js.get "port2"]
   end
   [@@js.scope "MessageChannel"]
 
@@ -49,7 +50,7 @@ module Worker_threads : sig
     type t =
       ( ArrayBuffer.t
       , Node_fs_promises.Fs_promises.FileHandle.t
-      , worker_threads_MessagePort )
+      , MessagePort.t )
       union3
 
     val t_to_js : t -> Ojs.t
@@ -66,10 +67,10 @@ module Worker_threads : sig
 
     val close : t -> unit [@@js.call "close"]
 
-    val postMessage
+    val post_message
       :  t
       -> value:any
-      -> ?transferList:worker_threads_TransferListItem list
+      -> ?transfer_list:TransferListItem.t list
       -> unit
       -> unit
       [@@js.call "postMessage"]
@@ -80,28 +81,28 @@ module Worker_threads : sig
 
     val start : t -> unit [@@js.call "start"]
 
-    val addListener
+    val add_listener
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'
+    val add_listener'
       :  t
       -> event:([ `message ][@js.enum])
       -> listener:(value:any -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''
+    val add_listener''
       :  t
       -> event:([ `messageerror ][@js.enum])
       -> listener:(error:Error.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''
+    val add_listener'''
       :  t
       -> event:symbol or_string
       -> listener:(args:(any list[@js.variadic]) -> unit)
@@ -175,84 +176,84 @@ module Worker_threads : sig
       -> t
       [@@js.call "once"]
 
-    val prependListener
+    val prepend_listener
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'
+    val prepend_listener'
       :  t
       -> event:([ `message ][@js.enum])
       -> listener:(value:any -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''
+    val prepend_listener''
       :  t
       -> event:([ `messageerror ][@js.enum])
       -> listener:(error:Error.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''
+    val prepend_listener'''
       :  t
       -> event:symbol or_string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependOnceListener
+    val prepend_once_listener
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'
+    val prepend_once_listener'
       :  t
       -> event:([ `message ][@js.enum])
       -> listener:(value:any -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''
+    val prepend_once_listener''
       :  t
       -> event:([ `messageerror ][@js.enum])
       -> listener:(error:Error.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''
+    val prepend_once_listener'''
       :  t
       -> event:symbol or_string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val removeListener
+    val remove_listener
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "removeListener"]
 
-    val removeListener'
+    val remove_listener'
       :  t
       -> event:([ `message ][@js.enum])
       -> listener:(value:any -> unit)
       -> t
       [@@js.call "removeListener"]
 
-    val removeListener''
+    val remove_listener''
       :  t
       -> event:([ `messageerror ][@js.enum])
       -> listener:(error:Error.t -> unit)
       -> t
       [@@js.call "removeListener"]
 
-    val removeListener'''
+    val remove_listener'''
       :  t
       -> event:symbol or_string
       -> listener:(args:(any list[@js.variadic]) -> unit)
@@ -313,9 +314,9 @@ module Worker_threads : sig
 
     val set_eval : t -> bool -> unit [@@js.set "eval"]
 
-    val get_workerData : t -> any [@@js.get "workerData"]
+    val get_worker_data : t -> any [@@js.get "workerData"]
 
-    val set_workerData : t -> any -> unit [@@js.set "workerData"]
+    val set_worker_data : t -> any -> unit [@@js.set "workerData"]
 
     val get_stdin : t -> bool [@@js.get "stdin"]
 
@@ -329,25 +330,25 @@ module Worker_threads : sig
 
     val set_stderr : t -> bool -> unit [@@js.set "stderr"]
 
-    val get_execArgv : t -> string list [@@js.get "execArgv"]
+    val get_exec_argv : t -> string list [@@js.get "execArgv"]
 
-    val set_execArgv : t -> string list -> unit [@@js.set "execArgv"]
+    val set_exec_argv : t -> string list -> unit [@@js.set "execArgv"]
 
-    val get_resourceLimits : t -> worker_threads_ResourceLimits
-      [@@js.get "resourceLimits"]
+    val get_resource_limits : t -> ResourceLimits.t [@@js.get "resourceLimits"]
 
-    val set_resourceLimits : t -> worker_threads_ResourceLimits -> unit
+    val set_resource_limits : t -> ResourceLimits.t -> unit
       [@@js.set "resourceLimits"]
 
-    val get_transferList : t -> worker_threads_TransferListItem list
+    val get_transfer_list : t -> TransferListItem.t list
       [@@js.get "transferList"]
 
-    val set_transferList : t -> worker_threads_TransferListItem list -> unit
+    val set_transfer_list : t -> TransferListItem.t list -> unit
       [@@js.set "transferList"]
 
-    val get_trackUnmanagedFds : t -> bool [@@js.get "trackUnmanagedFds"]
+    val get_track_unmanaged_fds : t -> bool [@@js.get "trackUnmanagedFds"]
 
-    val set_trackUnmanagedFds : t -> bool -> unit [@@js.set "trackUnmanagedFds"]
+    val set_track_unmanaged_fds : t -> bool -> unit
+      [@@js.set "trackUnmanagedFds"]
   end
   [@@js.scope "WorkerOptions"]
 
@@ -358,25 +359,25 @@ module Worker_threads : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_maxYoungGenerationSizeMb : t -> int
+    val get_max_young_generation_size_mb : t -> int
       [@@js.get "maxYoungGenerationSizeMb"]
 
-    val set_maxYoungGenerationSizeMb : t -> int -> unit
+    val set_max_young_generation_size_mb : t -> int -> unit
       [@@js.set "maxYoungGenerationSizeMb"]
 
-    val get_maxOldGenerationSizeMb : t -> int
+    val get_max_old_generation_size_mb : t -> int
       [@@js.get "maxOldGenerationSizeMb"]
 
-    val set_maxOldGenerationSizeMb : t -> int -> unit
+    val set_max_old_generation_size_mb : t -> int -> unit
       [@@js.set "maxOldGenerationSizeMb"]
 
-    val get_codeRangeSizeMb : t -> int [@@js.get "codeRangeSizeMb"]
+    val get_code_range_size_mb : t -> int [@@js.get "codeRangeSizeMb"]
 
-    val set_codeRangeSizeMb : t -> int -> unit [@@js.set "codeRangeSizeMb"]
+    val set_code_range_size_mb : t -> int -> unit [@@js.set "codeRangeSizeMb"]
 
-    val get_stackSizeMb : t -> int [@@js.get "stackSizeMb"]
+    val get_stack_size_mb : t -> int [@@js.get "stackSizeMb"]
 
-    val set_stackSizeMb : t -> int -> unit [@@js.set "stackSizeMb"]
+    val set_stack_size_mb : t -> int -> unit [@@js.set "stackSizeMb"]
   end
   [@@js.scope "ResourceLimits"]
 
@@ -394,22 +395,21 @@ module Worker_threads : sig
 
     val get_stderr : t -> Node_stream.Stream.Writable.t [@@js.get "stderr"]
 
-    val get_threadId : t -> int [@@js.get "threadId"]
+    val get_thread_id : t -> int [@@js.get "threadId"]
 
-    val get_resourceLimits : t -> worker_threads_ResourceLimits
-      [@@js.get "resourceLimits"]
+    val get_resource_limits : t -> ResourceLimits.t [@@js.get "resourceLimits"]
 
     val create
       :  filename:Node_url.Url.Url.t or_string
-      -> ?options:worker_threads_WorkerOptions
+      -> ?options:WorkerOptions.t
       -> unit
       -> t
       [@@js.create]
 
-    val postMessage
+    val post_message
       :  t
       -> value:any
-      -> ?transferList:worker_threads_TransferListItem list
+      -> ?transfer_list:TransferListItem.t list
       -> unit
       -> unit
       [@@js.call "postMessage"]
@@ -420,45 +420,45 @@ module Worker_threads : sig
 
     val terminate : t -> int Promise.t [@@js.call "terminate"]
 
-    val getHeapSnapshot : t -> Node_stream.Stream.Writable.t Promise.t
+    val get_heap_snapshot : t -> Node_stream.Stream.Writable.t Promise.t
       [@@js.call "getHeapSnapshot"]
 
-    val addListener
+    val add_listener
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'
+    val add_listener'
       :  t
       -> event:([ `exit ][@js.enum])
       -> listener:(exitCode:int -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''
+    val add_listener''
       :  t
       -> event:([ `message ][@js.enum])
       -> listener:(value:any -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''
+    val add_listener'''
       :  t
       -> event:([ `messageerror ][@js.enum])
       -> listener:(error:Error.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''
+    val add_listener''''
       :  t
       -> event:([ `online ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''
+    val add_listener'''''
       :  t
       -> event:symbol or_string
       -> listener:(args:(any list[@js.variadic]) -> unit)
@@ -468,7 +468,7 @@ module Worker_threads : sig
     val emit : t -> event:([ `error ][@js.enum]) -> err:Error.t -> bool
       [@@js.call "emit"]
 
-    val emit' : t -> event:([ `exit ][@js.enum]) -> exitCode:int -> bool
+    val emit' : t -> event:([ `exit ][@js.enum]) -> exit_code:int -> bool
       [@@js.call "emit"]
 
     val emit'' : t -> event:([ `message ][@js.enum]) -> value:any -> bool
@@ -574,126 +574,126 @@ module Worker_threads : sig
       -> t
       [@@js.call "once"]
 
-    val prependListener
+    val prepend_listener
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'
+    val prepend_listener'
       :  t
       -> event:([ `exit ][@js.enum])
       -> listener:(exitCode:int -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''
+    val prepend_listener''
       :  t
       -> event:([ `message ][@js.enum])
       -> listener:(value:any -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''
+    val prepend_listener'''
       :  t
       -> event:([ `messageerror ][@js.enum])
       -> listener:(error:Error.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''
+    val prepend_listener''''
       :  t
       -> event:([ `online ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''
+    val prepend_listener'''''
       :  t
       -> event:symbol or_string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependOnceListener
+    val prepend_once_listener
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'
+    val prepend_once_listener'
       :  t
       -> event:([ `exit ][@js.enum])
       -> listener:(exitCode:int -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''
+    val prepend_once_listener''
       :  t
       -> event:([ `message ][@js.enum])
       -> listener:(value:any -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''
+    val prepend_once_listener'''
       :  t
       -> event:([ `messageerror ][@js.enum])
       -> listener:(error:Error.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''
+    val prepend_once_listener''''
       :  t
       -> event:([ `online ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''
+    val prepend_once_listener'''''
       :  t
       -> event:symbol or_string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val removeListener
+    val remove_listener
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "removeListener"]
 
-    val removeListener'
+    val remove_listener'
       :  t
       -> event:([ `exit ][@js.enum])
       -> listener:(exitCode:int -> unit)
       -> t
       [@@js.call "removeListener"]
 
-    val removeListener''
+    val remove_listener''
       :  t
       -> event:([ `message ][@js.enum])
       -> listener:(value:any -> unit)
       -> t
       [@@js.call "removeListener"]
 
-    val removeListener'''
+    val remove_listener'''
       :  t
       -> event:([ `messageerror ][@js.enum])
       -> listener:(error:Error.t -> unit)
       -> t
       [@@js.call "removeListener"]
 
-    val removeListener''''
+    val remove_listener''''
       :  t
       -> event:([ `online ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "removeListener"]
 
-    val removeListener'''''
+    val remove_listener'''''
       :  t
       -> event:symbol or_string
       -> listener:(args:(any list[@js.variadic]) -> unit)
@@ -746,17 +746,17 @@ module Worker_threads : sig
   end
   [@@js.scope "Worker"]
 
-  val markAsUntransferable : object_:untyped_object -> unit
+  val mark_as_untransferable : object_:untyped_object -> unit
     [@@js.global "markAsUntransferable"]
 
-  val moveMessagePortToContext
-    :  port:worker_threads_MessagePort
+  val move_message_port_to_context
+    :  port:MessagePort.t
     -> context:Node_vm.Vm.Context.t
-    -> worker_threads_MessagePort
+    -> MessagePort.t
     [@@js.global "moveMessagePortToContext"]
 
-  val receiveMessageOnPort
-    :  port:worker_threads_MessagePort
+  val receive_message_on_port
+    :  port:MessagePort.t
     -> AnonymousInterface0.t or_undefined
     [@@js.global "receiveMessageOnPort"]
 end

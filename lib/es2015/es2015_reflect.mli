@@ -7,35 +7,35 @@ open Es5
 module Reflect : sig
   val apply
     :  target:untyped_function
-    -> thisArgument:any
-    -> argumentsList:any Array.t
+    -> this_argument:any
+    -> arguments_list:any Array.t
     -> any
     [@@js.global "apply"]
 
   val construct
     :  target:untyped_function
-    -> argumentsList:any Array.t
-    -> ?newTarget:untyped_function
+    -> arguments_list:any Array.t
+    -> ?new_target:untyped_function
     -> unit
     -> any
     [@@js.global "construct"]
 
   val define_property
     :  target:untyped_object
-    -> propertyKey:PropertyKey.t
+    -> property_key:PropertyKey.t
     -> attributes:PropertyDescriptor.t
     -> bool
     [@@js.global "defineProperty"]
 
   val delete_property
     :  target:untyped_object
-    -> propertyKey:PropertyKey.t
+    -> property_key:PropertyKey.t
     -> bool
     [@@js.global "deleteProperty"]
 
   val get
     :  target:untyped_object
-    -> propertyKey:PropertyKey.t
+    -> property_key:PropertyKey.t
     -> ?receiver:any
     -> unit
     -> any
@@ -43,14 +43,14 @@ module Reflect : sig
 
   val get_own_property_descriptor
     :  target:untyped_object
-    -> propertyKey:PropertyKey.t
+    -> property_key:PropertyKey.t
     -> PropertyDescriptor.t or_undefined
     [@@js.global "getOwnPropertyDescriptor"]
 
   val get_prototype_of : target:untyped_object -> untyped_object or_null
     [@@js.global "getPrototypeOf"]
 
-  val has : target:untyped_object -> propertyKey:PropertyKey.t -> bool
+  val has : target:untyped_object -> property_key:PropertyKey.t -> bool
     [@@js.global "has"]
 
   val is_extensible : target:untyped_object -> bool [@@js.global "isExtensible"]
@@ -63,7 +63,7 @@ module Reflect : sig
 
   val set
     :  target:untyped_object
-    -> propertyKey:PropertyKey.t
+    -> property_key:PropertyKey.t
     -> value:any
     -> ?receiver:any
     -> unit

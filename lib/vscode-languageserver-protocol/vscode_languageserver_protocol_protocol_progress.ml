@@ -2,145 +2,136 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module Types =
-      struct
-        type _WorkDoneProgressCancelNotification_HandlerSignature =
-          _WorkDoneProgressCancelParams NotificationHandler.t
-        and _WorkDoneProgressCreateRequest_HandlerSignature =
-          (_WorkDoneProgressCreateParams, unit, unit) RequestHandler.t
-        let rec _WorkDoneProgressCancelNotification_HandlerSignature_of_js :
-          Ojs.t -> _WorkDoneProgressCancelNotification_HandlerSignature =
-          fun (x3 : Ojs.t) ->
-            NotificationHandler.t_of_js _WorkDoneProgressCancelParams_of_js
-              x3
-        and _WorkDoneProgressCancelNotification_HandlerSignature_to_js :
-          _WorkDoneProgressCancelNotification_HandlerSignature -> Ojs.t =
-          fun (x1 : _WorkDoneProgressCancelParams NotificationHandler.t) ->
-            NotificationHandler.t_to_js _WorkDoneProgressCancelParams_to_js
-              x1
-        and _WorkDoneProgressCreateRequest_HandlerSignature_of_js :
-          Ojs.t -> _WorkDoneProgressCreateRequest_HandlerSignature =
-          fun (x9 : Ojs.t) ->
-            RequestHandler.t_of_js _WorkDoneProgressCreateParams_of_js
-              Ojs.unit_of_js Ojs.unit_of_js x9
-        and _WorkDoneProgressCreateRequest_HandlerSignature_to_js :
-          _WorkDoneProgressCreateRequest_HandlerSignature -> Ojs.t =
-          fun
-            (x5 :
-              (_WorkDoneProgressCreateParams, unit, unit) RequestHandler.t)
-            ->
-            RequestHandler.t_to_js _WorkDoneProgressCreateParams_to_js
-              Ojs.unit_to_js Ojs.unit_to_js x5
-      end
-  end
 module AnonymousInterface0 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x14 : Ojs.t) -> x14
-    and t_to_js : t -> Ojs.t = fun (x13 : Ojs.t) -> x13
-    let (get_workDoneProgress : t -> bool) =
-      fun (x15 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x15) "workDoneProgress")
-    let (set_workDoneProgress : t -> bool -> unit) =
-      fun (x16 : t) ->
-        fun (x17 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x16) "workDoneProgress"
-            (Ojs.bool_to_js x17)
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
+    let (get_work_done_progress : t -> bool) =
+      fun (x3 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x3) "workDoneProgress")
+    let (set_work_done_progress : t -> bool -> unit) =
+      fun (x4 : t) ->
+        fun (x5 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x4) "workDoneProgress"
+            (Ojs.bool_to_js x5)
   end
 module WorkDoneProgressClientCapabilities =
   struct
-    type t = _WorkDoneProgressClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x19 : Ojs.t) -> _WorkDoneProgressClientCapabilities_of_js x19
-    and t_to_js : t -> Ojs.t =
-      fun (x18 : _WorkDoneProgressClientCapabilities) ->
-        _WorkDoneProgressClientCapabilities_to_js x18
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x7 : Ojs.t) -> x7
+    and t_to_js : t -> Ojs.t = fun (x6 : Ojs.t) -> x6
     let (get_window : t -> AnonymousInterface0.t) =
-      fun (x20 : t) ->
+      fun (x8 : t) ->
         AnonymousInterface0.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x20) "window")
+          (Ojs.get_prop_ascii (t_to_js x8) "window")
     let (set_window : t -> AnonymousInterface0.t -> unit) =
-      fun (x21 : t) ->
-        fun (x22 : AnonymousInterface0.t) ->
-          Ojs.set_prop_ascii (t_to_js x21) "window"
-            (AnonymousInterface0.t_to_js x22)
+      fun (x9 : t) ->
+        fun (x10 : AnonymousInterface0.t) ->
+          Ojs.set_prop_ascii (t_to_js x9) "window"
+            (AnonymousInterface0.t_to_js x10)
   end
 module WorkDoneProgressBegin =
   struct
-    type t = _WorkDoneProgressBegin
-    let rec t_of_js : Ojs.t -> t =
-      fun (x24 : Ojs.t) -> _WorkDoneProgressBegin_of_js x24
-    and t_to_js : t -> Ojs.t =
-      fun (x23 : _WorkDoneProgressBegin) -> _WorkDoneProgressBegin_to_js x23
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x12 : Ojs.t) -> x12
+    and t_to_js : t -> Ojs.t = fun (x11 : Ojs.t) -> x11
     let (get_kind : t -> [ `L_s0_begin ]) =
-      fun (x25 : t) ->
-        let x26 = Ojs.get_prop_ascii (t_to_js x25) "kind" in
-        match Ojs.string_of_js x26 with
+      fun (x13 : t) ->
+        let x14 = Ojs.get_prop_ascii (t_to_js x13) "kind" in
+        match Ojs.string_of_js x14 with
         | "begin" -> `L_s0_begin
         | _ -> assert false
     let (set_kind : t -> [ `L_s0_begin ] -> unit) =
-      fun (x27 : t) ->
-        fun (x28 : [ `L_s0_begin ]) ->
-          Ojs.set_prop_ascii (t_to_js x27) "kind"
-            (match x28 with | `L_s0_begin -> Ojs.string_to_js "LS0Begin")
+      fun (x15 : t) ->
+        fun (x16 : [ `L_s0_begin ]) ->
+          Ojs.set_prop_ascii (t_to_js x15) "kind"
+            (match x16 with | `L_s0_begin -> Ojs.string_to_js "LS0Begin")
     let (get_title : t -> string) =
-      fun (x29 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x29) "title")
+      fun (x17 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x17) "title")
     let (set_title : t -> string -> unit) =
-      fun (x30 : t) ->
-        fun (x31 : string) ->
-          Ojs.set_prop_ascii (t_to_js x30) "title" (Ojs.string_to_js x31)
+      fun (x18 : t) ->
+        fun (x19 : string) ->
+          Ojs.set_prop_ascii (t_to_js x18) "title" (Ojs.string_to_js x19)
     let (get_cancellable : t -> bool) =
-      fun (x32 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x32) "cancellable")
+      fun (x20 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x20) "cancellable")
     let (set_cancellable : t -> bool -> unit) =
-      fun (x33 : t) ->
-        fun (x34 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x33) "cancellable" (Ojs.bool_to_js x34)
+      fun (x21 : t) ->
+        fun (x22 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x21) "cancellable" (Ojs.bool_to_js x22)
     let (get_message : t -> string) =
-      fun (x35 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x35) "message")
+      fun (x23 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x23) "message")
     let (set_message : t -> string -> unit) =
-      fun (x36 : t) ->
-        fun (x37 : string) ->
-          Ojs.set_prop_ascii (t_to_js x36) "message" (Ojs.string_to_js x37)
+      fun (x24 : t) ->
+        fun (x25 : string) ->
+          Ojs.set_prop_ascii (t_to_js x24) "message" (Ojs.string_to_js x25)
     let (get_percentage : t -> Uinteger.t) =
-      fun (x38 : t) ->
-        Uinteger.t_of_js (Ojs.get_prop_ascii (t_to_js x38) "percentage")
+      fun (x26 : t) ->
+        Uinteger.t_of_js (Ojs.get_prop_ascii (t_to_js x26) "percentage")
     let (set_percentage : t -> Uinteger.t -> unit) =
-      fun (x39 : t) ->
-        fun (x40 : Uinteger.t) ->
-          Ojs.set_prop_ascii (t_to_js x39) "percentage"
-            (Uinteger.t_to_js x40)
+      fun (x27 : t) ->
+        fun (x28 : Uinteger.t) ->
+          Ojs.set_prop_ascii (t_to_js x27) "percentage"
+            (Uinteger.t_to_js x28)
   end
 module WorkDoneProgressReport =
   struct
-    type t = _WorkDoneProgressReport
-    let rec t_of_js : Ojs.t -> t =
-      fun (x42 : Ojs.t) -> _WorkDoneProgressReport_of_js x42
-    and t_to_js : t -> Ojs.t =
-      fun (x41 : _WorkDoneProgressReport) ->
-        _WorkDoneProgressReport_to_js x41
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x30 : Ojs.t) -> x30
+    and t_to_js : t -> Ojs.t = fun (x29 : Ojs.t) -> x29
     let (get_kind : t -> [ `L_s2_report ]) =
-      fun (x43 : t) ->
-        let x44 = Ojs.get_prop_ascii (t_to_js x43) "kind" in
-        match Ojs.string_of_js x44 with
+      fun (x31 : t) ->
+        let x32 = Ojs.get_prop_ascii (t_to_js x31) "kind" in
+        match Ojs.string_of_js x32 with
         | "report" -> `L_s2_report
         | _ -> assert false
     let (set_kind : t -> [ `L_s2_report ] -> unit) =
-      fun (x45 : t) ->
-        fun (x46 : [ `L_s2_report ]) ->
-          Ojs.set_prop_ascii (t_to_js x45) "kind"
-            (match x46 with | `L_s2_report -> Ojs.string_to_js "LS2Report")
+      fun (x33 : t) ->
+        fun (x34 : [ `L_s2_report ]) ->
+          Ojs.set_prop_ascii (t_to_js x33) "kind"
+            (match x34 with | `L_s2_report -> Ojs.string_to_js "LS2Report")
     let (get_cancellable : t -> bool) =
-      fun (x47 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x47) "cancellable")
+      fun (x35 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x35) "cancellable")
     let (set_cancellable : t -> bool -> unit) =
+      fun (x36 : t) ->
+        fun (x37 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x36) "cancellable" (Ojs.bool_to_js x37)
+    let (get_message : t -> string) =
+      fun (x38 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x38) "message")
+    let (set_message : t -> string -> unit) =
+      fun (x39 : t) ->
+        fun (x40 : string) ->
+          Ojs.set_prop_ascii (t_to_js x39) "message" (Ojs.string_to_js x40)
+    let (get_percentage : t -> Uinteger.t) =
+      fun (x41 : t) ->
+        Uinteger.t_of_js (Ojs.get_prop_ascii (t_to_js x41) "percentage")
+    let (set_percentage : t -> Uinteger.t -> unit) =
+      fun (x42 : t) ->
+        fun (x43 : Uinteger.t) ->
+          Ojs.set_prop_ascii (t_to_js x42) "percentage"
+            (Uinteger.t_to_js x43)
+  end
+module WorkDoneProgressEnd =
+  struct
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x45 : Ojs.t) -> x45
+    and t_to_js : t -> Ojs.t = fun (x44 : Ojs.t) -> x44
+    let (get_kind : t -> [ `L_s1_end ]) =
+      fun (x46 : t) ->
+        let x47 = Ojs.get_prop_ascii (t_to_js x46) "kind" in
+        match Ojs.string_of_js x47 with
+        | "end" -> `L_s1_end
+        | _ -> assert false
+    let (set_kind : t -> [ `L_s1_end ] -> unit) =
       fun (x48 : t) ->
-        fun (x49 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x48) "cancellable" (Ojs.bool_to_js x49)
+        fun (x49 : [ `L_s1_end ]) ->
+          Ojs.set_prop_ascii (t_to_js x48) "kind"
+            (match x49 with | `L_s1_end -> Ojs.string_to_js "LS1End")
     let (get_message : t -> string) =
       fun (x50 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x50) "message")
@@ -148,136 +139,104 @@ module WorkDoneProgressReport =
       fun (x51 : t) ->
         fun (x52 : string) ->
           Ojs.set_prop_ascii (t_to_js x51) "message" (Ojs.string_to_js x52)
-    let (get_percentage : t -> Uinteger.t) =
-      fun (x53 : t) ->
-        Uinteger.t_of_js (Ojs.get_prop_ascii (t_to_js x53) "percentage")
-    let (set_percentage : t -> Uinteger.t -> unit) =
-      fun (x54 : t) ->
-        fun (x55 : Uinteger.t) ->
-          Ojs.set_prop_ascii (t_to_js x54) "percentage"
-            (Uinteger.t_to_js x55)
-  end
-module WorkDoneProgressEnd =
-  struct
-    type t = _WorkDoneProgressEnd
-    let rec t_of_js : Ojs.t -> t =
-      fun (x57 : Ojs.t) -> _WorkDoneProgressEnd_of_js x57
-    and t_to_js : t -> Ojs.t =
-      fun (x56 : _WorkDoneProgressEnd) -> _WorkDoneProgressEnd_to_js x56
-    let (get_kind : t -> [ `L_s1_end ]) =
-      fun (x58 : t) ->
-        let x59 = Ojs.get_prop_ascii (t_to_js x58) "kind" in
-        match Ojs.string_of_js x59 with
-        | "end" -> `L_s1_end
-        | _ -> assert false
-    let (set_kind : t -> [ `L_s1_end ] -> unit) =
-      fun (x60 : t) ->
-        fun (x61 : [ `L_s1_end ]) ->
-          Ojs.set_prop_ascii (t_to_js x60) "kind"
-            (match x61 with | `L_s1_end -> Ojs.string_to_js "LS1End")
-    let (get_message : t -> string) =
-      fun (x62 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x62) "message")
-    let (set_message : t -> string -> unit) =
-      fun (x63 : t) ->
-        fun (x64 : string) ->
-          Ojs.set_prop_ascii (t_to_js x63) "message" (Ojs.string_to_js x64)
   end
 module WorkDoneProgress =
   struct
     let (type_ :
-      [ `U_s0_begin of _WorkDoneProgressBegin 
-      | `U_s1_end of _WorkDoneProgressEnd 
-      | `U_s2_report of _WorkDoneProgressReport ] ProgressType.t) =
+      [ `U_s0_begin of WorkDoneProgressBegin.t 
+      | `U_s1_end of WorkDoneProgressEnd.t 
+      | `U_s2_report of WorkDoneProgressReport.t ] ProgressType.t) =
       ProgressType.t_of_js
-        (fun (x65 : Ojs.t) ->
-           let x66 = x65 in
-           match Ojs.string_of_js (Ojs.get_prop_ascii x66 "kind") with
-           | "begin" -> `U_s0_begin (_WorkDoneProgressBegin_of_js x66)
-           | "end" -> `U_s1_end (_WorkDoneProgressEnd_of_js x66)
-           | "report" -> `U_s2_report (_WorkDoneProgressReport_of_js x66)
+        (fun (x53 : Ojs.t) ->
+           let x54 = x53 in
+           match Ojs.string_of_js (Ojs.get_prop_ascii x54 "kind") with
+           | "begin" -> `U_s0_begin (WorkDoneProgressBegin.t_of_js x54)
+           | "end" -> `U_s1_end (WorkDoneProgressEnd.t_of_js x54)
+           | "report" -> `U_s2_report (WorkDoneProgressReport.t_of_js x54)
            | _ -> assert false)
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "WorkDoneProgress") "type")
     let (is : value:any ProgressType.t -> bool) =
-      fun ~value:(x67 : any ProgressType.t) ->
+      fun ~value:(x55 : any ProgressType.t) ->
         Ojs.bool_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "WorkDoneProgress") "is"
-             [|(ProgressType.t_to_js any_to_js x67)|])
+             [|(ProgressType.t_to_js any_to_js x55)|])
   end
 module WorkDoneProgressCreateParams =
   struct
-    type t = _WorkDoneProgressCreateParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x70 : Ojs.t) -> _WorkDoneProgressCreateParams_of_js x70
-    and t_to_js : t -> Ojs.t =
-      fun (x69 : _WorkDoneProgressCreateParams) ->
-        _WorkDoneProgressCreateParams_to_js x69
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x58 : Ojs.t) -> x58
+    and t_to_js : t -> Ojs.t = fun (x57 : Ojs.t) -> x57
     let (get_token : t -> ProgressToken.t) =
-      fun (x71 : t) ->
-        ProgressToken.t_of_js (Ojs.get_prop_ascii (t_to_js x71) "token")
+      fun (x59 : t) ->
+        ProgressToken.t_of_js (Ojs.get_prop_ascii (t_to_js x59) "token")
     let (set_token : t -> ProgressToken.t -> unit) =
-      fun (x72 : t) ->
-        fun (x73 : ProgressToken.t) ->
-          Ojs.set_prop_ascii (t_to_js x72) "token"
-            (ProgressToken.t_to_js x73)
+      fun (x60 : t) ->
+        fun (x61 : ProgressToken.t) ->
+          Ojs.set_prop_ascii (t_to_js x60) "token"
+            (ProgressToken.t_to_js x61)
   end
 module WorkDoneProgressCreateRequest =
   struct
     let (type_ :
-      (_WorkDoneProgressCreateParams, unit, never, unit, unit)
+      (WorkDoneProgressCreateParams.t, unit, never, unit, unit)
         ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _WorkDoneProgressCreateParams_of_js
+      ProtocolRequestType.t_of_js WorkDoneProgressCreateParams.t_of_js
         Ojs.unit_of_js never_of_js Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "WorkDoneProgressCreateRequest")
            "type")
     module HandlerSignature =
       struct
-        type t = _WorkDoneProgressCreateRequest_HandlerSignature
+        type t =
+          (WorkDoneProgressCreateParams.t, unit, unit) RequestHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x80 : Ojs.t) ->
-            _WorkDoneProgressCreateRequest_HandlerSignature_of_js x80
+          fun (x71 : Ojs.t) ->
+            RequestHandler.t_of_js WorkDoneProgressCreateParams.t_of_js
+              Ojs.unit_of_js Ojs.unit_of_js x71
         and t_to_js : t -> Ojs.t =
-          fun (x79 : _WorkDoneProgressCreateRequest_HandlerSignature) ->
-            _WorkDoneProgressCreateRequest_HandlerSignature_to_js x79
+          fun
+            (x67 :
+              (WorkDoneProgressCreateParams.t, unit, unit) RequestHandler.t)
+            ->
+            RequestHandler.t_to_js WorkDoneProgressCreateParams.t_to_js
+              Ojs.unit_to_js Ojs.unit_to_js x67
       end
   end
 module WorkDoneProgressCancelParams =
   struct
-    type t = _WorkDoneProgressCancelParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x82 : Ojs.t) -> _WorkDoneProgressCancelParams_of_js x82
-    and t_to_js : t -> Ojs.t =
-      fun (x81 : _WorkDoneProgressCancelParams) ->
-        _WorkDoneProgressCancelParams_to_js x81
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x76 : Ojs.t) -> x76
+    and t_to_js : t -> Ojs.t = fun (x75 : Ojs.t) -> x75
     let (get_token : t -> ProgressToken.t) =
-      fun (x83 : t) ->
-        ProgressToken.t_of_js (Ojs.get_prop_ascii (t_to_js x83) "token")
+      fun (x77 : t) ->
+        ProgressToken.t_of_js (Ojs.get_prop_ascii (t_to_js x77) "token")
     let (set_token : t -> ProgressToken.t -> unit) =
-      fun (x84 : t) ->
-        fun (x85 : ProgressToken.t) ->
-          Ojs.set_prop_ascii (t_to_js x84) "token"
-            (ProgressToken.t_to_js x85)
+      fun (x78 : t) ->
+        fun (x79 : ProgressToken.t) ->
+          Ojs.set_prop_ascii (t_to_js x78) "token"
+            (ProgressToken.t_to_js x79)
   end
 module WorkDoneProgressCancelNotification =
   struct
     let (type_ :
-      (_WorkDoneProgressCancelParams, unit) ProtocolNotificationType.t) =
-      ProtocolNotificationType.t_of_js _WorkDoneProgressCancelParams_of_js
+      (WorkDoneProgressCancelParams.t, unit) ProtocolNotificationType.t) =
+      ProtocolNotificationType.t_of_js WorkDoneProgressCancelParams.t_of_js
         Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global
               "WorkDoneProgressCancelNotification") "type")
     module HandlerSignature =
       struct
-        type t = _WorkDoneProgressCancelNotification_HandlerSignature
+        type t = WorkDoneProgressCancelParams.t NotificationHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x89 : Ojs.t) ->
-            _WorkDoneProgressCancelNotification_HandlerSignature_of_js x89
+          fun (x84 : Ojs.t) ->
+            NotificationHandler.t_of_js WorkDoneProgressCancelParams.t_of_js
+              x84
         and t_to_js : t -> Ojs.t =
-          fun (x88 : _WorkDoneProgressCancelNotification_HandlerSignature) ->
-            _WorkDoneProgressCancelNotification_HandlerSignature_to_js x88
+          fun (x82 : WorkDoneProgressCancelParams.t NotificationHandler.t) ->
+            NotificationHandler.t_to_js WorkDoneProgressCancelParams.t_to_js
+              x82
       end
   end

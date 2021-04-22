@@ -7,7 +7,7 @@ open Node_globals
 
 module Domain : sig
   module Global : sig
-    type t = domain_global_NodeJS_Domain
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -45,7 +45,7 @@ module Domain : sig
   end
 
   module Domain : sig
-    type t = domain_Domain
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -70,6 +70,6 @@ module Domain : sig
   end
   [@@js.scope "Domain"]
 
-  val create_ : unit -> domain_Domain [@@js.global "create"]
+  val create_ : unit -> Domain.t [@@js.global "create"]
 end
 [@@js.scope Import.domain]

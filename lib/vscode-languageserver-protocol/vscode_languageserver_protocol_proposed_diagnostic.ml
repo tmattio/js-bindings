@@ -2,609 +2,490 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module Types =
-      struct
-        type _DiagnosticRefreshRequest_HandlerSignature =
-          (unit, unit) RequestHandler0.t
-        and _DocumentDiagnosticReport =
-          [ `U_s0_new of AnonymousInterface1.t 
-          | `U_s2_unChanged of AnonymousInterface2.t ]
-        and _DocumentDiagnosticReportKind = [ `new_  | `unChanged ]
-        and _DocumentDiagnosticReportKind_new = [ `new_ ]
-        and _DocumentDiagnosticReportKind_unChanged = [ `unChanged ]
-        and _DocumentDiagnosticRequest_HandlerSignature =
-          (_DocumentDiagnosticParams, _DocumentDiagnosticReport, unit)
-            RequestHandler.t
-        and _WorkspaceDiagnosticRequest_HandlerSignature =
-          (_WorkspaceDiagnosticParams, _WorkspaceDiagnosticReport or_null,
-            unit) RequestHandler.t
-        and _WorkspaceDocumentDiagnosticReport =
-          (AnonymousInterface4.t, _DocumentDiagnosticReport) intersection2
-        let rec _DiagnosticRefreshRequest_HandlerSignature_of_js :
-          Ojs.t -> _DiagnosticRefreshRequest_HandlerSignature =
-          fun (x4 : Ojs.t) ->
-            RequestHandler0.t_of_js Ojs.unit_of_js Ojs.unit_of_js x4
-        and _DiagnosticRefreshRequest_HandlerSignature_to_js :
-          _DiagnosticRefreshRequest_HandlerSignature -> Ojs.t =
-          fun (x1 : (unit, unit) RequestHandler0.t) ->
-            RequestHandler0.t_to_js Ojs.unit_to_js Ojs.unit_to_js x1
-        and _DocumentDiagnosticReport_of_js :
-          Ojs.t -> _DocumentDiagnosticReport =
-          fun (x10 : Ojs.t) ->
-            let x11 = x10 in
-            match Ojs.string_of_js (Ojs.get_prop_ascii x11 "kind") with
-            | "new" -> `U_s0_new (AnonymousInterface1.t_of_js x11)
-            | "unChanged" ->
-                `U_s2_unChanged (AnonymousInterface2.t_of_js x11)
-            | _ -> assert false
-        and _DocumentDiagnosticReport_to_js :
-          _DocumentDiagnosticReport -> Ojs.t =
-          fun
-            (x7 :
-              [ `U_s0_new of AnonymousInterface1.t 
-              | `U_s2_unChanged of AnonymousInterface2.t ])
-            ->
-            match x7 with
-            | `U_s0_new x8 -> AnonymousInterface1.t_to_js x8
-            | `U_s2_unChanged x9 -> AnonymousInterface2.t_to_js x9
-        and _DocumentDiagnosticReportKind_of_js :
-          Ojs.t -> _DocumentDiagnosticReportKind =
-          fun (x13 : Ojs.t) ->
-            let x14 = x13 in
-            match Ojs.string_of_js x14 with
-            | "new" -> `new_
-            | "unChanged" -> `unChanged
-            | _ -> assert false
-        and _DocumentDiagnosticReportKind_to_js :
-          _DocumentDiagnosticReportKind -> Ojs.t =
-          fun (x12 : [ `new_  | `unChanged ]) ->
-            match x12 with
-            | `new_ -> Ojs.string_to_js "new"
-            | `unChanged -> Ojs.string_to_js "unChanged"
-        and _DocumentDiagnosticReportKind_new_of_js :
-          Ojs.t -> _DocumentDiagnosticReportKind_new =
-          fun (x16 : Ojs.t) ->
-            let x17 = x16 in
-            match Ojs.string_of_js x17 with
-            | "new" -> `new_
-            | _ -> assert false
-        and _DocumentDiagnosticReportKind_new_to_js :
-          _DocumentDiagnosticReportKind_new -> Ojs.t =
-          fun (x15 : [ `new_ ]) ->
-            match x15 with | `new_ -> Ojs.string_to_js "new"
-        and _DocumentDiagnosticReportKind_unChanged_of_js :
-          Ojs.t -> _DocumentDiagnosticReportKind_unChanged =
-          fun (x19 : Ojs.t) ->
-            let x20 = x19 in
-            match Ojs.string_of_js x20 with
-            | "unChanged" -> `unChanged
-            | _ -> assert false
-        and _DocumentDiagnosticReportKind_unChanged_to_js :
-          _DocumentDiagnosticReportKind_unChanged -> Ojs.t =
-          fun (x18 : [ `unChanged ]) ->
-            match x18 with | `unChanged -> Ojs.string_to_js "unChanged"
-        and _DocumentDiagnosticRequest_HandlerSignature_of_js :
-          Ojs.t -> _DocumentDiagnosticRequest_HandlerSignature =
-          fun (x25 : Ojs.t) ->
-            RequestHandler.t_of_js _DocumentDiagnosticParams_of_js
-              _DocumentDiagnosticReport_of_js Ojs.unit_of_js x25
-        and _DocumentDiagnosticRequest_HandlerSignature_to_js :
-          _DocumentDiagnosticRequest_HandlerSignature -> Ojs.t =
-          fun
-            (x21 :
-              (_DocumentDiagnosticParams, _DocumentDiagnosticReport, 
-                unit) RequestHandler.t)
-            ->
-            RequestHandler.t_to_js _DocumentDiagnosticParams_to_js
-              _DocumentDiagnosticReport_to_js Ojs.unit_to_js x21
-        and _WorkspaceDiagnosticRequest_HandlerSignature_of_js :
-          Ojs.t -> _WorkspaceDiagnosticRequest_HandlerSignature =
-          fun (x34 : Ojs.t) ->
-            RequestHandler.t_of_js _WorkspaceDiagnosticParams_of_js
-              (fun (x36 : Ojs.t) ->
-                 or_null_of_js _WorkspaceDiagnosticReport_of_js x36)
-              Ojs.unit_of_js x34
-        and _WorkspaceDiagnosticRequest_HandlerSignature_to_js :
-          _WorkspaceDiagnosticRequest_HandlerSignature -> Ojs.t =
-          fun
-            (x29 :
-              (_WorkspaceDiagnosticParams,
-                _WorkspaceDiagnosticReport or_null, unit) RequestHandler.t)
-            ->
-            RequestHandler.t_to_js _WorkspaceDiagnosticParams_to_js
-              (fun (x31 : _WorkspaceDiagnosticReport or_null) ->
-                 or_null_to_js _WorkspaceDiagnosticReport_to_js x31)
-              Ojs.unit_to_js x29
-        and _WorkspaceDocumentDiagnosticReport_of_js :
-          Ojs.t -> _WorkspaceDocumentDiagnosticReport =
-          fun (x42 : Ojs.t) ->
-            intersection2_of_js AnonymousInterface4.t_of_js
-              _DocumentDiagnosticReport_of_js x42
-        and _WorkspaceDocumentDiagnosticReport_to_js :
-          _WorkspaceDocumentDiagnosticReport -> Ojs.t =
-          fun
-            (x39 :
-              (AnonymousInterface4.t, _DocumentDiagnosticReport)
-                intersection2)
-            ->
-            intersection2_to_js AnonymousInterface4.t_to_js
-              _DocumentDiagnosticReport_to_js x39
-      end
-  end
 module AnonymousInterface0 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x46 : Ojs.t) -> x46
-    and t_to_js : t -> Ojs.t = fun (x45 : Ojs.t) -> x45
-    let (get_diagnostic : t -> _DiagnosticClientCapabilities) =
-      fun (x47 : t) ->
-        _DiagnosticClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x47) "diagnostic")
-    let (set_diagnostic : t -> _DiagnosticClientCapabilities -> unit) =
-      fun (x48 : t) ->
-        fun (x49 : _DiagnosticClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x48) "diagnostic"
-            (_DiagnosticClientCapabilities_to_js x49)
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
+    let (get_diagnostic : t -> DiagnosticClientCapabilities.t) =
+      fun (x3 : t) ->
+        DiagnosticClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x3) "diagnostic")
+    let (set_diagnostic : t -> DiagnosticClientCapabilities.t -> unit) =
+      fun (x4 : t) ->
+        fun (x5 : DiagnosticClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x4) "diagnostic"
+            (DiagnosticClientCapabilities.t_to_js x5)
   end
 module AnonymousInterface1 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x51 : Ojs.t) -> x51
-    and t_to_js : t -> Ojs.t = fun (x50 : Ojs.t) -> x50
-    let (get_kind : t -> _DocumentDiagnosticReportKind_new) =
-      fun (x52 : t) ->
-        _DocumentDiagnosticReportKind_new_of_js
-          (Ojs.get_prop_ascii (t_to_js x52) "kind")
-    let (set_kind : t -> _DocumentDiagnosticReportKind_new -> unit) =
-      fun (x53 : t) ->
-        fun (x54 : _DocumentDiagnosticReportKind_new) ->
-          Ojs.set_prop_ascii (t_to_js x53) "kind"
-            (_DocumentDiagnosticReportKind_new_to_js x54)
-    let (get_resultId : t -> string) =
-      fun (x55 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x55) "resultId")
-    let (set_resultId : t -> string -> unit) =
-      fun (x56 : t) ->
-        fun (x57 : string) ->
-          Ojs.set_prop_ascii (t_to_js x56) "resultId" (Ojs.string_to_js x57)
+    let rec t_of_js : Ojs.t -> t = fun (x7 : Ojs.t) -> x7
+    and t_to_js : t -> Ojs.t = fun (x6 : Ojs.t) -> x6
+    let (get_kind : t -> DocumentDiagnosticReportKind_new.t) =
+      fun (x8 : t) ->
+        DocumentDiagnosticReportKind_new.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x8) "kind")
+    let (set_kind : t -> DocumentDiagnosticReportKind_new.t -> unit) =
+      fun (x9 : t) ->
+        fun (x10 : DocumentDiagnosticReportKind_new.t) ->
+          Ojs.set_prop_ascii (t_to_js x9) "kind"
+            (DocumentDiagnosticReportKind_new.t_to_js x10)
+    let (get_result_id : t -> string) =
+      fun (x11 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x11) "resultId")
+    let (set_result_id : t -> string -> unit) =
+      fun (x12 : t) ->
+        fun (x13 : string) ->
+          Ojs.set_prop_ascii (t_to_js x12) "resultId" (Ojs.string_to_js x13)
     let (get_items : t -> Diagnostic.t list) =
-      fun (x58 : t) ->
+      fun (x14 : t) ->
         Ojs.list_of_js Diagnostic.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x58) "items")
+          (Ojs.get_prop_ascii (t_to_js x14) "items")
     let (set_items : t -> Diagnostic.t list -> unit) =
-      fun (x60 : t) ->
-        fun (x61 : Diagnostic.t list) ->
-          Ojs.set_prop_ascii (t_to_js x60) "items"
-            (Ojs.list_to_js Diagnostic.t_to_js x61)
+      fun (x16 : t) ->
+        fun (x17 : Diagnostic.t list) ->
+          Ojs.set_prop_ascii (t_to_js x16) "items"
+            (Ojs.list_to_js Diagnostic.t_to_js x17)
   end
 module AnonymousInterface2 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x64 : Ojs.t) -> x64
-    and t_to_js : t -> Ojs.t = fun (x63 : Ojs.t) -> x63
-    let (get_kind : t -> _DocumentDiagnosticReportKind_unChanged) =
-      fun (x65 : t) ->
-        _DocumentDiagnosticReportKind_unChanged_of_js
-          (Ojs.get_prop_ascii (t_to_js x65) "kind")
-    let (set_kind : t -> _DocumentDiagnosticReportKind_unChanged -> unit) =
-      fun (x66 : t) ->
-        fun (x67 : _DocumentDiagnosticReportKind_unChanged) ->
-          Ojs.set_prop_ascii (t_to_js x66) "kind"
-            (_DocumentDiagnosticReportKind_unChanged_to_js x67)
-    let (get_resultId : t -> string) =
-      fun (x68 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x68) "resultId")
-    let (set_resultId : t -> string -> unit) =
-      fun (x69 : t) ->
-        fun (x70 : string) ->
-          Ojs.set_prop_ascii (t_to_js x69) "resultId" (Ojs.string_to_js x70)
+    let rec t_of_js : Ojs.t -> t = fun (x20 : Ojs.t) -> x20
+    and t_to_js : t -> Ojs.t = fun (x19 : Ojs.t) -> x19
+    let (get_kind : t -> DocumentDiagnosticReportKind_unChanged.t) =
+      fun (x21 : t) ->
+        DocumentDiagnosticReportKind_unChanged.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x21) "kind")
+    let (set_kind : t -> DocumentDiagnosticReportKind_unChanged.t -> unit) =
+      fun (x22 : t) ->
+        fun (x23 : DocumentDiagnosticReportKind_unChanged.t) ->
+          Ojs.set_prop_ascii (t_to_js x22) "kind"
+            (DocumentDiagnosticReportKind_unChanged.t_to_js x23)
+    let (get_result_id : t -> string) =
+      fun (x24 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x24) "resultId")
+    let (set_result_id : t -> string -> unit) =
+      fun (x25 : t) ->
+        fun (x26 : string) ->
+          Ojs.set_prop_ascii (t_to_js x25) "resultId" (Ojs.string_to_js x26)
   end
 module AnonymousInterface3 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x72 : Ojs.t) -> x72
-    and t_to_js : t -> Ojs.t = fun (x71 : Ojs.t) -> x71
+    let rec t_of_js : Ojs.t -> t = fun (x28 : Ojs.t) -> x28
+    and t_to_js : t -> Ojs.t = fun (x27 : Ojs.t) -> x27
     let (get_uri : t -> DocumentUri.t) =
-      fun (x73 : t) ->
-        DocumentUri.t_of_js (Ojs.get_prop_ascii (t_to_js x73) "uri")
+      fun (x29 : t) ->
+        DocumentUri.t_of_js (Ojs.get_prop_ascii (t_to_js x29) "uri")
     let (set_uri : t -> DocumentUri.t -> unit) =
-      fun (x74 : t) ->
-        fun (x75 : DocumentUri.t) ->
-          Ojs.set_prop_ascii (t_to_js x74) "uri" (DocumentUri.t_to_js x75)
+      fun (x30 : t) ->
+        fun (x31 : DocumentUri.t) ->
+          Ojs.set_prop_ascii (t_to_js x30) "uri" (DocumentUri.t_to_js x31)
     let (get_value : t -> string) =
-      fun (x76 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x76) "value")
+      fun (x32 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x32) "value")
     let (set_value : t -> string -> unit) =
-      fun (x77 : t) ->
-        fun (x78 : string) ->
-          Ojs.set_prop_ascii (t_to_js x77) "value" (Ojs.string_to_js x78)
+      fun (x33 : t) ->
+        fun (x34 : string) ->
+          Ojs.set_prop_ascii (t_to_js x33) "value" (Ojs.string_to_js x34)
   end
 module AnonymousInterface4 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x80 : Ojs.t) -> x80
-    and t_to_js : t -> Ojs.t = fun (x79 : Ojs.t) -> x79
+    let rec t_of_js : Ojs.t -> t = fun (x36 : Ojs.t) -> x36
+    and t_to_js : t -> Ojs.t = fun (x35 : Ojs.t) -> x35
     let (get_uri : t -> DocumentUri.t) =
-      fun (x81 : t) ->
-        DocumentUri.t_of_js (Ojs.get_prop_ascii (t_to_js x81) "uri")
+      fun (x37 : t) ->
+        DocumentUri.t_of_js (Ojs.get_prop_ascii (t_to_js x37) "uri")
     let (set_uri : t -> DocumentUri.t -> unit) =
-      fun (x82 : t) ->
-        fun (x83 : DocumentUri.t) ->
-          Ojs.set_prop_ascii (t_to_js x82) "uri" (DocumentUri.t_to_js x83)
+      fun (x38 : t) ->
+        fun (x39 : DocumentUri.t) ->
+          Ojs.set_prop_ascii (t_to_js x38) "uri" (DocumentUri.t_to_js x39)
     let (get_version : t -> Integer.t or_null) =
-      fun (x84 : t) ->
+      fun (x40 : t) ->
         or_null_of_js Integer.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x84) "version")
+          (Ojs.get_prop_ascii (t_to_js x40) "version")
     let (set_version : t -> Integer.t or_null -> unit) =
-      fun (x86 : t) ->
-        fun (x87 : Integer.t or_null) ->
-          Ojs.set_prop_ascii (t_to_js x86) "version"
-            (or_null_to_js Integer.t_to_js x87)
+      fun (x42 : t) ->
+        fun (x43 : Integer.t or_null) ->
+          Ojs.set_prop_ascii (t_to_js x42) "version"
+            (or_null_to_js Integer.t_to_js x43)
   end
 module DiagnosticClientCapabilities =
   struct
-    type t = _DiagnosticClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x90 : Ojs.t) -> _DiagnosticClientCapabilities_of_js x90
-    and t_to_js : t -> Ojs.t =
-      fun (x89 : _DiagnosticClientCapabilities) ->
-        _DiagnosticClientCapabilities_to_js x89
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x91 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x46 : Ojs.t) -> x46
+    and t_to_js : t -> Ojs.t = fun (x45 : Ojs.t) -> x45
+    let (get_dynamic_registration : t -> bool) =
+      fun (x47 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x91) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x92 : t) ->
-        fun (x93 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x92) "dynamicRegistration"
-            (Ojs.bool_to_js x93)
+          (Ojs.get_prop_ascii (t_to_js x47) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x48 : t) ->
+        fun (x49 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x48) "dynamicRegistration"
+            (Ojs.bool_to_js x49)
   end
 module M_DiagnosticClientCapabilities =
   struct
-    type t = _DiagnosticClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x95 : Ojs.t) -> _DiagnosticClientCapabilities_of_js x95
-    and t_to_js : t -> Ojs.t =
-      fun (x94 : _DiagnosticClientCapabilities) ->
-        _DiagnosticClientCapabilities_to_js x94
-    let (get_textDocument :
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x51 : Ojs.t) -> x51
+    and t_to_js : t -> Ojs.t = fun (x50 : Ojs.t) -> x50
+    let (get_text_document :
       t ->
         (TextDocumentClientCapabilities.t, AnonymousInterface0.t)
           intersection2)
       =
-      fun (x96 : t) ->
+      fun (x52 : t) ->
         intersection2_of_js TextDocumentClientCapabilities.t_of_js
           AnonymousInterface0.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x96) "textDocument")
-    let (set_textDocument :
+          (Ojs.get_prop_ascii (t_to_js x52) "textDocument")
+    let (set_text_document :
       t ->
         (TextDocumentClientCapabilities.t, AnonymousInterface0.t)
           intersection2 -> unit)
       =
-      fun (x99 : t) ->
+      fun (x55 : t) ->
         fun
-          (x100 :
+          (x56 :
             (TextDocumentClientCapabilities.t, AnonymousInterface0.t)
               intersection2)
           ->
-          Ojs.set_prop_ascii (t_to_js x99) "textDocument"
+          Ojs.set_prop_ascii (t_to_js x55) "textDocument"
             (intersection2_to_js TextDocumentClientCapabilities.t_to_js
-               AnonymousInterface0.t_to_js x100)
+               AnonymousInterface0.t_to_js x56)
   end
 module DiagnosticOptions =
   struct
-    type t = _DiagnosticOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x104 : Ojs.t) -> _DiagnosticOptions_of_js x104
-    and t_to_js : t -> Ojs.t =
-      fun (x103 : _DiagnosticOptions) -> _DiagnosticOptions_to_js x103
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x60 : Ojs.t) -> x60
+    and t_to_js : t -> Ojs.t = fun (x59 : Ojs.t) -> x59
     let (get_identifier : t -> string) =
-      fun (x105 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x105) "identifier")
+      fun (x61 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x61) "identifier")
     let (set_identifier : t -> string -> unit) =
-      fun (x106 : t) ->
-        fun (x107 : string) ->
-          Ojs.set_prop_ascii (t_to_js x106) "identifier"
-            (Ojs.string_to_js x107)
-    let (get_interFileDependencies : t -> bool) =
-      fun (x108 : t) ->
+      fun (x62 : t) ->
+        fun (x63 : string) ->
+          Ojs.set_prop_ascii (t_to_js x62) "identifier"
+            (Ojs.string_to_js x63)
+    let (get_inter_file_dependencies : t -> bool) =
+      fun (x64 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x108) "interFileDependencies")
-    let (set_interFileDependencies : t -> bool -> unit) =
-      fun (x109 : t) ->
-        fun (x110 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x109) "interFileDependencies"
-            (Ojs.bool_to_js x110)
-    let (get_workspaceProvider : t -> bool) =
-      fun (x111 : t) ->
-        Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x111) "workspaceProvider")
-    let (set_workspaceProvider : t -> bool -> unit) =
-      fun (x112 : t) ->
-        fun (x113 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x112) "workspaceProvider"
-            (Ojs.bool_to_js x113)
+          (Ojs.get_prop_ascii (t_to_js x64) "interFileDependencies")
+    let (set_inter_file_dependencies : t -> bool -> unit) =
+      fun (x65 : t) ->
+        fun (x66 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x65) "interFileDependencies"
+            (Ojs.bool_to_js x66)
+    let (get_workspace_provider : t -> bool) =
+      fun (x67 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x67) "workspaceProvider")
+    let (set_workspace_provider : t -> bool -> unit) =
+      fun (x68 : t) ->
+        fun (x69 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x68) "workspaceProvider"
+            (Ojs.bool_to_js x69)
     let (cast : t -> WorkDoneProgressOptions.t) =
-      fun (x114 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x114)
+      fun (x70 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x70)
   end
 module DiagnosticRegistrationOptions =
   struct
-    type t = _DiagnosticRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x116 : Ojs.t) -> _DiagnosticRegistrationOptions_of_js x116
-    and t_to_js : t -> Ojs.t =
-      fun (x115 : _DiagnosticRegistrationOptions) ->
-        _DiagnosticRegistrationOptions_to_js x115
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x72 : Ojs.t) -> x72
+    and t_to_js : t -> Ojs.t = fun (x71 : Ojs.t) -> x71
     let (cast : t -> TextDocumentRegistrationOptions.t) =
-      fun (x117 : t) ->
-        TextDocumentRegistrationOptions.t_of_js (t_to_js x117)
-    let (cast' : t -> _DiagnosticOptions) =
-      fun (x118 : t) -> _DiagnosticOptions_of_js (t_to_js x118)
+      fun (x73 : t) -> TextDocumentRegistrationOptions.t_of_js (t_to_js x73)
+    let (cast' : t -> DiagnosticOptions.t) =
+      fun (x74 : t) -> DiagnosticOptions.t_of_js (t_to_js x74)
     let (cast'' : t -> StaticRegistrationOptions.t) =
-      fun (x119 : t) -> StaticRegistrationOptions.t_of_js (t_to_js x119)
+      fun (x75 : t) -> StaticRegistrationOptions.t_of_js (t_to_js x75)
   end
 module M_DiagnosticServerCapabilities =
   struct
-    type t = _DiagnosticServerCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x121 : Ojs.t) -> _DiagnosticServerCapabilities_of_js x121
-    and t_to_js : t -> Ojs.t =
-      fun (x120 : _DiagnosticServerCapabilities) ->
-        _DiagnosticServerCapabilities_to_js x120
-    let (get_diagnosticProvider : t -> _DiagnosticOptions) =
-      fun (x122 : t) ->
-        _DiagnosticOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js x122) "diagnosticProvider")
-    let (set_diagnosticProvider : t -> _DiagnosticOptions -> unit) =
-      fun (x123 : t) ->
-        fun (x124 : _DiagnosticOptions) ->
-          Ojs.set_prop_ascii (t_to_js x123) "diagnosticProvider"
-            (_DiagnosticOptions_to_js x124)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x77 : Ojs.t) -> x77
+    and t_to_js : t -> Ojs.t = fun (x76 : Ojs.t) -> x76
+    let (get_diagnostic_provider : t -> DiagnosticOptions.t) =
+      fun (x78 : t) ->
+        DiagnosticOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x78) "diagnosticProvider")
+    let (set_diagnostic_provider : t -> DiagnosticOptions.t -> unit) =
+      fun (x79 : t) ->
+        fun (x80 : DiagnosticOptions.t) ->
+          Ojs.set_prop_ascii (t_to_js x79) "diagnosticProvider"
+            (DiagnosticOptions.t_to_js x80)
   end
 module DiagnosticServerCancellationData =
   struct
-    type t = _DiagnosticServerCancellationData
-    let rec t_of_js : Ojs.t -> t =
-      fun (x126 : Ojs.t) -> _DiagnosticServerCancellationData_of_js x126
-    and t_to_js : t -> Ojs.t =
-      fun (x125 : _DiagnosticServerCancellationData) ->
-        _DiagnosticServerCancellationData_to_js x125
-    let (get_retriggerRequest : t -> bool) =
-      fun (x127 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x127) "retriggerRequest")
-    let (set_retriggerRequest : t -> bool -> unit) =
-      fun (x128 : t) ->
-        fun (x129 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x128) "retriggerRequest"
-            (Ojs.bool_to_js x129)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x82 : Ojs.t) -> x82
+    and t_to_js : t -> Ojs.t = fun (x81 : Ojs.t) -> x81
+    let (get_retrigger_request : t -> bool) =
+      fun (x83 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x83) "retriggerRequest")
+    let (set_retrigger_request : t -> bool -> unit) =
+      fun (x84 : t) ->
+        fun (x85 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x84) "retriggerRequest"
+            (Ojs.bool_to_js x85)
   end
 module DiagnosticServerCancellationData =
   struct
     let (is : value:any -> bool) =
-      fun ~value:(x130 : any) ->
+      fun ~value:(x86 : any) ->
         Ojs.bool_of_js
           (Ojs.call
              (Ojs.get_prop_ascii Ojs.global
-                "DiagnosticServerCancellationData") "is" [|(any_to_js x130)|])
+                "DiagnosticServerCancellationData") "is" [|(any_to_js x86)|])
   end
 module DocumentDiagnosticParams =
   struct
-    type t = _DocumentDiagnosticParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x132 : Ojs.t) -> _DocumentDiagnosticParams_of_js x132
-    and t_to_js : t -> Ojs.t =
-      fun (x131 : _DocumentDiagnosticParams) ->
-        _DocumentDiagnosticParams_to_js x131
-    let (get_textDocument : t -> TextDocumentIdentifier.t) =
-      fun (x133 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x88 : Ojs.t) -> x88
+    and t_to_js : t -> Ojs.t = fun (x87 : Ojs.t) -> x87
+    let (get_text_document : t -> TextDocumentIdentifier.t) =
+      fun (x89 : t) ->
         TextDocumentIdentifier.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x133) "textDocument")
-    let (set_textDocument : t -> TextDocumentIdentifier.t -> unit) =
-      fun (x134 : t) ->
-        fun (x135 : TextDocumentIdentifier.t) ->
-          Ojs.set_prop_ascii (t_to_js x134) "textDocument"
-            (TextDocumentIdentifier.t_to_js x135)
+          (Ojs.get_prop_ascii (t_to_js x89) "textDocument")
+    let (set_text_document : t -> TextDocumentIdentifier.t -> unit) =
+      fun (x90 : t) ->
+        fun (x91 : TextDocumentIdentifier.t) ->
+          Ojs.set_prop_ascii (t_to_js x90) "textDocument"
+            (TextDocumentIdentifier.t_to_js x91)
     let (get_identifier : t -> string) =
-      fun (x136 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x136) "identifier")
+      fun (x92 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x92) "identifier")
     let (set_identifier : t -> string -> unit) =
-      fun (x137 : t) ->
-        fun (x138 : string) ->
-          Ojs.set_prop_ascii (t_to_js x137) "identifier"
-            (Ojs.string_to_js x138)
-    let (get_previousResultId : t -> string) =
-      fun (x139 : t) ->
+      fun (x93 : t) ->
+        fun (x94 : string) ->
+          Ojs.set_prop_ascii (t_to_js x93) "identifier"
+            (Ojs.string_to_js x94)
+    let (get_previous_result_id : t -> string) =
+      fun (x95 : t) ->
         Ojs.string_of_js
-          (Ojs.get_prop_ascii (t_to_js x139) "previousResultId")
-    let (set_previousResultId : t -> string -> unit) =
-      fun (x140 : t) ->
-        fun (x141 : string) ->
-          Ojs.set_prop_ascii (t_to_js x140) "previousResultId"
-            (Ojs.string_to_js x141)
+          (Ojs.get_prop_ascii (t_to_js x95) "previousResultId")
+    let (set_previous_result_id : t -> string -> unit) =
+      fun (x96 : t) ->
+        fun (x97 : string) ->
+          Ojs.set_prop_ascii (t_to_js x96) "previousResultId"
+            (Ojs.string_to_js x97)
     let (cast : t -> WorkDoneProgressParams.t) =
-      fun (x142 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x142)
+      fun (x98 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x98)
     let (cast' : t -> PartialResultParams.t) =
-      fun (x143 : t) -> PartialResultParams.t_of_js (t_to_js x143)
+      fun (x99 : t) -> PartialResultParams.t_of_js (t_to_js x99)
   end
 module DocumentDiagnosticReportKind =
   struct
-    type t = _DocumentDiagnosticReportKind
+    type t = [ `new_  | `unChanged ]
     let rec t_of_js : Ojs.t -> t =
-      fun (x145 : Ojs.t) -> _DocumentDiagnosticReportKind_of_js x145
+      fun (x101 : Ojs.t) ->
+        let x102 = x101 in
+        match Ojs.string_of_js x102 with
+        | "new" -> `new_
+        | "unChanged" -> `unChanged
+        | _ -> assert false
     and t_to_js : t -> Ojs.t =
-      fun (x144 : _DocumentDiagnosticReportKind) ->
-        _DocumentDiagnosticReportKind_to_js x144
+      fun (x100 : [ `new_  | `unChanged ]) ->
+        match x100 with
+        | `new_ -> Ojs.string_to_js "new"
+        | `unChanged -> Ojs.string_to_js "unChanged"
   end
 module DocumentDiagnosticReport =
   struct
-    type t = _DocumentDiagnosticReport
+    type t =
+      [ `U_s0_new of AnonymousInterface1.t 
+      | `U_s2_unChanged of AnonymousInterface2.t ]
     let rec t_of_js : Ojs.t -> t =
-      fun (x147 : Ojs.t) -> _DocumentDiagnosticReport_of_js x147
+      fun (x106 : Ojs.t) ->
+        let x107 = x106 in
+        match Ojs.string_of_js (Ojs.get_prop_ascii x107 "kind") with
+        | "new" -> `U_s0_new (AnonymousInterface1.t_of_js x107)
+        | "unChanged" -> `U_s2_unChanged (AnonymousInterface2.t_of_js x107)
+        | _ -> assert false
     and t_to_js : t -> Ojs.t =
-      fun (x146 : _DocumentDiagnosticReport) ->
-        _DocumentDiagnosticReport_to_js x146
+      fun
+        (x103 :
+          [ `U_s0_new of AnonymousInterface1.t 
+          | `U_s2_unChanged of AnonymousInterface2.t ])
+        ->
+        match x103 with
+        | `U_s0_new x104 -> AnonymousInterface1.t_to_js x104
+        | `U_s2_unChanged x105 -> AnonymousInterface2.t_to_js x105
   end
 module DocumentDiagnosticReportPartialResult =
   struct
-    type t = _DocumentDiagnosticReportPartialResult
-    let rec t_of_js : Ojs.t -> t =
-      fun (x149 : Ojs.t) -> _DocumentDiagnosticReportPartialResult_of_js x149
-    and t_to_js : t -> Ojs.t =
-      fun (x148 : _DocumentDiagnosticReportPartialResult) ->
-        _DocumentDiagnosticReportPartialResult_to_js x148
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x109 : Ojs.t) -> x109
+    and t_to_js : t -> Ojs.t = fun (x108 : Ojs.t) -> x108
     let (get_items : t -> Diagnostic.t list) =
-      fun (x150 : t) ->
+      fun (x110 : t) ->
         Ojs.list_of_js Diagnostic.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x150) "items")
+          (Ojs.get_prop_ascii (t_to_js x110) "items")
     let (set_items : t -> Diagnostic.t list -> unit) =
-      fun (x152 : t) ->
-        fun (x153 : Diagnostic.t list) ->
-          Ojs.set_prop_ascii (t_to_js x152) "items"
-            (Ojs.list_to_js Diagnostic.t_to_js x153)
+      fun (x112 : t) ->
+        fun (x113 : Diagnostic.t list) ->
+          Ojs.set_prop_ascii (t_to_js x112) "items"
+            (Ojs.list_to_js Diagnostic.t_to_js x113)
   end
 module DocumentDiagnosticRequest =
   struct
     let (method_ : [ `L_s1_textDocument_diagnostic ]) =
-      let x155 =
+      let x115 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "DocumentDiagnosticRequest")
           "method" in
-      match Ojs.string_of_js x155 with
+      match Ojs.string_of_js x115 with
       | "textDocument/diagnostic" -> `L_s1_textDocument_diagnostic
       | _ -> assert false
     let (type_ :
-      (_DocumentDiagnosticParams, _DocumentDiagnosticReport,
-        _DocumentDiagnosticReportPartialResult,
-        _DiagnosticServerCancellationData, _DiagnosticRegistrationOptions)
+      (DocumentDiagnosticParams.t, DocumentDiagnosticReport.t,
+        DocumentDiagnosticReportPartialResult.t,
+        DiagnosticServerCancellationData.t, DiagnosticRegistrationOptions.t)
         ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _DocumentDiagnosticParams_of_js
-        _DocumentDiagnosticReport_of_js
-        _DocumentDiagnosticReportPartialResult_of_js
-        _DiagnosticServerCancellationData_of_js
-        _DiagnosticRegistrationOptions_of_js
+      ProtocolRequestType.t_of_js DocumentDiagnosticParams.t_of_js
+        DocumentDiagnosticReport.t_of_js
+        DocumentDiagnosticReportPartialResult.t_of_js
+        DiagnosticServerCancellationData.t_of_js
+        DiagnosticRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DocumentDiagnosticRequest") "type")
     module HandlerSignature =
       struct
-        type t = _DocumentDiagnosticRequest_HandlerSignature
+        type t =
+          (DocumentDiagnosticParams.t, DocumentDiagnosticReport.t, unit)
+            RequestHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x162 : Ojs.t) ->
-            _DocumentDiagnosticRequest_HandlerSignature_of_js x162
+          fun (x125 : Ojs.t) ->
+            RequestHandler.t_of_js DocumentDiagnosticParams.t_of_js
+              DocumentDiagnosticReport.t_of_js Ojs.unit_of_js x125
         and t_to_js : t -> Ojs.t =
-          fun (x161 : _DocumentDiagnosticRequest_HandlerSignature) ->
-            _DocumentDiagnosticRequest_HandlerSignature_to_js x161
+          fun
+            (x121 :
+              (DocumentDiagnosticParams.t, DocumentDiagnosticReport.t, 
+                unit) RequestHandler.t)
+            ->
+            RequestHandler.t_to_js DocumentDiagnosticParams.t_to_js
+              DocumentDiagnosticReport.t_to_js Ojs.unit_to_js x121
       end
   end
 module WorkspaceDiagnosticParams =
   struct
-    type t = _WorkspaceDiagnosticParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x164 : Ojs.t) -> _WorkspaceDiagnosticParams_of_js x164
-    and t_to_js : t -> Ojs.t =
-      fun (x163 : _WorkspaceDiagnosticParams) ->
-        _WorkspaceDiagnosticParams_to_js x163
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x130 : Ojs.t) -> x130
+    and t_to_js : t -> Ojs.t = fun (x129 : Ojs.t) -> x129
     let (get_identifier : t -> string) =
-      fun (x165 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x165) "identifier")
+      fun (x131 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x131) "identifier")
     let (set_identifier : t -> string -> unit) =
-      fun (x166 : t) ->
-        fun (x167 : string) ->
-          Ojs.set_prop_ascii (t_to_js x166) "identifier"
-            (Ojs.string_to_js x167)
-    let (get_previousResultIds : t -> AnonymousInterface3.t list) =
-      fun (x168 : t) ->
+      fun (x132 : t) ->
+        fun (x133 : string) ->
+          Ojs.set_prop_ascii (t_to_js x132) "identifier"
+            (Ojs.string_to_js x133)
+    let (get_previous_result_ids : t -> AnonymousInterface3.t list) =
+      fun (x134 : t) ->
         Ojs.list_of_js AnonymousInterface3.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x168) "previousResultIds")
-    let (set_previousResultIds : t -> AnonymousInterface3.t list -> unit) =
-      fun (x170 : t) ->
-        fun (x171 : AnonymousInterface3.t list) ->
-          Ojs.set_prop_ascii (t_to_js x170) "previousResultIds"
-            (Ojs.list_to_js AnonymousInterface3.t_to_js x171)
+          (Ojs.get_prop_ascii (t_to_js x134) "previousResultIds")
+    let (set_previous_result_ids : t -> AnonymousInterface3.t list -> unit) =
+      fun (x136 : t) ->
+        fun (x137 : AnonymousInterface3.t list) ->
+          Ojs.set_prop_ascii (t_to_js x136) "previousResultIds"
+            (Ojs.list_to_js AnonymousInterface3.t_to_js x137)
     let (cast : t -> WorkDoneProgressParams.t) =
-      fun (x173 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x173)
+      fun (x139 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x139)
     let (cast' : t -> PartialResultParams.t) =
-      fun (x174 : t) -> PartialResultParams.t_of_js (t_to_js x174)
+      fun (x140 : t) -> PartialResultParams.t_of_js (t_to_js x140)
   end
 module WorkspaceDocumentDiagnosticReport =
   struct
-    type t = _WorkspaceDocumentDiagnosticReport
+    type t =
+      (AnonymousInterface4.t, DocumentDiagnosticReport.t) intersection2
     let rec t_of_js : Ojs.t -> t =
-      fun (x176 : Ojs.t) -> _WorkspaceDocumentDiagnosticReport_of_js x176
+      fun (x144 : Ojs.t) ->
+        intersection2_of_js AnonymousInterface4.t_of_js
+          DocumentDiagnosticReport.t_of_js x144
     and t_to_js : t -> Ojs.t =
-      fun (x175 : _WorkspaceDocumentDiagnosticReport) ->
-        _WorkspaceDocumentDiagnosticReport_to_js x175
+      fun
+        (x141 :
+          (AnonymousInterface4.t, DocumentDiagnosticReport.t) intersection2)
+        ->
+        intersection2_to_js AnonymousInterface4.t_to_js
+          DocumentDiagnosticReport.t_to_js x141
   end
 module WorkspaceDiagnosticReport =
   struct
-    type t = _WorkspaceDiagnosticReport
-    let rec t_of_js : Ojs.t -> t =
-      fun (x178 : Ojs.t) -> _WorkspaceDiagnosticReport_of_js x178
-    and t_to_js : t -> Ojs.t =
-      fun (x177 : _WorkspaceDiagnosticReport) ->
-        _WorkspaceDiagnosticReport_to_js x177
-    let (get_items : t -> _WorkspaceDocumentDiagnosticReport list) =
-      fun (x179 : t) ->
-        Ojs.list_of_js _WorkspaceDocumentDiagnosticReport_of_js
-          (Ojs.get_prop_ascii (t_to_js x179) "items")
-    let (set_items : t -> _WorkspaceDocumentDiagnosticReport list -> unit) =
-      fun (x181 : t) ->
-        fun (x182 : _WorkspaceDocumentDiagnosticReport list) ->
-          Ojs.set_prop_ascii (t_to_js x181) "items"
-            (Ojs.list_to_js _WorkspaceDocumentDiagnosticReport_to_js x182)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x148 : Ojs.t) -> x148
+    and t_to_js : t -> Ojs.t = fun (x147 : Ojs.t) -> x147
+    let (get_items : t -> WorkspaceDocumentDiagnosticReport.t list) =
+      fun (x149 : t) ->
+        Ojs.list_of_js WorkspaceDocumentDiagnosticReport.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x149) "items")
+    let (set_items : t -> WorkspaceDocumentDiagnosticReport.t list -> unit) =
+      fun (x151 : t) ->
+        fun (x152 : WorkspaceDocumentDiagnosticReport.t list) ->
+          Ojs.set_prop_ascii (t_to_js x151) "items"
+            (Ojs.list_to_js WorkspaceDocumentDiagnosticReport.t_to_js x152)
   end
 module WorkspaceDiagnosticReportPartialResult =
   struct
-    type t = _WorkspaceDiagnosticReportPartialResult
-    let rec t_of_js : Ojs.t -> t =
-      fun (x185 : Ojs.t) ->
-        _WorkspaceDiagnosticReportPartialResult_of_js x185
-    and t_to_js : t -> Ojs.t =
-      fun (x184 : _WorkspaceDiagnosticReportPartialResult) ->
-        _WorkspaceDiagnosticReportPartialResult_to_js x184
-    let (get_items : t -> _WorkspaceDocumentDiagnosticReport list) =
-      fun (x186 : t) ->
-        Ojs.list_of_js _WorkspaceDocumentDiagnosticReport_of_js
-          (Ojs.get_prop_ascii (t_to_js x186) "items")
-    let (set_items : t -> _WorkspaceDocumentDiagnosticReport list -> unit) =
-      fun (x188 : t) ->
-        fun (x189 : _WorkspaceDocumentDiagnosticReport list) ->
-          Ojs.set_prop_ascii (t_to_js x188) "items"
-            (Ojs.list_to_js _WorkspaceDocumentDiagnosticReport_to_js x189)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x155 : Ojs.t) -> x155
+    and t_to_js : t -> Ojs.t = fun (x154 : Ojs.t) -> x154
+    let (get_items : t -> WorkspaceDocumentDiagnosticReport.t list) =
+      fun (x156 : t) ->
+        Ojs.list_of_js WorkspaceDocumentDiagnosticReport.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x156) "items")
+    let (set_items : t -> WorkspaceDocumentDiagnosticReport.t list -> unit) =
+      fun (x158 : t) ->
+        fun (x159 : WorkspaceDocumentDiagnosticReport.t list) ->
+          Ojs.set_prop_ascii (t_to_js x158) "items"
+            (Ojs.list_to_js WorkspaceDocumentDiagnosticReport.t_to_js x159)
   end
 module WorkspaceDiagnosticRequest =
   struct
     let (method_ : [ `L_s3_workspace_diagnostic ]) =
-      let x191 =
+      let x161 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "WorkspaceDiagnosticRequest")
           "method" in
-      match Ojs.string_of_js x191 with
+      match Ojs.string_of_js x161 with
       | "workspace/diagnostic" -> `L_s3_workspace_diagnostic
       | _ -> assert false
     let (type_ :
-      (_WorkspaceDiagnosticParams, _WorkspaceDiagnosticReport,
-        _WorkspaceDiagnosticReportPartialResult,
-        _DiagnosticServerCancellationData, unit) ProtocolRequestType.t)
+      (WorkspaceDiagnosticParams.t, WorkspaceDiagnosticReport.t,
+        WorkspaceDiagnosticReportPartialResult.t,
+        DiagnosticServerCancellationData.t, unit) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _WorkspaceDiagnosticParams_of_js
-        _WorkspaceDiagnosticReport_of_js
-        _WorkspaceDiagnosticReportPartialResult_of_js
-        _DiagnosticServerCancellationData_of_js Ojs.unit_of_js
+      ProtocolRequestType.t_of_js WorkspaceDiagnosticParams.t_of_js
+        WorkspaceDiagnosticReport.t_of_js
+        WorkspaceDiagnosticReportPartialResult.t_of_js
+        DiagnosticServerCancellationData.t_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "WorkspaceDiagnosticRequest")
            "type")
     module HandlerSignature =
       struct
-        type t = _WorkspaceDiagnosticRequest_HandlerSignature
+        type t =
+          (WorkspaceDiagnosticParams.t, WorkspaceDiagnosticReport.t or_null,
+            unit) RequestHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x198 : Ojs.t) ->
-            _WorkspaceDiagnosticRequest_HandlerSignature_of_js x198
+          fun (x172 : Ojs.t) ->
+            RequestHandler.t_of_js WorkspaceDiagnosticParams.t_of_js
+              (fun (x174 : Ojs.t) ->
+                 or_null_of_js WorkspaceDiagnosticReport.t_of_js x174)
+              Ojs.unit_of_js x172
         and t_to_js : t -> Ojs.t =
-          fun (x197 : _WorkspaceDiagnosticRequest_HandlerSignature) ->
-            _WorkspaceDiagnosticRequest_HandlerSignature_to_js x197
+          fun
+            (x167 :
+              (WorkspaceDiagnosticParams.t,
+                WorkspaceDiagnosticReport.t or_null, unit) RequestHandler.t)
+            ->
+            RequestHandler.t_to_js WorkspaceDiagnosticParams.t_to_js
+              (fun (x169 : WorkspaceDiagnosticReport.t or_null) ->
+                 or_null_to_js WorkspaceDiagnosticReport.t_to_js x169)
+              Ojs.unit_to_js x167
       end
   end
 module DiagnosticRefreshRequest =
@@ -621,12 +502,12 @@ module DiagnosticRefreshRequest =
            (Ojs.get_prop_ascii Ojs.global "DiagnosticRefreshRequest") "type")
     module HandlerSignature =
       struct
-        type t = _DiagnosticRefreshRequest_HandlerSignature
+        type t = (unit, unit) RequestHandler0.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x204 : Ojs.t) ->
-            _DiagnosticRefreshRequest_HandlerSignature_of_js x204
+          fun (x184 : Ojs.t) ->
+            RequestHandler0.t_of_js Ojs.unit_of_js Ojs.unit_of_js x184
         and t_to_js : t -> Ojs.t =
-          fun (x203 : _DiagnosticRefreshRequest_HandlerSignature) ->
-            _DiagnosticRefreshRequest_HandlerSignature_to_js x203
+          fun (x181 : (unit, unit) RequestHandler0.t) ->
+            RequestHandler0.t_to_js Ojs.unit_to_js Ojs.unit_to_js x181
       end
   end

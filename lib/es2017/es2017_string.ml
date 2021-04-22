@@ -6,10 +6,10 @@ module String =
   struct
     include struct include String end
     let (pad_start :
-      t -> maxLength:int -> ?fillString:string -> unit -> string) =
+      t -> max_length:int -> ?fill_string:string -> unit -> string) =
       fun (x5 : t) ->
-        fun ~maxLength:(x1 : int) ->
-          fun ?fillString:(x2 : string option) ->
+        fun ~max_length:(x1 : int) ->
+          fun ?fill_string:(x2 : string option) ->
             fun () ->
               Ojs.string_of_js
                 (let x6 = t_to_js x5 in
@@ -27,10 +27,10 @@ module String =
                            | None -> ());
                           x3))|])
     let (pad_end :
-      t -> maxLength:int -> ?fillString:string -> unit -> string) =
+      t -> max_length:int -> ?fill_string:string -> unit -> string) =
       fun (x11 : t) ->
-        fun ~maxLength:(x7 : int) ->
-          fun ?fillString:(x8 : string option) ->
+        fun ~max_length:(x7 : int) ->
+          fun ?fill_string:(x8 : string option) ->
             fun () ->
               Ojs.string_of_js
                 (let x12 = t_to_js x11 in

@@ -2,646 +2,578 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module Types =
-      struct
-        type _ServerOptions =
-          (_Executable, _NodeModule, AnonymousInterface0.t,
-            AnonymousInterface1.t,
-            unit ->
-              (ChildProcess.t, _ChildProcessInfo, MessageTransports.t,
-                _StreamInfo) union4 Promise.t)
-            union5
-        and _Transport =
-          (_SocketTransport, [ `ipc  | `pipe  | `socket  | `stdio ]) or_enum
-        and _TransportKind = [ `stdio  | `ipc  | `pipe  | `socket ]
-        and _TransportKind_stdio = [ `stdio ]
-        and _TransportKind_ipc = [ `ipc ]
-        and _TransportKind_pipe = [ `pipe ]
-        and _TransportKind_socket = [ `socket ]
-        let rec _ServerOptions_of_js : Ojs.t -> _ServerOptions =
-          fun (x12 : Ojs.t) ->
-            union5_of_js _Executable_of_js _NodeModule_of_js
-              AnonymousInterface0.t_of_js AnonymousInterface1.t_of_js
-              (fun (x17 : Ojs.t) ->
-                 fun () ->
-                   Promise.t_of_js
-                     (fun (x18 : Ojs.t) ->
-                        union4_of_js ChildProcess.t_of_js
-                          _ChildProcessInfo_of_js MessageTransports.t_of_js
-                          _StreamInfo_of_js x18) (Ojs.apply x17 [||])) x12
-        and _ServerOptions_to_js : _ServerOptions -> Ojs.t =
-          fun
-            (x1 :
-              (_Executable, _NodeModule, AnonymousInterface0.t,
-                AnonymousInterface1.t,
-                unit ->
-                  (ChildProcess.t, _ChildProcessInfo, MessageTransports.t,
-                    _StreamInfo) union4 Promise.t)
-                union5)
-            ->
-            union5_to_js _Executable_to_js _NodeModule_to_js
-              AnonymousInterface0.t_to_js AnonymousInterface1.t_to_js
-              (fun
-                 (x6 :
-                   unit ->
-                     (ChildProcess.t, _ChildProcessInfo, MessageTransports.t,
-                       _StreamInfo) union4 Promise.t)
-                 ->
-                 Ojs.fun_to_js 1
-                   (fun _ ->
-                      Promise.t_to_js
-                        (fun
-                           (x7 :
-                             (ChildProcess.t, _ChildProcessInfo,
-                               MessageTransports.t, _StreamInfo) union4)
-                           ->
-                           union4_to_js ChildProcess.t_to_js
-                             _ChildProcessInfo_to_js
-                             MessageTransports.t_to_js _StreamInfo_to_js x7)
-                        (x6 ()))) x1
-        and _Transport_of_js : Ojs.t -> _Transport =
-          fun (x26 : Ojs.t) ->
-            or_enum_of_js _SocketTransport_of_js
-              (fun (x28 : Ojs.t) ->
-                 let x29 = x28 in
-                 match Ojs.int_of_js x29 with
-                 | 1 -> `ipc
-                 | 2 -> `pipe
-                 | 3 -> `socket
-                 | 0 -> `stdio
-                 | _ -> assert false) x26
-        and _Transport_to_js : _Transport -> Ojs.t =
-          fun
-            (x23 :
-              (_SocketTransport, [ `ipc  | `pipe  | `socket  | `stdio ])
-                or_enum)
-            ->
-            or_enum_to_js _SocketTransport_to_js
-              (fun (x25 : [ `ipc  | `pipe  | `socket  | `stdio ]) ->
-                 match x25 with
-                 | `ipc -> Ojs.int_to_js 1
-                 | `pipe -> Ojs.int_to_js 2
-                 | `socket -> Ojs.int_to_js 3
-                 | `stdio -> Ojs.int_to_js 0) x23
-        and _TransportKind_of_js : Ojs.t -> _TransportKind =
-          fun (x31 : Ojs.t) ->
-            let x32 = x31 in
-            match Ojs.int_of_js x32 with
-            | 0 -> `stdio
-            | 1 -> `ipc
-            | 2 -> `pipe
-            | 3 -> `socket
-            | _ -> assert false
-        and _TransportKind_to_js : _TransportKind -> Ojs.t =
-          fun (x30 : [ `stdio  | `ipc  | `pipe  | `socket ]) ->
-            match x30 with
-            | `stdio -> Ojs.int_to_js 0
-            | `ipc -> Ojs.int_to_js 1
-            | `pipe -> Ojs.int_to_js 2
-            | `socket -> Ojs.int_to_js 3
-        and _TransportKind_stdio_of_js : Ojs.t -> _TransportKind_stdio =
-          fun (x34 : Ojs.t) ->
-            let x35 = x34 in
-            match Ojs.int_of_js x35 with | 0 -> `stdio | _ -> assert false
-        and _TransportKind_stdio_to_js : _TransportKind_stdio -> Ojs.t =
-          fun (x33 : [ `stdio ]) ->
-            match x33 with | `stdio -> Ojs.int_to_js 0
-        and _TransportKind_ipc_of_js : Ojs.t -> _TransportKind_ipc =
-          fun (x37 : Ojs.t) ->
-            let x38 = x37 in
-            match Ojs.int_of_js x38 with | 1 -> `ipc | _ -> assert false
-        and _TransportKind_ipc_to_js : _TransportKind_ipc -> Ojs.t =
-          fun (x36 : [ `ipc ]) -> match x36 with | `ipc -> Ojs.int_to_js 1
-        and _TransportKind_pipe_of_js : Ojs.t -> _TransportKind_pipe =
-          fun (x40 : Ojs.t) ->
-            let x41 = x40 in
-            match Ojs.int_of_js x41 with | 2 -> `pipe | _ -> assert false
-        and _TransportKind_pipe_to_js : _TransportKind_pipe -> Ojs.t =
-          fun (x39 : [ `pipe ]) -> match x39 with | `pipe -> Ojs.int_to_js 2
-        and _TransportKind_socket_of_js : Ojs.t -> _TransportKind_socket =
-          fun (x43 : Ojs.t) ->
-            let x44 = x43 in
-            match Ojs.int_of_js x44 with | 3 -> `socket | _ -> assert false
-        and _TransportKind_socket_to_js : _TransportKind_socket -> Ojs.t =
-          fun (x42 : [ `socket ]) ->
-            match x42 with | `socket -> Ojs.int_to_js 3
-      end
-  end
 module AnonymousInterface0 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x46 : Ojs.t) -> x46
-    and t_to_js : t -> Ojs.t = fun (x45 : Ojs.t) -> x45
-    let (get_run : t -> _Executable) =
-      fun (x47 : t) ->
-        _Executable_of_js (Ojs.get_prop_ascii (t_to_js x47) "run")
-    let (set_run : t -> _Executable -> unit) =
-      fun (x48 : t) ->
-        fun (x49 : _Executable) ->
-          Ojs.set_prop_ascii (t_to_js x48) "run" (_Executable_to_js x49)
-    let (get_debug : t -> _Executable) =
-      fun (x50 : t) ->
-        _Executable_of_js (Ojs.get_prop_ascii (t_to_js x50) "debug")
-    let (set_debug : t -> _Executable -> unit) =
-      fun (x51 : t) ->
-        fun (x52 : _Executable) ->
-          Ojs.set_prop_ascii (t_to_js x51) "debug" (_Executable_to_js x52)
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
+    let (get_run : t -> Executable.t) =
+      fun (x3 : t) ->
+        Executable.t_of_js (Ojs.get_prop_ascii (t_to_js x3) "run")
+    let (set_run : t -> Executable.t -> unit) =
+      fun (x4 : t) ->
+        fun (x5 : Executable.t) ->
+          Ojs.set_prop_ascii (t_to_js x4) "run" (Executable.t_to_js x5)
+    let (get_debug : t -> Executable.t) =
+      fun (x6 : t) ->
+        Executable.t_of_js (Ojs.get_prop_ascii (t_to_js x6) "debug")
+    let (set_debug : t -> Executable.t -> unit) =
+      fun (x7 : t) ->
+        fun (x8 : Executable.t) ->
+          Ojs.set_prop_ascii (t_to_js x7) "debug" (Executable.t_to_js x8)
   end
 module AnonymousInterface1 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x54 : Ojs.t) -> x54
-    and t_to_js : t -> Ojs.t = fun (x53 : Ojs.t) -> x53
-    let (get_run : t -> _NodeModule) =
-      fun (x55 : t) ->
-        _NodeModule_of_js (Ojs.get_prop_ascii (t_to_js x55) "run")
-    let (set_run : t -> _NodeModule -> unit) =
-      fun (x56 : t) ->
-        fun (x57 : _NodeModule) ->
-          Ojs.set_prop_ascii (t_to_js x56) "run" (_NodeModule_to_js x57)
-    let (get_debug : t -> _NodeModule) =
-      fun (x58 : t) ->
-        _NodeModule_of_js (Ojs.get_prop_ascii (t_to_js x58) "debug")
-    let (set_debug : t -> _NodeModule -> unit) =
-      fun (x59 : t) ->
-        fun (x60 : _NodeModule) ->
-          Ojs.set_prop_ascii (t_to_js x59) "debug" (_NodeModule_to_js x60)
+    let rec t_of_js : Ojs.t -> t = fun (x10 : Ojs.t) -> x10
+    and t_to_js : t -> Ojs.t = fun (x9 : Ojs.t) -> x9
+    let (get_run : t -> NodeModule.t) =
+      fun (x11 : t) ->
+        NodeModule.t_of_js (Ojs.get_prop_ascii (t_to_js x11) "run")
+    let (set_run : t -> NodeModule.t -> unit) =
+      fun (x12 : t) ->
+        fun (x13 : NodeModule.t) ->
+          Ojs.set_prop_ascii (t_to_js x12) "run" (NodeModule.t_to_js x13)
+    let (get_debug : t -> NodeModule.t) =
+      fun (x14 : t) ->
+        NodeModule.t_of_js (Ojs.get_prop_ascii (t_to_js x14) "debug")
+    let (set_debug : t -> NodeModule.t -> unit) =
+      fun (x15 : t) ->
+        fun (x16 : NodeModule.t) ->
+          Ojs.set_prop_ascii (t_to_js x15) "debug" (NodeModule.t_to_js x16)
   end
 module ExecutableOptions =
   struct
-    type t = _ExecutableOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x62 : Ojs.t) -> _ExecutableOptions_of_js x62
-    and t_to_js : t -> Ojs.t =
-      fun (x61 : _ExecutableOptions) -> _ExecutableOptions_to_js x61
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x18 : Ojs.t) -> x18
+    and t_to_js : t -> Ojs.t = fun (x17 : Ojs.t) -> x17
     let (get_cwd : t -> string) =
-      fun (x63 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x63) "cwd")
+      fun (x19 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x19) "cwd")
     let (set_cwd : t -> string -> unit) =
-      fun (x64 : t) ->
-        fun (x65 : string) ->
-          Ojs.set_prop_ascii (t_to_js x64) "cwd" (Ojs.string_to_js x65)
+      fun (x20 : t) ->
+        fun (x21 : string) ->
+          Ojs.set_prop_ascii (t_to_js x20) "cwd" (Ojs.string_to_js x21)
     let (get_env : t -> any) =
-      fun (x66 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x66) "env")
+      fun (x22 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x22) "env")
     let (set_env : t -> any -> unit) =
-      fun (x67 : t) ->
-        fun (x68 : any) ->
-          Ojs.set_prop_ascii (t_to_js x67) "env" (any_to_js x68)
+      fun (x23 : t) ->
+        fun (x24 : any) ->
+          Ojs.set_prop_ascii (t_to_js x23) "env" (any_to_js x24)
     let (get_detached : t -> bool) =
-      fun (x69 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x69) "detached")
+      fun (x25 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x25) "detached")
     let (set_detached : t -> bool -> unit) =
-      fun (x70 : t) ->
-        fun (x71 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x70) "detached" (Ojs.bool_to_js x71)
+      fun (x26 : t) ->
+        fun (x27 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x26) "detached" (Ojs.bool_to_js x27)
     let (get_shell : t -> bool) =
-      fun (x72 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x72) "shell")
+      fun (x28 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x28) "shell")
     let (set_shell : t -> bool -> unit) =
-      fun (x73 : t) ->
-        fun (x74 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x73) "shell" (Ojs.bool_to_js x74)
+      fun (x29 : t) ->
+        fun (x30 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x29) "shell" (Ojs.bool_to_js x30)
   end
 module Executable =
   struct
-    type t = _Executable
-    let rec t_of_js : Ojs.t -> t = fun (x76 : Ojs.t) -> _Executable_of_js x76
-    and t_to_js : t -> Ojs.t =
-      fun (x75 : _Executable) -> _Executable_to_js x75
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x32 : Ojs.t) -> x32
+    and t_to_js : t -> Ojs.t = fun (x31 : Ojs.t) -> x31
     let (get_command : t -> string) =
-      fun (x77 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x77) "command")
+      fun (x33 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x33) "command")
     let (set_command : t -> string -> unit) =
-      fun (x78 : t) ->
-        fun (x79 : string) ->
-          Ojs.set_prop_ascii (t_to_js x78) "command" (Ojs.string_to_js x79)
+      fun (x34 : t) ->
+        fun (x35 : string) ->
+          Ojs.set_prop_ascii (t_to_js x34) "command" (Ojs.string_to_js x35)
     let (get_args : t -> string list) =
-      fun (x80 : t) ->
+      fun (x36 : t) ->
         Ojs.list_of_js Ojs.string_of_js
-          (Ojs.get_prop_ascii (t_to_js x80) "args")
+          (Ojs.get_prop_ascii (t_to_js x36) "args")
     let (set_args : t -> string list -> unit) =
-      fun (x82 : t) ->
-        fun (x83 : string list) ->
-          Ojs.set_prop_ascii (t_to_js x82) "args"
-            (Ojs.list_to_js Ojs.string_to_js x83)
-    let (get_options : t -> _ExecutableOptions) =
-      fun (x85 : t) ->
-        _ExecutableOptions_of_js (Ojs.get_prop_ascii (t_to_js x85) "options")
-    let (set_options : t -> _ExecutableOptions -> unit) =
-      fun (x86 : t) ->
-        fun (x87 : _ExecutableOptions) ->
-          Ojs.set_prop_ascii (t_to_js x86) "options"
-            (_ExecutableOptions_to_js x87)
+      fun (x38 : t) ->
+        fun (x39 : string list) ->
+          Ojs.set_prop_ascii (t_to_js x38) "args"
+            (Ojs.list_to_js Ojs.string_to_js x39)
+    let (get_options : t -> ExecutableOptions.t) =
+      fun (x41 : t) ->
+        ExecutableOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x41) "options")
+    let (set_options : t -> ExecutableOptions.t -> unit) =
+      fun (x42 : t) ->
+        fun (x43 : ExecutableOptions.t) ->
+          Ojs.set_prop_ascii (t_to_js x42) "options"
+            (ExecutableOptions.t_to_js x43)
   end
 module ForkOptions =
   struct
-    type t = _ForkOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x89 : Ojs.t) -> _ForkOptions_of_js x89
-    and t_to_js : t -> Ojs.t =
-      fun (x88 : _ForkOptions) -> _ForkOptions_to_js x88
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x45 : Ojs.t) -> x45
+    and t_to_js : t -> Ojs.t = fun (x44 : Ojs.t) -> x44
     let (get_cwd : t -> string) =
-      fun (x90 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x90) "cwd")
+      fun (x46 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x46) "cwd")
     let (set_cwd : t -> string -> unit) =
-      fun (x91 : t) ->
-        fun (x92 : string) ->
-          Ojs.set_prop_ascii (t_to_js x91) "cwd" (Ojs.string_to_js x92)
+      fun (x47 : t) ->
+        fun (x48 : string) ->
+          Ojs.set_prop_ascii (t_to_js x47) "cwd" (Ojs.string_to_js x48)
     let (get_env : t -> any) =
-      fun (x93 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x93) "env")
+      fun (x49 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x49) "env")
     let (set_env : t -> any -> unit) =
-      fun (x94 : t) ->
-        fun (x95 : any) ->
-          Ojs.set_prop_ascii (t_to_js x94) "env" (any_to_js x95)
+      fun (x50 : t) ->
+        fun (x51 : any) ->
+          Ojs.set_prop_ascii (t_to_js x50) "env" (any_to_js x51)
     let (get_encoding : t -> string) =
-      fun (x96 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x96) "encoding")
+      fun (x52 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x52) "encoding")
     let (set_encoding : t -> string -> unit) =
-      fun (x97 : t) ->
-        fun (x98 : string) ->
-          Ojs.set_prop_ascii (t_to_js x97) "encoding" (Ojs.string_to_js x98)
-    let (get_execArgv : t -> string list) =
-      fun (x99 : t) ->
+      fun (x53 : t) ->
+        fun (x54 : string) ->
+          Ojs.set_prop_ascii (t_to_js x53) "encoding" (Ojs.string_to_js x54)
+    let (get_exec_argv : t -> string list) =
+      fun (x55 : t) ->
         Ojs.list_of_js Ojs.string_of_js
-          (Ojs.get_prop_ascii (t_to_js x99) "execArgv")
-    let (set_execArgv : t -> string list -> unit) =
-      fun (x101 : t) ->
-        fun (x102 : string list) ->
-          Ojs.set_prop_ascii (t_to_js x101) "execArgv"
-            (Ojs.list_to_js Ojs.string_to_js x102)
+          (Ojs.get_prop_ascii (t_to_js x55) "execArgv")
+    let (set_exec_argv : t -> string list -> unit) =
+      fun (x57 : t) ->
+        fun (x58 : string list) ->
+          Ojs.set_prop_ascii (t_to_js x57) "execArgv"
+            (Ojs.list_to_js Ojs.string_to_js x58)
   end
 module TransportKind =
   struct
-    type t = _TransportKind
+    type t = [ `stdio  | `ipc  | `pipe  | `socket ]
     let rec t_of_js : Ojs.t -> t =
-      fun (x105 : Ojs.t) -> _TransportKind_of_js x105
+      fun (x61 : Ojs.t) ->
+        let x62 = x61 in
+        match Ojs.int_of_js x62 with
+        | 0 -> `stdio
+        | 1 -> `ipc
+        | 2 -> `pipe
+        | 3 -> `socket
+        | _ -> assert false
     and t_to_js : t -> Ojs.t =
-      fun (x104 : _TransportKind) -> _TransportKind_to_js x104
+      fun (x60 : [ `stdio  | `ipc  | `pipe  | `socket ]) ->
+        match x60 with
+        | `stdio -> Ojs.int_to_js 0
+        | `ipc -> Ojs.int_to_js 1
+        | `pipe -> Ojs.int_to_js 2
+        | `socket -> Ojs.int_to_js 3
   end
 module SocketTransport =
   struct
-    type t = _SocketTransport
-    let rec t_of_js : Ojs.t -> t =
-      fun (x107 : Ojs.t) -> _SocketTransport_of_js x107
-    and t_to_js : t -> Ojs.t =
-      fun (x106 : _SocketTransport) -> _SocketTransport_to_js x106
-    let (get_kind : t -> _TransportKind_socket) =
-      fun (x108 : t) ->
-        _TransportKind_socket_of_js
-          (Ojs.get_prop_ascii (t_to_js x108) "kind")
-    let (set_kind : t -> _TransportKind_socket -> unit) =
-      fun (x109 : t) ->
-        fun (x110 : _TransportKind_socket) ->
-          Ojs.set_prop_ascii (t_to_js x109) "kind"
-            (_TransportKind_socket_to_js x110)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x64 : Ojs.t) -> x64
+    and t_to_js : t -> Ojs.t = fun (x63 : Ojs.t) -> x63
+    let (get_kind : t -> TransportKind_socket.t) =
+      fun (x65 : t) ->
+        TransportKind_socket.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x65) "kind")
+    let (set_kind : t -> TransportKind_socket.t -> unit) =
+      fun (x66 : t) ->
+        fun (x67 : TransportKind_socket.t) ->
+          Ojs.set_prop_ascii (t_to_js x66) "kind"
+            (TransportKind_socket.t_to_js x67)
     let (get_port : t -> int) =
-      fun (x111 : t) ->
-        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x111) "port")
+      fun (x68 : t) ->
+        Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x68) "port")
     let (set_port : t -> int -> unit) =
-      fun (x112 : t) ->
-        fun (x113 : int) ->
-          Ojs.set_prop_ascii (t_to_js x112) "port" (Ojs.int_to_js x113)
+      fun (x69 : t) ->
+        fun (x70 : int) ->
+          Ojs.set_prop_ascii (t_to_js x69) "port" (Ojs.int_to_js x70)
   end
 module Transport =
   struct
-    type t = _Transport
+    type t =
+      (SocketTransport.t, [ `ipc  | `pipe  | `socket  | `stdio ]) or_enum
     let rec t_of_js : Ojs.t -> t =
-      fun (x115 : Ojs.t) -> _Transport_of_js x115
+      fun (x74 : Ojs.t) ->
+        or_enum_of_js SocketTransport.t_of_js
+          (fun (x76 : Ojs.t) ->
+             let x77 = x76 in
+             match Ojs.int_of_js x77 with
+             | 1 -> `ipc
+             | 2 -> `pipe
+             | 3 -> `socket
+             | 0 -> `stdio
+             | _ -> assert false) x74
     and t_to_js : t -> Ojs.t =
-      fun (x114 : _Transport) -> _Transport_to_js x114
+      fun
+        (x71 :
+          (SocketTransport.t, [ `ipc  | `pipe  | `socket  | `stdio ]) or_enum)
+        ->
+        or_enum_to_js SocketTransport.t_to_js
+          (fun (x73 : [ `ipc  | `pipe  | `socket  | `stdio ]) ->
+             match x73 with
+             | `ipc -> Ojs.int_to_js 1
+             | `pipe -> Ojs.int_to_js 2
+             | `socket -> Ojs.int_to_js 3
+             | `stdio -> Ojs.int_to_js 0) x71
   end
 module NodeModule =
   struct
-    type t = _NodeModule
-    let rec t_of_js : Ojs.t -> t =
-      fun (x117 : Ojs.t) -> _NodeModule_of_js x117
-    and t_to_js : t -> Ojs.t =
-      fun (x116 : _NodeModule) -> _NodeModule_to_js x116
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x79 : Ojs.t) -> x79
+    and t_to_js : t -> Ojs.t = fun (x78 : Ojs.t) -> x78
     let (get_module : t -> string) =
-      fun (x118 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x118) "module")
+      fun (x80 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x80) "module")
     let (set_module : t -> string -> unit) =
-      fun (x119 : t) ->
-        fun (x120 : string) ->
-          Ojs.set_prop_ascii (t_to_js x119) "module" (Ojs.string_to_js x120)
-    let (get_transport : t -> _Transport) =
-      fun (x121 : t) ->
-        _Transport_of_js (Ojs.get_prop_ascii (t_to_js x121) "transport")
-    let (set_transport : t -> _Transport -> unit) =
-      fun (x122 : t) ->
-        fun (x123 : _Transport) ->
-          Ojs.set_prop_ascii (t_to_js x122) "transport"
-            (_Transport_to_js x123)
+      fun (x81 : t) ->
+        fun (x82 : string) ->
+          Ojs.set_prop_ascii (t_to_js x81) "module" (Ojs.string_to_js x82)
+    let (get_transport : t -> Transport.t) =
+      fun (x83 : t) ->
+        Transport.t_of_js (Ojs.get_prop_ascii (t_to_js x83) "transport")
+    let (set_transport : t -> Transport.t -> unit) =
+      fun (x84 : t) ->
+        fun (x85 : Transport.t) ->
+          Ojs.set_prop_ascii (t_to_js x84) "transport"
+            (Transport.t_to_js x85)
     let (get_args : t -> string list) =
-      fun (x124 : t) ->
+      fun (x86 : t) ->
         Ojs.list_of_js Ojs.string_of_js
-          (Ojs.get_prop_ascii (t_to_js x124) "args")
+          (Ojs.get_prop_ascii (t_to_js x86) "args")
     let (set_args : t -> string list -> unit) =
-      fun (x126 : t) ->
-        fun (x127 : string list) ->
-          Ojs.set_prop_ascii (t_to_js x126) "args"
-            (Ojs.list_to_js Ojs.string_to_js x127)
+      fun (x88 : t) ->
+        fun (x89 : string list) ->
+          Ojs.set_prop_ascii (t_to_js x88) "args"
+            (Ojs.list_to_js Ojs.string_to_js x89)
     let (get_runtime : t -> string) =
-      fun (x129 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x129) "runtime")
+      fun (x91 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x91) "runtime")
     let (set_runtime : t -> string -> unit) =
-      fun (x130 : t) ->
-        fun (x131 : string) ->
-          Ojs.set_prop_ascii (t_to_js x130) "runtime" (Ojs.string_to_js x131)
-    let (get_options : t -> _ForkOptions) =
-      fun (x132 : t) ->
-        _ForkOptions_of_js (Ojs.get_prop_ascii (t_to_js x132) "options")
-    let (set_options : t -> _ForkOptions -> unit) =
-      fun (x133 : t) ->
-        fun (x134 : _ForkOptions) ->
-          Ojs.set_prop_ascii (t_to_js x133) "options"
-            (_ForkOptions_to_js x134)
+      fun (x92 : t) ->
+        fun (x93 : string) ->
+          Ojs.set_prop_ascii (t_to_js x92) "runtime" (Ojs.string_to_js x93)
+    let (get_options : t -> ForkOptions.t) =
+      fun (x94 : t) ->
+        ForkOptions.t_of_js (Ojs.get_prop_ascii (t_to_js x94) "options")
+    let (set_options : t -> ForkOptions.t -> unit) =
+      fun (x95 : t) ->
+        fun (x96 : ForkOptions.t) ->
+          Ojs.set_prop_ascii (t_to_js x95) "options"
+            (ForkOptions.t_to_js x96)
   end
 module StreamInfo =
   struct
-    type t = _StreamInfo
-    let rec t_of_js : Ojs.t -> t =
-      fun (x136 : Ojs.t) -> _StreamInfo_of_js x136
-    and t_to_js : t -> Ojs.t =
-      fun (x135 : _StreamInfo) -> _StreamInfo_to_js x135
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x98 : Ojs.t) -> x98
+    and t_to_js : t -> Ojs.t = fun (x97 : Ojs.t) -> x97
     let (get_writer : t -> Node.WritableStream.t) =
-      fun (x137 : t) ->
+      fun (x99 : t) ->
         Node.WritableStream.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x137) "writer")
+          (Ojs.get_prop_ascii (t_to_js x99) "writer")
     let (set_writer : t -> Node.WritableStream.t -> unit) =
-      fun (x138 : t) ->
-        fun (x139 : Node.WritableStream.t) ->
-          Ojs.set_prop_ascii (t_to_js x138) "writer"
-            (Node.WritableStream.t_to_js x139)
+      fun (x100 : t) ->
+        fun (x101 : Node.WritableStream.t) ->
+          Ojs.set_prop_ascii (t_to_js x100) "writer"
+            (Node.WritableStream.t_to_js x101)
     let (get_reader : t -> Node.ReadableStream.t) =
-      fun (x140 : t) ->
+      fun (x102 : t) ->
         Node.ReadableStream.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x140) "reader")
+          (Ojs.get_prop_ascii (t_to_js x102) "reader")
     let (set_reader : t -> Node.ReadableStream.t -> unit) =
-      fun (x141 : t) ->
-        fun (x142 : Node.ReadableStream.t) ->
-          Ojs.set_prop_ascii (t_to_js x141) "reader"
-            (Node.ReadableStream.t_to_js x142)
+      fun (x103 : t) ->
+        fun (x104 : Node.ReadableStream.t) ->
+          Ojs.set_prop_ascii (t_to_js x103) "reader"
+            (Node.ReadableStream.t_to_js x104)
     let (get_detached : t -> bool) =
-      fun (x143 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x143) "detached")
+      fun (x105 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x105) "detached")
     let (set_detached : t -> bool -> unit) =
-      fun (x144 : t) ->
-        fun (x145 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x144) "detached" (Ojs.bool_to_js x145)
+      fun (x106 : t) ->
+        fun (x107 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x106) "detached" (Ojs.bool_to_js x107)
   end
 module ChildProcessInfo =
   struct
-    type t = _ChildProcessInfo
-    let rec t_of_js : Ojs.t -> t =
-      fun (x147 : Ojs.t) -> _ChildProcessInfo_of_js x147
-    and t_to_js : t -> Ojs.t =
-      fun (x146 : _ChildProcessInfo) -> _ChildProcessInfo_to_js x146
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x109 : Ojs.t) -> x109
+    and t_to_js : t -> Ojs.t = fun (x108 : Ojs.t) -> x108
     let (get_process : t -> ChildProcess.t) =
-      fun (x148 : t) ->
-        ChildProcess.t_of_js (Ojs.get_prop_ascii (t_to_js x148) "process")
+      fun (x110 : t) ->
+        ChildProcess.t_of_js (Ojs.get_prop_ascii (t_to_js x110) "process")
     let (set_process : t -> ChildProcess.t -> unit) =
-      fun (x149 : t) ->
-        fun (x150 : ChildProcess.t) ->
-          Ojs.set_prop_ascii (t_to_js x149) "process"
-            (ChildProcess.t_to_js x150)
+      fun (x111 : t) ->
+        fun (x112 : ChildProcess.t) ->
+          Ojs.set_prop_ascii (t_to_js x111) "process"
+            (ChildProcess.t_to_js x112)
     let (get_detached : t -> bool) =
-      fun (x151 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x151) "detached")
+      fun (x113 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x113) "detached")
     let (set_detached : t -> bool -> unit) =
-      fun (x152 : t) ->
-        fun (x153 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x152) "detached" (Ojs.bool_to_js x153)
+      fun (x114 : t) ->
+        fun (x115 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x114) "detached" (Ojs.bool_to_js x115)
   end
 module ServerOptions =
   struct
-    type t = _ServerOptions
+    type t =
+      (Executable.t, NodeModule.t, AnonymousInterface0.t,
+        AnonymousInterface1.t,
+        unit ->
+          (ChildProcess.t, ChildProcessInfo.t, MessageTransports.t,
+            StreamInfo.t) union4 Promise.t)
+        union5
     let rec t_of_js : Ojs.t -> t =
-      fun (x155 : Ojs.t) -> _ServerOptions_of_js x155
+      fun (x127 : Ojs.t) ->
+        union5_of_js Executable.t_of_js NodeModule.t_of_js
+          AnonymousInterface0.t_of_js AnonymousInterface1.t_of_js
+          (fun (x132 : Ojs.t) ->
+             fun () ->
+               Promise.t_of_js
+                 (fun (x133 : Ojs.t) ->
+                    union4_of_js ChildProcess.t_of_js
+                      ChildProcessInfo.t_of_js MessageTransports.t_of_js
+                      StreamInfo.t_of_js x133) (Ojs.apply x132 [||])) x127
     and t_to_js : t -> Ojs.t =
-      fun (x154 : _ServerOptions) -> _ServerOptions_to_js x154
+      fun
+        (x116 :
+          (Executable.t, NodeModule.t, AnonymousInterface0.t,
+            AnonymousInterface1.t,
+            unit ->
+              (ChildProcess.t, ChildProcessInfo.t, MessageTransports.t,
+                StreamInfo.t) union4 Promise.t)
+            union5)
+        ->
+        union5_to_js Executable.t_to_js NodeModule.t_to_js
+          AnonymousInterface0.t_to_js AnonymousInterface1.t_to_js
+          (fun
+             (x121 :
+               unit ->
+                 (ChildProcess.t, ChildProcessInfo.t, MessageTransports.t,
+                   StreamInfo.t) union4 Promise.t)
+             ->
+             Ojs.fun_to_js 1
+               (fun _ ->
+                  Promise.t_to_js
+                    (fun
+                       (x122 :
+                         (ChildProcess.t, ChildProcessInfo.t,
+                           MessageTransports.t, StreamInfo.t) union4)
+                       ->
+                       union4_to_js ChildProcess.t_to_js
+                         ChildProcessInfo.t_to_js MessageTransports.t_to_js
+                         StreamInfo.t_to_js x122) (x121 ()))) x116
   end
 module LanguageClient =
   struct
-    type t = _LanguageClient
-    let rec t_of_js : Ojs.t -> t =
-      fun (x157 : Ojs.t) -> _LanguageClient_of_js x157
-    and t_to_js : t -> Ojs.t =
-      fun (x156 : _LanguageClient) -> _LanguageClient_to_js x156
-    let (get__serverOptions : t -> any) =
-      fun (x158 : t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js x158) "_serverOptions")
-    let (set__serverOptions : t -> any -> unit) =
-      fun (x159 : t) ->
-        fun (x160 : any) ->
-          Ojs.set_prop_ascii (t_to_js x159) "_serverOptions" (any_to_js x160)
-    let (get__forceDebug : t -> any) =
-      fun (x161 : t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js x161) "_forceDebug")
-    let (set__forceDebug : t -> any -> unit) =
-      fun (x162 : t) ->
-        fun (x163 : any) ->
-          Ojs.set_prop_ascii (t_to_js x162) "_forceDebug" (any_to_js x163)
-    let (get__serverProcess : t -> any) =
-      fun (x164 : t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js x164) "_serverProcess")
-    let (set__serverProcess : t -> any -> unit) =
-      fun (x165 : t) ->
-        fun (x166 : any) ->
-          Ojs.set_prop_ascii (t_to_js x165) "_serverProcess" (any_to_js x166)
-    let (get__isDetached : t -> any) =
-      fun (x167 : t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js x167) "_isDetached")
-    let (set__isDetached : t -> any -> unit) =
-      fun (x168 : t) ->
-        fun (x169 : any) ->
-          Ojs.set_prop_ascii (t_to_js x168) "_isDetached" (any_to_js x169)
-    let (get__isInDebugMode : t -> any) =
-      fun (x170 : t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js x170) "_isInDebugMode")
-    let (set__isInDebugMode : t -> any -> unit) =
-      fun (x171 : t) ->
-        fun (x172 : any) ->
-          Ojs.set_prop_ascii (t_to_js x171) "_isInDebugMode" (any_to_js x172)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x139 : Ojs.t) -> x139
+    and t_to_js : t -> Ojs.t = fun (x138 : Ojs.t) -> x138
+    let (get_server_options : t -> any) =
+      fun (x140 : t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js x140) "_serverOptions")
+    let (set_server_options : t -> any -> unit) =
+      fun (x141 : t) ->
+        fun (x142 : any) ->
+          Ojs.set_prop_ascii (t_to_js x141) "_serverOptions" (any_to_js x142)
+    let (get_force_debug : t -> any) =
+      fun (x143 : t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js x143) "_forceDebug")
+    let (set_force_debug : t -> any -> unit) =
+      fun (x144 : t) ->
+        fun (x145 : any) ->
+          Ojs.set_prop_ascii (t_to_js x144) "_forceDebug" (any_to_js x145)
+    let (get_server_process : t -> any) =
+      fun (x146 : t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js x146) "_serverProcess")
+    let (set_server_process : t -> any -> unit) =
+      fun (x147 : t) ->
+        fun (x148 : any) ->
+          Ojs.set_prop_ascii (t_to_js x147) "_serverProcess" (any_to_js x148)
+    let (get_is_detached : t -> any) =
+      fun (x149 : t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js x149) "_isDetached")
+    let (set_is_detached : t -> any -> unit) =
+      fun (x150 : t) ->
+        fun (x151 : any) ->
+          Ojs.set_prop_ascii (t_to_js x150) "_isDetached" (any_to_js x151)
+    let (get_is_in_debug_mode : t -> any) =
+      fun (x152 : t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js x152) "_isInDebugMode")
+    let (set_is_in_debug_mode : t -> any -> unit) =
+      fun (x153 : t) ->
+        fun (x154 : any) ->
+          Ojs.set_prop_ascii (t_to_js x153) "_isInDebugMode" (any_to_js x154)
     let (create :
       name:string ->
-        serverOptions:_ServerOptions ->
-          clientOptions:LanguageClientOptions.t ->
-            ?forceDebug:bool -> unit -> t)
+        server_options:ServerOptions.t ->
+          client_options:LanguageClientOptions.t ->
+            ?force_debug:bool -> unit -> t)
       =
-      fun ~name:(x173 : string) ->
-        fun ~serverOptions:(x174 : _ServerOptions) ->
-          fun ~clientOptions:(x175 : LanguageClientOptions.t) ->
-            fun ?forceDebug:(x176 : bool option) ->
+      fun ~name:(x155 : string) ->
+        fun ~server_options:(x156 : ServerOptions.t) ->
+          fun ~client_options:(x157 : LanguageClientOptions.t) ->
+            fun ?force_debug:(x158 : bool option) ->
               fun () ->
                 t_of_js
                   (Ojs.new_obj_arr
                      (Ojs.get_prop_ascii Ojs.global "LanguageClient")
-                     (let x177 =
+                     (let x159 =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
                       ignore
-                        (Ojs.call x177 "push" [|(Ojs.string_to_js x173)|]);
+                        (Ojs.call x159 "push" [|(Ojs.string_to_js x155)|]);
                       ignore
-                        (Ojs.call x177 "push" [|(_ServerOptions_to_js x174)|]);
+                        (Ojs.call x159 "push"
+                           [|(ServerOptions.t_to_js x156)|]);
                       ignore
-                        (Ojs.call x177 "push"
-                           [|(LanguageClientOptions.t_to_js x175)|]);
-                      (match x176 with
-                       | Some x178 ->
+                        (Ojs.call x159 "push"
+                           [|(LanguageClientOptions.t_to_js x157)|]);
+                      (match x158 with
+                       | Some x160 ->
                            ignore
-                             (Ojs.call x177 "push" [|(Ojs.bool_to_js x178)|])
+                             (Ojs.call x159 "push" [|(Ojs.bool_to_js x160)|])
                        | None -> ());
-                      x177))
+                      x159))
     let (create' :
       id:string ->
         name:string ->
-          serverOptions:_ServerOptions ->
-            clientOptions:LanguageClientOptions.t ->
-              ?forceDebug:bool -> unit -> t)
+          server_options:ServerOptions.t ->
+            client_options:LanguageClientOptions.t ->
+              ?force_debug:bool -> unit -> t)
       =
-      fun ~id:(x179 : string) ->
-        fun ~name:(x180 : string) ->
-          fun ~serverOptions:(x181 : _ServerOptions) ->
-            fun ~clientOptions:(x182 : LanguageClientOptions.t) ->
-              fun ?forceDebug:(x183 : bool option) ->
+      fun ~id:(x161 : string) ->
+        fun ~name:(x162 : string) ->
+          fun ~server_options:(x163 : ServerOptions.t) ->
+            fun ~client_options:(x164 : LanguageClientOptions.t) ->
+              fun ?force_debug:(x165 : bool option) ->
                 fun () ->
                   t_of_js
                     (Ojs.new_obj_arr
                        (Ojs.get_prop_ascii Ojs.global "LanguageClient")
-                       (let x184 =
+                       (let x166 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
                         ignore
-                          (Ojs.call x184 "push" [|(Ojs.string_to_js x179)|]);
+                          (Ojs.call x166 "push" [|(Ojs.string_to_js x161)|]);
                         ignore
-                          (Ojs.call x184 "push" [|(Ojs.string_to_js x180)|]);
+                          (Ojs.call x166 "push" [|(Ojs.string_to_js x162)|]);
                         ignore
-                          (Ojs.call x184 "push"
-                             [|(_ServerOptions_to_js x181)|]);
+                          (Ojs.call x166 "push"
+                             [|(ServerOptions.t_to_js x163)|]);
                         ignore
-                          (Ojs.call x184 "push"
-                             [|(LanguageClientOptions.t_to_js x182)|]);
-                        (match x183 with
-                         | Some x185 ->
+                          (Ojs.call x166 "push"
+                             [|(LanguageClientOptions.t_to_js x164)|]);
+                        (match x165 with
+                         | Some x167 ->
                              ignore
-                               (Ojs.call x184 "push"
-                                  [|(Ojs.bool_to_js x185)|])
+                               (Ojs.call x166 "push"
+                                  [|(Ojs.bool_to_js x167)|])
                          | None -> ());
-                        x184))
-    let (get_checkVersion : t -> any) =
+                        x166))
+    let (get_check_version : t -> any) =
+      fun (x168 : t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js x168) "checkVersion")
+    let (set_check_version : t -> any -> unit) =
+      fun (x169 : t) ->
+        fun (x170 : any) ->
+          Ojs.set_prop_ascii (t_to_js x169) "checkVersion" (any_to_js x170)
+    let (get_is_in_debug_mode : t -> bool) =
+      fun (x171 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x171) "isInDebugMode")
+    let (stop : t -> unit Promise.t) =
+      fun (x172 : t) ->
+        Promise.t_of_js Ojs.unit_of_js (Ojs.call (t_to_js x172) "stop" [||])
+    let (get_check_process_died : t -> any) =
+      fun (x174 : t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js x174) "checkProcessDied")
+    let (set_check_process_died : t -> any -> unit) =
+      fun (x175 : t) ->
+        fun (x176 : any) ->
+          Ojs.set_prop_ascii (t_to_js x175) "checkProcessDied"
+            (any_to_js x176)
+    let (handle_connection_closed : t -> unit) =
+      fun (x177 : t) ->
+        ignore (Ojs.call (t_to_js x177) "handleConnectionClosed" [||])
+    let (fill_initialize_params : t -> params:InitializeParams.t -> unit) =
+      fun (x179 : t) ->
+        fun ~params:(x178 : InitializeParams.t) ->
+          ignore
+            (Ojs.call (t_to_js x179) "fillInitializeParams"
+               [|(InitializeParams.t_to_js x178)|])
+    let (create_message_transports :
+      t -> encoding:string -> MessageTransports.t Promise.t) =
+      fun (x181 : t) ->
+        fun ~encoding:(x180 : string) ->
+          Promise.t_of_js MessageTransports.t_of_js
+            (Ojs.call (t_to_js x181) "createMessageTransports"
+               [|(Ojs.string_to_js x180)|])
+    let (get_get_runtime_path : t -> any) =
+      fun (x183 : t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js x183) "_getRuntimePath")
+    let (set_get_runtime_path : t -> any -> unit) =
+      fun (x184 : t) ->
+        fun (x185 : any) ->
+          Ojs.set_prop_ascii (t_to_js x184) "_getRuntimePath"
+            (any_to_js x185)
+    let (get_main_get_root_path : t -> any) =
       fun (x186 : t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js x186) "checkVersion")
-    let (set_checkVersion : t -> any -> unit) =
+        any_of_js (Ojs.get_prop_ascii (t_to_js x186) "_mainGetRootPath")
+    let (set_main_get_root_path : t -> any -> unit) =
       fun (x187 : t) ->
         fun (x188 : any) ->
-          Ojs.set_prop_ascii (t_to_js x187) "checkVersion" (any_to_js x188)
-    let (get_isInDebugMode : t -> bool) =
+          Ojs.set_prop_ascii (t_to_js x187) "_mainGetRootPath"
+            (any_to_js x188)
+    let (get_get_server_working_dir : t -> any) =
       fun (x189 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x189) "isInDebugMode")
-    let (stop : t -> unit Promise.t) =
+        any_of_js (Ojs.get_prop_ascii (t_to_js x189) "_getServerWorkingDir")
+    let (set_get_server_working_dir : t -> any -> unit) =
       fun (x190 : t) ->
-        Promise.t_of_js Ojs.unit_of_js (Ojs.call (t_to_js x190) "stop" [||])
-    let (get_checkProcessDied : t -> any) =
+        fun (x191 : any) ->
+          Ojs.set_prop_ascii (t_to_js x190) "_getServerWorkingDir"
+            (any_to_js x191)
+    let (get_locale : t -> string) =
       fun (x192 : t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js x192) "checkProcessDied")
-    let (set_checkProcessDied : t -> any -> unit) =
-      fun (x193 : t) ->
-        fun (x194 : any) ->
-          Ojs.set_prop_ascii (t_to_js x193) "checkProcessDied"
-            (any_to_js x194)
-    let (handleConnectionClosed : t -> unit) =
-      fun (x195 : t) ->
-        ignore (Ojs.call (t_to_js x195) "handleConnectionClosed" [||])
-    let (fillInitializeParams : t -> params:InitializeParams.t -> unit) =
-      fun (x197 : t) ->
-        fun ~params:(x196 : InitializeParams.t) ->
-          ignore
-            (Ojs.call (t_to_js x197) "fillInitializeParams"
-               [|(InitializeParams.t_to_js x196)|])
-    let (createMessageTransports :
-      t -> encoding:string -> MessageTransports.t Promise.t) =
-      fun (x199 : t) ->
-        fun ~encoding:(x198 : string) ->
-          Promise.t_of_js MessageTransports.t_of_js
-            (Ojs.call (t_to_js x199) "createMessageTransports"
-               [|(Ojs.string_to_js x198)|])
-    let (get__getRuntimePath : t -> any) =
-      fun (x201 : t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js x201) "_getRuntimePath")
-    let (set__getRuntimePath : t -> any -> unit) =
-      fun (x202 : t) ->
-        fun (x203 : any) ->
-          Ojs.set_prop_ascii (t_to_js x202) "_getRuntimePath"
-            (any_to_js x203)
-    let (get__mainGetRootPath : t -> any) =
-      fun (x204 : t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js x204) "_mainGetRootPath")
-    let (set__mainGetRootPath : t -> any -> unit) =
-      fun (x205 : t) ->
-        fun (x206 : any) ->
-          Ojs.set_prop_ascii (t_to_js x205) "_mainGetRootPath"
-            (any_to_js x206)
-    let (get__getServerWorkingDir : t -> any) =
-      fun (x207 : t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js x207) "_getServerWorkingDir")
-    let (set__getServerWorkingDir : t -> any -> unit) =
-      fun (x208 : t) ->
-        fun (x209 : any) ->
-          Ojs.set_prop_ascii (t_to_js x208) "_getServerWorkingDir"
-            (any_to_js x209)
-    let (getLocale : t -> string) =
-      fun (x210 : t) ->
-        Ojs.string_of_js (Ojs.call (t_to_js x210) "getLocale" [||])
+        Ojs.string_of_js (Ojs.call (t_to_js x192) "getLocale" [||])
     let (cast : t -> CommonLanguageClient.t) =
-      fun (x211 : t) -> CommonLanguageClient.t_of_js (t_to_js x211)
+      fun (x193 : t) -> CommonLanguageClient.t_of_js (t_to_js x193)
   end
 module SettingMonitor =
   struct
-    type t = _SettingMonitor
-    let rec t_of_js : Ojs.t -> t =
-      fun (x213 : Ojs.t) -> _SettingMonitor_of_js x213
-    and t_to_js : t -> Ojs.t =
-      fun (x212 : _SettingMonitor) -> _SettingMonitor_to_js x212
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x195 : Ojs.t) -> x195
+    and t_to_js : t -> Ojs.t = fun (x194 : Ojs.t) -> x194
     let (get__client : t -> any) =
-      fun (x214 : t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js x214) "_client")
+      fun (x196 : t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js x196) "_client")
     let (set__client : t -> any -> unit) =
-      fun (x215 : t) ->
-        fun (x216 : any) ->
-          Ojs.set_prop_ascii (t_to_js x215) "_client" (any_to_js x216)
+      fun (x197 : t) ->
+        fun (x198 : any) ->
+          Ojs.set_prop_ascii (t_to_js x197) "_client" (any_to_js x198)
     let (get__setting : t -> any) =
-      fun (x217 : t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js x217) "_setting")
+      fun (x199 : t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js x199) "_setting")
     let (set__setting : t -> any -> unit) =
-      fun (x218 : t) ->
-        fun (x219 : any) ->
-          Ojs.set_prop_ascii (t_to_js x218) "_setting" (any_to_js x219)
+      fun (x200 : t) ->
+        fun (x201 : any) ->
+          Ojs.set_prop_ascii (t_to_js x200) "_setting" (any_to_js x201)
     let (get__listeners : t -> any) =
-      fun (x220 : t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js x220) "_listeners")
+      fun (x202 : t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js x202) "_listeners")
     let (set__listeners : t -> any -> unit) =
-      fun (x221 : t) ->
-        fun (x222 : any) ->
-          Ojs.set_prop_ascii (t_to_js x221) "_listeners" (any_to_js x222)
-    let (create : _client:_LanguageClient -> _setting:string -> t) =
-      fun ~_client:(x223 : _LanguageClient) ->
-        fun ~_setting:(x224 : string) ->
+      fun (x203 : t) ->
+        fun (x204 : any) ->
+          Ojs.set_prop_ascii (t_to_js x203) "_listeners" (any_to_js x204)
+    let (create : _client:LanguageClient.t -> _setting:string -> t) =
+      fun ~_client:(x205 : LanguageClient.t) ->
+        fun ~_setting:(x206 : string) ->
           t_of_js
             (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "SettingMonitor")
-               [|(_LanguageClient_to_js x223);(Ojs.string_to_js x224)|])
+               [|(LanguageClient.t_to_js x205);(Ojs.string_to_js x206)|])
     let (start : t -> Disposable.t) =
-      fun (x225 : t) ->
-        Disposable.t_of_js (Ojs.call (t_to_js x225) "start" [||])
-    let (get_onDidChangeConfiguration : t -> any) =
-      fun (x226 : t) ->
+      fun (x207 : t) ->
+        Disposable.t_of_js (Ojs.call (t_to_js x207) "start" [||])
+    let (get_on_did_change_configuration : t -> any) =
+      fun (x208 : t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js x226) "onDidChangeConfiguration")
-    let (set_onDidChangeConfiguration : t -> any -> unit) =
-      fun (x227 : t) ->
-        fun (x228 : any) ->
-          Ojs.set_prop_ascii (t_to_js x227) "onDidChangeConfiguration"
-            (any_to_js x228)
+          (Ojs.get_prop_ascii (t_to_js x208) "onDidChangeConfiguration")
+    let (set_on_did_change_configuration : t -> any -> unit) =
+      fun (x209 : t) ->
+        fun (x210 : any) ->
+          Ojs.set_prop_ascii (t_to_js x209) "onDidChangeConfiguration"
+            (any_to_js x210)
   end

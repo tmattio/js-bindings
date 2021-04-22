@@ -9,7 +9,7 @@ module Array : sig
     include Array
   end
 
-  val includes : 'T t -> searchElement:'T -> ?fromIndex:int -> unit -> bool
+  val includes : 'T t -> search_element:'T -> ?from_index:int -> unit -> bool
     [@@js.call "includes"]
 
   val to_ml : 'T t -> 'T list [@@js.cast]
@@ -23,7 +23,7 @@ module ReadonlyArray : sig
     include ReadonlyArray
   end
 
-  val includes : 'T t -> searchElement:'T -> ?fromIndex:int -> unit -> bool
+  val includes : 'T t -> search_element:'T -> ?from_index:int -> unit -> bool
     [@@js.call "includes"]
 
   val to_ml : 'T t -> 'T list [@@js.cast]
@@ -37,7 +37,7 @@ module Int8Array : sig
     include Int8Array
   end
 
-  val includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool
+  val includes : t -> search_element:int -> ?from_index:int -> unit -> bool
     [@@js.call "includes"]
 end
 [@@js.scope "Int8Array"]
@@ -47,7 +47,7 @@ module Uint8Array : sig
     include Uint8Array
   end
 
-  val includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool
+  val includes : t -> search_element:int -> ?from_index:int -> unit -> bool
     [@@js.call "includes"]
 end
 [@@js.scope "Uint8Array"]
@@ -57,7 +57,7 @@ module Uint8ClampedArray : sig
     include Uint8ClampedArray
   end
 
-  val includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool
+  val includes : t -> search_element:int -> ?from_index:int -> unit -> bool
     [@@js.call "includes"]
 end
 [@@js.scope "Uint8ClampedArray"]
@@ -67,7 +67,7 @@ module Int16Array : sig
     include Int16Array
   end
 
-  val includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool
+  val includes : t -> search_element:int -> ?from_index:int -> unit -> bool
     [@@js.call "includes"]
 end
 [@@js.scope "Int16Array"]
@@ -77,7 +77,7 @@ module Uint16Array : sig
     include Uint16Array
   end
 
-  val includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool
+  val includes : t -> search_element:int -> ?from_index:int -> unit -> bool
     [@@js.call "includes"]
 end
 [@@js.scope "Uint16Array"]
@@ -87,7 +87,7 @@ module Int32Array : sig
     include Int32Array
   end
 
-  val includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool
+  val includes : t -> search_element:int -> ?from_index:int -> unit -> bool
     [@@js.call "includes"]
 end
 [@@js.scope "Int32Array"]
@@ -97,7 +97,7 @@ module Uint32Array : sig
     include Uint32Array
   end
 
-  val includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool
+  val includes : t -> search_element:int -> ?from_index:int -> unit -> bool
     [@@js.call "includes"]
 end
 [@@js.scope "Uint32Array"]
@@ -107,7 +107,7 @@ module Float32Array : sig
     include Float32Array
   end
 
-  val includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool
+  val includes : t -> search_element:int -> ?from_index:int -> unit -> bool
     [@@js.call "includes"]
 end
 [@@js.scope "Float32Array"]
@@ -117,7 +117,7 @@ module Float64Array : sig
     include Float64Array
   end
 
-  val includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool
+  val includes : t -> search_element:int -> ?from_index:int -> unit -> bool
     [@@js.call "includes"]
 end
 [@@js.scope "Float64Array"]

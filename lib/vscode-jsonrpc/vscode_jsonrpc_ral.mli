@@ -23,7 +23,7 @@ module AnonymousInterface1 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val create_ : t -> encoding:_RAL_MessageBufferEncoding -> _RAL_MessageBuffer
+  val create_ : t -> encoding:RAL_MessageBufferEncoding.t -> RAL_MessageBuffer.t
     [@@js.call "create"]
 end
 
@@ -37,24 +37,28 @@ module AnonymousInterface2 : sig
   val info
     :  t
     -> ?message:any
-    -> optionalParams:(any list[@js.variadic])
+    -> optional_params:(any list[@js.variadic])
     -> unit
     [@@js.call "info"]
 
-  val log : t -> ?message:any -> optionalParams:(any list[@js.variadic]) -> unit
+  val log
+    :  t
+    -> ?message:any
+    -> optional_params:(any list[@js.variadic])
+    -> unit
     [@@js.call "log"]
 
   val warn
     :  t
     -> ?message:any
-    -> optionalParams:(any list[@js.variadic])
+    -> optional_params:(any list[@js.variadic])
     -> unit
     [@@js.call "warn"]
 
   val error
     :  t
     -> ?message:any
-    -> optionalParams:(any list[@js.variadic])
+    -> optional_params:(any list[@js.variadic])
     -> unit
     [@@js.call "error"]
 end
@@ -66,43 +70,43 @@ module AnonymousInterface3 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val setTimeout
+  val set_timeout
     :  t
     -> callback:(args:(any list[@js.variadic]) -> unit)
     -> ms:int
     -> args:(any list[@js.variadic])
-    -> _RAL_TimeoutHandle
+    -> RAL_TimeoutHandle.t
     [@@js.call "setTimeout"]
 
-  val clearTimeout : t -> handle:_RAL_TimeoutHandle -> unit
+  val clear_timeout : t -> handle:RAL_TimeoutHandle.t -> unit
     [@@js.call "clearTimeout"]
 
-  val setImmediate
+  val set_immediate
     :  t
     -> callback:(args:(any list[@js.variadic]) -> unit)
     -> args:(any list[@js.variadic])
-    -> _RAL_ImmediateHandle
+    -> RAL_ImmediateHandle.t
     [@@js.call "setImmediate"]
 
-  val clearImmediate : t -> handle:_RAL_ImmediateHandle -> unit
+  val clear_immediate : t -> handle:RAL_ImmediateHandle.t -> unit
     [@@js.call "clearImmediate"]
 end
 
 module MessageBuffer : sig
-  type t = _MessageBuffer
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_encoding : t -> _RAL_MessageBufferEncoding [@@js.get "encoding"]
+  val get_encoding : t -> RAL_MessageBufferEncoding.t [@@js.get "encoding"]
 
   val append : t -> chunk:Uint8Array.t or_string -> unit [@@js.call "append"]
 
-  val tryReadHeaders : t -> (string, string) Map.t or_undefined
+  val try_read_headers : t -> (string, string) Map.t or_undefined
     [@@js.call "tryReadHeaders"]
 
-  val tryReadBody : t -> length:int -> Uint8Array.t or_undefined
+  val try_read_body : t -> length:int -> Uint8Array.t or_undefined
     [@@js.call "tryReadBody"]
 end
 [@@js.scope "_MessageBuffer"]
@@ -120,31 +124,31 @@ module MessageBufferEncoding : sig
 end
 
 module ReadableStream : sig
-  type t = _ReadableStream
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val onData
+  val on_data
     :  t
     -> listener:(data:Uint8Array.t -> unit)
     -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onData"]
 
-  val onClose
+  val on_close
     :  t
     -> listener:(unit -> unit)
     -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onClose"]
 
-  val onError
+  val on_error
     :  t
     -> listener:(error:any -> unit)
     -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onError"]
 
-  val onEnd
+  val on_end
     :  t
     -> listener:(unit -> unit)
     -> Vscode_jsonrpc_disposable.Disposable.t
@@ -153,25 +157,25 @@ end
 [@@js.scope "_ReadableStream"]
 
 module WritableStream : sig
-  type t = _WritableStream
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val onClose
+  val on_close
     :  t
     -> listener:(unit -> unit)
     -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onClose"]
 
-  val onError
+  val on_error
     :  t
     -> listener:(error:any -> unit)
     -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onError"]
 
-  val onEnd
+  val on_end
     :  t
     -> listener:(unit -> unit)
     -> Vscode_jsonrpc_disposable.Disposable.t
@@ -182,7 +186,7 @@ module WritableStream : sig
   val write'
     :  t
     -> data:string
-    -> encoding:_MessageBufferEncoding
+    -> encoding:MessageBufferEncoding.t
     -> unit Promise.t
     [@@js.call "write"]
 
@@ -191,56 +195,56 @@ end
 [@@js.scope "_WritableStream"]
 
 module DuplexStream : sig
-  type t = _DuplexStream
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _ReadableStream [@@js.cast]
+  val cast : t -> ReadableStream.t [@@js.cast]
 
-  val cast' : t -> _WritableStream [@@js.cast]
+  val cast' : t -> WritableStream.t [@@js.cast]
 end
 [@@js.scope "_DuplexStream"]
 
 module TimeoutHandle : sig
-  type t = _TimeoutHandle
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get__timerBrand : t -> never or_undefined [@@js.get "_timerBrand"]
+  val get_timer_brand : t -> never or_undefined [@@js.get "_timerBrand"]
 
-  val set__timerBrand : t -> never or_undefined -> unit [@@js.set "_timerBrand"]
+  val set_timer_brand : t -> never or_undefined -> unit [@@js.set "_timerBrand"]
 end
 [@@js.scope "_TimeoutHandle"]
 
 module ImmediateHandle : sig
-  type t = _ImmediateHandle
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get__immediateBrand : t -> never or_undefined [@@js.get "_immediateBrand"]
+  val get_immediate_brand : t -> never or_undefined [@@js.get "_immediateBrand"]
 
-  val set__immediateBrand : t -> never or_undefined -> unit
+  val set_immediate_brand : t -> never or_undefined -> unit
     [@@js.set "_immediateBrand"]
 end
 [@@js.scope "_ImmediateHandle"]
 
 module RAL : sig
-  type t = _RAL
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_applicationJson : t -> AnonymousInterface0.t
+  val get_application_json : t -> AnonymousInterface0.t
     [@@js.get "applicationJson"]
 
-  val get_messageBuffer : t -> AnonymousInterface1.t [@@js.get "messageBuffer"]
+  val get_message_buffer : t -> AnonymousInterface1.t [@@js.get "messageBuffer"]
 
   val get_console : t -> AnonymousInterface2.t [@@js.get "console"]
 
@@ -302,8 +306,8 @@ module RAL : sig
     val t_of_js : Ojs.t -> t
   end
 
-  val install : ral:_RAL -> unit [@@js.global "install"]
+  val install : ral:RAL.t -> unit [@@js.global "install"]
 end
 [@@js.scope "RAL"]
 
-val ral : unit -> _RAL [@@js.global "RAL"]
+val ral : unit -> RAL.t [@@js.global "RAL"]

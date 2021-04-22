@@ -29,10 +29,10 @@ module AnonymousInterface1 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_documentSelector : t -> DocumentSelector.t
+  val get_document_selector : t -> DocumentSelector.t
     [@@js.get "documentSelector"]
 
-  val set_documentSelector : t -> DocumentSelector.t -> unit
+  val set_document_selector : t -> DocumentSelector.t -> unit
     [@@js.set "documentSelector"]
 end
 
@@ -43,9 +43,10 @@ module AnonymousInterface2 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_includeDeclaration : t -> bool [@@js.get "includeDeclaration"]
+  val get_include_declaration : t -> bool [@@js.get "includeDeclaration"]
 
-  val set_includeDeclaration : t -> bool -> unit [@@js.set "includeDeclaration"]
+  val set_include_declaration : t -> bool -> unit
+    [@@js.set "includeDeclaration"]
 end
 
 module AnonymousInterface3 : sig
@@ -55,9 +56,9 @@ module AnonymousInterface3 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_isTrusted : t -> bool [@@js.get "isTrusted"]
+  val get_is_trusted : t -> bool [@@js.get "isTrusted"]
 
-  val set_isTrusted : t -> bool -> unit [@@js.set "isTrusted"]
+  val set_is_trusted : t -> bool -> unit [@@js.set "isTrusted"]
 end
 
 module AnonymousInterface4 : sig
@@ -219,21 +220,21 @@ end
 (* import * as c2p from './codeConverter'; *)
 (* import * as p2c from './protocolConverter'; *)
 module ConnectionOptions : sig
-  type t = _ConnectionOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_cancellationStrategy : t -> CancellationStrategy.t
+  val get_cancellation_strategy : t -> CancellationStrategy.t
     [@@js.get "cancellationStrategy"]
 
-  val set_cancellationStrategy : t -> CancellationStrategy.t -> unit
+  val set_cancellation_strategy : t -> CancellationStrategy.t -> unit
     [@@js.set "cancellationStrategy"]
 
-  val get_maxRestartCount : t -> int [@@js.get "maxRestartCount"]
+  val get_max_restart_count : t -> int [@@js.get "maxRestartCount"]
 
-  val set_maxRestartCount : t -> int -> unit [@@js.set "maxRestartCount"]
+  val set_max_restart_count : t -> int -> unit [@@js.set "maxRestartCount"]
 end
 [@@js.scope "ConnectionOptions"]
 
@@ -262,7 +263,7 @@ module CloseAction : sig
 end
 
 module ErrorHandler : sig
-  type t = _ErrorHandler
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -273,15 +274,15 @@ module ErrorHandler : sig
     -> error:Error.t
     -> message:Message.t or_undefined
     -> count:int or_undefined
-    -> _ErrorAction
+    -> ErrorAction.t
     [@@js.call "error"]
 
-  val closed : t -> _CloseAction [@@js.call "closed"]
+  val closed : t -> CloseAction.t [@@js.call "closed"]
 end
 [@@js.scope "ErrorHandler"]
 
 module InitializationFailedHandler : sig
-  type t = _InitializationFailedHandler
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -296,24 +297,24 @@ end
 [@@js.scope "InitializationFailedHandler"]
 
 module SynchronizeOptions : sig
-  type t = _SynchronizeOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_configurationSection : t -> string list or_string
+  val get_configuration_section : t -> string list or_string
     [@@js.get "configurationSection"]
 
-  val set_configurationSection : t -> string list or_string -> unit
+  val set_configuration_section : t -> string list or_string -> unit
     [@@js.set "configurationSection"]
 
-  val get_fileEvents
+  val get_file_events
     :  t
     -> (VFileSystemWatcher.t, VFileSystemWatcher.t) or_array
     [@@js.get "fileEvents"]
 
-  val set_fileEvents
+  val set_file_events
     :  t
     -> (VFileSystemWatcher.t, VFileSystemWatcher.t) or_array
     -> unit
@@ -334,21 +335,21 @@ module DiagnosticPullMode : sig
 end
 
 module DiagnosticPullOptions : sig
-  type t = _DiagnosticPullOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_onType : t -> bool [@@js.get "onType"]
+  val get_on_type : t -> bool [@@js.get "onType"]
 
-  val set_onType : t -> bool -> unit [@@js.set "onType"]
+  val set_on_type : t -> bool -> unit [@@js.set "onType"]
 
-  val get_onSave : t -> bool [@@js.get "onSave"]
+  val get_on_save : t -> bool [@@js.get "onSave"]
 
-  val set_onSave : t -> bool -> unit [@@js.set "onSave"]
+  val set_on_save : t -> bool -> unit [@@js.set "onSave"]
 
-  val filter : t -> document:TextDocument.t -> mode:_DiagnosticPullMode -> bool
+  val filter : t -> document:TextDocument.t -> mode:DiagnosticPullMode.t -> bool
     [@@js.call "filter"]
 end
 [@@js.scope "DiagnosticPullOptions"]
@@ -368,7 +369,7 @@ module RevealOutputChannelOn : sig
 end
 
 module HandleDiagnosticsSignature : sig
-  type t = _HandleDiagnosticsSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -385,7 +386,7 @@ end
 [@@js.scope "HandleDiagnosticsSignature"]
 
 module HandleWorkDoneProgressSignature : sig
-  type t = _HandleWorkDoneProgressSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -406,7 +407,7 @@ end
 [@@js.scope "HandleWorkDoneProgressSignature"]
 
 module ProvideCompletionItemsSignature : sig
-  type t = _ProvideCompletionItemsSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -425,7 +426,7 @@ end
 [@@js.scope "ProvideCompletionItemsSignature"]
 
 module ResolveCompletionItemSignature : sig
-  type t = _ResolveCompletionItemSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -442,7 +443,7 @@ end
 [@@js.scope "ResolveCompletionItemSignature"]
 
 module ProvideHoverSignature : sig
-  type t = _ProvideHoverSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -460,7 +461,7 @@ end
 [@@js.scope "ProvideHoverSignature"]
 
 module ProvideSignatureHelpSignature : sig
-  type t = _ProvideSignatureHelpSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -479,7 +480,7 @@ end
 [@@js.scope "ProvideSignatureHelpSignature"]
 
 module ProvideDefinitionSignature : sig
-  type t = _ProvideDefinitionSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -497,7 +498,7 @@ end
 [@@js.scope "ProvideDefinitionSignature"]
 
 module ProvideReferencesSignature : sig
-  type t = _ProvideReferencesSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -516,7 +517,7 @@ end
 [@@js.scope "ProvideReferencesSignature"]
 
 module ProvideDocumentHighlightsSignature : sig
-  type t = _ProvideDocumentHighlightsSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -534,7 +535,7 @@ end
 [@@js.scope "ProvideDocumentHighlightsSignature"]
 
 module ProvideDocumentSymbolsSignature : sig
-  type t = _ProvideDocumentSymbolsSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -551,7 +552,7 @@ end
 [@@js.scope "ProvideDocumentSymbolsSignature"]
 
 module ProvideWorkspaceSymbolsSignature : sig
-  type t = _ProvideWorkspaceSymbolsSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -568,7 +569,7 @@ end
 [@@js.scope "ProvideWorkspaceSymbolsSignature"]
 
 module ProvideCodeActionsSignature : sig
-  type t = _ProvideCodeActionsSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -587,7 +588,7 @@ end
 [@@js.scope "ProvideCodeActionsSignature"]
 
 module ResolveCodeActionSignature : sig
-  type t = _ResolveCodeActionSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -604,7 +605,7 @@ end
 [@@js.scope "ResolveCodeActionSignature"]
 
 module ProvideCodeLensesSignature : sig
-  type t = _ProvideCodeLensesSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -621,7 +622,7 @@ end
 [@@js.scope "ProvideCodeLensesSignature"]
 
 module ResolveCodeLensSignature : sig
-  type t = _ResolveCodeLensSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -630,7 +631,7 @@ module ResolveCodeLensSignature : sig
   val apply
     :  t
     -> this:unit
-    -> codeLens:VCodeLens.t
+    -> code_lens:VCodeLens.t
     -> token:CancellationToken.t
     -> VCodeLens.t ProviderResult.t
     [@@js.apply]
@@ -638,7 +639,7 @@ end
 [@@js.scope "ResolveCodeLensSignature"]
 
 module ProvideDocumentFormattingEditsSignature : sig
-  type t = _ProvideDocumentFormattingEditsSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -656,7 +657,7 @@ end
 [@@js.scope "ProvideDocumentFormattingEditsSignature"]
 
 module ProvideDocumentRangeFormattingEditsSignature : sig
-  type t = _ProvideDocumentRangeFormattingEditsSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -675,7 +676,7 @@ end
 [@@js.scope "ProvideDocumentRangeFormattingEditsSignature"]
 
 module ProvideOnTypeFormattingEditsSignature : sig
-  type t = _ProvideOnTypeFormattingEditsSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -695,7 +696,7 @@ end
 [@@js.scope "ProvideOnTypeFormattingEditsSignature"]
 
 module ProvideRenameEditsSignature : sig
-  type t = _ProvideRenameEditsSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -706,7 +707,7 @@ module ProvideRenameEditsSignature : sig
     -> this:unit
     -> document:TextDocument.t
     -> position:VPosition.t
-    -> newName:string
+    -> new_name:string
     -> token:CancellationToken.t
     -> VWorkspaceEdit.t ProviderResult.t
     [@@js.apply]
@@ -714,7 +715,7 @@ end
 [@@js.scope "ProvideRenameEditsSignature"]
 
 module PrepareRenameSignature : sig
-  type t = _PrepareRenameSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -732,7 +733,7 @@ end
 [@@js.scope "PrepareRenameSignature"]
 
 module ProvideDocumentLinksSignature : sig
-  type t = _ProvideDocumentLinksSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -749,7 +750,7 @@ end
 [@@js.scope "ProvideDocumentLinksSignature"]
 
 module ResolveDocumentLinkSignature : sig
-  type t = _ResolveDocumentLinkSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -766,7 +767,7 @@ end
 [@@js.scope "ResolveDocumentLinkSignature"]
 
 module ExecuteCommandSignature : sig
-  type t = _ExecuteCommandSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -783,7 +784,7 @@ end
 [@@js.scope "ExecuteCommandSignature"]
 
 module NextSignature : sig
-  type ('P, 'R) t = ('P, 'R) _NextSignature
+  type ('P, 'R) t = ('P, 'R) NextSignature.t
 
   val t_to_js : ('P -> Ojs.t) -> ('R -> Ojs.t) -> ('P, 'R) t -> Ojs.t
 
@@ -795,7 +796,7 @@ end
 [@@js.scope "NextSignature"]
 
 module DidChangeConfigurationSignature : sig
-  type t = _DidChangeConfigurationSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -807,7 +808,7 @@ end
 [@@js.scope "DidChangeConfigurationSignature"]
 
 module DidChangeWatchedFileSignature : sig
-  type t = _DidChangeWatchedFileSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -837,19 +838,19 @@ module M_WorkspaceMiddleware : sig
 
   val t_of_js : Ojs.t -> t
 
-  val didChangeConfiguration
+  val did_change_configuration
     :  t
     -> this:unit
     -> sections:string list or_undefined
-    -> next:_DidChangeConfigurationSignature
+    -> next:DidChangeConfigurationSignature.t
     -> unit
     [@@js.call "didChangeConfiguration"]
 
-  val didChangeWatchedFile
+  val did_change_watched_file
     :  t
     -> this:unit
     -> event:FileEvent.t
-    -> next:_DidChangeWatchedFileSignature
+    -> next:DidChangeWatchedFileSignature.t
     -> unit
     [@@js.call "didChangeWatchedFile"]
 end
@@ -870,7 +871,7 @@ module M_WindowMiddleware : sig
 
   val t_of_js : Ojs.t -> t
 
-  val showDocument
+  val show_document
     :  t
     -> this:unit
     -> params:ShowDocumentParams.t
@@ -893,70 +894,70 @@ module M_Middleware : sig
         intersection8
       , TypeDefinitionMiddleware.t )
       and_
-    , _Middleware )
+    , Middleware.t )
     and_
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_didOpen : t -> (TextDocument.t, unit) _NextSignature
+  val get_did_open : t -> (TextDocument.t, unit) NextSignature.t
     [@@js.get "didOpen"]
 
-  val set_didOpen : t -> (TextDocument.t, unit) _NextSignature -> unit
+  val set_did_open : t -> (TextDocument.t, unit) NextSignature.t -> unit
     [@@js.set "didOpen"]
 
-  val get_didChange : t -> (TextDocumentChangeEvent.t, unit) _NextSignature
+  val get_did_change : t -> (TextDocumentChangeEvent.t, unit) NextSignature.t
     [@@js.get "didChange"]
 
-  val set_didChange
+  val set_did_change
     :  t
-    -> (TextDocumentChangeEvent.t, unit) _NextSignature
+    -> (TextDocumentChangeEvent.t, unit) NextSignature.t
     -> unit
     [@@js.set "didChange"]
 
-  val get_willSave : t -> (TextDocumentWillSaveEvent.t, unit) _NextSignature
+  val get_will_save : t -> (TextDocumentWillSaveEvent.t, unit) NextSignature.t
     [@@js.get "willSave"]
 
-  val set_willSave
+  val set_will_save
     :  t
-    -> (TextDocumentWillSaveEvent.t, unit) _NextSignature
+    -> (TextDocumentWillSaveEvent.t, unit) NextSignature.t
     -> unit
     [@@js.set "willSave"]
 
-  val get_willSaveWaitUntil
+  val get_will_save_wait_until
     :  t
-    -> (TextDocumentWillSaveEvent.t, VTextEdit.t list Promise.t) _NextSignature
+    -> (TextDocumentWillSaveEvent.t, VTextEdit.t list Promise.t) NextSignature.t
     [@@js.get "willSaveWaitUntil"]
 
-  val set_willSaveWaitUntil
+  val set_will_save_wait_until
     :  t
-    -> (TextDocumentWillSaveEvent.t, VTextEdit.t list Promise.t) _NextSignature
+    -> (TextDocumentWillSaveEvent.t, VTextEdit.t list Promise.t) NextSignature.t
     -> unit
     [@@js.set "willSaveWaitUntil"]
 
-  val get_didSave : t -> (TextDocument.t, unit) _NextSignature
+  val get_did_save : t -> (TextDocument.t, unit) NextSignature.t
     [@@js.get "didSave"]
 
-  val set_didSave : t -> (TextDocument.t, unit) _NextSignature -> unit
+  val set_did_save : t -> (TextDocument.t, unit) NextSignature.t -> unit
     [@@js.set "didSave"]
 
-  val get_didClose : t -> (TextDocument.t, unit) _NextSignature
+  val get_did_close : t -> (TextDocument.t, unit) NextSignature.t
     [@@js.get "didClose"]
 
-  val set_didClose : t -> (TextDocument.t, unit) _NextSignature -> unit
+  val set_did_close : t -> (TextDocument.t, unit) NextSignature.t -> unit
     [@@js.set "didClose"]
 
-  val handleDiagnostics
+  val handle_diagnostics
     :  t
     -> this:unit
     -> uri:Uri.t
     -> diagnostics:VDiagnostic.t list
-    -> next:_HandleDiagnosticsSignature
+    -> next:HandleDiagnosticsSignature.t
     -> unit
     [@@js.call "handleDiagnostics"]
 
-  val handleWorkDoneProgress
+  val handle_work_done_progress
     :  t
     -> this:unit
     -> token:ProgressToken.t
@@ -965,160 +966,160 @@ module M_Middleware : sig
          , WorkDoneProgressEnd.t
          , WorkDoneProgressReport.t )
          union3
-    -> next:_HandleWorkDoneProgressSignature
+    -> next:HandleWorkDoneProgressSignature.t
     -> unit
     [@@js.call "handleWorkDoneProgress"]
 
-  val provideCompletionItem
+  val provide_completion_item
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> position:VPosition.t
     -> context:VCompletionContext.t
     -> token:CancellationToken.t
-    -> next:_ProvideCompletionItemsSignature
+    -> next:ProvideCompletionItemsSignature.t
     -> (VCompletionList.t, VCompletionItem.t) or_array ProviderResult.t
     [@@js.call "provideCompletionItem"]
 
-  val resolveCompletionItem
+  val resolve_completion_item
     :  t
     -> this:unit
     -> item:VCompletionItem.t
     -> token:CancellationToken.t
-    -> next:_ResolveCompletionItemSignature
+    -> next:ResolveCompletionItemSignature.t
     -> VCompletionItem.t ProviderResult.t
     [@@js.call "resolveCompletionItem"]
 
-  val provideHover
+  val provide_hover
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> position:VPosition.t
     -> token:CancellationToken.t
-    -> next:_ProvideHoverSignature
+    -> next:ProvideHoverSignature.t
     -> VHover.t ProviderResult.t
     [@@js.call "provideHover"]
 
-  val provideSignatureHelp
+  val provide_signature_help
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> position:VPosition.t
     -> context:VSignatureHelpContext.t
     -> token:CancellationToken.t
-    -> next:_ProvideSignatureHelpSignature
+    -> next:ProvideSignatureHelpSignature.t
     -> VSignatureHelp.t ProviderResult.t
     [@@js.call "provideSignatureHelp"]
 
-  val provideDefinition
+  val provide_definition
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> position:VPosition.t
     -> token:CancellationToken.t
-    -> next:_ProvideDefinitionSignature
+    -> next:ProvideDefinitionSignature.t
     -> (VDefinition.t, VDefinitionLink.t) or_array ProviderResult.t
     [@@js.call "provideDefinition"]
 
-  val provideReferences
+  val provide_references
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> position:VPosition.t
     -> options:AnonymousInterface2.t
     -> token:CancellationToken.t
-    -> next:_ProvideReferencesSignature
+    -> next:ProvideReferencesSignature.t
     -> VLocation.t list ProviderResult.t
     [@@js.call "provideReferences"]
 
-  val provideDocumentHighlights
+  val provide_document_highlights
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> position:VPosition.t
     -> token:CancellationToken.t
-    -> next:_ProvideDocumentHighlightsSignature
+    -> next:ProvideDocumentHighlightsSignature.t
     -> VDocumentHighlight.t list ProviderResult.t
     [@@js.call "provideDocumentHighlights"]
 
-  val provideDocumentSymbols
+  val provide_document_symbols
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> token:CancellationToken.t
-    -> next:_ProvideDocumentSymbolsSignature
+    -> next:ProvideDocumentSymbolsSignature.t
     -> (VDocumentSymbol.t, VSymbolInformation.t) union2 list ProviderResult.t
     [@@js.call "provideDocumentSymbols"]
 
-  val provideWorkspaceSymbols
+  val provide_workspace_symbols
     :  t
     -> this:unit
     -> query:string
     -> token:CancellationToken.t
-    -> next:_ProvideWorkspaceSymbolsSignature
+    -> next:ProvideWorkspaceSymbolsSignature.t
     -> VSymbolInformation.t list ProviderResult.t
     [@@js.call "provideWorkspaceSymbols"]
 
-  val provideCodeActions
+  val provide_code_actions
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> range:VRange.t
     -> context:VCodeActionContext.t
     -> token:CancellationToken.t
-    -> next:_ProvideCodeActionsSignature
+    -> next:ProvideCodeActionsSignature.t
     -> (VCodeAction.t, VCommand.t) union2 list ProviderResult.t
     [@@js.call "provideCodeActions"]
 
-  val resolveCodeAction
+  val resolve_code_action
     :  t
     -> this:unit
     -> item:VCodeAction.t
     -> token:CancellationToken.t
-    -> next:_ResolveCodeActionSignature
+    -> next:ResolveCodeActionSignature.t
     -> VCodeAction.t ProviderResult.t
     [@@js.call "resolveCodeAction"]
 
-  val provideCodeLenses
+  val provide_code_lenses
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> token:CancellationToken.t
-    -> next:_ProvideCodeLensesSignature
+    -> next:ProvideCodeLensesSignature.t
     -> VCodeLens.t list ProviderResult.t
     [@@js.call "provideCodeLenses"]
 
-  val resolveCodeLens
+  val resolve_code_lens
     :  t
     -> this:unit
-    -> codeLens:VCodeLens.t
+    -> code_lens:VCodeLens.t
     -> token:CancellationToken.t
-    -> next:_ResolveCodeLensSignature
+    -> next:ResolveCodeLensSignature.t
     -> VCodeLens.t ProviderResult.t
     [@@js.call "resolveCodeLens"]
 
-  val provideDocumentFormattingEdits
+  val provide_document_formatting_edits
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> options:VFormattingOptions.t
     -> token:CancellationToken.t
-    -> next:_ProvideDocumentFormattingEditsSignature
+    -> next:ProvideDocumentFormattingEditsSignature.t
     -> VTextEdit.t list ProviderResult.t
     [@@js.call "provideDocumentFormattingEdits"]
 
-  val provideDocumentRangeFormattingEdits
+  val provide_document_range_formatting_edits
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> range:VRange.t
     -> options:VFormattingOptions.t
     -> token:CancellationToken.t
-    -> next:_ProvideDocumentRangeFormattingEditsSignature
+    -> next:ProvideDocumentRangeFormattingEditsSignature.t
     -> VTextEdit.t list ProviderResult.t
     [@@js.call "provideDocumentRangeFormattingEdits"]
 
-  val provideOnTypeFormattingEdits
+  val provide_on_type_formatting_edits
     :  t
     -> this:unit
     -> document:TextDocument.t
@@ -1126,70 +1127,70 @@ module M_Middleware : sig
     -> ch:string
     -> options:VFormattingOptions.t
     -> token:CancellationToken.t
-    -> next:_ProvideOnTypeFormattingEditsSignature
+    -> next:ProvideOnTypeFormattingEditsSignature.t
     -> VTextEdit.t list ProviderResult.t
     [@@js.call "provideOnTypeFormattingEdits"]
 
-  val provideRenameEdits
+  val provide_rename_edits
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> position:VPosition.t
-    -> newName:string
+    -> new_name:string
     -> token:CancellationToken.t
-    -> next:_ProvideRenameEditsSignature
+    -> next:ProvideRenameEditsSignature.t
     -> VWorkspaceEdit.t ProviderResult.t
     [@@js.call "provideRenameEdits"]
 
-  val prepareRename
+  val prepare_rename
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> position:VPosition.t
     -> token:CancellationToken.t
-    -> next:_PrepareRenameSignature
+    -> next:PrepareRenameSignature.t
     -> (VRange.t, AnonymousInterface4.t) union2 ProviderResult.t
     [@@js.call "prepareRename"]
 
-  val provideDocumentLinks
+  val provide_document_links
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> token:CancellationToken.t
-    -> next:_ProvideDocumentLinksSignature
+    -> next:ProvideDocumentLinksSignature.t
     -> VDocumentLink.t list ProviderResult.t
     [@@js.call "provideDocumentLinks"]
 
-  val resolveDocumentLink
+  val resolve_document_link
     :  t
     -> this:unit
     -> link:VDocumentLink.t
     -> token:CancellationToken.t
-    -> next:_ResolveDocumentLinkSignature
+    -> next:ResolveDocumentLinkSignature.t
     -> VDocumentLink.t ProviderResult.t
     [@@js.call "resolveDocumentLink"]
 
-  val executeCommand
+  val execute_command
     :  t
     -> this:unit
     -> command:string
     -> args:any list
-    -> next:_ExecuteCommandSignature
+    -> next:ExecuteCommandSignature.t
     -> any ProviderResult.t
     [@@js.call "executeCommand"]
 
-  val get_workspace : t -> _WorkspaceMiddleware [@@js.get "workspace"]
+  val get_workspace : t -> WorkspaceMiddleware.t [@@js.get "workspace"]
 
-  val set_workspace : t -> _WorkspaceMiddleware -> unit [@@js.set "workspace"]
+  val set_workspace : t -> WorkspaceMiddleware.t -> unit [@@js.set "workspace"]
 
-  val get_window : t -> _WindowMiddleware [@@js.get "window"]
+  val get_window : t -> WindowMiddleware.t [@@js.get "window"]
 
-  val set_window : t -> _WindowMiddleware -> unit [@@js.set "window"]
+  val set_window : t -> WindowMiddleware.t -> unit [@@js.set "window"]
 end
 [@@js.scope "_Middleware"]
 
 module Middleware : sig
-  type t = _Middleware
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1197,107 +1198,109 @@ module Middleware : sig
 end
 
 module LanguageClientOptions : sig
-  type t = _LanguageClientOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_documentSelector : t -> (DocumentSelector.t, string) or_array
+  val get_document_selector : t -> (DocumentSelector.t, string) or_array
     [@@js.get "documentSelector"]
 
-  val set_documentSelector : t -> (DocumentSelector.t, string) or_array -> unit
+  val set_document_selector : t -> (DocumentSelector.t, string) or_array -> unit
     [@@js.set "documentSelector"]
 
-  val get_synchronize : t -> _SynchronizeOptions [@@js.get "synchronize"]
+  val get_synchronize : t -> SynchronizeOptions.t [@@js.get "synchronize"]
 
-  val set_synchronize : t -> _SynchronizeOptions -> unit
+  val set_synchronize : t -> SynchronizeOptions.t -> unit
     [@@js.set "synchronize"]
 
-  val get_diagnosticCollectionName : t -> string
+  val get_diagnostic_collection_name : t -> string
     [@@js.get "diagnosticCollectionName"]
 
-  val set_diagnosticCollectionName : t -> string -> unit
+  val set_diagnostic_collection_name : t -> string -> unit
     [@@js.set "diagnosticCollectionName"]
 
-  val get_outputChannel : t -> OutputChannel.t [@@js.get "outputChannel"]
+  val get_output_channel : t -> OutputChannel.t [@@js.get "outputChannel"]
 
-  val set_outputChannel : t -> OutputChannel.t -> unit
+  val set_output_channel : t -> OutputChannel.t -> unit
     [@@js.set "outputChannel"]
 
-  val get_outputChannelName : t -> string [@@js.get "outputChannelName"]
+  val get_output_channel_name : t -> string [@@js.get "outputChannelName"]
 
-  val set_outputChannelName : t -> string -> unit [@@js.set "outputChannelName"]
+  val set_output_channel_name : t -> string -> unit
+    [@@js.set "outputChannelName"]
 
-  val get_traceOutputChannel : t -> OutputChannel.t
+  val get_trace_output_channel : t -> OutputChannel.t
     [@@js.get "traceOutputChannel"]
 
-  val set_traceOutputChannel : t -> OutputChannel.t -> unit
+  val set_trace_output_channel : t -> OutputChannel.t -> unit
     [@@js.set "traceOutputChannel"]
 
-  val get_revealOutputChannelOn : t -> _RevealOutputChannelOn
+  val get_reveal_output_channel_on : t -> RevealOutputChannelOn.t
     [@@js.get "revealOutputChannelOn"]
 
-  val set_revealOutputChannelOn : t -> _RevealOutputChannelOn -> unit
+  val set_reveal_output_channel_on : t -> RevealOutputChannelOn.t -> unit
     [@@js.set "revealOutputChannelOn"]
 
-  val get_stdioEncoding : t -> string [@@js.get "stdioEncoding"]
+  val get_stdio_encoding : t -> string [@@js.get "stdioEncoding"]
 
-  val set_stdioEncoding : t -> string -> unit [@@js.set "stdioEncoding"]
+  val set_stdio_encoding : t -> string -> unit [@@js.set "stdioEncoding"]
 
-  val get_initializationOptions : t -> (any, unit -> any) union2
+  val get_initialization_options : t -> (any, unit -> any) union2
     [@@js.get "initializationOptions"]
 
-  val set_initializationOptions : t -> (any, unit -> any) union2 -> unit
+  val set_initialization_options : t -> (any, unit -> any) union2 -> unit
     [@@js.set "initializationOptions"]
 
-  val get_initializationFailedHandler : t -> _InitializationFailedHandler
+  val get_initialization_failed_handler : t -> InitializationFailedHandler.t
     [@@js.get "initializationFailedHandler"]
 
-  val set_initializationFailedHandler
+  val set_initialization_failed_handler
     :  t
-    -> _InitializationFailedHandler
+    -> InitializationFailedHandler.t
     -> unit
     [@@js.set "initializationFailedHandler"]
 
-  val get_progressOnInitialization : t -> bool
+  val get_progress_on_initialization : t -> bool
     [@@js.get "progressOnInitialization"]
 
-  val set_progressOnInitialization : t -> bool -> unit
+  val set_progress_on_initialization : t -> bool -> unit
     [@@js.set "progressOnInitialization"]
 
-  val get_errorHandler : t -> _ErrorHandler [@@js.get "errorHandler"]
+  val get_error_handler : t -> ErrorHandler.t [@@js.get "errorHandler"]
 
-  val set_errorHandler : t -> _ErrorHandler -> unit [@@js.set "errorHandler"]
+  val set_error_handler : t -> ErrorHandler.t -> unit [@@js.set "errorHandler"]
 
-  val get_middleware : t -> _Middleware [@@js.get "middleware"]
+  val get_middleware : t -> Middleware.t [@@js.get "middleware"]
 
-  val set_middleware : t -> _Middleware -> unit [@@js.set "middleware"]
+  val set_middleware : t -> Middleware.t -> unit [@@js.set "middleware"]
 
-  val get_uriConverters : t -> AnonymousInterface0.t [@@js.get "uriConverters"]
+  val get_uri_converters : t -> AnonymousInterface0.t [@@js.get "uriConverters"]
 
-  val set_uriConverters : t -> AnonymousInterface0.t -> unit
+  val set_uri_converters : t -> AnonymousInterface0.t -> unit
     [@@js.set "uriConverters"]
 
-  val get_workspaceFolder : t -> VWorkspaceFolder.t [@@js.get "workspaceFolder"]
+  val get_workspace_folder : t -> VWorkspaceFolder.t
+    [@@js.get "workspaceFolder"]
 
-  val set_workspaceFolder : t -> VWorkspaceFolder.t -> unit
+  val set_workspace_folder : t -> VWorkspaceFolder.t -> unit
     [@@js.set "workspaceFolder"]
 
-  val get_connectionOptions : t -> _ConnectionOptions
+  val get_connection_options : t -> ConnectionOptions.t
     [@@js.get "connectionOptions"]
 
-  val set_connectionOptions : t -> _ConnectionOptions -> unit
+  val set_connection_options : t -> ConnectionOptions.t -> unit
     [@@js.set "connectionOptions"]
 
   val get_markdown : t -> AnonymousInterface3.t [@@js.get "markdown"]
 
   val set_markdown : t -> AnonymousInterface3.t -> unit [@@js.set "markdown"]
 
-  val get_diagnosticPullOptions : t -> _DiagnosticPullOptions
+  val get_diagnostic_pull_options : t -> DiagnosticPullOptions.t
     [@@js.get "diagnosticPullOptions"]
 
-  val set_diagnosticPullOptions : t -> _DiagnosticPullOptions -> unit
+  val set_diagnostic_pull_options : t -> DiagnosticPullOptions.t -> unit
     [@@js.set "diagnosticPullOptions"]
 end
 [@@js.scope "LanguageClientOptions"]
@@ -1316,24 +1319,24 @@ module State : sig
 end
 
 module StateChangeEvent : sig
-  type t = _StateChangeEvent
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_oldState : t -> _State [@@js.get "oldState"]
+  val get_old_state : t -> State.t [@@js.get "oldState"]
 
-  val set_oldState : t -> _State -> unit [@@js.set "oldState"]
+  val set_old_state : t -> State.t -> unit [@@js.set "oldState"]
 
-  val get_newState : t -> _State [@@js.get "newState"]
+  val get_new_state : t -> State.t [@@js.get "newState"]
 
-  val set_newState : t -> _State -> unit [@@js.set "newState"]
+  val set_new_state : t -> State.t -> unit [@@js.set "newState"]
 end
 [@@js.scope "StateChangeEvent"]
 
 module RegistrationData : sig
-  type 'T t = 'T _RegistrationData
+  type 'T t
 
   val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
@@ -1343,29 +1346,29 @@ module RegistrationData : sig
 
   val set_id : 'T t -> string -> unit [@@js.set "id"]
 
-  val get_registerOptions : 'T t -> 'T [@@js.get "registerOptions"]
+  val get_register_options : 'T t -> 'T [@@js.get "registerOptions"]
 
-  val set_registerOptions : 'T t -> 'T -> unit [@@js.set "registerOptions"]
+  val set_register_options : 'T t -> 'T -> unit [@@js.set "registerOptions"]
 end
 [@@js.scope "RegistrationData"]
 
 module StaticFeature : sig
-  type t = _StaticFeature
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val fillInitializeParams : t -> params:InitializeParams.t -> unit
+  val fill_initialize_params : t -> params:InitializeParams.t -> unit
     [@@js.call "fillInitializeParams"]
 
-  val fillClientCapabilities : t -> capabilities:ClientCapabilities.t -> unit
+  val fill_client_capabilities : t -> capabilities:ClientCapabilities.t -> unit
     [@@js.call "fillClientCapabilities"]
 
   val initialize
     :  t
     -> capabilities:ServerCapabilities.t
-    -> documentSelector:DocumentSelector.t or_undefined
+    -> document_selector:DocumentSelector.t or_undefined
     -> unit
     [@@js.call "initialize"]
 
@@ -1374,16 +1377,16 @@ end
 [@@js.scope "StaticFeature"]
 
 module DynamicFeature : sig
-  type 'RO t = 'RO _DynamicFeature
+  type 'RO t
 
   val t_to_js : ('RO -> Ojs.t) -> 'RO t -> Ojs.t
 
   val t_of_js : (Ojs.t -> 'RO) -> Ojs.t -> 'RO t
 
-  val fillInitializeParams : 'RO t -> params:InitializeParams.t -> unit
+  val fill_initialize_params : 'RO t -> params:InitializeParams.t -> unit
     [@@js.call "fillInitializeParams"]
 
-  val fillClientCapabilities
+  val fill_client_capabilities
     :  'RO t
     -> capabilities:ClientCapabilities.t
     -> unit
@@ -1392,17 +1395,17 @@ module DynamicFeature : sig
   val initialize
     :  'RO t
     -> capabilities:ServerCapabilities.t
-    -> documentSelector:DocumentSelector.t or_undefined
+    -> document_selector:DocumentSelector.t or_undefined
     -> unit
     [@@js.call "initialize"]
 
-  val get_registrationType : 'RO t -> 'RO RegistrationType.t
+  val get_registration_type : 'RO t -> 'RO RegistrationType.t
     [@@js.get "registrationType"]
 
-  val set_registrationType : 'RO t -> 'RO RegistrationType.t -> unit
+  val set_registration_type : 'RO t -> 'RO RegistrationType.t -> unit
     [@@js.set "registrationType"]
 
-  val register : 'RO t -> data:'RO _RegistrationData -> unit
+  val register : 'RO t -> data:'RO RegistrationData.t -> unit
     [@@js.call "register"]
 
   val unregister : 'RO t -> id:string -> unit [@@js.call "unregister"]
@@ -1412,13 +1415,13 @@ end
 [@@js.scope "DynamicFeature"]
 
 module NotificationFeature : sig
-  type 'T t = 'T _NotificationFeature
+  type 'T t
 
   val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
   val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
 
-  val getProvider
+  val get_provider
     :  'T t
     -> document:TextDocument.t
     -> AnonymousInterface5.t or_undefined
@@ -1427,7 +1430,7 @@ end
 [@@js.scope "NotificationFeature"]
 
 module NotificationSendEvent : sig
-  type ('E, 'P) t = ('E, 'P) _NotificationSendEvent
+  type ('E, 'P) t = ('E, 'P) NotificationSendEvent.t
 
   val t_to_js : ('E -> Ojs.t) -> ('P -> Ojs.t) -> ('E, 'P) t -> Ojs.t
 
@@ -1455,125 +1458,125 @@ end
 [@@js.scope "NotificationSendEvent"]
 
 module NotifyingFeature : sig
-  type ('E, 'P) t = ('E, 'P) _NotifyingFeature
+  type ('E, 'P) t = ('E, 'P) NotifyingFeature.t
 
   val t_to_js : ('E -> Ojs.t) -> ('P -> Ojs.t) -> ('E, 'P) t -> Ojs.t
 
   val t_of_js : (Ojs.t -> 'E) -> (Ojs.t -> 'P) -> Ojs.t -> ('E, 'P) t
 
-  val get_onNotificationSent
+  val get_on_notification_sent
     :  ('E, 'P) t
-    -> ('E, 'P) _NotificationSendEvent VEvent.t
+    -> ('E, 'P) NotificationSendEvent.t VEvent.t
     [@@js.get "onNotificationSent"]
 
-  val set_onNotificationSent
+  val set_on_notification_sent
     :  ('E, 'P) t
-    -> ('E, 'P) _NotificationSendEvent VEvent.t
+    -> ('E, 'P) NotificationSendEvent.t VEvent.t
     -> unit
     [@@js.set "onNotificationSent"]
 end
 [@@js.scope "NotifyingFeature"]
 
 module DidOpenTextDocumentFeatureShape : sig
-  type t = _DidOpenTextDocumentFeatureShape
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_openDocuments : t -> TextDocument.t Iterable.t
+  val get_open_documents : t -> TextDocument.t Iterable.t
     [@@js.get "openDocuments"]
 
-  val set_openDocuments : t -> TextDocument.t Iterable.t -> unit
+  val set_open_documents : t -> TextDocument.t Iterable.t -> unit
     [@@js.set "openDocuments"]
 
-  val cast : t -> TextDocumentRegistrationOptions.t _DynamicFeature [@@js.cast]
+  val cast : t -> TextDocumentRegistrationOptions.t DynamicFeature.t [@@js.cast]
 
-  val cast' : t -> (textDocument:TextDocument.t -> unit) _NotificationFeature
+  val cast' : t -> (textDocument:TextDocument.t -> unit) NotificationFeature.t
     [@@js.cast]
 
   val cast''
     :  t
-    -> (TextDocument.t, DidOpenTextDocumentParams.t) _NotifyingFeature
+    -> (TextDocument.t, DidOpenTextDocumentParams.t) NotifyingFeature.t
     [@@js.cast]
 end
 [@@js.scope "DidOpenTextDocumentFeatureShape"]
 
 module DidCloseTextDocumentFeatureShape : sig
-  type t = _DidCloseTextDocumentFeatureShape
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t _DynamicFeature [@@js.cast]
+  val cast : t -> TextDocumentRegistrationOptions.t DynamicFeature.t [@@js.cast]
 
-  val cast' : t -> (textDocument:TextDocument.t -> unit) _NotificationFeature
+  val cast' : t -> (textDocument:TextDocument.t -> unit) NotificationFeature.t
     [@@js.cast]
 
   val cast''
     :  t
-    -> (TextDocument.t, DidCloseTextDocumentParams.t) _NotifyingFeature
+    -> (TextDocument.t, DidCloseTextDocumentParams.t) NotifyingFeature.t
     [@@js.cast]
 end
 [@@js.scope "DidCloseTextDocumentFeatureShape"]
 
 module DidChangeTextDocumentFeatureShape : sig
-  type t = _DidChangeTextDocumentFeatureShape
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t _DynamicFeature [@@js.cast]
+  val cast : t -> TextDocumentRegistrationOptions.t DynamicFeature.t [@@js.cast]
 
   val cast'
     :  t
-    -> (event:TextDocumentChangeEvent.t -> unit) _NotificationFeature
+    -> (event:TextDocumentChangeEvent.t -> unit) NotificationFeature.t
     [@@js.cast]
 
   val cast''
     :  t
     -> ( TextDocumentChangeEvent.t
        , DidChangeTextDocumentParams.t )
-       _NotifyingFeature
+       NotifyingFeature.t
     [@@js.cast]
 end
 [@@js.scope "DidChangeTextDocumentFeatureShape"]
 
 module DidSaveTextDocumentFeatureShape : sig
-  type t = _DidSaveTextDocumentFeatureShape
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t _DynamicFeature [@@js.cast]
+  val cast : t -> TextDocumentRegistrationOptions.t DynamicFeature.t [@@js.cast]
 
-  val cast' : t -> (textDocument:TextDocument.t -> unit) _NotificationFeature
+  val cast' : t -> (textDocument:TextDocument.t -> unit) NotificationFeature.t
     [@@js.cast]
 
   val cast''
     :  t
-    -> (TextDocument.t, DidSaveTextDocumentParams.t) _NotifyingFeature
+    -> (TextDocument.t, DidSaveTextDocumentParams.t) NotifyingFeature.t
     [@@js.cast]
 end
 [@@js.scope "DidSaveTextDocumentFeatureShape"]
 
 module TextDocumentProviderFeature : sig
-  type 'T t = 'T _TextDocumentProviderFeature
+  type 'T t
 
   val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
   val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
 
-  val getProvider : 'T t -> textDocument:TextDocument.t -> 'T or_undefined
+  val get_provider : 'T t -> text_document:TextDocument.t -> 'T or_undefined
     [@@js.call "getProvider"]
 end
 [@@js.scope "TextDocumentProviderFeature"]
 
 module TextDocumentFeature : sig
-  type ('PO, 'RO, 'PR) t = ('PO, 'RO, 'PR) _TextDocumentFeature
+  type ('PO, 'RO, 'PR) t = ('PO, 'RO, 'PR) TextDocumentFeature.t
 
   val t_to_js
     :  ('PO -> Ojs.t)
@@ -1589,16 +1592,16 @@ module TextDocumentFeature : sig
     -> Ojs.t
     -> ('PO, 'RO, 'PR) t
 
-  val get__client : ('PO, 'RO, 'PR) t -> _BaseLanguageClient
+  val get__client : ('PO, 'RO, 'PR) t -> BaseLanguageClient.t
     [@@js.get "_client"]
 
-  val set__client : ('PO, 'RO, 'PR) t -> _BaseLanguageClient -> unit
+  val set__client : ('PO, 'RO, 'PR) t -> BaseLanguageClient.t -> unit
     [@@js.set "_client"]
 
-  val get__registrationType : ('PO, 'RO, 'PR) t -> (* FIXME: unknown type *) any
+  val get_registration_type : ('PO, 'RO, 'PR) t -> (* FIXME: unknown type *) any
     [@@js.get "_registrationType"]
 
-  val set__registrationType
+  val set_registration_type
     :  ('PO, 'RO, 'PR) t
     -> (* FIXME: unknown type *) any
     -> unit
@@ -1614,15 +1617,15 @@ module TextDocumentFeature : sig
     [@@js.set "_registrations"]
 
   val create
-    :  _client:_BaseLanguageClient
+    :  _client:BaseLanguageClient.t
     -> _registrationType:'RO RegistrationType.t
     -> ('PO, 'RO, 'PR) t
     [@@js.create]
 
-  val get_registrationType : ('PO, 'RO, 'PR) t -> 'RO RegistrationType.t
+  val get_registration_type : ('PO, 'RO, 'PR) t -> 'RO RegistrationType.t
     [@@js.get "registrationType"]
 
-  val fillClientCapabilities
+  val fill_client_capabilities
     :  ('PO, 'RO, 'PR) t
     -> capabilities:ClientCapabilities.t
     -> unit
@@ -1631,14 +1634,14 @@ module TextDocumentFeature : sig
   val initialize
     :  ('PO, 'RO, 'PR) t
     -> capabilities:ServerCapabilities.t
-    -> documentSelector:DocumentSelector.t
+    -> document_selector:DocumentSelector.t
     -> unit
     [@@js.call "initialize"]
 
-  val register : ('PO, 'RO, 'PR) t -> data:'RO _RegistrationData -> unit
+  val register : ('PO, 'RO, 'PR) t -> data:'RO RegistrationData.t -> unit
     [@@js.call "register"]
 
-  val registerLanguageProvider
+  val register_language_provider
     :  ('PO, 'RO, 'PR) t
     -> options:'RO
     -> id:string
@@ -1650,47 +1653,47 @@ module TextDocumentFeature : sig
 
   val dispose : ('PO, 'RO, 'PR) t -> unit [@@js.call "dispose"]
 
-  val getRegistration
+  val get_registration
     :  ('PO, 'RO, 'PR) t
-    -> documentSelector:DocumentSelector.t or_undefined
+    -> document_selector:DocumentSelector.t or_undefined
     -> capability:'PO or_undefined
     -> string or_undefined
        * ('RO, AnonymousInterface1.t) intersection2 or_undefined
     [@@js.call "getRegistration"]
 
-  val getRegistrationOptions
+  val get_registration_options
     :  ('PO, 'RO, 'PR) t
-    -> documentSelector:DocumentSelector.t or_undefined
+    -> document_selector:DocumentSelector.t or_undefined
     -> capability:'PO or_undefined
     -> ('RO, AnonymousInterface1.t) intersection2 or_undefined
     [@@js.call "getRegistrationOptions"]
 
-  val getProvider
+  val get_provider
     :  ('PO, 'RO, 'PR) t
-    -> textDocument:TextDocument.t
+    -> text_document:TextDocument.t
     -> 'PR or_undefined
     [@@js.call "getProvider"]
 
-  val getAllProviders : ('PO, 'RO, 'PR) t -> 'PR Iterable.t
+  val get_all_providers : ('PO, 'RO, 'PR) t -> 'PR Iterable.t
     [@@js.call "getAllProviders"]
 
-  val cast : ('PO, 'RO, 'PR) t -> 'RO _DynamicFeature [@@js.cast]
+  val cast : ('PO, 'RO, 'PR) t -> 'RO DynamicFeature.t [@@js.cast]
 end
 [@@js.scope "TextDocumentFeature"]
 
 module WorkspaceProviderFeature : sig
-  type 'PR t = 'PR _WorkspaceProviderFeature
+  type 'PR t
 
   val t_to_js : ('PR -> Ojs.t) -> 'PR t -> Ojs.t
 
   val t_of_js : (Ojs.t -> 'PR) -> Ojs.t -> 'PR t
 
-  val getProviders : 'PR t -> 'PR list or_undefined [@@js.call "getProviders"]
+  val get_providers : 'PR t -> 'PR list or_undefined [@@js.call "getProviders"]
 end
 [@@js.scope "WorkspaceProviderFeature"]
 
 module ProvideResolveFeature : sig
-  type ('T1, 'T2) t = ('T1, 'T2) _ProvideResolveFeature
+  type ('T1, 'T2) t
 
   val t_to_js : ('T1 -> Ojs.t) -> ('T2 -> Ojs.t) -> ('T1, 'T2) t -> Ojs.t
 
@@ -1707,7 +1710,7 @@ end
 [@@js.scope "ProvideResolveFeature"]
 
 module MessageTransports : sig
-  type t = _MessageTransports
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1733,7 +1736,7 @@ end
 [@@js.scope "MessageTransports"]
 
 module LSPCancellationError : sig
-  type t = _LSPCancellationError
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1748,7 +1751,7 @@ end
 [@@js.scope "LSPCancellationError"]
 
 module BaseLanguageClient : sig
-  type t = _BaseLanguageClient
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1762,10 +1765,10 @@ module BaseLanguageClient : sig
 
   val set__name : t -> (* FIXME: unknown type *) any -> unit [@@js.set "_name"]
 
-  val get__clientOptions : t -> (* FIXME: unknown type *) any
+  val get_client_options : t -> (* FIXME: unknown type *) any
     [@@js.get "_clientOptions"]
 
-  val set__clientOptions : t -> (* FIXME: unknown type *) any -> unit
+  val set_client_options : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_clientOptions"]
 
   val get__state : t -> (* FIXME: unknown type *) any [@@js.get "_state"]
@@ -1773,56 +1776,56 @@ module BaseLanguageClient : sig
   val set__state : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_state"]
 
-  val get__onReady : t -> (* FIXME: unknown type *) any [@@js.get "_onReady"]
+  val get_on_ready : t -> (* FIXME: unknown type *) any [@@js.get "_onReady"]
 
-  val set__onReady : t -> (* FIXME: unknown type *) any -> unit
+  val set_on_ready : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_onReady"]
 
-  val get__onReadyCallbacks : t -> (* FIXME: unknown type *) any
+  val get_on_ready_callbacks : t -> (* FIXME: unknown type *) any
     [@@js.get "_onReadyCallbacks"]
 
-  val set__onReadyCallbacks : t -> (* FIXME: unknown type *) any -> unit
+  val set_on_ready_callbacks : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_onReadyCallbacks"]
 
-  val get__onStop : t -> (* FIXME: unknown type *) any [@@js.get "_onStop"]
+  val get_on_stop : t -> (* FIXME: unknown type *) any [@@js.get "_onStop"]
 
-  val set__onStop : t -> (* FIXME: unknown type *) any -> unit
+  val set_on_stop : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_onStop"]
 
-  val get__connectionPromise : t -> (* FIXME: unknown type *) any
+  val get_connection_promise : t -> (* FIXME: unknown type *) any
     [@@js.get "_connectionPromise"]
 
-  val set__connectionPromise : t -> (* FIXME: unknown type *) any -> unit
+  val set_connection_promise : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_connectionPromise"]
 
-  val get__resolvedConnection : t -> (* FIXME: unknown type *) any
+  val get_resolved_connection : t -> (* FIXME: unknown type *) any
     [@@js.get "_resolvedConnection"]
 
-  val set__resolvedConnection : t -> (* FIXME: unknown type *) any -> unit
+  val set_resolved_connection : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_resolvedConnection"]
 
-  val get__initializeResult : t -> (* FIXME: unknown type *) any
+  val get_initialize_result : t -> (* FIXME: unknown type *) any
     [@@js.get "_initializeResult"]
 
-  val set__initializeResult : t -> (* FIXME: unknown type *) any -> unit
+  val set_initialize_result : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_initializeResult"]
 
-  val get__outputChannel : t -> (* FIXME: unknown type *) any
+  val get_output_channel : t -> (* FIXME: unknown type *) any
     [@@js.get "_outputChannel"]
 
-  val set__outputChannel : t -> (* FIXME: unknown type *) any -> unit
+  val set_output_channel : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_outputChannel"]
 
-  val get__disposeOutputChannel : t -> (* FIXME: unknown type *) any
+  val get_dispose_output_channel : t -> (* FIXME: unknown type *) any
     [@@js.get "_disposeOutputChannel"]
 
-  val set__disposeOutputChannel : t -> (* FIXME: unknown type *) any -> unit
+  val set_dispose_output_channel : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_disposeOutputChannel"]
 
-  val get__traceOutputChannel : t -> (* FIXME: unknown type *) any
+  val get_trace_output_channel : t -> (* FIXME: unknown type *) any
     [@@js.get "_traceOutputChannel"]
 
-  val set__traceOutputChannel : t -> (* FIXME: unknown type *) any -> unit
+  val set_trace_output_channel : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_traceOutputChannel"]
 
   val get__capabilities : t -> (* FIXME: unknown type *) any
@@ -1849,34 +1852,34 @@ module BaseLanguageClient : sig
   val set__diagnostics : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_diagnostics"]
 
-  val get__syncedDocuments : t -> (* FIXME: unknown type *) any
+  val get_synced_documents : t -> (* FIXME: unknown type *) any
     [@@js.get "_syncedDocuments"]
 
-  val set__syncedDocuments : t -> (* FIXME: unknown type *) any -> unit
+  val set_synced_documents : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_syncedDocuments"]
 
-  val get__fileEvents : t -> (* FIXME: unknown type *) any
+  val get_file_events : t -> (* FIXME: unknown type *) any
     [@@js.get "_fileEvents"]
 
-  val set__fileEvents : t -> (* FIXME: unknown type *) any -> unit
+  val set_file_events : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_fileEvents"]
 
-  val get__fileEventDelayer : t -> (* FIXME: unknown type *) any
+  val get_file_event_delayer : t -> (* FIXME: unknown type *) any
     [@@js.get "_fileEventDelayer"]
 
-  val set__fileEventDelayer : t -> (* FIXME: unknown type *) any -> unit
+  val set_file_event_delayer : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_fileEventDelayer"]
 
-  val get__telemetryEmitter : t -> (* FIXME: unknown type *) any
+  val get_telemetry_emitter : t -> (* FIXME: unknown type *) any
     [@@js.get "_telemetryEmitter"]
 
-  val set__telemetryEmitter : t -> (* FIXME: unknown type *) any -> unit
+  val set_telemetry_emitter : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_telemetryEmitter"]
 
-  val get__stateChangeEmitter : t -> (* FIXME: unknown type *) any
+  val get_state_change_emitter : t -> (* FIXME: unknown type *) any
     [@@js.get "_stateChangeEmitter"]
 
-  val set__stateChangeEmitter : t -> (* FIXME: unknown type *) any -> unit
+  val set_state_change_emitter : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_stateChangeEmitter"]
 
   val get__trace : t -> (* FIXME: unknown type *) any [@@js.get "_trace"]
@@ -1884,10 +1887,10 @@ module BaseLanguageClient : sig
   val set__trace : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_trace"]
 
-  val get__traceFormat : t -> (* FIXME: unknown type *) any
+  val get_trace_format : t -> (* FIXME: unknown type *) any
     [@@js.get "_traceFormat"]
 
-  val set__traceFormat : t -> (* FIXME: unknown type *) any -> unit
+  val set_trace_format : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_traceFormat"]
 
   val get__tracer : t -> (* FIXME: unknown type *) any [@@js.get "_tracer"]
@@ -1906,7 +1909,7 @@ module BaseLanguageClient : sig
   val create
     :  id:string
     -> name:string
-    -> clientOptions:_LanguageClientOptions
+    -> client_options:LanguageClientOptions.t
     -> t
     [@@js.create]
 
@@ -1914,16 +1917,16 @@ module BaseLanguageClient : sig
 
   val set_state : t -> (* FIXME: unknown type *) any -> unit [@@js.set "state"]
 
-  val get_getPublicState : t -> (* FIXME: unknown type *) any
+  val get_get_public_state : t -> (* FIXME: unknown type *) any
     [@@js.get "getPublicState"]
 
-  val set_getPublicState : t -> (* FIXME: unknown type *) any -> unit
+  val set_get_public_state : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "getPublicState"]
 
-  val get_initializeResult : t -> InitializeResult.t or_undefined
+  val get_initialize_result : t -> InitializeResult.t or_undefined
     [@@js.get "initializeResult"]
 
-  val sendRequest
+  val send_request
     :  t
     -> type_:('R, 'PR, 'E, 'RO) ProtocolRequestType0.t
     -> ?token:CancellationToken.t
@@ -1931,7 +1934,7 @@ module BaseLanguageClient : sig
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
-  val sendRequest'
+  val send_request'
     :  t
     -> type_:('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t
     -> params:'P
@@ -1940,7 +1943,7 @@ module BaseLanguageClient : sig
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
-  val sendRequest''
+  val send_request''
     :  t
     -> type_:('R, 'E) RequestType0.t
     -> ?token:CancellationToken.t
@@ -1948,7 +1951,7 @@ module BaseLanguageClient : sig
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
-  val sendRequest'''
+  val send_request'''
     :  t
     -> type_:('P, 'R, 'E) RequestType.t
     -> params:'P
@@ -1957,7 +1960,7 @@ module BaseLanguageClient : sig
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
-  val sendRequest''''
+  val send_request''''
     :  t
     -> method_:string
     -> ?token:CancellationToken.t
@@ -1965,7 +1968,7 @@ module BaseLanguageClient : sig
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
-  val sendRequest'''''
+  val send_request'''''
     :  t
     -> method_:string
     -> param:any
@@ -1974,45 +1977,45 @@ module BaseLanguageClient : sig
     -> 'R Promise.t
     [@@js.call "sendRequest"]
 
-  val onRequest
+  val on_request
     :  t
     -> type_:('R, 'PR, 'E, 'RO) ProtocolRequestType0.t
     -> handler:('R, 'E) RequestHandler0.t
     -> Disposable.t
     [@@js.call "onRequest"]
 
-  val onRequest'
+  val on_request'
     :  t
     -> type_:('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t
     -> handler:('P, 'R, 'E) RequestHandler.t
     -> Disposable.t
     [@@js.call "onRequest"]
 
-  val onRequest''
+  val on_request''
     :  t
     -> type_:('R, 'E) RequestType0.t
     -> handler:('R, 'E) RequestHandler0.t
     -> Disposable.t
     [@@js.call "onRequest"]
 
-  val onRequest'''
+  val on_request'''
     :  t
     -> type_:('P, 'R, 'E) RequestType.t
     -> handler:('P, 'R, 'E) RequestHandler.t
     -> Disposable.t
     [@@js.call "onRequest"]
 
-  val onRequest''''
+  val on_request''''
     :  t
     -> method_:string
     -> handler:('R, 'E) GenericRequestHandler.t
     -> Disposable.t
     [@@js.call "onRequest"]
 
-  val sendNotification : t -> type_:'RO ProtocolNotificationType0.t -> unit
+  val send_notification : t -> type_:'RO ProtocolNotificationType0.t -> unit
     [@@js.call "sendNotification"]
 
-  val sendNotification'
+  val send_notification'
     :  t
     -> type_:('P, 'RO) ProtocolNotificationType.t
     -> ?params:'P
@@ -2020,10 +2023,10 @@ module BaseLanguageClient : sig
     -> unit
     [@@js.call "sendNotification"]
 
-  val sendNotification'' : t -> type_:NotificationType0.t -> unit
+  val send_notification'' : t -> type_:NotificationType0.t -> unit
     [@@js.call "sendNotification"]
 
-  val sendNotification'''
+  val send_notification'''
     :  t
     -> type_:'P NotificationType.t
     -> ?params:'P
@@ -2031,48 +2034,48 @@ module BaseLanguageClient : sig
     -> unit
     [@@js.call "sendNotification"]
 
-  val sendNotification'''' : t -> method_:string -> unit
+  val send_notification'''' : t -> method_:string -> unit
     [@@js.call "sendNotification"]
 
-  val sendNotification''''' : t -> method_:string -> params:any -> unit
+  val send_notification''''' : t -> method_:string -> params:any -> unit
     [@@js.call "sendNotification"]
 
-  val onNotification
+  val on_notification
     :  t
     -> type_:'RO ProtocolNotificationType0.t
     -> handler:NotificationHandler0.t
     -> Disposable.t
     [@@js.call "onNotification"]
 
-  val onNotification'
+  val on_notification'
     :  t
     -> type_:('P, 'RO) ProtocolNotificationType.t
     -> handler:'P NotificationHandler.t
     -> Disposable.t
     [@@js.call "onNotification"]
 
-  val onNotification''
+  val on_notification''
     :  t
     -> type_:NotificationType0.t
     -> handler:NotificationHandler0.t
     -> Disposable.t
     [@@js.call "onNotification"]
 
-  val onNotification'''
+  val on_notification'''
     :  t
     -> type_:'P NotificationType.t
     -> handler:'P NotificationHandler.t
     -> Disposable.t
     [@@js.call "onNotification"]
 
-  val onNotification''''
+  val on_notification''''
     :  t
     -> method_:string
     -> handler:GenericNotificationHandler.t
     -> Disposable.t
     [@@js.call "onNotification"]
 
-  val onProgress
+  val on_progress
     :  t
     -> type_:'P ProgressType.t
     -> token:string or_number
@@ -2080,7 +2083,7 @@ module BaseLanguageClient : sig
     -> Disposable.t
     [@@js.call "onProgress"]
 
-  val sendProgress
+  val send_progress
     :  t
     -> type_:'P ProgressType.t
     -> token:string or_number
@@ -2088,7 +2091,8 @@ module BaseLanguageClient : sig
     -> unit
     [@@js.call "sendProgress"]
 
-  val get_clientOptions : t -> _LanguageClientOptions [@@js.get "clientOptions"]
+  val get_client_options : t -> LanguageClientOptions.t
+    [@@js.get "clientOptions"]
 
   val get_protocol2CodeConverter : t -> P2c.Converter.t
     [@@js.get "protocol2CodeConverter"]
@@ -2096,24 +2100,24 @@ module BaseLanguageClient : sig
   val get_code2ProtocolConverter : t -> C2p.Converter.t
     [@@js.get "code2ProtocolConverter"]
 
-  val get_onTelemetry : t -> any Event.t [@@js.get "onTelemetry"]
+  val get_on_telemetry : t -> any Event.t [@@js.get "onTelemetry"]
 
-  val get_onDidChangeState : t -> _StateChangeEvent Event.t
+  val get_on_did_change_state : t -> StateChangeEvent.t Event.t
     [@@js.get "onDidChangeState"]
 
-  val get_outputChannel : t -> OutputChannel.t [@@js.get "outputChannel"]
+  val get_output_channel : t -> OutputChannel.t [@@js.get "outputChannel"]
 
-  val get_traceOutputChannel : t -> OutputChannel.t
+  val get_trace_output_channel : t -> OutputChannel.t
     [@@js.get "traceOutputChannel"]
 
   val get_diagnostics : t -> DiagnosticCollection.t or_undefined
     [@@js.get "diagnostics"]
 
-  val createDefaultErrorHandler
+  val create_default_error_handler
     :  t
-    -> ?maxRestartCount:int
+    -> ?max_restart_count:int
     -> unit
-    -> _ErrorHandler
+    -> ErrorHandler.t
     [@@js.call "createDefaultErrorHandler"]
 
   val set_trace : t -> Trace.t -> unit [@@js.set "trace"]
@@ -2128,7 +2132,7 @@ module BaseLanguageClient : sig
     :  t
     -> message:string
     -> ?data:any
-    -> ?showNotification:bool
+    -> ?show_notification:bool
     -> unit
     -> unit
     [@@js.call "info"]
@@ -2137,7 +2141,7 @@ module BaseLanguageClient : sig
     :  t
     -> message:string
     -> ?data:any
-    -> ?showNotification:bool
+    -> ?show_notification:bool
     -> unit
     -> unit
     [@@js.call "warn"]
@@ -2146,46 +2150,46 @@ module BaseLanguageClient : sig
     :  t
     -> message:string
     -> ?data:any
-    -> ?showNotification:bool
+    -> ?show_notification:bool
     -> unit
     -> unit
     [@@js.call "error"]
 
-  val get_showNotificationMessage : t -> (* FIXME: unknown type *) any
+  val get_show_notification_message : t -> (* FIXME: unknown type *) any
     [@@js.get "showNotificationMessage"]
 
-  val set_showNotificationMessage : t -> (* FIXME: unknown type *) any -> unit
+  val set_show_notification_message : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "showNotificationMessage"]
 
-  val get_logTrace : t -> (* FIXME: unknown type *) any [@@js.get "logTrace"]
+  val get_log_trace : t -> (* FIXME: unknown type *) any [@@js.get "logTrace"]
 
-  val set_logTrace : t -> (* FIXME: unknown type *) any -> unit
+  val set_log_trace : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "logTrace"]
 
-  val get_logObjectTrace : t -> (* FIXME: unknown type *) any
+  val get_log_object_trace : t -> (* FIXME: unknown type *) any
     [@@js.get "logObjectTrace"]
 
-  val set_logObjectTrace : t -> (* FIXME: unknown type *) any -> unit
+  val set_log_object_trace : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "logObjectTrace"]
 
-  val needsStart : t -> bool [@@js.call "needsStart"]
+  val needs_start : t -> bool [@@js.call "needsStart"]
 
-  val needsStop : t -> bool [@@js.call "needsStop"]
+  val needs_stop : t -> bool [@@js.call "needsStop"]
 
-  val onReady : t -> unit Promise.t [@@js.call "onReady"]
+  val on_ready : t -> unit Promise.t [@@js.call "onReady"]
 
-  val get_isConnectionActive : t -> (* FIXME: unknown type *) any
+  val get_is_connection_active : t -> (* FIXME: unknown type *) any
     [@@js.get "isConnectionActive"]
 
-  val set_isConnectionActive : t -> (* FIXME: unknown type *) any -> unit
+  val set_is_connection_active : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "isConnectionActive"]
 
   val start : t -> Disposable.t [@@js.call "start"]
 
-  val get_resolveConnection : t -> (* FIXME: unknown type *) any
+  val get_resolve_connection : t -> (* FIXME: unknown type *) any
     [@@js.get "resolveConnection"]
 
-  val set_resolveConnection : t -> (* FIXME: unknown type *) any -> unit
+  val set_resolve_connection : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "resolveConnection"]
 
   val get_initialize : t -> (* FIXME: unknown type *) any
@@ -2194,489 +2198,502 @@ module BaseLanguageClient : sig
   val set_initialize : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "initialize"]
 
-  val get_doInitialize : t -> (* FIXME: unknown type *) any
+  val get_do_initialize : t -> (* FIXME: unknown type *) any
     [@@js.get "doInitialize"]
 
-  val set_doInitialize : t -> (* FIXME: unknown type *) any -> unit
+  val set_do_initialize : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "doInitialize"]
 
-  val get__clientGetRootPath : t -> (* FIXME: unknown type *) any
+  val get_client_get_root_path : t -> (* FIXME: unknown type *) any
     [@@js.get "_clientGetRootPath"]
 
-  val set__clientGetRootPath : t -> (* FIXME: unknown type *) any -> unit
+  val set_client_get_root_path : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_clientGetRootPath"]
 
   val stop : t -> unit Promise.t [@@js.call "stop"]
 
-  val get_cleanUp : t -> (* FIXME: unknown type *) any [@@js.get "cleanUp"]
+  val get_clean_up : t -> (* FIXME: unknown type *) any [@@js.get "cleanUp"]
 
-  val set_cleanUp : t -> (* FIXME: unknown type *) any -> unit
+  val set_clean_up : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "cleanUp"]
 
-  val get_cleanUpChannel : t -> (* FIXME: unknown type *) any
+  val get_clean_up_channel : t -> (* FIXME: unknown type *) any
     [@@js.get "cleanUpChannel"]
 
-  val set_cleanUpChannel : t -> (* FIXME: unknown type *) any -> unit
+  val set_clean_up_channel : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "cleanUpChannel"]
 
-  val get_notifyFileEvent : t -> (* FIXME: unknown type *) any
+  val get_notify_file_event : t -> (* FIXME: unknown type *) any
     [@@js.get "notifyFileEvent"]
 
-  val set_notifyFileEvent : t -> (* FIXME: unknown type *) any -> unit
+  val set_notify_file_event : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "notifyFileEvent"]
 
-  val get__didChangeTextDocumentFeature : t -> (* FIXME: unknown type *) any
+  val get_did_change_text_document_feature : t -> (* FIXME: unknown type *) any
     [@@js.get "_didChangeTextDocumentFeature"]
 
-  val set__didChangeTextDocumentFeature
+  val set_did_change_text_document_feature
     :  t
     -> (* FIXME: unknown type *) any
     -> unit
     [@@js.set "_didChangeTextDocumentFeature"]
 
-  val get_forceDocumentSync : t -> (* FIXME: unknown type *) any
+  val get_force_document_sync : t -> (* FIXME: unknown type *) any
     [@@js.get "forceDocumentSync"]
 
-  val set_forceDocumentSync : t -> (* FIXME: unknown type *) any -> unit
+  val set_force_document_sync : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "forceDocumentSync"]
 
-  val get_handleDiagnostics : t -> (* FIXME: unknown type *) any
+  val get_handle_diagnostics : t -> (* FIXME: unknown type *) any
     [@@js.get "handleDiagnostics"]
 
-  val set_handleDiagnostics : t -> (* FIXME: unknown type *) any -> unit
+  val set_handle_diagnostics : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "handleDiagnostics"]
 
-  val get_setDiagnostics : t -> (* FIXME: unknown type *) any
+  val get_set_diagnostics : t -> (* FIXME: unknown type *) any
     [@@js.get "setDiagnostics"]
 
-  val set_setDiagnostics : t -> (* FIXME: unknown type *) any -> unit
+  val set_set_diagnostics : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "setDiagnostics"]
 
-  val getLocale : t -> string [@@js.call "getLocale"]
+  val get_locale : t -> string [@@js.call "getLocale"]
 
-  val createMessageTransports
+  val create_message_transports
     :  t
     -> encoding:string
-    -> _MessageTransports Promise.t
+    -> MessageTransports.t Promise.t
     [@@js.call "createMessageTransports"]
 
-  val get_createConnection : t -> (* FIXME: unknown type *) any
+  val get_create_connection : t -> (* FIXME: unknown type *) any
     [@@js.get "createConnection"]
 
-  val set_createConnection : t -> (* FIXME: unknown type *) any -> unit
+  val set_create_connection : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "createConnection"]
 
-  val handleConnectionClosed : t -> unit [@@js.call "handleConnectionClosed"]
+  val handle_connection_closed : t -> unit [@@js.call "handleConnectionClosed"]
 
-  val get_handleConnectionError : t -> (* FIXME: unknown type *) any
+  val get_handle_connection_error : t -> (* FIXME: unknown type *) any
     [@@js.get "handleConnectionError"]
 
-  val set_handleConnectionError : t -> (* FIXME: unknown type *) any -> unit
+  val set_handle_connection_error : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "handleConnectionError"]
 
-  val get_hookConfigurationChanged : t -> (* FIXME: unknown type *) any
+  val get_hook_configuration_changed : t -> (* FIXME: unknown type *) any
     [@@js.get "hookConfigurationChanged"]
 
-  val set_hookConfigurationChanged : t -> (* FIXME: unknown type *) any -> unit
+  val set_hook_configuration_changed
+    :  t
+    -> (* FIXME: unknown type *) any
+    -> unit
     [@@js.set "hookConfigurationChanged"]
 
-  val get_refreshTrace : t -> (* FIXME: unknown type *) any
+  val get_refresh_trace : t -> (* FIXME: unknown type *) any
     [@@js.get "refreshTrace"]
 
-  val set_refreshTrace : t -> (* FIXME: unknown type *) any -> unit
+  val set_refresh_trace : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "refreshTrace"]
 
-  val get_hookFileEvents : t -> (* FIXME: unknown type *) any
+  val get_hook_file_events : t -> (* FIXME: unknown type *) any
     [@@js.get "hookFileEvents"]
 
-  val set_hookFileEvents : t -> (* FIXME: unknown type *) any -> unit
+  val set_hook_file_events : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "hookFileEvents"]
 
   val get__features : t -> (* FIXME: unknown type *) any [@@js.get "_features"]
 
-  val get__dynamicFeatures : t -> (* FIXME: unknown type *) any
+  val get_dynamic_features : t -> (* FIXME: unknown type *) any
     [@@js.get "_dynamicFeatures"]
 
-  val registerFeatures
+  val register_features
     :  t
-    -> features:(_StaticFeature, any _DynamicFeature) union2 list
+    -> features:(StaticFeature.t, any DynamicFeature.t) union2 list
     -> unit
     [@@js.call "registerFeatures"]
 
-  val registerFeature
+  val register_feature
     :  t
-    -> feature:(_StaticFeature, any _DynamicFeature) union2
+    -> feature:(StaticFeature.t, any DynamicFeature.t) union2
     -> unit
     [@@js.call "registerFeature"]
 
-  val getFeature
+  val get_feature
     :  t
     -> request:
          (* FIXME: unknown type 'typeof DidOpenTextDocumentNotification.method' *)
          any
-    -> _DidOpenTextDocumentFeatureShape
+    -> DidOpenTextDocumentFeatureShape.t
     [@@js.call "getFeature"]
 
-  val getFeature'
+  val get_feature'
     :  t
     -> request:
          (* FIXME: unknown type 'typeof
             DidChangeTextDocumentNotification.method' *)
          any
-    -> _DidChangeTextDocumentFeatureShape
+    -> DidChangeTextDocumentFeatureShape.t
     [@@js.call "getFeature"]
 
-  val getFeature''
+  val get_feature''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof WillSaveTextDocumentNotification.method' *)
          any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , (textDocument:TextDocument.t -> unit) _NotificationFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , (textDocument:TextDocument.t -> unit) NotificationFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature'''
+  val get_feature'''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof
             WillSaveTextDocumentWaitUntilRequest.method' *)
          any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
        , (textDocument:TextDocument.t -> VTextEdit.t list ProviderResult.t)
-         _NotificationFeature )
+         NotificationFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature''''
+  val get_feature''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof DidSaveTextDocumentNotification.method' *)
          any
-    -> _DidSaveTextDocumentFeatureShape
+    -> DidSaveTextDocumentFeatureShape.t
     [@@js.call "getFeature"]
 
-  val getFeature'''''
+  val get_feature'''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof DidCloseTextDocumentNotification.method' *)
          any
-    -> _DidCloseTextDocumentFeatureShape
+    -> DidCloseTextDocumentFeatureShape.t
     [@@js.call "getFeature"]
 
-  val getFeature''''''
+  val get_feature''''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof DidCreateFilesNotification.method' *)
          any
-    -> ( FileOperationRegistrationOptions.t _DynamicFeature
+    -> ( FileOperationRegistrationOptions.t DynamicFeature.t
        , AnonymousInterface6.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature'''''''
+  val get_feature'''''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof DidRenameFilesNotification.method' *)
          any
-    -> ( FileOperationRegistrationOptions.t _DynamicFeature
+    -> ( FileOperationRegistrationOptions.t DynamicFeature.t
        , AnonymousInterface8.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature''''''''
+  val get_feature''''''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof DidDeleteFilesNotification.method' *)
          any
-    -> ( FileOperationRegistrationOptions.t _DynamicFeature
+    -> ( FileOperationRegistrationOptions.t DynamicFeature.t
        , AnonymousInterface7.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature'''''''''
+  val get_feature'''''''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof WillCreateFilesRequest.method' *) any
-    -> ( FileOperationRegistrationOptions.t _DynamicFeature
+    -> ( FileOperationRegistrationOptions.t DynamicFeature.t
        , AnonymousInterface9.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature''''''''''
+  val get_feature''''''''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof WillRenameFilesRequest.method' *) any
-    -> ( FileOperationRegistrationOptions.t _DynamicFeature
+    -> ( FileOperationRegistrationOptions.t DynamicFeature.t
        , AnonymousInterface11.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature'''''''''''
+  val get_feature'''''''''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof WillDeleteFilesRequest.method' *) any
-    -> ( FileOperationRegistrationOptions.t _DynamicFeature
+    -> ( FileOperationRegistrationOptions.t DynamicFeature.t
        , AnonymousInterface10.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature''''''''''''
+  val get_feature''''''''''''
     :  t
     -> request:(* FIXME: unknown type 'typeof CompletionRequest.method' *) any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , CompletionItemProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , CompletionItemProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature'''''''''''''
+  val get_feature'''''''''''''
     :  t
     -> request:(* FIXME: unknown type 'typeof HoverRequest.method' *) any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , HoverProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , HoverProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature''''''''''''''
+  val get_feature''''''''''''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof SignatureHelpRequest.method' *) any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , SignatureHelpProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , SignatureHelpProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature'''''''''''''''
+  val get_feature'''''''''''''''
     :  t
     -> request:(* FIXME: unknown type 'typeof DefinitionRequest.method' *) any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , DefinitionProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , DefinitionProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature''''''''''''''''
+  val get_feature''''''''''''''''
     :  t
     -> request:(* FIXME: unknown type 'typeof ReferencesRequest.method' *) any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , ReferenceProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , ReferenceProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature'''''''''''''''''
+  val get_feature'''''''''''''''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof DocumentHighlightRequest.method' *) any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , DocumentHighlightProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , DocumentHighlightProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature''''''''''''''''''
+  val get_feature''''''''''''''''''
     :  t
     -> request:(* FIXME: unknown type 'typeof CodeActionRequest.method' *) any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , CodeActionProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , CodeActionProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature'''''''''''''''''''
+  val get_feature'''''''''''''''''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof DocumentFormattingRequest.method' *) any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , DocumentFormattingEditProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , DocumentFormattingEditProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature''''''''''''''''''''
+  val get_feature''''''''''''''''''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof DocumentRangeFormattingRequest.method' *)
          any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , DocumentRangeFormattingEditProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , DocumentRangeFormattingEditProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature'''''''''''''''''''''
+  val get_feature'''''''''''''''''''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof DocumentOnTypeFormattingRequest.method' *)
          any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , OnTypeFormattingEditProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , OnTypeFormattingEditProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature''''''''''''''''''''''
+  val get_feature''''''''''''''''''''''
     :  t
     -> request:(* FIXME: unknown type 'typeof RenameRequest.method' *) any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , RenameProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , RenameProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature'''''''''''''''''''''''
+  val get_feature'''''''''''''''''''''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof DocumentSymbolRequest.method' *) any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , DocumentSymbolProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , DocumentSymbolProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature''''''''''''''''''''''''
+  val get_feature''''''''''''''''''''''''
     :  t
     -> request:(* FIXME: unknown type 'typeof DocumentLinkRequest.method' *) any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , DocumentLinkProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , DocumentLinkProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature'''''''''''''''''''''''''
+  val get_feature'''''''''''''''''''''''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof DocumentColorRequest.method' *) any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , DocumentColorProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , DocumentColorProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature''''''''''''''''''''''''''
+  val get_feature''''''''''''''''''''''''''
     :  t
     -> request:(* FIXME: unknown type 'typeof DeclarationRequest.method' *) any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , DeclarationProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , DeclarationProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature'''''''''''''''''''''''''''
+  val get_feature'''''''''''''''''''''''''''
     :  t
     -> request:(* FIXME: unknown type 'typeof FoldingRangeRequest.method' *) any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , FoldingRangeProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , FoldingRangeProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature''''''''''''''''''''''''''''
+  val get_feature''''''''''''''''''''''''''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof ImplementationRequest.method' *) any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , ImplementationProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , ImplementationProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature'''''''''''''''''''''''''''''
+  val get_feature'''''''''''''''''''''''''''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof SelectionRangeRequest.method' *) any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , SelectionRangeProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , SelectionRangeProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature''''''''''''''''''''''''''''''
+  val get_feature''''''''''''''''''''''''''''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof TypeDefinitionRequest.method' *) any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , TypeDefinitionProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , TypeDefinitionProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature'''''''''''''''''''''''''''''''
+  val get_feature'''''''''''''''''''''''''''''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof CallHierarchyPrepareRequest.method' *)
          any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , CallHierarchyProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , CallHierarchyProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature''''''''''''''''''''''''''''''''
+  val get_feature''''''''''''''''''''''''''''''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof SemanticTokensRegistrationType.method' *)
          any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , SemanticTokensProviders.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , SemanticTokensProviders.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature'''''''''''''''''''''''''''''''''
+  val get_feature'''''''''''''''''''''''''''''''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof LinkedEditingRangeRequest.method' *) any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , LinkedEditingRangeProvider.t _TextDocumentProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , LinkedEditingRangeProvider.t TextDocumentProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val getFeature''''''''''''''''''''''''''''''''''
+  val get_feature''''''''''''''''''''''''''''''''''
     :  t
     -> request:
          (* FIXME: unknown type 'typeof WorkspaceSymbolRequest.method' *) any
-    -> ( TextDocumentRegistrationOptions.t _DynamicFeature
-       , WorkspaceSymbolProvider.t _WorkspaceProviderFeature )
+    -> ( TextDocumentRegistrationOptions.t DynamicFeature.t
+       , WorkspaceSymbolProvider.t WorkspaceProviderFeature.t )
        intersection2
     [@@js.call "getFeature"]
 
-  val registerBuiltinFeatures : t -> unit [@@js.call "registerBuiltinFeatures"]
+  val register_builtin_features : t -> unit
+    [@@js.call "registerBuiltinFeatures"]
 
-  val fillInitializeParams : t -> params:InitializeParams.t -> unit
+  val fill_initialize_params : t -> params:InitializeParams.t -> unit
     [@@js.call "fillInitializeParams"]
 
-  val get_computeClientCapabilities : t -> (* FIXME: unknown type *) any
+  val get_compute_client_capabilities : t -> (* FIXME: unknown type *) any
     [@@js.get "computeClientCapabilities"]
 
-  val set_computeClientCapabilities : t -> (* FIXME: unknown type *) any -> unit
+  val set_compute_client_capabilities
+    :  t
+    -> (* FIXME: unknown type *) any
+    -> unit
     [@@js.set "computeClientCapabilities"]
 
-  val get_initializeFeatures : t -> (* FIXME: unknown type *) any
+  val get_initialize_features : t -> (* FIXME: unknown type *) any
     [@@js.get "initializeFeatures"]
 
-  val set_initializeFeatures : t -> (* FIXME: unknown type *) any -> unit
+  val set_initialize_features : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "initializeFeatures"]
 
-  val get_handleRegistrationRequest : t -> (* FIXME: unknown type *) any
+  val get_handle_registration_request : t -> (* FIXME: unknown type *) any
     [@@js.get "handleRegistrationRequest"]
 
-  val set_handleRegistrationRequest : t -> (* FIXME: unknown type *) any -> unit
+  val set_handle_registration_request
+    :  t
+    -> (* FIXME: unknown type *) any
+    -> unit
     [@@js.set "handleRegistrationRequest"]
 
-  val get_handleUnregistrationRequest : t -> (* FIXME: unknown type *) any
+  val get_handle_unregistration_request : t -> (* FIXME: unknown type *) any
     [@@js.get "handleUnregistrationRequest"]
 
-  val set_handleUnregistrationRequest
+  val set_handle_unregistration_request
     :  t
     -> (* FIXME: unknown type *) any
     -> unit
     [@@js.set "handleUnregistrationRequest"]
 
-  val get_handleApplyWorkspaceEdit : t -> (* FIXME: unknown type *) any
+  val get_handle_apply_workspace_edit : t -> (* FIXME: unknown type *) any
     [@@js.get "handleApplyWorkspaceEdit"]
 
-  val set_handleApplyWorkspaceEdit : t -> (* FIXME: unknown type *) any -> unit
+  val set_handle_apply_workspace_edit
+    :  t
+    -> (* FIXME: unknown type *) any
+    -> unit
     [@@js.set "handleApplyWorkspaceEdit"]
 
-  val get_RequestsToCancelOnContentModified
+  val get_requests_to_cancel_on_content_modified
     :  unit
     -> (* FIXME: unknown type *) any
     [@@js.get "RequestsToCancelOnContentModified"]
 
-  val set_RequestsToCancelOnContentModified
+  val set_requests_to_cancel_on_content_modified
     :  (* FIXME: unknown type *) any
     -> unit
     [@@js.set "RequestsToCancelOnContentModified"]
 
-  val handleFailedRequest
+  val handle_failed_request
     :  t
     -> type_:MessageSignature.t
     -> token:CancellationToken.t or_undefined
     -> error:any
-    -> defaultValue:'T
+    -> default_value:'T
     -> 'T
     [@@js.call "handleFailedRequest"]
 end

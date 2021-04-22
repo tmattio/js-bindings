@@ -16,4 +16,4 @@ val func : value:any -> bool [@@js.global "func"]
 
 val array : value:any -> bool [@@js.global "array"]
 
-val stringArray : value:any -> bool [@@js.global "stringArray"]
+val string_array : value:any -> bool [@@js.global "stringArray"]

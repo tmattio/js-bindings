@@ -12,7 +12,7 @@ module Array : sig
   val find
     :  'T t
     -> (this:unit -> value:'T -> index:int -> obj:'T list -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> 'S or_undefined
     [@@js.call "find"]
@@ -20,7 +20,7 @@ module Array : sig
   val find'
     :  'T t
     -> (value:'T -> index:int -> obj:'T list -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> 'T or_undefined
     [@@js.call "find"]
@@ -28,7 +28,7 @@ module Array : sig
   val find_index
     :  'T t
     -> (value:'T -> index:int -> obj:'T list -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int
     [@@js.call "findIndex"]
@@ -56,7 +56,7 @@ module ArrayConstructor : sig
     :  t
     -> array:'T Array.t
     -> mapfn:(v:'T -> k:int -> 'U)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> 'U list
     [@@js.call "from"]
@@ -202,7 +202,7 @@ module ReadonlyArray : sig
   val find
     :  'T t
     -> (this:unit -> value:'T -> index:int -> obj:'T list -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> 'S or_undefined
     [@@js.call "find"]
@@ -210,7 +210,7 @@ module ReadonlyArray : sig
   val find'
     :  'T t
     -> (value:'T -> index:int -> obj:'T list -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> 'T or_undefined
     [@@js.call "find"]
@@ -218,7 +218,7 @@ module ReadonlyArray : sig
   val find_index
     :  'T t
     -> (value:'T -> index:int -> obj:'T list -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int
     [@@js.call "findIndex"]
@@ -272,10 +272,10 @@ module String : sig
 
   val code_point_at : t -> pos:int -> int or_undefined [@@js.call "codePointAt"]
 
-  val includes : t -> searchString:string -> ?position:int -> unit -> bool
+  val includes : t -> search_string:string -> ?position:int -> unit -> bool
     [@@js.call "includes"]
 
-  val ends_with : t -> searchString:string -> ?endPosition:int -> unit -> bool
+  val ends_with : t -> search_string:string -> ?end_position:int -> unit -> bool
     [@@js.call "endsWith"]
 
   val normalize
@@ -288,7 +288,7 @@ module String : sig
 
   val repeat : t -> count:int -> string [@@js.call "repeat"]
 
-  val starts_with : t -> searchString:string -> ?position:int -> unit -> bool
+  val starts_with : t -> search_string:string -> ?position:int -> unit -> bool
     [@@js.call "startsWith"]
 
   val anchor : t -> name:string -> string [@@js.call "anchor"]
@@ -330,7 +330,7 @@ module StringConstructor : sig
     include StringConstructor
   end
 
-  val from_code_point : t -> codePoints:(int list[@js.variadic]) -> string
+  val from_code_point : t -> code_points:(int list[@js.variadic]) -> string
     [@@js.call "fromCodePoint"]
 
   val raw

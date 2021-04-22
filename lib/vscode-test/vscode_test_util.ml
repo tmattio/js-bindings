@@ -4,8 +4,6 @@
 open Es5
 open Node
 open Download
-module Internal =
-  struct module Types = struct open AnonymousInterfaces end end
 module AnonymousInterface0 =
   struct
     type t = Ojs.t
@@ -24,9 +22,9 @@ module AnonymousInterface0 =
         fun (x8 : any) ->
           Ojs.set_prop_ascii (t_to_js x7) "date" (any_to_js x8)
   end
-let (systemDefaultPlatform : string) =
+let (system_default_platform : string) =
   Ojs.string_of_js (Ojs.get_prop_ascii Ojs.global "systemDefaultPlatform")
-let (getVSCodeDownloadUrl :
+let (get_vs_code_download_url :
   version:string -> ?platform:DownloadPlatform.t -> unit -> string) =
   fun ~version:(x9 : string) ->
     fun ?platform:(x10 : DownloadPlatform.t option) ->
@@ -45,32 +43,30 @@ let (getVSCodeDownloadUrl :
                                [|(DownloadPlatform.t_to_js x12)|])
                       | None -> ());
                      x11))|])
-let (urlToOptions : url:string -> Https.RequestOptions.t) =
+let (url_to_options : url:string -> Https.RequestOptions.t) =
   fun ~url:(x14 : string) ->
     Https.RequestOptions.t_of_js
       (Ojs.call Ojs.global "urlToOptions" [|(Ojs.string_to_js x14)|])
-let (downloadDirToExecutablePath : dir:string -> string) =
+let (download_dir_to_executable_path : dir:string -> string) =
   fun ~dir:(x15 : string) ->
     Ojs.string_of_js
       (Ojs.call Ojs.global "downloadDirToExecutablePath"
          [|(Ojs.string_to_js x15)|])
-let (insidersDownloadDirToExecutablePath : dir:string -> string) =
+let (insiders_download_dir_to_executable_path : dir:string -> string) =
   fun ~dir:(x16 : string) ->
     Ojs.string_of_js
       (Ojs.call Ojs.global "insidersDownloadDirToExecutablePath"
          [|(Ojs.string_to_js x16)|])
-let (insidersDownloadDirMetadata : dir:string -> AnonymousInterface0.t) =
+let (insiders_download_dir_metadata : dir:string -> AnonymousInterface0.t) =
   fun ~dir:(x17 : string) ->
     AnonymousInterface0.t_of_js
       (Ojs.call Ojs.global "insidersDownloadDirMetadata"
          [|(Ojs.string_to_js x17)|])
 module IUpdateMetadata =
   struct
-    type t = _IUpdateMetadata
-    let rec t_of_js : Ojs.t -> t =
-      fun (x19 : Ojs.t) -> _IUpdateMetadata_of_js x19
-    and t_to_js : t -> Ojs.t =
-      fun (x18 : _IUpdateMetadata) -> _IUpdateMetadata_to_js x18
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x19 : Ojs.t) -> x19
+    and t_to_js : t -> Ojs.t = fun (x18 : Ojs.t) -> x18
     let (get_url : t -> string) =
       fun (x20 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x20) "url")
@@ -92,10 +88,10 @@ module IUpdateMetadata =
       fun (x27 : t) ->
         fun (x28 : string) ->
           Ojs.set_prop_ascii (t_to_js x27) "version" (Ojs.string_to_js x28)
-    let (get_productVersion : t -> string) =
+    let (get_product_version : t -> string) =
       fun (x29 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x29) "productVersion")
-    let (set_productVersion : t -> string -> unit) =
+    let (set_product_version : t -> string -> unit) =
       fun (x30 : t) ->
         fun (x31 : string) ->
           Ojs.set_prop_ascii (t_to_js x30) "productVersion"
@@ -122,25 +118,25 @@ module IUpdateMetadata =
         fun (x40 : string) ->
           Ojs.set_prop_ascii (t_to_js x39) "sha256hash"
             (Ojs.string_to_js x40)
-    let (get_supportsFastUpdate : t -> bool) =
+    let (get_supports_fast_update : t -> bool) =
       fun (x41 : t) ->
         Ojs.bool_of_js
           (Ojs.get_prop_ascii (t_to_js x41) "supportsFastUpdate")
-    let (set_supportsFastUpdate : t -> bool -> unit) =
+    let (set_supports_fast_update : t -> bool -> unit) =
       fun (x42 : t) ->
         fun (x43 : bool) ->
           Ojs.set_prop_ascii (t_to_js x42) "supportsFastUpdate"
             (Ojs.bool_to_js x43)
   end
-let (getLatestInsidersMetadata :
-  platform:string -> _IUpdateMetadata Promise.t) =
+let (get_latest_insiders_metadata :
+  platform:string -> IUpdateMetadata.t Promise.t) =
   fun ~platform:(x44 : string) ->
-    Promise.t_of_js _IUpdateMetadata_of_js
+    Promise.t_of_js IUpdateMetadata.t_of_js
       (Ojs.call Ojs.global "getLatestInsidersMetadata"
          [|(Ojs.string_to_js x44)|])
-let (resolveCliPathFromVSCodeExecutablePath :
-  vscodeExecutablePath:string -> string) =
-  fun ~vscodeExecutablePath:(x46 : string) ->
+let (resolve_cli_path_from_vs_code_executable_path :
+  vscode_executable_path:string -> string) =
+  fun ~vscode_executable_path:(x46 : string) ->
     Ojs.string_of_js
       (Ojs.call Ojs.global "resolveCliPathFromVSCodeExecutablePath"
          [|(Ojs.string_to_js x46)|])

@@ -2,8 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct module Types = struct open AnonymousInterfaces end end
 module AnonymousInterface0 =
   struct
     type t = Ojs.t
@@ -23,16 +21,14 @@ module AnonymousInterface0 =
   end
 module TestOptions =
   struct
-    type t = _TestOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x11 : Ojs.t) -> _TestOptions_of_js x11
-    and t_to_js : t -> Ojs.t =
-      fun (x10 : _TestOptions) -> _TestOptions_to_js x10
-    let (get_vscodeExecutablePath : t -> string) =
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x11 : Ojs.t) -> x11
+    and t_to_js : t -> Ojs.t = fun (x10 : Ojs.t) -> x10
+    let (get_vscode_executable_path : t -> string) =
       fun (x12 : t) ->
         Ojs.string_of_js
           (Ojs.get_prop_ascii (t_to_js x12) "vscodeExecutablePath")
-    let (set_vscodeExecutablePath : t -> string -> unit) =
+    let (set_vscode_executable_path : t -> string -> unit) =
       fun (x13 : t) ->
         fun (x14 : string) ->
           Ojs.set_prop_ascii (t_to_js x13) "vscodeExecutablePath"
@@ -54,44 +50,44 @@ module TestOptions =
         fun (x20 : DownloadPlatform.t) ->
           Ojs.set_prop_ascii (t_to_js x19) "platform"
             (DownloadPlatform.t_to_js x20)
-    let (get_extensionDevelopmentPath : t -> string) =
+    let (get_extension_development_path : t -> string) =
       fun (x21 : t) ->
         Ojs.string_of_js
           (Ojs.get_prop_ascii (t_to_js x21) "extensionDevelopmentPath")
-    let (set_extensionDevelopmentPath : t -> string -> unit) =
+    let (set_extension_development_path : t -> string -> unit) =
       fun (x22 : t) ->
         fun (x23 : string) ->
           Ojs.set_prop_ascii (t_to_js x22) "extensionDevelopmentPath"
             (Ojs.string_to_js x23)
-    let (get_extensionTestsPath : t -> string) =
+    let (get_extension_tests_path : t -> string) =
       fun (x24 : t) ->
         Ojs.string_of_js
           (Ojs.get_prop_ascii (t_to_js x24) "extensionTestsPath")
-    let (set_extensionTestsPath : t -> string -> unit) =
+    let (set_extension_tests_path : t -> string -> unit) =
       fun (x25 : t) ->
         fun (x26 : string) ->
           Ojs.set_prop_ascii (t_to_js x25) "extensionTestsPath"
             (Ojs.string_to_js x26)
-    let (get_extensionTestsEnv : t -> AnonymousInterface0.t) =
+    let (get_extension_tests_env : t -> AnonymousInterface0.t) =
       fun (x27 : t) ->
         AnonymousInterface0.t_of_js
           (Ojs.get_prop_ascii (t_to_js x27) "extensionTestsEnv")
-    let (set_extensionTestsEnv : t -> AnonymousInterface0.t -> unit) =
+    let (set_extension_tests_env : t -> AnonymousInterface0.t -> unit) =
       fun (x28 : t) ->
         fun (x29 : AnonymousInterface0.t) ->
           Ojs.set_prop_ascii (t_to_js x28) "extensionTestsEnv"
             (AnonymousInterface0.t_to_js x29)
-    let (get_launchArgs : t -> string list) =
+    let (get_launch_args : t -> string list) =
       fun (x30 : t) ->
         Ojs.list_of_js Ojs.string_of_js
           (Ojs.get_prop_ascii (t_to_js x30) "launchArgs")
-    let (set_launchArgs : t -> string list -> unit) =
+    let (set_launch_args : t -> string list -> unit) =
       fun (x32 : t) ->
         fun (x33 : string list) ->
           Ojs.set_prop_ascii (t_to_js x32) "launchArgs"
             (Ojs.list_to_js Ojs.string_to_js x33)
   end
-let (runTests : options:_TestOptions -> int Promise.t) =
-  fun ~options:(x35 : _TestOptions) ->
+let (run_tests : options:TestOptions.t -> int Promise.t) =
+  fun ~options:(x35 : TestOptions.t) ->
     Promise.t_of_js Ojs.int_of_js
-      (Ojs.call Ojs.global "runTests" [|(_TestOptions_to_js x35)|])
+      (Ojs.call Ojs.global "runTests" [|(TestOptions.t_to_js x35)|])

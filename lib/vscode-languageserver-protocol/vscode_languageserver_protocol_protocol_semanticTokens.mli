@@ -51,7 +51,7 @@ end
    WorkDoneProgressOptions, TextDocumentRegistrationOptions,
    StaticRegistrationOptions } from './protocol'; *)
 module SemanticTokensPartialResult : sig
-  type t = _SemanticTokensPartialResult
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -64,7 +64,7 @@ end
 [@@js.scope "SemanticTokensPartialResult"]
 
 module SemanticTokensDeltaPartialResult : sig
-  type t = _SemanticTokensDeltaPartialResult
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -91,48 +91,48 @@ module TokenFormat : sig
 end
 
 module SemanticTokensClientCapabilities : sig
-  type t = _SemanticTokensClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
   val get_requests : t -> AnonymousInterface2.t [@@js.get "requests"]
 
   val set_requests : t -> AnonymousInterface2.t -> unit [@@js.set "requests"]
 
-  val get_tokenTypes : t -> string list [@@js.get "tokenTypes"]
+  val get_token_types : t -> string list [@@js.get "tokenTypes"]
 
-  val set_tokenTypes : t -> string list -> unit [@@js.set "tokenTypes"]
+  val set_token_types : t -> string list -> unit [@@js.set "tokenTypes"]
 
-  val get_tokenModifiers : t -> string list [@@js.get "tokenModifiers"]
+  val get_token_modifiers : t -> string list [@@js.get "tokenModifiers"]
 
-  val set_tokenModifiers : t -> string list -> unit [@@js.set "tokenModifiers"]
+  val set_token_modifiers : t -> string list -> unit [@@js.set "tokenModifiers"]
 
-  val get_formats : t -> _TokenFormat list [@@js.get "formats"]
+  val get_formats : t -> TokenFormat.t list [@@js.get "formats"]
 
-  val set_formats : t -> _TokenFormat list -> unit [@@js.set "formats"]
+  val set_formats : t -> TokenFormat.t list -> unit [@@js.set "formats"]
 
-  val get_overlappingTokenSupport : t -> bool
+  val get_overlapping_token_support : t -> bool
     [@@js.get "overlappingTokenSupport"]
 
-  val set_overlappingTokenSupport : t -> bool -> unit
+  val set_overlapping_token_support : t -> bool -> unit
     [@@js.set "overlappingTokenSupport"]
 
-  val get_multilineTokenSupport : t -> bool [@@js.get "multilineTokenSupport"]
+  val get_multiline_token_support : t -> bool [@@js.get "multilineTokenSupport"]
 
-  val set_multilineTokenSupport : t -> bool -> unit
+  val set_multiline_token_support : t -> bool -> unit
     [@@js.set "multilineTokenSupport"]
 end
 [@@js.scope "SemanticTokensClientCapabilities"]
 
 module SemanticTokensOptions : sig
-  type t = _SemanticTokensOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -156,7 +156,7 @@ end
 [@@js.scope "SemanticTokensOptions"]
 
 module SemanticTokensRegistrationOptions : sig
-  type t = _SemanticTokensRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -164,7 +164,7 @@ module SemanticTokensRegistrationOptions : sig
 
   val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _SemanticTokensOptions [@@js.cast]
+  val cast' : t -> SemanticTokensOptions.t [@@js.cast]
 
   val cast'' : t -> StaticRegistrationOptions.t [@@js.cast]
 end
@@ -176,21 +176,22 @@ module SemanticTokensRegistrationType : sig
       [@js.enum])
     [@@js.global "method"]
 
-  val type_ : _SemanticTokensRegistrationOptions RegistrationType.t
+  val type_ : SemanticTokensRegistrationOptions.t RegistrationType.t
     [@@js.global "type"]
 end
 [@@js.scope "SemanticTokensRegistrationType"]
 
 module SemanticTokensParams : sig
-  type t = _SemanticTokensParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentIdentifier.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentIdentifier.t
+    [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentIdentifier.t -> unit
+  val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
   val cast : t -> WorkDoneProgressParams.t [@@js.cast]
@@ -208,17 +209,17 @@ module SemanticTokensRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _SemanticTokensParams
+    : ( SemanticTokensParams.t
       , SemanticTokens.t or_null
-      , _SemanticTokensPartialResult
+      , SemanticTokensPartialResult.t
       , unit
-      , _SemanticTokensRegistrationOptions )
+      , SemanticTokensRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
     type t =
-      ( _SemanticTokensDeltaParams
+      ( SemanticTokensDeltaParams.t
       , SemanticTokens.t or_null
       , unit )
       RequestHandler.t
@@ -231,20 +232,21 @@ end
 [@@js.scope "SemanticTokensRequest"]
 
 module SemanticTokensDeltaParams : sig
-  type t = _SemanticTokensDeltaParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentIdentifier.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentIdentifier.t
+    [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentIdentifier.t -> unit
+  val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
-  val get_previousResultId : t -> string [@@js.get "previousResultId"]
+  val get_previous_result_id : t -> string [@@js.get "previousResultId"]
 
-  val set_previousResultId : t -> string -> unit [@@js.set "previousResultId"]
+  val set_previous_result_id : t -> string -> unit [@@js.set "previousResultId"]
 
   val cast : t -> WorkDoneProgressParams.t [@@js.cast]
 
@@ -261,17 +263,19 @@ module SemanticTokensDeltaRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _SemanticTokensDeltaParams
+    : ( SemanticTokensDeltaParams.t
       , (SemanticTokens.t, SemanticTokensDelta.t) union2 or_null
-      , (_SemanticTokensDeltaPartialResult, _SemanticTokensPartialResult) union2
+      , ( SemanticTokensDeltaPartialResult.t
+        , SemanticTokensPartialResult.t )
+        union2
       , unit
-      , _SemanticTokensRegistrationOptions )
+      , SemanticTokensRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
     type t =
-      ( _SemanticTokensDeltaParams
+      ( SemanticTokensDeltaParams.t
       , (SemanticTokens.t, SemanticTokensDelta.t) union2 or_null
       , unit )
       RequestHandler.t
@@ -284,15 +288,16 @@ end
 [@@js.scope "SemanticTokensDeltaRequest"]
 
 module SemanticTokensRangeParams : sig
-  type t = _SemanticTokensRangeParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentIdentifier.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentIdentifier.t
+    [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentIdentifier.t -> unit
+  val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
   val get_range : t -> Range.t [@@js.get "range"]
@@ -314,9 +319,9 @@ module SemanticTokensRangeRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _SemanticTokensRangeParams
+    : ( SemanticTokensRangeParams.t
       , SemanticTokens.t or_null
-      , _SemanticTokensPartialResult
+      , SemanticTokensPartialResult.t
       , unit
       , unit )
       ProtocolRequestType.t
@@ -324,7 +329,7 @@ module SemanticTokensRangeRequest : sig
 
   module HandlerSignature : sig
     type t =
-      ( _SemanticTokensRangeParams
+      ( SemanticTokensRangeParams.t
       , SemanticTokens.t or_null
       , unit )
       RequestHandler.t
@@ -337,15 +342,15 @@ end
 [@@js.scope "SemanticTokensRangeRequest"]
 
 module SemanticTokensWorkspaceClientCapabilities : sig
-  type t = _SemanticTokensWorkspaceClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_refreshSupport : t -> bool [@@js.get "refreshSupport"]
+  val get_refresh_support : t -> bool [@@js.get "refreshSupport"]
 
-  val set_refreshSupport : t -> bool -> unit [@@js.set "refreshSupport"]
+  val set_refresh_support : t -> bool -> unit [@@js.set "refreshSupport"]
 end
 [@@js.scope "SemanticTokensWorkspaceClientCapabilities"]
 

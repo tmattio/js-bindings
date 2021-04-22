@@ -16,9 +16,9 @@ val func : value:any -> bool [@@js.global "func"]
 
 val array : value:any -> bool [@@js.global "array"]
 
-val stringArray : value:any -> bool [@@js.global "stringArray"]
+val string_array : value:any -> bool [@@js.global "stringArray"]
 
-val typedArray : value:any -> check:(value:any -> bool) -> bool
+val typed_array : value:any -> check:(value:any -> bool) -> bool
   [@@js.global "typedArray"]
 
-val objectLiteral : value:any -> bool [@@js.global "objectLiteral"]
+val object_literal : value:any -> bool [@@js.global "objectLiteral"]

@@ -15,10 +15,10 @@ module AnonymousInterface0 : sig
 
   val set_supported : t -> bool -> unit [@@js.set "supported"]
 
-  val get_changeNotifications : t -> bool or_string
+  val get_change_notifications : t -> bool or_string
     [@@js.get "changeNotifications"]
 
-  val set_changeNotifications : t -> bool or_string -> unit
+  val set_change_notifications : t -> bool or_string -> unit
     [@@js.set "changeNotifications"]
 end
 
@@ -29,9 +29,9 @@ module AnonymousInterface1 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_workspaceFolders : t -> bool [@@js.get "workspaceFolders"]
+  val get_workspace_folders : t -> bool [@@js.get "workspaceFolders"]
 
-  val set_workspaceFolders : t -> bool -> unit [@@js.set "workspaceFolders"]
+  val set_workspace_folders : t -> bool -> unit [@@js.set "workspaceFolders"]
 end
 
 module AnonymousInterface2 : sig
@@ -41,10 +41,10 @@ module AnonymousInterface2 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_workspaceFolders : t -> AnonymousInterface0.t
+  val get_workspace_folders : t -> AnonymousInterface0.t
     [@@js.get "workspaceFolders"]
 
-  val set_workspaceFolders : t -> AnonymousInterface0.t -> unit
+  val set_workspace_folders : t -> AnonymousInterface0.t -> unit
     [@@js.set "workspaceFolders"]
 end
 
@@ -52,22 +52,22 @@ end
    CancellationToken } from 'vscode-jsonrpc'; *)
 (* import { ProtocolRequestType0, ProtocolNotificationType } from './messages'; *)
 module WorkspaceFoldersInitializeParams : sig
-  type t = _WorkspaceFoldersInitializeParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_workspaceFolders : t -> _WorkspaceFolder list or_null
+  val get_workspace_folders : t -> WorkspaceFolder.t list or_null
     [@@js.get "workspaceFolders"]
 
-  val set_workspaceFolders : t -> _WorkspaceFolder list or_null -> unit
+  val set_workspace_folders : t -> WorkspaceFolder.t list or_null -> unit
     [@@js.set "workspaceFolders"]
 end
 [@@js.scope "WorkspaceFoldersInitializeParams"]
 
 module WorkspaceFoldersClientCapabilities : sig
-  type t = _WorkspaceFoldersClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -80,7 +80,7 @@ end
 [@@js.scope "WorkspaceFoldersClientCapabilities"]
 
 module WorkspaceFoldersServerCapabilities : sig
-  type t = _WorkspaceFoldersServerCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -93,7 +93,7 @@ end
 [@@js.scope "WorkspaceFoldersServerCapabilities"]
 
 module WorkspaceFolder : sig
-  type t = _WorkspaceFolder
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -111,11 +111,11 @@ end
 
 module WorkspaceFoldersRequest : sig
   val type_
-    : (_WorkspaceFolder list or_null, never, unit, unit) ProtocolRequestType0.t
+    : (WorkspaceFolder.t list or_null, never, unit, unit) ProtocolRequestType0.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = (_WorkspaceFolder list or_null, unit) RequestHandler0.t
+    type t = (WorkspaceFolder.t list or_null, unit) RequestHandler0.t
 
     val t_to_js : t -> Ojs.t
 
@@ -123,7 +123,7 @@ module WorkspaceFoldersRequest : sig
   end
 
   module MiddlewareSignature : sig
-    type t = _WorkspaceFoldersRequest_MiddlewareSignature
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -132,8 +132,8 @@ module WorkspaceFoldersRequest : sig
     val apply
       :  t
       -> token:CancellationToken.t
-      -> next:_WorkspaceFoldersRequest_HandlerSignature
-      -> (_WorkspaceFolder list or_null, unit) HandlerResult.t
+      -> next:WorkspaceFoldersRequest_HandlerSignature.t
+      -> (WorkspaceFolder.t list or_null, unit) HandlerResult.t
       [@@js.apply]
   end
   [@@js.scope "MiddlewareSignature"]
@@ -142,11 +142,11 @@ end
 
 module DidChangeWorkspaceFoldersNotification : sig
   val type_
-    : (_DidChangeWorkspaceFoldersParams, unit) ProtocolNotificationType.t
+    : (DidChangeWorkspaceFoldersParams.t, unit) ProtocolNotificationType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _DidChangeWorkspaceFoldersParams NotificationHandler.t
+    type t = DidChangeWorkspaceFoldersParams.t NotificationHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -154,7 +154,7 @@ module DidChangeWorkspaceFoldersNotification : sig
   end
 
   module MiddlewareSignature : sig
-    type t = _DidChangeWorkspaceFoldersNotification_MiddlewareSignature
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -162,8 +162,8 @@ module DidChangeWorkspaceFoldersNotification : sig
 
     val apply
       :  t
-      -> params:_DidChangeWorkspaceFoldersParams
-      -> next:_DidChangeWorkspaceFoldersNotification_HandlerSignature
+      -> params:DidChangeWorkspaceFoldersParams.t
+      -> next:DidChangeWorkspaceFoldersNotification_HandlerSignature.t
       -> unit
       [@@js.apply]
   end
@@ -172,31 +172,31 @@ end
 [@@js.scope "DidChangeWorkspaceFoldersNotification"]
 
 module DidChangeWorkspaceFoldersParams : sig
-  type t = _DidChangeWorkspaceFoldersParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_event : t -> _WorkspaceFoldersChangeEvent [@@js.get "event"]
+  val get_event : t -> WorkspaceFoldersChangeEvent.t [@@js.get "event"]
 
-  val set_event : t -> _WorkspaceFoldersChangeEvent -> unit [@@js.set "event"]
+  val set_event : t -> WorkspaceFoldersChangeEvent.t -> unit [@@js.set "event"]
 end
 [@@js.scope "DidChangeWorkspaceFoldersParams"]
 
 module WorkspaceFoldersChangeEvent : sig
-  type t = _WorkspaceFoldersChangeEvent
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_added : t -> _WorkspaceFolder list [@@js.get "added"]
+  val get_added : t -> WorkspaceFolder.t list [@@js.get "added"]
 
-  val set_added : t -> _WorkspaceFolder list -> unit [@@js.set "added"]
+  val set_added : t -> WorkspaceFolder.t list -> unit [@@js.set "added"]
 
-  val get_removed : t -> _WorkspaceFolder list [@@js.get "removed"]
+  val get_removed : t -> WorkspaceFolder.t list [@@js.get "removed"]
 
-  val set_removed : t -> _WorkspaceFolder list -> unit [@@js.set "removed"]
+  val set_removed : t -> WorkspaceFolder.t list -> unit [@@js.set "removed"]
 end
 [@@js.scope "WorkspaceFoldersChangeEvent"]

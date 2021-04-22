@@ -4,10 +4,8 @@
 
 open Es2020
 
-
-
 module Event : sig
-  type 'T t = 'T _Event
+  type 'T t
 
   val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
@@ -16,39 +14,39 @@ module Event : sig
   val apply
     :  'T t
     -> listener:(e:'T -> any)
-    -> ?thisArgs:any
+    -> ?this_args:any
     -> ?disposables:Vscode_jsonrpc_disposable.Disposable.t list
     -> unit
     -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.apply]
 
-  val none : any _Event [@@js.global "None"]
+  val none : any Event.t [@@js.global "None"]
 end
 [@@js.scope "Event"]
 
 module EmitterOptions : sig
-  type t = _EmitterOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_onFirstListenerAdd : t -> untyped_function
+  val get_on_first_listener_add : t -> untyped_function
     [@@js.get "onFirstListenerAdd"]
 
-  val set_onFirstListenerAdd : t -> untyped_function -> unit
+  val set_on_first_listener_add : t -> untyped_function -> unit
     [@@js.set "onFirstListenerAdd"]
 
-  val get_onLastListenerRemove : t -> untyped_function
+  val get_on_last_listener_remove : t -> untyped_function
     [@@js.get "onLastListenerRemove"]
 
-  val set_onLastListenerRemove : t -> untyped_function -> unit
+  val set_on_last_listener_remove : t -> untyped_function -> unit
     [@@js.set "onLastListenerRemove"]
 end
 [@@js.scope "EmitterOptions"]
 
 module Emitter : sig
-  type 'T t = 'T _Emitter
+  type 'T t
 
   val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
@@ -74,10 +72,10 @@ module Emitter : sig
   val set__callbacks : 'T t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_callbacks"]
 
-  val create : ?_options:_EmitterOptions or_undefined -> unit -> 'T t
+  val create : ?_options:EmitterOptions.t or_undefined -> unit -> 'T t
     [@@js.create]
 
-  val get_event : 'T t -> 'T _Event [@@js.get "event"]
+  val get_event : 'T t -> 'T Event.t [@@js.get "event"]
 
   val fire : 'T t -> event:'T -> any [@@js.call "fire"]
 

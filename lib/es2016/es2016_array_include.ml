@@ -6,10 +6,10 @@ module Array =
   struct
     include struct include Array end
     let (includes :
-      'T t -> searchElement:'T -> ?fromIndex:int -> unit -> bool) =
+      'T t -> search_element:'T -> ?from_index:int -> unit -> bool) =
       fun (x5 : 'T t) ->
-        fun ~searchElement:(x1 : 'T) ->
-          fun ?fromIndex:(x2 : int option) ->
+        fun ~search_element:(x1 : 'T) ->
+          fun ?from_index:(x2 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x7 = t_to_js Obj.magic x5 in
@@ -34,10 +34,10 @@ module ReadonlyArray =
   struct
     include struct include ReadonlyArray end
     let (includes :
-      'T t -> searchElement:'T -> ?fromIndex:int -> unit -> bool) =
+      'T t -> search_element:'T -> ?from_index:int -> unit -> bool) =
       fun (x18 : 'T t) ->
-        fun ~searchElement:(x14 : 'T) ->
-          fun ?fromIndex:(x15 : int option) ->
+        fun ~search_element:(x14 : 'T) ->
+          fun ?from_index:(x15 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x20 = t_to_js Obj.magic x18 in
@@ -62,11 +62,11 @@ module ReadonlyArray =
 module Int8Array =
   struct
     include struct include Int8Array end
-    let (includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool)
-      =
+    let (includes :
+      t -> search_element:int -> ?from_index:int -> unit -> bool) =
       fun (x31 : t) ->
-        fun ~searchElement:(x27 : int) ->
-          fun ?fromIndex:(x28 : int option) ->
+        fun ~search_element:(x27 : int) ->
+          fun ?from_index:(x28 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x32 = t_to_js x31 in
@@ -88,11 +88,11 @@ module Int8Array =
 module Uint8Array =
   struct
     include struct include Uint8Array end
-    let (includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool)
-      =
+    let (includes :
+      t -> search_element:int -> ?from_index:int -> unit -> bool) =
       fun (x37 : t) ->
-        fun ~searchElement:(x33 : int) ->
-          fun ?fromIndex:(x34 : int option) ->
+        fun ~search_element:(x33 : int) ->
+          fun ?from_index:(x34 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x38 = t_to_js x37 in
@@ -114,11 +114,11 @@ module Uint8Array =
 module Uint8ClampedArray =
   struct
     include struct include Uint8ClampedArray end
-    let (includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool)
-      =
+    let (includes :
+      t -> search_element:int -> ?from_index:int -> unit -> bool) =
       fun (x43 : t) ->
-        fun ~searchElement:(x39 : int) ->
-          fun ?fromIndex:(x40 : int option) ->
+        fun ~search_element:(x39 : int) ->
+          fun ?from_index:(x40 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x44 = t_to_js x43 in
@@ -140,11 +140,11 @@ module Uint8ClampedArray =
 module Int16Array =
   struct
     include struct include Int16Array end
-    let (includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool)
-      =
+    let (includes :
+      t -> search_element:int -> ?from_index:int -> unit -> bool) =
       fun (x49 : t) ->
-        fun ~searchElement:(x45 : int) ->
-          fun ?fromIndex:(x46 : int option) ->
+        fun ~search_element:(x45 : int) ->
+          fun ?from_index:(x46 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x50 = t_to_js x49 in
@@ -166,11 +166,11 @@ module Int16Array =
 module Uint16Array =
   struct
     include struct include Uint16Array end
-    let (includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool)
-      =
+    let (includes :
+      t -> search_element:int -> ?from_index:int -> unit -> bool) =
       fun (x55 : t) ->
-        fun ~searchElement:(x51 : int) ->
-          fun ?fromIndex:(x52 : int option) ->
+        fun ~search_element:(x51 : int) ->
+          fun ?from_index:(x52 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x56 = t_to_js x55 in
@@ -192,11 +192,11 @@ module Uint16Array =
 module Int32Array =
   struct
     include struct include Int32Array end
-    let (includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool)
-      =
+    let (includes :
+      t -> search_element:int -> ?from_index:int -> unit -> bool) =
       fun (x61 : t) ->
-        fun ~searchElement:(x57 : int) ->
-          fun ?fromIndex:(x58 : int option) ->
+        fun ~search_element:(x57 : int) ->
+          fun ?from_index:(x58 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x62 = t_to_js x61 in
@@ -218,11 +218,11 @@ module Int32Array =
 module Uint32Array =
   struct
     include struct include Uint32Array end
-    let (includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool)
-      =
+    let (includes :
+      t -> search_element:int -> ?from_index:int -> unit -> bool) =
       fun (x67 : t) ->
-        fun ~searchElement:(x63 : int) ->
-          fun ?fromIndex:(x64 : int option) ->
+        fun ~search_element:(x63 : int) ->
+          fun ?from_index:(x64 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x68 = t_to_js x67 in
@@ -244,11 +244,11 @@ module Uint32Array =
 module Float32Array =
   struct
     include struct include Float32Array end
-    let (includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool)
-      =
+    let (includes :
+      t -> search_element:int -> ?from_index:int -> unit -> bool) =
       fun (x73 : t) ->
-        fun ~searchElement:(x69 : int) ->
-          fun ?fromIndex:(x70 : int option) ->
+        fun ~search_element:(x69 : int) ->
+          fun ?from_index:(x70 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x74 = t_to_js x73 in
@@ -270,11 +270,11 @@ module Float32Array =
 module Float64Array =
   struct
     include struct include Float64Array end
-    let (includes : t -> searchElement:int -> ?fromIndex:int -> unit -> bool)
-      =
+    let (includes :
+      t -> search_element:int -> ?from_index:int -> unit -> bool) =
       fun (x79 : t) ->
-        fun ~searchElement:(x75 : int) ->
-          fun ?fromIndex:(x76 : int option) ->
+        fun ~search_element:(x75 : int) ->
+          fun ?from_index:(x76 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x80 = t_to_js x79 in

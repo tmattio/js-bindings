@@ -9,10 +9,10 @@ module String : sig
     include String
   end
 
-  val pad_start : t -> maxLength:int -> ?fillString:string -> unit -> string
+  val pad_start : t -> max_length:int -> ?fill_string:string -> unit -> string
     [@@js.call "padStart"]
 
-  val pad_end : t -> maxLength:int -> ?fillString:string -> unit -> string
+  val pad_end : t -> max_length:int -> ?fill_string:string -> unit -> string
     [@@js.call "padEnd"]
 
   val to_ml : t -> string [@@js.cast]

@@ -4,12 +4,10 @@
 
 open Es2020
 
-
-
 module Path : sig
   module Path : sig
     module ParsedPath : sig
-      type t = path_path_ParsedPath
+      type t
 
       val t_to_js : t -> Ojs.t
 
@@ -38,7 +36,7 @@ module Path : sig
     [@@js.scope "ParsedPath"]
 
     module FormatInputPathObject : sig
-      type t = path_path_FormatInputPathObject
+      type t
 
       val t_to_js : t -> Ojs.t
 
@@ -67,42 +65,41 @@ module Path : sig
     [@@js.scope "FormatInputPathObject"]
 
     module PlatformPath : sig
-      type t = path_path_PlatformPath
+      type t
 
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
 
-      val normalize : t -> p:string -> string [@@js.call "normalize"]
+      val normalize : t -> string -> string [@@js.call "normalize"]
 
       val join : t -> paths:(string list[@js.variadic]) -> string
         [@@js.call "join"]
 
-      val resolve : t -> pathSegments:(string list[@js.variadic]) -> string
+      val resolve : t -> (string list[@js.variadic]) -> string
         [@@js.call "resolve"]
 
-      val isAbsolute : t -> p:string -> bool [@@js.call "isAbsolute"]
+      val is_absolute : t -> string -> bool [@@js.call "isAbsolute"]
 
       val relative : t -> from:string -> to_:string -> string
         [@@js.call "relative"]
 
-      val dirname : t -> p:string -> string [@@js.call "dirname"]
+      val dirname : t -> string -> string [@@js.call "dirname"]
 
-      val basename : t -> p:string -> ?ext:string -> unit -> string
+      val basename : t -> string -> ?ext:string -> unit -> string
         [@@js.call "basename"]
 
-      val extname : t -> p:string -> string [@@js.call "extname"]
+      val extname : t -> string -> string [@@js.call "extname"]
 
       val get_sep : t -> string [@@js.get "sep"]
 
       val get_delimiter : t -> string [@@js.get "delimiter"]
 
-      val parse : t -> p:string -> path_path_ParsedPath [@@js.call "parse"]
+      val parse : t -> string -> ParsedPath.t [@@js.call "parse"]
 
-      val format : t -> pP:path_path_FormatInputPathObject -> string
-        [@@js.call "format"]
+      val format : t -> FormatInputPathObject.t -> string [@@js.call "format"]
 
-      val toNamespacedPath : t -> path:string -> string
+      val to_namespaced_path : t -> string -> string
         [@@js.call "toNamespacedPath"]
 
       val get_posix : t -> t [@@js.get "posix"]
@@ -113,7 +110,7 @@ module Path : sig
   end
   [@@js.scope "path"]
 
-  val path : path_path_PlatformPath [@@js.global "path"]
+  val path : PlatformPath.t [@@js.global "path"]
   (* export = path *)
 end
 [@@js.scope Import.path]

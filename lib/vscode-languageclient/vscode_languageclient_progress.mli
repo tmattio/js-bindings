@@ -7,7 +7,7 @@ open Es5
 (* import { ClientCapabilities } from 'vscode-languageserver-protocol'; *)
 (* import { BaseLanguageClient, StaticFeature } from './client'; *)
 module ProgressFeature : sig
-  type t = _ProgressFeature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -18,15 +18,15 @@ module ProgressFeature : sig
   val set__client : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_client"]
 
-  val get_activeParts : t -> (* FIXME: unknown type *) any
+  val get_active_parts : t -> (* FIXME: unknown type *) any
     [@@js.get "activeParts"]
 
-  val set_activeParts : t -> (* FIXME: unknown type *) any -> unit
+  val set_active_parts : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "activeParts"]
 
   val create : _client:BaseLanguageClient.t -> t [@@js.create]
 
-  val fillClientCapabilities : t -> capabilities:ClientCapabilities.t -> unit
+  val fill_client_capabilities : t -> capabilities:ClientCapabilities.t -> unit
     [@@js.call "fillClientCapabilities"]
 
   val initialize : t -> unit [@@js.call "initialize"]

@@ -6,39 +6,37 @@
 
 open Es2020
 
-
-
 module CancellationToken : sig
-  type t = _CancellationToken
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_isCancellationRequested : t -> bool
+  val get_is_cancellation_requested : t -> bool
     [@@js.get "isCancellationRequested"]
 
-  val get_onCancellationRequested : t -> any Vscode_jsonrpc_events.Event.t
+  val get_on_cancellation_requested : t -> any Vscode_jsonrpc_events.Event.t
     [@@js.get "onCancellationRequested"]
 
-  val none : _CancellationToken [@@js.global "None"]
+  val none : CancellationToken.t [@@js.global "None"]
 
-  val cancelled : _CancellationToken [@@js.global "Cancelled"]
+  val cancelled : CancellationToken.t [@@js.global "Cancelled"]
 
   val is : value:any -> bool [@@js.global "is"]
 end
 [@@js.scope "CancellationToken"]
 
 module AbstractCancellationTokenSource : sig
-  type t = _AbstractCancellationTokenSource
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_token : t -> _CancellationToken [@@js.get "token"]
+  val get_token : t -> CancellationToken.t [@@js.get "token"]
 
-  val set_token : t -> _CancellationToken -> unit [@@js.set "token"]
+  val set_token : t -> CancellationToken.t -> unit [@@js.set "token"]
 
   val cancel : t -> unit [@@js.call "cancel"]
 
@@ -47,7 +45,7 @@ end
 [@@js.scope "AbstractCancellationTokenSource"]
 
 module CancellationTokenSource : sig
-  type t = _CancellationTokenSource
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -58,12 +56,12 @@ module CancellationTokenSource : sig
   val set__token : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_token"]
 
-  val get_token : t -> _CancellationToken [@@js.get "token"]
+  val get_token : t -> CancellationToken.t [@@js.get "token"]
 
   val cancel : t -> unit [@@js.call "cancel"]
 
   val dispose : t -> unit [@@js.call "dispose"]
 
-  val cast : t -> _AbstractCancellationTokenSource [@@js.cast]
+  val cast : t -> AbstractCancellationTokenSource.t [@@js.cast]
 end
 [@@js.scope "CancellationTokenSource"]

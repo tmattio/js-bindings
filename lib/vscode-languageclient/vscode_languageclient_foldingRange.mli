@@ -11,7 +11,7 @@ open Es5
    'vscode-languageserver-protocol'; *)
 (* import { TextDocumentFeature, BaseLanguageClient } from './client'; *)
 module ProvideFoldingRangeSignature : sig
-  type t = _ProvideFoldingRangeSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -29,26 +29,26 @@ end
 [@@js.scope "ProvideFoldingRangeSignature"]
 
 module FoldingRangeProviderMiddleware : sig
-  type t = _FoldingRangeProviderMiddleware
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val provideFoldingRanges
+  val provide_folding_ranges
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> context:FoldingContext.t
     -> token:CancellationToken.t
-    -> next:_ProvideFoldingRangeSignature
+    -> next:ProvideFoldingRangeSignature.t
     -> VFoldingRange.t list ProviderResult.t
     [@@js.call "provideFoldingRanges"]
 end
 [@@js.scope "FoldingRangeProviderMiddleware"]
 
 module FoldingRangeFeature : sig
-  type t = _FoldingRangeFeature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -56,32 +56,32 @@ module FoldingRangeFeature : sig
 
   val create : client:BaseLanguageClient.t -> t [@@js.create]
 
-  val fillClientCapabilities : t -> capabilities:ClientCapabilities.t -> unit
+  val fill_client_capabilities : t -> capabilities:ClientCapabilities.t -> unit
     [@@js.call "fillClientCapabilities"]
 
   val initialize
     :  t
     -> capabilities:ServerCapabilities.t
-    -> documentSelector:DocumentSelector.t
+    -> document_selector:DocumentSelector.t
     -> unit
     [@@js.call "initialize"]
 
-  val registerLanguageProvider
+  val register_language_provider
     :  t
     -> options:FoldingRangeRegistrationOptions.t
     -> Disposable.t * FoldingRangeProvider.t
     [@@js.call "registerLanguageProvider"]
 
-  val get_asFoldingRangeKind : unit -> (* FIXME: unknown type *) any
+  val get_as_folding_range_kind : unit -> (* FIXME: unknown type *) any
     [@@js.get "asFoldingRangeKind"]
 
-  val set_asFoldingRangeKind : (* FIXME: unknown type *) any -> unit
+  val set_as_folding_range_kind : (* FIXME: unknown type *) any -> unit
     [@@js.set "asFoldingRangeKind"]
 
-  val get_asFoldingRanges : unit -> (* FIXME: unknown type *) any
+  val get_as_folding_ranges : unit -> (* FIXME: unknown type *) any
     [@@js.get "asFoldingRanges"]
 
-  val set_asFoldingRanges : (* FIXME: unknown type *) any -> unit
+  val set_as_folding_ranges : (* FIXME: unknown type *) any -> unit
     [@@js.set "asFoldingRanges"]
 
   val cast

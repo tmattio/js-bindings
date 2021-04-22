@@ -2,2390 +2,2168 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module Types =
-      struct
-        type _ClientCapabilities =
-          (_ClientCapabilities, WorkspaceFoldersClientCapabilities.t,
-            ConfigurationClientCapabilities.t,
-            WorkDoneProgressClientCapabilities.t) intersection4
-        and _CompletionTriggerKind = [ `L_n_1  | `L_n_2  | `L_n_3 ]
-        and _DocumentFilter = anonymous_interface_9
-        and _DocumentSelector = _DocumentFilter or_string list
-        and _FailureHandlingKind =
-          [ `L_s0_abort  | `L_s31_textOnlyTransactional 
-          | `L_s32_transactional  | `L_s33_undo ]
-        and _FileChangeType = [ `L_n_1  | `L_n_2  | `L_n_3 ]
-        and _InitializeParams =
-          (_InitializeParams, WorkspaceFoldersInitializeParams.t)
-            intersection2
-        and _MessageType = [ `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4 ]
-        and _PrepareSupportDefaultBehavior = [ `L_n_1 ]
-        and _ResourceOperationKind =
-          [ `L_s4_create  | `L_s5_delete  | `L_s9_rename ]
-        and 'T _ServerCapabilities =
-          ('T _ServerCapabilities, WorkspaceFoldersServerCapabilities.t)
-            intersection2
-        and _SignatureHelpTriggerKind = [ `L_n_1  | `L_n_2  | `L_n_3 ]
-        and _TextDocumentContentChangeEvent =
-          (AnonymousInterface13.t, AnonymousInterface15.t) union2
-        and _TextDocumentSaveReason = [ `L_n_1  | `L_n_2  | `L_n_3 ]
-        and _TextDocumentSyncKind = [ `L_n_0  | `L_n_1  | `L_n_2 ]
-        let rec _ClientCapabilities_of_js : Ojs.t -> _ClientCapabilities =
-          fun (x6 : Ojs.t) ->
-            intersection4_of_js _ClientCapabilities_of_js
-              WorkspaceFoldersClientCapabilities.t_of_js
-              ConfigurationClientCapabilities.t_of_js
-              WorkDoneProgressClientCapabilities.t_of_js x6
-        and _ClientCapabilities_to_js : _ClientCapabilities -> Ojs.t =
-          fun
-            (x1 :
-              (_ClientCapabilities, WorkspaceFoldersClientCapabilities.t,
-                ConfigurationClientCapabilities.t,
-                WorkDoneProgressClientCapabilities.t) intersection4)
-            ->
-            intersection4_to_js _ClientCapabilities_to_js
-              WorkspaceFoldersClientCapabilities.t_to_js
-              ConfigurationClientCapabilities.t_to_js
-              WorkDoneProgressClientCapabilities.t_to_js x1
-        and _CompletionTriggerKind_of_js : Ojs.t -> _CompletionTriggerKind =
-          fun (x12 : Ojs.t) ->
-            let x13 = x12 in
-            match Ojs.int_of_js x13 with
-            | 1 -> `L_n_1
-            | 2 -> `L_n_2
-            | 3 -> `L_n_3
-            | _ -> assert false
-        and _CompletionTriggerKind_to_js : _CompletionTriggerKind -> Ojs.t =
-          fun (x11 : [ `L_n_1  | `L_n_2  | `L_n_3 ]) ->
-            match x11 with
-            | `L_n_1 -> Ojs.int_to_js 1
-            | `L_n_2 -> Ojs.int_to_js 2
-            | `L_n_3 -> Ojs.int_to_js 3
-        and _DocumentFilter_of_js : Ojs.t -> _DocumentFilter =
-          fun (x15 : Ojs.t) -> anonymous_interface_9_of_js x15
-        and _DocumentFilter_to_js : _DocumentFilter -> Ojs.t =
-          fun (x14 : anonymous_interface_9) ->
-            anonymous_interface_9_to_js x14
-        and _DocumentSelector_of_js : Ojs.t -> _DocumentSelector =
-          fun (x19 : Ojs.t) ->
-            Ojs.list_of_js
-              (fun (x20 : Ojs.t) -> or_string_of_js _DocumentFilter_of_js x20)
-              x19
-        and _DocumentSelector_to_js : _DocumentSelector -> Ojs.t =
-          fun (x16 : _DocumentFilter or_string list) ->
-            Ojs.list_to_js
-              (fun (x17 : _DocumentFilter or_string) ->
-                 or_string_to_js _DocumentFilter_to_js x17) x16
-        and _FailureHandlingKind_of_js : Ojs.t -> _FailureHandlingKind =
-          fun (x23 : Ojs.t) ->
-            let x24 = x23 in
-            match Ojs.string_of_js x24 with
-            | "abort" -> `L_s0_abort
-            | "textOnlyTransactional" -> `L_s31_textOnlyTransactional
-            | "transactional" -> `L_s32_transactional
-            | "undo" -> `L_s33_undo
-            | _ -> assert false
-        and _FailureHandlingKind_to_js : _FailureHandlingKind -> Ojs.t =
-          fun
-            (x22 :
-              [ `L_s0_abort  | `L_s31_textOnlyTransactional 
-              | `L_s32_transactional  | `L_s33_undo ])
-            ->
-            match x22 with
-            | `L_s0_abort -> Ojs.string_to_js "abort"
-            | `L_s31_textOnlyTransactional ->
-                Ojs.string_to_js "textOnlyTransactional"
-            | `L_s32_transactional -> Ojs.string_to_js "transactional"
-            | `L_s33_undo -> Ojs.string_to_js "undo"
-        and _FileChangeType_of_js : Ojs.t -> _FileChangeType =
-          fun (x26 : Ojs.t) ->
-            let x27 = x26 in
-            match Ojs.int_of_js x27 with
-            | 1 -> `L_n_1
-            | 2 -> `L_n_2
-            | 3 -> `L_n_3
-            | _ -> assert false
-        and _FileChangeType_to_js : _FileChangeType -> Ojs.t =
-          fun (x25 : [ `L_n_1  | `L_n_2  | `L_n_3 ]) ->
-            match x25 with
-            | `L_n_1 -> Ojs.int_to_js 1
-            | `L_n_2 -> Ojs.int_to_js 2
-            | `L_n_3 -> Ojs.int_to_js 3
-        and _InitializeParams_of_js : Ojs.t -> _InitializeParams =
-          fun (x31 : Ojs.t) ->
-            intersection2_of_js _InitializeParams_of_js
-              WorkspaceFoldersInitializeParams.t_of_js x31
-        and _InitializeParams_to_js : _InitializeParams -> Ojs.t =
-          fun
-            (x28 :
-              (_InitializeParams, WorkspaceFoldersInitializeParams.t)
-                intersection2)
-            ->
-            intersection2_to_js _InitializeParams_to_js
-              WorkspaceFoldersInitializeParams.t_to_js x28
-        and _MessageType_of_js : Ojs.t -> _MessageType =
-          fun (x35 : Ojs.t) ->
-            let x36 = x35 in
-            match Ojs.int_of_js x36 with
-            | 1 -> `L_n_1
-            | 2 -> `L_n_2
-            | 3 -> `L_n_3
-            | 4 -> `L_n_4
-            | _ -> assert false
-        and _MessageType_to_js : _MessageType -> Ojs.t =
-          fun (x34 : [ `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4 ]) ->
-            match x34 with
-            | `L_n_1 -> Ojs.int_to_js 1
-            | `L_n_2 -> Ojs.int_to_js 2
-            | `L_n_3 -> Ojs.int_to_js 3
-            | `L_n_4 -> Ojs.int_to_js 4
-        and _PrepareSupportDefaultBehavior_of_js :
-          Ojs.t -> _PrepareSupportDefaultBehavior =
-          fun (x38 : Ojs.t) ->
-            let x39 = x38 in
-            match Ojs.int_of_js x39 with | 1 -> `L_n_1 | _ -> assert false
-        and _PrepareSupportDefaultBehavior_to_js :
-          _PrepareSupportDefaultBehavior -> Ojs.t =
-          fun (x37 : [ `L_n_1 ]) ->
-            match x37 with | `L_n_1 -> Ojs.int_to_js 1
-        and _ResourceOperationKind_of_js : Ojs.t -> _ResourceOperationKind =
-          fun (x41 : Ojs.t) ->
-            let x42 = x41 in
-            match Ojs.string_of_js x42 with
-            | "create" -> `L_s4_create
-            | "delete" -> `L_s5_delete
-            | "rename" -> `L_s9_rename
-            | _ -> assert false
-        and _ResourceOperationKind_to_js : _ResourceOperationKind -> Ojs.t =
-          fun (x40 : [ `L_s4_create  | `L_s5_delete  | `L_s9_rename ]) ->
-            match x40 with
-            | `L_s4_create -> Ojs.string_to_js "create"
-            | `L_s5_delete -> Ojs.string_to_js "delete"
-            | `L_s9_rename -> Ojs.string_to_js "rename"
-        and _ServerCapabilities_of_js :
-          'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _ServerCapabilities = fun (type
-          __T) ->
-          fun (__T_of_js : Ojs.t -> __T) ->
-            fun (x47 : Ojs.t) ->
-              intersection2_of_js
-                (fun (x48 : Ojs.t) -> _ServerCapabilities_of_js __T_of_js x48)
-                WorkspaceFoldersServerCapabilities.t_of_js x47
-        and _ServerCapabilities_to_js :
-          'T . ('T -> Ojs.t) -> 'T _ServerCapabilities -> Ojs.t = fun (type
-          __T) ->
-          fun (__T_to_js : __T -> Ojs.t) ->
-            fun
-              (x43 :
-                (__T _ServerCapabilities,
-                  WorkspaceFoldersServerCapabilities.t) intersection2)
-              ->
-              intersection2_to_js
-                (fun (x44 : __T _ServerCapabilities) ->
-                   _ServerCapabilities_to_js __T_to_js x44)
-                WorkspaceFoldersServerCapabilities.t_to_js x43
-        and _SignatureHelpTriggerKind_of_js :
-          Ojs.t -> _SignatureHelpTriggerKind =
-          fun (x52 : Ojs.t) ->
-            let x53 = x52 in
-            match Ojs.int_of_js x53 with
-            | 1 -> `L_n_1
-            | 2 -> `L_n_2
-            | 3 -> `L_n_3
-            | _ -> assert false
-        and _SignatureHelpTriggerKind_to_js :
-          _SignatureHelpTriggerKind -> Ojs.t =
-          fun (x51 : [ `L_n_1  | `L_n_2  | `L_n_3 ]) ->
-            match x51 with
-            | `L_n_1 -> Ojs.int_to_js 1
-            | `L_n_2 -> Ojs.int_to_js 2
-            | `L_n_3 -> Ojs.int_to_js 3
-        and _TextDocumentContentChangeEvent_of_js :
-          Ojs.t -> _TextDocumentContentChangeEvent =
-          fun (x57 : Ojs.t) ->
-            union2_of_js AnonymousInterface13.t_of_js
-              AnonymousInterface15.t_of_js x57
-        and _TextDocumentContentChangeEvent_to_js :
-          _TextDocumentContentChangeEvent -> Ojs.t =
-          fun (x54 : (AnonymousInterface13.t, AnonymousInterface15.t) union2)
-            ->
-            union2_to_js AnonymousInterface13.t_to_js
-              AnonymousInterface15.t_to_js x54
-        and _TextDocumentSaveReason_of_js : Ojs.t -> _TextDocumentSaveReason
-          =
-          fun (x61 : Ojs.t) ->
-            let x62 = x61 in
-            match Ojs.int_of_js x62 with
-            | 1 -> `L_n_1
-            | 2 -> `L_n_2
-            | 3 -> `L_n_3
-            | _ -> assert false
-        and _TextDocumentSaveReason_to_js : _TextDocumentSaveReason -> Ojs.t
-          =
-          fun (x60 : [ `L_n_1  | `L_n_2  | `L_n_3 ]) ->
-            match x60 with
-            | `L_n_1 -> Ojs.int_to_js 1
-            | `L_n_2 -> Ojs.int_to_js 2
-            | `L_n_3 -> Ojs.int_to_js 3
-        and _TextDocumentSyncKind_of_js : Ojs.t -> _TextDocumentSyncKind =
-          fun (x64 : Ojs.t) ->
-            let x65 = x64 in
-            match Ojs.int_of_js x65 with
-            | 0 -> `L_n_0
-            | 1 -> `L_n_1
-            | 2 -> `L_n_2
-            | _ -> assert false
-        and _TextDocumentSyncKind_to_js : _TextDocumentSyncKind -> Ojs.t =
-          fun (x63 : [ `L_n_0  | `L_n_1  | `L_n_2 ]) ->
-            match x63 with
-            | `L_n_0 -> Ojs.int_to_js 0
-            | `L_n_1 -> Ojs.int_to_js 1
-            | `L_n_2 -> Ojs.int_to_js 2
-      end
-  end
 module AnonymousInterface0 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x67 : Ojs.t) -> x67
-    and t_to_js : t -> Ojs.t = fun (x66 : Ojs.t) -> x66
-    let (get_additionalPropertiesSupport : t -> bool) =
-      fun (x68 : t) ->
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
+    let (get_additional_properties_support : t -> bool) =
+      fun (x3 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x68) "additionalPropertiesSupport")
-    let (set_additionalPropertiesSupport : t -> bool -> unit) =
-      fun (x69 : t) ->
-        fun (x70 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x69) "additionalPropertiesSupport"
-            (Ojs.bool_to_js x70)
+          (Ojs.get_prop_ascii (t_to_js x3) "additionalPropertiesSupport")
+    let (set_additional_properties_support : t -> bool -> unit) =
+      fun (x4 : t) ->
+        fun (x5 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x4) "additionalPropertiesSupport"
+            (Ojs.bool_to_js x5)
   end
 module AnonymousInterface1 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x72 : Ojs.t) -> x72
-    and t_to_js : t -> Ojs.t = fun (x71 : Ojs.t) -> x71
+    let rec t_of_js : Ojs.t -> t = fun (x7 : Ojs.t) -> x7
+    and t_to_js : t -> Ojs.t = fun (x6 : Ojs.t) -> x6
     let (get_cancel : t -> bool) =
-      fun (x73 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x73) "cancel")
+      fun (x8 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x8) "cancel")
     let (set_cancel : t -> bool -> unit) =
-      fun (x74 : t) ->
-        fun (x75 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x74) "cancel" (Ojs.bool_to_js x75)
-    let (get_retryOnContentModified : t -> string list) =
-      fun (x76 : t) ->
+      fun (x9 : t) ->
+        fun (x10 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x9) "cancel" (Ojs.bool_to_js x10)
+    let (get_retry_on_content_modified : t -> string list) =
+      fun (x11 : t) ->
         Ojs.list_of_js Ojs.string_of_js
-          (Ojs.get_prop_ascii (t_to_js x76) "retryOnContentModified")
-    let (set_retryOnContentModified : t -> string list -> unit) =
-      fun (x78 : t) ->
-        fun (x79 : string list) ->
-          Ojs.set_prop_ascii (t_to_js x78) "retryOnContentModified"
-            (Ojs.list_to_js Ojs.string_to_js x79)
+          (Ojs.get_prop_ascii (t_to_js x11) "retryOnContentModified")
+    let (set_retry_on_content_modified : t -> string list -> unit) =
+      fun (x13 : t) ->
+        fun (x14 : string list) ->
+          Ojs.set_prop_ascii (t_to_js x13) "retryOnContentModified"
+            (Ojs.list_to_js Ojs.string_to_js x14)
   end
 module AnonymousInterface2 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x82 : Ojs.t) -> x82
-    and t_to_js : t -> Ojs.t = fun (x81 : Ojs.t) -> x81
-    let (get_codeActionKind : t -> AnonymousInterface16.t) =
-      fun (x83 : t) ->
+    let rec t_of_js : Ojs.t -> t = fun (x17 : Ojs.t) -> x17
+    and t_to_js : t -> Ojs.t = fun (x16 : Ojs.t) -> x16
+    let (get_code_action_kind : t -> AnonymousInterface16.t) =
+      fun (x18 : t) ->
         AnonymousInterface16.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x83) "codeActionKind")
-    let (set_codeActionKind : t -> AnonymousInterface16.t -> unit) =
-      fun (x84 : t) ->
-        fun (x85 : AnonymousInterface16.t) ->
-          Ojs.set_prop_ascii (t_to_js x84) "codeActionKind"
-            (AnonymousInterface16.t_to_js x85)
+          (Ojs.get_prop_ascii (t_to_js x18) "codeActionKind")
+    let (set_code_action_kind : t -> AnonymousInterface16.t -> unit) =
+      fun (x19 : t) ->
+        fun (x20 : AnonymousInterface16.t) ->
+          Ojs.set_prop_ascii (t_to_js x19) "codeActionKind"
+            (AnonymousInterface16.t_to_js x20)
   end
 module AnonymousInterface3 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x87 : Ojs.t) -> x87
-    and t_to_js : t -> Ojs.t = fun (x86 : Ojs.t) -> x86
-    let (get_defaultBehavior : t -> bool) =
-      fun (x88 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x88) "defaultBehavior")
-    let (set_defaultBehavior : t -> bool -> unit) =
-      fun (x89 : t) ->
-        fun (x90 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x89) "defaultBehavior"
-            (Ojs.bool_to_js x90)
+    let rec t_of_js : Ojs.t -> t = fun (x22 : Ojs.t) -> x22
+    and t_to_js : t -> Ojs.t = fun (x21 : Ojs.t) -> x21
+    let (get_default_behavior : t -> bool) =
+      fun (x23 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x23) "defaultBehavior")
+    let (set_default_behavior : t -> bool -> unit) =
+      fun (x24 : t) ->
+        fun (x25 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x24) "defaultBehavior"
+            (Ojs.bool_to_js x25)
   end
 module AnonymousInterface4 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x92 : Ojs.t) -> x92
-    and t_to_js : t -> Ojs.t = fun (x91 : Ojs.t) -> x91
-    let (get_documentationFormat : t -> MarkupKind.t list) =
-      fun (x93 : t) ->
+    let rec t_of_js : Ojs.t -> t = fun (x27 : Ojs.t) -> x27
+    and t_to_js : t -> Ojs.t = fun (x26 : Ojs.t) -> x26
+    let (get_documentation_format : t -> MarkupKind.t list) =
+      fun (x28 : t) ->
         Ojs.list_of_js MarkupKind.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x93) "documentationFormat")
-    let (set_documentationFormat : t -> MarkupKind.t list -> unit) =
-      fun (x95 : t) ->
-        fun (x96 : MarkupKind.t list) ->
-          Ojs.set_prop_ascii (t_to_js x95) "documentationFormat"
-            (Ojs.list_to_js MarkupKind.t_to_js x96)
-    let (get_parameterInformation : t -> AnonymousInterface8.t) =
-      fun (x98 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x28) "documentationFormat")
+    let (set_documentation_format : t -> MarkupKind.t list -> unit) =
+      fun (x30 : t) ->
+        fun (x31 : MarkupKind.t list) ->
+          Ojs.set_prop_ascii (t_to_js x30) "documentationFormat"
+            (Ojs.list_to_js MarkupKind.t_to_js x31)
+    let (get_parameter_information : t -> AnonymousInterface8.t) =
+      fun (x33 : t) ->
         AnonymousInterface8.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x98) "parameterInformation")
-    let (set_parameterInformation : t -> AnonymousInterface8.t -> unit) =
-      fun (x99 : t) ->
-        fun (x100 : AnonymousInterface8.t) ->
-          Ojs.set_prop_ascii (t_to_js x99) "parameterInformation"
-            (AnonymousInterface8.t_to_js x100)
-    let (get_activeParameterSupport : t -> bool) =
-      fun (x101 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x33) "parameterInformation")
+    let (set_parameter_information : t -> AnonymousInterface8.t -> unit) =
+      fun (x34 : t) ->
+        fun (x35 : AnonymousInterface8.t) ->
+          Ojs.set_prop_ascii (t_to_js x34) "parameterInformation"
+            (AnonymousInterface8.t_to_js x35)
+    let (get_active_parameter_support : t -> bool) =
+      fun (x36 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x101) "activeParameterSupport")
-    let (set_activeParameterSupport : t -> bool -> unit) =
-      fun (x102 : t) ->
-        fun (x103 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x102) "activeParameterSupport"
-            (Ojs.bool_to_js x103)
+          (Ojs.get_prop_ascii (t_to_js x36) "activeParameterSupport")
+    let (set_active_parameter_support : t -> bool -> unit) =
+      fun (x37 : t) ->
+        fun (x38 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x37) "activeParameterSupport"
+            (Ojs.bool_to_js x38)
   end
 module AnonymousInterface5 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x105 : Ojs.t) -> x105
-    and t_to_js : t -> Ojs.t = fun (x104 : Ojs.t) -> x104
-    let (get_fileOperations : t -> FileOperationOptions.t) =
-      fun (x106 : t) ->
+    let rec t_of_js : Ojs.t -> t = fun (x40 : Ojs.t) -> x40
+    and t_to_js : t -> Ojs.t = fun (x39 : Ojs.t) -> x39
+    let (get_file_operations : t -> FileOperationOptions.t) =
+      fun (x41 : t) ->
         FileOperationOptions.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x106) "fileOperations")
-    let (set_fileOperations : t -> FileOperationOptions.t -> unit) =
-      fun (x107 : t) ->
-        fun (x108 : FileOperationOptions.t) ->
-          Ojs.set_prop_ascii (t_to_js x107) "fileOperations"
-            (FileOperationOptions.t_to_js x108)
+          (Ojs.get_prop_ascii (t_to_js x41) "fileOperations")
+    let (set_file_operations : t -> FileOperationOptions.t -> unit) =
+      fun (x42 : t) ->
+        fun (x43 : FileOperationOptions.t) ->
+          Ojs.set_prop_ascii (t_to_js x42) "fileOperations"
+            (FileOperationOptions.t_to_js x43)
   end
 module AnonymousInterface6 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x110 : Ojs.t) -> x110
-    and t_to_js : t -> Ojs.t = fun (x109 : Ojs.t) -> x109
-    let (get_groupsOnLabel : t -> bool) =
-      fun (x111 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x111) "groupsOnLabel")
-    let (set_groupsOnLabel : t -> bool -> unit) =
-      fun (x112 : t) ->
-        fun (x113 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x112) "groupsOnLabel"
-            (Ojs.bool_to_js x113)
+    let rec t_of_js : Ojs.t -> t = fun (x45 : Ojs.t) -> x45
+    and t_to_js : t -> Ojs.t = fun (x44 : Ojs.t) -> x44
+    let (get_groups_on_label : t -> bool) =
+      fun (x46 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x46) "groupsOnLabel")
+    let (set_groups_on_label : t -> bool -> unit) =
+      fun (x47 : t) ->
+        fun (x48 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x47) "groupsOnLabel"
+            (Ojs.bool_to_js x48)
   end
 module AnonymousInterface7 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x115 : Ojs.t) -> x115
-    and t_to_js : t -> Ojs.t = fun (x114 : Ojs.t) -> x114
-    let (get_labelDetailsSupport : t -> bool) =
-      fun (x116 : t) ->
+    let rec t_of_js : Ojs.t -> t = fun (x50 : Ojs.t) -> x50
+    and t_to_js : t -> Ojs.t = fun (x49 : Ojs.t) -> x49
+    let (get_label_details_support : t -> bool) =
+      fun (x51 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x116) "labelDetailsSupport")
-    let (set_labelDetailsSupport : t -> bool -> unit) =
-      fun (x117 : t) ->
-        fun (x118 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x117) "labelDetailsSupport"
-            (Ojs.bool_to_js x118)
+          (Ojs.get_prop_ascii (t_to_js x51) "labelDetailsSupport")
+    let (set_label_details_support : t -> bool -> unit) =
+      fun (x52 : t) ->
+        fun (x53 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x52) "labelDetailsSupport"
+            (Ojs.bool_to_js x53)
   end
 module AnonymousInterface8 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x120 : Ojs.t) -> x120
-    and t_to_js : t -> Ojs.t = fun (x119 : Ojs.t) -> x119
-    let (get_labelOffsetSupport : t -> bool) =
-      fun (x121 : t) ->
+    let rec t_of_js : Ojs.t -> t = fun (x55 : Ojs.t) -> x55
+    and t_to_js : t -> Ojs.t = fun (x54 : Ojs.t) -> x54
+    let (get_label_offset_support : t -> bool) =
+      fun (x56 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x121) "labelOffsetSupport")
-    let (set_labelOffsetSupport : t -> bool -> unit) =
-      fun (x122 : t) ->
-        fun (x123 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x122) "labelOffsetSupport"
-            (Ojs.bool_to_js x123)
+          (Ojs.get_prop_ascii (t_to_js x56) "labelOffsetSupport")
+    let (set_label_offset_support : t -> bool -> unit) =
+      fun (x57 : t) ->
+        fun (x58 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x57) "labelOffsetSupport"
+            (Ojs.bool_to_js x58)
   end
 module AnonymousInterface9 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x125 : Ojs.t) -> x125
-    and t_to_js : t -> Ojs.t = fun (x124 : Ojs.t) -> x124
+    let rec t_of_js : Ojs.t -> t = fun (x60 : Ojs.t) -> x60
+    and t_to_js : t -> Ojs.t = fun (x59 : Ojs.t) -> x59
     let (get_language : t -> string) =
-      fun (x126 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x126) "language")
+      fun (x61 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x61) "language")
     let (set_language : t -> string -> unit) =
-      fun (x127 : t) ->
-        fun (x128 : string) ->
-          Ojs.set_prop_ascii (t_to_js x127) "language"
-            (Ojs.string_to_js x128)
+      fun (x62 : t) ->
+        fun (x63 : string) ->
+          Ojs.set_prop_ascii (t_to_js x62) "language" (Ojs.string_to_js x63)
     let (get_scheme : t -> string) =
-      fun (x129 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x129) "scheme")
+      fun (x64 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x64) "scheme")
     let (set_scheme : t -> string -> unit) =
-      fun (x130 : t) ->
-        fun (x131 : string) ->
-          Ojs.set_prop_ascii (t_to_js x130) "scheme" (Ojs.string_to_js x131)
+      fun (x65 : t) ->
+        fun (x66 : string) ->
+          Ojs.set_prop_ascii (t_to_js x65) "scheme" (Ojs.string_to_js x66)
     let (get_pattern : t -> string) =
-      fun (x132 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x132) "pattern")
+      fun (x67 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x67) "pattern")
     let (set_pattern : t -> string -> unit) =
-      fun (x133 : t) ->
-        fun (x134 : string) ->
-          Ojs.set_prop_ascii (t_to_js x133) "pattern" (Ojs.string_to_js x134)
+      fun (x68 : t) ->
+        fun (x69 : string) ->
+          Ojs.set_prop_ascii (t_to_js x68) "pattern" (Ojs.string_to_js x69)
   end
 module AnonymousInterface10 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x136 : Ojs.t) -> x136
-    and t_to_js : t -> Ojs.t = fun (x135 : Ojs.t) -> x135
+    let rec t_of_js : Ojs.t -> t = fun (x71 : Ojs.t) -> x71
+    and t_to_js : t -> Ojs.t = fun (x70 : Ojs.t) -> x70
     let (get_name : t -> string) =
-      fun (x137 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x137) "name")
+      fun (x72 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x72) "name")
     let (set_name : t -> string -> unit) =
-      fun (x138 : t) ->
-        fun (x139 : string) ->
-          Ojs.set_prop_ascii (t_to_js x138) "name" (Ojs.string_to_js x139)
+      fun (x73 : t) ->
+        fun (x74 : string) ->
+          Ojs.set_prop_ascii (t_to_js x73) "name" (Ojs.string_to_js x74)
     let (get_version : t -> string) =
-      fun (x140 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x140) "version")
+      fun (x75 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x75) "version")
     let (set_version : t -> string -> unit) =
-      fun (x141 : t) ->
-        fun (x142 : string) ->
-          Ojs.set_prop_ascii (t_to_js x141) "version" (Ojs.string_to_js x142)
+      fun (x76 : t) ->
+        fun (x77 : string) ->
+          Ojs.set_prop_ascii (t_to_js x76) "version" (Ojs.string_to_js x77)
   end
 module AnonymousInterface11 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x144 : Ojs.t) -> x144
-    and t_to_js : t -> Ojs.t = fun (x143 : Ojs.t) -> x143
+    let rec t_of_js : Ojs.t -> t = fun (x79 : Ojs.t) -> x79
+    and t_to_js : t -> Ojs.t = fun (x78 : Ojs.t) -> x78
     let (get_properties : t -> string list) =
-      fun (x145 : t) ->
+      fun (x80 : t) ->
         Ojs.list_of_js Ojs.string_of_js
-          (Ojs.get_prop_ascii (t_to_js x145) "properties")
+          (Ojs.get_prop_ascii (t_to_js x80) "properties")
     let (set_properties : t -> string list -> unit) =
-      fun (x147 : t) ->
-        fun (x148 : string list) ->
-          Ojs.set_prop_ascii (t_to_js x147) "properties"
-            (Ojs.list_to_js Ojs.string_to_js x148)
+      fun (x82 : t) ->
+        fun (x83 : string list) ->
+          Ojs.set_prop_ascii (t_to_js x82) "properties"
+            (Ojs.list_to_js Ojs.string_to_js x83)
   end
 module AnonymousInterface12 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x151 : Ojs.t) -> x151
-    and t_to_js : t -> Ojs.t = fun (x150 : Ojs.t) -> x150
+    let rec t_of_js : Ojs.t -> t = fun (x86 : Ojs.t) -> x86
+    and t_to_js : t -> Ojs.t = fun (x85 : Ojs.t) -> x85
     let (get_range : t -> Range.t) =
-      fun (x152 : t) ->
-        Range.t_of_js (Ojs.get_prop_ascii (t_to_js x152) "range")
+      fun (x87 : t) ->
+        Range.t_of_js (Ojs.get_prop_ascii (t_to_js x87) "range")
     let (set_range : t -> Range.t -> unit) =
-      fun (x153 : t) ->
-        fun (x154 : Range.t) ->
-          Ojs.set_prop_ascii (t_to_js x153) "range" (Range.t_to_js x154)
+      fun (x88 : t) ->
+        fun (x89 : Range.t) ->
+          Ojs.set_prop_ascii (t_to_js x88) "range" (Range.t_to_js x89)
     let (get_placeholder : t -> string) =
-      fun (x155 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x155) "placeholder")
+      fun (x90 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x90) "placeholder")
     let (set_placeholder : t -> string -> unit) =
-      fun (x156 : t) ->
-        fun (x157 : string) ->
-          Ojs.set_prop_ascii (t_to_js x156) "placeholder"
-            (Ojs.string_to_js x157)
+      fun (x91 : t) ->
+        fun (x92 : string) ->
+          Ojs.set_prop_ascii (t_to_js x91) "placeholder"
+            (Ojs.string_to_js x92)
   end
 module AnonymousInterface13 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x159 : Ojs.t) -> x159
-    and t_to_js : t -> Ojs.t = fun (x158 : Ojs.t) -> x158
+    let rec t_of_js : Ojs.t -> t = fun (x94 : Ojs.t) -> x94
+    and t_to_js : t -> Ojs.t = fun (x93 : Ojs.t) -> x93
     let (get_range : t -> Range.t) =
-      fun (x160 : t) ->
-        Range.t_of_js (Ojs.get_prop_ascii (t_to_js x160) "range")
+      fun (x95 : t) ->
+        Range.t_of_js (Ojs.get_prop_ascii (t_to_js x95) "range")
     let (set_range : t -> Range.t -> unit) =
-      fun (x161 : t) ->
-        fun (x162 : Range.t) ->
-          Ojs.set_prop_ascii (t_to_js x161) "range" (Range.t_to_js x162)
-    let (get_rangeLength : t -> Uinteger.t) =
-      fun (x163 : t) ->
-        Uinteger.t_of_js (Ojs.get_prop_ascii (t_to_js x163) "rangeLength")
-    let (set_rangeLength : t -> Uinteger.t -> unit) =
-      fun (x164 : t) ->
-        fun (x165 : Uinteger.t) ->
-          Ojs.set_prop_ascii (t_to_js x164) "rangeLength"
-            (Uinteger.t_to_js x165)
+      fun (x96 : t) ->
+        fun (x97 : Range.t) ->
+          Ojs.set_prop_ascii (t_to_js x96) "range" (Range.t_to_js x97)
+    let (get_range_length : t -> Uinteger.t) =
+      fun (x98 : t) ->
+        Uinteger.t_of_js (Ojs.get_prop_ascii (t_to_js x98) "rangeLength")
+    let (set_range_length : t -> Uinteger.t -> unit) =
+      fun (x99 : t) ->
+        fun (x100 : Uinteger.t) ->
+          Ojs.set_prop_ascii (t_to_js x99) "rangeLength"
+            (Uinteger.t_to_js x100)
     let (get_text : t -> string) =
-      fun (x166 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x166) "text")
+      fun (x101 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x101) "text")
     let (set_text : t -> string -> unit) =
-      fun (x167 : t) ->
-        fun (x168 : string) ->
-          Ojs.set_prop_ascii (t_to_js x167) "text" (Ojs.string_to_js x168)
+      fun (x102 : t) ->
+        fun (x103 : string) ->
+          Ojs.set_prop_ascii (t_to_js x102) "text" (Ojs.string_to_js x103)
   end
 module AnonymousInterface14 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x170 : Ojs.t) -> x170
-    and t_to_js : t -> Ojs.t = fun (x169 : Ojs.t) -> x169
-    let (get_snippetSupport : t -> bool) =
-      fun (x171 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x171) "snippetSupport")
-    let (set_snippetSupport : t -> bool -> unit) =
-      fun (x172 : t) ->
-        fun (x173 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x172) "snippetSupport"
-            (Ojs.bool_to_js x173)
-    let (get_commitCharactersSupport : t -> bool) =
-      fun (x174 : t) ->
+    let rec t_of_js : Ojs.t -> t = fun (x105 : Ojs.t) -> x105
+    and t_to_js : t -> Ojs.t = fun (x104 : Ojs.t) -> x104
+    let (get_snippet_support : t -> bool) =
+      fun (x106 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x106) "snippetSupport")
+    let (set_snippet_support : t -> bool -> unit) =
+      fun (x107 : t) ->
+        fun (x108 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x107) "snippetSupport"
+            (Ojs.bool_to_js x108)
+    let (get_commit_characters_support : t -> bool) =
+      fun (x109 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x174) "commitCharactersSupport")
-    let (set_commitCharactersSupport : t -> bool -> unit) =
-      fun (x175 : t) ->
-        fun (x176 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x175) "commitCharactersSupport"
-            (Ojs.bool_to_js x176)
-    let (get_documentationFormat : t -> MarkupKind.t list) =
-      fun (x177 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x109) "commitCharactersSupport")
+    let (set_commit_characters_support : t -> bool -> unit) =
+      fun (x110 : t) ->
+        fun (x111 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x110) "commitCharactersSupport"
+            (Ojs.bool_to_js x111)
+    let (get_documentation_format : t -> MarkupKind.t list) =
+      fun (x112 : t) ->
         Ojs.list_of_js MarkupKind.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x177) "documentationFormat")
-    let (set_documentationFormat : t -> MarkupKind.t list -> unit) =
-      fun (x179 : t) ->
-        fun (x180 : MarkupKind.t list) ->
-          Ojs.set_prop_ascii (t_to_js x179) "documentationFormat"
-            (Ojs.list_to_js MarkupKind.t_to_js x180)
-    let (get_deprecatedSupport : t -> bool) =
-      fun (x182 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x112) "documentationFormat")
+    let (set_documentation_format : t -> MarkupKind.t list -> unit) =
+      fun (x114 : t) ->
+        fun (x115 : MarkupKind.t list) ->
+          Ojs.set_prop_ascii (t_to_js x114) "documentationFormat"
+            (Ojs.list_to_js MarkupKind.t_to_js x115)
+    let (get_deprecated_support : t -> bool) =
+      fun (x117 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x182) "deprecatedSupport")
-    let (set_deprecatedSupport : t -> bool -> unit) =
-      fun (x183 : t) ->
-        fun (x184 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x183) "deprecatedSupport"
-            (Ojs.bool_to_js x184)
-    let (get_preselectSupport : t -> bool) =
-      fun (x185 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x185) "preselectSupport")
-    let (set_preselectSupport : t -> bool -> unit) =
-      fun (x186 : t) ->
-        fun (x187 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x186) "preselectSupport"
-            (Ojs.bool_to_js x187)
-    let (get_tagSupport : t -> AnonymousInterface18.t) =
-      fun (x188 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x117) "deprecatedSupport")
+    let (set_deprecated_support : t -> bool -> unit) =
+      fun (x118 : t) ->
+        fun (x119 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x118) "deprecatedSupport"
+            (Ojs.bool_to_js x119)
+    let (get_preselect_support : t -> bool) =
+      fun (x120 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x120) "preselectSupport")
+    let (set_preselect_support : t -> bool -> unit) =
+      fun (x121 : t) ->
+        fun (x122 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x121) "preselectSupport"
+            (Ojs.bool_to_js x122)
+    let (get_tag_support : t -> AnonymousInterface18.t) =
+      fun (x123 : t) ->
         AnonymousInterface18.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x188) "tagSupport")
-    let (set_tagSupport : t -> AnonymousInterface18.t -> unit) =
-      fun (x189 : t) ->
-        fun (x190 : AnonymousInterface18.t) ->
-          Ojs.set_prop_ascii (t_to_js x189) "tagSupport"
-            (AnonymousInterface18.t_to_js x190)
-    let (get_insertReplaceSupport : t -> bool) =
-      fun (x191 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x123) "tagSupport")
+    let (set_tag_support : t -> AnonymousInterface18.t -> unit) =
+      fun (x124 : t) ->
+        fun (x125 : AnonymousInterface18.t) ->
+          Ojs.set_prop_ascii (t_to_js x124) "tagSupport"
+            (AnonymousInterface18.t_to_js x125)
+    let (get_insert_replace_support : t -> bool) =
+      fun (x126 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x191) "insertReplaceSupport")
-    let (set_insertReplaceSupport : t -> bool -> unit) =
-      fun (x192 : t) ->
-        fun (x193 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x192) "insertReplaceSupport"
-            (Ojs.bool_to_js x193)
-    let (get_resolveSupport : t -> AnonymousInterface11.t) =
-      fun (x194 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x126) "insertReplaceSupport")
+    let (set_insert_replace_support : t -> bool -> unit) =
+      fun (x127 : t) ->
+        fun (x128 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x127) "insertReplaceSupport"
+            (Ojs.bool_to_js x128)
+    let (get_resolve_support : t -> AnonymousInterface11.t) =
+      fun (x129 : t) ->
         AnonymousInterface11.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x194) "resolveSupport")
-    let (set_resolveSupport : t -> AnonymousInterface11.t -> unit) =
-      fun (x195 : t) ->
-        fun (x196 : AnonymousInterface11.t) ->
-          Ojs.set_prop_ascii (t_to_js x195) "resolveSupport"
-            (AnonymousInterface11.t_to_js x196)
-    let (get_insertTextModeSupport : t -> AnonymousInterface20.t) =
-      fun (x197 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x129) "resolveSupport")
+    let (set_resolve_support : t -> AnonymousInterface11.t -> unit) =
+      fun (x130 : t) ->
+        fun (x131 : AnonymousInterface11.t) ->
+          Ojs.set_prop_ascii (t_to_js x130) "resolveSupport"
+            (AnonymousInterface11.t_to_js x131)
+    let (get_insert_text_mode_support : t -> AnonymousInterface20.t) =
+      fun (x132 : t) ->
         AnonymousInterface20.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x197) "insertTextModeSupport")
-    let (set_insertTextModeSupport : t -> AnonymousInterface20.t -> unit) =
-      fun (x198 : t) ->
-        fun (x199 : AnonymousInterface20.t) ->
-          Ojs.set_prop_ascii (t_to_js x198) "insertTextModeSupport"
-            (AnonymousInterface20.t_to_js x199)
-    let (get_labelDetailsSupport : t -> bool) =
-      fun (x200 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x132) "insertTextModeSupport")
+    let (set_insert_text_mode_support : t -> AnonymousInterface20.t -> unit)
+      =
+      fun (x133 : t) ->
+        fun (x134 : AnonymousInterface20.t) ->
+          Ojs.set_prop_ascii (t_to_js x133) "insertTextModeSupport"
+            (AnonymousInterface20.t_to_js x134)
+    let (get_label_details_support : t -> bool) =
+      fun (x135 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x200) "labelDetailsSupport")
-    let (set_labelDetailsSupport : t -> bool -> unit) =
-      fun (x201 : t) ->
-        fun (x202 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x201) "labelDetailsSupport"
-            (Ojs.bool_to_js x202)
+          (Ojs.get_prop_ascii (t_to_js x135) "labelDetailsSupport")
+    let (set_label_details_support : t -> bool -> unit) =
+      fun (x136 : t) ->
+        fun (x137 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x136) "labelDetailsSupport"
+            (Ojs.bool_to_js x137)
   end
 module AnonymousInterface15 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x204 : Ojs.t) -> x204
-    and t_to_js : t -> Ojs.t = fun (x203 : Ojs.t) -> x203
+    let rec t_of_js : Ojs.t -> t = fun (x139 : Ojs.t) -> x139
+    and t_to_js : t -> Ojs.t = fun (x138 : Ojs.t) -> x138
     let (get_text : t -> string) =
-      fun (x205 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x205) "text")
+      fun (x140 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x140) "text")
     let (set_text : t -> string -> unit) =
-      fun (x206 : t) ->
-        fun (x207 : string) ->
-          Ojs.set_prop_ascii (t_to_js x206) "text" (Ojs.string_to_js x207)
+      fun (x141 : t) ->
+        fun (x142 : string) ->
+          Ojs.set_prop_ascii (t_to_js x141) "text" (Ojs.string_to_js x142)
   end
 module AnonymousInterface16 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x209 : Ojs.t) -> x209
-    and t_to_js : t -> Ojs.t = fun (x208 : Ojs.t) -> x208
-    let (get_valueSet : t -> CodeActionKind.t list) =
-      fun (x210 : t) ->
+    let rec t_of_js : Ojs.t -> t = fun (x144 : Ojs.t) -> x144
+    and t_to_js : t -> Ojs.t = fun (x143 : Ojs.t) -> x143
+    let (get_value_set : t -> CodeActionKind.t list) =
+      fun (x145 : t) ->
         Ojs.list_of_js CodeActionKind.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x210) "valueSet")
-    let (set_valueSet : t -> CodeActionKind.t list -> unit) =
-      fun (x212 : t) ->
-        fun (x213 : CodeActionKind.t list) ->
-          Ojs.set_prop_ascii (t_to_js x212) "valueSet"
-            (Ojs.list_to_js CodeActionKind.t_to_js x213)
+          (Ojs.get_prop_ascii (t_to_js x145) "valueSet")
+    let (set_value_set : t -> CodeActionKind.t list -> unit) =
+      fun (x147 : t) ->
+        fun (x148 : CodeActionKind.t list) ->
+          Ojs.set_prop_ascii (t_to_js x147) "valueSet"
+            (Ojs.list_to_js CodeActionKind.t_to_js x148)
   end
 module AnonymousInterface17 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x216 : Ojs.t) -> x216
-    and t_to_js : t -> Ojs.t = fun (x215 : Ojs.t) -> x215
-    let (get_valueSet : t -> CompletionItemKind.t list) =
-      fun (x217 : t) ->
+    let rec t_of_js : Ojs.t -> t = fun (x151 : Ojs.t) -> x151
+    and t_to_js : t -> Ojs.t = fun (x150 : Ojs.t) -> x150
+    let (get_value_set : t -> CompletionItemKind.t list) =
+      fun (x152 : t) ->
         Ojs.list_of_js CompletionItemKind.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x217) "valueSet")
-    let (set_valueSet : t -> CompletionItemKind.t list -> unit) =
-      fun (x219 : t) ->
-        fun (x220 : CompletionItemKind.t list) ->
-          Ojs.set_prop_ascii (t_to_js x219) "valueSet"
-            (Ojs.list_to_js CompletionItemKind.t_to_js x220)
+          (Ojs.get_prop_ascii (t_to_js x152) "valueSet")
+    let (set_value_set : t -> CompletionItemKind.t list -> unit) =
+      fun (x154 : t) ->
+        fun (x155 : CompletionItemKind.t list) ->
+          Ojs.set_prop_ascii (t_to_js x154) "valueSet"
+            (Ojs.list_to_js CompletionItemKind.t_to_js x155)
   end
 module AnonymousInterface18 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x223 : Ojs.t) -> x223
-    and t_to_js : t -> Ojs.t = fun (x222 : Ojs.t) -> x222
-    let (get_valueSet : t -> CompletionItemTag.t list) =
-      fun (x224 : t) ->
+    let rec t_of_js : Ojs.t -> t = fun (x158 : Ojs.t) -> x158
+    and t_to_js : t -> Ojs.t = fun (x157 : Ojs.t) -> x157
+    let (get_value_set : t -> CompletionItemTag.t list) =
+      fun (x159 : t) ->
         Ojs.list_of_js CompletionItemTag.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x224) "valueSet")
-    let (set_valueSet : t -> CompletionItemTag.t list -> unit) =
-      fun (x226 : t) ->
-        fun (x227 : CompletionItemTag.t list) ->
-          Ojs.set_prop_ascii (t_to_js x226) "valueSet"
-            (Ojs.list_to_js CompletionItemTag.t_to_js x227)
+          (Ojs.get_prop_ascii (t_to_js x159) "valueSet")
+    let (set_value_set : t -> CompletionItemTag.t list -> unit) =
+      fun (x161 : t) ->
+        fun (x162 : CompletionItemTag.t list) ->
+          Ojs.set_prop_ascii (t_to_js x161) "valueSet"
+            (Ojs.list_to_js CompletionItemTag.t_to_js x162)
   end
 module AnonymousInterface19 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x230 : Ojs.t) -> x230
-    and t_to_js : t -> Ojs.t = fun (x229 : Ojs.t) -> x229
-    let (get_valueSet : t -> DiagnosticTag.t list) =
-      fun (x231 : t) ->
+    let rec t_of_js : Ojs.t -> t = fun (x165 : Ojs.t) -> x165
+    and t_to_js : t -> Ojs.t = fun (x164 : Ojs.t) -> x164
+    let (get_value_set : t -> DiagnosticTag.t list) =
+      fun (x166 : t) ->
         Ojs.list_of_js DiagnosticTag.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x231) "valueSet")
-    let (set_valueSet : t -> DiagnosticTag.t list -> unit) =
-      fun (x233 : t) ->
-        fun (x234 : DiagnosticTag.t list) ->
-          Ojs.set_prop_ascii (t_to_js x233) "valueSet"
-            (Ojs.list_to_js DiagnosticTag.t_to_js x234)
+          (Ojs.get_prop_ascii (t_to_js x166) "valueSet")
+    let (set_value_set : t -> DiagnosticTag.t list -> unit) =
+      fun (x168 : t) ->
+        fun (x169 : DiagnosticTag.t list) ->
+          Ojs.set_prop_ascii (t_to_js x168) "valueSet"
+            (Ojs.list_to_js DiagnosticTag.t_to_js x169)
   end
 module AnonymousInterface20 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x237 : Ojs.t) -> x237
-    and t_to_js : t -> Ojs.t = fun (x236 : Ojs.t) -> x236
-    let (get_valueSet : t -> InsertTextMode.t list) =
-      fun (x238 : t) ->
+    let rec t_of_js : Ojs.t -> t = fun (x172 : Ojs.t) -> x172
+    and t_to_js : t -> Ojs.t = fun (x171 : Ojs.t) -> x171
+    let (get_value_set : t -> InsertTextMode.t list) =
+      fun (x173 : t) ->
         Ojs.list_of_js InsertTextMode.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x238) "valueSet")
-    let (set_valueSet : t -> InsertTextMode.t list -> unit) =
-      fun (x240 : t) ->
-        fun (x241 : InsertTextMode.t list) ->
-          Ojs.set_prop_ascii (t_to_js x240) "valueSet"
-            (Ojs.list_to_js InsertTextMode.t_to_js x241)
+          (Ojs.get_prop_ascii (t_to_js x173) "valueSet")
+    let (set_value_set : t -> InsertTextMode.t list -> unit) =
+      fun (x175 : t) ->
+        fun (x176 : InsertTextMode.t list) ->
+          Ojs.set_prop_ascii (t_to_js x175) "valueSet"
+            (Ojs.list_to_js InsertTextMode.t_to_js x176)
   end
 module AnonymousInterface21 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x244 : Ojs.t) -> x244
-    and t_to_js : t -> Ojs.t = fun (x243 : Ojs.t) -> x243
-    let (get_valueSet : t -> SymbolKind.t list) =
-      fun (x245 : t) ->
+    let rec t_of_js : Ojs.t -> t = fun (x179 : Ojs.t) -> x179
+    and t_to_js : t -> Ojs.t = fun (x178 : Ojs.t) -> x178
+    let (get_value_set : t -> SymbolKind.t list) =
+      fun (x180 : t) ->
         Ojs.list_of_js SymbolKind.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x245) "valueSet")
-    let (set_valueSet : t -> SymbolKind.t list -> unit) =
-      fun (x247 : t) ->
-        fun (x248 : SymbolKind.t list) ->
-          Ojs.set_prop_ascii (t_to_js x247) "valueSet"
-            (Ojs.list_to_js SymbolKind.t_to_js x248)
+          (Ojs.get_prop_ascii (t_to_js x180) "valueSet")
+    let (set_value_set : t -> SymbolKind.t list -> unit) =
+      fun (x182 : t) ->
+        fun (x183 : SymbolKind.t list) ->
+          Ojs.set_prop_ascii (t_to_js x182) "valueSet"
+            (Ojs.list_to_js SymbolKind.t_to_js x183)
   end
 module AnonymousInterface22 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x251 : Ojs.t) -> x251
-    and t_to_js : t -> Ojs.t = fun (x250 : Ojs.t) -> x250
-    let (get_valueSet : t -> SymbolTag.t list) =
-      fun (x252 : t) ->
+    let rec t_of_js : Ojs.t -> t = fun (x186 : Ojs.t) -> x186
+    and t_to_js : t -> Ojs.t = fun (x185 : Ojs.t) -> x185
+    let (get_value_set : t -> SymbolTag.t list) =
+      fun (x187 : t) ->
         Ojs.list_of_js SymbolTag.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x252) "valueSet")
-    let (set_valueSet : t -> SymbolTag.t list -> unit) =
-      fun (x254 : t) ->
-        fun (x255 : SymbolTag.t list) ->
-          Ojs.set_prop_ascii (t_to_js x254) "valueSet"
-            (Ojs.list_to_js SymbolTag.t_to_js x255)
+          (Ojs.get_prop_ascii (t_to_js x187) "valueSet")
+    let (set_value_set : t -> SymbolTag.t list -> unit) =
+      fun (x189 : t) ->
+        fun (x190 : SymbolTag.t list) ->
+          Ojs.set_prop_ascii (t_to_js x189) "valueSet"
+            (Ojs.list_to_js SymbolTag.t_to_js x190)
   end
 module DocumentFilter =
   struct
-    type t = _DocumentFilter
+    type t = AnonymousInterface9.t
     let rec t_of_js : Ojs.t -> t =
-      fun (x258 : Ojs.t) -> _DocumentFilter_of_js x258
+      fun (x193 : Ojs.t) -> AnonymousInterface9.t_of_js x193
     and t_to_js : t -> Ojs.t =
-      fun (x257 : _DocumentFilter) -> _DocumentFilter_to_js x257
+      fun (x192 : AnonymousInterface9.t) -> AnonymousInterface9.t_to_js x192
   end
 module DocumentFilter =
   struct
     let (is : value:any -> bool) =
-      fun ~value:(x259 : any) ->
+      fun ~value:(x194 : any) ->
         Ojs.bool_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "DocumentFilter") "is"
-             [|(any_to_js x259)|])
+             [|(any_to_js x194)|])
   end
 module DocumentSelector =
   struct
-    type t = _DocumentSelector
+    type t = DocumentFilter.t or_string list
     let rec t_of_js : Ojs.t -> t =
-      fun (x261 : Ojs.t) -> _DocumentSelector_of_js x261
+      fun (x198 : Ojs.t) ->
+        Ojs.list_of_js
+          (fun (x199 : Ojs.t) -> or_string_of_js DocumentFilter.t_of_js x199)
+          x198
     and t_to_js : t -> Ojs.t =
-      fun (x260 : _DocumentSelector) -> _DocumentSelector_to_js x260
+      fun (x195 : DocumentFilter.t or_string list) ->
+        Ojs.list_to_js
+          (fun (x196 : DocumentFilter.t or_string) ->
+             or_string_to_js DocumentFilter.t_to_js x196) x195
   end
 module DocumentSelector =
   struct
     let (is : value:any list or_null_or_undefined -> bool) =
-      fun ~value:(x262 : any list or_null_or_undefined) ->
+      fun ~value:(x201 : any list or_null_or_undefined) ->
         Ojs.bool_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "DocumentSelector") "is"
              [|(or_null_or_undefined_to_js
-                  (fun (x263 : any list) -> Ojs.list_to_js any_to_js x263)
-                  x262)|])
+                  (fun (x202 : any list) -> Ojs.list_to_js any_to_js x202)
+                  x201)|])
   end
 module Registration =
   struct
-    type t = _Registration
-    let rec t_of_js : Ojs.t -> t =
-      fun (x266 : Ojs.t) -> _Registration_of_js x266
-    and t_to_js : t -> Ojs.t =
-      fun (x265 : _Registration) -> _Registration_to_js x265
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x205 : Ojs.t) -> x205
+    and t_to_js : t -> Ojs.t = fun (x204 : Ojs.t) -> x204
     let (get_id : t -> string) =
-      fun (x267 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x267) "id")
+      fun (x206 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x206) "id")
     let (set_id : t -> string -> unit) =
-      fun (x268 : t) ->
-        fun (x269 : string) ->
-          Ojs.set_prop_ascii (t_to_js x268) "id" (Ojs.string_to_js x269)
+      fun (x207 : t) ->
+        fun (x208 : string) ->
+          Ojs.set_prop_ascii (t_to_js x207) "id" (Ojs.string_to_js x208)
     let (get_method : t -> string) =
-      fun (x270 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x270) "method")
+      fun (x209 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x209) "method")
     let (set_method : t -> string -> unit) =
-      fun (x271 : t) ->
-        fun (x272 : string) ->
-          Ojs.set_prop_ascii (t_to_js x271) "method" (Ojs.string_to_js x272)
-    let (get_registerOptions : t -> any) =
-      fun (x273 : t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js x273) "registerOptions")
-    let (set_registerOptions : t -> any -> unit) =
-      fun (x274 : t) ->
-        fun (x275 : any) ->
-          Ojs.set_prop_ascii (t_to_js x274) "registerOptions"
-            (any_to_js x275)
+      fun (x210 : t) ->
+        fun (x211 : string) ->
+          Ojs.set_prop_ascii (t_to_js x210) "method" (Ojs.string_to_js x211)
+    let (get_register_options : t -> any) =
+      fun (x212 : t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js x212) "registerOptions")
+    let (set_register_options : t -> any -> unit) =
+      fun (x213 : t) ->
+        fun (x214 : any) ->
+          Ojs.set_prop_ascii (t_to_js x213) "registerOptions"
+            (any_to_js x214)
   end
 module RegistrationParams =
   struct
-    type t = _RegistrationParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x277 : Ojs.t) -> _RegistrationParams_of_js x277
-    and t_to_js : t -> Ojs.t =
-      fun (x276 : _RegistrationParams) -> _RegistrationParams_to_js x276
-    let (get_registrations : t -> _Registration list) =
-      fun (x278 : t) ->
-        Ojs.list_of_js _Registration_of_js
-          (Ojs.get_prop_ascii (t_to_js x278) "registrations")
-    let (set_registrations : t -> _Registration list -> unit) =
-      fun (x280 : t) ->
-        fun (x281 : _Registration list) ->
-          Ojs.set_prop_ascii (t_to_js x280) "registrations"
-            (Ojs.list_to_js _Registration_to_js x281)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x216 : Ojs.t) -> x216
+    and t_to_js : t -> Ojs.t = fun (x215 : Ojs.t) -> x215
+    let (get_registrations : t -> Registration.t list) =
+      fun (x217 : t) ->
+        Ojs.list_of_js Registration.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x217) "registrations")
+    let (set_registrations : t -> Registration.t list -> unit) =
+      fun (x219 : t) ->
+        fun (x220 : Registration.t list) ->
+          Ojs.set_prop_ascii (t_to_js x219) "registrations"
+            (Ojs.list_to_js Registration.t_to_js x220)
   end
 module RegistrationRequest =
   struct
     let (type_ :
-      (_RegistrationParams, unit, never, unit, unit) ProtocolRequestType.t) =
-      ProtocolRequestType.t_of_js _RegistrationParams_of_js Ojs.unit_of_js
+      (RegistrationParams.t, unit, never, unit, unit) ProtocolRequestType.t)
+      =
+      ProtocolRequestType.t_of_js RegistrationParams.t_of_js Ojs.unit_of_js
         never_of_js Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "RegistrationRequest") "type")
   end
 module Unregistration =
   struct
-    type t = _Unregistration
-    let rec t_of_js : Ojs.t -> t =
-      fun (x289 : Ojs.t) -> _Unregistration_of_js x289
-    and t_to_js : t -> Ojs.t =
-      fun (x288 : _Unregistration) -> _Unregistration_to_js x288
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x228 : Ojs.t) -> x228
+    and t_to_js : t -> Ojs.t = fun (x227 : Ojs.t) -> x227
     let (get_id : t -> string) =
-      fun (x290 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x290) "id")
+      fun (x229 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x229) "id")
     let (set_id : t -> string -> unit) =
-      fun (x291 : t) ->
-        fun (x292 : string) ->
-          Ojs.set_prop_ascii (t_to_js x291) "id" (Ojs.string_to_js x292)
+      fun (x230 : t) ->
+        fun (x231 : string) ->
+          Ojs.set_prop_ascii (t_to_js x230) "id" (Ojs.string_to_js x231)
     let (get_method : t -> string) =
-      fun (x293 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x293) "method")
+      fun (x232 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x232) "method")
     let (set_method : t -> string -> unit) =
-      fun (x294 : t) ->
-        fun (x295 : string) ->
-          Ojs.set_prop_ascii (t_to_js x294) "method" (Ojs.string_to_js x295)
+      fun (x233 : t) ->
+        fun (x234 : string) ->
+          Ojs.set_prop_ascii (t_to_js x233) "method" (Ojs.string_to_js x234)
   end
 module UnregistrationParams =
   struct
-    type t = _UnregistrationParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x297 : Ojs.t) -> _UnregistrationParams_of_js x297
-    and t_to_js : t -> Ojs.t =
-      fun (x296 : _UnregistrationParams) -> _UnregistrationParams_to_js x296
-    let (get_unregisterations : t -> _Unregistration list) =
-      fun (x298 : t) ->
-        Ojs.list_of_js _Unregistration_of_js
-          (Ojs.get_prop_ascii (t_to_js x298) "unregisterations")
-    let (set_unregisterations : t -> _Unregistration list -> unit) =
-      fun (x300 : t) ->
-        fun (x301 : _Unregistration list) ->
-          Ojs.set_prop_ascii (t_to_js x300) "unregisterations"
-            (Ojs.list_to_js _Unregistration_to_js x301)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x236 : Ojs.t) -> x236
+    and t_to_js : t -> Ojs.t = fun (x235 : Ojs.t) -> x235
+    let (get_unregisterations : t -> Unregistration.t list) =
+      fun (x237 : t) ->
+        Ojs.list_of_js Unregistration.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x237) "unregisterations")
+    let (set_unregisterations : t -> Unregistration.t list -> unit) =
+      fun (x239 : t) ->
+        fun (x240 : Unregistration.t list) ->
+          Ojs.set_prop_ascii (t_to_js x239) "unregisterations"
+            (Ojs.list_to_js Unregistration.t_to_js x240)
   end
 module UnregistrationRequest =
   struct
     let (type_ :
-      (_UnregistrationParams, unit, never, unit, unit) ProtocolRequestType.t)
+      (UnregistrationParams.t, unit, never, unit, unit) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _UnregistrationParams_of_js Ojs.unit_of_js
+      ProtocolRequestType.t_of_js UnregistrationParams.t_of_js Ojs.unit_of_js
         never_of_js Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "UnregistrationRequest") "type")
   end
 module WorkDoneProgressParams =
   struct
-    type t = _WorkDoneProgressParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x309 : Ojs.t) -> _WorkDoneProgressParams_of_js x309
-    and t_to_js : t -> Ojs.t =
-      fun (x308 : _WorkDoneProgressParams) ->
-        _WorkDoneProgressParams_to_js x308
-    let (get_workDoneToken : t -> ProgressToken.t) =
-      fun (x310 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x248 : Ojs.t) -> x248
+    and t_to_js : t -> Ojs.t = fun (x247 : Ojs.t) -> x247
+    let (get_work_done_token : t -> ProgressToken.t) =
+      fun (x249 : t) ->
         ProgressToken.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x310) "workDoneToken")
-    let (set_workDoneToken : t -> ProgressToken.t -> unit) =
-      fun (x311 : t) ->
-        fun (x312 : ProgressToken.t) ->
-          Ojs.set_prop_ascii (t_to_js x311) "workDoneToken"
-            (ProgressToken.t_to_js x312)
+          (Ojs.get_prop_ascii (t_to_js x249) "workDoneToken")
+    let (set_work_done_token : t -> ProgressToken.t -> unit) =
+      fun (x250 : t) ->
+        fun (x251 : ProgressToken.t) ->
+          Ojs.set_prop_ascii (t_to_js x250) "workDoneToken"
+            (ProgressToken.t_to_js x251)
   end
 module PartialResultParams =
   struct
-    type t = _PartialResultParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x314 : Ojs.t) -> _PartialResultParams_of_js x314
-    and t_to_js : t -> Ojs.t =
-      fun (x313 : _PartialResultParams) -> _PartialResultParams_to_js x313
-    let (get_partialResultToken : t -> ProgressToken.t) =
-      fun (x315 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x253 : Ojs.t) -> x253
+    and t_to_js : t -> Ojs.t = fun (x252 : Ojs.t) -> x252
+    let (get_partial_result_token : t -> ProgressToken.t) =
+      fun (x254 : t) ->
         ProgressToken.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x315) "partialResultToken")
-    let (set_partialResultToken : t -> ProgressToken.t -> unit) =
-      fun (x316 : t) ->
-        fun (x317 : ProgressToken.t) ->
-          Ojs.set_prop_ascii (t_to_js x316) "partialResultToken"
-            (ProgressToken.t_to_js x317)
+          (Ojs.get_prop_ascii (t_to_js x254) "partialResultToken")
+    let (set_partial_result_token : t -> ProgressToken.t -> unit) =
+      fun (x255 : t) ->
+        fun (x256 : ProgressToken.t) ->
+          Ojs.set_prop_ascii (t_to_js x255) "partialResultToken"
+            (ProgressToken.t_to_js x256)
   end
 module TextDocumentPositionParams =
   struct
-    type t = _TextDocumentPositionParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x319 : Ojs.t) -> _TextDocumentPositionParams_of_js x319
-    and t_to_js : t -> Ojs.t =
-      fun (x318 : _TextDocumentPositionParams) ->
-        _TextDocumentPositionParams_to_js x318
-    let (get_textDocument : t -> TextDocumentIdentifier.t) =
-      fun (x320 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x258 : Ojs.t) -> x258
+    and t_to_js : t -> Ojs.t = fun (x257 : Ojs.t) -> x257
+    let (get_text_document : t -> TextDocumentIdentifier.t) =
+      fun (x259 : t) ->
         TextDocumentIdentifier.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x320) "textDocument")
-    let (set_textDocument : t -> TextDocumentIdentifier.t -> unit) =
-      fun (x321 : t) ->
-        fun (x322 : TextDocumentIdentifier.t) ->
-          Ojs.set_prop_ascii (t_to_js x321) "textDocument"
-            (TextDocumentIdentifier.t_to_js x322)
+          (Ojs.get_prop_ascii (t_to_js x259) "textDocument")
+    let (set_text_document : t -> TextDocumentIdentifier.t -> unit) =
+      fun (x260 : t) ->
+        fun (x261 : TextDocumentIdentifier.t) ->
+          Ojs.set_prop_ascii (t_to_js x260) "textDocument"
+            (TextDocumentIdentifier.t_to_js x261)
     let (get_position : t -> Position.t) =
-      fun (x323 : t) ->
-        Position.t_of_js (Ojs.get_prop_ascii (t_to_js x323) "position")
+      fun (x262 : t) ->
+        Position.t_of_js (Ojs.get_prop_ascii (t_to_js x262) "position")
     let (set_position : t -> Position.t -> unit) =
-      fun (x324 : t) ->
-        fun (x325 : Position.t) ->
-          Ojs.set_prop_ascii (t_to_js x324) "position"
-            (Position.t_to_js x325)
+      fun (x263 : t) ->
+        fun (x264 : Position.t) ->
+          Ojs.set_prop_ascii (t_to_js x263) "position"
+            (Position.t_to_js x264)
   end
 module ResourceOperationKind =
   struct
-    type t = _ResourceOperationKind
+    type t = [ `L_s4_create  | `L_s5_delete  | `L_s9_rename ]
     let rec t_of_js : Ojs.t -> t =
-      fun (x327 : Ojs.t) -> _ResourceOperationKind_of_js x327
+      fun (x266 : Ojs.t) ->
+        let x267 = x266 in
+        match Ojs.string_of_js x267 with
+        | "create" -> `L_s4_create
+        | "delete" -> `L_s5_delete
+        | "rename" -> `L_s9_rename
+        | _ -> assert false
     and t_to_js : t -> Ojs.t =
-      fun (x326 : _ResourceOperationKind) ->
-        _ResourceOperationKind_to_js x326
+      fun (x265 : [ `L_s4_create  | `L_s5_delete  | `L_s9_rename ]) ->
+        match x265 with
+        | `L_s4_create -> Ojs.string_to_js "create"
+        | `L_s5_delete -> Ojs.string_to_js "delete"
+        | `L_s9_rename -> Ojs.string_to_js "rename"
   end
 module ResourceOperationKind =
   struct
-    let (create_ : _ResourceOperationKind) =
-      _ResourceOperationKind_of_js
+    let (create_ : ResourceOperationKind.t) =
+      ResourceOperationKind.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "ResourceOperationKind") "Create")
-    let (rename : _ResourceOperationKind) =
-      _ResourceOperationKind_of_js
+    let (rename : ResourceOperationKind.t) =
+      ResourceOperationKind.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "ResourceOperationKind") "Rename")
-    let (delete : _ResourceOperationKind) =
-      _ResourceOperationKind_of_js
+    let (delete : ResourceOperationKind.t) =
+      ResourceOperationKind.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "ResourceOperationKind") "Delete")
   end
 module FailureHandlingKind =
   struct
-    type t = _FailureHandlingKind
+    type t =
+      [ `L_s0_abort  | `L_s31_textOnlyTransactional  | `L_s32_transactional 
+      | `L_s33_undo ]
     let rec t_of_js : Ojs.t -> t =
-      fun (x329 : Ojs.t) -> _FailureHandlingKind_of_js x329
+      fun (x269 : Ojs.t) ->
+        let x270 = x269 in
+        match Ojs.string_of_js x270 with
+        | "abort" -> `L_s0_abort
+        | "textOnlyTransactional" -> `L_s31_textOnlyTransactional
+        | "transactional" -> `L_s32_transactional
+        | "undo" -> `L_s33_undo
+        | _ -> assert false
     and t_to_js : t -> Ojs.t =
-      fun (x328 : _FailureHandlingKind) -> _FailureHandlingKind_to_js x328
+      fun
+        (x268 :
+          [ `L_s0_abort  | `L_s31_textOnlyTransactional 
+          | `L_s32_transactional  | `L_s33_undo ])
+        ->
+        match x268 with
+        | `L_s0_abort -> Ojs.string_to_js "abort"
+        | `L_s31_textOnlyTransactional ->
+            Ojs.string_to_js "textOnlyTransactional"
+        | `L_s32_transactional -> Ojs.string_to_js "transactional"
+        | `L_s33_undo -> Ojs.string_to_js "undo"
   end
 module FailureHandlingKind =
   struct
-    let (abort : _FailureHandlingKind) =
-      _FailureHandlingKind_of_js
+    let (abort : FailureHandlingKind.t) =
+      FailureHandlingKind.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "FailureHandlingKind") "Abort")
-    let (transactional : _FailureHandlingKind) =
-      _FailureHandlingKind_of_js
+    let (transactional : FailureHandlingKind.t) =
+      FailureHandlingKind.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "FailureHandlingKind")
            "Transactional")
-    let (textOnlyTransactional : _FailureHandlingKind) =
-      _FailureHandlingKind_of_js
+    let (text_only_transactional : FailureHandlingKind.t) =
+      FailureHandlingKind.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "FailureHandlingKind")
            "TextOnlyTransactional")
-    let (undo : _FailureHandlingKind) =
-      _FailureHandlingKind_of_js
+    let (undo : FailureHandlingKind.t) =
+      FailureHandlingKind.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "FailureHandlingKind") "Undo")
   end
 module WorkspaceClientCapabilities =
   struct
-    type t = _WorkspaceClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x331 : Ojs.t) -> _WorkspaceClientCapabilities_of_js x331
-    and t_to_js : t -> Ojs.t =
-      fun (x330 : _WorkspaceClientCapabilities) ->
-        _WorkspaceClientCapabilities_to_js x330
-    let (get_applyEdit : t -> bool) =
-      fun (x332 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x332) "applyEdit")
-    let (set_applyEdit : t -> bool -> unit) =
-      fun (x333 : t) ->
-        fun (x334 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x333) "applyEdit" (Ojs.bool_to_js x334)
-    let (get_workspaceEdit : t -> _WorkspaceEditClientCapabilities) =
-      fun (x335 : t) ->
-        _WorkspaceEditClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x335) "workspaceEdit")
-    let (set_workspaceEdit : t -> _WorkspaceEditClientCapabilities -> unit) =
-      fun (x336 : t) ->
-        fun (x337 : _WorkspaceEditClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x336) "workspaceEdit"
-            (_WorkspaceEditClientCapabilities_to_js x337)
-    let (get_didChangeConfiguration :
-      t -> _DidChangeConfigurationClientCapabilities) =
-      fun (x338 : t) ->
-        _DidChangeConfigurationClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x338) "didChangeConfiguration")
-    let (set_didChangeConfiguration :
-      t -> _DidChangeConfigurationClientCapabilities -> unit) =
-      fun (x339 : t) ->
-        fun (x340 : _DidChangeConfigurationClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x339) "didChangeConfiguration"
-            (_DidChangeConfigurationClientCapabilities_to_js x340)
-    let (get_didChangeWatchedFiles :
-      t -> _DidChangeWatchedFilesClientCapabilities) =
-      fun (x341 : t) ->
-        _DidChangeWatchedFilesClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x341) "didChangeWatchedFiles")
-    let (set_didChangeWatchedFiles :
-      t -> _DidChangeWatchedFilesClientCapabilities -> unit) =
-      fun (x342 : t) ->
-        fun (x343 : _DidChangeWatchedFilesClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x342) "didChangeWatchedFiles"
-            (_DidChangeWatchedFilesClientCapabilities_to_js x343)
-    let (get_symbol : t -> _WorkspaceSymbolClientCapabilities) =
-      fun (x344 : t) ->
-        _WorkspaceSymbolClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x344) "symbol")
-    let (set_symbol : t -> _WorkspaceSymbolClientCapabilities -> unit) =
-      fun (x345 : t) ->
-        fun (x346 : _WorkspaceSymbolClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x345) "symbol"
-            (_WorkspaceSymbolClientCapabilities_to_js x346)
-    let (get_executeCommand : t -> _ExecuteCommandClientCapabilities) =
-      fun (x347 : t) ->
-        _ExecuteCommandClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x347) "executeCommand")
-    let (set_executeCommand : t -> _ExecuteCommandClientCapabilities -> unit)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x272 : Ojs.t) -> x272
+    and t_to_js : t -> Ojs.t = fun (x271 : Ojs.t) -> x271
+    let (get_apply_edit : t -> bool) =
+      fun (x273 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x273) "applyEdit")
+    let (set_apply_edit : t -> bool -> unit) =
+      fun (x274 : t) ->
+        fun (x275 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x274) "applyEdit" (Ojs.bool_to_js x275)
+    let (get_workspace_edit : t -> WorkspaceEditClientCapabilities.t) =
+      fun (x276 : t) ->
+        WorkspaceEditClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x276) "workspaceEdit")
+    let (set_workspace_edit : t -> WorkspaceEditClientCapabilities.t -> unit)
       =
-      fun (x348 : t) ->
-        fun (x349 : _ExecuteCommandClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x348) "executeCommand"
-            (_ExecuteCommandClientCapabilities_to_js x349)
-    let (get_semanticTokens :
+      fun (x277 : t) ->
+        fun (x278 : WorkspaceEditClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x277) "workspaceEdit"
+            (WorkspaceEditClientCapabilities.t_to_js x278)
+    let (get_did_change_configuration :
+      t -> DidChangeConfigurationClientCapabilities.t) =
+      fun (x279 : t) ->
+        DidChangeConfigurationClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x279) "didChangeConfiguration")
+    let (set_did_change_configuration :
+      t -> DidChangeConfigurationClientCapabilities.t -> unit) =
+      fun (x280 : t) ->
+        fun (x281 : DidChangeConfigurationClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x280) "didChangeConfiguration"
+            (DidChangeConfigurationClientCapabilities.t_to_js x281)
+    let (get_did_change_watched_files :
+      t -> DidChangeWatchedFilesClientCapabilities.t) =
+      fun (x282 : t) ->
+        DidChangeWatchedFilesClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x282) "didChangeWatchedFiles")
+    let (set_did_change_watched_files :
+      t -> DidChangeWatchedFilesClientCapabilities.t -> unit) =
+      fun (x283 : t) ->
+        fun (x284 : DidChangeWatchedFilesClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x283) "didChangeWatchedFiles"
+            (DidChangeWatchedFilesClientCapabilities.t_to_js x284)
+    let (get_symbol : t -> WorkspaceSymbolClientCapabilities.t) =
+      fun (x285 : t) ->
+        WorkspaceSymbolClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x285) "symbol")
+    let (set_symbol : t -> WorkspaceSymbolClientCapabilities.t -> unit) =
+      fun (x286 : t) ->
+        fun (x287 : WorkspaceSymbolClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x286) "symbol"
+            (WorkspaceSymbolClientCapabilities.t_to_js x287)
+    let (get_execute_command : t -> ExecuteCommandClientCapabilities.t) =
+      fun (x288 : t) ->
+        ExecuteCommandClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x288) "executeCommand")
+    let (set_execute_command :
+      t -> ExecuteCommandClientCapabilities.t -> unit) =
+      fun (x289 : t) ->
+        fun (x290 : ExecuteCommandClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x289) "executeCommand"
+            (ExecuteCommandClientCapabilities.t_to_js x290)
+    let (get_semantic_tokens :
       t -> SemanticTokensWorkspaceClientCapabilities.t) =
-      fun (x350 : t) ->
+      fun (x291 : t) ->
         SemanticTokensWorkspaceClientCapabilities.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x350) "semanticTokens")
-    let (set_semanticTokens :
+          (Ojs.get_prop_ascii (t_to_js x291) "semanticTokens")
+    let (set_semantic_tokens :
       t -> SemanticTokensWorkspaceClientCapabilities.t -> unit) =
-      fun (x351 : t) ->
-        fun (x352 : SemanticTokensWorkspaceClientCapabilities.t) ->
-          Ojs.set_prop_ascii (t_to_js x351) "semanticTokens"
-            (SemanticTokensWorkspaceClientCapabilities.t_to_js x352)
-    let (get_codeLens : t -> _CodeLensWorkspaceClientCapabilities) =
-      fun (x353 : t) ->
-        _CodeLensWorkspaceClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x353) "codeLens")
-    let (set_codeLens : t -> _CodeLensWorkspaceClientCapabilities -> unit) =
-      fun (x354 : t) ->
-        fun (x355 : _CodeLensWorkspaceClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x354) "codeLens"
-            (_CodeLensWorkspaceClientCapabilities_to_js x355)
-    let (get_fileOperations : t -> FileOperationClientCapabilities.t) =
-      fun (x356 : t) ->
-        FileOperationClientCapabilities.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x356) "fileOperations")
-    let (set_fileOperations : t -> FileOperationClientCapabilities.t -> unit)
+      fun (x292 : t) ->
+        fun (x293 : SemanticTokensWorkspaceClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x292) "semanticTokens"
+            (SemanticTokensWorkspaceClientCapabilities.t_to_js x293)
+    let (get_code_lens : t -> CodeLensWorkspaceClientCapabilities.t) =
+      fun (x294 : t) ->
+        CodeLensWorkspaceClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x294) "codeLens")
+    let (set_code_lens : t -> CodeLensWorkspaceClientCapabilities.t -> unit)
       =
-      fun (x357 : t) ->
-        fun (x358 : FileOperationClientCapabilities.t) ->
-          Ojs.set_prop_ascii (t_to_js x357) "fileOperations"
-            (FileOperationClientCapabilities.t_to_js x358)
+      fun (x295 : t) ->
+        fun (x296 : CodeLensWorkspaceClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x295) "codeLens"
+            (CodeLensWorkspaceClientCapabilities.t_to_js x296)
+    let (get_file_operations : t -> FileOperationClientCapabilities.t) =
+      fun (x297 : t) ->
+        FileOperationClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x297) "fileOperations")
+    let (set_file_operations :
+      t -> FileOperationClientCapabilities.t -> unit) =
+      fun (x298 : t) ->
+        fun (x299 : FileOperationClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x298) "fileOperations"
+            (FileOperationClientCapabilities.t_to_js x299)
   end
 module TextDocumentClientCapabilities =
   struct
-    type t = _TextDocumentClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x360 : Ojs.t) -> _TextDocumentClientCapabilities_of_js x360
-    and t_to_js : t -> Ojs.t =
-      fun (x359 : _TextDocumentClientCapabilities) ->
-        _TextDocumentClientCapabilities_to_js x359
-    let (get_synchronization : t -> _TextDocumentSyncClientCapabilities) =
-      fun (x361 : t) ->
-        _TextDocumentSyncClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x361) "synchronization")
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x301 : Ojs.t) -> x301
+    and t_to_js : t -> Ojs.t = fun (x300 : Ojs.t) -> x300
+    let (get_synchronization : t -> TextDocumentSyncClientCapabilities.t) =
+      fun (x302 : t) ->
+        TextDocumentSyncClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x302) "synchronization")
     let (set_synchronization :
-      t -> _TextDocumentSyncClientCapabilities -> unit) =
-      fun (x362 : t) ->
-        fun (x363 : _TextDocumentSyncClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x362) "synchronization"
-            (_TextDocumentSyncClientCapabilities_to_js x363)
-    let (get_completion : t -> _CompletionClientCapabilities) =
-      fun (x364 : t) ->
-        _CompletionClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x364) "completion")
-    let (set_completion : t -> _CompletionClientCapabilities -> unit) =
-      fun (x365 : t) ->
-        fun (x366 : _CompletionClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x365) "completion"
-            (_CompletionClientCapabilities_to_js x366)
-    let (get_hover : t -> _HoverClientCapabilities) =
-      fun (x367 : t) ->
-        _HoverClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x367) "hover")
-    let (set_hover : t -> _HoverClientCapabilities -> unit) =
-      fun (x368 : t) ->
-        fun (x369 : _HoverClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x368) "hover"
-            (_HoverClientCapabilities_to_js x369)
-    let (get_signatureHelp : t -> _SignatureHelpClientCapabilities) =
-      fun (x370 : t) ->
-        _SignatureHelpClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x370) "signatureHelp")
-    let (set_signatureHelp : t -> _SignatureHelpClientCapabilities -> unit) =
-      fun (x371 : t) ->
-        fun (x372 : _SignatureHelpClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x371) "signatureHelp"
-            (_SignatureHelpClientCapabilities_to_js x372)
+      t -> TextDocumentSyncClientCapabilities.t -> unit) =
+      fun (x303 : t) ->
+        fun (x304 : TextDocumentSyncClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x303) "synchronization"
+            (TextDocumentSyncClientCapabilities.t_to_js x304)
+    let (get_completion : t -> CompletionClientCapabilities.t) =
+      fun (x305 : t) ->
+        CompletionClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x305) "completion")
+    let (set_completion : t -> CompletionClientCapabilities.t -> unit) =
+      fun (x306 : t) ->
+        fun (x307 : CompletionClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x306) "completion"
+            (CompletionClientCapabilities.t_to_js x307)
+    let (get_hover : t -> HoverClientCapabilities.t) =
+      fun (x308 : t) ->
+        HoverClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x308) "hover")
+    let (set_hover : t -> HoverClientCapabilities.t -> unit) =
+      fun (x309 : t) ->
+        fun (x310 : HoverClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x309) "hover"
+            (HoverClientCapabilities.t_to_js x310)
+    let (get_signature_help : t -> SignatureHelpClientCapabilities.t) =
+      fun (x311 : t) ->
+        SignatureHelpClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x311) "signatureHelp")
+    let (set_signature_help : t -> SignatureHelpClientCapabilities.t -> unit)
+      =
+      fun (x312 : t) ->
+        fun (x313 : SignatureHelpClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x312) "signatureHelp"
+            (SignatureHelpClientCapabilities.t_to_js x313)
     let (get_declaration : t -> DeclarationClientCapabilities.t) =
-      fun (x373 : t) ->
+      fun (x314 : t) ->
         DeclarationClientCapabilities.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x373) "declaration")
+          (Ojs.get_prop_ascii (t_to_js x314) "declaration")
     let (set_declaration : t -> DeclarationClientCapabilities.t -> unit) =
-      fun (x374 : t) ->
-        fun (x375 : DeclarationClientCapabilities.t) ->
-          Ojs.set_prop_ascii (t_to_js x374) "declaration"
-            (DeclarationClientCapabilities.t_to_js x375)
-    let (get_definition : t -> _DefinitionClientCapabilities) =
-      fun (x376 : t) ->
-        _DefinitionClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x376) "definition")
-    let (set_definition : t -> _DefinitionClientCapabilities -> unit) =
-      fun (x377 : t) ->
-        fun (x378 : _DefinitionClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x377) "definition"
-            (_DefinitionClientCapabilities_to_js x378)
-    let (get_typeDefinition : t -> TypeDefinitionClientCapabilities.t) =
-      fun (x379 : t) ->
+      fun (x315 : t) ->
+        fun (x316 : DeclarationClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x315) "declaration"
+            (DeclarationClientCapabilities.t_to_js x316)
+    let (get_definition : t -> DefinitionClientCapabilities.t) =
+      fun (x317 : t) ->
+        DefinitionClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x317) "definition")
+    let (set_definition : t -> DefinitionClientCapabilities.t -> unit) =
+      fun (x318 : t) ->
+        fun (x319 : DefinitionClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x318) "definition"
+            (DefinitionClientCapabilities.t_to_js x319)
+    let (get_type_definition : t -> TypeDefinitionClientCapabilities.t) =
+      fun (x320 : t) ->
         TypeDefinitionClientCapabilities.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x379) "typeDefinition")
-    let (set_typeDefinition :
+          (Ojs.get_prop_ascii (t_to_js x320) "typeDefinition")
+    let (set_type_definition :
       t -> TypeDefinitionClientCapabilities.t -> unit) =
-      fun (x380 : t) ->
-        fun (x381 : TypeDefinitionClientCapabilities.t) ->
-          Ojs.set_prop_ascii (t_to_js x380) "typeDefinition"
-            (TypeDefinitionClientCapabilities.t_to_js x381)
+      fun (x321 : t) ->
+        fun (x322 : TypeDefinitionClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x321) "typeDefinition"
+            (TypeDefinitionClientCapabilities.t_to_js x322)
     let (get_implementation : t -> ImplementationClientCapabilities.t) =
-      fun (x382 : t) ->
+      fun (x323 : t) ->
         ImplementationClientCapabilities.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x382) "implementation")
+          (Ojs.get_prop_ascii (t_to_js x323) "implementation")
     let (set_implementation :
       t -> ImplementationClientCapabilities.t -> unit) =
-      fun (x383 : t) ->
-        fun (x384 : ImplementationClientCapabilities.t) ->
-          Ojs.set_prop_ascii (t_to_js x383) "implementation"
-            (ImplementationClientCapabilities.t_to_js x384)
-    let (get_references : t -> _ReferenceClientCapabilities) =
-      fun (x385 : t) ->
-        _ReferenceClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x385) "references")
-    let (set_references : t -> _ReferenceClientCapabilities -> unit) =
-      fun (x386 : t) ->
-        fun (x387 : _ReferenceClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x386) "references"
-            (_ReferenceClientCapabilities_to_js x387)
-    let (get_documentHighlight : t -> _DocumentHighlightClientCapabilities) =
-      fun (x388 : t) ->
-        _DocumentHighlightClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x388) "documentHighlight")
-    let (set_documentHighlight :
-      t -> _DocumentHighlightClientCapabilities -> unit) =
-      fun (x389 : t) ->
-        fun (x390 : _DocumentHighlightClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x389) "documentHighlight"
-            (_DocumentHighlightClientCapabilities_to_js x390)
-    let (get_documentSymbol : t -> _DocumentSymbolClientCapabilities) =
-      fun (x391 : t) ->
-        _DocumentSymbolClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x391) "documentSymbol")
-    let (set_documentSymbol : t -> _DocumentSymbolClientCapabilities -> unit)
+      fun (x324 : t) ->
+        fun (x325 : ImplementationClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x324) "implementation"
+            (ImplementationClientCapabilities.t_to_js x325)
+    let (get_references : t -> ReferenceClientCapabilities.t) =
+      fun (x326 : t) ->
+        ReferenceClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x326) "references")
+    let (set_references : t -> ReferenceClientCapabilities.t -> unit) =
+      fun (x327 : t) ->
+        fun (x328 : ReferenceClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x327) "references"
+            (ReferenceClientCapabilities.t_to_js x328)
+    let (get_document_highlight : t -> DocumentHighlightClientCapabilities.t)
       =
-      fun (x392 : t) ->
-        fun (x393 : _DocumentSymbolClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x392) "documentSymbol"
-            (_DocumentSymbolClientCapabilities_to_js x393)
-    let (get_codeAction : t -> _CodeActionClientCapabilities) =
-      fun (x394 : t) ->
-        _CodeActionClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x394) "codeAction")
-    let (set_codeAction : t -> _CodeActionClientCapabilities -> unit) =
-      fun (x395 : t) ->
-        fun (x396 : _CodeActionClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x395) "codeAction"
-            (_CodeActionClientCapabilities_to_js x396)
-    let (get_codeLens : t -> _CodeLensClientCapabilities) =
-      fun (x397 : t) ->
-        _CodeLensClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x397) "codeLens")
-    let (set_codeLens : t -> _CodeLensClientCapabilities -> unit) =
-      fun (x398 : t) ->
-        fun (x399 : _CodeLensClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x398) "codeLens"
-            (_CodeLensClientCapabilities_to_js x399)
-    let (get_documentLink : t -> _DocumentLinkClientCapabilities) =
-      fun (x400 : t) ->
-        _DocumentLinkClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x400) "documentLink")
-    let (set_documentLink : t -> _DocumentLinkClientCapabilities -> unit) =
-      fun (x401 : t) ->
-        fun (x402 : _DocumentLinkClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x401) "documentLink"
-            (_DocumentLinkClientCapabilities_to_js x402)
-    let (get_colorProvider : t -> DocumentColorClientCapabilities.t) =
-      fun (x403 : t) ->
+      fun (x329 : t) ->
+        DocumentHighlightClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x329) "documentHighlight")
+    let (set_document_highlight :
+      t -> DocumentHighlightClientCapabilities.t -> unit) =
+      fun (x330 : t) ->
+        fun (x331 : DocumentHighlightClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x330) "documentHighlight"
+            (DocumentHighlightClientCapabilities.t_to_js x331)
+    let (get_document_symbol : t -> DocumentSymbolClientCapabilities.t) =
+      fun (x332 : t) ->
+        DocumentSymbolClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x332) "documentSymbol")
+    let (set_document_symbol :
+      t -> DocumentSymbolClientCapabilities.t -> unit) =
+      fun (x333 : t) ->
+        fun (x334 : DocumentSymbolClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x333) "documentSymbol"
+            (DocumentSymbolClientCapabilities.t_to_js x334)
+    let (get_code_action : t -> CodeActionClientCapabilities.t) =
+      fun (x335 : t) ->
+        CodeActionClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x335) "codeAction")
+    let (set_code_action : t -> CodeActionClientCapabilities.t -> unit) =
+      fun (x336 : t) ->
+        fun (x337 : CodeActionClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x336) "codeAction"
+            (CodeActionClientCapabilities.t_to_js x337)
+    let (get_code_lens : t -> CodeLensClientCapabilities.t) =
+      fun (x338 : t) ->
+        CodeLensClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x338) "codeLens")
+    let (set_code_lens : t -> CodeLensClientCapabilities.t -> unit) =
+      fun (x339 : t) ->
+        fun (x340 : CodeLensClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x339) "codeLens"
+            (CodeLensClientCapabilities.t_to_js x340)
+    let (get_document_link : t -> DocumentLinkClientCapabilities.t) =
+      fun (x341 : t) ->
+        DocumentLinkClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x341) "documentLink")
+    let (set_document_link : t -> DocumentLinkClientCapabilities.t -> unit) =
+      fun (x342 : t) ->
+        fun (x343 : DocumentLinkClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x342) "documentLink"
+            (DocumentLinkClientCapabilities.t_to_js x343)
+    let (get_color_provider : t -> DocumentColorClientCapabilities.t) =
+      fun (x344 : t) ->
         DocumentColorClientCapabilities.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x403) "colorProvider")
-    let (set_colorProvider : t -> DocumentColorClientCapabilities.t -> unit)
+          (Ojs.get_prop_ascii (t_to_js x344) "colorProvider")
+    let (set_color_provider : t -> DocumentColorClientCapabilities.t -> unit)
       =
-      fun (x404 : t) ->
-        fun (x405 : DocumentColorClientCapabilities.t) ->
-          Ojs.set_prop_ascii (t_to_js x404) "colorProvider"
-            (DocumentColorClientCapabilities.t_to_js x405)
-    let (get_formatting : t -> _DocumentFormattingClientCapabilities) =
-      fun (x406 : t) ->
-        _DocumentFormattingClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x406) "formatting")
-    let (set_formatting : t -> _DocumentFormattingClientCapabilities -> unit)
-      =
-      fun (x407 : t) ->
-        fun (x408 : _DocumentFormattingClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x407) "formatting"
-            (_DocumentFormattingClientCapabilities_to_js x408)
-    let (get_rangeFormatting :
-      t -> _DocumentRangeFormattingClientCapabilities) =
-      fun (x409 : t) ->
-        _DocumentRangeFormattingClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x409) "rangeFormatting")
-    let (set_rangeFormatting :
-      t -> _DocumentRangeFormattingClientCapabilities -> unit) =
-      fun (x410 : t) ->
-        fun (x411 : _DocumentRangeFormattingClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x410) "rangeFormatting"
-            (_DocumentRangeFormattingClientCapabilities_to_js x411)
-    let (get_onTypeFormatting :
-      t -> _DocumentOnTypeFormattingClientCapabilities) =
-      fun (x412 : t) ->
-        _DocumentOnTypeFormattingClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x412) "onTypeFormatting")
-    let (set_onTypeFormatting :
-      t -> _DocumentOnTypeFormattingClientCapabilities -> unit) =
-      fun (x413 : t) ->
-        fun (x414 : _DocumentOnTypeFormattingClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x413) "onTypeFormatting"
-            (_DocumentOnTypeFormattingClientCapabilities_to_js x414)
-    let (get_rename : t -> _RenameClientCapabilities) =
-      fun (x415 : t) ->
-        _RenameClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x415) "rename")
-    let (set_rename : t -> _RenameClientCapabilities -> unit) =
-      fun (x416 : t) ->
-        fun (x417 : _RenameClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x416) "rename"
-            (_RenameClientCapabilities_to_js x417)
-    let (get_foldingRange : t -> FoldingRangeClientCapabilities.t) =
-      fun (x418 : t) ->
+      fun (x345 : t) ->
+        fun (x346 : DocumentColorClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x345) "colorProvider"
+            (DocumentColorClientCapabilities.t_to_js x346)
+    let (get_formatting : t -> DocumentFormattingClientCapabilities.t) =
+      fun (x347 : t) ->
+        DocumentFormattingClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x347) "formatting")
+    let (set_formatting :
+      t -> DocumentFormattingClientCapabilities.t -> unit) =
+      fun (x348 : t) ->
+        fun (x349 : DocumentFormattingClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x348) "formatting"
+            (DocumentFormattingClientCapabilities.t_to_js x349)
+    let (get_range_formatting :
+      t -> DocumentRangeFormattingClientCapabilities.t) =
+      fun (x350 : t) ->
+        DocumentRangeFormattingClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x350) "rangeFormatting")
+    let (set_range_formatting :
+      t -> DocumentRangeFormattingClientCapabilities.t -> unit) =
+      fun (x351 : t) ->
+        fun (x352 : DocumentRangeFormattingClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x351) "rangeFormatting"
+            (DocumentRangeFormattingClientCapabilities.t_to_js x352)
+    let (get_on_type_formatting :
+      t -> DocumentOnTypeFormattingClientCapabilities.t) =
+      fun (x353 : t) ->
+        DocumentOnTypeFormattingClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x353) "onTypeFormatting")
+    let (set_on_type_formatting :
+      t -> DocumentOnTypeFormattingClientCapabilities.t -> unit) =
+      fun (x354 : t) ->
+        fun (x355 : DocumentOnTypeFormattingClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x354) "onTypeFormatting"
+            (DocumentOnTypeFormattingClientCapabilities.t_to_js x355)
+    let (get_rename : t -> RenameClientCapabilities.t) =
+      fun (x356 : t) ->
+        RenameClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x356) "rename")
+    let (set_rename : t -> RenameClientCapabilities.t -> unit) =
+      fun (x357 : t) ->
+        fun (x358 : RenameClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x357) "rename"
+            (RenameClientCapabilities.t_to_js x358)
+    let (get_folding_range : t -> FoldingRangeClientCapabilities.t) =
+      fun (x359 : t) ->
         FoldingRangeClientCapabilities.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x418) "foldingRange")
-    let (set_foldingRange : t -> FoldingRangeClientCapabilities.t -> unit) =
-      fun (x419 : t) ->
-        fun (x420 : FoldingRangeClientCapabilities.t) ->
-          Ojs.set_prop_ascii (t_to_js x419) "foldingRange"
-            (FoldingRangeClientCapabilities.t_to_js x420)
-    let (get_selectionRange : t -> SelectionRangeClientCapabilities.t) =
-      fun (x421 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x359) "foldingRange")
+    let (set_folding_range : t -> FoldingRangeClientCapabilities.t -> unit) =
+      fun (x360 : t) ->
+        fun (x361 : FoldingRangeClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x360) "foldingRange"
+            (FoldingRangeClientCapabilities.t_to_js x361)
+    let (get_selection_range : t -> SelectionRangeClientCapabilities.t) =
+      fun (x362 : t) ->
         SelectionRangeClientCapabilities.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x421) "selectionRange")
-    let (set_selectionRange :
+          (Ojs.get_prop_ascii (t_to_js x362) "selectionRange")
+    let (set_selection_range :
       t -> SelectionRangeClientCapabilities.t -> unit) =
-      fun (x422 : t) ->
-        fun (x423 : SelectionRangeClientCapabilities.t) ->
-          Ojs.set_prop_ascii (t_to_js x422) "selectionRange"
-            (SelectionRangeClientCapabilities.t_to_js x423)
-    let (get_publishDiagnostics : t -> _PublishDiagnosticsClientCapabilities)
-      =
-      fun (x424 : t) ->
-        _PublishDiagnosticsClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x424) "publishDiagnostics")
-    let (set_publishDiagnostics :
-      t -> _PublishDiagnosticsClientCapabilities -> unit) =
-      fun (x425 : t) ->
-        fun (x426 : _PublishDiagnosticsClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x425) "publishDiagnostics"
-            (_PublishDiagnosticsClientCapabilities_to_js x426)
-    let (get_callHierarchy : t -> CallHierarchyClientCapabilities.t) =
-      fun (x427 : t) ->
+      fun (x363 : t) ->
+        fun (x364 : SelectionRangeClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x363) "selectionRange"
+            (SelectionRangeClientCapabilities.t_to_js x364)
+    let (get_publish_diagnostics :
+      t -> PublishDiagnosticsClientCapabilities.t) =
+      fun (x365 : t) ->
+        PublishDiagnosticsClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x365) "publishDiagnostics")
+    let (set_publish_diagnostics :
+      t -> PublishDiagnosticsClientCapabilities.t -> unit) =
+      fun (x366 : t) ->
+        fun (x367 : PublishDiagnosticsClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x366) "publishDiagnostics"
+            (PublishDiagnosticsClientCapabilities.t_to_js x367)
+    let (get_call_hierarchy : t -> CallHierarchyClientCapabilities.t) =
+      fun (x368 : t) ->
         CallHierarchyClientCapabilities.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x427) "callHierarchy")
-    let (set_callHierarchy : t -> CallHierarchyClientCapabilities.t -> unit)
+          (Ojs.get_prop_ascii (t_to_js x368) "callHierarchy")
+    let (set_call_hierarchy : t -> CallHierarchyClientCapabilities.t -> unit)
       =
-      fun (x428 : t) ->
-        fun (x429 : CallHierarchyClientCapabilities.t) ->
-          Ojs.set_prop_ascii (t_to_js x428) "callHierarchy"
-            (CallHierarchyClientCapabilities.t_to_js x429)
-    let (get_semanticTokens : t -> SemanticTokensClientCapabilities.t) =
-      fun (x430 : t) ->
+      fun (x369 : t) ->
+        fun (x370 : CallHierarchyClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x369) "callHierarchy"
+            (CallHierarchyClientCapabilities.t_to_js x370)
+    let (get_semantic_tokens : t -> SemanticTokensClientCapabilities.t) =
+      fun (x371 : t) ->
         SemanticTokensClientCapabilities.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x430) "semanticTokens")
-    let (set_semanticTokens :
+          (Ojs.get_prop_ascii (t_to_js x371) "semanticTokens")
+    let (set_semantic_tokens :
       t -> SemanticTokensClientCapabilities.t -> unit) =
-      fun (x431 : t) ->
-        fun (x432 : SemanticTokensClientCapabilities.t) ->
-          Ojs.set_prop_ascii (t_to_js x431) "semanticTokens"
-            (SemanticTokensClientCapabilities.t_to_js x432)
-    let (get_linkedEditingRange :
+      fun (x372 : t) ->
+        fun (x373 : SemanticTokensClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x372) "semanticTokens"
+            (SemanticTokensClientCapabilities.t_to_js x373)
+    let (get_linked_editing_range :
       t -> LinkedEditingRangeClientCapabilities.t) =
-      fun (x433 : t) ->
+      fun (x374 : t) ->
         LinkedEditingRangeClientCapabilities.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x433) "linkedEditingRange")
-    let (set_linkedEditingRange :
+          (Ojs.get_prop_ascii (t_to_js x374) "linkedEditingRange")
+    let (set_linked_editing_range :
       t -> LinkedEditingRangeClientCapabilities.t -> unit) =
-      fun (x434 : t) ->
-        fun (x435 : LinkedEditingRangeClientCapabilities.t) ->
-          Ojs.set_prop_ascii (t_to_js x434) "linkedEditingRange"
-            (LinkedEditingRangeClientCapabilities.t_to_js x435)
+      fun (x375 : t) ->
+        fun (x376 : LinkedEditingRangeClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x375) "linkedEditingRange"
+            (LinkedEditingRangeClientCapabilities.t_to_js x376)
     let (get_moniker : t -> MonikerClientCapabilities.t) =
-      fun (x436 : t) ->
+      fun (x377 : t) ->
         MonikerClientCapabilities.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x436) "moniker")
+          (Ojs.get_prop_ascii (t_to_js x377) "moniker")
     let (set_moniker : t -> MonikerClientCapabilities.t -> unit) =
-      fun (x437 : t) ->
-        fun (x438 : MonikerClientCapabilities.t) ->
-          Ojs.set_prop_ascii (t_to_js x437) "moniker"
-            (MonikerClientCapabilities.t_to_js x438)
+      fun (x378 : t) ->
+        fun (x379 : MonikerClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x378) "moniker"
+            (MonikerClientCapabilities.t_to_js x379)
   end
 module WindowClientCapabilities =
   struct
-    type t = _WindowClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x440 : Ojs.t) -> _WindowClientCapabilities_of_js x440
-    and t_to_js : t -> Ojs.t =
-      fun (x439 : _WindowClientCapabilities) ->
-        _WindowClientCapabilities_to_js x439
-    let (get_workDoneProgress : t -> bool) =
-      fun (x441 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x441) "workDoneProgress")
-    let (set_workDoneProgress : t -> bool -> unit) =
-      fun (x442 : t) ->
-        fun (x443 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x442) "workDoneProgress"
-            (Ojs.bool_to_js x443)
-    let (get_showMessage : t -> _ShowMessageRequestClientCapabilities) =
-      fun (x444 : t) ->
-        _ShowMessageRequestClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x444) "showMessage")
-    let (set_showMessage :
-      t -> _ShowMessageRequestClientCapabilities -> unit) =
-      fun (x445 : t) ->
-        fun (x446 : _ShowMessageRequestClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x445) "showMessage"
-            (_ShowMessageRequestClientCapabilities_to_js x446)
-    let (get_showDocument : t -> ShowDocumentClientCapabilities.t) =
-      fun (x447 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x381 : Ojs.t) -> x381
+    and t_to_js : t -> Ojs.t = fun (x380 : Ojs.t) -> x380
+    let (get_work_done_progress : t -> bool) =
+      fun (x382 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x382) "workDoneProgress")
+    let (set_work_done_progress : t -> bool -> unit) =
+      fun (x383 : t) ->
+        fun (x384 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x383) "workDoneProgress"
+            (Ojs.bool_to_js x384)
+    let (get_show_message : t -> ShowMessageRequestClientCapabilities.t) =
+      fun (x385 : t) ->
+        ShowMessageRequestClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x385) "showMessage")
+    let (set_show_message :
+      t -> ShowMessageRequestClientCapabilities.t -> unit) =
+      fun (x386 : t) ->
+        fun (x387 : ShowMessageRequestClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x386) "showMessage"
+            (ShowMessageRequestClientCapabilities.t_to_js x387)
+    let (get_show_document : t -> ShowDocumentClientCapabilities.t) =
+      fun (x388 : t) ->
         ShowDocumentClientCapabilities.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x447) "showDocument")
-    let (set_showDocument : t -> ShowDocumentClientCapabilities.t -> unit) =
-      fun (x448 : t) ->
-        fun (x449 : ShowDocumentClientCapabilities.t) ->
-          Ojs.set_prop_ascii (t_to_js x448) "showDocument"
-            (ShowDocumentClientCapabilities.t_to_js x449)
+          (Ojs.get_prop_ascii (t_to_js x388) "showDocument")
+    let (set_show_document : t -> ShowDocumentClientCapabilities.t -> unit) =
+      fun (x389 : t) ->
+        fun (x390 : ShowDocumentClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x389) "showDocument"
+            (ShowDocumentClientCapabilities.t_to_js x390)
   end
 module RegularExpressionsClientCapabilities =
   struct
-    type t = _RegularExpressionsClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x451 : Ojs.t) -> _RegularExpressionsClientCapabilities_of_js x451
-    and t_to_js : t -> Ojs.t =
-      fun (x450 : _RegularExpressionsClientCapabilities) ->
-        _RegularExpressionsClientCapabilities_to_js x450
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x392 : Ojs.t) -> x392
+    and t_to_js : t -> Ojs.t = fun (x391 : Ojs.t) -> x391
     let (get_engine : t -> string) =
-      fun (x452 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x452) "engine")
+      fun (x393 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x393) "engine")
     let (set_engine : t -> string -> unit) =
-      fun (x453 : t) ->
-        fun (x454 : string) ->
-          Ojs.set_prop_ascii (t_to_js x453) "engine" (Ojs.string_to_js x454)
+      fun (x394 : t) ->
+        fun (x395 : string) ->
+          Ojs.set_prop_ascii (t_to_js x394) "engine" (Ojs.string_to_js x395)
     let (get_version : t -> string) =
-      fun (x455 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x455) "version")
+      fun (x396 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x396) "version")
     let (set_version : t -> string -> unit) =
-      fun (x456 : t) ->
-        fun (x457 : string) ->
-          Ojs.set_prop_ascii (t_to_js x456) "version" (Ojs.string_to_js x457)
+      fun (x397 : t) ->
+        fun (x398 : string) ->
+          Ojs.set_prop_ascii (t_to_js x397) "version" (Ojs.string_to_js x398)
   end
 module MarkdownClientCapabilities =
   struct
-    type t = _MarkdownClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x459 : Ojs.t) -> _MarkdownClientCapabilities_of_js x459
-    and t_to_js : t -> Ojs.t =
-      fun (x458 : _MarkdownClientCapabilities) ->
-        _MarkdownClientCapabilities_to_js x458
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x400 : Ojs.t) -> x400
+    and t_to_js : t -> Ojs.t = fun (x399 : Ojs.t) -> x399
     let (get_parser : t -> string) =
-      fun (x460 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x460) "parser")
+      fun (x401 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x401) "parser")
     let (set_parser : t -> string -> unit) =
-      fun (x461 : t) ->
-        fun (x462 : string) ->
-          Ojs.set_prop_ascii (t_to_js x461) "parser" (Ojs.string_to_js x462)
+      fun (x402 : t) ->
+        fun (x403 : string) ->
+          Ojs.set_prop_ascii (t_to_js x402) "parser" (Ojs.string_to_js x403)
     let (get_version : t -> string) =
-      fun (x463 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x463) "version")
+      fun (x404 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x404) "version")
     let (set_version : t -> string -> unit) =
-      fun (x464 : t) ->
-        fun (x465 : string) ->
-          Ojs.set_prop_ascii (t_to_js x464) "version" (Ojs.string_to_js x465)
+      fun (x405 : t) ->
+        fun (x406 : string) ->
+          Ojs.set_prop_ascii (t_to_js x405) "version" (Ojs.string_to_js x406)
   end
 module GeneralClientCapabilities =
   struct
-    type t = _GeneralClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x467 : Ojs.t) -> _GeneralClientCapabilities_of_js x467
-    and t_to_js : t -> Ojs.t =
-      fun (x466 : _GeneralClientCapabilities) ->
-        _GeneralClientCapabilities_to_js x466
-    let (get_staleRequestSupport : t -> AnonymousInterface1.t) =
-      fun (x468 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x408 : Ojs.t) -> x408
+    and t_to_js : t -> Ojs.t = fun (x407 : Ojs.t) -> x407
+    let (get_stale_request_support : t -> AnonymousInterface1.t) =
+      fun (x409 : t) ->
         AnonymousInterface1.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x468) "staleRequestSupport")
-    let (set_staleRequestSupport : t -> AnonymousInterface1.t -> unit) =
-      fun (x469 : t) ->
-        fun (x470 : AnonymousInterface1.t) ->
-          Ojs.set_prop_ascii (t_to_js x469) "staleRequestSupport"
-            (AnonymousInterface1.t_to_js x470)
-    let (get_regularExpressions : t -> _RegularExpressionsClientCapabilities)
-      =
-      fun (x471 : t) ->
-        _RegularExpressionsClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x471) "regularExpressions")
-    let (set_regularExpressions :
-      t -> _RegularExpressionsClientCapabilities -> unit) =
-      fun (x472 : t) ->
-        fun (x473 : _RegularExpressionsClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x472) "regularExpressions"
-            (_RegularExpressionsClientCapabilities_to_js x473)
-    let (get_markdown : t -> _MarkdownClientCapabilities) =
-      fun (x474 : t) ->
-        _MarkdownClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x474) "markdown")
-    let (set_markdown : t -> _MarkdownClientCapabilities -> unit) =
-      fun (x475 : t) ->
-        fun (x476 : _MarkdownClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x475) "markdown"
-            (_MarkdownClientCapabilities_to_js x476)
+          (Ojs.get_prop_ascii (t_to_js x409) "staleRequestSupport")
+    let (set_stale_request_support : t -> AnonymousInterface1.t -> unit) =
+      fun (x410 : t) ->
+        fun (x411 : AnonymousInterface1.t) ->
+          Ojs.set_prop_ascii (t_to_js x410) "staleRequestSupport"
+            (AnonymousInterface1.t_to_js x411)
+    let (get_regular_expressions :
+      t -> RegularExpressionsClientCapabilities.t) =
+      fun (x412 : t) ->
+        RegularExpressionsClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x412) "regularExpressions")
+    let (set_regular_expressions :
+      t -> RegularExpressionsClientCapabilities.t -> unit) =
+      fun (x413 : t) ->
+        fun (x414 : RegularExpressionsClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x413) "regularExpressions"
+            (RegularExpressionsClientCapabilities.t_to_js x414)
+    let (get_markdown : t -> MarkdownClientCapabilities.t) =
+      fun (x415 : t) ->
+        MarkdownClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x415) "markdown")
+    let (set_markdown : t -> MarkdownClientCapabilities.t -> unit) =
+      fun (x416 : t) ->
+        fun (x417 : MarkdownClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x416) "markdown"
+            (MarkdownClientCapabilities.t_to_js x417)
   end
 module M_ClientCapabilities =
   struct
-    type t = _ClientCapabilities
+    type t =
+      (ClientCapabilities.t, WorkspaceFoldersClientCapabilities.t,
+        ConfigurationClientCapabilities.t,
+        WorkDoneProgressClientCapabilities.t) intersection4
     let rec t_of_js : Ojs.t -> t =
-      fun (x478 : Ojs.t) -> _ClientCapabilities_of_js x478
+      fun (x423 : Ojs.t) ->
+        intersection4_of_js ClientCapabilities.t_of_js
+          WorkspaceFoldersClientCapabilities.t_of_js
+          ConfigurationClientCapabilities.t_of_js
+          WorkDoneProgressClientCapabilities.t_of_js x423
     and t_to_js : t -> Ojs.t =
-      fun (x477 : _ClientCapabilities) -> _ClientCapabilities_to_js x477
-    let (get_workspace : t -> _WorkspaceClientCapabilities) =
-      fun (x479 : t) ->
-        _WorkspaceClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x479) "workspace")
-    let (set_workspace : t -> _WorkspaceClientCapabilities -> unit) =
-      fun (x480 : t) ->
-        fun (x481 : _WorkspaceClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x480) "workspace"
-            (_WorkspaceClientCapabilities_to_js x481)
-    let (get_textDocument : t -> _TextDocumentClientCapabilities) =
-      fun (x482 : t) ->
-        _TextDocumentClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x482) "textDocument")
-    let (set_textDocument : t -> _TextDocumentClientCapabilities -> unit) =
-      fun (x483 : t) ->
-        fun (x484 : _TextDocumentClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x483) "textDocument"
-            (_TextDocumentClientCapabilities_to_js x484)
-    let (get_window : t -> _WindowClientCapabilities) =
-      fun (x485 : t) ->
-        _WindowClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x485) "window")
-    let (set_window : t -> _WindowClientCapabilities -> unit) =
-      fun (x486 : t) ->
-        fun (x487 : _WindowClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x486) "window"
-            (_WindowClientCapabilities_to_js x487)
-    let (get_general : t -> _GeneralClientCapabilities) =
-      fun (x488 : t) ->
-        _GeneralClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x488) "general")
-    let (set_general : t -> _GeneralClientCapabilities -> unit) =
-      fun (x489 : t) ->
-        fun (x490 : _GeneralClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x489) "general"
-            (_GeneralClientCapabilities_to_js x490)
+      fun
+        (x418 :
+          (ClientCapabilities.t, WorkspaceFoldersClientCapabilities.t,
+            ConfigurationClientCapabilities.t,
+            WorkDoneProgressClientCapabilities.t) intersection4)
+        ->
+        intersection4_to_js ClientCapabilities.t_to_js
+          WorkspaceFoldersClientCapabilities.t_to_js
+          ConfigurationClientCapabilities.t_to_js
+          WorkDoneProgressClientCapabilities.t_to_js x418
+    let (get_workspace : t -> WorkspaceClientCapabilities.t) =
+      fun (x428 : t) ->
+        WorkspaceClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x428) "workspace")
+    let (set_workspace : t -> WorkspaceClientCapabilities.t -> unit) =
+      fun (x429 : t) ->
+        fun (x430 : WorkspaceClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x429) "workspace"
+            (WorkspaceClientCapabilities.t_to_js x430)
+    let (get_text_document : t -> TextDocumentClientCapabilities.t) =
+      fun (x431 : t) ->
+        TextDocumentClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x431) "textDocument")
+    let (set_text_document : t -> TextDocumentClientCapabilities.t -> unit) =
+      fun (x432 : t) ->
+        fun (x433 : TextDocumentClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x432) "textDocument"
+            (TextDocumentClientCapabilities.t_to_js x433)
+    let (get_window : t -> WindowClientCapabilities.t) =
+      fun (x434 : t) ->
+        WindowClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x434) "window")
+    let (set_window : t -> WindowClientCapabilities.t -> unit) =
+      fun (x435 : t) ->
+        fun (x436 : WindowClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x435) "window"
+            (WindowClientCapabilities.t_to_js x436)
+    let (get_general : t -> GeneralClientCapabilities.t) =
+      fun (x437 : t) ->
+        GeneralClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x437) "general")
+    let (set_general : t -> GeneralClientCapabilities.t -> unit) =
+      fun (x438 : t) ->
+        fun (x439 : GeneralClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x438) "general"
+            (GeneralClientCapabilities.t_to_js x439)
     let (get_experimental : t -> untyped_object) =
-      fun (x491 : t) ->
+      fun (x440 : t) ->
         untyped_object_of_js
-          (Ojs.get_prop_ascii (t_to_js x491) "experimental")
+          (Ojs.get_prop_ascii (t_to_js x440) "experimental")
     let (set_experimental : t -> untyped_object -> unit) =
-      fun (x492 : t) ->
-        fun (x493 : untyped_object) ->
-          Ojs.set_prop_ascii (t_to_js x492) "experimental"
-            (untyped_object_to_js x493)
+      fun (x441 : t) ->
+        fun (x442 : untyped_object) ->
+          Ojs.set_prop_ascii (t_to_js x441) "experimental"
+            (untyped_object_to_js x442)
   end
 module ClientCapabilities =
   struct
-    type t = _ClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x495 : Ojs.t) -> _ClientCapabilities_of_js x495
-    and t_to_js : t -> Ojs.t =
-      fun (x494 : _ClientCapabilities) -> _ClientCapabilities_to_js x494
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x444 : Ojs.t) -> x444
+    and t_to_js : t -> Ojs.t = fun (x443 : Ojs.t) -> x443
   end
 module StaticRegistrationOptions =
   struct
-    type t = _StaticRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x497 : Ojs.t) -> _StaticRegistrationOptions_of_js x497
-    and t_to_js : t -> Ojs.t =
-      fun (x496 : _StaticRegistrationOptions) ->
-        _StaticRegistrationOptions_to_js x496
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x446 : Ojs.t) -> x446
+    and t_to_js : t -> Ojs.t = fun (x445 : Ojs.t) -> x445
     let (get_id : t -> string) =
-      fun (x498 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x498) "id")
+      fun (x447 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x447) "id")
     let (set_id : t -> string -> unit) =
-      fun (x499 : t) ->
-        fun (x500 : string) ->
-          Ojs.set_prop_ascii (t_to_js x499) "id" (Ojs.string_to_js x500)
+      fun (x448 : t) ->
+        fun (x449 : string) ->
+          Ojs.set_prop_ascii (t_to_js x448) "id" (Ojs.string_to_js x449)
   end
 module StaticRegistrationOptions =
   struct
-    let (hasId : value:untyped_object -> bool) =
-      fun ~value:(x501 : untyped_object) ->
+    let (has_id : value:untyped_object -> bool) =
+      fun ~value:(x450 : untyped_object) ->
         Ojs.bool_of_js
           (Ojs.call
              (Ojs.get_prop_ascii Ojs.global "StaticRegistrationOptions")
-             "hasId" [|(untyped_object_to_js x501)|])
+             "hasId" [|(untyped_object_to_js x450)|])
   end
 module TextDocumentRegistrationOptions =
   struct
-    type t = _TextDocumentRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x503 : Ojs.t) -> _TextDocumentRegistrationOptions_of_js x503
-    and t_to_js : t -> Ojs.t =
-      fun (x502 : _TextDocumentRegistrationOptions) ->
-        _TextDocumentRegistrationOptions_to_js x502
-    let (get_documentSelector : t -> _DocumentSelector or_null) =
-      fun (x504 : t) ->
-        or_null_of_js _DocumentSelector_of_js
-          (Ojs.get_prop_ascii (t_to_js x504) "documentSelector")
-    let (set_documentSelector : t -> _DocumentSelector or_null -> unit) =
-      fun (x506 : t) ->
-        fun (x507 : _DocumentSelector or_null) ->
-          Ojs.set_prop_ascii (t_to_js x506) "documentSelector"
-            (or_null_to_js _DocumentSelector_to_js x507)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x452 : Ojs.t) -> x452
+    and t_to_js : t -> Ojs.t = fun (x451 : Ojs.t) -> x451
+    let (get_document_selector : t -> DocumentSelector.t or_null) =
+      fun (x453 : t) ->
+        or_null_of_js DocumentSelector.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x453) "documentSelector")
+    let (set_document_selector : t -> DocumentSelector.t or_null -> unit) =
+      fun (x455 : t) ->
+        fun (x456 : DocumentSelector.t or_null) ->
+          Ojs.set_prop_ascii (t_to_js x455) "documentSelector"
+            (or_null_to_js DocumentSelector.t_to_js x456)
   end
 module TextDocumentRegistrationOptions =
   struct
     let (is : value:any -> bool) =
-      fun ~value:(x509 : any) ->
+      fun ~value:(x458 : any) ->
         Ojs.bool_of_js
           (Ojs.call
              (Ojs.get_prop_ascii Ojs.global "TextDocumentRegistrationOptions")
-             "is" [|(any_to_js x509)|])
+             "is" [|(any_to_js x458)|])
   end
 module SaveOptions =
   struct
-    type t = _SaveOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x511 : Ojs.t) -> _SaveOptions_of_js x511
-    and t_to_js : t -> Ojs.t =
-      fun (x510 : _SaveOptions) -> _SaveOptions_to_js x510
-    let (get_includeText : t -> bool) =
-      fun (x512 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x512) "includeText")
-    let (set_includeText : t -> bool -> unit) =
-      fun (x513 : t) ->
-        fun (x514 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x513) "includeText"
-            (Ojs.bool_to_js x514)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x460 : Ojs.t) -> x460
+    and t_to_js : t -> Ojs.t = fun (x459 : Ojs.t) -> x459
+    let (get_include_text : t -> bool) =
+      fun (x461 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x461) "includeText")
+    let (set_include_text : t -> bool -> unit) =
+      fun (x462 : t) ->
+        fun (x463 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x462) "includeText"
+            (Ojs.bool_to_js x463)
   end
 module WorkDoneProgressOptions =
   struct
-    type t = _WorkDoneProgressOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x516 : Ojs.t) -> _WorkDoneProgressOptions_of_js x516
-    and t_to_js : t -> Ojs.t =
-      fun (x515 : _WorkDoneProgressOptions) ->
-        _WorkDoneProgressOptions_to_js x515
-    let (get_workDoneProgress : t -> bool) =
-      fun (x517 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x517) "workDoneProgress")
-    let (set_workDoneProgress : t -> bool -> unit) =
-      fun (x518 : t) ->
-        fun (x519 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x518) "workDoneProgress"
-            (Ojs.bool_to_js x519)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x465 : Ojs.t) -> x465
+    and t_to_js : t -> Ojs.t = fun (x464 : Ojs.t) -> x464
+    let (get_work_done_progress : t -> bool) =
+      fun (x466 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x466) "workDoneProgress")
+    let (set_work_done_progress : t -> bool -> unit) =
+      fun (x467 : t) ->
+        fun (x468 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x467) "workDoneProgress"
+            (Ojs.bool_to_js x468)
   end
 module WorkDoneProgressOptions =
   struct
     let (is : value:any -> bool) =
-      fun ~value:(x520 : any) ->
+      fun ~value:(x469 : any) ->
         Ojs.bool_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "WorkDoneProgressOptions")
-             "is" [|(any_to_js x520)|])
-    let (hasWorkDoneProgress : value:any -> bool) =
-      fun ~value:(x521 : any) ->
+             "is" [|(any_to_js x469)|])
+    let (has_work_done_progress : value:any -> bool) =
+      fun ~value:(x470 : any) ->
         Ojs.bool_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "WorkDoneProgressOptions")
-             "hasWorkDoneProgress" [|(any_to_js x521)|])
+             "hasWorkDoneProgress" [|(any_to_js x470)|])
   end
 module M_ServerCapabilities =
   struct
-    type 'T t = 'T _ServerCapabilities
+    type 'T t =
+      ('T ServerCapabilities.t, WorkspaceFoldersServerCapabilities.t)
+        intersection2
     let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type __T) ->
       fun (__T_of_js : Ojs.t -> __T) ->
-        fun (x524 : Ojs.t) -> _ServerCapabilities_of_js __T_of_js x524
+        fun (x475 : Ojs.t) ->
+          intersection2_of_js
+            (fun (x476 : Ojs.t) -> ServerCapabilities.t_of_js __T_of_js x476)
+            WorkspaceFoldersServerCapabilities.t_of_js x475
     and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
       fun (__T_to_js : __T -> Ojs.t) ->
-        fun (x522 : __T _ServerCapabilities) ->
-          _ServerCapabilities_to_js __T_to_js x522
+        fun
+          (x471 :
+            (__T ServerCapabilities.t, WorkspaceFoldersServerCapabilities.t)
+              intersection2)
+          ->
+          intersection2_to_js
+            (fun (x472 : __T ServerCapabilities.t) ->
+               ServerCapabilities.t_to_js __T_to_js x472)
+            WorkspaceFoldersServerCapabilities.t_to_js x471
     type t_0 = any t
     let rec t_0_of_js : Ojs.t -> t_0 =
-      fun (x528 : Ojs.t) -> t_of_js any_of_js x528
+      fun (x481 : Ojs.t) -> t_of_js any_of_js x481
     and t_0_to_js : t_0 -> Ojs.t =
-      fun (x526 : any t) -> t_to_js any_to_js x526
-    let (get_textDocumentSync :
+      fun (x479 : any t) -> t_to_js any_to_js x479
+    let (get_text_document_sync :
       'T t ->
-        ((_TextDocumentSyncKind, _TextDocumentSyncOptions) union2,
+        ((TextDocumentSyncKind.t, TextDocumentSyncOptions.t) union2,
           [ `L_n_0  | `L_n_1  | `L_n_2 ]) or_enum)
       =
-      fun (x530 : 'T t) ->
+      fun (x483 : 'T t) ->
         or_enum_of_js
-          (fun (x532 : Ojs.t) ->
-             union2_of_js _TextDocumentSyncKind_of_js
-               _TextDocumentSyncOptions_of_js x532)
-          (fun (x535 : Ojs.t) ->
-             let x536 = x535 in
-             match Ojs.int_of_js x536 with
+          (fun (x485 : Ojs.t) ->
+             union2_of_js TextDocumentSyncKind.t_of_js
+               TextDocumentSyncOptions.t_of_js x485)
+          (fun (x488 : Ojs.t) ->
+             let x489 = x488 in
+             match Ojs.int_of_js x489 with
              | 0 -> `L_n_0
              | 1 -> `L_n_1
              | 2 -> `L_n_2
              | _ -> assert false)
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x530) "textDocumentSync")
-    let (set_textDocumentSync :
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x483) "textDocumentSync")
+    let (set_text_document_sync :
       'T t ->
-        ((_TextDocumentSyncKind, _TextDocumentSyncOptions) union2,
+        ((TextDocumentSyncKind.t, TextDocumentSyncOptions.t) union2,
           [ `L_n_0  | `L_n_1  | `L_n_2 ]) or_enum -> unit)
       =
-      fun (x537 : 'T t) ->
+      fun (x490 : 'T t) ->
         fun
-          (x538 :
-            ((_TextDocumentSyncKind, _TextDocumentSyncOptions) union2,
+          (x491 :
+            ((TextDocumentSyncKind.t, TextDocumentSyncOptions.t) union2,
               [ `L_n_0  | `L_n_1  | `L_n_2 ]) or_enum)
           ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x537) "textDocumentSync"
+          Ojs.set_prop_ascii (t_to_js Obj.magic x490) "textDocumentSync"
             (or_enum_to_js
                (fun
-                  (x539 :
-                    (_TextDocumentSyncKind, _TextDocumentSyncOptions) union2)
+                  (x492 :
+                    (TextDocumentSyncKind.t, TextDocumentSyncOptions.t)
+                      union2)
                   ->
-                  union2_to_js _TextDocumentSyncKind_to_js
-                    _TextDocumentSyncOptions_to_js x539)
-               (fun (x542 : [ `L_n_0  | `L_n_1  | `L_n_2 ]) ->
-                  match x542 with
+                  union2_to_js TextDocumentSyncKind.t_to_js
+                    TextDocumentSyncOptions.t_to_js x492)
+               (fun (x495 : [ `L_n_0  | `L_n_1  | `L_n_2 ]) ->
+                  match x495 with
                   | `L_n_0 -> Ojs.string_to_js "LN0"
                   | `L_n_1 -> Ojs.string_to_js "LN1"
-                  | `L_n_2 -> Ojs.string_to_js "LN2") x538)
-    let (get_completionProvider : 'T t -> _CompletionOptions) =
-      fun (x544 : 'T t) ->
-        _CompletionOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x544) "completionProvider")
-    let (set_completionProvider : 'T t -> _CompletionOptions -> unit) =
-      fun (x546 : 'T t) ->
-        fun (x547 : _CompletionOptions) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x546) "completionProvider"
-            (_CompletionOptions_to_js x547)
-    let (get_hoverProvider : 'T t -> _HoverOptions or_boolean) =
-      fun (x549 : 'T t) ->
-        or_boolean_of_js _HoverOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x549) "hoverProvider")
-    let (set_hoverProvider : 'T t -> _HoverOptions or_boolean -> unit) =
-      fun (x552 : 'T t) ->
-        fun (x553 : _HoverOptions or_boolean) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x552) "hoverProvider"
-            (or_boolean_to_js _HoverOptions_to_js x553)
-    let (get_signatureHelpProvider : 'T t -> _SignatureHelpOptions) =
-      fun (x556 : 'T t) ->
-        _SignatureHelpOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x556)
+                  | `L_n_2 -> Ojs.string_to_js "LN2") x491)
+    let (get_completion_provider : 'T t -> CompletionOptions.t) =
+      fun (x497 : 'T t) ->
+        CompletionOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x497) "completionProvider")
+    let (set_completion_provider : 'T t -> CompletionOptions.t -> unit) =
+      fun (x499 : 'T t) ->
+        fun (x500 : CompletionOptions.t) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x499) "completionProvider"
+            (CompletionOptions.t_to_js x500)
+    let (get_hover_provider : 'T t -> HoverOptions.t or_boolean) =
+      fun (x502 : 'T t) ->
+        or_boolean_of_js HoverOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x502) "hoverProvider")
+    let (set_hover_provider : 'T t -> HoverOptions.t or_boolean -> unit) =
+      fun (x505 : 'T t) ->
+        fun (x506 : HoverOptions.t or_boolean) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x505) "hoverProvider"
+            (or_boolean_to_js HoverOptions.t_to_js x506)
+    let (get_signature_help_provider : 'T t -> SignatureHelpOptions.t) =
+      fun (x509 : 'T t) ->
+        SignatureHelpOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x509)
              "signatureHelpProvider")
-    let (set_signatureHelpProvider : 'T t -> _SignatureHelpOptions -> unit) =
-      fun (x558 : 'T t) ->
-        fun (x559 : _SignatureHelpOptions) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x558) "signatureHelpProvider"
-            (_SignatureHelpOptions_to_js x559)
-    let (get_declarationProvider :
+    let (set_signature_help_provider :
+      'T t -> SignatureHelpOptions.t -> unit) =
+      fun (x511 : 'T t) ->
+        fun (x512 : SignatureHelpOptions.t) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x511) "signatureHelpProvider"
+            (SignatureHelpOptions.t_to_js x512)
+    let (get_declaration_provider :
       'T t ->
         (DeclarationOptions.t, DeclarationRegistrationOptions.t) union2
           or_boolean)
       =
-      fun (x561 : 'T t) ->
+      fun (x514 : 'T t) ->
         or_boolean_of_js
-          (fun (x563 : Ojs.t) ->
+          (fun (x516 : Ojs.t) ->
              union2_of_js DeclarationOptions.t_of_js
-               DeclarationRegistrationOptions.t_of_js x563)
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x561) "declarationProvider")
-    let (set_declarationProvider :
+               DeclarationRegistrationOptions.t_of_js x516)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x514) "declarationProvider")
+    let (set_declaration_provider :
       'T t ->
         (DeclarationOptions.t, DeclarationRegistrationOptions.t) union2
           or_boolean -> unit)
       =
-      fun (x566 : 'T t) ->
+      fun (x519 : 'T t) ->
         fun
-          (x567 :
+          (x520 :
             (DeclarationOptions.t, DeclarationRegistrationOptions.t) union2
               or_boolean)
           ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x566) "declarationProvider"
+          Ojs.set_prop_ascii (t_to_js Obj.magic x519) "declarationProvider"
             (or_boolean_to_js
                (fun
-                  (x568 :
+                  (x521 :
                     (DeclarationOptions.t, DeclarationRegistrationOptions.t)
                       union2)
                   ->
                   union2_to_js DeclarationOptions.t_to_js
-                    DeclarationRegistrationOptions.t_to_js x568) x567)
-    let (get_definitionProvider : 'T t -> _DefinitionOptions or_boolean) =
-      fun (x572 : 'T t) ->
-        or_boolean_of_js _DefinitionOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x572) "definitionProvider")
-    let (set_definitionProvider :
-      'T t -> _DefinitionOptions or_boolean -> unit) =
-      fun (x575 : 'T t) ->
-        fun (x576 : _DefinitionOptions or_boolean) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x575) "definitionProvider"
-            (or_boolean_to_js _DefinitionOptions_to_js x576)
-    let (get_typeDefinitionProvider :
+                    DeclarationRegistrationOptions.t_to_js x521) x520)
+    let (get_definition_provider : 'T t -> DefinitionOptions.t or_boolean) =
+      fun (x525 : 'T t) ->
+        or_boolean_of_js DefinitionOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x525) "definitionProvider")
+    let (set_definition_provider :
+      'T t -> DefinitionOptions.t or_boolean -> unit) =
+      fun (x528 : 'T t) ->
+        fun (x529 : DefinitionOptions.t or_boolean) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x528) "definitionProvider"
+            (or_boolean_to_js DefinitionOptions.t_to_js x529)
+    let (get_type_definition_provider :
       'T t ->
         (TypeDefinitionOptions.t, TypeDefinitionRegistrationOptions.t) union2
           or_boolean)
       =
-      fun (x579 : 'T t) ->
+      fun (x532 : 'T t) ->
         or_boolean_of_js
-          (fun (x581 : Ojs.t) ->
+          (fun (x534 : Ojs.t) ->
              union2_of_js TypeDefinitionOptions.t_of_js
-               TypeDefinitionRegistrationOptions.t_of_js x581)
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x579)
+               TypeDefinitionRegistrationOptions.t_of_js x534)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x532)
              "typeDefinitionProvider")
-    let (set_typeDefinitionProvider :
+    let (set_type_definition_provider :
       'T t ->
         (TypeDefinitionOptions.t, TypeDefinitionRegistrationOptions.t) union2
           or_boolean -> unit)
       =
-      fun (x584 : 'T t) ->
+      fun (x537 : 'T t) ->
         fun
-          (x585 :
+          (x538 :
             (TypeDefinitionOptions.t, TypeDefinitionRegistrationOptions.t)
               union2 or_boolean)
           ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x584)
+          Ojs.set_prop_ascii (t_to_js Obj.magic x537)
             "typeDefinitionProvider"
             (or_boolean_to_js
                (fun
-                  (x586 :
+                  (x539 :
                     (TypeDefinitionOptions.t,
                       TypeDefinitionRegistrationOptions.t) union2)
                   ->
                   union2_to_js TypeDefinitionOptions.t_to_js
-                    TypeDefinitionRegistrationOptions.t_to_js x586) x585)
-    let (get_implementationProvider :
+                    TypeDefinitionRegistrationOptions.t_to_js x539) x538)
+    let (get_implementation_provider :
       'T t ->
         (ImplementationOptions.t, ImplementationRegistrationOptions.t) union2
           or_boolean)
       =
-      fun (x590 : 'T t) ->
+      fun (x543 : 'T t) ->
         or_boolean_of_js
-          (fun (x592 : Ojs.t) ->
+          (fun (x545 : Ojs.t) ->
              union2_of_js ImplementationOptions.t_of_js
-               ImplementationRegistrationOptions.t_of_js x592)
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x590)
+               ImplementationRegistrationOptions.t_of_js x545)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x543)
              "implementationProvider")
-    let (set_implementationProvider :
+    let (set_implementation_provider :
       'T t ->
         (ImplementationOptions.t, ImplementationRegistrationOptions.t) union2
           or_boolean -> unit)
       =
-      fun (x595 : 'T t) ->
+      fun (x548 : 'T t) ->
         fun
-          (x596 :
+          (x549 :
             (ImplementationOptions.t, ImplementationRegistrationOptions.t)
               union2 or_boolean)
           ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x595)
+          Ojs.set_prop_ascii (t_to_js Obj.magic x548)
             "implementationProvider"
             (or_boolean_to_js
                (fun
-                  (x597 :
+                  (x550 :
                     (ImplementationOptions.t,
                       ImplementationRegistrationOptions.t) union2)
                   ->
                   union2_to_js ImplementationOptions.t_to_js
-                    ImplementationRegistrationOptions.t_to_js x597) x596)
-    let (get_referencesProvider : 'T t -> _ReferenceOptions or_boolean) =
-      fun (x601 : 'T t) ->
-        or_boolean_of_js _ReferenceOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x601) "referencesProvider")
-    let (set_referencesProvider :
-      'T t -> _ReferenceOptions or_boolean -> unit) =
-      fun (x604 : 'T t) ->
-        fun (x605 : _ReferenceOptions or_boolean) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x604) "referencesProvider"
-            (or_boolean_to_js _ReferenceOptions_to_js x605)
-    let (get_documentHighlightProvider :
-      'T t -> _DocumentHighlightOptions or_boolean) =
-      fun (x608 : 'T t) ->
-        or_boolean_of_js _DocumentHighlightOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x608)
+                    ImplementationRegistrationOptions.t_to_js x550) x549)
+    let (get_references_provider : 'T t -> ReferenceOptions.t or_boolean) =
+      fun (x554 : 'T t) ->
+        or_boolean_of_js ReferenceOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x554) "referencesProvider")
+    let (set_references_provider :
+      'T t -> ReferenceOptions.t or_boolean -> unit) =
+      fun (x557 : 'T t) ->
+        fun (x558 : ReferenceOptions.t or_boolean) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x557) "referencesProvider"
+            (or_boolean_to_js ReferenceOptions.t_to_js x558)
+    let (get_document_highlight_provider :
+      'T t -> DocumentHighlightOptions.t or_boolean) =
+      fun (x561 : 'T t) ->
+        or_boolean_of_js DocumentHighlightOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x561)
              "documentHighlightProvider")
-    let (set_documentHighlightProvider :
-      'T t -> _DocumentHighlightOptions or_boolean -> unit) =
-      fun (x611 : 'T t) ->
-        fun (x612 : _DocumentHighlightOptions or_boolean) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x611)
+    let (set_document_highlight_provider :
+      'T t -> DocumentHighlightOptions.t or_boolean -> unit) =
+      fun (x564 : 'T t) ->
+        fun (x565 : DocumentHighlightOptions.t or_boolean) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x564)
             "documentHighlightProvider"
-            (or_boolean_to_js _DocumentHighlightOptions_to_js x612)
-    let (get_documentSymbolProvider :
-      'T t -> _DocumentSymbolOptions or_boolean) =
-      fun (x615 : 'T t) ->
-        or_boolean_of_js _DocumentSymbolOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x615)
+            (or_boolean_to_js DocumentHighlightOptions.t_to_js x565)
+    let (get_document_symbol_provider :
+      'T t -> DocumentSymbolOptions.t or_boolean) =
+      fun (x568 : 'T t) ->
+        or_boolean_of_js DocumentSymbolOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x568)
              "documentSymbolProvider")
-    let (set_documentSymbolProvider :
-      'T t -> _DocumentSymbolOptions or_boolean -> unit) =
-      fun (x618 : 'T t) ->
-        fun (x619 : _DocumentSymbolOptions or_boolean) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x618)
+    let (set_document_symbol_provider :
+      'T t -> DocumentSymbolOptions.t or_boolean -> unit) =
+      fun (x571 : 'T t) ->
+        fun (x572 : DocumentSymbolOptions.t or_boolean) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x571)
             "documentSymbolProvider"
-            (or_boolean_to_js _DocumentSymbolOptions_to_js x619)
-    let (get_codeActionProvider : 'T t -> _CodeActionOptions or_boolean) =
-      fun (x622 : 'T t) ->
-        or_boolean_of_js _CodeActionOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x622) "codeActionProvider")
-    let (set_codeActionProvider :
-      'T t -> _CodeActionOptions or_boolean -> unit) =
-      fun (x625 : 'T t) ->
-        fun (x626 : _CodeActionOptions or_boolean) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x625) "codeActionProvider"
-            (or_boolean_to_js _CodeActionOptions_to_js x626)
-    let (get_codeLensProvider : 'T t -> _CodeLensOptions) =
-      fun (x629 : 'T t) ->
-        _CodeLensOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x629) "codeLensProvider")
-    let (set_codeLensProvider : 'T t -> _CodeLensOptions -> unit) =
-      fun (x631 : 'T t) ->
-        fun (x632 : _CodeLensOptions) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x631) "codeLensProvider"
-            (_CodeLensOptions_to_js x632)
-    let (get_documentLinkProvider : 'T t -> _DocumentLinkOptions) =
-      fun (x634 : 'T t) ->
-        _DocumentLinkOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x634) "documentLinkProvider")
-    let (set_documentLinkProvider : 'T t -> _DocumentLinkOptions -> unit) =
-      fun (x636 : 'T t) ->
-        fun (x637 : _DocumentLinkOptions) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x636) "documentLinkProvider"
-            (_DocumentLinkOptions_to_js x637)
-    let (get_colorProvider :
+            (or_boolean_to_js DocumentSymbolOptions.t_to_js x572)
+    let (get_code_action_provider : 'T t -> CodeActionOptions.t or_boolean) =
+      fun (x575 : 'T t) ->
+        or_boolean_of_js CodeActionOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x575) "codeActionProvider")
+    let (set_code_action_provider :
+      'T t -> CodeActionOptions.t or_boolean -> unit) =
+      fun (x578 : 'T t) ->
+        fun (x579 : CodeActionOptions.t or_boolean) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x578) "codeActionProvider"
+            (or_boolean_to_js CodeActionOptions.t_to_js x579)
+    let (get_code_lens_provider : 'T t -> CodeLensOptions.t) =
+      fun (x582 : 'T t) ->
+        CodeLensOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x582) "codeLensProvider")
+    let (set_code_lens_provider : 'T t -> CodeLensOptions.t -> unit) =
+      fun (x584 : 'T t) ->
+        fun (x585 : CodeLensOptions.t) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x584) "codeLensProvider"
+            (CodeLensOptions.t_to_js x585)
+    let (get_document_link_provider : 'T t -> DocumentLinkOptions.t) =
+      fun (x587 : 'T t) ->
+        DocumentLinkOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x587) "documentLinkProvider")
+    let (set_document_link_provider : 'T t -> DocumentLinkOptions.t -> unit)
+      =
+      fun (x589 : 'T t) ->
+        fun (x590 : DocumentLinkOptions.t) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x589) "documentLinkProvider"
+            (DocumentLinkOptions.t_to_js x590)
+    let (get_color_provider :
       'T t ->
         (DocumentColorOptions.t, DocumentColorRegistrationOptions.t) union2
           or_boolean)
       =
-      fun (x639 : 'T t) ->
+      fun (x592 : 'T t) ->
         or_boolean_of_js
-          (fun (x641 : Ojs.t) ->
+          (fun (x594 : Ojs.t) ->
              union2_of_js DocumentColorOptions.t_of_js
-               DocumentColorRegistrationOptions.t_of_js x641)
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x639) "colorProvider")
-    let (set_colorProvider :
+               DocumentColorRegistrationOptions.t_of_js x594)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x592) "colorProvider")
+    let (set_color_provider :
       'T t ->
         (DocumentColorOptions.t, DocumentColorRegistrationOptions.t) union2
           or_boolean -> unit)
       =
-      fun (x644 : 'T t) ->
+      fun (x597 : 'T t) ->
         fun
-          (x645 :
+          (x598 :
             (DocumentColorOptions.t, DocumentColorRegistrationOptions.t)
               union2 or_boolean)
           ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x644) "colorProvider"
+          Ojs.set_prop_ascii (t_to_js Obj.magic x597) "colorProvider"
             (or_boolean_to_js
                (fun
-                  (x646 :
+                  (x599 :
                     (DocumentColorOptions.t,
                       DocumentColorRegistrationOptions.t) union2)
                   ->
                   union2_to_js DocumentColorOptions.t_to_js
-                    DocumentColorRegistrationOptions.t_to_js x646) x645)
-    let (get_workspaceSymbolProvider :
-      'T t -> _WorkspaceSymbolOptions or_boolean) =
-      fun (x650 : 'T t) ->
-        or_boolean_of_js _WorkspaceSymbolOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x650)
+                    DocumentColorRegistrationOptions.t_to_js x599) x598)
+    let (get_workspace_symbol_provider :
+      'T t -> WorkspaceSymbolOptions.t or_boolean) =
+      fun (x603 : 'T t) ->
+        or_boolean_of_js WorkspaceSymbolOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x603)
              "workspaceSymbolProvider")
-    let (set_workspaceSymbolProvider :
-      'T t -> _WorkspaceSymbolOptions or_boolean -> unit) =
-      fun (x653 : 'T t) ->
-        fun (x654 : _WorkspaceSymbolOptions or_boolean) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x653)
+    let (set_workspace_symbol_provider :
+      'T t -> WorkspaceSymbolOptions.t or_boolean -> unit) =
+      fun (x606 : 'T t) ->
+        fun (x607 : WorkspaceSymbolOptions.t or_boolean) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x606)
             "workspaceSymbolProvider"
-            (or_boolean_to_js _WorkspaceSymbolOptions_to_js x654)
-    let (get_documentFormattingProvider :
-      'T t -> _DocumentFormattingOptions or_boolean) =
-      fun (x657 : 'T t) ->
-        or_boolean_of_js _DocumentFormattingOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x657)
+            (or_boolean_to_js WorkspaceSymbolOptions.t_to_js x607)
+    let (get_document_formatting_provider :
+      'T t -> DocumentFormattingOptions.t or_boolean) =
+      fun (x610 : 'T t) ->
+        or_boolean_of_js DocumentFormattingOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x610)
              "documentFormattingProvider")
-    let (set_documentFormattingProvider :
-      'T t -> _DocumentFormattingOptions or_boolean -> unit) =
-      fun (x660 : 'T t) ->
-        fun (x661 : _DocumentFormattingOptions or_boolean) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x660)
+    let (set_document_formatting_provider :
+      'T t -> DocumentFormattingOptions.t or_boolean -> unit) =
+      fun (x613 : 'T t) ->
+        fun (x614 : DocumentFormattingOptions.t or_boolean) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x613)
             "documentFormattingProvider"
-            (or_boolean_to_js _DocumentFormattingOptions_to_js x661)
-    let (get_documentRangeFormattingProvider :
-      'T t -> _DocumentRangeFormattingOptions or_boolean) =
-      fun (x664 : 'T t) ->
-        or_boolean_of_js _DocumentRangeFormattingOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x664)
+            (or_boolean_to_js DocumentFormattingOptions.t_to_js x614)
+    let (get_document_range_formatting_provider :
+      'T t -> DocumentRangeFormattingOptions.t or_boolean) =
+      fun (x617 : 'T t) ->
+        or_boolean_of_js DocumentRangeFormattingOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x617)
              "documentRangeFormattingProvider")
-    let (set_documentRangeFormattingProvider :
-      'T t -> _DocumentRangeFormattingOptions or_boolean -> unit) =
-      fun (x667 : 'T t) ->
-        fun (x668 : _DocumentRangeFormattingOptions or_boolean) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x667)
+    let (set_document_range_formatting_provider :
+      'T t -> DocumentRangeFormattingOptions.t or_boolean -> unit) =
+      fun (x620 : 'T t) ->
+        fun (x621 : DocumentRangeFormattingOptions.t or_boolean) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x620)
             "documentRangeFormattingProvider"
-            (or_boolean_to_js _DocumentRangeFormattingOptions_to_js x668)
-    let (get_documentOnTypeFormattingProvider :
-      'T t -> _DocumentOnTypeFormattingOptions) =
-      fun (x671 : 'T t) ->
-        _DocumentOnTypeFormattingOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x671)
+            (or_boolean_to_js DocumentRangeFormattingOptions.t_to_js x621)
+    let (get_document_on_type_formatting_provider :
+      'T t -> DocumentOnTypeFormattingOptions.t) =
+      fun (x624 : 'T t) ->
+        DocumentOnTypeFormattingOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x624)
              "documentOnTypeFormattingProvider")
-    let (set_documentOnTypeFormattingProvider :
-      'T t -> _DocumentOnTypeFormattingOptions -> unit) =
-      fun (x673 : 'T t) ->
-        fun (x674 : _DocumentOnTypeFormattingOptions) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x673)
+    let (set_document_on_type_formatting_provider :
+      'T t -> DocumentOnTypeFormattingOptions.t -> unit) =
+      fun (x626 : 'T t) ->
+        fun (x627 : DocumentOnTypeFormattingOptions.t) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x626)
             "documentOnTypeFormattingProvider"
-            (_DocumentOnTypeFormattingOptions_to_js x674)
-    let (get_renameProvider : 'T t -> _RenameOptions or_boolean) =
-      fun (x676 : 'T t) ->
-        or_boolean_of_js _RenameOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x676) "renameProvider")
-    let (set_renameProvider : 'T t -> _RenameOptions or_boolean -> unit) =
-      fun (x679 : 'T t) ->
-        fun (x680 : _RenameOptions or_boolean) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x679) "renameProvider"
-            (or_boolean_to_js _RenameOptions_to_js x680)
-    let (get_foldingRangeProvider :
+            (DocumentOnTypeFormattingOptions.t_to_js x627)
+    let (get_rename_provider : 'T t -> RenameOptions.t or_boolean) =
+      fun (x629 : 'T t) ->
+        or_boolean_of_js RenameOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x629) "renameProvider")
+    let (set_rename_provider : 'T t -> RenameOptions.t or_boolean -> unit) =
+      fun (x632 : 'T t) ->
+        fun (x633 : RenameOptions.t or_boolean) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x632) "renameProvider"
+            (or_boolean_to_js RenameOptions.t_to_js x633)
+    let (get_folding_range_provider :
       'T t ->
         (FoldingRangeOptions.t, FoldingRangeRegistrationOptions.t) union2
           or_boolean)
       =
-      fun (x683 : 'T t) ->
+      fun (x636 : 'T t) ->
         or_boolean_of_js
-          (fun (x685 : Ojs.t) ->
+          (fun (x638 : Ojs.t) ->
              union2_of_js FoldingRangeOptions.t_of_js
-               FoldingRangeRegistrationOptions.t_of_js x685)
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x683) "foldingRangeProvider")
-    let (set_foldingRangeProvider :
+               FoldingRangeRegistrationOptions.t_of_js x638)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x636) "foldingRangeProvider")
+    let (set_folding_range_provider :
       'T t ->
         (FoldingRangeOptions.t, FoldingRangeRegistrationOptions.t) union2
           or_boolean -> unit)
       =
-      fun (x688 : 'T t) ->
+      fun (x641 : 'T t) ->
         fun
-          (x689 :
+          (x642 :
             (FoldingRangeOptions.t, FoldingRangeRegistrationOptions.t) union2
               or_boolean)
           ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x688) "foldingRangeProvider"
+          Ojs.set_prop_ascii (t_to_js Obj.magic x641) "foldingRangeProvider"
             (or_boolean_to_js
                (fun
-                  (x690 :
+                  (x643 :
                     (FoldingRangeOptions.t,
                       FoldingRangeRegistrationOptions.t) union2)
                   ->
                   union2_to_js FoldingRangeOptions.t_to_js
-                    FoldingRangeRegistrationOptions.t_to_js x690) x689)
-    let (get_selectionRangeProvider :
+                    FoldingRangeRegistrationOptions.t_to_js x643) x642)
+    let (get_selection_range_provider :
       'T t ->
         (SelectionRangeOptions.t, SelectionRangeRegistrationOptions.t) union2
           or_boolean)
       =
-      fun (x694 : 'T t) ->
+      fun (x647 : 'T t) ->
         or_boolean_of_js
-          (fun (x696 : Ojs.t) ->
+          (fun (x649 : Ojs.t) ->
              union2_of_js SelectionRangeOptions.t_of_js
-               SelectionRangeRegistrationOptions.t_of_js x696)
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x694)
+               SelectionRangeRegistrationOptions.t_of_js x649)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x647)
              "selectionRangeProvider")
-    let (set_selectionRangeProvider :
+    let (set_selection_range_provider :
       'T t ->
         (SelectionRangeOptions.t, SelectionRangeRegistrationOptions.t) union2
           or_boolean -> unit)
       =
-      fun (x699 : 'T t) ->
+      fun (x652 : 'T t) ->
         fun
-          (x700 :
+          (x653 :
             (SelectionRangeOptions.t, SelectionRangeRegistrationOptions.t)
               union2 or_boolean)
           ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x699)
+          Ojs.set_prop_ascii (t_to_js Obj.magic x652)
             "selectionRangeProvider"
             (or_boolean_to_js
                (fun
-                  (x701 :
+                  (x654 :
                     (SelectionRangeOptions.t,
                       SelectionRangeRegistrationOptions.t) union2)
                   ->
                   union2_to_js SelectionRangeOptions.t_to_js
-                    SelectionRangeRegistrationOptions.t_to_js x701) x700)
-    let (get_executeCommandProvider : 'T t -> _ExecuteCommandOptions) =
-      fun (x705 : 'T t) ->
-        _ExecuteCommandOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x705)
+                    SelectionRangeRegistrationOptions.t_to_js x654) x653)
+    let (get_execute_command_provider : 'T t -> ExecuteCommandOptions.t) =
+      fun (x658 : 'T t) ->
+        ExecuteCommandOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x658)
              "executeCommandProvider")
-    let (set_executeCommandProvider : 'T t -> _ExecuteCommandOptions -> unit)
-      =
-      fun (x707 : 'T t) ->
-        fun (x708 : _ExecuteCommandOptions) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x707)
-            "executeCommandProvider" (_ExecuteCommandOptions_to_js x708)
-    let (get_callHierarchyProvider :
+    let (set_execute_command_provider :
+      'T t -> ExecuteCommandOptions.t -> unit) =
+      fun (x660 : 'T t) ->
+        fun (x661 : ExecuteCommandOptions.t) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x660)
+            "executeCommandProvider" (ExecuteCommandOptions.t_to_js x661)
+    let (get_call_hierarchy_provider :
       'T t ->
         (CallHierarchyOptions.t, CallHierarchyRegistrationOptions.t) union2
           or_boolean)
       =
-      fun (x710 : 'T t) ->
+      fun (x663 : 'T t) ->
         or_boolean_of_js
-          (fun (x712 : Ojs.t) ->
+          (fun (x665 : Ojs.t) ->
              union2_of_js CallHierarchyOptions.t_of_js
-               CallHierarchyRegistrationOptions.t_of_js x712)
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x710)
+               CallHierarchyRegistrationOptions.t_of_js x665)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x663)
              "callHierarchyProvider")
-    let (set_callHierarchyProvider :
+    let (set_call_hierarchy_provider :
       'T t ->
         (CallHierarchyOptions.t, CallHierarchyRegistrationOptions.t) union2
           or_boolean -> unit)
       =
-      fun (x715 : 'T t) ->
+      fun (x668 : 'T t) ->
         fun
-          (x716 :
+          (x669 :
             (CallHierarchyOptions.t, CallHierarchyRegistrationOptions.t)
               union2 or_boolean)
           ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x715) "callHierarchyProvider"
+          Ojs.set_prop_ascii (t_to_js Obj.magic x668) "callHierarchyProvider"
             (or_boolean_to_js
                (fun
-                  (x717 :
+                  (x670 :
                     (CallHierarchyOptions.t,
                       CallHierarchyRegistrationOptions.t) union2)
                   ->
                   union2_to_js CallHierarchyOptions.t_to_js
-                    CallHierarchyRegistrationOptions.t_to_js x717) x716)
-    let (get_linkedEditingRangeProvider :
+                    CallHierarchyRegistrationOptions.t_to_js x670) x669)
+    let (get_linked_editing_range_provider :
       'T t ->
         (LinkedEditingRangeOptions.t,
           LinkedEditingRangeRegistrationOptions.t) union2 or_boolean)
       =
-      fun (x721 : 'T t) ->
+      fun (x674 : 'T t) ->
         or_boolean_of_js
-          (fun (x723 : Ojs.t) ->
+          (fun (x676 : Ojs.t) ->
              union2_of_js LinkedEditingRangeOptions.t_of_js
-               LinkedEditingRangeRegistrationOptions.t_of_js x723)
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x721)
+               LinkedEditingRangeRegistrationOptions.t_of_js x676)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x674)
              "linkedEditingRangeProvider")
-    let (set_linkedEditingRangeProvider :
+    let (set_linked_editing_range_provider :
       'T t ->
         (LinkedEditingRangeOptions.t,
           LinkedEditingRangeRegistrationOptions.t) union2 or_boolean -> 
           unit)
       =
-      fun (x726 : 'T t) ->
+      fun (x679 : 'T t) ->
         fun
-          (x727 :
+          (x680 :
             (LinkedEditingRangeOptions.t,
               LinkedEditingRangeRegistrationOptions.t) union2 or_boolean)
           ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x726)
+          Ojs.set_prop_ascii (t_to_js Obj.magic x679)
             "linkedEditingRangeProvider"
             (or_boolean_to_js
                (fun
-                  (x728 :
+                  (x681 :
                     (LinkedEditingRangeOptions.t,
                       LinkedEditingRangeRegistrationOptions.t) union2)
                   ->
                   union2_to_js LinkedEditingRangeOptions.t_to_js
-                    LinkedEditingRangeRegistrationOptions.t_to_js x728) x727)
-    let (get_semanticTokensProvider :
+                    LinkedEditingRangeRegistrationOptions.t_to_js x681) x680)
+    let (get_semantic_tokens_provider :
       'T t ->
         (SemanticTokensOptions.t, SemanticTokensRegistrationOptions.t) union2)
       =
-      fun (x732 : 'T t) ->
+      fun (x685 : 'T t) ->
         union2_of_js SemanticTokensOptions.t_of_js
           SemanticTokensRegistrationOptions.t_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x732)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x685)
              "semanticTokensProvider")
-    let (set_semanticTokensProvider :
+    let (set_semantic_tokens_provider :
       'T t ->
         (SemanticTokensOptions.t, SemanticTokensRegistrationOptions.t) union2
           -> unit)
       =
-      fun (x736 : 'T t) ->
+      fun (x689 : 'T t) ->
         fun
-          (x737 :
+          (x690 :
             (SemanticTokensOptions.t, SemanticTokensRegistrationOptions.t)
               union2)
           ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x736)
+          Ojs.set_prop_ascii (t_to_js Obj.magic x689)
             "semanticTokensProvider"
             (union2_to_js SemanticTokensOptions.t_to_js
-               SemanticTokensRegistrationOptions.t_to_js x737)
+               SemanticTokensRegistrationOptions.t_to_js x690)
     let (get_workspace : 'T t -> AnonymousInterface5.t) =
-      fun (x741 : 'T t) ->
+      fun (x694 : 'T t) ->
         AnonymousInterface5.t_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x741) "workspace")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x694) "workspace")
     let (set_workspace : 'T t -> AnonymousInterface5.t -> unit) =
-      fun (x743 : 'T t) ->
-        fun (x744 : AnonymousInterface5.t) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x743) "workspace"
-            (AnonymousInterface5.t_to_js x744)
-    let (get_monikerProvider :
+      fun (x696 : 'T t) ->
+        fun (x697 : AnonymousInterface5.t) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x696) "workspace"
+            (AnonymousInterface5.t_to_js x697)
+    let (get_moniker_provider :
       'T t ->
         (MonikerOptions.t, MonikerRegistrationOptions.t) union2 or_boolean)
       =
-      fun (x746 : 'T t) ->
+      fun (x699 : 'T t) ->
         or_boolean_of_js
-          (fun (x748 : Ojs.t) ->
+          (fun (x701 : Ojs.t) ->
              union2_of_js MonikerOptions.t_of_js
-               MonikerRegistrationOptions.t_of_js x748)
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x746) "monikerProvider")
-    let (set_monikerProvider :
+               MonikerRegistrationOptions.t_of_js x701)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x699) "monikerProvider")
+    let (set_moniker_provider :
       'T t ->
         (MonikerOptions.t, MonikerRegistrationOptions.t) union2 or_boolean ->
           unit)
       =
-      fun (x751 : 'T t) ->
+      fun (x704 : 'T t) ->
         fun
-          (x752 :
+          (x705 :
             (MonikerOptions.t, MonikerRegistrationOptions.t) union2
               or_boolean)
           ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x751) "monikerProvider"
+          Ojs.set_prop_ascii (t_to_js Obj.magic x704) "monikerProvider"
             (or_boolean_to_js
                (fun
-                  (x753 :
+                  (x706 :
                     (MonikerOptions.t, MonikerRegistrationOptions.t) union2)
                   ->
                   union2_to_js MonikerOptions.t_to_js
-                    MonikerRegistrationOptions.t_to_js x753) x752)
+                    MonikerRegistrationOptions.t_to_js x706) x705)
     let (get_experimental : 'T t -> 'T) =
-      fun (x757 : 'T t) ->
+      fun (x710 : 'T t) ->
         Obj.magic
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x757) "experimental")
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x710) "experimental")
     let (set_experimental : 'T t -> 'T -> unit) =
-      fun (x759 : 'T t) ->
-        fun (x760 : 'T) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x759) "experimental"
-            (Obj.magic x760)
+      fun (x712 : 'T t) ->
+        fun (x713 : 'T) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x712) "experimental"
+            (Obj.magic x713)
   end
 module ServerCapabilities =
   struct
-    type 'T t = 'T _ServerCapabilities
+    type 'T t = Ojs.t
     let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type __T) ->
-      fun (__T_of_js : Ojs.t -> __T) ->
-        fun (x764 : Ojs.t) -> _ServerCapabilities_of_js __T_of_js x764
+      fun (__T_of_js : Ojs.t -> __T) -> fun (x716 : Ojs.t) -> x716
     and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-      fun (__T_to_js : __T -> Ojs.t) ->
-        fun (x762 : __T _ServerCapabilities) ->
-          _ServerCapabilities_to_js __T_to_js x762
+      fun (__T_to_js : __T -> Ojs.t) -> fun (x715 : Ojs.t) -> x715
     type t_0 = any t
     let rec t_0_of_js : Ojs.t -> t_0 =
-      fun (x768 : Ojs.t) -> t_of_js any_of_js x768
+      fun (x719 : Ojs.t) -> t_of_js any_of_js x719
     and t_0_to_js : t_0 -> Ojs.t =
-      fun (x766 : any t) -> t_to_js any_to_js x766
+      fun (x717 : any t) -> t_to_js any_to_js x717
   end
 module InitializeRequest =
   struct
     let (type_ :
-      ((_InitializeParams, WorkspaceFoldersInitializeParams.t,
-         _WorkDoneProgressParams) intersection3,
-        any _InitializeResult, never, _InitializeError, unit)
+      ((InitializeParams.t, WorkspaceFoldersInitializeParams.t,
+         WorkDoneProgressParams.t) intersection3,
+        any InitializeResult.t, never, InitializeError.t, unit)
         ProtocolRequestType.t)
       =
       ProtocolRequestType.t_of_js
-        (fun (x770 : Ojs.t) ->
-           intersection3_of_js _InitializeParams_of_js
+        (fun (x721 : Ojs.t) ->
+           intersection3_of_js InitializeParams.t_of_js
              WorkspaceFoldersInitializeParams.t_of_js
-             _WorkDoneProgressParams_of_js x770)
-        (fun (x774 : Ojs.t) -> _InitializeResult_of_js any_of_js x774)
-        never_of_js _InitializeError_of_js Ojs.unit_of_js
+             WorkDoneProgressParams.t_of_js x721)
+        (fun (x725 : Ojs.t) -> InitializeResult.t_of_js any_of_js x725)
+        never_of_js InitializeError.t_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "InitializeRequest") "type")
   end
 module M_InitializeParams =
   struct
-    type t = _InitializeParams
+    type t =
+      (InitializeParams.t, WorkspaceFoldersInitializeParams.t) intersection2
     let rec t_of_js : Ojs.t -> t =
-      fun (x780 : Ojs.t) -> _InitializeParams_of_js x780
+      fun (x733 : Ojs.t) ->
+        intersection2_of_js InitializeParams.t_of_js
+          WorkspaceFoldersInitializeParams.t_of_js x733
     and t_to_js : t -> Ojs.t =
-      fun (x779 : _InitializeParams) -> _InitializeParams_to_js x779
-    let (get_processId : t -> Integer.t or_null) =
-      fun (x781 : t) ->
+      fun
+        (x730 :
+          (InitializeParams.t, WorkspaceFoldersInitializeParams.t)
+            intersection2)
+        ->
+        intersection2_to_js InitializeParams.t_to_js
+          WorkspaceFoldersInitializeParams.t_to_js x730
+    let (get_process_id : t -> Integer.t or_null) =
+      fun (x736 : t) ->
         or_null_of_js Integer.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x781) "processId")
-    let (set_processId : t -> Integer.t or_null -> unit) =
-      fun (x783 : t) ->
-        fun (x784 : Integer.t or_null) ->
-          Ojs.set_prop_ascii (t_to_js x783) "processId"
-            (or_null_to_js Integer.t_to_js x784)
-    let (get_clientInfo : t -> AnonymousInterface10.t) =
-      fun (x786 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x736) "processId")
+    let (set_process_id : t -> Integer.t or_null -> unit) =
+      fun (x738 : t) ->
+        fun (x739 : Integer.t or_null) ->
+          Ojs.set_prop_ascii (t_to_js x738) "processId"
+            (or_null_to_js Integer.t_to_js x739)
+    let (get_client_info : t -> AnonymousInterface10.t) =
+      fun (x741 : t) ->
         AnonymousInterface10.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x786) "clientInfo")
-    let (set_clientInfo : t -> AnonymousInterface10.t -> unit) =
-      fun (x787 : t) ->
-        fun (x788 : AnonymousInterface10.t) ->
-          Ojs.set_prop_ascii (t_to_js x787) "clientInfo"
-            (AnonymousInterface10.t_to_js x788)
+          (Ojs.get_prop_ascii (t_to_js x741) "clientInfo")
+    let (set_client_info : t -> AnonymousInterface10.t -> unit) =
+      fun (x742 : t) ->
+        fun (x743 : AnonymousInterface10.t) ->
+          Ojs.set_prop_ascii (t_to_js x742) "clientInfo"
+            (AnonymousInterface10.t_to_js x743)
     let (get_locale : t -> string) =
-      fun (x789 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x789) "locale")
+      fun (x744 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x744) "locale")
     let (set_locale : t -> string -> unit) =
-      fun (x790 : t) ->
-        fun (x791 : string) ->
-          Ojs.set_prop_ascii (t_to_js x790) "locale" (Ojs.string_to_js x791)
-    let (get_rootPath : t -> string or_null) =
-      fun (x792 : t) ->
+      fun (x745 : t) ->
+        fun (x746 : string) ->
+          Ojs.set_prop_ascii (t_to_js x745) "locale" (Ojs.string_to_js x746)
+    let (get_root_path : t -> string or_null) =
+      fun (x747 : t) ->
         or_null_of_js Ojs.string_of_js
-          (Ojs.get_prop_ascii (t_to_js x792) "rootPath")
-    let (set_rootPath : t -> string or_null -> unit) =
-      fun (x794 : t) ->
-        fun (x795 : string or_null) ->
-          Ojs.set_prop_ascii (t_to_js x794) "rootPath"
-            (or_null_to_js Ojs.string_to_js x795)
-    let (get_rootUri : t -> DocumentUri.t or_null) =
-      fun (x797 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x747) "rootPath")
+    let (set_root_path : t -> string or_null -> unit) =
+      fun (x749 : t) ->
+        fun (x750 : string or_null) ->
+          Ojs.set_prop_ascii (t_to_js x749) "rootPath"
+            (or_null_to_js Ojs.string_to_js x750)
+    let (get_root_uri : t -> DocumentUri.t or_null) =
+      fun (x752 : t) ->
         or_null_of_js DocumentUri.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x797) "rootUri")
-    let (set_rootUri : t -> DocumentUri.t or_null -> unit) =
-      fun (x799 : t) ->
-        fun (x800 : DocumentUri.t or_null) ->
-          Ojs.set_prop_ascii (t_to_js x799) "rootUri"
-            (or_null_to_js DocumentUri.t_to_js x800)
-    let (get_capabilities : t -> _ClientCapabilities) =
-      fun (x802 : t) ->
-        _ClientCapabilities_of_js
-          (Ojs.get_prop_ascii (t_to_js x802) "capabilities")
-    let (set_capabilities : t -> _ClientCapabilities -> unit) =
-      fun (x803 : t) ->
-        fun (x804 : _ClientCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js x803) "capabilities"
-            (_ClientCapabilities_to_js x804)
-    let (get_initializationOptions : t -> any) =
-      fun (x805 : t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js x805) "initializationOptions")
-    let (set_initializationOptions : t -> any -> unit) =
-      fun (x806 : t) ->
-        fun (x807 : any) ->
-          Ojs.set_prop_ascii (t_to_js x806) "initializationOptions"
-            (any_to_js x807)
+          (Ojs.get_prop_ascii (t_to_js x752) "rootUri")
+    let (set_root_uri : t -> DocumentUri.t or_null -> unit) =
+      fun (x754 : t) ->
+        fun (x755 : DocumentUri.t or_null) ->
+          Ojs.set_prop_ascii (t_to_js x754) "rootUri"
+            (or_null_to_js DocumentUri.t_to_js x755)
+    let (get_capabilities : t -> ClientCapabilities.t) =
+      fun (x757 : t) ->
+        ClientCapabilities.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x757) "capabilities")
+    let (set_capabilities : t -> ClientCapabilities.t -> unit) =
+      fun (x758 : t) ->
+        fun (x759 : ClientCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js x758) "capabilities"
+            (ClientCapabilities.t_to_js x759)
+    let (get_initialization_options : t -> any) =
+      fun (x760 : t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js x760) "initializationOptions")
+    let (set_initialization_options : t -> any -> unit) =
+      fun (x761 : t) ->
+        fun (x762 : any) ->
+          Ojs.set_prop_ascii (t_to_js x761) "initializationOptions"
+            (any_to_js x762)
     let (get_trace : t -> [ `L_s7_messages  | `L_s8_off  | `L_s34_verbose ])
       =
-      fun (x808 : t) ->
-        let x809 = Ojs.get_prop_ascii (t_to_js x808) "trace" in
-        match Ojs.string_of_js x809 with
+      fun (x763 : t) ->
+        let x764 = Ojs.get_prop_ascii (t_to_js x763) "trace" in
+        match Ojs.string_of_js x764 with
         | "messages" -> `L_s7_messages
         | "off" -> `L_s8_off
         | "verbose" -> `L_s34_verbose
         | _ -> assert false
     let (set_trace :
       t -> [ `L_s7_messages  | `L_s8_off  | `L_s34_verbose ] -> unit) =
-      fun (x810 : t) ->
-        fun (x811 : [ `L_s7_messages  | `L_s8_off  | `L_s34_verbose ]) ->
-          Ojs.set_prop_ascii (t_to_js x810) "trace"
-            (match x811 with
+      fun (x765 : t) ->
+        fun (x766 : [ `L_s7_messages  | `L_s8_off  | `L_s34_verbose ]) ->
+          Ojs.set_prop_ascii (t_to_js x765) "trace"
+            (match x766 with
              | `L_s7_messages -> Ojs.string_to_js "LS7Messages"
              | `L_s8_off -> Ojs.string_to_js "LS8Off"
              | `L_s34_verbose -> Ojs.string_to_js "LS34Verbose")
-    let (cast : t -> _WorkDoneProgressParams) =
-      fun (x812 : t) -> _WorkDoneProgressParams_of_js (t_to_js x812)
+    let (cast : t -> WorkDoneProgressParams.t) =
+      fun (x767 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x767)
   end
 module InitializeParams =
   struct
-    type t = _InitializeParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x814 : Ojs.t) -> _InitializeParams_of_js x814
-    and t_to_js : t -> Ojs.t =
-      fun (x813 : _InitializeParams) -> _InitializeParams_to_js x813
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x769 : Ojs.t) -> x769
+    and t_to_js : t -> Ojs.t = fun (x768 : Ojs.t) -> x768
   end
 module InitializeResult =
   struct
-    type 'T t = 'T _InitializeResult
+    type 'T t = Ojs.t
     let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type __T) ->
-      fun (__T_of_js : Ojs.t -> __T) ->
-        fun (x817 : Ojs.t) -> _InitializeResult_of_js __T_of_js x817
+      fun (__T_of_js : Ojs.t -> __T) -> fun (x771 : Ojs.t) -> x771
     and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-      fun (__T_to_js : __T -> Ojs.t) ->
-        fun (x815 : __T _InitializeResult) ->
-          _InitializeResult_to_js __T_to_js x815
+      fun (__T_to_js : __T -> Ojs.t) -> fun (x770 : Ojs.t) -> x770
     type t_0 = any t
     let rec t_0_of_js : Ojs.t -> t_0 =
-      fun (x821 : Ojs.t) -> t_of_js any_of_js x821
+      fun (x774 : Ojs.t) -> t_of_js any_of_js x774
     and t_0_to_js : t_0 -> Ojs.t =
-      fun (x819 : any t) -> t_to_js any_to_js x819
-    let (get_capabilities : 'T t -> 'T _ServerCapabilities) =
-      fun (x823 : 'T t) ->
-        _ServerCapabilities_of_js Obj.magic
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x823) "capabilities")
-    let (set_capabilities : 'T t -> 'T _ServerCapabilities -> unit) =
-      fun (x826 : 'T t) ->
-        fun (x827 : 'T _ServerCapabilities) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x826) "capabilities"
-            (_ServerCapabilities_to_js Obj.magic x827)
-    let (get_serverInfo : 'T t -> AnonymousInterface10.t) =
-      fun (x830 : 'T t) ->
+      fun (x772 : any t) -> t_to_js any_to_js x772
+    let (get_capabilities : 'T t -> 'T ServerCapabilities.t) =
+      fun (x776 : 'T t) ->
+        ServerCapabilities.t_of_js Obj.magic
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x776) "capabilities")
+    let (set_capabilities : 'T t -> 'T ServerCapabilities.t -> unit) =
+      fun (x779 : 'T t) ->
+        fun (x780 : 'T ServerCapabilities.t) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x779) "capabilities"
+            (ServerCapabilities.t_to_js Obj.magic x780)
+    let (get_server_info : 'T t -> AnonymousInterface10.t) =
+      fun (x783 : 'T t) ->
         AnonymousInterface10.t_of_js
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x830) "serverInfo")
-    let (set_serverInfo : 'T t -> AnonymousInterface10.t -> unit) =
-      fun (x832 : 'T t) ->
-        fun (x833 : AnonymousInterface10.t) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x832) "serverInfo"
-            (AnonymousInterface10.t_to_js x833)
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x783) "serverInfo")
+    let (set_server_info : 'T t -> AnonymousInterface10.t -> unit) =
+      fun (x785 : 'T t) ->
+        fun (x786 : AnonymousInterface10.t) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x785) "serverInfo"
+            (AnonymousInterface10.t_to_js x786)
     let (get : 'T t -> string -> any) =
-      fun (x835 : 'T t) ->
-        fun (x837 : string) ->
+      fun (x788 : 'T t) ->
+        fun (x790 : string) ->
           any_of_js
-            (Ojs.get_prop (t_to_js Obj.magic x835) (Ojs.string_to_js x837))
+            (Ojs.get_prop (t_to_js Obj.magic x788) (Ojs.string_to_js x790))
     let (set : 'T t -> string -> any -> unit) =
-      fun (x838 : 'T t) ->
-        fun (x840 : string) ->
-          fun (x841 : any) ->
-            Ojs.set_prop (t_to_js Obj.magic x838) (Ojs.string_to_js x840)
-              (any_to_js x841)
+      fun (x791 : 'T t) ->
+        fun (x793 : string) ->
+          fun (x794 : any) ->
+            Ojs.set_prop (t_to_js Obj.magic x791) (Ojs.string_to_js x793)
+              (any_to_js x794)
   end
 module InitializeError =
   struct
-    let (unknownProtocolVersion : [ `L_n_1 ]) =
-      let x842 =
+    let (unknown_protocol_version : [ `L_n_1 ]) =
+      let x795 =
         Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "InitializeError")
           "unknownProtocolVersion" in
-      match Ojs.int_of_js x842 with | 1 -> `L_n_1 | _ -> assert false
+      match Ojs.int_of_js x795 with | 1 -> `L_n_1 | _ -> assert false
   end
 module InitializeError =
   struct
-    type t = _InitializeError
-    let rec t_of_js : Ojs.t -> t =
-      fun (x844 : Ojs.t) -> _InitializeError_of_js x844
-    and t_to_js : t -> Ojs.t =
-      fun (x843 : _InitializeError) -> _InitializeError_to_js x843
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x797 : Ojs.t) -> x797
+    and t_to_js : t -> Ojs.t = fun (x796 : Ojs.t) -> x796
     let (get_retry : t -> bool) =
-      fun (x845 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x845) "retry")
+      fun (x798 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x798) "retry")
     let (set_retry : t -> bool -> unit) =
-      fun (x846 : t) ->
-        fun (x847 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x846) "retry" (Ojs.bool_to_js x847)
+      fun (x799 : t) ->
+        fun (x800 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x799) "retry" (Ojs.bool_to_js x800)
   end
 module InitializedParams =
   struct
-    type t = _InitializedParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x849 : Ojs.t) -> _InitializedParams_of_js x849
-    and t_to_js : t -> Ojs.t =
-      fun (x848 : _InitializedParams) -> _InitializedParams_to_js x848
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x802 : Ojs.t) -> x802
+    and t_to_js : t -> Ojs.t = fun (x801 : Ojs.t) -> x801
   end
 module InitializedNotification =
   struct
-    let (type_ : (_InitializedParams, unit) ProtocolNotificationType.t) =
-      ProtocolNotificationType.t_of_js _InitializedParams_of_js
+    let (type_ : (InitializedParams.t, unit) ProtocolNotificationType.t) =
+      ProtocolNotificationType.t_of_js InitializedParams.t_of_js
         Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "InitializedNotification") "type")
@@ -2407,73 +2185,62 @@ module ExitNotification =
   end
 module DidChangeConfigurationClientCapabilities =
   struct
-    type t = _DidChangeConfigurationClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x858 : Ojs.t) ->
-        _DidChangeConfigurationClientCapabilities_of_js x858
-    and t_to_js : t -> Ojs.t =
-      fun (x857 : _DidChangeConfigurationClientCapabilities) ->
-        _DidChangeConfigurationClientCapabilities_to_js x857
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x859 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x811 : Ojs.t) -> x811
+    and t_to_js : t -> Ojs.t = fun (x810 : Ojs.t) -> x810
+    let (get_dynamic_registration : t -> bool) =
+      fun (x812 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x859) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x860 : t) ->
-        fun (x861 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x860) "dynamicRegistration"
-            (Ojs.bool_to_js x861)
+          (Ojs.get_prop_ascii (t_to_js x812) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x813 : t) ->
+        fun (x814 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x813) "dynamicRegistration"
+            (Ojs.bool_to_js x814)
   end
 module DidChangeConfigurationNotification =
   struct
     let (type_ :
-      (_DidChangeConfigurationParams,
-        _DidChangeConfigurationRegistrationOptions)
+      (DidChangeConfigurationParams.t,
+        DidChangeConfigurationRegistrationOptions.t)
         ProtocolNotificationType.t)
       =
-      ProtocolNotificationType.t_of_js _DidChangeConfigurationParams_of_js
-        _DidChangeConfigurationRegistrationOptions_of_js
+      ProtocolNotificationType.t_of_js DidChangeConfigurationParams.t_of_js
+        DidChangeConfigurationRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global
               "DidChangeConfigurationNotification") "type")
   end
 module DidChangeConfigurationRegistrationOptions =
   struct
-    type t = _DidChangeConfigurationRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x865 : Ojs.t) ->
-        _DidChangeConfigurationRegistrationOptions_of_js x865
-    and t_to_js : t -> Ojs.t =
-      fun (x864 : _DidChangeConfigurationRegistrationOptions) ->
-        _DidChangeConfigurationRegistrationOptions_to_js x864
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x818 : Ojs.t) -> x818
+    and t_to_js : t -> Ojs.t = fun (x817 : Ojs.t) -> x817
     let (get_section : t -> string list or_string) =
-      fun (x866 : t) ->
+      fun (x819 : t) ->
         or_string_of_js
-          (fun (x867 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x867)
-          (Ojs.get_prop_ascii (t_to_js x866) "section")
+          (fun (x820 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x820)
+          (Ojs.get_prop_ascii (t_to_js x819) "section")
     let (set_section : t -> string list or_string -> unit) =
-      fun (x869 : t) ->
-        fun (x870 : string list or_string) ->
-          Ojs.set_prop_ascii (t_to_js x869) "section"
+      fun (x822 : t) ->
+        fun (x823 : string list or_string) ->
+          Ojs.set_prop_ascii (t_to_js x822) "section"
             (or_string_to_js
-               (fun (x871 : string list) ->
-                  Ojs.list_to_js Ojs.string_to_js x871) x870)
+               (fun (x824 : string list) ->
+                  Ojs.list_to_js Ojs.string_to_js x824) x823)
   end
 module DidChangeConfigurationParams =
   struct
-    type t = _DidChangeConfigurationParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x874 : Ojs.t) -> _DidChangeConfigurationParams_of_js x874
-    and t_to_js : t -> Ojs.t =
-      fun (x873 : _DidChangeConfigurationParams) ->
-        _DidChangeConfigurationParams_to_js x873
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x827 : Ojs.t) -> x827
+    and t_to_js : t -> Ojs.t = fun (x826 : Ojs.t) -> x826
     let (get_settings : t -> any) =
-      fun (x875 : t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js x875) "settings")
+      fun (x828 : t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js x828) "settings")
     let (set_settings : t -> any -> unit) =
-      fun (x876 : t) ->
-        fun (x877 : any) ->
-          Ojs.set_prop_ascii (t_to_js x876) "settings" (any_to_js x877)
+      fun (x829 : t) ->
+        fun (x830 : any) ->
+          Ojs.set_prop_ascii (t_to_js x829) "settings" (any_to_js x830)
   end
 module MessageType =
   struct
@@ -2496,176 +2263,177 @@ module MessageType =
   end
 module MessageType =
   struct
-    type t = _MessageType
+    type t = [ `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4 ]
     let rec t_of_js : Ojs.t -> t =
-      fun (x879 : Ojs.t) -> _MessageType_of_js x879
+      fun (x832 : Ojs.t) ->
+        let x833 = x832 in
+        match Ojs.int_of_js x833 with
+        | 1 -> `L_n_1
+        | 2 -> `L_n_2
+        | 3 -> `L_n_3
+        | 4 -> `L_n_4
+        | _ -> assert false
     and t_to_js : t -> Ojs.t =
-      fun (x878 : _MessageType) -> _MessageType_to_js x878
+      fun (x831 : [ `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4 ]) ->
+        match x831 with
+        | `L_n_1 -> Ojs.int_to_js 1
+        | `L_n_2 -> Ojs.int_to_js 2
+        | `L_n_3 -> Ojs.int_to_js 3
+        | `L_n_4 -> Ojs.int_to_js 4
   end
 module ShowMessageParams =
   struct
-    type t = _ShowMessageParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x881 : Ojs.t) -> _ShowMessageParams_of_js x881
-    and t_to_js : t -> Ojs.t =
-      fun (x880 : _ShowMessageParams) -> _ShowMessageParams_to_js x880
-    let (get_type : t -> _MessageType) =
-      fun (x882 : t) ->
-        _MessageType_of_js (Ojs.get_prop_ascii (t_to_js x882) "type")
-    let (set_type : t -> _MessageType -> unit) =
-      fun (x883 : t) ->
-        fun (x884 : _MessageType) ->
-          Ojs.set_prop_ascii (t_to_js x883) "type" (_MessageType_to_js x884)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x835 : Ojs.t) -> x835
+    and t_to_js : t -> Ojs.t = fun (x834 : Ojs.t) -> x834
+    let (get_type : t -> MessageType.t) =
+      fun (x836 : t) ->
+        MessageType.t_of_js (Ojs.get_prop_ascii (t_to_js x836) "type")
+    let (set_type : t -> MessageType.t -> unit) =
+      fun (x837 : t) ->
+        fun (x838 : MessageType.t) ->
+          Ojs.set_prop_ascii (t_to_js x837) "type" (MessageType.t_to_js x838)
     let (get_message : t -> string) =
-      fun (x885 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x885) "message")
+      fun (x839 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x839) "message")
     let (set_message : t -> string -> unit) =
-      fun (x886 : t) ->
-        fun (x887 : string) ->
-          Ojs.set_prop_ascii (t_to_js x886) "message" (Ojs.string_to_js x887)
+      fun (x840 : t) ->
+        fun (x841 : string) ->
+          Ojs.set_prop_ascii (t_to_js x840) "message" (Ojs.string_to_js x841)
   end
 module ShowMessageNotification =
   struct
-    let (type_ : (_ShowMessageParams, unit) ProtocolNotificationType.t) =
-      ProtocolNotificationType.t_of_js _ShowMessageParams_of_js
+    let (type_ : (ShowMessageParams.t, unit) ProtocolNotificationType.t) =
+      ProtocolNotificationType.t_of_js ShowMessageParams.t_of_js
         Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "ShowMessageNotification") "type")
   end
 module ShowMessageRequestClientCapabilities =
   struct
-    type t = _ShowMessageRequestClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x891 : Ojs.t) -> _ShowMessageRequestClientCapabilities_of_js x891
-    and t_to_js : t -> Ojs.t =
-      fun (x890 : _ShowMessageRequestClientCapabilities) ->
-        _ShowMessageRequestClientCapabilities_to_js x890
-    let (get_messageActionItem : t -> AnonymousInterface0.t) =
-      fun (x892 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x845 : Ojs.t) -> x845
+    and t_to_js : t -> Ojs.t = fun (x844 : Ojs.t) -> x844
+    let (get_message_action_item : t -> AnonymousInterface0.t) =
+      fun (x846 : t) ->
         AnonymousInterface0.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x892) "messageActionItem")
-    let (set_messageActionItem : t -> AnonymousInterface0.t -> unit) =
-      fun (x893 : t) ->
-        fun (x894 : AnonymousInterface0.t) ->
-          Ojs.set_prop_ascii (t_to_js x893) "messageActionItem"
-            (AnonymousInterface0.t_to_js x894)
+          (Ojs.get_prop_ascii (t_to_js x846) "messageActionItem")
+    let (set_message_action_item : t -> AnonymousInterface0.t -> unit) =
+      fun (x847 : t) ->
+        fun (x848 : AnonymousInterface0.t) ->
+          Ojs.set_prop_ascii (t_to_js x847) "messageActionItem"
+            (AnonymousInterface0.t_to_js x848)
   end
 module MessageActionItem =
   struct
-    type t = _MessageActionItem
-    let rec t_of_js : Ojs.t -> t =
-      fun (x896 : Ojs.t) -> _MessageActionItem_of_js x896
-    and t_to_js : t -> Ojs.t =
-      fun (x895 : _MessageActionItem) -> _MessageActionItem_to_js x895
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x850 : Ojs.t) -> x850
+    and t_to_js : t -> Ojs.t = fun (x849 : Ojs.t) -> x849
     let (get_title : t -> string) =
-      fun (x897 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x897) "title")
+      fun (x851 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x851) "title")
     let (set_title : t -> string -> unit) =
-      fun (x898 : t) ->
-        fun (x899 : string) ->
-          Ojs.set_prop_ascii (t_to_js x898) "title" (Ojs.string_to_js x899)
+      fun (x852 : t) ->
+        fun (x853 : string) ->
+          Ojs.set_prop_ascii (t_to_js x852) "title" (Ojs.string_to_js x853)
     let (get :
       t -> string -> (Integer.t, untyped_object) union2 or_boolean or_string)
       =
-      fun (x900 : t) ->
-        fun (x901 : string) ->
+      fun (x854 : t) ->
+        fun (x855 : string) ->
           or_string_of_js
-            (fun (x902 : Ojs.t) ->
+            (fun (x856 : Ojs.t) ->
                or_boolean_of_js
-                 (fun (x903 : Ojs.t) ->
-                    union2_of_js Integer.t_of_js untyped_object_of_js x903)
-                 x902) (Ojs.get_prop (t_to_js x900) (Ojs.string_to_js x901))
+                 (fun (x857 : Ojs.t) ->
+                    union2_of_js Integer.t_of_js untyped_object_of_js x857)
+                 x856) (Ojs.get_prop (t_to_js x854) (Ojs.string_to_js x855))
     let (set :
       t ->
         string ->
           (Integer.t, untyped_object) union2 or_boolean or_string -> unit)
       =
-      fun (x906 : t) ->
-        fun (x907 : string) ->
+      fun (x860 : t) ->
+        fun (x861 : string) ->
           fun
-            (x908 : (Integer.t, untyped_object) union2 or_boolean or_string)
+            (x862 : (Integer.t, untyped_object) union2 or_boolean or_string)
             ->
-            Ojs.set_prop (t_to_js x906) (Ojs.string_to_js x907)
+            Ojs.set_prop (t_to_js x860) (Ojs.string_to_js x861)
               (or_string_to_js
-                 (fun (x909 : (Integer.t, untyped_object) union2 or_boolean)
+                 (fun (x863 : (Integer.t, untyped_object) union2 or_boolean)
                     ->
                     or_boolean_to_js
-                      (fun (x910 : (Integer.t, untyped_object) union2) ->
+                      (fun (x864 : (Integer.t, untyped_object) union2) ->
                          union2_to_js Integer.t_to_js untyped_object_to_js
-                           x910) x909) x908)
+                           x864) x863) x862)
   end
 module ShowMessageRequestParams =
   struct
-    type t = _ShowMessageRequestParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x914 : Ojs.t) -> _ShowMessageRequestParams_of_js x914
-    and t_to_js : t -> Ojs.t =
-      fun (x913 : _ShowMessageRequestParams) ->
-        _ShowMessageRequestParams_to_js x913
-    let (get_type : t -> _MessageType) =
-      fun (x915 : t) ->
-        _MessageType_of_js (Ojs.get_prop_ascii (t_to_js x915) "type")
-    let (set_type : t -> _MessageType -> unit) =
-      fun (x916 : t) ->
-        fun (x917 : _MessageType) ->
-          Ojs.set_prop_ascii (t_to_js x916) "type" (_MessageType_to_js x917)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x868 : Ojs.t) -> x868
+    and t_to_js : t -> Ojs.t = fun (x867 : Ojs.t) -> x867
+    let (get_type : t -> MessageType.t) =
+      fun (x869 : t) ->
+        MessageType.t_of_js (Ojs.get_prop_ascii (t_to_js x869) "type")
+    let (set_type : t -> MessageType.t -> unit) =
+      fun (x870 : t) ->
+        fun (x871 : MessageType.t) ->
+          Ojs.set_prop_ascii (t_to_js x870) "type" (MessageType.t_to_js x871)
     let (get_message : t -> string) =
-      fun (x918 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x918) "message")
+      fun (x872 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x872) "message")
     let (set_message : t -> string -> unit) =
-      fun (x919 : t) ->
-        fun (x920 : string) ->
-          Ojs.set_prop_ascii (t_to_js x919) "message" (Ojs.string_to_js x920)
-    let (get_actions : t -> _MessageActionItem list) =
-      fun (x921 : t) ->
-        Ojs.list_of_js _MessageActionItem_of_js
-          (Ojs.get_prop_ascii (t_to_js x921) "actions")
-    let (set_actions : t -> _MessageActionItem list -> unit) =
-      fun (x923 : t) ->
-        fun (x924 : _MessageActionItem list) ->
-          Ojs.set_prop_ascii (t_to_js x923) "actions"
-            (Ojs.list_to_js _MessageActionItem_to_js x924)
+      fun (x873 : t) ->
+        fun (x874 : string) ->
+          Ojs.set_prop_ascii (t_to_js x873) "message" (Ojs.string_to_js x874)
+    let (get_actions : t -> MessageActionItem.t list) =
+      fun (x875 : t) ->
+        Ojs.list_of_js MessageActionItem.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x875) "actions")
+    let (set_actions : t -> MessageActionItem.t list -> unit) =
+      fun (x877 : t) ->
+        fun (x878 : MessageActionItem.t list) ->
+          Ojs.set_prop_ascii (t_to_js x877) "actions"
+            (Ojs.list_to_js MessageActionItem.t_to_js x878)
   end
 module ShowMessageRequest =
   struct
     let (type_ :
-      (_ShowMessageRequestParams, _MessageActionItem or_null, never, 
+      (ShowMessageRequestParams.t, MessageActionItem.t or_null, never, 
         unit, unit) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _ShowMessageRequestParams_of_js
-        (fun (x927 : Ojs.t) -> or_null_of_js _MessageActionItem_of_js x927)
+      ProtocolRequestType.t_of_js ShowMessageRequestParams.t_of_js
+        (fun (x881 : Ojs.t) -> or_null_of_js MessageActionItem.t_of_js x881)
         never_of_js Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "ShowMessageRequest") "type")
   end
 module LogMessageNotification =
   struct
-    let (type_ : (_LogMessageParams, unit) ProtocolNotificationType.t) =
-      ProtocolNotificationType.t_of_js _LogMessageParams_of_js Ojs.unit_of_js
+    let (type_ : (LogMessageParams.t, unit) ProtocolNotificationType.t) =
+      ProtocolNotificationType.t_of_js LogMessageParams.t_of_js
+        Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "LogMessageNotification") "type")
   end
 module LogMessageParams =
   struct
-    type t = _LogMessageParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x935 : Ojs.t) -> _LogMessageParams_of_js x935
-    and t_to_js : t -> Ojs.t =
-      fun (x934 : _LogMessageParams) -> _LogMessageParams_to_js x934
-    let (get_type : t -> _MessageType) =
-      fun (x936 : t) ->
-        _MessageType_of_js (Ojs.get_prop_ascii (t_to_js x936) "type")
-    let (set_type : t -> _MessageType -> unit) =
-      fun (x937 : t) ->
-        fun (x938 : _MessageType) ->
-          Ojs.set_prop_ascii (t_to_js x937) "type" (_MessageType_to_js x938)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x889 : Ojs.t) -> x889
+    and t_to_js : t -> Ojs.t = fun (x888 : Ojs.t) -> x888
+    let (get_type : t -> MessageType.t) =
+      fun (x890 : t) ->
+        MessageType.t_of_js (Ojs.get_prop_ascii (t_to_js x890) "type")
+    let (set_type : t -> MessageType.t -> unit) =
+      fun (x891 : t) ->
+        fun (x892 : MessageType.t) ->
+          Ojs.set_prop_ascii (t_to_js x891) "type" (MessageType.t_to_js x892)
     let (get_message : t -> string) =
-      fun (x939 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x939) "message")
+      fun (x893 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x893) "message")
     let (set_message : t -> string -> unit) =
-      fun (x940 : t) ->
-        fun (x941 : string) ->
-          Ojs.set_prop_ascii (t_to_js x940) "message" (Ojs.string_to_js x941)
+      fun (x894 : t) ->
+        fun (x895 : string) ->
+          Ojs.set_prop_ascii (t_to_js x894) "message" (Ojs.string_to_js x895)
   end
 module TelemetryEventNotification =
   struct
@@ -2677,44 +2445,41 @@ module TelemetryEventNotification =
   end
 module TextDocumentSyncClientCapabilities =
   struct
-    type t = _TextDocumentSyncClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x945 : Ojs.t) -> _TextDocumentSyncClientCapabilities_of_js x945
-    and t_to_js : t -> Ojs.t =
-      fun (x944 : _TextDocumentSyncClientCapabilities) ->
-        _TextDocumentSyncClientCapabilities_to_js x944
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x946 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x899 : Ojs.t) -> x899
+    and t_to_js : t -> Ojs.t = fun (x898 : Ojs.t) -> x898
+    let (get_dynamic_registration : t -> bool) =
+      fun (x900 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x946) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x947 : t) ->
-        fun (x948 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x947) "dynamicRegistration"
-            (Ojs.bool_to_js x948)
-    let (get_willSave : t -> bool) =
-      fun (x949 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x949) "willSave")
-    let (set_willSave : t -> bool -> unit) =
-      fun (x950 : t) ->
-        fun (x951 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x950) "willSave" (Ojs.bool_to_js x951)
-    let (get_willSaveWaitUntil : t -> bool) =
-      fun (x952 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x900) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x901 : t) ->
+        fun (x902 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x901) "dynamicRegistration"
+            (Ojs.bool_to_js x902)
+    let (get_will_save : t -> bool) =
+      fun (x903 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x903) "willSave")
+    let (set_will_save : t -> bool -> unit) =
+      fun (x904 : t) ->
+        fun (x905 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x904) "willSave" (Ojs.bool_to_js x905)
+    let (get_will_save_wait_until : t -> bool) =
+      fun (x906 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x952) "willSaveWaitUntil")
-    let (set_willSaveWaitUntil : t -> bool -> unit) =
-      fun (x953 : t) ->
-        fun (x954 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x953) "willSaveWaitUntil"
-            (Ojs.bool_to_js x954)
-    let (get_didSave : t -> bool) =
-      fun (x955 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x955) "didSave")
-    let (set_didSave : t -> bool -> unit) =
-      fun (x956 : t) ->
-        fun (x957 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x956) "didSave" (Ojs.bool_to_js x957)
+          (Ojs.get_prop_ascii (t_to_js x906) "willSaveWaitUntil")
+    let (set_will_save_wait_until : t -> bool -> unit) =
+      fun (x907 : t) ->
+        fun (x908 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x907) "willSaveWaitUntil"
+            (Ojs.bool_to_js x908)
+    let (get_did_save : t -> bool) =
+      fun (x909 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x909) "didSave")
+    let (set_did_save : t -> bool -> unit) =
+      fun (x910 : t) ->
+        fun (x911 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x910) "didSave" (Ojs.bool_to_js x911)
   end
 module TextDocumentSyncKind =
   struct
@@ -2734,287 +2499,280 @@ module TextDocumentSyncKind =
   end
 module TextDocumentSyncKind =
   struct
-    type t = _TextDocumentSyncKind
+    type t = [ `L_n_0  | `L_n_1  | `L_n_2 ]
     let rec t_of_js : Ojs.t -> t =
-      fun (x959 : Ojs.t) -> _TextDocumentSyncKind_of_js x959
+      fun (x913 : Ojs.t) ->
+        let x914 = x913 in
+        match Ojs.int_of_js x914 with
+        | 0 -> `L_n_0
+        | 1 -> `L_n_1
+        | 2 -> `L_n_2
+        | _ -> assert false
     and t_to_js : t -> Ojs.t =
-      fun (x958 : _TextDocumentSyncKind) -> _TextDocumentSyncKind_to_js x958
+      fun (x912 : [ `L_n_0  | `L_n_1  | `L_n_2 ]) ->
+        match x912 with
+        | `L_n_0 -> Ojs.int_to_js 0
+        | `L_n_1 -> Ojs.int_to_js 1
+        | `L_n_2 -> Ojs.int_to_js 2
   end
 module TextDocumentSyncOptions =
   struct
-    type t = _TextDocumentSyncOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x961 : Ojs.t) -> _TextDocumentSyncOptions_of_js x961
-    and t_to_js : t -> Ojs.t =
-      fun (x960 : _TextDocumentSyncOptions) ->
-        _TextDocumentSyncOptions_to_js x960
-    let (get_openClose : t -> bool) =
-      fun (x962 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x962) "openClose")
-    let (set_openClose : t -> bool -> unit) =
-      fun (x963 : t) ->
-        fun (x964 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x963) "openClose" (Ojs.bool_to_js x964)
-    let (get_change : t -> _TextDocumentSyncKind) =
-      fun (x965 : t) ->
-        _TextDocumentSyncKind_of_js
-          (Ojs.get_prop_ascii (t_to_js x965) "change")
-    let (set_change : t -> _TextDocumentSyncKind -> unit) =
-      fun (x966 : t) ->
-        fun (x967 : _TextDocumentSyncKind) ->
-          Ojs.set_prop_ascii (t_to_js x966) "change"
-            (_TextDocumentSyncKind_to_js x967)
-    let (get_willSave : t -> bool) =
-      fun (x968 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x968) "willSave")
-    let (set_willSave : t -> bool -> unit) =
-      fun (x969 : t) ->
-        fun (x970 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x969) "willSave" (Ojs.bool_to_js x970)
-    let (get_willSaveWaitUntil : t -> bool) =
-      fun (x971 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x916 : Ojs.t) -> x916
+    and t_to_js : t -> Ojs.t = fun (x915 : Ojs.t) -> x915
+    let (get_open_close : t -> bool) =
+      fun (x917 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x917) "openClose")
+    let (set_open_close : t -> bool -> unit) =
+      fun (x918 : t) ->
+        fun (x919 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x918) "openClose" (Ojs.bool_to_js x919)
+    let (get_change : t -> TextDocumentSyncKind.t) =
+      fun (x920 : t) ->
+        TextDocumentSyncKind.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x920) "change")
+    let (set_change : t -> TextDocumentSyncKind.t -> unit) =
+      fun (x921 : t) ->
+        fun (x922 : TextDocumentSyncKind.t) ->
+          Ojs.set_prop_ascii (t_to_js x921) "change"
+            (TextDocumentSyncKind.t_to_js x922)
+    let (get_will_save : t -> bool) =
+      fun (x923 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x923) "willSave")
+    let (set_will_save : t -> bool -> unit) =
+      fun (x924 : t) ->
+        fun (x925 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x924) "willSave" (Ojs.bool_to_js x925)
+    let (get_will_save_wait_until : t -> bool) =
+      fun (x926 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x971) "willSaveWaitUntil")
-    let (set_willSaveWaitUntil : t -> bool -> unit) =
-      fun (x972 : t) ->
-        fun (x973 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x972) "willSaveWaitUntil"
-            (Ojs.bool_to_js x973)
-    let (get_save : t -> _SaveOptions or_boolean) =
-      fun (x974 : t) ->
-        or_boolean_of_js _SaveOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js x974) "save")
-    let (set_save : t -> _SaveOptions or_boolean -> unit) =
-      fun (x976 : t) ->
-        fun (x977 : _SaveOptions or_boolean) ->
-          Ojs.set_prop_ascii (t_to_js x976) "save"
-            (or_boolean_to_js _SaveOptions_to_js x977)
+          (Ojs.get_prop_ascii (t_to_js x926) "willSaveWaitUntil")
+    let (set_will_save_wait_until : t -> bool -> unit) =
+      fun (x927 : t) ->
+        fun (x928 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x927) "willSaveWaitUntil"
+            (Ojs.bool_to_js x928)
+    let (get_save : t -> SaveOptions.t or_boolean) =
+      fun (x929 : t) ->
+        or_boolean_of_js SaveOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x929) "save")
+    let (set_save : t -> SaveOptions.t or_boolean -> unit) =
+      fun (x931 : t) ->
+        fun (x932 : SaveOptions.t or_boolean) ->
+          Ojs.set_prop_ascii (t_to_js x931) "save"
+            (or_boolean_to_js SaveOptions.t_to_js x932)
   end
 module DidOpenTextDocumentParams =
   struct
-    type t = _DidOpenTextDocumentParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x980 : Ojs.t) -> _DidOpenTextDocumentParams_of_js x980
-    and t_to_js : t -> Ojs.t =
-      fun (x979 : _DidOpenTextDocumentParams) ->
-        _DidOpenTextDocumentParams_to_js x979
-    let (get_textDocument : t -> TextDocumentItem.t) =
-      fun (x981 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x935 : Ojs.t) -> x935
+    and t_to_js : t -> Ojs.t = fun (x934 : Ojs.t) -> x934
+    let (get_text_document : t -> TextDocumentItem.t) =
+      fun (x936 : t) ->
         TextDocumentItem.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x981) "textDocument")
-    let (set_textDocument : t -> TextDocumentItem.t -> unit) =
-      fun (x982 : t) ->
-        fun (x983 : TextDocumentItem.t) ->
-          Ojs.set_prop_ascii (t_to_js x982) "textDocument"
-            (TextDocumentItem.t_to_js x983)
+          (Ojs.get_prop_ascii (t_to_js x936) "textDocument")
+    let (set_text_document : t -> TextDocumentItem.t -> unit) =
+      fun (x937 : t) ->
+        fun (x938 : TextDocumentItem.t) ->
+          Ojs.set_prop_ascii (t_to_js x937) "textDocument"
+            (TextDocumentItem.t_to_js x938)
   end
 module DidOpenTextDocumentNotification =
   struct
     let (method_ : [ `L_s16_textDocument_didOpen ]) =
-      let x984 =
+      let x939 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "DidOpenTextDocumentNotification")
           "method" in
-      match Ojs.string_of_js x984 with
+      match Ojs.string_of_js x939 with
       | "textDocument/didOpen" -> `L_s16_textDocument_didOpen
       | _ -> assert false
     let (type_ :
-      (_DidOpenTextDocumentParams, _TextDocumentRegistrationOptions)
+      (DidOpenTextDocumentParams.t, TextDocumentRegistrationOptions.t)
         ProtocolNotificationType.t)
       =
-      ProtocolNotificationType.t_of_js _DidOpenTextDocumentParams_of_js
-        _TextDocumentRegistrationOptions_of_js
+      ProtocolNotificationType.t_of_js DidOpenTextDocumentParams.t_of_js
+        TextDocumentRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DidOpenTextDocumentNotification")
            "type")
   end
 module TextDocumentContentChangeEvent =
   struct
-    type t = _TextDocumentContentChangeEvent
+    type t = (AnonymousInterface13.t, AnonymousInterface15.t) union2
     let rec t_of_js : Ojs.t -> t =
-      fun (x988 : Ojs.t) -> _TextDocumentContentChangeEvent_of_js x988
+      fun (x945 : Ojs.t) ->
+        union2_of_js AnonymousInterface13.t_of_js
+          AnonymousInterface15.t_of_js x945
     and t_to_js : t -> Ojs.t =
-      fun (x987 : _TextDocumentContentChangeEvent) ->
-        _TextDocumentContentChangeEvent_to_js x987
+      fun (x942 : (AnonymousInterface13.t, AnonymousInterface15.t) union2) ->
+        union2_to_js AnonymousInterface13.t_to_js
+          AnonymousInterface15.t_to_js x942
   end
 module TextDocumentContentChangeEvent =
   struct
-    let (isIncremental : event:_TextDocumentContentChangeEvent -> bool) =
-      fun ~event:(x989 : _TextDocumentContentChangeEvent) ->
+    let (is_incremental : event:TextDocumentContentChangeEvent.t -> bool) =
+      fun ~event:(x948 : TextDocumentContentChangeEvent.t) ->
         Ojs.bool_of_js
           (Ojs.call
              (Ojs.get_prop_ascii Ojs.global "TextDocumentContentChangeEvent")
-             "isIncremental" [|(_TextDocumentContentChangeEvent_to_js x989)|])
-    let (isFull : event:_TextDocumentContentChangeEvent -> bool) =
-      fun ~event:(x990 : _TextDocumentContentChangeEvent) ->
+             "isIncremental"
+             [|(TextDocumentContentChangeEvent.t_to_js x948)|])
+    let (is_full : event:TextDocumentContentChangeEvent.t -> bool) =
+      fun ~event:(x949 : TextDocumentContentChangeEvent.t) ->
         Ojs.bool_of_js
           (Ojs.call
              (Ojs.get_prop_ascii Ojs.global "TextDocumentContentChangeEvent")
-             "isFull" [|(_TextDocumentContentChangeEvent_to_js x990)|])
+             "isFull" [|(TextDocumentContentChangeEvent.t_to_js x949)|])
   end
 module DidChangeTextDocumentParams =
   struct
-    type t = _DidChangeTextDocumentParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x992 : Ojs.t) -> _DidChangeTextDocumentParams_of_js x992
-    and t_to_js : t -> Ojs.t =
-      fun (x991 : _DidChangeTextDocumentParams) ->
-        _DidChangeTextDocumentParams_to_js x991
-    let (get_textDocument : t -> VersionedTextDocumentIdentifier.t) =
-      fun (x993 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x951 : Ojs.t) -> x951
+    and t_to_js : t -> Ojs.t = fun (x950 : Ojs.t) -> x950
+    let (get_text_document : t -> VersionedTextDocumentIdentifier.t) =
+      fun (x952 : t) ->
         VersionedTextDocumentIdentifier.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x993) "textDocument")
-    let (set_textDocument : t -> VersionedTextDocumentIdentifier.t -> unit) =
-      fun (x994 : t) ->
-        fun (x995 : VersionedTextDocumentIdentifier.t) ->
-          Ojs.set_prop_ascii (t_to_js x994) "textDocument"
-            (VersionedTextDocumentIdentifier.t_to_js x995)
-    let (get_contentChanges : t -> _TextDocumentContentChangeEvent list) =
-      fun (x996 : t) ->
-        Ojs.list_of_js _TextDocumentContentChangeEvent_of_js
-          (Ojs.get_prop_ascii (t_to_js x996) "contentChanges")
-    let (set_contentChanges :
-      t -> _TextDocumentContentChangeEvent list -> unit) =
-      fun (x998 : t) ->
-        fun (x999 : _TextDocumentContentChangeEvent list) ->
-          Ojs.set_prop_ascii (t_to_js x998) "contentChanges"
-            (Ojs.list_to_js _TextDocumentContentChangeEvent_to_js x999)
+          (Ojs.get_prop_ascii (t_to_js x952) "textDocument")
+    let (set_text_document : t -> VersionedTextDocumentIdentifier.t -> unit)
+      =
+      fun (x953 : t) ->
+        fun (x954 : VersionedTextDocumentIdentifier.t) ->
+          Ojs.set_prop_ascii (t_to_js x953) "textDocument"
+            (VersionedTextDocumentIdentifier.t_to_js x954)
+    let (get_content_changes : t -> TextDocumentContentChangeEvent.t list) =
+      fun (x955 : t) ->
+        Ojs.list_of_js TextDocumentContentChangeEvent.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x955) "contentChanges")
+    let (set_content_changes :
+      t -> TextDocumentContentChangeEvent.t list -> unit) =
+      fun (x957 : t) ->
+        fun (x958 : TextDocumentContentChangeEvent.t list) ->
+          Ojs.set_prop_ascii (t_to_js x957) "contentChanges"
+            (Ojs.list_to_js TextDocumentContentChangeEvent.t_to_js x958)
   end
 module TextDocumentChangeRegistrationOptions =
   struct
-    type t = _TextDocumentChangeRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1002 : Ojs.t) ->
-        _TextDocumentChangeRegistrationOptions_of_js x1002
-    and t_to_js : t -> Ojs.t =
-      fun (x1001 : _TextDocumentChangeRegistrationOptions) ->
-        _TextDocumentChangeRegistrationOptions_to_js x1001
-    let (get_syncKind : t -> _TextDocumentSyncKind) =
-      fun (x1003 : t) ->
-        _TextDocumentSyncKind_of_js
-          (Ojs.get_prop_ascii (t_to_js x1003) "syncKind")
-    let (set_syncKind : t -> _TextDocumentSyncKind -> unit) =
-      fun (x1004 : t) ->
-        fun (x1005 : _TextDocumentSyncKind) ->
-          Ojs.set_prop_ascii (t_to_js x1004) "syncKind"
-            (_TextDocumentSyncKind_to_js x1005)
-    let (cast : t -> _TextDocumentRegistrationOptions) =
-      fun (x1006 : t) ->
-        _TextDocumentRegistrationOptions_of_js (t_to_js x1006)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x961 : Ojs.t) -> x961
+    and t_to_js : t -> Ojs.t = fun (x960 : Ojs.t) -> x960
+    let (get_sync_kind : t -> TextDocumentSyncKind.t) =
+      fun (x962 : t) ->
+        TextDocumentSyncKind.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x962) "syncKind")
+    let (set_sync_kind : t -> TextDocumentSyncKind.t -> unit) =
+      fun (x963 : t) ->
+        fun (x964 : TextDocumentSyncKind.t) ->
+          Ojs.set_prop_ascii (t_to_js x963) "syncKind"
+            (TextDocumentSyncKind.t_to_js x964)
+    let (cast : t -> TextDocumentRegistrationOptions.t) =
+      fun (x965 : t) ->
+        TextDocumentRegistrationOptions.t_of_js (t_to_js x965)
   end
 module DidChangeTextDocumentNotification =
   struct
     let (method_ : [ `L_s14_textDocument_didChange ]) =
-      let x1007 =
+      let x966 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "DidChangeTextDocumentNotification")
           "method" in
-      match Ojs.string_of_js x1007 with
+      match Ojs.string_of_js x966 with
       | "textDocument/didChange" -> `L_s14_textDocument_didChange
       | _ -> assert false
     let (type_ :
-      (_DidChangeTextDocumentParams, _TextDocumentChangeRegistrationOptions)
-        ProtocolNotificationType.t)
+      (DidChangeTextDocumentParams.t,
+        TextDocumentChangeRegistrationOptions.t) ProtocolNotificationType.t)
       =
-      ProtocolNotificationType.t_of_js _DidChangeTextDocumentParams_of_js
-        _TextDocumentChangeRegistrationOptions_of_js
+      ProtocolNotificationType.t_of_js DidChangeTextDocumentParams.t_of_js
+        TextDocumentChangeRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DidChangeTextDocumentNotification")
            "type")
   end
 module DidCloseTextDocumentParams =
   struct
-    type t = _DidCloseTextDocumentParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1011 : Ojs.t) -> _DidCloseTextDocumentParams_of_js x1011
-    and t_to_js : t -> Ojs.t =
-      fun (x1010 : _DidCloseTextDocumentParams) ->
-        _DidCloseTextDocumentParams_to_js x1010
-    let (get_textDocument : t -> TextDocumentIdentifier.t) =
-      fun (x1012 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x970 : Ojs.t) -> x970
+    and t_to_js : t -> Ojs.t = fun (x969 : Ojs.t) -> x969
+    let (get_text_document : t -> TextDocumentIdentifier.t) =
+      fun (x971 : t) ->
         TextDocumentIdentifier.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1012) "textDocument")
-    let (set_textDocument : t -> TextDocumentIdentifier.t -> unit) =
-      fun (x1013 : t) ->
-        fun (x1014 : TextDocumentIdentifier.t) ->
-          Ojs.set_prop_ascii (t_to_js x1013) "textDocument"
-            (TextDocumentIdentifier.t_to_js x1014)
+          (Ojs.get_prop_ascii (t_to_js x971) "textDocument")
+    let (set_text_document : t -> TextDocumentIdentifier.t -> unit) =
+      fun (x972 : t) ->
+        fun (x973 : TextDocumentIdentifier.t) ->
+          Ojs.set_prop_ascii (t_to_js x972) "textDocument"
+            (TextDocumentIdentifier.t_to_js x973)
   end
 module DidCloseTextDocumentNotification =
   struct
     let (method_ : [ `L_s15_textDocument_didClose ]) =
-      let x1015 =
+      let x974 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "DidCloseTextDocumentNotification")
           "method" in
-      match Ojs.string_of_js x1015 with
+      match Ojs.string_of_js x974 with
       | "textDocument/didClose" -> `L_s15_textDocument_didClose
       | _ -> assert false
     let (type_ :
-      (_DidCloseTextDocumentParams, _TextDocumentRegistrationOptions)
+      (DidCloseTextDocumentParams.t, TextDocumentRegistrationOptions.t)
         ProtocolNotificationType.t)
       =
-      ProtocolNotificationType.t_of_js _DidCloseTextDocumentParams_of_js
-        _TextDocumentRegistrationOptions_of_js
+      ProtocolNotificationType.t_of_js DidCloseTextDocumentParams.t_of_js
+        TextDocumentRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DidCloseTextDocumentNotification")
            "type")
   end
 module DidSaveTextDocumentParams =
   struct
-    type t = _DidSaveTextDocumentParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1019 : Ojs.t) -> _DidSaveTextDocumentParams_of_js x1019
-    and t_to_js : t -> Ojs.t =
-      fun (x1018 : _DidSaveTextDocumentParams) ->
-        _DidSaveTextDocumentParams_to_js x1018
-    let (get_textDocument : t -> TextDocumentIdentifier.t) =
-      fun (x1020 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x978 : Ojs.t) -> x978
+    and t_to_js : t -> Ojs.t = fun (x977 : Ojs.t) -> x977
+    let (get_text_document : t -> TextDocumentIdentifier.t) =
+      fun (x979 : t) ->
         TextDocumentIdentifier.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1020) "textDocument")
-    let (set_textDocument : t -> TextDocumentIdentifier.t -> unit) =
-      fun (x1021 : t) ->
-        fun (x1022 : TextDocumentIdentifier.t) ->
-          Ojs.set_prop_ascii (t_to_js x1021) "textDocument"
-            (TextDocumentIdentifier.t_to_js x1022)
+          (Ojs.get_prop_ascii (t_to_js x979) "textDocument")
+    let (set_text_document : t -> TextDocumentIdentifier.t -> unit) =
+      fun (x980 : t) ->
+        fun (x981 : TextDocumentIdentifier.t) ->
+          Ojs.set_prop_ascii (t_to_js x980) "textDocument"
+            (TextDocumentIdentifier.t_to_js x981)
     let (get_text : t -> string) =
-      fun (x1023 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1023) "text")
+      fun (x982 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x982) "text")
     let (set_text : t -> string -> unit) =
-      fun (x1024 : t) ->
-        fun (x1025 : string) ->
-          Ojs.set_prop_ascii (t_to_js x1024) "text" (Ojs.string_to_js x1025)
+      fun (x983 : t) ->
+        fun (x984 : string) ->
+          Ojs.set_prop_ascii (t_to_js x983) "text" (Ojs.string_to_js x984)
   end
 module TextDocumentSaveRegistrationOptions =
   struct
-    type t = _TextDocumentSaveRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1027 : Ojs.t) -> _TextDocumentSaveRegistrationOptions_of_js x1027
-    and t_to_js : t -> Ojs.t =
-      fun (x1026 : _TextDocumentSaveRegistrationOptions) ->
-        _TextDocumentSaveRegistrationOptions_to_js x1026
-    let (cast : t -> _TextDocumentRegistrationOptions) =
-      fun (x1028 : t) ->
-        _TextDocumentRegistrationOptions_of_js (t_to_js x1028)
-    let (cast' : t -> _SaveOptions) =
-      fun (x1029 : t) -> _SaveOptions_of_js (t_to_js x1029)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x986 : Ojs.t) -> x986
+    and t_to_js : t -> Ojs.t = fun (x985 : Ojs.t) -> x985
+    let (cast : t -> TextDocumentRegistrationOptions.t) =
+      fun (x987 : t) ->
+        TextDocumentRegistrationOptions.t_of_js (t_to_js x987)
+    let (cast' : t -> SaveOptions.t) =
+      fun (x988 : t) -> SaveOptions.t_of_js (t_to_js x988)
   end
 module DidSaveTextDocumentNotification =
   struct
     let (method_ : [ `L_s17_textDocument_didSave ]) =
-      let x1030 =
+      let x989 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "DidSaveTextDocumentNotification")
           "method" in
-      match Ojs.string_of_js x1030 with
+      match Ojs.string_of_js x989 with
       | "textDocument/didSave" -> `L_s17_textDocument_didSave
       | _ -> assert false
     let (type_ :
-      (_DidSaveTextDocumentParams, _TextDocumentSaveRegistrationOptions)
+      (DidSaveTextDocumentParams.t, TextDocumentSaveRegistrationOptions.t)
         ProtocolNotificationType.t)
       =
-      ProtocolNotificationType.t_of_js _DidSaveTextDocumentParams_of_js
-        _TextDocumentSaveRegistrationOptions_of_js
+      ProtocolNotificationType.t_of_js DidSaveTextDocumentParams.t_of_js
+        TextDocumentSaveRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DidSaveTextDocumentNotification")
            "type")
@@ -3022,74 +2780,80 @@ module DidSaveTextDocumentNotification =
 module TextDocumentSaveReason =
   struct
     let (manual : [ `L_n_1 ]) =
-      let x1033 =
+      let x992 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "TextDocumentSaveReason") "Manual" in
-      match Ojs.int_of_js x1033 with | 1 -> `L_n_1 | _ -> assert false
-    let (afterDelay : [ `L_n_2 ]) =
-      let x1034 =
+      match Ojs.int_of_js x992 with | 1 -> `L_n_1 | _ -> assert false
+    let (after_delay : [ `L_n_2 ]) =
+      let x993 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "TextDocumentSaveReason")
           "AfterDelay" in
-      match Ojs.int_of_js x1034 with | 2 -> `L_n_2 | _ -> assert false
-    let (focusOut : [ `L_n_3 ]) =
-      let x1035 =
+      match Ojs.int_of_js x993 with | 2 -> `L_n_2 | _ -> assert false
+    let (focus_out : [ `L_n_3 ]) =
+      let x994 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "TextDocumentSaveReason") "FocusOut" in
-      match Ojs.int_of_js x1035 with | 3 -> `L_n_3 | _ -> assert false
+      match Ojs.int_of_js x994 with | 3 -> `L_n_3 | _ -> assert false
   end
 module TextDocumentSaveReason =
   struct
-    type t = _TextDocumentSaveReason
+    type t = [ `L_n_1  | `L_n_2  | `L_n_3 ]
     let rec t_of_js : Ojs.t -> t =
-      fun (x1037 : Ojs.t) -> _TextDocumentSaveReason_of_js x1037
+      fun (x996 : Ojs.t) ->
+        let x997 = x996 in
+        match Ojs.int_of_js x997 with
+        | 1 -> `L_n_1
+        | 2 -> `L_n_2
+        | 3 -> `L_n_3
+        | _ -> assert false
     and t_to_js : t -> Ojs.t =
-      fun (x1036 : _TextDocumentSaveReason) ->
-        _TextDocumentSaveReason_to_js x1036
+      fun (x995 : [ `L_n_1  | `L_n_2  | `L_n_3 ]) ->
+        match x995 with
+        | `L_n_1 -> Ojs.int_to_js 1
+        | `L_n_2 -> Ojs.int_to_js 2
+        | `L_n_3 -> Ojs.int_to_js 3
   end
 module WillSaveTextDocumentParams =
   struct
-    type t = _WillSaveTextDocumentParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1039 : Ojs.t) -> _WillSaveTextDocumentParams_of_js x1039
-    and t_to_js : t -> Ojs.t =
-      fun (x1038 : _WillSaveTextDocumentParams) ->
-        _WillSaveTextDocumentParams_to_js x1038
-    let (get_textDocument : t -> TextDocumentIdentifier.t) =
-      fun (x1040 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x999 : Ojs.t) -> x999
+    and t_to_js : t -> Ojs.t = fun (x998 : Ojs.t) -> x998
+    let (get_text_document : t -> TextDocumentIdentifier.t) =
+      fun (x1000 : t) ->
         TextDocumentIdentifier.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1040) "textDocument")
-    let (set_textDocument : t -> TextDocumentIdentifier.t -> unit) =
-      fun (x1041 : t) ->
-        fun (x1042 : TextDocumentIdentifier.t) ->
-          Ojs.set_prop_ascii (t_to_js x1041) "textDocument"
-            (TextDocumentIdentifier.t_to_js x1042)
-    let (get_reason : t -> _TextDocumentSaveReason) =
-      fun (x1043 : t) ->
-        _TextDocumentSaveReason_of_js
-          (Ojs.get_prop_ascii (t_to_js x1043) "reason")
-    let (set_reason : t -> _TextDocumentSaveReason -> unit) =
-      fun (x1044 : t) ->
-        fun (x1045 : _TextDocumentSaveReason) ->
-          Ojs.set_prop_ascii (t_to_js x1044) "reason"
-            (_TextDocumentSaveReason_to_js x1045)
+          (Ojs.get_prop_ascii (t_to_js x1000) "textDocument")
+    let (set_text_document : t -> TextDocumentIdentifier.t -> unit) =
+      fun (x1001 : t) ->
+        fun (x1002 : TextDocumentIdentifier.t) ->
+          Ojs.set_prop_ascii (t_to_js x1001) "textDocument"
+            (TextDocumentIdentifier.t_to_js x1002)
+    let (get_reason : t -> TextDocumentSaveReason.t) =
+      fun (x1003 : t) ->
+        TextDocumentSaveReason.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x1003) "reason")
+    let (set_reason : t -> TextDocumentSaveReason.t -> unit) =
+      fun (x1004 : t) ->
+        fun (x1005 : TextDocumentSaveReason.t) ->
+          Ojs.set_prop_ascii (t_to_js x1004) "reason"
+            (TextDocumentSaveReason.t_to_js x1005)
   end
 module WillSaveTextDocumentNotification =
   struct
     let (method_ : [ `L_s29_textDocument_willSave ]) =
-      let x1046 =
+      let x1006 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "WillSaveTextDocumentNotification")
           "method" in
-      match Ojs.string_of_js x1046 with
+      match Ojs.string_of_js x1006 with
       | "textDocument/willSave" -> `L_s29_textDocument_willSave
       | _ -> assert false
     let (type_ :
-      (_WillSaveTextDocumentParams, _TextDocumentRegistrationOptions)
+      (WillSaveTextDocumentParams.t, TextDocumentRegistrationOptions.t)
         ProtocolNotificationType.t)
       =
-      ProtocolNotificationType.t_of_js _WillSaveTextDocumentParams_of_js
-        _TextDocumentRegistrationOptions_of_js
+      ProtocolNotificationType.t_of_js WillSaveTextDocumentParams.t_of_js
+        TextDocumentRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "WillSaveTextDocumentNotification")
            "type")
@@ -3097,76 +2861,70 @@ module WillSaveTextDocumentNotification =
 module WillSaveTextDocumentWaitUntilRequest =
   struct
     let (method_ : [ `L_s30_textDocument_willSaveWaitUntil ]) =
-      let x1049 =
+      let x1009 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global
              "WillSaveTextDocumentWaitUntilRequest") "method" in
-      match Ojs.string_of_js x1049 with
+      match Ojs.string_of_js x1009 with
       | "textDocument/willSaveWaitUntil" ->
           `L_s30_textDocument_willSaveWaitUntil
       | _ -> assert false
     let (type_ :
-      (_WillSaveTextDocumentParams, TextEdit.t list or_null, never, unit,
-        _TextDocumentRegistrationOptions) ProtocolRequestType.t)
+      (WillSaveTextDocumentParams.t, TextEdit.t list or_null, never, 
+        unit, TextDocumentRegistrationOptions.t) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _WillSaveTextDocumentParams_of_js
-        (fun (x1051 : Ojs.t) ->
+      ProtocolRequestType.t_of_js WillSaveTextDocumentParams.t_of_js
+        (fun (x1011 : Ojs.t) ->
            or_null_of_js
-             (fun (x1052 : Ojs.t) -> Ojs.list_of_js TextEdit.t_of_js x1052)
-             x1051) never_of_js Ojs.unit_of_js
-        _TextDocumentRegistrationOptions_of_js
+             (fun (x1012 : Ojs.t) -> Ojs.list_of_js TextEdit.t_of_js x1012)
+             x1011) never_of_js Ojs.unit_of_js
+        TextDocumentRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global
               "WillSaveTextDocumentWaitUntilRequest") "type")
   end
 module DidChangeWatchedFilesClientCapabilities =
   struct
-    type t = _DidChangeWatchedFilesClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1058 : Ojs.t) ->
-        _DidChangeWatchedFilesClientCapabilities_of_js x1058
-    and t_to_js : t -> Ojs.t =
-      fun (x1057 : _DidChangeWatchedFilesClientCapabilities) ->
-        _DidChangeWatchedFilesClientCapabilities_to_js x1057
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x1059 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1018 : Ojs.t) -> x1018
+    and t_to_js : t -> Ojs.t = fun (x1017 : Ojs.t) -> x1017
+    let (get_dynamic_registration : t -> bool) =
+      fun (x1019 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1059) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x1060 : t) ->
-        fun (x1061 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1060) "dynamicRegistration"
-            (Ojs.bool_to_js x1061)
+          (Ojs.get_prop_ascii (t_to_js x1019) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x1020 : t) ->
+        fun (x1021 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1020) "dynamicRegistration"
+            (Ojs.bool_to_js x1021)
   end
 module DidChangeWatchedFilesNotification =
   struct
     let (type_ :
-      (_DidChangeWatchedFilesParams,
-        _DidChangeWatchedFilesRegistrationOptions) ProtocolNotificationType.t)
+      (DidChangeWatchedFilesParams.t,
+        DidChangeWatchedFilesRegistrationOptions.t)
+        ProtocolNotificationType.t)
       =
-      ProtocolNotificationType.t_of_js _DidChangeWatchedFilesParams_of_js
-        _DidChangeWatchedFilesRegistrationOptions_of_js
+      ProtocolNotificationType.t_of_js DidChangeWatchedFilesParams.t_of_js
+        DidChangeWatchedFilesRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DidChangeWatchedFilesNotification")
            "type")
   end
 module DidChangeWatchedFilesParams =
   struct
-    type t = _DidChangeWatchedFilesParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1065 : Ojs.t) -> _DidChangeWatchedFilesParams_of_js x1065
-    and t_to_js : t -> Ojs.t =
-      fun (x1064 : _DidChangeWatchedFilesParams) ->
-        _DidChangeWatchedFilesParams_to_js x1064
-    let (get_changes : t -> _FileEvent list) =
-      fun (x1066 : t) ->
-        Ojs.list_of_js _FileEvent_of_js
-          (Ojs.get_prop_ascii (t_to_js x1066) "changes")
-    let (set_changes : t -> _FileEvent list -> unit) =
-      fun (x1068 : t) ->
-        fun (x1069 : _FileEvent list) ->
-          Ojs.set_prop_ascii (t_to_js x1068) "changes"
-            (Ojs.list_to_js _FileEvent_to_js x1069)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1025 : Ojs.t) -> x1025
+    and t_to_js : t -> Ojs.t = fun (x1024 : Ojs.t) -> x1024
+    let (get_changes : t -> FileEvent.t list) =
+      fun (x1026 : t) ->
+        Ojs.list_of_js FileEvent.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x1026) "changes")
+    let (set_changes : t -> FileEvent.t list -> unit) =
+      fun (x1028 : t) ->
+        fun (x1029 : FileEvent.t list) ->
+          Ojs.set_prop_ascii (t_to_js x1028) "changes"
+            (Ojs.list_to_js FileEvent.t_to_js x1029)
   end
 module FileChangeType =
   struct
@@ -3185,77 +2943,79 @@ module FileChangeType =
   end
 module FileChangeType =
   struct
-    type t = _FileChangeType
+    type t = [ `L_n_1  | `L_n_2  | `L_n_3 ]
     let rec t_of_js : Ojs.t -> t =
-      fun (x1072 : Ojs.t) -> _FileChangeType_of_js x1072
+      fun (x1032 : Ojs.t) ->
+        let x1033 = x1032 in
+        match Ojs.int_of_js x1033 with
+        | 1 -> `L_n_1
+        | 2 -> `L_n_2
+        | 3 -> `L_n_3
+        | _ -> assert false
     and t_to_js : t -> Ojs.t =
-      fun (x1071 : _FileChangeType) -> _FileChangeType_to_js x1071
+      fun (x1031 : [ `L_n_1  | `L_n_2  | `L_n_3 ]) ->
+        match x1031 with
+        | `L_n_1 -> Ojs.int_to_js 1
+        | `L_n_2 -> Ojs.int_to_js 2
+        | `L_n_3 -> Ojs.int_to_js 3
   end
 module FileEvent =
   struct
-    type t = _FileEvent
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1074 : Ojs.t) -> _FileEvent_of_js x1074
-    and t_to_js : t -> Ojs.t =
-      fun (x1073 : _FileEvent) -> _FileEvent_to_js x1073
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1035 : Ojs.t) -> x1035
+    and t_to_js : t -> Ojs.t = fun (x1034 : Ojs.t) -> x1034
     let (get_uri : t -> DocumentUri.t) =
-      fun (x1075 : t) ->
-        DocumentUri.t_of_js (Ojs.get_prop_ascii (t_to_js x1075) "uri")
+      fun (x1036 : t) ->
+        DocumentUri.t_of_js (Ojs.get_prop_ascii (t_to_js x1036) "uri")
     let (set_uri : t -> DocumentUri.t -> unit) =
-      fun (x1076 : t) ->
-        fun (x1077 : DocumentUri.t) ->
-          Ojs.set_prop_ascii (t_to_js x1076) "uri"
-            (DocumentUri.t_to_js x1077)
-    let (get_type : t -> _FileChangeType) =
-      fun (x1078 : t) ->
-        _FileChangeType_of_js (Ojs.get_prop_ascii (t_to_js x1078) "type")
-    let (set_type : t -> _FileChangeType -> unit) =
-      fun (x1079 : t) ->
-        fun (x1080 : _FileChangeType) ->
-          Ojs.set_prop_ascii (t_to_js x1079) "type"
-            (_FileChangeType_to_js x1080)
+      fun (x1037 : t) ->
+        fun (x1038 : DocumentUri.t) ->
+          Ojs.set_prop_ascii (t_to_js x1037) "uri"
+            (DocumentUri.t_to_js x1038)
+    let (get_type : t -> FileChangeType.t) =
+      fun (x1039 : t) ->
+        FileChangeType.t_of_js (Ojs.get_prop_ascii (t_to_js x1039) "type")
+    let (set_type : t -> FileChangeType.t -> unit) =
+      fun (x1040 : t) ->
+        fun (x1041 : FileChangeType.t) ->
+          Ojs.set_prop_ascii (t_to_js x1040) "type"
+            (FileChangeType.t_to_js x1041)
   end
 module DidChangeWatchedFilesRegistrationOptions =
   struct
-    type t = _DidChangeWatchedFilesRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1082 : Ojs.t) ->
-        _DidChangeWatchedFilesRegistrationOptions_of_js x1082
-    and t_to_js : t -> Ojs.t =
-      fun (x1081 : _DidChangeWatchedFilesRegistrationOptions) ->
-        _DidChangeWatchedFilesRegistrationOptions_to_js x1081
-    let (get_watchers : t -> _FileSystemWatcher list) =
-      fun (x1083 : t) ->
-        Ojs.list_of_js _FileSystemWatcher_of_js
-          (Ojs.get_prop_ascii (t_to_js x1083) "watchers")
-    let (set_watchers : t -> _FileSystemWatcher list -> unit) =
-      fun (x1085 : t) ->
-        fun (x1086 : _FileSystemWatcher list) ->
-          Ojs.set_prop_ascii (t_to_js x1085) "watchers"
-            (Ojs.list_to_js _FileSystemWatcher_to_js x1086)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1043 : Ojs.t) -> x1043
+    and t_to_js : t -> Ojs.t = fun (x1042 : Ojs.t) -> x1042
+    let (get_watchers : t -> FileSystemWatcher.t list) =
+      fun (x1044 : t) ->
+        Ojs.list_of_js FileSystemWatcher.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x1044) "watchers")
+    let (set_watchers : t -> FileSystemWatcher.t list -> unit) =
+      fun (x1046 : t) ->
+        fun (x1047 : FileSystemWatcher.t list) ->
+          Ojs.set_prop_ascii (t_to_js x1046) "watchers"
+            (Ojs.list_to_js FileSystemWatcher.t_to_js x1047)
   end
 module FileSystemWatcher =
   struct
-    type t = _FileSystemWatcher
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1089 : Ojs.t) -> _FileSystemWatcher_of_js x1089
-    and t_to_js : t -> Ojs.t =
-      fun (x1088 : _FileSystemWatcher) -> _FileSystemWatcher_to_js x1088
-    let (get_globPattern : t -> string) =
-      fun (x1090 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1090) "globPattern")
-    let (set_globPattern : t -> string -> unit) =
-      fun (x1091 : t) ->
-        fun (x1092 : string) ->
-          Ojs.set_prop_ascii (t_to_js x1091) "globPattern"
-            (Ojs.string_to_js x1092)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1050 : Ojs.t) -> x1050
+    and t_to_js : t -> Ojs.t = fun (x1049 : Ojs.t) -> x1049
+    let (get_glob_pattern : t -> string) =
+      fun (x1051 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1051) "globPattern")
+    let (set_glob_pattern : t -> string -> unit) =
+      fun (x1052 : t) ->
+        fun (x1053 : string) ->
+          Ojs.set_prop_ascii (t_to_js x1052) "globPattern"
+            (Ojs.string_to_js x1053)
     let (get_kind : t -> Uinteger.t) =
-      fun (x1093 : t) ->
-        Uinteger.t_of_js (Ojs.get_prop_ascii (t_to_js x1093) "kind")
+      fun (x1054 : t) ->
+        Uinteger.t_of_js (Ojs.get_prop_ascii (t_to_js x1054) "kind")
     let (set_kind : t -> Uinteger.t -> unit) =
-      fun (x1094 : t) ->
-        fun (x1095 : Uinteger.t) ->
-          Ojs.set_prop_ascii (t_to_js x1094) "kind" (Uinteger.t_to_js x1095)
+      fun (x1055 : t) ->
+        fun (x1056 : Uinteger.t) ->
+          Ojs.set_prop_ascii (t_to_js x1055) "kind" (Uinteger.t_to_js x1056)
   end
 module WatchKind =
   struct
@@ -3274,96 +3034,89 @@ module WatchKind =
   end
 module PublishDiagnosticsClientCapabilities =
   struct
-    type t = _PublishDiagnosticsClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1097 : Ojs.t) ->
-        _PublishDiagnosticsClientCapabilities_of_js x1097
-    and t_to_js : t -> Ojs.t =
-      fun (x1096 : _PublishDiagnosticsClientCapabilities) ->
-        _PublishDiagnosticsClientCapabilities_to_js x1096
-    let (get_relatedInformation : t -> bool) =
-      fun (x1098 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1058 : Ojs.t) -> x1058
+    and t_to_js : t -> Ojs.t = fun (x1057 : Ojs.t) -> x1057
+    let (get_related_information : t -> bool) =
+      fun (x1059 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1098) "relatedInformation")
-    let (set_relatedInformation : t -> bool -> unit) =
-      fun (x1099 : t) ->
-        fun (x1100 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1099) "relatedInformation"
-            (Ojs.bool_to_js x1100)
-    let (get_tagSupport : t -> AnonymousInterface19.t) =
-      fun (x1101 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1059) "relatedInformation")
+    let (set_related_information : t -> bool -> unit) =
+      fun (x1060 : t) ->
+        fun (x1061 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1060) "relatedInformation"
+            (Ojs.bool_to_js x1061)
+    let (get_tag_support : t -> AnonymousInterface19.t) =
+      fun (x1062 : t) ->
         AnonymousInterface19.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1101) "tagSupport")
-    let (set_tagSupport : t -> AnonymousInterface19.t -> unit) =
-      fun (x1102 : t) ->
-        fun (x1103 : AnonymousInterface19.t) ->
-          Ojs.set_prop_ascii (t_to_js x1102) "tagSupport"
-            (AnonymousInterface19.t_to_js x1103)
-    let (get_versionSupport : t -> bool) =
-      fun (x1104 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1104) "versionSupport")
-    let (set_versionSupport : t -> bool -> unit) =
-      fun (x1105 : t) ->
-        fun (x1106 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1105) "versionSupport"
-            (Ojs.bool_to_js x1106)
-    let (get_codeDescriptionSupport : t -> bool) =
-      fun (x1107 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1062) "tagSupport")
+    let (set_tag_support : t -> AnonymousInterface19.t -> unit) =
+      fun (x1063 : t) ->
+        fun (x1064 : AnonymousInterface19.t) ->
+          Ojs.set_prop_ascii (t_to_js x1063) "tagSupport"
+            (AnonymousInterface19.t_to_js x1064)
+    let (get_version_support : t -> bool) =
+      fun (x1065 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1065) "versionSupport")
+    let (set_version_support : t -> bool -> unit) =
+      fun (x1066 : t) ->
+        fun (x1067 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1066) "versionSupport"
+            (Ojs.bool_to_js x1067)
+    let (get_code_description_support : t -> bool) =
+      fun (x1068 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1107) "codeDescriptionSupport")
-    let (set_codeDescriptionSupport : t -> bool -> unit) =
-      fun (x1108 : t) ->
-        fun (x1109 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1108) "codeDescriptionSupport"
-            (Ojs.bool_to_js x1109)
-    let (get_dataSupport : t -> bool) =
-      fun (x1110 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1110) "dataSupport")
-    let (set_dataSupport : t -> bool -> unit) =
-      fun (x1111 : t) ->
-        fun (x1112 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1111) "dataSupport"
-            (Ojs.bool_to_js x1112)
+          (Ojs.get_prop_ascii (t_to_js x1068) "codeDescriptionSupport")
+    let (set_code_description_support : t -> bool -> unit) =
+      fun (x1069 : t) ->
+        fun (x1070 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1069) "codeDescriptionSupport"
+            (Ojs.bool_to_js x1070)
+    let (get_data_support : t -> bool) =
+      fun (x1071 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1071) "dataSupport")
+    let (set_data_support : t -> bool -> unit) =
+      fun (x1072 : t) ->
+        fun (x1073 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1072) "dataSupport"
+            (Ojs.bool_to_js x1073)
   end
 module PublishDiagnosticsParams =
   struct
-    type t = _PublishDiagnosticsParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1114 : Ojs.t) -> _PublishDiagnosticsParams_of_js x1114
-    and t_to_js : t -> Ojs.t =
-      fun (x1113 : _PublishDiagnosticsParams) ->
-        _PublishDiagnosticsParams_to_js x1113
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1075 : Ojs.t) -> x1075
+    and t_to_js : t -> Ojs.t = fun (x1074 : Ojs.t) -> x1074
     let (get_uri : t -> DocumentUri.t) =
-      fun (x1115 : t) ->
-        DocumentUri.t_of_js (Ojs.get_prop_ascii (t_to_js x1115) "uri")
+      fun (x1076 : t) ->
+        DocumentUri.t_of_js (Ojs.get_prop_ascii (t_to_js x1076) "uri")
     let (set_uri : t -> DocumentUri.t -> unit) =
-      fun (x1116 : t) ->
-        fun (x1117 : DocumentUri.t) ->
-          Ojs.set_prop_ascii (t_to_js x1116) "uri"
-            (DocumentUri.t_to_js x1117)
+      fun (x1077 : t) ->
+        fun (x1078 : DocumentUri.t) ->
+          Ojs.set_prop_ascii (t_to_js x1077) "uri"
+            (DocumentUri.t_to_js x1078)
     let (get_version : t -> Integer.t) =
-      fun (x1118 : t) ->
-        Integer.t_of_js (Ojs.get_prop_ascii (t_to_js x1118) "version")
+      fun (x1079 : t) ->
+        Integer.t_of_js (Ojs.get_prop_ascii (t_to_js x1079) "version")
     let (set_version : t -> Integer.t -> unit) =
-      fun (x1119 : t) ->
-        fun (x1120 : Integer.t) ->
-          Ojs.set_prop_ascii (t_to_js x1119) "version"
-            (Integer.t_to_js x1120)
+      fun (x1080 : t) ->
+        fun (x1081 : Integer.t) ->
+          Ojs.set_prop_ascii (t_to_js x1080) "version"
+            (Integer.t_to_js x1081)
     let (get_diagnostics : t -> Diagnostic.t list) =
-      fun (x1121 : t) ->
+      fun (x1082 : t) ->
         Ojs.list_of_js Diagnostic.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1121) "diagnostics")
+          (Ojs.get_prop_ascii (t_to_js x1082) "diagnostics")
     let (set_diagnostics : t -> Diagnostic.t list -> unit) =
-      fun (x1123 : t) ->
-        fun (x1124 : Diagnostic.t list) ->
-          Ojs.set_prop_ascii (t_to_js x1123) "diagnostics"
-            (Ojs.list_to_js Diagnostic.t_to_js x1124)
+      fun (x1084 : t) ->
+        fun (x1085 : Diagnostic.t list) ->
+          Ojs.set_prop_ascii (t_to_js x1084) "diagnostics"
+            (Ojs.list_to_js Diagnostic.t_to_js x1085)
   end
 module PublishDiagnosticsNotification =
   struct
     let (type_ :
-      (_PublishDiagnosticsParams, unit) ProtocolNotificationType.t) =
-      ProtocolNotificationType.t_of_js _PublishDiagnosticsParams_of_js
+      (PublishDiagnosticsParams.t, unit) ProtocolNotificationType.t) =
+      ProtocolNotificationType.t_of_js PublishDiagnosticsParams.t_of_js
         Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "PublishDiagnosticsNotification")
@@ -3371,227 +3124,224 @@ module PublishDiagnosticsNotification =
   end
 module CompletionClientCapabilities =
   struct
-    type t = _CompletionClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1129 : Ojs.t) -> _CompletionClientCapabilities_of_js x1129
-    and t_to_js : t -> Ojs.t =
-      fun (x1128 : _CompletionClientCapabilities) ->
-        _CompletionClientCapabilities_to_js x1128
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x1130 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1090 : Ojs.t) -> x1090
+    and t_to_js : t -> Ojs.t = fun (x1089 : Ojs.t) -> x1089
+    let (get_dynamic_registration : t -> bool) =
+      fun (x1091 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1130) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x1131 : t) ->
-        fun (x1132 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1131) "dynamicRegistration"
-            (Ojs.bool_to_js x1132)
-    let (get_completionItem : t -> AnonymousInterface14.t) =
-      fun (x1133 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1091) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x1092 : t) ->
+        fun (x1093 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1092) "dynamicRegistration"
+            (Ojs.bool_to_js x1093)
+    let (get_completion_item : t -> AnonymousInterface14.t) =
+      fun (x1094 : t) ->
         AnonymousInterface14.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1133) "completionItem")
-    let (set_completionItem : t -> AnonymousInterface14.t -> unit) =
-      fun (x1134 : t) ->
-        fun (x1135 : AnonymousInterface14.t) ->
-          Ojs.set_prop_ascii (t_to_js x1134) "completionItem"
-            (AnonymousInterface14.t_to_js x1135)
-    let (get_completionItemKind : t -> AnonymousInterface17.t) =
-      fun (x1136 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1094) "completionItem")
+    let (set_completion_item : t -> AnonymousInterface14.t -> unit) =
+      fun (x1095 : t) ->
+        fun (x1096 : AnonymousInterface14.t) ->
+          Ojs.set_prop_ascii (t_to_js x1095) "completionItem"
+            (AnonymousInterface14.t_to_js x1096)
+    let (get_completion_item_kind : t -> AnonymousInterface17.t) =
+      fun (x1097 : t) ->
         AnonymousInterface17.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1136) "completionItemKind")
-    let (set_completionItemKind : t -> AnonymousInterface17.t -> unit) =
-      fun (x1137 : t) ->
-        fun (x1138 : AnonymousInterface17.t) ->
-          Ojs.set_prop_ascii (t_to_js x1137) "completionItemKind"
-            (AnonymousInterface17.t_to_js x1138)
-    let (get_insertTextMode : t -> InsertTextMode.t) =
-      fun (x1139 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1097) "completionItemKind")
+    let (set_completion_item_kind : t -> AnonymousInterface17.t -> unit) =
+      fun (x1098 : t) ->
+        fun (x1099 : AnonymousInterface17.t) ->
+          Ojs.set_prop_ascii (t_to_js x1098) "completionItemKind"
+            (AnonymousInterface17.t_to_js x1099)
+    let (get_insert_text_mode : t -> InsertTextMode.t) =
+      fun (x1100 : t) ->
         InsertTextMode.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1139) "insertTextMode")
-    let (set_insertTextMode : t -> InsertTextMode.t -> unit) =
-      fun (x1140 : t) ->
-        fun (x1141 : InsertTextMode.t) ->
-          Ojs.set_prop_ascii (t_to_js x1140) "insertTextMode"
-            (InsertTextMode.t_to_js x1141)
-    let (get_contextSupport : t -> bool) =
-      fun (x1142 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1142) "contextSupport")
-    let (set_contextSupport : t -> bool -> unit) =
-      fun (x1143 : t) ->
-        fun (x1144 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1143) "contextSupport"
-            (Ojs.bool_to_js x1144)
+          (Ojs.get_prop_ascii (t_to_js x1100) "insertTextMode")
+    let (set_insert_text_mode : t -> InsertTextMode.t -> unit) =
+      fun (x1101 : t) ->
+        fun (x1102 : InsertTextMode.t) ->
+          Ojs.set_prop_ascii (t_to_js x1101) "insertTextMode"
+            (InsertTextMode.t_to_js x1102)
+    let (get_context_support : t -> bool) =
+      fun (x1103 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1103) "contextSupport")
+    let (set_context_support : t -> bool -> unit) =
+      fun (x1104 : t) ->
+        fun (x1105 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1104) "contextSupport"
+            (Ojs.bool_to_js x1105)
   end
 module CompletionTriggerKind =
   struct
     let (invoked : [ `L_n_1 ]) =
-      let x1145 =
+      let x1106 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "CompletionTriggerKind") "Invoked" in
-      match Ojs.int_of_js x1145 with | 1 -> `L_n_1 | _ -> assert false
-    let (triggerCharacter : [ `L_n_2 ]) =
-      let x1146 =
+      match Ojs.int_of_js x1106 with | 1 -> `L_n_1 | _ -> assert false
+    let (trigger_character : [ `L_n_2 ]) =
+      let x1107 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "CompletionTriggerKind")
           "TriggerCharacter" in
-      match Ojs.int_of_js x1146 with | 2 -> `L_n_2 | _ -> assert false
-    let (triggerForIncompleteCompletions : [ `L_n_3 ]) =
-      let x1147 =
+      match Ojs.int_of_js x1107 with | 2 -> `L_n_2 | _ -> assert false
+    let (trigger_for_incomplete_completions : [ `L_n_3 ]) =
+      let x1108 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "CompletionTriggerKind")
           "TriggerForIncompleteCompletions" in
-      match Ojs.int_of_js x1147 with | 3 -> `L_n_3 | _ -> assert false
+      match Ojs.int_of_js x1108 with | 3 -> `L_n_3 | _ -> assert false
   end
 module CompletionTriggerKind =
   struct
-    type t = _CompletionTriggerKind
+    type t = [ `L_n_1  | `L_n_2  | `L_n_3 ]
     let rec t_of_js : Ojs.t -> t =
-      fun (x1149 : Ojs.t) -> _CompletionTriggerKind_of_js x1149
+      fun (x1110 : Ojs.t) ->
+        let x1111 = x1110 in
+        match Ojs.int_of_js x1111 with
+        | 1 -> `L_n_1
+        | 2 -> `L_n_2
+        | 3 -> `L_n_3
+        | _ -> assert false
     and t_to_js : t -> Ojs.t =
-      fun (x1148 : _CompletionTriggerKind) ->
-        _CompletionTriggerKind_to_js x1148
+      fun (x1109 : [ `L_n_1  | `L_n_2  | `L_n_3 ]) ->
+        match x1109 with
+        | `L_n_1 -> Ojs.int_to_js 1
+        | `L_n_2 -> Ojs.int_to_js 2
+        | `L_n_3 -> Ojs.int_to_js 3
   end
 module CompletionContext =
   struct
-    type t = _CompletionContext
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1151 : Ojs.t) -> _CompletionContext_of_js x1151
-    and t_to_js : t -> Ojs.t =
-      fun (x1150 : _CompletionContext) -> _CompletionContext_to_js x1150
-    let (get_triggerKind : t -> _CompletionTriggerKind) =
-      fun (x1152 : t) ->
-        _CompletionTriggerKind_of_js
-          (Ojs.get_prop_ascii (t_to_js x1152) "triggerKind")
-    let (set_triggerKind : t -> _CompletionTriggerKind -> unit) =
-      fun (x1153 : t) ->
-        fun (x1154 : _CompletionTriggerKind) ->
-          Ojs.set_prop_ascii (t_to_js x1153) "triggerKind"
-            (_CompletionTriggerKind_to_js x1154)
-    let (get_triggerCharacter : t -> string) =
-      fun (x1155 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1113 : Ojs.t) -> x1113
+    and t_to_js : t -> Ojs.t = fun (x1112 : Ojs.t) -> x1112
+    let (get_trigger_kind : t -> CompletionTriggerKind.t) =
+      fun (x1114 : t) ->
+        CompletionTriggerKind.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x1114) "triggerKind")
+    let (set_trigger_kind : t -> CompletionTriggerKind.t -> unit) =
+      fun (x1115 : t) ->
+        fun (x1116 : CompletionTriggerKind.t) ->
+          Ojs.set_prop_ascii (t_to_js x1115) "triggerKind"
+            (CompletionTriggerKind.t_to_js x1116)
+    let (get_trigger_character : t -> string) =
+      fun (x1117 : t) ->
         Ojs.string_of_js
-          (Ojs.get_prop_ascii (t_to_js x1155) "triggerCharacter")
-    let (set_triggerCharacter : t -> string -> unit) =
-      fun (x1156 : t) ->
-        fun (x1157 : string) ->
-          Ojs.set_prop_ascii (t_to_js x1156) "triggerCharacter"
-            (Ojs.string_to_js x1157)
+          (Ojs.get_prop_ascii (t_to_js x1117) "triggerCharacter")
+    let (set_trigger_character : t -> string -> unit) =
+      fun (x1118 : t) ->
+        fun (x1119 : string) ->
+          Ojs.set_prop_ascii (t_to_js x1118) "triggerCharacter"
+            (Ojs.string_to_js x1119)
   end
 module CompletionParams =
   struct
-    type t = _CompletionParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1159 : Ojs.t) -> _CompletionParams_of_js x1159
-    and t_to_js : t -> Ojs.t =
-      fun (x1158 : _CompletionParams) -> _CompletionParams_to_js x1158
-    let (get_context : t -> _CompletionContext) =
-      fun (x1160 : t) ->
-        _CompletionContext_of_js
-          (Ojs.get_prop_ascii (t_to_js x1160) "context")
-    let (set_context : t -> _CompletionContext -> unit) =
-      fun (x1161 : t) ->
-        fun (x1162 : _CompletionContext) ->
-          Ojs.set_prop_ascii (t_to_js x1161) "context"
-            (_CompletionContext_to_js x1162)
-    let (cast : t -> _TextDocumentPositionParams) =
-      fun (x1163 : t) -> _TextDocumentPositionParams_of_js (t_to_js x1163)
-    let (cast' : t -> _WorkDoneProgressParams) =
-      fun (x1164 : t) -> _WorkDoneProgressParams_of_js (t_to_js x1164)
-    let (cast'' : t -> _PartialResultParams) =
-      fun (x1165 : t) -> _PartialResultParams_of_js (t_to_js x1165)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1121 : Ojs.t) -> x1121
+    and t_to_js : t -> Ojs.t = fun (x1120 : Ojs.t) -> x1120
+    let (get_context : t -> CompletionContext.t) =
+      fun (x1122 : t) ->
+        CompletionContext.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x1122) "context")
+    let (set_context : t -> CompletionContext.t -> unit) =
+      fun (x1123 : t) ->
+        fun (x1124 : CompletionContext.t) ->
+          Ojs.set_prop_ascii (t_to_js x1123) "context"
+            (CompletionContext.t_to_js x1124)
+    let (cast : t -> TextDocumentPositionParams.t) =
+      fun (x1125 : t) -> TextDocumentPositionParams.t_of_js (t_to_js x1125)
+    let (cast' : t -> WorkDoneProgressParams.t) =
+      fun (x1126 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x1126)
+    let (cast'' : t -> PartialResultParams.t) =
+      fun (x1127 : t) -> PartialResultParams.t_of_js (t_to_js x1127)
   end
 module CompletionOptions =
   struct
-    type t = _CompletionOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1167 : Ojs.t) -> _CompletionOptions_of_js x1167
-    and t_to_js : t -> Ojs.t =
-      fun (x1166 : _CompletionOptions) -> _CompletionOptions_to_js x1166
-    let (get_triggerCharacters : t -> string list) =
-      fun (x1168 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1129 : Ojs.t) -> x1129
+    and t_to_js : t -> Ojs.t = fun (x1128 : Ojs.t) -> x1128
+    let (get_trigger_characters : t -> string list) =
+      fun (x1130 : t) ->
         Ojs.list_of_js Ojs.string_of_js
-          (Ojs.get_prop_ascii (t_to_js x1168) "triggerCharacters")
-    let (set_triggerCharacters : t -> string list -> unit) =
-      fun (x1170 : t) ->
-        fun (x1171 : string list) ->
-          Ojs.set_prop_ascii (t_to_js x1170) "triggerCharacters"
-            (Ojs.list_to_js Ojs.string_to_js x1171)
-    let (get_allCommitCharacters : t -> string list) =
-      fun (x1173 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1130) "triggerCharacters")
+    let (set_trigger_characters : t -> string list -> unit) =
+      fun (x1132 : t) ->
+        fun (x1133 : string list) ->
+          Ojs.set_prop_ascii (t_to_js x1132) "triggerCharacters"
+            (Ojs.list_to_js Ojs.string_to_js x1133)
+    let (get_all_commit_characters : t -> string list) =
+      fun (x1135 : t) ->
         Ojs.list_of_js Ojs.string_of_js
-          (Ojs.get_prop_ascii (t_to_js x1173) "allCommitCharacters")
-    let (set_allCommitCharacters : t -> string list -> unit) =
-      fun (x1175 : t) ->
-        fun (x1176 : string list) ->
-          Ojs.set_prop_ascii (t_to_js x1175) "allCommitCharacters"
-            (Ojs.list_to_js Ojs.string_to_js x1176)
-    let (get_resolveProvider : t -> bool) =
-      fun (x1178 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1178) "resolveProvider")
-    let (set_resolveProvider : t -> bool -> unit) =
-      fun (x1179 : t) ->
-        fun (x1180 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1179) "resolveProvider"
-            (Ojs.bool_to_js x1180)
-    let (get_completionItem : t -> AnonymousInterface7.t) =
-      fun (x1181 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1135) "allCommitCharacters")
+    let (set_all_commit_characters : t -> string list -> unit) =
+      fun (x1137 : t) ->
+        fun (x1138 : string list) ->
+          Ojs.set_prop_ascii (t_to_js x1137) "allCommitCharacters"
+            (Ojs.list_to_js Ojs.string_to_js x1138)
+    let (get_resolve_provider : t -> bool) =
+      fun (x1140 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1140) "resolveProvider")
+    let (set_resolve_provider : t -> bool -> unit) =
+      fun (x1141 : t) ->
+        fun (x1142 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1141) "resolveProvider"
+            (Ojs.bool_to_js x1142)
+    let (get_completion_item : t -> AnonymousInterface7.t) =
+      fun (x1143 : t) ->
         AnonymousInterface7.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1181) "completionItem")
-    let (set_completionItem : t -> AnonymousInterface7.t -> unit) =
-      fun (x1182 : t) ->
-        fun (x1183 : AnonymousInterface7.t) ->
-          Ojs.set_prop_ascii (t_to_js x1182) "completionItem"
-            (AnonymousInterface7.t_to_js x1183)
-    let (cast : t -> _WorkDoneProgressOptions) =
-      fun (x1184 : t) -> _WorkDoneProgressOptions_of_js (t_to_js x1184)
+          (Ojs.get_prop_ascii (t_to_js x1143) "completionItem")
+    let (set_completion_item : t -> AnonymousInterface7.t -> unit) =
+      fun (x1144 : t) ->
+        fun (x1145 : AnonymousInterface7.t) ->
+          Ojs.set_prop_ascii (t_to_js x1144) "completionItem"
+            (AnonymousInterface7.t_to_js x1145)
+    let (cast : t -> WorkDoneProgressOptions.t) =
+      fun (x1146 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x1146)
   end
 module CompletionRegistrationOptions =
   struct
-    type t = _CompletionRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1186 : Ojs.t) -> _CompletionRegistrationOptions_of_js x1186
-    and t_to_js : t -> Ojs.t =
-      fun (x1185 : _CompletionRegistrationOptions) ->
-        _CompletionRegistrationOptions_to_js x1185
-    let (cast : t -> _TextDocumentRegistrationOptions) =
-      fun (x1187 : t) ->
-        _TextDocumentRegistrationOptions_of_js (t_to_js x1187)
-    let (cast' : t -> _CompletionOptions) =
-      fun (x1188 : t) -> _CompletionOptions_of_js (t_to_js x1188)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1148 : Ojs.t) -> x1148
+    and t_to_js : t -> Ojs.t = fun (x1147 : Ojs.t) -> x1147
+    let (cast : t -> TextDocumentRegistrationOptions.t) =
+      fun (x1149 : t) ->
+        TextDocumentRegistrationOptions.t_of_js (t_to_js x1149)
+    let (cast' : t -> CompletionOptions.t) =
+      fun (x1150 : t) -> CompletionOptions.t_of_js (t_to_js x1150)
   end
 module CompletionRequest =
   struct
     let (method_ : [ `L_s12_textDocument_completion ]) =
-      let x1189 =
+      let x1151 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "CompletionRequest") "method" in
-      match Ojs.string_of_js x1189 with
+      match Ojs.string_of_js x1151 with
       | "textDocument/completion" -> `L_s12_textDocument_completion
       | _ -> assert false
     let (type_ :
-      (_CompletionParams,
+      (CompletionParams.t,
         (CompletionList.t, CompletionItem.t) or_array or_null,
-        CompletionItem.t list, unit, _CompletionRegistrationOptions)
+        CompletionItem.t list, unit, CompletionRegistrationOptions.t)
         ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _CompletionParams_of_js
-        (fun (x1191 : Ojs.t) ->
+      ProtocolRequestType.t_of_js CompletionParams.t_of_js
+        (fun (x1153 : Ojs.t) ->
            or_null_of_js
-             (fun (x1192 : Ojs.t) ->
+             (fun (x1154 : Ojs.t) ->
                 or_array_of_js CompletionList.t_of_js CompletionItem.t_of_js
-                  x1192) x1191)
-        (fun (x1195 : Ojs.t) -> Ojs.list_of_js CompletionItem.t_of_js x1195)
-        Ojs.unit_of_js _CompletionRegistrationOptions_of_js
+                  x1154) x1153)
+        (fun (x1157 : Ojs.t) -> Ojs.list_of_js CompletionItem.t_of_js x1157)
+        Ojs.unit_of_js CompletionRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "CompletionRequest") "type")
   end
 module CompletionResolveRequest =
   struct
     let (method_ : [ `L_s3_completionItem_resolve ]) =
-      let x1199 =
+      let x1161 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "CompletionResolveRequest") "method" in
-      match Ojs.string_of_js x1199 with
+      match Ojs.string_of_js x1161 with
       | "completionItem/resolve" -> `L_s3_completionItem_resolve
       | _ -> assert false
     let (type_ :
@@ -3605,871 +3355,802 @@ module CompletionResolveRequest =
   end
 module HoverClientCapabilities =
   struct
-    type t = _HoverClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1206 : Ojs.t) -> _HoverClientCapabilities_of_js x1206
-    and t_to_js : t -> Ojs.t =
-      fun (x1205 : _HoverClientCapabilities) ->
-        _HoverClientCapabilities_to_js x1205
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x1207 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1168 : Ojs.t) -> x1168
+    and t_to_js : t -> Ojs.t = fun (x1167 : Ojs.t) -> x1167
+    let (get_dynamic_registration : t -> bool) =
+      fun (x1169 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1207) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x1208 : t) ->
-        fun (x1209 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1208) "dynamicRegistration"
-            (Ojs.bool_to_js x1209)
-    let (get_contentFormat : t -> MarkupKind.t list) =
-      fun (x1210 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1169) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x1170 : t) ->
+        fun (x1171 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1170) "dynamicRegistration"
+            (Ojs.bool_to_js x1171)
+    let (get_content_format : t -> MarkupKind.t list) =
+      fun (x1172 : t) ->
         Ojs.list_of_js MarkupKind.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1210) "contentFormat")
-    let (set_contentFormat : t -> MarkupKind.t list -> unit) =
-      fun (x1212 : t) ->
-        fun (x1213 : MarkupKind.t list) ->
-          Ojs.set_prop_ascii (t_to_js x1212) "contentFormat"
-            (Ojs.list_to_js MarkupKind.t_to_js x1213)
+          (Ojs.get_prop_ascii (t_to_js x1172) "contentFormat")
+    let (set_content_format : t -> MarkupKind.t list -> unit) =
+      fun (x1174 : t) ->
+        fun (x1175 : MarkupKind.t list) ->
+          Ojs.set_prop_ascii (t_to_js x1174) "contentFormat"
+            (Ojs.list_to_js MarkupKind.t_to_js x1175)
   end
 module HoverOptions =
   struct
-    type t = _HoverOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1216 : Ojs.t) -> _HoverOptions_of_js x1216
-    and t_to_js : t -> Ojs.t =
-      fun (x1215 : _HoverOptions) -> _HoverOptions_to_js x1215
-    let (cast : t -> _WorkDoneProgressOptions) =
-      fun (x1217 : t) -> _WorkDoneProgressOptions_of_js (t_to_js x1217)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1178 : Ojs.t) -> x1178
+    and t_to_js : t -> Ojs.t = fun (x1177 : Ojs.t) -> x1177
+    let (cast : t -> WorkDoneProgressOptions.t) =
+      fun (x1179 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x1179)
   end
 module HoverParams =
   struct
-    type t = _HoverParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1219 : Ojs.t) -> _HoverParams_of_js x1219
-    and t_to_js : t -> Ojs.t =
-      fun (x1218 : _HoverParams) -> _HoverParams_to_js x1218
-    let (cast : t -> _TextDocumentPositionParams) =
-      fun (x1220 : t) -> _TextDocumentPositionParams_of_js (t_to_js x1220)
-    let (cast' : t -> _WorkDoneProgressParams) =
-      fun (x1221 : t) -> _WorkDoneProgressParams_of_js (t_to_js x1221)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1181 : Ojs.t) -> x1181
+    and t_to_js : t -> Ojs.t = fun (x1180 : Ojs.t) -> x1180
+    let (cast : t -> TextDocumentPositionParams.t) =
+      fun (x1182 : t) -> TextDocumentPositionParams.t_of_js (t_to_js x1182)
+    let (cast' : t -> WorkDoneProgressParams.t) =
+      fun (x1183 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x1183)
   end
 module HoverRegistrationOptions =
   struct
-    type t = _HoverRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1223 : Ojs.t) -> _HoverRegistrationOptions_of_js x1223
-    and t_to_js : t -> Ojs.t =
-      fun (x1222 : _HoverRegistrationOptions) ->
-        _HoverRegistrationOptions_to_js x1222
-    let (cast : t -> _TextDocumentRegistrationOptions) =
-      fun (x1224 : t) ->
-        _TextDocumentRegistrationOptions_of_js (t_to_js x1224)
-    let (cast' : t -> _HoverOptions) =
-      fun (x1225 : t) -> _HoverOptions_of_js (t_to_js x1225)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1185 : Ojs.t) -> x1185
+    and t_to_js : t -> Ojs.t = fun (x1184 : Ojs.t) -> x1184
+    let (cast : t -> TextDocumentRegistrationOptions.t) =
+      fun (x1186 : t) ->
+        TextDocumentRegistrationOptions.t_of_js (t_to_js x1186)
+    let (cast' : t -> HoverOptions.t) =
+      fun (x1187 : t) -> HoverOptions.t_of_js (t_to_js x1187)
   end
 module HoverRequest =
   struct
     let (method_ : [ `L_s22_textDocument_hover ]) =
-      let x1226 =
+      let x1188 =
         Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "HoverRequest")
           "method" in
-      match Ojs.string_of_js x1226 with
+      match Ojs.string_of_js x1188 with
       | "textDocument/hover" -> `L_s22_textDocument_hover
       | _ -> assert false
     let (type_ :
-      (_HoverParams, Hover.t or_null, never, unit, _HoverRegistrationOptions)
-        ProtocolRequestType.t)
+      (HoverParams.t, Hover.t or_null, never, unit,
+        HoverRegistrationOptions.t) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _HoverParams_of_js
-        (fun (x1228 : Ojs.t) -> or_null_of_js Hover.t_of_js x1228)
-        never_of_js Ojs.unit_of_js _HoverRegistrationOptions_of_js
+      ProtocolRequestType.t_of_js HoverParams.t_of_js
+        (fun (x1190 : Ojs.t) -> or_null_of_js Hover.t_of_js x1190)
+        never_of_js Ojs.unit_of_js HoverRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "HoverRequest")
            "type")
   end
 module SignatureHelpClientCapabilities =
   struct
-    type t = _SignatureHelpClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1234 : Ojs.t) -> _SignatureHelpClientCapabilities_of_js x1234
-    and t_to_js : t -> Ojs.t =
-      fun (x1233 : _SignatureHelpClientCapabilities) ->
-        _SignatureHelpClientCapabilities_to_js x1233
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x1235 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1196 : Ojs.t) -> x1196
+    and t_to_js : t -> Ojs.t = fun (x1195 : Ojs.t) -> x1195
+    let (get_dynamic_registration : t -> bool) =
+      fun (x1197 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1235) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x1236 : t) ->
-        fun (x1237 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1236) "dynamicRegistration"
-            (Ojs.bool_to_js x1237)
-    let (get_signatureInformation : t -> AnonymousInterface4.t) =
-      fun (x1238 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1197) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x1198 : t) ->
+        fun (x1199 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1198) "dynamicRegistration"
+            (Ojs.bool_to_js x1199)
+    let (get_signature_information : t -> AnonymousInterface4.t) =
+      fun (x1200 : t) ->
         AnonymousInterface4.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1238) "signatureInformation")
-    let (set_signatureInformation : t -> AnonymousInterface4.t -> unit) =
-      fun (x1239 : t) ->
-        fun (x1240 : AnonymousInterface4.t) ->
-          Ojs.set_prop_ascii (t_to_js x1239) "signatureInformation"
-            (AnonymousInterface4.t_to_js x1240)
-    let (get_contextSupport : t -> bool) =
-      fun (x1241 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1241) "contextSupport")
-    let (set_contextSupport : t -> bool -> unit) =
-      fun (x1242 : t) ->
-        fun (x1243 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1242) "contextSupport"
-            (Ojs.bool_to_js x1243)
+          (Ojs.get_prop_ascii (t_to_js x1200) "signatureInformation")
+    let (set_signature_information : t -> AnonymousInterface4.t -> unit) =
+      fun (x1201 : t) ->
+        fun (x1202 : AnonymousInterface4.t) ->
+          Ojs.set_prop_ascii (t_to_js x1201) "signatureInformation"
+            (AnonymousInterface4.t_to_js x1202)
+    let (get_context_support : t -> bool) =
+      fun (x1203 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1203) "contextSupport")
+    let (set_context_support : t -> bool -> unit) =
+      fun (x1204 : t) ->
+        fun (x1205 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1204) "contextSupport"
+            (Ojs.bool_to_js x1205)
   end
 module SignatureHelpOptions =
   struct
-    type t = _SignatureHelpOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1245 : Ojs.t) -> _SignatureHelpOptions_of_js x1245
-    and t_to_js : t -> Ojs.t =
-      fun (x1244 : _SignatureHelpOptions) ->
-        _SignatureHelpOptions_to_js x1244
-    let (get_triggerCharacters : t -> string list) =
-      fun (x1246 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1207 : Ojs.t) -> x1207
+    and t_to_js : t -> Ojs.t = fun (x1206 : Ojs.t) -> x1206
+    let (get_trigger_characters : t -> string list) =
+      fun (x1208 : t) ->
         Ojs.list_of_js Ojs.string_of_js
-          (Ojs.get_prop_ascii (t_to_js x1246) "triggerCharacters")
-    let (set_triggerCharacters : t -> string list -> unit) =
-      fun (x1248 : t) ->
-        fun (x1249 : string list) ->
-          Ojs.set_prop_ascii (t_to_js x1248) "triggerCharacters"
-            (Ojs.list_to_js Ojs.string_to_js x1249)
-    let (get_retriggerCharacters : t -> string list) =
-      fun (x1251 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1208) "triggerCharacters")
+    let (set_trigger_characters : t -> string list -> unit) =
+      fun (x1210 : t) ->
+        fun (x1211 : string list) ->
+          Ojs.set_prop_ascii (t_to_js x1210) "triggerCharacters"
+            (Ojs.list_to_js Ojs.string_to_js x1211)
+    let (get_retrigger_characters : t -> string list) =
+      fun (x1213 : t) ->
         Ojs.list_of_js Ojs.string_of_js
-          (Ojs.get_prop_ascii (t_to_js x1251) "retriggerCharacters")
-    let (set_retriggerCharacters : t -> string list -> unit) =
-      fun (x1253 : t) ->
-        fun (x1254 : string list) ->
-          Ojs.set_prop_ascii (t_to_js x1253) "retriggerCharacters"
-            (Ojs.list_to_js Ojs.string_to_js x1254)
-    let (cast : t -> _WorkDoneProgressOptions) =
-      fun (x1256 : t) -> _WorkDoneProgressOptions_of_js (t_to_js x1256)
+          (Ojs.get_prop_ascii (t_to_js x1213) "retriggerCharacters")
+    let (set_retrigger_characters : t -> string list -> unit) =
+      fun (x1215 : t) ->
+        fun (x1216 : string list) ->
+          Ojs.set_prop_ascii (t_to_js x1215) "retriggerCharacters"
+            (Ojs.list_to_js Ojs.string_to_js x1216)
+    let (cast : t -> WorkDoneProgressOptions.t) =
+      fun (x1218 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x1218)
   end
 module SignatureHelpTriggerKind =
   struct
     let (invoked : [ `L_n_1 ]) =
-      let x1257 =
+      let x1219 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "SignatureHelpTriggerKind")
           "Invoked" in
-      match Ojs.int_of_js x1257 with | 1 -> `L_n_1 | _ -> assert false
-    let (triggerCharacter : [ `L_n_2 ]) =
-      let x1258 =
+      match Ojs.int_of_js x1219 with | 1 -> `L_n_1 | _ -> assert false
+    let (trigger_character : [ `L_n_2 ]) =
+      let x1220 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "SignatureHelpTriggerKind")
           "TriggerCharacter" in
-      match Ojs.int_of_js x1258 with | 2 -> `L_n_2 | _ -> assert false
-    let (contentChange : [ `L_n_3 ]) =
-      let x1259 =
+      match Ojs.int_of_js x1220 with | 2 -> `L_n_2 | _ -> assert false
+    let (content_change : [ `L_n_3 ]) =
+      let x1221 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "SignatureHelpTriggerKind")
           "ContentChange" in
-      match Ojs.int_of_js x1259 with | 3 -> `L_n_3 | _ -> assert false
+      match Ojs.int_of_js x1221 with | 3 -> `L_n_3 | _ -> assert false
   end
 module SignatureHelpTriggerKind =
   struct
-    type t = _SignatureHelpTriggerKind
+    type t = [ `L_n_1  | `L_n_2  | `L_n_3 ]
     let rec t_of_js : Ojs.t -> t =
-      fun (x1261 : Ojs.t) -> _SignatureHelpTriggerKind_of_js x1261
+      fun (x1223 : Ojs.t) ->
+        let x1224 = x1223 in
+        match Ojs.int_of_js x1224 with
+        | 1 -> `L_n_1
+        | 2 -> `L_n_2
+        | 3 -> `L_n_3
+        | _ -> assert false
     and t_to_js : t -> Ojs.t =
-      fun (x1260 : _SignatureHelpTriggerKind) ->
-        _SignatureHelpTriggerKind_to_js x1260
+      fun (x1222 : [ `L_n_1  | `L_n_2  | `L_n_3 ]) ->
+        match x1222 with
+        | `L_n_1 -> Ojs.int_to_js 1
+        | `L_n_2 -> Ojs.int_to_js 2
+        | `L_n_3 -> Ojs.int_to_js 3
   end
 module SignatureHelpContext =
   struct
-    type t = _SignatureHelpContext
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1263 : Ojs.t) -> _SignatureHelpContext_of_js x1263
-    and t_to_js : t -> Ojs.t =
-      fun (x1262 : _SignatureHelpContext) ->
-        _SignatureHelpContext_to_js x1262
-    let (get_triggerKind : t -> _SignatureHelpTriggerKind) =
-      fun (x1264 : t) ->
-        _SignatureHelpTriggerKind_of_js
-          (Ojs.get_prop_ascii (t_to_js x1264) "triggerKind")
-    let (set_triggerKind : t -> _SignatureHelpTriggerKind -> unit) =
-      fun (x1265 : t) ->
-        fun (x1266 : _SignatureHelpTriggerKind) ->
-          Ojs.set_prop_ascii (t_to_js x1265) "triggerKind"
-            (_SignatureHelpTriggerKind_to_js x1266)
-    let (get_triggerCharacter : t -> string) =
-      fun (x1267 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1226 : Ojs.t) -> x1226
+    and t_to_js : t -> Ojs.t = fun (x1225 : Ojs.t) -> x1225
+    let (get_trigger_kind : t -> SignatureHelpTriggerKind.t) =
+      fun (x1227 : t) ->
+        SignatureHelpTriggerKind.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x1227) "triggerKind")
+    let (set_trigger_kind : t -> SignatureHelpTriggerKind.t -> unit) =
+      fun (x1228 : t) ->
+        fun (x1229 : SignatureHelpTriggerKind.t) ->
+          Ojs.set_prop_ascii (t_to_js x1228) "triggerKind"
+            (SignatureHelpTriggerKind.t_to_js x1229)
+    let (get_trigger_character : t -> string) =
+      fun (x1230 : t) ->
         Ojs.string_of_js
-          (Ojs.get_prop_ascii (t_to_js x1267) "triggerCharacter")
-    let (set_triggerCharacter : t -> string -> unit) =
-      fun (x1268 : t) ->
-        fun (x1269 : string) ->
-          Ojs.set_prop_ascii (t_to_js x1268) "triggerCharacter"
-            (Ojs.string_to_js x1269)
-    let (get_isRetrigger : t -> bool) =
-      fun (x1270 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1270) "isRetrigger")
-    let (set_isRetrigger : t -> bool -> unit) =
-      fun (x1271 : t) ->
-        fun (x1272 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1271) "isRetrigger"
-            (Ojs.bool_to_js x1272)
-    let (get_activeSignatureHelp : t -> SignatureHelp.t) =
-      fun (x1273 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1230) "triggerCharacter")
+    let (set_trigger_character : t -> string -> unit) =
+      fun (x1231 : t) ->
+        fun (x1232 : string) ->
+          Ojs.set_prop_ascii (t_to_js x1231) "triggerCharacter"
+            (Ojs.string_to_js x1232)
+    let (get_is_retrigger : t -> bool) =
+      fun (x1233 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1233) "isRetrigger")
+    let (set_is_retrigger : t -> bool -> unit) =
+      fun (x1234 : t) ->
+        fun (x1235 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1234) "isRetrigger"
+            (Ojs.bool_to_js x1235)
+    let (get_active_signature_help : t -> SignatureHelp.t) =
+      fun (x1236 : t) ->
         SignatureHelp.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1273) "activeSignatureHelp")
-    let (set_activeSignatureHelp : t -> SignatureHelp.t -> unit) =
-      fun (x1274 : t) ->
-        fun (x1275 : SignatureHelp.t) ->
-          Ojs.set_prop_ascii (t_to_js x1274) "activeSignatureHelp"
-            (SignatureHelp.t_to_js x1275)
+          (Ojs.get_prop_ascii (t_to_js x1236) "activeSignatureHelp")
+    let (set_active_signature_help : t -> SignatureHelp.t -> unit) =
+      fun (x1237 : t) ->
+        fun (x1238 : SignatureHelp.t) ->
+          Ojs.set_prop_ascii (t_to_js x1237) "activeSignatureHelp"
+            (SignatureHelp.t_to_js x1238)
   end
 module SignatureHelpParams =
   struct
-    type t = _SignatureHelpParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1277 : Ojs.t) -> _SignatureHelpParams_of_js x1277
-    and t_to_js : t -> Ojs.t =
-      fun (x1276 : _SignatureHelpParams) -> _SignatureHelpParams_to_js x1276
-    let (get_context : t -> _SignatureHelpContext) =
-      fun (x1278 : t) ->
-        _SignatureHelpContext_of_js
-          (Ojs.get_prop_ascii (t_to_js x1278) "context")
-    let (set_context : t -> _SignatureHelpContext -> unit) =
-      fun (x1279 : t) ->
-        fun (x1280 : _SignatureHelpContext) ->
-          Ojs.set_prop_ascii (t_to_js x1279) "context"
-            (_SignatureHelpContext_to_js x1280)
-    let (cast : t -> _TextDocumentPositionParams) =
-      fun (x1281 : t) -> _TextDocumentPositionParams_of_js (t_to_js x1281)
-    let (cast' : t -> _WorkDoneProgressParams) =
-      fun (x1282 : t) -> _WorkDoneProgressParams_of_js (t_to_js x1282)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1240 : Ojs.t) -> x1240
+    and t_to_js : t -> Ojs.t = fun (x1239 : Ojs.t) -> x1239
+    let (get_context : t -> SignatureHelpContext.t) =
+      fun (x1241 : t) ->
+        SignatureHelpContext.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x1241) "context")
+    let (set_context : t -> SignatureHelpContext.t -> unit) =
+      fun (x1242 : t) ->
+        fun (x1243 : SignatureHelpContext.t) ->
+          Ojs.set_prop_ascii (t_to_js x1242) "context"
+            (SignatureHelpContext.t_to_js x1243)
+    let (cast : t -> TextDocumentPositionParams.t) =
+      fun (x1244 : t) -> TextDocumentPositionParams.t_of_js (t_to_js x1244)
+    let (cast' : t -> WorkDoneProgressParams.t) =
+      fun (x1245 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x1245)
   end
 module SignatureHelpRegistrationOptions =
   struct
-    type t = _SignatureHelpRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1284 : Ojs.t) -> _SignatureHelpRegistrationOptions_of_js x1284
-    and t_to_js : t -> Ojs.t =
-      fun (x1283 : _SignatureHelpRegistrationOptions) ->
-        _SignatureHelpRegistrationOptions_to_js x1283
-    let (cast : t -> _TextDocumentRegistrationOptions) =
-      fun (x1285 : t) ->
-        _TextDocumentRegistrationOptions_of_js (t_to_js x1285)
-    let (cast' : t -> _SignatureHelpOptions) =
-      fun (x1286 : t) -> _SignatureHelpOptions_of_js (t_to_js x1286)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1247 : Ojs.t) -> x1247
+    and t_to_js : t -> Ojs.t = fun (x1246 : Ojs.t) -> x1246
+    let (cast : t -> TextDocumentRegistrationOptions.t) =
+      fun (x1248 : t) ->
+        TextDocumentRegistrationOptions.t_of_js (t_to_js x1248)
+    let (cast' : t -> SignatureHelpOptions.t) =
+      fun (x1249 : t) -> SignatureHelpOptions.t_of_js (t_to_js x1249)
   end
 module SignatureHelpRequest =
   struct
     let (method_ : [ `L_s28_textDocument_signatureHelp ]) =
-      let x1287 =
+      let x1250 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "SignatureHelpRequest") "method" in
-      match Ojs.string_of_js x1287 with
+      match Ojs.string_of_js x1250 with
       | "textDocument/signatureHelp" -> `L_s28_textDocument_signatureHelp
       | _ -> assert false
     let (type_ :
-      (_SignatureHelpParams, SignatureHelp.t or_null, never, unit,
-        _SignatureHelpRegistrationOptions) ProtocolRequestType.t)
+      (SignatureHelpParams.t, SignatureHelp.t or_null, never, unit,
+        SignatureHelpRegistrationOptions.t) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _SignatureHelpParams_of_js
-        (fun (x1289 : Ojs.t) -> or_null_of_js SignatureHelp.t_of_js x1289)
-        never_of_js Ojs.unit_of_js _SignatureHelpRegistrationOptions_of_js
+      ProtocolRequestType.t_of_js SignatureHelpParams.t_of_js
+        (fun (x1252 : Ojs.t) -> or_null_of_js SignatureHelp.t_of_js x1252)
+        never_of_js Ojs.unit_of_js SignatureHelpRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "SignatureHelpRequest") "type")
   end
 module DefinitionClientCapabilities =
   struct
-    type t = _DefinitionClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1295 : Ojs.t) -> _DefinitionClientCapabilities_of_js x1295
-    and t_to_js : t -> Ojs.t =
-      fun (x1294 : _DefinitionClientCapabilities) ->
-        _DefinitionClientCapabilities_to_js x1294
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x1296 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1258 : Ojs.t) -> x1258
+    and t_to_js : t -> Ojs.t = fun (x1257 : Ojs.t) -> x1257
+    let (get_dynamic_registration : t -> bool) =
+      fun (x1259 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1296) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x1297 : t) ->
-        fun (x1298 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1297) "dynamicRegistration"
-            (Ojs.bool_to_js x1298)
-    let (get_linkSupport : t -> bool) =
-      fun (x1299 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1299) "linkSupport")
-    let (set_linkSupport : t -> bool -> unit) =
-      fun (x1300 : t) ->
-        fun (x1301 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1300) "linkSupport"
-            (Ojs.bool_to_js x1301)
+          (Ojs.get_prop_ascii (t_to_js x1259) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x1260 : t) ->
+        fun (x1261 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1260) "dynamicRegistration"
+            (Ojs.bool_to_js x1261)
+    let (get_link_support : t -> bool) =
+      fun (x1262 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1262) "linkSupport")
+    let (set_link_support : t -> bool -> unit) =
+      fun (x1263 : t) ->
+        fun (x1264 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1263) "linkSupport"
+            (Ojs.bool_to_js x1264)
   end
 module DefinitionOptions =
   struct
-    type t = _DefinitionOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1303 : Ojs.t) -> _DefinitionOptions_of_js x1303
-    and t_to_js : t -> Ojs.t =
-      fun (x1302 : _DefinitionOptions) -> _DefinitionOptions_to_js x1302
-    let (cast : t -> _WorkDoneProgressOptions) =
-      fun (x1304 : t) -> _WorkDoneProgressOptions_of_js (t_to_js x1304)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1266 : Ojs.t) -> x1266
+    and t_to_js : t -> Ojs.t = fun (x1265 : Ojs.t) -> x1265
+    let (cast : t -> WorkDoneProgressOptions.t) =
+      fun (x1267 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x1267)
   end
 module DefinitionParams =
   struct
-    type t = _DefinitionParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1306 : Ojs.t) -> _DefinitionParams_of_js x1306
-    and t_to_js : t -> Ojs.t =
-      fun (x1305 : _DefinitionParams) -> _DefinitionParams_to_js x1305
-    let (cast : t -> _TextDocumentPositionParams) =
-      fun (x1307 : t) -> _TextDocumentPositionParams_of_js (t_to_js x1307)
-    let (cast' : t -> _WorkDoneProgressParams) =
-      fun (x1308 : t) -> _WorkDoneProgressParams_of_js (t_to_js x1308)
-    let (cast'' : t -> _PartialResultParams) =
-      fun (x1309 : t) -> _PartialResultParams_of_js (t_to_js x1309)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1269 : Ojs.t) -> x1269
+    and t_to_js : t -> Ojs.t = fun (x1268 : Ojs.t) -> x1268
+    let (cast : t -> TextDocumentPositionParams.t) =
+      fun (x1270 : t) -> TextDocumentPositionParams.t_of_js (t_to_js x1270)
+    let (cast' : t -> WorkDoneProgressParams.t) =
+      fun (x1271 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x1271)
+    let (cast'' : t -> PartialResultParams.t) =
+      fun (x1272 : t) -> PartialResultParams.t_of_js (t_to_js x1272)
   end
 module DefinitionRegistrationOptions =
   struct
-    type t = _DefinitionRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1311 : Ojs.t) -> _DefinitionRegistrationOptions_of_js x1311
-    and t_to_js : t -> Ojs.t =
-      fun (x1310 : _DefinitionRegistrationOptions) ->
-        _DefinitionRegistrationOptions_to_js x1310
-    let (cast : t -> _TextDocumentRegistrationOptions) =
-      fun (x1312 : t) ->
-        _TextDocumentRegistrationOptions_of_js (t_to_js x1312)
-    let (cast' : t -> _DefinitionOptions) =
-      fun (x1313 : t) -> _DefinitionOptions_of_js (t_to_js x1313)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1274 : Ojs.t) -> x1274
+    and t_to_js : t -> Ojs.t = fun (x1273 : Ojs.t) -> x1273
+    let (cast : t -> TextDocumentRegistrationOptions.t) =
+      fun (x1275 : t) ->
+        TextDocumentRegistrationOptions.t_of_js (t_to_js x1275)
+    let (cast' : t -> DefinitionOptions.t) =
+      fun (x1276 : t) -> DefinitionOptions.t_of_js (t_to_js x1276)
   end
 module DefinitionRequest =
   struct
     let (method_ : [ `L_s13_textDocument_definition ]) =
-      let x1314 =
+      let x1277 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "DefinitionRequest") "method" in
-      match Ojs.string_of_js x1314 with
+      match Ojs.string_of_js x1277 with
       | "textDocument/definition" -> `L_s13_textDocument_definition
       | _ -> assert false
     let (type_ :
-      (_DefinitionParams,
+      (DefinitionParams.t,
         (Location.t, (Location.t, LocationLink.t) union2) or_array or_null,
         (Location.t, LocationLink.t) union2 list, unit,
-        _DefinitionRegistrationOptions) ProtocolRequestType.t)
+        DefinitionRegistrationOptions.t) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _DefinitionParams_of_js
-        (fun (x1316 : Ojs.t) ->
+      ProtocolRequestType.t_of_js DefinitionParams.t_of_js
+        (fun (x1279 : Ojs.t) ->
            or_null_of_js
-             (fun (x1317 : Ojs.t) ->
+             (fun (x1280 : Ojs.t) ->
                 or_array_of_js Location.t_of_js
-                  (fun (x1319 : Ojs.t) ->
-                     union2_of_js Location.t_of_js LocationLink.t_of_js x1319)
-                  x1317) x1316)
-        (fun (x1322 : Ojs.t) ->
+                  (fun (x1282 : Ojs.t) ->
+                     union2_of_js Location.t_of_js LocationLink.t_of_js x1282)
+                  x1280) x1279)
+        (fun (x1285 : Ojs.t) ->
            Ojs.list_of_js
-             (fun (x1323 : Ojs.t) ->
-                union2_of_js Location.t_of_js LocationLink.t_of_js x1323)
-             x1322) Ojs.unit_of_js _DefinitionRegistrationOptions_of_js
+             (fun (x1286 : Ojs.t) ->
+                union2_of_js Location.t_of_js LocationLink.t_of_js x1286)
+             x1285) Ojs.unit_of_js DefinitionRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DefinitionRequest") "type")
   end
 module ReferenceClientCapabilities =
   struct
-    type t = _ReferenceClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1329 : Ojs.t) -> _ReferenceClientCapabilities_of_js x1329
-    and t_to_js : t -> Ojs.t =
-      fun (x1328 : _ReferenceClientCapabilities) ->
-        _ReferenceClientCapabilities_to_js x1328
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x1330 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1292 : Ojs.t) -> x1292
+    and t_to_js : t -> Ojs.t = fun (x1291 : Ojs.t) -> x1291
+    let (get_dynamic_registration : t -> bool) =
+      fun (x1293 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1330) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x1331 : t) ->
-        fun (x1332 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1331) "dynamicRegistration"
-            (Ojs.bool_to_js x1332)
+          (Ojs.get_prop_ascii (t_to_js x1293) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x1294 : t) ->
+        fun (x1295 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1294) "dynamicRegistration"
+            (Ojs.bool_to_js x1295)
   end
 module ReferenceParams =
   struct
-    type t = _ReferenceParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1334 : Ojs.t) -> _ReferenceParams_of_js x1334
-    and t_to_js : t -> Ojs.t =
-      fun (x1333 : _ReferenceParams) -> _ReferenceParams_to_js x1333
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1297 : Ojs.t) -> x1297
+    and t_to_js : t -> Ojs.t = fun (x1296 : Ojs.t) -> x1296
     let (get_context : t -> ReferenceContext.t) =
-      fun (x1335 : t) ->
+      fun (x1298 : t) ->
         ReferenceContext.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1335) "context")
+          (Ojs.get_prop_ascii (t_to_js x1298) "context")
     let (set_context : t -> ReferenceContext.t -> unit) =
-      fun (x1336 : t) ->
-        fun (x1337 : ReferenceContext.t) ->
-          Ojs.set_prop_ascii (t_to_js x1336) "context"
-            (ReferenceContext.t_to_js x1337)
-    let (cast : t -> _TextDocumentPositionParams) =
-      fun (x1338 : t) -> _TextDocumentPositionParams_of_js (t_to_js x1338)
-    let (cast' : t -> _WorkDoneProgressParams) =
-      fun (x1339 : t) -> _WorkDoneProgressParams_of_js (t_to_js x1339)
-    let (cast'' : t -> _PartialResultParams) =
-      fun (x1340 : t) -> _PartialResultParams_of_js (t_to_js x1340)
+      fun (x1299 : t) ->
+        fun (x1300 : ReferenceContext.t) ->
+          Ojs.set_prop_ascii (t_to_js x1299) "context"
+            (ReferenceContext.t_to_js x1300)
+    let (cast : t -> TextDocumentPositionParams.t) =
+      fun (x1301 : t) -> TextDocumentPositionParams.t_of_js (t_to_js x1301)
+    let (cast' : t -> WorkDoneProgressParams.t) =
+      fun (x1302 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x1302)
+    let (cast'' : t -> PartialResultParams.t) =
+      fun (x1303 : t) -> PartialResultParams.t_of_js (t_to_js x1303)
   end
 module ReferenceOptions =
   struct
-    type t = _ReferenceOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1342 : Ojs.t) -> _ReferenceOptions_of_js x1342
-    and t_to_js : t -> Ojs.t =
-      fun (x1341 : _ReferenceOptions) -> _ReferenceOptions_to_js x1341
-    let (cast : t -> _WorkDoneProgressOptions) =
-      fun (x1343 : t) -> _WorkDoneProgressOptions_of_js (t_to_js x1343)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1305 : Ojs.t) -> x1305
+    and t_to_js : t -> Ojs.t = fun (x1304 : Ojs.t) -> x1304
+    let (cast : t -> WorkDoneProgressOptions.t) =
+      fun (x1306 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x1306)
   end
 module ReferenceRegistrationOptions =
   struct
-    type t = _ReferenceRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1345 : Ojs.t) -> _ReferenceRegistrationOptions_of_js x1345
-    and t_to_js : t -> Ojs.t =
-      fun (x1344 : _ReferenceRegistrationOptions) ->
-        _ReferenceRegistrationOptions_to_js x1344
-    let (cast : t -> _TextDocumentRegistrationOptions) =
-      fun (x1346 : t) ->
-        _TextDocumentRegistrationOptions_of_js (t_to_js x1346)
-    let (cast' : t -> _ReferenceOptions) =
-      fun (x1347 : t) -> _ReferenceOptions_of_js (t_to_js x1347)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1308 : Ojs.t) -> x1308
+    and t_to_js : t -> Ojs.t = fun (x1307 : Ojs.t) -> x1307
+    let (cast : t -> TextDocumentRegistrationOptions.t) =
+      fun (x1309 : t) ->
+        TextDocumentRegistrationOptions.t_of_js (t_to_js x1309)
+    let (cast' : t -> ReferenceOptions.t) =
+      fun (x1310 : t) -> ReferenceOptions.t_of_js (t_to_js x1310)
   end
 module ReferencesRequest =
   struct
     let (method_ : [ `L_s26_textDocument_references ]) =
-      let x1348 =
+      let x1311 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "ReferencesRequest") "method" in
-      match Ojs.string_of_js x1348 with
+      match Ojs.string_of_js x1311 with
       | "textDocument/references" -> `L_s26_textDocument_references
       | _ -> assert false
     let (type_ :
-      (_ReferenceParams, Location.t list or_null, Location.t list, unit,
-        _ReferenceRegistrationOptions) ProtocolRequestType.t)
+      (ReferenceParams.t, Location.t list or_null, Location.t list, unit,
+        ReferenceRegistrationOptions.t) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _ReferenceParams_of_js
-        (fun (x1350 : Ojs.t) ->
+      ProtocolRequestType.t_of_js ReferenceParams.t_of_js
+        (fun (x1313 : Ojs.t) ->
            or_null_of_js
-             (fun (x1351 : Ojs.t) -> Ojs.list_of_js Location.t_of_js x1351)
-             x1350)
-        (fun (x1353 : Ojs.t) -> Ojs.list_of_js Location.t_of_js x1353)
-        Ojs.unit_of_js _ReferenceRegistrationOptions_of_js
+             (fun (x1314 : Ojs.t) -> Ojs.list_of_js Location.t_of_js x1314)
+             x1313)
+        (fun (x1316 : Ojs.t) -> Ojs.list_of_js Location.t_of_js x1316)
+        Ojs.unit_of_js ReferenceRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "ReferencesRequest") "type")
   end
 module DocumentHighlightClientCapabilities =
   struct
-    type t = _DocumentHighlightClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1358 : Ojs.t) -> _DocumentHighlightClientCapabilities_of_js x1358
-    and t_to_js : t -> Ojs.t =
-      fun (x1357 : _DocumentHighlightClientCapabilities) ->
-        _DocumentHighlightClientCapabilities_to_js x1357
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x1359 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1321 : Ojs.t) -> x1321
+    and t_to_js : t -> Ojs.t = fun (x1320 : Ojs.t) -> x1320
+    let (get_dynamic_registration : t -> bool) =
+      fun (x1322 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1359) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x1360 : t) ->
-        fun (x1361 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1360) "dynamicRegistration"
-            (Ojs.bool_to_js x1361)
+          (Ojs.get_prop_ascii (t_to_js x1322) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x1323 : t) ->
+        fun (x1324 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1323) "dynamicRegistration"
+            (Ojs.bool_to_js x1324)
   end
 module DocumentHighlightParams =
   struct
-    type t = _DocumentHighlightParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1363 : Ojs.t) -> _DocumentHighlightParams_of_js x1363
-    and t_to_js : t -> Ojs.t =
-      fun (x1362 : _DocumentHighlightParams) ->
-        _DocumentHighlightParams_to_js x1362
-    let (cast : t -> _TextDocumentPositionParams) =
-      fun (x1364 : t) -> _TextDocumentPositionParams_of_js (t_to_js x1364)
-    let (cast' : t -> _WorkDoneProgressParams) =
-      fun (x1365 : t) -> _WorkDoneProgressParams_of_js (t_to_js x1365)
-    let (cast'' : t -> _PartialResultParams) =
-      fun (x1366 : t) -> _PartialResultParams_of_js (t_to_js x1366)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1326 : Ojs.t) -> x1326
+    and t_to_js : t -> Ojs.t = fun (x1325 : Ojs.t) -> x1325
+    let (cast : t -> TextDocumentPositionParams.t) =
+      fun (x1327 : t) -> TextDocumentPositionParams.t_of_js (t_to_js x1327)
+    let (cast' : t -> WorkDoneProgressParams.t) =
+      fun (x1328 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x1328)
+    let (cast'' : t -> PartialResultParams.t) =
+      fun (x1329 : t) -> PartialResultParams.t_of_js (t_to_js x1329)
   end
 module DocumentHighlightOptions =
   struct
-    type t = _DocumentHighlightOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1368 : Ojs.t) -> _DocumentHighlightOptions_of_js x1368
-    and t_to_js : t -> Ojs.t =
-      fun (x1367 : _DocumentHighlightOptions) ->
-        _DocumentHighlightOptions_to_js x1367
-    let (cast : t -> _WorkDoneProgressOptions) =
-      fun (x1369 : t) -> _WorkDoneProgressOptions_of_js (t_to_js x1369)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1331 : Ojs.t) -> x1331
+    and t_to_js : t -> Ojs.t = fun (x1330 : Ojs.t) -> x1330
+    let (cast : t -> WorkDoneProgressOptions.t) =
+      fun (x1332 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x1332)
   end
 module DocumentHighlightRegistrationOptions =
   struct
-    type t = _DocumentHighlightRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1371 : Ojs.t) ->
-        _DocumentHighlightRegistrationOptions_of_js x1371
-    and t_to_js : t -> Ojs.t =
-      fun (x1370 : _DocumentHighlightRegistrationOptions) ->
-        _DocumentHighlightRegistrationOptions_to_js x1370
-    let (cast : t -> _TextDocumentRegistrationOptions) =
-      fun (x1372 : t) ->
-        _TextDocumentRegistrationOptions_of_js (t_to_js x1372)
-    let (cast' : t -> _DocumentHighlightOptions) =
-      fun (x1373 : t) -> _DocumentHighlightOptions_of_js (t_to_js x1373)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1334 : Ojs.t) -> x1334
+    and t_to_js : t -> Ojs.t = fun (x1333 : Ojs.t) -> x1333
+    let (cast : t -> TextDocumentRegistrationOptions.t) =
+      fun (x1335 : t) ->
+        TextDocumentRegistrationOptions.t_of_js (t_to_js x1335)
+    let (cast' : t -> DocumentHighlightOptions.t) =
+      fun (x1336 : t) -> DocumentHighlightOptions.t_of_js (t_to_js x1336)
   end
 module DocumentHighlightRequest =
   struct
     let (method_ : [ `L_s18_textDocument_documentHighlight ]) =
-      let x1374 =
+      let x1337 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "DocumentHighlightRequest") "method" in
-      match Ojs.string_of_js x1374 with
+      match Ojs.string_of_js x1337 with
       | "textDocument/documentHighlight" ->
           `L_s18_textDocument_documentHighlight
       | _ -> assert false
     let (type_ :
-      (_DocumentHighlightParams, DocumentHighlight.t list or_null,
+      (DocumentHighlightParams.t, DocumentHighlight.t list or_null,
         DocumentHighlight.t list, unit,
-        _DocumentHighlightRegistrationOptions) ProtocolRequestType.t)
+        DocumentHighlightRegistrationOptions.t) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _DocumentHighlightParams_of_js
-        (fun (x1376 : Ojs.t) ->
+      ProtocolRequestType.t_of_js DocumentHighlightParams.t_of_js
+        (fun (x1339 : Ojs.t) ->
            or_null_of_js
-             (fun (x1377 : Ojs.t) ->
-                Ojs.list_of_js DocumentHighlight.t_of_js x1377) x1376)
-        (fun (x1379 : Ojs.t) ->
-           Ojs.list_of_js DocumentHighlight.t_of_js x1379) Ojs.unit_of_js
-        _DocumentHighlightRegistrationOptions_of_js
+             (fun (x1340 : Ojs.t) ->
+                Ojs.list_of_js DocumentHighlight.t_of_js x1340) x1339)
+        (fun (x1342 : Ojs.t) ->
+           Ojs.list_of_js DocumentHighlight.t_of_js x1342) Ojs.unit_of_js
+        DocumentHighlightRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DocumentHighlightRequest") "type")
   end
 module DocumentSymbolClientCapabilities =
   struct
-    type t = _DocumentSymbolClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1384 : Ojs.t) -> _DocumentSymbolClientCapabilities_of_js x1384
-    and t_to_js : t -> Ojs.t =
-      fun (x1383 : _DocumentSymbolClientCapabilities) ->
-        _DocumentSymbolClientCapabilities_to_js x1383
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x1385 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1347 : Ojs.t) -> x1347
+    and t_to_js : t -> Ojs.t = fun (x1346 : Ojs.t) -> x1346
+    let (get_dynamic_registration : t -> bool) =
+      fun (x1348 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1385) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x1386 : t) ->
-        fun (x1387 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1386) "dynamicRegistration"
-            (Ojs.bool_to_js x1387)
-    let (get_symbolKind : t -> AnonymousInterface21.t) =
-      fun (x1388 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1348) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x1349 : t) ->
+        fun (x1350 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1349) "dynamicRegistration"
+            (Ojs.bool_to_js x1350)
+    let (get_symbol_kind : t -> AnonymousInterface21.t) =
+      fun (x1351 : t) ->
         AnonymousInterface21.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1388) "symbolKind")
-    let (set_symbolKind : t -> AnonymousInterface21.t -> unit) =
-      fun (x1389 : t) ->
-        fun (x1390 : AnonymousInterface21.t) ->
-          Ojs.set_prop_ascii (t_to_js x1389) "symbolKind"
-            (AnonymousInterface21.t_to_js x1390)
-    let (get_hierarchicalDocumentSymbolSupport : t -> bool) =
-      fun (x1391 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1351) "symbolKind")
+    let (set_symbol_kind : t -> AnonymousInterface21.t -> unit) =
+      fun (x1352 : t) ->
+        fun (x1353 : AnonymousInterface21.t) ->
+          Ojs.set_prop_ascii (t_to_js x1352) "symbolKind"
+            (AnonymousInterface21.t_to_js x1353)
+    let (get_hierarchical_document_symbol_support : t -> bool) =
+      fun (x1354 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1391)
+          (Ojs.get_prop_ascii (t_to_js x1354)
              "hierarchicalDocumentSymbolSupport")
-    let (set_hierarchicalDocumentSymbolSupport : t -> bool -> unit) =
-      fun (x1392 : t) ->
-        fun (x1393 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1392)
-            "hierarchicalDocumentSymbolSupport" (Ojs.bool_to_js x1393)
-    let (get_tagSupport : t -> AnonymousInterface22.t) =
-      fun (x1394 : t) ->
+    let (set_hierarchical_document_symbol_support : t -> bool -> unit) =
+      fun (x1355 : t) ->
+        fun (x1356 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1355)
+            "hierarchicalDocumentSymbolSupport" (Ojs.bool_to_js x1356)
+    let (get_tag_support : t -> AnonymousInterface22.t) =
+      fun (x1357 : t) ->
         AnonymousInterface22.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1394) "tagSupport")
-    let (set_tagSupport : t -> AnonymousInterface22.t -> unit) =
-      fun (x1395 : t) ->
-        fun (x1396 : AnonymousInterface22.t) ->
-          Ojs.set_prop_ascii (t_to_js x1395) "tagSupport"
-            (AnonymousInterface22.t_to_js x1396)
-    let (get_labelSupport : t -> bool) =
-      fun (x1397 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1397) "labelSupport")
-    let (set_labelSupport : t -> bool -> unit) =
-      fun (x1398 : t) ->
-        fun (x1399 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1398) "labelSupport"
-            (Ojs.bool_to_js x1399)
+          (Ojs.get_prop_ascii (t_to_js x1357) "tagSupport")
+    let (set_tag_support : t -> AnonymousInterface22.t -> unit) =
+      fun (x1358 : t) ->
+        fun (x1359 : AnonymousInterface22.t) ->
+          Ojs.set_prop_ascii (t_to_js x1358) "tagSupport"
+            (AnonymousInterface22.t_to_js x1359)
+    let (get_label_support : t -> bool) =
+      fun (x1360 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1360) "labelSupport")
+    let (set_label_support : t -> bool -> unit) =
+      fun (x1361 : t) ->
+        fun (x1362 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1361) "labelSupport"
+            (Ojs.bool_to_js x1362)
   end
 module DocumentSymbolParams =
   struct
-    type t = _DocumentSymbolParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1401 : Ojs.t) -> _DocumentSymbolParams_of_js x1401
-    and t_to_js : t -> Ojs.t =
-      fun (x1400 : _DocumentSymbolParams) ->
-        _DocumentSymbolParams_to_js x1400
-    let (get_textDocument : t -> TextDocumentIdentifier.t) =
-      fun (x1402 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1364 : Ojs.t) -> x1364
+    and t_to_js : t -> Ojs.t = fun (x1363 : Ojs.t) -> x1363
+    let (get_text_document : t -> TextDocumentIdentifier.t) =
+      fun (x1365 : t) ->
         TextDocumentIdentifier.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1402) "textDocument")
-    let (set_textDocument : t -> TextDocumentIdentifier.t -> unit) =
-      fun (x1403 : t) ->
-        fun (x1404 : TextDocumentIdentifier.t) ->
-          Ojs.set_prop_ascii (t_to_js x1403) "textDocument"
-            (TextDocumentIdentifier.t_to_js x1404)
-    let (cast : t -> _WorkDoneProgressParams) =
-      fun (x1405 : t) -> _WorkDoneProgressParams_of_js (t_to_js x1405)
-    let (cast' : t -> _PartialResultParams) =
-      fun (x1406 : t) -> _PartialResultParams_of_js (t_to_js x1406)
+          (Ojs.get_prop_ascii (t_to_js x1365) "textDocument")
+    let (set_text_document : t -> TextDocumentIdentifier.t -> unit) =
+      fun (x1366 : t) ->
+        fun (x1367 : TextDocumentIdentifier.t) ->
+          Ojs.set_prop_ascii (t_to_js x1366) "textDocument"
+            (TextDocumentIdentifier.t_to_js x1367)
+    let (cast : t -> WorkDoneProgressParams.t) =
+      fun (x1368 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x1368)
+    let (cast' : t -> PartialResultParams.t) =
+      fun (x1369 : t) -> PartialResultParams.t_of_js (t_to_js x1369)
   end
 module DocumentSymbolOptions =
   struct
-    type t = _DocumentSymbolOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1408 : Ojs.t) -> _DocumentSymbolOptions_of_js x1408
-    and t_to_js : t -> Ojs.t =
-      fun (x1407 : _DocumentSymbolOptions) ->
-        _DocumentSymbolOptions_to_js x1407
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1371 : Ojs.t) -> x1371
+    and t_to_js : t -> Ojs.t = fun (x1370 : Ojs.t) -> x1370
     let (get_label : t -> string) =
-      fun (x1409 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1409) "label")
+      fun (x1372 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1372) "label")
     let (set_label : t -> string -> unit) =
-      fun (x1410 : t) ->
-        fun (x1411 : string) ->
-          Ojs.set_prop_ascii (t_to_js x1410) "label" (Ojs.string_to_js x1411)
-    let (cast : t -> _WorkDoneProgressOptions) =
-      fun (x1412 : t) -> _WorkDoneProgressOptions_of_js (t_to_js x1412)
+      fun (x1373 : t) ->
+        fun (x1374 : string) ->
+          Ojs.set_prop_ascii (t_to_js x1373) "label" (Ojs.string_to_js x1374)
+    let (cast : t -> WorkDoneProgressOptions.t) =
+      fun (x1375 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x1375)
   end
 module DocumentSymbolRegistrationOptions =
   struct
-    type t = _DocumentSymbolRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1414 : Ojs.t) -> _DocumentSymbolRegistrationOptions_of_js x1414
-    and t_to_js : t -> Ojs.t =
-      fun (x1413 : _DocumentSymbolRegistrationOptions) ->
-        _DocumentSymbolRegistrationOptions_to_js x1413
-    let (cast : t -> _TextDocumentRegistrationOptions) =
-      fun (x1415 : t) ->
-        _TextDocumentRegistrationOptions_of_js (t_to_js x1415)
-    let (cast' : t -> _DocumentSymbolOptions) =
-      fun (x1416 : t) -> _DocumentSymbolOptions_of_js (t_to_js x1416)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1377 : Ojs.t) -> x1377
+    and t_to_js : t -> Ojs.t = fun (x1376 : Ojs.t) -> x1376
+    let (cast : t -> TextDocumentRegistrationOptions.t) =
+      fun (x1378 : t) ->
+        TextDocumentRegistrationOptions.t_of_js (t_to_js x1378)
+    let (cast' : t -> DocumentSymbolOptions.t) =
+      fun (x1379 : t) -> DocumentSymbolOptions.t_of_js (t_to_js x1379)
   end
 module DocumentSymbolRequest =
   struct
     let (method_ : [ `L_s20_textDocument_documentSymbol ]) =
-      let x1417 =
+      let x1380 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "DocumentSymbolRequest") "method" in
-      match Ojs.string_of_js x1417 with
+      match Ojs.string_of_js x1380 with
       | "textDocument/documentSymbol" -> `L_s20_textDocument_documentSymbol
       | _ -> assert false
     let (type_ :
-      (_DocumentSymbolParams,
+      (DocumentSymbolParams.t,
         (DocumentSymbol.t, SymbolInformation.t) union2 list or_null,
         (DocumentSymbol.t, SymbolInformation.t) union2 list, unit,
-        _DocumentSymbolRegistrationOptions) ProtocolRequestType.t)
+        DocumentSymbolRegistrationOptions.t) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _DocumentSymbolParams_of_js
-        (fun (x1419 : Ojs.t) ->
+      ProtocolRequestType.t_of_js DocumentSymbolParams.t_of_js
+        (fun (x1382 : Ojs.t) ->
            or_null_of_js
-             (fun (x1420 : Ojs.t) ->
+             (fun (x1383 : Ojs.t) ->
                 Ojs.list_of_js
-                  (fun (x1421 : Ojs.t) ->
+                  (fun (x1384 : Ojs.t) ->
                      union2_of_js DocumentSymbol.t_of_js
-                       SymbolInformation.t_of_js x1421) x1420) x1419)
-        (fun (x1424 : Ojs.t) ->
+                       SymbolInformation.t_of_js x1384) x1383) x1382)
+        (fun (x1387 : Ojs.t) ->
            Ojs.list_of_js
-             (fun (x1425 : Ojs.t) ->
+             (fun (x1388 : Ojs.t) ->
                 union2_of_js DocumentSymbol.t_of_js SymbolInformation.t_of_js
-                  x1425) x1424) Ojs.unit_of_js
-        _DocumentSymbolRegistrationOptions_of_js
+                  x1388) x1387) Ojs.unit_of_js
+        DocumentSymbolRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DocumentSymbolRequest") "type")
   end
 module CodeActionClientCapabilities =
   struct
-    type t = _CodeActionClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1431 : Ojs.t) -> _CodeActionClientCapabilities_of_js x1431
-    and t_to_js : t -> Ojs.t =
-      fun (x1430 : _CodeActionClientCapabilities) ->
-        _CodeActionClientCapabilities_to_js x1430
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x1432 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1394 : Ojs.t) -> x1394
+    and t_to_js : t -> Ojs.t = fun (x1393 : Ojs.t) -> x1393
+    let (get_dynamic_registration : t -> bool) =
+      fun (x1395 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1432) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x1433 : t) ->
-        fun (x1434 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1433) "dynamicRegistration"
-            (Ojs.bool_to_js x1434)
-    let (get_codeActionLiteralSupport : t -> AnonymousInterface2.t) =
-      fun (x1435 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1395) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x1396 : t) ->
+        fun (x1397 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1396) "dynamicRegistration"
+            (Ojs.bool_to_js x1397)
+    let (get_code_action_literal_support : t -> AnonymousInterface2.t) =
+      fun (x1398 : t) ->
         AnonymousInterface2.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1435) "codeActionLiteralSupport")
-    let (set_codeActionLiteralSupport : t -> AnonymousInterface2.t -> unit) =
-      fun (x1436 : t) ->
-        fun (x1437 : AnonymousInterface2.t) ->
-          Ojs.set_prop_ascii (t_to_js x1436) "codeActionLiteralSupport"
-            (AnonymousInterface2.t_to_js x1437)
-    let (get_isPreferredSupport : t -> bool) =
-      fun (x1438 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1398) "codeActionLiteralSupport")
+    let (set_code_action_literal_support :
+      t -> AnonymousInterface2.t -> unit) =
+      fun (x1399 : t) ->
+        fun (x1400 : AnonymousInterface2.t) ->
+          Ojs.set_prop_ascii (t_to_js x1399) "codeActionLiteralSupport"
+            (AnonymousInterface2.t_to_js x1400)
+    let (get_is_preferred_support : t -> bool) =
+      fun (x1401 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1438) "isPreferredSupport")
-    let (set_isPreferredSupport : t -> bool -> unit) =
-      fun (x1439 : t) ->
-        fun (x1440 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1439) "isPreferredSupport"
-            (Ojs.bool_to_js x1440)
-    let (get_disabledSupport : t -> bool) =
-      fun (x1441 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1441) "disabledSupport")
-    let (set_disabledSupport : t -> bool -> unit) =
-      fun (x1442 : t) ->
-        fun (x1443 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1442) "disabledSupport"
-            (Ojs.bool_to_js x1443)
-    let (get_dataSupport : t -> bool) =
-      fun (x1444 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1444) "dataSupport")
-    let (set_dataSupport : t -> bool -> unit) =
-      fun (x1445 : t) ->
-        fun (x1446 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1445) "dataSupport"
-            (Ojs.bool_to_js x1446)
-    let (get_resolveSupport : t -> AnonymousInterface11.t) =
-      fun (x1447 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1401) "isPreferredSupport")
+    let (set_is_preferred_support : t -> bool -> unit) =
+      fun (x1402 : t) ->
+        fun (x1403 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1402) "isPreferredSupport"
+            (Ojs.bool_to_js x1403)
+    let (get_disabled_support : t -> bool) =
+      fun (x1404 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1404) "disabledSupport")
+    let (set_disabled_support : t -> bool -> unit) =
+      fun (x1405 : t) ->
+        fun (x1406 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1405) "disabledSupport"
+            (Ojs.bool_to_js x1406)
+    let (get_data_support : t -> bool) =
+      fun (x1407 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1407) "dataSupport")
+    let (set_data_support : t -> bool -> unit) =
+      fun (x1408 : t) ->
+        fun (x1409 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1408) "dataSupport"
+            (Ojs.bool_to_js x1409)
+    let (get_resolve_support : t -> AnonymousInterface11.t) =
+      fun (x1410 : t) ->
         AnonymousInterface11.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1447) "resolveSupport")
-    let (set_resolveSupport : t -> AnonymousInterface11.t -> unit) =
-      fun (x1448 : t) ->
-        fun (x1449 : AnonymousInterface11.t) ->
-          Ojs.set_prop_ascii (t_to_js x1448) "resolveSupport"
-            (AnonymousInterface11.t_to_js x1449)
-    let (get_honorsChangeAnnotations : t -> bool) =
-      fun (x1450 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1410) "resolveSupport")
+    let (set_resolve_support : t -> AnonymousInterface11.t -> unit) =
+      fun (x1411 : t) ->
+        fun (x1412 : AnonymousInterface11.t) ->
+          Ojs.set_prop_ascii (t_to_js x1411) "resolveSupport"
+            (AnonymousInterface11.t_to_js x1412)
+    let (get_honors_change_annotations : t -> bool) =
+      fun (x1413 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1450) "honorsChangeAnnotations")
-    let (set_honorsChangeAnnotations : t -> bool -> unit) =
-      fun (x1451 : t) ->
-        fun (x1452 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1451) "honorsChangeAnnotations"
-            (Ojs.bool_to_js x1452)
+          (Ojs.get_prop_ascii (t_to_js x1413) "honorsChangeAnnotations")
+    let (set_honors_change_annotations : t -> bool -> unit) =
+      fun (x1414 : t) ->
+        fun (x1415 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1414) "honorsChangeAnnotations"
+            (Ojs.bool_to_js x1415)
   end
 module CodeActionParams =
   struct
-    type t = _CodeActionParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1454 : Ojs.t) -> _CodeActionParams_of_js x1454
-    and t_to_js : t -> Ojs.t =
-      fun (x1453 : _CodeActionParams) -> _CodeActionParams_to_js x1453
-    let (get_textDocument : t -> TextDocumentIdentifier.t) =
-      fun (x1455 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1417 : Ojs.t) -> x1417
+    and t_to_js : t -> Ojs.t = fun (x1416 : Ojs.t) -> x1416
+    let (get_text_document : t -> TextDocumentIdentifier.t) =
+      fun (x1418 : t) ->
         TextDocumentIdentifier.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1455) "textDocument")
-    let (set_textDocument : t -> TextDocumentIdentifier.t -> unit) =
-      fun (x1456 : t) ->
-        fun (x1457 : TextDocumentIdentifier.t) ->
-          Ojs.set_prop_ascii (t_to_js x1456) "textDocument"
-            (TextDocumentIdentifier.t_to_js x1457)
+          (Ojs.get_prop_ascii (t_to_js x1418) "textDocument")
+    let (set_text_document : t -> TextDocumentIdentifier.t -> unit) =
+      fun (x1419 : t) ->
+        fun (x1420 : TextDocumentIdentifier.t) ->
+          Ojs.set_prop_ascii (t_to_js x1419) "textDocument"
+            (TextDocumentIdentifier.t_to_js x1420)
     let (get_range : t -> Range.t) =
-      fun (x1458 : t) ->
-        Range.t_of_js (Ojs.get_prop_ascii (t_to_js x1458) "range")
+      fun (x1421 : t) ->
+        Range.t_of_js (Ojs.get_prop_ascii (t_to_js x1421) "range")
     let (set_range : t -> Range.t -> unit) =
-      fun (x1459 : t) ->
-        fun (x1460 : Range.t) ->
-          Ojs.set_prop_ascii (t_to_js x1459) "range" (Range.t_to_js x1460)
+      fun (x1422 : t) ->
+        fun (x1423 : Range.t) ->
+          Ojs.set_prop_ascii (t_to_js x1422) "range" (Range.t_to_js x1423)
     let (get_context : t -> CodeActionContext.t) =
-      fun (x1461 : t) ->
+      fun (x1424 : t) ->
         CodeActionContext.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1461) "context")
+          (Ojs.get_prop_ascii (t_to_js x1424) "context")
     let (set_context : t -> CodeActionContext.t -> unit) =
-      fun (x1462 : t) ->
-        fun (x1463 : CodeActionContext.t) ->
-          Ojs.set_prop_ascii (t_to_js x1462) "context"
-            (CodeActionContext.t_to_js x1463)
-    let (cast : t -> _WorkDoneProgressParams) =
-      fun (x1464 : t) -> _WorkDoneProgressParams_of_js (t_to_js x1464)
-    let (cast' : t -> _PartialResultParams) =
-      fun (x1465 : t) -> _PartialResultParams_of_js (t_to_js x1465)
+      fun (x1425 : t) ->
+        fun (x1426 : CodeActionContext.t) ->
+          Ojs.set_prop_ascii (t_to_js x1425) "context"
+            (CodeActionContext.t_to_js x1426)
+    let (cast : t -> WorkDoneProgressParams.t) =
+      fun (x1427 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x1427)
+    let (cast' : t -> PartialResultParams.t) =
+      fun (x1428 : t) -> PartialResultParams.t_of_js (t_to_js x1428)
   end
 module CodeActionOptions =
   struct
-    type t = _CodeActionOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1467 : Ojs.t) -> _CodeActionOptions_of_js x1467
-    and t_to_js : t -> Ojs.t =
-      fun (x1466 : _CodeActionOptions) -> _CodeActionOptions_to_js x1466
-    let (get_codeActionKinds : t -> CodeActionKind.t list) =
-      fun (x1468 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1430 : Ojs.t) -> x1430
+    and t_to_js : t -> Ojs.t = fun (x1429 : Ojs.t) -> x1429
+    let (get_code_action_kinds : t -> CodeActionKind.t list) =
+      fun (x1431 : t) ->
         Ojs.list_of_js CodeActionKind.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1468) "codeActionKinds")
-    let (set_codeActionKinds : t -> CodeActionKind.t list -> unit) =
-      fun (x1470 : t) ->
-        fun (x1471 : CodeActionKind.t list) ->
-          Ojs.set_prop_ascii (t_to_js x1470) "codeActionKinds"
-            (Ojs.list_to_js CodeActionKind.t_to_js x1471)
-    let (get_resolveProvider : t -> bool) =
-      fun (x1473 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1473) "resolveProvider")
-    let (set_resolveProvider : t -> bool -> unit) =
-      fun (x1474 : t) ->
-        fun (x1475 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1474) "resolveProvider"
-            (Ojs.bool_to_js x1475)
-    let (cast : t -> _WorkDoneProgressOptions) =
-      fun (x1476 : t) -> _WorkDoneProgressOptions_of_js (t_to_js x1476)
+          (Ojs.get_prop_ascii (t_to_js x1431) "codeActionKinds")
+    let (set_code_action_kinds : t -> CodeActionKind.t list -> unit) =
+      fun (x1433 : t) ->
+        fun (x1434 : CodeActionKind.t list) ->
+          Ojs.set_prop_ascii (t_to_js x1433) "codeActionKinds"
+            (Ojs.list_to_js CodeActionKind.t_to_js x1434)
+    let (get_resolve_provider : t -> bool) =
+      fun (x1436 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1436) "resolveProvider")
+    let (set_resolve_provider : t -> bool -> unit) =
+      fun (x1437 : t) ->
+        fun (x1438 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1437) "resolveProvider"
+            (Ojs.bool_to_js x1438)
+    let (cast : t -> WorkDoneProgressOptions.t) =
+      fun (x1439 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x1439)
   end
 module CodeActionRegistrationOptions =
   struct
-    type t = _CodeActionRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1478 : Ojs.t) -> _CodeActionRegistrationOptions_of_js x1478
-    and t_to_js : t -> Ojs.t =
-      fun (x1477 : _CodeActionRegistrationOptions) ->
-        _CodeActionRegistrationOptions_to_js x1477
-    let (cast : t -> _TextDocumentRegistrationOptions) =
-      fun (x1479 : t) ->
-        _TextDocumentRegistrationOptions_of_js (t_to_js x1479)
-    let (cast' : t -> _CodeActionOptions) =
-      fun (x1480 : t) -> _CodeActionOptions_of_js (t_to_js x1480)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1441 : Ojs.t) -> x1441
+    and t_to_js : t -> Ojs.t = fun (x1440 : Ojs.t) -> x1440
+    let (cast : t -> TextDocumentRegistrationOptions.t) =
+      fun (x1442 : t) ->
+        TextDocumentRegistrationOptions.t_of_js (t_to_js x1442)
+    let (cast' : t -> CodeActionOptions.t) =
+      fun (x1443 : t) -> CodeActionOptions.t_of_js (t_to_js x1443)
   end
 module CodeActionRequest =
   struct
     let (method_ : [ `L_s10_textDocument_codeAction ]) =
-      let x1481 =
+      let x1444 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "CodeActionRequest") "method" in
-      match Ojs.string_of_js x1481 with
+      match Ojs.string_of_js x1444 with
       | "textDocument/codeAction" -> `L_s10_textDocument_codeAction
       | _ -> assert false
     let (type_ :
-      (_CodeActionParams, (CodeAction.t, Command.t) union2 list or_null,
+      (CodeActionParams.t, (CodeAction.t, Command.t) union2 list or_null,
         (CodeAction.t, Command.t) union2 list, unit,
-        _CodeActionRegistrationOptions) ProtocolRequestType.t)
+        CodeActionRegistrationOptions.t) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _CodeActionParams_of_js
-        (fun (x1483 : Ojs.t) ->
+      ProtocolRequestType.t_of_js CodeActionParams.t_of_js
+        (fun (x1446 : Ojs.t) ->
            or_null_of_js
-             (fun (x1484 : Ojs.t) ->
+             (fun (x1447 : Ojs.t) ->
                 Ojs.list_of_js
-                  (fun (x1485 : Ojs.t) ->
-                     union2_of_js CodeAction.t_of_js Command.t_of_js x1485)
-                  x1484) x1483)
-        (fun (x1488 : Ojs.t) ->
+                  (fun (x1448 : Ojs.t) ->
+                     union2_of_js CodeAction.t_of_js Command.t_of_js x1448)
+                  x1447) x1446)
+        (fun (x1451 : Ojs.t) ->
            Ojs.list_of_js
-             (fun (x1489 : Ojs.t) ->
-                union2_of_js CodeAction.t_of_js Command.t_of_js x1489) x1488)
-        Ojs.unit_of_js _CodeActionRegistrationOptions_of_js
+             (fun (x1452 : Ojs.t) ->
+                union2_of_js CodeAction.t_of_js Command.t_of_js x1452) x1451)
+        Ojs.unit_of_js CodeActionRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "CodeActionRequest") "type")
   end
 module CodeActionResolveRequest =
   struct
     let (method_ : [ `L_s1_codeAction_resolve ]) =
-      let x1494 =
+      let x1457 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "CodeActionResolveRequest") "method" in
-      match Ojs.string_of_js x1494 with
+      match Ojs.string_of_js x1457 with
       | "codeAction/resolve" -> `L_s1_codeAction_resolve
       | _ -> assert false
     let (type_ :
@@ -4482,225 +4163,200 @@ module CodeActionResolveRequest =
   end
 module WorkspaceSymbolClientCapabilities =
   struct
-    type t = _WorkspaceSymbolClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1501 : Ojs.t) -> _WorkspaceSymbolClientCapabilities_of_js x1501
-    and t_to_js : t -> Ojs.t =
-      fun (x1500 : _WorkspaceSymbolClientCapabilities) ->
-        _WorkspaceSymbolClientCapabilities_to_js x1500
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x1502 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1464 : Ojs.t) -> x1464
+    and t_to_js : t -> Ojs.t = fun (x1463 : Ojs.t) -> x1463
+    let (get_dynamic_registration : t -> bool) =
+      fun (x1465 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1502) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x1503 : t) ->
-        fun (x1504 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1503) "dynamicRegistration"
-            (Ojs.bool_to_js x1504)
-    let (get_symbolKind : t -> AnonymousInterface21.t) =
-      fun (x1505 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1465) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x1466 : t) ->
+        fun (x1467 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1466) "dynamicRegistration"
+            (Ojs.bool_to_js x1467)
+    let (get_symbol_kind : t -> AnonymousInterface21.t) =
+      fun (x1468 : t) ->
         AnonymousInterface21.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1505) "symbolKind")
-    let (set_symbolKind : t -> AnonymousInterface21.t -> unit) =
-      fun (x1506 : t) ->
-        fun (x1507 : AnonymousInterface21.t) ->
-          Ojs.set_prop_ascii (t_to_js x1506) "symbolKind"
-            (AnonymousInterface21.t_to_js x1507)
-    let (get_tagSupport : t -> AnonymousInterface22.t) =
-      fun (x1508 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1468) "symbolKind")
+    let (set_symbol_kind : t -> AnonymousInterface21.t -> unit) =
+      fun (x1469 : t) ->
+        fun (x1470 : AnonymousInterface21.t) ->
+          Ojs.set_prop_ascii (t_to_js x1469) "symbolKind"
+            (AnonymousInterface21.t_to_js x1470)
+    let (get_tag_support : t -> AnonymousInterface22.t) =
+      fun (x1471 : t) ->
         AnonymousInterface22.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1508) "tagSupport")
-    let (set_tagSupport : t -> AnonymousInterface22.t -> unit) =
-      fun (x1509 : t) ->
-        fun (x1510 : AnonymousInterface22.t) ->
-          Ojs.set_prop_ascii (t_to_js x1509) "tagSupport"
-            (AnonymousInterface22.t_to_js x1510)
+          (Ojs.get_prop_ascii (t_to_js x1471) "tagSupport")
+    let (set_tag_support : t -> AnonymousInterface22.t -> unit) =
+      fun (x1472 : t) ->
+        fun (x1473 : AnonymousInterface22.t) ->
+          Ojs.set_prop_ascii (t_to_js x1472) "tagSupport"
+            (AnonymousInterface22.t_to_js x1473)
   end
 module WorkspaceSymbolParams =
   struct
-    type t = _WorkspaceSymbolParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1512 : Ojs.t) -> _WorkspaceSymbolParams_of_js x1512
-    and t_to_js : t -> Ojs.t =
-      fun (x1511 : _WorkspaceSymbolParams) ->
-        _WorkspaceSymbolParams_to_js x1511
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1475 : Ojs.t) -> x1475
+    and t_to_js : t -> Ojs.t = fun (x1474 : Ojs.t) -> x1474
     let (get_query : t -> string) =
-      fun (x1513 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1513) "query")
+      fun (x1476 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1476) "query")
     let (set_query : t -> string -> unit) =
-      fun (x1514 : t) ->
-        fun (x1515 : string) ->
-          Ojs.set_prop_ascii (t_to_js x1514) "query" (Ojs.string_to_js x1515)
-    let (cast : t -> _WorkDoneProgressParams) =
-      fun (x1516 : t) -> _WorkDoneProgressParams_of_js (t_to_js x1516)
-    let (cast' : t -> _PartialResultParams) =
-      fun (x1517 : t) -> _PartialResultParams_of_js (t_to_js x1517)
+      fun (x1477 : t) ->
+        fun (x1478 : string) ->
+          Ojs.set_prop_ascii (t_to_js x1477) "query" (Ojs.string_to_js x1478)
+    let (cast : t -> WorkDoneProgressParams.t) =
+      fun (x1479 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x1479)
+    let (cast' : t -> PartialResultParams.t) =
+      fun (x1480 : t) -> PartialResultParams.t_of_js (t_to_js x1480)
   end
 module WorkspaceSymbolOptions =
   struct
-    type t = _WorkspaceSymbolOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1519 : Ojs.t) -> _WorkspaceSymbolOptions_of_js x1519
-    and t_to_js : t -> Ojs.t =
-      fun (x1518 : _WorkspaceSymbolOptions) ->
-        _WorkspaceSymbolOptions_to_js x1518
-    let (cast : t -> _WorkDoneProgressOptions) =
-      fun (x1520 : t) -> _WorkDoneProgressOptions_of_js (t_to_js x1520)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1482 : Ojs.t) -> x1482
+    and t_to_js : t -> Ojs.t = fun (x1481 : Ojs.t) -> x1481
+    let (cast : t -> WorkDoneProgressOptions.t) =
+      fun (x1483 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x1483)
   end
 module WorkspaceSymbolRegistrationOptions =
   struct
-    type t = _WorkspaceSymbolRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1522 : Ojs.t) -> _WorkspaceSymbolRegistrationOptions_of_js x1522
-    and t_to_js : t -> Ojs.t =
-      fun (x1521 : _WorkspaceSymbolRegistrationOptions) ->
-        _WorkspaceSymbolRegistrationOptions_to_js x1521
-    let (cast : t -> _WorkspaceSymbolOptions) =
-      fun (x1523 : t) -> _WorkspaceSymbolOptions_of_js (t_to_js x1523)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1485 : Ojs.t) -> x1485
+    and t_to_js : t -> Ojs.t = fun (x1484 : Ojs.t) -> x1484
+    let (cast : t -> WorkspaceSymbolOptions.t) =
+      fun (x1486 : t) -> WorkspaceSymbolOptions.t_of_js (t_to_js x1486)
   end
 module WorkspaceSymbolRequest =
   struct
     let (method_ : [ `L_s35_workspace_symbol ]) =
-      let x1524 =
+      let x1487 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "WorkspaceSymbolRequest") "method" in
-      match Ojs.string_of_js x1524 with
+      match Ojs.string_of_js x1487 with
       | "workspace/symbol" -> `L_s35_workspace_symbol
       | _ -> assert false
     let (type_ :
-      (_WorkspaceSymbolParams, SymbolInformation.t list or_null,
-        SymbolInformation.t list, unit, _WorkspaceSymbolRegistrationOptions)
+      (WorkspaceSymbolParams.t, SymbolInformation.t list or_null,
+        SymbolInformation.t list, unit, WorkspaceSymbolRegistrationOptions.t)
         ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _WorkspaceSymbolParams_of_js
-        (fun (x1526 : Ojs.t) ->
+      ProtocolRequestType.t_of_js WorkspaceSymbolParams.t_of_js
+        (fun (x1489 : Ojs.t) ->
            or_null_of_js
-             (fun (x1527 : Ojs.t) ->
-                Ojs.list_of_js SymbolInformation.t_of_js x1527) x1526)
-        (fun (x1529 : Ojs.t) ->
-           Ojs.list_of_js SymbolInformation.t_of_js x1529) Ojs.unit_of_js
-        _WorkspaceSymbolRegistrationOptions_of_js
+             (fun (x1490 : Ojs.t) ->
+                Ojs.list_of_js SymbolInformation.t_of_js x1490) x1489)
+        (fun (x1492 : Ojs.t) ->
+           Ojs.list_of_js SymbolInformation.t_of_js x1492) Ojs.unit_of_js
+        WorkspaceSymbolRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "WorkspaceSymbolRequest") "type")
   end
 module CodeLensClientCapabilities =
   struct
-    type t = _CodeLensClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1534 : Ojs.t) -> _CodeLensClientCapabilities_of_js x1534
-    and t_to_js : t -> Ojs.t =
-      fun (x1533 : _CodeLensClientCapabilities) ->
-        _CodeLensClientCapabilities_to_js x1533
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x1535 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1497 : Ojs.t) -> x1497
+    and t_to_js : t -> Ojs.t = fun (x1496 : Ojs.t) -> x1496
+    let (get_dynamic_registration : t -> bool) =
+      fun (x1498 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1535) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x1536 : t) ->
-        fun (x1537 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1536) "dynamicRegistration"
-            (Ojs.bool_to_js x1537)
+          (Ojs.get_prop_ascii (t_to_js x1498) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x1499 : t) ->
+        fun (x1500 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1499) "dynamicRegistration"
+            (Ojs.bool_to_js x1500)
   end
 module CodeLensWorkspaceClientCapabilities =
   struct
-    type t = _CodeLensWorkspaceClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1539 : Ojs.t) -> _CodeLensWorkspaceClientCapabilities_of_js x1539
-    and t_to_js : t -> Ojs.t =
-      fun (x1538 : _CodeLensWorkspaceClientCapabilities) ->
-        _CodeLensWorkspaceClientCapabilities_to_js x1538
-    let (get_refreshSupport : t -> bool) =
-      fun (x1540 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1540) "refreshSupport")
-    let (set_refreshSupport : t -> bool -> unit) =
-      fun (x1541 : t) ->
-        fun (x1542 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1541) "refreshSupport"
-            (Ojs.bool_to_js x1542)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1502 : Ojs.t) -> x1502
+    and t_to_js : t -> Ojs.t = fun (x1501 : Ojs.t) -> x1501
+    let (get_refresh_support : t -> bool) =
+      fun (x1503 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1503) "refreshSupport")
+    let (set_refresh_support : t -> bool -> unit) =
+      fun (x1504 : t) ->
+        fun (x1505 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1504) "refreshSupport"
+            (Ojs.bool_to_js x1505)
   end
 module CodeLensParams =
   struct
-    type t = _CodeLensParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1544 : Ojs.t) -> _CodeLensParams_of_js x1544
-    and t_to_js : t -> Ojs.t =
-      fun (x1543 : _CodeLensParams) -> _CodeLensParams_to_js x1543
-    let (get_textDocument : t -> TextDocumentIdentifier.t) =
-      fun (x1545 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1507 : Ojs.t) -> x1507
+    and t_to_js : t -> Ojs.t = fun (x1506 : Ojs.t) -> x1506
+    let (get_text_document : t -> TextDocumentIdentifier.t) =
+      fun (x1508 : t) ->
         TextDocumentIdentifier.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1545) "textDocument")
-    let (set_textDocument : t -> TextDocumentIdentifier.t -> unit) =
-      fun (x1546 : t) ->
-        fun (x1547 : TextDocumentIdentifier.t) ->
-          Ojs.set_prop_ascii (t_to_js x1546) "textDocument"
-            (TextDocumentIdentifier.t_to_js x1547)
-    let (cast : t -> _WorkDoneProgressParams) =
-      fun (x1548 : t) -> _WorkDoneProgressParams_of_js (t_to_js x1548)
-    let (cast' : t -> _PartialResultParams) =
-      fun (x1549 : t) -> _PartialResultParams_of_js (t_to_js x1549)
+          (Ojs.get_prop_ascii (t_to_js x1508) "textDocument")
+    let (set_text_document : t -> TextDocumentIdentifier.t -> unit) =
+      fun (x1509 : t) ->
+        fun (x1510 : TextDocumentIdentifier.t) ->
+          Ojs.set_prop_ascii (t_to_js x1509) "textDocument"
+            (TextDocumentIdentifier.t_to_js x1510)
+    let (cast : t -> WorkDoneProgressParams.t) =
+      fun (x1511 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x1511)
+    let (cast' : t -> PartialResultParams.t) =
+      fun (x1512 : t) -> PartialResultParams.t_of_js (t_to_js x1512)
   end
 module CodeLensOptions =
   struct
-    type t = _CodeLensOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1551 : Ojs.t) -> _CodeLensOptions_of_js x1551
-    and t_to_js : t -> Ojs.t =
-      fun (x1550 : _CodeLensOptions) -> _CodeLensOptions_to_js x1550
-    let (get_resolveProvider : t -> bool) =
-      fun (x1552 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1552) "resolveProvider")
-    let (set_resolveProvider : t -> bool -> unit) =
-      fun (x1553 : t) ->
-        fun (x1554 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1553) "resolveProvider"
-            (Ojs.bool_to_js x1554)
-    let (cast : t -> _WorkDoneProgressOptions) =
-      fun (x1555 : t) -> _WorkDoneProgressOptions_of_js (t_to_js x1555)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1514 : Ojs.t) -> x1514
+    and t_to_js : t -> Ojs.t = fun (x1513 : Ojs.t) -> x1513
+    let (get_resolve_provider : t -> bool) =
+      fun (x1515 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1515) "resolveProvider")
+    let (set_resolve_provider : t -> bool -> unit) =
+      fun (x1516 : t) ->
+        fun (x1517 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1516) "resolveProvider"
+            (Ojs.bool_to_js x1517)
+    let (cast : t -> WorkDoneProgressOptions.t) =
+      fun (x1518 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x1518)
   end
 module CodeLensRegistrationOptions =
   struct
-    type t = _CodeLensRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1557 : Ojs.t) -> _CodeLensRegistrationOptions_of_js x1557
-    and t_to_js : t -> Ojs.t =
-      fun (x1556 : _CodeLensRegistrationOptions) ->
-        _CodeLensRegistrationOptions_to_js x1556
-    let (cast : t -> _TextDocumentRegistrationOptions) =
-      fun (x1558 : t) ->
-        _TextDocumentRegistrationOptions_of_js (t_to_js x1558)
-    let (cast' : t -> _CodeLensOptions) =
-      fun (x1559 : t) -> _CodeLensOptions_of_js (t_to_js x1559)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1520 : Ojs.t) -> x1520
+    and t_to_js : t -> Ojs.t = fun (x1519 : Ojs.t) -> x1519
+    let (cast : t -> TextDocumentRegistrationOptions.t) =
+      fun (x1521 : t) ->
+        TextDocumentRegistrationOptions.t_of_js (t_to_js x1521)
+    let (cast' : t -> CodeLensOptions.t) =
+      fun (x1522 : t) -> CodeLensOptions.t_of_js (t_to_js x1522)
   end
 module CodeLensRequest =
   struct
     let (method_ : [ `L_s11_textDocument_codeLens ]) =
-      let x1560 =
+      let x1523 =
         Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "CodeLensRequest")
           "method" in
-      match Ojs.string_of_js x1560 with
+      match Ojs.string_of_js x1523 with
       | "textDocument/codeLens" -> `L_s11_textDocument_codeLens
       | _ -> assert false
     let (type_ :
-      (_CodeLensParams, CodeLens.t list or_null, CodeLens.t list, unit,
-        _CodeLensRegistrationOptions) ProtocolRequestType.t)
+      (CodeLensParams.t, CodeLens.t list or_null, CodeLens.t list, unit,
+        CodeLensRegistrationOptions.t) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _CodeLensParams_of_js
-        (fun (x1562 : Ojs.t) ->
+      ProtocolRequestType.t_of_js CodeLensParams.t_of_js
+        (fun (x1525 : Ojs.t) ->
            or_null_of_js
-             (fun (x1563 : Ojs.t) -> Ojs.list_of_js CodeLens.t_of_js x1563)
-             x1562)
-        (fun (x1565 : Ojs.t) -> Ojs.list_of_js CodeLens.t_of_js x1565)
-        Ojs.unit_of_js _CodeLensRegistrationOptions_of_js
+             (fun (x1526 : Ojs.t) -> Ojs.list_of_js CodeLens.t_of_js x1526)
+             x1525)
+        (fun (x1528 : Ojs.t) -> Ojs.list_of_js CodeLens.t_of_js x1528)
+        Ojs.unit_of_js CodeLensRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "CodeLensRequest")
            "type")
   end
 module CodeLensResolveRequest =
   struct
     let (method_ : [ `L_s2_codeLens_resolve ]) =
-      let x1569 =
+      let x1532 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "CodeLensResolveRequest") "method" in
-      match Ojs.string_of_js x1569 with
+      match Ojs.string_of_js x1532 with
       | "codeLens/resolve" -> `L_s2_codeLens_resolve
       | _ -> assert false
     let (type_ :
@@ -4724,114 +4380,105 @@ module CodeLensRefreshRequest =
   end
 module DocumentLinkClientCapabilities =
   struct
-    type t = _DocumentLinkClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1580 : Ojs.t) -> _DocumentLinkClientCapabilities_of_js x1580
-    and t_to_js : t -> Ojs.t =
-      fun (x1579 : _DocumentLinkClientCapabilities) ->
-        _DocumentLinkClientCapabilities_to_js x1579
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x1581 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1543 : Ojs.t) -> x1543
+    and t_to_js : t -> Ojs.t = fun (x1542 : Ojs.t) -> x1542
+    let (get_dynamic_registration : t -> bool) =
+      fun (x1544 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1581) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x1582 : t) ->
-        fun (x1583 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1582) "dynamicRegistration"
-            (Ojs.bool_to_js x1583)
-    let (get_tooltipSupport : t -> bool) =
-      fun (x1584 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1584) "tooltipSupport")
-    let (set_tooltipSupport : t -> bool -> unit) =
-      fun (x1585 : t) ->
-        fun (x1586 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1585) "tooltipSupport"
-            (Ojs.bool_to_js x1586)
+          (Ojs.get_prop_ascii (t_to_js x1544) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x1545 : t) ->
+        fun (x1546 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1545) "dynamicRegistration"
+            (Ojs.bool_to_js x1546)
+    let (get_tooltip_support : t -> bool) =
+      fun (x1547 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1547) "tooltipSupport")
+    let (set_tooltip_support : t -> bool -> unit) =
+      fun (x1548 : t) ->
+        fun (x1549 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1548) "tooltipSupport"
+            (Ojs.bool_to_js x1549)
   end
 module DocumentLinkParams =
   struct
-    type t = _DocumentLinkParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1588 : Ojs.t) -> _DocumentLinkParams_of_js x1588
-    and t_to_js : t -> Ojs.t =
-      fun (x1587 : _DocumentLinkParams) -> _DocumentLinkParams_to_js x1587
-    let (get_textDocument : t -> TextDocumentIdentifier.t) =
-      fun (x1589 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1551 : Ojs.t) -> x1551
+    and t_to_js : t -> Ojs.t = fun (x1550 : Ojs.t) -> x1550
+    let (get_text_document : t -> TextDocumentIdentifier.t) =
+      fun (x1552 : t) ->
         TextDocumentIdentifier.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1589) "textDocument")
-    let (set_textDocument : t -> TextDocumentIdentifier.t -> unit) =
-      fun (x1590 : t) ->
-        fun (x1591 : TextDocumentIdentifier.t) ->
-          Ojs.set_prop_ascii (t_to_js x1590) "textDocument"
-            (TextDocumentIdentifier.t_to_js x1591)
-    let (cast : t -> _WorkDoneProgressParams) =
-      fun (x1592 : t) -> _WorkDoneProgressParams_of_js (t_to_js x1592)
-    let (cast' : t -> _PartialResultParams) =
-      fun (x1593 : t) -> _PartialResultParams_of_js (t_to_js x1593)
+          (Ojs.get_prop_ascii (t_to_js x1552) "textDocument")
+    let (set_text_document : t -> TextDocumentIdentifier.t -> unit) =
+      fun (x1553 : t) ->
+        fun (x1554 : TextDocumentIdentifier.t) ->
+          Ojs.set_prop_ascii (t_to_js x1553) "textDocument"
+            (TextDocumentIdentifier.t_to_js x1554)
+    let (cast : t -> WorkDoneProgressParams.t) =
+      fun (x1555 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x1555)
+    let (cast' : t -> PartialResultParams.t) =
+      fun (x1556 : t) -> PartialResultParams.t_of_js (t_to_js x1556)
   end
 module DocumentLinkOptions =
   struct
-    type t = _DocumentLinkOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1595 : Ojs.t) -> _DocumentLinkOptions_of_js x1595
-    and t_to_js : t -> Ojs.t =
-      fun (x1594 : _DocumentLinkOptions) -> _DocumentLinkOptions_to_js x1594
-    let (get_resolveProvider : t -> bool) =
-      fun (x1596 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1596) "resolveProvider")
-    let (set_resolveProvider : t -> bool -> unit) =
-      fun (x1597 : t) ->
-        fun (x1598 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1597) "resolveProvider"
-            (Ojs.bool_to_js x1598)
-    let (cast : t -> _WorkDoneProgressOptions) =
-      fun (x1599 : t) -> _WorkDoneProgressOptions_of_js (t_to_js x1599)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1558 : Ojs.t) -> x1558
+    and t_to_js : t -> Ojs.t = fun (x1557 : Ojs.t) -> x1557
+    let (get_resolve_provider : t -> bool) =
+      fun (x1559 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1559) "resolveProvider")
+    let (set_resolve_provider : t -> bool -> unit) =
+      fun (x1560 : t) ->
+        fun (x1561 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1560) "resolveProvider"
+            (Ojs.bool_to_js x1561)
+    let (cast : t -> WorkDoneProgressOptions.t) =
+      fun (x1562 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x1562)
   end
 module DocumentLinkRegistrationOptions =
   struct
-    type t = _DocumentLinkRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1601 : Ojs.t) -> _DocumentLinkRegistrationOptions_of_js x1601
-    and t_to_js : t -> Ojs.t =
-      fun (x1600 : _DocumentLinkRegistrationOptions) ->
-        _DocumentLinkRegistrationOptions_to_js x1600
-    let (cast : t -> _TextDocumentRegistrationOptions) =
-      fun (x1602 : t) ->
-        _TextDocumentRegistrationOptions_of_js (t_to_js x1602)
-    let (cast' : t -> _DocumentLinkOptions) =
-      fun (x1603 : t) -> _DocumentLinkOptions_of_js (t_to_js x1603)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1564 : Ojs.t) -> x1564
+    and t_to_js : t -> Ojs.t = fun (x1563 : Ojs.t) -> x1563
+    let (cast : t -> TextDocumentRegistrationOptions.t) =
+      fun (x1565 : t) ->
+        TextDocumentRegistrationOptions.t_of_js (t_to_js x1565)
+    let (cast' : t -> DocumentLinkOptions.t) =
+      fun (x1566 : t) -> DocumentLinkOptions.t_of_js (t_to_js x1566)
   end
 module DocumentLinkRequest =
   struct
     let (method_ : [ `L_s19_textDocument_documentLink ]) =
-      let x1604 =
+      let x1567 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "DocumentLinkRequest") "method" in
-      match Ojs.string_of_js x1604 with
+      match Ojs.string_of_js x1567 with
       | "textDocument/documentLink" -> `L_s19_textDocument_documentLink
       | _ -> assert false
     let (type_ :
-      (_DocumentLinkParams, DocumentLink.t list or_null, DocumentLink.t list,
-        unit, _DocumentLinkRegistrationOptions) ProtocolRequestType.t)
+      (DocumentLinkParams.t, DocumentLink.t list or_null,
+        DocumentLink.t list, unit, DocumentLinkRegistrationOptions.t)
+        ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _DocumentLinkParams_of_js
-        (fun (x1606 : Ojs.t) ->
+      ProtocolRequestType.t_of_js DocumentLinkParams.t_of_js
+        (fun (x1569 : Ojs.t) ->
            or_null_of_js
-             (fun (x1607 : Ojs.t) ->
-                Ojs.list_of_js DocumentLink.t_of_js x1607) x1606)
-        (fun (x1609 : Ojs.t) -> Ojs.list_of_js DocumentLink.t_of_js x1609)
-        Ojs.unit_of_js _DocumentLinkRegistrationOptions_of_js
+             (fun (x1570 : Ojs.t) ->
+                Ojs.list_of_js DocumentLink.t_of_js x1570) x1569)
+        (fun (x1572 : Ojs.t) -> Ojs.list_of_js DocumentLink.t_of_js x1572)
+        Ojs.unit_of_js DocumentLinkRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DocumentLinkRequest") "type")
   end
 module DocumentLinkResolveRequest =
   struct
     let (method_ : [ `L_s6_documentLink_resolve ]) =
-      let x1613 =
+      let x1576 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "DocumentLinkResolveRequest")
           "method" in
-      match Ojs.string_of_js x1613 with
+      match Ojs.string_of_js x1576 with
       | "documentLink/resolve" -> `L_s6_documentLink_resolve
       | _ -> assert false
     let (type_ :
@@ -4846,334 +4493,292 @@ module DocumentLinkResolveRequest =
   end
 module DocumentFormattingClientCapabilities =
   struct
-    type t = _DocumentFormattingClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1620 : Ojs.t) ->
-        _DocumentFormattingClientCapabilities_of_js x1620
-    and t_to_js : t -> Ojs.t =
-      fun (x1619 : _DocumentFormattingClientCapabilities) ->
-        _DocumentFormattingClientCapabilities_to_js x1619
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x1621 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1583 : Ojs.t) -> x1583
+    and t_to_js : t -> Ojs.t = fun (x1582 : Ojs.t) -> x1582
+    let (get_dynamic_registration : t -> bool) =
+      fun (x1584 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1621) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x1622 : t) ->
-        fun (x1623 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1622) "dynamicRegistration"
-            (Ojs.bool_to_js x1623)
+          (Ojs.get_prop_ascii (t_to_js x1584) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x1585 : t) ->
+        fun (x1586 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1585) "dynamicRegistration"
+            (Ojs.bool_to_js x1586)
   end
 module DocumentFormattingParams =
   struct
-    type t = _DocumentFormattingParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1625 : Ojs.t) -> _DocumentFormattingParams_of_js x1625
-    and t_to_js : t -> Ojs.t =
-      fun (x1624 : _DocumentFormattingParams) ->
-        _DocumentFormattingParams_to_js x1624
-    let (get_textDocument : t -> TextDocumentIdentifier.t) =
-      fun (x1626 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1588 : Ojs.t) -> x1588
+    and t_to_js : t -> Ojs.t = fun (x1587 : Ojs.t) -> x1587
+    let (get_text_document : t -> TextDocumentIdentifier.t) =
+      fun (x1589 : t) ->
         TextDocumentIdentifier.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1626) "textDocument")
-    let (set_textDocument : t -> TextDocumentIdentifier.t -> unit) =
-      fun (x1627 : t) ->
-        fun (x1628 : TextDocumentIdentifier.t) ->
-          Ojs.set_prop_ascii (t_to_js x1627) "textDocument"
-            (TextDocumentIdentifier.t_to_js x1628)
+          (Ojs.get_prop_ascii (t_to_js x1589) "textDocument")
+    let (set_text_document : t -> TextDocumentIdentifier.t -> unit) =
+      fun (x1590 : t) ->
+        fun (x1591 : TextDocumentIdentifier.t) ->
+          Ojs.set_prop_ascii (t_to_js x1590) "textDocument"
+            (TextDocumentIdentifier.t_to_js x1591)
     let (get_options : t -> FormattingOptions.t) =
-      fun (x1629 : t) ->
+      fun (x1592 : t) ->
         FormattingOptions.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1629) "options")
+          (Ojs.get_prop_ascii (t_to_js x1592) "options")
     let (set_options : t -> FormattingOptions.t -> unit) =
-      fun (x1630 : t) ->
-        fun (x1631 : FormattingOptions.t) ->
-          Ojs.set_prop_ascii (t_to_js x1630) "options"
-            (FormattingOptions.t_to_js x1631)
-    let (cast : t -> _WorkDoneProgressParams) =
-      fun (x1632 : t) -> _WorkDoneProgressParams_of_js (t_to_js x1632)
+      fun (x1593 : t) ->
+        fun (x1594 : FormattingOptions.t) ->
+          Ojs.set_prop_ascii (t_to_js x1593) "options"
+            (FormattingOptions.t_to_js x1594)
+    let (cast : t -> WorkDoneProgressParams.t) =
+      fun (x1595 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x1595)
   end
 module DocumentFormattingOptions =
   struct
-    type t = _DocumentFormattingOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1634 : Ojs.t) -> _DocumentFormattingOptions_of_js x1634
-    and t_to_js : t -> Ojs.t =
-      fun (x1633 : _DocumentFormattingOptions) ->
-        _DocumentFormattingOptions_to_js x1633
-    let (cast : t -> _WorkDoneProgressOptions) =
-      fun (x1635 : t) -> _WorkDoneProgressOptions_of_js (t_to_js x1635)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1597 : Ojs.t) -> x1597
+    and t_to_js : t -> Ojs.t = fun (x1596 : Ojs.t) -> x1596
+    let (cast : t -> WorkDoneProgressOptions.t) =
+      fun (x1598 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x1598)
   end
 module DocumentFormattingRegistrationOptions =
   struct
-    type t = _DocumentFormattingRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1637 : Ojs.t) ->
-        _DocumentFormattingRegistrationOptions_of_js x1637
-    and t_to_js : t -> Ojs.t =
-      fun (x1636 : _DocumentFormattingRegistrationOptions) ->
-        _DocumentFormattingRegistrationOptions_to_js x1636
-    let (cast : t -> _TextDocumentRegistrationOptions) =
-      fun (x1638 : t) ->
-        _TextDocumentRegistrationOptions_of_js (t_to_js x1638)
-    let (cast' : t -> _DocumentFormattingOptions) =
-      fun (x1639 : t) -> _DocumentFormattingOptions_of_js (t_to_js x1639)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1600 : Ojs.t) -> x1600
+    and t_to_js : t -> Ojs.t = fun (x1599 : Ojs.t) -> x1599
+    let (cast : t -> TextDocumentRegistrationOptions.t) =
+      fun (x1601 : t) ->
+        TextDocumentRegistrationOptions.t_of_js (t_to_js x1601)
+    let (cast' : t -> DocumentFormattingOptions.t) =
+      fun (x1602 : t) -> DocumentFormattingOptions.t_of_js (t_to_js x1602)
   end
 module DocumentFormattingRequest =
   struct
     let (method_ : [ `L_s21_textDocument_formatting ]) =
-      let x1640 =
+      let x1603 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "DocumentFormattingRequest")
           "method" in
-      match Ojs.string_of_js x1640 with
+      match Ojs.string_of_js x1603 with
       | "textDocument/formatting" -> `L_s21_textDocument_formatting
       | _ -> assert false
     let (type_ :
-      (_DocumentFormattingParams, TextEdit.t list or_null, never, unit,
-        _DocumentFormattingRegistrationOptions) ProtocolRequestType.t)
+      (DocumentFormattingParams.t, TextEdit.t list or_null, never, unit,
+        DocumentFormattingRegistrationOptions.t) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _DocumentFormattingParams_of_js
-        (fun (x1642 : Ojs.t) ->
+      ProtocolRequestType.t_of_js DocumentFormattingParams.t_of_js
+        (fun (x1605 : Ojs.t) ->
            or_null_of_js
-             (fun (x1643 : Ojs.t) -> Ojs.list_of_js TextEdit.t_of_js x1643)
-             x1642) never_of_js Ojs.unit_of_js
-        _DocumentFormattingRegistrationOptions_of_js
+             (fun (x1606 : Ojs.t) -> Ojs.list_of_js TextEdit.t_of_js x1606)
+             x1605) never_of_js Ojs.unit_of_js
+        DocumentFormattingRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DocumentFormattingRequest") "type")
   end
 module DocumentRangeFormattingClientCapabilities =
   struct
-    type t = _DocumentRangeFormattingClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1649 : Ojs.t) ->
-        _DocumentRangeFormattingClientCapabilities_of_js x1649
-    and t_to_js : t -> Ojs.t =
-      fun (x1648 : _DocumentRangeFormattingClientCapabilities) ->
-        _DocumentRangeFormattingClientCapabilities_to_js x1648
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x1650 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1612 : Ojs.t) -> x1612
+    and t_to_js : t -> Ojs.t = fun (x1611 : Ojs.t) -> x1611
+    let (get_dynamic_registration : t -> bool) =
+      fun (x1613 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1650) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x1651 : t) ->
-        fun (x1652 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1651) "dynamicRegistration"
-            (Ojs.bool_to_js x1652)
+          (Ojs.get_prop_ascii (t_to_js x1613) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x1614 : t) ->
+        fun (x1615 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1614) "dynamicRegistration"
+            (Ojs.bool_to_js x1615)
   end
 module DocumentRangeFormattingParams =
   struct
-    type t = _DocumentRangeFormattingParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1654 : Ojs.t) -> _DocumentRangeFormattingParams_of_js x1654
-    and t_to_js : t -> Ojs.t =
-      fun (x1653 : _DocumentRangeFormattingParams) ->
-        _DocumentRangeFormattingParams_to_js x1653
-    let (get_textDocument : t -> TextDocumentIdentifier.t) =
-      fun (x1655 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1617 : Ojs.t) -> x1617
+    and t_to_js : t -> Ojs.t = fun (x1616 : Ojs.t) -> x1616
+    let (get_text_document : t -> TextDocumentIdentifier.t) =
+      fun (x1618 : t) ->
         TextDocumentIdentifier.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1655) "textDocument")
-    let (set_textDocument : t -> TextDocumentIdentifier.t -> unit) =
-      fun (x1656 : t) ->
-        fun (x1657 : TextDocumentIdentifier.t) ->
-          Ojs.set_prop_ascii (t_to_js x1656) "textDocument"
-            (TextDocumentIdentifier.t_to_js x1657)
+          (Ojs.get_prop_ascii (t_to_js x1618) "textDocument")
+    let (set_text_document : t -> TextDocumentIdentifier.t -> unit) =
+      fun (x1619 : t) ->
+        fun (x1620 : TextDocumentIdentifier.t) ->
+          Ojs.set_prop_ascii (t_to_js x1619) "textDocument"
+            (TextDocumentIdentifier.t_to_js x1620)
     let (get_range : t -> Range.t) =
-      fun (x1658 : t) ->
-        Range.t_of_js (Ojs.get_prop_ascii (t_to_js x1658) "range")
+      fun (x1621 : t) ->
+        Range.t_of_js (Ojs.get_prop_ascii (t_to_js x1621) "range")
     let (set_range : t -> Range.t -> unit) =
-      fun (x1659 : t) ->
-        fun (x1660 : Range.t) ->
-          Ojs.set_prop_ascii (t_to_js x1659) "range" (Range.t_to_js x1660)
+      fun (x1622 : t) ->
+        fun (x1623 : Range.t) ->
+          Ojs.set_prop_ascii (t_to_js x1622) "range" (Range.t_to_js x1623)
     let (get_options : t -> FormattingOptions.t) =
-      fun (x1661 : t) ->
+      fun (x1624 : t) ->
         FormattingOptions.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1661) "options")
+          (Ojs.get_prop_ascii (t_to_js x1624) "options")
     let (set_options : t -> FormattingOptions.t -> unit) =
-      fun (x1662 : t) ->
-        fun (x1663 : FormattingOptions.t) ->
-          Ojs.set_prop_ascii (t_to_js x1662) "options"
-            (FormattingOptions.t_to_js x1663)
-    let (cast : t -> _WorkDoneProgressParams) =
-      fun (x1664 : t) -> _WorkDoneProgressParams_of_js (t_to_js x1664)
+      fun (x1625 : t) ->
+        fun (x1626 : FormattingOptions.t) ->
+          Ojs.set_prop_ascii (t_to_js x1625) "options"
+            (FormattingOptions.t_to_js x1626)
+    let (cast : t -> WorkDoneProgressParams.t) =
+      fun (x1627 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x1627)
   end
 module DocumentRangeFormattingOptions =
   struct
-    type t = _DocumentRangeFormattingOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1666 : Ojs.t) -> _DocumentRangeFormattingOptions_of_js x1666
-    and t_to_js : t -> Ojs.t =
-      fun (x1665 : _DocumentRangeFormattingOptions) ->
-        _DocumentRangeFormattingOptions_to_js x1665
-    let (cast : t -> _WorkDoneProgressOptions) =
-      fun (x1667 : t) -> _WorkDoneProgressOptions_of_js (t_to_js x1667)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1629 : Ojs.t) -> x1629
+    and t_to_js : t -> Ojs.t = fun (x1628 : Ojs.t) -> x1628
+    let (cast : t -> WorkDoneProgressOptions.t) =
+      fun (x1630 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x1630)
   end
 module DocumentRangeFormattingRegistrationOptions =
   struct
-    type t = _DocumentRangeFormattingRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1669 : Ojs.t) ->
-        _DocumentRangeFormattingRegistrationOptions_of_js x1669
-    and t_to_js : t -> Ojs.t =
-      fun (x1668 : _DocumentRangeFormattingRegistrationOptions) ->
-        _DocumentRangeFormattingRegistrationOptions_to_js x1668
-    let (cast : t -> _TextDocumentRegistrationOptions) =
-      fun (x1670 : t) ->
-        _TextDocumentRegistrationOptions_of_js (t_to_js x1670)
-    let (cast' : t -> _DocumentRangeFormattingOptions) =
-      fun (x1671 : t) ->
-        _DocumentRangeFormattingOptions_of_js (t_to_js x1671)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1632 : Ojs.t) -> x1632
+    and t_to_js : t -> Ojs.t = fun (x1631 : Ojs.t) -> x1631
+    let (cast : t -> TextDocumentRegistrationOptions.t) =
+      fun (x1633 : t) ->
+        TextDocumentRegistrationOptions.t_of_js (t_to_js x1633)
+    let (cast' : t -> DocumentRangeFormattingOptions.t) =
+      fun (x1634 : t) ->
+        DocumentRangeFormattingOptions.t_of_js (t_to_js x1634)
   end
 module DocumentRangeFormattingRequest =
   struct
     let (method_ : [ `L_s25_textDocument_rangeFormatting ]) =
-      let x1672 =
+      let x1635 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "DocumentRangeFormattingRequest")
           "method" in
-      match Ojs.string_of_js x1672 with
+      match Ojs.string_of_js x1635 with
       | "textDocument/rangeFormatting" -> `L_s25_textDocument_rangeFormatting
       | _ -> assert false
     let (type_ :
-      (_DocumentRangeFormattingParams, TextEdit.t list or_null, never, 
-        unit, _DocumentRangeFormattingRegistrationOptions)
+      (DocumentRangeFormattingParams.t, TextEdit.t list or_null, never, 
+        unit, DocumentRangeFormattingRegistrationOptions.t)
         ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _DocumentRangeFormattingParams_of_js
-        (fun (x1674 : Ojs.t) ->
+      ProtocolRequestType.t_of_js DocumentRangeFormattingParams.t_of_js
+        (fun (x1637 : Ojs.t) ->
            or_null_of_js
-             (fun (x1675 : Ojs.t) -> Ojs.list_of_js TextEdit.t_of_js x1675)
-             x1674) never_of_js Ojs.unit_of_js
-        _DocumentRangeFormattingRegistrationOptions_of_js
+             (fun (x1638 : Ojs.t) -> Ojs.list_of_js TextEdit.t_of_js x1638)
+             x1637) never_of_js Ojs.unit_of_js
+        DocumentRangeFormattingRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DocumentRangeFormattingRequest")
            "type")
   end
 module DocumentOnTypeFormattingClientCapabilities =
   struct
-    type t = _DocumentOnTypeFormattingClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1681 : Ojs.t) ->
-        _DocumentOnTypeFormattingClientCapabilities_of_js x1681
-    and t_to_js : t -> Ojs.t =
-      fun (x1680 : _DocumentOnTypeFormattingClientCapabilities) ->
-        _DocumentOnTypeFormattingClientCapabilities_to_js x1680
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x1682 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1644 : Ojs.t) -> x1644
+    and t_to_js : t -> Ojs.t = fun (x1643 : Ojs.t) -> x1643
+    let (get_dynamic_registration : t -> bool) =
+      fun (x1645 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1682) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x1683 : t) ->
-        fun (x1684 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1683) "dynamicRegistration"
-            (Ojs.bool_to_js x1684)
+          (Ojs.get_prop_ascii (t_to_js x1645) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x1646 : t) ->
+        fun (x1647 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1646) "dynamicRegistration"
+            (Ojs.bool_to_js x1647)
   end
 module DocumentOnTypeFormattingParams =
   struct
-    type t = _DocumentOnTypeFormattingParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1686 : Ojs.t) -> _DocumentOnTypeFormattingParams_of_js x1686
-    and t_to_js : t -> Ojs.t =
-      fun (x1685 : _DocumentOnTypeFormattingParams) ->
-        _DocumentOnTypeFormattingParams_to_js x1685
-    let (get_textDocument : t -> TextDocumentIdentifier.t) =
-      fun (x1687 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1649 : Ojs.t) -> x1649
+    and t_to_js : t -> Ojs.t = fun (x1648 : Ojs.t) -> x1648
+    let (get_text_document : t -> TextDocumentIdentifier.t) =
+      fun (x1650 : t) ->
         TextDocumentIdentifier.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1687) "textDocument")
-    let (set_textDocument : t -> TextDocumentIdentifier.t -> unit) =
-      fun (x1688 : t) ->
-        fun (x1689 : TextDocumentIdentifier.t) ->
-          Ojs.set_prop_ascii (t_to_js x1688) "textDocument"
-            (TextDocumentIdentifier.t_to_js x1689)
+          (Ojs.get_prop_ascii (t_to_js x1650) "textDocument")
+    let (set_text_document : t -> TextDocumentIdentifier.t -> unit) =
+      fun (x1651 : t) ->
+        fun (x1652 : TextDocumentIdentifier.t) ->
+          Ojs.set_prop_ascii (t_to_js x1651) "textDocument"
+            (TextDocumentIdentifier.t_to_js x1652)
     let (get_position : t -> Position.t) =
-      fun (x1690 : t) ->
-        Position.t_of_js (Ojs.get_prop_ascii (t_to_js x1690) "position")
+      fun (x1653 : t) ->
+        Position.t_of_js (Ojs.get_prop_ascii (t_to_js x1653) "position")
     let (set_position : t -> Position.t -> unit) =
-      fun (x1691 : t) ->
-        fun (x1692 : Position.t) ->
-          Ojs.set_prop_ascii (t_to_js x1691) "position"
-            (Position.t_to_js x1692)
+      fun (x1654 : t) ->
+        fun (x1655 : Position.t) ->
+          Ojs.set_prop_ascii (t_to_js x1654) "position"
+            (Position.t_to_js x1655)
     let (get_ch : t -> string) =
-      fun (x1693 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1693) "ch")
+      fun (x1656 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1656) "ch")
     let (set_ch : t -> string -> unit) =
-      fun (x1694 : t) ->
-        fun (x1695 : string) ->
-          Ojs.set_prop_ascii (t_to_js x1694) "ch" (Ojs.string_to_js x1695)
+      fun (x1657 : t) ->
+        fun (x1658 : string) ->
+          Ojs.set_prop_ascii (t_to_js x1657) "ch" (Ojs.string_to_js x1658)
     let (get_options : t -> FormattingOptions.t) =
-      fun (x1696 : t) ->
+      fun (x1659 : t) ->
         FormattingOptions.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1696) "options")
+          (Ojs.get_prop_ascii (t_to_js x1659) "options")
     let (set_options : t -> FormattingOptions.t -> unit) =
-      fun (x1697 : t) ->
-        fun (x1698 : FormattingOptions.t) ->
-          Ojs.set_prop_ascii (t_to_js x1697) "options"
-            (FormattingOptions.t_to_js x1698)
+      fun (x1660 : t) ->
+        fun (x1661 : FormattingOptions.t) ->
+          Ojs.set_prop_ascii (t_to_js x1660) "options"
+            (FormattingOptions.t_to_js x1661)
   end
 module DocumentOnTypeFormattingOptions =
   struct
-    type t = _DocumentOnTypeFormattingOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1700 : Ojs.t) -> _DocumentOnTypeFormattingOptions_of_js x1700
-    and t_to_js : t -> Ojs.t =
-      fun (x1699 : _DocumentOnTypeFormattingOptions) ->
-        _DocumentOnTypeFormattingOptions_to_js x1699
-    let (get_firstTriggerCharacter : t -> string) =
-      fun (x1701 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1663 : Ojs.t) -> x1663
+    and t_to_js : t -> Ojs.t = fun (x1662 : Ojs.t) -> x1662
+    let (get_first_trigger_character : t -> string) =
+      fun (x1664 : t) ->
         Ojs.string_of_js
-          (Ojs.get_prop_ascii (t_to_js x1701) "firstTriggerCharacter")
-    let (set_firstTriggerCharacter : t -> string -> unit) =
-      fun (x1702 : t) ->
-        fun (x1703 : string) ->
-          Ojs.set_prop_ascii (t_to_js x1702) "firstTriggerCharacter"
-            (Ojs.string_to_js x1703)
-    let (get_moreTriggerCharacter : t -> string list) =
-      fun (x1704 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1664) "firstTriggerCharacter")
+    let (set_first_trigger_character : t -> string -> unit) =
+      fun (x1665 : t) ->
+        fun (x1666 : string) ->
+          Ojs.set_prop_ascii (t_to_js x1665) "firstTriggerCharacter"
+            (Ojs.string_to_js x1666)
+    let (get_more_trigger_character : t -> string list) =
+      fun (x1667 : t) ->
         Ojs.list_of_js Ojs.string_of_js
-          (Ojs.get_prop_ascii (t_to_js x1704) "moreTriggerCharacter")
-    let (set_moreTriggerCharacter : t -> string list -> unit) =
-      fun (x1706 : t) ->
-        fun (x1707 : string list) ->
-          Ojs.set_prop_ascii (t_to_js x1706) "moreTriggerCharacter"
-            (Ojs.list_to_js Ojs.string_to_js x1707)
+          (Ojs.get_prop_ascii (t_to_js x1667) "moreTriggerCharacter")
+    let (set_more_trigger_character : t -> string list -> unit) =
+      fun (x1669 : t) ->
+        fun (x1670 : string list) ->
+          Ojs.set_prop_ascii (t_to_js x1669) "moreTriggerCharacter"
+            (Ojs.list_to_js Ojs.string_to_js x1670)
   end
 module DocumentOnTypeFormattingRegistrationOptions =
   struct
-    type t = _DocumentOnTypeFormattingRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1710 : Ojs.t) ->
-        _DocumentOnTypeFormattingRegistrationOptions_of_js x1710
-    and t_to_js : t -> Ojs.t =
-      fun (x1709 : _DocumentOnTypeFormattingRegistrationOptions) ->
-        _DocumentOnTypeFormattingRegistrationOptions_to_js x1709
-    let (cast : t -> _TextDocumentRegistrationOptions) =
-      fun (x1711 : t) ->
-        _TextDocumentRegistrationOptions_of_js (t_to_js x1711)
-    let (cast' : t -> _DocumentOnTypeFormattingOptions) =
-      fun (x1712 : t) ->
-        _DocumentOnTypeFormattingOptions_of_js (t_to_js x1712)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1673 : Ojs.t) -> x1673
+    and t_to_js : t -> Ojs.t = fun (x1672 : Ojs.t) -> x1672
+    let (cast : t -> TextDocumentRegistrationOptions.t) =
+      fun (x1674 : t) ->
+        TextDocumentRegistrationOptions.t_of_js (t_to_js x1674)
+    let (cast' : t -> DocumentOnTypeFormattingOptions.t) =
+      fun (x1675 : t) ->
+        DocumentOnTypeFormattingOptions.t_of_js (t_to_js x1675)
   end
 module DocumentOnTypeFormattingRequest =
   struct
     let (method_ : [ `L_s23_textDocument_onTypeFormatting ]) =
-      let x1713 =
+      let x1676 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "DocumentOnTypeFormattingRequest")
           "method" in
-      match Ojs.string_of_js x1713 with
+      match Ojs.string_of_js x1676 with
       | "textDocument/onTypeFormatting" ->
           `L_s23_textDocument_onTypeFormatting
       | _ -> assert false
     let (type_ :
-      (_DocumentOnTypeFormattingParams, TextEdit.t list or_null, never, 
-        unit, _DocumentOnTypeFormattingRegistrationOptions)
+      (DocumentOnTypeFormattingParams.t, TextEdit.t list or_null, never,
+        unit, DocumentOnTypeFormattingRegistrationOptions.t)
         ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _DocumentOnTypeFormattingParams_of_js
-        (fun (x1715 : Ojs.t) ->
+      ProtocolRequestType.t_of_js DocumentOnTypeFormattingParams.t_of_js
+        (fun (x1678 : Ojs.t) ->
            or_null_of_js
-             (fun (x1716 : Ojs.t) -> Ojs.list_of_js TextEdit.t_of_js x1716)
-             x1715) never_of_js Ojs.unit_of_js
-        _DocumentOnTypeFormattingRegistrationOptions_of_js
+             (fun (x1679 : Ojs.t) -> Ojs.list_of_js TextEdit.t_of_js x1679)
+             x1678) never_of_js Ojs.unit_of_js
+        DocumentOnTypeFormattingRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DocumentOnTypeFormattingRequest")
            "type")
@@ -5181,395 +4786,366 @@ module DocumentOnTypeFormattingRequest =
 module PrepareSupportDefaultBehavior =
   struct
     let (identifier : [ `L_n_1 ]) =
-      let x1721 =
+      let x1684 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "PrepareSupportDefaultBehavior")
           "Identifier" in
-      match Ojs.int_of_js x1721 with | 1 -> `L_n_1 | _ -> assert false
+      match Ojs.int_of_js x1684 with | 1 -> `L_n_1 | _ -> assert false
   end
 module PrepareSupportDefaultBehavior =
   struct
-    type t = _PrepareSupportDefaultBehavior
+    type t = [ `L_n_1 ]
     let rec t_of_js : Ojs.t -> t =
-      fun (x1723 : Ojs.t) -> _PrepareSupportDefaultBehavior_of_js x1723
+      fun (x1686 : Ojs.t) ->
+        let x1687 = x1686 in
+        match Ojs.int_of_js x1687 with | 1 -> `L_n_1 | _ -> assert false
     and t_to_js : t -> Ojs.t =
-      fun (x1722 : _PrepareSupportDefaultBehavior) ->
-        _PrepareSupportDefaultBehavior_to_js x1722
+      fun (x1685 : [ `L_n_1 ]) ->
+        match x1685 with | `L_n_1 -> Ojs.int_to_js 1
   end
 module RenameClientCapabilities =
   struct
-    type t = _RenameClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1725 : Ojs.t) -> _RenameClientCapabilities_of_js x1725
-    and t_to_js : t -> Ojs.t =
-      fun (x1724 : _RenameClientCapabilities) ->
-        _RenameClientCapabilities_to_js x1724
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x1726 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1689 : Ojs.t) -> x1689
+    and t_to_js : t -> Ojs.t = fun (x1688 : Ojs.t) -> x1688
+    let (get_dynamic_registration : t -> bool) =
+      fun (x1690 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1726) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x1727 : t) ->
-        fun (x1728 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1727) "dynamicRegistration"
-            (Ojs.bool_to_js x1728)
-    let (get_prepareSupport : t -> bool) =
-      fun (x1729 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1729) "prepareSupport")
-    let (set_prepareSupport : t -> bool -> unit) =
-      fun (x1730 : t) ->
-        fun (x1731 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1730) "prepareSupport"
-            (Ojs.bool_to_js x1731)
-    let (get_prepareSupportDefaultBehavior :
-      t -> _PrepareSupportDefaultBehavior) =
-      fun (x1732 : t) ->
-        _PrepareSupportDefaultBehavior_of_js
-          (Ojs.get_prop_ascii (t_to_js x1732) "prepareSupportDefaultBehavior")
-    let (set_prepareSupportDefaultBehavior :
-      t -> _PrepareSupportDefaultBehavior -> unit) =
-      fun (x1733 : t) ->
-        fun (x1734 : _PrepareSupportDefaultBehavior) ->
-          Ojs.set_prop_ascii (t_to_js x1733) "prepareSupportDefaultBehavior"
-            (_PrepareSupportDefaultBehavior_to_js x1734)
-    let (get_honorsChangeAnnotations : t -> bool) =
-      fun (x1735 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1690) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x1691 : t) ->
+        fun (x1692 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1691) "dynamicRegistration"
+            (Ojs.bool_to_js x1692)
+    let (get_prepare_support : t -> bool) =
+      fun (x1693 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1693) "prepareSupport")
+    let (set_prepare_support : t -> bool -> unit) =
+      fun (x1694 : t) ->
+        fun (x1695 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1694) "prepareSupport"
+            (Ojs.bool_to_js x1695)
+    let (get_prepare_support_default_behavior :
+      t -> PrepareSupportDefaultBehavior.t) =
+      fun (x1696 : t) ->
+        PrepareSupportDefaultBehavior.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x1696) "prepareSupportDefaultBehavior")
+    let (set_prepare_support_default_behavior :
+      t -> PrepareSupportDefaultBehavior.t -> unit) =
+      fun (x1697 : t) ->
+        fun (x1698 : PrepareSupportDefaultBehavior.t) ->
+          Ojs.set_prop_ascii (t_to_js x1697) "prepareSupportDefaultBehavior"
+            (PrepareSupportDefaultBehavior.t_to_js x1698)
+    let (get_honors_change_annotations : t -> bool) =
+      fun (x1699 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1735) "honorsChangeAnnotations")
-    let (set_honorsChangeAnnotations : t -> bool -> unit) =
-      fun (x1736 : t) ->
-        fun (x1737 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1736) "honorsChangeAnnotations"
-            (Ojs.bool_to_js x1737)
+          (Ojs.get_prop_ascii (t_to_js x1699) "honorsChangeAnnotations")
+    let (set_honors_change_annotations : t -> bool -> unit) =
+      fun (x1700 : t) ->
+        fun (x1701 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1700) "honorsChangeAnnotations"
+            (Ojs.bool_to_js x1701)
   end
 module RenameParams =
   struct
-    type t = _RenameParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1739 : Ojs.t) -> _RenameParams_of_js x1739
-    and t_to_js : t -> Ojs.t =
-      fun (x1738 : _RenameParams) -> _RenameParams_to_js x1738
-    let (get_textDocument : t -> TextDocumentIdentifier.t) =
-      fun (x1740 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1703 : Ojs.t) -> x1703
+    and t_to_js : t -> Ojs.t = fun (x1702 : Ojs.t) -> x1702
+    let (get_text_document : t -> TextDocumentIdentifier.t) =
+      fun (x1704 : t) ->
         TextDocumentIdentifier.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1740) "textDocument")
-    let (set_textDocument : t -> TextDocumentIdentifier.t -> unit) =
-      fun (x1741 : t) ->
-        fun (x1742 : TextDocumentIdentifier.t) ->
-          Ojs.set_prop_ascii (t_to_js x1741) "textDocument"
-            (TextDocumentIdentifier.t_to_js x1742)
+          (Ojs.get_prop_ascii (t_to_js x1704) "textDocument")
+    let (set_text_document : t -> TextDocumentIdentifier.t -> unit) =
+      fun (x1705 : t) ->
+        fun (x1706 : TextDocumentIdentifier.t) ->
+          Ojs.set_prop_ascii (t_to_js x1705) "textDocument"
+            (TextDocumentIdentifier.t_to_js x1706)
     let (get_position : t -> Position.t) =
-      fun (x1743 : t) ->
-        Position.t_of_js (Ojs.get_prop_ascii (t_to_js x1743) "position")
+      fun (x1707 : t) ->
+        Position.t_of_js (Ojs.get_prop_ascii (t_to_js x1707) "position")
     let (set_position : t -> Position.t -> unit) =
-      fun (x1744 : t) ->
-        fun (x1745 : Position.t) ->
-          Ojs.set_prop_ascii (t_to_js x1744) "position"
-            (Position.t_to_js x1745)
-    let (get_newName : t -> string) =
-      fun (x1746 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1746) "newName")
-    let (set_newName : t -> string -> unit) =
-      fun (x1747 : t) ->
-        fun (x1748 : string) ->
-          Ojs.set_prop_ascii (t_to_js x1747) "newName"
-            (Ojs.string_to_js x1748)
-    let (cast : t -> _WorkDoneProgressParams) =
-      fun (x1749 : t) -> _WorkDoneProgressParams_of_js (t_to_js x1749)
+      fun (x1708 : t) ->
+        fun (x1709 : Position.t) ->
+          Ojs.set_prop_ascii (t_to_js x1708) "position"
+            (Position.t_to_js x1709)
+    let (get_new_name : t -> string) =
+      fun (x1710 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1710) "newName")
+    let (set_new_name : t -> string -> unit) =
+      fun (x1711 : t) ->
+        fun (x1712 : string) ->
+          Ojs.set_prop_ascii (t_to_js x1711) "newName"
+            (Ojs.string_to_js x1712)
+    let (cast : t -> WorkDoneProgressParams.t) =
+      fun (x1713 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x1713)
   end
 module RenameOptions =
   struct
-    type t = _RenameOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1751 : Ojs.t) -> _RenameOptions_of_js x1751
-    and t_to_js : t -> Ojs.t =
-      fun (x1750 : _RenameOptions) -> _RenameOptions_to_js x1750
-    let (get_prepareProvider : t -> bool) =
-      fun (x1752 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1752) "prepareProvider")
-    let (set_prepareProvider : t -> bool -> unit) =
-      fun (x1753 : t) ->
-        fun (x1754 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1753) "prepareProvider"
-            (Ojs.bool_to_js x1754)
-    let (cast : t -> _WorkDoneProgressOptions) =
-      fun (x1755 : t) -> _WorkDoneProgressOptions_of_js (t_to_js x1755)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1715 : Ojs.t) -> x1715
+    and t_to_js : t -> Ojs.t = fun (x1714 : Ojs.t) -> x1714
+    let (get_prepare_provider : t -> bool) =
+      fun (x1716 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1716) "prepareProvider")
+    let (set_prepare_provider : t -> bool -> unit) =
+      fun (x1717 : t) ->
+        fun (x1718 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1717) "prepareProvider"
+            (Ojs.bool_to_js x1718)
+    let (cast : t -> WorkDoneProgressOptions.t) =
+      fun (x1719 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x1719)
   end
 module RenameRegistrationOptions =
   struct
-    type t = _RenameRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1757 : Ojs.t) -> _RenameRegistrationOptions_of_js x1757
-    and t_to_js : t -> Ojs.t =
-      fun (x1756 : _RenameRegistrationOptions) ->
-        _RenameRegistrationOptions_to_js x1756
-    let (cast : t -> _TextDocumentRegistrationOptions) =
-      fun (x1758 : t) ->
-        _TextDocumentRegistrationOptions_of_js (t_to_js x1758)
-    let (cast' : t -> _RenameOptions) =
-      fun (x1759 : t) -> _RenameOptions_of_js (t_to_js x1759)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1721 : Ojs.t) -> x1721
+    and t_to_js : t -> Ojs.t = fun (x1720 : Ojs.t) -> x1720
+    let (cast : t -> TextDocumentRegistrationOptions.t) =
+      fun (x1722 : t) ->
+        TextDocumentRegistrationOptions.t_of_js (t_to_js x1722)
+    let (cast' : t -> RenameOptions.t) =
+      fun (x1723 : t) -> RenameOptions.t_of_js (t_to_js x1723)
   end
 module RenameRequest =
   struct
     let (method_ : [ `L_s27_textDocument_rename ]) =
-      let x1760 =
+      let x1724 =
         Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "RenameRequest")
           "method" in
-      match Ojs.string_of_js x1760 with
+      match Ojs.string_of_js x1724 with
       | "textDocument/rename" -> `L_s27_textDocument_rename
       | _ -> assert false
     let (type_ :
-      (_RenameParams, WorkspaceEdit.t or_null, never, unit,
-        _RenameRegistrationOptions) ProtocolRequestType.t)
+      (RenameParams.t, WorkspaceEdit.t or_null, never, unit,
+        RenameRegistrationOptions.t) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _RenameParams_of_js
-        (fun (x1762 : Ojs.t) -> or_null_of_js WorkspaceEdit.t_of_js x1762)
-        never_of_js Ojs.unit_of_js _RenameRegistrationOptions_of_js
+      ProtocolRequestType.t_of_js RenameParams.t_of_js
+        (fun (x1726 : Ojs.t) -> or_null_of_js WorkspaceEdit.t_of_js x1726)
+        never_of_js Ojs.unit_of_js RenameRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "RenameRequest")
            "type")
   end
 module PrepareRenameParams =
   struct
-    type t = _PrepareRenameParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1768 : Ojs.t) -> _PrepareRenameParams_of_js x1768
-    and t_to_js : t -> Ojs.t =
-      fun (x1767 : _PrepareRenameParams) -> _PrepareRenameParams_to_js x1767
-    let (cast : t -> _TextDocumentPositionParams) =
-      fun (x1769 : t) -> _TextDocumentPositionParams_of_js (t_to_js x1769)
-    let (cast' : t -> _WorkDoneProgressParams) =
-      fun (x1770 : t) -> _WorkDoneProgressParams_of_js (t_to_js x1770)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1732 : Ojs.t) -> x1732
+    and t_to_js : t -> Ojs.t = fun (x1731 : Ojs.t) -> x1731
+    let (cast : t -> TextDocumentPositionParams.t) =
+      fun (x1733 : t) -> TextDocumentPositionParams.t_of_js (t_to_js x1733)
+    let (cast' : t -> WorkDoneProgressParams.t) =
+      fun (x1734 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x1734)
   end
 module PrepareRenameRequest =
   struct
     let (method_ : [ `L_s24_textDocument_prepareRename ]) =
-      let x1771 =
+      let x1735 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "PrepareRenameRequest") "method" in
-      match Ojs.string_of_js x1771 with
+      match Ojs.string_of_js x1735 with
       | "textDocument/prepareRename" -> `L_s24_textDocument_prepareRename
       | _ -> assert false
     let (type_ :
-      (_PrepareRenameParams,
+      (PrepareRenameParams.t,
         (Range.t, AnonymousInterface3.t, AnonymousInterface12.t) union3
           or_null,
         never, unit, unit) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _PrepareRenameParams_of_js
-        (fun (x1773 : Ojs.t) ->
+      ProtocolRequestType.t_of_js PrepareRenameParams.t_of_js
+        (fun (x1737 : Ojs.t) ->
            or_null_of_js
-             (fun (x1774 : Ojs.t) ->
+             (fun (x1738 : Ojs.t) ->
                 union3_of_js Range.t_of_js AnonymousInterface3.t_of_js
-                  AnonymousInterface12.t_of_js x1774) x1773) never_of_js
+                  AnonymousInterface12.t_of_js x1738) x1737) never_of_js
         Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "PrepareRenameRequest") "type")
   end
 module ExecuteCommandClientCapabilities =
   struct
-    type t = _ExecuteCommandClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1782 : Ojs.t) -> _ExecuteCommandClientCapabilities_of_js x1782
-    and t_to_js : t -> Ojs.t =
-      fun (x1781 : _ExecuteCommandClientCapabilities) ->
-        _ExecuteCommandClientCapabilities_to_js x1781
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x1783 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1746 : Ojs.t) -> x1746
+    and t_to_js : t -> Ojs.t = fun (x1745 : Ojs.t) -> x1745
+    let (get_dynamic_registration : t -> bool) =
+      fun (x1747 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1783) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x1784 : t) ->
-        fun (x1785 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1784) "dynamicRegistration"
-            (Ojs.bool_to_js x1785)
+          (Ojs.get_prop_ascii (t_to_js x1747) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x1748 : t) ->
+        fun (x1749 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1748) "dynamicRegistration"
+            (Ojs.bool_to_js x1749)
   end
 module ExecuteCommandParams =
   struct
-    type t = _ExecuteCommandParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1787 : Ojs.t) -> _ExecuteCommandParams_of_js x1787
-    and t_to_js : t -> Ojs.t =
-      fun (x1786 : _ExecuteCommandParams) ->
-        _ExecuteCommandParams_to_js x1786
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1751 : Ojs.t) -> x1751
+    and t_to_js : t -> Ojs.t = fun (x1750 : Ojs.t) -> x1750
     let (get_command : t -> string) =
-      fun (x1788 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1788) "command")
+      fun (x1752 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1752) "command")
     let (set_command : t -> string -> unit) =
-      fun (x1789 : t) ->
-        fun (x1790 : string) ->
-          Ojs.set_prop_ascii (t_to_js x1789) "command"
-            (Ojs.string_to_js x1790)
+      fun (x1753 : t) ->
+        fun (x1754 : string) ->
+          Ojs.set_prop_ascii (t_to_js x1753) "command"
+            (Ojs.string_to_js x1754)
     let (get_arguments : t -> any list) =
-      fun (x1791 : t) ->
+      fun (x1755 : t) ->
         Ojs.list_of_js any_of_js
-          (Ojs.get_prop_ascii (t_to_js x1791) "arguments")
+          (Ojs.get_prop_ascii (t_to_js x1755) "arguments")
     let (set_arguments : t -> any list -> unit) =
-      fun (x1793 : t) ->
-        fun (x1794 : any list) ->
-          Ojs.set_prop_ascii (t_to_js x1793) "arguments"
-            (Ojs.list_to_js any_to_js x1794)
-    let (cast : t -> _WorkDoneProgressParams) =
-      fun (x1796 : t) -> _WorkDoneProgressParams_of_js (t_to_js x1796)
+      fun (x1757 : t) ->
+        fun (x1758 : any list) ->
+          Ojs.set_prop_ascii (t_to_js x1757) "arguments"
+            (Ojs.list_to_js any_to_js x1758)
+    let (cast : t -> WorkDoneProgressParams.t) =
+      fun (x1760 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x1760)
   end
 module ExecuteCommandOptions =
   struct
-    type t = _ExecuteCommandOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1798 : Ojs.t) -> _ExecuteCommandOptions_of_js x1798
-    and t_to_js : t -> Ojs.t =
-      fun (x1797 : _ExecuteCommandOptions) ->
-        _ExecuteCommandOptions_to_js x1797
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1762 : Ojs.t) -> x1762
+    and t_to_js : t -> Ojs.t = fun (x1761 : Ojs.t) -> x1761
     let (get_commands : t -> string list) =
-      fun (x1799 : t) ->
+      fun (x1763 : t) ->
         Ojs.list_of_js Ojs.string_of_js
-          (Ojs.get_prop_ascii (t_to_js x1799) "commands")
+          (Ojs.get_prop_ascii (t_to_js x1763) "commands")
     let (set_commands : t -> string list -> unit) =
-      fun (x1801 : t) ->
-        fun (x1802 : string list) ->
-          Ojs.set_prop_ascii (t_to_js x1801) "commands"
-            (Ojs.list_to_js Ojs.string_to_js x1802)
-    let (cast : t -> _WorkDoneProgressOptions) =
-      fun (x1804 : t) -> _WorkDoneProgressOptions_of_js (t_to_js x1804)
+      fun (x1765 : t) ->
+        fun (x1766 : string list) ->
+          Ojs.set_prop_ascii (t_to_js x1765) "commands"
+            (Ojs.list_to_js Ojs.string_to_js x1766)
+    let (cast : t -> WorkDoneProgressOptions.t) =
+      fun (x1768 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x1768)
   end
 module ExecuteCommandRegistrationOptions =
   struct
-    type t = _ExecuteCommandRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1806 : Ojs.t) -> _ExecuteCommandRegistrationOptions_of_js x1806
-    and t_to_js : t -> Ojs.t =
-      fun (x1805 : _ExecuteCommandRegistrationOptions) ->
-        _ExecuteCommandRegistrationOptions_to_js x1805
-    let (cast : t -> _ExecuteCommandOptions) =
-      fun (x1807 : t) -> _ExecuteCommandOptions_of_js (t_to_js x1807)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1770 : Ojs.t) -> x1770
+    and t_to_js : t -> Ojs.t = fun (x1769 : Ojs.t) -> x1769
+    let (cast : t -> ExecuteCommandOptions.t) =
+      fun (x1771 : t) -> ExecuteCommandOptions.t_of_js (t_to_js x1771)
   end
 module ExecuteCommandRequest =
   struct
     let (type_ :
-      (_ExecuteCommandParams, any, never, unit,
-        _ExecuteCommandRegistrationOptions) ProtocolRequestType.t)
+      (ExecuteCommandParams.t, any, never, unit,
+        ExecuteCommandRegistrationOptions.t) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _ExecuteCommandParams_of_js any_of_js
-        never_of_js Ojs.unit_of_js _ExecuteCommandRegistrationOptions_of_js
+      ProtocolRequestType.t_of_js ExecuteCommandParams.t_of_js any_of_js
+        never_of_js Ojs.unit_of_js ExecuteCommandRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "ExecuteCommandRequest") "type")
   end
 module WorkspaceEditClientCapabilities =
   struct
-    type t = _WorkspaceEditClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1814 : Ojs.t) -> _WorkspaceEditClientCapabilities_of_js x1814
-    and t_to_js : t -> Ojs.t =
-      fun (x1813 : _WorkspaceEditClientCapabilities) ->
-        _WorkspaceEditClientCapabilities_to_js x1813
-    let (get_documentChanges : t -> bool) =
-      fun (x1815 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1815) "documentChanges")
-    let (set_documentChanges : t -> bool -> unit) =
-      fun (x1816 : t) ->
-        fun (x1817 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1816) "documentChanges"
-            (Ojs.bool_to_js x1817)
-    let (get_resourceOperations : t -> _ResourceOperationKind list) =
-      fun (x1818 : t) ->
-        Ojs.list_of_js _ResourceOperationKind_of_js
-          (Ojs.get_prop_ascii (t_to_js x1818) "resourceOperations")
-    let (set_resourceOperations : t -> _ResourceOperationKind list -> unit) =
-      fun (x1820 : t) ->
-        fun (x1821 : _ResourceOperationKind list) ->
-          Ojs.set_prop_ascii (t_to_js x1820) "resourceOperations"
-            (Ojs.list_to_js _ResourceOperationKind_to_js x1821)
-    let (get_failureHandling : t -> _FailureHandlingKind) =
-      fun (x1823 : t) ->
-        _FailureHandlingKind_of_js
-          (Ojs.get_prop_ascii (t_to_js x1823) "failureHandling")
-    let (set_failureHandling : t -> _FailureHandlingKind -> unit) =
-      fun (x1824 : t) ->
-        fun (x1825 : _FailureHandlingKind) ->
-          Ojs.set_prop_ascii (t_to_js x1824) "failureHandling"
-            (_FailureHandlingKind_to_js x1825)
-    let (get_normalizesLineEndings : t -> bool) =
-      fun (x1826 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1778 : Ojs.t) -> x1778
+    and t_to_js : t -> Ojs.t = fun (x1777 : Ojs.t) -> x1777
+    let (get_document_changes : t -> bool) =
+      fun (x1779 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1779) "documentChanges")
+    let (set_document_changes : t -> bool -> unit) =
+      fun (x1780 : t) ->
+        fun (x1781 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1780) "documentChanges"
+            (Ojs.bool_to_js x1781)
+    let (get_resource_operations : t -> ResourceOperationKind.t list) =
+      fun (x1782 : t) ->
+        Ojs.list_of_js ResourceOperationKind.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x1782) "resourceOperations")
+    let (set_resource_operations : t -> ResourceOperationKind.t list -> unit)
+      =
+      fun (x1784 : t) ->
+        fun (x1785 : ResourceOperationKind.t list) ->
+          Ojs.set_prop_ascii (t_to_js x1784) "resourceOperations"
+            (Ojs.list_to_js ResourceOperationKind.t_to_js x1785)
+    let (get_failure_handling : t -> FailureHandlingKind.t) =
+      fun (x1787 : t) ->
+        FailureHandlingKind.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x1787) "failureHandling")
+    let (set_failure_handling : t -> FailureHandlingKind.t -> unit) =
+      fun (x1788 : t) ->
+        fun (x1789 : FailureHandlingKind.t) ->
+          Ojs.set_prop_ascii (t_to_js x1788) "failureHandling"
+            (FailureHandlingKind.t_to_js x1789)
+    let (get_normalizes_line_endings : t -> bool) =
+      fun (x1790 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x1826) "normalizesLineEndings")
-    let (set_normalizesLineEndings : t -> bool -> unit) =
-      fun (x1827 : t) ->
-        fun (x1828 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1827) "normalizesLineEndings"
-            (Ojs.bool_to_js x1828)
-    let (get_changeAnnotationSupport : t -> AnonymousInterface6.t) =
-      fun (x1829 : t) ->
+          (Ojs.get_prop_ascii (t_to_js x1790) "normalizesLineEndings")
+    let (set_normalizes_line_endings : t -> bool -> unit) =
+      fun (x1791 : t) ->
+        fun (x1792 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1791) "normalizesLineEndings"
+            (Ojs.bool_to_js x1792)
+    let (get_change_annotation_support : t -> AnonymousInterface6.t) =
+      fun (x1793 : t) ->
         AnonymousInterface6.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x1829) "changeAnnotationSupport")
-    let (set_changeAnnotationSupport : t -> AnonymousInterface6.t -> unit) =
-      fun (x1830 : t) ->
-        fun (x1831 : AnonymousInterface6.t) ->
-          Ojs.set_prop_ascii (t_to_js x1830) "changeAnnotationSupport"
-            (AnonymousInterface6.t_to_js x1831)
+          (Ojs.get_prop_ascii (t_to_js x1793) "changeAnnotationSupport")
+    let (set_change_annotation_support : t -> AnonymousInterface6.t -> unit)
+      =
+      fun (x1794 : t) ->
+        fun (x1795 : AnonymousInterface6.t) ->
+          Ojs.set_prop_ascii (t_to_js x1794) "changeAnnotationSupport"
+            (AnonymousInterface6.t_to_js x1795)
   end
 module ApplyWorkspaceEditParams =
   struct
-    type t = _ApplyWorkspaceEditParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1833 : Ojs.t) -> _ApplyWorkspaceEditParams_of_js x1833
-    and t_to_js : t -> Ojs.t =
-      fun (x1832 : _ApplyWorkspaceEditParams) ->
-        _ApplyWorkspaceEditParams_to_js x1832
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1797 : Ojs.t) -> x1797
+    and t_to_js : t -> Ojs.t = fun (x1796 : Ojs.t) -> x1796
     let (get_label : t -> string) =
-      fun (x1834 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1834) "label")
+      fun (x1798 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1798) "label")
     let (set_label : t -> string -> unit) =
-      fun (x1835 : t) ->
-        fun (x1836 : string) ->
-          Ojs.set_prop_ascii (t_to_js x1835) "label" (Ojs.string_to_js x1836)
+      fun (x1799 : t) ->
+        fun (x1800 : string) ->
+          Ojs.set_prop_ascii (t_to_js x1799) "label" (Ojs.string_to_js x1800)
     let (get_edit : t -> WorkspaceEdit.t) =
-      fun (x1837 : t) ->
-        WorkspaceEdit.t_of_js (Ojs.get_prop_ascii (t_to_js x1837) "edit")
+      fun (x1801 : t) ->
+        WorkspaceEdit.t_of_js (Ojs.get_prop_ascii (t_to_js x1801) "edit")
     let (set_edit : t -> WorkspaceEdit.t -> unit) =
-      fun (x1838 : t) ->
-        fun (x1839 : WorkspaceEdit.t) ->
-          Ojs.set_prop_ascii (t_to_js x1838) "edit"
-            (WorkspaceEdit.t_to_js x1839)
+      fun (x1802 : t) ->
+        fun (x1803 : WorkspaceEdit.t) ->
+          Ojs.set_prop_ascii (t_to_js x1802) "edit"
+            (WorkspaceEdit.t_to_js x1803)
   end
 module ApplyWorkspaceEditResponse =
   struct
-    type t = _ApplyWorkspaceEditResponse
-    let rec t_of_js : Ojs.t -> t =
-      fun (x1841 : Ojs.t) -> _ApplyWorkspaceEditResponse_of_js x1841
-    and t_to_js : t -> Ojs.t =
-      fun (x1840 : _ApplyWorkspaceEditResponse) ->
-        _ApplyWorkspaceEditResponse_to_js x1840
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x1805 : Ojs.t) -> x1805
+    and t_to_js : t -> Ojs.t = fun (x1804 : Ojs.t) -> x1804
     let (get_applied : t -> bool) =
-      fun (x1842 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1842) "applied")
+      fun (x1806 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1806) "applied")
     let (set_applied : t -> bool -> unit) =
-      fun (x1843 : t) ->
-        fun (x1844 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x1843) "applied" (Ojs.bool_to_js x1844)
-    let (get_failureReason : t -> string) =
-      fun (x1845 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1845) "failureReason")
-    let (set_failureReason : t -> string -> unit) =
-      fun (x1846 : t) ->
-        fun (x1847 : string) ->
-          Ojs.set_prop_ascii (t_to_js x1846) "failureReason"
-            (Ojs.string_to_js x1847)
-    let (get_failedChange : t -> Uinteger.t) =
-      fun (x1848 : t) ->
-        Uinteger.t_of_js (Ojs.get_prop_ascii (t_to_js x1848) "failedChange")
-    let (set_failedChange : t -> Uinteger.t -> unit) =
-      fun (x1849 : t) ->
-        fun (x1850 : Uinteger.t) ->
-          Ojs.set_prop_ascii (t_to_js x1849) "failedChange"
-            (Uinteger.t_to_js x1850)
+      fun (x1807 : t) ->
+        fun (x1808 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x1807) "applied" (Ojs.bool_to_js x1808)
+    let (get_failure_reason : t -> string) =
+      fun (x1809 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1809) "failureReason")
+    let (set_failure_reason : t -> string -> unit) =
+      fun (x1810 : t) ->
+        fun (x1811 : string) ->
+          Ojs.set_prop_ascii (t_to_js x1810) "failureReason"
+            (Ojs.string_to_js x1811)
+    let (get_failed_change : t -> Uinteger.t) =
+      fun (x1812 : t) ->
+        Uinteger.t_of_js (Ojs.get_prop_ascii (t_to_js x1812) "failedChange")
+    let (set_failed_change : t -> Uinteger.t -> unit) =
+      fun (x1813 : t) ->
+        fun (x1814 : Uinteger.t) ->
+          Ojs.set_prop_ascii (t_to_js x1813) "failedChange"
+            (Uinteger.t_to_js x1814)
   end
 module ApplyWorkspaceEditRequest =
   struct
     let (type_ :
-      (_ApplyWorkspaceEditParams, _ApplyWorkspaceEditResponse, never, 
+      (ApplyWorkspaceEditParams.t, ApplyWorkspaceEditResponse.t, never, 
         unit, unit) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _ApplyWorkspaceEditParams_of_js
-        _ApplyWorkspaceEditResponse_of_js never_of_js Ojs.unit_of_js
+      ProtocolRequestType.t_of_js ApplyWorkspaceEditParams.t_of_js
+        ApplyWorkspaceEditResponse.t_of_js never_of_js Ojs.unit_of_js
         Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "ApplyWorkspaceEditRequest") "type")

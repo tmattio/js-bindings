@@ -8,7 +8,7 @@ open Es5
 (* import { ClientCapabilities, ConfigurationRequest } from
    'vscode-languageserver-protocol'; *)
 module ConfigurationWorkspaceMiddleware : sig
-  type t = _ConfigurationWorkspaceMiddleware
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -26,7 +26,7 @@ end
 [@@js.scope "ConfigurationWorkspaceMiddleware"]
 
 module ConfigurationFeature : sig
-  type t = _ConfigurationFeature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -39,15 +39,15 @@ module ConfigurationFeature : sig
 
   val create : _client:BaseLanguageClient.t -> t [@@js.create]
 
-  val fillClientCapabilities : t -> capabilities:ClientCapabilities.t -> unit
+  val fill_client_capabilities : t -> capabilities:ClientCapabilities.t -> unit
     [@@js.call "fillClientCapabilities"]
 
   val initialize : t -> unit [@@js.call "initialize"]
 
-  val get_getConfiguration : t -> (* FIXME: unknown type *) any
+  val get_get_configuration : t -> (* FIXME: unknown type *) any
     [@@js.get "getConfiguration"]
 
-  val set_getConfiguration : t -> (* FIXME: unknown type *) any -> unit
+  val set_get_configuration : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "getConfiguration"]
 
   val dispose : t -> unit [@@js.call "dispose"]
@@ -56,4 +56,4 @@ module ConfigurationFeature : sig
 end
 [@@js.scope "ConfigurationFeature"]
 
-val toJSONObject : obj:any -> any [@@js.global "toJSONObject"]
+val to_json_object : obj:any -> any [@@js.global "toJSONObject"]

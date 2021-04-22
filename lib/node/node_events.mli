@@ -19,20 +19,21 @@ end
 
 module Events : sig
   module EventEmitterOptions : sig
-    type t = events_EventEmitterOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_captureRejections : t -> bool [@@js.get "captureRejections"]
+    val get_capture_rejections : t -> bool [@@js.get "captureRejections"]
 
-    val set_captureRejections : t -> bool -> unit [@@js.set "captureRejections"]
+    val set_capture_rejections : t -> bool -> unit
+      [@@js.set "captureRejections"]
   end
   [@@js.scope "EventEmitterOptions"]
 
   module NodeEventTarget : sig
-    type t = events_NodeEventTarget
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -48,13 +49,13 @@ module Events : sig
   [@@js.scope "NodeEventTarget"]
 
   module DOMEventTarget : sig
-    type t = events_DOMEventTarget
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val addEventListener
+    val add_event_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
@@ -66,60 +67,59 @@ module Events : sig
   [@@js.scope "DOMEventTarget"]
 
   module EventEmitter : sig
-    type t = events_EventEmitter
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val create : ?options:events_EventEmitterOptions -> unit -> t [@@js.create]
+    val create : ?options:EventEmitterOptions.t -> unit -> t [@@js.create]
 
     val once
-      :  emitter:events_NodeEventTarget
+      :  emitter:NodeEventTarget.t
       -> event:symbol or_string
       -> any list Promise.t
       [@@js.global "once"]
 
-    val once'
-      :  emitter:events_DOMEventTarget
-      -> event:string
-      -> any list Promise.t
+    val once' : emitter:DOMEventTarget.t -> event:string -> any list Promise.t
       [@@js.global "once"]
 
     val on : emitter:t -> event:string -> any AsyncIterableIterator.t
       [@@js.global "on"]
 
-    val listenerCount : emitter:t -> event:symbol or_string -> int
+    val listener_count : emitter:t -> event:symbol or_string -> int
       [@@js.global "listenerCount"]
 
-    val get_errorMonitor : unit -> (* FIXME: unknown type 'unique symbol' *) any
+    val get_error_monitor
+      :  unit
+      -> (* FIXME: unknown type 'unique symbol' *) any
       [@@js.get "errorMonitor"]
 
-    val get_captureRejectionSymbol
+    val get_capture_rejection_symbol
       :  unit
       -> (* FIXME: unknown type 'unique symbol' *) any
       [@@js.get "captureRejectionSymbol"]
 
-    val get_captureRejections : unit -> bool [@@js.get "captureRejections"]
+    val get_capture_rejections : unit -> bool [@@js.get "captureRejections"]
 
-    val set_captureRejections : bool -> unit [@@js.set "captureRejections"]
+    val set_capture_rejections : bool -> unit [@@js.set "captureRejections"]
 
-    val get_defaultMaxListeners : unit -> int [@@js.get "defaultMaxListeners"]
+    val get_default_max_listeners : unit -> int [@@js.get "defaultMaxListeners"]
 
-    val set_defaultMaxListeners : int -> unit [@@js.set "defaultMaxListeners"]
+    val set_default_max_listeners : int -> unit [@@js.set "defaultMaxListeners"]
   end
   [@@js.scope "EventEmitter"]
 end
 [@@js.scope Import.events]
 
 module EventEmitter : sig
-  type t = events_global_NodeJS_EventEmitter
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val addListener
+  val add_listener
     :  t
     -> event:symbol or_string
     -> listener:(args:(any list[@js.variadic]) -> unit)
@@ -140,7 +140,7 @@ module EventEmitter : sig
     -> t
     [@@js.call "once"]
 
-  val removeListener
+  val remove_listener
     :  t
     -> event:symbol or_string
     -> listener:(args:(any list[@js.variadic]) -> unit)
@@ -154,17 +154,17 @@ module EventEmitter : sig
     -> t
     [@@js.call "off"]
 
-  val removeAllListeners : t -> ?event:symbol or_string -> unit -> t
+  val remove_all_listeners : t -> ?event:symbol or_string -> unit -> t
     [@@js.call "removeAllListeners"]
 
-  val setMaxListeners : t -> n:int -> t [@@js.call "setMaxListeners"]
+  val set_max_listeners : t -> n:int -> t [@@js.call "setMaxListeners"]
 
-  val getMaxListeners : t -> int [@@js.call "getMaxListeners"]
+  val get_max_listeners : t -> int [@@js.call "getMaxListeners"]
 
   val listeners : t -> event:symbol or_string -> untyped_function list
     [@@js.call "listeners"]
 
-  val rawListeners : t -> event:symbol or_string -> untyped_function list
+  val raw_listeners : t -> event:symbol or_string -> untyped_function list
     [@@js.call "rawListeners"]
 
   val emit
@@ -174,23 +174,23 @@ module EventEmitter : sig
     -> bool
     [@@js.call "emit"]
 
-  val listenerCount : t -> event:symbol or_string -> int
+  val listener_count : t -> event:symbol or_string -> int
     [@@js.call "listenerCount"]
 
-  val prependListener
+  val prepend_listener
     :  t
     -> event:symbol or_string
     -> listener:(args:(any list[@js.variadic]) -> unit)
     -> t
     [@@js.call "prependListener"]
 
-  val prependOnceListener
+  val prepend_once_listener
     :  t
     -> event:symbol or_string
     -> listener:(args:(any list[@js.variadic]) -> unit)
     -> t
     [@@js.call "prependOnceListener"]
 
-  val eventNames : t -> symbol or_string list [@@js.call "eventNames"]
+  val event_names : t -> symbol or_string list [@@js.call "eventNames"]
 end
 [@@js.scope "EventEmitter"]

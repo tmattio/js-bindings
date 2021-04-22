@@ -7,12 +7,9 @@ open Vscode_language_server_protocol
 open Client
 module PrepareCallHierarchySignature =
   struct
-    type t = _PrepareCallHierarchySignature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> _PrepareCallHierarchySignature_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : _PrepareCallHierarchySignature) ->
-        _PrepareCallHierarchySignature_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (apply :
       t ->
         this:unit ->
@@ -37,12 +34,9 @@ module PrepareCallHierarchySignature =
   end
 module CallHierarchyIncomingCallsSignature =
   struct
-    type t = _CallHierarchyIncomingCallsSignature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x12 : Ojs.t) -> _CallHierarchyIncomingCallsSignature_of_js x12
-    and t_to_js : t -> Ojs.t =
-      fun (x11 : _CallHierarchyIncomingCallsSignature) ->
-        _CallHierarchyIncomingCallsSignature_to_js x11
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x12 : Ojs.t) -> x12
+    and t_to_js : t -> Ojs.t = fun (x11 : Ojs.t) -> x11
     let (apply :
       t ->
         this:unit ->
@@ -63,12 +57,9 @@ module CallHierarchyIncomingCallsSignature =
   end
 module CallHierarchyOutgoingCallsSignature =
   struct
-    type t = _CallHierarchyOutgoingCallsSignature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x20 : Ojs.t) -> _CallHierarchyOutgoingCallsSignature_of_js x20
-    and t_to_js : t -> Ojs.t =
-      fun (x19 : _CallHierarchyOutgoingCallsSignature) ->
-        _CallHierarchyOutgoingCallsSignature_to_js x19
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x20 : Ojs.t) -> x20
+    and t_to_js : t -> Ojs.t = fun (x19 : Ojs.t) -> x19
     let (apply :
       t ->
         this:unit ->
@@ -89,19 +80,16 @@ module CallHierarchyOutgoingCallsSignature =
   end
 module CallHierarchyMiddleware =
   struct
-    type t = _CallHierarchyMiddleware
-    let rec t_of_js : Ojs.t -> t =
-      fun (x28 : Ojs.t) -> _CallHierarchyMiddleware_of_js x28
-    and t_to_js : t -> Ojs.t =
-      fun (x27 : _CallHierarchyMiddleware) ->
-        _CallHierarchyMiddleware_to_js x27
-    let (prepareCallHierarchy :
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x28 : Ojs.t) -> x28
+    and t_to_js : t -> Ojs.t = fun (x27 : Ojs.t) -> x27
+    let (prepare_call_hierarchy :
       t ->
         this:unit ->
           document:TextDocument.t ->
             positions:VPosition.t ->
               token:CancellationToken.t ->
-                next:_PrepareCallHierarchySignature ->
+                next:PrepareCallHierarchySignature.t ->
                   (VCallHierarchyItem.t, VCallHierarchyItem.t) or_array
                     ProviderResult.t)
       =
@@ -110,7 +98,7 @@ module CallHierarchyMiddleware =
           fun ~document:(x30 : TextDocument.t) ->
             fun ~positions:(x31 : VPosition.t) ->
               fun ~token:(x32 : CancellationToken.t) ->
-                fun ~next:(x33 : _PrepareCallHierarchySignature) ->
+                fun ~next:(x33 : PrepareCallHierarchySignature.t) ->
                   ProviderResult.t_of_js
                     (fun (x35 : Ojs.t) ->
                        or_array_of_js VCallHierarchyItem.t_of_js
@@ -118,56 +106,54 @@ module CallHierarchyMiddleware =
                     (Ojs.call (t_to_js x34) "prepareCallHierarchy"
                        [|(Ojs.unit_to_js x29);(TextDocument.t_to_js x30);(
                          VPosition.t_to_js x31);(CancellationToken.t_to_js
-                                                   x32);(_PrepareCallHierarchySignature_to_js
+                                                   x32);(PrepareCallHierarchySignature.t_to_js
                                                            x33)|])
-    let (provideCallHierarchyIncomingCalls :
+    let (provide_call_hierarchy_incoming_calls :
       t ->
         this:unit ->
           item:VCallHierarchyItem.t ->
             token:CancellationToken.t ->
-              next:_CallHierarchyIncomingCallsSignature ->
+              next:CallHierarchyIncomingCallsSignature.t ->
                 VCallHierarchyIncomingCall.t list ProviderResult.t)
       =
       fun (x42 : t) ->
         fun ~this:(x38 : unit) ->
           fun ~item:(x39 : VCallHierarchyItem.t) ->
             fun ~token:(x40 : CancellationToken.t) ->
-              fun ~next:(x41 : _CallHierarchyIncomingCallsSignature) ->
+              fun ~next:(x41 : CallHierarchyIncomingCallsSignature.t) ->
                 ProviderResult.t_of_js
                   (fun (x43 : Ojs.t) ->
                      Ojs.list_of_js VCallHierarchyIncomingCall.t_of_js x43)
                   (Ojs.call (t_to_js x42) "provideCallHierarchyIncomingCalls"
                      [|(Ojs.unit_to_js x38);(VCallHierarchyItem.t_to_js x39);(
-                       CancellationToken.t_to_js x40);(_CallHierarchyIncomingCallsSignature_to_js
+                       CancellationToken.t_to_js x40);(CallHierarchyIncomingCallsSignature.t_to_js
                                                          x41)|])
-    let (provideCallHierarchyOutgoingCalls :
+    let (provide_call_hierarchy_outgoing_calls :
       t ->
         this:unit ->
           item:VCallHierarchyItem.t ->
             token:CancellationToken.t ->
-              next:_CallHierarchyOutgoingCallsSignature ->
+              next:CallHierarchyOutgoingCallsSignature.t ->
                 VCallHierarchyOutgoingCall.t list ProviderResult.t)
       =
       fun (x49 : t) ->
         fun ~this:(x45 : unit) ->
           fun ~item:(x46 : VCallHierarchyItem.t) ->
             fun ~token:(x47 : CancellationToken.t) ->
-              fun ~next:(x48 : _CallHierarchyOutgoingCallsSignature) ->
+              fun ~next:(x48 : CallHierarchyOutgoingCallsSignature.t) ->
                 ProviderResult.t_of_js
                   (fun (x50 : Ojs.t) ->
                      Ojs.list_of_js VCallHierarchyOutgoingCall.t_of_js x50)
                   (Ojs.call (t_to_js x49) "provideCallHierarchyOutgoingCalls"
                      [|(Ojs.unit_to_js x45);(VCallHierarchyItem.t_to_js x46);(
-                       CancellationToken.t_to_js x47);(_CallHierarchyOutgoingCallsSignature_to_js
+                       CancellationToken.t_to_js x47);(CallHierarchyOutgoingCallsSignature.t_to_js
                                                          x48)|])
   end
 module CallHierarchyProvider =
   struct
-    type t = _CallHierarchyProvider
-    let rec t_of_js : Ojs.t -> t =
-      fun (x53 : Ojs.t) -> _CallHierarchyProvider_of_js x53
-    and t_to_js : t -> Ojs.t =
-      fun (x52 : _CallHierarchyProvider) -> _CallHierarchyProvider_to_js x52
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x53 : Ojs.t) -> x53
+    and t_to_js : t -> Ojs.t = fun (x52 : Ojs.t) -> x52
     let (get_client : t -> any) =
       fun (x54 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x54) "client")
     let (set_client : t -> any -> unit) =
@@ -187,7 +173,7 @@ module CallHierarchyProvider =
           (Ojs.new_obj
              (Ojs.get_prop_ascii Ojs.global "CallHierarchyProvider")
              [|(BaseLanguageClient.t_to_js x60)|])
-    let (prepareCallHierarchy :
+    let (prepare_call_hierarchy :
       t ->
         document:TextDocument.t ->
           position:VPosition.t ->
@@ -206,7 +192,7 @@ module CallHierarchyProvider =
                 (Ojs.call (t_to_js x64) "prepareCallHierarchy"
                    [|(TextDocument.t_to_js x61);(VPosition.t_to_js x62);(
                      CancellationToken.t_to_js x63)|])
-    let (provideCallHierarchyIncomingCalls :
+    let (provide_call_hierarchy_incoming_calls :
       t ->
         item:VCallHierarchyItem.t ->
           token:CancellationToken.t ->
@@ -221,7 +207,7 @@ module CallHierarchyProvider =
               (Ojs.call (t_to_js x70) "provideCallHierarchyIncomingCalls"
                  [|(VCallHierarchyItem.t_to_js x68);(CancellationToken.t_to_js
                                                        x69)|])
-    let (provideCallHierarchyOutgoingCalls :
+    let (provide_call_hierarchy_outgoing_calls :
       t ->
         item:VCallHierarchyItem.t ->
           token:CancellationToken.t ->
@@ -241,17 +227,15 @@ module CallHierarchyProvider =
   end
 module CallHierarchyFeature =
   struct
-    type t = _CallHierarchyFeature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x80 : Ojs.t) -> _CallHierarchyFeature_of_js x80
-    and t_to_js : t -> Ojs.t =
-      fun (x79 : _CallHierarchyFeature) -> _CallHierarchyFeature_to_js x79
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x80 : Ojs.t) -> x80
+    and t_to_js : t -> Ojs.t = fun (x79 : Ojs.t) -> x79
     let (create : client:BaseLanguageClient.t -> t) =
       fun ~client:(x81 : BaseLanguageClient.t) ->
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "CallHierarchyFeature")
              [|(BaseLanguageClient.t_to_js x81)|])
-    let (fillClientCapabilities : t -> cap:ClientCapabilities.t -> unit) =
+    let (fill_client_capabilities : t -> cap:ClientCapabilities.t -> unit) =
       fun (x83 : t) ->
         fun ~cap:(x82 : ClientCapabilities.t) ->
           ignore
@@ -260,19 +244,19 @@ module CallHierarchyFeature =
     let (initialize :
       t ->
         capabilities:ServerCapabilities.t ->
-          documentSelector:DocumentSelector.t -> unit)
+          document_selector:DocumentSelector.t -> unit)
       =
       fun (x86 : t) ->
         fun ~capabilities:(x84 : ServerCapabilities.t) ->
-          fun ~documentSelector:(x85 : DocumentSelector.t) ->
+          fun ~document_selector:(x85 : DocumentSelector.t) ->
             ignore
               (Ojs.call (t_to_js x86) "initialize"
                  [|(ServerCapabilities.t_to_js x84);(DocumentSelector.t_to_js
                                                        x85)|])
-    let (registerLanguageProvider :
+    let (register_language_provider :
       t ->
         options:CallHierarchyRegistrationOptions.t ->
-          (Disposable.t * _CallHierarchyProvider))
+          (Disposable.t * CallHierarchyProvider.t))
       =
       fun (x88 : t) ->
         fun ~options:(x87 : CallHierarchyRegistrationOptions.t) ->
@@ -280,11 +264,11 @@ module CallHierarchyFeature =
             Ojs.call (t_to_js x88) "registerLanguageProvider"
               [|(CallHierarchyRegistrationOptions.t_to_js x87)|] in
           ((Disposable.t_of_js (Ojs.array_get x89 0)),
-            (_CallHierarchyProvider_of_js (Ojs.array_get x89 1)))
+            (CallHierarchyProvider.t_of_js (Ojs.array_get x89 1)))
     let (cast :
       t ->
         (CallHierarchyOptions.t or_boolean,
-          CallHierarchyRegistrationOptions.t, _CallHierarchyProvider)
+          CallHierarchyRegistrationOptions.t, CallHierarchyProvider.t)
           TextDocumentFeature.t)
       =
       fun (x90 : t) ->
@@ -292,5 +276,5 @@ module CallHierarchyFeature =
           (fun (x91 : Ojs.t) ->
              or_boolean_of_js CallHierarchyOptions.t_of_js x91)
           CallHierarchyRegistrationOptions.t_of_js
-          _CallHierarchyProvider_of_js (t_to_js x90)
+          CallHierarchyProvider.t_of_js (t_to_js x90)
   end

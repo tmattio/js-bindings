@@ -233,11 +233,11 @@ module Array =
                      Iterable.t_to_js Obj.magic x100) x97)|])
     let (from_iterable' :
       iterable:('T Array.t, 'T Iterable.t) union2 ->
-        mapfn:(v:'T -> k:int -> 'U) -> ?thisArg:any -> unit -> 'U list)
+        mapfn:(v:'T -> k:int -> 'U) -> ?this_arg:any -> unit -> 'U list)
       =
       fun ~iterable:(x103 : ('T Array.t, 'T Iterable.t) union2) ->
         fun ~mapfn:(x104 : v:'T -> k:int -> 'U) ->
-          fun ?thisArg:(x105 : any option) ->
+          fun ?this_arg:(x105 : any option) ->
             fun () ->
               Ojs.list_of_js Obj.magic
                 (let x114 = Ojs.get_prop_ascii Ojs.global "Array" in
@@ -285,12 +285,12 @@ module ArrayConstructor =
     let (from_iterable' :
       t ->
         iterable:('T Array.t, 'T Iterable.t) union2 ->
-          mapfn:(v:'T -> k:int -> 'U) -> ?thisArg:any -> unit -> 'U list)
+          mapfn:(v:'T -> k:int -> 'U) -> ?this_arg:any -> unit -> 'U list)
       =
       fun (x134 : t) ->
         fun ~iterable:(x123 : ('T Array.t, 'T Iterable.t) union2) ->
           fun ~mapfn:(x124 : v:'T -> k:int -> 'U) ->
-            fun ?thisArg:(x125 : any option) ->
+            fun ?this_arg:(x125 : any option) ->
               fun () ->
                 Ojs.list_of_js Obj.magic
                   (let x135 = t_to_js x134 in
@@ -620,11 +620,11 @@ module Int8Array =
              [|(Iterable.t_to_js Ojs.int_to_js x280)|])
     let (from_iterable :
       array:int Iterable.t ->
-        ?mapfn:(v:int -> k:int -> int) -> ?thisArg:any -> unit -> t)
+        ?mapfn:(v:int -> k:int -> int) -> ?this_arg:any -> unit -> t)
       =
       fun ~array:(x282 : int Iterable.t) ->
         fun ?mapfn:(x283 : (v:int -> k:int -> int) option) ->
-          fun ?thisArg:(x284 : any option) ->
+          fun ?this_arg:(x284 : any option) ->
             fun () ->
               t_of_js
                 (let x291 = Ojs.get_prop_ascii Ojs.global "Int8Array" in
@@ -668,12 +668,12 @@ module Int8ArrayConstructor =
       t ->
         array:int Iterable.t ->
           ?mapfn:(v:int -> k:int -> int) ->
-            ?thisArg:any -> unit -> Int8Array.t)
+            ?this_arg:any -> unit -> Int8Array.t)
       =
       fun (x304 : t) ->
         fun ~array:(x295 : int Iterable.t) ->
           fun ?mapfn:(x296 : (v:int -> k:int -> int) option) ->
-            fun ?thisArg:(x297 : any option) ->
+            fun ?this_arg:(x297 : any option) ->
               fun () ->
                 Int8Array.t_of_js
                   (let x305 = t_to_js x304 in
@@ -731,11 +731,11 @@ module Uint8Array =
              [|(Iterable.t_to_js Ojs.int_to_js x313)|])
     let (from_iterable :
       array:int Iterable.t ->
-        ?mapfn:(v:int -> k:int -> int) -> ?thisArg:any -> unit -> t)
+        ?mapfn:(v:int -> k:int -> int) -> ?this_arg:any -> unit -> t)
       =
       fun ~array:(x315 : int Iterable.t) ->
         fun ?mapfn:(x316 : (v:int -> k:int -> int) option) ->
-          fun ?thisArg:(x317 : any option) ->
+          fun ?this_arg:(x317 : any option) ->
             fun () ->
               t_of_js
                 (let x324 = Ojs.get_prop_ascii Ojs.global "Uint8Array" in
@@ -779,12 +779,12 @@ module Uint8ArrayConstructor =
       t ->
         array:int Iterable.t ->
           ?mapfn:(v:int -> k:int -> int) ->
-            ?thisArg:any -> unit -> Uint8Array.t)
+            ?this_arg:any -> unit -> Uint8Array.t)
       =
       fun (x337 : t) ->
         fun ~array:(x328 : int Iterable.t) ->
           fun ?mapfn:(x329 : (v:int -> k:int -> int) option) ->
-            fun ?thisArg:(x330 : any option) ->
+            fun ?this_arg:(x330 : any option) ->
               fun () ->
                 Uint8Array.t_of_js
                   (let x338 = t_to_js x337 in
@@ -842,11 +842,11 @@ module Uint8ClampedArray =
              [|(Iterable.t_to_js Ojs.int_to_js x346)|])
     let (from_iterable :
       array:int Iterable.t ->
-        ?mapfn:(v:int -> k:int -> int) -> ?thisArg:any -> unit -> t)
+        ?mapfn:(v:int -> k:int -> int) -> ?this_arg:any -> unit -> t)
       =
       fun ~array:(x348 : int Iterable.t) ->
         fun ?mapfn:(x349 : (v:int -> k:int -> int) option) ->
-          fun ?thisArg:(x350 : any option) ->
+          fun ?this_arg:(x350 : any option) ->
             fun () ->
               t_of_js
                 (let x357 = Ojs.get_prop_ascii Ojs.global "Uint8ClampedArray" in
@@ -890,12 +890,12 @@ module Uint8ClampedArrayConstructor =
       t ->
         array:int Iterable.t ->
           ?mapfn:(v:int -> k:int -> int) ->
-            ?thisArg:any -> unit -> Uint8ClampedArray.t)
+            ?this_arg:any -> unit -> Uint8ClampedArray.t)
       =
       fun (x370 : t) ->
         fun ~array:(x361 : int Iterable.t) ->
           fun ?mapfn:(x362 : (v:int -> k:int -> int) option) ->
-            fun ?thisArg:(x363 : any option) ->
+            fun ?this_arg:(x363 : any option) ->
               fun () ->
                 Uint8ClampedArray.t_of_js
                   (let x371 = t_to_js x370 in
@@ -953,11 +953,11 @@ module Int16Array =
              [|(Iterable.t_to_js Ojs.int_to_js x379)|])
     let (from_iterable :
       array:int Iterable.t ->
-        ?mapfn:(v:int -> k:int -> int) -> ?thisArg:any -> unit -> t)
+        ?mapfn:(v:int -> k:int -> int) -> ?this_arg:any -> unit -> t)
       =
       fun ~array:(x381 : int Iterable.t) ->
         fun ?mapfn:(x382 : (v:int -> k:int -> int) option) ->
-          fun ?thisArg:(x383 : any option) ->
+          fun ?this_arg:(x383 : any option) ->
             fun () ->
               t_of_js
                 (let x390 = Ojs.get_prop_ascii Ojs.global "Int16Array" in
@@ -1001,12 +1001,12 @@ module Int16ArrayConstructor =
       t ->
         array:int Iterable.t ->
           ?mapfn:(v:int -> k:int -> int) ->
-            ?thisArg:any -> unit -> Int16Array.t)
+            ?this_arg:any -> unit -> Int16Array.t)
       =
       fun (x403 : t) ->
         fun ~array:(x394 : int Iterable.t) ->
           fun ?mapfn:(x395 : (v:int -> k:int -> int) option) ->
-            fun ?thisArg:(x396 : any option) ->
+            fun ?this_arg:(x396 : any option) ->
               fun () ->
                 Int16Array.t_of_js
                   (let x404 = t_to_js x403 in
@@ -1064,11 +1064,11 @@ module Uint16Array =
              [|(Iterable.t_to_js Ojs.int_to_js x412)|])
     let (from_iterable :
       array:int Iterable.t ->
-        ?mapfn:(v:int -> k:int -> int) -> ?thisArg:any -> unit -> t)
+        ?mapfn:(v:int -> k:int -> int) -> ?this_arg:any -> unit -> t)
       =
       fun ~array:(x414 : int Iterable.t) ->
         fun ?mapfn:(x415 : (v:int -> k:int -> int) option) ->
-          fun ?thisArg:(x416 : any option) ->
+          fun ?this_arg:(x416 : any option) ->
             fun () ->
               t_of_js
                 (let x423 = Ojs.get_prop_ascii Ojs.global "Uint16Array" in
@@ -1112,12 +1112,12 @@ module Uint16ArrayConstructor =
       t ->
         array:int Iterable.t ->
           ?mapfn:(v:int -> k:int -> int) ->
-            ?thisArg:any -> unit -> Uint16Array.t)
+            ?this_arg:any -> unit -> Uint16Array.t)
       =
       fun (x436 : t) ->
         fun ~array:(x427 : int Iterable.t) ->
           fun ?mapfn:(x428 : (v:int -> k:int -> int) option) ->
-            fun ?thisArg:(x429 : any option) ->
+            fun ?this_arg:(x429 : any option) ->
               fun () ->
                 Uint16Array.t_of_js
                   (let x437 = t_to_js x436 in
@@ -1175,11 +1175,11 @@ module Int32Array =
              [|(Iterable.t_to_js Ojs.int_to_js x445)|])
     let (from_iterable :
       array:int Iterable.t ->
-        ?mapfn:(v:int -> k:int -> int) -> ?thisArg:any -> unit -> t)
+        ?mapfn:(v:int -> k:int -> int) -> ?this_arg:any -> unit -> t)
       =
       fun ~array:(x447 : int Iterable.t) ->
         fun ?mapfn:(x448 : (v:int -> k:int -> int) option) ->
-          fun ?thisArg:(x449 : any option) ->
+          fun ?this_arg:(x449 : any option) ->
             fun () ->
               t_of_js
                 (let x456 = Ojs.get_prop_ascii Ojs.global "Int32Array" in
@@ -1223,12 +1223,12 @@ module Int32ArrayConstructor =
       t ->
         array:int Iterable.t ->
           ?mapfn:(v:int -> k:int -> int) ->
-            ?thisArg:any -> unit -> Int32Array.t)
+            ?this_arg:any -> unit -> Int32Array.t)
       =
       fun (x469 : t) ->
         fun ~array:(x460 : int Iterable.t) ->
           fun ?mapfn:(x461 : (v:int -> k:int -> int) option) ->
-            fun ?thisArg:(x462 : any option) ->
+            fun ?this_arg:(x462 : any option) ->
               fun () ->
                 Int32Array.t_of_js
                   (let x470 = t_to_js x469 in
@@ -1286,11 +1286,11 @@ module Uint32Array =
              [|(Iterable.t_to_js Ojs.int_to_js x478)|])
     let (from_iterable :
       array:int Iterable.t ->
-        ?mapfn:(v:int -> k:int -> int) -> ?thisArg:any -> unit -> t)
+        ?mapfn:(v:int -> k:int -> int) -> ?this_arg:any -> unit -> t)
       =
       fun ~array:(x480 : int Iterable.t) ->
         fun ?mapfn:(x481 : (v:int -> k:int -> int) option) ->
-          fun ?thisArg:(x482 : any option) ->
+          fun ?this_arg:(x482 : any option) ->
             fun () ->
               t_of_js
                 (let x489 = Ojs.get_prop_ascii Ojs.global "Uint32Array" in
@@ -1334,12 +1334,12 @@ module Uint32ArrayConstructor =
       t ->
         array:int Iterable.t ->
           ?mapfn:(v:int -> k:int -> int) ->
-            ?thisArg:any -> unit -> Uint32Array.t)
+            ?this_arg:any -> unit -> Uint32Array.t)
       =
       fun (x502 : t) ->
         fun ~array:(x493 : int Iterable.t) ->
           fun ?mapfn:(x494 : (v:int -> k:int -> int) option) ->
-            fun ?thisArg:(x495 : any option) ->
+            fun ?this_arg:(x495 : any option) ->
               fun () ->
                 Uint32Array.t_of_js
                   (let x503 = t_to_js x502 in
@@ -1397,11 +1397,11 @@ module Float32Array =
              [|(Iterable.t_to_js Ojs.int_to_js x511)|])
     let (from_iterable :
       array:int Iterable.t ->
-        ?mapfn:(v:int -> k:int -> int) -> ?thisArg:any -> unit -> t)
+        ?mapfn:(v:int -> k:int -> int) -> ?this_arg:any -> unit -> t)
       =
       fun ~array:(x513 : int Iterable.t) ->
         fun ?mapfn:(x514 : (v:int -> k:int -> int) option) ->
-          fun ?thisArg:(x515 : any option) ->
+          fun ?this_arg:(x515 : any option) ->
             fun () ->
               t_of_js
                 (let x522 = Ojs.get_prop_ascii Ojs.global "Float32Array" in
@@ -1445,12 +1445,12 @@ module Float32ArrayConstructor =
       t ->
         array:int Iterable.t ->
           ?mapfn:(v:int -> k:int -> int) ->
-            ?thisArg:any -> unit -> Float32Array.t)
+            ?this_arg:any -> unit -> Float32Array.t)
       =
       fun (x535 : t) ->
         fun ~array:(x526 : int Iterable.t) ->
           fun ?mapfn:(x527 : (v:int -> k:int -> int) option) ->
-            fun ?thisArg:(x528 : any option) ->
+            fun ?this_arg:(x528 : any option) ->
               fun () ->
                 Float32Array.t_of_js
                   (let x536 = t_to_js x535 in
@@ -1508,11 +1508,11 @@ module Float64Array =
              [|(Iterable.t_to_js Ojs.int_to_js x544)|])
     let (from_iterable :
       array:int Iterable.t ->
-        ?mapfn:(v:int -> k:int -> int) -> ?thisArg:any -> unit -> t)
+        ?mapfn:(v:int -> k:int -> int) -> ?this_arg:any -> unit -> t)
       =
       fun ~array:(x546 : int Iterable.t) ->
         fun ?mapfn:(x547 : (v:int -> k:int -> int) option) ->
-          fun ?thisArg:(x548 : any option) ->
+          fun ?this_arg:(x548 : any option) ->
             fun () ->
               t_of_js
                 (let x555 = Ojs.get_prop_ascii Ojs.global "Float64Array" in
@@ -1556,12 +1556,12 @@ module Float64ArrayConstructor =
       t ->
         array:int Iterable.t ->
           ?mapfn:(v:int -> k:int -> int) ->
-            ?thisArg:any -> unit -> Float64Array.t)
+            ?this_arg:any -> unit -> Float64Array.t)
       =
       fun (x568 : t) ->
         fun ~array:(x559 : int Iterable.t) ->
           fun ?mapfn:(x560 : (v:int -> k:int -> int) option) ->
-            fun ?thisArg:(x561 : any option) ->
+            fun ?this_arg:(x561 : any option) ->
               fun () ->
                 Float64Array.t_of_js
                   (let x569 = t_to_js x568 in

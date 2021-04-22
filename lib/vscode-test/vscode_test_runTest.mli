@@ -4,8 +4,6 @@
 
 open Es5
 
-
-
 module AnonymousInterface0 : sig
   type t
 
@@ -20,15 +18,15 @@ end
 
 (* import { DownloadVersion, DownloadPlatform } from './download'; *)
 module TestOptions : sig
-  type t = _TestOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_vscodeExecutablePath : t -> string [@@js.get "vscodeExecutablePath"]
+  val get_vscode_executable_path : t -> string [@@js.get "vscodeExecutablePath"]
 
-  val set_vscodeExecutablePath : t -> string -> unit
+  val set_vscode_executable_path : t -> string -> unit
     [@@js.set "vscodeExecutablePath"]
 
   val get_version : t -> DownloadVersion.t [@@js.get "version"]
@@ -39,27 +37,27 @@ module TestOptions : sig
 
   val set_platform : t -> DownloadPlatform.t -> unit [@@js.set "platform"]
 
-  val get_extensionDevelopmentPath : t -> string
+  val get_extension_development_path : t -> string
     [@@js.get "extensionDevelopmentPath"]
 
-  val set_extensionDevelopmentPath : t -> string -> unit
+  val set_extension_development_path : t -> string -> unit
     [@@js.set "extensionDevelopmentPath"]
 
-  val get_extensionTestsPath : t -> string [@@js.get "extensionTestsPath"]
+  val get_extension_tests_path : t -> string [@@js.get "extensionTestsPath"]
 
-  val set_extensionTestsPath : t -> string -> unit
+  val set_extension_tests_path : t -> string -> unit
     [@@js.set "extensionTestsPath"]
 
-  val get_extensionTestsEnv : t -> AnonymousInterface0.t
+  val get_extension_tests_env : t -> AnonymousInterface0.t
     [@@js.get "extensionTestsEnv"]
 
-  val set_extensionTestsEnv : t -> AnonymousInterface0.t -> unit
+  val set_extension_tests_env : t -> AnonymousInterface0.t -> unit
     [@@js.set "extensionTestsEnv"]
 
-  val get_launchArgs : t -> string list [@@js.get "launchArgs"]
+  val get_launch_args : t -> string list [@@js.get "launchArgs"]
 
-  val set_launchArgs : t -> string list -> unit [@@js.set "launchArgs"]
+  val set_launch_args : t -> string list -> unit [@@js.set "launchArgs"]
 end
 [@@js.scope "TestOptions"]
 
-val runTests : options:_TestOptions -> int Promise.t [@@js.global "runTests"]
+val run_tests : options:TestOptions.t -> int Promise.t [@@js.global "runTests"]

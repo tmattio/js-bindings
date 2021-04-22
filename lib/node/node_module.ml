@@ -7,17 +7,17 @@ module Module =
   struct
     module Module =
       struct
-        let (syncBuiltinESMExports : unit -> unit) =
+        let (sync_builtin_esm_exports : unit -> unit) =
           fun () ->
             ignore
               (Ojs.call (Ojs.get_prop_ascii Import.module_ "Module")
                  "syncBuiltinESMExports" [||])
-        let (findSourceMap :
-          path:string -> ?error:Error.t -> unit -> module_Module_SourceMap) =
+        let (find_source_map :
+          path:string -> ?error:Error.t -> unit -> Module_SourceMap.t) =
           fun ~path:(x1 : string) ->
             fun ?error:(x2 : Error.t option) ->
               fun () ->
-                module_Module_SourceMap_of_js
+                Module_SourceMap.t_of_js
                   (let x5 = Ojs.get_prop_ascii Import.module_ "Module" in
                    Ojs.call (Ojs.get_prop_ascii x5 "findSourceMap") "apply"
                      [|x5;((let x3 =
@@ -34,12 +34,11 @@ module Module =
                             x3))|])
         module SourceMapPayload =
           struct
-            type t = module_Module_SourceMapPayload
-            let rec t_of_js : Ojs.t -> t =
-              fun (x7 : Ojs.t) -> module_Module_SourceMapPayload_of_js x7
-            and t_to_js : t -> Ojs.t =
-              fun (x6 : module_Module_SourceMapPayload) ->
-                module_Module_SourceMapPayload_to_js x6
+            type t_SourceMapPayload = Ojs.t
+            let rec t_SourceMapPayload_of_js : Ojs.t -> t_SourceMapPayload =
+              fun (x7 : Ojs.t) -> x7
+            and t_SourceMapPayload_to_js : t_SourceMapPayload -> Ojs.t =
+              fun (x6 : Ojs.t) -> x6
             let (get_file : t -> string) =
               fun (x8 : t) ->
                 Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x8) "file")
@@ -65,11 +64,11 @@ module Module =
                 fun (x17 : string list) ->
                   Ojs.set_prop_ascii (t_to_js x16) "sources"
                     (Ojs.list_to_js Ojs.string_to_js x17)
-            let (get_sourcesContent : t -> string list) =
+            let (get_sources_content : t -> string list) =
               fun (x19 : t) ->
                 Ojs.list_of_js Ojs.string_of_js
                   (Ojs.get_prop_ascii (t_to_js x19) "sourcesContent")
-            let (set_sourcesContent : t -> string list -> unit) =
+            let (set_sources_content : t -> string list -> unit) =
               fun (x21 : t) ->
                 fun (x22 : string list) ->
                   Ojs.set_prop_ascii (t_to_js x21) "sourcesContent"
@@ -92,11 +91,11 @@ module Module =
                 fun (x31 : string) ->
                   Ojs.set_prop_ascii (t_to_js x30) "mappings"
                     (Ojs.string_to_js x31)
-            let (get_sourceRoot : t -> string) =
+            let (get_source_root : t -> string) =
               fun (x32 : t) ->
                 Ojs.string_of_js
                   (Ojs.get_prop_ascii (t_to_js x32) "sourceRoot")
-            let (set_sourceRoot : t -> string -> unit) =
+            let (set_source_root : t -> string -> unit) =
               fun (x33 : t) ->
                 fun (x34 : string) ->
                   Ojs.set_prop_ascii (t_to_js x33) "sourceRoot"
@@ -104,53 +103,52 @@ module Module =
           end
         module SourceMapping =
           struct
-            type t = module_Module_SourceMapping
-            let rec t_of_js : Ojs.t -> t =
-              fun (x36 : Ojs.t) -> module_Module_SourceMapping_of_js x36
-            and t_to_js : t -> Ojs.t =
-              fun (x35 : module_Module_SourceMapping) ->
-                module_Module_SourceMapping_to_js x35
-            let (get_generatedLine : t -> int) =
+            type t_SourceMapping = Ojs.t
+            let rec t_SourceMapping_of_js : Ojs.t -> t_SourceMapping =
+              fun (x36 : Ojs.t) -> x36
+            and t_SourceMapping_to_js : t_SourceMapping -> Ojs.t =
+              fun (x35 : Ojs.t) -> x35
+            let (get_generated_line : t -> int) =
               fun (x37 : t) ->
                 Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x37) "generatedLine")
-            let (set_generatedLine : t -> int -> unit) =
+            let (set_generated_line : t -> int -> unit) =
               fun (x38 : t) ->
                 fun (x39 : int) ->
                   Ojs.set_prop_ascii (t_to_js x38) "generatedLine"
                     (Ojs.int_to_js x39)
-            let (get_generatedColumn : t -> int) =
+            let (get_generated_column : t -> int) =
               fun (x40 : t) ->
                 Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x40) "generatedColumn")
-            let (set_generatedColumn : t -> int -> unit) =
+            let (set_generated_column : t -> int -> unit) =
               fun (x41 : t) ->
                 fun (x42 : int) ->
                   Ojs.set_prop_ascii (t_to_js x41) "generatedColumn"
                     (Ojs.int_to_js x42)
-            let (get_originalSource : t -> string) =
+            let (get_original_source : t -> string) =
               fun (x43 : t) ->
                 Ojs.string_of_js
                   (Ojs.get_prop_ascii (t_to_js x43) "originalSource")
-            let (set_originalSource : t -> string -> unit) =
+            let (set_original_source : t -> string -> unit) =
               fun (x44 : t) ->
                 fun (x45 : string) ->
                   Ojs.set_prop_ascii (t_to_js x44) "originalSource"
                     (Ojs.string_to_js x45)
-            let (get_originalLine : t -> int) =
+            let (get_original_line : t -> int) =
               fun (x46 : t) ->
                 Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x46) "originalLine")
-            let (set_originalLine : t -> int -> unit) =
+            let (set_original_line : t -> int -> unit) =
               fun (x47 : t) ->
                 fun (x48 : int) ->
                   Ojs.set_prop_ascii (t_to_js x47) "originalLine"
                     (Ojs.int_to_js x48)
-            let (get_originalColumn : t -> int) =
+            let (get_original_column : t -> int) =
               fun (x49 : t) ->
                 Ojs.int_of_js
                   (Ojs.get_prop_ascii (t_to_js x49) "originalColumn")
-            let (set_originalColumn : t -> int -> unit) =
+            let (set_original_column : t -> int -> unit) =
               fun (x50 : t) ->
                 fun (x51 : int) ->
                   Ojs.set_prop_ascii (t_to_js x50) "originalColumn"
@@ -158,39 +156,36 @@ module Module =
           end
         module SourceMap =
           struct
-            type t = module_Module_SourceMap
-            let rec t_of_js : Ojs.t -> t =
-              fun (x53 : Ojs.t) -> module_Module_SourceMap_of_js x53
-            and t_to_js : t -> Ojs.t =
-              fun (x52 : module_Module_SourceMap) ->
-                module_Module_SourceMap_to_js x52
-            let (get_payload : t -> module_Module_SourceMapPayload) =
+            type t_SourceMap = Ojs.t
+            let rec t_SourceMap_of_js : Ojs.t -> t_SourceMap =
+              fun (x53 : Ojs.t) -> x53
+            and t_SourceMap_to_js : t_SourceMap -> Ojs.t =
+              fun (x52 : Ojs.t) -> x52
+            let (get_payload : t -> Module_SourceMapPayload.t) =
               fun (x54 : t) ->
-                module_Module_SourceMapPayload_of_js
+                Module_SourceMapPayload.t_of_js
                   (Ojs.get_prop_ascii (t_to_js x54) "payload")
-            let (create : payload:module_Module_SourceMapPayload -> t) =
-              fun ~payload:(x55 : module_Module_SourceMapPayload) ->
+            let (create : payload:Module_SourceMapPayload.t -> t) =
+              fun ~payload:(x55 : Module_SourceMapPayload.t) ->
                 t_of_js
                   (Ojs.new_obj
                      (Ojs.get_prop_ascii
                         (Ojs.get_prop_ascii Import.module_ "Module")
                         "SourceMap")
-                     [|(module_Module_SourceMapPayload_to_js x55)|])
-            let (findEntry :
-              t -> line:int -> column:int -> module_Module_SourceMapping) =
+                     [|(Module_SourceMapPayload.t_to_js x55)|])
+            let (find_entry :
+              t -> line:int -> column:int -> Module_SourceMapping.t) =
               fun (x58 : t) ->
                 fun ~line:(x56 : int) ->
                   fun ~column:(x57 : int) ->
-                    module_Module_SourceMapping_of_js
+                    Module_SourceMapping.t_of_js
                       (Ojs.call (t_to_js x58) "findEntry"
                          [|(Ojs.int_to_js x56);(Ojs.int_to_js x57)|])
           end
-        type t = module_Module
-        let rec t_of_js : Ojs.t -> t =
-          fun (x60 : Ojs.t) -> module_Module_of_js x60
-        and t_to_js : t -> Ojs.t =
-          fun (x59 : module_Module) -> module_Module_to_js x59
-        let (runMain : unit -> unit) =
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x60 : Ojs.t) -> x60
+        and t_to_js : t -> Ojs.t = fun (x59 : Ojs.t) -> x59
+        let (run_main : unit -> unit) =
           fun () ->
             ignore
               (Ojs.call (Ojs.get_prop_ascii Import.module_ "Module")
@@ -200,34 +195,34 @@ module Module =
             Ojs.string_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.module_ "Module") "wrap"
                  [|(Ojs.string_to_js x61)|])
-        let (createRequireFromPath : path:string -> NodeRequire.t) =
+        let (create_require_from_path : path:string -> NodeRequire.t) =
           fun ~path:(x62 : string) ->
             NodeRequire.t_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.module_ "Module")
                  "createRequireFromPath" [|(Ojs.string_to_js x62)|])
-        let (createRequire :
+        let (create_require :
           path:Node_url.Url.Url.t or_string -> NodeRequire.t) =
           fun ~path:(x63 : Node_url.Url.Url.t or_string) ->
             NodeRequire.t_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.module_ "Module")
                  "createRequire"
                  [|(or_string_to_js Node_url.Url.Url.t_to_js x63)|])
-        let (get_builtinModules : unit -> string list) =
+        let (get_builtin_modules : unit -> string list) =
           fun () ->
             Ojs.list_of_js Ojs.string_of_js
               (Ojs.get_prop_ascii
                  (Ojs.get_prop_ascii Import.module_ "Module")
                  "builtinModules")
-        let (set_builtinModules : string list -> unit) =
+        let (set_builtin_modules : string list -> unit) =
           fun (x66 : string list) ->
             Ojs.set_prop_ascii (Ojs.get_prop_ascii Import.module_ "Module")
               "builtinModules" (Ojs.list_to_js Ojs.string_to_js x66)
-        let (get_Module : unit -> any) =
+        let (get_module : unit -> any) =
           fun () ->
             any_of_js
               (Ojs.get_prop_ascii
                  (Ojs.get_prop_ascii Import.module_ "Module") "Module")
-        let (set_Module : any -> unit) =
+        let (set_module : any -> unit) =
           fun (x68 : any) ->
             Ojs.set_prop_ascii (Ojs.get_prop_ascii Import.module_ "Module")
               "Module" (any_to_js x68)

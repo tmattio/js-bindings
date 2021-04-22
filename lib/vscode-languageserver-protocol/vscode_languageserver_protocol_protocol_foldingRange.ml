@@ -2,206 +2,140 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module Types =
-      struct
-        type _FoldingRangeKind = [ `Comment  | `Imports  | `Region ]
-        and _FoldingRangeKind_Comment = [ `Comment ]
-        and _FoldingRangeKind_Imports = [ `Imports ]
-        and _FoldingRangeKind_Region = [ `Region ]
-        and _FoldingRangeRequest_HandlerSignature =
-          (_FoldingRangeParams, FoldingRange.t list or_null, unit)
-            RequestHandler.t
-        let rec _FoldingRangeKind_of_js : Ojs.t -> _FoldingRangeKind =
-          fun (x2 : Ojs.t) ->
-            let x3 = x2 in
-            match Ojs.string_of_js x3 with
-            | "comment" -> `Comment
-            | "imports" -> `Imports
-            | "region" -> `Region
-            | _ -> assert false
-        and _FoldingRangeKind_to_js : _FoldingRangeKind -> Ojs.t =
-          fun (x1 : [ `Comment  | `Imports  | `Region ]) ->
-            match x1 with
-            | `Comment -> Ojs.string_to_js "comment"
-            | `Imports -> Ojs.string_to_js "imports"
-            | `Region -> Ojs.string_to_js "region"
-        and _FoldingRangeKind_Comment_of_js :
-          Ojs.t -> _FoldingRangeKind_Comment =
-          fun (x5 : Ojs.t) ->
-            let x6 = x5 in
-            match Ojs.string_of_js x6 with
-            | "comment" -> `Comment
-            | _ -> assert false
-        and _FoldingRangeKind_Comment_to_js :
-          _FoldingRangeKind_Comment -> Ojs.t =
-          fun (x4 : [ `Comment ]) ->
-            match x4 with | `Comment -> Ojs.string_to_js "comment"
-        and _FoldingRangeKind_Imports_of_js :
-          Ojs.t -> _FoldingRangeKind_Imports =
-          fun (x8 : Ojs.t) ->
-            let x9 = x8 in
-            match Ojs.string_of_js x9 with
-            | "imports" -> `Imports
-            | _ -> assert false
-        and _FoldingRangeKind_Imports_to_js :
-          _FoldingRangeKind_Imports -> Ojs.t =
-          fun (x7 : [ `Imports ]) ->
-            match x7 with | `Imports -> Ojs.string_to_js "imports"
-        and _FoldingRangeKind_Region_of_js :
-          Ojs.t -> _FoldingRangeKind_Region =
-          fun (x11 : Ojs.t) ->
-            let x12 = x11 in
-            match Ojs.string_of_js x12 with
-            | "region" -> `Region
-            | _ -> assert false
-        and _FoldingRangeKind_Region_to_js :
-          _FoldingRangeKind_Region -> Ojs.t =
-          fun (x10 : [ `Region ]) ->
-            match x10 with | `Region -> Ojs.string_to_js "region"
-        and _FoldingRangeRequest_HandlerSignature_of_js :
-          Ojs.t -> _FoldingRangeRequest_HandlerSignature =
-          fun (x19 : Ojs.t) ->
-            RequestHandler.t_of_js _FoldingRangeParams_of_js
-              (fun (x21 : Ojs.t) ->
-                 or_null_of_js
-                   (fun (x22 : Ojs.t) ->
-                      Ojs.list_of_js FoldingRange.t_of_js x22) x21)
-              Ojs.unit_of_js x19
-        and _FoldingRangeRequest_HandlerSignature_to_js :
-          _FoldingRangeRequest_HandlerSignature -> Ojs.t =
-          fun
-            (x13 :
-              (_FoldingRangeParams, FoldingRange.t list or_null, unit)
-                RequestHandler.t)
-            ->
-            RequestHandler.t_to_js _FoldingRangeParams_to_js
-              (fun (x15 : FoldingRange.t list or_null) ->
-                 or_null_to_js
-                   (fun (x16 : FoldingRange.t list) ->
-                      Ojs.list_to_js FoldingRange.t_to_js x16) x15)
-              Ojs.unit_to_js x13
-      end
-  end
 module FoldingRangeClientCapabilities =
   struct
-    type t = _FoldingRangeClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x26 : Ojs.t) -> _FoldingRangeClientCapabilities_of_js x26
-    and t_to_js : t -> Ojs.t =
-      fun (x25 : _FoldingRangeClientCapabilities) ->
-        _FoldingRangeClientCapabilities_to_js x25
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x27 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
+    let (get_dynamic_registration : t -> bool) =
+      fun (x3 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x27) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x28 : t) ->
-        fun (x29 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x28) "dynamicRegistration"
-            (Ojs.bool_to_js x29)
-    let (get_rangeLimit : t -> Uinteger.t) =
-      fun (x30 : t) ->
-        Uinteger.t_of_js (Ojs.get_prop_ascii (t_to_js x30) "rangeLimit")
-    let (set_rangeLimit : t -> Uinteger.t -> unit) =
-      fun (x31 : t) ->
-        fun (x32 : Uinteger.t) ->
-          Ojs.set_prop_ascii (t_to_js x31) "rangeLimit"
-            (Uinteger.t_to_js x32)
-    let (get_lineFoldingOnly : t -> bool) =
-      fun (x33 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x33) "lineFoldingOnly")
-    let (set_lineFoldingOnly : t -> bool -> unit) =
-      fun (x34 : t) ->
-        fun (x35 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x34) "lineFoldingOnly"
-            (Ojs.bool_to_js x35)
+          (Ojs.get_prop_ascii (t_to_js x3) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x4 : t) ->
+        fun (x5 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x4) "dynamicRegistration"
+            (Ojs.bool_to_js x5)
+    let (get_range_limit : t -> Uinteger.t) =
+      fun (x6 : t) ->
+        Uinteger.t_of_js (Ojs.get_prop_ascii (t_to_js x6) "rangeLimit")
+    let (set_range_limit : t -> Uinteger.t -> unit) =
+      fun (x7 : t) ->
+        fun (x8 : Uinteger.t) ->
+          Ojs.set_prop_ascii (t_to_js x7) "rangeLimit" (Uinteger.t_to_js x8)
+    let (get_line_folding_only : t -> bool) =
+      fun (x9 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x9) "lineFoldingOnly")
+    let (set_line_folding_only : t -> bool -> unit) =
+      fun (x10 : t) ->
+        fun (x11 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x10) "lineFoldingOnly"
+            (Ojs.bool_to_js x11)
   end
 module FoldingRangeOptions =
   struct
-    type t = _FoldingRangeOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x37 : Ojs.t) -> _FoldingRangeOptions_of_js x37
-    and t_to_js : t -> Ojs.t =
-      fun (x36 : _FoldingRangeOptions) -> _FoldingRangeOptions_to_js x36
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x13 : Ojs.t) -> x13
+    and t_to_js : t -> Ojs.t = fun (x12 : Ojs.t) -> x12
     let (cast : t -> WorkDoneProgressOptions.t) =
-      fun (x38 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x38)
+      fun (x14 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x14)
   end
 module FoldingRangeRegistrationOptions =
   struct
-    type t = _FoldingRangeRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x40 : Ojs.t) -> _FoldingRangeRegistrationOptions_of_js x40
-    and t_to_js : t -> Ojs.t =
-      fun (x39 : _FoldingRangeRegistrationOptions) ->
-        _FoldingRangeRegistrationOptions_to_js x39
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x16 : Ojs.t) -> x16
+    and t_to_js : t -> Ojs.t = fun (x15 : Ojs.t) -> x15
     let (cast : t -> TextDocumentRegistrationOptions.t) =
-      fun (x41 : t) -> TextDocumentRegistrationOptions.t_of_js (t_to_js x41)
-    let (cast' : t -> _FoldingRangeOptions) =
-      fun (x42 : t) -> _FoldingRangeOptions_of_js (t_to_js x42)
+      fun (x17 : t) -> TextDocumentRegistrationOptions.t_of_js (t_to_js x17)
+    let (cast' : t -> FoldingRangeOptions.t) =
+      fun (x18 : t) -> FoldingRangeOptions.t_of_js (t_to_js x18)
     let (cast'' : t -> StaticRegistrationOptions.t) =
-      fun (x43 : t) -> StaticRegistrationOptions.t_of_js (t_to_js x43)
+      fun (x19 : t) -> StaticRegistrationOptions.t_of_js (t_to_js x19)
   end
 module FoldingRangeKind =
   struct
-    type t = _FoldingRangeKind
+    type t = [ `Comment  | `Imports  | `Region ]
     let rec t_of_js : Ojs.t -> t =
-      fun (x45 : Ojs.t) -> _FoldingRangeKind_of_js x45
+      fun (x21 : Ojs.t) ->
+        let x22 = x21 in
+        match Ojs.string_of_js x22 with
+        | "comment" -> `Comment
+        | "imports" -> `Imports
+        | "region" -> `Region
+        | _ -> assert false
     and t_to_js : t -> Ojs.t =
-      fun (x44 : _FoldingRangeKind) -> _FoldingRangeKind_to_js x44
+      fun (x20 : [ `Comment  | `Imports  | `Region ]) ->
+        match x20 with
+        | `Comment -> Ojs.string_to_js "comment"
+        | `Imports -> Ojs.string_to_js "imports"
+        | `Region -> Ojs.string_to_js "region"
   end
 module FoldingRangeParams =
   struct
-    type t = _FoldingRangeParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x47 : Ojs.t) -> _FoldingRangeParams_of_js x47
-    and t_to_js : t -> Ojs.t =
-      fun (x46 : _FoldingRangeParams) -> _FoldingRangeParams_to_js x46
-    let (get_textDocument : t -> TextDocumentIdentifier.t) =
-      fun (x48 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x24 : Ojs.t) -> x24
+    and t_to_js : t -> Ojs.t = fun (x23 : Ojs.t) -> x23
+    let (get_text_document : t -> TextDocumentIdentifier.t) =
+      fun (x25 : t) ->
         TextDocumentIdentifier.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x48) "textDocument")
-    let (set_textDocument : t -> TextDocumentIdentifier.t -> unit) =
-      fun (x49 : t) ->
-        fun (x50 : TextDocumentIdentifier.t) ->
-          Ojs.set_prop_ascii (t_to_js x49) "textDocument"
-            (TextDocumentIdentifier.t_to_js x50)
+          (Ojs.get_prop_ascii (t_to_js x25) "textDocument")
+    let (set_text_document : t -> TextDocumentIdentifier.t -> unit) =
+      fun (x26 : t) ->
+        fun (x27 : TextDocumentIdentifier.t) ->
+          Ojs.set_prop_ascii (t_to_js x26) "textDocument"
+            (TextDocumentIdentifier.t_to_js x27)
     let (cast : t -> WorkDoneProgressParams.t) =
-      fun (x51 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x51)
+      fun (x28 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x28)
     let (cast' : t -> PartialResultParams.t) =
-      fun (x52 : t) -> PartialResultParams.t_of_js (t_to_js x52)
+      fun (x29 : t) -> PartialResultParams.t_of_js (t_to_js x29)
   end
 module FoldingRangeRequest =
   struct
     let (method_ : [ `L_s3_textDocument_foldingRange ]) =
-      let x53 =
+      let x30 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "FoldingRangeRequest") "method" in
-      match Ojs.string_of_js x53 with
+      match Ojs.string_of_js x30 with
       | "textDocument/foldingRange" -> `L_s3_textDocument_foldingRange
       | _ -> assert false
     let (type_ :
-      (_FoldingRangeParams, FoldingRange.t list or_null, FoldingRange.t list,
-        any, _FoldingRangeRegistrationOptions) ProtocolRequestType.t)
+      (FoldingRangeParams.t, FoldingRange.t list or_null,
+        FoldingRange.t list, any, FoldingRangeRegistrationOptions.t)
+        ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _FoldingRangeParams_of_js
-        (fun (x55 : Ojs.t) ->
+      ProtocolRequestType.t_of_js FoldingRangeParams.t_of_js
+        (fun (x32 : Ojs.t) ->
            or_null_of_js
-             (fun (x56 : Ojs.t) -> Ojs.list_of_js FoldingRange.t_of_js x56)
-             x55)
-        (fun (x58 : Ojs.t) -> Ojs.list_of_js FoldingRange.t_of_js x58)
-        any_of_js _FoldingRangeRegistrationOptions_of_js
+             (fun (x33 : Ojs.t) -> Ojs.list_of_js FoldingRange.t_of_js x33)
+             x32)
+        (fun (x35 : Ojs.t) -> Ojs.list_of_js FoldingRange.t_of_js x35)
+        any_of_js FoldingRangeRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "FoldingRangeRequest") "type")
     module HandlerSignature =
       struct
-        type t = _FoldingRangeRequest_HandlerSignature
+        type t =
+          (FoldingRangeParams.t, FoldingRange.t list or_null, unit)
+            RequestHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x63 : Ojs.t) ->
-            _FoldingRangeRequest_HandlerSignature_of_js x63
+          fun (x45 : Ojs.t) ->
+            RequestHandler.t_of_js FoldingRangeParams.t_of_js
+              (fun (x47 : Ojs.t) ->
+                 or_null_of_js
+                   (fun (x48 : Ojs.t) ->
+                      Ojs.list_of_js FoldingRange.t_of_js x48) x47)
+              Ojs.unit_of_js x45
         and t_to_js : t -> Ojs.t =
-          fun (x62 : _FoldingRangeRequest_HandlerSignature) ->
-            _FoldingRangeRequest_HandlerSignature_to_js x62
+          fun
+            (x39 :
+              (FoldingRangeParams.t, FoldingRange.t list or_null, unit)
+                RequestHandler.t)
+            ->
+            RequestHandler.t_to_js FoldingRangeParams.t_to_js
+              (fun (x41 : FoldingRange.t list or_null) ->
+                 or_null_to_js
+                   (fun (x42 : FoldingRange.t list) ->
+                      Ojs.list_to_js FoldingRange.t_to_js x42) x41)
+              Ojs.unit_to_js x39
       end
   end

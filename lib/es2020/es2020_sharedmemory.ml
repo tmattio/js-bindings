@@ -8,11 +8,11 @@ module Atomics =
     include struct include Atomics end
     let (add :
       t ->
-        typedArray:(BigInt64Array.t, BigUint64Array.t) union2 ->
+        typed_array:(BigInt64Array.t, BigUint64Array.t) union2 ->
           index:int -> value:bigint -> bigint)
       =
       fun (x6 : t) ->
-        fun ~typedArray:(x1 : (BigInt64Array.t, BigUint64Array.t) union2) ->
+        fun ~typed_array:(x1 : (BigInt64Array.t, BigUint64Array.t) union2) ->
           fun ~index:(x4 : int) ->
             fun ~value:(x5 : bigint) ->
               bigint_of_js
@@ -22,11 +22,11 @@ module Atomics =
                      bigint_to_js x5)|])
     let (and_ :
       t ->
-        typedArray:(BigInt64Array.t, BigUint64Array.t) union2 ->
+        typed_array:(BigInt64Array.t, BigUint64Array.t) union2 ->
           index:int -> value:bigint -> bigint)
       =
       fun (x12 : t) ->
-        fun ~typedArray:(x7 : (BigInt64Array.t, BigUint64Array.t) union2) ->
+        fun ~typed_array:(x7 : (BigInt64Array.t, BigUint64Array.t) union2) ->
           fun ~index:(x10 : int) ->
             fun ~value:(x11 : bigint) ->
               bigint_of_js
@@ -36,15 +36,16 @@ module Atomics =
                      bigint_to_js x11)|])
     let (compare_exchange :
       t ->
-        typedArray:(BigInt64Array.t, BigUint64Array.t) union2 ->
+        typed_array:(BigInt64Array.t, BigUint64Array.t) union2 ->
           index:int ->
-            expectedValue:bigint -> replacementValue:bigint -> bigint)
+            expected_value:bigint -> replacement_value:bigint -> bigint)
       =
       fun (x19 : t) ->
-        fun ~typedArray:(x13 : (BigInt64Array.t, BigUint64Array.t) union2) ->
+        fun ~typed_array:(x13 : (BigInt64Array.t, BigUint64Array.t) union2)
+          ->
           fun ~index:(x16 : int) ->
-            fun ~expectedValue:(x17 : bigint) ->
-              fun ~replacementValue:(x18 : bigint) ->
+            fun ~expected_value:(x17 : bigint) ->
+              fun ~replacement_value:(x18 : bigint) ->
                 bigint_of_js
                   (Ojs.call (t_to_js x19) "compareExchange"
                      [|(union2_to_js BigInt64Array.t_to_js
@@ -52,11 +53,12 @@ module Atomics =
                        bigint_to_js x17);(bigint_to_js x18)|])
     let (exchange :
       t ->
-        typedArray:(BigInt64Array.t, BigUint64Array.t) union2 ->
+        typed_array:(BigInt64Array.t, BigUint64Array.t) union2 ->
           index:int -> value:bigint -> bigint)
       =
       fun (x25 : t) ->
-        fun ~typedArray:(x20 : (BigInt64Array.t, BigUint64Array.t) union2) ->
+        fun ~typed_array:(x20 : (BigInt64Array.t, BigUint64Array.t) union2)
+          ->
           fun ~index:(x23 : int) ->
             fun ~value:(x24 : bigint) ->
               bigint_of_js
@@ -66,11 +68,12 @@ module Atomics =
                      bigint_to_js x24)|])
     let (load :
       t ->
-        typedArray:(BigInt64Array.t, BigUint64Array.t) union2 ->
+        typed_array:(BigInt64Array.t, BigUint64Array.t) union2 ->
           index:int -> bigint)
       =
       fun (x30 : t) ->
-        fun ~typedArray:(x26 : (BigInt64Array.t, BigUint64Array.t) union2) ->
+        fun ~typed_array:(x26 : (BigInt64Array.t, BigUint64Array.t) union2)
+          ->
           fun ~index:(x29 : int) ->
             bigint_of_js
               (Ojs.call (t_to_js x30) "load"
@@ -78,11 +81,12 @@ module Atomics =
                       x26);(Ojs.int_to_js x29)|])
     let (or_ :
       t ->
-        typedArray:(BigInt64Array.t, BigUint64Array.t) union2 ->
+        typed_array:(BigInt64Array.t, BigUint64Array.t) union2 ->
           index:int -> value:bigint -> bigint)
       =
       fun (x36 : t) ->
-        fun ~typedArray:(x31 : (BigInt64Array.t, BigUint64Array.t) union2) ->
+        fun ~typed_array:(x31 : (BigInt64Array.t, BigUint64Array.t) union2)
+          ->
           fun ~index:(x34 : int) ->
             fun ~value:(x35 : bigint) ->
               bigint_of_js
@@ -92,11 +96,12 @@ module Atomics =
                      bigint_to_js x35)|])
     let (store :
       t ->
-        typedArray:(BigInt64Array.t, BigUint64Array.t) union2 ->
+        typed_array:(BigInt64Array.t, BigUint64Array.t) union2 ->
           index:int -> value:bigint -> bigint)
       =
       fun (x42 : t) ->
-        fun ~typedArray:(x37 : (BigInt64Array.t, BigUint64Array.t) union2) ->
+        fun ~typed_array:(x37 : (BigInt64Array.t, BigUint64Array.t) union2)
+          ->
           fun ~index:(x40 : int) ->
             fun ~value:(x41 : bigint) ->
               bigint_of_js
@@ -106,11 +111,12 @@ module Atomics =
                      bigint_to_js x41)|])
     let (sub :
       t ->
-        typedArray:(BigInt64Array.t, BigUint64Array.t) union2 ->
+        typed_array:(BigInt64Array.t, BigUint64Array.t) union2 ->
           index:int -> value:bigint -> bigint)
       =
       fun (x48 : t) ->
-        fun ~typedArray:(x43 : (BigInt64Array.t, BigUint64Array.t) union2) ->
+        fun ~typed_array:(x43 : (BigInt64Array.t, BigUint64Array.t) union2)
+          ->
           fun ~index:(x46 : int) ->
             fun ~value:(x47 : bigint) ->
               bigint_of_js
@@ -120,13 +126,13 @@ module Atomics =
                      bigint_to_js x47)|])
     let (wait :
       t ->
-        typedArray:BigInt64Array.t ->
+        typed_array:BigInt64Array.t ->
           index:int ->
             value:bigint ->
               ?timeout:int -> unit -> [ `not_equal  | `ok  | `timed_out ])
       =
       fun (x55 : t) ->
-        fun ~typedArray:(x49 : BigInt64Array.t) ->
+        fun ~typed_array:(x49 : BigInt64Array.t) ->
           fun ~index:(x50 : int) ->
             fun ~value:(x51 : bigint) ->
               fun ?timeout:(x52 : int option) ->
@@ -159,10 +165,10 @@ module Atomics =
                   | _ -> assert false
     let (notify :
       t ->
-        typedArray:BigInt64Array.t -> index:int -> ?count:int -> unit -> int)
+        typed_array:BigInt64Array.t -> index:int -> ?count:int -> unit -> int)
       =
       fun (x63 : t) ->
-        fun ~typedArray:(x58 : BigInt64Array.t) ->
+        fun ~typed_array:(x58 : BigInt64Array.t) ->
           fun ~index:(x59 : int) ->
             fun ?count:(x60 : int option) ->
               fun () ->
@@ -187,11 +193,12 @@ module Atomics =
                              x61))|])
     let (xor :
       t ->
-        typedArray:(BigInt64Array.t, BigUint64Array.t) union2 ->
+        typed_array:(BigInt64Array.t, BigUint64Array.t) union2 ->
           index:int -> value:bigint -> bigint)
       =
       fun (x70 : t) ->
-        fun ~typedArray:(x65 : (BigInt64Array.t, BigUint64Array.t) union2) ->
+        fun ~typed_array:(x65 : (BigInt64Array.t, BigUint64Array.t) union2)
+          ->
           fun ~index:(x68 : int) ->
             fun ~value:(x69 : bigint) ->
               bigint_of_js

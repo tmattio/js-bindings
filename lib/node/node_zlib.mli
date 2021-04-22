@@ -31,25 +31,25 @@ module Zlib : sig
 
     val set_flush : t -> int -> unit [@@js.set "flush"]
 
-    val get_finishFlush : t -> int [@@js.get "finishFlush"]
+    val get_finish_flush : t -> int [@@js.get "finishFlush"]
 
-    val set_finishFlush : t -> int -> unit [@@js.set "finishFlush"]
+    val set_finish_flush : t -> int -> unit [@@js.set "finishFlush"]
 
-    val get_chunkSize : t -> int [@@js.get "chunkSize"]
+    val get_chunk_size : t -> int [@@js.get "chunkSize"]
 
-    val set_chunkSize : t -> int -> unit [@@js.set "chunkSize"]
+    val set_chunk_size : t -> int -> unit [@@js.set "chunkSize"]
 
-    val get_windowBits : t -> int [@@js.get "windowBits"]
+    val get_window_bits : t -> int [@@js.get "windowBits"]
 
-    val set_windowBits : t -> int -> unit [@@js.set "windowBits"]
+    val set_window_bits : t -> int -> unit [@@js.set "windowBits"]
 
     val get_level : t -> int [@@js.get "level"]
 
     val set_level : t -> int -> unit [@@js.set "level"]
 
-    val get_memLevel : t -> int [@@js.get "memLevel"]
+    val get_mem_level : t -> int [@@js.get "memLevel"]
 
-    val set_memLevel : t -> int -> unit [@@js.set "memLevel"]
+    val set_mem_level : t -> int -> unit [@@js.set "memLevel"]
 
     val get_strategy : t -> int [@@js.get "strategy"]
 
@@ -65,9 +65,9 @@ module Zlib : sig
 
     val set_info : t -> bool -> unit [@@js.set "info"]
 
-    val get_maxOutputLength : t -> int [@@js.get "maxOutputLength"]
+    val get_max_output_length : t -> int [@@js.get "maxOutputLength"]
 
-    val set_maxOutputLength : t -> int -> unit [@@js.set "maxOutputLength"]
+    val set_max_output_length : t -> int -> unit [@@js.set "maxOutputLength"]
   end
   [@@js.scope "ZlibOptions"]
 
@@ -82,21 +82,21 @@ module Zlib : sig
 
     val set_flush : t -> int -> unit [@@js.set "flush"]
 
-    val get_finishFlush : t -> int [@@js.get "finishFlush"]
+    val get_finish_flush : t -> int [@@js.get "finishFlush"]
 
-    val set_finishFlush : t -> int -> unit [@@js.set "finishFlush"]
+    val set_finish_flush : t -> int -> unit [@@js.set "finishFlush"]
 
-    val get_chunkSize : t -> int [@@js.get "chunkSize"]
+    val get_chunk_size : t -> int [@@js.get "chunkSize"]
 
-    val set_chunkSize : t -> int -> unit [@@js.set "chunkSize"]
+    val set_chunk_size : t -> int -> unit [@@js.set "chunkSize"]
 
     val get_params : t -> AnonymousInterface0.t [@@js.get "params"]
 
     val set_params : t -> AnonymousInterface0.t -> unit [@@js.set "params"]
 
-    val get_maxOutputLength : t -> int [@@js.get "maxOutputLength"]
+    val get_max_output_length : t -> int [@@js.get "maxOutputLength"]
 
-    val set_maxOutputLength : t -> int -> unit [@@js.set "maxOutputLength"]
+    val set_max_output_length : t -> int -> unit [@@js.set "maxOutputLength"]
   end
   [@@js.scope "BrotliOptions"]
 
@@ -107,9 +107,9 @@ module Zlib : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_bytesRead : t -> int [@@js.get "bytesRead"]
+    val get_bytes_read : t -> int [@@js.get "bytesRead"]
 
-    val get_bytesWritten : t -> int [@@js.get "bytesWritten"]
+    val get_bytes_written : t -> int [@@js.get "bytesWritten"]
 
     val get_shell : t -> bool or_string [@@js.get "shell"]
 
@@ -159,9 +159,9 @@ module Zlib : sig
       include Stream.Transform
     end
 
-    val get_bytesRead : t -> int [@@js.get "bytesRead"]
+    val get_bytes_read : t -> int [@@js.get "bytesRead"]
 
-    val get_bytesWritten : t -> int [@@js.get "bytesWritten"]
+    val get_bytes_written : t -> int [@@js.get "bytesWritten"]
 
     val get_shell : t -> bool or_string [@@js.get "shell"]
 
@@ -183,9 +183,9 @@ module Zlib : sig
       include Stream.Transform
     end
 
-    val get_bytesRead : t -> int [@@js.get "bytesRead"]
+    val get_bytes_read : t -> int [@@js.get "bytesRead"]
 
-    val get_bytesWritten : t -> int [@@js.get "bytesWritten"]
+    val get_bytes_written : t -> int [@@js.get "bytesWritten"]
 
     val get_shell : t -> bool or_string [@@js.get "shell"]
 
@@ -207,9 +207,9 @@ module Zlib : sig
       include Stream.Transform
     end
 
-    val get_bytesRead : t -> int [@@js.get "bytesRead"]
+    val get_bytes_read : t -> int [@@js.get "bytesRead"]
 
-    val get_bytesWritten : t -> int [@@js.get "bytesWritten"]
+    val get_bytes_written : t -> int [@@js.get "bytesWritten"]
 
     val get_shell : t -> bool or_string [@@js.get "shell"]
 
@@ -231,9 +231,9 @@ module Zlib : sig
       include Stream.Transform
     end
 
-    val get_bytesRead : t -> int [@@js.get "bytesRead"]
+    val get_bytes_read : t -> int [@@js.get "bytesRead"]
 
-    val get_bytesWritten : t -> int [@@js.get "bytesWritten"]
+    val get_bytes_written : t -> int [@@js.get "bytesWritten"]
 
     val get_shell : t -> bool or_string [@@js.get "shell"]
 
@@ -255,9 +255,9 @@ module Zlib : sig
       include Stream.Transform
     end
 
-    val get_bytesRead : t -> int [@@js.get "bytesRead"]
+    val get_bytes_read : t -> int [@@js.get "bytesRead"]
 
-    val get_bytesWritten : t -> int [@@js.get "bytesWritten"]
+    val get_bytes_written : t -> int [@@js.get "bytesWritten"]
 
     val get_shell : t -> bool or_string [@@js.get "shell"]
 
@@ -289,9 +289,9 @@ module Zlib : sig
       include Stream.Transform
     end
 
-    val get_bytesRead : t -> int [@@js.get "bytesRead"]
+    val get_bytes_read : t -> int [@@js.get "bytesRead"]
 
-    val get_bytesWritten : t -> int [@@js.get "bytesWritten"]
+    val get_bytes_written : t -> int [@@js.get "bytesWritten"]
 
     val get_shell : t -> bool or_string [@@js.get "shell"]
 
@@ -315,9 +315,9 @@ module Zlib : sig
       include Stream.Transform
     end
 
-    val get_bytesRead : t -> int [@@js.get "bytesRead"]
+    val get_bytes_read : t -> int [@@js.get "bytesRead"]
 
-    val get_bytesWritten : t -> int [@@js.get "bytesWritten"]
+    val get_bytes_written : t -> int [@@js.get "bytesWritten"]
 
     val get_shell : t -> bool or_string [@@js.get "shell"]
 
@@ -349,9 +349,9 @@ module Zlib : sig
       include Stream.Transform
     end
 
-    val get_bytesRead : t -> int [@@js.get "bytesRead"]
+    val get_bytes_read : t -> int [@@js.get "bytesRead"]
 
-    val get_bytesWritten : t -> int [@@js.get "bytesWritten"]
+    val get_bytes_written : t -> int [@@js.get "bytesWritten"]
 
     val get_shell : t -> bool or_string [@@js.get "shell"]
 
@@ -375,9 +375,9 @@ module Zlib : sig
       include Stream.Transform
     end
 
-    val get_bytesRead : t -> int [@@js.get "bytesRead"]
+    val get_bytes_read : t -> int [@@js.get "bytesRead"]
 
-    val get_bytesWritten : t -> int [@@js.get "bytesWritten"]
+    val get_bytes_written : t -> int [@@js.get "bytesWritten"]
 
     val get_shell : t -> bool or_string [@@js.get "shell"]
 
@@ -394,37 +394,37 @@ module Zlib : sig
   end
   [@@js.scope "Unzip"]
 
-  val createBrotliCompress
-    :  ?options:zlib_BrotliOptions
+  val create_brotli_compress
+    :  ?options:BrotliOptions.t
     -> unit
-    -> zlib_BrotliCompress
+    -> BrotliCompress.t
     [@@js.global "createBrotliCompress"]
 
-  val createBrotliDecompress
-    :  ?options:zlib_BrotliOptions
+  val create_brotli_decompress
+    :  ?options:BrotliOptions.t
     -> unit
-    -> zlib_BrotliDecompress
+    -> BrotliDecompress.t
     [@@js.global "createBrotliDecompress"]
 
-  val createGzip : ?options:zlib_ZlibOptions -> unit -> zlib_Gzip
+  val create_gzip : ?options:ZlibOptions.t -> unit -> Gzip.t
     [@@js.global "createGzip"]
 
-  val createGunzip : ?options:zlib_ZlibOptions -> unit -> zlib_Gunzip
+  val create_gunzip : ?options:ZlibOptions.t -> unit -> Gunzip.t
     [@@js.global "createGunzip"]
 
-  val createDeflate : ?options:zlib_ZlibOptions -> unit -> zlib_Deflate
+  val create_deflate : ?options:ZlibOptions.t -> unit -> Deflate.t
     [@@js.global "createDeflate"]
 
-  val createInflate : ?options:zlib_ZlibOptions -> unit -> zlib_Inflate
+  val create_inflate : ?options:ZlibOptions.t -> unit -> Inflate.t
     [@@js.global "createInflate"]
 
-  val createDeflateRaw : ?options:zlib_ZlibOptions -> unit -> zlib_DeflateRaw
+  val create_deflate_raw : ?options:ZlibOptions.t -> unit -> DeflateRaw.t
     [@@js.global "createDeflateRaw"]
 
-  val createInflateRaw : ?options:zlib_ZlibOptions -> unit -> zlib_InflateRaw
+  val create_inflate_raw : ?options:ZlibOptions.t -> unit -> InflateRaw.t
     [@@js.global "createInflateRaw"]
 
-  val createUnzip : ?options:zlib_ZlibOptions -> unit -> zlib_Unzip
+  val create_unzip : ?options:ZlibOptions.t -> unit -> Unzip.t
     [@@js.global "createUnzip"]
 
   module InputType : sig
@@ -447,538 +447,527 @@ module Zlib : sig
   end
   [@@js.scope "CompressCallback"]
 
-  val brotliCompress
-    :  buf:zlib_InputType
-    -> options:zlib_BrotliOptions
-    -> callback:zlib_CompressCallback
+  val brotli_compress
+    :  buf:InputType.t
+    -> options:BrotliOptions.t
+    -> callback:CompressCallback.t
     -> unit
     [@@js.global "brotliCompress"]
 
-  val brotliCompress__promisify__
-    :  buffer:zlib_InputType
-    -> ?options:zlib_BrotliOptions
+  val brotli_compress_promisify
+    :  buffer:InputType.t
+    -> ?options:BrotliOptions.t
     -> unit
     -> Buffer.t Promise.t
     [@@js.global "brotliCompress.__promisify__"]
 
-  val brotliCompressSync
-    :  buf:zlib_InputType
-    -> ?options:zlib_BrotliOptions
+  val brotli_compress_sync
+    :  buf:InputType.t
+    -> ?options:BrotliOptions.t
     -> unit
     -> Buffer.t
     [@@js.global "brotliCompressSync"]
 
-  val brotliDecompress
-    :  buf:zlib_InputType
-    -> options:zlib_BrotliOptions
-    -> callback:zlib_CompressCallback
+  val brotli_decompress
+    :  buf:InputType.t
+    -> options:BrotliOptions.t
+    -> callback:CompressCallback.t
     -> unit
     [@@js.global "brotliDecompress"]
 
-  val brotliDecompress
-    :  buf:zlib_InputType
-    -> callback:zlib_CompressCallback
-    -> unit
+  val brotli_decompress : buf:InputType.t -> callback:CompressCallback.t -> unit
     [@@js.global "brotliDecompress"]
 
-  val brotliDecompress__promisify__
-    :  buffer:zlib_InputType
-    -> ?options:zlib_BrotliOptions
+  val brotli_decompress_promisify
+    :  buffer:InputType.t
+    -> ?options:BrotliOptions.t
     -> unit
     -> Buffer.t Promise.t
     [@@js.global "brotliDecompress.__promisify__"]
 
-  val brotliDecompressSync
-    :  buf:zlib_InputType
-    -> ?options:zlib_BrotliOptions
+  val brotli_decompress_sync
+    :  buf:InputType.t
+    -> ?options:BrotliOptions.t
     -> unit
     -> Buffer.t
     [@@js.global "brotliDecompressSync"]
 
-  val deflate : buf:zlib_InputType -> callback:zlib_CompressCallback -> unit
+  val deflate : buf:InputType.t -> callback:CompressCallback.t -> unit
     [@@js.global "deflate"]
 
   val deflate
-    :  buf:zlib_InputType
-    -> options:zlib_ZlibOptions
-    -> callback:zlib_CompressCallback
+    :  buf:InputType.t
+    -> options:ZlibOptions.t
+    -> callback:CompressCallback.t
     -> unit
     [@@js.global "deflate"]
 
   val deflate__promisify__
-    :  buffer:zlib_InputType
-    -> ?options:zlib_ZlibOptions
+    :  buffer:InputType.t
+    -> ?options:ZlibOptions.t
     -> unit
     -> Buffer.t Promise.t
     [@@js.global "deflate.__promisify__"]
 
-  val deflateSync
-    :  buf:zlib_InputType
-    -> ?options:zlib_ZlibOptions
+  val deflate_sync
+    :  buf:InputType.t
+    -> ?options:ZlibOptions.t
     -> unit
     -> Buffer.t
     [@@js.global "deflateSync"]
 
-  val deflateRaw : buf:zlib_InputType -> callback:zlib_CompressCallback -> unit
+  val deflate_raw : buf:InputType.t -> callback:CompressCallback.t -> unit
     [@@js.global "deflateRaw"]
 
-  val deflateRaw
-    :  buf:zlib_InputType
-    -> options:zlib_ZlibOptions
-    -> callback:zlib_CompressCallback
+  val deflate_raw
+    :  buf:InputType.t
+    -> options:ZlibOptions.t
+    -> callback:CompressCallback.t
     -> unit
     [@@js.global "deflateRaw"]
 
-  val deflateRaw__promisify__
-    :  buffer:zlib_InputType
-    -> ?options:zlib_ZlibOptions
+  val deflate_raw_promisify
+    :  buffer:InputType.t
+    -> ?options:ZlibOptions.t
     -> unit
     -> Buffer.t Promise.t
     [@@js.global "deflateRaw.__promisify__"]
 
-  val deflateRawSync
-    :  buf:zlib_InputType
-    -> ?options:zlib_ZlibOptions
+  val deflate_raw_sync
+    :  buf:InputType.t
+    -> ?options:ZlibOptions.t
     -> unit
     -> Buffer.t
     [@@js.global "deflateRawSync"]
 
-  val gzip : buf:zlib_InputType -> callback:zlib_CompressCallback -> unit
+  val gzip : buf:InputType.t -> callback:CompressCallback.t -> unit
     [@@js.global "gzip"]
 
   val gzip
-    :  buf:zlib_InputType
-    -> options:zlib_ZlibOptions
-    -> callback:zlib_CompressCallback
+    :  buf:InputType.t
+    -> options:ZlibOptions.t
+    -> callback:CompressCallback.t
     -> unit
     [@@js.global "gzip"]
 
   val gzip__promisify__
-    :  buffer:zlib_InputType
-    -> ?options:zlib_ZlibOptions
+    :  buffer:InputType.t
+    -> ?options:ZlibOptions.t
     -> unit
     -> Buffer.t Promise.t
     [@@js.global "gzip.__promisify__"]
 
-  val gzipSync
-    :  buf:zlib_InputType
-    -> ?options:zlib_ZlibOptions
-    -> unit
-    -> Buffer.t
+  val gzip_sync : buf:InputType.t -> ?options:ZlibOptions.t -> unit -> Buffer.t
     [@@js.global "gzipSync"]
 
-  val gunzip : buf:zlib_InputType -> callback:zlib_CompressCallback -> unit
+  val gunzip : buf:InputType.t -> callback:CompressCallback.t -> unit
     [@@js.global "gunzip"]
 
   val gunzip
-    :  buf:zlib_InputType
-    -> options:zlib_ZlibOptions
-    -> callback:zlib_CompressCallback
+    :  buf:InputType.t
+    -> options:ZlibOptions.t
+    -> callback:CompressCallback.t
     -> unit
     [@@js.global "gunzip"]
 
   val gunzip__promisify__
-    :  buffer:zlib_InputType
-    -> ?options:zlib_ZlibOptions
+    :  buffer:InputType.t
+    -> ?options:ZlibOptions.t
     -> unit
     -> Buffer.t Promise.t
     [@@js.global "gunzip.__promisify__"]
 
-  val gunzipSync
-    :  buf:zlib_InputType
-    -> ?options:zlib_ZlibOptions
+  val gunzip_sync
+    :  buf:InputType.t
+    -> ?options:ZlibOptions.t
     -> unit
     -> Buffer.t
     [@@js.global "gunzipSync"]
 
-  val inflate : buf:zlib_InputType -> callback:zlib_CompressCallback -> unit
+  val inflate : buf:InputType.t -> callback:CompressCallback.t -> unit
     [@@js.global "inflate"]
 
   val inflate
-    :  buf:zlib_InputType
-    -> options:zlib_ZlibOptions
-    -> callback:zlib_CompressCallback
+    :  buf:InputType.t
+    -> options:ZlibOptions.t
+    -> callback:CompressCallback.t
     -> unit
     [@@js.global "inflate"]
 
   val inflate__promisify__
-    :  buffer:zlib_InputType
-    -> ?options:zlib_ZlibOptions
+    :  buffer:InputType.t
+    -> ?options:ZlibOptions.t
     -> unit
     -> Buffer.t Promise.t
     [@@js.global "inflate.__promisify__"]
 
-  val inflateSync
-    :  buf:zlib_InputType
-    -> ?options:zlib_ZlibOptions
+  val inflate_sync
+    :  buf:InputType.t
+    -> ?options:ZlibOptions.t
     -> unit
     -> Buffer.t
     [@@js.global "inflateSync"]
 
-  val inflateRaw : buf:zlib_InputType -> callback:zlib_CompressCallback -> unit
+  val inflate_raw : buf:InputType.t -> callback:CompressCallback.t -> unit
     [@@js.global "inflateRaw"]
 
-  val inflateRaw
-    :  buf:zlib_InputType
-    -> options:zlib_ZlibOptions
-    -> callback:zlib_CompressCallback
+  val inflate_raw
+    :  buf:InputType.t
+    -> options:ZlibOptions.t
+    -> callback:CompressCallback.t
     -> unit
     [@@js.global "inflateRaw"]
 
-  val inflateRaw__promisify__
-    :  buffer:zlib_InputType
-    -> ?options:zlib_ZlibOptions
+  val inflate_raw_promisify
+    :  buffer:InputType.t
+    -> ?options:ZlibOptions.t
     -> unit
     -> Buffer.t Promise.t
     [@@js.global "inflateRaw.__promisify__"]
 
-  val inflateRawSync
-    :  buf:zlib_InputType
-    -> ?options:zlib_ZlibOptions
+  val inflate_raw_sync
+    :  buf:InputType.t
+    -> ?options:ZlibOptions.t
     -> unit
     -> Buffer.t
     [@@js.global "inflateRawSync"]
 
-  val unzip : buf:zlib_InputType -> callback:zlib_CompressCallback -> unit
+  val unzip : buf:InputType.t -> callback:CompressCallback.t -> unit
     [@@js.global "unzip"]
 
   val unzip
-    :  buf:zlib_InputType
-    -> options:zlib_ZlibOptions
-    -> callback:zlib_CompressCallback
+    :  buf:InputType.t
+    -> options:ZlibOptions.t
+    -> callback:CompressCallback.t
     -> unit
     [@@js.global "unzip"]
 
   val unzip__promisify__
-    :  buffer:zlib_InputType
-    -> ?options:zlib_ZlibOptions
+    :  buffer:InputType.t
+    -> ?options:ZlibOptions.t
     -> unit
     -> Buffer.t Promise.t
     [@@js.global "unzip.__promisify__"]
 
-  val unzipSync
-    :  buf:zlib_InputType
-    -> ?options:zlib_ZlibOptions
-    -> unit
-    -> Buffer.t
+  val unzip_sync : buf:InputType.t -> ?options:ZlibOptions.t -> unit -> Buffer.t
     [@@js.global "unzipSync"]
 
   module Constants : sig
-    val bROTLI_DECODE : int [@@js.global "BROTLI_DECODE"]
+    val b_rotli_decode : int [@@js.global "BROTLI_DECODE"]
 
-    val bROTLI_DECODER_ERROR_ALLOC_BLOCK_TYPE_TREES : int
+    val b_rotli_decoder_error_alloc_block_type_trees : int
       [@@js.global "BROTLI_DECODER_ERROR_ALLOC_BLOCK_TYPE_TREES"]
 
-    val bROTLI_DECODER_ERROR_ALLOC_CONTEXT_MAP : int
+    val b_rotli_decoder_error_alloc_context_map : int
       [@@js.global "BROTLI_DECODER_ERROR_ALLOC_CONTEXT_MAP"]
 
-    val bROTLI_DECODER_ERROR_ALLOC_CONTEXT_MODES : int
+    val b_rotli_decoder_error_alloc_context_modes : int
       [@@js.global "BROTLI_DECODER_ERROR_ALLOC_CONTEXT_MODES"]
 
-    val bROTLI_DECODER_ERROR_ALLOC_RING_BUFFER_1 : int
+    val b_rotli_decoder_error_alloc_ring_buffer1 : int
       [@@js.global "BROTLI_DECODER_ERROR_ALLOC_RING_BUFFER_1"]
 
-    val bROTLI_DECODER_ERROR_ALLOC_RING_BUFFER_2 : int
+    val b_rotli_decoder_error_alloc_ring_buffer2 : int
       [@@js.global "BROTLI_DECODER_ERROR_ALLOC_RING_BUFFER_2"]
 
-    val bROTLI_DECODER_ERROR_ALLOC_TREE_GROUPS : int
+    val b_rotli_decoder_error_alloc_tree_groups : int
       [@@js.global "BROTLI_DECODER_ERROR_ALLOC_TREE_GROUPS"]
 
-    val bROTLI_DECODER_ERROR_DICTIONARY_NOT_SET : int
+    val b_rotli_decoder_error_dictionary_not_set : int
       [@@js.global "BROTLI_DECODER_ERROR_DICTIONARY_NOT_SET"]
 
-    val bROTLI_DECODER_ERROR_FORMAT_BLOCK_LENGTH_1 : int
+    val b_rotli_decoder_error_format_block_length1 : int
       [@@js.global "BROTLI_DECODER_ERROR_FORMAT_BLOCK_LENGTH_1"]
 
-    val bROTLI_DECODER_ERROR_FORMAT_BLOCK_LENGTH_2 : int
+    val b_rotli_decoder_error_format_block_length2 : int
       [@@js.global "BROTLI_DECODER_ERROR_FORMAT_BLOCK_LENGTH_2"]
 
-    val bROTLI_DECODER_ERROR_FORMAT_CL_SPACE : int
+    val b_rotli_decoder_error_format_cl_space : int
       [@@js.global "BROTLI_DECODER_ERROR_FORMAT_CL_SPACE"]
 
-    val bROTLI_DECODER_ERROR_FORMAT_CONTEXT_MAP_REPEAT : int
+    val b_rotli_decoder_error_format_context_map_repeat : int
       [@@js.global "BROTLI_DECODER_ERROR_FORMAT_CONTEXT_MAP_REPEAT"]
 
-    val bROTLI_DECODER_ERROR_FORMAT_DICTIONARY : int
+    val b_rotli_decoder_error_format_dictionary : int
       [@@js.global "BROTLI_DECODER_ERROR_FORMAT_DICTIONARY"]
 
-    val bROTLI_DECODER_ERROR_FORMAT_DISTANCE : int
+    val b_rotli_decoder_error_format_distance : int
       [@@js.global "BROTLI_DECODER_ERROR_FORMAT_DISTANCE"]
 
-    val bROTLI_DECODER_ERROR_FORMAT_EXUBERANT_META_NIBBLE : int
+    val b_rotli_decoder_error_format_exuberant_meta_nibble : int
       [@@js.global "BROTLI_DECODER_ERROR_FORMAT_EXUBERANT_META_NIBBLE"]
 
-    val bROTLI_DECODER_ERROR_FORMAT_EXUBERANT_NIBBLE : int
+    val b_rotli_decoder_error_format_exuberant_nibble : int
       [@@js.global "BROTLI_DECODER_ERROR_FORMAT_EXUBERANT_NIBBLE"]
 
-    val bROTLI_DECODER_ERROR_FORMAT_HUFFMAN_SPACE : int
+    val b_rotli_decoder_error_format_huffman_space : int
       [@@js.global "BROTLI_DECODER_ERROR_FORMAT_HUFFMAN_SPACE"]
 
-    val bROTLI_DECODER_ERROR_FORMAT_PADDING_1 : int
+    val b_rotli_decoder_error_format_padding1 : int
       [@@js.global "BROTLI_DECODER_ERROR_FORMAT_PADDING_1"]
 
-    val bROTLI_DECODER_ERROR_FORMAT_PADDING_2 : int
+    val b_rotli_decoder_error_format_padding2 : int
       [@@js.global "BROTLI_DECODER_ERROR_FORMAT_PADDING_2"]
 
-    val bROTLI_DECODER_ERROR_FORMAT_RESERVED : int
+    val b_rotli_decoder_error_format_reserved : int
       [@@js.global "BROTLI_DECODER_ERROR_FORMAT_RESERVED"]
 
-    val bROTLI_DECODER_ERROR_FORMAT_SIMPLE_HUFFMAN_ALPHABET : int
+    val b_rotli_decoder_error_format_simple_huffman_alphabet : int
       [@@js.global "BROTLI_DECODER_ERROR_FORMAT_SIMPLE_HUFFMAN_ALPHABET"]
 
-    val bROTLI_DECODER_ERROR_FORMAT_SIMPLE_HUFFMAN_SAME : int
+    val b_rotli_decoder_error_format_simple_huffman_same : int
       [@@js.global "BROTLI_DECODER_ERROR_FORMAT_SIMPLE_HUFFMAN_SAME"]
 
-    val bROTLI_DECODER_ERROR_FORMAT_TRANSFORM : int
+    val b_rotli_decoder_error_format_transform : int
       [@@js.global "BROTLI_DECODER_ERROR_FORMAT_TRANSFORM"]
 
-    val bROTLI_DECODER_ERROR_FORMAT_WINDOW_BITS : int
+    val b_rotli_decoder_error_format_window_bits : int
       [@@js.global "BROTLI_DECODER_ERROR_FORMAT_WINDOW_BITS"]
 
-    val bROTLI_DECODER_ERROR_INVALID_ARGUMENTS : int
+    val b_rotli_decoder_error_invalid_arguments : int
       [@@js.global "BROTLI_DECODER_ERROR_INVALID_ARGUMENTS"]
 
-    val bROTLI_DECODER_ERROR_UNREACHABLE : int
+    val b_rotli_decoder_error_unreachable : int
       [@@js.global "BROTLI_DECODER_ERROR_UNREACHABLE"]
 
-    val bROTLI_DECODER_NEEDS_MORE_INPUT : int
+    val b_rotli_decoder_needs_more_input : int
       [@@js.global "BROTLI_DECODER_NEEDS_MORE_INPUT"]
 
-    val bROTLI_DECODER_NEEDS_MORE_OUTPUT : int
+    val b_rotli_decoder_needs_more_output : int
       [@@js.global "BROTLI_DECODER_NEEDS_MORE_OUTPUT"]
 
-    val bROTLI_DECODER_NO_ERROR : int [@@js.global "BROTLI_DECODER_NO_ERROR"]
+    val b_rotli_decoder_no_error : int [@@js.global "BROTLI_DECODER_NO_ERROR"]
 
-    val bROTLI_DECODER_PARAM_DISABLE_RING_BUFFER_REALLOCATION : int
+    val b_rotli_decoder_param_disable_ring_buffer_reallocation : int
       [@@js.global "BROTLI_DECODER_PARAM_DISABLE_RING_BUFFER_REALLOCATION"]
 
-    val bROTLI_DECODER_PARAM_LARGE_WINDOW : int
+    val b_rotli_decoder_param_large_window : int
       [@@js.global "BROTLI_DECODER_PARAM_LARGE_WINDOW"]
 
-    val bROTLI_DECODER_RESULT_ERROR : int
+    val b_rotli_decoder_result_error : int
       [@@js.global "BROTLI_DECODER_RESULT_ERROR"]
 
-    val bROTLI_DECODER_RESULT_NEEDS_MORE_INPUT : int
+    val b_rotli_decoder_result_needs_more_input : int
       [@@js.global "BROTLI_DECODER_RESULT_NEEDS_MORE_INPUT"]
 
-    val bROTLI_DECODER_RESULT_NEEDS_MORE_OUTPUT : int
+    val b_rotli_decoder_result_needs_more_output : int
       [@@js.global "BROTLI_DECODER_RESULT_NEEDS_MORE_OUTPUT"]
 
-    val bROTLI_DECODER_RESULT_SUCCESS : int
+    val b_rotli_decoder_result_success : int
       [@@js.global "BROTLI_DECODER_RESULT_SUCCESS"]
 
-    val bROTLI_DECODER_SUCCESS : int [@@js.global "BROTLI_DECODER_SUCCESS"]
+    val b_rotli_decoder_success : int [@@js.global "BROTLI_DECODER_SUCCESS"]
 
-    val bROTLI_DEFAULT_MODE : int [@@js.global "BROTLI_DEFAULT_MODE"]
+    val b_rotli_default_mode : int [@@js.global "BROTLI_DEFAULT_MODE"]
 
-    val bROTLI_DEFAULT_QUALITY : int [@@js.global "BROTLI_DEFAULT_QUALITY"]
+    val b_rotli_default_quality : int [@@js.global "BROTLI_DEFAULT_QUALITY"]
 
-    val bROTLI_DEFAULT_WINDOW : int [@@js.global "BROTLI_DEFAULT_WINDOW"]
+    val b_rotli_default_window : int [@@js.global "BROTLI_DEFAULT_WINDOW"]
 
-    val bROTLI_ENCODE : int [@@js.global "BROTLI_ENCODE"]
+    val b_rotli_encode : int [@@js.global "BROTLI_ENCODE"]
 
-    val bROTLI_LARGE_MAX_WINDOW_BITS : int
+    val b_rotli_large_max_window_bits : int
       [@@js.global "BROTLI_LARGE_MAX_WINDOW_BITS"]
 
-    val bROTLI_MAX_INPUT_BLOCK_BITS : int
+    val b_rotli_max_input_block_bits : int
       [@@js.global "BROTLI_MAX_INPUT_BLOCK_BITS"]
 
-    val bROTLI_MAX_QUALITY : int [@@js.global "BROTLI_MAX_QUALITY"]
+    val b_rotli_max_quality : int [@@js.global "BROTLI_MAX_QUALITY"]
 
-    val bROTLI_MAX_WINDOW_BITS : int [@@js.global "BROTLI_MAX_WINDOW_BITS"]
+    val b_rotli_max_window_bits : int [@@js.global "BROTLI_MAX_WINDOW_BITS"]
 
-    val bROTLI_MIN_INPUT_BLOCK_BITS : int
+    val b_rotli_min_input_block_bits : int
       [@@js.global "BROTLI_MIN_INPUT_BLOCK_BITS"]
 
-    val bROTLI_MIN_QUALITY : int [@@js.global "BROTLI_MIN_QUALITY"]
+    val b_rotli_min_quality : int [@@js.global "BROTLI_MIN_QUALITY"]
 
-    val bROTLI_MIN_WINDOW_BITS : int [@@js.global "BROTLI_MIN_WINDOW_BITS"]
+    val b_rotli_min_window_bits : int [@@js.global "BROTLI_MIN_WINDOW_BITS"]
 
-    val bROTLI_MODE_FONT : int [@@js.global "BROTLI_MODE_FONT"]
+    val b_rotli_mode_font : int [@@js.global "BROTLI_MODE_FONT"]
 
-    val bROTLI_MODE_GENERIC : int [@@js.global "BROTLI_MODE_GENERIC"]
+    val b_rotli_mode_generic : int [@@js.global "BROTLI_MODE_GENERIC"]
 
-    val bROTLI_MODE_TEXT : int [@@js.global "BROTLI_MODE_TEXT"]
+    val b_rotli_mode_text : int [@@js.global "BROTLI_MODE_TEXT"]
 
-    val bROTLI_OPERATION_EMIT_METADATA : int
+    val b_rotli_operation_emit_metadata : int
       [@@js.global "BROTLI_OPERATION_EMIT_METADATA"]
 
-    val bROTLI_OPERATION_FINISH : int [@@js.global "BROTLI_OPERATION_FINISH"]
+    val b_rotli_operation_finish : int [@@js.global "BROTLI_OPERATION_FINISH"]
 
-    val bROTLI_OPERATION_FLUSH : int [@@js.global "BROTLI_OPERATION_FLUSH"]
+    val b_rotli_operation_flush : int [@@js.global "BROTLI_OPERATION_FLUSH"]
 
-    val bROTLI_OPERATION_PROCESS : int [@@js.global "BROTLI_OPERATION_PROCESS"]
+    val b_rotli_operation_process : int [@@js.global "BROTLI_OPERATION_PROCESS"]
 
-    val bROTLI_PARAM_DISABLE_LITERAL_CONTEXT_MODELING : int
+    val b_rotli_param_disable_literal_context_modeling : int
       [@@js.global "BROTLI_PARAM_DISABLE_LITERAL_CONTEXT_MODELING"]
 
-    val bROTLI_PARAM_LARGE_WINDOW : int
+    val b_rotli_param_large_window : int
       [@@js.global "BROTLI_PARAM_LARGE_WINDOW"]
 
-    val bROTLI_PARAM_LGBLOCK : int [@@js.global "BROTLI_PARAM_LGBLOCK"]
+    val b_rotli_param_lgblock : int [@@js.global "BROTLI_PARAM_LGBLOCK"]
 
-    val bROTLI_PARAM_LGWIN : int [@@js.global "BROTLI_PARAM_LGWIN"]
+    val b_rotli_param_lgwin : int [@@js.global "BROTLI_PARAM_LGWIN"]
 
-    val bROTLI_PARAM_MODE : int [@@js.global "BROTLI_PARAM_MODE"]
+    val b_rotli_param_mode : int [@@js.global "BROTLI_PARAM_MODE"]
 
-    val bROTLI_PARAM_NDIRECT : int [@@js.global "BROTLI_PARAM_NDIRECT"]
+    val b_rotli_param_ndirect : int [@@js.global "BROTLI_PARAM_NDIRECT"]
 
-    val bROTLI_PARAM_NPOSTFIX : int [@@js.global "BROTLI_PARAM_NPOSTFIX"]
+    val b_rotli_param_npostfix : int [@@js.global "BROTLI_PARAM_NPOSTFIX"]
 
-    val bROTLI_PARAM_QUALITY : int [@@js.global "BROTLI_PARAM_QUALITY"]
+    val b_rotli_param_quality : int [@@js.global "BROTLI_PARAM_QUALITY"]
 
-    val bROTLI_PARAM_SIZE_HINT : int [@@js.global "BROTLI_PARAM_SIZE_HINT"]
+    val b_rotli_param_size_hint : int [@@js.global "BROTLI_PARAM_SIZE_HINT"]
 
-    val dEFLATE : int [@@js.global "DEFLATE"]
+    val d_eflate : int [@@js.global "DEFLATE"]
 
-    val dEFLATERAW : int [@@js.global "DEFLATERAW"]
+    val d_eflateraw : int [@@js.global "DEFLATERAW"]
 
-    val gUNZIP : int [@@js.global "GUNZIP"]
+    val g_unzip : int [@@js.global "GUNZIP"]
 
-    val gZIP : int [@@js.global "GZIP"]
+    val g_zip : int [@@js.global "GZIP"]
 
-    val iNFLATE : int [@@js.global "INFLATE"]
+    val i_nflate : int [@@js.global "INFLATE"]
 
-    val iNFLATERAW : int [@@js.global "INFLATERAW"]
+    val i_nflateraw : int [@@js.global "INFLATERAW"]
 
-    val uNZIP : int [@@js.global "UNZIP"]
+    val u_nzip : int [@@js.global "UNZIP"]
 
-    val z_NO_FLUSH : int [@@js.global "Z_NO_FLUSH"]
+    val z_no_flush : int [@@js.global "Z_NO_FLUSH"]
 
-    val z_PARTIAL_FLUSH : int [@@js.global "Z_PARTIAL_FLUSH"]
+    val z_partial_flush : int [@@js.global "Z_PARTIAL_FLUSH"]
 
-    val z_SYNC_FLUSH : int [@@js.global "Z_SYNC_FLUSH"]
+    val z_sync_flush : int [@@js.global "Z_SYNC_FLUSH"]
 
-    val z_FULL_FLUSH : int [@@js.global "Z_FULL_FLUSH"]
+    val z_full_flush : int [@@js.global "Z_FULL_FLUSH"]
 
-    val z_FINISH : int [@@js.global "Z_FINISH"]
+    val z_finish : int [@@js.global "Z_FINISH"]
 
-    val z_BLOCK : int [@@js.global "Z_BLOCK"]
+    val z_block : int [@@js.global "Z_BLOCK"]
 
-    val z_TREES : int [@@js.global "Z_TREES"]
+    val z_trees : int [@@js.global "Z_TREES"]
 
-    val z_OK : int [@@js.global "Z_OK"]
+    val z_ok : int [@@js.global "Z_OK"]
 
-    val z_STREAM_END : int [@@js.global "Z_STREAM_END"]
+    val z_stream_end : int [@@js.global "Z_STREAM_END"]
 
-    val z_NEED_DICT : int [@@js.global "Z_NEED_DICT"]
+    val z_need_dict : int [@@js.global "Z_NEED_DICT"]
 
-    val z_ERRNO : int [@@js.global "Z_ERRNO"]
+    val z_errno : int [@@js.global "Z_ERRNO"]
 
-    val z_STREAM_ERROR : int [@@js.global "Z_STREAM_ERROR"]
+    val z_stream_error : int [@@js.global "Z_STREAM_ERROR"]
 
-    val z_DATA_ERROR : int [@@js.global "Z_DATA_ERROR"]
+    val z_data_error : int [@@js.global "Z_DATA_ERROR"]
 
-    val z_MEM_ERROR : int [@@js.global "Z_MEM_ERROR"]
+    val z_mem_error : int [@@js.global "Z_MEM_ERROR"]
 
-    val z_BUF_ERROR : int [@@js.global "Z_BUF_ERROR"]
+    val z_buf_error : int [@@js.global "Z_BUF_ERROR"]
 
-    val z_VERSION_ERROR : int [@@js.global "Z_VERSION_ERROR"]
+    val z_version_error : int [@@js.global "Z_VERSION_ERROR"]
 
-    val z_NO_COMPRESSION : int [@@js.global "Z_NO_COMPRESSION"]
+    val z_no_compression : int [@@js.global "Z_NO_COMPRESSION"]
 
-    val z_BEST_SPEED : int [@@js.global "Z_BEST_SPEED"]
+    val z_best_speed : int [@@js.global "Z_BEST_SPEED"]
 
-    val z_BEST_COMPRESSION : int [@@js.global "Z_BEST_COMPRESSION"]
+    val z_best_compression : int [@@js.global "Z_BEST_COMPRESSION"]
 
-    val z_DEFAULT_COMPRESSION : int [@@js.global "Z_DEFAULT_COMPRESSION"]
+    val z_default_compression : int [@@js.global "Z_DEFAULT_COMPRESSION"]
 
-    val z_FILTERED : int [@@js.global "Z_FILTERED"]
+    val z_filtered : int [@@js.global "Z_FILTERED"]
 
-    val z_HUFFMAN_ONLY : int [@@js.global "Z_HUFFMAN_ONLY"]
+    val z_huffman_only : int [@@js.global "Z_HUFFMAN_ONLY"]
 
-    val z_RLE : int [@@js.global "Z_RLE"]
+    val z_rle : int [@@js.global "Z_RLE"]
 
-    val z_FIXED : int [@@js.global "Z_FIXED"]
+    val z_fixed : int [@@js.global "Z_FIXED"]
 
-    val z_DEFAULT_STRATEGY : int [@@js.global "Z_DEFAULT_STRATEGY"]
+    val z_default_strategy : int [@@js.global "Z_DEFAULT_STRATEGY"]
 
-    val z_DEFAULT_WINDOWBITS : int [@@js.global "Z_DEFAULT_WINDOWBITS"]
+    val z_default_windowbits : int [@@js.global "Z_DEFAULT_WINDOWBITS"]
 
-    val z_MIN_WINDOWBITS : int [@@js.global "Z_MIN_WINDOWBITS"]
+    val z_min_windowbits : int [@@js.global "Z_MIN_WINDOWBITS"]
 
-    val z_MAX_WINDOWBITS : int [@@js.global "Z_MAX_WINDOWBITS"]
+    val z_max_windowbits : int [@@js.global "Z_MAX_WINDOWBITS"]
 
-    val z_MIN_CHUNK : int [@@js.global "Z_MIN_CHUNK"]
+    val z_min_chunk : int [@@js.global "Z_MIN_CHUNK"]
 
-    val z_MAX_CHUNK : int [@@js.global "Z_MAX_CHUNK"]
+    val z_max_chunk : int [@@js.global "Z_MAX_CHUNK"]
 
-    val z_DEFAULT_CHUNK : int [@@js.global "Z_DEFAULT_CHUNK"]
+    val z_default_chunk : int [@@js.global "Z_DEFAULT_CHUNK"]
 
-    val z_MIN_MEMLEVEL : int [@@js.global "Z_MIN_MEMLEVEL"]
+    val z_min_memlevel : int [@@js.global "Z_MIN_MEMLEVEL"]
 
-    val z_MAX_MEMLEVEL : int [@@js.global "Z_MAX_MEMLEVEL"]
+    val z_max_memlevel : int [@@js.global "Z_MAX_MEMLEVEL"]
 
-    val z_DEFAULT_MEMLEVEL : int [@@js.global "Z_DEFAULT_MEMLEVEL"]
+    val z_default_memlevel : int [@@js.global "Z_DEFAULT_MEMLEVEL"]
 
-    val z_MIN_LEVEL : int [@@js.global "Z_MIN_LEVEL"]
+    val z_min_level : int [@@js.global "Z_MIN_LEVEL"]
 
-    val z_MAX_LEVEL : int [@@js.global "Z_MAX_LEVEL"]
+    val z_max_level : int [@@js.global "Z_MAX_LEVEL"]
 
-    val z_DEFAULT_LEVEL : int [@@js.global "Z_DEFAULT_LEVEL"]
+    val z_default_level : int [@@js.global "Z_DEFAULT_LEVEL"]
 
-    val zLIB_VERNUM : int [@@js.global "ZLIB_VERNUM"]
+    val z_lib_vernum : int [@@js.global "ZLIB_VERNUM"]
   end
   [@@js.scope "constants"]
 
-  val z_NO_FLUSH : int [@@js.global "Z_NO_FLUSH"]
+  val z_no_flush : int [@@js.global "Z_NO_FLUSH"]
 
-  val z_PARTIAL_FLUSH : int [@@js.global "Z_PARTIAL_FLUSH"]
+  val z_partial_flush : int [@@js.global "Z_PARTIAL_FLUSH"]
 
-  val z_SYNC_FLUSH : int [@@js.global "Z_SYNC_FLUSH"]
+  val z_sync_flush : int [@@js.global "Z_SYNC_FLUSH"]
 
-  val z_FULL_FLUSH : int [@@js.global "Z_FULL_FLUSH"]
+  val z_full_flush : int [@@js.global "Z_FULL_FLUSH"]
 
-  val z_FINISH : int [@@js.global "Z_FINISH"]
+  val z_finish : int [@@js.global "Z_FINISH"]
 
-  val z_BLOCK : int [@@js.global "Z_BLOCK"]
+  val z_block : int [@@js.global "Z_BLOCK"]
 
-  val z_TREES : int [@@js.global "Z_TREES"]
+  val z_trees : int [@@js.global "Z_TREES"]
 
-  val z_OK : int [@@js.global "Z_OK"]
+  val z_ok : int [@@js.global "Z_OK"]
 
-  val z_STREAM_END : int [@@js.global "Z_STREAM_END"]
+  val z_stream_end : int [@@js.global "Z_STREAM_END"]
 
-  val z_NEED_DICT : int [@@js.global "Z_NEED_DICT"]
+  val z_need_dict : int [@@js.global "Z_NEED_DICT"]
 
-  val z_ERRNO : int [@@js.global "Z_ERRNO"]
+  val z_errno : int [@@js.global "Z_ERRNO"]
 
-  val z_STREAM_ERROR : int [@@js.global "Z_STREAM_ERROR"]
+  val z_stream_error : int [@@js.global "Z_STREAM_ERROR"]
 
-  val z_DATA_ERROR : int [@@js.global "Z_DATA_ERROR"]
+  val z_data_error : int [@@js.global "Z_DATA_ERROR"]
 
-  val z_MEM_ERROR : int [@@js.global "Z_MEM_ERROR"]
+  val z_mem_error : int [@@js.global "Z_MEM_ERROR"]
 
-  val z_BUF_ERROR : int [@@js.global "Z_BUF_ERROR"]
+  val z_buf_error : int [@@js.global "Z_BUF_ERROR"]
 
-  val z_VERSION_ERROR : int [@@js.global "Z_VERSION_ERROR"]
+  val z_version_error : int [@@js.global "Z_VERSION_ERROR"]
 
-  val z_NO_COMPRESSION : int [@@js.global "Z_NO_COMPRESSION"]
+  val z_no_compression : int [@@js.global "Z_NO_COMPRESSION"]
 
-  val z_BEST_SPEED : int [@@js.global "Z_BEST_SPEED"]
+  val z_best_speed : int [@@js.global "Z_BEST_SPEED"]
 
-  val z_BEST_COMPRESSION : int [@@js.global "Z_BEST_COMPRESSION"]
+  val z_best_compression : int [@@js.global "Z_BEST_COMPRESSION"]
 
-  val z_DEFAULT_COMPRESSION : int [@@js.global "Z_DEFAULT_COMPRESSION"]
+  val z_default_compression : int [@@js.global "Z_DEFAULT_COMPRESSION"]
 
-  val z_FILTERED : int [@@js.global "Z_FILTERED"]
+  val z_filtered : int [@@js.global "Z_FILTERED"]
 
-  val z_HUFFMAN_ONLY : int [@@js.global "Z_HUFFMAN_ONLY"]
+  val z_huffman_only : int [@@js.global "Z_HUFFMAN_ONLY"]
 
-  val z_RLE : int [@@js.global "Z_RLE"]
+  val z_rle : int [@@js.global "Z_RLE"]
 
-  val z_FIXED : int [@@js.global "Z_FIXED"]
+  val z_fixed : int [@@js.global "Z_FIXED"]
 
-  val z_DEFAULT_STRATEGY : int [@@js.global "Z_DEFAULT_STRATEGY"]
+  val z_default_strategy : int [@@js.global "Z_DEFAULT_STRATEGY"]
 
-  val z_BINARY : int [@@js.global "Z_BINARY"]
+  val z_binary : int [@@js.global "Z_BINARY"]
 
-  val z_TEXT : int [@@js.global "Z_TEXT"]
+  val z_text : int [@@js.global "Z_TEXT"]
 
-  val z_ASCII : int [@@js.global "Z_ASCII"]
+  val z_ascii : int [@@js.global "Z_ASCII"]
 
-  val z_UNKNOWN : int [@@js.global "Z_UNKNOWN"]
+  val z_unknown : int [@@js.global "Z_UNKNOWN"]
 
-  val z_DEFLATED : int [@@js.global "Z_DEFLATED"]
+  val z_deflated : int [@@js.global "Z_DEFLATED"]
 end
 [@@js.scope Import.zlib]

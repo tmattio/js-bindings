@@ -12,10 +12,9 @@ module AnonymousInterface0 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_entryTypes : t -> perf_hooks_EntryType list [@@js.get "entryTypes"]
+  val get_entry_types : t -> EntryType.t list [@@js.get "entryTypes"]
 
-  val set_entryTypes : t -> perf_hooks_EntryType list -> unit
-    [@@js.set "entryTypes"]
+  val set_entry_types : t -> EntryType.t list -> unit [@@js.set "entryTypes"]
 
   val get_buffered : t -> bool [@@js.get "buffered"]
 
@@ -51,9 +50,9 @@ module Perf_hooks : sig
 
     val get_name : t -> string [@@js.get "name"]
 
-    val get_startTime : t -> int [@@js.get "startTime"]
+    val get_start_time : t -> int [@@js.get "startTime"]
 
-    val get_entryType : t -> perf_hooks_EntryType [@@js.get "entryType"]
+    val get_entry_type : t -> EntryType.t [@@js.get "entryType"]
 
     val get_kind : t -> int [@@js.get "kind"]
 
@@ -68,19 +67,19 @@ module Perf_hooks : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_bootstrapComplete : t -> int [@@js.get "bootstrapComplete"]
+    val get_bootstrap_complete : t -> int [@@js.get "bootstrapComplete"]
 
     val get_environment : t -> int [@@js.get "environment"]
 
-    val get_idleTime : t -> int [@@js.get "idleTime"]
+    val get_idle_time : t -> int [@@js.get "idleTime"]
 
-    val get_loopExit : t -> int [@@js.get "loopExit"]
+    val get_loop_exit : t -> int [@@js.get "loopExit"]
 
-    val get_loopStart : t -> int [@@js.get "loopStart"]
+    val get_loop_start : t -> int [@@js.get "loopStart"]
 
     val get_v8Start : t -> int [@@js.get "v8Start"]
 
-    val cast : t -> perf_hooks_PerformanceEntry [@@js.cast]
+    val cast : t -> PerformanceEntry.t [@@js.cast]
   end
   [@@js.scope "PerformanceNodeTiming"]
 
@@ -112,28 +111,32 @@ module Perf_hooks : sig
 
     val t_of_js : Ojs.t -> t
 
-    val clearMarks : t -> ?name:string -> unit -> unit [@@js.call "clearMarks"]
+    val clear_marks : t -> ?name:string -> unit -> unit [@@js.call "clearMarks"]
 
     val mark : t -> ?name:string -> unit -> unit [@@js.call "mark"]
 
-    val measure : t -> name:string -> startMark:string -> endMark:string -> unit
+    val measure
+      :  t
+      -> name:string
+      -> start_mark:string
+      -> end_mark:string
+      -> unit
       [@@js.call "measure"]
 
-    val get_nodeTiming : t -> perf_hooks_PerformanceNodeTiming
-      [@@js.get "nodeTiming"]
+    val get_node_timing : t -> PerformanceNodeTiming.t [@@js.get "nodeTiming"]
 
     val now : t -> int [@@js.call "now"]
 
-    val get_timeOrigin : t -> int [@@js.get "timeOrigin"]
+    val get_time_origin : t -> int [@@js.get "timeOrigin"]
 
     val timerify : t -> fn:'T -> 'T [@@js.call "timerify"]
 
-    val eventLoopUtilization
+    val event_loop_utilization
       :  t
-      -> ?util1:perf_hooks_EventLoopUtilization
-      -> ?util2:perf_hooks_EventLoopUtilization
+      -> ?util1:EventLoopUtilization.t
+      -> ?util2:EventLoopUtilization.t
       -> unit
-      -> perf_hooks_EventLoopUtilization
+      -> EventLoopUtilization.t
       [@@js.call "eventLoopUtilization"]
   end
   [@@js.scope "Performance"]
@@ -145,21 +148,17 @@ module Perf_hooks : sig
 
     val t_of_js : Ojs.t -> t
 
-    val getEntries : t -> perf_hooks_PerformanceEntry list
-      [@@js.call "getEntries"]
+    val get_entries : t -> PerformanceEntry.t list [@@js.call "getEntries"]
 
-    val getEntriesByName
+    val get_entries_by_name
       :  t
       -> name:string
-      -> ?type_:perf_hooks_EntryType
+      -> ?type_:EntryType.t
       -> unit
-      -> perf_hooks_PerformanceEntry list
+      -> PerformanceEntry.t list
       [@@js.call "getEntriesByName"]
 
-    val getEntriesByType
-      :  t
-      -> type_:perf_hooks_EntryType
-      -> perf_hooks_PerformanceEntry list
+    val get_entries_by_type : t -> type_:EntryType.t -> PerformanceEntry.t list
       [@@js.call "getEntriesByType"]
   end
   [@@js.scope "PerformanceObserverEntryList"]
@@ -173,8 +172,8 @@ module Perf_hooks : sig
 
     val apply
       :  t
-      -> list:perf_hooks_PerformanceObserverEntryList
-      -> observer:perf_hooks_PerformanceObserver
+      -> list:PerformanceObserverEntryList.t
+      -> observer:PerformanceObserver.t
       -> unit
       [@@js.apply]
   end
@@ -187,8 +186,7 @@ module Perf_hooks : sig
 
     val t_of_js : Ojs.t -> t
 
-    val create : callback:perf_hooks_PerformanceObserverCallback -> t
-      [@@js.create]
+    val create : callback:PerformanceObserverCallback.t -> t [@@js.create]
 
     val disconnect : t -> unit [@@js.call "disconnect"]
 
@@ -200,37 +198,37 @@ module Perf_hooks : sig
   [@@js.scope "PerformanceObserver"]
 
   module Constants : sig
-    val nODE_PERFORMANCE_GC_MAJOR : int
+    val n_ode_performance_gc_major : int
       [@@js.global "NODE_PERFORMANCE_GC_MAJOR"]
 
-    val nODE_PERFORMANCE_GC_MINOR : int
+    val n_ode_performance_gc_minor : int
       [@@js.global "NODE_PERFORMANCE_GC_MINOR"]
 
-    val nODE_PERFORMANCE_GC_INCREMENTAL : int
+    val n_ode_performance_gc_incremental : int
       [@@js.global "NODE_PERFORMANCE_GC_INCREMENTAL"]
 
-    val nODE_PERFORMANCE_GC_WEAKCB : int
+    val n_ode_performance_gc_weakcb : int
       [@@js.global "NODE_PERFORMANCE_GC_WEAKCB"]
 
-    val nODE_PERFORMANCE_GC_FLAGS_NO : int
+    val n_ode_performance_gc_flags_no : int
       [@@js.global "NODE_PERFORMANCE_GC_FLAGS_NO"]
 
-    val nODE_PERFORMANCE_GC_FLAGS_CONSTRUCT_RETAINED : int
+    val n_ode_performance_gc_flags_construct_retained : int
       [@@js.global "NODE_PERFORMANCE_GC_FLAGS_CONSTRUCT_RETAINED"]
 
-    val nODE_PERFORMANCE_GC_FLAGS_FORCED : int
+    val n_ode_performance_gc_flags_forced : int
       [@@js.global "NODE_PERFORMANCE_GC_FLAGS_FORCED"]
 
-    val nODE_PERFORMANCE_GC_FLAGS_SYNCHRONOUS_PHANTOM_PROCESSING : int
+    val n_ode_performance_gc_flags_synchronous_phantom_processing : int
       [@@js.global "NODE_PERFORMANCE_GC_FLAGS_SYNCHRONOUS_PHANTOM_PROCESSING"]
 
-    val nODE_PERFORMANCE_GC_FLAGS_ALL_AVAILABLE_GARBAGE : int
+    val n_ode_performance_gc_flags_all_available_garbage : int
       [@@js.global "NODE_PERFORMANCE_GC_FLAGS_ALL_AVAILABLE_GARBAGE"]
 
-    val nODE_PERFORMANCE_GC_FLAGS_ALL_EXTERNAL_MEMORY : int
+    val n_ode_performance_gc_flags_all_external_memory : int
       [@@js.global "NODE_PERFORMANCE_GC_FLAGS_ALL_EXTERNAL_MEMORY"]
 
-    val nODE_PERFORMANCE_GC_FLAGS_SCHEDULE_IDLE : int
+    val n_ode_performance_gc_flags_schedule_idle : int
       [@@js.global "NODE_PERFORMANCE_GC_FLAGS_SCHEDULE_IDLE"]
   end
   [@@js.scope "constants"]
@@ -279,10 +277,10 @@ module Perf_hooks : sig
   end
   [@@js.scope "EventLoopDelayMonitor"]
 
-  val monitorEventLoopDelay
-    :  ?options:perf_hooks_EventLoopMonitorOptions
+  val monitor_event_loop_delay
+    :  ?options:EventLoopMonitorOptions.t
     -> unit
-    -> perf_hooks_EventLoopDelayMonitor
+    -> EventLoopDelayMonitor.t
     [@@js.global "monitorEventLoopDelay"]
 end
 [@@js.scope Import.perf_hooks]

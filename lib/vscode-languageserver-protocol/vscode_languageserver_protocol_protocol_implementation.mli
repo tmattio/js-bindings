@@ -12,25 +12,25 @@ open Es5
    TextDocumentPositionParams, PartialResultParams, WorkDoneProgressParams,
    WorkDoneProgressOptions } from './protocol'; *)
 module ImplementationClientCapabilities : sig
-  type t = _ImplementationClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
-  val get_linkSupport : t -> bool [@@js.get "linkSupport"]
+  val get_link_support : t -> bool [@@js.get "linkSupport"]
 
-  val set_linkSupport : t -> bool -> unit [@@js.set "linkSupport"]
+  val set_link_support : t -> bool -> unit [@@js.set "linkSupport"]
 end
 [@@js.scope "ImplementationClientCapabilities"]
 
 module ImplementationOptions : sig
-  type t = _ImplementationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -41,7 +41,7 @@ end
 [@@js.scope "ImplementationOptions"]
 
 module ImplementationRegistrationOptions : sig
-  type t = _ImplementationRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -49,14 +49,14 @@ module ImplementationRegistrationOptions : sig
 
   val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _ImplementationOptions [@@js.cast]
+  val cast' : t -> ImplementationOptions.t [@@js.cast]
 
   val cast'' : t -> StaticRegistrationOptions.t [@@js.cast]
 end
 [@@js.scope "ImplementationRegistrationOptions"]
 
 module ImplementationParams : sig
-  type t = _ImplementationParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -77,17 +77,17 @@ module ImplementationRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _ImplementationParams
+    : ( ImplementationParams.t
       , (Location.t, (Location.t, LocationLink.t) union2) or_array or_null
       , (Location.t, LocationLink.t) union2 list
       , unit
-      , _ImplementationRegistrationOptions )
+      , ImplementationRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
     type t =
-      ( _ImplementationParams
+      ( ImplementationParams.t
       , (Definition.t, DefinitionLink.t) or_array or_null
       , unit )
       RequestHandler.t

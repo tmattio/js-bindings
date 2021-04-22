@@ -10,10 +10,10 @@ module AnonymousInterface0 =
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
     and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
-    let (get_rejectUnauthorized : t -> bool) =
+    let (get_reject_unauthorized : t -> bool) =
       fun (x3 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x3) "rejectUnauthorized")
-    let (set_rejectUnauthorized : t -> bool -> unit) =
+    let (set_reject_unauthorized : t -> bool -> unit) =
       fun (x4 : t) ->
         fun (x5 : bool) ->
           Ojs.set_prop_ascii (t_to_js x4) "rejectUnauthorized"
@@ -70,25 +70,23 @@ module Https =
       end
     module AgentOptions =
       struct
-        type t = https_AgentOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x26 : Ojs.t) -> https_AgentOptions_of_js x26
-        and t_to_js : t -> Ojs.t =
-          fun (x25 : https_AgentOptions) -> https_AgentOptions_to_js x25
-        let (get_rejectUnauthorized : t -> bool) =
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x26 : Ojs.t) -> x26
+        and t_to_js : t -> Ojs.t = fun (x25 : Ojs.t) -> x25
+        let (get_reject_unauthorized : t -> bool) =
           fun (x27 : t) ->
             Ojs.bool_of_js
               (Ojs.get_prop_ascii (t_to_js x27) "rejectUnauthorized")
-        let (set_rejectUnauthorized : t -> bool -> unit) =
+        let (set_reject_unauthorized : t -> bool -> unit) =
           fun (x28 : t) ->
             fun (x29 : bool) ->
               Ojs.set_prop_ascii (t_to_js x28) "rejectUnauthorized"
                 (Ojs.bool_to_js x29)
-        let (get_maxCachedSessions : t -> int) =
+        let (get_max_cached_sessions : t -> int) =
           fun (x30 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x30) "maxCachedSessions")
-        let (set_maxCachedSessions : t -> int -> unit) =
+        let (set_max_cached_sessions : t -> int -> unit) =
           fun (x31 : t) ->
             fun (x32 : int) ->
               Ojs.set_prop_ascii (t_to_js x31) "maxCachedSessions"
@@ -100,13 +98,11 @@ module Https =
       end
     module Agent =
       struct
-        type t = https_Agent
-        let rec t_of_js : Ojs.t -> t =
-          fun (x36 : Ojs.t) -> https_Agent_of_js x36
-        and t_to_js : t -> Ojs.t =
-          fun (x35 : https_Agent) -> https_Agent_to_js x35
-        let (create : ?options:https_AgentOptions -> unit -> t) =
-          fun ?options:(x37 : https_AgentOptions option) ->
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x36 : Ojs.t) -> x36
+        and t_to_js : t -> Ojs.t = fun (x35 : Ojs.t) -> x35
+        let (create : ?options:AgentOptions.t -> unit -> t) =
+          fun ?options:(x37 : AgentOptions.t option) ->
             fun () ->
               t_of_js
                 (Ojs.new_obj_arr (Ojs.get_prop_ascii Import.https "Agent")
@@ -117,32 +113,30 @@ module Https =
                      | Some x39 ->
                          ignore
                            (Ojs.call x38 "push"
-                              [|(https_AgentOptions_to_js x39)|])
+                              [|(AgentOptions.t_to_js x39)|])
                      | None -> ());
                     x38))
-        let (get_options : t -> https_AgentOptions) =
+        let (get_options : t -> AgentOptions.t) =
           fun (x40 : t) ->
-            https_AgentOptions_of_js
-              (Ojs.get_prop_ascii (t_to_js x40) "options")
-        let (set_options : t -> https_AgentOptions -> unit) =
+            AgentOptions.t_of_js (Ojs.get_prop_ascii (t_to_js x40) "options")
+        let (set_options : t -> AgentOptions.t -> unit) =
           fun (x41 : t) ->
-            fun (x42 : https_AgentOptions) ->
+            fun (x42 : AgentOptions.t) ->
               Ojs.set_prop_ascii (t_to_js x41) "options"
-                (https_AgentOptions_to_js x42)
+                (AgentOptions.t_to_js x42)
         let (cast : t -> Http.Agent.t) =
           fun (x43 : t) -> Http.Agent.t_of_js (t_to_js x43)
       end
     module Server =
       struct
-        type t = https_Server
-        let rec t_of_js : Ojs.t -> t =
-          fun (x45 : Ojs.t) -> https_Server_of_js x45
-        and t_to_js : t -> Ojs.t =
-          fun (x44 : https_Server) -> https_Server_to_js x44
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x45 : Ojs.t) -> x45
+        and t_to_js : t -> Ojs.t = fun (x44 : Ojs.t) -> x44
         let (cast : t -> Http.HttpBase.t) =
           fun (x46 : t) -> Http.HttpBase.t_of_js (t_to_js x46)
-        let (create : ?requestListener:Http.RequestListener.t -> unit -> t) =
-          fun ?requestListener:(x47 : Http.RequestListener.t option) ->
+        let (create : ?request_listener:Http.RequestListener.t -> unit -> t)
+          =
+          fun ?request_listener:(x47 : Http.RequestListener.t option) ->
             fun () ->
               t_of_js
                 (Ojs.new_obj_arr (Ojs.get_prop_ascii Import.https "Server")
@@ -157,11 +151,11 @@ module Https =
                      | None -> ());
                     x48))
         let (create' :
-          options:https_ServerOptions ->
-            ?requestListener:Http.RequestListener.t -> unit -> t)
+          options:ServerOptions.t ->
+            ?request_listener:Http.RequestListener.t -> unit -> t)
           =
-          fun ~options:(x50 : https_ServerOptions) ->
-            fun ?requestListener:(x51 : Http.RequestListener.t option) ->
+          fun ~options:(x50 : ServerOptions.t) ->
+            fun ?request_listener:(x51 : Http.RequestListener.t option) ->
               fun () ->
                 t_of_js
                   (Ojs.new_obj_arr (Ojs.get_prop_ascii Import.https "Server")
@@ -169,8 +163,7 @@ module Https =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
                       ignore
-                        (Ojs.call x52 "push"
-                           [|(https_ServerOptions_to_js x50)|]);
+                        (Ojs.call x52 "push" [|(ServerOptions.t_to_js x50)|]);
                       (match x51 with
                        | Some x53 ->
                            ignore
@@ -181,14 +174,14 @@ module Https =
         let (cast : t -> Tls.Server.t) =
           fun (x54 : t) -> Tls.Server.t_of_js (t_to_js x54)
       end
-    let (createServer :
-      options:https_ServerOptions ->
-        ?requestListener:Http.RequestListener.t -> unit -> https_Server)
+    let (create_server :
+      options:ServerOptions.t ->
+        ?request_listener:Http.RequestListener.t -> unit -> Server.t)
       =
-      fun ~options:(x55 : https_ServerOptions) ->
-        fun ?requestListener:(x56 : Http.RequestListener.t option) ->
+      fun ~options:(x55 : ServerOptions.t) ->
+        fun ?request_listener:(x56 : Http.RequestListener.t option) ->
           fun () ->
-            https_Server_of_js
+            Server.t_of_js
               (let x59 = Import.https in
                Ojs.call (Ojs.get_prop_ascii x59 "createServer") "apply"
                  [|x59;((let x57 =
@@ -197,7 +190,7 @@ module Https =
                              [||] in
                          ignore
                            (Ojs.call x57 "push"
-                              [|(https_ServerOptions_to_js x55)|]);
+                              [|(ServerOptions.t_to_js x55)|]);
                          (match x56 with
                           | Some x58 ->
                               ignore
@@ -207,12 +200,12 @@ module Https =
                          x57))|])
     let (request :
       url:Node_url.Url.Url.t or_string ->
-        ?options:https_RequestOptions ->
+        ?options:RequestOptions.t ->
           ?callback:(res:Http.IncomingMessage.t -> unit) ->
             unit -> Http.ClientRequest.t)
       =
       fun ~url:(x60 : Node_url.Url.Url.t or_string) ->
-        fun ?options:(x61 : https_RequestOptions option) ->
+        fun ?options:(x61 : RequestOptions.t option) ->
           fun ?callback:(x62 : (res:Http.IncomingMessage.t -> unit) option)
             ->
             fun () ->
@@ -231,7 +224,7 @@ module Https =
                             | Some x66 ->
                                 ignore
                                   (Ojs.call x63 "push"
-                                     [|(https_RequestOptions_to_js x66)|])
+                                     [|(RequestOptions.t_to_js x66)|])
                             | None -> ());
                            (match x62 with
                             | Some x64 ->
@@ -246,12 +239,12 @@ module Https =
                            x63))|])
     let (get :
       url:Node_url.Url.Url.t or_string ->
-        ?options:https_RequestOptions ->
+        ?options:RequestOptions.t ->
           ?callback:(res:Http.IncomingMessage.t -> unit) ->
             unit -> Http.ClientRequest.t)
       =
       fun ~url:(x69 : Node_url.Url.Url.t or_string) ->
-        fun ?options:(x70 : https_RequestOptions option) ->
+        fun ?options:(x70 : RequestOptions.t option) ->
           fun ?callback:(x71 : (res:Http.IncomingMessage.t -> unit) option)
             ->
             fun () ->
@@ -270,7 +263,7 @@ module Https =
                             | Some x75 ->
                                 ignore
                                   (Ojs.call x72 "push"
-                                     [|(https_RequestOptions_to_js x75)|])
+                                     [|(RequestOptions.t_to_js x75)|])
                             | None -> ());
                            (match x71 with
                             | Some x73 ->
@@ -283,6 +276,6 @@ module Https =
                                                        x74)))|])
                             | None -> ());
                            x72))|])
-    let (globalAgent : https_Agent) =
+    let (global_agent : https_Agent) =
       https_Agent_of_js (Ojs.get_prop_ascii Import.https "globalAgent")
   end

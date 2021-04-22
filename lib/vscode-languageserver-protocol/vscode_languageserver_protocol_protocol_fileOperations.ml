@@ -2,639 +2,538 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module Types =
-      struct
-        type _DidCreateFilesNotification_HandlerSignature =
-          _CreateFilesParams NotificationHandler.t
-        and _DidDeleteFilesNotification_HandlerSignature =
-          _DeleteFilesParams NotificationHandler.t
-        and _DidRenameFilesNotification_HandlerSignature =
-          _RenameFilesParams NotificationHandler.t
-        and _FileOperationPatternKind = [ `L_s0_file  | `L_s1_folder ]
-        and _WillCreateFilesRequest_HandlerSignature =
-          (_CreateFilesParams, WorkspaceEdit.t or_null_or_undefined, 
-            unit) RequestHandler.t
-        and _WillDeleteFilesRequest_HandlerSignature =
-          (_DeleteFilesParams, WorkspaceEdit.t or_null_or_undefined, 
-            unit) RequestHandler.t
-        and _WillRenameFilesRequest_HandlerSignature =
-          (_RenameFilesParams, WorkspaceEdit.t or_null_or_undefined, 
-            unit) RequestHandler.t
-        let rec _DidCreateFilesNotification_HandlerSignature_of_js :
-          Ojs.t -> _DidCreateFilesNotification_HandlerSignature =
-          fun (x3 : Ojs.t) ->
-            NotificationHandler.t_of_js _CreateFilesParams_of_js x3
-        and _DidCreateFilesNotification_HandlerSignature_to_js :
-          _DidCreateFilesNotification_HandlerSignature -> Ojs.t =
-          fun (x1 : _CreateFilesParams NotificationHandler.t) ->
-            NotificationHandler.t_to_js _CreateFilesParams_to_js x1
-        and _DidDeleteFilesNotification_HandlerSignature_of_js :
-          Ojs.t -> _DidDeleteFilesNotification_HandlerSignature =
-          fun (x7 : Ojs.t) ->
-            NotificationHandler.t_of_js _DeleteFilesParams_of_js x7
-        and _DidDeleteFilesNotification_HandlerSignature_to_js :
-          _DidDeleteFilesNotification_HandlerSignature -> Ojs.t =
-          fun (x5 : _DeleteFilesParams NotificationHandler.t) ->
-            NotificationHandler.t_to_js _DeleteFilesParams_to_js x5
-        and _DidRenameFilesNotification_HandlerSignature_of_js :
-          Ojs.t -> _DidRenameFilesNotification_HandlerSignature =
-          fun (x11 : Ojs.t) ->
-            NotificationHandler.t_of_js _RenameFilesParams_of_js x11
-        and _DidRenameFilesNotification_HandlerSignature_to_js :
-          _DidRenameFilesNotification_HandlerSignature -> Ojs.t =
-          fun (x9 : _RenameFilesParams NotificationHandler.t) ->
-            NotificationHandler.t_to_js _RenameFilesParams_to_js x9
-        and _FileOperationPatternKind_of_js :
-          Ojs.t -> _FileOperationPatternKind =
-          fun (x14 : Ojs.t) ->
-            let x15 = x14 in
-            match Ojs.string_of_js x15 with
-            | "file" -> `L_s0_file
-            | "folder" -> `L_s1_folder
-            | _ -> assert false
-        and _FileOperationPatternKind_to_js :
-          _FileOperationPatternKind -> Ojs.t =
-          fun (x13 : [ `L_s0_file  | `L_s1_folder ]) ->
-            match x13 with
-            | `L_s0_file -> Ojs.string_to_js "file"
-            | `L_s1_folder -> Ojs.string_to_js "folder"
-        and _WillCreateFilesRequest_HandlerSignature_of_js :
-          Ojs.t -> _WillCreateFilesRequest_HandlerSignature =
-          fun (x21 : Ojs.t) ->
-            RequestHandler.t_of_js _CreateFilesParams_of_js
-              (fun (x23 : Ojs.t) ->
-                 or_null_or_undefined_of_js WorkspaceEdit.t_of_js x23)
-              Ojs.unit_of_js x21
-        and _WillCreateFilesRequest_HandlerSignature_to_js :
-          _WillCreateFilesRequest_HandlerSignature -> Ojs.t =
-          fun
-            (x16 :
-              (_CreateFilesParams, WorkspaceEdit.t or_null_or_undefined,
-                unit) RequestHandler.t)
-            ->
-            RequestHandler.t_to_js _CreateFilesParams_to_js
-              (fun (x18 : WorkspaceEdit.t or_null_or_undefined) ->
-                 or_null_or_undefined_to_js WorkspaceEdit.t_to_js x18)
-              Ojs.unit_to_js x16
-        and _WillDeleteFilesRequest_HandlerSignature_of_js :
-          Ojs.t -> _WillDeleteFilesRequest_HandlerSignature =
-          fun (x31 : Ojs.t) ->
-            RequestHandler.t_of_js _DeleteFilesParams_of_js
-              (fun (x33 : Ojs.t) ->
-                 or_null_or_undefined_of_js WorkspaceEdit.t_of_js x33)
-              Ojs.unit_of_js x31
-        and _WillDeleteFilesRequest_HandlerSignature_to_js :
-          _WillDeleteFilesRequest_HandlerSignature -> Ojs.t =
-          fun
-            (x26 :
-              (_DeleteFilesParams, WorkspaceEdit.t or_null_or_undefined,
-                unit) RequestHandler.t)
-            ->
-            RequestHandler.t_to_js _DeleteFilesParams_to_js
-              (fun (x28 : WorkspaceEdit.t or_null_or_undefined) ->
-                 or_null_or_undefined_to_js WorkspaceEdit.t_to_js x28)
-              Ojs.unit_to_js x26
-        and _WillRenameFilesRequest_HandlerSignature_of_js :
-          Ojs.t -> _WillRenameFilesRequest_HandlerSignature =
-          fun (x41 : Ojs.t) ->
-            RequestHandler.t_of_js _RenameFilesParams_of_js
-              (fun (x43 : Ojs.t) ->
-                 or_null_or_undefined_of_js WorkspaceEdit.t_of_js x43)
-              Ojs.unit_of_js x41
-        and _WillRenameFilesRequest_HandlerSignature_to_js :
-          _WillRenameFilesRequest_HandlerSignature -> Ojs.t =
-          fun
-            (x36 :
-              (_RenameFilesParams, WorkspaceEdit.t or_null_or_undefined,
-                unit) RequestHandler.t)
-            ->
-            RequestHandler.t_to_js _RenameFilesParams_to_js
-              (fun (x38 : WorkspaceEdit.t or_null_or_undefined) ->
-                 or_null_or_undefined_to_js WorkspaceEdit.t_to_js x38)
-              Ojs.unit_to_js x36
-      end
-  end
 module FileOperationOptions =
   struct
-    type t = _FileOperationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x47 : Ojs.t) -> _FileOperationOptions_of_js x47
-    and t_to_js : t -> Ojs.t =
-      fun (x46 : _FileOperationOptions) -> _FileOperationOptions_to_js x46
-    let (get_didCreate : t -> _FileOperationRegistrationOptions) =
-      fun (x48 : t) ->
-        _FileOperationRegistrationOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js x48) "didCreate")
-    let (set_didCreate : t -> _FileOperationRegistrationOptions -> unit) =
-      fun (x49 : t) ->
-        fun (x50 : _FileOperationRegistrationOptions) ->
-          Ojs.set_prop_ascii (t_to_js x49) "didCreate"
-            (_FileOperationRegistrationOptions_to_js x50)
-    let (get_willCreate : t -> _FileOperationRegistrationOptions) =
-      fun (x51 : t) ->
-        _FileOperationRegistrationOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js x51) "willCreate")
-    let (set_willCreate : t -> _FileOperationRegistrationOptions -> unit) =
-      fun (x52 : t) ->
-        fun (x53 : _FileOperationRegistrationOptions) ->
-          Ojs.set_prop_ascii (t_to_js x52) "willCreate"
-            (_FileOperationRegistrationOptions_to_js x53)
-    let (get_didRename : t -> _FileOperationRegistrationOptions) =
-      fun (x54 : t) ->
-        _FileOperationRegistrationOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js x54) "didRename")
-    let (set_didRename : t -> _FileOperationRegistrationOptions -> unit) =
-      fun (x55 : t) ->
-        fun (x56 : _FileOperationRegistrationOptions) ->
-          Ojs.set_prop_ascii (t_to_js x55) "didRename"
-            (_FileOperationRegistrationOptions_to_js x56)
-    let (get_willRename : t -> _FileOperationRegistrationOptions) =
-      fun (x57 : t) ->
-        _FileOperationRegistrationOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js x57) "willRename")
-    let (set_willRename : t -> _FileOperationRegistrationOptions -> unit) =
-      fun (x58 : t) ->
-        fun (x59 : _FileOperationRegistrationOptions) ->
-          Ojs.set_prop_ascii (t_to_js x58) "willRename"
-            (_FileOperationRegistrationOptions_to_js x59)
-    let (get_didDelete : t -> _FileOperationRegistrationOptions) =
-      fun (x60 : t) ->
-        _FileOperationRegistrationOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js x60) "didDelete")
-    let (set_didDelete : t -> _FileOperationRegistrationOptions -> unit) =
-      fun (x61 : t) ->
-        fun (x62 : _FileOperationRegistrationOptions) ->
-          Ojs.set_prop_ascii (t_to_js x61) "didDelete"
-            (_FileOperationRegistrationOptions_to_js x62)
-    let (get_willDelete : t -> _FileOperationRegistrationOptions) =
-      fun (x63 : t) ->
-        _FileOperationRegistrationOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js x63) "willDelete")
-    let (set_willDelete : t -> _FileOperationRegistrationOptions -> unit) =
-      fun (x64 : t) ->
-        fun (x65 : _FileOperationRegistrationOptions) ->
-          Ojs.set_prop_ascii (t_to_js x64) "willDelete"
-            (_FileOperationRegistrationOptions_to_js x65)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
+    let (get_did_create : t -> FileOperationRegistrationOptions.t) =
+      fun (x3 : t) ->
+        FileOperationRegistrationOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x3) "didCreate")
+    let (set_did_create : t -> FileOperationRegistrationOptions.t -> unit) =
+      fun (x4 : t) ->
+        fun (x5 : FileOperationRegistrationOptions.t) ->
+          Ojs.set_prop_ascii (t_to_js x4) "didCreate"
+            (FileOperationRegistrationOptions.t_to_js x5)
+    let (get_will_create : t -> FileOperationRegistrationOptions.t) =
+      fun (x6 : t) ->
+        FileOperationRegistrationOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x6) "willCreate")
+    let (set_will_create : t -> FileOperationRegistrationOptions.t -> unit) =
+      fun (x7 : t) ->
+        fun (x8 : FileOperationRegistrationOptions.t) ->
+          Ojs.set_prop_ascii (t_to_js x7) "willCreate"
+            (FileOperationRegistrationOptions.t_to_js x8)
+    let (get_did_rename : t -> FileOperationRegistrationOptions.t) =
+      fun (x9 : t) ->
+        FileOperationRegistrationOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x9) "didRename")
+    let (set_did_rename : t -> FileOperationRegistrationOptions.t -> unit) =
+      fun (x10 : t) ->
+        fun (x11 : FileOperationRegistrationOptions.t) ->
+          Ojs.set_prop_ascii (t_to_js x10) "didRename"
+            (FileOperationRegistrationOptions.t_to_js x11)
+    let (get_will_rename : t -> FileOperationRegistrationOptions.t) =
+      fun (x12 : t) ->
+        FileOperationRegistrationOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x12) "willRename")
+    let (set_will_rename : t -> FileOperationRegistrationOptions.t -> unit) =
+      fun (x13 : t) ->
+        fun (x14 : FileOperationRegistrationOptions.t) ->
+          Ojs.set_prop_ascii (t_to_js x13) "willRename"
+            (FileOperationRegistrationOptions.t_to_js x14)
+    let (get_did_delete : t -> FileOperationRegistrationOptions.t) =
+      fun (x15 : t) ->
+        FileOperationRegistrationOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x15) "didDelete")
+    let (set_did_delete : t -> FileOperationRegistrationOptions.t -> unit) =
+      fun (x16 : t) ->
+        fun (x17 : FileOperationRegistrationOptions.t) ->
+          Ojs.set_prop_ascii (t_to_js x16) "didDelete"
+            (FileOperationRegistrationOptions.t_to_js x17)
+    let (get_will_delete : t -> FileOperationRegistrationOptions.t) =
+      fun (x18 : t) ->
+        FileOperationRegistrationOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x18) "willDelete")
+    let (set_will_delete : t -> FileOperationRegistrationOptions.t -> unit) =
+      fun (x19 : t) ->
+        fun (x20 : FileOperationRegistrationOptions.t) ->
+          Ojs.set_prop_ascii (t_to_js x19) "willDelete"
+            (FileOperationRegistrationOptions.t_to_js x20)
   end
 module FileOperationRegistrationOptions =
   struct
-    type t = _FileOperationRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x67 : Ojs.t) -> _FileOperationRegistrationOptions_of_js x67
-    and t_to_js : t -> Ojs.t =
-      fun (x66 : _FileOperationRegistrationOptions) ->
-        _FileOperationRegistrationOptions_to_js x66
-    let (get_filters : t -> _FileOperationFilter list) =
-      fun (x68 : t) ->
-        Ojs.list_of_js _FileOperationFilter_of_js
-          (Ojs.get_prop_ascii (t_to_js x68) "filters")
-    let (set_filters : t -> _FileOperationFilter list -> unit) =
-      fun (x70 : t) ->
-        fun (x71 : _FileOperationFilter list) ->
-          Ojs.set_prop_ascii (t_to_js x70) "filters"
-            (Ojs.list_to_js _FileOperationFilter_to_js x71)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x22 : Ojs.t) -> x22
+    and t_to_js : t -> Ojs.t = fun (x21 : Ojs.t) -> x21
+    let (get_filters : t -> FileOperationFilter.t list) =
+      fun (x23 : t) ->
+        Ojs.list_of_js FileOperationFilter.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x23) "filters")
+    let (set_filters : t -> FileOperationFilter.t list -> unit) =
+      fun (x25 : t) ->
+        fun (x26 : FileOperationFilter.t list) ->
+          Ojs.set_prop_ascii (t_to_js x25) "filters"
+            (Ojs.list_to_js FileOperationFilter.t_to_js x26)
   end
 module FileOperationPatternKind =
   struct
     let (file : [ `L_s0_file ]) =
-      let x73 =
+      let x28 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "FileOperationPatternKind") "file" in
-      match Ojs.string_of_js x73 with
+      match Ojs.string_of_js x28 with
       | "file" -> `L_s0_file
       | _ -> assert false
     let (folder : [ `L_s1_folder ]) =
-      let x74 =
+      let x29 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "FileOperationPatternKind") "folder" in
-      match Ojs.string_of_js x74 with
+      match Ojs.string_of_js x29 with
       | "folder" -> `L_s1_folder
       | _ -> assert false
   end
 module FileOperationPatternKind =
   struct
-    type t = _FileOperationPatternKind
+    type t = [ `L_s0_file  | `L_s1_folder ]
     let rec t_of_js : Ojs.t -> t =
-      fun (x76 : Ojs.t) -> _FileOperationPatternKind_of_js x76
+      fun (x31 : Ojs.t) ->
+        let x32 = x31 in
+        match Ojs.string_of_js x32 with
+        | "file" -> `L_s0_file
+        | "folder" -> `L_s1_folder
+        | _ -> assert false
     and t_to_js : t -> Ojs.t =
-      fun (x75 : _FileOperationPatternKind) ->
-        _FileOperationPatternKind_to_js x75
+      fun (x30 : [ `L_s0_file  | `L_s1_folder ]) ->
+        match x30 with
+        | `L_s0_file -> Ojs.string_to_js "file"
+        | `L_s1_folder -> Ojs.string_to_js "folder"
   end
 module FileOperationPatternOptions =
   struct
-    type t = _FileOperationPatternOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x78 : Ojs.t) -> _FileOperationPatternOptions_of_js x78
-    and t_to_js : t -> Ojs.t =
-      fun (x77 : _FileOperationPatternOptions) ->
-        _FileOperationPatternOptions_to_js x77
-    let (get_ignoreCase : t -> bool) =
-      fun (x79 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x79) "ignoreCase")
-    let (set_ignoreCase : t -> bool -> unit) =
-      fun (x80 : t) ->
-        fun (x81 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x80) "ignoreCase" (Ojs.bool_to_js x81)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x34 : Ojs.t) -> x34
+    and t_to_js : t -> Ojs.t = fun (x33 : Ojs.t) -> x33
+    let (get_ignore_case : t -> bool) =
+      fun (x35 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x35) "ignoreCase")
+    let (set_ignore_case : t -> bool -> unit) =
+      fun (x36 : t) ->
+        fun (x37 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x36) "ignoreCase" (Ojs.bool_to_js x37)
   end
 module FileOperationPattern =
   struct
-    type t = _FileOperationPattern
-    let rec t_of_js : Ojs.t -> t =
-      fun (x83 : Ojs.t) -> _FileOperationPattern_of_js x83
-    and t_to_js : t -> Ojs.t =
-      fun (x82 : _FileOperationPattern) -> _FileOperationPattern_to_js x82
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x39 : Ojs.t) -> x39
+    and t_to_js : t -> Ojs.t = fun (x38 : Ojs.t) -> x38
     let (get_glob : t -> string) =
-      fun (x84 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x84) "glob")
+      fun (x40 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x40) "glob")
     let (set_glob : t -> string -> unit) =
-      fun (x85 : t) ->
-        fun (x86 : string) ->
-          Ojs.set_prop_ascii (t_to_js x85) "glob" (Ojs.string_to_js x86)
-    let (get_matches : t -> _FileOperationPatternKind) =
-      fun (x87 : t) ->
-        _FileOperationPatternKind_of_js
-          (Ojs.get_prop_ascii (t_to_js x87) "matches")
-    let (set_matches : t -> _FileOperationPatternKind -> unit) =
-      fun (x88 : t) ->
-        fun (x89 : _FileOperationPatternKind) ->
-          Ojs.set_prop_ascii (t_to_js x88) "matches"
-            (_FileOperationPatternKind_to_js x89)
-    let (get_options : t -> _FileOperationPatternOptions) =
-      fun (x90 : t) ->
-        _FileOperationPatternOptions_of_js
-          (Ojs.get_prop_ascii (t_to_js x90) "options")
-    let (set_options : t -> _FileOperationPatternOptions -> unit) =
-      fun (x91 : t) ->
-        fun (x92 : _FileOperationPatternOptions) ->
-          Ojs.set_prop_ascii (t_to_js x91) "options"
-            (_FileOperationPatternOptions_to_js x92)
+      fun (x41 : t) ->
+        fun (x42 : string) ->
+          Ojs.set_prop_ascii (t_to_js x41) "glob" (Ojs.string_to_js x42)
+    let (get_matches : t -> FileOperationPatternKind.t) =
+      fun (x43 : t) ->
+        FileOperationPatternKind.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x43) "matches")
+    let (set_matches : t -> FileOperationPatternKind.t -> unit) =
+      fun (x44 : t) ->
+        fun (x45 : FileOperationPatternKind.t) ->
+          Ojs.set_prop_ascii (t_to_js x44) "matches"
+            (FileOperationPatternKind.t_to_js x45)
+    let (get_options : t -> FileOperationPatternOptions.t) =
+      fun (x46 : t) ->
+        FileOperationPatternOptions.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x46) "options")
+    let (set_options : t -> FileOperationPatternOptions.t -> unit) =
+      fun (x47 : t) ->
+        fun (x48 : FileOperationPatternOptions.t) ->
+          Ojs.set_prop_ascii (t_to_js x47) "options"
+            (FileOperationPatternOptions.t_to_js x48)
   end
 module FileOperationFilter =
   struct
-    type t = _FileOperationFilter
-    let rec t_of_js : Ojs.t -> t =
-      fun (x94 : Ojs.t) -> _FileOperationFilter_of_js x94
-    and t_to_js : t -> Ojs.t =
-      fun (x93 : _FileOperationFilter) -> _FileOperationFilter_to_js x93
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x50 : Ojs.t) -> x50
+    and t_to_js : t -> Ojs.t = fun (x49 : Ojs.t) -> x49
     let (get_scheme : t -> string) =
-      fun (x95 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x95) "scheme")
+      fun (x51 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x51) "scheme")
     let (set_scheme : t -> string -> unit) =
-      fun (x96 : t) ->
-        fun (x97 : string) ->
-          Ojs.set_prop_ascii (t_to_js x96) "scheme" (Ojs.string_to_js x97)
-    let (get_pattern : t -> _FileOperationPattern) =
-      fun (x98 : t) ->
-        _FileOperationPattern_of_js
-          (Ojs.get_prop_ascii (t_to_js x98) "pattern")
-    let (set_pattern : t -> _FileOperationPattern -> unit) =
-      fun (x99 : t) ->
-        fun (x100 : _FileOperationPattern) ->
-          Ojs.set_prop_ascii (t_to_js x99) "pattern"
-            (_FileOperationPattern_to_js x100)
+      fun (x52 : t) ->
+        fun (x53 : string) ->
+          Ojs.set_prop_ascii (t_to_js x52) "scheme" (Ojs.string_to_js x53)
+    let (get_pattern : t -> FileOperationPattern.t) =
+      fun (x54 : t) ->
+        FileOperationPattern.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x54) "pattern")
+    let (set_pattern : t -> FileOperationPattern.t -> unit) =
+      fun (x55 : t) ->
+        fun (x56 : FileOperationPattern.t) ->
+          Ojs.set_prop_ascii (t_to_js x55) "pattern"
+            (FileOperationPattern.t_to_js x56)
   end
 module FileOperationClientCapabilities =
   struct
-    type t = _FileOperationClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x102 : Ojs.t) -> _FileOperationClientCapabilities_of_js x102
-    and t_to_js : t -> Ojs.t =
-      fun (x101 : _FileOperationClientCapabilities) ->
-        _FileOperationClientCapabilities_to_js x101
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x103 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x58 : Ojs.t) -> x58
+    and t_to_js : t -> Ojs.t = fun (x57 : Ojs.t) -> x57
+    let (get_dynamic_registration : t -> bool) =
+      fun (x59 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x103) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x104 : t) ->
-        fun (x105 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x104) "dynamicRegistration"
-            (Ojs.bool_to_js x105)
-    let (get_didCreate : t -> bool) =
-      fun (x106 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x106) "didCreate")
-    let (set_didCreate : t -> bool -> unit) =
-      fun (x107 : t) ->
-        fun (x108 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x107) "didCreate" (Ojs.bool_to_js x108)
-    let (get_willCreate : t -> bool) =
-      fun (x109 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x109) "willCreate")
-    let (set_willCreate : t -> bool -> unit) =
-      fun (x110 : t) ->
-        fun (x111 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x110) "willCreate"
-            (Ojs.bool_to_js x111)
-    let (get_didRename : t -> bool) =
-      fun (x112 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x112) "didRename")
-    let (set_didRename : t -> bool -> unit) =
-      fun (x113 : t) ->
-        fun (x114 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x113) "didRename" (Ojs.bool_to_js x114)
-    let (get_willRename : t -> bool) =
-      fun (x115 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x115) "willRename")
-    let (set_willRename : t -> bool -> unit) =
-      fun (x116 : t) ->
-        fun (x117 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x116) "willRename"
-            (Ojs.bool_to_js x117)
-    let (get_didDelete : t -> bool) =
-      fun (x118 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x118) "didDelete")
-    let (set_didDelete : t -> bool -> unit) =
-      fun (x119 : t) ->
-        fun (x120 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x119) "didDelete" (Ojs.bool_to_js x120)
-    let (get_willDelete : t -> bool) =
-      fun (x121 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x121) "willDelete")
-    let (set_willDelete : t -> bool -> unit) =
-      fun (x122 : t) ->
-        fun (x123 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x122) "willDelete"
-            (Ojs.bool_to_js x123)
+          (Ojs.get_prop_ascii (t_to_js x59) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x60 : t) ->
+        fun (x61 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x60) "dynamicRegistration"
+            (Ojs.bool_to_js x61)
+    let (get_did_create : t -> bool) =
+      fun (x62 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x62) "didCreate")
+    let (set_did_create : t -> bool -> unit) =
+      fun (x63 : t) ->
+        fun (x64 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x63) "didCreate" (Ojs.bool_to_js x64)
+    let (get_will_create : t -> bool) =
+      fun (x65 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x65) "willCreate")
+    let (set_will_create : t -> bool -> unit) =
+      fun (x66 : t) ->
+        fun (x67 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x66) "willCreate" (Ojs.bool_to_js x67)
+    let (get_did_rename : t -> bool) =
+      fun (x68 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x68) "didRename")
+    let (set_did_rename : t -> bool -> unit) =
+      fun (x69 : t) ->
+        fun (x70 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x69) "didRename" (Ojs.bool_to_js x70)
+    let (get_will_rename : t -> bool) =
+      fun (x71 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x71) "willRename")
+    let (set_will_rename : t -> bool -> unit) =
+      fun (x72 : t) ->
+        fun (x73 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x72) "willRename" (Ojs.bool_to_js x73)
+    let (get_did_delete : t -> bool) =
+      fun (x74 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x74) "didDelete")
+    let (set_did_delete : t -> bool -> unit) =
+      fun (x75 : t) ->
+        fun (x76 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x75) "didDelete" (Ojs.bool_to_js x76)
+    let (get_will_delete : t -> bool) =
+      fun (x77 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x77) "willDelete")
+    let (set_will_delete : t -> bool -> unit) =
+      fun (x78 : t) ->
+        fun (x79 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x78) "willDelete" (Ojs.bool_to_js x79)
   end
 module CreateFilesParams =
   struct
-    type t = _CreateFilesParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x125 : Ojs.t) -> _CreateFilesParams_of_js x125
-    and t_to_js : t -> Ojs.t =
-      fun (x124 : _CreateFilesParams) -> _CreateFilesParams_to_js x124
-    let (get_files : t -> _FileCreate list) =
-      fun (x126 : t) ->
-        Ojs.list_of_js _FileCreate_of_js
-          (Ojs.get_prop_ascii (t_to_js x126) "files")
-    let (set_files : t -> _FileCreate list -> unit) =
-      fun (x128 : t) ->
-        fun (x129 : _FileCreate list) ->
-          Ojs.set_prop_ascii (t_to_js x128) "files"
-            (Ojs.list_to_js _FileCreate_to_js x129)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x81 : Ojs.t) -> x81
+    and t_to_js : t -> Ojs.t = fun (x80 : Ojs.t) -> x80
+    let (get_files : t -> FileCreate.t list) =
+      fun (x82 : t) ->
+        Ojs.list_of_js FileCreate.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x82) "files")
+    let (set_files : t -> FileCreate.t list -> unit) =
+      fun (x84 : t) ->
+        fun (x85 : FileCreate.t list) ->
+          Ojs.set_prop_ascii (t_to_js x84) "files"
+            (Ojs.list_to_js FileCreate.t_to_js x85)
   end
 module FileCreate =
   struct
-    type t = _FileCreate
-    let rec t_of_js : Ojs.t -> t =
-      fun (x132 : Ojs.t) -> _FileCreate_of_js x132
-    and t_to_js : t -> Ojs.t =
-      fun (x131 : _FileCreate) -> _FileCreate_to_js x131
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x88 : Ojs.t) -> x88
+    and t_to_js : t -> Ojs.t = fun (x87 : Ojs.t) -> x87
     let (get_uri : t -> string) =
-      fun (x133 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x133) "uri")
+      fun (x89 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x89) "uri")
     let (set_uri : t -> string -> unit) =
-      fun (x134 : t) ->
-        fun (x135 : string) ->
-          Ojs.set_prop_ascii (t_to_js x134) "uri" (Ojs.string_to_js x135)
+      fun (x90 : t) ->
+        fun (x91 : string) ->
+          Ojs.set_prop_ascii (t_to_js x90) "uri" (Ojs.string_to_js x91)
   end
 module RenameFilesParams =
   struct
-    type t = _RenameFilesParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x137 : Ojs.t) -> _RenameFilesParams_of_js x137
-    and t_to_js : t -> Ojs.t =
-      fun (x136 : _RenameFilesParams) -> _RenameFilesParams_to_js x136
-    let (get_files : t -> _FileRename list) =
-      fun (x138 : t) ->
-        Ojs.list_of_js _FileRename_of_js
-          (Ojs.get_prop_ascii (t_to_js x138) "files")
-    let (set_files : t -> _FileRename list -> unit) =
-      fun (x140 : t) ->
-        fun (x141 : _FileRename list) ->
-          Ojs.set_prop_ascii (t_to_js x140) "files"
-            (Ojs.list_to_js _FileRename_to_js x141)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x93 : Ojs.t) -> x93
+    and t_to_js : t -> Ojs.t = fun (x92 : Ojs.t) -> x92
+    let (get_files : t -> FileRename.t list) =
+      fun (x94 : t) ->
+        Ojs.list_of_js FileRename.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x94) "files")
+    let (set_files : t -> FileRename.t list -> unit) =
+      fun (x96 : t) ->
+        fun (x97 : FileRename.t list) ->
+          Ojs.set_prop_ascii (t_to_js x96) "files"
+            (Ojs.list_to_js FileRename.t_to_js x97)
   end
 module FileRename =
   struct
-    type t = _FileRename
-    let rec t_of_js : Ojs.t -> t =
-      fun (x144 : Ojs.t) -> _FileRename_of_js x144
-    and t_to_js : t -> Ojs.t =
-      fun (x143 : _FileRename) -> _FileRename_to_js x143
-    let (get_oldUri : t -> string) =
-      fun (x145 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x145) "oldUri")
-    let (set_oldUri : t -> string -> unit) =
-      fun (x146 : t) ->
-        fun (x147 : string) ->
-          Ojs.set_prop_ascii (t_to_js x146) "oldUri" (Ojs.string_to_js x147)
-    let (get_newUri : t -> string) =
-      fun (x148 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x148) "newUri")
-    let (set_newUri : t -> string -> unit) =
-      fun (x149 : t) ->
-        fun (x150 : string) ->
-          Ojs.set_prop_ascii (t_to_js x149) "newUri" (Ojs.string_to_js x150)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x100 : Ojs.t) -> x100
+    and t_to_js : t -> Ojs.t = fun (x99 : Ojs.t) -> x99
+    let (get_old_uri : t -> string) =
+      fun (x101 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x101) "oldUri")
+    let (set_old_uri : t -> string -> unit) =
+      fun (x102 : t) ->
+        fun (x103 : string) ->
+          Ojs.set_prop_ascii (t_to_js x102) "oldUri" (Ojs.string_to_js x103)
+    let (get_new_uri : t -> string) =
+      fun (x104 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x104) "newUri")
+    let (set_new_uri : t -> string -> unit) =
+      fun (x105 : t) ->
+        fun (x106 : string) ->
+          Ojs.set_prop_ascii (t_to_js x105) "newUri" (Ojs.string_to_js x106)
   end
 module DeleteFilesParams =
   struct
-    type t = _DeleteFilesParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x152 : Ojs.t) -> _DeleteFilesParams_of_js x152
-    and t_to_js : t -> Ojs.t =
-      fun (x151 : _DeleteFilesParams) -> _DeleteFilesParams_to_js x151
-    let (get_files : t -> _FileDelete list) =
-      fun (x153 : t) ->
-        Ojs.list_of_js _FileDelete_of_js
-          (Ojs.get_prop_ascii (t_to_js x153) "files")
-    let (set_files : t -> _FileDelete list -> unit) =
-      fun (x155 : t) ->
-        fun (x156 : _FileDelete list) ->
-          Ojs.set_prop_ascii (t_to_js x155) "files"
-            (Ojs.list_to_js _FileDelete_to_js x156)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x108 : Ojs.t) -> x108
+    and t_to_js : t -> Ojs.t = fun (x107 : Ojs.t) -> x107
+    let (get_files : t -> FileDelete.t list) =
+      fun (x109 : t) ->
+        Ojs.list_of_js FileDelete.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x109) "files")
+    let (set_files : t -> FileDelete.t list -> unit) =
+      fun (x111 : t) ->
+        fun (x112 : FileDelete.t list) ->
+          Ojs.set_prop_ascii (t_to_js x111) "files"
+            (Ojs.list_to_js FileDelete.t_to_js x112)
   end
 module FileDelete =
   struct
-    type t = _FileDelete
-    let rec t_of_js : Ojs.t -> t =
-      fun (x159 : Ojs.t) -> _FileDelete_of_js x159
-    and t_to_js : t -> Ojs.t =
-      fun (x158 : _FileDelete) -> _FileDelete_to_js x158
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x115 : Ojs.t) -> x115
+    and t_to_js : t -> Ojs.t = fun (x114 : Ojs.t) -> x114
     let (get_uri : t -> string) =
-      fun (x160 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x160) "uri")
+      fun (x116 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x116) "uri")
     let (set_uri : t -> string -> unit) =
-      fun (x161 : t) ->
-        fun (x162 : string) ->
-          Ojs.set_prop_ascii (t_to_js x161) "uri" (Ojs.string_to_js x162)
+      fun (x117 : t) ->
+        fun (x118 : string) ->
+          Ojs.set_prop_ascii (t_to_js x117) "uri" (Ojs.string_to_js x118)
   end
 module WillCreateFilesRequest =
   struct
     let (method_ : [ `L_s5_workspace_willCreateFiles ]) =
-      let x163 =
+      let x119 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "WillCreateFilesRequest") "method" in
-      match Ojs.string_of_js x163 with
+      match Ojs.string_of_js x119 with
       | "workspace/willCreateFiles" -> `L_s5_workspace_willCreateFiles
       | _ -> assert false
     let (type_ :
-      (_CreateFilesParams, WorkspaceEdit.t or_null, never, unit,
-        _FileOperationRegistrationOptions) ProtocolRequestType.t)
+      (CreateFilesParams.t, WorkspaceEdit.t or_null, never, unit,
+        FileOperationRegistrationOptions.t) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _CreateFilesParams_of_js
-        (fun (x165 : Ojs.t) -> or_null_of_js WorkspaceEdit.t_of_js x165)
-        never_of_js Ojs.unit_of_js _FileOperationRegistrationOptions_of_js
+      ProtocolRequestType.t_of_js CreateFilesParams.t_of_js
+        (fun (x121 : Ojs.t) -> or_null_of_js WorkspaceEdit.t_of_js x121)
+        never_of_js Ojs.unit_of_js FileOperationRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "WillCreateFilesRequest") "type")
     module HandlerSignature =
       struct
-        type t = _WillCreateFilesRequest_HandlerSignature
+        type t =
+          (CreateFilesParams.t, WorkspaceEdit.t or_null_or_undefined, 
+            unit) RequestHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x171 : Ojs.t) ->
-            _WillCreateFilesRequest_HandlerSignature_of_js x171
+          fun (x131 : Ojs.t) ->
+            RequestHandler.t_of_js CreateFilesParams.t_of_js
+              (fun (x133 : Ojs.t) ->
+                 or_null_or_undefined_of_js WorkspaceEdit.t_of_js x133)
+              Ojs.unit_of_js x131
         and t_to_js : t -> Ojs.t =
-          fun (x170 : _WillCreateFilesRequest_HandlerSignature) ->
-            _WillCreateFilesRequest_HandlerSignature_to_js x170
+          fun
+            (x126 :
+              (CreateFilesParams.t, WorkspaceEdit.t or_null_or_undefined,
+                unit) RequestHandler.t)
+            ->
+            RequestHandler.t_to_js CreateFilesParams.t_to_js
+              (fun (x128 : WorkspaceEdit.t or_null_or_undefined) ->
+                 or_null_or_undefined_to_js WorkspaceEdit.t_to_js x128)
+              Ojs.unit_to_js x126
       end
   end
 module DidCreateFilesNotification =
   struct
     let (method_ : [ `L_s2_workspace_didCreateFiles ]) =
-      let x172 =
+      let x136 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "DidCreateFilesNotification")
           "method" in
-      match Ojs.string_of_js x172 with
+      match Ojs.string_of_js x136 with
       | "workspace/didCreateFiles" -> `L_s2_workspace_didCreateFiles
       | _ -> assert false
     let (type_ :
-      (_CreateFilesParams, _FileOperationRegistrationOptions)
+      (CreateFilesParams.t, FileOperationRegistrationOptions.t)
         ProtocolNotificationType.t)
       =
-      ProtocolNotificationType.t_of_js _CreateFilesParams_of_js
-        _FileOperationRegistrationOptions_of_js
+      ProtocolNotificationType.t_of_js CreateFilesParams.t_of_js
+        FileOperationRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DidCreateFilesNotification")
            "type")
     module HandlerSignature =
       struct
-        type t = _DidCreateFilesNotification_HandlerSignature
+        type t = CreateFilesParams.t NotificationHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x176 : Ojs.t) ->
-            _DidCreateFilesNotification_HandlerSignature_of_js x176
+          fun (x141 : Ojs.t) ->
+            NotificationHandler.t_of_js CreateFilesParams.t_of_js x141
         and t_to_js : t -> Ojs.t =
-          fun (x175 : _DidCreateFilesNotification_HandlerSignature) ->
-            _DidCreateFilesNotification_HandlerSignature_to_js x175
+          fun (x139 : CreateFilesParams.t NotificationHandler.t) ->
+            NotificationHandler.t_to_js CreateFilesParams.t_to_js x139
       end
   end
 module WillRenameFilesRequest =
   struct
     let (method_ : [ `L_s7_workspace_willRenameFiles ]) =
-      let x177 =
+      let x143 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "WillRenameFilesRequest") "method" in
-      match Ojs.string_of_js x177 with
+      match Ojs.string_of_js x143 with
       | "workspace/willRenameFiles" -> `L_s7_workspace_willRenameFiles
       | _ -> assert false
     let (type_ :
-      (_RenameFilesParams, WorkspaceEdit.t or_null, never, unit,
-        _FileOperationRegistrationOptions) ProtocolRequestType.t)
+      (RenameFilesParams.t, WorkspaceEdit.t or_null, never, unit,
+        FileOperationRegistrationOptions.t) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _RenameFilesParams_of_js
-        (fun (x179 : Ojs.t) -> or_null_of_js WorkspaceEdit.t_of_js x179)
-        never_of_js Ojs.unit_of_js _FileOperationRegistrationOptions_of_js
+      ProtocolRequestType.t_of_js RenameFilesParams.t_of_js
+        (fun (x145 : Ojs.t) -> or_null_of_js WorkspaceEdit.t_of_js x145)
+        never_of_js Ojs.unit_of_js FileOperationRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "WillRenameFilesRequest") "type")
     module HandlerSignature =
       struct
-        type t = _WillRenameFilesRequest_HandlerSignature
+        type t =
+          (RenameFilesParams.t, WorkspaceEdit.t or_null_or_undefined, 
+            unit) RequestHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x185 : Ojs.t) ->
-            _WillRenameFilesRequest_HandlerSignature_of_js x185
+          fun (x155 : Ojs.t) ->
+            RequestHandler.t_of_js RenameFilesParams.t_of_js
+              (fun (x157 : Ojs.t) ->
+                 or_null_or_undefined_of_js WorkspaceEdit.t_of_js x157)
+              Ojs.unit_of_js x155
         and t_to_js : t -> Ojs.t =
-          fun (x184 : _WillRenameFilesRequest_HandlerSignature) ->
-            _WillRenameFilesRequest_HandlerSignature_to_js x184
+          fun
+            (x150 :
+              (RenameFilesParams.t, WorkspaceEdit.t or_null_or_undefined,
+                unit) RequestHandler.t)
+            ->
+            RequestHandler.t_to_js RenameFilesParams.t_to_js
+              (fun (x152 : WorkspaceEdit.t or_null_or_undefined) ->
+                 or_null_or_undefined_to_js WorkspaceEdit.t_to_js x152)
+              Ojs.unit_to_js x150
       end
   end
 module DidRenameFilesNotification =
   struct
     let (method_ : [ `L_s4_workspace_didRenameFiles ]) =
-      let x186 =
+      let x160 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "DidRenameFilesNotification")
           "method" in
-      match Ojs.string_of_js x186 with
+      match Ojs.string_of_js x160 with
       | "workspace/didRenameFiles" -> `L_s4_workspace_didRenameFiles
       | _ -> assert false
     let (type_ :
-      (_RenameFilesParams, _FileOperationRegistrationOptions)
+      (RenameFilesParams.t, FileOperationRegistrationOptions.t)
         ProtocolNotificationType.t)
       =
-      ProtocolNotificationType.t_of_js _RenameFilesParams_of_js
-        _FileOperationRegistrationOptions_of_js
+      ProtocolNotificationType.t_of_js RenameFilesParams.t_of_js
+        FileOperationRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DidRenameFilesNotification")
            "type")
     module HandlerSignature =
       struct
-        type t = _DidRenameFilesNotification_HandlerSignature
+        type t = RenameFilesParams.t NotificationHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x190 : Ojs.t) ->
-            _DidRenameFilesNotification_HandlerSignature_of_js x190
+          fun (x165 : Ojs.t) ->
+            NotificationHandler.t_of_js RenameFilesParams.t_of_js x165
         and t_to_js : t -> Ojs.t =
-          fun (x189 : _DidRenameFilesNotification_HandlerSignature) ->
-            _DidRenameFilesNotification_HandlerSignature_to_js x189
+          fun (x163 : RenameFilesParams.t NotificationHandler.t) ->
+            NotificationHandler.t_to_js RenameFilesParams.t_to_js x163
       end
   end
 module DidDeleteFilesNotification =
   struct
     let (method_ : [ `L_s3_workspace_didDeleteFiles ]) =
-      let x191 =
+      let x167 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "DidDeleteFilesNotification")
           "method" in
-      match Ojs.string_of_js x191 with
+      match Ojs.string_of_js x167 with
       | "workspace/didDeleteFiles" -> `L_s3_workspace_didDeleteFiles
       | _ -> assert false
     let (type_ :
-      (_DeleteFilesParams, _FileOperationRegistrationOptions)
+      (DeleteFilesParams.t, FileOperationRegistrationOptions.t)
         ProtocolNotificationType.t)
       =
-      ProtocolNotificationType.t_of_js _DeleteFilesParams_of_js
-        _FileOperationRegistrationOptions_of_js
+      ProtocolNotificationType.t_of_js DeleteFilesParams.t_of_js
+        FileOperationRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DidDeleteFilesNotification")
            "type")
     module HandlerSignature =
       struct
-        type t = _DidDeleteFilesNotification_HandlerSignature
+        type t = DeleteFilesParams.t NotificationHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x195 : Ojs.t) ->
-            _DidDeleteFilesNotification_HandlerSignature_of_js x195
+          fun (x172 : Ojs.t) ->
+            NotificationHandler.t_of_js DeleteFilesParams.t_of_js x172
         and t_to_js : t -> Ojs.t =
-          fun (x194 : _DidDeleteFilesNotification_HandlerSignature) ->
-            _DidDeleteFilesNotification_HandlerSignature_to_js x194
+          fun (x170 : DeleteFilesParams.t NotificationHandler.t) ->
+            NotificationHandler.t_to_js DeleteFilesParams.t_to_js x170
       end
   end
 module WillDeleteFilesRequest =
   struct
     let (method_ : [ `L_s6_workspace_willDeleteFiles ]) =
-      let x196 =
+      let x174 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "WillDeleteFilesRequest") "method" in
-      match Ojs.string_of_js x196 with
+      match Ojs.string_of_js x174 with
       | "workspace/willDeleteFiles" -> `L_s6_workspace_willDeleteFiles
       | _ -> assert false
     let (type_ :
-      (_DeleteFilesParams, WorkspaceEdit.t or_null, never, unit,
-        _FileOperationRegistrationOptions) ProtocolRequestType.t)
+      (DeleteFilesParams.t, WorkspaceEdit.t or_null, never, unit,
+        FileOperationRegistrationOptions.t) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _DeleteFilesParams_of_js
-        (fun (x198 : Ojs.t) -> or_null_of_js WorkspaceEdit.t_of_js x198)
-        never_of_js Ojs.unit_of_js _FileOperationRegistrationOptions_of_js
+      ProtocolRequestType.t_of_js DeleteFilesParams.t_of_js
+        (fun (x176 : Ojs.t) -> or_null_of_js WorkspaceEdit.t_of_js x176)
+        never_of_js Ojs.unit_of_js FileOperationRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "WillDeleteFilesRequest") "type")
     module HandlerSignature =
       struct
-        type t = _WillDeleteFilesRequest_HandlerSignature
+        type t =
+          (DeleteFilesParams.t, WorkspaceEdit.t or_null_or_undefined, 
+            unit) RequestHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x204 : Ojs.t) ->
-            _WillDeleteFilesRequest_HandlerSignature_of_js x204
+          fun (x186 : Ojs.t) ->
+            RequestHandler.t_of_js DeleteFilesParams.t_of_js
+              (fun (x188 : Ojs.t) ->
+                 or_null_or_undefined_of_js WorkspaceEdit.t_of_js x188)
+              Ojs.unit_of_js x186
         and t_to_js : t -> Ojs.t =
-          fun (x203 : _WillDeleteFilesRequest_HandlerSignature) ->
-            _WillDeleteFilesRequest_HandlerSignature_to_js x203
+          fun
+            (x181 :
+              (DeleteFilesParams.t, WorkspaceEdit.t or_null_or_undefined,
+                unit) RequestHandler.t)
+            ->
+            RequestHandler.t_to_js DeleteFilesParams.t_to_js
+              (fun (x183 : WorkspaceEdit.t or_null_or_undefined) ->
+                 or_null_or_undefined_to_js WorkspaceEdit.t_to_js x183)
+              Ojs.unit_to_js x181
       end
   end

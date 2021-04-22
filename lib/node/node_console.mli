@@ -57,7 +57,7 @@ module Console : sig
     val log : t -> ?message:any -> ?params:(any list[@js.variadic]) -> unit
       [@@js.call "log"]
 
-    val table : t -> tabularData:any -> ?properties:string list -> unit -> unit
+    val table : t -> tabular_data:any -> ?properties:string list -> unit -> unit
       [@@js.call "table"]
 
     val time : t -> ?label:string -> unit -> unit [@@js.call "time"]
@@ -128,7 +128,7 @@ module Console : sig
         :  t
         -> stdout:WritableStream.t
         -> ?stderr:WritableStream.t
-        -> ?ignoreErrors:bool
+        -> ?ignore_errors:bool
         -> unit
         -> t
         [@@js.apply_newable]
@@ -181,7 +181,7 @@ module Console : sig
   val log : string -> ?params:(any list[@js.variadic]) -> unit
     [@@js.global "log"]
 
-  val table : tabularData:any -> ?properties:string list -> unit -> unit
+  val table : tabular_data:any -> ?properties:string list -> unit -> unit
     [@@js.global "table"]
 
   val time : ?label:string -> unit -> unit [@@js.global "time"]

@@ -957,22 +957,22 @@ module Function : sig
 
   val t_of_js : Ojs.t -> t
 
-  val apply_ : t -> this:t -> thisArg:any -> ?argArray:any -> unit -> any
+  val apply_ : t -> this:t -> this_arg:any -> ?arg_array:any -> unit -> any
     [@@js.call "apply"]
 
   val call
     :  t
     -> this:t
-    -> thisArg:any
-    -> argArray:(any list[@js.variadic])
+    -> this_arg:any
+    -> arg_array:(any list[@js.variadic])
     -> any
     [@@js.call "call"]
 
   val bind
     :  t
     -> this:t
-    -> thisArg:any
-    -> argArray:(any list[@js.variadic])
+    -> this_arg:any
+    -> arg_array:(any list[@js.variadic])
     -> any
     [@@js.call "bind"]
 
@@ -1190,7 +1190,8 @@ module CallableFunction : sig
     include Function
   end
 
-  val apply_ : t -> this:(this:'T -> 'R) -> thisArg:'T -> 'R [@@js.call "apply"]
+  val apply_ : t -> this:(this:'T -> 'R) -> this_arg:'T -> 'R
+    [@@js.call "apply"]
 
   val apply_all
     :  t
@@ -1200,7 +1201,7 @@ module CallableFunction : sig
                (* FIXME: type ''A' cannot be used for variadic argument *)
                (any list[@js.variadic])
           -> 'R)
-    -> thisArg:'T
+    -> this_arg:'T
     -> args:'A
     -> 'R
     [@@js.call "apply"]
@@ -1213,7 +1214,7 @@ module CallableFunction : sig
                (* FIXME: type ''A' cannot be used for variadic argument *)
                (any list[@js.variadic])
           -> 'R)
-    -> thisArg:'T
+    -> this_arg:'T
     -> args:
          (* FIXME: type ''A' cannot be used for variadic argument *)
          (any list[@js.variadic])
@@ -1223,7 +1224,7 @@ module CallableFunction : sig
   val bind
     :  t
     -> this:'T
-    -> thisArg:'T ThisParameterType.t
+    -> this_arg:'T ThisParameterType.t
     -> 'T OmitThisParameter.t
     [@@js.call "bind"]
 
@@ -1235,7 +1236,7 @@ module CallableFunction : sig
                (* FIXME: type ''A' cannot be used for variadic argument *)
                (any list[@js.variadic])
           -> 'R)
-    -> thisArg:'T
+    -> this_arg:'T
     -> (args:
           (* FIXME: type ''A' cannot be used for variadic argument *)
           (any list[@js.variadic])
@@ -1250,34 +1251,34 @@ module NewableFunction : sig
     include Function
   end
 
-  (* val apply_ : t -> this:'T AnonymousInterface12.t -> thisArg:'T -> unit
+  (* val apply_ : t -> this:'T AnonymousInterface12.t -> this_arg:'T -> unit
      [@@js.call "apply"] *)
 
-  (* val apply' : t -> this:('A, 'T) AnonymousInterface10.t -> thisArg:'T -> 'A
+  (* val apply' : t -> this:('A, 'T) AnonymousInterface10.t -> this_arg:'T -> 'A
      -> unit [@@js.call "apply"] *)
 
-  (* val call : t -> this:('A, 'T) AnonymousInterface10.t -> thisArg:'T -> (*
-     FIXME: type ''A' cannot be used for variadic argument *) (any
+  (* val call : t -> this:('A, 'T) AnonymousInterface10.t -> this_arg:'T -> (*
+     fixme: type ''A' cannot be used for variadic argument *) (any
      list[@js.variadic]) -> unit [@@js.call "call"] *)
 
-  val bind : t -> this:'T -> thisArg:any -> 'T [@@js.call "bind"]
+  val bind : t -> this:'T -> this_arg:any -> 'T [@@js.call "bind"]
 
-  (* val bind' : t -> this:('A, 'A0, 'R) AnonymousInterface8.t -> thisArg:any ->
-     arg0:'A0 -> ('A, 'R) AnonymousInterface9.t [@@js.call "bind"] *)
+  (* val bind' : t -> this:('A, 'A0, 'R) AnonymousInterface8.t -> this_arg:any
+     -> arg0:'A0 -> ('A, 'R) AnonymousInterface9.t [@@js.call "bind"] *)
 
   (* val bind'' : t -> this:('A, 'A0, 'A1, 'R) AnonymousInterface7.t ->
-     thisArg:any -> arg0:'A0 -> arg1:'A1 -> ('A, 'R) AnonymousInterface9.t
+     this_arg:any -> arg0:'A0 -> arg1:'A1 -> ('A, 'R) AnonymousInterface9.t
      [@@js.call "bind"] *)
 
   (* val bind''' : t -> this:('A, 'A0, 'A1, 'A2, 'R) AnonymousInterface6.t ->
-     thisArg:any -> arg0:'A0 -> arg1:'A1 -> arg2:'A2 -> ('A, 'R)
+     this_arg:any -> arg0:'A0 -> arg1:'A1 -> arg2:'A2 -> ('A, 'R)
      AnonymousInterface9.t [@@js.call "bind"] *)
 
   (* val bind'''' : t -> this:('A, 'A0, 'A1, 'A2, 'A3, 'R) AnonymousInterface5.t
-     -> thisArg:any -> arg0:'A0 -> arg1:'A1 -> arg2:'A2 -> arg3:'A3 -> ('A, 'R)
+     -> this_arg:any -> arg0:'A0 -> arg1:'A1 -> arg2:'A2 -> arg3:'A3 -> ('A, 'R)
      AnonymousInterface9.t [@@js.call "bind"] *)
 
-  (* val bind''''' : t -> this:('AX, 'R) AnonymousInterface11.t -> thisArg:any
+  (* val bind''''' : t -> this:('AX, 'R) AnonymousInterface11.t -> this_arg:any
      -> ('AX list[@js.variadic]) -> ('AX, 'R) AnonymousInterface11.t [@@js.call
      "bind"] *)
 end
@@ -1876,16 +1877,21 @@ module ReadonlyArray : sig
   val slice : 'T t -> ?start:int -> ?end_:int -> unit -> 'T list
     [@@js.call "slice"]
 
-  val index_of : 'T t -> searchElement:'T -> ?fromIndex:int -> unit -> int
+  val index_of : 'T t -> search_element:'T -> ?from_index:int -> unit -> int
     [@@js.call "indexOf"]
 
-  val last_index_of : 'T t -> searchElement:'T -> ?fromIndex:int -> unit -> int
+  val last_index_of
+    :  'T t
+    -> search_element:'T
+    -> ?from_index:int
+    -> unit
+    -> int
     [@@js.call "lastIndexOf"]
 
   val every
     :  'T t
     -> (value:'T -> index:int -> array:'T list -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "every"]
@@ -1893,7 +1899,7 @@ module ReadonlyArray : sig
   val every'
     :  'T t
     -> (value:'T -> index:int -> array:'T list -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "every"]
@@ -1901,7 +1907,7 @@ module ReadonlyArray : sig
   val some
     :  'T t
     -> (value:'T -> index:int -> array:'T list -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "some"]
@@ -1909,7 +1915,7 @@ module ReadonlyArray : sig
   val for_each
     :  'T t
     -> callbackfn:(value:'T -> index:int -> array:'T list -> unit)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> unit
     [@@js.call "forEach"]
@@ -1917,7 +1923,7 @@ module ReadonlyArray : sig
   val map
     :  'T t
     -> callbackfn:(value:'T -> index:int -> array:'T list -> 'U)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> 'U list
     [@@js.call "map"]
@@ -1925,7 +1931,7 @@ module ReadonlyArray : sig
   val filter
     :  'T t
     -> (value:'T -> index:int -> array:'T list -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> 'S list
     [@@js.call "filter"]
@@ -1933,7 +1939,7 @@ module ReadonlyArray : sig
   val filter'
     :  'T t
     -> (value:'T -> index:int -> array:'T list -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> 'T list
     [@@js.call "filter"]
@@ -1942,8 +1948,8 @@ module ReadonlyArray : sig
     :  'T t
     -> callbackfn:
          (previousValue:'T
-          -> currentValue:'T
-          -> currentIndex:int
+          -> current_value:'T
+          -> current_index:int
           -> array:'T list
           -> 'T)
     -> 'T
@@ -1953,11 +1959,11 @@ module ReadonlyArray : sig
     :  'T t
     -> callbackfn:
          (previousValue:'T
-          -> currentValue:'T
-          -> currentIndex:int
+          -> current_value:'T
+          -> current_index:int
           -> array:'T list
           -> 'T)
-    -> initialValue:'T
+    -> initial_value:'T
     -> 'T
     [@@js.call "reduce"]
 
@@ -1965,11 +1971,11 @@ module ReadonlyArray : sig
     :  'T t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:'T
-          -> currentIndex:int
+          -> current_value:'T
+          -> current_index:int
           -> array:'T list
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduce"]
 
@@ -1977,8 +1983,8 @@ module ReadonlyArray : sig
     :  'T t
     -> callbackfn:
          (previousValue:'T
-          -> currentValue:'T
-          -> currentIndex:int
+          -> current_value:'T
+          -> current_index:int
           -> array:'T list
           -> 'T)
     -> 'T
@@ -1988,11 +1994,11 @@ module ReadonlyArray : sig
     :  'T t
     -> callbackfn:
          (previousValue:'T
-          -> currentValue:'T
-          -> currentIndex:int
+          -> current_value:'T
+          -> current_index:int
           -> array:'T list
           -> 'T)
-    -> initialValue:'T
+    -> initial_value:'T
     -> 'T
     [@@js.call "reduceRight"]
 
@@ -2000,11 +2006,11 @@ module ReadonlyArray : sig
     :  'T t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:'T
-          -> currentIndex:int
+          -> current_value:'T
+          -> current_index:int
           -> array:'T list
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduceRight"]
 
@@ -2068,32 +2074,37 @@ module Array : sig
   val slice : 'T t -> ?start:int -> ?end_:int -> unit -> 'T list
     [@@js.call "slice"]
 
-  val sort : 'T t -> ?compareFn:(a:'T -> b:'T -> int) -> unit -> 'T t
+  val sort : 'T t -> ?compare_fn:(a:'T -> b:'T -> int) -> unit -> 'T t
     [@@js.call "sort"]
 
-  val splice : 'T t -> start:int -> ?deleteCount:int -> unit -> 'T list
+  val splice : 'T t -> start:int -> ?delete_count:int -> unit -> 'T list
     [@@js.call "splice"]
 
   val splice'
     :  'T t
     -> start:int
-    -> deleteCount:int
+    -> delete_count:int
     -> ('T list[@js.variadic])
     -> 'T list
     [@@js.call "splice"]
 
   val unshift : 'T t -> ('T list[@js.variadic]) -> int [@@js.call "unshift"]
 
-  val index_of : 'T t -> searchElement:'T -> ?fromIndex:int -> unit -> int
+  val index_of : 'T t -> search_element:'T -> ?from_index:int -> unit -> int
     [@@js.call "indexOf"]
 
-  val last_index_of : 'T t -> searchElement:'T -> ?fromIndex:int -> unit -> int
+  val last_index_of
+    :  'T t
+    -> search_element:'T
+    -> ?from_index:int
+    -> unit
+    -> int
     [@@js.call "lastIndexOf"]
 
   val every
     :  'T t
     -> (value:'T -> index:int -> array:'T list -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "every"]
@@ -2101,7 +2112,7 @@ module Array : sig
   val every'
     :  'T t
     -> (value:'T -> index:int -> array:'T list -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "every"]
@@ -2109,7 +2120,7 @@ module Array : sig
   val some
     :  'T t
     -> (value:'T -> index:int -> array:'T list -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "some"]
@@ -2117,7 +2128,7 @@ module Array : sig
   val for_each
     :  'T t
     -> callbackfn:(value:'T -> index:int -> array:'T list -> unit)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> unit
     [@@js.call "forEach"]
@@ -2125,7 +2136,7 @@ module Array : sig
   val map
     :  'T t
     -> callbackfn:(value:'T -> index:int -> array:'T list -> 'U)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> 'U list
     [@@js.call "map"]
@@ -2133,7 +2144,7 @@ module Array : sig
   val filter
     :  'T t
     -> (value:'T -> index:int -> array:'T list -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> 'S list
     [@@js.call "filter"]
@@ -2141,7 +2152,7 @@ module Array : sig
   val filter'
     :  'T t
     -> (value:'T -> index:int -> array:'T list -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> 'T list
     [@@js.call "filter"]
@@ -2150,8 +2161,8 @@ module Array : sig
     :  'T t
     -> callbackfn:
          (previousValue:'T
-          -> currentValue:'T
-          -> currentIndex:int
+          -> current_value:'T
+          -> current_index:int
           -> array:'T list
           -> 'T)
     -> 'T
@@ -2161,11 +2172,11 @@ module Array : sig
     :  'T t
     -> callbackfn:
          (previousValue:'T
-          -> currentValue:'T
-          -> currentIndex:int
+          -> current_value:'T
+          -> current_index:int
           -> array:'T list
           -> 'T)
-    -> initialValue:'T
+    -> initial_value:'T
     -> 'T
     [@@js.call "reduce"]
 
@@ -2173,11 +2184,11 @@ module Array : sig
     :  'T t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:'T
-          -> currentIndex:int
+          -> current_value:'T
+          -> current_index:int
           -> array:'T list
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduce"]
 
@@ -2185,8 +2196,8 @@ module Array : sig
     :  'T t
     -> callbackfn:
          (previousValue:'T
-          -> currentValue:'T
-          -> currentIndex:int
+          -> current_value:'T
+          -> current_index:int
           -> array:'T list
           -> 'T)
     -> 'T
@@ -2196,11 +2207,11 @@ module Array : sig
     :  'T t
     -> callbackfn:
          (previousValue:'T
-          -> currentValue:'T
-          -> currentIndex:int
+          -> current_value:'T
+          -> current_index:int
           -> array:'T list
           -> 'T)
-    -> initialValue:'T
+    -> initial_value:'T
     -> 'T
     [@@js.call "reduceRight"]
 
@@ -2208,11 +2219,11 @@ module Array : sig
     :  'T t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:'T
-          -> currentIndex:int
+          -> current_value:'T
+          -> current_index:int
           -> array:'T list
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduceRight"]
 
@@ -2226,9 +2237,9 @@ module Array : sig
 
   (* Constructor *)
 
-  val create : ?arrayLength:int -> unit -> any list [@@js.new "Array"]
+  val create : ?array_length:int -> unit -> any list [@@js.new "Array"]
 
-  val create' : arrayLength:int -> 'T list [@@js.new "Array"]
+  val create' : array_length:int -> 'T list [@@js.new "Array"]
 
   val create'' : ('T list[@js.variadic]) -> 'T list [@@js.new "Array"]
 
@@ -2242,15 +2253,15 @@ module ArrayConstructor : sig
 
   val t_of_js : Ojs.t -> t
 
-  val create : t -> ?arrayLength:int -> unit -> any list [@@js.apply_newable]
+  val create : t -> ?array_length:int -> unit -> any list [@@js.apply_newable]
 
-  val create' : t -> arrayLength:int -> 'T list [@@js.apply_newable]
+  val create' : t -> array_length:int -> 'T list [@@js.apply_newable]
 
   val create'' : t -> ('T list[@js.variadic]) -> 'T list [@@js.apply_newable]
 
-  val apply : t -> ?arrayLength:int -> unit -> any list [@@js.apply]
+  val apply : t -> ?array_length:int -> unit -> any list [@@js.apply]
 
-  val apply' : t -> arrayLength:int -> 'T list [@@js.apply]
+  val apply' : t -> array_length:int -> 'T list [@@js.apply]
 
   val apply'' : t -> ('T list[@js.variadic]) -> 'T list [@@js.apply]
 
@@ -2464,10 +2475,10 @@ module String : sig
   val concat : t -> strings:(string list[@js.variadic]) -> string
     [@@js.call "concat"]
 
-  val index_of : t -> searchString:string -> ?position:int -> unit -> int
+  val index_of : t -> search_string:string -> ?position:int -> unit -> int
     [@@js.call "indexOf"]
 
-  val last_index_of : t -> searchString:string -> ?position:int -> unit -> int
+  val last_index_of : t -> search_string:string -> ?position:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val locale_compare' : t -> that:string -> int [@@js.call "localeCompare"]
@@ -2477,14 +2488,14 @@ module String : sig
 
   val replace
     :  t
-    -> searchValue:RegExp.t or_string
-    -> replaceValue:string
+    -> search_value:RegExp.t or_string
+    -> replace_value:string
     -> string
     [@@js.call "replace"]
 
   val replace'
     :  t
-    -> searchValue:RegExp.t or_string
+    -> search_value:RegExp.t or_string
     -> replacer:(substring:string -> args:(any list[@js.variadic]) -> string)
     -> string
     [@@js.call "replace"]
@@ -2617,10 +2628,10 @@ module Number : sig
 
   val to_string : t -> ?radix:int -> unit -> string [@@js.call "toString"]
 
-  val to_fixed : t -> ?fractionDigits:int -> unit -> string
+  val to_fixed : t -> ?fraction_digits:int -> unit -> string
     [@@js.call "toFixed"]
 
-  val to_exponential : t -> ?fractionDigits:int -> unit -> string
+  val to_exponential : t -> ?fraction_digits:int -> unit -> string
     [@@js.call "toExponential"]
 
   val to_precision : t -> ?precision:int -> unit -> string
@@ -3252,7 +3263,7 @@ module PropertyDecorator : sig
 
   val t_of_js : Ojs.t -> t
 
-  val apply : t -> target:Object.t -> propertyKey:symbol or_string -> unit
+  val apply : t -> target:Object.t -> property_key:symbol or_string -> unit
     [@@js.apply]
 end
 [@@js.scope "PropertyDecorator"]
@@ -3267,7 +3278,7 @@ module MethodDecorator : sig
   val apply
     :  t
     -> target:Object.t
-    -> propertyKey:symbol or_string
+    -> property_key:symbol or_string
     -> descriptor:'T TypedPropertyDescriptor.t
     -> (unit, 'T TypedPropertyDescriptor.t) union2
     [@@js.apply]
@@ -3284,8 +3295,8 @@ module ParameterDecorator : sig
   val apply
     :  t
     -> target:Object.t
-    -> propertyKey:symbol or_string
-    -> parameterIndex:int
+    -> property_key:symbol or_string
+    -> parameter_index:int
     -> unit
     [@@js.apply]
 end
@@ -3328,7 +3339,7 @@ module ArrayBuffer : sig
 
   (* Constructor *)
 
-  val create : byteLength:int -> t [@@js.new "ArrayBuffer"]
+  val create : byte_length:int -> t [@@js.new "ArrayBuffer"]
 
   val is_view : any -> bool [@@js.global "ArrayBuffer.isView"]
 end
@@ -3355,7 +3366,7 @@ module ArrayBufferConstructor : sig
 
   val get_prototype : t -> ArrayBuffer.t [@@js.get "prototype"]
 
-  val create : t -> byteLength:int -> ArrayBuffer.t [@@js.apply_newable]
+  val create : t -> byte_length:int -> ArrayBuffer.t [@@js.apply_newable]
 
   val is_view : t -> any -> bool [@@js.call "isView"]
 end
@@ -3397,83 +3408,83 @@ module DataView : sig
 
   val get_byte_offset : t -> int [@@js.get "byteOffset"]
 
-  val get_float32 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> int
+  val get_float32 : t -> byte_offset:int -> ?little_endian:bool -> unit -> int
     [@@js.call "getFloat32"]
 
-  val get_float64 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> int
+  val get_float64 : t -> byte_offset:int -> ?little_endian:bool -> unit -> int
     [@@js.call "getFloat64"]
 
-  val get_int8 : t -> byteOffset:int -> int [@@js.call "getInt8"]
+  val get_int8 : t -> byte_offset:int -> int [@@js.call "getInt8"]
 
-  val get_int16 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> int
+  val get_int16 : t -> byte_offset:int -> ?little_endian:bool -> unit -> int
     [@@js.call "getInt16"]
 
-  val get_int32 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> int
+  val get_int32 : t -> byte_offset:int -> ?little_endian:bool -> unit -> int
     [@@js.call "getInt32"]
 
-  val get_uint8 : t -> byteOffset:int -> int [@@js.call "getUint8"]
+  val get_uint8 : t -> byte_offset:int -> int [@@js.call "getUint8"]
 
-  val get_uint16 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> int
+  val get_uint16 : t -> byte_offset:int -> ?little_endian:bool -> unit -> int
     [@@js.call "getUint16"]
 
-  val get_uint32 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> int
+  val get_uint32 : t -> byte_offset:int -> ?little_endian:bool -> unit -> int
     [@@js.call "getUint32"]
 
   val set_float32
     :  t
-    -> byteOffset:int
+    -> byte_offset:int
     -> value:int
-    -> ?littleEndian:bool
+    -> ?little_endian:bool
     -> unit
     -> unit
     [@@js.call "setFloat32"]
 
   val set_float64
     :  t
-    -> byteOffset:int
+    -> byte_offset:int
     -> value:int
-    -> ?littleEndian:bool
+    -> ?little_endian:bool
     -> unit
     -> unit
     [@@js.call "setFloat64"]
 
-  val set_int8 : t -> byteOffset:int -> value:int -> unit [@@js.call "setInt8"]
+  val set_int8 : t -> byte_offset:int -> value:int -> unit [@@js.call "setInt8"]
 
   val set_int16
     :  t
-    -> byteOffset:int
+    -> byte_offset:int
     -> value:int
-    -> ?littleEndian:bool
+    -> ?little_endian:bool
     -> unit
     -> unit
     [@@js.call "setInt16"]
 
   val set_int32
     :  t
-    -> byteOffset:int
+    -> byte_offset:int
     -> value:int
-    -> ?littleEndian:bool
+    -> ?little_endian:bool
     -> unit
     -> unit
     [@@js.call "setInt32"]
 
-  val set_uint8 : t -> byteOffset:int -> value:int -> unit
+  val set_uint8 : t -> byte_offset:int -> value:int -> unit
     [@@js.call "setUint8"]
 
   val set_uint16
     :  t
-    -> byteOffset:int
+    -> byte_offset:int
     -> value:int
-    -> ?littleEndian:bool
+    -> ?little_endian:bool
     -> unit
     -> unit
     [@@js.call "setUint16"]
 
   val set_uint32
     :  t
-    -> byteOffset:int
+    -> byte_offset:int
     -> value:int
-    -> ?littleEndian:bool
+    -> ?little_endian:bool
     -> unit
     -> unit
     [@@js.call "setUint32"]
@@ -3482,8 +3493,8 @@ module DataView : sig
 
   val create
     :  buffer:ArrayBuffer.t
-    -> ?byteOffset:int
-    -> ?byteLength:int
+    -> ?byte_offset:int
+    -> ?byte_length:int
     -> unit
     -> t
     [@@js.new "DataView"]
@@ -3501,8 +3512,8 @@ module DataViewConstructor : sig
   val create
     :  t
     -> buffer:ArrayBuffer.t
-    -> ?byteOffset:int
-    -> ?byteLength:int
+    -> ?byte_offset:int
+    -> ?byte_length:int
     -> unit
     -> DataView.t
     [@@js.apply_newable]
@@ -3532,7 +3543,7 @@ module Int8Array : sig
   val every
     :  t
     -> (value:int -> index:int -> array:t -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "every"]
@@ -3542,7 +3553,7 @@ module Int8Array : sig
   val filter
     :  t
     -> (value:int -> index:int -> array:t -> any)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "filter"]
@@ -3550,7 +3561,7 @@ module Int8Array : sig
   val find
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int or_undefined
     [@@js.call "find"]
@@ -3558,7 +3569,7 @@ module Int8Array : sig
   val find_index
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int
     [@@js.call "findIndex"]
@@ -3566,17 +3577,17 @@ module Int8Array : sig
   val for_each
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> unit)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> unit
     [@@js.call "forEach"]
 
-  val index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val index_of : t -> search_element:int -> ?from_index:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val last_index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val last_index_of : t -> search_element:int -> ?from_index:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -3584,7 +3595,7 @@ module Int8Array : sig
   val map
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "map"]
@@ -3593,8 +3604,8 @@ module Int8Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
     -> int
@@ -3604,11 +3615,11 @@ module Int8Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
-    -> initialValue:int
+    -> initial_value:int
     -> int
     [@@js.call "reduce"]
 
@@ -3616,11 +3627,11 @@ module Int8Array : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduce"]
 
@@ -3628,8 +3639,8 @@ module Int8Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
     -> int
@@ -3639,11 +3650,11 @@ module Int8Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
-    -> initialValue:int
+    -> initial_value:int
     -> int
     [@@js.call "reduceRight"]
 
@@ -3651,11 +3662,11 @@ module Int8Array : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduceRight"]
 
@@ -3669,12 +3680,12 @@ module Int8Array : sig
   val some
     :  t
     -> (value:int -> index:int -> array:t -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "some"]
 
-  val sort : t -> ?compareFn:(a:int -> b:int -> int) -> unit -> t
+  val sort : t -> ?compare_fn:(a:int -> b:int -> int) -> unit -> t
     [@@js.call "sort"]
 
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
@@ -3699,7 +3710,7 @@ module Int8Array : sig
 
   val create''
     :  buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> t
@@ -3714,7 +3725,7 @@ module Int8Array : sig
   val from'
     :  array:'T Array.t
     -> mapfn:(v:'T -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.global "Int8Array.from"]
@@ -3737,7 +3748,7 @@ module Int8ArrayConstructor : sig
   val create''
     :  t
     -> buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> Int8Array.t
@@ -3753,7 +3764,7 @@ module Int8ArrayConstructor : sig
     :  t
     -> array:'T Array.t
     -> mapfn:(v:'T -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> Int8Array.t
     [@@js.call "from"]
@@ -3783,7 +3794,7 @@ module Uint8Array : sig
   val every
     :  t
     -> (value:int -> index:int -> array:t -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "every"]
@@ -3794,7 +3805,7 @@ module Uint8Array : sig
   val filter
     :  t
     -> (value:int -> index:int -> array:t -> any)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "filter"]
@@ -3802,7 +3813,7 @@ module Uint8Array : sig
   val find
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int or_undefined
     [@@js.call "find"]
@@ -3810,7 +3821,7 @@ module Uint8Array : sig
   val find_index
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int
     [@@js.call "findIndex"]
@@ -3818,17 +3829,17 @@ module Uint8Array : sig
   val for_each
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> unit)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> unit
     [@@js.call "forEach"]
 
-  val index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val index_of : t -> search_element:int -> ?from_index:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val last_index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val last_index_of : t -> search_element:int -> ?from_index:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -3836,7 +3847,7 @@ module Uint8Array : sig
   val map
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "map"]
@@ -3845,8 +3856,8 @@ module Uint8Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
     -> int
@@ -3856,11 +3867,11 @@ module Uint8Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
-    -> initialValue:int
+    -> initial_value:int
     -> int
     [@@js.call "reduce"]
 
@@ -3868,11 +3879,11 @@ module Uint8Array : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduce"]
 
@@ -3880,8 +3891,8 @@ module Uint8Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
     -> int
@@ -3891,11 +3902,11 @@ module Uint8Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
-    -> initialValue:int
+    -> initial_value:int
     -> int
     [@@js.call "reduceRight"]
 
@@ -3903,11 +3914,11 @@ module Uint8Array : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduceRight"]
 
@@ -3921,12 +3932,12 @@ module Uint8Array : sig
   val some
     :  t
     -> (value:int -> index:int -> array:t -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "some"]
 
-  val sort : t -> ?compareFn:(a:int -> b:int -> int) -> unit -> t
+  val sort : t -> ?compare_fn:(a:int -> b:int -> int) -> unit -> t
     [@@js.call "sort"]
 
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
@@ -3951,7 +3962,7 @@ module Uint8Array : sig
 
   val create''
     :  buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> t
@@ -3966,7 +3977,7 @@ module Uint8Array : sig
   val from'
     :  array:'T Array.t
     -> mapfn:(v:'T -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.global "Uint8Array.from"]
@@ -3989,7 +4000,7 @@ module Uint8ArrayConstructor : sig
   val create''
     :  t
     -> buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> Uint8Array.t
@@ -4005,7 +4016,7 @@ module Uint8ArrayConstructor : sig
     :  t
     -> array:'T Array.t
     -> mapfn:(v:'T -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> Uint8Array.t
     [@@js.call "from"]
@@ -4035,7 +4046,7 @@ module Uint8ClampedArray : sig
   val every
     :  t
     -> (value:int -> index:int -> array:t -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "every"]
@@ -4046,7 +4057,7 @@ module Uint8ClampedArray : sig
   val filter
     :  t
     -> (value:int -> index:int -> array:t -> any)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "filter"]
@@ -4054,7 +4065,7 @@ module Uint8ClampedArray : sig
   val find
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int or_undefined
     [@@js.call "find"]
@@ -4062,7 +4073,7 @@ module Uint8ClampedArray : sig
   val find_index
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int
     [@@js.call "findIndex"]
@@ -4070,17 +4081,17 @@ module Uint8ClampedArray : sig
   val for_each
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> unit)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> unit
     [@@js.call "forEach"]
 
-  val index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val index_of : t -> search_element:int -> ?from_index:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val last_index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val last_index_of : t -> search_element:int -> ?from_index:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -4088,7 +4099,7 @@ module Uint8ClampedArray : sig
   val map
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "map"]
@@ -4097,8 +4108,8 @@ module Uint8ClampedArray : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
     -> int
@@ -4108,11 +4119,11 @@ module Uint8ClampedArray : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
-    -> initialValue:int
+    -> initial_value:int
     -> int
     [@@js.call "reduce"]
 
@@ -4120,11 +4131,11 @@ module Uint8ClampedArray : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduce"]
 
@@ -4132,8 +4143,8 @@ module Uint8ClampedArray : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
     -> int
@@ -4143,11 +4154,11 @@ module Uint8ClampedArray : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
-    -> initialValue:int
+    -> initial_value:int
     -> int
     [@@js.call "reduceRight"]
 
@@ -4155,11 +4166,11 @@ module Uint8ClampedArray : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduceRight"]
 
@@ -4173,12 +4184,12 @@ module Uint8ClampedArray : sig
   val some
     :  t
     -> (value:int -> index:int -> array:t -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "some"]
 
-  val sort : t -> ?compareFn:(a:int -> b:int -> int) -> unit -> t
+  val sort : t -> ?compare_fn:(a:int -> b:int -> int) -> unit -> t
     [@@js.call "sort"]
 
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
@@ -4203,7 +4214,7 @@ module Uint8ClampedArray : sig
 
   val create''
     :  buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> t
@@ -4219,7 +4230,7 @@ module Uint8ClampedArray : sig
   val from'
     :  array:'T Array.t
     -> mapfn:(v:'T -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.global "Uint8ClampedArray.from"]
@@ -4245,7 +4256,7 @@ module Uint8ClampedArrayConstructor : sig
   val create''
     :  t
     -> buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> Uint8ClampedArray.t
@@ -4262,7 +4273,7 @@ module Uint8ClampedArrayConstructor : sig
     :  t
     -> array:'T Array.t
     -> mapfn:(v:'T -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> Uint8ClampedArray.t
     [@@js.call "from"]
@@ -4293,7 +4304,7 @@ module Int16Array : sig
   val every
     :  t
     -> (value:int -> index:int -> array:t -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "every"]
@@ -4304,7 +4315,7 @@ module Int16Array : sig
   val filter
     :  t
     -> (value:int -> index:int -> array:t -> any)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "filter"]
@@ -4312,7 +4323,7 @@ module Int16Array : sig
   val find
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int or_undefined
     [@@js.call "find"]
@@ -4320,7 +4331,7 @@ module Int16Array : sig
   val find_index
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int
     [@@js.call "findIndex"]
@@ -4328,17 +4339,17 @@ module Int16Array : sig
   val for_each
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> unit)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> unit
     [@@js.call "forEach"]
 
-  val index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val index_of : t -> search_element:int -> ?from_index:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val last_index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val last_index_of : t -> search_element:int -> ?from_index:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -4346,7 +4357,7 @@ module Int16Array : sig
   val map
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "map"]
@@ -4355,8 +4366,8 @@ module Int16Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
     -> int
@@ -4366,11 +4377,11 @@ module Int16Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
-    -> initialValue:int
+    -> initial_value:int
     -> int
     [@@js.call "reduce"]
 
@@ -4378,11 +4389,11 @@ module Int16Array : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduce"]
 
@@ -4390,8 +4401,8 @@ module Int16Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
     -> int
@@ -4401,11 +4412,11 @@ module Int16Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
-    -> initialValue:int
+    -> initial_value:int
     -> int
     [@@js.call "reduceRight"]
 
@@ -4413,11 +4424,11 @@ module Int16Array : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduceRight"]
 
@@ -4431,12 +4442,12 @@ module Int16Array : sig
   val some
     :  t
     -> (value:int -> index:int -> array:t -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "some"]
 
-  val sort : t -> ?compareFn:(a:int -> b:int -> int) -> unit -> t
+  val sort : t -> ?compare_fn:(a:int -> b:int -> int) -> unit -> t
     [@@js.call "sort"]
 
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
@@ -4461,7 +4472,7 @@ module Int16Array : sig
 
   val create''
     :  buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> t
@@ -4476,7 +4487,7 @@ module Int16Array : sig
   val from'
     :  array:'T Array.t
     -> mapfn:(v:'T -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.global "Int16Array.from"]
@@ -4499,7 +4510,7 @@ module Int16ArrayConstructor : sig
   val create''
     :  t
     -> buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> Int16Array.t
@@ -4515,7 +4526,7 @@ module Int16ArrayConstructor : sig
     :  t
     -> array:'T Array.t
     -> mapfn:(v:'T -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> Int16Array.t
     [@@js.call "from"]
@@ -4545,7 +4556,7 @@ module Uint16Array : sig
   val every
     :  t
     -> (value:int -> index:int -> array:t -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "every"]
@@ -4556,7 +4567,7 @@ module Uint16Array : sig
   val filter
     :  t
     -> (value:int -> index:int -> array:t -> any)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "filter"]
@@ -4564,7 +4575,7 @@ module Uint16Array : sig
   val find
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int or_undefined
     [@@js.call "find"]
@@ -4572,7 +4583,7 @@ module Uint16Array : sig
   val find_index
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int
     [@@js.call "findIndex"]
@@ -4580,17 +4591,17 @@ module Uint16Array : sig
   val for_each
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> unit)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> unit
     [@@js.call "forEach"]
 
-  val index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val index_of : t -> search_element:int -> ?from_index:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val last_index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val last_index_of : t -> search_element:int -> ?from_index:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -4598,7 +4609,7 @@ module Uint16Array : sig
   val map
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "map"]
@@ -4607,8 +4618,8 @@ module Uint16Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
     -> int
@@ -4618,11 +4629,11 @@ module Uint16Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
-    -> initialValue:int
+    -> initial_value:int
     -> int
     [@@js.call "reduce"]
 
@@ -4630,11 +4641,11 @@ module Uint16Array : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduce"]
 
@@ -4642,8 +4653,8 @@ module Uint16Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
     -> int
@@ -4653,11 +4664,11 @@ module Uint16Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
-    -> initialValue:int
+    -> initial_value:int
     -> int
     [@@js.call "reduceRight"]
 
@@ -4665,11 +4676,11 @@ module Uint16Array : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduceRight"]
 
@@ -4683,12 +4694,12 @@ module Uint16Array : sig
   val some
     :  t
     -> (value:int -> index:int -> array:t -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "some"]
 
-  val sort : t -> ?compareFn:(a:int -> b:int -> int) -> unit -> t
+  val sort : t -> ?compare_fn:(a:int -> b:int -> int) -> unit -> t
     [@@js.call "sort"]
 
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
@@ -4713,7 +4724,7 @@ module Uint16Array : sig
 
   val create''
     :  buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> t
@@ -4728,7 +4739,7 @@ module Uint16Array : sig
   val from'
     :  array:'T Array.t
     -> mapfn:(v:'T -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.global "Uint16Array.from"]
@@ -4751,7 +4762,7 @@ module Uint16ArrayConstructor : sig
   val create''
     :  t
     -> buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> Uint16Array.t
@@ -4767,7 +4778,7 @@ module Uint16ArrayConstructor : sig
     :  t
     -> array:'T Array.t
     -> mapfn:(v:'T -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> Uint16Array.t
     [@@js.call "from"]
@@ -4797,7 +4808,7 @@ module Int32Array : sig
   val every
     :  t
     -> (value:int -> index:int -> array:t -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "every"]
@@ -4808,7 +4819,7 @@ module Int32Array : sig
   val filter
     :  t
     -> (value:int -> index:int -> array:t -> any)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "filter"]
@@ -4816,7 +4827,7 @@ module Int32Array : sig
   val find
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int or_undefined
     [@@js.call "find"]
@@ -4824,7 +4835,7 @@ module Int32Array : sig
   val find_index
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int
     [@@js.call "findIndex"]
@@ -4832,17 +4843,17 @@ module Int32Array : sig
   val for_each
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> unit)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> unit
     [@@js.call "forEach"]
 
-  val index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val index_of : t -> search_element:int -> ?from_index:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val last_index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val last_index_of : t -> search_element:int -> ?from_index:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -4850,7 +4861,7 @@ module Int32Array : sig
   val map
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "map"]
@@ -4859,8 +4870,8 @@ module Int32Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
     -> int
@@ -4870,11 +4881,11 @@ module Int32Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
-    -> initialValue:int
+    -> initial_value:int
     -> int
     [@@js.call "reduce"]
 
@@ -4882,11 +4893,11 @@ module Int32Array : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduce"]
 
@@ -4894,8 +4905,8 @@ module Int32Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
     -> int
@@ -4905,11 +4916,11 @@ module Int32Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
-    -> initialValue:int
+    -> initial_value:int
     -> int
     [@@js.call "reduceRight"]
 
@@ -4917,11 +4928,11 @@ module Int32Array : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduceRight"]
 
@@ -4935,12 +4946,12 @@ module Int32Array : sig
   val some
     :  t
     -> (value:int -> index:int -> array:t -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "some"]
 
-  val sort : t -> ?compareFn:(a:int -> b:int -> int) -> unit -> t
+  val sort : t -> ?compare_fn:(a:int -> b:int -> int) -> unit -> t
     [@@js.call "sort"]
 
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
@@ -4965,7 +4976,7 @@ module Int32Array : sig
 
   val create''
     :  buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> t
@@ -4980,7 +4991,7 @@ module Int32Array : sig
   val from'
     :  array:'T Array.t
     -> mapfn:(v:'T -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.global "Int32Array.from"]
@@ -5003,7 +5014,7 @@ module Int32ArrayConstructor : sig
   val create''
     :  t
     -> buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> Int32Array.t
@@ -5019,7 +5030,7 @@ module Int32ArrayConstructor : sig
     :  t
     -> array:'T Array.t
     -> mapfn:(v:'T -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> Int32Array.t
     [@@js.call "from"]
@@ -5049,7 +5060,7 @@ module Uint32Array : sig
   val every
     :  t
     -> (value:int -> index:int -> array:t -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "every"]
@@ -5060,7 +5071,7 @@ module Uint32Array : sig
   val filter
     :  t
     -> (value:int -> index:int -> array:t -> any)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "filter"]
@@ -5068,7 +5079,7 @@ module Uint32Array : sig
   val find
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int or_undefined
     [@@js.call "find"]
@@ -5076,7 +5087,7 @@ module Uint32Array : sig
   val find_index
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int
     [@@js.call "findIndex"]
@@ -5084,17 +5095,17 @@ module Uint32Array : sig
   val for_each
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> unit)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> unit
     [@@js.call "forEach"]
 
-  val index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val index_of : t -> search_element:int -> ?from_index:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val last_index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val last_index_of : t -> search_element:int -> ?from_index:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -5102,7 +5113,7 @@ module Uint32Array : sig
   val map
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "map"]
@@ -5111,8 +5122,8 @@ module Uint32Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
     -> int
@@ -5122,11 +5133,11 @@ module Uint32Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
-    -> initialValue:int
+    -> initial_value:int
     -> int
     [@@js.call "reduce"]
 
@@ -5134,11 +5145,11 @@ module Uint32Array : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduce"]
 
@@ -5146,8 +5157,8 @@ module Uint32Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
     -> int
@@ -5157,11 +5168,11 @@ module Uint32Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
-    -> initialValue:int
+    -> initial_value:int
     -> int
     [@@js.call "reduceRight"]
 
@@ -5169,11 +5180,11 @@ module Uint32Array : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduceRight"]
 
@@ -5187,12 +5198,12 @@ module Uint32Array : sig
   val some
     :  t
     -> (value:int -> index:int -> array:t -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "some"]
 
-  val sort : t -> ?compareFn:(a:int -> b:int -> int) -> unit -> t
+  val sort : t -> ?compare_fn:(a:int -> b:int -> int) -> unit -> t
     [@@js.call "sort"]
 
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
@@ -5217,7 +5228,7 @@ module Uint32Array : sig
 
   val create''
     :  buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> t
@@ -5232,7 +5243,7 @@ module Uint32Array : sig
   val from'
     :  array:'T Array.t
     -> mapfn:(v:'T -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.global "Uint32Array.from"]
@@ -5255,7 +5266,7 @@ module Uint32ArrayConstructor : sig
   val create''
     :  t
     -> buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> Uint32Array.t
@@ -5271,7 +5282,7 @@ module Uint32ArrayConstructor : sig
     :  t
     -> array:'T Array.t
     -> mapfn:(v:'T -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> Uint32Array.t
     [@@js.call "from"]
@@ -5301,7 +5312,7 @@ module Float32Array : sig
   val every
     :  t
     -> (value:int -> index:int -> array:t -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "every"]
@@ -5312,7 +5323,7 @@ module Float32Array : sig
   val filter
     :  t
     -> (value:int -> index:int -> array:t -> any)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "filter"]
@@ -5320,7 +5331,7 @@ module Float32Array : sig
   val find
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int or_undefined
     [@@js.call "find"]
@@ -5328,7 +5339,7 @@ module Float32Array : sig
   val find_index
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int
     [@@js.call "findIndex"]
@@ -5336,17 +5347,17 @@ module Float32Array : sig
   val for_each
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> unit)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> unit
     [@@js.call "forEach"]
 
-  val index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val index_of : t -> search_element:int -> ?from_index:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val last_index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val last_index_of : t -> search_element:int -> ?from_index:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -5354,7 +5365,7 @@ module Float32Array : sig
   val map
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "map"]
@@ -5363,8 +5374,8 @@ module Float32Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
     -> int
@@ -5374,11 +5385,11 @@ module Float32Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
-    -> initialValue:int
+    -> initial_value:int
     -> int
     [@@js.call "reduce"]
 
@@ -5386,11 +5397,11 @@ module Float32Array : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduce"]
 
@@ -5398,8 +5409,8 @@ module Float32Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
     -> int
@@ -5409,11 +5420,11 @@ module Float32Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
-    -> initialValue:int
+    -> initial_value:int
     -> int
     [@@js.call "reduceRight"]
 
@@ -5421,11 +5432,11 @@ module Float32Array : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduceRight"]
 
@@ -5439,12 +5450,12 @@ module Float32Array : sig
   val some
     :  t
     -> (value:int -> index:int -> array:t -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "some"]
 
-  val sort : t -> ?compareFn:(a:int -> b:int -> int) -> unit -> t
+  val sort : t -> ?compare_fn:(a:int -> b:int -> int) -> unit -> t
     [@@js.call "sort"]
 
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
@@ -5469,7 +5480,7 @@ module Float32Array : sig
 
   val create''
     :  buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> t
@@ -5484,7 +5495,7 @@ module Float32Array : sig
   val from'
     :  array:'T Array.t
     -> mapfn:(v:'T -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.global "Float32Array.from"]
@@ -5507,7 +5518,7 @@ module Float32ArrayConstructor : sig
   val create''
     :  t
     -> buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> Float32Array.t
@@ -5523,7 +5534,7 @@ module Float32ArrayConstructor : sig
     :  t
     -> array:'T Array.t
     -> mapfn:(v:'T -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> Float32Array.t
     [@@js.call "from"]
@@ -5553,7 +5564,7 @@ module Float64Array : sig
   val every
     :  t
     -> (value:int -> index:int -> array:t -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "every"]
@@ -5564,7 +5575,7 @@ module Float64Array : sig
   val filter
     :  t
     -> (value:int -> index:int -> array:t -> any)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "filter"]
@@ -5572,7 +5583,7 @@ module Float64Array : sig
   val find
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int or_undefined
     [@@js.call "find"]
@@ -5580,7 +5591,7 @@ module Float64Array : sig
   val find_index
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int
     [@@js.call "findIndex"]
@@ -5588,17 +5599,17 @@ module Float64Array : sig
   val for_each
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> unit)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> unit
     [@@js.call "forEach"]
 
-  val index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val index_of : t -> search_element:int -> ?from_index:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val last_index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val last_index_of : t -> search_element:int -> ?from_index:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -5606,7 +5617,7 @@ module Float64Array : sig
   val map
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "map"]
@@ -5615,8 +5626,8 @@ module Float64Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
     -> int
@@ -5626,11 +5637,11 @@ module Float64Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
-    -> initialValue:int
+    -> initial_value:int
     -> int
     [@@js.call "reduce"]
 
@@ -5638,11 +5649,11 @@ module Float64Array : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduce"]
 
@@ -5650,8 +5661,8 @@ module Float64Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
     -> int
@@ -5661,11 +5672,11 @@ module Float64Array : sig
     :  t
     -> callbackfn:
          (previousValue:int
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> int)
-    -> initialValue:int
+    -> initial_value:int
     -> int
     [@@js.call "reduceRight"]
 
@@ -5673,11 +5684,11 @@ module Float64Array : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:int
-          -> currentIndex:int
+          -> current_value:int
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduceRight"]
 
@@ -5691,12 +5702,12 @@ module Float64Array : sig
   val some
     :  t
     -> (value:int -> index:int -> array:t -> unknown)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "some"]
 
-  val sort : t -> ?compareFn:(a:int -> b:int -> int) -> unit -> t
+  val sort : t -> ?compare_fn:(a:int -> b:int -> int) -> unit -> t
     [@@js.call "sort"]
 
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
@@ -5719,7 +5730,7 @@ module Float64Array : sig
 
   val create''
     :  buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> t
@@ -5734,7 +5745,7 @@ module Float64Array : sig
   val from'
     :  array:'T Array.t
     -> mapfn:(v:'T -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.global "Float64Array.from"]
@@ -5757,7 +5768,7 @@ module Float64ArrayConstructor : sig
   val create''
     :  t
     -> buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> Float64Array.t
@@ -5773,7 +5784,7 @@ module Float64ArrayConstructor : sig
     :  t
     -> array:'T Array.t
     -> mapfn:(v:'T -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> Float64Array.t
     [@@js.call "from"]

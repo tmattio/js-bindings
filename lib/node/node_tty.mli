@@ -19,7 +19,7 @@ module Tty : sig
   val isatty : fd:int -> bool [@@js.global "isatty"]
 
   module ReadStream : sig
-    type t = tty_ReadStream
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -28,15 +28,15 @@ module Tty : sig
     val create : fd:int -> ?options:Net.SocketConstructorOpts.t -> unit -> t
       [@@js.create]
 
-    val get_isRaw : t -> bool [@@js.get "isRaw"]
+    val get_is_raw : t -> bool [@@js.get "isRaw"]
 
-    val set_isRaw : t -> bool -> unit [@@js.set "isRaw"]
+    val set_is_raw : t -> bool -> unit [@@js.set "isRaw"]
 
-    val setRawMode : t -> mode:bool -> t [@@js.call "setRawMode"]
+    val set_raw_mode : t -> mode:bool -> t [@@js.call "setRawMode"]
 
-    val get_isTTY : t -> bool [@@js.get "isTTY"]
+    val get_is_tty : t -> bool [@@js.get "isTTY"]
 
-    val set_isTTY : t -> bool -> unit [@@js.set "isTTY"]
+    val set_is_tty : t -> bool -> unit [@@js.set "isTTY"]
 
     val cast : t -> Net.Socket.t [@@js.cast]
   end
@@ -56,7 +56,7 @@ module Tty : sig
   end
 
   module WriteStream : sig
-    type t = tty_WriteStream
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -64,14 +64,14 @@ module Tty : sig
 
     val create : fd:int -> t [@@js.create]
 
-    val addListener
+    val add_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'
+    val add_listener'
       :  t
       -> event:([ `resize ][@js.enum])
       -> listener:(unit -> unit)
@@ -111,46 +111,46 @@ module Tty : sig
       -> t
       [@@js.call "once"]
 
-    val prependListener
+    val prepend_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'
+    val prepend_listener'
       :  t
       -> event:([ `resize ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependOnceListener
+    val prepend_once_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'
+    val prepend_once_listener'
       :  t
       -> event:([ `resize ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val clearLine
+    val clear_line
       :  t
-      -> dir:tty_Direction
+      -> dir:Direction.t
       -> ?callback:(unit -> unit)
       -> unit
       -> bool
       [@@js.call "clearLine"]
 
-    val clearScreenDown : t -> ?callback:(unit -> unit) -> unit -> bool
+    val clear_screen_down : t -> ?callback:(unit -> unit) -> unit -> bool
       [@@js.call "clearScreenDown"]
 
-    val cursorTo
+    val cursor_to
       :  t
       -> x:int
       -> ?y:int
@@ -159,10 +159,10 @@ module Tty : sig
       -> bool
       [@@js.call "cursorTo"]
 
-    val cursorTo' : t -> x:int -> callback:(unit -> unit) -> bool
+    val cursor_to' : t -> x:int -> callback:(unit -> unit) -> bool
       [@@js.call "cursorTo"]
 
-    val moveCursor
+    val move_cursor
       :  t
       -> dx:int
       -> dy:int
@@ -171,15 +171,15 @@ module Tty : sig
       -> bool
       [@@js.call "moveCursor"]
 
-    val getColorDepth : t -> ?env:AnonymousInterface0.t -> unit -> int
+    val get_color_depth : t -> ?env:AnonymousInterface0.t -> unit -> int
       [@@js.call "getColorDepth"]
 
-    val hasColors : t -> ?depth:int -> unit -> bool [@@js.call "hasColors"]
+    val has_colors : t -> ?depth:int -> unit -> bool [@@js.call "hasColors"]
 
-    val hasColors' : t -> ?env:AnonymousInterface0.t -> unit -> bool
+    val has_colors' : t -> ?env:AnonymousInterface0.t -> unit -> bool
       [@@js.call "hasColors"]
 
-    val hasColors''
+    val has_colors''
       :  t
       -> depth:int
       -> ?env:AnonymousInterface0.t
@@ -187,7 +187,7 @@ module Tty : sig
       -> bool
       [@@js.call "hasColors"]
 
-    val getWindowSize : t -> int * int [@@js.call "getWindowSize"]
+    val get_window_size : t -> int * int [@@js.call "getWindowSize"]
 
     val get_columns : t -> int [@@js.get "columns"]
 
@@ -197,9 +197,9 @@ module Tty : sig
 
     val set_rows : t -> int -> unit [@@js.set "rows"]
 
-    val get_isTTY : t -> bool [@@js.get "isTTY"]
+    val get_is_tty : t -> bool [@@js.get "isTTY"]
 
-    val set_isTTY : t -> bool -> unit [@@js.set "isTTY"]
+    val set_is_tty : t -> bool -> unit [@@js.set "isTTY"]
 
     val cast : t -> Net.Socket.t [@@js.cast]
   end

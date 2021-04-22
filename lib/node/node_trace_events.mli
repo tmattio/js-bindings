@@ -4,11 +4,9 @@
 
 open Es2020
 
-
-
 module Trace_events : sig
   module Tracing : sig
-    type t = trace_events_Tracing
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -25,7 +23,7 @@ module Trace_events : sig
   [@@js.scope "Tracing"]
 
   module CreateTracingOptions : sig
-    type t = trace_events_CreateTracingOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -37,12 +35,10 @@ module Trace_events : sig
   end
   [@@js.scope "CreateTracingOptions"]
 
-  val createTracing
-    :  options:trace_events_CreateTracingOptions
-    -> trace_events_Tracing
+  val create_tracing : options:CreateTracingOptions.t -> Tracing.t
     [@@js.global "createTracing"]
 
-  val getEnabledCategories : unit -> string or_undefined
+  val get_enabled_categories : unit -> string or_undefined
     [@@js.global "getEnabledCategories"]
 end
 [@@js.scope Import.trace_events]

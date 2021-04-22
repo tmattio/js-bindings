@@ -1081,12 +1081,12 @@ module Function =
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x318 : Ojs.t) -> x318
     and t_to_js : t -> Ojs.t = fun (x317 : Ojs.t) -> x317
-    let (apply_ : t -> this:t -> thisArg:any -> ?argArray:any -> unit -> any)
-      =
+    let (apply_ :
+      t -> this:t -> this_arg:any -> ?arg_array:any -> unit -> any) =
       fun (x324 : t) ->
         fun ~this:(x319 : t) ->
-          fun ~thisArg:(x320 : any) ->
-            fun ?argArray:(x321 : any option) ->
+          fun ~this_arg:(x320 : any) ->
+            fun ?arg_array:(x321 : any option) ->
               fun () ->
                 any_of_js
                   (let x325 = t_to_js x324 in
@@ -1106,11 +1106,11 @@ module Function =
                                         [|(any_to_js x323)|])
                                | None -> ());
                               x322))|])
-    let (call : t -> this:t -> thisArg:any -> argArray:any list -> any) =
+    let (call : t -> this:t -> this_arg:any -> arg_array:any list -> any) =
       fun (x331 : t) ->
         fun ~this:(x326 : t) ->
-          fun ~thisArg:(x327 : any) ->
-            fun ~argArray:(x328 : any list) ->
+          fun ~this_arg:(x327 : any) ->
+            fun ~arg_array:(x328 : any list) ->
               any_of_js
                 (let x332 = t_to_js x331 in
                  Ojs.call (Ojs.get_prop_ascii x332 "call") "apply"
@@ -1127,11 +1127,11 @@ module Function =
                                    (Ojs.call x329 "push" [|(any_to_js x330)|]))
                               x328;
                             x329))|])
-    let (bind : t -> this:t -> thisArg:any -> argArray:any list -> any) =
+    let (bind : t -> this:t -> this_arg:any -> arg_array:any list -> any) =
       fun (x338 : t) ->
         fun ~this:(x333 : t) ->
-          fun ~thisArg:(x334 : any) ->
-            fun ~argArray:(x335 : any list) ->
+          fun ~this_arg:(x334 : any) ->
+            fun ~arg_array:(x335 : any list) ->
               any_of_js
                 (let x339 = t_to_js x338 in
                  Ojs.call (Ojs.get_prop_ascii x339 "bind") "apply"
@@ -1615,10 +1615,10 @@ module OmitThisParameter =
 module CallableFunction =
   struct
     include struct include Function end
-    let (apply_ : t -> this:(this:'T -> 'R) -> thisArg:'T -> 'R) =
+    let (apply_ : t -> this:(this:'T -> 'R) -> this_arg:'T -> 'R) =
       fun (x493 : t) ->
         fun ~this:(x490 : this:'T -> 'R) ->
-          fun ~thisArg:(x492 : 'T) ->
+          fun ~this_arg:(x492 : 'T) ->
             Obj.magic
               (Ojs.call (t_to_js x493) "apply"
                  [|(Ojs.fun_to_js 1
@@ -1627,11 +1627,11 @@ module CallableFunction =
                                                                     x492)|])
     let (apply_all :
       t ->
-        this:(this:'T -> args:any list -> 'R) -> thisArg:'T -> args:'A -> 'R)
+        this:(this:'T -> args:any list -> 'R) -> this_arg:'T -> args:'A -> 'R)
       =
       fun (x499 : t) ->
         fun ~this:(x494 : this:'T -> args:any list -> 'R) ->
-          fun ~thisArg:(x497 : 'T) ->
+          fun ~this_arg:(x497 : 'T) ->
             fun ~args:(x498 : 'A) ->
               Obj.magic
                 (Ojs.call (t_to_js x499) "apply"
@@ -1644,11 +1644,11 @@ module CallableFunction =
     let (call :
       t ->
         this:(this:'T -> args:any list -> 'R) ->
-          thisArg:'T -> args:any list -> 'R)
+          this_arg:'T -> args:any list -> 'R)
       =
       fun (x507 : t) ->
         fun ~this:(x500 : this:'T -> args:any list -> 'R) ->
-          fun ~thisArg:(x501 : 'T) ->
+          fun ~this_arg:(x501 : 'T) ->
             fun ~args:(x502 : any list) ->
               Obj.magic
                 (let x508 = t_to_js x507 in
@@ -1677,22 +1677,22 @@ module CallableFunction =
                             x503))|])
     let (bind :
       t ->
-        this:'T -> thisArg:'T ThisParameterType.t -> 'T OmitThisParameter.t)
+        this:'T -> this_arg:'T ThisParameterType.t -> 'T OmitThisParameter.t)
       =
       fun (x512 : t) ->
         fun ~this:(x509 : 'T) ->
-          fun ~thisArg:(x510 : 'T ThisParameterType.t) ->
+          fun ~this_arg:(x510 : 'T ThisParameterType.t) ->
             OmitThisParameter.t_of_js Obj.magic
               (Ojs.call (t_to_js x512) "bind"
                  [|(Obj.magic x509);(ThisParameterType.t_to_js Obj.magic x510)|])
     let (bind_all :
       t ->
         this:(this:'T -> args:any list -> 'R) ->
-          thisArg:'T -> args:any list -> 'R)
+          this_arg:'T -> args:any list -> 'R)
       =
       fun (x518 : t) ->
         fun ~this:(x514 : this:'T -> args:any list -> 'R) ->
-          fun ~thisArg:(x517 : 'T) ->
+          fun ~this_arg:(x517 : 'T) ->
             fun ~args:(x519 : any list) ->
               Obj.magic
                 (Ojs.call
@@ -1718,10 +1718,10 @@ module CallableFunction =
 module NewableFunction =
   struct
     include struct include Function end
-    let (bind : t -> this:'T -> thisArg:any -> 'T) =
+    let (bind : t -> this:'T -> this_arg:any -> 'T) =
       fun (x524 : t) ->
         fun ~this:(x522 : 'T) ->
-          fun ~thisArg:(x523 : any) ->
+          fun ~this_arg:(x523 : any) ->
             Obj.magic
               (Ojs.call (t_to_js x524) "bind"
                  [|(Obj.magic x522);(any_to_js x523)|])
@@ -2901,10 +2901,10 @@ module ReadonlyArray =
                              | None -> ());
                             x899))|])
     let (index_of :
-      'T t -> searchElement:'T -> ?fromIndex:int -> unit -> int) =
+      'T t -> search_element:'T -> ?from_index:int -> unit -> int) =
       fun (x910 : 'T t) ->
-        fun ~searchElement:(x906 : 'T) ->
-          fun ?fromIndex:(x907 : int option) ->
+        fun ~search_element:(x906 : 'T) ->
+          fun ?from_index:(x907 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x912 = t_to_js Obj.magic x910 in
@@ -2923,10 +2923,10 @@ module ReadonlyArray =
                              | None -> ());
                             x908))|])
     let (last_index_of :
-      'T t -> searchElement:'T -> ?fromIndex:int -> unit -> int) =
+      'T t -> search_element:'T -> ?from_index:int -> unit -> int) =
       fun (x917 : 'T t) ->
-        fun ~searchElement:(x913 : 'T) ->
-          fun ?fromIndex:(x914 : int option) ->
+        fun ~search_element:(x913 : 'T) ->
+          fun ?from_index:(x914 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x919 = t_to_js Obj.magic x917 in
@@ -2947,11 +2947,11 @@ module ReadonlyArray =
     let (every :
       'T t ->
         (value:'T -> index:int -> array:'T list -> bool) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x928 : 'T t) ->
         fun (x920 : value:'T -> index:int -> array:'T list -> bool) ->
-          fun ?thisArg:(x921 : any option) ->
+          fun ?this_arg:(x921 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x930 = t_to_js Obj.magic x928 in
@@ -2980,11 +2980,11 @@ module ReadonlyArray =
     let (every' :
       'T t ->
         (value:'T -> index:int -> array:'T list -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x939 : 'T t) ->
         fun (x931 : value:'T -> index:int -> array:'T list -> unknown) ->
-          fun ?thisArg:(x932 : any option) ->
+          fun ?this_arg:(x932 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x941 = t_to_js Obj.magic x939 in
@@ -3013,11 +3013,11 @@ module ReadonlyArray =
     let (some :
       'T t ->
         (value:'T -> index:int -> array:'T list -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x950 : 'T t) ->
         fun (x942 : value:'T -> index:int -> array:'T list -> unknown) ->
-          fun ?thisArg:(x943 : any option) ->
+          fun ?this_arg:(x943 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x952 = t_to_js Obj.magic x950 in
@@ -3046,13 +3046,13 @@ module ReadonlyArray =
     let (for_each :
       'T t ->
         callbackfn:(value:'T -> index:int -> array:'T list -> unit) ->
-          ?thisArg:any -> unit -> unit)
+          ?this_arg:any -> unit -> unit)
       =
       fun (x961 : 'T t) ->
         fun
           ~callbackfn:(x953 : value:'T -> index:int -> array:'T list -> unit)
           ->
-          fun ?thisArg:(x954 : any option) ->
+          fun ?this_arg:(x954 : any option) ->
             fun () ->
               ignore
                 (let x963 = t_to_js Obj.magic x961 in
@@ -3080,12 +3080,12 @@ module ReadonlyArray =
     let (map :
       'T t ->
         callbackfn:(value:'T -> index:int -> array:'T list -> 'U) ->
-          ?thisArg:any -> unit -> 'U list)
+          ?this_arg:any -> unit -> 'U list)
       =
       fun (x972 : 'T t) ->
         fun ~callbackfn:(x964 : value:'T -> index:int -> array:'T list -> 'U)
           ->
-          fun ?thisArg:(x965 : any option) ->
+          fun ?this_arg:(x965 : any option) ->
             fun () ->
               Ojs.list_of_js Obj.magic
                 (let x974 = t_to_js Obj.magic x972 in
@@ -3114,11 +3114,11 @@ module ReadonlyArray =
     let (filter :
       'T t ->
         (value:'T -> index:int -> array:'T list -> bool) ->
-          ?thisArg:any -> unit -> 'S list)
+          ?this_arg:any -> unit -> 'S list)
       =
       fun (x984 : 'T t) ->
         fun (x976 : value:'T -> index:int -> array:'T list -> bool) ->
-          fun ?thisArg:(x977 : any option) ->
+          fun ?this_arg:(x977 : any option) ->
             fun () ->
               Ojs.list_of_js Obj.magic
                 (let x986 = t_to_js Obj.magic x984 in
@@ -3147,11 +3147,11 @@ module ReadonlyArray =
     let (filter' :
       'T t ->
         (value:'T -> index:int -> array:'T list -> unknown) ->
-          ?thisArg:any -> unit -> 'T list)
+          ?this_arg:any -> unit -> 'T list)
       =
       fun (x996 : 'T t) ->
         fun (x988 : value:'T -> index:int -> array:'T list -> unknown) ->
-          fun ?thisArg:(x989 : any option) ->
+          fun ?this_arg:(x989 : any option) ->
             fun () ->
               Ojs.list_of_js Obj.magic
                 (let x998 = t_to_js Obj.magic x996 in
@@ -3180,16 +3180,16 @@ module ReadonlyArray =
     let (reduce :
       'T t ->
         callbackfn:(previousValue:'T ->
-                      currentValue:'T ->
-                        currentIndex:int -> array:'T list -> 'T)
+                      current_value:'T ->
+                        current_index:int -> array:'T list -> 'T)
           -> 'T)
       =
       fun (x1006 : 'T t) ->
         fun
           ~callbackfn:(x1000 :
                         previousValue:'T ->
-                          currentValue:'T ->
-                            currentIndex:int -> array:'T list -> 'T)
+                          current_value:'T ->
+                            current_index:int -> array:'T list -> 'T)
           ->
           Obj.magic
             (Ojs.call (t_to_js Obj.magic x1006) "reduce"
@@ -3200,24 +3200,24 @@ module ReadonlyArray =
                            fun (x1004 : Ojs.t) ->
                              Obj.magic
                                (x1000 ~previousValue:(Obj.magic x1001)
-                                  ~currentValue:(Obj.magic x1002)
-                                  ~currentIndex:(Ojs.int_of_js x1003)
+                                  ~current_value:(Obj.magic x1002)
+                                  ~current_index:(Ojs.int_of_js x1003)
                                   ~array:(Ojs.list_of_js Obj.magic x1004))))|])
     let (reduce' :
       'T t ->
         callbackfn:(previousValue:'T ->
-                      currentValue:'T ->
-                        currentIndex:int -> array:'T list -> 'T)
-          -> initialValue:'T -> 'T)
+                      current_value:'T ->
+                        current_index:int -> array:'T list -> 'T)
+          -> initial_value:'T -> 'T)
       =
       fun (x1015 : 'T t) ->
         fun
           ~callbackfn:(x1008 :
                         previousValue:'T ->
-                          currentValue:'T ->
-                            currentIndex:int -> array:'T list -> 'T)
+                          current_value:'T ->
+                            current_index:int -> array:'T list -> 'T)
           ->
-          fun ~initialValue:(x1014 : 'T) ->
+          fun ~initial_value:(x1014 : 'T) ->
             Obj.magic
               (Ojs.call (t_to_js Obj.magic x1015) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -3227,25 +3227,25 @@ module ReadonlyArray =
                              fun (x1012 : Ojs.t) ->
                                Obj.magic
                                  (x1008 ~previousValue:(Obj.magic x1009)
-                                    ~currentValue:(Obj.magic x1010)
-                                    ~currentIndex:(Ojs.int_of_js x1011)
+                                    ~current_value:(Obj.magic x1010)
+                                    ~current_index:(Ojs.int_of_js x1011)
                                     ~array:(Ojs.list_of_js Obj.magic x1012))));(
                    Obj.magic x1014)|])
     let (reduce'' :
       'T t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:'T ->
-                        currentIndex:int -> array:'T list -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:'T ->
+                        current_index:int -> array:'T list -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x1024 : 'T t) ->
         fun
           ~callbackfn:(x1017 :
                         previousValue:'U ->
-                          currentValue:'T ->
-                            currentIndex:int -> array:'T list -> 'U)
+                          current_value:'T ->
+                            current_index:int -> array:'T list -> 'U)
           ->
-          fun ~initialValue:(x1023 : 'U) ->
+          fun ~initial_value:(x1023 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js Obj.magic x1024) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -3255,23 +3255,23 @@ module ReadonlyArray =
                              fun (x1021 : Ojs.t) ->
                                Obj.magic
                                  (x1017 ~previousValue:(Obj.magic x1018)
-                                    ~currentValue:(Obj.magic x1019)
-                                    ~currentIndex:(Ojs.int_of_js x1020)
+                                    ~current_value:(Obj.magic x1019)
+                                    ~current_index:(Ojs.int_of_js x1020)
                                     ~array:(Ojs.list_of_js Obj.magic x1021))));(
                    Obj.magic x1023)|])
     let (reduce_right :
       'T t ->
         callbackfn:(previousValue:'T ->
-                      currentValue:'T ->
-                        currentIndex:int -> array:'T list -> 'T)
+                      current_value:'T ->
+                        current_index:int -> array:'T list -> 'T)
           -> 'T)
       =
       fun (x1032 : 'T t) ->
         fun
           ~callbackfn:(x1026 :
                         previousValue:'T ->
-                          currentValue:'T ->
-                            currentIndex:int -> array:'T list -> 'T)
+                          current_value:'T ->
+                            current_index:int -> array:'T list -> 'T)
           ->
           Obj.magic
             (Ojs.call (t_to_js Obj.magic x1032) "reduceRight"
@@ -3282,24 +3282,24 @@ module ReadonlyArray =
                            fun (x1030 : Ojs.t) ->
                              Obj.magic
                                (x1026 ~previousValue:(Obj.magic x1027)
-                                  ~currentValue:(Obj.magic x1028)
-                                  ~currentIndex:(Ojs.int_of_js x1029)
+                                  ~current_value:(Obj.magic x1028)
+                                  ~current_index:(Ojs.int_of_js x1029)
                                   ~array:(Ojs.list_of_js Obj.magic x1030))))|])
     let (reduce_right' :
       'T t ->
         callbackfn:(previousValue:'T ->
-                      currentValue:'T ->
-                        currentIndex:int -> array:'T list -> 'T)
-          -> initialValue:'T -> 'T)
+                      current_value:'T ->
+                        current_index:int -> array:'T list -> 'T)
+          -> initial_value:'T -> 'T)
       =
       fun (x1041 : 'T t) ->
         fun
           ~callbackfn:(x1034 :
                         previousValue:'T ->
-                          currentValue:'T ->
-                            currentIndex:int -> array:'T list -> 'T)
+                          current_value:'T ->
+                            current_index:int -> array:'T list -> 'T)
           ->
-          fun ~initialValue:(x1040 : 'T) ->
+          fun ~initial_value:(x1040 : 'T) ->
             Obj.magic
               (Ojs.call (t_to_js Obj.magic x1041) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -3309,25 +3309,25 @@ module ReadonlyArray =
                              fun (x1038 : Ojs.t) ->
                                Obj.magic
                                  (x1034 ~previousValue:(Obj.magic x1035)
-                                    ~currentValue:(Obj.magic x1036)
-                                    ~currentIndex:(Ojs.int_of_js x1037)
+                                    ~current_value:(Obj.magic x1036)
+                                    ~current_index:(Ojs.int_of_js x1037)
                                     ~array:(Ojs.list_of_js Obj.magic x1038))));(
                    Obj.magic x1040)|])
     let (reduce_right'' :
       'T t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:'T ->
-                        currentIndex:int -> array:'T list -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:'T ->
+                        current_index:int -> array:'T list -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x1050 : 'T t) ->
         fun
           ~callbackfn:(x1043 :
                         previousValue:'U ->
-                          currentValue:'T ->
-                            currentIndex:int -> array:'T list -> 'U)
+                          current_value:'T ->
+                            current_index:int -> array:'T list -> 'U)
           ->
-          fun ~initialValue:(x1049 : 'U) ->
+          fun ~initial_value:(x1049 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js Obj.magic x1050) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -3337,8 +3337,8 @@ module ReadonlyArray =
                              fun (x1047 : Ojs.t) ->
                                Obj.magic
                                  (x1043 ~previousValue:(Obj.magic x1044)
-                                    ~currentValue:(Obj.magic x1045)
-                                    ~currentIndex:(Ojs.int_of_js x1046)
+                                    ~current_value:(Obj.magic x1045)
+                                    ~current_index:(Ojs.int_of_js x1046)
                                     ~array:(Ojs.list_of_js Obj.magic x1047))));(
                    Obj.magic x1049)|])
     let (get : 'T t -> int -> 'T) =
@@ -3495,9 +3495,9 @@ module Array =
                                        [|(Ojs.int_to_js x1120)|])
                               | None -> ());
                              x1119))|])
-    let (sort : 'T t -> ?compareFn:(a:'T -> b:'T -> int) -> unit -> 'T t) =
+    let (sort : 'T t -> ?compare_fn:(a:'T -> b:'T -> int) -> unit -> 'T t) =
       fun (x1131 : 'T t) ->
-        fun ?compareFn:(x1126 : (a:'T -> b:'T -> int) option) ->
+        fun ?compare_fn:(x1126 : (a:'T -> b:'T -> int) option) ->
           fun () ->
             t_of_js Obj.magic
               (let x1133 = t_to_js Obj.magic x1131 in
@@ -3518,10 +3518,11 @@ module Array =
                                                     ~b:(Obj.magic x1130))))|])
                             | None -> ());
                            x1127))|])
-    let (splice : 'T t -> start:int -> ?deleteCount:int -> unit -> 'T list) =
+    let (splice : 'T t -> start:int -> ?delete_count:int -> unit -> 'T list)
+      =
       fun (x1139 : 'T t) ->
         fun ~start:(x1135 : int) ->
-          fun ?deleteCount:(x1136 : int option) ->
+          fun ?delete_count:(x1136 : int option) ->
             fun () ->
               Ojs.list_of_js Obj.magic
                 (let x1141 = t_to_js Obj.magic x1139 in
@@ -3541,10 +3542,10 @@ module Array =
                               | None -> ());
                              x1137))|])
     let (splice' :
-      'T t -> start:int -> deleteCount:int -> 'T list -> 'T list) =
+      'T t -> start:int -> delete_count:int -> 'T list -> 'T list) =
       fun (x1148 : 'T t) ->
         fun ~start:(x1143 : int) ->
-          fun ~deleteCount:(x1144 : int) ->
+          fun ~delete_count:(x1144 : int) ->
             fun (x1145 : 'T list) ->
               Ojs.list_of_js Obj.magic
                 (let x1150 = t_to_js Obj.magic x1148 in
@@ -3582,10 +3583,10 @@ module Array =
                            x1152;
                          x1153))|])
     let (index_of :
-      'T t -> searchElement:'T -> ?fromIndex:int -> unit -> int) =
+      'T t -> search_element:'T -> ?from_index:int -> unit -> int) =
       fun (x1162 : 'T t) ->
-        fun ~searchElement:(x1158 : 'T) ->
-          fun ?fromIndex:(x1159 : int option) ->
+        fun ~search_element:(x1158 : 'T) ->
+          fun ?from_index:(x1159 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x1164 = t_to_js Obj.magic x1162 in
@@ -3604,10 +3605,10 @@ module Array =
                               | None -> ());
                              x1160))|])
     let (last_index_of :
-      'T t -> searchElement:'T -> ?fromIndex:int -> unit -> int) =
+      'T t -> search_element:'T -> ?from_index:int -> unit -> int) =
       fun (x1169 : 'T t) ->
-        fun ~searchElement:(x1165 : 'T) ->
-          fun ?fromIndex:(x1166 : int option) ->
+        fun ~search_element:(x1165 : 'T) ->
+          fun ?from_index:(x1166 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x1171 = t_to_js Obj.magic x1169 in
@@ -3628,11 +3629,11 @@ module Array =
     let (every :
       'T t ->
         (value:'T -> index:int -> array:'T list -> bool) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x1180 : 'T t) ->
         fun (x1172 : value:'T -> index:int -> array:'T list -> bool) ->
-          fun ?thisArg:(x1173 : any option) ->
+          fun ?this_arg:(x1173 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x1182 = t_to_js Obj.magic x1180 in
@@ -3664,11 +3665,11 @@ module Array =
     let (every' :
       'T t ->
         (value:'T -> index:int -> array:'T list -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x1191 : 'T t) ->
         fun (x1183 : value:'T -> index:int -> array:'T list -> unknown) ->
-          fun ?thisArg:(x1184 : any option) ->
+          fun ?this_arg:(x1184 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x1193 = t_to_js Obj.magic x1191 in
@@ -3700,11 +3701,11 @@ module Array =
     let (some :
       'T t ->
         (value:'T -> index:int -> array:'T list -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x1202 : 'T t) ->
         fun (x1194 : value:'T -> index:int -> array:'T list -> unknown) ->
-          fun ?thisArg:(x1195 : any option) ->
+          fun ?this_arg:(x1195 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x1204 = t_to_js Obj.magic x1202 in
@@ -3736,14 +3737,14 @@ module Array =
     let (for_each :
       'T t ->
         callbackfn:(value:'T -> index:int -> array:'T list -> unit) ->
-          ?thisArg:any -> unit -> unit)
+          ?this_arg:any -> unit -> unit)
       =
       fun (x1213 : 'T t) ->
         fun
           ~callbackfn:(x1205 :
                         value:'T -> index:int -> array:'T list -> unit)
           ->
-          fun ?thisArg:(x1206 : any option) ->
+          fun ?this_arg:(x1206 : any option) ->
             fun () ->
               ignore
                 (let x1215 = t_to_js Obj.magic x1213 in
@@ -3772,13 +3773,13 @@ module Array =
     let (map :
       'T t ->
         callbackfn:(value:'T -> index:int -> array:'T list -> 'U) ->
-          ?thisArg:any -> unit -> 'U list)
+          ?this_arg:any -> unit -> 'U list)
       =
       fun (x1224 : 'T t) ->
         fun
           ~callbackfn:(x1216 : value:'T -> index:int -> array:'T list -> 'U)
           ->
-          fun ?thisArg:(x1217 : any option) ->
+          fun ?this_arg:(x1217 : any option) ->
             fun () ->
               Ojs.list_of_js Obj.magic
                 (let x1226 = t_to_js Obj.magic x1224 in
@@ -3810,11 +3811,11 @@ module Array =
     let (filter :
       'T t ->
         (value:'T -> index:int -> array:'T list -> bool) ->
-          ?thisArg:any -> unit -> 'S list)
+          ?this_arg:any -> unit -> 'S list)
       =
       fun (x1236 : 'T t) ->
         fun (x1228 : value:'T -> index:int -> array:'T list -> bool) ->
-          fun ?thisArg:(x1229 : any option) ->
+          fun ?this_arg:(x1229 : any option) ->
             fun () ->
               Ojs.list_of_js Obj.magic
                 (let x1238 = t_to_js Obj.magic x1236 in
@@ -3846,11 +3847,11 @@ module Array =
     let (filter' :
       'T t ->
         (value:'T -> index:int -> array:'T list -> unknown) ->
-          ?thisArg:any -> unit -> 'T list)
+          ?this_arg:any -> unit -> 'T list)
       =
       fun (x1248 : 'T t) ->
         fun (x1240 : value:'T -> index:int -> array:'T list -> unknown) ->
-          fun ?thisArg:(x1241 : any option) ->
+          fun ?this_arg:(x1241 : any option) ->
             fun () ->
               Ojs.list_of_js Obj.magic
                 (let x1250 = t_to_js Obj.magic x1248 in
@@ -3882,16 +3883,16 @@ module Array =
     let (reduce :
       'T t ->
         callbackfn:(previousValue:'T ->
-                      currentValue:'T ->
-                        currentIndex:int -> array:'T list -> 'T)
+                      current_value:'T ->
+                        current_index:int -> array:'T list -> 'T)
           -> 'T)
       =
       fun (x1258 : 'T t) ->
         fun
           ~callbackfn:(x1252 :
                         previousValue:'T ->
-                          currentValue:'T ->
-                            currentIndex:int -> array:'T list -> 'T)
+                          current_value:'T ->
+                            current_index:int -> array:'T list -> 'T)
           ->
           Obj.magic
             (Ojs.call (t_to_js Obj.magic x1258) "reduce"
@@ -3902,24 +3903,24 @@ module Array =
                            fun (x1256 : Ojs.t) ->
                              Obj.magic
                                (x1252 ~previousValue:(Obj.magic x1253)
-                                  ~currentValue:(Obj.magic x1254)
-                                  ~currentIndex:(Ojs.int_of_js x1255)
+                                  ~current_value:(Obj.magic x1254)
+                                  ~current_index:(Ojs.int_of_js x1255)
                                   ~array:(Ojs.list_of_js Obj.magic x1256))))|])
     let (reduce' :
       'T t ->
         callbackfn:(previousValue:'T ->
-                      currentValue:'T ->
-                        currentIndex:int -> array:'T list -> 'T)
-          -> initialValue:'T -> 'T)
+                      current_value:'T ->
+                        current_index:int -> array:'T list -> 'T)
+          -> initial_value:'T -> 'T)
       =
       fun (x1267 : 'T t) ->
         fun
           ~callbackfn:(x1260 :
                         previousValue:'T ->
-                          currentValue:'T ->
-                            currentIndex:int -> array:'T list -> 'T)
+                          current_value:'T ->
+                            current_index:int -> array:'T list -> 'T)
           ->
-          fun ~initialValue:(x1266 : 'T) ->
+          fun ~initial_value:(x1266 : 'T) ->
             Obj.magic
               (Ojs.call (t_to_js Obj.magic x1267) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -3929,25 +3930,25 @@ module Array =
                              fun (x1264 : Ojs.t) ->
                                Obj.magic
                                  (x1260 ~previousValue:(Obj.magic x1261)
-                                    ~currentValue:(Obj.magic x1262)
-                                    ~currentIndex:(Ojs.int_of_js x1263)
+                                    ~current_value:(Obj.magic x1262)
+                                    ~current_index:(Ojs.int_of_js x1263)
                                     ~array:(Ojs.list_of_js Obj.magic x1264))));(
                    Obj.magic x1266)|])
     let (reduce'' :
       'T t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:'T ->
-                        currentIndex:int -> array:'T list -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:'T ->
+                        current_index:int -> array:'T list -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x1276 : 'T t) ->
         fun
           ~callbackfn:(x1269 :
                         previousValue:'U ->
-                          currentValue:'T ->
-                            currentIndex:int -> array:'T list -> 'U)
+                          current_value:'T ->
+                            current_index:int -> array:'T list -> 'U)
           ->
-          fun ~initialValue:(x1275 : 'U) ->
+          fun ~initial_value:(x1275 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js Obj.magic x1276) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -3957,23 +3958,23 @@ module Array =
                              fun (x1273 : Ojs.t) ->
                                Obj.magic
                                  (x1269 ~previousValue:(Obj.magic x1270)
-                                    ~currentValue:(Obj.magic x1271)
-                                    ~currentIndex:(Ojs.int_of_js x1272)
+                                    ~current_value:(Obj.magic x1271)
+                                    ~current_index:(Ojs.int_of_js x1272)
                                     ~array:(Ojs.list_of_js Obj.magic x1273))));(
                    Obj.magic x1275)|])
     let (reduce_right :
       'T t ->
         callbackfn:(previousValue:'T ->
-                      currentValue:'T ->
-                        currentIndex:int -> array:'T list -> 'T)
+                      current_value:'T ->
+                        current_index:int -> array:'T list -> 'T)
           -> 'T)
       =
       fun (x1284 : 'T t) ->
         fun
           ~callbackfn:(x1278 :
                         previousValue:'T ->
-                          currentValue:'T ->
-                            currentIndex:int -> array:'T list -> 'T)
+                          current_value:'T ->
+                            current_index:int -> array:'T list -> 'T)
           ->
           Obj.magic
             (Ojs.call (t_to_js Obj.magic x1284) "reduceRight"
@@ -3984,24 +3985,24 @@ module Array =
                            fun (x1282 : Ojs.t) ->
                              Obj.magic
                                (x1278 ~previousValue:(Obj.magic x1279)
-                                  ~currentValue:(Obj.magic x1280)
-                                  ~currentIndex:(Ojs.int_of_js x1281)
+                                  ~current_value:(Obj.magic x1280)
+                                  ~current_index:(Ojs.int_of_js x1281)
                                   ~array:(Ojs.list_of_js Obj.magic x1282))))|])
     let (reduce_right' :
       'T t ->
         callbackfn:(previousValue:'T ->
-                      currentValue:'T ->
-                        currentIndex:int -> array:'T list -> 'T)
-          -> initialValue:'T -> 'T)
+                      current_value:'T ->
+                        current_index:int -> array:'T list -> 'T)
+          -> initial_value:'T -> 'T)
       =
       fun (x1293 : 'T t) ->
         fun
           ~callbackfn:(x1286 :
                         previousValue:'T ->
-                          currentValue:'T ->
-                            currentIndex:int -> array:'T list -> 'T)
+                          current_value:'T ->
+                            current_index:int -> array:'T list -> 'T)
           ->
-          fun ~initialValue:(x1292 : 'T) ->
+          fun ~initial_value:(x1292 : 'T) ->
             Obj.magic
               (Ojs.call (t_to_js Obj.magic x1293) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -4011,25 +4012,25 @@ module Array =
                              fun (x1290 : Ojs.t) ->
                                Obj.magic
                                  (x1286 ~previousValue:(Obj.magic x1287)
-                                    ~currentValue:(Obj.magic x1288)
-                                    ~currentIndex:(Ojs.int_of_js x1289)
+                                    ~current_value:(Obj.magic x1288)
+                                    ~current_index:(Ojs.int_of_js x1289)
                                     ~array:(Ojs.list_of_js Obj.magic x1290))));(
                    Obj.magic x1292)|])
     let (reduce_right'' :
       'T t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:'T ->
-                        currentIndex:int -> array:'T list -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:'T ->
+                        current_index:int -> array:'T list -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x1302 : 'T t) ->
         fun
           ~callbackfn:(x1295 :
                         previousValue:'U ->
-                          currentValue:'T ->
-                            currentIndex:int -> array:'T list -> 'U)
+                          current_value:'T ->
+                            current_index:int -> array:'T list -> 'U)
           ->
-          fun ~initialValue:(x1301 : 'U) ->
+          fun ~initial_value:(x1301 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js Obj.magic x1302) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -4039,8 +4040,8 @@ module Array =
                              fun (x1299 : Ojs.t) ->
                                Obj.magic
                                  (x1295 ~previousValue:(Obj.magic x1296)
-                                    ~currentValue:(Obj.magic x1297)
-                                    ~currentIndex:(Ojs.int_of_js x1298)
+                                    ~current_value:(Obj.magic x1297)
+                                    ~current_index:(Ojs.int_of_js x1298)
                                     ~array:(Ojs.list_of_js Obj.magic x1299))));(
                    Obj.magic x1301)|])
     let (get : 'T t -> int -> 'T) =
@@ -4058,8 +4059,8 @@ module Array =
     let (of_ml : 'T list -> 'T t) =
       fun (x1314 : 'T list) ->
         t_of_js Obj.magic (Ojs.list_to_js Obj.magic x1314)
-    let (create : ?arrayLength:int -> unit -> any list) =
-      fun ?arrayLength:(x1317 : int option) ->
+    let (create : ?array_length:int -> unit -> any list) =
+      fun ?array_length:(x1317 : int option) ->
         fun () ->
           Ojs.list_of_js any_of_js
             (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "Array")
@@ -4070,8 +4071,8 @@ module Array =
                      ignore (Ojs.call x1318 "push" [|(Ojs.int_to_js x1319)|])
                  | None -> ());
                 x1318))
-    let (create' : arrayLength:int -> 'T list) =
-      fun ~arrayLength:(x1321 : int) ->
+    let (create' : array_length:int -> 'T list) =
+      fun ~array_length:(x1321 : int) ->
         Ojs.list_of_js Obj.magic
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
              [|(Ojs.int_to_js x1321)|])
@@ -4097,9 +4098,9 @@ module ArrayConstructor =
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x1329 : Ojs.t) -> x1329
     and t_to_js : t -> Ojs.t = fun (x1328 : Ojs.t) -> x1328
-    let (create : t -> ?arrayLength:int -> unit -> any list) =
+    let (create : t -> ?array_length:int -> unit -> any list) =
       fun (x1333 : t) ->
-        fun ?arrayLength:(x1330 : int option) ->
+        fun ?array_length:(x1330 : int option) ->
           fun () ->
             Ojs.list_of_js any_of_js
               (Ojs.new_obj_arr (t_to_js x1333)
@@ -4111,9 +4112,9 @@ module ArrayConstructor =
                          (Ojs.call x1331 "push" [|(Ojs.int_to_js x1332)|])
                    | None -> ());
                   x1331))
-    let (create' : t -> arrayLength:int -> 'T list) =
+    let (create' : t -> array_length:int -> 'T list) =
       fun (x1336 : t) ->
-        fun ~arrayLength:(x1335 : int) ->
+        fun ~array_length:(x1335 : int) ->
           Ojs.list_of_js Obj.magic
             (Ojs.new_obj (t_to_js x1336) [|(Ojs.int_to_js x1335)|])
     let (create'' : t -> 'T list -> 'T list) =
@@ -4128,9 +4129,9 @@ module ArrayConstructor =
                      ignore (Ojs.call x1339 "push" [|(Obj.magic x1340)|]))
                   x1338;
                 x1339))
-    let (apply : t -> ?arrayLength:int -> unit -> any list) =
+    let (apply : t -> ?array_length:int -> unit -> any list) =
       fun (x1346 : t) ->
-        fun ?arrayLength:(x1343 : int option) ->
+        fun ?array_length:(x1343 : int option) ->
           fun () ->
             Ojs.list_of_js any_of_js
               (Ojs.call (t_to_js x1346) "apply"
@@ -4145,9 +4146,9 @@ module ArrayConstructor =
                                         [|(Ojs.int_to_js x1345)|])
                                | None -> ());
                               x1344))|])
-    let (apply' : t -> arrayLength:int -> 'T list) =
+    let (apply' : t -> array_length:int -> 'T list) =
       fun (x1349 : t) ->
-        fun ~arrayLength:(x1348 : int) ->
+        fun ~array_length:(x1348 : int) ->
           Ojs.list_of_js Obj.magic
             (Ojs.apply (t_to_js x1349) [|(Ojs.int_to_js x1348)|])
     let (apply'' : t -> 'T list -> 'T list) =
@@ -4580,10 +4581,10 @@ module String =
                                 (Ojs.call x1478 "push"
                                    [|(Ojs.string_to_js x1479)|])) x1477;
                          x1478))|])
-    let (index_of : t -> searchString:string -> ?position:int -> unit -> int)
-      =
+    let (index_of :
+      t -> search_string:string -> ?position:int -> unit -> int) =
       fun (x1486 : t) ->
-        fun ~searchString:(x1482 : string) ->
+        fun ~search_string:(x1482 : string) ->
           fun ?position:(x1483 : int option) ->
             fun () ->
               Ojs.int_of_js
@@ -4604,9 +4605,9 @@ module String =
                               | None -> ());
                              x1484))|])
     let (last_index_of :
-      t -> searchString:string -> ?position:int -> unit -> int) =
+      t -> search_string:string -> ?position:int -> unit -> int) =
       fun (x1492 : t) ->
-        fun ~searchString:(x1488 : string) ->
+        fun ~search_string:(x1488 : string) ->
           fun ?position:(x1489 : int option) ->
             fun () ->
               Ojs.int_of_js
@@ -4640,21 +4641,22 @@ module String =
             (Ojs.call (t_to_js x1498) "match"
                [|(or_string_to_js RegExp.t_to_js x1496)|])
     let (replace :
-      t -> searchValue:RegExp.t or_string -> replaceValue:string -> string) =
+      t -> search_value:RegExp.t or_string -> replace_value:string -> string)
+      =
       fun (x1503 : t) ->
-        fun ~searchValue:(x1500 : RegExp.t or_string) ->
-          fun ~replaceValue:(x1502 : string) ->
+        fun ~search_value:(x1500 : RegExp.t or_string) ->
+          fun ~replace_value:(x1502 : string) ->
             Ojs.string_of_js
               (Ojs.call (t_to_js x1503) "replace"
                  [|(or_string_to_js RegExp.t_to_js x1500);(Ojs.string_to_js
                                                              x1502)|])
     let (replace' :
       t ->
-        searchValue:RegExp.t or_string ->
+        search_value:RegExp.t or_string ->
           replacer:(substring:string -> args:any list -> string) -> string)
       =
       fun (x1509 : t) ->
-        fun ~searchValue:(x1504 : RegExp.t or_string) ->
+        fun ~search_value:(x1504 : RegExp.t or_string) ->
           fun ~replacer:(x1506 : substring:string -> args:any list -> string)
             ->
             Ojs.string_of_js
@@ -5047,9 +5049,9 @@ module Number =
                                      [|(Ojs.int_to_js x1618)|])
                             | None -> ());
                            x1617))|])
-    let (to_fixed : t -> ?fractionDigits:int -> unit -> string) =
+    let (to_fixed : t -> ?fraction_digits:int -> unit -> string) =
       fun (x1624 : t) ->
-        fun ?fractionDigits:(x1621 : int option) ->
+        fun ?fraction_digits:(x1621 : int option) ->
           fun () ->
             Ojs.string_of_js
               (let x1625 = t_to_js x1624 in
@@ -5065,9 +5067,9 @@ module Number =
                                      [|(Ojs.int_to_js x1623)|])
                             | None -> ());
                            x1622))|])
-    let (to_exponential : t -> ?fractionDigits:int -> unit -> string) =
+    let (to_exponential : t -> ?fraction_digits:int -> unit -> string) =
       fun (x1629 : t) ->
-        fun ?fractionDigits:(x1626 : int option) ->
+        fun ?fraction_digits:(x1626 : int option) ->
           fun () ->
             Ojs.string_of_js
               (let x1630 = t_to_js x1629 in
@@ -6774,10 +6776,10 @@ module PropertyDecorator =
     let rec t_of_js : Ojs.t -> t = fun (x2066 : Ojs.t) -> x2066
     and t_to_js : t -> Ojs.t = fun (x2065 : Ojs.t) -> x2065
     let (apply :
-      t -> target:Object.t -> propertyKey:symbol or_string -> unit) =
+      t -> target:Object.t -> property_key:symbol or_string -> unit) =
       fun (x2070 : t) ->
         fun ~target:(x2067 : Object.t) ->
-          fun ~propertyKey:(x2068 : symbol or_string) ->
+          fun ~property_key:(x2068 : symbol or_string) ->
             ignore
               (Ojs.apply (t_to_js x2070)
                  [|(Object.t_to_js x2067);(or_string_to_js symbol_to_js x2068)|])
@@ -6790,13 +6792,13 @@ module MethodDecorator =
     let (apply :
       t ->
         target:Object.t ->
-          propertyKey:symbol or_string ->
+          property_key:symbol or_string ->
             descriptor:'T TypedPropertyDescriptor.t ->
               (unit, 'T TypedPropertyDescriptor.t) union2)
       =
       fun (x2078 : t) ->
         fun ~target:(x2073 : Object.t) ->
-          fun ~propertyKey:(x2074 : symbol or_string) ->
+          fun ~property_key:(x2074 : symbol or_string) ->
             fun ~descriptor:(x2076 : 'T TypedPropertyDescriptor.t) ->
               union2_of_js Ojs.unit_of_js
                 (fun (x2080 : Ojs.t) ->
@@ -6814,12 +6816,12 @@ module ParameterDecorator =
     let (apply :
       t ->
         target:Object.t ->
-          propertyKey:symbol or_string -> parameterIndex:int -> unit)
+          property_key:symbol or_string -> parameter_index:int -> unit)
       =
       fun (x2088 : t) ->
         fun ~target:(x2084 : Object.t) ->
-          fun ~propertyKey:(x2085 : symbol or_string) ->
-            fun ~parameterIndex:(x2087 : int) ->
+          fun ~property_key:(x2085 : symbol or_string) ->
+            fun ~parameter_index:(x2087 : int) ->
               ignore
                 (Ojs.apply (t_to_js x2088)
                    [|(Object.t_to_js x2084);(or_string_to_js symbol_to_js
@@ -6934,8 +6936,8 @@ module ArrayBuffer =
                                        [|(Ojs.int_to_js x2125)|])
                               | None -> ());
                              x2124))|])
-    let (create : byteLength:int -> t) =
-      fun ~byteLength:(x2128 : int) ->
+    let (create : byte_length:int -> t) =
+      fun ~byte_length:(x2128 : int) ->
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "ArrayBuffer")
              [|(Ojs.int_to_js x2128)|])
@@ -6968,9 +6970,9 @@ module ArrayBufferConstructor =
     let (get_prototype : t -> ArrayBuffer.t) =
       fun (x2137 : t) ->
         ArrayBuffer.t_of_js (Ojs.get_prop_ascii (t_to_js x2137) "prototype")
-    let (create : t -> byteLength:int -> ArrayBuffer.t) =
+    let (create : t -> byte_length:int -> ArrayBuffer.t) =
       fun (x2139 : t) ->
-        fun ~byteLength:(x2138 : int) ->
+        fun ~byte_length:(x2138 : int) ->
           ArrayBuffer.t_of_js
             (Ojs.new_obj (t_to_js x2139) [|(Ojs.int_to_js x2138)|])
     let (is_view : t -> any -> bool) =
@@ -7027,10 +7029,10 @@ module DataView =
       fun (x2157 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x2157) "byteOffset")
     let (get_float32 :
-      t -> byteOffset:int -> ?littleEndian:bool -> unit -> int) =
+      t -> byte_offset:int -> ?little_endian:bool -> unit -> int) =
       fun (x2162 : t) ->
-        fun ~byteOffset:(x2158 : int) ->
-          fun ?littleEndian:(x2159 : bool option) ->
+        fun ~byte_offset:(x2158 : int) ->
+          fun ?little_endian:(x2159 : bool option) ->
             fun () ->
               Ojs.int_of_js
                 (let x2163 = t_to_js x2162 in
@@ -7050,10 +7052,10 @@ module DataView =
                               | None -> ());
                              x2160))|])
     let (get_float64 :
-      t -> byteOffset:int -> ?littleEndian:bool -> unit -> int) =
+      t -> byte_offset:int -> ?little_endian:bool -> unit -> int) =
       fun (x2168 : t) ->
-        fun ~byteOffset:(x2164 : int) ->
-          fun ?littleEndian:(x2165 : bool option) ->
+        fun ~byte_offset:(x2164 : int) ->
+          fun ?little_endian:(x2165 : bool option) ->
             fun () ->
               Ojs.int_of_js
                 (let x2169 = t_to_js x2168 in
@@ -7072,16 +7074,16 @@ module DataView =
                                        [|(Ojs.bool_to_js x2167)|])
                               | None -> ());
                              x2166))|])
-    let (get_int8 : t -> byteOffset:int -> int) =
+    let (get_int8 : t -> byte_offset:int -> int) =
       fun (x2171 : t) ->
-        fun ~byteOffset:(x2170 : int) ->
+        fun ~byte_offset:(x2170 : int) ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x2171) "getInt8" [|(Ojs.int_to_js x2170)|])
     let (get_int16 :
-      t -> byteOffset:int -> ?littleEndian:bool -> unit -> int) =
+      t -> byte_offset:int -> ?little_endian:bool -> unit -> int) =
       fun (x2176 : t) ->
-        fun ~byteOffset:(x2172 : int) ->
-          fun ?littleEndian:(x2173 : bool option) ->
+        fun ~byte_offset:(x2172 : int) ->
+          fun ?little_endian:(x2173 : bool option) ->
             fun () ->
               Ojs.int_of_js
                 (let x2177 = t_to_js x2176 in
@@ -7101,10 +7103,10 @@ module DataView =
                               | None -> ());
                              x2174))|])
     let (get_int32 :
-      t -> byteOffset:int -> ?littleEndian:bool -> unit -> int) =
+      t -> byte_offset:int -> ?little_endian:bool -> unit -> int) =
       fun (x2182 : t) ->
-        fun ~byteOffset:(x2178 : int) ->
-          fun ?littleEndian:(x2179 : bool option) ->
+        fun ~byte_offset:(x2178 : int) ->
+          fun ?little_endian:(x2179 : bool option) ->
             fun () ->
               Ojs.int_of_js
                 (let x2183 = t_to_js x2182 in
@@ -7123,16 +7125,16 @@ module DataView =
                                        [|(Ojs.bool_to_js x2181)|])
                               | None -> ());
                              x2180))|])
-    let (get_uint8 : t -> byteOffset:int -> int) =
+    let (get_uint8 : t -> byte_offset:int -> int) =
       fun (x2185 : t) ->
-        fun ~byteOffset:(x2184 : int) ->
+        fun ~byte_offset:(x2184 : int) ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x2185) "getUint8" [|(Ojs.int_to_js x2184)|])
     let (get_uint16 :
-      t -> byteOffset:int -> ?littleEndian:bool -> unit -> int) =
+      t -> byte_offset:int -> ?little_endian:bool -> unit -> int) =
       fun (x2190 : t) ->
-        fun ~byteOffset:(x2186 : int) ->
-          fun ?littleEndian:(x2187 : bool option) ->
+        fun ~byte_offset:(x2186 : int) ->
+          fun ?little_endian:(x2187 : bool option) ->
             fun () ->
               Ojs.int_of_js
                 (let x2191 = t_to_js x2190 in
@@ -7152,10 +7154,10 @@ module DataView =
                               | None -> ());
                              x2188))|])
     let (get_uint32 :
-      t -> byteOffset:int -> ?littleEndian:bool -> unit -> int) =
+      t -> byte_offset:int -> ?little_endian:bool -> unit -> int) =
       fun (x2196 : t) ->
-        fun ~byteOffset:(x2192 : int) ->
-          fun ?littleEndian:(x2193 : bool option) ->
+        fun ~byte_offset:(x2192 : int) ->
+          fun ?little_endian:(x2193 : bool option) ->
             fun () ->
               Ojs.int_of_js
                 (let x2197 = t_to_js x2196 in
@@ -7175,12 +7177,13 @@ module DataView =
                               | None -> ());
                              x2194))|])
     let (set_float32 :
-      t -> byteOffset:int -> value:int -> ?littleEndian:bool -> unit -> unit)
+      t ->
+        byte_offset:int -> value:int -> ?little_endian:bool -> unit -> unit)
       =
       fun (x2203 : t) ->
-        fun ~byteOffset:(x2198 : int) ->
+        fun ~byte_offset:(x2198 : int) ->
           fun ~value:(x2199 : int) ->
-            fun ?littleEndian:(x2200 : bool option) ->
+            fun ?little_endian:(x2200 : bool option) ->
               fun () ->
                 ignore
                   (let x2204 = t_to_js x2203 in
@@ -7203,12 +7206,13 @@ module DataView =
                                 | None -> ());
                                x2201))|])
     let (set_float64 :
-      t -> byteOffset:int -> value:int -> ?littleEndian:bool -> unit -> unit)
+      t ->
+        byte_offset:int -> value:int -> ?little_endian:bool -> unit -> unit)
       =
       fun (x2210 : t) ->
-        fun ~byteOffset:(x2205 : int) ->
+        fun ~byte_offset:(x2205 : int) ->
           fun ~value:(x2206 : int) ->
-            fun ?littleEndian:(x2207 : bool option) ->
+            fun ?little_endian:(x2207 : bool option) ->
               fun () ->
                 ignore
                   (let x2211 = t_to_js x2210 in
@@ -7230,20 +7234,21 @@ module DataView =
                                          [|(Ojs.bool_to_js x2209)|])
                                 | None -> ());
                                x2208))|])
-    let (set_int8 : t -> byteOffset:int -> value:int -> unit) =
+    let (set_int8 : t -> byte_offset:int -> value:int -> unit) =
       fun (x2214 : t) ->
-        fun ~byteOffset:(x2212 : int) ->
+        fun ~byte_offset:(x2212 : int) ->
           fun ~value:(x2213 : int) ->
             ignore
               (Ojs.call (t_to_js x2214) "setInt8"
                  [|(Ojs.int_to_js x2212);(Ojs.int_to_js x2213)|])
     let (set_int16 :
-      t -> byteOffset:int -> value:int -> ?littleEndian:bool -> unit -> unit)
+      t ->
+        byte_offset:int -> value:int -> ?little_endian:bool -> unit -> unit)
       =
       fun (x2220 : t) ->
-        fun ~byteOffset:(x2215 : int) ->
+        fun ~byte_offset:(x2215 : int) ->
           fun ~value:(x2216 : int) ->
-            fun ?littleEndian:(x2217 : bool option) ->
+            fun ?little_endian:(x2217 : bool option) ->
               fun () ->
                 ignore
                   (let x2221 = t_to_js x2220 in
@@ -7266,12 +7271,13 @@ module DataView =
                                 | None -> ());
                                x2218))|])
     let (set_int32 :
-      t -> byteOffset:int -> value:int -> ?littleEndian:bool -> unit -> unit)
+      t ->
+        byte_offset:int -> value:int -> ?little_endian:bool -> unit -> unit)
       =
       fun (x2227 : t) ->
-        fun ~byteOffset:(x2222 : int) ->
+        fun ~byte_offset:(x2222 : int) ->
           fun ~value:(x2223 : int) ->
-            fun ?littleEndian:(x2224 : bool option) ->
+            fun ?little_endian:(x2224 : bool option) ->
               fun () ->
                 ignore
                   (let x2228 = t_to_js x2227 in
@@ -7293,20 +7299,21 @@ module DataView =
                                          [|(Ojs.bool_to_js x2226)|])
                                 | None -> ());
                                x2225))|])
-    let (set_uint8 : t -> byteOffset:int -> value:int -> unit) =
+    let (set_uint8 : t -> byte_offset:int -> value:int -> unit) =
       fun (x2231 : t) ->
-        fun ~byteOffset:(x2229 : int) ->
+        fun ~byte_offset:(x2229 : int) ->
           fun ~value:(x2230 : int) ->
             ignore
               (Ojs.call (t_to_js x2231) "setUint8"
                  [|(Ojs.int_to_js x2229);(Ojs.int_to_js x2230)|])
     let (set_uint16 :
-      t -> byteOffset:int -> value:int -> ?littleEndian:bool -> unit -> unit)
+      t ->
+        byte_offset:int -> value:int -> ?little_endian:bool -> unit -> unit)
       =
       fun (x2237 : t) ->
-        fun ~byteOffset:(x2232 : int) ->
+        fun ~byte_offset:(x2232 : int) ->
           fun ~value:(x2233 : int) ->
-            fun ?littleEndian:(x2234 : bool option) ->
+            fun ?little_endian:(x2234 : bool option) ->
               fun () ->
                 ignore
                   (let x2238 = t_to_js x2237 in
@@ -7329,12 +7336,13 @@ module DataView =
                                 | None -> ());
                                x2235))|])
     let (set_uint32 :
-      t -> byteOffset:int -> value:int -> ?littleEndian:bool -> unit -> unit)
+      t ->
+        byte_offset:int -> value:int -> ?little_endian:bool -> unit -> unit)
       =
       fun (x2244 : t) ->
-        fun ~byteOffset:(x2239 : int) ->
+        fun ~byte_offset:(x2239 : int) ->
           fun ~value:(x2240 : int) ->
-            fun ?littleEndian:(x2241 : bool option) ->
+            fun ?little_endian:(x2241 : bool option) ->
               fun () ->
                 ignore
                   (let x2245 = t_to_js x2244 in
@@ -7357,11 +7365,12 @@ module DataView =
                                 | None -> ());
                                x2242))|])
     let (create :
-      buffer:ArrayBuffer.t -> ?byteOffset:int -> ?byteLength:int -> unit -> t)
+      buffer:ArrayBuffer.t ->
+        ?byte_offset:int -> ?byte_length:int -> unit -> t)
       =
       fun ~buffer:(x2246 : ArrayBuffer.t) ->
-        fun ?byteOffset:(x2247 : int option) ->
-          fun ?byteLength:(x2248 : int option) ->
+        fun ?byte_offset:(x2247 : int option) ->
+          fun ?byte_length:(x2248 : int option) ->
             fun () ->
               t_of_js
                 (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "DataView")
@@ -7393,12 +7402,12 @@ module DataViewConstructor =
     let (create :
       t ->
         buffer:ArrayBuffer.t ->
-          ?byteOffset:int -> ?byteLength:int -> unit -> DataView.t)
+          ?byte_offset:int -> ?byte_length:int -> unit -> DataView.t)
       =
       fun (x2261 : t) ->
         fun ~buffer:(x2255 : ArrayBuffer.t) ->
-          fun ?byteOffset:(x2256 : int option) ->
-            fun ?byteLength:(x2257 : int option) ->
+          fun ?byte_offset:(x2256 : int option) ->
+            fun ?byte_length:(x2257 : int option) ->
               fun () ->
                 DataView.t_of_js
                   (Ojs.new_obj_arr (t_to_js x2261)
@@ -7470,11 +7479,11 @@ module Int8Array =
     let (every :
       t ->
         (value:int -> index:int -> array:t -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x2282 : t) ->
         fun (x2275 : value:int -> index:int -> array:t -> unknown) ->
-          fun ?thisArg:(x2276 : any option) ->
+          fun ?this_arg:(x2276 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x2283 = t_to_js x2282 in
@@ -7535,11 +7544,11 @@ module Int8Array =
     let (filter :
       t ->
         (value:int -> index:int -> array:t -> any) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x2299 : t) ->
         fun (x2292 : value:int -> index:int -> array:t -> any) ->
-          fun ?thisArg:(x2293 : any option) ->
+          fun ?this_arg:(x2293 : any option) ->
             fun () ->
               t_of_js
                 (let x2300 = t_to_js x2299 in
@@ -7571,11 +7580,11 @@ module Int8Array =
     let (find :
       t ->
         (value:int -> index:int -> obj:t -> bool) ->
-          ?thisArg:any -> unit -> int or_undefined)
+          ?this_arg:any -> unit -> int or_undefined)
       =
       fun (x2308 : t) ->
         fun (x2301 : value:int -> index:int -> obj:t -> bool) ->
-          fun ?thisArg:(x2302 : any option) ->
+          fun ?this_arg:(x2302 : any option) ->
             fun () ->
               or_undefined_of_js Ojs.int_of_js
                 (let x2309 = t_to_js x2308 in
@@ -7607,11 +7616,11 @@ module Int8Array =
     let (find_index :
       t ->
         (value:int -> index:int -> obj:t -> bool) ->
-          ?thisArg:any -> unit -> int)
+          ?this_arg:any -> unit -> int)
       =
       fun (x2318 : t) ->
         fun (x2311 : value:int -> index:int -> obj:t -> bool) ->
-          fun ?thisArg:(x2312 : any option) ->
+          fun ?this_arg:(x2312 : any option) ->
             fun () ->
               Ojs.int_of_js
                 (let x2319 = t_to_js x2318 in
@@ -7643,12 +7652,12 @@ module Int8Array =
     let (for_each :
       t ->
         callbackfn:(value:int -> index:int -> array:t -> unit) ->
-          ?thisArg:any -> unit -> unit)
+          ?this_arg:any -> unit -> unit)
       =
       fun (x2327 : t) ->
         fun ~callbackfn:(x2320 : value:int -> index:int -> array:t -> unit)
           ->
-          fun ?thisArg:(x2321 : any option) ->
+          fun ?this_arg:(x2321 : any option) ->
             fun () ->
               ignore
                 (let x2328 = t_to_js x2327 in
@@ -7674,11 +7683,11 @@ module Int8Array =
                                        [|(any_to_js x2323)|])
                               | None -> ());
                              x2322))|])
-    let (index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int)
-      =
+    let (index_of :
+      t -> search_element:int -> ?from_index:int -> unit -> int) =
       fun (x2333 : t) ->
-        fun ~searchElement:(x2329 : int) ->
-          fun ?fromIndex:(x2330 : int option) ->
+        fun ~search_element:(x2329 : int) ->
+          fun ?from_index:(x2330 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x2334 = t_to_js x2333 in
@@ -7716,10 +7725,10 @@ module Int8Array =
                             | None -> ());
                            x2336))|])
     let (last_index_of :
-      t -> searchElement:int -> ?fromIndex:int -> unit -> int) =
+      t -> search_element:int -> ?from_index:int -> unit -> int) =
       fun (x2344 : t) ->
-        fun ~searchElement:(x2340 : int) ->
-          fun ?fromIndex:(x2341 : int option) ->
+        fun ~search_element:(x2340 : int) ->
+          fun ?from_index:(x2341 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x2345 = t_to_js x2344 in
@@ -7744,11 +7753,11 @@ module Int8Array =
     let (map :
       t ->
         callbackfn:(value:int -> index:int -> array:t -> int) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x2354 : t) ->
         fun ~callbackfn:(x2347 : value:int -> index:int -> array:t -> int) ->
-          fun ?thisArg:(x2348 : any option) ->
+          fun ?this_arg:(x2348 : any option) ->
             fun () ->
               t_of_js
                 (let x2355 = t_to_js x2354 in
@@ -7780,15 +7789,16 @@ module Int8Array =
     let (reduce :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
           -> int)
       =
       fun (x2361 : t) ->
         fun
           ~callbackfn:(x2356 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x2361) "reduce"
@@ -7799,23 +7809,24 @@ module Int8Array =
                            fun (x2360 : Ojs.t) ->
                              Ojs.int_to_js
                                (x2356 ~previousValue:(Ojs.int_of_js x2357)
-                                  ~currentValue:(Ojs.int_of_js x2358)
-                                  ~currentIndex:(Ojs.int_of_js x2359)
+                                  ~current_value:(Ojs.int_of_js x2358)
+                                  ~current_index:(Ojs.int_of_js x2359)
                                   ~array:(t_of_js x2360))))|])
     let (reduce' :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
-          -> initialValue:int -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
+          -> initial_value:int -> int)
       =
       fun (x2368 : t) ->
         fun
           ~callbackfn:(x2362 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
-          fun ~initialValue:(x2367 : int) ->
+          fun ~initial_value:(x2367 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x2368) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -7825,24 +7836,24 @@ module Int8Array =
                              fun (x2366 : Ojs.t) ->
                                Ojs.int_to_js
                                  (x2362 ~previousValue:(Ojs.int_of_js x2363)
-                                    ~currentValue:(Ojs.int_of_js x2364)
-                                    ~currentIndex:(Ojs.int_of_js x2365)
+                                    ~current_value:(Ojs.int_of_js x2364)
+                                    ~current_index:(Ojs.int_of_js x2365)
                                     ~array:(t_of_js x2366))));(Ojs.int_to_js
                                                                  x2367)|])
     let (reduce'' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:int -> currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:int -> current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x2375 : t) ->
         fun
           ~callbackfn:(x2369 :
                         previousValue:'U ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:int ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x2374 : 'U) ->
+          fun ~initial_value:(x2374 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x2375) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -7852,22 +7863,23 @@ module Int8Array =
                              fun (x2373 : Ojs.t) ->
                                Obj.magic
                                  (x2369 ~previousValue:(Obj.magic x2370)
-                                    ~currentValue:(Ojs.int_of_js x2371)
-                                    ~currentIndex:(Ojs.int_of_js x2372)
+                                    ~current_value:(Ojs.int_of_js x2371)
+                                    ~current_index:(Ojs.int_of_js x2372)
                                     ~array:(t_of_js x2373))));(Obj.magic
                                                                  x2374)|])
     let (reduce_right :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
           -> int)
       =
       fun (x2381 : t) ->
         fun
           ~callbackfn:(x2376 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x2381) "reduceRight"
@@ -7878,23 +7890,24 @@ module Int8Array =
                            fun (x2380 : Ojs.t) ->
                              Ojs.int_to_js
                                (x2376 ~previousValue:(Ojs.int_of_js x2377)
-                                  ~currentValue:(Ojs.int_of_js x2378)
-                                  ~currentIndex:(Ojs.int_of_js x2379)
+                                  ~current_value:(Ojs.int_of_js x2378)
+                                  ~current_index:(Ojs.int_of_js x2379)
                                   ~array:(t_of_js x2380))))|])
     let (reduce_right' :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
-          -> initialValue:int -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
+          -> initial_value:int -> int)
       =
       fun (x2388 : t) ->
         fun
           ~callbackfn:(x2382 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
-          fun ~initialValue:(x2387 : int) ->
+          fun ~initial_value:(x2387 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x2388) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -7904,24 +7917,24 @@ module Int8Array =
                              fun (x2386 : Ojs.t) ->
                                Ojs.int_to_js
                                  (x2382 ~previousValue:(Ojs.int_of_js x2383)
-                                    ~currentValue:(Ojs.int_of_js x2384)
-                                    ~currentIndex:(Ojs.int_of_js x2385)
+                                    ~current_value:(Ojs.int_of_js x2384)
+                                    ~current_index:(Ojs.int_of_js x2385)
                                     ~array:(t_of_js x2386))));(Ojs.int_to_js
                                                                  x2387)|])
     let (reduce_right'' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:int -> currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:int -> current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x2395 : t) ->
         fun
           ~callbackfn:(x2389 :
                         previousValue:'U ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:int ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x2394 : 'U) ->
+          fun ~initial_value:(x2394 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x2395) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -7931,8 +7944,8 @@ module Int8Array =
                              fun (x2393 : Ojs.t) ->
                                Obj.magic
                                  (x2389 ~previousValue:(Obj.magic x2390)
-                                    ~currentValue:(Ojs.int_of_js x2391)
-                                    ~currentIndex:(Ojs.int_of_js x2392)
+                                    ~current_value:(Ojs.int_of_js x2391)
+                                    ~current_index:(Ojs.int_of_js x2392)
                                     ~array:(t_of_js x2393))));(Obj.magic
                                                                  x2394)|])
     let (reverse : t -> t) =
@@ -7987,11 +8000,11 @@ module Int8Array =
     let (some :
       t ->
         (value:int -> index:int -> array:t -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x2418 : t) ->
         fun (x2411 : value:int -> index:int -> array:t -> unknown) ->
-          fun ?thisArg:(x2412 : any option) ->
+          fun ?this_arg:(x2412 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x2419 = t_to_js x2418 in
@@ -8020,9 +8033,9 @@ module Int8Array =
                                        [|(any_to_js x2414)|])
                               | None -> ());
                              x2413))|])
-    let (sort : t -> ?compareFn:(a:int -> b:int -> int) -> unit -> t) =
+    let (sort : t -> ?compare_fn:(a:int -> b:int -> int) -> unit -> t) =
       fun (x2425 : t) ->
-        fun ?compareFn:(x2420 : (a:int -> b:int -> int) option) ->
+        fun ?compare_fn:(x2420 : (a:int -> b:int -> int) option) ->
           fun () ->
             t_of_js
               (let x2426 = t_to_js x2425 in
@@ -8099,9 +8112,9 @@ module Int8Array =
                   (fun (x2445 : int Array.t) ->
                      Array.t_to_js Ojs.int_to_js x2445) x2443)|])
     let (create'' :
-      buffer:ArrayBuffer.t -> ?byteOffset:int -> ?length:int -> unit -> t) =
+      buffer:ArrayBuffer.t -> ?byte_offset:int -> ?length:int -> unit -> t) =
       fun ~buffer:(x2447 : ArrayBuffer.t) ->
-        fun ?byteOffset:(x2448 : int option) ->
+        fun ?byte_offset:(x2448 : int option) ->
           fun ?length:(x2449 : int option) ->
             fun () ->
               t_of_js
@@ -8147,11 +8160,11 @@ module Int8Array =
              [|(Array.t_to_js Ojs.int_to_js x2457)|])
     let (from' :
       array:'T Array.t ->
-        mapfn:(v:'T -> k:int -> int) -> ?thisArg:any -> unit -> t)
+        mapfn:(v:'T -> k:int -> int) -> ?this_arg:any -> unit -> t)
       =
       fun ~array:(x2459 : 'T Array.t) ->
         fun ~mapfn:(x2460 : v:'T -> k:int -> int) ->
-          fun ?thisArg:(x2461 : any option) ->
+          fun ?this_arg:(x2461 : any option) ->
             fun () ->
               t_of_js
                 (let x2467 = Ojs.get_prop_ascii Ojs.global "Int8Array" in
@@ -8204,11 +8217,11 @@ module Int8ArrayConstructor =
     let (create'' :
       t ->
         buffer:ArrayBuffer.t ->
-          ?byteOffset:int -> ?length:int -> unit -> Int8Array.t)
+          ?byte_offset:int -> ?length:int -> unit -> Int8Array.t)
       =
       fun (x2484 : t) ->
         fun ~buffer:(x2478 : ArrayBuffer.t) ->
-          fun ?byteOffset:(x2479 : int option) ->
+          fun ?byte_offset:(x2479 : int option) ->
             fun ?length:(x2480 : int option) ->
               fun () ->
                 Int8Array.t_of_js
@@ -8259,12 +8272,13 @@ module Int8ArrayConstructor =
     let (from' :
       t ->
         array:'T Array.t ->
-          mapfn:(v:'T -> k:int -> int) -> ?thisArg:any -> unit -> Int8Array.t)
+          mapfn:(v:'T -> k:int -> int) ->
+            ?this_arg:any -> unit -> Int8Array.t)
       =
       fun (x2502 : t) ->
         fun ~array:(x2494 : 'T Array.t) ->
           fun ~mapfn:(x2495 : v:'T -> k:int -> int) ->
-            fun ?thisArg:(x2496 : any option) ->
+            fun ?this_arg:(x2496 : any option) ->
               fun () ->
                 Int8Array.t_of_js
                   (let x2503 = t_to_js x2502 in
@@ -8342,11 +8356,11 @@ module Uint8Array =
     let (every :
       t ->
         (value:int -> index:int -> array:t -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x2524 : t) ->
         fun (x2517 : value:int -> index:int -> array:t -> unknown) ->
-          fun ?thisArg:(x2518 : any option) ->
+          fun ?this_arg:(x2518 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x2525 = t_to_js x2524 in
@@ -8407,11 +8421,11 @@ module Uint8Array =
     let (filter :
       t ->
         (value:int -> index:int -> array:t -> any) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x2541 : t) ->
         fun (x2534 : value:int -> index:int -> array:t -> any) ->
-          fun ?thisArg:(x2535 : any option) ->
+          fun ?this_arg:(x2535 : any option) ->
             fun () ->
               t_of_js
                 (let x2542 = t_to_js x2541 in
@@ -8443,11 +8457,11 @@ module Uint8Array =
     let (find :
       t ->
         (value:int -> index:int -> obj:t -> bool) ->
-          ?thisArg:any -> unit -> int or_undefined)
+          ?this_arg:any -> unit -> int or_undefined)
       =
       fun (x2550 : t) ->
         fun (x2543 : value:int -> index:int -> obj:t -> bool) ->
-          fun ?thisArg:(x2544 : any option) ->
+          fun ?this_arg:(x2544 : any option) ->
             fun () ->
               or_undefined_of_js Ojs.int_of_js
                 (let x2551 = t_to_js x2550 in
@@ -8479,11 +8493,11 @@ module Uint8Array =
     let (find_index :
       t ->
         (value:int -> index:int -> obj:t -> bool) ->
-          ?thisArg:any -> unit -> int)
+          ?this_arg:any -> unit -> int)
       =
       fun (x2560 : t) ->
         fun (x2553 : value:int -> index:int -> obj:t -> bool) ->
-          fun ?thisArg:(x2554 : any option) ->
+          fun ?this_arg:(x2554 : any option) ->
             fun () ->
               Ojs.int_of_js
                 (let x2561 = t_to_js x2560 in
@@ -8515,12 +8529,12 @@ module Uint8Array =
     let (for_each :
       t ->
         callbackfn:(value:int -> index:int -> array:t -> unit) ->
-          ?thisArg:any -> unit -> unit)
+          ?this_arg:any -> unit -> unit)
       =
       fun (x2569 : t) ->
         fun ~callbackfn:(x2562 : value:int -> index:int -> array:t -> unit)
           ->
-          fun ?thisArg:(x2563 : any option) ->
+          fun ?this_arg:(x2563 : any option) ->
             fun () ->
               ignore
                 (let x2570 = t_to_js x2569 in
@@ -8546,11 +8560,11 @@ module Uint8Array =
                                        [|(any_to_js x2565)|])
                               | None -> ());
                              x2564))|])
-    let (index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int)
-      =
+    let (index_of :
+      t -> search_element:int -> ?from_index:int -> unit -> int) =
       fun (x2575 : t) ->
-        fun ~searchElement:(x2571 : int) ->
-          fun ?fromIndex:(x2572 : int option) ->
+        fun ~search_element:(x2571 : int) ->
+          fun ?from_index:(x2572 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x2576 = t_to_js x2575 in
@@ -8588,10 +8602,10 @@ module Uint8Array =
                             | None -> ());
                            x2578))|])
     let (last_index_of :
-      t -> searchElement:int -> ?fromIndex:int -> unit -> int) =
+      t -> search_element:int -> ?from_index:int -> unit -> int) =
       fun (x2586 : t) ->
-        fun ~searchElement:(x2582 : int) ->
-          fun ?fromIndex:(x2583 : int option) ->
+        fun ~search_element:(x2582 : int) ->
+          fun ?from_index:(x2583 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x2587 = t_to_js x2586 in
@@ -8616,11 +8630,11 @@ module Uint8Array =
     let (map :
       t ->
         callbackfn:(value:int -> index:int -> array:t -> int) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x2596 : t) ->
         fun ~callbackfn:(x2589 : value:int -> index:int -> array:t -> int) ->
-          fun ?thisArg:(x2590 : any option) ->
+          fun ?this_arg:(x2590 : any option) ->
             fun () ->
               t_of_js
                 (let x2597 = t_to_js x2596 in
@@ -8652,15 +8666,16 @@ module Uint8Array =
     let (reduce :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
           -> int)
       =
       fun (x2603 : t) ->
         fun
           ~callbackfn:(x2598 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x2603) "reduce"
@@ -8671,23 +8686,24 @@ module Uint8Array =
                            fun (x2602 : Ojs.t) ->
                              Ojs.int_to_js
                                (x2598 ~previousValue:(Ojs.int_of_js x2599)
-                                  ~currentValue:(Ojs.int_of_js x2600)
-                                  ~currentIndex:(Ojs.int_of_js x2601)
+                                  ~current_value:(Ojs.int_of_js x2600)
+                                  ~current_index:(Ojs.int_of_js x2601)
                                   ~array:(t_of_js x2602))))|])
     let (reduce' :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
-          -> initialValue:int -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
+          -> initial_value:int -> int)
       =
       fun (x2610 : t) ->
         fun
           ~callbackfn:(x2604 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
-          fun ~initialValue:(x2609 : int) ->
+          fun ~initial_value:(x2609 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x2610) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -8697,24 +8713,24 @@ module Uint8Array =
                              fun (x2608 : Ojs.t) ->
                                Ojs.int_to_js
                                  (x2604 ~previousValue:(Ojs.int_of_js x2605)
-                                    ~currentValue:(Ojs.int_of_js x2606)
-                                    ~currentIndex:(Ojs.int_of_js x2607)
+                                    ~current_value:(Ojs.int_of_js x2606)
+                                    ~current_index:(Ojs.int_of_js x2607)
                                     ~array:(t_of_js x2608))));(Ojs.int_to_js
                                                                  x2609)|])
     let (reduce'' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:int -> currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:int -> current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x2617 : t) ->
         fun
           ~callbackfn:(x2611 :
                         previousValue:'U ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:int ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x2616 : 'U) ->
+          fun ~initial_value:(x2616 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x2617) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -8724,22 +8740,23 @@ module Uint8Array =
                              fun (x2615 : Ojs.t) ->
                                Obj.magic
                                  (x2611 ~previousValue:(Obj.magic x2612)
-                                    ~currentValue:(Ojs.int_of_js x2613)
-                                    ~currentIndex:(Ojs.int_of_js x2614)
+                                    ~current_value:(Ojs.int_of_js x2613)
+                                    ~current_index:(Ojs.int_of_js x2614)
                                     ~array:(t_of_js x2615))));(Obj.magic
                                                                  x2616)|])
     let (reduce_right :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
           -> int)
       =
       fun (x2623 : t) ->
         fun
           ~callbackfn:(x2618 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x2623) "reduceRight"
@@ -8750,23 +8767,24 @@ module Uint8Array =
                            fun (x2622 : Ojs.t) ->
                              Ojs.int_to_js
                                (x2618 ~previousValue:(Ojs.int_of_js x2619)
-                                  ~currentValue:(Ojs.int_of_js x2620)
-                                  ~currentIndex:(Ojs.int_of_js x2621)
+                                  ~current_value:(Ojs.int_of_js x2620)
+                                  ~current_index:(Ojs.int_of_js x2621)
                                   ~array:(t_of_js x2622))))|])
     let (reduce_right' :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
-          -> initialValue:int -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
+          -> initial_value:int -> int)
       =
       fun (x2630 : t) ->
         fun
           ~callbackfn:(x2624 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
-          fun ~initialValue:(x2629 : int) ->
+          fun ~initial_value:(x2629 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x2630) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -8776,24 +8794,24 @@ module Uint8Array =
                              fun (x2628 : Ojs.t) ->
                                Ojs.int_to_js
                                  (x2624 ~previousValue:(Ojs.int_of_js x2625)
-                                    ~currentValue:(Ojs.int_of_js x2626)
-                                    ~currentIndex:(Ojs.int_of_js x2627)
+                                    ~current_value:(Ojs.int_of_js x2626)
+                                    ~current_index:(Ojs.int_of_js x2627)
                                     ~array:(t_of_js x2628))));(Ojs.int_to_js
                                                                  x2629)|])
     let (reduce_right'' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:int -> currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:int -> current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x2637 : t) ->
         fun
           ~callbackfn:(x2631 :
                         previousValue:'U ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:int ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x2636 : 'U) ->
+          fun ~initial_value:(x2636 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x2637) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -8803,8 +8821,8 @@ module Uint8Array =
                              fun (x2635 : Ojs.t) ->
                                Obj.magic
                                  (x2631 ~previousValue:(Obj.magic x2632)
-                                    ~currentValue:(Ojs.int_of_js x2633)
-                                    ~currentIndex:(Ojs.int_of_js x2634)
+                                    ~current_value:(Ojs.int_of_js x2633)
+                                    ~current_index:(Ojs.int_of_js x2634)
                                     ~array:(t_of_js x2635))));(Obj.magic
                                                                  x2636)|])
     let (reverse : t -> t) =
@@ -8859,11 +8877,11 @@ module Uint8Array =
     let (some :
       t ->
         (value:int -> index:int -> array:t -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x2660 : t) ->
         fun (x2653 : value:int -> index:int -> array:t -> unknown) ->
-          fun ?thisArg:(x2654 : any option) ->
+          fun ?this_arg:(x2654 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x2661 = t_to_js x2660 in
@@ -8892,9 +8910,9 @@ module Uint8Array =
                                        [|(any_to_js x2656)|])
                               | None -> ());
                              x2655))|])
-    let (sort : t -> ?compareFn:(a:int -> b:int -> int) -> unit -> t) =
+    let (sort : t -> ?compare_fn:(a:int -> b:int -> int) -> unit -> t) =
       fun (x2667 : t) ->
-        fun ?compareFn:(x2662 : (a:int -> b:int -> int) option) ->
+        fun ?compare_fn:(x2662 : (a:int -> b:int -> int) option) ->
           fun () ->
             t_of_js
               (let x2668 = t_to_js x2667 in
@@ -8971,9 +8989,9 @@ module Uint8Array =
                   (fun (x2687 : int Array.t) ->
                      Array.t_to_js Ojs.int_to_js x2687) x2685)|])
     let (create'' :
-      buffer:ArrayBuffer.t -> ?byteOffset:int -> ?length:int -> unit -> t) =
+      buffer:ArrayBuffer.t -> ?byte_offset:int -> ?length:int -> unit -> t) =
       fun ~buffer:(x2689 : ArrayBuffer.t) ->
-        fun ?byteOffset:(x2690 : int option) ->
+        fun ?byte_offset:(x2690 : int option) ->
           fun ?length:(x2691 : int option) ->
             fun () ->
               t_of_js
@@ -9019,11 +9037,11 @@ module Uint8Array =
              [|(Array.t_to_js Ojs.int_to_js x2699)|])
     let (from' :
       array:'T Array.t ->
-        mapfn:(v:'T -> k:int -> int) -> ?thisArg:any -> unit -> t)
+        mapfn:(v:'T -> k:int -> int) -> ?this_arg:any -> unit -> t)
       =
       fun ~array:(x2701 : 'T Array.t) ->
         fun ~mapfn:(x2702 : v:'T -> k:int -> int) ->
-          fun ?thisArg:(x2703 : any option) ->
+          fun ?this_arg:(x2703 : any option) ->
             fun () ->
               t_of_js
                 (let x2709 = Ojs.get_prop_ascii Ojs.global "Uint8Array" in
@@ -9076,11 +9094,11 @@ module Uint8ArrayConstructor =
     let (create'' :
       t ->
         buffer:ArrayBuffer.t ->
-          ?byteOffset:int -> ?length:int -> unit -> Uint8Array.t)
+          ?byte_offset:int -> ?length:int -> unit -> Uint8Array.t)
       =
       fun (x2726 : t) ->
         fun ~buffer:(x2720 : ArrayBuffer.t) ->
-          fun ?byteOffset:(x2721 : int option) ->
+          fun ?byte_offset:(x2721 : int option) ->
             fun ?length:(x2722 : int option) ->
               fun () ->
                 Uint8Array.t_of_js
@@ -9132,12 +9150,12 @@ module Uint8ArrayConstructor =
       t ->
         array:'T Array.t ->
           mapfn:(v:'T -> k:int -> int) ->
-            ?thisArg:any -> unit -> Uint8Array.t)
+            ?this_arg:any -> unit -> Uint8Array.t)
       =
       fun (x2744 : t) ->
         fun ~array:(x2736 : 'T Array.t) ->
           fun ~mapfn:(x2737 : v:'T -> k:int -> int) ->
-            fun ?thisArg:(x2738 : any option) ->
+            fun ?this_arg:(x2738 : any option) ->
               fun () ->
                 Uint8Array.t_of_js
                   (let x2745 = t_to_js x2744 in
@@ -9215,11 +9233,11 @@ module Uint8ClampedArray =
     let (every :
       t ->
         (value:int -> index:int -> array:t -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x2766 : t) ->
         fun (x2759 : value:int -> index:int -> array:t -> unknown) ->
-          fun ?thisArg:(x2760 : any option) ->
+          fun ?this_arg:(x2760 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x2767 = t_to_js x2766 in
@@ -9280,11 +9298,11 @@ module Uint8ClampedArray =
     let (filter :
       t ->
         (value:int -> index:int -> array:t -> any) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x2783 : t) ->
         fun (x2776 : value:int -> index:int -> array:t -> any) ->
-          fun ?thisArg:(x2777 : any option) ->
+          fun ?this_arg:(x2777 : any option) ->
             fun () ->
               t_of_js
                 (let x2784 = t_to_js x2783 in
@@ -9316,11 +9334,11 @@ module Uint8ClampedArray =
     let (find :
       t ->
         (value:int -> index:int -> obj:t -> bool) ->
-          ?thisArg:any -> unit -> int or_undefined)
+          ?this_arg:any -> unit -> int or_undefined)
       =
       fun (x2792 : t) ->
         fun (x2785 : value:int -> index:int -> obj:t -> bool) ->
-          fun ?thisArg:(x2786 : any option) ->
+          fun ?this_arg:(x2786 : any option) ->
             fun () ->
               or_undefined_of_js Ojs.int_of_js
                 (let x2793 = t_to_js x2792 in
@@ -9352,11 +9370,11 @@ module Uint8ClampedArray =
     let (find_index :
       t ->
         (value:int -> index:int -> obj:t -> bool) ->
-          ?thisArg:any -> unit -> int)
+          ?this_arg:any -> unit -> int)
       =
       fun (x2802 : t) ->
         fun (x2795 : value:int -> index:int -> obj:t -> bool) ->
-          fun ?thisArg:(x2796 : any option) ->
+          fun ?this_arg:(x2796 : any option) ->
             fun () ->
               Ojs.int_of_js
                 (let x2803 = t_to_js x2802 in
@@ -9388,12 +9406,12 @@ module Uint8ClampedArray =
     let (for_each :
       t ->
         callbackfn:(value:int -> index:int -> array:t -> unit) ->
-          ?thisArg:any -> unit -> unit)
+          ?this_arg:any -> unit -> unit)
       =
       fun (x2811 : t) ->
         fun ~callbackfn:(x2804 : value:int -> index:int -> array:t -> unit)
           ->
-          fun ?thisArg:(x2805 : any option) ->
+          fun ?this_arg:(x2805 : any option) ->
             fun () ->
               ignore
                 (let x2812 = t_to_js x2811 in
@@ -9419,11 +9437,11 @@ module Uint8ClampedArray =
                                        [|(any_to_js x2807)|])
                               | None -> ());
                              x2806))|])
-    let (index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int)
-      =
+    let (index_of :
+      t -> search_element:int -> ?from_index:int -> unit -> int) =
       fun (x2817 : t) ->
-        fun ~searchElement:(x2813 : int) ->
-          fun ?fromIndex:(x2814 : int option) ->
+        fun ~search_element:(x2813 : int) ->
+          fun ?from_index:(x2814 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x2818 = t_to_js x2817 in
@@ -9461,10 +9479,10 @@ module Uint8ClampedArray =
                             | None -> ());
                            x2820))|])
     let (last_index_of :
-      t -> searchElement:int -> ?fromIndex:int -> unit -> int) =
+      t -> search_element:int -> ?from_index:int -> unit -> int) =
       fun (x2828 : t) ->
-        fun ~searchElement:(x2824 : int) ->
-          fun ?fromIndex:(x2825 : int option) ->
+        fun ~search_element:(x2824 : int) ->
+          fun ?from_index:(x2825 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x2829 = t_to_js x2828 in
@@ -9489,11 +9507,11 @@ module Uint8ClampedArray =
     let (map :
       t ->
         callbackfn:(value:int -> index:int -> array:t -> int) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x2838 : t) ->
         fun ~callbackfn:(x2831 : value:int -> index:int -> array:t -> int) ->
-          fun ?thisArg:(x2832 : any option) ->
+          fun ?this_arg:(x2832 : any option) ->
             fun () ->
               t_of_js
                 (let x2839 = t_to_js x2838 in
@@ -9525,15 +9543,16 @@ module Uint8ClampedArray =
     let (reduce :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
           -> int)
       =
       fun (x2845 : t) ->
         fun
           ~callbackfn:(x2840 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x2845) "reduce"
@@ -9544,23 +9563,24 @@ module Uint8ClampedArray =
                            fun (x2844 : Ojs.t) ->
                              Ojs.int_to_js
                                (x2840 ~previousValue:(Ojs.int_of_js x2841)
-                                  ~currentValue:(Ojs.int_of_js x2842)
-                                  ~currentIndex:(Ojs.int_of_js x2843)
+                                  ~current_value:(Ojs.int_of_js x2842)
+                                  ~current_index:(Ojs.int_of_js x2843)
                                   ~array:(t_of_js x2844))))|])
     let (reduce' :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
-          -> initialValue:int -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
+          -> initial_value:int -> int)
       =
       fun (x2852 : t) ->
         fun
           ~callbackfn:(x2846 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
-          fun ~initialValue:(x2851 : int) ->
+          fun ~initial_value:(x2851 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x2852) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -9570,24 +9590,24 @@ module Uint8ClampedArray =
                              fun (x2850 : Ojs.t) ->
                                Ojs.int_to_js
                                  (x2846 ~previousValue:(Ojs.int_of_js x2847)
-                                    ~currentValue:(Ojs.int_of_js x2848)
-                                    ~currentIndex:(Ojs.int_of_js x2849)
+                                    ~current_value:(Ojs.int_of_js x2848)
+                                    ~current_index:(Ojs.int_of_js x2849)
                                     ~array:(t_of_js x2850))));(Ojs.int_to_js
                                                                  x2851)|])
     let (reduce'' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:int -> currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:int -> current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x2859 : t) ->
         fun
           ~callbackfn:(x2853 :
                         previousValue:'U ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:int ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x2858 : 'U) ->
+          fun ~initial_value:(x2858 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x2859) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -9597,22 +9617,23 @@ module Uint8ClampedArray =
                              fun (x2857 : Ojs.t) ->
                                Obj.magic
                                  (x2853 ~previousValue:(Obj.magic x2854)
-                                    ~currentValue:(Ojs.int_of_js x2855)
-                                    ~currentIndex:(Ojs.int_of_js x2856)
+                                    ~current_value:(Ojs.int_of_js x2855)
+                                    ~current_index:(Ojs.int_of_js x2856)
                                     ~array:(t_of_js x2857))));(Obj.magic
                                                                  x2858)|])
     let (reduce_right :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
           -> int)
       =
       fun (x2865 : t) ->
         fun
           ~callbackfn:(x2860 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x2865) "reduceRight"
@@ -9623,23 +9644,24 @@ module Uint8ClampedArray =
                            fun (x2864 : Ojs.t) ->
                              Ojs.int_to_js
                                (x2860 ~previousValue:(Ojs.int_of_js x2861)
-                                  ~currentValue:(Ojs.int_of_js x2862)
-                                  ~currentIndex:(Ojs.int_of_js x2863)
+                                  ~current_value:(Ojs.int_of_js x2862)
+                                  ~current_index:(Ojs.int_of_js x2863)
                                   ~array:(t_of_js x2864))))|])
     let (reduce_right' :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
-          -> initialValue:int -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
+          -> initial_value:int -> int)
       =
       fun (x2872 : t) ->
         fun
           ~callbackfn:(x2866 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
-          fun ~initialValue:(x2871 : int) ->
+          fun ~initial_value:(x2871 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x2872) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -9649,24 +9671,24 @@ module Uint8ClampedArray =
                              fun (x2870 : Ojs.t) ->
                                Ojs.int_to_js
                                  (x2866 ~previousValue:(Ojs.int_of_js x2867)
-                                    ~currentValue:(Ojs.int_of_js x2868)
-                                    ~currentIndex:(Ojs.int_of_js x2869)
+                                    ~current_value:(Ojs.int_of_js x2868)
+                                    ~current_index:(Ojs.int_of_js x2869)
                                     ~array:(t_of_js x2870))));(Ojs.int_to_js
                                                                  x2871)|])
     let (reduce_right'' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:int -> currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:int -> current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x2879 : t) ->
         fun
           ~callbackfn:(x2873 :
                         previousValue:'U ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:int ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x2878 : 'U) ->
+          fun ~initial_value:(x2878 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x2879) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -9676,8 +9698,8 @@ module Uint8ClampedArray =
                              fun (x2877 : Ojs.t) ->
                                Obj.magic
                                  (x2873 ~previousValue:(Obj.magic x2874)
-                                    ~currentValue:(Ojs.int_of_js x2875)
-                                    ~currentIndex:(Ojs.int_of_js x2876)
+                                    ~current_value:(Ojs.int_of_js x2875)
+                                    ~current_index:(Ojs.int_of_js x2876)
                                     ~array:(t_of_js x2877))));(Obj.magic
                                                                  x2878)|])
     let (reverse : t -> t) =
@@ -9732,11 +9754,11 @@ module Uint8ClampedArray =
     let (some :
       t ->
         (value:int -> index:int -> array:t -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x2902 : t) ->
         fun (x2895 : value:int -> index:int -> array:t -> unknown) ->
-          fun ?thisArg:(x2896 : any option) ->
+          fun ?this_arg:(x2896 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x2903 = t_to_js x2902 in
@@ -9765,9 +9787,9 @@ module Uint8ClampedArray =
                                        [|(any_to_js x2898)|])
                               | None -> ());
                              x2897))|])
-    let (sort : t -> ?compareFn:(a:int -> b:int -> int) -> unit -> t) =
+    let (sort : t -> ?compare_fn:(a:int -> b:int -> int) -> unit -> t) =
       fun (x2909 : t) ->
-        fun ?compareFn:(x2904 : (a:int -> b:int -> int) option) ->
+        fun ?compare_fn:(x2904 : (a:int -> b:int -> int) option) ->
           fun () ->
             t_of_js
               (let x2910 = t_to_js x2909 in
@@ -9844,9 +9866,9 @@ module Uint8ClampedArray =
                   (fun (x2929 : int Array.t) ->
                      Array.t_to_js Ojs.int_to_js x2929) x2927)|])
     let (create'' :
-      buffer:ArrayBuffer.t -> ?byteOffset:int -> ?length:int -> unit -> t) =
+      buffer:ArrayBuffer.t -> ?byte_offset:int -> ?length:int -> unit -> t) =
       fun ~buffer:(x2931 : ArrayBuffer.t) ->
-        fun ?byteOffset:(x2932 : int option) ->
+        fun ?byte_offset:(x2932 : int option) ->
           fun ?length:(x2933 : int option) ->
             fun () ->
               t_of_js
@@ -9894,11 +9916,11 @@ module Uint8ClampedArray =
              "from" [|(Array.t_to_js Ojs.int_to_js x2941)|])
     let (from' :
       array:'T Array.t ->
-        mapfn:(v:'T -> k:int -> int) -> ?thisArg:any -> unit -> t)
+        mapfn:(v:'T -> k:int -> int) -> ?this_arg:any -> unit -> t)
       =
       fun ~array:(x2943 : 'T Array.t) ->
         fun ~mapfn:(x2944 : v:'T -> k:int -> int) ->
-          fun ?thisArg:(x2945 : any option) ->
+          fun ?this_arg:(x2945 : any option) ->
             fun () ->
               t_of_js
                 (let x2951 =
@@ -9954,11 +9976,11 @@ module Uint8ClampedArrayConstructor =
     let (create'' :
       t ->
         buffer:ArrayBuffer.t ->
-          ?byteOffset:int -> ?length:int -> unit -> Uint8ClampedArray.t)
+          ?byte_offset:int -> ?length:int -> unit -> Uint8ClampedArray.t)
       =
       fun (x2968 : t) ->
         fun ~buffer:(x2962 : ArrayBuffer.t) ->
-          fun ?byteOffset:(x2963 : int option) ->
+          fun ?byte_offset:(x2963 : int option) ->
             fun ?length:(x2964 : int option) ->
               fun () ->
                 Uint8ClampedArray.t_of_js
@@ -10010,12 +10032,12 @@ module Uint8ClampedArrayConstructor =
       t ->
         array:'T Array.t ->
           mapfn:(v:'T -> k:int -> int) ->
-            ?thisArg:any -> unit -> Uint8ClampedArray.t)
+            ?this_arg:any -> unit -> Uint8ClampedArray.t)
       =
       fun (x2986 : t) ->
         fun ~array:(x2978 : 'T Array.t) ->
           fun ~mapfn:(x2979 : v:'T -> k:int -> int) ->
-            fun ?thisArg:(x2980 : any option) ->
+            fun ?this_arg:(x2980 : any option) ->
               fun () ->
                 Uint8ClampedArray.t_of_js
                   (let x2987 = t_to_js x2986 in
@@ -10094,11 +10116,11 @@ module Int16Array =
     let (every :
       t ->
         (value:int -> index:int -> array:t -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x3008 : t) ->
         fun (x3001 : value:int -> index:int -> array:t -> unknown) ->
-          fun ?thisArg:(x3002 : any option) ->
+          fun ?this_arg:(x3002 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x3009 = t_to_js x3008 in
@@ -10159,11 +10181,11 @@ module Int16Array =
     let (filter :
       t ->
         (value:int -> index:int -> array:t -> any) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x3025 : t) ->
         fun (x3018 : value:int -> index:int -> array:t -> any) ->
-          fun ?thisArg:(x3019 : any option) ->
+          fun ?this_arg:(x3019 : any option) ->
             fun () ->
               t_of_js
                 (let x3026 = t_to_js x3025 in
@@ -10195,11 +10217,11 @@ module Int16Array =
     let (find :
       t ->
         (value:int -> index:int -> obj:t -> bool) ->
-          ?thisArg:any -> unit -> int or_undefined)
+          ?this_arg:any -> unit -> int or_undefined)
       =
       fun (x3034 : t) ->
         fun (x3027 : value:int -> index:int -> obj:t -> bool) ->
-          fun ?thisArg:(x3028 : any option) ->
+          fun ?this_arg:(x3028 : any option) ->
             fun () ->
               or_undefined_of_js Ojs.int_of_js
                 (let x3035 = t_to_js x3034 in
@@ -10231,11 +10253,11 @@ module Int16Array =
     let (find_index :
       t ->
         (value:int -> index:int -> obj:t -> bool) ->
-          ?thisArg:any -> unit -> int)
+          ?this_arg:any -> unit -> int)
       =
       fun (x3044 : t) ->
         fun (x3037 : value:int -> index:int -> obj:t -> bool) ->
-          fun ?thisArg:(x3038 : any option) ->
+          fun ?this_arg:(x3038 : any option) ->
             fun () ->
               Ojs.int_of_js
                 (let x3045 = t_to_js x3044 in
@@ -10267,12 +10289,12 @@ module Int16Array =
     let (for_each :
       t ->
         callbackfn:(value:int -> index:int -> array:t -> unit) ->
-          ?thisArg:any -> unit -> unit)
+          ?this_arg:any -> unit -> unit)
       =
       fun (x3053 : t) ->
         fun ~callbackfn:(x3046 : value:int -> index:int -> array:t -> unit)
           ->
-          fun ?thisArg:(x3047 : any option) ->
+          fun ?this_arg:(x3047 : any option) ->
             fun () ->
               ignore
                 (let x3054 = t_to_js x3053 in
@@ -10298,11 +10320,11 @@ module Int16Array =
                                        [|(any_to_js x3049)|])
                               | None -> ());
                              x3048))|])
-    let (index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int)
-      =
+    let (index_of :
+      t -> search_element:int -> ?from_index:int -> unit -> int) =
       fun (x3059 : t) ->
-        fun ~searchElement:(x3055 : int) ->
-          fun ?fromIndex:(x3056 : int option) ->
+        fun ~search_element:(x3055 : int) ->
+          fun ?from_index:(x3056 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x3060 = t_to_js x3059 in
@@ -10340,10 +10362,10 @@ module Int16Array =
                             | None -> ());
                            x3062))|])
     let (last_index_of :
-      t -> searchElement:int -> ?fromIndex:int -> unit -> int) =
+      t -> search_element:int -> ?from_index:int -> unit -> int) =
       fun (x3070 : t) ->
-        fun ~searchElement:(x3066 : int) ->
-          fun ?fromIndex:(x3067 : int option) ->
+        fun ~search_element:(x3066 : int) ->
+          fun ?from_index:(x3067 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x3071 = t_to_js x3070 in
@@ -10368,11 +10390,11 @@ module Int16Array =
     let (map :
       t ->
         callbackfn:(value:int -> index:int -> array:t -> int) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x3080 : t) ->
         fun ~callbackfn:(x3073 : value:int -> index:int -> array:t -> int) ->
-          fun ?thisArg:(x3074 : any option) ->
+          fun ?this_arg:(x3074 : any option) ->
             fun () ->
               t_of_js
                 (let x3081 = t_to_js x3080 in
@@ -10404,15 +10426,16 @@ module Int16Array =
     let (reduce :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
           -> int)
       =
       fun (x3087 : t) ->
         fun
           ~callbackfn:(x3082 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x3087) "reduce"
@@ -10423,23 +10446,24 @@ module Int16Array =
                            fun (x3086 : Ojs.t) ->
                              Ojs.int_to_js
                                (x3082 ~previousValue:(Ojs.int_of_js x3083)
-                                  ~currentValue:(Ojs.int_of_js x3084)
-                                  ~currentIndex:(Ojs.int_of_js x3085)
+                                  ~current_value:(Ojs.int_of_js x3084)
+                                  ~current_index:(Ojs.int_of_js x3085)
                                   ~array:(t_of_js x3086))))|])
     let (reduce' :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
-          -> initialValue:int -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
+          -> initial_value:int -> int)
       =
       fun (x3094 : t) ->
         fun
           ~callbackfn:(x3088 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
-          fun ~initialValue:(x3093 : int) ->
+          fun ~initial_value:(x3093 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x3094) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -10449,24 +10473,24 @@ module Int16Array =
                              fun (x3092 : Ojs.t) ->
                                Ojs.int_to_js
                                  (x3088 ~previousValue:(Ojs.int_of_js x3089)
-                                    ~currentValue:(Ojs.int_of_js x3090)
-                                    ~currentIndex:(Ojs.int_of_js x3091)
+                                    ~current_value:(Ojs.int_of_js x3090)
+                                    ~current_index:(Ojs.int_of_js x3091)
                                     ~array:(t_of_js x3092))));(Ojs.int_to_js
                                                                  x3093)|])
     let (reduce'' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:int -> currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:int -> current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x3101 : t) ->
         fun
           ~callbackfn:(x3095 :
                         previousValue:'U ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:int ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x3100 : 'U) ->
+          fun ~initial_value:(x3100 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x3101) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -10476,22 +10500,23 @@ module Int16Array =
                              fun (x3099 : Ojs.t) ->
                                Obj.magic
                                  (x3095 ~previousValue:(Obj.magic x3096)
-                                    ~currentValue:(Ojs.int_of_js x3097)
-                                    ~currentIndex:(Ojs.int_of_js x3098)
+                                    ~current_value:(Ojs.int_of_js x3097)
+                                    ~current_index:(Ojs.int_of_js x3098)
                                     ~array:(t_of_js x3099))));(Obj.magic
                                                                  x3100)|])
     let (reduce_right :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
           -> int)
       =
       fun (x3107 : t) ->
         fun
           ~callbackfn:(x3102 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x3107) "reduceRight"
@@ -10502,23 +10527,24 @@ module Int16Array =
                            fun (x3106 : Ojs.t) ->
                              Ojs.int_to_js
                                (x3102 ~previousValue:(Ojs.int_of_js x3103)
-                                  ~currentValue:(Ojs.int_of_js x3104)
-                                  ~currentIndex:(Ojs.int_of_js x3105)
+                                  ~current_value:(Ojs.int_of_js x3104)
+                                  ~current_index:(Ojs.int_of_js x3105)
                                   ~array:(t_of_js x3106))))|])
     let (reduce_right' :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
-          -> initialValue:int -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
+          -> initial_value:int -> int)
       =
       fun (x3114 : t) ->
         fun
           ~callbackfn:(x3108 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
-          fun ~initialValue:(x3113 : int) ->
+          fun ~initial_value:(x3113 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x3114) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -10528,24 +10554,24 @@ module Int16Array =
                              fun (x3112 : Ojs.t) ->
                                Ojs.int_to_js
                                  (x3108 ~previousValue:(Ojs.int_of_js x3109)
-                                    ~currentValue:(Ojs.int_of_js x3110)
-                                    ~currentIndex:(Ojs.int_of_js x3111)
+                                    ~current_value:(Ojs.int_of_js x3110)
+                                    ~current_index:(Ojs.int_of_js x3111)
                                     ~array:(t_of_js x3112))));(Ojs.int_to_js
                                                                  x3113)|])
     let (reduce_right'' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:int -> currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:int -> current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x3121 : t) ->
         fun
           ~callbackfn:(x3115 :
                         previousValue:'U ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:int ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x3120 : 'U) ->
+          fun ~initial_value:(x3120 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x3121) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -10555,8 +10581,8 @@ module Int16Array =
                              fun (x3119 : Ojs.t) ->
                                Obj.magic
                                  (x3115 ~previousValue:(Obj.magic x3116)
-                                    ~currentValue:(Ojs.int_of_js x3117)
-                                    ~currentIndex:(Ojs.int_of_js x3118)
+                                    ~current_value:(Ojs.int_of_js x3117)
+                                    ~current_index:(Ojs.int_of_js x3118)
                                     ~array:(t_of_js x3119))));(Obj.magic
                                                                  x3120)|])
     let (reverse : t -> t) =
@@ -10611,11 +10637,11 @@ module Int16Array =
     let (some :
       t ->
         (value:int -> index:int -> array:t -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x3144 : t) ->
         fun (x3137 : value:int -> index:int -> array:t -> unknown) ->
-          fun ?thisArg:(x3138 : any option) ->
+          fun ?this_arg:(x3138 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x3145 = t_to_js x3144 in
@@ -10644,9 +10670,9 @@ module Int16Array =
                                        [|(any_to_js x3140)|])
                               | None -> ());
                              x3139))|])
-    let (sort : t -> ?compareFn:(a:int -> b:int -> int) -> unit -> t) =
+    let (sort : t -> ?compare_fn:(a:int -> b:int -> int) -> unit -> t) =
       fun (x3151 : t) ->
-        fun ?compareFn:(x3146 : (a:int -> b:int -> int) option) ->
+        fun ?compare_fn:(x3146 : (a:int -> b:int -> int) option) ->
           fun () ->
             t_of_js
               (let x3152 = t_to_js x3151 in
@@ -10723,9 +10749,9 @@ module Int16Array =
                   (fun (x3171 : int Array.t) ->
                      Array.t_to_js Ojs.int_to_js x3171) x3169)|])
     let (create'' :
-      buffer:ArrayBuffer.t -> ?byteOffset:int -> ?length:int -> unit -> t) =
+      buffer:ArrayBuffer.t -> ?byte_offset:int -> ?length:int -> unit -> t) =
       fun ~buffer:(x3173 : ArrayBuffer.t) ->
-        fun ?byteOffset:(x3174 : int option) ->
+        fun ?byte_offset:(x3174 : int option) ->
           fun ?length:(x3175 : int option) ->
             fun () ->
               t_of_js
@@ -10771,11 +10797,11 @@ module Int16Array =
              [|(Array.t_to_js Ojs.int_to_js x3183)|])
     let (from' :
       array:'T Array.t ->
-        mapfn:(v:'T -> k:int -> int) -> ?thisArg:any -> unit -> t)
+        mapfn:(v:'T -> k:int -> int) -> ?this_arg:any -> unit -> t)
       =
       fun ~array:(x3185 : 'T Array.t) ->
         fun ~mapfn:(x3186 : v:'T -> k:int -> int) ->
-          fun ?thisArg:(x3187 : any option) ->
+          fun ?this_arg:(x3187 : any option) ->
             fun () ->
               t_of_js
                 (let x3193 = Ojs.get_prop_ascii Ojs.global "Int16Array" in
@@ -10828,11 +10854,11 @@ module Int16ArrayConstructor =
     let (create'' :
       t ->
         buffer:ArrayBuffer.t ->
-          ?byteOffset:int -> ?length:int -> unit -> Int16Array.t)
+          ?byte_offset:int -> ?length:int -> unit -> Int16Array.t)
       =
       fun (x3210 : t) ->
         fun ~buffer:(x3204 : ArrayBuffer.t) ->
-          fun ?byteOffset:(x3205 : int option) ->
+          fun ?byte_offset:(x3205 : int option) ->
             fun ?length:(x3206 : int option) ->
               fun () ->
                 Int16Array.t_of_js
@@ -10884,12 +10910,12 @@ module Int16ArrayConstructor =
       t ->
         array:'T Array.t ->
           mapfn:(v:'T -> k:int -> int) ->
-            ?thisArg:any -> unit -> Int16Array.t)
+            ?this_arg:any -> unit -> Int16Array.t)
       =
       fun (x3228 : t) ->
         fun ~array:(x3220 : 'T Array.t) ->
           fun ~mapfn:(x3221 : v:'T -> k:int -> int) ->
-            fun ?thisArg:(x3222 : any option) ->
+            fun ?this_arg:(x3222 : any option) ->
               fun () ->
                 Int16Array.t_of_js
                   (let x3229 = t_to_js x3228 in
@@ -10967,11 +10993,11 @@ module Uint16Array =
     let (every :
       t ->
         (value:int -> index:int -> array:t -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x3250 : t) ->
         fun (x3243 : value:int -> index:int -> array:t -> unknown) ->
-          fun ?thisArg:(x3244 : any option) ->
+          fun ?this_arg:(x3244 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x3251 = t_to_js x3250 in
@@ -11032,11 +11058,11 @@ module Uint16Array =
     let (filter :
       t ->
         (value:int -> index:int -> array:t -> any) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x3267 : t) ->
         fun (x3260 : value:int -> index:int -> array:t -> any) ->
-          fun ?thisArg:(x3261 : any option) ->
+          fun ?this_arg:(x3261 : any option) ->
             fun () ->
               t_of_js
                 (let x3268 = t_to_js x3267 in
@@ -11068,11 +11094,11 @@ module Uint16Array =
     let (find :
       t ->
         (value:int -> index:int -> obj:t -> bool) ->
-          ?thisArg:any -> unit -> int or_undefined)
+          ?this_arg:any -> unit -> int or_undefined)
       =
       fun (x3276 : t) ->
         fun (x3269 : value:int -> index:int -> obj:t -> bool) ->
-          fun ?thisArg:(x3270 : any option) ->
+          fun ?this_arg:(x3270 : any option) ->
             fun () ->
               or_undefined_of_js Ojs.int_of_js
                 (let x3277 = t_to_js x3276 in
@@ -11104,11 +11130,11 @@ module Uint16Array =
     let (find_index :
       t ->
         (value:int -> index:int -> obj:t -> bool) ->
-          ?thisArg:any -> unit -> int)
+          ?this_arg:any -> unit -> int)
       =
       fun (x3286 : t) ->
         fun (x3279 : value:int -> index:int -> obj:t -> bool) ->
-          fun ?thisArg:(x3280 : any option) ->
+          fun ?this_arg:(x3280 : any option) ->
             fun () ->
               Ojs.int_of_js
                 (let x3287 = t_to_js x3286 in
@@ -11140,12 +11166,12 @@ module Uint16Array =
     let (for_each :
       t ->
         callbackfn:(value:int -> index:int -> array:t -> unit) ->
-          ?thisArg:any -> unit -> unit)
+          ?this_arg:any -> unit -> unit)
       =
       fun (x3295 : t) ->
         fun ~callbackfn:(x3288 : value:int -> index:int -> array:t -> unit)
           ->
-          fun ?thisArg:(x3289 : any option) ->
+          fun ?this_arg:(x3289 : any option) ->
             fun () ->
               ignore
                 (let x3296 = t_to_js x3295 in
@@ -11171,11 +11197,11 @@ module Uint16Array =
                                        [|(any_to_js x3291)|])
                               | None -> ());
                              x3290))|])
-    let (index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int)
-      =
+    let (index_of :
+      t -> search_element:int -> ?from_index:int -> unit -> int) =
       fun (x3301 : t) ->
-        fun ~searchElement:(x3297 : int) ->
-          fun ?fromIndex:(x3298 : int option) ->
+        fun ~search_element:(x3297 : int) ->
+          fun ?from_index:(x3298 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x3302 = t_to_js x3301 in
@@ -11213,10 +11239,10 @@ module Uint16Array =
                             | None -> ());
                            x3304))|])
     let (last_index_of :
-      t -> searchElement:int -> ?fromIndex:int -> unit -> int) =
+      t -> search_element:int -> ?from_index:int -> unit -> int) =
       fun (x3312 : t) ->
-        fun ~searchElement:(x3308 : int) ->
-          fun ?fromIndex:(x3309 : int option) ->
+        fun ~search_element:(x3308 : int) ->
+          fun ?from_index:(x3309 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x3313 = t_to_js x3312 in
@@ -11241,11 +11267,11 @@ module Uint16Array =
     let (map :
       t ->
         callbackfn:(value:int -> index:int -> array:t -> int) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x3322 : t) ->
         fun ~callbackfn:(x3315 : value:int -> index:int -> array:t -> int) ->
-          fun ?thisArg:(x3316 : any option) ->
+          fun ?this_arg:(x3316 : any option) ->
             fun () ->
               t_of_js
                 (let x3323 = t_to_js x3322 in
@@ -11277,15 +11303,16 @@ module Uint16Array =
     let (reduce :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
           -> int)
       =
       fun (x3329 : t) ->
         fun
           ~callbackfn:(x3324 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x3329) "reduce"
@@ -11296,23 +11323,24 @@ module Uint16Array =
                            fun (x3328 : Ojs.t) ->
                              Ojs.int_to_js
                                (x3324 ~previousValue:(Ojs.int_of_js x3325)
-                                  ~currentValue:(Ojs.int_of_js x3326)
-                                  ~currentIndex:(Ojs.int_of_js x3327)
+                                  ~current_value:(Ojs.int_of_js x3326)
+                                  ~current_index:(Ojs.int_of_js x3327)
                                   ~array:(t_of_js x3328))))|])
     let (reduce' :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
-          -> initialValue:int -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
+          -> initial_value:int -> int)
       =
       fun (x3336 : t) ->
         fun
           ~callbackfn:(x3330 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
-          fun ~initialValue:(x3335 : int) ->
+          fun ~initial_value:(x3335 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x3336) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -11322,24 +11350,24 @@ module Uint16Array =
                              fun (x3334 : Ojs.t) ->
                                Ojs.int_to_js
                                  (x3330 ~previousValue:(Ojs.int_of_js x3331)
-                                    ~currentValue:(Ojs.int_of_js x3332)
-                                    ~currentIndex:(Ojs.int_of_js x3333)
+                                    ~current_value:(Ojs.int_of_js x3332)
+                                    ~current_index:(Ojs.int_of_js x3333)
                                     ~array:(t_of_js x3334))));(Ojs.int_to_js
                                                                  x3335)|])
     let (reduce'' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:int -> currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:int -> current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x3343 : t) ->
         fun
           ~callbackfn:(x3337 :
                         previousValue:'U ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:int ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x3342 : 'U) ->
+          fun ~initial_value:(x3342 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x3343) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -11349,22 +11377,23 @@ module Uint16Array =
                              fun (x3341 : Ojs.t) ->
                                Obj.magic
                                  (x3337 ~previousValue:(Obj.magic x3338)
-                                    ~currentValue:(Ojs.int_of_js x3339)
-                                    ~currentIndex:(Ojs.int_of_js x3340)
+                                    ~current_value:(Ojs.int_of_js x3339)
+                                    ~current_index:(Ojs.int_of_js x3340)
                                     ~array:(t_of_js x3341))));(Obj.magic
                                                                  x3342)|])
     let (reduce_right :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
           -> int)
       =
       fun (x3349 : t) ->
         fun
           ~callbackfn:(x3344 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x3349) "reduceRight"
@@ -11375,23 +11404,24 @@ module Uint16Array =
                            fun (x3348 : Ojs.t) ->
                              Ojs.int_to_js
                                (x3344 ~previousValue:(Ojs.int_of_js x3345)
-                                  ~currentValue:(Ojs.int_of_js x3346)
-                                  ~currentIndex:(Ojs.int_of_js x3347)
+                                  ~current_value:(Ojs.int_of_js x3346)
+                                  ~current_index:(Ojs.int_of_js x3347)
                                   ~array:(t_of_js x3348))))|])
     let (reduce_right' :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
-          -> initialValue:int -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
+          -> initial_value:int -> int)
       =
       fun (x3356 : t) ->
         fun
           ~callbackfn:(x3350 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
-          fun ~initialValue:(x3355 : int) ->
+          fun ~initial_value:(x3355 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x3356) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -11401,24 +11431,24 @@ module Uint16Array =
                              fun (x3354 : Ojs.t) ->
                                Ojs.int_to_js
                                  (x3350 ~previousValue:(Ojs.int_of_js x3351)
-                                    ~currentValue:(Ojs.int_of_js x3352)
-                                    ~currentIndex:(Ojs.int_of_js x3353)
+                                    ~current_value:(Ojs.int_of_js x3352)
+                                    ~current_index:(Ojs.int_of_js x3353)
                                     ~array:(t_of_js x3354))));(Ojs.int_to_js
                                                                  x3355)|])
     let (reduce_right'' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:int -> currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:int -> current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x3363 : t) ->
         fun
           ~callbackfn:(x3357 :
                         previousValue:'U ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:int ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x3362 : 'U) ->
+          fun ~initial_value:(x3362 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x3363) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -11428,8 +11458,8 @@ module Uint16Array =
                              fun (x3361 : Ojs.t) ->
                                Obj.magic
                                  (x3357 ~previousValue:(Obj.magic x3358)
-                                    ~currentValue:(Ojs.int_of_js x3359)
-                                    ~currentIndex:(Ojs.int_of_js x3360)
+                                    ~current_value:(Ojs.int_of_js x3359)
+                                    ~current_index:(Ojs.int_of_js x3360)
                                     ~array:(t_of_js x3361))));(Obj.magic
                                                                  x3362)|])
     let (reverse : t -> t) =
@@ -11484,11 +11514,11 @@ module Uint16Array =
     let (some :
       t ->
         (value:int -> index:int -> array:t -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x3386 : t) ->
         fun (x3379 : value:int -> index:int -> array:t -> unknown) ->
-          fun ?thisArg:(x3380 : any option) ->
+          fun ?this_arg:(x3380 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x3387 = t_to_js x3386 in
@@ -11517,9 +11547,9 @@ module Uint16Array =
                                        [|(any_to_js x3382)|])
                               | None -> ());
                              x3381))|])
-    let (sort : t -> ?compareFn:(a:int -> b:int -> int) -> unit -> t) =
+    let (sort : t -> ?compare_fn:(a:int -> b:int -> int) -> unit -> t) =
       fun (x3393 : t) ->
-        fun ?compareFn:(x3388 : (a:int -> b:int -> int) option) ->
+        fun ?compare_fn:(x3388 : (a:int -> b:int -> int) option) ->
           fun () ->
             t_of_js
               (let x3394 = t_to_js x3393 in
@@ -11596,9 +11626,9 @@ module Uint16Array =
                   (fun (x3413 : int Array.t) ->
                      Array.t_to_js Ojs.int_to_js x3413) x3411)|])
     let (create'' :
-      buffer:ArrayBuffer.t -> ?byteOffset:int -> ?length:int -> unit -> t) =
+      buffer:ArrayBuffer.t -> ?byte_offset:int -> ?length:int -> unit -> t) =
       fun ~buffer:(x3415 : ArrayBuffer.t) ->
-        fun ?byteOffset:(x3416 : int option) ->
+        fun ?byte_offset:(x3416 : int option) ->
           fun ?length:(x3417 : int option) ->
             fun () ->
               t_of_js
@@ -11645,11 +11675,11 @@ module Uint16Array =
              [|(Array.t_to_js Ojs.int_to_js x3425)|])
     let (from' :
       array:'T Array.t ->
-        mapfn:(v:'T -> k:int -> int) -> ?thisArg:any -> unit -> t)
+        mapfn:(v:'T -> k:int -> int) -> ?this_arg:any -> unit -> t)
       =
       fun ~array:(x3427 : 'T Array.t) ->
         fun ~mapfn:(x3428 : v:'T -> k:int -> int) ->
-          fun ?thisArg:(x3429 : any option) ->
+          fun ?this_arg:(x3429 : any option) ->
             fun () ->
               t_of_js
                 (let x3435 = Ojs.get_prop_ascii Ojs.global "Uint16Array" in
@@ -11702,11 +11732,11 @@ module Uint16ArrayConstructor =
     let (create'' :
       t ->
         buffer:ArrayBuffer.t ->
-          ?byteOffset:int -> ?length:int -> unit -> Uint16Array.t)
+          ?byte_offset:int -> ?length:int -> unit -> Uint16Array.t)
       =
       fun (x3452 : t) ->
         fun ~buffer:(x3446 : ArrayBuffer.t) ->
-          fun ?byteOffset:(x3447 : int option) ->
+          fun ?byte_offset:(x3447 : int option) ->
             fun ?length:(x3448 : int option) ->
               fun () ->
                 Uint16Array.t_of_js
@@ -11758,12 +11788,12 @@ module Uint16ArrayConstructor =
       t ->
         array:'T Array.t ->
           mapfn:(v:'T -> k:int -> int) ->
-            ?thisArg:any -> unit -> Uint16Array.t)
+            ?this_arg:any -> unit -> Uint16Array.t)
       =
       fun (x3470 : t) ->
         fun ~array:(x3462 : 'T Array.t) ->
           fun ~mapfn:(x3463 : v:'T -> k:int -> int) ->
-            fun ?thisArg:(x3464 : any option) ->
+            fun ?this_arg:(x3464 : any option) ->
               fun () ->
                 Uint16Array.t_of_js
                   (let x3471 = t_to_js x3470 in
@@ -11842,11 +11872,11 @@ module Int32Array =
     let (every :
       t ->
         (value:int -> index:int -> array:t -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x3492 : t) ->
         fun (x3485 : value:int -> index:int -> array:t -> unknown) ->
-          fun ?thisArg:(x3486 : any option) ->
+          fun ?this_arg:(x3486 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x3493 = t_to_js x3492 in
@@ -11907,11 +11937,11 @@ module Int32Array =
     let (filter :
       t ->
         (value:int -> index:int -> array:t -> any) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x3509 : t) ->
         fun (x3502 : value:int -> index:int -> array:t -> any) ->
-          fun ?thisArg:(x3503 : any option) ->
+          fun ?this_arg:(x3503 : any option) ->
             fun () ->
               t_of_js
                 (let x3510 = t_to_js x3509 in
@@ -11943,11 +11973,11 @@ module Int32Array =
     let (find :
       t ->
         (value:int -> index:int -> obj:t -> bool) ->
-          ?thisArg:any -> unit -> int or_undefined)
+          ?this_arg:any -> unit -> int or_undefined)
       =
       fun (x3518 : t) ->
         fun (x3511 : value:int -> index:int -> obj:t -> bool) ->
-          fun ?thisArg:(x3512 : any option) ->
+          fun ?this_arg:(x3512 : any option) ->
             fun () ->
               or_undefined_of_js Ojs.int_of_js
                 (let x3519 = t_to_js x3518 in
@@ -11979,11 +12009,11 @@ module Int32Array =
     let (find_index :
       t ->
         (value:int -> index:int -> obj:t -> bool) ->
-          ?thisArg:any -> unit -> int)
+          ?this_arg:any -> unit -> int)
       =
       fun (x3528 : t) ->
         fun (x3521 : value:int -> index:int -> obj:t -> bool) ->
-          fun ?thisArg:(x3522 : any option) ->
+          fun ?this_arg:(x3522 : any option) ->
             fun () ->
               Ojs.int_of_js
                 (let x3529 = t_to_js x3528 in
@@ -12015,12 +12045,12 @@ module Int32Array =
     let (for_each :
       t ->
         callbackfn:(value:int -> index:int -> array:t -> unit) ->
-          ?thisArg:any -> unit -> unit)
+          ?this_arg:any -> unit -> unit)
       =
       fun (x3537 : t) ->
         fun ~callbackfn:(x3530 : value:int -> index:int -> array:t -> unit)
           ->
-          fun ?thisArg:(x3531 : any option) ->
+          fun ?this_arg:(x3531 : any option) ->
             fun () ->
               ignore
                 (let x3538 = t_to_js x3537 in
@@ -12046,11 +12076,11 @@ module Int32Array =
                                        [|(any_to_js x3533)|])
                               | None -> ());
                              x3532))|])
-    let (index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int)
-      =
+    let (index_of :
+      t -> search_element:int -> ?from_index:int -> unit -> int) =
       fun (x3543 : t) ->
-        fun ~searchElement:(x3539 : int) ->
-          fun ?fromIndex:(x3540 : int option) ->
+        fun ~search_element:(x3539 : int) ->
+          fun ?from_index:(x3540 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x3544 = t_to_js x3543 in
@@ -12088,10 +12118,10 @@ module Int32Array =
                             | None -> ());
                            x3546))|])
     let (last_index_of :
-      t -> searchElement:int -> ?fromIndex:int -> unit -> int) =
+      t -> search_element:int -> ?from_index:int -> unit -> int) =
       fun (x3554 : t) ->
-        fun ~searchElement:(x3550 : int) ->
-          fun ?fromIndex:(x3551 : int option) ->
+        fun ~search_element:(x3550 : int) ->
+          fun ?from_index:(x3551 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x3555 = t_to_js x3554 in
@@ -12116,11 +12146,11 @@ module Int32Array =
     let (map :
       t ->
         callbackfn:(value:int -> index:int -> array:t -> int) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x3564 : t) ->
         fun ~callbackfn:(x3557 : value:int -> index:int -> array:t -> int) ->
-          fun ?thisArg:(x3558 : any option) ->
+          fun ?this_arg:(x3558 : any option) ->
             fun () ->
               t_of_js
                 (let x3565 = t_to_js x3564 in
@@ -12152,15 +12182,16 @@ module Int32Array =
     let (reduce :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
           -> int)
       =
       fun (x3571 : t) ->
         fun
           ~callbackfn:(x3566 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x3571) "reduce"
@@ -12171,23 +12202,24 @@ module Int32Array =
                            fun (x3570 : Ojs.t) ->
                              Ojs.int_to_js
                                (x3566 ~previousValue:(Ojs.int_of_js x3567)
-                                  ~currentValue:(Ojs.int_of_js x3568)
-                                  ~currentIndex:(Ojs.int_of_js x3569)
+                                  ~current_value:(Ojs.int_of_js x3568)
+                                  ~current_index:(Ojs.int_of_js x3569)
                                   ~array:(t_of_js x3570))))|])
     let (reduce' :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
-          -> initialValue:int -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
+          -> initial_value:int -> int)
       =
       fun (x3578 : t) ->
         fun
           ~callbackfn:(x3572 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
-          fun ~initialValue:(x3577 : int) ->
+          fun ~initial_value:(x3577 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x3578) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -12197,24 +12229,24 @@ module Int32Array =
                              fun (x3576 : Ojs.t) ->
                                Ojs.int_to_js
                                  (x3572 ~previousValue:(Ojs.int_of_js x3573)
-                                    ~currentValue:(Ojs.int_of_js x3574)
-                                    ~currentIndex:(Ojs.int_of_js x3575)
+                                    ~current_value:(Ojs.int_of_js x3574)
+                                    ~current_index:(Ojs.int_of_js x3575)
                                     ~array:(t_of_js x3576))));(Ojs.int_to_js
                                                                  x3577)|])
     let (reduce'' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:int -> currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:int -> current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x3585 : t) ->
         fun
           ~callbackfn:(x3579 :
                         previousValue:'U ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:int ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x3584 : 'U) ->
+          fun ~initial_value:(x3584 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x3585) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -12224,22 +12256,23 @@ module Int32Array =
                              fun (x3583 : Ojs.t) ->
                                Obj.magic
                                  (x3579 ~previousValue:(Obj.magic x3580)
-                                    ~currentValue:(Ojs.int_of_js x3581)
-                                    ~currentIndex:(Ojs.int_of_js x3582)
+                                    ~current_value:(Ojs.int_of_js x3581)
+                                    ~current_index:(Ojs.int_of_js x3582)
                                     ~array:(t_of_js x3583))));(Obj.magic
                                                                  x3584)|])
     let (reduce_right :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
           -> int)
       =
       fun (x3591 : t) ->
         fun
           ~callbackfn:(x3586 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x3591) "reduceRight"
@@ -12250,23 +12283,24 @@ module Int32Array =
                            fun (x3590 : Ojs.t) ->
                              Ojs.int_to_js
                                (x3586 ~previousValue:(Ojs.int_of_js x3587)
-                                  ~currentValue:(Ojs.int_of_js x3588)
-                                  ~currentIndex:(Ojs.int_of_js x3589)
+                                  ~current_value:(Ojs.int_of_js x3588)
+                                  ~current_index:(Ojs.int_of_js x3589)
                                   ~array:(t_of_js x3590))))|])
     let (reduce_right' :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
-          -> initialValue:int -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
+          -> initial_value:int -> int)
       =
       fun (x3598 : t) ->
         fun
           ~callbackfn:(x3592 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
-          fun ~initialValue:(x3597 : int) ->
+          fun ~initial_value:(x3597 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x3598) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -12276,24 +12310,24 @@ module Int32Array =
                              fun (x3596 : Ojs.t) ->
                                Ojs.int_to_js
                                  (x3592 ~previousValue:(Ojs.int_of_js x3593)
-                                    ~currentValue:(Ojs.int_of_js x3594)
-                                    ~currentIndex:(Ojs.int_of_js x3595)
+                                    ~current_value:(Ojs.int_of_js x3594)
+                                    ~current_index:(Ojs.int_of_js x3595)
                                     ~array:(t_of_js x3596))));(Ojs.int_to_js
                                                                  x3597)|])
     let (reduce_right'' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:int -> currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:int -> current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x3605 : t) ->
         fun
           ~callbackfn:(x3599 :
                         previousValue:'U ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:int ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x3604 : 'U) ->
+          fun ~initial_value:(x3604 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x3605) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -12303,8 +12337,8 @@ module Int32Array =
                              fun (x3603 : Ojs.t) ->
                                Obj.magic
                                  (x3599 ~previousValue:(Obj.magic x3600)
-                                    ~currentValue:(Ojs.int_of_js x3601)
-                                    ~currentIndex:(Ojs.int_of_js x3602)
+                                    ~current_value:(Ojs.int_of_js x3601)
+                                    ~current_index:(Ojs.int_of_js x3602)
                                     ~array:(t_of_js x3603))));(Obj.magic
                                                                  x3604)|])
     let (reverse : t -> t) =
@@ -12359,11 +12393,11 @@ module Int32Array =
     let (some :
       t ->
         (value:int -> index:int -> array:t -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x3628 : t) ->
         fun (x3621 : value:int -> index:int -> array:t -> unknown) ->
-          fun ?thisArg:(x3622 : any option) ->
+          fun ?this_arg:(x3622 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x3629 = t_to_js x3628 in
@@ -12392,9 +12426,9 @@ module Int32Array =
                                        [|(any_to_js x3624)|])
                               | None -> ());
                              x3623))|])
-    let (sort : t -> ?compareFn:(a:int -> b:int -> int) -> unit -> t) =
+    let (sort : t -> ?compare_fn:(a:int -> b:int -> int) -> unit -> t) =
       fun (x3635 : t) ->
-        fun ?compareFn:(x3630 : (a:int -> b:int -> int) option) ->
+        fun ?compare_fn:(x3630 : (a:int -> b:int -> int) option) ->
           fun () ->
             t_of_js
               (let x3636 = t_to_js x3635 in
@@ -12471,9 +12505,9 @@ module Int32Array =
                   (fun (x3655 : int Array.t) ->
                      Array.t_to_js Ojs.int_to_js x3655) x3653)|])
     let (create'' :
-      buffer:ArrayBuffer.t -> ?byteOffset:int -> ?length:int -> unit -> t) =
+      buffer:ArrayBuffer.t -> ?byte_offset:int -> ?length:int -> unit -> t) =
       fun ~buffer:(x3657 : ArrayBuffer.t) ->
-        fun ?byteOffset:(x3658 : int option) ->
+        fun ?byte_offset:(x3658 : int option) ->
           fun ?length:(x3659 : int option) ->
             fun () ->
               t_of_js
@@ -12519,11 +12553,11 @@ module Int32Array =
              [|(Array.t_to_js Ojs.int_to_js x3667)|])
     let (from' :
       array:'T Array.t ->
-        mapfn:(v:'T -> k:int -> int) -> ?thisArg:any -> unit -> t)
+        mapfn:(v:'T -> k:int -> int) -> ?this_arg:any -> unit -> t)
       =
       fun ~array:(x3669 : 'T Array.t) ->
         fun ~mapfn:(x3670 : v:'T -> k:int -> int) ->
-          fun ?thisArg:(x3671 : any option) ->
+          fun ?this_arg:(x3671 : any option) ->
             fun () ->
               t_of_js
                 (let x3677 = Ojs.get_prop_ascii Ojs.global "Int32Array" in
@@ -12576,11 +12610,11 @@ module Int32ArrayConstructor =
     let (create'' :
       t ->
         buffer:ArrayBuffer.t ->
-          ?byteOffset:int -> ?length:int -> unit -> Int32Array.t)
+          ?byte_offset:int -> ?length:int -> unit -> Int32Array.t)
       =
       fun (x3694 : t) ->
         fun ~buffer:(x3688 : ArrayBuffer.t) ->
-          fun ?byteOffset:(x3689 : int option) ->
+          fun ?byte_offset:(x3689 : int option) ->
             fun ?length:(x3690 : int option) ->
               fun () ->
                 Int32Array.t_of_js
@@ -12632,12 +12666,12 @@ module Int32ArrayConstructor =
       t ->
         array:'T Array.t ->
           mapfn:(v:'T -> k:int -> int) ->
-            ?thisArg:any -> unit -> Int32Array.t)
+            ?this_arg:any -> unit -> Int32Array.t)
       =
       fun (x3712 : t) ->
         fun ~array:(x3704 : 'T Array.t) ->
           fun ~mapfn:(x3705 : v:'T -> k:int -> int) ->
-            fun ?thisArg:(x3706 : any option) ->
+            fun ?this_arg:(x3706 : any option) ->
               fun () ->
                 Int32Array.t_of_js
                   (let x3713 = t_to_js x3712 in
@@ -12715,11 +12749,11 @@ module Uint32Array =
     let (every :
       t ->
         (value:int -> index:int -> array:t -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x3734 : t) ->
         fun (x3727 : value:int -> index:int -> array:t -> unknown) ->
-          fun ?thisArg:(x3728 : any option) ->
+          fun ?this_arg:(x3728 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x3735 = t_to_js x3734 in
@@ -12780,11 +12814,11 @@ module Uint32Array =
     let (filter :
       t ->
         (value:int -> index:int -> array:t -> any) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x3751 : t) ->
         fun (x3744 : value:int -> index:int -> array:t -> any) ->
-          fun ?thisArg:(x3745 : any option) ->
+          fun ?this_arg:(x3745 : any option) ->
             fun () ->
               t_of_js
                 (let x3752 = t_to_js x3751 in
@@ -12816,11 +12850,11 @@ module Uint32Array =
     let (find :
       t ->
         (value:int -> index:int -> obj:t -> bool) ->
-          ?thisArg:any -> unit -> int or_undefined)
+          ?this_arg:any -> unit -> int or_undefined)
       =
       fun (x3760 : t) ->
         fun (x3753 : value:int -> index:int -> obj:t -> bool) ->
-          fun ?thisArg:(x3754 : any option) ->
+          fun ?this_arg:(x3754 : any option) ->
             fun () ->
               or_undefined_of_js Ojs.int_of_js
                 (let x3761 = t_to_js x3760 in
@@ -12852,11 +12886,11 @@ module Uint32Array =
     let (find_index :
       t ->
         (value:int -> index:int -> obj:t -> bool) ->
-          ?thisArg:any -> unit -> int)
+          ?this_arg:any -> unit -> int)
       =
       fun (x3770 : t) ->
         fun (x3763 : value:int -> index:int -> obj:t -> bool) ->
-          fun ?thisArg:(x3764 : any option) ->
+          fun ?this_arg:(x3764 : any option) ->
             fun () ->
               Ojs.int_of_js
                 (let x3771 = t_to_js x3770 in
@@ -12888,12 +12922,12 @@ module Uint32Array =
     let (for_each :
       t ->
         callbackfn:(value:int -> index:int -> array:t -> unit) ->
-          ?thisArg:any -> unit -> unit)
+          ?this_arg:any -> unit -> unit)
       =
       fun (x3779 : t) ->
         fun ~callbackfn:(x3772 : value:int -> index:int -> array:t -> unit)
           ->
-          fun ?thisArg:(x3773 : any option) ->
+          fun ?this_arg:(x3773 : any option) ->
             fun () ->
               ignore
                 (let x3780 = t_to_js x3779 in
@@ -12919,11 +12953,11 @@ module Uint32Array =
                                        [|(any_to_js x3775)|])
                               | None -> ());
                              x3774))|])
-    let (index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int)
-      =
+    let (index_of :
+      t -> search_element:int -> ?from_index:int -> unit -> int) =
       fun (x3785 : t) ->
-        fun ~searchElement:(x3781 : int) ->
-          fun ?fromIndex:(x3782 : int option) ->
+        fun ~search_element:(x3781 : int) ->
+          fun ?from_index:(x3782 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x3786 = t_to_js x3785 in
@@ -12961,10 +12995,10 @@ module Uint32Array =
                             | None -> ());
                            x3788))|])
     let (last_index_of :
-      t -> searchElement:int -> ?fromIndex:int -> unit -> int) =
+      t -> search_element:int -> ?from_index:int -> unit -> int) =
       fun (x3796 : t) ->
-        fun ~searchElement:(x3792 : int) ->
-          fun ?fromIndex:(x3793 : int option) ->
+        fun ~search_element:(x3792 : int) ->
+          fun ?from_index:(x3793 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x3797 = t_to_js x3796 in
@@ -12989,11 +13023,11 @@ module Uint32Array =
     let (map :
       t ->
         callbackfn:(value:int -> index:int -> array:t -> int) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x3806 : t) ->
         fun ~callbackfn:(x3799 : value:int -> index:int -> array:t -> int) ->
-          fun ?thisArg:(x3800 : any option) ->
+          fun ?this_arg:(x3800 : any option) ->
             fun () ->
               t_of_js
                 (let x3807 = t_to_js x3806 in
@@ -13025,15 +13059,16 @@ module Uint32Array =
     let (reduce :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
           -> int)
       =
       fun (x3813 : t) ->
         fun
           ~callbackfn:(x3808 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x3813) "reduce"
@@ -13044,23 +13079,24 @@ module Uint32Array =
                            fun (x3812 : Ojs.t) ->
                              Ojs.int_to_js
                                (x3808 ~previousValue:(Ojs.int_of_js x3809)
-                                  ~currentValue:(Ojs.int_of_js x3810)
-                                  ~currentIndex:(Ojs.int_of_js x3811)
+                                  ~current_value:(Ojs.int_of_js x3810)
+                                  ~current_index:(Ojs.int_of_js x3811)
                                   ~array:(t_of_js x3812))))|])
     let (reduce' :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
-          -> initialValue:int -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
+          -> initial_value:int -> int)
       =
       fun (x3820 : t) ->
         fun
           ~callbackfn:(x3814 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
-          fun ~initialValue:(x3819 : int) ->
+          fun ~initial_value:(x3819 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x3820) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -13070,24 +13106,24 @@ module Uint32Array =
                              fun (x3818 : Ojs.t) ->
                                Ojs.int_to_js
                                  (x3814 ~previousValue:(Ojs.int_of_js x3815)
-                                    ~currentValue:(Ojs.int_of_js x3816)
-                                    ~currentIndex:(Ojs.int_of_js x3817)
+                                    ~current_value:(Ojs.int_of_js x3816)
+                                    ~current_index:(Ojs.int_of_js x3817)
                                     ~array:(t_of_js x3818))));(Ojs.int_to_js
                                                                  x3819)|])
     let (reduce'' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:int -> currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:int -> current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x3827 : t) ->
         fun
           ~callbackfn:(x3821 :
                         previousValue:'U ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:int ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x3826 : 'U) ->
+          fun ~initial_value:(x3826 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x3827) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -13097,22 +13133,23 @@ module Uint32Array =
                              fun (x3825 : Ojs.t) ->
                                Obj.magic
                                  (x3821 ~previousValue:(Obj.magic x3822)
-                                    ~currentValue:(Ojs.int_of_js x3823)
-                                    ~currentIndex:(Ojs.int_of_js x3824)
+                                    ~current_value:(Ojs.int_of_js x3823)
+                                    ~current_index:(Ojs.int_of_js x3824)
                                     ~array:(t_of_js x3825))));(Obj.magic
                                                                  x3826)|])
     let (reduce_right :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
           -> int)
       =
       fun (x3833 : t) ->
         fun
           ~callbackfn:(x3828 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x3833) "reduceRight"
@@ -13123,23 +13160,24 @@ module Uint32Array =
                            fun (x3832 : Ojs.t) ->
                              Ojs.int_to_js
                                (x3828 ~previousValue:(Ojs.int_of_js x3829)
-                                  ~currentValue:(Ojs.int_of_js x3830)
-                                  ~currentIndex:(Ojs.int_of_js x3831)
+                                  ~current_value:(Ojs.int_of_js x3830)
+                                  ~current_index:(Ojs.int_of_js x3831)
                                   ~array:(t_of_js x3832))))|])
     let (reduce_right' :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
-          -> initialValue:int -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
+          -> initial_value:int -> int)
       =
       fun (x3840 : t) ->
         fun
           ~callbackfn:(x3834 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
-          fun ~initialValue:(x3839 : int) ->
+          fun ~initial_value:(x3839 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x3840) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -13149,24 +13187,24 @@ module Uint32Array =
                              fun (x3838 : Ojs.t) ->
                                Ojs.int_to_js
                                  (x3834 ~previousValue:(Ojs.int_of_js x3835)
-                                    ~currentValue:(Ojs.int_of_js x3836)
-                                    ~currentIndex:(Ojs.int_of_js x3837)
+                                    ~current_value:(Ojs.int_of_js x3836)
+                                    ~current_index:(Ojs.int_of_js x3837)
                                     ~array:(t_of_js x3838))));(Ojs.int_to_js
                                                                  x3839)|])
     let (reduce_right'' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:int -> currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:int -> current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x3847 : t) ->
         fun
           ~callbackfn:(x3841 :
                         previousValue:'U ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:int ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x3846 : 'U) ->
+          fun ~initial_value:(x3846 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x3847) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -13176,8 +13214,8 @@ module Uint32Array =
                              fun (x3845 : Ojs.t) ->
                                Obj.magic
                                  (x3841 ~previousValue:(Obj.magic x3842)
-                                    ~currentValue:(Ojs.int_of_js x3843)
-                                    ~currentIndex:(Ojs.int_of_js x3844)
+                                    ~current_value:(Ojs.int_of_js x3843)
+                                    ~current_index:(Ojs.int_of_js x3844)
                                     ~array:(t_of_js x3845))));(Obj.magic
                                                                  x3846)|])
     let (reverse : t -> t) =
@@ -13232,11 +13270,11 @@ module Uint32Array =
     let (some :
       t ->
         (value:int -> index:int -> array:t -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x3870 : t) ->
         fun (x3863 : value:int -> index:int -> array:t -> unknown) ->
-          fun ?thisArg:(x3864 : any option) ->
+          fun ?this_arg:(x3864 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x3871 = t_to_js x3870 in
@@ -13265,9 +13303,9 @@ module Uint32Array =
                                        [|(any_to_js x3866)|])
                               | None -> ());
                              x3865))|])
-    let (sort : t -> ?compareFn:(a:int -> b:int -> int) -> unit -> t) =
+    let (sort : t -> ?compare_fn:(a:int -> b:int -> int) -> unit -> t) =
       fun (x3877 : t) ->
-        fun ?compareFn:(x3872 : (a:int -> b:int -> int) option) ->
+        fun ?compare_fn:(x3872 : (a:int -> b:int -> int) option) ->
           fun () ->
             t_of_js
               (let x3878 = t_to_js x3877 in
@@ -13344,9 +13382,9 @@ module Uint32Array =
                   (fun (x3897 : int Array.t) ->
                      Array.t_to_js Ojs.int_to_js x3897) x3895)|])
     let (create'' :
-      buffer:ArrayBuffer.t -> ?byteOffset:int -> ?length:int -> unit -> t) =
+      buffer:ArrayBuffer.t -> ?byte_offset:int -> ?length:int -> unit -> t) =
       fun ~buffer:(x3899 : ArrayBuffer.t) ->
-        fun ?byteOffset:(x3900 : int option) ->
+        fun ?byte_offset:(x3900 : int option) ->
           fun ?length:(x3901 : int option) ->
             fun () ->
               t_of_js
@@ -13393,11 +13431,11 @@ module Uint32Array =
              [|(Array.t_to_js Ojs.int_to_js x3909)|])
     let (from' :
       array:'T Array.t ->
-        mapfn:(v:'T -> k:int -> int) -> ?thisArg:any -> unit -> t)
+        mapfn:(v:'T -> k:int -> int) -> ?this_arg:any -> unit -> t)
       =
       fun ~array:(x3911 : 'T Array.t) ->
         fun ~mapfn:(x3912 : v:'T -> k:int -> int) ->
-          fun ?thisArg:(x3913 : any option) ->
+          fun ?this_arg:(x3913 : any option) ->
             fun () ->
               t_of_js
                 (let x3919 = Ojs.get_prop_ascii Ojs.global "Uint32Array" in
@@ -13450,11 +13488,11 @@ module Uint32ArrayConstructor =
     let (create'' :
       t ->
         buffer:ArrayBuffer.t ->
-          ?byteOffset:int -> ?length:int -> unit -> Uint32Array.t)
+          ?byte_offset:int -> ?length:int -> unit -> Uint32Array.t)
       =
       fun (x3936 : t) ->
         fun ~buffer:(x3930 : ArrayBuffer.t) ->
-          fun ?byteOffset:(x3931 : int option) ->
+          fun ?byte_offset:(x3931 : int option) ->
             fun ?length:(x3932 : int option) ->
               fun () ->
                 Uint32Array.t_of_js
@@ -13506,12 +13544,12 @@ module Uint32ArrayConstructor =
       t ->
         array:'T Array.t ->
           mapfn:(v:'T -> k:int -> int) ->
-            ?thisArg:any -> unit -> Uint32Array.t)
+            ?this_arg:any -> unit -> Uint32Array.t)
       =
       fun (x3954 : t) ->
         fun ~array:(x3946 : 'T Array.t) ->
           fun ~mapfn:(x3947 : v:'T -> k:int -> int) ->
-            fun ?thisArg:(x3948 : any option) ->
+            fun ?this_arg:(x3948 : any option) ->
               fun () ->
                 Uint32Array.t_of_js
                   (let x3955 = t_to_js x3954 in
@@ -13590,11 +13628,11 @@ module Float32Array =
     let (every :
       t ->
         (value:int -> index:int -> array:t -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x3976 : t) ->
         fun (x3969 : value:int -> index:int -> array:t -> unknown) ->
-          fun ?thisArg:(x3970 : any option) ->
+          fun ?this_arg:(x3970 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x3977 = t_to_js x3976 in
@@ -13655,11 +13693,11 @@ module Float32Array =
     let (filter :
       t ->
         (value:int -> index:int -> array:t -> any) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x3993 : t) ->
         fun (x3986 : value:int -> index:int -> array:t -> any) ->
-          fun ?thisArg:(x3987 : any option) ->
+          fun ?this_arg:(x3987 : any option) ->
             fun () ->
               t_of_js
                 (let x3994 = t_to_js x3993 in
@@ -13691,11 +13729,11 @@ module Float32Array =
     let (find :
       t ->
         (value:int -> index:int -> obj:t -> bool) ->
-          ?thisArg:any -> unit -> int or_undefined)
+          ?this_arg:any -> unit -> int or_undefined)
       =
       fun (x4002 : t) ->
         fun (x3995 : value:int -> index:int -> obj:t -> bool) ->
-          fun ?thisArg:(x3996 : any option) ->
+          fun ?this_arg:(x3996 : any option) ->
             fun () ->
               or_undefined_of_js Ojs.int_of_js
                 (let x4003 = t_to_js x4002 in
@@ -13727,11 +13765,11 @@ module Float32Array =
     let (find_index :
       t ->
         (value:int -> index:int -> obj:t -> bool) ->
-          ?thisArg:any -> unit -> int)
+          ?this_arg:any -> unit -> int)
       =
       fun (x4012 : t) ->
         fun (x4005 : value:int -> index:int -> obj:t -> bool) ->
-          fun ?thisArg:(x4006 : any option) ->
+          fun ?this_arg:(x4006 : any option) ->
             fun () ->
               Ojs.int_of_js
                 (let x4013 = t_to_js x4012 in
@@ -13763,12 +13801,12 @@ module Float32Array =
     let (for_each :
       t ->
         callbackfn:(value:int -> index:int -> array:t -> unit) ->
-          ?thisArg:any -> unit -> unit)
+          ?this_arg:any -> unit -> unit)
       =
       fun (x4021 : t) ->
         fun ~callbackfn:(x4014 : value:int -> index:int -> array:t -> unit)
           ->
-          fun ?thisArg:(x4015 : any option) ->
+          fun ?this_arg:(x4015 : any option) ->
             fun () ->
               ignore
                 (let x4022 = t_to_js x4021 in
@@ -13794,11 +13832,11 @@ module Float32Array =
                                        [|(any_to_js x4017)|])
                               | None -> ());
                              x4016))|])
-    let (index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int)
-      =
+    let (index_of :
+      t -> search_element:int -> ?from_index:int -> unit -> int) =
       fun (x4027 : t) ->
-        fun ~searchElement:(x4023 : int) ->
-          fun ?fromIndex:(x4024 : int option) ->
+        fun ~search_element:(x4023 : int) ->
+          fun ?from_index:(x4024 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x4028 = t_to_js x4027 in
@@ -13836,10 +13874,10 @@ module Float32Array =
                             | None -> ());
                            x4030))|])
     let (last_index_of :
-      t -> searchElement:int -> ?fromIndex:int -> unit -> int) =
+      t -> search_element:int -> ?from_index:int -> unit -> int) =
       fun (x4038 : t) ->
-        fun ~searchElement:(x4034 : int) ->
-          fun ?fromIndex:(x4035 : int option) ->
+        fun ~search_element:(x4034 : int) ->
+          fun ?from_index:(x4035 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x4039 = t_to_js x4038 in
@@ -13864,11 +13902,11 @@ module Float32Array =
     let (map :
       t ->
         callbackfn:(value:int -> index:int -> array:t -> int) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x4048 : t) ->
         fun ~callbackfn:(x4041 : value:int -> index:int -> array:t -> int) ->
-          fun ?thisArg:(x4042 : any option) ->
+          fun ?this_arg:(x4042 : any option) ->
             fun () ->
               t_of_js
                 (let x4049 = t_to_js x4048 in
@@ -13900,15 +13938,16 @@ module Float32Array =
     let (reduce :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
           -> int)
       =
       fun (x4055 : t) ->
         fun
           ~callbackfn:(x4050 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x4055) "reduce"
@@ -13919,23 +13958,24 @@ module Float32Array =
                            fun (x4054 : Ojs.t) ->
                              Ojs.int_to_js
                                (x4050 ~previousValue:(Ojs.int_of_js x4051)
-                                  ~currentValue:(Ojs.int_of_js x4052)
-                                  ~currentIndex:(Ojs.int_of_js x4053)
+                                  ~current_value:(Ojs.int_of_js x4052)
+                                  ~current_index:(Ojs.int_of_js x4053)
                                   ~array:(t_of_js x4054))))|])
     let (reduce' :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
-          -> initialValue:int -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
+          -> initial_value:int -> int)
       =
       fun (x4062 : t) ->
         fun
           ~callbackfn:(x4056 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
-          fun ~initialValue:(x4061 : int) ->
+          fun ~initial_value:(x4061 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x4062) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -13945,24 +13985,24 @@ module Float32Array =
                              fun (x4060 : Ojs.t) ->
                                Ojs.int_to_js
                                  (x4056 ~previousValue:(Ojs.int_of_js x4057)
-                                    ~currentValue:(Ojs.int_of_js x4058)
-                                    ~currentIndex:(Ojs.int_of_js x4059)
+                                    ~current_value:(Ojs.int_of_js x4058)
+                                    ~current_index:(Ojs.int_of_js x4059)
                                     ~array:(t_of_js x4060))));(Ojs.int_to_js
                                                                  x4061)|])
     let (reduce'' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:int -> currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:int -> current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x4069 : t) ->
         fun
           ~callbackfn:(x4063 :
                         previousValue:'U ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:int ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x4068 : 'U) ->
+          fun ~initial_value:(x4068 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x4069) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -13972,22 +14012,23 @@ module Float32Array =
                              fun (x4067 : Ojs.t) ->
                                Obj.magic
                                  (x4063 ~previousValue:(Obj.magic x4064)
-                                    ~currentValue:(Ojs.int_of_js x4065)
-                                    ~currentIndex:(Ojs.int_of_js x4066)
+                                    ~current_value:(Ojs.int_of_js x4065)
+                                    ~current_index:(Ojs.int_of_js x4066)
                                     ~array:(t_of_js x4067))));(Obj.magic
                                                                  x4068)|])
     let (reduce_right :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
           -> int)
       =
       fun (x4075 : t) ->
         fun
           ~callbackfn:(x4070 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x4075) "reduceRight"
@@ -13998,23 +14039,24 @@ module Float32Array =
                            fun (x4074 : Ojs.t) ->
                              Ojs.int_to_js
                                (x4070 ~previousValue:(Ojs.int_of_js x4071)
-                                  ~currentValue:(Ojs.int_of_js x4072)
-                                  ~currentIndex:(Ojs.int_of_js x4073)
+                                  ~current_value:(Ojs.int_of_js x4072)
+                                  ~current_index:(Ojs.int_of_js x4073)
                                   ~array:(t_of_js x4074))))|])
     let (reduce_right' :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
-          -> initialValue:int -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
+          -> initial_value:int -> int)
       =
       fun (x4082 : t) ->
         fun
           ~callbackfn:(x4076 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
-          fun ~initialValue:(x4081 : int) ->
+          fun ~initial_value:(x4081 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x4082) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -14024,24 +14066,24 @@ module Float32Array =
                              fun (x4080 : Ojs.t) ->
                                Ojs.int_to_js
                                  (x4076 ~previousValue:(Ojs.int_of_js x4077)
-                                    ~currentValue:(Ojs.int_of_js x4078)
-                                    ~currentIndex:(Ojs.int_of_js x4079)
+                                    ~current_value:(Ojs.int_of_js x4078)
+                                    ~current_index:(Ojs.int_of_js x4079)
                                     ~array:(t_of_js x4080))));(Ojs.int_to_js
                                                                  x4081)|])
     let (reduce_right'' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:int -> currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:int -> current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x4089 : t) ->
         fun
           ~callbackfn:(x4083 :
                         previousValue:'U ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:int ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x4088 : 'U) ->
+          fun ~initial_value:(x4088 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x4089) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -14051,8 +14093,8 @@ module Float32Array =
                              fun (x4087 : Ojs.t) ->
                                Obj.magic
                                  (x4083 ~previousValue:(Obj.magic x4084)
-                                    ~currentValue:(Ojs.int_of_js x4085)
-                                    ~currentIndex:(Ojs.int_of_js x4086)
+                                    ~current_value:(Ojs.int_of_js x4085)
+                                    ~current_index:(Ojs.int_of_js x4086)
                                     ~array:(t_of_js x4087))));(Obj.magic
                                                                  x4088)|])
     let (reverse : t -> t) =
@@ -14107,11 +14149,11 @@ module Float32Array =
     let (some :
       t ->
         (value:int -> index:int -> array:t -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x4112 : t) ->
         fun (x4105 : value:int -> index:int -> array:t -> unknown) ->
-          fun ?thisArg:(x4106 : any option) ->
+          fun ?this_arg:(x4106 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x4113 = t_to_js x4112 in
@@ -14140,9 +14182,9 @@ module Float32Array =
                                        [|(any_to_js x4108)|])
                               | None -> ());
                              x4107))|])
-    let (sort : t -> ?compareFn:(a:int -> b:int -> int) -> unit -> t) =
+    let (sort : t -> ?compare_fn:(a:int -> b:int -> int) -> unit -> t) =
       fun (x4119 : t) ->
-        fun ?compareFn:(x4114 : (a:int -> b:int -> int) option) ->
+        fun ?compare_fn:(x4114 : (a:int -> b:int -> int) option) ->
           fun () ->
             t_of_js
               (let x4120 = t_to_js x4119 in
@@ -14219,9 +14261,9 @@ module Float32Array =
                   (fun (x4139 : int Array.t) ->
                      Array.t_to_js Ojs.int_to_js x4139) x4137)|])
     let (create'' :
-      buffer:ArrayBuffer.t -> ?byteOffset:int -> ?length:int -> unit -> t) =
+      buffer:ArrayBuffer.t -> ?byte_offset:int -> ?length:int -> unit -> t) =
       fun ~buffer:(x4141 : ArrayBuffer.t) ->
-        fun ?byteOffset:(x4142 : int option) ->
+        fun ?byte_offset:(x4142 : int option) ->
           fun ?length:(x4143 : int option) ->
             fun () ->
               t_of_js
@@ -14268,11 +14310,11 @@ module Float32Array =
              [|(Array.t_to_js Ojs.int_to_js x4151)|])
     let (from' :
       array:'T Array.t ->
-        mapfn:(v:'T -> k:int -> int) -> ?thisArg:any -> unit -> t)
+        mapfn:(v:'T -> k:int -> int) -> ?this_arg:any -> unit -> t)
       =
       fun ~array:(x4153 : 'T Array.t) ->
         fun ~mapfn:(x4154 : v:'T -> k:int -> int) ->
-          fun ?thisArg:(x4155 : any option) ->
+          fun ?this_arg:(x4155 : any option) ->
             fun () ->
               t_of_js
                 (let x4161 = Ojs.get_prop_ascii Ojs.global "Float32Array" in
@@ -14325,11 +14367,11 @@ module Float32ArrayConstructor =
     let (create'' :
       t ->
         buffer:ArrayBuffer.t ->
-          ?byteOffset:int -> ?length:int -> unit -> Float32Array.t)
+          ?byte_offset:int -> ?length:int -> unit -> Float32Array.t)
       =
       fun (x4178 : t) ->
         fun ~buffer:(x4172 : ArrayBuffer.t) ->
-          fun ?byteOffset:(x4173 : int option) ->
+          fun ?byte_offset:(x4173 : int option) ->
             fun ?length:(x4174 : int option) ->
               fun () ->
                 Float32Array.t_of_js
@@ -14381,12 +14423,12 @@ module Float32ArrayConstructor =
       t ->
         array:'T Array.t ->
           mapfn:(v:'T -> k:int -> int) ->
-            ?thisArg:any -> unit -> Float32Array.t)
+            ?this_arg:any -> unit -> Float32Array.t)
       =
       fun (x4196 : t) ->
         fun ~array:(x4188 : 'T Array.t) ->
           fun ~mapfn:(x4189 : v:'T -> k:int -> int) ->
-            fun ?thisArg:(x4190 : any option) ->
+            fun ?this_arg:(x4190 : any option) ->
               fun () ->
                 Float32Array.t_of_js
                   (let x4197 = t_to_js x4196 in
@@ -14465,11 +14507,11 @@ module Float64Array =
     let (every :
       t ->
         (value:int -> index:int -> array:t -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x4218 : t) ->
         fun (x4211 : value:int -> index:int -> array:t -> unknown) ->
-          fun ?thisArg:(x4212 : any option) ->
+          fun ?this_arg:(x4212 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x4219 = t_to_js x4218 in
@@ -14530,11 +14572,11 @@ module Float64Array =
     let (filter :
       t ->
         (value:int -> index:int -> array:t -> any) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x4235 : t) ->
         fun (x4228 : value:int -> index:int -> array:t -> any) ->
-          fun ?thisArg:(x4229 : any option) ->
+          fun ?this_arg:(x4229 : any option) ->
             fun () ->
               t_of_js
                 (let x4236 = t_to_js x4235 in
@@ -14566,11 +14608,11 @@ module Float64Array =
     let (find :
       t ->
         (value:int -> index:int -> obj:t -> bool) ->
-          ?thisArg:any -> unit -> int or_undefined)
+          ?this_arg:any -> unit -> int or_undefined)
       =
       fun (x4244 : t) ->
         fun (x4237 : value:int -> index:int -> obj:t -> bool) ->
-          fun ?thisArg:(x4238 : any option) ->
+          fun ?this_arg:(x4238 : any option) ->
             fun () ->
               or_undefined_of_js Ojs.int_of_js
                 (let x4245 = t_to_js x4244 in
@@ -14602,11 +14644,11 @@ module Float64Array =
     let (find_index :
       t ->
         (value:int -> index:int -> obj:t -> bool) ->
-          ?thisArg:any -> unit -> int)
+          ?this_arg:any -> unit -> int)
       =
       fun (x4254 : t) ->
         fun (x4247 : value:int -> index:int -> obj:t -> bool) ->
-          fun ?thisArg:(x4248 : any option) ->
+          fun ?this_arg:(x4248 : any option) ->
             fun () ->
               Ojs.int_of_js
                 (let x4255 = t_to_js x4254 in
@@ -14638,12 +14680,12 @@ module Float64Array =
     let (for_each :
       t ->
         callbackfn:(value:int -> index:int -> array:t -> unit) ->
-          ?thisArg:any -> unit -> unit)
+          ?this_arg:any -> unit -> unit)
       =
       fun (x4263 : t) ->
         fun ~callbackfn:(x4256 : value:int -> index:int -> array:t -> unit)
           ->
-          fun ?thisArg:(x4257 : any option) ->
+          fun ?this_arg:(x4257 : any option) ->
             fun () ->
               ignore
                 (let x4264 = t_to_js x4263 in
@@ -14669,11 +14711,11 @@ module Float64Array =
                                        [|(any_to_js x4259)|])
                               | None -> ());
                              x4258))|])
-    let (index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int)
-      =
+    let (index_of :
+      t -> search_element:int -> ?from_index:int -> unit -> int) =
       fun (x4269 : t) ->
-        fun ~searchElement:(x4265 : int) ->
-          fun ?fromIndex:(x4266 : int option) ->
+        fun ~search_element:(x4265 : int) ->
+          fun ?from_index:(x4266 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x4270 = t_to_js x4269 in
@@ -14711,10 +14753,10 @@ module Float64Array =
                             | None -> ());
                            x4272))|])
     let (last_index_of :
-      t -> searchElement:int -> ?fromIndex:int -> unit -> int) =
+      t -> search_element:int -> ?from_index:int -> unit -> int) =
       fun (x4280 : t) ->
-        fun ~searchElement:(x4276 : int) ->
-          fun ?fromIndex:(x4277 : int option) ->
+        fun ~search_element:(x4276 : int) ->
+          fun ?from_index:(x4277 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x4281 = t_to_js x4280 in
@@ -14739,11 +14781,11 @@ module Float64Array =
     let (map :
       t ->
         callbackfn:(value:int -> index:int -> array:t -> int) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x4290 : t) ->
         fun ~callbackfn:(x4283 : value:int -> index:int -> array:t -> int) ->
-          fun ?thisArg:(x4284 : any option) ->
+          fun ?this_arg:(x4284 : any option) ->
             fun () ->
               t_of_js
                 (let x4291 = t_to_js x4290 in
@@ -14775,15 +14817,16 @@ module Float64Array =
     let (reduce :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
           -> int)
       =
       fun (x4297 : t) ->
         fun
           ~callbackfn:(x4292 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x4297) "reduce"
@@ -14794,23 +14837,24 @@ module Float64Array =
                            fun (x4296 : Ojs.t) ->
                              Ojs.int_to_js
                                (x4292 ~previousValue:(Ojs.int_of_js x4293)
-                                  ~currentValue:(Ojs.int_of_js x4294)
-                                  ~currentIndex:(Ojs.int_of_js x4295)
+                                  ~current_value:(Ojs.int_of_js x4294)
+                                  ~current_index:(Ojs.int_of_js x4295)
                                   ~array:(t_of_js x4296))))|])
     let (reduce' :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
-          -> initialValue:int -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
+          -> initial_value:int -> int)
       =
       fun (x4304 : t) ->
         fun
           ~callbackfn:(x4298 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
-          fun ~initialValue:(x4303 : int) ->
+          fun ~initial_value:(x4303 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x4304) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -14820,24 +14864,24 @@ module Float64Array =
                              fun (x4302 : Ojs.t) ->
                                Ojs.int_to_js
                                  (x4298 ~previousValue:(Ojs.int_of_js x4299)
-                                    ~currentValue:(Ojs.int_of_js x4300)
-                                    ~currentIndex:(Ojs.int_of_js x4301)
+                                    ~current_value:(Ojs.int_of_js x4300)
+                                    ~current_index:(Ojs.int_of_js x4301)
                                     ~array:(t_of_js x4302))));(Ojs.int_to_js
                                                                  x4303)|])
     let (reduce'' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:int -> currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:int -> current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x4311 : t) ->
         fun
           ~callbackfn:(x4305 :
                         previousValue:'U ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:int ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x4310 : 'U) ->
+          fun ~initial_value:(x4310 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x4311) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -14847,22 +14891,23 @@ module Float64Array =
                              fun (x4309 : Ojs.t) ->
                                Obj.magic
                                  (x4305 ~previousValue:(Obj.magic x4306)
-                                    ~currentValue:(Ojs.int_of_js x4307)
-                                    ~currentIndex:(Ojs.int_of_js x4308)
+                                    ~current_value:(Ojs.int_of_js x4307)
+                                    ~current_index:(Ojs.int_of_js x4308)
                                     ~array:(t_of_js x4309))));(Obj.magic
                                                                  x4310)|])
     let (reduce_right :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
           -> int)
       =
       fun (x4317 : t) ->
         fun
           ~callbackfn:(x4312 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x4317) "reduceRight"
@@ -14873,23 +14918,24 @@ module Float64Array =
                            fun (x4316 : Ojs.t) ->
                              Ojs.int_to_js
                                (x4312 ~previousValue:(Ojs.int_of_js x4313)
-                                  ~currentValue:(Ojs.int_of_js x4314)
-                                  ~currentIndex:(Ojs.int_of_js x4315)
+                                  ~current_value:(Ojs.int_of_js x4314)
+                                  ~current_index:(Ojs.int_of_js x4315)
                                   ~array:(t_of_js x4316))))|])
     let (reduce_right' :
       t ->
         callbackfn:(previousValue:int ->
-                      currentValue:int -> currentIndex:int -> array:t -> int)
-          -> initialValue:int -> int)
+                      current_value:int ->
+                        current_index:int -> array:t -> int)
+          -> initial_value:int -> int)
       =
       fun (x4324 : t) ->
         fun
           ~callbackfn:(x4318 :
                         previousValue:int ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> int)
+                          current_value:int ->
+                            current_index:int -> array:t -> int)
           ->
-          fun ~initialValue:(x4323 : int) ->
+          fun ~initial_value:(x4323 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x4324) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -14899,24 +14945,24 @@ module Float64Array =
                              fun (x4322 : Ojs.t) ->
                                Ojs.int_to_js
                                  (x4318 ~previousValue:(Ojs.int_of_js x4319)
-                                    ~currentValue:(Ojs.int_of_js x4320)
-                                    ~currentIndex:(Ojs.int_of_js x4321)
+                                    ~current_value:(Ojs.int_of_js x4320)
+                                    ~current_index:(Ojs.int_of_js x4321)
                                     ~array:(t_of_js x4322))));(Ojs.int_to_js
                                                                  x4323)|])
     let (reduce_right'' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:int -> currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:int -> current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x4331 : t) ->
         fun
           ~callbackfn:(x4325 :
                         previousValue:'U ->
-                          currentValue:int ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:int ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x4330 : 'U) ->
+          fun ~initial_value:(x4330 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x4331) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -14926,8 +14972,8 @@ module Float64Array =
                              fun (x4329 : Ojs.t) ->
                                Obj.magic
                                  (x4325 ~previousValue:(Obj.magic x4326)
-                                    ~currentValue:(Ojs.int_of_js x4327)
-                                    ~currentIndex:(Ojs.int_of_js x4328)
+                                    ~current_value:(Ojs.int_of_js x4327)
+                                    ~current_index:(Ojs.int_of_js x4328)
                                     ~array:(t_of_js x4329))));(Obj.magic
                                                                  x4330)|])
     let (reverse : t -> t) =
@@ -14982,11 +15028,11 @@ module Float64Array =
     let (some :
       t ->
         (value:int -> index:int -> array:t -> unknown) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x4354 : t) ->
         fun (x4347 : value:int -> index:int -> array:t -> unknown) ->
-          fun ?thisArg:(x4348 : any option) ->
+          fun ?this_arg:(x4348 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x4355 = t_to_js x4354 in
@@ -15015,9 +15061,9 @@ module Float64Array =
                                        [|(any_to_js x4350)|])
                               | None -> ());
                              x4349))|])
-    let (sort : t -> ?compareFn:(a:int -> b:int -> int) -> unit -> t) =
+    let (sort : t -> ?compare_fn:(a:int -> b:int -> int) -> unit -> t) =
       fun (x4361 : t) ->
-        fun ?compareFn:(x4356 : (a:int -> b:int -> int) option) ->
+        fun ?compare_fn:(x4356 : (a:int -> b:int -> int) option) ->
           fun () ->
             t_of_js
               (let x4362 = t_to_js x4361 in
@@ -15091,9 +15137,9 @@ module Float64Array =
                   (fun (x4380 : int Array.t) ->
                      Array.t_to_js Ojs.int_to_js x4380) x4378)|])
     let (create'' :
-      buffer:ArrayBuffer.t -> ?byteOffset:int -> ?length:int -> unit -> t) =
+      buffer:ArrayBuffer.t -> ?byte_offset:int -> ?length:int -> unit -> t) =
       fun ~buffer:(x4382 : ArrayBuffer.t) ->
-        fun ?byteOffset:(x4383 : int option) ->
+        fun ?byte_offset:(x4383 : int option) ->
           fun ?length:(x4384 : int option) ->
             fun () ->
               t_of_js
@@ -15140,11 +15186,11 @@ module Float64Array =
              [|(Array.t_to_js Ojs.int_to_js x4392)|])
     let (from' :
       array:'T Array.t ->
-        mapfn:(v:'T -> k:int -> int) -> ?thisArg:any -> unit -> t)
+        mapfn:(v:'T -> k:int -> int) -> ?this_arg:any -> unit -> t)
       =
       fun ~array:(x4394 : 'T Array.t) ->
         fun ~mapfn:(x4395 : v:'T -> k:int -> int) ->
-          fun ?thisArg:(x4396 : any option) ->
+          fun ?this_arg:(x4396 : any option) ->
             fun () ->
               t_of_js
                 (let x4402 = Ojs.get_prop_ascii Ojs.global "Float64Array" in
@@ -15197,11 +15243,11 @@ module Float64ArrayConstructor =
     let (create'' :
       t ->
         buffer:ArrayBuffer.t ->
-          ?byteOffset:int -> ?length:int -> unit -> Float64Array.t)
+          ?byte_offset:int -> ?length:int -> unit -> Float64Array.t)
       =
       fun (x4419 : t) ->
         fun ~buffer:(x4413 : ArrayBuffer.t) ->
-          fun ?byteOffset:(x4414 : int option) ->
+          fun ?byte_offset:(x4414 : int option) ->
             fun ?length:(x4415 : int option) ->
               fun () ->
                 Float64Array.t_of_js
@@ -15253,12 +15299,12 @@ module Float64ArrayConstructor =
       t ->
         array:'T Array.t ->
           mapfn:(v:'T -> k:int -> int) ->
-            ?thisArg:any -> unit -> Float64Array.t)
+            ?this_arg:any -> unit -> Float64Array.t)
       =
       fun (x4437 : t) ->
         fun ~array:(x4429 : 'T Array.t) ->
           fun ~mapfn:(x4430 : v:'T -> k:int -> int) ->
-            fun ?thisArg:(x4431 : any option) ->
+            fun ?this_arg:(x4431 : any option) ->
               fun () ->
                 Float64Array.t_of_js
                   (let x4438 = t_to_js x4437 in

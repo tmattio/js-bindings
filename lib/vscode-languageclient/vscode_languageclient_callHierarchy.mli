@@ -17,7 +17,7 @@ open Client
    'vscode-languageserver-protocol'; *)
 (* import { TextDocumentFeature, BaseLanguageClient } from './client'; *)
 module PrepareCallHierarchySignature : sig
-  type t = _PrepareCallHierarchySignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -35,7 +35,7 @@ end
 [@@js.scope "PrepareCallHierarchySignature"]
 
 module CallHierarchyIncomingCallsSignature : sig
-  type t = _CallHierarchyIncomingCallsSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -52,7 +52,7 @@ end
 [@@js.scope "CallHierarchyIncomingCallsSignature"]
 
 module CallHierarchyOutgoingCallsSignature : sig
-  type t = _CallHierarchyOutgoingCallsSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -69,44 +69,44 @@ end
 [@@js.scope "CallHierarchyOutgoingCallsSignature"]
 
 module CallHierarchyMiddleware : sig
-  type t = _CallHierarchyMiddleware
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val prepareCallHierarchy
+  val prepare_call_hierarchy
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> positions:VPosition.t
     -> token:CancellationToken.t
-    -> next:_PrepareCallHierarchySignature
+    -> next:PrepareCallHierarchySignature.t
     -> (VCallHierarchyItem.t, VCallHierarchyItem.t) or_array ProviderResult.t
     [@@js.call "prepareCallHierarchy"]
 
-  val provideCallHierarchyIncomingCalls
+  val provide_call_hierarchy_incoming_calls
     :  t
     -> this:unit
     -> item:VCallHierarchyItem.t
     -> token:CancellationToken.t
-    -> next:_CallHierarchyIncomingCallsSignature
+    -> next:CallHierarchyIncomingCallsSignature.t
     -> VCallHierarchyIncomingCall.t list ProviderResult.t
     [@@js.call "provideCallHierarchyIncomingCalls"]
 
-  val provideCallHierarchyOutgoingCalls
+  val provide_call_hierarchy_outgoing_calls
     :  t
     -> this:unit
     -> item:VCallHierarchyItem.t
     -> token:CancellationToken.t
-    -> next:_CallHierarchyOutgoingCallsSignature
+    -> next:CallHierarchyOutgoingCallsSignature.t
     -> VCallHierarchyOutgoingCall.t list ProviderResult.t
     [@@js.call "provideCallHierarchyOutgoingCalls"]
 end
 [@@js.scope "CallHierarchyMiddleware"]
 
 module CallHierarchyProvider : sig
-  type t = _CallHierarchyProvider
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -125,7 +125,7 @@ module CallHierarchyProvider : sig
 
   val create : client:BaseLanguageClient.t -> t [@@js.create]
 
-  val prepareCallHierarchy
+  val prepare_call_hierarchy
     :  t
     -> document:TextDocument.t
     -> position:VPosition.t
@@ -133,14 +133,14 @@ module CallHierarchyProvider : sig
     -> (VCallHierarchyItem.t, VCallHierarchyItem.t) or_array ProviderResult.t
     [@@js.call "prepareCallHierarchy"]
 
-  val provideCallHierarchyIncomingCalls
+  val provide_call_hierarchy_incoming_calls
     :  t
     -> item:VCallHierarchyItem.t
     -> token:CancellationToken.t
     -> VCallHierarchyIncomingCall.t list ProviderResult.t
     [@@js.call "provideCallHierarchyIncomingCalls"]
 
-  val provideCallHierarchyOutgoingCalls
+  val provide_call_hierarchy_outgoing_calls
     :  t
     -> item:VCallHierarchyItem.t
     -> token:CancellationToken.t
@@ -152,7 +152,7 @@ end
 [@@js.scope "CallHierarchyProvider"]
 
 module CallHierarchyFeature : sig
-  type t = _CallHierarchyFeature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -160,27 +160,27 @@ module CallHierarchyFeature : sig
 
   val create : client:BaseLanguageClient.t -> t [@@js.create]
 
-  val fillClientCapabilities : t -> cap:ClientCapabilities.t -> unit
+  val fill_client_capabilities : t -> cap:ClientCapabilities.t -> unit
     [@@js.call "fillClientCapabilities"]
 
   val initialize
     :  t
     -> capabilities:ServerCapabilities.t
-    -> documentSelector:DocumentSelector.t
+    -> document_selector:DocumentSelector.t
     -> unit
     [@@js.call "initialize"]
 
-  val registerLanguageProvider
+  val register_language_provider
     :  t
     -> options:CallHierarchyRegistrationOptions.t
-    -> Disposable.t * _CallHierarchyProvider
+    -> Disposable.t * CallHierarchyProvider.t
     [@@js.call "registerLanguageProvider"]
 
   val cast
     :  t
     -> ( CallHierarchyOptions.t or_boolean
        , CallHierarchyRegistrationOptions.t
-       , _CallHierarchyProvider )
+       , CallHierarchyProvider.t )
        TextDocumentFeature.t
     [@@js.cast]
 end

@@ -7,7 +7,7 @@ open Es5
 (* import { BaseLanguageClient, LanguageClientOptions, StaticFeature,
    DynamicFeature } from './client'; *)
 module CommonLanguageClient : sig
-  type t = _CommonLanguageClient
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -16,21 +16,22 @@ module CommonLanguageClient : sig
   val create
     :  id:string
     -> name:string
-    -> clientOptions:LanguageClientOptions.t
+    -> client_options:LanguageClientOptions.t
     -> t
     [@@js.create]
 
-  val registerProposedFeatures : t -> unit
+  val register_proposed_features : t -> unit
     [@@js.call "registerProposedFeatures"]
 
-  val registerBuiltinFeatures : t -> unit [@@js.call "registerBuiltinFeatures"]
+  val register_builtin_features : t -> unit
+    [@@js.call "registerBuiltinFeatures"]
 
   val cast : t -> BaseLanguageClient.t [@@js.cast]
 end
 [@@js.scope "CommonLanguageClient"]
 
 module ProposedFeatures : sig
-  val createAll
+  val create_all
     :  _client:BaseLanguageClient.t
     -> (StaticFeature.t, any DynamicFeature.t) union2 list
     [@@js.global "createAll"]

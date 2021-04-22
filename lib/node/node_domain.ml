@@ -7,12 +7,9 @@ module Domain =
   struct
     module Global =
       struct
-        type t = domain_global_NodeJS_Domain
-        let rec t_of_js : Ojs.t -> t =
-          fun (x2 : Ojs.t) -> domain_global_NodeJS_Domain_of_js x2
-        and t_to_js : t -> Ojs.t =
-          fun (x1 : domain_global_NodeJS_Domain) ->
-            domain_global_NodeJS_Domain_to_js x1
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+        and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
         let (run : t -> fn:(args:any list -> 'T) -> args:any list -> 'T) =
           fun (x9 : t) ->
             fun ~fn:(x3 : args:any list -> 'T) ->
@@ -82,11 +79,9 @@ module Domain =
     include struct include Global end
     module Domain =
       struct
-        type t = domain_Domain
-        let rec t_of_js : Ojs.t -> t =
-          fun (x25 : Ojs.t) -> domain_Domain_of_js x25
-        and t_to_js : t -> Ojs.t =
-          fun (x24 : domain_Domain) -> domain_Domain_to_js x24
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x25 : Ojs.t) -> x25
+        and t_to_js : t -> Ojs.t = fun (x24 : Ojs.t) -> x24
         let (get_members :
           t -> (Node_events.Events.EventEmitter.t, Timer.t) union2 list) =
           fun (x26 : t) ->
@@ -120,6 +115,6 @@ module Domain =
           fun (x37 : t) ->
             Node_events.Events.EventEmitter.t_of_js (t_to_js x37)
       end
-    let (create_ : unit -> domain_Domain) =
-      fun () -> domain_Domain_of_js (Ojs.call Import.domain "create" [||])
+    let (create_ : unit -> Domain.t) =
+      fun () -> Domain.t_of_js (Ojs.call Import.domain "create" [||])
   end

@@ -11,10 +11,10 @@ module AnonymousInterface0 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_additionalPropertiesSupport : t -> bool
+  val get_additional_properties_support : t -> bool
     [@@js.get "additionalPropertiesSupport"]
 
-  val set_additionalPropertiesSupport : t -> bool -> unit
+  val set_additional_properties_support : t -> bool -> unit
     [@@js.set "additionalPropertiesSupport"]
 end
 
@@ -29,10 +29,10 @@ module AnonymousInterface1 : sig
 
   val set_cancel : t -> bool -> unit [@@js.set "cancel"]
 
-  val get_retryOnContentModified : t -> string list
+  val get_retry_on_content_modified : t -> string list
     [@@js.get "retryOnContentModified"]
 
-  val set_retryOnContentModified : t -> string list -> unit
+  val set_retry_on_content_modified : t -> string list -> unit
     [@@js.set "retryOnContentModified"]
 end
 
@@ -43,10 +43,10 @@ module AnonymousInterface2 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_codeActionKind : t -> AnonymousInterface16.t
+  val get_code_action_kind : t -> AnonymousInterface16.t
     [@@js.get "codeActionKind"]
 
-  val set_codeActionKind : t -> AnonymousInterface16.t -> unit
+  val set_code_action_kind : t -> AnonymousInterface16.t -> unit
     [@@js.set "codeActionKind"]
 end
 
@@ -57,9 +57,9 @@ module AnonymousInterface3 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_defaultBehavior : t -> bool [@@js.get "defaultBehavior"]
+  val get_default_behavior : t -> bool [@@js.get "defaultBehavior"]
 
-  val set_defaultBehavior : t -> bool -> unit [@@js.set "defaultBehavior"]
+  val set_default_behavior : t -> bool -> unit [@@js.set "defaultBehavior"]
 end
 
 module AnonymousInterface4 : sig
@@ -69,21 +69,22 @@ module AnonymousInterface4 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_documentationFormat : t -> MarkupKind.t list
+  val get_documentation_format : t -> MarkupKind.t list
     [@@js.get "documentationFormat"]
 
-  val set_documentationFormat : t -> MarkupKind.t list -> unit
+  val set_documentation_format : t -> MarkupKind.t list -> unit
     [@@js.set "documentationFormat"]
 
-  val get_parameterInformation : t -> AnonymousInterface8.t
+  val get_parameter_information : t -> AnonymousInterface8.t
     [@@js.get "parameterInformation"]
 
-  val set_parameterInformation : t -> AnonymousInterface8.t -> unit
+  val set_parameter_information : t -> AnonymousInterface8.t -> unit
     [@@js.set "parameterInformation"]
 
-  val get_activeParameterSupport : t -> bool [@@js.get "activeParameterSupport"]
+  val get_active_parameter_support : t -> bool
+    [@@js.get "activeParameterSupport"]
 
-  val set_activeParameterSupport : t -> bool -> unit
+  val set_active_parameter_support : t -> bool -> unit
     [@@js.set "activeParameterSupport"]
 end
 
@@ -94,10 +95,10 @@ module AnonymousInterface5 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_fileOperations : t -> FileOperationOptions.t
+  val get_file_operations : t -> FileOperationOptions.t
     [@@js.get "fileOperations"]
 
-  val set_fileOperations : t -> FileOperationOptions.t -> unit
+  val set_file_operations : t -> FileOperationOptions.t -> unit
     [@@js.set "fileOperations"]
 end
 
@@ -108,9 +109,9 @@ module AnonymousInterface6 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_groupsOnLabel : t -> bool [@@js.get "groupsOnLabel"]
+  val get_groups_on_label : t -> bool [@@js.get "groupsOnLabel"]
 
-  val set_groupsOnLabel : t -> bool -> unit [@@js.set "groupsOnLabel"]
+  val set_groups_on_label : t -> bool -> unit [@@js.set "groupsOnLabel"]
 end
 
 module AnonymousInterface7 : sig
@@ -120,9 +121,9 @@ module AnonymousInterface7 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_labelDetailsSupport : t -> bool [@@js.get "labelDetailsSupport"]
+  val get_label_details_support : t -> bool [@@js.get "labelDetailsSupport"]
 
-  val set_labelDetailsSupport : t -> bool -> unit
+  val set_label_details_support : t -> bool -> unit
     [@@js.set "labelDetailsSupport"]
 end
 
@@ -133,9 +134,10 @@ module AnonymousInterface8 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_labelOffsetSupport : t -> bool [@@js.get "labelOffsetSupport"]
+  val get_label_offset_support : t -> bool [@@js.get "labelOffsetSupport"]
 
-  val set_labelOffsetSupport : t -> bool -> unit [@@js.set "labelOffsetSupport"]
+  val set_label_offset_support : t -> bool -> unit
+    [@@js.set "labelOffsetSupport"]
 end
 
 module AnonymousInterface9 : sig
@@ -213,9 +215,9 @@ module AnonymousInterface13 : sig
 
   val set_range : t -> Range.t -> unit [@@js.set "range"]
 
-  val get_rangeLength : t -> Uinteger.t [@@js.get "rangeLength"]
+  val get_range_length : t -> Uinteger.t [@@js.get "rangeLength"]
 
-  val set_rangeLength : t -> Uinteger.t -> unit [@@js.set "rangeLength"]
+  val set_range_length : t -> Uinteger.t -> unit [@@js.set "rangeLength"]
 
   val get_text : t -> string [@@js.get "text"]
 
@@ -229,55 +231,55 @@ module AnonymousInterface14 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_snippetSupport : t -> bool [@@js.get "snippetSupport"]
+  val get_snippet_support : t -> bool [@@js.get "snippetSupport"]
 
-  val set_snippetSupport : t -> bool -> unit [@@js.set "snippetSupport"]
+  val set_snippet_support : t -> bool -> unit [@@js.set "snippetSupport"]
 
-  val get_commitCharactersSupport : t -> bool
+  val get_commit_characters_support : t -> bool
     [@@js.get "commitCharactersSupport"]
 
-  val set_commitCharactersSupport : t -> bool -> unit
+  val set_commit_characters_support : t -> bool -> unit
     [@@js.set "commitCharactersSupport"]
 
-  val get_documentationFormat : t -> MarkupKind.t list
+  val get_documentation_format : t -> MarkupKind.t list
     [@@js.get "documentationFormat"]
 
-  val set_documentationFormat : t -> MarkupKind.t list -> unit
+  val set_documentation_format : t -> MarkupKind.t list -> unit
     [@@js.set "documentationFormat"]
 
-  val get_deprecatedSupport : t -> bool [@@js.get "deprecatedSupport"]
+  val get_deprecated_support : t -> bool [@@js.get "deprecatedSupport"]
 
-  val set_deprecatedSupport : t -> bool -> unit [@@js.set "deprecatedSupport"]
+  val set_deprecated_support : t -> bool -> unit [@@js.set "deprecatedSupport"]
 
-  val get_preselectSupport : t -> bool [@@js.get "preselectSupport"]
+  val get_preselect_support : t -> bool [@@js.get "preselectSupport"]
 
-  val set_preselectSupport : t -> bool -> unit [@@js.set "preselectSupport"]
+  val set_preselect_support : t -> bool -> unit [@@js.set "preselectSupport"]
 
-  val get_tagSupport : t -> AnonymousInterface18.t [@@js.get "tagSupport"]
+  val get_tag_support : t -> AnonymousInterface18.t [@@js.get "tagSupport"]
 
-  val set_tagSupport : t -> AnonymousInterface18.t -> unit
+  val set_tag_support : t -> AnonymousInterface18.t -> unit
     [@@js.set "tagSupport"]
 
-  val get_insertReplaceSupport : t -> bool [@@js.get "insertReplaceSupport"]
+  val get_insert_replace_support : t -> bool [@@js.get "insertReplaceSupport"]
 
-  val set_insertReplaceSupport : t -> bool -> unit
+  val set_insert_replace_support : t -> bool -> unit
     [@@js.set "insertReplaceSupport"]
 
-  val get_resolveSupport : t -> AnonymousInterface11.t
+  val get_resolve_support : t -> AnonymousInterface11.t
     [@@js.get "resolveSupport"]
 
-  val set_resolveSupport : t -> AnonymousInterface11.t -> unit
+  val set_resolve_support : t -> AnonymousInterface11.t -> unit
     [@@js.set "resolveSupport"]
 
-  val get_insertTextModeSupport : t -> AnonymousInterface20.t
+  val get_insert_text_mode_support : t -> AnonymousInterface20.t
     [@@js.get "insertTextModeSupport"]
 
-  val set_insertTextModeSupport : t -> AnonymousInterface20.t -> unit
+  val set_insert_text_mode_support : t -> AnonymousInterface20.t -> unit
     [@@js.set "insertTextModeSupport"]
 
-  val get_labelDetailsSupport : t -> bool [@@js.get "labelDetailsSupport"]
+  val get_label_details_support : t -> bool [@@js.get "labelDetailsSupport"]
 
-  val set_labelDetailsSupport : t -> bool -> unit
+  val set_label_details_support : t -> bool -> unit
     [@@js.set "labelDetailsSupport"]
 end
 
@@ -300,9 +302,9 @@ module AnonymousInterface16 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_valueSet : t -> CodeActionKind.t list [@@js.get "valueSet"]
+  val get_value_set : t -> CodeActionKind.t list [@@js.get "valueSet"]
 
-  val set_valueSet : t -> CodeActionKind.t list -> unit [@@js.set "valueSet"]
+  val set_value_set : t -> CodeActionKind.t list -> unit [@@js.set "valueSet"]
 end
 
 module AnonymousInterface17 : sig
@@ -312,9 +314,9 @@ module AnonymousInterface17 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_valueSet : t -> CompletionItemKind.t list [@@js.get "valueSet"]
+  val get_value_set : t -> CompletionItemKind.t list [@@js.get "valueSet"]
 
-  val set_valueSet : t -> CompletionItemKind.t list -> unit
+  val set_value_set : t -> CompletionItemKind.t list -> unit
     [@@js.set "valueSet"]
 end
 
@@ -325,9 +327,10 @@ module AnonymousInterface18 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_valueSet : t -> CompletionItemTag.t list [@@js.get "valueSet"]
+  val get_value_set : t -> CompletionItemTag.t list [@@js.get "valueSet"]
 
-  val set_valueSet : t -> CompletionItemTag.t list -> unit [@@js.set "valueSet"]
+  val set_value_set : t -> CompletionItemTag.t list -> unit
+    [@@js.set "valueSet"]
 end
 
 module AnonymousInterface19 : sig
@@ -337,9 +340,9 @@ module AnonymousInterface19 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_valueSet : t -> DiagnosticTag.t list [@@js.get "valueSet"]
+  val get_value_set : t -> DiagnosticTag.t list [@@js.get "valueSet"]
 
-  val set_valueSet : t -> DiagnosticTag.t list -> unit [@@js.set "valueSet"]
+  val set_value_set : t -> DiagnosticTag.t list -> unit [@@js.set "valueSet"]
 end
 
 module AnonymousInterface20 : sig
@@ -349,9 +352,9 @@ module AnonymousInterface20 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_valueSet : t -> InsertTextMode.t list [@@js.get "valueSet"]
+  val get_value_set : t -> InsertTextMode.t list [@@js.get "valueSet"]
 
-  val set_valueSet : t -> InsertTextMode.t list -> unit [@@js.set "valueSet"]
+  val set_value_set : t -> InsertTextMode.t list -> unit [@@js.set "valueSet"]
 end
 
 module AnonymousInterface21 : sig
@@ -361,9 +364,9 @@ module AnonymousInterface21 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_valueSet : t -> SymbolKind.t list [@@js.get "valueSet"]
+  val get_value_set : t -> SymbolKind.t list [@@js.get "valueSet"]
 
-  val set_valueSet : t -> SymbolKind.t list -> unit [@@js.set "valueSet"]
+  val set_value_set : t -> SymbolKind.t list -> unit [@@js.set "valueSet"]
 end
 
 module AnonymousInterface22 : sig
@@ -373,9 +376,9 @@ module AnonymousInterface22 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_valueSet : t -> SymbolTag.t list [@@js.get "valueSet"]
+  val get_value_set : t -> SymbolTag.t list [@@js.get "valueSet"]
 
-  val set_valueSet : t -> SymbolTag.t list -> unit [@@js.set "valueSet"]
+  val set_value_set : t -> SymbolTag.t list -> unit [@@js.set "valueSet"]
 end
 
 (* import { ProgressToken } from 'vscode-jsonrpc'; *)
@@ -462,7 +465,7 @@ end
 [@@js.scope "DocumentFilter"]
 
 module DocumentSelector : sig
-  type t = _DocumentFilter or_string list
+  type t = DocumentFilter.t or_string list
 
   val t_to_js : t -> Ojs.t
 
@@ -475,7 +478,7 @@ end
 [@@js.scope "DocumentSelector"]
 
 module Registration : sig
-  type t = _Registration
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -489,35 +492,35 @@ module Registration : sig
 
   val set_method : t -> string -> unit [@@js.set "method"]
 
-  val get_registerOptions : t -> any [@@js.get "registerOptions"]
+  val get_register_options : t -> any [@@js.get "registerOptions"]
 
-  val set_registerOptions : t -> any -> unit [@@js.set "registerOptions"]
+  val set_register_options : t -> any -> unit [@@js.set "registerOptions"]
 end
 [@@js.scope "Registration"]
 
 module RegistrationParams : sig
-  type t = _RegistrationParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_registrations : t -> _Registration list [@@js.get "registrations"]
+  val get_registrations : t -> Registration.t list [@@js.get "registrations"]
 
-  val set_registrations : t -> _Registration list -> unit
+  val set_registrations : t -> Registration.t list -> unit
     [@@js.set "registrations"]
 end
 [@@js.scope "RegistrationParams"]
 
 module RegistrationRequest : sig
   val type_
-    : (_RegistrationParams, unit, never, unit, unit) ProtocolRequestType.t
+    : (RegistrationParams.t, unit, never, unit, unit) ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "RegistrationRequest"]
 
 module Unregistration : sig
-  type t = _Unregistration
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -534,66 +537,67 @@ end
 [@@js.scope "Unregistration"]
 
 module UnregistrationParams : sig
-  type t = _UnregistrationParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_unregisterations : t -> _Unregistration list
+  val get_unregisterations : t -> Unregistration.t list
     [@@js.get "unregisterations"]
 
-  val set_unregisterations : t -> _Unregistration list -> unit
+  val set_unregisterations : t -> Unregistration.t list -> unit
     [@@js.set "unregisterations"]
 end
 [@@js.scope "UnregistrationParams"]
 
 module UnregistrationRequest : sig
   val type_
-    : (_UnregistrationParams, unit, never, unit, unit) ProtocolRequestType.t
+    : (UnregistrationParams.t, unit, never, unit, unit) ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "UnregistrationRequest"]
 
 module WorkDoneProgressParams : sig
-  type t = _WorkDoneProgressParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_workDoneToken : t -> ProgressToken.t [@@js.get "workDoneToken"]
+  val get_work_done_token : t -> ProgressToken.t [@@js.get "workDoneToken"]
 
-  val set_workDoneToken : t -> ProgressToken.t -> unit
+  val set_work_done_token : t -> ProgressToken.t -> unit
     [@@js.set "workDoneToken"]
 end
 [@@js.scope "WorkDoneProgressParams"]
 
 module PartialResultParams : sig
-  type t = _PartialResultParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_partialResultToken : t -> ProgressToken.t
+  val get_partial_result_token : t -> ProgressToken.t
     [@@js.get "partialResultToken"]
 
-  val set_partialResultToken : t -> ProgressToken.t -> unit
+  val set_partial_result_token : t -> ProgressToken.t -> unit
     [@@js.set "partialResultToken"]
 end
 [@@js.scope "PartialResultParams"]
 
 module TextDocumentPositionParams : sig
-  type t = _TextDocumentPositionParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentIdentifier.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentIdentifier.t
+    [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentIdentifier.t -> unit
+  val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
   val get_position : t -> Position.t [@@js.get "position"]
@@ -616,11 +620,11 @@ module ResourceOperationKind : sig
 end
 
 module ResourceOperationKind : sig
-  val create_ : _ResourceOperationKind [@@js.global "Create"]
+  val create_ : ResourceOperationKind.t [@@js.global "Create"]
 
-  val rename : _ResourceOperationKind [@@js.global "Rename"]
+  val rename : ResourceOperationKind.t [@@js.global "Rename"]
 
-  val delete : _ResourceOperationKind [@@js.global "Delete"]
+  val delete : ResourceOperationKind.t [@@js.global "Delete"]
 end
 [@@js.scope "ResourceOperationKind"]
 
@@ -639,115 +643,117 @@ module FailureHandlingKind : sig
 end
 
 module FailureHandlingKind : sig
-  val abort : _FailureHandlingKind [@@js.global "Abort"]
+  val abort : FailureHandlingKind.t [@@js.global "Abort"]
 
-  val transactional : _FailureHandlingKind [@@js.global "Transactional"]
+  val transactional : FailureHandlingKind.t [@@js.global "Transactional"]
 
-  val textOnlyTransactional : _FailureHandlingKind
+  val text_only_transactional : FailureHandlingKind.t
     [@@js.global "TextOnlyTransactional"]
 
-  val undo : _FailureHandlingKind [@@js.global "Undo"]
+  val undo : FailureHandlingKind.t [@@js.global "Undo"]
 end
 [@@js.scope "FailureHandlingKind"]
 
 module WorkspaceClientCapabilities : sig
-  type t = _WorkspaceClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_applyEdit : t -> bool [@@js.get "applyEdit"]
+  val get_apply_edit : t -> bool [@@js.get "applyEdit"]
 
-  val set_applyEdit : t -> bool -> unit [@@js.set "applyEdit"]
+  val set_apply_edit : t -> bool -> unit [@@js.set "applyEdit"]
 
-  val get_workspaceEdit : t -> _WorkspaceEditClientCapabilities
+  val get_workspace_edit : t -> WorkspaceEditClientCapabilities.t
     [@@js.get "workspaceEdit"]
 
-  val set_workspaceEdit : t -> _WorkspaceEditClientCapabilities -> unit
+  val set_workspace_edit : t -> WorkspaceEditClientCapabilities.t -> unit
     [@@js.set "workspaceEdit"]
 
-  val get_didChangeConfiguration
+  val get_did_change_configuration
     :  t
-    -> _DidChangeConfigurationClientCapabilities
+    -> DidChangeConfigurationClientCapabilities.t
     [@@js.get "didChangeConfiguration"]
 
-  val set_didChangeConfiguration
+  val set_did_change_configuration
     :  t
-    -> _DidChangeConfigurationClientCapabilities
+    -> DidChangeConfigurationClientCapabilities.t
     -> unit
     [@@js.set "didChangeConfiguration"]
 
-  val get_didChangeWatchedFiles : t -> _DidChangeWatchedFilesClientCapabilities
+  val get_did_change_watched_files
+    :  t
+    -> DidChangeWatchedFilesClientCapabilities.t
     [@@js.get "didChangeWatchedFiles"]
 
-  val set_didChangeWatchedFiles
+  val set_did_change_watched_files
     :  t
-    -> _DidChangeWatchedFilesClientCapabilities
+    -> DidChangeWatchedFilesClientCapabilities.t
     -> unit
     [@@js.set "didChangeWatchedFiles"]
 
-  val get_symbol : t -> _WorkspaceSymbolClientCapabilities [@@js.get "symbol"]
+  val get_symbol : t -> WorkspaceSymbolClientCapabilities.t [@@js.get "symbol"]
 
-  val set_symbol : t -> _WorkspaceSymbolClientCapabilities -> unit
+  val set_symbol : t -> WorkspaceSymbolClientCapabilities.t -> unit
     [@@js.set "symbol"]
 
-  val get_executeCommand : t -> _ExecuteCommandClientCapabilities
+  val get_execute_command : t -> ExecuteCommandClientCapabilities.t
     [@@js.get "executeCommand"]
 
-  val set_executeCommand : t -> _ExecuteCommandClientCapabilities -> unit
+  val set_execute_command : t -> ExecuteCommandClientCapabilities.t -> unit
     [@@js.set "executeCommand"]
 
-  val get_semanticTokens : t -> SemanticTokensWorkspaceClientCapabilities.t
+  val get_semantic_tokens : t -> SemanticTokensWorkspaceClientCapabilities.t
     [@@js.get "semanticTokens"]
 
-  val set_semanticTokens
+  val set_semantic_tokens
     :  t
     -> SemanticTokensWorkspaceClientCapabilities.t
     -> unit
     [@@js.set "semanticTokens"]
 
-  val get_codeLens : t -> _CodeLensWorkspaceClientCapabilities
+  val get_code_lens : t -> CodeLensWorkspaceClientCapabilities.t
     [@@js.get "codeLens"]
 
-  val set_codeLens : t -> _CodeLensWorkspaceClientCapabilities -> unit
+  val set_code_lens : t -> CodeLensWorkspaceClientCapabilities.t -> unit
     [@@js.set "codeLens"]
 
-  val get_fileOperations : t -> FileOperationClientCapabilities.t
+  val get_file_operations : t -> FileOperationClientCapabilities.t
     [@@js.get "fileOperations"]
 
-  val set_fileOperations : t -> FileOperationClientCapabilities.t -> unit
+  val set_file_operations : t -> FileOperationClientCapabilities.t -> unit
     [@@js.set "fileOperations"]
 end
 [@@js.scope "WorkspaceClientCapabilities"]
 
 module TextDocumentClientCapabilities : sig
-  type t = _TextDocumentClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_synchronization : t -> _TextDocumentSyncClientCapabilities
+  val get_synchronization : t -> TextDocumentSyncClientCapabilities.t
     [@@js.get "synchronization"]
 
-  val set_synchronization : t -> _TextDocumentSyncClientCapabilities -> unit
+  val set_synchronization : t -> TextDocumentSyncClientCapabilities.t -> unit
     [@@js.set "synchronization"]
 
-  val get_completion : t -> _CompletionClientCapabilities
+  val get_completion : t -> CompletionClientCapabilities.t
     [@@js.get "completion"]
 
-  val set_completion : t -> _CompletionClientCapabilities -> unit
+  val set_completion : t -> CompletionClientCapabilities.t -> unit
     [@@js.set "completion"]
 
-  val get_hover : t -> _HoverClientCapabilities [@@js.get "hover"]
+  val get_hover : t -> HoverClientCapabilities.t [@@js.get "hover"]
 
-  val set_hover : t -> _HoverClientCapabilities -> unit [@@js.set "hover"]
+  val set_hover : t -> HoverClientCapabilities.t -> unit [@@js.set "hover"]
 
-  val get_signatureHelp : t -> _SignatureHelpClientCapabilities
+  val get_signature_help : t -> SignatureHelpClientCapabilities.t
     [@@js.get "signatureHelp"]
 
-  val set_signatureHelp : t -> _SignatureHelpClientCapabilities -> unit
+  val set_signature_help : t -> SignatureHelpClientCapabilities.t -> unit
     [@@js.set "signatureHelp"]
 
   val get_declaration : t -> DeclarationClientCapabilities.t
@@ -756,16 +762,16 @@ module TextDocumentClientCapabilities : sig
   val set_declaration : t -> DeclarationClientCapabilities.t -> unit
     [@@js.set "declaration"]
 
-  val get_definition : t -> _DefinitionClientCapabilities
+  val get_definition : t -> DefinitionClientCapabilities.t
     [@@js.get "definition"]
 
-  val set_definition : t -> _DefinitionClientCapabilities -> unit
+  val set_definition : t -> DefinitionClientCapabilities.t -> unit
     [@@js.set "definition"]
 
-  val get_typeDefinition : t -> TypeDefinitionClientCapabilities.t
+  val get_type_definition : t -> TypeDefinitionClientCapabilities.t
     [@@js.get "typeDefinition"]
 
-  val set_typeDefinition : t -> TypeDefinitionClientCapabilities.t -> unit
+  val set_type_definition : t -> TypeDefinitionClientCapabilities.t -> unit
     [@@js.set "typeDefinition"]
 
   val get_implementation : t -> ImplementationClientCapabilities.t
@@ -774,111 +780,115 @@ module TextDocumentClientCapabilities : sig
   val set_implementation : t -> ImplementationClientCapabilities.t -> unit
     [@@js.set "implementation"]
 
-  val get_references : t -> _ReferenceClientCapabilities [@@js.get "references"]
+  val get_references : t -> ReferenceClientCapabilities.t
+    [@@js.get "references"]
 
-  val set_references : t -> _ReferenceClientCapabilities -> unit
+  val set_references : t -> ReferenceClientCapabilities.t -> unit
     [@@js.set "references"]
 
-  val get_documentHighlight : t -> _DocumentHighlightClientCapabilities
+  val get_document_highlight : t -> DocumentHighlightClientCapabilities.t
     [@@js.get "documentHighlight"]
 
-  val set_documentHighlight : t -> _DocumentHighlightClientCapabilities -> unit
+  val set_document_highlight
+    :  t
+    -> DocumentHighlightClientCapabilities.t
+    -> unit
     [@@js.set "documentHighlight"]
 
-  val get_documentSymbol : t -> _DocumentSymbolClientCapabilities
+  val get_document_symbol : t -> DocumentSymbolClientCapabilities.t
     [@@js.get "documentSymbol"]
 
-  val set_documentSymbol : t -> _DocumentSymbolClientCapabilities -> unit
+  val set_document_symbol : t -> DocumentSymbolClientCapabilities.t -> unit
     [@@js.set "documentSymbol"]
 
-  val get_codeAction : t -> _CodeActionClientCapabilities
+  val get_code_action : t -> CodeActionClientCapabilities.t
     [@@js.get "codeAction"]
 
-  val set_codeAction : t -> _CodeActionClientCapabilities -> unit
+  val set_code_action : t -> CodeActionClientCapabilities.t -> unit
     [@@js.set "codeAction"]
 
-  val get_codeLens : t -> _CodeLensClientCapabilities [@@js.get "codeLens"]
+  val get_code_lens : t -> CodeLensClientCapabilities.t [@@js.get "codeLens"]
 
-  val set_codeLens : t -> _CodeLensClientCapabilities -> unit
+  val set_code_lens : t -> CodeLensClientCapabilities.t -> unit
     [@@js.set "codeLens"]
 
-  val get_documentLink : t -> _DocumentLinkClientCapabilities
+  val get_document_link : t -> DocumentLinkClientCapabilities.t
     [@@js.get "documentLink"]
 
-  val set_documentLink : t -> _DocumentLinkClientCapabilities -> unit
+  val set_document_link : t -> DocumentLinkClientCapabilities.t -> unit
     [@@js.set "documentLink"]
 
-  val get_colorProvider : t -> DocumentColorClientCapabilities.t
+  val get_color_provider : t -> DocumentColorClientCapabilities.t
     [@@js.get "colorProvider"]
 
-  val set_colorProvider : t -> DocumentColorClientCapabilities.t -> unit
+  val set_color_provider : t -> DocumentColorClientCapabilities.t -> unit
     [@@js.set "colorProvider"]
 
-  val get_formatting : t -> _DocumentFormattingClientCapabilities
+  val get_formatting : t -> DocumentFormattingClientCapabilities.t
     [@@js.get "formatting"]
 
-  val set_formatting : t -> _DocumentFormattingClientCapabilities -> unit
+  val set_formatting : t -> DocumentFormattingClientCapabilities.t -> unit
     [@@js.set "formatting"]
 
-  val get_rangeFormatting : t -> _DocumentRangeFormattingClientCapabilities
+  val get_range_formatting : t -> DocumentRangeFormattingClientCapabilities.t
     [@@js.get "rangeFormatting"]
 
-  val set_rangeFormatting
+  val set_range_formatting
     :  t
-    -> _DocumentRangeFormattingClientCapabilities
+    -> DocumentRangeFormattingClientCapabilities.t
     -> unit
     [@@js.set "rangeFormatting"]
 
-  val get_onTypeFormatting : t -> _DocumentOnTypeFormattingClientCapabilities
+  val get_on_type_formatting : t -> DocumentOnTypeFormattingClientCapabilities.t
     [@@js.get "onTypeFormatting"]
 
-  val set_onTypeFormatting
+  val set_on_type_formatting
     :  t
-    -> _DocumentOnTypeFormattingClientCapabilities
+    -> DocumentOnTypeFormattingClientCapabilities.t
     -> unit
     [@@js.set "onTypeFormatting"]
 
-  val get_rename : t -> _RenameClientCapabilities [@@js.get "rename"]
+  val get_rename : t -> RenameClientCapabilities.t [@@js.get "rename"]
 
-  val set_rename : t -> _RenameClientCapabilities -> unit [@@js.set "rename"]
+  val set_rename : t -> RenameClientCapabilities.t -> unit [@@js.set "rename"]
 
-  val get_foldingRange : t -> FoldingRangeClientCapabilities.t
+  val get_folding_range : t -> FoldingRangeClientCapabilities.t
     [@@js.get "foldingRange"]
 
-  val set_foldingRange : t -> FoldingRangeClientCapabilities.t -> unit
+  val set_folding_range : t -> FoldingRangeClientCapabilities.t -> unit
     [@@js.set "foldingRange"]
 
-  val get_selectionRange : t -> SelectionRangeClientCapabilities.t
+  val get_selection_range : t -> SelectionRangeClientCapabilities.t
     [@@js.get "selectionRange"]
 
-  val set_selectionRange : t -> SelectionRangeClientCapabilities.t -> unit
+  val set_selection_range : t -> SelectionRangeClientCapabilities.t -> unit
     [@@js.set "selectionRange"]
 
-  val get_publishDiagnostics : t -> _PublishDiagnosticsClientCapabilities
+  val get_publish_diagnostics : t -> PublishDiagnosticsClientCapabilities.t
     [@@js.get "publishDiagnostics"]
 
-  val set_publishDiagnostics
+  val set_publish_diagnostics
     :  t
-    -> _PublishDiagnosticsClientCapabilities
+    -> PublishDiagnosticsClientCapabilities.t
     -> unit
     [@@js.set "publishDiagnostics"]
 
-  val get_callHierarchy : t -> CallHierarchyClientCapabilities.t
+  val get_call_hierarchy : t -> CallHierarchyClientCapabilities.t
     [@@js.get "callHierarchy"]
 
-  val set_callHierarchy : t -> CallHierarchyClientCapabilities.t -> unit
+  val set_call_hierarchy : t -> CallHierarchyClientCapabilities.t -> unit
     [@@js.set "callHierarchy"]
 
-  val get_semanticTokens : t -> SemanticTokensClientCapabilities.t
+  val get_semantic_tokens : t -> SemanticTokensClientCapabilities.t
     [@@js.get "semanticTokens"]
 
-  val set_semanticTokens : t -> SemanticTokensClientCapabilities.t -> unit
+  val set_semantic_tokens : t -> SemanticTokensClientCapabilities.t -> unit
     [@@js.set "semanticTokens"]
 
-  val get_linkedEditingRange : t -> LinkedEditingRangeClientCapabilities.t
+  val get_linked_editing_range : t -> LinkedEditingRangeClientCapabilities.t
     [@@js.get "linkedEditingRange"]
 
-  val set_linkedEditingRange
+  val set_linked_editing_range
     :  t
     -> LinkedEditingRangeClientCapabilities.t
     -> unit
@@ -892,32 +902,32 @@ end
 [@@js.scope "TextDocumentClientCapabilities"]
 
 module WindowClientCapabilities : sig
-  type t = _WindowClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_workDoneProgress : t -> bool [@@js.get "workDoneProgress"]
+  val get_work_done_progress : t -> bool [@@js.get "workDoneProgress"]
 
-  val set_workDoneProgress : t -> bool -> unit [@@js.set "workDoneProgress"]
+  val set_work_done_progress : t -> bool -> unit [@@js.set "workDoneProgress"]
 
-  val get_showMessage : t -> _ShowMessageRequestClientCapabilities
+  val get_show_message : t -> ShowMessageRequestClientCapabilities.t
     [@@js.get "showMessage"]
 
-  val set_showMessage : t -> _ShowMessageRequestClientCapabilities -> unit
+  val set_show_message : t -> ShowMessageRequestClientCapabilities.t -> unit
     [@@js.set "showMessage"]
 
-  val get_showDocument : t -> ShowDocumentClientCapabilities.t
+  val get_show_document : t -> ShowDocumentClientCapabilities.t
     [@@js.get "showDocument"]
 
-  val set_showDocument : t -> ShowDocumentClientCapabilities.t -> unit
+  val set_show_document : t -> ShowDocumentClientCapabilities.t -> unit
     [@@js.set "showDocument"]
 end
 [@@js.scope "WindowClientCapabilities"]
 
 module RegularExpressionsClientCapabilities : sig
-  type t = _RegularExpressionsClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -934,7 +944,7 @@ end
 [@@js.scope "RegularExpressionsClientCapabilities"]
 
 module MarkdownClientCapabilities : sig
-  type t = _MarkdownClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -951,37 +961,37 @@ end
 [@@js.scope "MarkdownClientCapabilities"]
 
 module GeneralClientCapabilities : sig
-  type t = _GeneralClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_staleRequestSupport : t -> AnonymousInterface1.t
+  val get_stale_request_support : t -> AnonymousInterface1.t
     [@@js.get "staleRequestSupport"]
 
-  val set_staleRequestSupport : t -> AnonymousInterface1.t -> unit
+  val set_stale_request_support : t -> AnonymousInterface1.t -> unit
     [@@js.set "staleRequestSupport"]
 
-  val get_regularExpressions : t -> _RegularExpressionsClientCapabilities
+  val get_regular_expressions : t -> RegularExpressionsClientCapabilities.t
     [@@js.get "regularExpressions"]
 
-  val set_regularExpressions
+  val set_regular_expressions
     :  t
-    -> _RegularExpressionsClientCapabilities
+    -> RegularExpressionsClientCapabilities.t
     -> unit
     [@@js.set "regularExpressions"]
 
-  val get_markdown : t -> _MarkdownClientCapabilities [@@js.get "markdown"]
+  val get_markdown : t -> MarkdownClientCapabilities.t [@@js.get "markdown"]
 
-  val set_markdown : t -> _MarkdownClientCapabilities -> unit
+  val set_markdown : t -> MarkdownClientCapabilities.t -> unit
     [@@js.set "markdown"]
 end
 [@@js.scope "GeneralClientCapabilities"]
 
 module M_ClientCapabilities : sig
   type t =
-    ( _ClientCapabilities
+    ( ClientCapabilities.t
     , WorkspaceFoldersClientCapabilities.t
     , ConfigurationClientCapabilities.t
     , WorkDoneProgressClientCapabilities.t )
@@ -991,24 +1001,25 @@ module M_ClientCapabilities : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_workspace : t -> _WorkspaceClientCapabilities [@@js.get "workspace"]
+  val get_workspace : t -> WorkspaceClientCapabilities.t [@@js.get "workspace"]
 
-  val set_workspace : t -> _WorkspaceClientCapabilities -> unit
+  val set_workspace : t -> WorkspaceClientCapabilities.t -> unit
     [@@js.set "workspace"]
 
-  val get_textDocument : t -> _TextDocumentClientCapabilities
+  val get_text_document : t -> TextDocumentClientCapabilities.t
     [@@js.get "textDocument"]
 
-  val set_textDocument : t -> _TextDocumentClientCapabilities -> unit
+  val set_text_document : t -> TextDocumentClientCapabilities.t -> unit
     [@@js.set "textDocument"]
 
-  val get_window : t -> _WindowClientCapabilities [@@js.get "window"]
+  val get_window : t -> WindowClientCapabilities.t [@@js.get "window"]
 
-  val set_window : t -> _WindowClientCapabilities -> unit [@@js.set "window"]
+  val set_window : t -> WindowClientCapabilities.t -> unit [@@js.set "window"]
 
-  val get_general : t -> _GeneralClientCapabilities [@@js.get "general"]
+  val get_general : t -> GeneralClientCapabilities.t [@@js.get "general"]
 
-  val set_general : t -> _GeneralClientCapabilities -> unit [@@js.set "general"]
+  val set_general : t -> GeneralClientCapabilities.t -> unit
+    [@@js.set "general"]
 
   val get_experimental : t -> untyped_object [@@js.get "experimental"]
 
@@ -1017,7 +1028,7 @@ end
 [@@js.scope "_ClientCapabilities"]
 
 module ClientCapabilities : sig
-  type t = _ClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1025,7 +1036,7 @@ module ClientCapabilities : sig
 end
 
 module StaticRegistrationOptions : sig
-  type t = _StaticRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1038,21 +1049,21 @@ end
 [@@js.scope "StaticRegistrationOptions"]
 
 module StaticRegistrationOptions : sig
-  val hasId : value:untyped_object -> bool [@@js.global "hasId"]
+  val has_id : value:untyped_object -> bool [@@js.global "hasId"]
 end
 [@@js.scope "StaticRegistrationOptions"]
 
 module TextDocumentRegistrationOptions : sig
-  type t = _TextDocumentRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_documentSelector : t -> _DocumentSelector or_null
+  val get_document_selector : t -> DocumentSelector.t or_null
     [@@js.get "documentSelector"]
 
-  val set_documentSelector : t -> _DocumentSelector or_null -> unit
+  val set_document_selector : t -> DocumentSelector.t or_null -> unit
     [@@js.set "documentSelector"]
 end
 [@@js.scope "TextDocumentRegistrationOptions"]
@@ -1063,42 +1074,44 @@ end
 [@@js.scope "TextDocumentRegistrationOptions"]
 
 module SaveOptions : sig
-  type t = _SaveOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_includeText : t -> bool [@@js.get "includeText"]
+  val get_include_text : t -> bool [@@js.get "includeText"]
 
-  val set_includeText : t -> bool -> unit [@@js.set "includeText"]
+  val set_include_text : t -> bool -> unit [@@js.set "includeText"]
 end
 [@@js.scope "SaveOptions"]
 
 module WorkDoneProgressOptions : sig
-  type t = _WorkDoneProgressOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_workDoneProgress : t -> bool [@@js.get "workDoneProgress"]
+  val get_work_done_progress : t -> bool [@@js.get "workDoneProgress"]
 
-  val set_workDoneProgress : t -> bool -> unit [@@js.set "workDoneProgress"]
+  val set_work_done_progress : t -> bool -> unit [@@js.set "workDoneProgress"]
 end
 [@@js.scope "WorkDoneProgressOptions"]
 
 module WorkDoneProgressOptions : sig
   val is : value:any -> bool [@@js.global "is"]
 
-  val hasWorkDoneProgress : value:any -> bool
+  val has_work_done_progress : value:any -> bool
     [@@js.global "hasWorkDoneProgress"]
 end
 [@@js.scope "WorkDoneProgressOptions"]
 
 module M_ServerCapabilities : sig
   type 'T t =
-    ('T _ServerCapabilities, WorkspaceFoldersServerCapabilities.t) intersection2
+    ( 'T ServerCapabilities.t
+    , WorkspaceFoldersServerCapabilities.t )
+    intersection2
 
   val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
@@ -1110,235 +1123,237 @@ module M_ServerCapabilities : sig
 
   val t_0_of_js : Ojs.t -> t_0
 
-  val get_textDocumentSync
+  val get_text_document_sync
     :  'T t
-    -> ( (_TextDocumentSyncKind, _TextDocumentSyncOptions) union2
+    -> ( (TextDocumentSyncKind.t, TextDocumentSyncOptions.t) union2
        , ([ `L_n_0 [@js 0] | `L_n_1 [@js 1] | `L_n_2 [@js 2] ][@js.enum]) )
        or_enum
     [@@js.get "textDocumentSync"]
 
-  val set_textDocumentSync
+  val set_text_document_sync
     :  'T t
-    -> ( (_TextDocumentSyncKind, _TextDocumentSyncOptions) union2
+    -> ( (TextDocumentSyncKind.t, TextDocumentSyncOptions.t) union2
        , ([ `L_n_0 | `L_n_1 | `L_n_2 ][@js.enum]) )
        or_enum
     -> unit
     [@@js.set "textDocumentSync"]
 
-  val get_completionProvider : 'T t -> _CompletionOptions
+  val get_completion_provider : 'T t -> CompletionOptions.t
     [@@js.get "completionProvider"]
 
-  val set_completionProvider : 'T t -> _CompletionOptions -> unit
+  val set_completion_provider : 'T t -> CompletionOptions.t -> unit
     [@@js.set "completionProvider"]
 
-  val get_hoverProvider : 'T t -> _HoverOptions or_boolean
+  val get_hover_provider : 'T t -> HoverOptions.t or_boolean
     [@@js.get "hoverProvider"]
 
-  val set_hoverProvider : 'T t -> _HoverOptions or_boolean -> unit
+  val set_hover_provider : 'T t -> HoverOptions.t or_boolean -> unit
     [@@js.set "hoverProvider"]
 
-  val get_signatureHelpProvider : 'T t -> _SignatureHelpOptions
+  val get_signature_help_provider : 'T t -> SignatureHelpOptions.t
     [@@js.get "signatureHelpProvider"]
 
-  val set_signatureHelpProvider : 'T t -> _SignatureHelpOptions -> unit
+  val set_signature_help_provider : 'T t -> SignatureHelpOptions.t -> unit
     [@@js.set "signatureHelpProvider"]
 
-  val get_declarationProvider
+  val get_declaration_provider
     :  'T t
     -> (DeclarationOptions.t, DeclarationRegistrationOptions.t) union2
        or_boolean
     [@@js.get "declarationProvider"]
 
-  val set_declarationProvider
+  val set_declaration_provider
     :  'T t
     -> (DeclarationOptions.t, DeclarationRegistrationOptions.t) union2
        or_boolean
     -> unit
     [@@js.set "declarationProvider"]
 
-  val get_definitionProvider : 'T t -> _DefinitionOptions or_boolean
+  val get_definition_provider : 'T t -> DefinitionOptions.t or_boolean
     [@@js.get "definitionProvider"]
 
-  val set_definitionProvider : 'T t -> _DefinitionOptions or_boolean -> unit
+  val set_definition_provider : 'T t -> DefinitionOptions.t or_boolean -> unit
     [@@js.set "definitionProvider"]
 
-  val get_typeDefinitionProvider
+  val get_type_definition_provider
     :  'T t
     -> (TypeDefinitionOptions.t, TypeDefinitionRegistrationOptions.t) union2
        or_boolean
     [@@js.get "typeDefinitionProvider"]
 
-  val set_typeDefinitionProvider
+  val set_type_definition_provider
     :  'T t
     -> (TypeDefinitionOptions.t, TypeDefinitionRegistrationOptions.t) union2
        or_boolean
     -> unit
     [@@js.set "typeDefinitionProvider"]
 
-  val get_implementationProvider
+  val get_implementation_provider
     :  'T t
     -> (ImplementationOptions.t, ImplementationRegistrationOptions.t) union2
        or_boolean
     [@@js.get "implementationProvider"]
 
-  val set_implementationProvider
+  val set_implementation_provider
     :  'T t
     -> (ImplementationOptions.t, ImplementationRegistrationOptions.t) union2
        or_boolean
     -> unit
     [@@js.set "implementationProvider"]
 
-  val get_referencesProvider : 'T t -> _ReferenceOptions or_boolean
+  val get_references_provider : 'T t -> ReferenceOptions.t or_boolean
     [@@js.get "referencesProvider"]
 
-  val set_referencesProvider : 'T t -> _ReferenceOptions or_boolean -> unit
+  val set_references_provider : 'T t -> ReferenceOptions.t or_boolean -> unit
     [@@js.set "referencesProvider"]
 
-  val get_documentHighlightProvider
+  val get_document_highlight_provider
     :  'T t
-    -> _DocumentHighlightOptions or_boolean
+    -> DocumentHighlightOptions.t or_boolean
     [@@js.get "documentHighlightProvider"]
 
-  val set_documentHighlightProvider
+  val set_document_highlight_provider
     :  'T t
-    -> _DocumentHighlightOptions or_boolean
+    -> DocumentHighlightOptions.t or_boolean
     -> unit
     [@@js.set "documentHighlightProvider"]
 
-  val get_documentSymbolProvider : 'T t -> _DocumentSymbolOptions or_boolean
+  val get_document_symbol_provider : 'T t -> DocumentSymbolOptions.t or_boolean
     [@@js.get "documentSymbolProvider"]
 
-  val set_documentSymbolProvider
+  val set_document_symbol_provider
     :  'T t
-    -> _DocumentSymbolOptions or_boolean
+    -> DocumentSymbolOptions.t or_boolean
     -> unit
     [@@js.set "documentSymbolProvider"]
 
-  val get_codeActionProvider : 'T t -> _CodeActionOptions or_boolean
+  val get_code_action_provider : 'T t -> CodeActionOptions.t or_boolean
     [@@js.get "codeActionProvider"]
 
-  val set_codeActionProvider : 'T t -> _CodeActionOptions or_boolean -> unit
+  val set_code_action_provider : 'T t -> CodeActionOptions.t or_boolean -> unit
     [@@js.set "codeActionProvider"]
 
-  val get_codeLensProvider : 'T t -> _CodeLensOptions
+  val get_code_lens_provider : 'T t -> CodeLensOptions.t
     [@@js.get "codeLensProvider"]
 
-  val set_codeLensProvider : 'T t -> _CodeLensOptions -> unit
+  val set_code_lens_provider : 'T t -> CodeLensOptions.t -> unit
     [@@js.set "codeLensProvider"]
 
-  val get_documentLinkProvider : 'T t -> _DocumentLinkOptions
+  val get_document_link_provider : 'T t -> DocumentLinkOptions.t
     [@@js.get "documentLinkProvider"]
 
-  val set_documentLinkProvider : 'T t -> _DocumentLinkOptions -> unit
+  val set_document_link_provider : 'T t -> DocumentLinkOptions.t -> unit
     [@@js.set "documentLinkProvider"]
 
-  val get_colorProvider
+  val get_color_provider
     :  'T t
     -> (DocumentColorOptions.t, DocumentColorRegistrationOptions.t) union2
        or_boolean
     [@@js.get "colorProvider"]
 
-  val set_colorProvider
+  val set_color_provider
     :  'T t
     -> (DocumentColorOptions.t, DocumentColorRegistrationOptions.t) union2
        or_boolean
     -> unit
     [@@js.set "colorProvider"]
 
-  val get_workspaceSymbolProvider : 'T t -> _WorkspaceSymbolOptions or_boolean
+  val get_workspace_symbol_provider
+    :  'T t
+    -> WorkspaceSymbolOptions.t or_boolean
     [@@js.get "workspaceSymbolProvider"]
 
-  val set_workspaceSymbolProvider
+  val set_workspace_symbol_provider
     :  'T t
-    -> _WorkspaceSymbolOptions or_boolean
+    -> WorkspaceSymbolOptions.t or_boolean
     -> unit
     [@@js.set "workspaceSymbolProvider"]
 
-  val get_documentFormattingProvider
+  val get_document_formatting_provider
     :  'T t
-    -> _DocumentFormattingOptions or_boolean
+    -> DocumentFormattingOptions.t or_boolean
     [@@js.get "documentFormattingProvider"]
 
-  val set_documentFormattingProvider
+  val set_document_formatting_provider
     :  'T t
-    -> _DocumentFormattingOptions or_boolean
+    -> DocumentFormattingOptions.t or_boolean
     -> unit
     [@@js.set "documentFormattingProvider"]
 
-  val get_documentRangeFormattingProvider
+  val get_document_range_formatting_provider
     :  'T t
-    -> _DocumentRangeFormattingOptions or_boolean
+    -> DocumentRangeFormattingOptions.t or_boolean
     [@@js.get "documentRangeFormattingProvider"]
 
-  val set_documentRangeFormattingProvider
+  val set_document_range_formatting_provider
     :  'T t
-    -> _DocumentRangeFormattingOptions or_boolean
+    -> DocumentRangeFormattingOptions.t or_boolean
     -> unit
     [@@js.set "documentRangeFormattingProvider"]
 
-  val get_documentOnTypeFormattingProvider
+  val get_document_on_type_formatting_provider
     :  'T t
-    -> _DocumentOnTypeFormattingOptions
+    -> DocumentOnTypeFormattingOptions.t
     [@@js.get "documentOnTypeFormattingProvider"]
 
-  val set_documentOnTypeFormattingProvider
+  val set_document_on_type_formatting_provider
     :  'T t
-    -> _DocumentOnTypeFormattingOptions
+    -> DocumentOnTypeFormattingOptions.t
     -> unit
     [@@js.set "documentOnTypeFormattingProvider"]
 
-  val get_renameProvider : 'T t -> _RenameOptions or_boolean
+  val get_rename_provider : 'T t -> RenameOptions.t or_boolean
     [@@js.get "renameProvider"]
 
-  val set_renameProvider : 'T t -> _RenameOptions or_boolean -> unit
+  val set_rename_provider : 'T t -> RenameOptions.t or_boolean -> unit
     [@@js.set "renameProvider"]
 
-  val get_foldingRangeProvider
+  val get_folding_range_provider
     :  'T t
     -> (FoldingRangeOptions.t, FoldingRangeRegistrationOptions.t) union2
        or_boolean
     [@@js.get "foldingRangeProvider"]
 
-  val set_foldingRangeProvider
+  val set_folding_range_provider
     :  'T t
     -> (FoldingRangeOptions.t, FoldingRangeRegistrationOptions.t) union2
        or_boolean
     -> unit
     [@@js.set "foldingRangeProvider"]
 
-  val get_selectionRangeProvider
+  val get_selection_range_provider
     :  'T t
     -> (SelectionRangeOptions.t, SelectionRangeRegistrationOptions.t) union2
        or_boolean
     [@@js.get "selectionRangeProvider"]
 
-  val set_selectionRangeProvider
+  val set_selection_range_provider
     :  'T t
     -> (SelectionRangeOptions.t, SelectionRangeRegistrationOptions.t) union2
        or_boolean
     -> unit
     [@@js.set "selectionRangeProvider"]
 
-  val get_executeCommandProvider : 'T t -> _ExecuteCommandOptions
+  val get_execute_command_provider : 'T t -> ExecuteCommandOptions.t
     [@@js.get "executeCommandProvider"]
 
-  val set_executeCommandProvider : 'T t -> _ExecuteCommandOptions -> unit
+  val set_execute_command_provider : 'T t -> ExecuteCommandOptions.t -> unit
     [@@js.set "executeCommandProvider"]
 
-  val get_callHierarchyProvider
+  val get_call_hierarchy_provider
     :  'T t
     -> (CallHierarchyOptions.t, CallHierarchyRegistrationOptions.t) union2
        or_boolean
     [@@js.get "callHierarchyProvider"]
 
-  val set_callHierarchyProvider
+  val set_call_hierarchy_provider
     :  'T t
     -> (CallHierarchyOptions.t, CallHierarchyRegistrationOptions.t) union2
        or_boolean
     -> unit
     [@@js.set "callHierarchyProvider"]
 
-  val get_linkedEditingRangeProvider
+  val get_linked_editing_range_provider
     :  'T t
     -> ( LinkedEditingRangeOptions.t
        , LinkedEditingRangeRegistrationOptions.t )
@@ -1346,7 +1361,7 @@ module M_ServerCapabilities : sig
        or_boolean
     [@@js.get "linkedEditingRangeProvider"]
 
-  val set_linkedEditingRangeProvider
+  val set_linked_editing_range_provider
     :  'T t
     -> ( LinkedEditingRangeOptions.t
        , LinkedEditingRangeRegistrationOptions.t )
@@ -1355,12 +1370,12 @@ module M_ServerCapabilities : sig
     -> unit
     [@@js.set "linkedEditingRangeProvider"]
 
-  val get_semanticTokensProvider
+  val get_semantic_tokens_provider
     :  'T t
     -> (SemanticTokensOptions.t, SemanticTokensRegistrationOptions.t) union2
     [@@js.get "semanticTokensProvider"]
 
-  val set_semanticTokensProvider
+  val set_semantic_tokens_provider
     :  'T t
     -> (SemanticTokensOptions.t, SemanticTokensRegistrationOptions.t) union2
     -> unit
@@ -1371,12 +1386,12 @@ module M_ServerCapabilities : sig
   val set_workspace : 'T t -> AnonymousInterface5.t -> unit
     [@@js.set "workspace"]
 
-  val get_monikerProvider
+  val get_moniker_provider
     :  'T t
     -> (MonikerOptions.t, MonikerRegistrationOptions.t) union2 or_boolean
     [@@js.get "monikerProvider"]
 
-  val set_monikerProvider
+  val set_moniker_provider
     :  'T t
     -> (MonikerOptions.t, MonikerRegistrationOptions.t) union2 or_boolean
     -> unit
@@ -1389,7 +1404,7 @@ end
 [@@js.scope "_ServerCapabilities"]
 
 module ServerCapabilities : sig
-  type 'T t = 'T _ServerCapabilities
+  type 'T t
 
   val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
@@ -1404,13 +1419,13 @@ end
 
 module InitializeRequest : sig
   val type_
-    : ( ( _InitializeParams
+    : ( ( InitializeParams.t
         , WorkspaceFoldersInitializeParams.t
-        , _WorkDoneProgressParams )
+        , WorkDoneProgressParams.t )
         intersection3
-      , any _InitializeResult
+      , any InitializeResult.t
       , never
-      , _InitializeError
+      , InitializeError.t
       , unit )
       ProtocolRequestType.t
     [@@js.global "type"]
@@ -1418,41 +1433,42 @@ end
 [@@js.scope "InitializeRequest"]
 
 module M_InitializeParams : sig
-  type t = (_InitializeParams, WorkspaceFoldersInitializeParams.t) intersection2
+  type t =
+    (InitializeParams.t, WorkspaceFoldersInitializeParams.t) intersection2
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_processId : t -> Integer.t or_null [@@js.get "processId"]
+  val get_process_id : t -> Integer.t or_null [@@js.get "processId"]
 
-  val set_processId : t -> Integer.t or_null -> unit [@@js.set "processId"]
+  val set_process_id : t -> Integer.t or_null -> unit [@@js.set "processId"]
 
-  val get_clientInfo : t -> AnonymousInterface10.t [@@js.get "clientInfo"]
+  val get_client_info : t -> AnonymousInterface10.t [@@js.get "clientInfo"]
 
-  val set_clientInfo : t -> AnonymousInterface10.t -> unit
+  val set_client_info : t -> AnonymousInterface10.t -> unit
     [@@js.set "clientInfo"]
 
   val get_locale : t -> string [@@js.get "locale"]
 
   val set_locale : t -> string -> unit [@@js.set "locale"]
 
-  val get_rootPath : t -> string or_null [@@js.get "rootPath"]
+  val get_root_path : t -> string or_null [@@js.get "rootPath"]
 
-  val set_rootPath : t -> string or_null -> unit [@@js.set "rootPath"]
+  val set_root_path : t -> string or_null -> unit [@@js.set "rootPath"]
 
-  val get_rootUri : t -> DocumentUri.t or_null [@@js.get "rootUri"]
+  val get_root_uri : t -> DocumentUri.t or_null [@@js.get "rootUri"]
 
-  val set_rootUri : t -> DocumentUri.t or_null -> unit [@@js.set "rootUri"]
+  val set_root_uri : t -> DocumentUri.t or_null -> unit [@@js.set "rootUri"]
 
-  val get_capabilities : t -> _ClientCapabilities [@@js.get "capabilities"]
+  val get_capabilities : t -> ClientCapabilities.t [@@js.get "capabilities"]
 
-  val set_capabilities : t -> _ClientCapabilities -> unit
+  val set_capabilities : t -> ClientCapabilities.t -> unit
     [@@js.set "capabilities"]
 
-  val get_initializationOptions : t -> any [@@js.get "initializationOptions"]
+  val get_initialization_options : t -> any [@@js.get "initializationOptions"]
 
-  val set_initializationOptions : t -> any -> unit
+  val set_initialization_options : t -> any -> unit
     [@@js.set "initializationOptions"]
 
   val get_trace
@@ -1470,12 +1486,12 @@ module M_InitializeParams : sig
     -> unit
     [@@js.set "trace"]
 
-  val cast : t -> _WorkDoneProgressParams [@@js.cast]
+  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
 end
 [@@js.scope "_InitializeParams"]
 
 module InitializeParams : sig
-  type t = _InitializeParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1483,7 +1499,7 @@ module InitializeParams : sig
 end
 
 module InitializeResult : sig
-  type 'T t = 'T _InitializeResult
+  type 'T t
 
   val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
@@ -1495,15 +1511,15 @@ module InitializeResult : sig
 
   val t_0_of_js : Ojs.t -> t_0
 
-  val get_capabilities : 'T t -> 'T _ServerCapabilities
+  val get_capabilities : 'T t -> 'T ServerCapabilities.t
     [@@js.get "capabilities"]
 
-  val set_capabilities : 'T t -> 'T _ServerCapabilities -> unit
+  val set_capabilities : 'T t -> 'T ServerCapabilities.t -> unit
     [@@js.set "capabilities"]
 
-  val get_serverInfo : 'T t -> AnonymousInterface10.t [@@js.get "serverInfo"]
+  val get_server_info : 'T t -> AnonymousInterface10.t [@@js.get "serverInfo"]
 
-  val set_serverInfo : 'T t -> AnonymousInterface10.t -> unit
+  val set_server_info : 'T t -> AnonymousInterface10.t -> unit
     [@@js.set "serverInfo"]
 
   val get : 'T t -> string -> any [@@js.index_get]
@@ -1513,13 +1529,13 @@ end
 [@@js.scope "InitializeResult"]
 
 module InitializeError : sig
-  val unknownProtocolVersion : ([ `L_n_1 [@js 1] ][@js.enum])
+  val unknown_protocol_version : ([ `L_n_1 [@js 1] ][@js.enum])
     [@@js.global "unknownProtocolVersion"]
 end
 [@@js.scope "InitializeError"]
 
 module InitializeError : sig
-  type t = _InitializeError
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1532,7 +1548,7 @@ end
 [@@js.scope "InitializeError"]
 
 module InitializedParams : sig
-  type t = _InitializedParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1540,7 +1556,7 @@ module InitializedParams : sig
 end
 
 module InitializedNotification : sig
-  val type_ : (_InitializedParams, unit) ProtocolNotificationType.t
+  val type_ : (InitializedParams.t, unit) ProtocolNotificationType.t
     [@@js.global "type"]
 end
 [@@js.scope "InitializedNotification"]
@@ -1557,30 +1573,30 @@ end
 [@@js.scope "ExitNotification"]
 
 module DidChangeConfigurationClientCapabilities : sig
-  type t = _DidChangeConfigurationClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 end
 [@@js.scope "DidChangeConfigurationClientCapabilities"]
 
 module DidChangeConfigurationNotification : sig
   val type_
-    : ( _DidChangeConfigurationParams
-      , _DidChangeConfigurationRegistrationOptions )
+    : ( DidChangeConfigurationParams.t
+      , DidChangeConfigurationRegistrationOptions.t )
       ProtocolNotificationType.t
     [@@js.global "type"]
 end
 [@@js.scope "DidChangeConfigurationNotification"]
 
 module DidChangeConfigurationRegistrationOptions : sig
-  type t = _DidChangeConfigurationRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1593,7 +1609,7 @@ end
 [@@js.scope "DidChangeConfigurationRegistrationOptions"]
 
 module DidChangeConfigurationParams : sig
-  type t = _DidChangeConfigurationParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1631,15 +1647,15 @@ module MessageType : sig
 end
 
 module ShowMessageParams : sig
-  type t = _ShowMessageParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_type : t -> _MessageType [@@js.get "type"]
+  val get_type : t -> MessageType.t [@@js.get "type"]
 
-  val set_type : t -> _MessageType -> unit [@@js.set "type"]
+  val set_type : t -> MessageType.t -> unit [@@js.set "type"]
 
   val get_message : t -> string [@@js.get "message"]
 
@@ -1648,28 +1664,28 @@ end
 [@@js.scope "ShowMessageParams"]
 
 module ShowMessageNotification : sig
-  val type_ : (_ShowMessageParams, unit) ProtocolNotificationType.t
+  val type_ : (ShowMessageParams.t, unit) ProtocolNotificationType.t
     [@@js.global "type"]
 end
 [@@js.scope "ShowMessageNotification"]
 
 module ShowMessageRequestClientCapabilities : sig
-  type t = _ShowMessageRequestClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_messageActionItem : t -> AnonymousInterface0.t
+  val get_message_action_item : t -> AnonymousInterface0.t
     [@@js.get "messageActionItem"]
 
-  val set_messageActionItem : t -> AnonymousInterface0.t -> unit
+  val set_message_action_item : t -> AnonymousInterface0.t -> unit
     [@@js.set "messageActionItem"]
 end
 [@@js.scope "ShowMessageRequestClientCapabilities"]
 
 module MessageActionItem : sig
-  type t = _MessageActionItem
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1695,30 +1711,30 @@ end
 [@@js.scope "MessageActionItem"]
 
 module ShowMessageRequestParams : sig
-  type t = _ShowMessageRequestParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_type : t -> _MessageType [@@js.get "type"]
+  val get_type : t -> MessageType.t [@@js.get "type"]
 
-  val set_type : t -> _MessageType -> unit [@@js.set "type"]
+  val set_type : t -> MessageType.t -> unit [@@js.set "type"]
 
   val get_message : t -> string [@@js.get "message"]
 
   val set_message : t -> string -> unit [@@js.set "message"]
 
-  val get_actions : t -> _MessageActionItem list [@@js.get "actions"]
+  val get_actions : t -> MessageActionItem.t list [@@js.get "actions"]
 
-  val set_actions : t -> _MessageActionItem list -> unit [@@js.set "actions"]
+  val set_actions : t -> MessageActionItem.t list -> unit [@@js.set "actions"]
 end
 [@@js.scope "ShowMessageRequestParams"]
 
 module ShowMessageRequest : sig
   val type_
-    : ( _ShowMessageRequestParams
-      , _MessageActionItem or_null
+    : ( ShowMessageRequestParams.t
+      , MessageActionItem.t or_null
       , never
       , unit
       , unit )
@@ -1728,21 +1744,21 @@ end
 [@@js.scope "ShowMessageRequest"]
 
 module LogMessageNotification : sig
-  val type_ : (_LogMessageParams, unit) ProtocolNotificationType.t
+  val type_ : (LogMessageParams.t, unit) ProtocolNotificationType.t
     [@@js.global "type"]
 end
 [@@js.scope "LogMessageNotification"]
 
 module LogMessageParams : sig
-  type t = _LogMessageParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_type : t -> _MessageType [@@js.get "type"]
+  val get_type : t -> MessageType.t [@@js.get "type"]
 
-  val set_type : t -> _MessageType -> unit [@@js.set "type"]
+  val set_type : t -> MessageType.t -> unit [@@js.set "type"]
 
   val get_message : t -> string [@@js.get "message"]
 
@@ -1756,28 +1772,29 @@ end
 [@@js.scope "TelemetryEventNotification"]
 
 module TextDocumentSyncClientCapabilities : sig
-  type t = _TextDocumentSyncClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
-  val get_willSave : t -> bool [@@js.get "willSave"]
+  val get_will_save : t -> bool [@@js.get "willSave"]
 
-  val set_willSave : t -> bool -> unit [@@js.set "willSave"]
+  val set_will_save : t -> bool -> unit [@@js.set "willSave"]
 
-  val get_willSaveWaitUntil : t -> bool [@@js.get "willSaveWaitUntil"]
+  val get_will_save_wait_until : t -> bool [@@js.get "willSaveWaitUntil"]
 
-  val set_willSaveWaitUntil : t -> bool -> unit [@@js.set "willSaveWaitUntil"]
+  val set_will_save_wait_until : t -> bool -> unit
+    [@@js.set "willSaveWaitUntil"]
 
-  val get_didSave : t -> bool [@@js.get "didSave"]
+  val get_did_save : t -> bool [@@js.get "didSave"]
 
-  val set_didSave : t -> bool -> unit [@@js.set "didSave"]
+  val set_did_save : t -> bool -> unit [@@js.set "didSave"]
 end
 [@@js.scope "TextDocumentSyncClientCapabilities"]
 
@@ -1804,44 +1821,45 @@ module TextDocumentSyncKind : sig
 end
 
 module TextDocumentSyncOptions : sig
-  type t = _TextDocumentSyncOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_openClose : t -> bool [@@js.get "openClose"]
+  val get_open_close : t -> bool [@@js.get "openClose"]
 
-  val set_openClose : t -> bool -> unit [@@js.set "openClose"]
+  val set_open_close : t -> bool -> unit [@@js.set "openClose"]
 
-  val get_change : t -> _TextDocumentSyncKind [@@js.get "change"]
+  val get_change : t -> TextDocumentSyncKind.t [@@js.get "change"]
 
-  val set_change : t -> _TextDocumentSyncKind -> unit [@@js.set "change"]
+  val set_change : t -> TextDocumentSyncKind.t -> unit [@@js.set "change"]
 
-  val get_willSave : t -> bool [@@js.get "willSave"]
+  val get_will_save : t -> bool [@@js.get "willSave"]
 
-  val set_willSave : t -> bool -> unit [@@js.set "willSave"]
+  val set_will_save : t -> bool -> unit [@@js.set "willSave"]
 
-  val get_willSaveWaitUntil : t -> bool [@@js.get "willSaveWaitUntil"]
+  val get_will_save_wait_until : t -> bool [@@js.get "willSaveWaitUntil"]
 
-  val set_willSaveWaitUntil : t -> bool -> unit [@@js.set "willSaveWaitUntil"]
+  val set_will_save_wait_until : t -> bool -> unit
+    [@@js.set "willSaveWaitUntil"]
 
-  val get_save : t -> _SaveOptions or_boolean [@@js.get "save"]
+  val get_save : t -> SaveOptions.t or_boolean [@@js.get "save"]
 
-  val set_save : t -> _SaveOptions or_boolean -> unit [@@js.set "save"]
+  val set_save : t -> SaveOptions.t or_boolean -> unit [@@js.set "save"]
 end
 [@@js.scope "TextDocumentSyncOptions"]
 
 module DidOpenTextDocumentParams : sig
-  type t = _DidOpenTextDocumentParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentItem.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentItem.t [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentItem.t -> unit
+  val set_text_document : t -> TextDocumentItem.t -> unit
     [@@js.set "textDocument"]
 end
 [@@js.scope "DidOpenTextDocumentParams"]
@@ -1852,8 +1870,8 @@ module DidOpenTextDocumentNotification : sig
     [@@js.global "method"]
 
   val type_
-    : ( _DidOpenTextDocumentParams
-      , _TextDocumentRegistrationOptions )
+    : ( DidOpenTextDocumentParams.t
+      , TextDocumentRegistrationOptions.t )
       ProtocolNotificationType.t
     [@@js.global "type"]
 end
@@ -1868,47 +1886,47 @@ module TextDocumentContentChangeEvent : sig
 end
 
 module TextDocumentContentChangeEvent : sig
-  val isIncremental : event:_TextDocumentContentChangeEvent -> bool
+  val is_incremental : event:TextDocumentContentChangeEvent.t -> bool
     [@@js.global "isIncremental"]
 
-  val isFull : event:_TextDocumentContentChangeEvent -> bool
+  val is_full : event:TextDocumentContentChangeEvent.t -> bool
     [@@js.global "isFull"]
 end
 [@@js.scope "TextDocumentContentChangeEvent"]
 
 module DidChangeTextDocumentParams : sig
-  type t = _DidChangeTextDocumentParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> VersionedTextDocumentIdentifier.t
+  val get_text_document : t -> VersionedTextDocumentIdentifier.t
     [@@js.get "textDocument"]
 
-  val set_textDocument : t -> VersionedTextDocumentIdentifier.t -> unit
+  val set_text_document : t -> VersionedTextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
-  val get_contentChanges : t -> _TextDocumentContentChangeEvent list
+  val get_content_changes : t -> TextDocumentContentChangeEvent.t list
     [@@js.get "contentChanges"]
 
-  val set_contentChanges : t -> _TextDocumentContentChangeEvent list -> unit
+  val set_content_changes : t -> TextDocumentContentChangeEvent.t list -> unit
     [@@js.set "contentChanges"]
 end
 [@@js.scope "DidChangeTextDocumentParams"]
 
 module TextDocumentChangeRegistrationOptions : sig
-  type t = _TextDocumentChangeRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_syncKind : t -> _TextDocumentSyncKind [@@js.get "syncKind"]
+  val get_sync_kind : t -> TextDocumentSyncKind.t [@@js.get "syncKind"]
 
-  val set_syncKind : t -> _TextDocumentSyncKind -> unit [@@js.set "syncKind"]
+  val set_sync_kind : t -> TextDocumentSyncKind.t -> unit [@@js.set "syncKind"]
 
-  val cast : t -> _TextDocumentRegistrationOptions [@@js.cast]
+  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 end
 [@@js.scope "TextDocumentChangeRegistrationOptions"]
 
@@ -1919,23 +1937,24 @@ module DidChangeTextDocumentNotification : sig
     [@@js.global "method"]
 
   val type_
-    : ( _DidChangeTextDocumentParams
-      , _TextDocumentChangeRegistrationOptions )
+    : ( DidChangeTextDocumentParams.t
+      , TextDocumentChangeRegistrationOptions.t )
       ProtocolNotificationType.t
     [@@js.global "type"]
 end
 [@@js.scope "DidChangeTextDocumentNotification"]
 
 module DidCloseTextDocumentParams : sig
-  type t = _DidCloseTextDocumentParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentIdentifier.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentIdentifier.t
+    [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentIdentifier.t -> unit
+  val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 end
 [@@js.scope "DidCloseTextDocumentParams"]
@@ -1946,23 +1965,24 @@ module DidCloseTextDocumentNotification : sig
     [@@js.global "method"]
 
   val type_
-    : ( _DidCloseTextDocumentParams
-      , _TextDocumentRegistrationOptions )
+    : ( DidCloseTextDocumentParams.t
+      , TextDocumentRegistrationOptions.t )
       ProtocolNotificationType.t
     [@@js.global "type"]
 end
 [@@js.scope "DidCloseTextDocumentNotification"]
 
 module DidSaveTextDocumentParams : sig
-  type t = _DidSaveTextDocumentParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentIdentifier.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentIdentifier.t
+    [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentIdentifier.t -> unit
+  val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
   val get_text : t -> string [@@js.get "text"]
@@ -1972,15 +1992,15 @@ end
 [@@js.scope "DidSaveTextDocumentParams"]
 
 module TextDocumentSaveRegistrationOptions : sig
-  type t = _TextDocumentSaveRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _TextDocumentRegistrationOptions [@@js.cast]
+  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _SaveOptions [@@js.cast]
+  val cast' : t -> SaveOptions.t [@@js.cast]
 end
 [@@js.scope "TextDocumentSaveRegistrationOptions"]
 
@@ -1990,8 +2010,8 @@ module DidSaveTextDocumentNotification : sig
     [@@js.global "method"]
 
   val type_
-    : ( _DidSaveTextDocumentParams
-      , _TextDocumentSaveRegistrationOptions )
+    : ( DidSaveTextDocumentParams.t
+      , TextDocumentSaveRegistrationOptions.t )
       ProtocolNotificationType.t
     [@@js.global "type"]
 end
@@ -2000,9 +2020,9 @@ end
 module TextDocumentSaveReason : sig
   val manual : ([ `L_n_1 [@js 1] ][@js.enum]) [@@js.global "Manual"]
 
-  val afterDelay : ([ `L_n_2 [@js 2] ][@js.enum]) [@@js.global "AfterDelay"]
+  val after_delay : ([ `L_n_2 [@js 2] ][@js.enum]) [@@js.global "AfterDelay"]
 
-  val focusOut : ([ `L_n_3 [@js 3] ][@js.enum]) [@@js.global "FocusOut"]
+  val focus_out : ([ `L_n_3 [@js 3] ][@js.enum]) [@@js.global "FocusOut"]
 end
 [@@js.scope "TextDocumentSaveReason"]
 
@@ -2020,20 +2040,21 @@ module TextDocumentSaveReason : sig
 end
 
 module WillSaveTextDocumentParams : sig
-  type t = _WillSaveTextDocumentParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentIdentifier.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentIdentifier.t
+    [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentIdentifier.t -> unit
+  val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
-  val get_reason : t -> _TextDocumentSaveReason [@@js.get "reason"]
+  val get_reason : t -> TextDocumentSaveReason.t [@@js.get "reason"]
 
-  val set_reason : t -> _TextDocumentSaveReason -> unit [@@js.set "reason"]
+  val set_reason : t -> TextDocumentSaveReason.t -> unit [@@js.set "reason"]
 end
 [@@js.scope "WillSaveTextDocumentParams"]
 
@@ -2043,8 +2064,8 @@ module WillSaveTextDocumentNotification : sig
     [@@js.global "method"]
 
   val type_
-    : ( _WillSaveTextDocumentParams
-      , _TextDocumentRegistrationOptions )
+    : ( WillSaveTextDocumentParams.t
+      , TextDocumentRegistrationOptions.t )
       ProtocolNotificationType.t
     [@@js.global "type"]
 end
@@ -2059,49 +2080,49 @@ module WillSaveTextDocumentWaitUntilRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _WillSaveTextDocumentParams
+    : ( WillSaveTextDocumentParams.t
       , TextEdit.t list or_null
       , never
       , unit
-      , _TextDocumentRegistrationOptions )
+      , TextDocumentRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "WillSaveTextDocumentWaitUntilRequest"]
 
 module DidChangeWatchedFilesClientCapabilities : sig
-  type t = _DidChangeWatchedFilesClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 end
 [@@js.scope "DidChangeWatchedFilesClientCapabilities"]
 
 module DidChangeWatchedFilesNotification : sig
   val type_
-    : ( _DidChangeWatchedFilesParams
-      , _DidChangeWatchedFilesRegistrationOptions )
+    : ( DidChangeWatchedFilesParams.t
+      , DidChangeWatchedFilesRegistrationOptions.t )
       ProtocolNotificationType.t
     [@@js.global "type"]
 end
 [@@js.scope "DidChangeWatchedFilesNotification"]
 
 module DidChangeWatchedFilesParams : sig
-  type t = _DidChangeWatchedFilesParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_changes : t -> _FileEvent list [@@js.get "changes"]
+  val get_changes : t -> FileEvent.t list [@@js.get "changes"]
 
-  val set_changes : t -> _FileEvent list -> unit [@@js.set "changes"]
+  val set_changes : t -> FileEvent.t list -> unit [@@js.set "changes"]
 end
 [@@js.scope "DidChangeWatchedFilesParams"]
 
@@ -2128,7 +2149,7 @@ module FileChangeType : sig
 end
 
 module FileEvent : sig
-  type t = _FileEvent
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -2138,35 +2159,35 @@ module FileEvent : sig
 
   val set_uri : t -> DocumentUri.t -> unit [@@js.set "uri"]
 
-  val get_type : t -> _FileChangeType [@@js.get "type"]
+  val get_type : t -> FileChangeType.t [@@js.get "type"]
 
-  val set_type : t -> _FileChangeType -> unit [@@js.set "type"]
+  val set_type : t -> FileChangeType.t -> unit [@@js.set "type"]
 end
 [@@js.scope "FileEvent"]
 
 module DidChangeWatchedFilesRegistrationOptions : sig
-  type t = _DidChangeWatchedFilesRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_watchers : t -> _FileSystemWatcher list [@@js.get "watchers"]
+  val get_watchers : t -> FileSystemWatcher.t list [@@js.get "watchers"]
 
-  val set_watchers : t -> _FileSystemWatcher list -> unit [@@js.set "watchers"]
+  val set_watchers : t -> FileSystemWatcher.t list -> unit [@@js.set "watchers"]
 end
 [@@js.scope "DidChangeWatchedFilesRegistrationOptions"]
 
 module FileSystemWatcher : sig
-  type t = _FileSystemWatcher
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_globPattern : t -> string [@@js.get "globPattern"]
+  val get_glob_pattern : t -> string [@@js.get "globPattern"]
 
-  val set_globPattern : t -> string -> unit [@@js.set "globPattern"]
+  val set_glob_pattern : t -> string -> unit [@@js.set "globPattern"]
 
   val get_kind : t -> Uinteger.t [@@js.get "kind"]
 
@@ -2184,38 +2205,40 @@ end
 [@@js.scope "WatchKind"]
 
 module PublishDiagnosticsClientCapabilities : sig
-  type t = _PublishDiagnosticsClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_relatedInformation : t -> bool [@@js.get "relatedInformation"]
+  val get_related_information : t -> bool [@@js.get "relatedInformation"]
 
-  val set_relatedInformation : t -> bool -> unit [@@js.set "relatedInformation"]
+  val set_related_information : t -> bool -> unit
+    [@@js.set "relatedInformation"]
 
-  val get_tagSupport : t -> AnonymousInterface19.t [@@js.get "tagSupport"]
+  val get_tag_support : t -> AnonymousInterface19.t [@@js.get "tagSupport"]
 
-  val set_tagSupport : t -> AnonymousInterface19.t -> unit
+  val set_tag_support : t -> AnonymousInterface19.t -> unit
     [@@js.set "tagSupport"]
 
-  val get_versionSupport : t -> bool [@@js.get "versionSupport"]
+  val get_version_support : t -> bool [@@js.get "versionSupport"]
 
-  val set_versionSupport : t -> bool -> unit [@@js.set "versionSupport"]
+  val set_version_support : t -> bool -> unit [@@js.set "versionSupport"]
 
-  val get_codeDescriptionSupport : t -> bool [@@js.get "codeDescriptionSupport"]
+  val get_code_description_support : t -> bool
+    [@@js.get "codeDescriptionSupport"]
 
-  val set_codeDescriptionSupport : t -> bool -> unit
+  val set_code_description_support : t -> bool -> unit
     [@@js.set "codeDescriptionSupport"]
 
-  val get_dataSupport : t -> bool [@@js.get "dataSupport"]
+  val get_data_support : t -> bool [@@js.get "dataSupport"]
 
-  val set_dataSupport : t -> bool -> unit [@@js.set "dataSupport"]
+  val set_data_support : t -> bool -> unit [@@js.set "dataSupport"]
 end
 [@@js.scope "PublishDiagnosticsClientCapabilities"]
 
 module PublishDiagnosticsParams : sig
-  type t = _PublishDiagnosticsParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -2236,53 +2259,53 @@ end
 [@@js.scope "PublishDiagnosticsParams"]
 
 module PublishDiagnosticsNotification : sig
-  val type_ : (_PublishDiagnosticsParams, unit) ProtocolNotificationType.t
+  val type_ : (PublishDiagnosticsParams.t, unit) ProtocolNotificationType.t
     [@@js.global "type"]
 end
 [@@js.scope "PublishDiagnosticsNotification"]
 
 module CompletionClientCapabilities : sig
-  type t = _CompletionClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
-  val get_completionItem : t -> AnonymousInterface14.t
+  val get_completion_item : t -> AnonymousInterface14.t
     [@@js.get "completionItem"]
 
-  val set_completionItem : t -> AnonymousInterface14.t -> unit
+  val set_completion_item : t -> AnonymousInterface14.t -> unit
     [@@js.set "completionItem"]
 
-  val get_completionItemKind : t -> AnonymousInterface17.t
+  val get_completion_item_kind : t -> AnonymousInterface17.t
     [@@js.get "completionItemKind"]
 
-  val set_completionItemKind : t -> AnonymousInterface17.t -> unit
+  val set_completion_item_kind : t -> AnonymousInterface17.t -> unit
     [@@js.set "completionItemKind"]
 
-  val get_insertTextMode : t -> InsertTextMode.t [@@js.get "insertTextMode"]
+  val get_insert_text_mode : t -> InsertTextMode.t [@@js.get "insertTextMode"]
 
-  val set_insertTextMode : t -> InsertTextMode.t -> unit
+  val set_insert_text_mode : t -> InsertTextMode.t -> unit
     [@@js.set "insertTextMode"]
 
-  val get_contextSupport : t -> bool [@@js.get "contextSupport"]
+  val get_context_support : t -> bool [@@js.get "contextSupport"]
 
-  val set_contextSupport : t -> bool -> unit [@@js.set "contextSupport"]
+  val set_context_support : t -> bool -> unit [@@js.set "contextSupport"]
 end
 [@@js.scope "CompletionClientCapabilities"]
 
 module CompletionTriggerKind : sig
   val invoked : ([ `L_n_1 [@js 1] ][@js.enum]) [@@js.global "Invoked"]
 
-  val triggerCharacter : ([ `L_n_2 [@js 2] ][@js.enum])
+  val trigger_character : ([ `L_n_2 [@js 2] ][@js.enum])
     [@@js.global "TriggerCharacter"]
 
-  val triggerForIncompleteCompletions : ([ `L_n_3 [@js 3] ][@js.enum])
+  val trigger_for_incomplete_completions : ([ `L_n_3 [@js 3] ][@js.enum])
     [@@js.global "TriggerForIncompleteCompletions"]
 end
 [@@js.scope "CompletionTriggerKind"]
@@ -2301,84 +2324,84 @@ module CompletionTriggerKind : sig
 end
 
 module CompletionContext : sig
-  type t = _CompletionContext
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_triggerKind : t -> _CompletionTriggerKind [@@js.get "triggerKind"]
+  val get_trigger_kind : t -> CompletionTriggerKind.t [@@js.get "triggerKind"]
 
-  val set_triggerKind : t -> _CompletionTriggerKind -> unit
+  val set_trigger_kind : t -> CompletionTriggerKind.t -> unit
     [@@js.set "triggerKind"]
 
-  val get_triggerCharacter : t -> string [@@js.get "triggerCharacter"]
+  val get_trigger_character : t -> string [@@js.get "triggerCharacter"]
 
-  val set_triggerCharacter : t -> string -> unit [@@js.set "triggerCharacter"]
+  val set_trigger_character : t -> string -> unit [@@js.set "triggerCharacter"]
 end
 [@@js.scope "CompletionContext"]
 
 module CompletionParams : sig
-  type t = _CompletionParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_context : t -> _CompletionContext [@@js.get "context"]
+  val get_context : t -> CompletionContext.t [@@js.get "context"]
 
-  val set_context : t -> _CompletionContext -> unit [@@js.set "context"]
+  val set_context : t -> CompletionContext.t -> unit [@@js.set "context"]
 
-  val cast : t -> _TextDocumentPositionParams [@@js.cast]
+  val cast : t -> TextDocumentPositionParams.t [@@js.cast]
 
-  val cast' : t -> _WorkDoneProgressParams [@@js.cast]
+  val cast' : t -> WorkDoneProgressParams.t [@@js.cast]
 
-  val cast'' : t -> _PartialResultParams [@@js.cast]
+  val cast'' : t -> PartialResultParams.t [@@js.cast]
 end
 [@@js.scope "CompletionParams"]
 
 module CompletionOptions : sig
-  type t = _CompletionOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_triggerCharacters : t -> string list [@@js.get "triggerCharacters"]
+  val get_trigger_characters : t -> string list [@@js.get "triggerCharacters"]
 
-  val set_triggerCharacters : t -> string list -> unit
+  val set_trigger_characters : t -> string list -> unit
     [@@js.set "triggerCharacters"]
 
-  val get_allCommitCharacters : t -> string list
+  val get_all_commit_characters : t -> string list
     [@@js.get "allCommitCharacters"]
 
-  val set_allCommitCharacters : t -> string list -> unit
+  val set_all_commit_characters : t -> string list -> unit
     [@@js.set "allCommitCharacters"]
 
-  val get_resolveProvider : t -> bool [@@js.get "resolveProvider"]
+  val get_resolve_provider : t -> bool [@@js.get "resolveProvider"]
 
-  val set_resolveProvider : t -> bool -> unit [@@js.set "resolveProvider"]
+  val set_resolve_provider : t -> bool -> unit [@@js.set "resolveProvider"]
 
-  val get_completionItem : t -> AnonymousInterface7.t
+  val get_completion_item : t -> AnonymousInterface7.t
     [@@js.get "completionItem"]
 
-  val set_completionItem : t -> AnonymousInterface7.t -> unit
+  val set_completion_item : t -> AnonymousInterface7.t -> unit
     [@@js.set "completionItem"]
 
-  val cast : t -> _WorkDoneProgressOptions [@@js.cast]
+  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
 end
 [@@js.scope "CompletionOptions"]
 
 module CompletionRegistrationOptions : sig
-  type t = _CompletionRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _TextDocumentRegistrationOptions [@@js.cast]
+  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _CompletionOptions [@@js.cast]
+  val cast' : t -> CompletionOptions.t [@@js.cast]
 end
 [@@js.scope "CompletionRegistrationOptions"]
 
@@ -2389,11 +2412,11 @@ module CompletionRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _CompletionParams
+    : ( CompletionParams.t
       , (CompletionList.t, CompletionItem.t) or_array or_null
       , CompletionItem.t list
       , unit
-      , _CompletionRegistrationOptions )
+      , CompletionRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 end
@@ -2417,58 +2440,58 @@ end
 [@@js.scope "CompletionResolveRequest"]
 
 module HoverClientCapabilities : sig
-  type t = _HoverClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
-  val get_contentFormat : t -> MarkupKind.t list [@@js.get "contentFormat"]
+  val get_content_format : t -> MarkupKind.t list [@@js.get "contentFormat"]
 
-  val set_contentFormat : t -> MarkupKind.t list -> unit
+  val set_content_format : t -> MarkupKind.t list -> unit
     [@@js.set "contentFormat"]
 end
 [@@js.scope "HoverClientCapabilities"]
 
 module HoverOptions : sig
-  type t = _HoverOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _WorkDoneProgressOptions [@@js.cast]
+  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
 end
 [@@js.scope "HoverOptions"]
 
 module HoverParams : sig
-  type t = _HoverParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _TextDocumentPositionParams [@@js.cast]
+  val cast : t -> TextDocumentPositionParams.t [@@js.cast]
 
-  val cast' : t -> _WorkDoneProgressParams [@@js.cast]
+  val cast' : t -> WorkDoneProgressParams.t [@@js.cast]
 end
 [@@js.scope "HoverParams"]
 
 module HoverRegistrationOptions : sig
-  type t = _HoverRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _TextDocumentRegistrationOptions [@@js.cast]
+  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _HoverOptions [@@js.cast]
+  val cast' : t -> HoverOptions.t [@@js.cast]
 end
 [@@js.scope "HoverRegistrationOptions"]
 
@@ -2478,69 +2501,69 @@ module HoverRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _HoverParams
+    : ( HoverParams.t
       , Hover.t or_null
       , never
       , unit
-      , _HoverRegistrationOptions )
+      , HoverRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "HoverRequest"]
 
 module SignatureHelpClientCapabilities : sig
-  type t = _SignatureHelpClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
-  val get_signatureInformation : t -> AnonymousInterface4.t
+  val get_signature_information : t -> AnonymousInterface4.t
     [@@js.get "signatureInformation"]
 
-  val set_signatureInformation : t -> AnonymousInterface4.t -> unit
+  val set_signature_information : t -> AnonymousInterface4.t -> unit
     [@@js.set "signatureInformation"]
 
-  val get_contextSupport : t -> bool [@@js.get "contextSupport"]
+  val get_context_support : t -> bool [@@js.get "contextSupport"]
 
-  val set_contextSupport : t -> bool -> unit [@@js.set "contextSupport"]
+  val set_context_support : t -> bool -> unit [@@js.set "contextSupport"]
 end
 [@@js.scope "SignatureHelpClientCapabilities"]
 
 module SignatureHelpOptions : sig
-  type t = _SignatureHelpOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_triggerCharacters : t -> string list [@@js.get "triggerCharacters"]
+  val get_trigger_characters : t -> string list [@@js.get "triggerCharacters"]
 
-  val set_triggerCharacters : t -> string list -> unit
+  val set_trigger_characters : t -> string list -> unit
     [@@js.set "triggerCharacters"]
 
-  val get_retriggerCharacters : t -> string list
+  val get_retrigger_characters : t -> string list
     [@@js.get "retriggerCharacters"]
 
-  val set_retriggerCharacters : t -> string list -> unit
+  val set_retrigger_characters : t -> string list -> unit
     [@@js.set "retriggerCharacters"]
 
-  val cast : t -> _WorkDoneProgressOptions [@@js.cast]
+  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
 end
 [@@js.scope "SignatureHelpOptions"]
 
 module SignatureHelpTriggerKind : sig
   val invoked : ([ `L_n_1 [@js 1] ][@js.enum]) [@@js.global "Invoked"]
 
-  val triggerCharacter : ([ `L_n_2 [@js 2] ][@js.enum])
+  val trigger_character : ([ `L_n_2 [@js 2] ][@js.enum])
     [@@js.global "TriggerCharacter"]
 
-  val contentChange : ([ `L_n_3 [@js 3] ][@js.enum])
+  val content_change : ([ `L_n_3 [@js 3] ][@js.enum])
     [@@js.global "ContentChange"]
 end
 [@@js.scope "SignatureHelpTriggerKind"]
@@ -2559,60 +2582,61 @@ module SignatureHelpTriggerKind : sig
 end
 
 module SignatureHelpContext : sig
-  type t = _SignatureHelpContext
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_triggerKind : t -> _SignatureHelpTriggerKind [@@js.get "triggerKind"]
+  val get_trigger_kind : t -> SignatureHelpTriggerKind.t
+    [@@js.get "triggerKind"]
 
-  val set_triggerKind : t -> _SignatureHelpTriggerKind -> unit
+  val set_trigger_kind : t -> SignatureHelpTriggerKind.t -> unit
     [@@js.set "triggerKind"]
 
-  val get_triggerCharacter : t -> string [@@js.get "triggerCharacter"]
+  val get_trigger_character : t -> string [@@js.get "triggerCharacter"]
 
-  val set_triggerCharacter : t -> string -> unit [@@js.set "triggerCharacter"]
+  val set_trigger_character : t -> string -> unit [@@js.set "triggerCharacter"]
 
-  val get_isRetrigger : t -> bool [@@js.get "isRetrigger"]
+  val get_is_retrigger : t -> bool [@@js.get "isRetrigger"]
 
-  val set_isRetrigger : t -> bool -> unit [@@js.set "isRetrigger"]
+  val set_is_retrigger : t -> bool -> unit [@@js.set "isRetrigger"]
 
-  val get_activeSignatureHelp : t -> SignatureHelp.t
+  val get_active_signature_help : t -> SignatureHelp.t
     [@@js.get "activeSignatureHelp"]
 
-  val set_activeSignatureHelp : t -> SignatureHelp.t -> unit
+  val set_active_signature_help : t -> SignatureHelp.t -> unit
     [@@js.set "activeSignatureHelp"]
 end
 [@@js.scope "SignatureHelpContext"]
 
 module SignatureHelpParams : sig
-  type t = _SignatureHelpParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_context : t -> _SignatureHelpContext [@@js.get "context"]
+  val get_context : t -> SignatureHelpContext.t [@@js.get "context"]
 
-  val set_context : t -> _SignatureHelpContext -> unit [@@js.set "context"]
+  val set_context : t -> SignatureHelpContext.t -> unit [@@js.set "context"]
 
-  val cast : t -> _TextDocumentPositionParams [@@js.cast]
+  val cast : t -> TextDocumentPositionParams.t [@@js.cast]
 
-  val cast' : t -> _WorkDoneProgressParams [@@js.cast]
+  val cast' : t -> WorkDoneProgressParams.t [@@js.cast]
 end
 [@@js.scope "SignatureHelpParams"]
 
 module SignatureHelpRegistrationOptions : sig
-  type t = _SignatureHelpRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _TextDocumentRegistrationOptions [@@js.cast]
+  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _SignatureHelpOptions [@@js.cast]
+  val cast' : t -> SignatureHelpOptions.t [@@js.cast]
 end
 [@@js.scope "SignatureHelpRegistrationOptions"]
 
@@ -2623,70 +2647,70 @@ module SignatureHelpRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _SignatureHelpParams
+    : ( SignatureHelpParams.t
       , SignatureHelp.t or_null
       , never
       , unit
-      , _SignatureHelpRegistrationOptions )
+      , SignatureHelpRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "SignatureHelpRequest"]
 
 module DefinitionClientCapabilities : sig
-  type t = _DefinitionClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
-  val get_linkSupport : t -> bool [@@js.get "linkSupport"]
+  val get_link_support : t -> bool [@@js.get "linkSupport"]
 
-  val set_linkSupport : t -> bool -> unit [@@js.set "linkSupport"]
+  val set_link_support : t -> bool -> unit [@@js.set "linkSupport"]
 end
 [@@js.scope "DefinitionClientCapabilities"]
 
 module DefinitionOptions : sig
-  type t = _DefinitionOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _WorkDoneProgressOptions [@@js.cast]
+  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
 end
 [@@js.scope "DefinitionOptions"]
 
 module DefinitionParams : sig
-  type t = _DefinitionParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _TextDocumentPositionParams [@@js.cast]
+  val cast : t -> TextDocumentPositionParams.t [@@js.cast]
 
-  val cast' : t -> _WorkDoneProgressParams [@@js.cast]
+  val cast' : t -> WorkDoneProgressParams.t [@@js.cast]
 
-  val cast'' : t -> _PartialResultParams [@@js.cast]
+  val cast'' : t -> PartialResultParams.t [@@js.cast]
 end
 [@@js.scope "DefinitionParams"]
 
 module DefinitionRegistrationOptions : sig
-  type t = _DefinitionRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _TextDocumentRegistrationOptions [@@js.cast]
+  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _DefinitionOptions [@@js.cast]
+  val cast' : t -> DefinitionOptions.t [@@js.cast]
 end
 [@@js.scope "DefinitionRegistrationOptions"]
 
@@ -2697,32 +2721,32 @@ module DefinitionRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _DefinitionParams
+    : ( DefinitionParams.t
       , (Location.t, (Location.t, LocationLink.t) union2) or_array or_null
       , (Location.t, LocationLink.t) union2 list
       , unit
-      , _DefinitionRegistrationOptions )
+      , DefinitionRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "DefinitionRequest"]
 
 module ReferenceClientCapabilities : sig
-  type t = _ReferenceClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 end
 [@@js.scope "ReferenceClientCapabilities"]
 
 module ReferenceParams : sig
-  type t = _ReferenceParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -2732,35 +2756,35 @@ module ReferenceParams : sig
 
   val set_context : t -> ReferenceContext.t -> unit [@@js.set "context"]
 
-  val cast : t -> _TextDocumentPositionParams [@@js.cast]
+  val cast : t -> TextDocumentPositionParams.t [@@js.cast]
 
-  val cast' : t -> _WorkDoneProgressParams [@@js.cast]
+  val cast' : t -> WorkDoneProgressParams.t [@@js.cast]
 
-  val cast'' : t -> _PartialResultParams [@@js.cast]
+  val cast'' : t -> PartialResultParams.t [@@js.cast]
 end
 [@@js.scope "ReferenceParams"]
 
 module ReferenceOptions : sig
-  type t = _ReferenceOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _WorkDoneProgressOptions [@@js.cast]
+  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
 end
 [@@js.scope "ReferenceOptions"]
 
 module ReferenceRegistrationOptions : sig
-  type t = _ReferenceRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _TextDocumentRegistrationOptions [@@js.cast]
+  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _ReferenceOptions [@@js.cast]
+  val cast' : t -> ReferenceOptions.t [@@js.cast]
 end
 [@@js.scope "ReferenceRegistrationOptions"]
 
@@ -2771,66 +2795,66 @@ module ReferencesRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _ReferenceParams
+    : ( ReferenceParams.t
       , Location.t list or_null
       , Location.t list
       , unit
-      , _ReferenceRegistrationOptions )
+      , ReferenceRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "ReferencesRequest"]
 
 module DocumentHighlightClientCapabilities : sig
-  type t = _DocumentHighlightClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 end
 [@@js.scope "DocumentHighlightClientCapabilities"]
 
 module DocumentHighlightParams : sig
-  type t = _DocumentHighlightParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _TextDocumentPositionParams [@@js.cast]
+  val cast : t -> TextDocumentPositionParams.t [@@js.cast]
 
-  val cast' : t -> _WorkDoneProgressParams [@@js.cast]
+  val cast' : t -> WorkDoneProgressParams.t [@@js.cast]
 
-  val cast'' : t -> _PartialResultParams [@@js.cast]
+  val cast'' : t -> PartialResultParams.t [@@js.cast]
 end
 [@@js.scope "DocumentHighlightParams"]
 
 module DocumentHighlightOptions : sig
-  type t = _DocumentHighlightOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _WorkDoneProgressOptions [@@js.cast]
+  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
 end
 [@@js.scope "DocumentHighlightOptions"]
 
 module DocumentHighlightRegistrationOptions : sig
-  type t = _DocumentHighlightRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _TextDocumentRegistrationOptions [@@js.cast]
+  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _DocumentHighlightOptions [@@js.cast]
+  val cast' : t -> DocumentHighlightOptions.t [@@js.cast]
 end
 [@@js.scope "DocumentHighlightRegistrationOptions"]
 
@@ -2843,70 +2867,71 @@ module DocumentHighlightRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _DocumentHighlightParams
+    : ( DocumentHighlightParams.t
       , DocumentHighlight.t list or_null
       , DocumentHighlight.t list
       , unit
-      , _DocumentHighlightRegistrationOptions )
+      , DocumentHighlightRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "DocumentHighlightRequest"]
 
 module DocumentSymbolClientCapabilities : sig
-  type t = _DocumentSymbolClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
-  val get_symbolKind : t -> AnonymousInterface21.t [@@js.get "symbolKind"]
+  val get_symbol_kind : t -> AnonymousInterface21.t [@@js.get "symbolKind"]
 
-  val set_symbolKind : t -> AnonymousInterface21.t -> unit
+  val set_symbol_kind : t -> AnonymousInterface21.t -> unit
     [@@js.set "symbolKind"]
 
-  val get_hierarchicalDocumentSymbolSupport : t -> bool
+  val get_hierarchical_document_symbol_support : t -> bool
     [@@js.get "hierarchicalDocumentSymbolSupport"]
 
-  val set_hierarchicalDocumentSymbolSupport : t -> bool -> unit
+  val set_hierarchical_document_symbol_support : t -> bool -> unit
     [@@js.set "hierarchicalDocumentSymbolSupport"]
 
-  val get_tagSupport : t -> AnonymousInterface22.t [@@js.get "tagSupport"]
+  val get_tag_support : t -> AnonymousInterface22.t [@@js.get "tagSupport"]
 
-  val set_tagSupport : t -> AnonymousInterface22.t -> unit
+  val set_tag_support : t -> AnonymousInterface22.t -> unit
     [@@js.set "tagSupport"]
 
-  val get_labelSupport : t -> bool [@@js.get "labelSupport"]
+  val get_label_support : t -> bool [@@js.get "labelSupport"]
 
-  val set_labelSupport : t -> bool -> unit [@@js.set "labelSupport"]
+  val set_label_support : t -> bool -> unit [@@js.set "labelSupport"]
 end
 [@@js.scope "DocumentSymbolClientCapabilities"]
 
 module DocumentSymbolParams : sig
-  type t = _DocumentSymbolParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentIdentifier.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentIdentifier.t
+    [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentIdentifier.t -> unit
+  val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
-  val cast : t -> _WorkDoneProgressParams [@@js.cast]
+  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
 
-  val cast' : t -> _PartialResultParams [@@js.cast]
+  val cast' : t -> PartialResultParams.t [@@js.cast]
 end
 [@@js.scope "DocumentSymbolParams"]
 
 module DocumentSymbolOptions : sig
-  type t = _DocumentSymbolOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -2916,20 +2941,20 @@ module DocumentSymbolOptions : sig
 
   val set_label : t -> string -> unit [@@js.set "label"]
 
-  val cast : t -> _WorkDoneProgressOptions [@@js.cast]
+  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
 end
 [@@js.scope "DocumentSymbolOptions"]
 
 module DocumentSymbolRegistrationOptions : sig
-  type t = _DocumentSymbolRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _TextDocumentRegistrationOptions [@@js.cast]
+  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _DocumentSymbolOptions [@@js.cast]
+  val cast' : t -> DocumentSymbolOptions.t [@@js.cast]
 end
 [@@js.scope "DocumentSymbolRegistrationOptions"]
 
@@ -2941,70 +2966,72 @@ module DocumentSymbolRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _DocumentSymbolParams
+    : ( DocumentSymbolParams.t
       , (DocumentSymbol.t, SymbolInformation.t) union2 list or_null
       , (DocumentSymbol.t, SymbolInformation.t) union2 list
       , unit
-      , _DocumentSymbolRegistrationOptions )
+      , DocumentSymbolRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "DocumentSymbolRequest"]
 
 module CodeActionClientCapabilities : sig
-  type t = _CodeActionClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
-  val get_codeActionLiteralSupport : t -> AnonymousInterface2.t
+  val get_code_action_literal_support : t -> AnonymousInterface2.t
     [@@js.get "codeActionLiteralSupport"]
 
-  val set_codeActionLiteralSupport : t -> AnonymousInterface2.t -> unit
+  val set_code_action_literal_support : t -> AnonymousInterface2.t -> unit
     [@@js.set "codeActionLiteralSupport"]
 
-  val get_isPreferredSupport : t -> bool [@@js.get "isPreferredSupport"]
+  val get_is_preferred_support : t -> bool [@@js.get "isPreferredSupport"]
 
-  val set_isPreferredSupport : t -> bool -> unit [@@js.set "isPreferredSupport"]
+  val set_is_preferred_support : t -> bool -> unit
+    [@@js.set "isPreferredSupport"]
 
-  val get_disabledSupport : t -> bool [@@js.get "disabledSupport"]
+  val get_disabled_support : t -> bool [@@js.get "disabledSupport"]
 
-  val set_disabledSupport : t -> bool -> unit [@@js.set "disabledSupport"]
+  val set_disabled_support : t -> bool -> unit [@@js.set "disabledSupport"]
 
-  val get_dataSupport : t -> bool [@@js.get "dataSupport"]
+  val get_data_support : t -> bool [@@js.get "dataSupport"]
 
-  val set_dataSupport : t -> bool -> unit [@@js.set "dataSupport"]
+  val set_data_support : t -> bool -> unit [@@js.set "dataSupport"]
 
-  val get_resolveSupport : t -> AnonymousInterface11.t
+  val get_resolve_support : t -> AnonymousInterface11.t
     [@@js.get "resolveSupport"]
 
-  val set_resolveSupport : t -> AnonymousInterface11.t -> unit
+  val set_resolve_support : t -> AnonymousInterface11.t -> unit
     [@@js.set "resolveSupport"]
 
-  val get_honorsChangeAnnotations : t -> bool
+  val get_honors_change_annotations : t -> bool
     [@@js.get "honorsChangeAnnotations"]
 
-  val set_honorsChangeAnnotations : t -> bool -> unit
+  val set_honors_change_annotations : t -> bool -> unit
     [@@js.set "honorsChangeAnnotations"]
 end
 [@@js.scope "CodeActionClientCapabilities"]
 
 module CodeActionParams : sig
-  type t = _CodeActionParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentIdentifier.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentIdentifier.t
+    [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentIdentifier.t -> unit
+  val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
   val get_range : t -> Range.t [@@js.get "range"]
@@ -3015,43 +3042,43 @@ module CodeActionParams : sig
 
   val set_context : t -> CodeActionContext.t -> unit [@@js.set "context"]
 
-  val cast : t -> _WorkDoneProgressParams [@@js.cast]
+  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
 
-  val cast' : t -> _PartialResultParams [@@js.cast]
+  val cast' : t -> PartialResultParams.t [@@js.cast]
 end
 [@@js.scope "CodeActionParams"]
 
 module CodeActionOptions : sig
-  type t = _CodeActionOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_codeActionKinds : t -> CodeActionKind.t list
+  val get_code_action_kinds : t -> CodeActionKind.t list
     [@@js.get "codeActionKinds"]
 
-  val set_codeActionKinds : t -> CodeActionKind.t list -> unit
+  val set_code_action_kinds : t -> CodeActionKind.t list -> unit
     [@@js.set "codeActionKinds"]
 
-  val get_resolveProvider : t -> bool [@@js.get "resolveProvider"]
+  val get_resolve_provider : t -> bool [@@js.get "resolveProvider"]
 
-  val set_resolveProvider : t -> bool -> unit [@@js.set "resolveProvider"]
+  val set_resolve_provider : t -> bool -> unit [@@js.set "resolveProvider"]
 
-  val cast : t -> _WorkDoneProgressOptions [@@js.cast]
+  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
 end
 [@@js.scope "CodeActionOptions"]
 
 module CodeActionRegistrationOptions : sig
-  type t = _CodeActionRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _TextDocumentRegistrationOptions [@@js.cast]
+  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _CodeActionOptions [@@js.cast]
+  val cast' : t -> CodeActionOptions.t [@@js.cast]
 end
 [@@js.scope "CodeActionRegistrationOptions"]
 
@@ -3062,11 +3089,11 @@ module CodeActionRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _CodeActionParams
+    : ( CodeActionParams.t
       , (CodeAction.t, Command.t) union2 list or_null
       , (CodeAction.t, Command.t) union2 list
       , unit
-      , _CodeActionRegistrationOptions )
+      , CodeActionRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 end
@@ -3084,31 +3111,31 @@ end
 [@@js.scope "CodeActionResolveRequest"]
 
 module WorkspaceSymbolClientCapabilities : sig
-  type t = _WorkspaceSymbolClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
-  val get_symbolKind : t -> AnonymousInterface21.t [@@js.get "symbolKind"]
+  val get_symbol_kind : t -> AnonymousInterface21.t [@@js.get "symbolKind"]
 
-  val set_symbolKind : t -> AnonymousInterface21.t -> unit
+  val set_symbol_kind : t -> AnonymousInterface21.t -> unit
     [@@js.set "symbolKind"]
 
-  val get_tagSupport : t -> AnonymousInterface22.t [@@js.get "tagSupport"]
+  val get_tag_support : t -> AnonymousInterface22.t [@@js.get "tagSupport"]
 
-  val set_tagSupport : t -> AnonymousInterface22.t -> unit
+  val set_tag_support : t -> AnonymousInterface22.t -> unit
     [@@js.set "tagSupport"]
 end
 [@@js.scope "WorkspaceSymbolClientCapabilities"]
 
 module WorkspaceSymbolParams : sig
-  type t = _WorkspaceSymbolParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -3118,31 +3145,31 @@ module WorkspaceSymbolParams : sig
 
   val set_query : t -> string -> unit [@@js.set "query"]
 
-  val cast : t -> _WorkDoneProgressParams [@@js.cast]
+  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
 
-  val cast' : t -> _PartialResultParams [@@js.cast]
+  val cast' : t -> PartialResultParams.t [@@js.cast]
 end
 [@@js.scope "WorkspaceSymbolParams"]
 
 module WorkspaceSymbolOptions : sig
-  type t = _WorkspaceSymbolOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _WorkDoneProgressOptions [@@js.cast]
+  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
 end
 [@@js.scope "WorkspaceSymbolOptions"]
 
 module WorkspaceSymbolRegistrationOptions : sig
-  type t = _WorkspaceSymbolRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _WorkspaceSymbolOptions [@@js.cast]
+  val cast : t -> WorkspaceSymbolOptions.t [@@js.cast]
 end
 [@@js.scope "WorkspaceSymbolRegistrationOptions"]
 
@@ -3151,86 +3178,87 @@ module WorkspaceSymbolRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _WorkspaceSymbolParams
+    : ( WorkspaceSymbolParams.t
       , SymbolInformation.t list or_null
       , SymbolInformation.t list
       , unit
-      , _WorkspaceSymbolRegistrationOptions )
+      , WorkspaceSymbolRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "WorkspaceSymbolRequest"]
 
 module CodeLensClientCapabilities : sig
-  type t = _CodeLensClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 end
 [@@js.scope "CodeLensClientCapabilities"]
 
 module CodeLensWorkspaceClientCapabilities : sig
-  type t = _CodeLensWorkspaceClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_refreshSupport : t -> bool [@@js.get "refreshSupport"]
+  val get_refresh_support : t -> bool [@@js.get "refreshSupport"]
 
-  val set_refreshSupport : t -> bool -> unit [@@js.set "refreshSupport"]
+  val set_refresh_support : t -> bool -> unit [@@js.set "refreshSupport"]
 end
 [@@js.scope "CodeLensWorkspaceClientCapabilities"]
 
 module CodeLensParams : sig
-  type t = _CodeLensParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentIdentifier.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentIdentifier.t
+    [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentIdentifier.t -> unit
+  val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
-  val cast : t -> _WorkDoneProgressParams [@@js.cast]
+  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
 
-  val cast' : t -> _PartialResultParams [@@js.cast]
+  val cast' : t -> PartialResultParams.t [@@js.cast]
 end
 [@@js.scope "CodeLensParams"]
 
 module CodeLensOptions : sig
-  type t = _CodeLensOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_resolveProvider : t -> bool [@@js.get "resolveProvider"]
+  val get_resolve_provider : t -> bool [@@js.get "resolveProvider"]
 
-  val set_resolveProvider : t -> bool -> unit [@@js.set "resolveProvider"]
+  val set_resolve_provider : t -> bool -> unit [@@js.set "resolveProvider"]
 
-  val cast : t -> _WorkDoneProgressOptions [@@js.cast]
+  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
 end
 [@@js.scope "CodeLensOptions"]
 
 module CodeLensRegistrationOptions : sig
-  type t = _CodeLensRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _TextDocumentRegistrationOptions [@@js.cast]
+  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _CodeLensOptions [@@js.cast]
+  val cast' : t -> CodeLensOptions.t [@@js.cast]
 end
 [@@js.scope "CodeLensRegistrationOptions"]
 
@@ -3240,11 +3268,11 @@ module CodeLensRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _CodeLensParams
+    : ( CodeLensParams.t
       , CodeLens.t list or_null
       , CodeLens.t list
       , unit
-      , _CodeLensRegistrationOptions )
+      , CodeLensRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 end
@@ -3269,66 +3297,67 @@ end
 [@@js.scope "CodeLensRefreshRequest"]
 
 module DocumentLinkClientCapabilities : sig
-  type t = _DocumentLinkClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
-  val get_tooltipSupport : t -> bool [@@js.get "tooltipSupport"]
+  val get_tooltip_support : t -> bool [@@js.get "tooltipSupport"]
 
-  val set_tooltipSupport : t -> bool -> unit [@@js.set "tooltipSupport"]
+  val set_tooltip_support : t -> bool -> unit [@@js.set "tooltipSupport"]
 end
 [@@js.scope "DocumentLinkClientCapabilities"]
 
 module DocumentLinkParams : sig
-  type t = _DocumentLinkParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentIdentifier.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentIdentifier.t
+    [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentIdentifier.t -> unit
+  val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
-  val cast : t -> _WorkDoneProgressParams [@@js.cast]
+  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
 
-  val cast' : t -> _PartialResultParams [@@js.cast]
+  val cast' : t -> PartialResultParams.t [@@js.cast]
 end
 [@@js.scope "DocumentLinkParams"]
 
 module DocumentLinkOptions : sig
-  type t = _DocumentLinkOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_resolveProvider : t -> bool [@@js.get "resolveProvider"]
+  val get_resolve_provider : t -> bool [@@js.get "resolveProvider"]
 
-  val set_resolveProvider : t -> bool -> unit [@@js.set "resolveProvider"]
+  val set_resolve_provider : t -> bool -> unit [@@js.set "resolveProvider"]
 
-  val cast : t -> _WorkDoneProgressOptions [@@js.cast]
+  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
 end
 [@@js.scope "DocumentLinkOptions"]
 
 module DocumentLinkRegistrationOptions : sig
-  type t = _DocumentLinkRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _TextDocumentRegistrationOptions [@@js.cast]
+  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _DocumentLinkOptions [@@js.cast]
+  val cast' : t -> DocumentLinkOptions.t [@@js.cast]
 end
 [@@js.scope "DocumentLinkRegistrationOptions"]
 
@@ -3339,11 +3368,11 @@ module DocumentLinkRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _DocumentLinkParams
+    : ( DocumentLinkParams.t
       , DocumentLink.t list or_null
       , DocumentLink.t list
       , unit
-      , _DocumentLinkRegistrationOptions )
+      , DocumentLinkRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 end
@@ -3361,60 +3390,61 @@ end
 [@@js.scope "DocumentLinkResolveRequest"]
 
 module DocumentFormattingClientCapabilities : sig
-  type t = _DocumentFormattingClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 end
 [@@js.scope "DocumentFormattingClientCapabilities"]
 
 module DocumentFormattingParams : sig
-  type t = _DocumentFormattingParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentIdentifier.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentIdentifier.t
+    [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentIdentifier.t -> unit
+  val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
   val get_options : t -> FormattingOptions.t [@@js.get "options"]
 
   val set_options : t -> FormattingOptions.t -> unit [@@js.set "options"]
 
-  val cast : t -> _WorkDoneProgressParams [@@js.cast]
+  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
 end
 [@@js.scope "DocumentFormattingParams"]
 
 module DocumentFormattingOptions : sig
-  type t = _DocumentFormattingOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _WorkDoneProgressOptions [@@js.cast]
+  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
 end
 [@@js.scope "DocumentFormattingOptions"]
 
 module DocumentFormattingRegistrationOptions : sig
-  type t = _DocumentFormattingRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _TextDocumentRegistrationOptions [@@js.cast]
+  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _DocumentFormattingOptions [@@js.cast]
+  val cast' : t -> DocumentFormattingOptions.t [@@js.cast]
 end
 [@@js.scope "DocumentFormattingRegistrationOptions"]
 
@@ -3425,40 +3455,41 @@ module DocumentFormattingRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _DocumentFormattingParams
+    : ( DocumentFormattingParams.t
       , TextEdit.t list or_null
       , never
       , unit
-      , _DocumentFormattingRegistrationOptions )
+      , DocumentFormattingRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "DocumentFormattingRequest"]
 
 module DocumentRangeFormattingClientCapabilities : sig
-  type t = _DocumentRangeFormattingClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 end
 [@@js.scope "DocumentRangeFormattingClientCapabilities"]
 
 module DocumentRangeFormattingParams : sig
-  type t = _DocumentRangeFormattingParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentIdentifier.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentIdentifier.t
+    [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentIdentifier.t -> unit
+  val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
   val get_range : t -> Range.t [@@js.get "range"]
@@ -3469,31 +3500,31 @@ module DocumentRangeFormattingParams : sig
 
   val set_options : t -> FormattingOptions.t -> unit [@@js.set "options"]
 
-  val cast : t -> _WorkDoneProgressParams [@@js.cast]
+  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
 end
 [@@js.scope "DocumentRangeFormattingParams"]
 
 module DocumentRangeFormattingOptions : sig
-  type t = _DocumentRangeFormattingOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _WorkDoneProgressOptions [@@js.cast]
+  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
 end
 [@@js.scope "DocumentRangeFormattingOptions"]
 
 module DocumentRangeFormattingRegistrationOptions : sig
-  type t = _DocumentRangeFormattingRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _TextDocumentRegistrationOptions [@@js.cast]
+  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _DocumentRangeFormattingOptions [@@js.cast]
+  val cast' : t -> DocumentRangeFormattingOptions.t [@@js.cast]
 end
 [@@js.scope "DocumentRangeFormattingRegistrationOptions"]
 
@@ -3506,40 +3537,41 @@ module DocumentRangeFormattingRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _DocumentRangeFormattingParams
+    : ( DocumentRangeFormattingParams.t
       , TextEdit.t list or_null
       , never
       , unit
-      , _DocumentRangeFormattingRegistrationOptions )
+      , DocumentRangeFormattingRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "DocumentRangeFormattingRequest"]
 
 module DocumentOnTypeFormattingClientCapabilities : sig
-  type t = _DocumentOnTypeFormattingClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 end
 [@@js.scope "DocumentOnTypeFormattingClientCapabilities"]
 
 module DocumentOnTypeFormattingParams : sig
-  type t = _DocumentOnTypeFormattingParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentIdentifier.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentIdentifier.t
+    [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentIdentifier.t -> unit
+  val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
   val get_position : t -> Position.t [@@js.get "position"]
@@ -3557,35 +3589,36 @@ end
 [@@js.scope "DocumentOnTypeFormattingParams"]
 
 module DocumentOnTypeFormattingOptions : sig
-  type t = _DocumentOnTypeFormattingOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_firstTriggerCharacter : t -> string [@@js.get "firstTriggerCharacter"]
+  val get_first_trigger_character : t -> string
+    [@@js.get "firstTriggerCharacter"]
 
-  val set_firstTriggerCharacter : t -> string -> unit
+  val set_first_trigger_character : t -> string -> unit
     [@@js.set "firstTriggerCharacter"]
 
-  val get_moreTriggerCharacter : t -> string list
+  val get_more_trigger_character : t -> string list
     [@@js.get "moreTriggerCharacter"]
 
-  val set_moreTriggerCharacter : t -> string list -> unit
+  val set_more_trigger_character : t -> string list -> unit
     [@@js.set "moreTriggerCharacter"]
 end
 [@@js.scope "DocumentOnTypeFormattingOptions"]
 
 module DocumentOnTypeFormattingRegistrationOptions : sig
-  type t = _DocumentOnTypeFormattingRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _TextDocumentRegistrationOptions [@@js.cast]
+  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _DocumentOnTypeFormattingOptions [@@js.cast]
+  val cast' : t -> DocumentOnTypeFormattingOptions.t [@@js.cast]
 end
 [@@js.scope "DocumentOnTypeFormattingRegistrationOptions"]
 
@@ -3598,11 +3631,11 @@ module DocumentOnTypeFormattingRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _DocumentOnTypeFormattingParams
+    : ( DocumentOnTypeFormattingParams.t
       , TextEdit.t list or_null
       , never
       , unit
-      , _DocumentOnTypeFormattingRegistrationOptions )
+      , DocumentOnTypeFormattingRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 end
@@ -3622,87 +3655,90 @@ module PrepareSupportDefaultBehavior : sig
 end
 
 module RenameClientCapabilities : sig
-  type t = _RenameClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
-  val get_prepareSupport : t -> bool [@@js.get "prepareSupport"]
+  val get_prepare_support : t -> bool [@@js.get "prepareSupport"]
 
-  val set_prepareSupport : t -> bool -> unit [@@js.set "prepareSupport"]
+  val set_prepare_support : t -> bool -> unit [@@js.set "prepareSupport"]
 
-  val get_prepareSupportDefaultBehavior : t -> _PrepareSupportDefaultBehavior
+  val get_prepare_support_default_behavior
+    :  t
+    -> PrepareSupportDefaultBehavior.t
     [@@js.get "prepareSupportDefaultBehavior"]
 
-  val set_prepareSupportDefaultBehavior
+  val set_prepare_support_default_behavior
     :  t
-    -> _PrepareSupportDefaultBehavior
+    -> PrepareSupportDefaultBehavior.t
     -> unit
     [@@js.set "prepareSupportDefaultBehavior"]
 
-  val get_honorsChangeAnnotations : t -> bool
+  val get_honors_change_annotations : t -> bool
     [@@js.get "honorsChangeAnnotations"]
 
-  val set_honorsChangeAnnotations : t -> bool -> unit
+  val set_honors_change_annotations : t -> bool -> unit
     [@@js.set "honorsChangeAnnotations"]
 end
 [@@js.scope "RenameClientCapabilities"]
 
 module RenameParams : sig
-  type t = _RenameParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentIdentifier.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentIdentifier.t
+    [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentIdentifier.t -> unit
+  val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
   val get_position : t -> Position.t [@@js.get "position"]
 
   val set_position : t -> Position.t -> unit [@@js.set "position"]
 
-  val get_newName : t -> string [@@js.get "newName"]
+  val get_new_name : t -> string [@@js.get "newName"]
 
-  val set_newName : t -> string -> unit [@@js.set "newName"]
+  val set_new_name : t -> string -> unit [@@js.set "newName"]
 
-  val cast : t -> _WorkDoneProgressParams [@@js.cast]
+  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
 end
 [@@js.scope "RenameParams"]
 
 module RenameOptions : sig
-  type t = _RenameOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_prepareProvider : t -> bool [@@js.get "prepareProvider"]
+  val get_prepare_provider : t -> bool [@@js.get "prepareProvider"]
 
-  val set_prepareProvider : t -> bool -> unit [@@js.set "prepareProvider"]
+  val set_prepare_provider : t -> bool -> unit [@@js.set "prepareProvider"]
 
-  val cast : t -> _WorkDoneProgressOptions [@@js.cast]
+  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
 end
 [@@js.scope "RenameOptions"]
 
 module RenameRegistrationOptions : sig
-  type t = _RenameRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _TextDocumentRegistrationOptions [@@js.cast]
+  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _RenameOptions [@@js.cast]
+  val cast' : t -> RenameOptions.t [@@js.cast]
 end
 [@@js.scope "RenameRegistrationOptions"]
 
@@ -3712,26 +3748,26 @@ module RenameRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _RenameParams
+    : ( RenameParams.t
       , WorkspaceEdit.t or_null
       , never
       , unit
-      , _RenameRegistrationOptions )
+      , RenameRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "RenameRequest"]
 
 module PrepareRenameParams : sig
-  type t = _PrepareRenameParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _TextDocumentPositionParams [@@js.cast]
+  val cast : t -> TextDocumentPositionParams.t [@@js.cast]
 
-  val cast' : t -> _WorkDoneProgressParams [@@js.cast]
+  val cast' : t -> WorkDoneProgressParams.t [@@js.cast]
 end
 [@@js.scope "PrepareRenameParams"]
 
@@ -3742,7 +3778,7 @@ module PrepareRenameRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _PrepareRenameParams
+    : ( PrepareRenameParams.t
       , (Range.t, AnonymousInterface3.t, AnonymousInterface12.t) union3 or_null
       , never
       , unit
@@ -3753,21 +3789,21 @@ end
 [@@js.scope "PrepareRenameRequest"]
 
 module ExecuteCommandClientCapabilities : sig
-  type t = _ExecuteCommandClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 end
 [@@js.scope "ExecuteCommandClientCapabilities"]
 
 module ExecuteCommandParams : sig
-  type t = _ExecuteCommandParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -3781,12 +3817,12 @@ module ExecuteCommandParams : sig
 
   val set_arguments : t -> any list -> unit [@@js.set "arguments"]
 
-  val cast : t -> _WorkDoneProgressParams [@@js.cast]
+  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
 end
 [@@js.scope "ExecuteCommandParams"]
 
 module ExecuteCommandOptions : sig
-  type t = _ExecuteCommandOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -3796,71 +3832,71 @@ module ExecuteCommandOptions : sig
 
   val set_commands : t -> string list -> unit [@@js.set "commands"]
 
-  val cast : t -> _WorkDoneProgressOptions [@@js.cast]
+  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
 end
 [@@js.scope "ExecuteCommandOptions"]
 
 module ExecuteCommandRegistrationOptions : sig
-  type t = _ExecuteCommandRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _ExecuteCommandOptions [@@js.cast]
+  val cast : t -> ExecuteCommandOptions.t [@@js.cast]
 end
 [@@js.scope "ExecuteCommandRegistrationOptions"]
 
 module ExecuteCommandRequest : sig
   val type_
-    : ( _ExecuteCommandParams
+    : ( ExecuteCommandParams.t
       , any
       , never
       , unit
-      , _ExecuteCommandRegistrationOptions )
+      , ExecuteCommandRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 end
 [@@js.scope "ExecuteCommandRequest"]
 
 module WorkspaceEditClientCapabilities : sig
-  type t = _WorkspaceEditClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_documentChanges : t -> bool [@@js.get "documentChanges"]
+  val get_document_changes : t -> bool [@@js.get "documentChanges"]
 
-  val set_documentChanges : t -> bool -> unit [@@js.set "documentChanges"]
+  val set_document_changes : t -> bool -> unit [@@js.set "documentChanges"]
 
-  val get_resourceOperations : t -> _ResourceOperationKind list
+  val get_resource_operations : t -> ResourceOperationKind.t list
     [@@js.get "resourceOperations"]
 
-  val set_resourceOperations : t -> _ResourceOperationKind list -> unit
+  val set_resource_operations : t -> ResourceOperationKind.t list -> unit
     [@@js.set "resourceOperations"]
 
-  val get_failureHandling : t -> _FailureHandlingKind
+  val get_failure_handling : t -> FailureHandlingKind.t
     [@@js.get "failureHandling"]
 
-  val set_failureHandling : t -> _FailureHandlingKind -> unit
+  val set_failure_handling : t -> FailureHandlingKind.t -> unit
     [@@js.set "failureHandling"]
 
-  val get_normalizesLineEndings : t -> bool [@@js.get "normalizesLineEndings"]
+  val get_normalizes_line_endings : t -> bool [@@js.get "normalizesLineEndings"]
 
-  val set_normalizesLineEndings : t -> bool -> unit
+  val set_normalizes_line_endings : t -> bool -> unit
     [@@js.set "normalizesLineEndings"]
 
-  val get_changeAnnotationSupport : t -> AnonymousInterface6.t
+  val get_change_annotation_support : t -> AnonymousInterface6.t
     [@@js.get "changeAnnotationSupport"]
 
-  val set_changeAnnotationSupport : t -> AnonymousInterface6.t -> unit
+  val set_change_annotation_support : t -> AnonymousInterface6.t -> unit
     [@@js.set "changeAnnotationSupport"]
 end
 [@@js.scope "WorkspaceEditClientCapabilities"]
 
 module ApplyWorkspaceEditParams : sig
-  type t = _ApplyWorkspaceEditParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -3877,7 +3913,7 @@ end
 [@@js.scope "ApplyWorkspaceEditParams"]
 
 module ApplyWorkspaceEditResponse : sig
-  type t = _ApplyWorkspaceEditResponse
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -3887,20 +3923,20 @@ module ApplyWorkspaceEditResponse : sig
 
   val set_applied : t -> bool -> unit [@@js.set "applied"]
 
-  val get_failureReason : t -> string [@@js.get "failureReason"]
+  val get_failure_reason : t -> string [@@js.get "failureReason"]
 
-  val set_failureReason : t -> string -> unit [@@js.set "failureReason"]
+  val set_failure_reason : t -> string -> unit [@@js.set "failureReason"]
 
-  val get_failedChange : t -> Uinteger.t [@@js.get "failedChange"]
+  val get_failed_change : t -> Uinteger.t [@@js.get "failedChange"]
 
-  val set_failedChange : t -> Uinteger.t -> unit [@@js.set "failedChange"]
+  val set_failed_change : t -> Uinteger.t -> unit [@@js.set "failedChange"]
 end
 [@@js.scope "ApplyWorkspaceEditResponse"]
 
 module ApplyWorkspaceEditRequest : sig
   val type_
-    : ( _ApplyWorkspaceEditParams
-      , _ApplyWorkspaceEditResponse
+    : ( ApplyWorkspaceEditParams.t
+      , ApplyWorkspaceEditResponse.t
       , never
       , unit
       , unit )

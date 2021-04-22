@@ -99,8 +99,8 @@ module ErrorConstructor : sig
 
   val capture_stack_trace
     :  t
-    -> targetObject:untyped_object
-    -> ?constructorOpt:untyped_function
+    -> target_object:untyped_object
+    -> ?constructor_opt:untyped_function
     -> unit
     -> unit
     [@@js.call "captureStackTrace"]
@@ -108,7 +108,7 @@ module ErrorConstructor : sig
   val prepare_stack_trace
     :  t
     -> err:Error.t
-    -> stackTraces:CallSite.t list
+    -> stack_traces:CallSite.t list
     -> any
     [@@js.call "prepareStackTrace"]
 
@@ -195,7 +195,7 @@ module Buffer : sig
 
   val create'' : array:Uint8Array.t -> t [@@js.create]
 
-  val create''' : arrayBuffer:(ArrayBuffer.t, SharedArrayBuffer.t) union2 -> t
+  val create''' : array_buffer:(ArrayBuffer.t, SharedArrayBuffer.t) union2 -> t
     [@@js.create]
 
   val create'''' : array:any list -> t [@@js.create]
@@ -203,9 +203,9 @@ module Buffer : sig
   val create''''' : buffer:t -> t [@@js.create]
 
   val from
-    :  arrayBuffer:
+    :  array_buffer:
          (ArrayBuffer.t, SharedArrayBuffer.t) union2 WithImplicitCoercion.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> t
@@ -233,7 +233,7 @@ module Buffer : sig
     -> int
     [@@js.global "byteLength"]
 
-  val concat : list:Uint8Array.t list -> ?totalLength:int -> unit -> t
+  val concat : list:Uint8Array.t list -> ?total_length:int -> unit -> t
     [@@js.global "concat"]
 
   val compare : buf1:Uint8Array.t -> buf2:Uint8Array.t -> int
@@ -288,25 +288,25 @@ module Buffer : sig
 
   val to_json : t -> AnonymousInterface2.t [@@js.call "toJSON"]
 
-  val equals : t -> otherBuffer:Uint8Array.t -> bool [@@js.call "equals"]
+  val equals : t -> other_buffer:Uint8Array.t -> bool [@@js.call "equals"]
 
   val compare'
     :  t
-    -> otherBuffer:Uint8Array.t
-    -> ?targetStart:int
-    -> ?targetEnd:int
-    -> ?sourceStart:int
-    -> ?sourceEnd:int
+    -> other_buffer:Uint8Array.t
+    -> ?target_start:int
+    -> ?target_end:int
+    -> ?source_start:int
+    -> ?source_end:int
     -> unit
     -> int
     [@@js.call "compare"]
 
   val copy
     :  t
-    -> targetBuffer:Uint8Array.t
-    -> ?targetStart:int
-    -> ?sourceStart:int
-    -> ?sourceEnd:int
+    -> target_buffer:Uint8Array.t
+    -> ?target_start:int
+    -> ?source_start:int
+    -> ?source_end:int
     -> unit
     -> int
     [@@js.call "copy"]
@@ -328,16 +328,16 @@ module Buffer : sig
   val write_big_u_int64_le : t -> bigint -> ?offset:int -> unit -> int
     [@@js.call "writeBigUInt64LE"]
 
-  val write_u_int_le : t -> value:int -> offset:int -> byteLength:int -> int
+  val write_u_int_le : t -> value:int -> offset:int -> byte_length:int -> int
     [@@js.call "writeUIntLE"]
 
-  val write_u_int_be : t -> value:int -> offset:int -> byteLength:int -> int
+  val write_u_int_be : t -> value:int -> offset:int -> byte_length:int -> int
     [@@js.call "writeUIntBE"]
 
-  val write_int_le : t -> value:int -> offset:int -> byteLength:int -> int
+  val write_int_le : t -> value:int -> offset:int -> byte_length:int -> int
     [@@js.call "writeIntLE"]
 
-  val write_int_be : t -> value:int -> offset:int -> byteLength:int -> int
+  val write_int_be : t -> value:int -> offset:int -> byte_length:int -> int
     [@@js.call "writeIntBE"]
 
   val read_big_u_int64_be : t -> ?offset:int -> unit -> bigint
@@ -352,16 +352,16 @@ module Buffer : sig
   val read_big_int64_le : t -> ?offset:int -> unit -> bigint
     [@@js.call "readBigInt64LE"]
 
-  val read_u_int_le : t -> offset:int -> byteLength:int -> int
+  val read_u_int_le : t -> offset:int -> byte_length:int -> int
     [@@js.call "readUIntLE"]
 
-  val read_u_int_be : t -> offset:int -> byteLength:int -> int
+  val read_u_int_be : t -> offset:int -> byte_length:int -> int
     [@@js.call "readUIntBE"]
 
-  val read_int_le : t -> offset:int -> byteLength:int -> int
+  val read_int_le : t -> offset:int -> byte_length:int -> int
     [@@js.call "readIntLE"]
 
-  val read_int_be : t -> offset:int -> byteLength:int -> int
+  val read_int_be : t -> offset:int -> byte_length:int -> int
     [@@js.call "readIntBE"]
 
   val read_u_int8 : t -> ?offset:int -> unit -> int [@@js.call "readUInt8"]
@@ -461,7 +461,7 @@ module Buffer : sig
   val index_of
     :  t
     -> value:Uint8Array.t or_string or_number
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?encoding:BufferEncoding.t
     -> unit
     -> int
@@ -470,7 +470,7 @@ module Buffer : sig
   val last_index_of
     :  t
     -> value:Uint8Array.t or_string or_number
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?encoding:BufferEncoding.t
     -> unit
     -> int
@@ -481,7 +481,7 @@ module Buffer : sig
   val includes
     :  t
     -> value:t or_string or_number
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?encoding:BufferEncoding.t
     -> unit
     -> bool
@@ -674,7 +674,7 @@ module ReadableStream : sig
     -> unit
     [@@js.call "unshift"]
 
-  val wrap : t -> oldStream:t -> t [@@js.call "wrap"]
+  val wrap : t -> old_stream:t -> t [@@js.call "wrap"]
 
   (* val cast : t -> EventEmitter.t [@@js.cast] *)
 end
@@ -1042,13 +1042,13 @@ module Global : sig
 
   val set_weak_set : t -> WeakSetConstructor.t -> unit [@@js.set "WeakSet"]
 
-  val clear_immediate : t -> immediateId:Immediate.t -> unit
+  val clear_immediate : t -> immediate_id:Immediate.t -> unit
     [@@js.call "clearImmediate"]
 
-  val clear_interval : t -> intervalId:Timeout.t -> unit
+  val clear_interval : t -> interval_id:Timeout.t -> unit
     [@@js.call "clearInterval"]
 
-  val clear_timeout : t -> timeoutId:Timeout.t -> unit
+  val clear_timeout : t -> timeout_id:Timeout.t -> unit
     [@@js.call "clearTimeout"]
 
   val get_decode_uri : t -> (* FIXME: unknown type 'typeof decodeURI' *) any
@@ -1447,7 +1447,7 @@ module SetTimeout : sig
 end
 [@@js.scope "setTimeout"]
 
-val clear_timeout : timeoutId:Timeout.t -> unit [@@js.global "clearTimeout"]
+val clear_timeout : timeout_id:Timeout.t -> unit [@@js.global "clearTimeout"]
 
 val set_interval
   :  callback:(args:(any list[@js.variadic]) -> unit)
@@ -1456,7 +1456,7 @@ val set_interval
   -> Timeout.t
   [@@js.global "setInterval"]
 
-val clear_interval : intervalId:Timeout.t -> unit [@@js.global "clearInterval"]
+val clear_interval : interval_id:Timeout.t -> unit [@@js.global "clearInterval"]
 
 val set_immediate
   :  callback:(args:(any list[@js.variadic]) -> unit)
@@ -1471,7 +1471,7 @@ module SetImmediate : sig
 end
 [@@js.scope "setImmediate"]
 
-val clear_immediate : immediateId:Immediate.t -> unit
+val clear_immediate : immediate_id:Immediate.t -> unit
   [@@js.global "clearImmediate"]
 
 val queue_microtask : callback:(unit -> unit) -> unit

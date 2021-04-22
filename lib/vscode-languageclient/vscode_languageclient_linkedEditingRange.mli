@@ -8,7 +8,7 @@ open Es5
 (* import * as proto from 'vscode-languageserver-protocol'; *)
 (* import { TextDocumentFeature, BaseLanguageClient } from './client'; *)
 module ProvideLinkedEditingRangeSignature : sig
-  type t = _ProvideLinkedEditingRangeSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -26,26 +26,26 @@ end
 [@@js.scope "ProvideLinkedEditingRangeSignature"]
 
 module LinkedEditingRangeMiddleware : sig
-  type t = _LinkedEditingRangeMiddleware
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val provideLinkedEditingRange
+  val provide_linked_editing_range
     :  t
     -> this:unit
     -> document:Code.TextDocument.t
     -> position:Code.Position.t
     -> token:Code.CancellationToken.t
-    -> next:_ProvideLinkedEditingRangeSignature
+    -> next:ProvideLinkedEditingRangeSignature.t
     -> Code.LinkedEditingRanges.t Code.ProviderResult.t
     [@@js.call "provideLinkedEditingRange"]
 end
 [@@js.scope "LinkedEditingRangeMiddleware"]
 
 module LinkedEditingFeature : sig
-  type t = _LinkedEditingFeature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -53,7 +53,7 @@ module LinkedEditingFeature : sig
 
   val create : client:BaseLanguageClient.t -> t [@@js.create]
 
-  val fillClientCapabilities
+  val fill_client_capabilities
     :  t
     -> capabilities:Proto.ClientCapabilities.t
     -> unit
@@ -62,11 +62,11 @@ module LinkedEditingFeature : sig
   val initialize
     :  t
     -> capabilities:Proto.ServerCapabilities.t
-    -> documentSelector:Proto.DocumentSelector.t
+    -> document_selector:Proto.DocumentSelector.t
     -> unit
     [@@js.call "initialize"]
 
-  val registerLanguageProvider
+  val register_language_provider
     :  t
     -> options:Proto.LinkedEditingRangeRegistrationOptions.t
     -> Code.Disposable.t * Code.LinkedEditingRangeProvider.t

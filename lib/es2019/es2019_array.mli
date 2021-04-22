@@ -33,7 +33,7 @@ module ReadonlyArray : sig
           -> index:int
           -> array:'T list
           -> ('U, 'U t) union2)
-    -> ?thisArg:'This
+    -> ?this_arg:'This
     -> unit
     -> 'U list
     [@@js.call "flatMap"]
@@ -60,7 +60,7 @@ module Array : sig
           -> index:int
           -> array:'T list
           -> ('U, 'U ReadonlyArray.t) union2)
-    -> ?thisArg:'This
+    -> ?this_arg:'This
     -> unit
     -> 'U list
     [@@js.call "flatMap"]

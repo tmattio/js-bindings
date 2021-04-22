@@ -12,7 +12,7 @@ open Es5
    from 'vscode-languageserver-protocol'; *)
 (* import { TextDocumentFeature, BaseLanguageClient } from './client'; *)
 module ProvideImplementationSignature : sig
-  type t = _ProvideImplementationSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -30,26 +30,26 @@ end
 [@@js.scope "ProvideImplementationSignature"]
 
 module ImplementationMiddleware : sig
-  type t = _ImplementationMiddleware
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val provideImplementation
+  val provide_implementation
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> position:VPosition.t
     -> token:CancellationToken.t
-    -> next:_ProvideImplementationSignature
+    -> next:ProvideImplementationSignature.t
     -> (VDefinition.t, VDefinitionLink.t) or_array ProviderResult.t
     [@@js.call "provideImplementation"]
 end
 [@@js.scope "ImplementationMiddleware"]
 
 module ImplementationFeature : sig
-  type t = _ImplementationFeature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -57,17 +57,17 @@ module ImplementationFeature : sig
 
   val create : client:BaseLanguageClient.t -> t [@@js.create]
 
-  val fillClientCapabilities : t -> capabilities:ClientCapabilities.t -> unit
+  val fill_client_capabilities : t -> capabilities:ClientCapabilities.t -> unit
     [@@js.call "fillClientCapabilities"]
 
   val initialize
     :  t
     -> capabilities:ServerCapabilities.t
-    -> documentSelector:DocumentSelector.t
+    -> document_selector:DocumentSelector.t
     -> unit
     [@@js.call "initialize"]
 
-  val registerLanguageProvider
+  val register_language_provider
     :  t
     -> options:ImplementationRegistrationOptions.t
     -> Disposable.t * ImplementationProvider.t

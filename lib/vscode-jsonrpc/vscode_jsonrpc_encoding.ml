@@ -2,44 +2,29 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
-module Internal =
-  struct
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _ContentDecoder = _FunctionContentDecoder
-        and _ContentEncoder = _FunctionContentEncoder
-        and _ContentTypeDecoder = _FunctionContentTypeDecoder
-        and _ContentTypeEncoder = _FunctionContentTypeEncoder
-        let rec _ContentDecoder_of_js : Ojs.t -> _ContentDecoder =
-          fun (x2 : Ojs.t) -> _FunctionContentDecoder_of_js x2
-        and _ContentDecoder_to_js : _ContentDecoder -> Ojs.t =
-          fun (x1 : _FunctionContentDecoder) ->
-            _FunctionContentDecoder_to_js x1
-        and _ContentEncoder_of_js : Ojs.t -> _ContentEncoder =
-          fun (x4 : Ojs.t) -> _FunctionContentEncoder_of_js x4
-        and _ContentEncoder_to_js : _ContentEncoder -> Ojs.t =
-          fun (x3 : _FunctionContentEncoder) ->
-            _FunctionContentEncoder_to_js x3
-        and _ContentTypeDecoder_of_js : Ojs.t -> _ContentTypeDecoder =
-          fun (x6 : Ojs.t) -> _FunctionContentTypeDecoder_of_js x6
-        and _ContentTypeDecoder_to_js : _ContentTypeDecoder -> Ojs.t =
-          fun (x5 : _FunctionContentTypeDecoder) ->
-            _FunctionContentTypeDecoder_to_js x5
-        and _ContentTypeEncoder_of_js : Ojs.t -> _ContentTypeEncoder =
-          fun (x8 : Ojs.t) -> _FunctionContentTypeEncoder_of_js x8
-        and _ContentTypeEncoder_to_js : _ContentTypeEncoder -> Ojs.t =
-          fun (x7 : _FunctionContentTypeEncoder) ->
-            _FunctionContentTypeEncoder_to_js x7
-      end
-  end
 module FunctionContentEncoder =
   struct
-    type t = _FunctionContentEncoder
-    let rec t_of_js : Ojs.t -> t =
-      fun (x10 : Ojs.t) -> _FunctionContentEncoder_of_js x10
-    and t_to_js : t -> Ojs.t =
-      fun (x9 : _FunctionContentEncoder) -> _FunctionContentEncoder_to_js x9
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
+    let (get_name : t -> string) =
+      fun (x3 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x3) "name")
+    let (set_name : t -> string -> unit) =
+      fun (x4 : t) ->
+        fun (x5 : string) ->
+          Ojs.set_prop_ascii (t_to_js x4) "name" (Ojs.string_to_js x5)
+    let (encode : t -> input:Uint8Array.t -> Uint8Array.t Promise.t) =
+      fun (x7 : t) ->
+        fun ~input:(x6 : Uint8Array.t) ->
+          Promise.t_of_js Uint8Array.t_of_js
+            (Ojs.call (t_to_js x7) "encode" [|(Uint8Array.t_to_js x6)|])
+  end
+module StreamContentEncoder =
+  struct
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x10 : Ojs.t) -> x10
+    and t_to_js : t -> Ojs.t = fun (x9 : Ojs.t) -> x9
     let (get_name : t -> string) =
       fun (x11 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x11) "name")
@@ -47,19 +32,25 @@ module FunctionContentEncoder =
       fun (x12 : t) ->
         fun (x13 : string) ->
           Ojs.set_prop_ascii (t_to_js x12) "name" (Ojs.string_to_js x13)
-    let (encode : t -> input:Uint8Array.t -> Uint8Array.t Promise.t) =
-      fun (x15 : t) ->
-        fun ~input:(x14 : Uint8Array.t) ->
-          Promise.t_of_js Uint8Array.t_of_js
-            (Ojs.call (t_to_js x15) "encode" [|(Uint8Array.t_to_js x14)|])
+    let (create_ : t -> Vscode_jsonrpc_ral.RAL.WritableStream.t) =
+      fun (x14 : t) ->
+        Vscode_jsonrpc_ral.RAL.WritableStream.t_of_js
+          (Ojs.call (t_to_js x14) "create" [||])
   end
-module StreamContentEncoder =
+module ContentEncoder =
   struct
-    type t = _StreamContentEncoder
+    type t = FunctionContentEncoder.t
     let rec t_of_js : Ojs.t -> t =
-      fun (x18 : Ojs.t) -> _StreamContentEncoder_of_js x18
+      fun (x16 : Ojs.t) -> FunctionContentEncoder.t_of_js x16
     and t_to_js : t -> Ojs.t =
-      fun (x17 : _StreamContentEncoder) -> _StreamContentEncoder_to_js x17
+      fun (x15 : FunctionContentEncoder.t) ->
+        FunctionContentEncoder.t_to_js x15
+  end
+module FunctionContentDecoder =
+  struct
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x18 : Ojs.t) -> x18
+    and t_to_js : t -> Ojs.t = fun (x17 : Ojs.t) -> x17
     let (get_name : t -> string) =
       fun (x19 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x19) "name")
@@ -67,27 +58,17 @@ module StreamContentEncoder =
       fun (x20 : t) ->
         fun (x21 : string) ->
           Ojs.set_prop_ascii (t_to_js x20) "name" (Ojs.string_to_js x21)
-    let (create_ : t -> Vscode_jsonrpc_ral.RAL.WritableStream.t) =
-      fun (x22 : t) ->
-        Vscode_jsonrpc_ral.RAL.WritableStream.t_of_js
-          (Ojs.call (t_to_js x22) "create" [||])
+    let (decode : t -> buffer:Uint8Array.t -> Uint8Array.t Promise.t) =
+      fun (x23 : t) ->
+        fun ~buffer:(x22 : Uint8Array.t) ->
+          Promise.t_of_js Uint8Array.t_of_js
+            (Ojs.call (t_to_js x23) "decode" [|(Uint8Array.t_to_js x22)|])
   end
-module ContentEncoder =
+module StreamContentDecoder =
   struct
-    type t = _ContentEncoder
-    let rec t_of_js : Ojs.t -> t =
-      fun (x24 : Ojs.t) -> _ContentEncoder_of_js x24
-    and t_to_js : t -> Ojs.t =
-      fun (x23 : _ContentEncoder) -> _ContentEncoder_to_js x23
-  end
-module FunctionContentDecoder =
-  struct
-    type t = _FunctionContentDecoder
-    let rec t_of_js : Ojs.t -> t =
-      fun (x26 : Ojs.t) -> _FunctionContentDecoder_of_js x26
-    and t_to_js : t -> Ojs.t =
-      fun (x25 : _FunctionContentDecoder) ->
-        _FunctionContentDecoder_to_js x25
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x26 : Ojs.t) -> x26
+    and t_to_js : t -> Ojs.t = fun (x25 : Ojs.t) -> x25
     let (get_name : t -> string) =
       fun (x27 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x27) "name")
@@ -95,226 +76,191 @@ module FunctionContentDecoder =
       fun (x28 : t) ->
         fun (x29 : string) ->
           Ojs.set_prop_ascii (t_to_js x28) "name" (Ojs.string_to_js x29)
-    let (decode : t -> buffer:Uint8Array.t -> Uint8Array.t Promise.t) =
-      fun (x31 : t) ->
-        fun ~buffer:(x30 : Uint8Array.t) ->
-          Promise.t_of_js Uint8Array.t_of_js
-            (Ojs.call (t_to_js x31) "decode" [|(Uint8Array.t_to_js x30)|])
-  end
-module StreamContentDecoder =
-  struct
-    type t = _StreamContentDecoder
-    let rec t_of_js : Ojs.t -> t =
-      fun (x34 : Ojs.t) -> _StreamContentDecoder_of_js x34
-    and t_to_js : t -> Ojs.t =
-      fun (x33 : _StreamContentDecoder) -> _StreamContentDecoder_to_js x33
-    let (get_name : t -> string) =
-      fun (x35 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x35) "name")
-    let (set_name : t -> string -> unit) =
-      fun (x36 : t) ->
-        fun (x37 : string) ->
-          Ojs.set_prop_ascii (t_to_js x36) "name" (Ojs.string_to_js x37)
     let (create_ : t -> Vscode_jsonrpc_ral.RAL.WritableStream.t) =
-      fun (x38 : t) ->
+      fun (x30 : t) ->
         Vscode_jsonrpc_ral.RAL.WritableStream.t_of_js
-          (Ojs.call (t_to_js x38) "create" [||])
+          (Ojs.call (t_to_js x30) "create" [||])
   end
 module ContentDecoder =
   struct
-    type t = _ContentDecoder
+    type t = FunctionContentDecoder.t
     let rec t_of_js : Ojs.t -> t =
-      fun (x40 : Ojs.t) -> _ContentDecoder_of_js x40
+      fun (x32 : Ojs.t) -> FunctionContentDecoder.t_of_js x32
     and t_to_js : t -> Ojs.t =
-      fun (x39 : _ContentDecoder) -> _ContentDecoder_to_js x39
+      fun (x31 : FunctionContentDecoder.t) ->
+        FunctionContentDecoder.t_to_js x31
   end
 module ContentTypeEncoderOptions =
   struct
-    type t = _ContentTypeEncoderOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x42 : Ojs.t) -> _ContentTypeEncoderOptions_of_js x42
-    and t_to_js : t -> Ojs.t =
-      fun (x41 : _ContentTypeEncoderOptions) ->
-        _ContentTypeEncoderOptions_to_js x41
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x34 : Ojs.t) -> x34
+    and t_to_js : t -> Ojs.t = fun (x33 : Ojs.t) -> x33
     let (get_charset : t -> Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t) =
-      fun (x43 : t) ->
+      fun (x35 : t) ->
         Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x43) "charset")
+          (Ojs.get_prop_ascii (t_to_js x35) "charset")
     let (set_charset :
       t -> Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t -> unit) =
-      fun (x44 : t) ->
-        fun (x45 : Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t) ->
-          Ojs.set_prop_ascii (t_to_js x44) "charset"
-            (Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t_to_js x45)
+      fun (x36 : t) ->
+        fun (x37 : Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t) ->
+          Ojs.set_prop_ascii (t_to_js x36) "charset"
+            (Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t_to_js x37)
   end
 module FunctionContentTypeEncoder =
   struct
-    type t = _FunctionContentTypeEncoder
-    let rec t_of_js : Ojs.t -> t =
-      fun (x47 : Ojs.t) -> _FunctionContentTypeEncoder_of_js x47
-    and t_to_js : t -> Ojs.t =
-      fun (x46 : _FunctionContentTypeEncoder) ->
-        _FunctionContentTypeEncoder_to_js x46
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x39 : Ojs.t) -> x39
+    and t_to_js : t -> Ojs.t = fun (x38 : Ojs.t) -> x38
     let (get_name : t -> string) =
-      fun (x48 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x48) "name")
+      fun (x40 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x40) "name")
     let (set_name : t -> string -> unit) =
-      fun (x49 : t) ->
-        fun (x50 : string) ->
-          Ojs.set_prop_ascii (t_to_js x49) "name" (Ojs.string_to_js x50)
+      fun (x41 : t) ->
+        fun (x42 : string) ->
+          Ojs.set_prop_ascii (t_to_js x41) "name" (Ojs.string_to_js x42)
     let (encode :
       t ->
         msg:Vscode_jsonrpc_messages.Message.t ->
-          options:_ContentTypeEncoderOptions -> Uint8Array.t Promise.t)
+          options:ContentTypeEncoderOptions.t -> Uint8Array.t Promise.t)
       =
-      fun (x53 : t) ->
-        fun ~msg:(x51 : Vscode_jsonrpc_messages.Message.t) ->
-          fun ~options:(x52 : _ContentTypeEncoderOptions) ->
+      fun (x45 : t) ->
+        fun ~msg:(x43 : Vscode_jsonrpc_messages.Message.t) ->
+          fun ~options:(x44 : ContentTypeEncoderOptions.t) ->
             Promise.t_of_js Uint8Array.t_of_js
-              (Ojs.call (t_to_js x53) "encode"
-                 [|(Vscode_jsonrpc_messages.Message.t_to_js x51);(_ContentTypeEncoderOptions_to_js
-                                                                    x52)|])
+              (Ojs.call (t_to_js x45) "encode"
+                 [|(Vscode_jsonrpc_messages.Message.t_to_js x43);(ContentTypeEncoderOptions.t_to_js
+                                                                    x44)|])
   end
 module StreamContentTypeEncoder =
   struct
-    type t = _StreamContentTypeEncoder
-    let rec t_of_js : Ojs.t -> t =
-      fun (x56 : Ojs.t) -> _StreamContentTypeEncoder_of_js x56
-    and t_to_js : t -> Ojs.t =
-      fun (x55 : _StreamContentTypeEncoder) ->
-        _StreamContentTypeEncoder_to_js x55
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x48 : Ojs.t) -> x48
+    and t_to_js : t -> Ojs.t = fun (x47 : Ojs.t) -> x47
     let (get_name : t -> string) =
-      fun (x57 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x57) "name")
+      fun (x49 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x49) "name")
     let (set_name : t -> string -> unit) =
-      fun (x58 : t) ->
-        fun (x59 : string) ->
-          Ojs.set_prop_ascii (t_to_js x58) "name" (Ojs.string_to_js x59)
+      fun (x50 : t) ->
+        fun (x51 : string) ->
+          Ojs.set_prop_ascii (t_to_js x50) "name" (Ojs.string_to_js x51)
     let (create_ :
       t ->
-        options:_ContentTypeEncoderOptions ->
+        options:ContentTypeEncoderOptions.t ->
           Vscode_jsonrpc_ral.RAL.WritableStream.t)
       =
-      fun (x61 : t) ->
-        fun ~options:(x60 : _ContentTypeEncoderOptions) ->
+      fun (x53 : t) ->
+        fun ~options:(x52 : ContentTypeEncoderOptions.t) ->
           Vscode_jsonrpc_ral.RAL.WritableStream.t_of_js
-            (Ojs.call (t_to_js x61) "create"
-               [|(_ContentTypeEncoderOptions_to_js x60)|])
+            (Ojs.call (t_to_js x53) "create"
+               [|(ContentTypeEncoderOptions.t_to_js x52)|])
   end
 module ContentTypeEncoder =
   struct
-    type t = _ContentTypeEncoder
+    type t = FunctionContentTypeEncoder.t
     let rec t_of_js : Ojs.t -> t =
-      fun (x63 : Ojs.t) -> _ContentTypeEncoder_of_js x63
+      fun (x55 : Ojs.t) -> FunctionContentTypeEncoder.t_of_js x55
     and t_to_js : t -> Ojs.t =
-      fun (x62 : _ContentTypeEncoder) -> _ContentTypeEncoder_to_js x62
+      fun (x54 : FunctionContentTypeEncoder.t) ->
+        FunctionContentTypeEncoder.t_to_js x54
   end
 module ContentTypeDecoderOptions =
   struct
-    type t = _ContentTypeDecoderOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x65 : Ojs.t) -> _ContentTypeDecoderOptions_of_js x65
-    and t_to_js : t -> Ojs.t =
-      fun (x64 : _ContentTypeDecoderOptions) ->
-        _ContentTypeDecoderOptions_to_js x64
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x57 : Ojs.t) -> x57
+    and t_to_js : t -> Ojs.t = fun (x56 : Ojs.t) -> x56
     let (get_charset : t -> Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t) =
-      fun (x66 : t) ->
+      fun (x58 : t) ->
         Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x66) "charset")
+          (Ojs.get_prop_ascii (t_to_js x58) "charset")
     let (set_charset :
       t -> Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t -> unit) =
-      fun (x67 : t) ->
-        fun (x68 : Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t) ->
-          Ojs.set_prop_ascii (t_to_js x67) "charset"
-            (Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t_to_js x68)
+      fun (x59 : t) ->
+        fun (x60 : Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t) ->
+          Ojs.set_prop_ascii (t_to_js x59) "charset"
+            (Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t_to_js x60)
   end
 module FunctionContentTypeDecoder =
   struct
-    type t = _FunctionContentTypeDecoder
-    let rec t_of_js : Ojs.t -> t =
-      fun (x70 : Ojs.t) -> _FunctionContentTypeDecoder_of_js x70
-    and t_to_js : t -> Ojs.t =
-      fun (x69 : _FunctionContentTypeDecoder) ->
-        _FunctionContentTypeDecoder_to_js x69
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x62 : Ojs.t) -> x62
+    and t_to_js : t -> Ojs.t = fun (x61 : Ojs.t) -> x61
     let (get_name : t -> string) =
-      fun (x71 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x71) "name")
+      fun (x63 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x63) "name")
     let (set_name : t -> string -> unit) =
-      fun (x72 : t) ->
-        fun (x73 : string) ->
-          Ojs.set_prop_ascii (t_to_js x72) "name" (Ojs.string_to_js x73)
+      fun (x64 : t) ->
+        fun (x65 : string) ->
+          Ojs.set_prop_ascii (t_to_js x64) "name" (Ojs.string_to_js x65)
     let (decode :
       t ->
         buffer:Uint8Array.t ->
-          options:_ContentTypeDecoderOptions ->
+          options:ContentTypeDecoderOptions.t ->
             Vscode_jsonrpc_messages.Message.t Promise.t)
       =
-      fun (x76 : t) ->
-        fun ~buffer:(x74 : Uint8Array.t) ->
-          fun ~options:(x75 : _ContentTypeDecoderOptions) ->
+      fun (x68 : t) ->
+        fun ~buffer:(x66 : Uint8Array.t) ->
+          fun ~options:(x67 : ContentTypeDecoderOptions.t) ->
             Promise.t_of_js Vscode_jsonrpc_messages.Message.t_of_js
-              (Ojs.call (t_to_js x76) "decode"
-                 [|(Uint8Array.t_to_js x74);(_ContentTypeDecoderOptions_to_js
-                                               x75)|])
+              (Ojs.call (t_to_js x68) "decode"
+                 [|(Uint8Array.t_to_js x66);(ContentTypeDecoderOptions.t_to_js
+                                               x67)|])
   end
 module StreamContentTypeDecoder =
   struct
-    type t = _StreamContentTypeDecoder
-    let rec t_of_js : Ojs.t -> t =
-      fun (x79 : Ojs.t) -> _StreamContentTypeDecoder_of_js x79
-    and t_to_js : t -> Ojs.t =
-      fun (x78 : _StreamContentTypeDecoder) ->
-        _StreamContentTypeDecoder_to_js x78
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x71 : Ojs.t) -> x71
+    and t_to_js : t -> Ojs.t = fun (x70 : Ojs.t) -> x70
     let (get_name : t -> string) =
-      fun (x80 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x80) "name")
+      fun (x72 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x72) "name")
     let (set_name : t -> string -> unit) =
-      fun (x81 : t) ->
-        fun (x82 : string) ->
-          Ojs.set_prop_ascii (t_to_js x81) "name" (Ojs.string_to_js x82)
+      fun (x73 : t) ->
+        fun (x74 : string) ->
+          Ojs.set_prop_ascii (t_to_js x73) "name" (Ojs.string_to_js x74)
     let (create_ :
       t ->
-        options:_ContentTypeDecoderOptions ->
+        options:ContentTypeDecoderOptions.t ->
           Vscode_jsonrpc_ral.RAL.WritableStream.t)
       =
-      fun (x84 : t) ->
-        fun ~options:(x83 : _ContentTypeDecoderOptions) ->
+      fun (x76 : t) ->
+        fun ~options:(x75 : ContentTypeDecoderOptions.t) ->
           Vscode_jsonrpc_ral.RAL.WritableStream.t_of_js
-            (Ojs.call (t_to_js x84) "create"
-               [|(_ContentTypeDecoderOptions_to_js x83)|])
+            (Ojs.call (t_to_js x76) "create"
+               [|(ContentTypeDecoderOptions.t_to_js x75)|])
   end
 module ContentTypeDecoder =
   struct
-    type t = _ContentTypeDecoder
+    type t = FunctionContentTypeDecoder.t
     let rec t_of_js : Ojs.t -> t =
-      fun (x86 : Ojs.t) -> _ContentTypeDecoder_of_js x86
+      fun (x78 : Ojs.t) -> FunctionContentTypeDecoder.t_of_js x78
     and t_to_js : t -> Ojs.t =
-      fun (x85 : _ContentTypeDecoder) -> _ContentTypeDecoder_to_js x85
+      fun (x77 : FunctionContentTypeDecoder.t) ->
+        FunctionContentTypeDecoder.t_to_js x77
   end
 module Named =
   struct
-    type t = _Named
-    let rec t_of_js : Ojs.t -> t = fun (x88 : Ojs.t) -> _Named_of_js x88
-    and t_to_js : t -> Ojs.t = fun (x87 : _Named) -> _Named_to_js x87
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x80 : Ojs.t) -> x80
+    and t_to_js : t -> Ojs.t = fun (x79 : Ojs.t) -> x79
     let (get_name : t -> string) =
-      fun (x89 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x89) "name")
+      fun (x81 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x81) "name")
     let (set_name : t -> string -> unit) =
-      fun (x90 : t) ->
-        fun (x91 : string) ->
-          Ojs.set_prop_ascii (t_to_js x90) "name" (Ojs.string_to_js x91)
+      fun (x82 : t) ->
+        fun (x83 : string) ->
+          Ojs.set_prop_ascii (t_to_js x82) "name" (Ojs.string_to_js x83)
   end
 module Encodings =
   struct
-    let (getEncodingHeaderValue :
-      encodings:_Named list -> string or_undefined) =
-      fun ~encodings:(x92 : _Named list) ->
+    let (get_encoding_header_value :
+      encodings:Named.t list -> string or_undefined) =
+      fun ~encodings:(x84 : Named.t list) ->
         or_undefined_of_js Ojs.string_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Encodings")
-             "getEncodingHeaderValue" [|(Ojs.list_to_js _Named_to_js x92)|])
-    let (parseEncodingHeaderValue : value:string -> string list) =
-      fun ~value:(x95 : string) ->
+             "getEncodingHeaderValue" [|(Ojs.list_to_js Named.t_to_js x84)|])
+    let (parse_encoding_header_value : value:string -> string list) =
+      fun ~value:(x87 : string) ->
         Ojs.list_of_js Ojs.string_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Encodings")
-             "parseEncodingHeaderValue" [|(Ojs.string_to_js x95)|])
+             "parseEncodingHeaderValue" [|(Ojs.string_to_js x87)|])
   end

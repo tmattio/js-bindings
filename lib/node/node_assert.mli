@@ -27,9 +27,10 @@ module AnonymousInterface0 : sig
 
   val set_operator : t -> string -> unit [@@js.set "operator"]
 
-  val get_stackStartFn : t -> untyped_function [@@js.get "stackStartFn"]
+  val get_stack_start_fn : t -> untyped_function [@@js.get "stackStartFn"]
 
-  val set_stackStartFn : t -> untyped_function -> unit [@@js.set "stackStartFn"]
+  val set_stack_start_fn : t -> untyped_function -> unit
+    [@@js.set "stackStartFn"]
 end
 
 module AnonymousInterface1 : sig
@@ -63,7 +64,7 @@ module AnonymousInterface3 : sig
 
   val set_equal : t -> AnonymousInterface1.t -> unit [@@js.set "equal"]
 
-  val notEqual
+  val not_equal
     :  t
     -> actual:any
     -> expected:any
@@ -72,11 +73,11 @@ module AnonymousInterface3 : sig
     -> unit
     [@@js.call "notEqual"]
 
-  val get_deepEqual : t -> AnonymousInterface1.t [@@js.get "deepEqual"]
+  val get_deep_equal : t -> AnonymousInterface1.t [@@js.get "deepEqual"]
 
-  val set_deepEqual : t -> AnonymousInterface1.t -> unit [@@js.set "deepEqual"]
+  val set_deep_equal : t -> AnonymousInterface1.t -> unit [@@js.set "deepEqual"]
 
-  val notDeepEqual
+  val not_deep_equal
     :  t
     -> actual:any
     -> expected:any
@@ -88,18 +89,18 @@ module AnonymousInterface3 : sig
   val ok : t -> value:any -> ?message:Error.t or_string -> unit -> bool
     [@@js.call "ok"]
 
-  val get_strictEqual : t -> AnonymousInterface1.t [@@js.get "strictEqual"]
+  val get_strict_equal : t -> AnonymousInterface1.t [@@js.get "strictEqual"]
 
-  val set_strictEqual : t -> AnonymousInterface1.t -> unit
+  val set_strict_equal : t -> AnonymousInterface1.t -> unit
     [@@js.set "strictEqual"]
 
-  val get_deepStrictEqual : t -> AnonymousInterface1.t
+  val get_deep_strict_equal : t -> AnonymousInterface1.t
     [@@js.get "deepStrictEqual"]
 
-  val set_deepStrictEqual : t -> AnonymousInterface1.t -> unit
+  val set_deep_strict_equal : t -> AnonymousInterface1.t -> unit
     [@@js.set "deepStrictEqual"]
 
-  val ifError : t -> value:any -> bool [@@js.call "ifError"]
+  val if_error : t -> value:any -> bool [@@js.call "ifError"]
 
   val get_strict : t -> (* FIXME: unknown type 'typeof strict' *) any
     [@@js.get "strict"]
@@ -122,7 +123,7 @@ module AnonymousInterface2 : sig
 
   val set_equal : t -> AnonymousInterface1.t -> unit [@@js.set "equal"]
 
-  val notEqual
+  val not_equal
     :  t
     -> actual:any
     -> expected:any
@@ -131,11 +132,11 @@ module AnonymousInterface2 : sig
     -> unit
     [@@js.call "notEqual"]
 
-  val get_deepEqual : t -> AnonymousInterface1.t [@@js.get "deepEqual"]
+  val get_deep_equal : t -> AnonymousInterface1.t [@@js.get "deepEqual"]
 
-  val set_deepEqual : t -> AnonymousInterface1.t -> unit [@@js.set "deepEqual"]
+  val set_deep_equal : t -> AnonymousInterface1.t -> unit [@@js.set "deepEqual"]
 
-  val notDeepEqual
+  val not_deep_equal
     :  t
     -> actual:any
     -> expected:any
@@ -147,18 +148,18 @@ module AnonymousInterface2 : sig
   val ok : t -> value:any -> ?message:Error.t or_string -> unit -> bool
     [@@js.call "ok"]
 
-  val get_strictEqual : t -> AnonymousInterface1.t [@@js.get "strictEqual"]
+  val get_strict_equal : t -> AnonymousInterface1.t [@@js.get "strictEqual"]
 
-  val set_strictEqual : t -> AnonymousInterface1.t -> unit
+  val set_strict_equal : t -> AnonymousInterface1.t -> unit
     [@@js.set "strictEqual"]
 
-  val get_deepStrictEqual : t -> AnonymousInterface1.t
+  val get_deep_strict_equal : t -> AnonymousInterface1.t
     [@@js.get "deepStrictEqual"]
 
-  val set_deepStrictEqual : t -> AnonymousInterface1.t -> unit
+  val set_deep_strict_equal : t -> AnonymousInterface1.t -> unit
     [@@js.set "deepStrictEqual"]
 
-  val ifError : t -> value:any -> bool [@@js.call "ifError"]
+  val if_error : t -> value:any -> bool [@@js.call "ifError"]
 
   val get_strict
     :  t
@@ -234,9 +235,10 @@ module Assert : sig
 
       val set_operator : t -> string -> unit [@@js.set "operator"]
 
-      val get_generatedMessage : t -> bool [@@js.get "generatedMessage"]
+      val get_generated_message : t -> bool [@@js.get "generatedMessage"]
 
-      val set_generatedMessage : t -> bool -> unit [@@js.set "generatedMessage"]
+      val set_generated_message : t -> bool -> unit
+        [@@js.set "generatedMessage"]
 
       val get_code
         :  t
@@ -321,7 +323,7 @@ module Assert : sig
       -> expected:any
       -> ?message:Error.t or_string
       -> ?operator:string
-      -> ?stackStartFn:untyped_function
+      -> ?stack_start_fn:untyped_function
       -> unit
       -> never
       [@@js.global "fail"]
@@ -337,7 +339,7 @@ module Assert : sig
       -> unit
       [@@js.global "equal"]
 
-    val notEqual
+    val not_equal
       :  actual:any
       -> expected:any
       -> ?message:Error.t or_string
@@ -345,7 +347,7 @@ module Assert : sig
       -> unit
       [@@js.global "notEqual"]
 
-    val deepEqual
+    val deep_equal
       :  actual:any
       -> expected:any
       -> ?message:Error.t or_string
@@ -353,7 +355,7 @@ module Assert : sig
       -> unit
       [@@js.global "deepEqual"]
 
-    val notDeepEqual
+    val not_deep_equal
       :  actual:any
       -> expected:any
       -> ?message:Error.t or_string
@@ -361,7 +363,7 @@ module Assert : sig
       -> unit
       [@@js.global "notDeepEqual"]
 
-    val strictEqual
+    val strict_equal
       :  actual:any
       -> expected:'T
       -> ?message:Error.t or_string
@@ -369,7 +371,7 @@ module Assert : sig
       -> bool
       [@@js.global "strictEqual"]
 
-    val notStrictEqual
+    val not_strict_equal
       :  actual:any
       -> expected:any
       -> ?message:Error.t or_string
@@ -377,7 +379,7 @@ module Assert : sig
       -> unit
       [@@js.global "notStrictEqual"]
 
-    val deepStrictEqual
+    val deep_strict_equal
       :  actual:any
       -> expected:'T
       -> ?message:Error.t or_string
@@ -385,7 +387,7 @@ module Assert : sig
       -> bool
       [@@js.global "deepStrictEqual"]
 
-    val notDeepStrictEqual
+    val not_deep_strict_equal
       :  actual:any
       -> expected:any
       -> ?message:Error.t or_string
@@ -408,14 +410,14 @@ module Assert : sig
       -> unit
       [@@js.global "throws"]
 
-    val doesNotThrow
+    val does_not_throw
       :  block:(unit -> any)
       -> ?message:Error.t or_string
       -> unit
       -> unit
       [@@js.global "doesNotThrow"]
 
-    val doesNotThrow
+    val does_not_throw
       :  block:(unit -> any)
       -> error:AssertPredicate.t
       -> ?message:Error.t or_string
@@ -423,7 +425,7 @@ module Assert : sig
       -> unit
       [@@js.global "doesNotThrow"]
 
-    val ifError : value:any -> bool [@@js.global "ifError"]
+    val if_error : value:any -> bool [@@js.global "ifError"]
 
     val rejects
       :  block:(unit -> any Promise.t, any Promise.t) union2
@@ -440,14 +442,14 @@ module Assert : sig
       -> unit Promise.t
       [@@js.global "rejects"]
 
-    val doesNotReject
+    val does_not_reject
       :  block:(unit -> any Promise.t, any Promise.t) union2
       -> ?message:Error.t or_string
       -> unit
       -> unit Promise.t
       [@@js.global "doesNotReject"]
 
-    val doesNotReject
+    val does_not_reject
       :  block:(unit -> any Promise.t, any Promise.t) union2
       -> error:AssertPredicate.t
       -> ?message:Error.t or_string
@@ -457,15 +459,15 @@ module Assert : sig
 
     val match_
       :  value:string
-      -> regExp:regexp
+      -> reg_exp:regexp
       -> ?message:Error.t or_string
       -> unit
       -> unit
       [@@js.global "match"]
 
-    val doesNotMatch
+    val does_not_match
       :  value:string
-      -> regExp:regexp
+      -> reg_exp:regexp
       -> ?message:Error.t or_string
       -> unit
       -> unit

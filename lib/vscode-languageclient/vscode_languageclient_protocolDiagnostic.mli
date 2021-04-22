@@ -6,7 +6,7 @@ open Es5
 
 (* import * as vscode from 'vscode'; *)
 module DiagnosticCode : sig
-  type t = _DiagnosticCode
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -24,14 +24,14 @@ end
 
 module DiagnosticCode : sig
   val is
-    :  value:_DiagnosticCode or_string or_number or_null_or_undefined
+    :  value:DiagnosticCode.t or_string or_number or_null_or_undefined
     -> bool
     [@@js.global "is"]
 end
 [@@js.scope "DiagnosticCode"]
 
 module ProtocolDiagnostic : sig
-  type t = _ProtocolDiagnostic
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -39,9 +39,9 @@ module ProtocolDiagnostic : sig
 
   val get_data : t -> unknown or_undefined [@@js.get "data"]
 
-  val get_hasDiagnosticCode : t -> bool [@@js.get "hasDiagnosticCode"]
+  val get_has_diagnostic_code : t -> bool [@@js.get "hasDiagnosticCode"]
 
-  val set_hasDiagnosticCode : t -> bool -> unit [@@js.set "hasDiagnosticCode"]
+  val set_has_diagnostic_code : t -> bool -> unit [@@js.set "hasDiagnosticCode"]
 
   val create
     :  range:Vscode.Range.t

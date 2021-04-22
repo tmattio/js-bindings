@@ -2,318 +2,259 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module Types =
-      struct
-        type _VDocumentDiagnosticReport =
-          [ `U_s0_new of AnonymousInterface0.t 
-          | `U_s1_unChanged of AnonymousInterface1.t ]
-        and _VDocumentDiagnosticReportKind = [ `new_  | `unChanged ]
-        and _VDocumentDiagnosticReportKind_new = [ `new_ ]
-        and _VDocumentDiagnosticReportKind_unChanged = [ `unChanged ]
-        let rec _VDocumentDiagnosticReport_of_js :
-          Ojs.t -> _VDocumentDiagnosticReport =
-          fun (x4 : Ojs.t) ->
-            let x5 = x4 in
-            match Ojs.string_of_js (Ojs.get_prop_ascii x5 "kind") with
-            | "new" -> `U_s0_new (AnonymousInterface0.t_of_js x5)
-            | "unChanged" -> `U_s1_unChanged (AnonymousInterface1.t_of_js x5)
-            | _ -> assert false
-        and _VDocumentDiagnosticReport_to_js :
-          _VDocumentDiagnosticReport -> Ojs.t =
-          fun
-            (x1 :
-              [ `U_s0_new of AnonymousInterface0.t 
-              | `U_s1_unChanged of AnonymousInterface1.t ])
-            ->
-            match x1 with
-            | `U_s0_new x2 -> AnonymousInterface0.t_to_js x2
-            | `U_s1_unChanged x3 -> AnonymousInterface1.t_to_js x3
-        and _VDocumentDiagnosticReportKind_of_js :
-          Ojs.t -> _VDocumentDiagnosticReportKind =
-          fun (x7 : Ojs.t) ->
-            let x8 = x7 in
-            match Ojs.string_of_js x8 with
-            | "new" -> `new_
-            | "unChanged" -> `unChanged
-            | _ -> assert false
-        and _VDocumentDiagnosticReportKind_to_js :
-          _VDocumentDiagnosticReportKind -> Ojs.t =
-          fun (x6 : [ `new_  | `unChanged ]) ->
-            match x6 with
-            | `new_ -> Ojs.string_to_js "new"
-            | `unChanged -> Ojs.string_to_js "unChanged"
-        and _VDocumentDiagnosticReportKind_new_of_js :
-          Ojs.t -> _VDocumentDiagnosticReportKind_new =
-          fun (x10 : Ojs.t) ->
-            let x11 = x10 in
-            match Ojs.string_of_js x11 with
-            | "new" -> `new_
-            | _ -> assert false
-        and _VDocumentDiagnosticReportKind_new_to_js :
-          _VDocumentDiagnosticReportKind_new -> Ojs.t =
-          fun (x9 : [ `new_ ]) ->
-            match x9 with | `new_ -> Ojs.string_to_js "new"
-        and _VDocumentDiagnosticReportKind_unChanged_of_js :
-          Ojs.t -> _VDocumentDiagnosticReportKind_unChanged =
-          fun (x13 : Ojs.t) ->
-            let x14 = x13 in
-            match Ojs.string_of_js x14 with
-            | "unChanged" -> `unChanged
-            | _ -> assert false
-        and _VDocumentDiagnosticReportKind_unChanged_to_js :
-          _VDocumentDiagnosticReportKind_unChanged -> Ojs.t =
-          fun (x12 : [ `unChanged ]) ->
-            match x12 with | `unChanged -> Ojs.string_to_js "unChanged"
-      end
-  end
 module AnonymousInterface0 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x16 : Ojs.t) -> x16
-    and t_to_js : t -> Ojs.t = fun (x15 : Ojs.t) -> x15
-    let (get_kind : t -> _VDocumentDiagnosticReportKind_new) =
-      fun (x17 : t) ->
-        _VDocumentDiagnosticReportKind_new_of_js
-          (Ojs.get_prop_ascii (t_to_js x17) "kind")
-    let (set_kind : t -> _VDocumentDiagnosticReportKind_new -> unit) =
-      fun (x18 : t) ->
-        fun (x19 : _VDocumentDiagnosticReportKind_new) ->
-          Ojs.set_prop_ascii (t_to_js x18) "kind"
-            (_VDocumentDiagnosticReportKind_new_to_js x19)
-    let (get_resultId : t -> string) =
-      fun (x20 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x20) "resultId")
-    let (set_resultId : t -> string -> unit) =
-      fun (x21 : t) ->
-        fun (x22 : string) ->
-          Ojs.set_prop_ascii (t_to_js x21) "resultId" (Ojs.string_to_js x22)
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
+    let (get_kind : t -> VDocumentDiagnosticReportKind_new.t) =
+      fun (x3 : t) ->
+        VDocumentDiagnosticReportKind_new.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x3) "kind")
+    let (set_kind : t -> VDocumentDiagnosticReportKind_new.t -> unit) =
+      fun (x4 : t) ->
+        fun (x5 : VDocumentDiagnosticReportKind_new.t) ->
+          Ojs.set_prop_ascii (t_to_js x4) "kind"
+            (VDocumentDiagnosticReportKind_new.t_to_js x5)
+    let (get_result_id : t -> string) =
+      fun (x6 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x6) "resultId")
+    let (set_result_id : t -> string -> unit) =
+      fun (x7 : t) ->
+        fun (x8 : string) ->
+          Ojs.set_prop_ascii (t_to_js x7) "resultId" (Ojs.string_to_js x8)
     let (get_items : t -> VDiagnostic.t list) =
-      fun (x23 : t) ->
+      fun (x9 : t) ->
         Ojs.list_of_js VDiagnostic.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x23) "items")
+          (Ojs.get_prop_ascii (t_to_js x9) "items")
     let (set_items : t -> VDiagnostic.t list -> unit) =
-      fun (x25 : t) ->
-        fun (x26 : VDiagnostic.t list) ->
-          Ojs.set_prop_ascii (t_to_js x25) "items"
-            (Ojs.list_to_js VDiagnostic.t_to_js x26)
+      fun (x11 : t) ->
+        fun (x12 : VDiagnostic.t list) ->
+          Ojs.set_prop_ascii (t_to_js x11) "items"
+            (Ojs.list_to_js VDiagnostic.t_to_js x12)
   end
 module AnonymousInterface1 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x29 : Ojs.t) -> x29
-    and t_to_js : t -> Ojs.t = fun (x28 : Ojs.t) -> x28
-    let (get_kind : t -> _VDocumentDiagnosticReportKind_unChanged) =
-      fun (x30 : t) ->
-        _VDocumentDiagnosticReportKind_unChanged_of_js
-          (Ojs.get_prop_ascii (t_to_js x30) "kind")
-    let (set_kind : t -> _VDocumentDiagnosticReportKind_unChanged -> unit) =
-      fun (x31 : t) ->
-        fun (x32 : _VDocumentDiagnosticReportKind_unChanged) ->
-          Ojs.set_prop_ascii (t_to_js x31) "kind"
-            (_VDocumentDiagnosticReportKind_unChanged_to_js x32)
-    let (get_resultId : t -> string) =
-      fun (x33 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x33) "resultId")
-    let (set_resultId : t -> string -> unit) =
-      fun (x34 : t) ->
-        fun (x35 : string) ->
-          Ojs.set_prop_ascii (t_to_js x34) "resultId" (Ojs.string_to_js x35)
+    let rec t_of_js : Ojs.t -> t = fun (x15 : Ojs.t) -> x15
+    and t_to_js : t -> Ojs.t = fun (x14 : Ojs.t) -> x14
+    let (get_kind : t -> VDocumentDiagnosticReportKind_unChanged.t) =
+      fun (x16 : t) ->
+        VDocumentDiagnosticReportKind_unChanged.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x16) "kind")
+    let (set_kind : t -> VDocumentDiagnosticReportKind_unChanged.t -> unit) =
+      fun (x17 : t) ->
+        fun (x18 : VDocumentDiagnosticReportKind_unChanged.t) ->
+          Ojs.set_prop_ascii (t_to_js x17) "kind"
+            (VDocumentDiagnosticReportKind_unChanged.t_to_js x18)
+    let (get_result_id : t -> string) =
+      fun (x19 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x19) "resultId")
+    let (set_result_id : t -> string -> unit) =
+      fun (x20 : t) ->
+        fun (x21 : string) ->
+          Ojs.set_prop_ascii (t_to_js x20) "resultId" (Ojs.string_to_js x21)
   end
 module VDocumentDiagnosticReportKind =
   struct
-    type t = _VDocumentDiagnosticReportKind
+    type t = [ `new_  | `unChanged ]
     let rec t_of_js : Ojs.t -> t =
-      fun (x37 : Ojs.t) -> _VDocumentDiagnosticReportKind_of_js x37
+      fun (x23 : Ojs.t) ->
+        let x24 = x23 in
+        match Ojs.string_of_js x24 with
+        | "new" -> `new_
+        | "unChanged" -> `unChanged
+        | _ -> assert false
     and t_to_js : t -> Ojs.t =
-      fun (x36 : _VDocumentDiagnosticReportKind) ->
-        _VDocumentDiagnosticReportKind_to_js x36
+      fun (x22 : [ `new_  | `unChanged ]) ->
+        match x22 with
+        | `new_ -> Ojs.string_to_js "new"
+        | `unChanged -> Ojs.string_to_js "unChanged"
   end
 module VDocumentDiagnosticReport =
   struct
-    type t = _VDocumentDiagnosticReport
+    type t =
+      [ `U_s0_new of AnonymousInterface0.t 
+      | `U_s1_unChanged of AnonymousInterface1.t ]
     let rec t_of_js : Ojs.t -> t =
-      fun (x39 : Ojs.t) -> _VDocumentDiagnosticReport_of_js x39
+      fun (x28 : Ojs.t) ->
+        let x29 = x28 in
+        match Ojs.string_of_js (Ojs.get_prop_ascii x29 "kind") with
+        | "new" -> `U_s0_new (AnonymousInterface0.t_of_js x29)
+        | "unChanged" -> `U_s1_unChanged (AnonymousInterface1.t_of_js x29)
+        | _ -> assert false
     and t_to_js : t -> Ojs.t =
-      fun (x38 : _VDocumentDiagnosticReport) ->
-        _VDocumentDiagnosticReport_to_js x38
+      fun
+        (x25 :
+          [ `U_s0_new of AnonymousInterface0.t 
+          | `U_s1_unChanged of AnonymousInterface1.t ])
+        ->
+        match x25 with
+        | `U_s0_new x26 -> AnonymousInterface0.t_to_js x26
+        | `U_s1_unChanged x27 -> AnonymousInterface1.t_to_js x27
   end
 module DiagnosticProvider =
   struct
-    type t = _DiagnosticProvider
-    let rec t_of_js : Ojs.t -> t =
-      fun (x41 : Ojs.t) -> _DiagnosticProvider_of_js x41
-    and t_to_js : t -> Ojs.t =
-      fun (x40 : _DiagnosticProvider) -> _DiagnosticProvider_to_js x40
-    let (get_onDidChangeDiagnostics : t -> unit VEvent.t) =
-      fun (x42 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x31 : Ojs.t) -> x31
+    and t_to_js : t -> Ojs.t = fun (x30 : Ojs.t) -> x30
+    let (get_on_did_change_diagnostics : t -> unit VEvent.t) =
+      fun (x32 : t) ->
         VEvent.t_of_js Ojs.unit_of_js
-          (Ojs.get_prop_ascii (t_to_js x42) "onDidChangeDiagnostics")
-    let (set_onDidChangeDiagnostics : t -> unit VEvent.t -> unit) =
-      fun (x44 : t) ->
-        fun (x45 : unit VEvent.t) ->
-          Ojs.set_prop_ascii (t_to_js x44) "onDidChangeDiagnostics"
-            (VEvent.t_to_js Ojs.unit_to_js x45)
-    let (provideDiagnostics :
+          (Ojs.get_prop_ascii (t_to_js x32) "onDidChangeDiagnostics")
+    let (set_on_did_change_diagnostics : t -> unit VEvent.t -> unit) =
+      fun (x34 : t) ->
+        fun (x35 : unit VEvent.t) ->
+          Ojs.set_prop_ascii (t_to_js x34) "onDidChangeDiagnostics"
+            (VEvent.t_to_js Ojs.unit_to_js x35)
+    let (provide_diagnostics :
       t ->
-        textDocument:TextDocument.t ->
+        text_document:TextDocument.t ->
           token:CancellationToken.t ->
-            _VDocumentDiagnosticReport ProviderResult.t)
+            VDocumentDiagnosticReport.t ProviderResult.t)
       =
-      fun (x49 : t) ->
-        fun ~textDocument:(x47 : TextDocument.t) ->
-          fun ~token:(x48 : CancellationToken.t) ->
-            ProviderResult.t_of_js _VDocumentDiagnosticReport_of_js
-              (Ojs.call (t_to_js x49) "provideDiagnostics"
-                 [|(TextDocument.t_to_js x47);(CancellationToken.t_to_js x48)|])
+      fun (x39 : t) ->
+        fun ~text_document:(x37 : TextDocument.t) ->
+          fun ~token:(x38 : CancellationToken.t) ->
+            ProviderResult.t_of_js VDocumentDiagnosticReport.t_of_js
+              (Ojs.call (t_to_js x39) "provideDiagnostics"
+                 [|(TextDocument.t_to_js x37);(CancellationToken.t_to_js x38)|])
   end
 module ProvideDiagnosticSignature =
   struct
-    type t = _ProvideDiagnosticSignature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x52 : Ojs.t) -> _ProvideDiagnosticSignature_of_js x52
-    and t_to_js : t -> Ojs.t =
-      fun (x51 : _ProvideDiagnosticSignature) ->
-        _ProvideDiagnosticSignature_to_js x51
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x42 : Ojs.t) -> x42
+    and t_to_js : t -> Ojs.t = fun (x41 : Ojs.t) -> x41
     let (apply :
       t ->
         this:unit ->
-          textDocument:TextDocument.t ->
+          text_document:TextDocument.t ->
             token:CancellationToken.t ->
-              _VDocumentDiagnosticReport ProviderResult.t)
+              VDocumentDiagnosticReport.t ProviderResult.t)
       =
-      fun (x56 : t) ->
-        fun ~this:(x53 : unit) ->
-          fun ~textDocument:(x54 : TextDocument.t) ->
-            fun ~token:(x55 : CancellationToken.t) ->
-              ProviderResult.t_of_js _VDocumentDiagnosticReport_of_js
-                (Ojs.apply (t_to_js x56)
-                   [|(Ojs.unit_to_js x53);(TextDocument.t_to_js x54);(
-                     CancellationToken.t_to_js x55)|])
+      fun (x46 : t) ->
+        fun ~this:(x43 : unit) ->
+          fun ~text_document:(x44 : TextDocument.t) ->
+            fun ~token:(x45 : CancellationToken.t) ->
+              ProviderResult.t_of_js VDocumentDiagnosticReport.t_of_js
+                (Ojs.apply (t_to_js x46)
+                   [|(Ojs.unit_to_js x43);(TextDocument.t_to_js x44);(
+                     CancellationToken.t_to_js x45)|])
   end
 module DiagnosticProviderMiddleware =
   struct
-    type t = _DiagnosticProviderMiddleware
-    let rec t_of_js : Ojs.t -> t =
-      fun (x59 : Ojs.t) -> _DiagnosticProviderMiddleware_of_js x59
-    and t_to_js : t -> Ojs.t =
-      fun (x58 : _DiagnosticProviderMiddleware) ->
-        _DiagnosticProviderMiddleware_to_js x58
-    let (provideDiagnostics :
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x49 : Ojs.t) -> x49
+    and t_to_js : t -> Ojs.t = fun (x48 : Ojs.t) -> x48
+    let (provide_diagnostics :
       t ->
         this:unit ->
           document:TextDocument.t ->
             token:CancellationToken.t ->
-              next:_ProvideDiagnosticSignature ->
-                _VDocumentDiagnosticReport ProviderResult.t)
+              next:ProvideDiagnosticSignature.t ->
+                VDocumentDiagnosticReport.t ProviderResult.t)
       =
-      fun (x64 : t) ->
-        fun ~this:(x60 : unit) ->
-          fun ~document:(x61 : TextDocument.t) ->
-            fun ~token:(x62 : CancellationToken.t) ->
-              fun ~next:(x63 : _ProvideDiagnosticSignature) ->
-                ProviderResult.t_of_js _VDocumentDiagnosticReport_of_js
-                  (Ojs.call (t_to_js x64) "provideDiagnostics"
-                     [|(Ojs.unit_to_js x60);(TextDocument.t_to_js x61);(
-                       CancellationToken.t_to_js x62);(_ProvideDiagnosticSignature_to_js
-                                                         x63)|])
+      fun (x54 : t) ->
+        fun ~this:(x50 : unit) ->
+          fun ~document:(x51 : TextDocument.t) ->
+            fun ~token:(x52 : CancellationToken.t) ->
+              fun ~next:(x53 : ProvideDiagnosticSignature.t) ->
+                ProviderResult.t_of_js VDocumentDiagnosticReport.t_of_js
+                  (Ojs.call (t_to_js x54) "provideDiagnostics"
+                     [|(Ojs.unit_to_js x50);(TextDocument.t_to_js x51);(
+                       CancellationToken.t_to_js x52);(ProvideDiagnosticSignature.t_to_js
+                                                         x53)|])
   end
 module DiagnosticFeatureProvider =
   struct
-    type t = _DiagnosticFeatureProvider
-    let rec t_of_js : Ojs.t -> t =
-      fun (x67 : Ojs.t) -> _DiagnosticFeatureProvider_of_js x67
-    and t_to_js : t -> Ojs.t =
-      fun (x66 : _DiagnosticFeatureProvider) ->
-        _DiagnosticFeatureProvider_to_js x66
-    let (get_onDidChangeDiagnosticsEmitter : t -> unit EventEmitter.t) =
-      fun (x68 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x57 : Ojs.t) -> x57
+    and t_to_js : t -> Ojs.t = fun (x56 : Ojs.t) -> x56
+    let (get_on_did_change_diagnostics_emitter : t -> unit EventEmitter.t) =
+      fun (x58 : t) ->
         EventEmitter.t_of_js Ojs.unit_of_js
-          (Ojs.get_prop_ascii (t_to_js x68) "onDidChangeDiagnosticsEmitter")
-    let (set_onDidChangeDiagnosticsEmitter :
+          (Ojs.get_prop_ascii (t_to_js x58) "onDidChangeDiagnosticsEmitter")
+    let (set_on_did_change_diagnostics_emitter :
       t -> unit EventEmitter.t -> unit) =
-      fun (x70 : t) ->
-        fun (x71 : unit EventEmitter.t) ->
-          Ojs.set_prop_ascii (t_to_js x70) "onDidChangeDiagnosticsEmitter"
-            (EventEmitter.t_to_js Ojs.unit_to_js x71)
-    let (get_provider : t -> _DiagnosticProvider) =
-      fun (x73 : t) ->
-        _DiagnosticProvider_of_js
-          (Ojs.get_prop_ascii (t_to_js x73) "provider")
-    let (set_provider : t -> _DiagnosticProvider -> unit) =
-      fun (x74 : t) ->
-        fun (x75 : _DiagnosticProvider) ->
-          Ojs.set_prop_ascii (t_to_js x74) "provider"
-            (_DiagnosticProvider_to_js x75)
+      fun (x60 : t) ->
+        fun (x61 : unit EventEmitter.t) ->
+          Ojs.set_prop_ascii (t_to_js x60) "onDidChangeDiagnosticsEmitter"
+            (EventEmitter.t_to_js Ojs.unit_to_js x61)
+    let (get_provider : t -> DiagnosticProvider.t) =
+      fun (x63 : t) ->
+        DiagnosticProvider.t_of_js
+          (Ojs.get_prop_ascii (t_to_js x63) "provider")
+    let (set_provider : t -> DiagnosticProvider.t -> unit) =
+      fun (x64 : t) ->
+        fun (x65 : DiagnosticProvider.t) ->
+          Ojs.set_prop_ascii (t_to_js x64) "provider"
+            (DiagnosticProvider.t_to_js x65)
   end
 module DiagnosticFeature =
   struct
-    type t = _DiagnosticFeature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x77 : Ojs.t) -> _DiagnosticFeature_of_js x77
-    and t_to_js : t -> Ojs.t =
-      fun (x76 : _DiagnosticFeature) -> _DiagnosticFeature_to_js x76
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x67 : Ojs.t) -> x67
+    and t_to_js : t -> Ojs.t = fun (x66 : Ojs.t) -> x66
     let (create : client:BaseLanguageClient.t -> t) =
-      fun ~client:(x78 : BaseLanguageClient.t) ->
+      fun ~client:(x68 : BaseLanguageClient.t) ->
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "DiagnosticFeature")
-             [|(BaseLanguageClient.t_to_js x78)|])
-    let (fillClientCapabilities :
+             [|(BaseLanguageClient.t_to_js x68)|])
+    let (fill_client_capabilities :
       t ->
         capabilities:(ClientCapabilities.t,
           Proposed.DiagnosticClientCapabilities.t) intersection2 -> unit)
       =
-      fun (x82 : t) ->
+      fun (x72 : t) ->
         fun
-          ~capabilities:(x79 :
+          ~capabilities:(x69 :
                           (ClientCapabilities.t,
                             Proposed.DiagnosticClientCapabilities.t)
                             intersection2)
           ->
           ignore
-            (Ojs.call (t_to_js x82) "fillClientCapabilities"
+            (Ojs.call (t_to_js x72) "fillClientCapabilities"
                [|(intersection2_to_js ClientCapabilities.t_to_js
-                    Proposed.DiagnosticClientCapabilities.t_to_js x79)|])
+                    Proposed.DiagnosticClientCapabilities.t_to_js x69)|])
     let (initialize :
       t ->
         capabilities:(ServerCapabilities.t,
           Proposed.DiagnosticServerCapabilities.t) intersection2 ->
-          documentSelector:DocumentSelector.t -> unit)
+          document_selector:DocumentSelector.t -> unit)
       =
-      fun (x87 : t) ->
+      fun (x77 : t) ->
         fun
-          ~capabilities:(x83 :
+          ~capabilities:(x73 :
                           (ServerCapabilities.t,
                             Proposed.DiagnosticServerCapabilities.t)
                             intersection2)
           ->
-          fun ~documentSelector:(x86 : DocumentSelector.t) ->
+          fun ~document_selector:(x76 : DocumentSelector.t) ->
             ignore
-              (Ojs.call (t_to_js x87) "initialize"
+              (Ojs.call (t_to_js x77) "initialize"
                  [|(intersection2_to_js ServerCapabilities.t_to_js
-                      Proposed.DiagnosticServerCapabilities.t_to_js x83);(
-                   DocumentSelector.t_to_js x86)|])
-    let (registerLanguageProvider :
+                      Proposed.DiagnosticServerCapabilities.t_to_js x73);(
+                   DocumentSelector.t_to_js x76)|])
+    let (register_language_provider :
       t ->
         options:Proposed.DiagnosticRegistrationOptions.t ->
-          (Disposable.t * _DiagnosticFeatureProvider))
+          (Disposable.t * DiagnosticFeatureProvider.t))
       =
-      fun (x89 : t) ->
-        fun ~options:(x88 : Proposed.DiagnosticRegistrationOptions.t) ->
-          let x90 =
-            Ojs.call (t_to_js x89) "registerLanguageProvider"
-              [|(Proposed.DiagnosticRegistrationOptions.t_to_js x88)|] in
-          ((Disposable.t_of_js (Ojs.array_get x90 0)),
-            (_DiagnosticFeatureProvider_of_js (Ojs.array_get x90 1)))
+      fun (x79 : t) ->
+        fun ~options:(x78 : Proposed.DiagnosticRegistrationOptions.t) ->
+          let x80 =
+            Ojs.call (t_to_js x79) "registerLanguageProvider"
+              [|(Proposed.DiagnosticRegistrationOptions.t_to_js x78)|] in
+          ((Disposable.t_of_js (Ojs.array_get x80 0)),
+            (DiagnosticFeatureProvider.t_of_js (Ojs.array_get x80 1)))
     let (cast :
       t ->
         (Proposed.DiagnosticOptions.t,
           Proposed.DiagnosticRegistrationOptions.t,
-          _DiagnosticFeatureProvider) TextDocumentFeature.t)
+          DiagnosticFeatureProvider.t) TextDocumentFeature.t)
       =
-      fun (x91 : t) ->
+      fun (x81 : t) ->
         TextDocumentFeature.t_of_js Proposed.DiagnosticOptions.t_of_js
           Proposed.DiagnosticRegistrationOptions.t_of_js
-          _DiagnosticFeatureProvider_of_js (t_to_js x91)
+          DiagnosticFeatureProvider.t_of_js (t_to_js x81)
   end

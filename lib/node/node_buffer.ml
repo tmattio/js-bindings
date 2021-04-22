@@ -8,17 +8,17 @@ module AnonymousInterface0 =
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
     and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
-    let (get_MAX_LENGTH : t -> int) =
+    let (get_max_length : t -> int) =
       fun (x3 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x3) "MAX_LENGTH")
-    let (set_MAX_LENGTH : t -> int -> unit) =
+    let (set_max_length : t -> int -> unit) =
       fun (x4 : t) ->
         fun (x5 : int) ->
           Ojs.set_prop_ascii (t_to_js x4) "MAX_LENGTH" (Ojs.int_to_js x5)
-    let (get_MAX_STRING_LENGTH : t -> int) =
+    let (get_max_string_length : t -> int) =
       fun (x6 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x6) "MAX_STRING_LENGTH")
-    let (set_MAX_STRING_LENGTH : t -> int -> unit) =
+    let (set_max_string_length : t -> int -> unit) =
       fun (x7 : t) ->
         fun (x8 : int) ->
           Ojs.set_prop_ascii (t_to_js x7) "MAX_STRING_LENGTH"
@@ -45,14 +45,14 @@ module Buffer =
   struct
     let (inspect_max_bytes : int) =
       Ojs.int_of_js (Ojs.get_prop_ascii Import.buffer "INSPECT_MAX_BYTES")
-    let (kMaxLength : int) =
+    let (k_max_length : int) =
       Ojs.int_of_js (Ojs.get_prop_ascii Import.buffer "kMaxLength")
-    let (kStringMaxLength : int) =
+    let (k_string_max_length : int) =
       Ojs.int_of_js (Ojs.get_prop_ascii Import.buffer "kStringMaxLength")
     let (constants : AnonymousInterface0.t) =
       AnonymousInterface0.t_of_js
         (Ojs.get_prop_ascii Import.buffer "constants")
-    let (buffType : any) =
+    let (buff_type : any) =
       any_of_js (Ojs.get_prop_ascii Import.buffer "BuffType")
     module TranscodeEncoding =
       struct
@@ -84,16 +84,17 @@ module Buffer =
       end
     let (transcode :
       source:Uint8Array.t ->
-        fromEnc:TranscodeEncoding.t -> toEnc:TranscodeEncoding.t -> Buffer.t)
+        from_enc:TranscodeEncoding.t ->
+          to_enc:TranscodeEncoding.t -> Buffer.t)
       =
       fun ~source:(x19 : Uint8Array.t) ->
-        fun ~fromEnc:(x20 : TranscodeEncoding.t) ->
-          fun ~toEnc:(x21 : TranscodeEncoding.t) ->
+        fun ~from_enc:(x20 : TranscodeEncoding.t) ->
+          fun ~to_enc:(x21 : TranscodeEncoding.t) ->
             Buffer.t_of_js
               (Ojs.call Import.buffer "transcode"
                  [|(Uint8Array.t_to_js x19);(TranscodeEncoding.t_to_js x20);(
                    TranscodeEncoding.t_to_js x21)|])
-    let (slowBuffer : AnonymousInterface1.t) =
+    let (slow_buffer : AnonymousInterface1.t) =
       AnonymousInterface1.t_of_js
         (Ojs.get_prop_ascii Import.buffer "SlowBuffer")
   end

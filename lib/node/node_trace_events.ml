@@ -2,17 +2,13 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
-module Internal =
-  struct module Types = struct open AnonymousInterfaces end end
 module Trace_events =
   struct
     module Tracing =
       struct
-        type t = trace_events_Tracing
-        let rec t_of_js : Ojs.t -> t =
-          fun (x2 : Ojs.t) -> trace_events_Tracing_of_js x2
-        and t_to_js : t -> Ojs.t =
-          fun (x1 : trace_events_Tracing) -> trace_events_Tracing_to_js x1
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+        and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
         let (get_categories : t -> string) =
           fun (x3 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x3) "categories")
@@ -26,12 +22,9 @@ module Trace_events =
       end
     module CreateTracingOptions =
       struct
-        type t = trace_events_CreateTracingOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x8 : Ojs.t) -> trace_events_CreateTracingOptions_of_js x8
-        and t_to_js : t -> Ojs.t =
-          fun (x7 : trace_events_CreateTracingOptions) ->
-            trace_events_CreateTracingOptions_to_js x7
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x8 : Ojs.t) -> x8
+        and t_to_js : t -> Ojs.t = fun (x7 : Ojs.t) -> x7
         let (get_categories : t -> string list) =
           fun (x9 : t) ->
             Ojs.list_of_js Ojs.string_of_js
@@ -42,13 +35,12 @@ module Trace_events =
               Ojs.set_prop_ascii (t_to_js x11) "categories"
                 (Ojs.list_to_js Ojs.string_to_js x12)
       end
-    let (createTracing :
-      options:trace_events_CreateTracingOptions -> trace_events_Tracing) =
-      fun ~options:(x14 : trace_events_CreateTracingOptions) ->
-        trace_events_Tracing_of_js
+    let (create_tracing : options:CreateTracingOptions.t -> Tracing.t) =
+      fun ~options:(x14 : CreateTracingOptions.t) ->
+        Tracing.t_of_js
           (Ojs.call Import.trace_events "createTracing"
-             [|(trace_events_CreateTracingOptions_to_js x14)|])
-    let (getEnabledCategories : unit -> string or_undefined) =
+             [|(CreateTracingOptions.t_to_js x14)|])
+    let (get_enabled_categories : unit -> string or_undefined) =
       fun () ->
         or_undefined_of_js Ojs.string_of_js
           (Ojs.call Import.trace_events "getEnabledCategories" [||])

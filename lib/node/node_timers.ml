@@ -5,7 +5,7 @@ open Es2020
 open Node_globals
 module Timers =
   struct
-    let (setTimeout :
+    let (set_timeout :
       callback:(args:any list -> unit) ->
         ?ms:int -> args:any list -> Timeout.t)
       =
@@ -49,11 +49,11 @@ module Timers =
                 (Ojs.call (Ojs.get_prop_ascii Import.timers "setTimeout")
                    "__promisify__" [|(Ojs.int_to_js x12);(Obj.magic x13)|])
       end
-    let (clearTimeout : timeoutId:Timeout.t -> unit) =
-      fun ~timeoutId:(x15 : Timeout.t) ->
+    let (clear_timeout : timeout_id:Timeout.t -> unit) =
+      fun ~timeout_id:(x15 : Timeout.t) ->
         ignore
           (Ojs.call Import.timers "clearTimeout" [|(Timeout.t_to_js x15)|])
-    let (setInterval :
+    let (set_interval :
       callback:(args:any list -> unit) ->
         ?ms:int -> args:any list -> Timeout.t)
       =
@@ -85,11 +85,11 @@ module Timers =
                                 (Ojs.call x19 "push" [|(any_to_js x20)|]))
                            x18;
                          x19))|])
-    let (clearInterval : intervalId:Timeout.t -> unit) =
-      fun ~intervalId:(x25 : Timeout.t) ->
+    let (clear_interval : interval_id:Timeout.t -> unit) =
+      fun ~interval_id:(x25 : Timeout.t) ->
         ignore
           (Ojs.call Import.timers "clearInterval" [|(Timeout.t_to_js x25)|])
-    let (setImmediate :
+    let (set_immediate :
       callback:(args:any list -> unit) -> args:any list -> Immediate.t) =
       fun ~callback:(x26 : args:any list -> unit) ->
         fun ~args:(x27 : any list) ->
@@ -124,8 +124,8 @@ module Timers =
               (Ojs.call (Ojs.get_prop_ascii Import.timers "setImmediate")
                  "__promisify__" [|(Obj.magic x34)|])
       end
-    let (clearImmediate : immediateId:Immediate.t -> unit) =
-      fun ~immediateId:(x36 : Immediate.t) ->
+    let (clear_immediate : immediate_id:Immediate.t -> unit) =
+      fun ~immediate_id:(x36 : Immediate.t) ->
         ignore
           (Ojs.call Import.timers "clearImmediate"
              [|(Immediate.t_to_js x36)|])

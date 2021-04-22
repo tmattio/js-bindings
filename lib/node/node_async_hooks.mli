@@ -5,12 +5,12 @@
 open Es2020
 
 module Async_hooks : sig
-  val executionAsyncId : unit -> int [@@js.global "executionAsyncId"]
+  val execution_async_id : unit -> int [@@js.global "executionAsyncId"]
 
-  val executionAsyncResource : unit -> untyped_object
+  val execution_async_resource : unit -> untyped_object
     [@@js.global "executionAsyncResource"]
 
-  val triggerAsyncId : unit -> int [@@js.global "triggerAsyncId"]
+  val trigger_async_id : unit -> int [@@js.global "triggerAsyncId"]
 
   module HookCallbacks : sig
     type t
@@ -21,20 +21,20 @@ module Async_hooks : sig
 
     val init
       :  t
-      -> asyncId:int
+      -> async_id:int
       -> type_:string
-      -> triggerAsyncId:int
+      -> trigger_async_id:int
       -> resource:untyped_object
       -> unit
       [@@js.call "init"]
 
-    val before : t -> asyncId:int -> unit [@@js.call "before"]
+    val before : t -> async_id:int -> unit [@@js.call "before"]
 
-    val after : t -> asyncId:int -> unit [@@js.call "after"]
+    val after : t -> async_id:int -> unit [@@js.call "after"]
 
-    val promiseResolve : t -> asyncId:int -> unit [@@js.call "promiseResolve"]
+    val promise_resolve : t -> async_id:int -> unit [@@js.call "promiseResolve"]
 
-    val destroy : t -> asyncId:int -> unit [@@js.call "destroy"]
+    val destroy : t -> async_id:int -> unit [@@js.call "destroy"]
   end
   [@@js.scope "HookCallbacks"]
 
@@ -51,7 +51,7 @@ module Async_hooks : sig
   end
   [@@js.scope "AsyncHook"]
 
-  val createHook : options:HookCallbacks.t -> AsyncHook.t
+  val create_hook : options:HookCallbacks.t -> AsyncHook.t
     [@@js.global "createHook"]
 
   module AsyncResourceOptions : sig
@@ -61,13 +61,13 @@ module Async_hooks : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_triggerAsyncId : t -> int [@@js.get "triggerAsyncId"]
+    val get_trigger_async_id : t -> int [@@js.get "triggerAsyncId"]
 
-    val set_triggerAsyncId : t -> int -> unit [@@js.set "triggerAsyncId"]
+    val set_trigger_async_id : t -> int -> unit [@@js.set "triggerAsyncId"]
 
-    val get_requireManualDestroy : t -> bool [@@js.get "requireManualDestroy"]
+    val get_require_manual_destroy : t -> bool [@@js.get "requireManualDestroy"]
 
-    val set_requireManualDestroy : t -> bool -> unit
+    val set_require_manual_destroy : t -> bool -> unit
       [@@js.set "requireManualDestroy"]
   end
   [@@js.scope "AsyncResourceOptions"]
@@ -81,7 +81,7 @@ module Async_hooks : sig
 
     val create
       :  type_:string
-      -> ?triggerAsyncId:AsyncResourceOptions.t or_number
+      -> ?trigger_async_id:AsyncResourceOptions.t or_number
       -> unit
       -> t
       [@@js.create]
@@ -95,9 +95,9 @@ module Async_hooks : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_asyncResource : t -> async_resource [@@js.get "asyncResource"]
+      val get_async_resource : t -> async_resource [@@js.get "asyncResource"]
 
-      val set_asyncResource : t -> async_resource -> unit
+      val set_async_resource : t -> async_resource -> unit
         [@@js.set "asyncResource"]
     end
 
@@ -111,19 +111,19 @@ module Async_hooks : sig
     val bind' : t -> fn:'Func -> ('Func, AnonymousInterface0.t) intersection2
       [@@js.call "bind"]
 
-    val runInAsyncScope
+    val run_in_async_scope
       :  t
       -> fn:(this:'This -> args:(any list[@js.variadic]) -> 'Result)
-      -> ?thisArg:'This
+      -> ?this_arg:'This
       -> args:(any list[@js.variadic])
       -> 'Result
       [@@js.call "runInAsyncScope"]
 
-    val emitDestroy : t -> t [@@js.call "emitDestroy"]
+    val emit_destroy : t -> t [@@js.call "emitDestroy"]
 
-    val asyncId : t -> int [@@js.call "asyncId"]
+    val async_id : t -> int [@@js.call "asyncId"]
 
-    val triggerAsyncId : t -> int [@@js.call "triggerAsyncId"]
+    val trigger_async_id : t -> int [@@js.call "triggerAsyncId"]
   end
   [@@js.scope "AsyncResource"]
 
@@ -136,7 +136,7 @@ module Async_hooks : sig
 
     val disable : 'T t -> unit [@@js.call "disable"]
 
-    val getStore : 'T t -> 'T or_undefined [@@js.call "getStore"]
+    val get_store : 'T t -> 'T or_undefined [@@js.call "getStore"]
 
     val run
       :  'T t
@@ -153,7 +153,7 @@ module Async_hooks : sig
       -> 'R
       [@@js.call "exit"]
 
-    val enterWith : 'T t -> store:'T -> unit [@@js.call "enterWith"]
+    val enter_with : 'T t -> store:'T -> unit [@@js.call "enterWith"]
   end
   [@@js.scope "AsyncLocalStorage"]
 end

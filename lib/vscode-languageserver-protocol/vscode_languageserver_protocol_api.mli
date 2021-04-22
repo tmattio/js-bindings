@@ -17,16 +17,16 @@ open Vscode_languageserver_protocol_connection
 (* export * from './protocol'; *)
 (* export { ProtocolConnection, createProtocolConnection } from './connection'; *)
 module LSPErrorCodes : sig
-  val lspReservedErrorRangeStart : Integer.t
+  val lsp_reserved_error_range_start : Integer.t
     [@@js.global "lspReservedErrorRangeStart"]
 
-  val serverCancelled : Integer.t [@@js.global "ServerCancelled"]
+  val server_cancelled : Integer.t [@@js.global "ServerCancelled"]
 
-  val contentModified : Integer.t [@@js.global "ContentModified"]
+  val content_modified : Integer.t [@@js.global "ContentModified"]
 
-  val requestCancelled : Integer.t [@@js.global "RequestCancelled"]
+  val request_cancelled : Integer.t [@@js.global "RequestCancelled"]
 
-  val lspReservedErrorRangeEnd : Integer.t
+  val lsp_reserved_error_range_end : Integer.t
     [@@js.global "lspReservedErrorRangeEnd"]
 end
 [@@js.scope "LSPErrorCodes"]
@@ -89,7 +89,7 @@ module Proposed : sig
     val t_of_js : Ojs.t -> t
   end
 
-  val diagnosticServerCancellationData
+  val diagnostic_server_cancellation_data
     : (* FIXME: unknown type 'typeof DiagnosticServerCancellationData' *)
       any
     [@@js.global "DiagnosticServerCancellationData"]
@@ -110,7 +110,7 @@ module Proposed : sig
     val t_of_js : Ojs.t -> t
   end
 
-  val documentDiagnosticReportKind
+  val document_diagnostic_report_kind
     : (* FIXME: unknown type 'typeof DocumentDiagnosticReportKind' *)
       any
     [@@js.global "DocumentDiagnosticReportKind"]
@@ -123,7 +123,7 @@ module Proposed : sig
     val t_of_js : Ojs.t -> t
   end
 
-  val documentDiagnosticRequest
+  val document_diagnostic_request
     : (* FIXME: unknown type 'typeof DocumentDiagnosticRequest' *)
       any
     [@@js.global "DocumentDiagnosticRequest"]
@@ -152,7 +152,7 @@ module Proposed : sig
     val t_of_js : Ojs.t -> t
   end
 
-  val diagnosticRefreshRequest
+  val diagnostic_refresh_request
     : (* FIXME: unknown type 'typeof DiagnosticRefreshRequest' *)
       any
     [@@js.global "DiagnosticRefreshRequest"]

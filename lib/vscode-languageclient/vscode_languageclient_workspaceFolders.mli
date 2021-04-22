@@ -4,8 +4,6 @@
 
 open Es5
 
-
-
 (* import { WorkspaceFolder as VWorkspaceFolder, WorkspaceFoldersChangeEvent as
    VWorkspaceFoldersChangeEvent } from 'vscode'; *)
 (* import { DynamicFeature, RegistrationData, BaseLanguageClient, NextSignature
@@ -13,31 +11,31 @@ open Es5
 (* import { ClientCapabilities, InitializeParams, ServerCapabilities,
    WorkspaceFoldersRequest, RegistrationType } from
    'vscode-languageserver-protocol'; *)
-val arrayDiff : left:'T list -> right:'T list -> 'T list
+val array_diff : left:'T list -> right:'T list -> 'T list
   [@@js.global "arrayDiff"]
 
 module WorkspaceFolderWorkspaceMiddleware : sig
-  type t = _WorkspaceFolderWorkspaceMiddleware
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_workspaceFolders : t -> WorkspaceFoldersRequest.MiddlewareSignature.t
+  val get_workspace_folders : t -> WorkspaceFoldersRequest.MiddlewareSignature.t
     [@@js.get "workspaceFolders"]
 
-  val set_workspaceFolders
+  val set_workspace_folders
     :  t
     -> WorkspaceFoldersRequest.MiddlewareSignature.t
     -> unit
     [@@js.set "workspaceFolders"]
 
-  val get_didChangeWorkspaceFolders
+  val get_did_change_workspace_folders
     :  t
     -> (VWorkspaceFoldersChangeEvent.t, unit) NextSignature.t
     [@@js.get "didChangeWorkspaceFolders"]
 
-  val set_didChangeWorkspaceFolders
+  val set_did_change_workspace_folders
     :  t
     -> (VWorkspaceFoldersChangeEvent.t, unit) NextSignature.t
     -> unit
@@ -46,7 +44,7 @@ end
 [@@js.scope "WorkspaceFolderWorkspaceMiddleware"]
 
 module WorkspaceFoldersFeature : sig
-  type t = _WorkspaceFoldersFeature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -63,42 +61,42 @@ module WorkspaceFoldersFeature : sig
   val set__listeners : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_listeners"]
 
-  val get__initialFolders : t -> (* FIXME: unknown type *) any
+  val get_initial_folders : t -> (* FIXME: unknown type *) any
     [@@js.get "_initialFolders"]
 
-  val set__initialFolders : t -> (* FIXME: unknown type *) any -> unit
+  val set_initial_folders : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_initialFolders"]
 
   val create : _client:BaseLanguageClient.t -> t [@@js.create]
 
-  val get_registrationType : t -> unit RegistrationType.t
+  val get_registration_type : t -> unit RegistrationType.t
     [@@js.get "registrationType"]
 
-  val fillInitializeParams : t -> params:InitializeParams.t -> unit
+  val fill_initialize_params : t -> params:InitializeParams.t -> unit
     [@@js.call "fillInitializeParams"]
 
-  val initializeWithFolders
+  val initialize_with_folders
     :  t
-    -> currentWorkspaceFolders:VWorkspaceFolder.t list or_undefined
+    -> current_workspace_folders:VWorkspaceFolder.t list or_undefined
     -> unit
     [@@js.call "initializeWithFolders"]
 
-  val fillClientCapabilities : t -> capabilities:ClientCapabilities.t -> unit
+  val fill_client_capabilities : t -> capabilities:ClientCapabilities.t -> unit
     [@@js.call "fillClientCapabilities"]
 
   val initialize : t -> capabilities:ServerCapabilities.t -> unit
     [@@js.call "initialize"]
 
-  val sendInitialEvent
+  val send_initial_event
     :  t
-    -> currentWorkspaceFolders:VWorkspaceFolder.t list or_undefined
+    -> current_workspace_folders:VWorkspaceFolder.t list or_undefined
     -> unit
     [@@js.call "sendInitialEvent"]
 
-  val get_doSendEvent : t -> (* FIXME: unknown type *) any
+  val get_do_send_event : t -> (* FIXME: unknown type *) any
     [@@js.get "doSendEvent"]
 
-  val set_doSendEvent : t -> (* FIXME: unknown type *) any -> unit
+  val set_do_send_event : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "doSendEvent"]
 
   val register : t -> data:never or_undefined RegistrationData.t -> unit
@@ -108,10 +106,10 @@ module WorkspaceFoldersFeature : sig
 
   val dispose : t -> unit [@@js.call "dispose"]
 
-  val get_asProtocol : t -> (* FIXME: unknown type *) any
+  val get_as_protocol : t -> (* FIXME: unknown type *) any
     [@@js.get "asProtocol"]
 
-  val set_asProtocol : t -> (* FIXME: unknown type *) any -> unit
+  val set_as_protocol : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "asProtocol"]
 
   val cast : t -> unit DynamicFeature.t [@@js.cast]

@@ -12,25 +12,25 @@ open Es5
    TextDocumentPositionParams, PartialResultParams, WorkDoneProgressParams,
    WorkDoneProgressOptions } from './protocol'; *)
 module DeclarationClientCapabilities : sig
-  type t = _DeclarationClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
-  val get_linkSupport : t -> bool [@@js.get "linkSupport"]
+  val get_link_support : t -> bool [@@js.get "linkSupport"]
 
-  val set_linkSupport : t -> bool -> unit [@@js.set "linkSupport"]
+  val set_link_support : t -> bool -> unit [@@js.set "linkSupport"]
 end
 [@@js.scope "DeclarationClientCapabilities"]
 
 module DeclarationOptions : sig
-  type t = _DeclarationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -41,13 +41,13 @@ end
 [@@js.scope "DeclarationOptions"]
 
 module DeclarationRegistrationOptions : sig
-  type t = _DeclarationRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> _DeclarationOptions [@@js.cast]
+  val cast : t -> DeclarationOptions.t [@@js.cast]
 
   val cast' : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
@@ -56,7 +56,7 @@ end
 [@@js.scope "DeclarationRegistrationOptions"]
 
 module DeclarationParams : sig
-  type t = _DeclarationParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -77,17 +77,17 @@ module DeclarationRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _DeclarationParams
+    : ( DeclarationParams.t
       , (Location.t, (Location.t, LocationLink.t) union2) or_array or_null
       , (Location.t, LocationLink.t) union2 list
       , unit
-      , _DeclarationRegistrationOptions )
+      , DeclarationRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
     type t =
-      ( _DeclarationParams
+      ( DeclarationParams.t
       , (Declaration.t, DeclarationLink.t) or_array or_null
       , unit )
       RequestHandler.t

@@ -9635,8 +9635,8 @@ module Vscode =
     module FileSystemError =
       struct
         include struct include Error end
-        let (file_not_found : ?messageOrUri:Uri.t or_string -> unit -> t) =
-          fun ?messageOrUri:(x3083 : Uri.t or_string option) ->
+        let (file_not_found : ?message_or_uri:Uri.t or_string -> unit -> t) =
+          fun ?message_or_uri:(x3083 : Uri.t or_string option) ->
             fun () ->
               t_of_js
                 (let x3087 =
@@ -9657,8 +9657,8 @@ module Vscode =
                                        [|(or_string_to_js Uri.t_to_js x3085)|])
                               | None -> ());
                              x3084))|])
-        let (file_exists : ?messageOrUri:Uri.t or_string -> unit -> t) =
-          fun ?messageOrUri:(x3088 : Uri.t or_string option) ->
+        let (file_exists : ?message_or_uri:Uri.t or_string -> unit -> t) =
+          fun ?message_or_uri:(x3088 : Uri.t or_string option) ->
             fun () ->
               t_of_js
                 (let x3092 =
@@ -9680,8 +9680,8 @@ module Vscode =
                               | None -> ());
                              x3089))|])
         let (file_not_a_directory :
-          ?messageOrUri:Uri.t or_string -> unit -> t) =
-          fun ?messageOrUri:(x3093 : Uri.t or_string option) ->
+          ?message_or_uri:Uri.t or_string -> unit -> t) =
+          fun ?message_or_uri:(x3093 : Uri.t or_string option) ->
             fun () ->
               t_of_js
                 (let x3097 =
@@ -9704,8 +9704,8 @@ module Vscode =
                               | None -> ());
                              x3094))|])
         let (file_is_a_directory :
-          ?messageOrUri:Uri.t or_string -> unit -> t) =
-          fun ?messageOrUri:(x3098 : Uri.t or_string option) ->
+          ?message_or_uri:Uri.t or_string -> unit -> t) =
+          fun ?message_or_uri:(x3098 : Uri.t or_string option) ->
             fun () ->
               t_of_js
                 (let x3102 =
@@ -9727,8 +9727,8 @@ module Vscode =
                                        [|(or_string_to_js Uri.t_to_js x3100)|])
                               | None -> ());
                              x3099))|])
-        let (no_permissions : ?messageOrUri:Uri.t or_string -> unit -> t) =
-          fun ?messageOrUri:(x3103 : Uri.t or_string option) ->
+        let (no_permissions : ?message_or_uri:Uri.t or_string -> unit -> t) =
+          fun ?message_or_uri:(x3103 : Uri.t or_string option) ->
             fun () ->
               t_of_js
                 (let x3107 =
@@ -9749,8 +9749,8 @@ module Vscode =
                                        [|(or_string_to_js Uri.t_to_js x3105)|])
                               | None -> ());
                              x3104))|])
-        let (unavailable : ?messageOrUri:Uri.t or_string -> unit -> t) =
-          fun ?messageOrUri:(x3108 : Uri.t or_string option) ->
+        let (unavailable : ?message_or_uri:Uri.t or_string -> unit -> t) =
+          fun ?message_or_uri:(x3108 : Uri.t or_string option) ->
             fun () ->
               t_of_js
                 (let x3112 =
@@ -9771,8 +9771,8 @@ module Vscode =
                                        [|(or_string_to_js Uri.t_to_js x3110)|])
                               | None -> ());
                              x3109))|])
-        let (create : ?messageOrUri:Uri.t or_string -> unit -> t) =
-          fun ?messageOrUri:(x3113 : Uri.t or_string option) ->
+        let (create : ?message_or_uri:Uri.t or_string -> unit -> t) =
+          fun ?message_or_uri:(x3113 : Uri.t or_string option) ->
             fun () ->
               t_of_js
                 (Ojs.new_obj_arr
@@ -10952,8 +10952,8 @@ module Vscode =
                                        [|(any_to_js x3498)|])) x3496;
                              x3497))|])
         let (get_commands :
-          ?filterInternal:bool -> unit -> string list Promise.t) =
-          fun ?filterInternal:(x3502 : bool option) ->
+          ?filter_internal:bool -> unit -> string list Promise.t) =
+          fun ?filter_internal:(x3502 : bool option) ->
             fun () ->
               Promise.t_of_js
                 (fun (x3506 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x3506)
@@ -13832,8 +13832,8 @@ module Vscode =
                                                   x4355)|])
                                     | None -> ());
                                    x4354))|])
-        let (save_all : ?includeUntitled:bool -> unit -> bool Promise.t) =
-          fun ?includeUntitled:(x4362 : bool option) ->
+        let (save_all : ?include_untitled:bool -> unit -> bool Promise.t) =
+          fun ?include_untitled:(x4362 : bool option) ->
             fun () ->
               Promise.t_of_js Ojs.bool_of_js
                 (let x4365 =
@@ -16079,8 +16079,8 @@ module Vscode =
     module Extensions =
       struct
         let (get_extension :
-          extensionId:string -> any Extension.t or_undefined) =
-          fun ~extensionId:(x4870 : string) ->
+          extension_id:string -> any Extension.t or_undefined) =
+          fun ~extension_id:(x4870 : string) ->
             or_undefined_of_js
               (fun (x4871 : Ojs.t) -> Extension.t_of_js any_of_js x4871)
               (Ojs.call
@@ -16090,8 +16090,8 @@ module Vscode =
                           "__LIB__VSCODE__IMPORTS") "vscode") "extensions")
                  "getExtension" [|(Ojs.string_to_js x4870)|])
         let (get_extension :
-          extensionId:string -> 'T Extension.t or_undefined) =
-          fun ~extensionId:(x4873 : string) ->
+          extension_id:string -> 'T Extension.t or_undefined) =
+          fun ~extension_id:(x4873 : string) ->
             or_undefined_of_js
               (fun (x4874 : Ojs.t) -> Extension.t_of_js Obj.magic x4874)
               (Ojs.call

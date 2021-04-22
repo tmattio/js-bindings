@@ -21,13 +21,13 @@ module AnonymousInterface1 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_oldUri : t -> Code.Uri.t [@@js.get "oldUri"]
+  val get_old_uri : t -> Code.Uri.t [@@js.get "oldUri"]
 
-  val set_oldUri : t -> Code.Uri.t -> unit [@@js.set "oldUri"]
+  val set_old_uri : t -> Code.Uri.t -> unit [@@js.set "oldUri"]
 
-  val get_newUri : t -> Code.Uri.t [@@js.get "newUri"]
+  val get_new_uri : t -> Code.Uri.t [@@js.get "newUri"]
 
-  val set_newUri : t -> Code.Uri.t -> unit [@@js.set "newUri"]
+  val set_new_uri : t -> Code.Uri.t -> unit [@@js.set "newUri"]
 end
 
 (* import * as code from 'vscode'; *)
@@ -35,29 +35,29 @@ end
 (* import { DynamicFeature, BaseLanguageClient, RegistrationData, NextSignature
    } from './client'; *)
 module FileOperationsMiddleware : sig
-  type t = _FileOperationsMiddleware
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_didCreateFiles : t -> (Code.FileCreateEvent.t, unit) NextSignature.t
+  val get_did_create_files : t -> (Code.FileCreateEvent.t, unit) NextSignature.t
     [@@js.get "didCreateFiles"]
 
-  val set_didCreateFiles
+  val set_did_create_files
     :  t
     -> (Code.FileCreateEvent.t, unit) NextSignature.t
     -> unit
     [@@js.set "didCreateFiles"]
 
-  val get_willCreateFiles
+  val get_will_create_files
     :  t
     -> ( Code.FileCreateEvent.t
        , Code.WorkspaceEdit.t or_null_or_undefined Promise.t )
        NextSignature.t
     [@@js.get "willCreateFiles"]
 
-  val set_willCreateFiles
+  val set_will_create_files
     :  t
     -> ( Code.FileCreateEvent.t
        , Code.WorkspaceEdit.t or_null_or_undefined Promise.t )
@@ -65,23 +65,23 @@ module FileOperationsMiddleware : sig
     -> unit
     [@@js.set "willCreateFiles"]
 
-  val get_didRenameFiles : t -> (Code.FileRenameEvent.t, unit) NextSignature.t
+  val get_did_rename_files : t -> (Code.FileRenameEvent.t, unit) NextSignature.t
     [@@js.get "didRenameFiles"]
 
-  val set_didRenameFiles
+  val set_did_rename_files
     :  t
     -> (Code.FileRenameEvent.t, unit) NextSignature.t
     -> unit
     [@@js.set "didRenameFiles"]
 
-  val get_willRenameFiles
+  val get_will_rename_files
     :  t
     -> ( Code.FileRenameEvent.t
        , Code.WorkspaceEdit.t or_null_or_undefined Promise.t )
        NextSignature.t
     [@@js.get "willRenameFiles"]
 
-  val set_willRenameFiles
+  val set_will_rename_files
     :  t
     -> ( Code.FileRenameEvent.t
        , Code.WorkspaceEdit.t or_null_or_undefined Promise.t )
@@ -89,23 +89,23 @@ module FileOperationsMiddleware : sig
     -> unit
     [@@js.set "willRenameFiles"]
 
-  val get_didDeleteFiles : t -> (Code.FileDeleteEvent.t, unit) NextSignature.t
+  val get_did_delete_files : t -> (Code.FileDeleteEvent.t, unit) NextSignature.t
     [@@js.get "didDeleteFiles"]
 
-  val set_didDeleteFiles
+  val set_did_delete_files
     :  t
     -> (Code.FileDeleteEvent.t, unit) NextSignature.t
     -> unit
     [@@js.set "didDeleteFiles"]
 
-  val get_willDeleteFiles
+  val get_will_delete_files
     :  t
     -> ( Code.FileDeleteEvent.t
        , Code.WorkspaceEdit.t or_null_or_undefined Promise.t )
        NextSignature.t
     [@@js.get "willDeleteFiles"]
 
-  val set_willDeleteFiles
+  val set_will_delete_files
     :  t
     -> ( Code.FileDeleteEvent.t
        , Code.WorkspaceEdit.t or_null_or_undefined Promise.t )
@@ -116,7 +116,7 @@ end
 [@@js.scope "FileOperationsMiddleware"]
 
 module Event : sig
-  type 'I t = 'I _Event
+  type 'I t
 
   val t_to_js : ('I -> Ojs.t) -> 'I t -> Ojs.t
 
@@ -127,7 +127,7 @@ end
 [@@js.scope "Event"]
 
 module FileOperationFeature : sig
-  type ('I, 'E) t = ('I, 'E) _FileOperationFeature
+  type ('I, 'E) t
 
   val t_to_js : ('I -> Ojs.t) -> ('E -> Ojs.t) -> ('I, 'E) t -> Ojs.t
 
@@ -144,28 +144,28 @@ module FileOperationFeature : sig
   val set__event : ('I, 'E) t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_event"]
 
-  val get__registrationType : ('I, 'E) t -> (* FIXME: unknown type *) any
+  val get_registration_type : ('I, 'E) t -> (* FIXME: unknown type *) any
     [@@js.get "_registrationType"]
 
-  val set__registrationType
+  val set_registration_type
     :  ('I, 'E) t
     -> (* FIXME: unknown type *) any
     -> unit
     [@@js.set "_registrationType"]
 
-  val get__clientCapability : ('I, 'E) t -> (* FIXME: unknown type *) any
+  val get_client_capability : ('I, 'E) t -> (* FIXME: unknown type *) any
     [@@js.get "_clientCapability"]
 
-  val set__clientCapability
+  val set_client_capability
     :  ('I, 'E) t
     -> (* FIXME: unknown type *) any
     -> unit
     [@@js.set "_clientCapability"]
 
-  val get__serverCapability : ('I, 'E) t -> (* FIXME: unknown type *) any
+  val get_server_capability : ('I, 'E) t -> (* FIXME: unknown type *) any
     [@@js.get "_serverCapability"]
 
-  val set__serverCapability
+  val set_server_capability
     :  ('I, 'E) t
     -> (* FIXME: unknown type *) any
     -> unit
@@ -186,21 +186,21 @@ module FileOperationFeature : sig
   val create
     :  client:BaseLanguageClient.t
     -> event:'E Code.Event.t
-    -> registrationType:
+    -> registration_type:
          Proto.FileOperationRegistrationOptions.t Proto.RegistrationType.t
-    -> clientCapability:
+    -> client_capability:
          (* FIXME: unknown type '?proto.FileOperationClientCapabilities' *) any
-    -> serverCapability:
+    -> server_capability:
          (* FIXME: unknown type '?proto.FileOperationOptions' *) any
     -> ('I, 'E) t
     [@@js.create]
 
-  val get_registrationType
+  val get_registration_type
     :  ('I, 'E) t
     -> Proto.FileOperationRegistrationOptions.t Proto.RegistrationType.t
     [@@js.get "registrationType"]
 
-  val fillClientCapabilities
+  val fill_client_capabilities
     :  ('I, 'E) t
     -> capabilities:Proto.ClientCapabilities.t
     -> unit
@@ -228,16 +228,16 @@ module FileOperationFeature : sig
     -> 'E Promise.t
     [@@js.call "filter"]
 
-  val get_getFileType : unit -> (* FIXME: unknown type *) any
+  val get_get_file_type : unit -> (* FIXME: unknown type *) any
     [@@js.get "getFileType"]
 
-  val set_getFileType : (* FIXME: unknown type *) any -> unit
+  val set_get_file_type : (* FIXME: unknown type *) any -> unit
     [@@js.set "getFileType"]
 
-  val get_asMinimatchOptions : unit -> (* FIXME: unknown type *) any
+  val get_as_minimatch_options : unit -> (* FIXME: unknown type *) any
     [@@js.get "asMinimatchOptions"]
 
-  val set_asMinimatchOptions : (* FIXME: unknown type *) any -> unit
+  val set_as_minimatch_options : (* FIXME: unknown type *) any -> unit
     [@@js.set "asMinimatchOptions"]
 
   val cast
@@ -248,7 +248,7 @@ end
 [@@js.scope "FileOperationFeature"]
 
 module NotificationFileOperationFeature : sig
-  type ('I, 'E, 'P) t = ('I, 'E, 'P) _NotificationFileOperationFeature
+  type ('I, 'E, 'P) t = ('I, 'E, 'P) NotificationFileOperationFeature.t
 
   val t_to_js
     :  ('I -> Ojs.t)
@@ -264,25 +264,25 @@ module NotificationFileOperationFeature : sig
     -> Ojs.t
     -> ('I, 'E, 'P) t
 
-  val get__notificationType : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any
+  val get_notification_type : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any
     [@@js.get "_notificationType"]
 
-  val set__notificationType
+  val set_notification_type
     :  ('I, 'E, 'P) t
     -> (* FIXME: unknown type *) any
     -> unit
     [@@js.set "_notificationType"]
 
-  val get__accessUri : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any
+  val get_access_uri : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any
     [@@js.get "_accessUri"]
 
-  val set__accessUri : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any -> unit
+  val set_access_uri : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_accessUri"]
 
-  val get__createParams : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any
+  val get_create_params : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any
     [@@js.get "_createParams"]
 
-  val set__createParams
+  val set_create_params
     :  ('I, 'E, 'P) t
     -> (* FIXME: unknown type *) any
     -> unit
@@ -291,31 +291,31 @@ module NotificationFileOperationFeature : sig
   val create
     :  client:BaseLanguageClient.t
     -> event:'E Code.Event.t
-    -> notificationType:
+    -> notification_type:
          ( 'P
          , Proto.FileOperationRegistrationOptions.t )
          Proto.ProtocolNotificationType.t
-    -> clientCapability:
+    -> client_capability:
          (* FIXME: unknown type '?proto.FileOperationClientCapabilities' *) any
-    -> serverCapability:
+    -> server_capability:
          (* FIXME: unknown type '?proto.FileOperationOptions' *) any
-    -> accessUri:(i:'I -> Code.Uri.t)
-    -> createParams:(e:'E -> 'P)
+    -> access_uri:(i:'I -> Code.Uri.t)
+    -> create_params:(e:'E -> 'P)
     -> ('I, 'E, 'P) t
     [@@js.create]
 
-  val send : ('I, 'E, 'P) t -> originalEvent:'E -> unit Promise.t
+  val send : ('I, 'E, 'P) t -> original_event:'E -> unit Promise.t
     [@@js.call "send"]
 
-  val doSend : ('I, 'E, 'P) t -> event:'E -> next:(event:'E -> unit) -> unit
+  val do_send : ('I, 'E, 'P) t -> event:'E -> next:(event:'E -> unit) -> unit
     [@@js.call "doSend"]
 
-  val cast : ('I, 'E, 'P) t -> ('I, 'E) _FileOperationFeature [@@js.cast]
+  val cast : ('I, 'E, 'P) t -> ('I, 'E) FileOperationFeature.t [@@js.cast]
 end
 [@@js.scope "NotificationFileOperationFeature"]
 
 module DidCreateFilesFeature : sig
-  type t = _DidCreateFilesFeature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -323,7 +323,7 @@ module DidCreateFilesFeature : sig
 
   val create : client:BaseLanguageClient.t -> t [@@js.create]
 
-  val doSend
+  val do_send
     :  t
     -> event:Code.FileCreateEvent.t
     -> next:(event:Code.FileCreateEvent.t -> unit)
@@ -335,13 +335,13 @@ module DidCreateFilesFeature : sig
     -> ( Code.Uri.t
        , Code.FileCreateEvent.t
        , Proto.CreateFilesParams.t )
-       _NotificationFileOperationFeature
+       NotificationFileOperationFeature.t
     [@@js.cast]
 end
 [@@js.scope "DidCreateFilesFeature"]
 
 module DidRenameFilesFeature : sig
-  type t = _DidRenameFilesFeature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -349,7 +349,7 @@ module DidRenameFilesFeature : sig
 
   val create : client:BaseLanguageClient.t -> t [@@js.create]
 
-  val doSend
+  val do_send
     :  t
     -> event:Code.FileRenameEvent.t
     -> next:(event:Code.FileRenameEvent.t -> unit)
@@ -361,13 +361,13 @@ module DidRenameFilesFeature : sig
     -> ( AnonymousInterface1.t
        , Code.FileRenameEvent.t
        , Proto.RenameFilesParams.t )
-       _NotificationFileOperationFeature
+       NotificationFileOperationFeature.t
     [@@js.cast]
 end
 [@@js.scope "DidRenameFilesFeature"]
 
 module DidDeleteFilesFeature : sig
-  type t = _DidDeleteFilesFeature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -375,7 +375,7 @@ module DidDeleteFilesFeature : sig
 
   val create : client:BaseLanguageClient.t -> t [@@js.create]
 
-  val doSend
+  val do_send
     :  t
     -> event:Code.FileCreateEvent.t
     -> next:(event:Code.FileCreateEvent.t -> unit)
@@ -387,13 +387,13 @@ module DidDeleteFilesFeature : sig
     -> ( Code.Uri.t
        , Code.FileDeleteEvent.t
        , Proto.DeleteFilesParams.t )
-       _NotificationFileOperationFeature
+       NotificationFileOperationFeature.t
     [@@js.cast]
 end
 [@@js.scope "DidDeleteFilesFeature"]
 
 module RequestEvent : sig
-  type 'I t = 'I _RequestEvent
+  type 'I t
 
   val t_to_js : ('I -> Ojs.t) -> 'I t -> Ojs.t
 
@@ -401,16 +401,16 @@ module RequestEvent : sig
 
   val get_files : 'I t -> 'I list [@@js.get "files"]
 
-  val waitUntil : 'I t -> thenable:Code.WorkspaceEdit.t Promise.t -> unit
+  val wait_until : 'I t -> thenable:Code.WorkspaceEdit.t Promise.t -> unit
     [@@js.call "waitUntil"]
 
-  val waitUntil' : 'I t -> thenable:any Promise.t -> unit
+  val wait_until' : 'I t -> thenable:any Promise.t -> unit
     [@@js.call "waitUntil"]
 end
 [@@js.scope "RequestEvent"]
 
 module RequestFileOperationFeature : sig
-  type ('I, 'E, 'P) t = ('I, 'E, 'P) _RequestFileOperationFeature
+  type ('I, 'E, 'P) t
 
   val t_to_js
     :  ('I -> Ojs.t)
@@ -426,22 +426,22 @@ module RequestFileOperationFeature : sig
     -> Ojs.t
     -> ('I, 'E, 'P) t
 
-  val get__requestType : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any
+  val get_request_type : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any
     [@@js.get "_requestType"]
 
-  val set__requestType : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any -> unit
+  val set_request_type : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_requestType"]
 
-  val get__accessUri : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any
+  val get_access_uri : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any
     [@@js.get "_accessUri"]
 
-  val set__accessUri : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any -> unit
+  val set_access_uri : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_accessUri"]
 
-  val get__createParams : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any
+  val get_create_params : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any
     [@@js.get "_createParams"]
 
-  val set__createParams
+  val set_create_params
     :  ('I, 'E, 'P) t
     -> (* FIXME: unknown type *) any
     -> unit
@@ -450,49 +450,49 @@ module RequestFileOperationFeature : sig
   val create
     :  client:BaseLanguageClient.t
     -> event:'E Code.Event.t
-    -> requestType:
+    -> request_type:
          ( 'P
          , Proto.WorkspaceEdit.t or_null
          , never
          , unit
          , Proto.FileOperationRegistrationOptions.t )
          Proto.ProtocolRequestType.t
-    -> clientCapability:
+    -> client_capability:
          (* FIXME: unknown type '?proto.FileOperationClientCapabilities' *) any
-    -> serverCapability:
+    -> server_capability:
          (* FIXME: unknown type '?proto.FileOperationOptions' *) any
-    -> accessUri:(i:'I -> Code.Uri.t)
-    -> createParams:(e:'I _Event -> 'P)
+    -> access_uri:(i:'I -> Code.Uri.t)
+    -> create_params:(e:'I Event.t -> 'P)
     -> ('I, 'E, 'P) t
     [@@js.create]
 
   val send
     :  ('I, 'E, 'P) t
-    -> originalEvent:('E, 'I _RequestEvent) intersection2
+    -> original_event:('E, 'I RequestEvent.t) intersection2
     -> unit Promise.t
     [@@js.call "send"]
 
-  val get_waitUntil : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any
+  val get_wait_until : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any
     [@@js.get "waitUntil"]
 
-  val set_waitUntil : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any -> unit
+  val set_wait_until : ('I, 'E, 'P) t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "waitUntil"]
 
-  val doSend
+  val do_send
     :  ('I, 'E, 'P) t
     -> event:'E
     -> next:
-         (event:'I _Event
+         (event:'I Event.t
           -> (Code.WorkspaceEdit.t Promise.t, any Promise.t) union2)
     -> (Code.WorkspaceEdit.t Promise.t, any Promise.t) union2
     [@@js.call "doSend"]
 
-  val cast : ('I, 'E, 'P) t -> ('I, 'E) _FileOperationFeature [@@js.cast]
+  val cast : ('I, 'E, 'P) t -> ('I, 'E) FileOperationFeature.t [@@js.cast]
 end
 [@@js.scope "RequestFileOperationFeature"]
 
 module WillCreateFilesFeature : sig
-  type t = _WillCreateFilesFeature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -500,7 +500,7 @@ module WillCreateFilesFeature : sig
 
   val create : client:BaseLanguageClient.t -> t [@@js.create]
 
-  val doSend
+  val do_send
     :  t
     -> event:Code.FileWillCreateEvent.t
     -> next:
@@ -514,13 +514,13 @@ module WillCreateFilesFeature : sig
     -> ( Code.Uri.t
        , Code.FileWillCreateEvent.t
        , Proto.CreateFilesParams.t )
-       _RequestFileOperationFeature
+       RequestFileOperationFeature.t
     [@@js.cast]
 end
 [@@js.scope "WillCreateFilesFeature"]
 
 module WillRenameFilesFeature : sig
-  type t = _WillRenameFilesFeature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -528,7 +528,7 @@ module WillRenameFilesFeature : sig
 
   val create : client:BaseLanguageClient.t -> t [@@js.create]
 
-  val doSend
+  val do_send
     :  t
     -> event:Code.FileWillRenameEvent.t
     -> next:
@@ -542,13 +542,13 @@ module WillRenameFilesFeature : sig
     -> ( AnonymousInterface1.t
        , Code.FileWillRenameEvent.t
        , Proto.RenameFilesParams.t )
-       _RequestFileOperationFeature
+       RequestFileOperationFeature.t
     [@@js.cast]
 end
 [@@js.scope "WillRenameFilesFeature"]
 
 module WillDeleteFilesFeature : sig
-  type t = _WillDeleteFilesFeature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -556,7 +556,7 @@ module WillDeleteFilesFeature : sig
 
   val create : client:BaseLanguageClient.t -> t [@@js.create]
 
-  val doSend
+  val do_send
     :  t
     -> event:Code.FileWillDeleteEvent.t
     -> next:
@@ -570,7 +570,7 @@ module WillDeleteFilesFeature : sig
     -> ( Code.Uri.t
        , Code.FileWillDeleteEvent.t
        , Proto.DeleteFilesParams.t )
-       _RequestFileOperationFeature
+       RequestFileOperationFeature.t
     [@@js.cast]
 end
 [@@js.scope "WillDeleteFilesFeature"]

@@ -142,23 +142,24 @@ module V8 : sig
   end
   [@@js.scope "HeapCodeStatistics"]
 
-  val cachedDataVersionTag : unit -> int [@@js.global "cachedDataVersionTag"]
+  val cached_data_version_tag : unit -> int [@@js.global "cachedDataVersionTag"]
 
-  val getHeapStatistics : unit -> v8_HeapInfo [@@js.global "getHeapStatistics"]
+  val get_heap_statistics : unit -> v8_HeapInfo
+    [@@js.global "getHeapStatistics"]
 
-  val getHeapSpaceStatistics : unit -> v8_HeapSpaceInfo list
+  val get_heap_space_statistics : unit -> v8_HeapSpaceInfo list
     [@@js.global "getHeapSpaceStatistics"]
 
-  val setFlagsFromString : flags:string -> unit
+  val set_flags_from_string : flags:string -> unit
     [@@js.global "setFlagsFromString"]
 
-  val getHeapSnapshot : unit -> Stream.Readable.t
+  val get_heap_snapshot : unit -> Stream.Readable.t
     [@@js.global "getHeapSnapshot"]
 
-  val writeHeapSnapshot : ?fileName:string -> unit -> string
+  val write_heap_snapshot : ?file_name:string -> unit -> string
     [@@js.global "writeHeapSnapshot"]
 
-  val getHeapCodeStatistics : unit -> v8_HeapCodeStatistics
+  val get_heap_code_statistics : unit -> v8_HeapCodeStatistics
     [@@js.global "getHeapCodeStatistics"]
 
   module Serializer : sig
@@ -168,22 +169,26 @@ module V8 : sig
 
     val t_of_js : Ojs.t -> t
 
-    val writeHeader : t -> unit [@@js.call "writeHeader"]
+    val write_header : t -> unit [@@js.call "writeHeader"]
 
-    val writeValue : t -> val_:any -> bool [@@js.call "writeValue"]
+    val write_value : t -> val_:any -> bool [@@js.call "writeValue"]
 
-    val releaseBuffer : t -> Buffer.t [@@js.call "releaseBuffer"]
+    val release_buffer : t -> Buffer.t [@@js.call "releaseBuffer"]
 
-    val transferArrayBuffer : t -> id:int -> arrayBuffer:ArrayBuffer.t -> unit
+    val transfer_array_buffer
+      :  t
+      -> id:int
+      -> array_buffer:ArrayBuffer.t
+      -> unit
       [@@js.call "transferArrayBuffer"]
 
-    val writeUint32 : t -> value:int -> unit [@@js.call "writeUint32"]
+    val write_uint32 : t -> value:int -> unit [@@js.call "writeUint32"]
 
-    val writeUint64 : t -> hi:int -> lo:int -> unit [@@js.call "writeUint64"]
+    val write_uint64 : t -> hi:int -> lo:int -> unit [@@js.call "writeUint64"]
 
-    val writeDouble : t -> value:int -> unit [@@js.call "writeDouble"]
+    val write_double : t -> value:int -> unit [@@js.call "writeDouble"]
 
-    val writeRawBytes : t -> buffer:TypedArray.t -> unit
+    val write_raw_bytes : t -> buffer:TypedArray.t -> unit
       [@@js.call "writeRawBytes"]
   end
   [@@js.scope "Serializer"]
@@ -208,22 +213,26 @@ module V8 : sig
 
     val create : data:TypedArray.t -> t [@@js.create]
 
-    val readHeader : t -> bool [@@js.call "readHeader"]
+    val read_header : t -> bool [@@js.call "readHeader"]
 
-    val readValue : t -> any [@@js.call "readValue"]
+    val read_value : t -> any [@@js.call "readValue"]
 
-    val transferArrayBuffer : t -> id:int -> arrayBuffer:ArrayBuffer.t -> unit
+    val transfer_array_buffer
+      :  t
+      -> id:int
+      -> array_buffer:ArrayBuffer.t
+      -> unit
       [@@js.call "transferArrayBuffer"]
 
-    val getWireFormatVersion : t -> int [@@js.call "getWireFormatVersion"]
+    val get_wire_format_version : t -> int [@@js.call "getWireFormatVersion"]
 
-    val readUint32 : t -> int [@@js.call "readUint32"]
+    val read_uint32 : t -> int [@@js.call "readUint32"]
 
-    val readUint64 : t -> int * int [@@js.call "readUint64"]
+    val read_uint64 : t -> int * int [@@js.call "readUint64"]
 
-    val readDouble : t -> int [@@js.call "readDouble"]
+    val read_double : t -> int [@@js.call "readDouble"]
 
-    val readRawBytes : t -> length:int -> Buffer.t [@@js.call "readRawBytes"]
+    val read_raw_bytes : t -> length:int -> Buffer.t [@@js.call "readRawBytes"]
   end
   [@@js.scope "Deserializer"]
 

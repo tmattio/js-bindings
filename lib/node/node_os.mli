@@ -60,7 +60,7 @@ end
 
 module Os : sig
   module CpuInfo : sig
-    type t = os_CpuInfo
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -81,7 +81,7 @@ module Os : sig
   [@@js.scope "CpuInfo"]
 
   module NetworkInterfaceBase : sig
-    type t = os_NetworkInterfaceBase
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -110,7 +110,7 @@ module Os : sig
   [@@js.scope "NetworkInterfaceBase"]
 
   module NetworkInterfaceInfoIPv4 : sig
-    type t = os_NetworkInterfaceInfoIPv4
+    type t4
 
     val t_to_js : t -> Ojs.t
 
@@ -120,12 +120,12 @@ module Os : sig
 
     val set_family : t -> ([ `IPv4 ][@js.enum]) -> unit [@@js.set "family"]
 
-    val cast : t -> os_NetworkInterfaceBase [@@js.cast]
+    val cast : t -> NetworkInterfaceBase.t [@@js.cast]
   end
   [@@js.scope "NetworkInterfaceInfoIPv4"]
 
   module NetworkInterfaceInfoIPv6 : sig
-    type t = os_NetworkInterfaceInfoIPv6
+    type t6
 
     val t_to_js : t -> Ojs.t
 
@@ -139,12 +139,12 @@ module Os : sig
 
     val set_scopeid : t -> int -> unit [@@js.set "scopeid"]
 
-    val cast : t -> os_NetworkInterfaceBase [@@js.cast]
+    val cast : t -> NetworkInterfaceBase.t [@@js.cast]
   end
   [@@js.scope "NetworkInterfaceInfoIPv6"]
 
   module UserInfo : sig
-    type 'T t = 'T os_UserInfo
+    type 'T t
 
     val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
@@ -174,8 +174,8 @@ module Os : sig
 
   module NetworkInterfaceInfo : sig
     type t =
-      ([ `U_s1_IPv4 of os_NetworkInterfaceInfoIPv4 [@js "IPv4"]
-       | `U_s2_IPv6 of os_NetworkInterfaceInfoIPv6 [@js "IPv6"]
+      ([ `U_s1_IPv4 of NetworkInterfaceInfoIPv.t4 [@js "IPv4"]
+       | `U_s2_IPv6 of NetworkInterfaceInfoIPv.t6 [@js "IPv6"]
        ]
       [@js.union on_field "family"])
 
@@ -194,21 +194,21 @@ module Os : sig
 
   val totalmem : unit -> int [@@js.global "totalmem"]
 
-  val cpus : unit -> os_CpuInfo list [@@js.global "cpus"]
+  val cpus : unit -> CpuInfo.t list [@@js.global "cpus"]
 
   val type_ : unit -> string [@@js.global "type"]
 
   val release : unit -> string [@@js.global "release"]
 
-  val networkInterfaces : unit -> os_NetworkInterfaceInfo list Dict.t
+  val network_interfaces : unit -> NetworkInterfaceInfo.t list Dict.t
     [@@js.global "networkInterfaces"]
 
   val homedir : unit -> string [@@js.global "homedir"]
 
-  val userInfo : options:AnonymousInterface1.t -> Buffer.t os_UserInfo
+  val user_info : options:AnonymousInterface1.t -> Buffer.t os_UserInfo
     [@@js.global "userInfo"]
 
-  val userInfo : ?options:AnonymousInterface0.t -> unit -> string os_UserInfo
+  val user_info : ?options:AnonymousInterface0.t -> unit -> string os_UserInfo
     [@@js.global "userInfo"]
 
   module SignalConstants : sig
@@ -220,299 +220,299 @@ module Os : sig
   end
 
   module Constants : sig
-    val uV_UDP_REUSEADDR : int [@@js.global "UV_UDP_REUSEADDR"]
+    val uv_udp_reuseaddr : int [@@js.global "UV_UDP_REUSEADDR"]
 
     val signals : os_SignalConstants [@@js.global "signals"]
 
     module Errno : sig
       val e2BIG : int [@@js.global "E2BIG"]
 
-      val eACCES : int [@@js.global "EACCES"]
+      val eacces : int [@@js.global "EACCES"]
 
-      val eADDRINUSE : int [@@js.global "EADDRINUSE"]
+      val eaddrinuse : int [@@js.global "EADDRINUSE"]
 
-      val eADDRNOTAVAIL : int [@@js.global "EADDRNOTAVAIL"]
+      val eaddrnotavail : int [@@js.global "EADDRNOTAVAIL"]
 
-      val eAFNOSUPPORT : int [@@js.global "EAFNOSUPPORT"]
+      val eafnosupport : int [@@js.global "EAFNOSUPPORT"]
 
-      val eAGAIN : int [@@js.global "EAGAIN"]
+      val eagain : int [@@js.global "EAGAIN"]
 
-      val eALREADY : int [@@js.global "EALREADY"]
+      val ealready : int [@@js.global "EALREADY"]
 
-      val eBADF : int [@@js.global "EBADF"]
+      val ebadf : int [@@js.global "EBADF"]
 
-      val eBADMSG : int [@@js.global "EBADMSG"]
+      val ebadmsg : int [@@js.global "EBADMSG"]
 
-      val eBUSY : int [@@js.global "EBUSY"]
+      val ebusy : int [@@js.global "EBUSY"]
 
-      val eCANCELED : int [@@js.global "ECANCELED"]
+      val ecanceled : int [@@js.global "ECANCELED"]
 
-      val eCHILD : int [@@js.global "ECHILD"]
+      val echild : int [@@js.global "ECHILD"]
 
-      val eCONNABORTED : int [@@js.global "ECONNABORTED"]
+      val econnaborted : int [@@js.global "ECONNABORTED"]
 
-      val eCONNREFUSED : int [@@js.global "ECONNREFUSED"]
+      val econnrefused : int [@@js.global "ECONNREFUSED"]
 
-      val eCONNRESET : int [@@js.global "ECONNRESET"]
+      val econnreset : int [@@js.global "ECONNRESET"]
 
-      val eDEADLK : int [@@js.global "EDEADLK"]
+      val edeadlk : int [@@js.global "EDEADLK"]
 
-      val eDESTADDRREQ : int [@@js.global "EDESTADDRREQ"]
+      val edestaddrreq : int [@@js.global "EDESTADDRREQ"]
 
-      val eDOM : int [@@js.global "EDOM"]
+      val edom : int [@@js.global "EDOM"]
 
-      val eDQUOT : int [@@js.global "EDQUOT"]
+      val edquot : int [@@js.global "EDQUOT"]
 
-      val eEXIST : int [@@js.global "EEXIST"]
+      val eexist : int [@@js.global "EEXIST"]
 
-      val eFAULT : int [@@js.global "EFAULT"]
+      val efault : int [@@js.global "EFAULT"]
 
-      val eFBIG : int [@@js.global "EFBIG"]
+      val efbig : int [@@js.global "EFBIG"]
 
-      val eHOSTUNREACH : int [@@js.global "EHOSTUNREACH"]
+      val ehostunreach : int [@@js.global "EHOSTUNREACH"]
 
-      val eIDRM : int [@@js.global "EIDRM"]
+      val eidrm : int [@@js.global "EIDRM"]
 
-      val eILSEQ : int [@@js.global "EILSEQ"]
+      val eilseq : int [@@js.global "EILSEQ"]
 
-      val eINPROGRESS : int [@@js.global "EINPROGRESS"]
+      val einprogress : int [@@js.global "EINPROGRESS"]
 
-      val eINTR : int [@@js.global "EINTR"]
+      val eintr : int [@@js.global "EINTR"]
 
-      val eINVAL : int [@@js.global "EINVAL"]
+      val einval : int [@@js.global "EINVAL"]
 
-      val eIO : int [@@js.global "EIO"]
+      val eio : int [@@js.global "EIO"]
 
-      val eISCONN : int [@@js.global "EISCONN"]
+      val eisconn : int [@@js.global "EISCONN"]
 
-      val eISDIR : int [@@js.global "EISDIR"]
+      val eisdir : int [@@js.global "EISDIR"]
 
-      val eLOOP : int [@@js.global "ELOOP"]
+      val eloop : int [@@js.global "ELOOP"]
 
-      val eMFILE : int [@@js.global "EMFILE"]
+      val emfile : int [@@js.global "EMFILE"]
 
-      val eMLINK : int [@@js.global "EMLINK"]
+      val emlink : int [@@js.global "EMLINK"]
 
-      val eMSGSIZE : int [@@js.global "EMSGSIZE"]
+      val emsgsize : int [@@js.global "EMSGSIZE"]
 
-      val eMULTIHOP : int [@@js.global "EMULTIHOP"]
+      val emultihop : int [@@js.global "EMULTIHOP"]
 
-      val eNAMETOOLONG : int [@@js.global "ENAMETOOLONG"]
+      val enametoolong : int [@@js.global "ENAMETOOLONG"]
 
-      val eNETDOWN : int [@@js.global "ENETDOWN"]
+      val enetdown : int [@@js.global "ENETDOWN"]
 
-      val eNETRESET : int [@@js.global "ENETRESET"]
+      val enetreset : int [@@js.global "ENETRESET"]
 
-      val eNETUNREACH : int [@@js.global "ENETUNREACH"]
+      val enetunreach : int [@@js.global "ENETUNREACH"]
 
-      val eNFILE : int [@@js.global "ENFILE"]
+      val enfile : int [@@js.global "ENFILE"]
 
-      val eNOBUFS : int [@@js.global "ENOBUFS"]
+      val enobufs : int [@@js.global "ENOBUFS"]
 
-      val eNODATA : int [@@js.global "ENODATA"]
+      val enodata : int [@@js.global "ENODATA"]
 
-      val eNODEV : int [@@js.global "ENODEV"]
+      val enodev : int [@@js.global "ENODEV"]
 
-      val eNOENT : int [@@js.global "ENOENT"]
+      val enoent : int [@@js.global "ENOENT"]
 
-      val eNOEXEC : int [@@js.global "ENOEXEC"]
+      val enoexec : int [@@js.global "ENOEXEC"]
 
-      val eNOLCK : int [@@js.global "ENOLCK"]
+      val enolck : int [@@js.global "ENOLCK"]
 
-      val eNOLINK : int [@@js.global "ENOLINK"]
+      val enolink : int [@@js.global "ENOLINK"]
 
-      val eNOMEM : int [@@js.global "ENOMEM"]
+      val enomem : int [@@js.global "ENOMEM"]
 
-      val eNOMSG : int [@@js.global "ENOMSG"]
+      val enomsg : int [@@js.global "ENOMSG"]
 
-      val eNOPROTOOPT : int [@@js.global "ENOPROTOOPT"]
+      val enoprotoopt : int [@@js.global "ENOPROTOOPT"]
 
-      val eNOSPC : int [@@js.global "ENOSPC"]
+      val enospc : int [@@js.global "ENOSPC"]
 
-      val eNOSR : int [@@js.global "ENOSR"]
+      val enosr : int [@@js.global "ENOSR"]
 
-      val eNOSTR : int [@@js.global "ENOSTR"]
+      val enostr : int [@@js.global "ENOSTR"]
 
-      val eNOSYS : int [@@js.global "ENOSYS"]
+      val enosys : int [@@js.global "ENOSYS"]
 
-      val eNOTCONN : int [@@js.global "ENOTCONN"]
+      val enotconn : int [@@js.global "ENOTCONN"]
 
-      val eNOTDIR : int [@@js.global "ENOTDIR"]
+      val enotdir : int [@@js.global "ENOTDIR"]
 
-      val eNOTEMPTY : int [@@js.global "ENOTEMPTY"]
+      val enotempty : int [@@js.global "ENOTEMPTY"]
 
-      val eNOTSOCK : int [@@js.global "ENOTSOCK"]
+      val enotsock : int [@@js.global "ENOTSOCK"]
 
-      val eNOTSUP : int [@@js.global "ENOTSUP"]
+      val enotsup : int [@@js.global "ENOTSUP"]
 
-      val eNOTTY : int [@@js.global "ENOTTY"]
+      val enotty : int [@@js.global "ENOTTY"]
 
-      val eNXIO : int [@@js.global "ENXIO"]
+      val enxio : int [@@js.global "ENXIO"]
 
-      val eOPNOTSUPP : int [@@js.global "EOPNOTSUPP"]
+      val eopnotsupp : int [@@js.global "EOPNOTSUPP"]
 
-      val eOVERFLOW : int [@@js.global "EOVERFLOW"]
+      val eoverflow : int [@@js.global "EOVERFLOW"]
 
-      val ePERM : int [@@js.global "EPERM"]
+      val eperm : int [@@js.global "EPERM"]
 
-      val ePIPE : int [@@js.global "EPIPE"]
+      val epipe : int [@@js.global "EPIPE"]
 
-      val ePROTO : int [@@js.global "EPROTO"]
+      val eproto : int [@@js.global "EPROTO"]
 
-      val ePROTONOSUPPORT : int [@@js.global "EPROTONOSUPPORT"]
+      val eprotonosupport : int [@@js.global "EPROTONOSUPPORT"]
 
-      val ePROTOTYPE : int [@@js.global "EPROTOTYPE"]
+      val eprototype : int [@@js.global "EPROTOTYPE"]
 
-      val eRANGE : int [@@js.global "ERANGE"]
+      val erange : int [@@js.global "ERANGE"]
 
-      val eROFS : int [@@js.global "EROFS"]
+      val erofs : int [@@js.global "EROFS"]
 
-      val eSPIPE : int [@@js.global "ESPIPE"]
+      val espipe : int [@@js.global "ESPIPE"]
 
-      val eSRCH : int [@@js.global "ESRCH"]
+      val esrch : int [@@js.global "ESRCH"]
 
-      val eSTALE : int [@@js.global "ESTALE"]
+      val estale : int [@@js.global "ESTALE"]
 
-      val eTIME : int [@@js.global "ETIME"]
+      val etime : int [@@js.global "ETIME"]
 
-      val eTIMEDOUT : int [@@js.global "ETIMEDOUT"]
+      val etimedout : int [@@js.global "ETIMEDOUT"]
 
-      val eTXTBSY : int [@@js.global "ETXTBSY"]
+      val etxtbsy : int [@@js.global "ETXTBSY"]
 
-      val eWOULDBLOCK : int [@@js.global "EWOULDBLOCK"]
+      val ewouldblock : int [@@js.global "EWOULDBLOCK"]
 
-      val eXDEV : int [@@js.global "EXDEV"]
+      val exdev : int [@@js.global "EXDEV"]
 
-      val wSAEINTR : int [@@js.global "WSAEINTR"]
+      val wsaeintr : int [@@js.global "WSAEINTR"]
 
-      val wSAEBADF : int [@@js.global "WSAEBADF"]
+      val wsaebadf : int [@@js.global "WSAEBADF"]
 
-      val wSAEACCES : int [@@js.global "WSAEACCES"]
+      val wsaeacces : int [@@js.global "WSAEACCES"]
 
-      val wSAEFAULT : int [@@js.global "WSAEFAULT"]
+      val wsaefault : int [@@js.global "WSAEFAULT"]
 
-      val wSAEINVAL : int [@@js.global "WSAEINVAL"]
+      val wsaeinval : int [@@js.global "WSAEINVAL"]
 
-      val wSAEMFILE : int [@@js.global "WSAEMFILE"]
+      val wsaemfile : int [@@js.global "WSAEMFILE"]
 
-      val wSAEWOULDBLOCK : int [@@js.global "WSAEWOULDBLOCK"]
+      val wsaewouldblock : int [@@js.global "WSAEWOULDBLOCK"]
 
-      val wSAEINPROGRESS : int [@@js.global "WSAEINPROGRESS"]
+      val wsaeinprogress : int [@@js.global "WSAEINPROGRESS"]
 
-      val wSAEALREADY : int [@@js.global "WSAEALREADY"]
+      val wsaealready : int [@@js.global "WSAEALREADY"]
 
-      val wSAENOTSOCK : int [@@js.global "WSAENOTSOCK"]
+      val wsaenotsock : int [@@js.global "WSAENOTSOCK"]
 
-      val wSAEDESTADDRREQ : int [@@js.global "WSAEDESTADDRREQ"]
+      val wsaedestaddrreq : int [@@js.global "WSAEDESTADDRREQ"]
 
-      val wSAEMSGSIZE : int [@@js.global "WSAEMSGSIZE"]
+      val wsaemsgsize : int [@@js.global "WSAEMSGSIZE"]
 
-      val wSAEPROTOTYPE : int [@@js.global "WSAEPROTOTYPE"]
+      val wsaeprototype : int [@@js.global "WSAEPROTOTYPE"]
 
-      val wSAENOPROTOOPT : int [@@js.global "WSAENOPROTOOPT"]
+      val wsaenoprotoopt : int [@@js.global "WSAENOPROTOOPT"]
 
-      val wSAEPROTONOSUPPORT : int [@@js.global "WSAEPROTONOSUPPORT"]
+      val wsaeprotonosupport : int [@@js.global "WSAEPROTONOSUPPORT"]
 
-      val wSAESOCKTNOSUPPORT : int [@@js.global "WSAESOCKTNOSUPPORT"]
+      val wsaesocktnosupport : int [@@js.global "WSAESOCKTNOSUPPORT"]
 
-      val wSAEOPNOTSUPP : int [@@js.global "WSAEOPNOTSUPP"]
+      val wsaeopnotsupp : int [@@js.global "WSAEOPNOTSUPP"]
 
-      val wSAEPFNOSUPPORT : int [@@js.global "WSAEPFNOSUPPORT"]
+      val wsaepfnosupport : int [@@js.global "WSAEPFNOSUPPORT"]
 
-      val wSAEAFNOSUPPORT : int [@@js.global "WSAEAFNOSUPPORT"]
+      val wsaeafnosupport : int [@@js.global "WSAEAFNOSUPPORT"]
 
-      val wSAEADDRINUSE : int [@@js.global "WSAEADDRINUSE"]
+      val wsaeaddrinuse : int [@@js.global "WSAEADDRINUSE"]
 
-      val wSAEADDRNOTAVAIL : int [@@js.global "WSAEADDRNOTAVAIL"]
+      val wsaeaddrnotavail : int [@@js.global "WSAEADDRNOTAVAIL"]
 
-      val wSAENETDOWN : int [@@js.global "WSAENETDOWN"]
+      val wsaenetdown : int [@@js.global "WSAENETDOWN"]
 
-      val wSAENETUNREACH : int [@@js.global "WSAENETUNREACH"]
+      val wsaenetunreach : int [@@js.global "WSAENETUNREACH"]
 
-      val wSAENETRESET : int [@@js.global "WSAENETRESET"]
+      val wsaenetreset : int [@@js.global "WSAENETRESET"]
 
-      val wSAECONNABORTED : int [@@js.global "WSAECONNABORTED"]
+      val wsaeconnaborted : int [@@js.global "WSAECONNABORTED"]
 
-      val wSAECONNRESET : int [@@js.global "WSAECONNRESET"]
+      val wsaeconnreset : int [@@js.global "WSAECONNRESET"]
 
-      val wSAENOBUFS : int [@@js.global "WSAENOBUFS"]
+      val wsaenobufs : int [@@js.global "WSAENOBUFS"]
 
-      val wSAEISCONN : int [@@js.global "WSAEISCONN"]
+      val wsaeisconn : int [@@js.global "WSAEISCONN"]
 
-      val wSAENOTCONN : int [@@js.global "WSAENOTCONN"]
+      val wsaenotconn : int [@@js.global "WSAENOTCONN"]
 
-      val wSAESHUTDOWN : int [@@js.global "WSAESHUTDOWN"]
+      val wsaeshutdown : int [@@js.global "WSAESHUTDOWN"]
 
-      val wSAETOOMANYREFS : int [@@js.global "WSAETOOMANYREFS"]
+      val wsaetoomanyrefs : int [@@js.global "WSAETOOMANYREFS"]
 
-      val wSAETIMEDOUT : int [@@js.global "WSAETIMEDOUT"]
+      val wsaetimedout : int [@@js.global "WSAETIMEDOUT"]
 
-      val wSAECONNREFUSED : int [@@js.global "WSAECONNREFUSED"]
+      val wsaeconnrefused : int [@@js.global "WSAECONNREFUSED"]
 
-      val wSAELOOP : int [@@js.global "WSAELOOP"]
+      val wsaeloop : int [@@js.global "WSAELOOP"]
 
-      val wSAENAMETOOLONG : int [@@js.global "WSAENAMETOOLONG"]
+      val wsaenametoolong : int [@@js.global "WSAENAMETOOLONG"]
 
-      val wSAEHOSTDOWN : int [@@js.global "WSAEHOSTDOWN"]
+      val wsaehostdown : int [@@js.global "WSAEHOSTDOWN"]
 
-      val wSAEHOSTUNREACH : int [@@js.global "WSAEHOSTUNREACH"]
+      val wsaehostunreach : int [@@js.global "WSAEHOSTUNREACH"]
 
-      val wSAENOTEMPTY : int [@@js.global "WSAENOTEMPTY"]
+      val wsaenotempty : int [@@js.global "WSAENOTEMPTY"]
 
-      val wSAEPROCLIM : int [@@js.global "WSAEPROCLIM"]
+      val wsaeproclim : int [@@js.global "WSAEPROCLIM"]
 
-      val wSAEUSERS : int [@@js.global "WSAEUSERS"]
+      val wsaeusers : int [@@js.global "WSAEUSERS"]
 
-      val wSAEDQUOT : int [@@js.global "WSAEDQUOT"]
+      val wsaedquot : int [@@js.global "WSAEDQUOT"]
 
-      val wSAESTALE : int [@@js.global "WSAESTALE"]
+      val wsaestale : int [@@js.global "WSAESTALE"]
 
-      val wSAEREMOTE : int [@@js.global "WSAEREMOTE"]
+      val wsaeremote : int [@@js.global "WSAEREMOTE"]
 
-      val wSASYSNOTREADY : int [@@js.global "WSASYSNOTREADY"]
+      val wsasysnotready : int [@@js.global "WSASYSNOTREADY"]
 
-      val wSAVERNOTSUPPORTED : int [@@js.global "WSAVERNOTSUPPORTED"]
+      val wsavernotsupported : int [@@js.global "WSAVERNOTSUPPORTED"]
 
-      val wSANOTINITIALISED : int [@@js.global "WSANOTINITIALISED"]
+      val wsanotinitialised : int [@@js.global "WSANOTINITIALISED"]
 
-      val wSAEDISCON : int [@@js.global "WSAEDISCON"]
+      val wsaediscon : int [@@js.global "WSAEDISCON"]
 
-      val wSAENOMORE : int [@@js.global "WSAENOMORE"]
+      val wsaenomore : int [@@js.global "WSAENOMORE"]
 
-      val wSAECANCELLED : int [@@js.global "WSAECANCELLED"]
+      val wsaecancelled : int [@@js.global "WSAECANCELLED"]
 
-      val wSAEINVALIDPROCTABLE : int [@@js.global "WSAEINVALIDPROCTABLE"]
+      val wsaeinvalidproctable : int [@@js.global "WSAEINVALIDPROCTABLE"]
 
-      val wSAEINVALIDPROVIDER : int [@@js.global "WSAEINVALIDPROVIDER"]
+      val wsaeinvalidprovider : int [@@js.global "WSAEINVALIDPROVIDER"]
 
-      val wSAEPROVIDERFAILEDINIT : int [@@js.global "WSAEPROVIDERFAILEDINIT"]
+      val wsaeproviderfailedinit : int [@@js.global "WSAEPROVIDERFAILEDINIT"]
 
-      val wSASYSCALLFAILURE : int [@@js.global "WSASYSCALLFAILURE"]
+      val wsasyscallfailure : int [@@js.global "WSASYSCALLFAILURE"]
 
-      val wSASERVICE_NOT_FOUND : int [@@js.global "WSASERVICE_NOT_FOUND"]
+      val wsaservice_not_found : int [@@js.global "WSASERVICE_NOT_FOUND"]
 
-      val wSATYPE_NOT_FOUND : int [@@js.global "WSATYPE_NOT_FOUND"]
+      val wsatype_not_found : int [@@js.global "WSATYPE_NOT_FOUND"]
 
-      val wSA_E_NO_MORE : int [@@js.global "WSA_E_NO_MORE"]
+      val wsa_e_no_more : int [@@js.global "WSA_E_NO_MORE"]
 
-      val wSA_E_CANCELLED : int [@@js.global "WSA_E_CANCELLED"]
+      val wsa_e_cancelled : int [@@js.global "WSA_E_CANCELLED"]
 
-      val wSAEREFUSED : int [@@js.global "WSAEREFUSED"]
+      val wsaerefused : int [@@js.global "WSAEREFUSED"]
     end
     [@@js.scope "errno"]
 
     module Priority : sig
-      val pRIORITY_LOW : int [@@js.global "PRIORITY_LOW"]
+      val priority_low : int [@@js.global "PRIORITY_LOW"]
 
-      val pRIORITY_BELOW_NORMAL : int [@@js.global "PRIORITY_BELOW_NORMAL"]
+      val priority_below_normal : int [@@js.global "PRIORITY_BELOW_NORMAL"]
 
-      val pRIORITY_NORMAL : int [@@js.global "PRIORITY_NORMAL"]
+      val priority_normal : int [@@js.global "PRIORITY_NORMAL"]
 
-      val pRIORITY_ABOVE_NORMAL : int [@@js.global "PRIORITY_ABOVE_NORMAL"]
+      val priority_above_normal : int [@@js.global "PRIORITY_ABOVE_NORMAL"]
 
-      val pRIORITY_HIGH : int [@@js.global "PRIORITY_HIGH"]
+      val priority_high : int [@@js.global "PRIORITY_HIGH"]
 
-      val pRIORITY_HIGHEST : int [@@js.global "PRIORITY_HIGHEST"]
+      val priority_highest : int [@@js.global "PRIORITY_HIGHEST"]
     end
     [@@js.scope "priority"]
   end
@@ -527,15 +527,15 @@ module Os : sig
 
   val tmpdir : unit -> string [@@js.global "tmpdir"]
 
-  val eOL : string [@@js.global "EOL"]
+  val eol : string [@@js.global "EOL"]
 
   val endianness : unit -> ([ `BE [@js "BE"] | `LE [@js "LE"] ][@js.enum])
     [@@js.global "endianness"]
 
-  val getPriority : ?pid:int -> unit -> int [@@js.global "getPriority"]
+  val get_priority : ?pid:int -> unit -> int [@@js.global "getPriority"]
 
-  val setPriority : priority:int -> unit [@@js.global "setPriority"]
+  val set_priority : priority:int -> unit [@@js.global "setPriority"]
 
-  val setPriority : pid:int -> priority:int -> unit [@@js.global "setPriority"]
+  val set_priority : pid:int -> priority:int -> unit [@@js.global "setPriority"]
 end
 [@@js.scope Import.os]

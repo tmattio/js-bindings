@@ -27,12 +27,12 @@ module Map =
     let (for_each :
       ('K, 'V) t ->
         callbackfn:(value:'V -> key:'K -> map:('K, 'V) t -> unit) ->
-          ?thisArg:any -> unit -> unit)
+          ?this_arg:any -> unit -> unit)
       =
       fun (x19 : ('K, 'V) t) ->
         fun ~callbackfn:(x10 : value:'V -> key:'K -> map:('K, 'V) t -> unit)
           ->
-          fun ?thisArg:(x11 : any option) ->
+          fun ?this_arg:(x11 : any option) ->
             fun () ->
               ignore
                 (let x22 = t_to_js Obj.magic Obj.magic x19 in
@@ -162,12 +162,12 @@ module ReadonlyMap =
     let (for_each :
       ('K, 'V) t ->
         callbackfn:(value:'V -> key:'K -> map:('K, 'V) t -> unit) ->
-          ?thisArg:any -> unit -> unit)
+          ?this_arg:any -> unit -> unit)
       =
       fun (x84 : ('K, 'V) t) ->
         fun ~callbackfn:(x75 : value:'V -> key:'K -> map:('K, 'V) t -> unit)
           ->
-          fun ?thisArg:(x76 : any option) ->
+          fun ?this_arg:(x76 : any option) ->
             fun () ->
               ignore
                 (let x87 = t_to_js Obj.magic Obj.magic x84 in
@@ -331,12 +331,12 @@ module Set =
     let (for_each :
       'T t ->
         callbackfn:(value:'T -> value2:'T -> set_:'T t -> unit) ->
-          ?thisArg:any -> unit -> unit)
+          ?this_arg:any -> unit -> unit)
       =
       fun (x167 : 'T t) ->
         fun ~callbackfn:(x159 : value:'T -> value2:'T -> set_:'T t -> unit)
           ->
-          fun ?thisArg:(x160 : any option) ->
+          fun ?this_arg:(x160 : any option) ->
             fun () ->
               ignore
                 (let x169 = t_to_js Obj.magic x167 in
@@ -423,12 +423,12 @@ module ReadonlySet =
     let (for_each :
       'T t ->
         callbackfn:(value:'T -> value2:'T -> set_:'T t -> unit) ->
-          ?thisArg:any -> unit -> unit)
+          ?this_arg:any -> unit -> unit)
       =
       fun (x202 : 'T t) ->
         fun ~callbackfn:(x194 : value:'T -> value2:'T -> set_:'T t -> unit)
           ->
-          fun ?thisArg:(x195 : any option) ->
+          fun ?this_arg:(x195 : any option) ->
             fun () ->
               ignore
                 (let x204 = t_to_js Obj.magic x202 in

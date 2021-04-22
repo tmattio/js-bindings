@@ -7,7 +7,7 @@ open Es5
 (* import * as code from 'vscode'; *)
 (* import * as proto from 'vscode-languageserver-protocol'; *)
 module ProtocolCompletionItem : sig
-  type t = _ProtocolCompletionItem
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -17,20 +17,20 @@ module ProtocolCompletionItem : sig
 
   val set_data : t -> any -> unit [@@js.set "data"]
 
-  val get_fromEdit : t -> bool or_undefined [@@js.get "fromEdit"]
+  val get_from_edit : t -> bool or_undefined [@@js.get "fromEdit"]
 
-  val set_fromEdit : t -> bool or_undefined -> unit [@@js.set "fromEdit"]
+  val set_from_edit : t -> bool or_undefined -> unit [@@js.set "fromEdit"]
 
-  val get_documentationFormat : t -> string or_undefined
+  val get_documentation_format : t -> string or_undefined
     [@@js.get "documentationFormat"]
 
-  val set_documentationFormat : t -> string or_undefined -> unit
+  val set_documentation_format : t -> string or_undefined -> unit
     [@@js.set "documentationFormat"]
 
-  val get_originalItemKind : t -> Proto.CompletionItemKind.t or_undefined
+  val get_original_item_kind : t -> Proto.CompletionItemKind.t or_undefined
     [@@js.get "originalItemKind"]
 
-  val set_originalItemKind
+  val set_original_item_kind
     :  t
     -> Proto.CompletionItemKind.t or_undefined
     -> unit
@@ -40,10 +40,10 @@ module ProtocolCompletionItem : sig
 
   val set_deprecated : t -> bool or_undefined -> unit [@@js.set "deprecated"]
 
-  val get_insertTextMode : t -> Proto.InsertTextMode.t or_undefined
+  val get_insert_text_mode : t -> Proto.InsertTextMode.t or_undefined
     [@@js.get "insertTextMode"]
 
-  val set_insertTextMode : t -> Proto.InsertTextMode.t or_undefined -> unit
+  val set_insert_text_mode : t -> Proto.InsertTextMode.t or_undefined -> unit
     [@@js.set "insertTextMode"]
 
   val create : label:string -> t [@@js.create]

@@ -2,8 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct module Types = struct open AnonymousInterfaces end end
 module AnonymousInterface0 =
   struct
     type t = Ojs.t
@@ -27,12 +25,9 @@ module AnonymousInterface0 =
   end
 module ProvideDocumentColorsSignature =
   struct
-    type t = _ProvideDocumentColorsSignature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x10 : Ojs.t) -> _ProvideDocumentColorsSignature_of_js x10
-    and t_to_js : t -> Ojs.t =
-      fun (x9 : _ProvideDocumentColorsSignature) ->
-        _ProvideDocumentColorsSignature_to_js x9
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x10 : Ojs.t) -> x10
+    and t_to_js : t -> Ojs.t = fun (x9 : Ojs.t) -> x9
     let (apply :
       t ->
         document:TextDocument.t ->
@@ -50,12 +45,9 @@ module ProvideDocumentColorsSignature =
   end
 module ProvideColorPresentationSignature =
   struct
-    type t = _ProvideColorPresentationSignature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x17 : Ojs.t) -> _ProvideColorPresentationSignature_of_js x17
-    and t_to_js : t -> Ojs.t =
-      fun (x16 : _ProvideColorPresentationSignature) ->
-        _ProvideColorPresentationSignature_to_js x16
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x17 : Ojs.t) -> x17
+    and t_to_js : t -> Ojs.t = fun (x16 : Ojs.t) -> x16
     let (apply :
       t ->
         color:VColor.t ->
@@ -76,39 +68,36 @@ module ProvideColorPresentationSignature =
   end
 module ColorProviderMiddleware =
   struct
-    type t = _ColorProviderMiddleware
-    let rec t_of_js : Ojs.t -> t =
-      fun (x25 : Ojs.t) -> _ColorProviderMiddleware_of_js x25
-    and t_to_js : t -> Ojs.t =
-      fun (x24 : _ColorProviderMiddleware) ->
-        _ColorProviderMiddleware_to_js x24
-    let (provideDocumentColors :
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x25 : Ojs.t) -> x25
+    and t_to_js : t -> Ojs.t = fun (x24 : Ojs.t) -> x24
+    let (provide_document_colors :
       t ->
         this:unit ->
           document:TextDocument.t ->
             token:CancellationToken.t ->
-              next:_ProvideDocumentColorsSignature ->
+              next:ProvideDocumentColorsSignature.t ->
                 VColorInformation.t list ProviderResult.t)
       =
       fun (x30 : t) ->
         fun ~this:(x26 : unit) ->
           fun ~document:(x27 : TextDocument.t) ->
             fun ~token:(x28 : CancellationToken.t) ->
-              fun ~next:(x29 : _ProvideDocumentColorsSignature) ->
+              fun ~next:(x29 : ProvideDocumentColorsSignature.t) ->
                 ProviderResult.t_of_js
                   (fun (x31 : Ojs.t) ->
                      Ojs.list_of_js VColorInformation.t_of_js x31)
                   (Ojs.call (t_to_js x30) "provideDocumentColors"
                      [|(Ojs.unit_to_js x26);(TextDocument.t_to_js x27);(
-                       CancellationToken.t_to_js x28);(_ProvideDocumentColorsSignature_to_js
+                       CancellationToken.t_to_js x28);(ProvideDocumentColorsSignature.t_to_js
                                                          x29)|])
-    let (provideColorPresentations :
+    let (provide_color_presentations :
       t ->
         this:unit ->
           color:VColor.t ->
             context:AnonymousInterface0.t ->
               token:CancellationToken.t ->
-                next:_ProvideColorPresentationSignature ->
+                next:ProvideColorPresentationSignature.t ->
                   VColorPresentation.t list ProviderResult.t)
       =
       fun (x38 : t) ->
@@ -116,29 +105,27 @@ module ColorProviderMiddleware =
           fun ~color:(x34 : VColor.t) ->
             fun ~context:(x35 : AnonymousInterface0.t) ->
               fun ~token:(x36 : CancellationToken.t) ->
-                fun ~next:(x37 : _ProvideColorPresentationSignature) ->
+                fun ~next:(x37 : ProvideColorPresentationSignature.t) ->
                   ProviderResult.t_of_js
                     (fun (x39 : Ojs.t) ->
                        Ojs.list_of_js VColorPresentation.t_of_js x39)
                     (Ojs.call (t_to_js x38) "provideColorPresentations"
                        [|(Ojs.unit_to_js x33);(VColor.t_to_js x34);(AnonymousInterface0.t_to_js
                                                                     x35);(
-                         CancellationToken.t_to_js x36);(_ProvideColorPresentationSignature_to_js
+                         CancellationToken.t_to_js x36);(ProvideColorPresentationSignature.t_to_js
                                                            x37)|])
   end
 module ColorProviderFeature =
   struct
-    type t = _ColorProviderFeature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x42 : Ojs.t) -> _ColorProviderFeature_of_js x42
-    and t_to_js : t -> Ojs.t =
-      fun (x41 : _ColorProviderFeature) -> _ColorProviderFeature_to_js x41
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x42 : Ojs.t) -> x42
+    and t_to_js : t -> Ojs.t = fun (x41 : Ojs.t) -> x41
     let (create : client:BaseLanguageClient.t -> t) =
       fun ~client:(x43 : BaseLanguageClient.t) ->
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "ColorProviderFeature")
              [|(BaseLanguageClient.t_to_js x43)|])
-    let (fillClientCapabilities :
+    let (fill_client_capabilities :
       t -> capabilities:ClientCapabilities.t -> unit) =
       fun (x45 : t) ->
         fun ~capabilities:(x44 : ClientCapabilities.t) ->
@@ -148,16 +135,16 @@ module ColorProviderFeature =
     let (initialize :
       t ->
         capabilities:ServerCapabilities.t ->
-          documentSelector:DocumentSelector.t -> unit)
+          document_selector:DocumentSelector.t -> unit)
       =
       fun (x48 : t) ->
         fun ~capabilities:(x46 : ServerCapabilities.t) ->
-          fun ~documentSelector:(x47 : DocumentSelector.t) ->
+          fun ~document_selector:(x47 : DocumentSelector.t) ->
             ignore
               (Ojs.call (t_to_js x48) "initialize"
                  [|(ServerCapabilities.t_to_js x46);(DocumentSelector.t_to_js
                                                        x47)|])
-    let (registerLanguageProvider :
+    let (register_language_provider :
       t ->
         options:DocumentColorRegistrationOptions.t ->
           (Disposable.t * DocumentColorProvider.t))
@@ -169,24 +156,24 @@ module ColorProviderFeature =
               [|(DocumentColorRegistrationOptions.t_to_js x49)|] in
           ((Disposable.t_of_js (Ojs.array_get x51 0)),
             (DocumentColorProvider.t_of_js (Ojs.array_get x51 1)))
-    let (get_asColor : t -> any) =
+    let (get_as_color : t -> any) =
       fun (x52 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x52) "asColor")
-    let (set_asColor : t -> any -> unit) =
+    let (set_as_color : t -> any -> unit) =
       fun (x53 : t) ->
         fun (x54 : any) ->
           Ojs.set_prop_ascii (t_to_js x53) "asColor" (any_to_js x54)
-    let (get_asColorInformations : t -> any) =
+    let (get_as_color_informations : t -> any) =
       fun (x55 : t) ->
         any_of_js (Ojs.get_prop_ascii (t_to_js x55) "asColorInformations")
-    let (set_asColorInformations : t -> any -> unit) =
+    let (set_as_color_informations : t -> any -> unit) =
       fun (x56 : t) ->
         fun (x57 : any) ->
           Ojs.set_prop_ascii (t_to_js x56) "asColorInformations"
             (any_to_js x57)
-    let (get_asColorPresentations : t -> any) =
+    let (get_as_color_presentations : t -> any) =
       fun (x58 : t) ->
         any_of_js (Ojs.get_prop_ascii (t_to_js x58) "asColorPresentations")
-    let (set_asColorPresentations : t -> any -> unit) =
+    let (set_as_color_presentations : t -> any -> unit) =
       fun (x59 : t) ->
         fun (x60 : any) ->
           Ojs.set_prop_ascii (t_to_js x59) "asColorPresentations"

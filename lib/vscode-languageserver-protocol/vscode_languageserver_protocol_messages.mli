@@ -5,9 +5,9 @@
 open Es5
 
 (* import { RequestType, RequestType0, NotificationType, NotificationType0,
-   ProgressType, _EM } from 'vscode-jsonrpc'; *)
+   ProgressType, EM.t } from 'vscode-jsonrpc'; *)
 module RegistrationType : sig
-  type 'RO t = 'RO _RegistrationType
+  type 'RO t
 
   val t_to_js : ('RO -> Ojs.t) -> 'RO t -> Ojs.t
 
@@ -22,7 +22,7 @@ end
 [@@js.scope "RegistrationType"]
 
 module ProtocolRequestType0 : sig
-  type ('R, 'PR, 'E, 'RO) t = ('R, 'PR, 'E, 'RO) _ProtocolRequestType0
+  type ('R, 'PR, 'E, 'RO) t
 
   val t_to_js
     :  ('R -> Ojs.t)
@@ -54,12 +54,12 @@ module ProtocolRequestType0 : sig
 
   val cast' : ('R, 'PR, 'E, 'RO) t -> 'PR ProgressType.t [@@js.cast]
 
-  val cast'' : ('R, 'PR, 'E, 'RO) t -> 'RO _RegistrationType [@@js.cast]
+  val cast'' : ('R, 'PR, 'E, 'RO) t -> 'RO RegistrationType.t [@@js.cast]
 end
 [@@js.scope "ProtocolRequestType0"]
 
 module ProtocolRequestType : sig
-  type ('P, 'R, 'PR, 'E, 'RO) t = ('P, 'R, 'PR, 'E, 'RO) _ProtocolRequestType
+  type ('P, 'R, 'PR, 'E, 'RO) t = ('P, 'R, 'PR, 'E, 'RO) ProtocolRequestType.t
 
   val t_to_js
     :  ('P -> Ojs.t)
@@ -93,12 +93,12 @@ module ProtocolRequestType : sig
 
   val cast' : ('P, 'R, 'PR, 'E, 'RO) t -> 'PR ProgressType.t [@@js.cast]
 
-  val cast'' : ('P, 'R, 'PR, 'E, 'RO) t -> 'RO _RegistrationType [@@js.cast]
+  val cast'' : ('P, 'R, 'PR, 'E, 'RO) t -> 'RO RegistrationType.t [@@js.cast]
 end
 [@@js.scope "ProtocolRequestType"]
 
 module ProtocolNotificationType0 : sig
-  type 'RO t = 'RO _ProtocolNotificationType0
+  type 'RO t = 'RO ProtocolNotificationType.t
 
   val t_to_js : ('RO -> Ojs.t) -> 'RO t -> Ojs.t
 
@@ -112,12 +112,12 @@ module ProtocolNotificationType0 : sig
 
   val cast : 'RO t -> NotificationType0.t [@@js.cast]
 
-  val cast' : 'RO t -> 'RO _RegistrationType [@@js.cast]
+  val cast' : 'RO t -> 'RO RegistrationType.t [@@js.cast]
 end
 [@@js.scope "ProtocolNotificationType0"]
 
 module ProtocolNotificationType : sig
-  type ('P, 'RO) t = ('P, 'RO) _ProtocolNotificationType
+  type ('P, 'RO) t
 
   val t_to_js : ('P -> Ojs.t) -> ('RO -> Ojs.t) -> ('P, 'RO) t -> Ojs.t
 
@@ -131,6 +131,6 @@ module ProtocolNotificationType : sig
 
   val cast : ('P, 'RO) t -> 'P NotificationType.t [@@js.cast]
 
-  val cast' : ('P, 'RO) t -> 'RO _RegistrationType [@@js.cast]
+  val cast' : ('P, 'RO) t -> 'RO RegistrationType.t [@@js.cast]
 end
 [@@js.scope "ProtocolNotificationType"]

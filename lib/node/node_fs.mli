@@ -30,19 +30,19 @@ module Fs : sig
 
     val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
 
-    val isFile : 'T t -> bool [@@js.call "isFile"]
+    val is_file : 'T t -> bool [@@js.call "isFile"]
 
-    val isDirectory : 'T t -> bool [@@js.call "isDirectory"]
+    val is_directory : 'T t -> bool [@@js.call "isDirectory"]
 
-    val isBlockDevice : 'T t -> bool [@@js.call "isBlockDevice"]
+    val is_block_device : 'T t -> bool [@@js.call "isBlockDevice"]
 
-    val isCharacterDevice : 'T t -> bool [@@js.call "isCharacterDevice"]
+    val is_character_device : 'T t -> bool [@@js.call "isCharacterDevice"]
 
-    val isSymbolicLink : 'T t -> bool [@@js.call "isSymbolicLink"]
+    val is_symbolic_link : 'T t -> bool [@@js.call "isSymbolicLink"]
 
-    val isFIFO : 'T t -> bool [@@js.call "isFIFO"]
+    val is_fifo : 'T t -> bool [@@js.call "isFIFO"]
 
-    val isSocket : 'T t -> bool [@@js.call "isSocket"]
+    val is_socket : 'T t -> bool [@@js.call "isSocket"]
 
     val get_dev : 'T t -> 'T [@@js.get "dev"]
 
@@ -84,21 +84,21 @@ module Fs : sig
 
     val set_blocks : 'T t -> 'T -> unit [@@js.set "blocks"]
 
-    val get_atimeMs : 'T t -> 'T [@@js.get "atimeMs"]
+    val get_atime_ms : 'T t -> 'T [@@js.get "atimeMs"]
 
-    val set_atimeMs : 'T t -> 'T -> unit [@@js.set "atimeMs"]
+    val set_atime_ms : 'T t -> 'T -> unit [@@js.set "atimeMs"]
 
-    val get_mtimeMs : 'T t -> 'T [@@js.get "mtimeMs"]
+    val get_mtime_ms : 'T t -> 'T [@@js.get "mtimeMs"]
 
-    val set_mtimeMs : 'T t -> 'T -> unit [@@js.set "mtimeMs"]
+    val set_mtime_ms : 'T t -> 'T -> unit [@@js.set "mtimeMs"]
 
-    val get_ctimeMs : 'T t -> 'T [@@js.get "ctimeMs"]
+    val get_ctime_ms : 'T t -> 'T [@@js.get "ctimeMs"]
 
-    val set_ctimeMs : 'T t -> 'T -> unit [@@js.set "ctimeMs"]
+    val set_ctime_ms : 'T t -> 'T -> unit [@@js.set "ctimeMs"]
 
-    val get_birthtimeMs : 'T t -> 'T [@@js.get "birthtimeMs"]
+    val get_birthtime_ms : 'T t -> 'T [@@js.get "birthtimeMs"]
 
-    val set_birthtimeMs : 'T t -> 'T -> unit [@@js.set "birthtimeMs"]
+    val set_birthtime_ms : 'T t -> 'T -> unit [@@js.set "birthtimeMs"]
 
     val get_atime : 'T t -> Date.t [@@js.get "atime"]
 
@@ -163,9 +163,9 @@ module Fs : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_bytesRead : t -> int [@@js.get "bytesRead"]
+    val get_bytes_read : t -> int [@@js.get "bytesRead"]
 
-    val set_bytesRead : t -> int -> unit [@@js.set "bytesRead"]
+    val set_bytes_read : t -> int -> unit [@@js.set "bytesRead"]
 
     val get_buffer : t -> 'TBuffer [@@js.get "buffer"]
 
@@ -179,9 +179,9 @@ module Fs : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_bytesWritten : t -> int [@@js.get "bytesWritten"]
+    val get_bytes_written : t -> int [@@js.get "bytesWritten"]
 
-    val set_bytesWritten : t -> int -> unit [@@js.set "bytesWritten"]
+    val set_bytes_written : t -> int -> unit [@@js.set "bytesWritten"]
 
     val get_buffer : t -> 'TBuffer [@@js.get "buffer"]
 
@@ -195,9 +195,9 @@ module Fs : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_bytesWritten : t -> int [@@js.get "bytesWritten"]
+    val get_bytes_written : t -> int [@@js.get "bytesWritten"]
 
-    val set_bytesWritten : t -> int -> unit [@@js.set "bytesWritten"]
+    val set_bytes_written : t -> int -> unit [@@js.set "bytesWritten"]
 
     val get_buffer : t -> string [@@js.get "buffer"]
 
@@ -285,10 +285,10 @@ module Fs : sig
     val set_encoding : t -> ([ `buffer ][@js.enum]) -> unit
       [@@js.set "encoding"]
 
-    val get_withFileTypes : t -> ([ `L_b_false [@js false] ][@js.enum])
+    val get_with_file_types : t -> ([ `L_b_false [@js false] ][@js.enum])
       [@@js.get "withFileTypes"]
 
-    val set_withFileTypes : t -> ([ `L_b_false ][@js.enum]) -> unit
+    val set_with_file_types : t -> ([ `L_b_false ][@js.enum]) -> unit
       [@@js.set "withFileTypes"]
   end
 
@@ -325,10 +325,10 @@ module Fs : sig
     val set_encoding : t -> BufferEncoding.t or_null -> unit
       [@@js.set "encoding"]
 
-    val get_withFileTypes : t -> ([ `L_b_false [@js false] ][@js.enum])
+    val get_with_file_types : t -> ([ `L_b_false [@js false] ][@js.enum])
       [@@js.get "withFileTypes"]
 
-    val set_withFileTypes : t -> ([ `L_b_false ][@js.enum]) -> unit
+    val set_with_file_types : t -> ([ `L_b_false ][@js.enum]) -> unit
       [@@js.set "withFileTypes"]
   end
 
@@ -367,13 +367,13 @@ module Fs : sig
 
     val set_mode : t -> int -> unit [@@js.set "mode"]
 
-    val get_autoClose : t -> bool [@@js.get "autoClose"]
+    val get_auto_close : t -> bool [@@js.get "autoClose"]
 
-    val set_autoClose : t -> bool -> unit [@@js.set "autoClose"]
+    val set_auto_close : t -> bool -> unit [@@js.set "autoClose"]
 
-    val get_emitClose : t -> bool [@@js.get "emitClose"]
+    val get_emit_close : t -> bool [@@js.get "emitClose"]
 
-    val set_emitClose : t -> bool -> unit [@@js.set "emitClose"]
+    val set_emit_close : t -> bool -> unit [@@js.set "emitClose"]
 
     val get_start : t -> int [@@js.get "start"]
 
@@ -383,9 +383,9 @@ module Fs : sig
 
     val set_end : t -> int -> unit [@@js.set "end"]
 
-    val get_highWaterMark : t -> int [@@js.get "highWaterMark"]
+    val get_high_water_mark : t -> int [@@js.get "highWaterMark"]
 
-    val set_highWaterMark : t -> int -> unit [@@js.set "highWaterMark"]
+    val set_high_water_mark : t -> int -> unit [@@js.set "highWaterMark"]
   end
 
   module AnonymousInterface14 : sig
@@ -411,21 +411,21 @@ module Fs : sig
 
     val set_mode : t -> int -> unit [@@js.set "mode"]
 
-    val get_autoClose : t -> bool [@@js.get "autoClose"]
+    val get_auto_close : t -> bool [@@js.get "autoClose"]
 
-    val set_autoClose : t -> bool -> unit [@@js.set "autoClose"]
+    val set_auto_close : t -> bool -> unit [@@js.set "autoClose"]
 
-    val get_emitClose : t -> bool [@@js.get "emitClose"]
+    val get_emit_close : t -> bool [@@js.get "emitClose"]
 
-    val set_emitClose : t -> bool -> unit [@@js.set "emitClose"]
+    val set_emit_close : t -> bool -> unit [@@js.set "emitClose"]
 
     val get_start : t -> int [@@js.get "start"]
 
     val set_start : t -> int -> unit [@@js.set "start"]
 
-    val get_highWaterMark : t -> int [@@js.get "highWaterMark"]
+    val get_high_water_mark : t -> int [@@js.get "highWaterMark"]
 
-    val set_highWaterMark : t -> int -> unit [@@js.set "highWaterMark"]
+    val set_high_water_mark : t -> int -> unit [@@js.set "highWaterMark"]
   end
 
   module AnonymousInterface15 : sig
@@ -495,10 +495,10 @@ module Fs : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_withFileTypes : t -> ([ `L_b_false [@js false] ][@js.enum])
+    val get_with_file_types : t -> ([ `L_b_false [@js false] ][@js.enum])
       [@@js.get "withFileTypes"]
 
-    val set_withFileTypes : t -> ([ `L_b_false ][@js.enum]) -> unit
+    val set_with_file_types : t -> ([ `L_b_false ][@js.enum]) -> unit
       [@@js.set "withFileTypes"]
   end
 
@@ -509,10 +509,10 @@ module Fs : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_withFileTypes : t -> ([ `L_b_true [@js true] ][@js.enum])
+    val get_with_file_types : t -> ([ `L_b_true [@js true] ][@js.enum])
       [@@js.get "withFileTypes"]
 
-    val set_withFileTypes : t -> ([ `L_b_true ][@js.enum]) -> unit
+    val set_with_file_types : t -> ([ `L_b_true ][@js.enum]) -> unit
       [@@js.set "withFileTypes"]
   end
 
@@ -564,19 +564,19 @@ module Fs : sig
 
     val t_of_js : Ojs.t -> t
 
-    val isFile : t -> bool [@@js.call "isFile"]
+    val is_file : t -> bool [@@js.call "isFile"]
 
-    val isDirectory : t -> bool [@@js.call "isDirectory"]
+    val is_directory : t -> bool [@@js.call "isDirectory"]
 
-    val isBlockDevice : t -> bool [@@js.call "isBlockDevice"]
+    val is_block_device : t -> bool [@@js.call "isBlockDevice"]
 
-    val isCharacterDevice : t -> bool [@@js.call "isCharacterDevice"]
+    val is_character_device : t -> bool [@@js.call "isCharacterDevice"]
 
-    val isSymbolicLink : t -> bool [@@js.call "isSymbolicLink"]
+    val is_symbolic_link : t -> bool [@@js.call "isSymbolicLink"]
 
-    val isFIFO : t -> bool [@@js.call "isFIFO"]
+    val is_fifo : t -> bool [@@js.call "isFIFO"]
 
-    val isSocket : t -> bool [@@js.call "isSocket"]
+    val is_socket : t -> bool [@@js.call "isSocket"]
 
     val get_name : t -> string [@@js.get "name"]
 
@@ -597,17 +597,17 @@ module Fs : sig
 
     val close' : t -> cb:NoParamCallback.t -> unit [@@js.call "close"]
 
-    val closeSync : t -> unit [@@js.call "closeSync"]
+    val close_sync : t -> unit [@@js.call "closeSync"]
 
     val read : t -> Dirent.t or_null Promise.t [@@js.call "read"]
 
     val read'
       :  t
-      -> cb:(err:ErrnoException.t or_null -> dirEnt:Dirent.t or_null -> unit)
+      -> cb:(err:ErrnoException.t or_null -> dir_ent:Dirent.t or_null -> unit)
       -> unit
       [@@js.call "read"]
 
-    val readSync : t -> Dirent.t or_null [@@js.call "readSync"]
+    val read_sync : t -> Dirent.t or_null [@@js.call "readSync"]
   end
   [@@js.scope "Dir"]
 
@@ -618,28 +618,28 @@ module Fs : sig
 
     val close : t -> unit [@@js.call "close"]
 
-    val addListener
+    val add_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'
+    val add_listener'
       :  t
       -> event:([ `change ][@js.enum])
       -> listener:(eventType:string -> filename:Buffer.t or_string -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''
+    val add_listener''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(error:Error.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''
+    val add_listener'''
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
@@ -702,56 +702,56 @@ module Fs : sig
       -> t
       [@@js.call "once"]
 
-    val prependListener
+    val prepend_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'
+    val prepend_listener'
       :  t
       -> event:([ `change ][@js.enum])
       -> listener:(eventType:string -> filename:Buffer.t or_string -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''
+    val prepend_listener''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(error:Error.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''
+    val prepend_listener'''
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependOnceListener
+    val prepend_once_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'
+    val prepend_once_listener'
       :  t
       -> event:([ `change ][@js.enum])
       -> listener:(eventType:string -> filename:Buffer.t or_string -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''
+    val prepend_once_listener''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(error:Error.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''
+    val prepend_once_listener'''
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
@@ -767,9 +767,9 @@ module Fs : sig
 
     val close : t -> unit [@@js.call "close"]
 
-    val get_bytesRead : t -> int [@@js.get "bytesRead"]
+    val get_bytes_read : t -> int [@@js.get "bytesRead"]
 
-    val set_bytesRead : t -> int -> unit [@@js.set "bytesRead"]
+    val set_bytes_read : t -> int -> unit [@@js.set "bytesRead"]
 
     val get_path : t -> Buffer.t or_string [@@js.get "path"]
 
@@ -779,70 +779,70 @@ module Fs : sig
 
     val set_pending : t -> bool -> unit [@@js.set "pending"]
 
-    val addListener
+    val add_listener
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'
+    val add_listener'
       :  t
       -> event:([ `data ][@js.enum])
       -> listener:(chunk:Buffer.t or_string -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''
+    val add_listener''
       :  t
       -> event:([ `end_ ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''
+    val add_listener'''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''
+    val add_listener''''
       :  t
       -> event:([ `open_ ][@js.enum])
       -> listener:(fd:int -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''
+    val add_listener'''''
       :  t
       -> event:([ `pause ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''''
+    val add_listener''''''
       :  t
       -> event:([ `readable ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''''
+    val add_listener'''''''
       :  t
       -> event:([ `ready ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''''''
+    val add_listener''''''''
       :  t
       -> event:([ `resume ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''''''
+    val add_listener'''''''''
       :  t
       -> event:symbol or_string
       -> listener:(args:(any list[@js.variadic]) -> unit)
@@ -977,140 +977,140 @@ module Fs : sig
       -> t
       [@@js.call "once"]
 
-    val prependListener
+    val prepend_listener
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'
+    val prepend_listener'
       :  t
       -> event:([ `data ][@js.enum])
       -> listener:(chunk:Buffer.t or_string -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''
+    val prepend_listener''
       :  t
       -> event:([ `end_ ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''
+    val prepend_listener'''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''
+    val prepend_listener''''
       :  t
       -> event:([ `open_ ][@js.enum])
       -> listener:(fd:int -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''
+    val prepend_listener'''''
       :  t
       -> event:([ `pause ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''''
+    val prepend_listener''''''
       :  t
       -> event:([ `readable ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''''
+    val prepend_listener'''''''
       :  t
       -> event:([ `ready ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''''''
+    val prepend_listener''''''''
       :  t
       -> event:([ `resume ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''''''
+    val prepend_listener'''''''''
       :  t
       -> event:symbol or_string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependOnceListener
+    val prepend_once_listener
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'
+    val prepend_once_listener'
       :  t
       -> event:([ `data ][@js.enum])
       -> listener:(chunk:Buffer.t or_string -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''
+    val prepend_once_listener''
       :  t
       -> event:([ `end_ ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''
+    val prepend_once_listener'''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''
+    val prepend_once_listener''''
       :  t
       -> event:([ `open_ ][@js.enum])
       -> listener:(fd:int -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''
+    val prepend_once_listener'''''
       :  t
       -> event:([ `pause ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''''
+    val prepend_once_listener''''''
       :  t
       -> event:([ `readable ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''''
+    val prepend_once_listener'''''''
       :  t
       -> event:([ `ready ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''''''
+    val prepend_once_listener''''''''
       :  t
       -> event:([ `resume ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''''''
+    val prepend_once_listener'''''''''
       :  t
       -> event:symbol or_string
       -> listener:(args:(any list[@js.variadic]) -> unit)
@@ -1126,9 +1126,9 @@ module Fs : sig
 
     val close : t -> unit [@@js.call "close"]
 
-    val get_bytesWritten : t -> int [@@js.get "bytesWritten"]
+    val get_bytes_written : t -> int [@@js.get "bytesWritten"]
 
-    val set_bytesWritten : t -> int -> unit [@@js.set "bytesWritten"]
+    val set_bytes_written : t -> int -> unit [@@js.set "bytesWritten"]
 
     val get_path : t -> Buffer.t or_string [@@js.get "path"]
 
@@ -1138,63 +1138,63 @@ module Fs : sig
 
     val set_pending : t -> bool -> unit [@@js.set "pending"]
 
-    val addListener
+    val add_listener
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'
+    val add_listener'
       :  t
       -> event:([ `drain ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''
+    val add_listener''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''
+    val add_listener'''
       :  t
       -> event:([ `finish ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''
+    val add_listener''''
       :  t
       -> event:([ `open_ ][@js.enum])
       -> listener:(fd:int -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''
+    val add_listener'''''
       :  t
       -> event:([ `pipe ][@js.enum])
       -> listener:(src:Stream.Readable.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''''
+    val add_listener''''''
       :  t
       -> event:([ `ready ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''''
+    val add_listener'''''''
       :  t
       -> event:([ `unpipe ][@js.enum])
       -> listener:(src:Stream.Readable.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''''''
+    val add_listener''''''''
       :  t
       -> event:symbol or_string
       -> listener:(args:(any list[@js.variadic]) -> unit)
@@ -1315,126 +1315,126 @@ module Fs : sig
       -> t
       [@@js.call "once"]
 
-    val prependListener
+    val prepend_listener
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'
+    val prepend_listener'
       :  t
       -> event:([ `drain ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''
+    val prepend_listener''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''
+    val prepend_listener'''
       :  t
       -> event:([ `finish ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''
+    val prepend_listener''''
       :  t
       -> event:([ `open_ ][@js.enum])
       -> listener:(fd:int -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''
+    val prepend_listener'''''
       :  t
       -> event:([ `pipe ][@js.enum])
       -> listener:(src:Stream.Readable.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''''
+    val prepend_listener''''''
       :  t
       -> event:([ `ready ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''''
+    val prepend_listener'''''''
       :  t
       -> event:([ `unpipe ][@js.enum])
       -> listener:(src:Stream.Readable.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''''''
+    val prepend_listener''''''''
       :  t
       -> event:symbol or_string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependOnceListener
+    val prepend_once_listener
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'
+    val prepend_once_listener'
       :  t
       -> event:([ `drain ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''
+    val prepend_once_listener''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''
+    val prepend_once_listener'''
       :  t
       -> event:([ `finish ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''
+    val prepend_once_listener''''
       :  t
       -> event:([ `open_ ][@js.enum])
       -> listener:(fd:int -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''
+    val prepend_once_listener'''''
       :  t
       -> event:([ `pipe ][@js.enum])
       -> listener:(src:Stream.Readable.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''''
+    val prepend_once_listener''''''
       :  t
       -> event:([ `ready ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''''
+    val prepend_once_listener'''''''
       :  t
       -> event:([ `unpipe ][@js.enum])
       -> listener:(src:Stream.Readable.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''''''
+    val prepend_once_listener''''''''
       :  t
       -> event:symbol or_string
       -> listener:(args:(any list[@js.variadic]) -> unit)
@@ -1444,22 +1444,22 @@ module Fs : sig
   [@@js.scope "WriteStream"]
 
   val rename
-    :  oldPath:PathLike.t
-    -> newPath:PathLike.t
+    :  old_path:PathLike.t
+    -> new_path:PathLike.t
     -> callback:NoParamCallback.t
     -> unit
     [@@js.global "rename"]
 
   module Rename : sig
     val __promisify__
-      :  oldPath:PathLike.t
-      -> newPath:PathLike.t
+      :  old_path:PathLike.t
+      -> new_path:PathLike.t
       -> unit Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "rename"]
 
-  val renameSync : oldPath:PathLike.t -> newPath:PathLike.t -> unit
+  val rename_sync : old_path:PathLike.t -> new_path:PathLike.t -> unit
     [@@js.global "renameSync"]
 
   val truncate
@@ -1482,7 +1482,7 @@ module Fs : sig
   end
   [@@js.scope "truncate"]
 
-  val truncateSync : path:PathLike.t -> ?len:int or_null -> unit -> unit
+  val truncate_sync : path:PathLike.t -> ?len:int or_null -> unit -> unit
     [@@js.global "truncateSync"]
 
   val ftruncate
@@ -1501,7 +1501,7 @@ module Fs : sig
   end
   [@@js.scope "ftruncate"]
 
-  val ftruncateSync : fd:int -> ?len:int or_null -> unit -> unit
+  val ftruncate_sync : fd:int -> ?len:int or_null -> unit -> unit
     [@@js.global "ftruncateSync"]
 
   val chown
@@ -1518,7 +1518,7 @@ module Fs : sig
   end
   [@@js.scope "chown"]
 
-  val chownSync : path:PathLike.t -> uid:int -> gid:int -> unit
+  val chown_sync : path:PathLike.t -> uid:int -> gid:int -> unit
     [@@js.global "chownSync"]
 
   val fchown
@@ -1535,7 +1535,7 @@ module Fs : sig
   end
   [@@js.scope "fchown"]
 
-  val fchownSync : fd:int -> uid:int -> gid:int -> unit
+  val fchown_sync : fd:int -> uid:int -> gid:int -> unit
     [@@js.global "fchownSync"]
 
   val lchown
@@ -1552,7 +1552,7 @@ module Fs : sig
   end
   [@@js.scope "lchown"]
 
-  val lchownSync : path:PathLike.t -> uid:int -> gid:int -> unit
+  val lchown_sync : path:PathLike.t -> uid:int -> gid:int -> unit
     [@@js.global "lchownSync"]
 
   val lutimes
@@ -1573,7 +1573,7 @@ module Fs : sig
   end
   [@@js.scope "lutimes"]
 
-  val lutimesSync
+  val lutimes_sync
     :  path:PathLike.t
     -> atime:Date.t or_string or_number
     -> mtime:Date.t or_string or_number
@@ -1593,7 +1593,7 @@ module Fs : sig
   end
   [@@js.scope "chmod"]
 
-  val chmodSync : path:PathLike.t -> mode:Mode.t -> unit
+  val chmod_sync : path:PathLike.t -> mode:Mode.t -> unit
     [@@js.global "chmodSync"]
 
   val fchmod : fd:int -> mode:Mode.t -> callback:NoParamCallback.t -> unit
@@ -1605,7 +1605,7 @@ module Fs : sig
   end
   [@@js.scope "fchmod"]
 
-  val fchmodSync : fd:int -> mode:Mode.t -> unit [@@js.global "fchmodSync"]
+  val fchmod_sync : fd:int -> mode:Mode.t -> unit [@@js.global "fchmodSync"]
 
   val lchmod
     :  path:PathLike.t
@@ -1620,7 +1620,7 @@ module Fs : sig
   end
   [@@js.scope "lchmod"]
 
-  val lchmodSync : path:PathLike.t -> mode:Mode.t -> unit
+  val lchmod_sync : path:PathLike.t -> mode:Mode.t -> unit
     [@@js.global "lchmodSync"]
 
   val stat
@@ -1656,21 +1656,21 @@ module Fs : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_atimeNs : t -> bigint [@@js.get "atimeNs"]
+    val get_atime_ns : t -> bigint [@@js.get "atimeNs"]
 
-    val set_atimeNs : t -> bigint -> unit [@@js.set "atimeNs"]
+    val set_atime_ns : t -> bigint -> unit [@@js.set "atimeNs"]
 
-    val get_mtimeNs : t -> bigint [@@js.get "mtimeNs"]
+    val get_mtime_ns : t -> bigint [@@js.get "mtimeNs"]
 
-    val set_mtimeNs : t -> bigint -> unit [@@js.set "mtimeNs"]
+    val set_mtime_ns : t -> bigint -> unit [@@js.set "mtimeNs"]
 
-    val get_ctimeNs : t -> bigint [@@js.get "ctimeNs"]
+    val get_ctime_ns : t -> bigint [@@js.get "ctimeNs"]
 
-    val set_ctimeNs : t -> bigint -> unit [@@js.set "ctimeNs"]
+    val set_ctime_ns : t -> bigint -> unit [@@js.set "ctimeNs"]
 
-    val get_birthtimeNs : t -> bigint [@@js.get "birthtimeNs"]
+    val get_birthtime_ns : t -> bigint [@@js.get "birthtimeNs"]
 
-    val set_birthtimeNs : t -> bigint -> unit [@@js.set "birthtimeNs"]
+    val set_birthtime_ns : t -> bigint -> unit [@@js.set "birthtimeNs"]
 
     val cast : t -> bigint StatsBase.t [@@js.cast]
   end
@@ -1716,20 +1716,20 @@ module Fs : sig
   end
   [@@js.scope "stat"]
 
-  val statSync
+  val stat_sync
     :  path:PathLike.t
     -> ?options:(StatOptions.t, AnonymousInterface0.t) intersection2
     -> unit
     -> Stats.t
     [@@js.global "statSync"]
 
-  val statSync
+  val stat_sync
     :  path:PathLike.t
     -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
     -> BigIntStats.t
     [@@js.global "statSync"]
 
-  val statSync
+  val stat_sync
     :  path:PathLike.t
     -> ?options:StatOptions.t
     -> unit
@@ -1789,20 +1789,20 @@ module Fs : sig
   end
   [@@js.scope "fstat"]
 
-  val fstatSync
+  val fstat_sync
     :  fd:int
     -> ?options:(StatOptions.t, AnonymousInterface0.t) intersection2
     -> unit
     -> Stats.t
     [@@js.global "fstatSync"]
 
-  val fstatSync
+  val fstat_sync
     :  fd:int
     -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
     -> BigIntStats.t
     [@@js.global "fstatSync"]
 
-  val fstatSync
+  val fstat_sync
     :  fd:int
     -> ?options:StatOptions.t
     -> unit
@@ -1862,20 +1862,20 @@ module Fs : sig
   end
   [@@js.scope "lstat"]
 
-  val lstatSync
+  val lstat_sync
     :  path:PathLike.t
     -> ?options:(StatOptions.t, AnonymousInterface0.t) intersection2
     -> unit
     -> Stats.t
     [@@js.global "lstatSync"]
 
-  val lstatSync
+  val lstat_sync
     :  path:PathLike.t
     -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
     -> BigIntStats.t
     [@@js.global "lstatSync"]
 
-  val lstatSync
+  val lstat_sync
     :  path:PathLike.t
     -> ?options:StatOptions.t
     -> unit
@@ -1883,22 +1883,22 @@ module Fs : sig
     [@@js.global "lstatSync"]
 
   val link
-    :  existingPath:PathLike.t
-    -> newPath:PathLike.t
+    :  existing_path:PathLike.t
+    -> new_path:PathLike.t
     -> callback:NoParamCallback.t
     -> unit
     [@@js.global "link"]
 
   module Link : sig
     val __promisify__
-      :  existingPath:PathLike.t
-      -> newPath:PathLike.t
+      :  existing_path:PathLike.t
+      -> new_path:PathLike.t
       -> unit Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "link"]
 
-  val linkSync : existingPath:PathLike.t -> newPath:PathLike.t -> unit
+  val link_sync : existing_path:PathLike.t -> new_path:PathLike.t -> unit
     [@@js.global "linkSync"]
 
   val symlink
@@ -1943,7 +1943,7 @@ module Fs : sig
   end
   [@@js.scope "symlink"]
 
-  val symlinkSync
+  val symlink_sync
     :  target:string
     -> path:PathLike.t
     -> ?type_:
@@ -1958,14 +1958,14 @@ module Fs : sig
     :  path:PathLike.t
     -> options:
          (BaseEncodingOptions.t, BufferEncoding.t) union2 or_null_or_undefined
-    -> callback:(err:ErrnoException.t or_null -> linkString:string -> unit)
+    -> callback:(err:ErrnoException.t or_null -> link_string:string -> unit)
     -> unit
     [@@js.global "readlink"]
 
   val readlink
     :  path:PathLike.t
     -> options:BufferEncodingOption.t
-    -> callback:(err:ErrnoException.t or_null -> linkString:Buffer.t -> unit)
+    -> callback:(err:ErrnoException.t or_null -> link_string:Buffer.t -> unit)
     -> unit
     [@@js.global "readlink"]
 
@@ -1973,13 +1973,15 @@ module Fs : sig
     :  path:PathLike.t
     -> options:BaseEncodingOptions.t or_string or_null_or_undefined
     -> callback:
-         (err:ErrnoException.t or_null -> linkString:Buffer.t or_string -> unit)
+         (err:ErrnoException.t or_null
+          -> link_string:Buffer.t or_string
+          -> unit)
     -> unit
     [@@js.global "readlink"]
 
   val readlink
     :  path:PathLike.t
-    -> callback:(err:ErrnoException.t or_null -> linkString:string -> unit)
+    -> callback:(err:ErrnoException.t or_null -> link_string:string -> unit)
     -> unit
     [@@js.global "readlink"]
 
@@ -2006,20 +2008,20 @@ module Fs : sig
   end
   [@@js.scope "readlink"]
 
-  val readlinkSync
+  val readlink_sync
     :  path:PathLike.t
     -> ?options:(BaseEncodingOptions.t, BufferEncoding.t) union2 or_null
     -> unit
     -> string
     [@@js.global "readlinkSync"]
 
-  val readlinkSync
+  val readlink_sync
     :  path:PathLike.t
     -> options:BufferEncodingOption.t
     -> Buffer.t
     [@@js.global "readlinkSync"]
 
-  val readlinkSync
+  val readlink_sync
     :  path:PathLike.t
     -> ?options:BaseEncodingOptions.t or_string or_null
     -> unit
@@ -2031,14 +2033,14 @@ module Fs : sig
     -> options:
          (BaseEncodingOptions.t, BufferEncoding.t) union2 or_null_or_undefined
     -> callback:
-         (err:ErrnoException.t or_null -> resolvedPath:PathLike.t -> unit)
+         (err:ErrnoException.t or_null -> resolved_path:PathLike.t -> unit)
     -> unit
     [@@js.global "realpath"]
 
   val realpath
     :  path:PathLike.t
     -> options:BufferEncodingOption.t
-    -> callback:(err:ErrnoException.t or_null -> resolvedPath:Buffer.t -> unit)
+    -> callback:(err:ErrnoException.t or_null -> resolved_path:Buffer.t -> unit)
     -> unit
     [@@js.global "realpath"]
 
@@ -2047,7 +2049,7 @@ module Fs : sig
     -> options:BaseEncodingOptions.t or_string or_null_or_undefined
     -> callback:
          (err:ErrnoException.t or_null
-          -> resolvedPath:Buffer.t or_string
+          -> resolved_path:Buffer.t or_string
           -> unit)
     -> unit
     [@@js.global "realpath"]
@@ -2055,7 +2057,7 @@ module Fs : sig
   val realpath
     :  path:PathLike.t
     -> callback:
-         (err:ErrnoException.t or_null -> resolvedPath:PathLike.t -> unit)
+         (err:ErrnoException.t or_null -> resolved_path:PathLike.t -> unit)
     -> unit
     [@@js.global "realpath"]
 
@@ -2085,7 +2087,7 @@ module Fs : sig
       -> options:
            (BaseEncodingOptions.t, BufferEncoding.t) union2 or_null_or_undefined
       -> callback:
-           (err:ErrnoException.t or_null -> resolvedPath:PathLike.t -> unit)
+           (err:ErrnoException.t or_null -> resolved_path:PathLike.t -> unit)
       -> unit
       [@@js.global "native"]
 
@@ -2093,7 +2095,7 @@ module Fs : sig
       :  path:PathLike.t
       -> options:BufferEncodingOption.t
       -> callback:
-           (err:ErrnoException.t or_null -> resolvedPath:Buffer.t -> unit)
+           (err:ErrnoException.t or_null -> resolved_path:Buffer.t -> unit)
       -> unit
       [@@js.global "native"]
 
@@ -2102,7 +2104,7 @@ module Fs : sig
       -> options:BaseEncodingOptions.t or_string or_null_or_undefined
       -> callback:
            (err:ErrnoException.t or_null
-            -> resolvedPath:Buffer.t or_string
+            -> resolved_path:Buffer.t or_string
             -> unit)
       -> unit
       [@@js.global "native"]
@@ -2110,26 +2112,26 @@ module Fs : sig
     val native
       :  path:PathLike.t
       -> callback:
-           (err:ErrnoException.t or_null -> resolvedPath:PathLike.t -> unit)
+           (err:ErrnoException.t or_null -> resolved_path:PathLike.t -> unit)
       -> unit
       [@@js.global "native"]
   end
   [@@js.scope "realpath"]
 
-  val realpathSync
+  val realpath_sync
     :  path:PathLike.t
     -> ?options:(BaseEncodingOptions.t, BufferEncoding.t) union2 or_null
     -> unit
     -> string
     [@@js.global "realpathSync"]
 
-  val realpathSync
+  val realpath_sync
     :  path:PathLike.t
     -> options:BufferEncodingOption.t
     -> Buffer.t
     [@@js.global "realpathSync"]
 
-  val realpathSync
+  val realpath_sync
     :  path:PathLike.t
     -> ?options:BaseEncodingOptions.t or_string or_null
     -> unit
@@ -2165,7 +2167,7 @@ module Fs : sig
   end
   [@@js.scope "unlink"]
 
-  val unlinkSync : path:PathLike.t -> unit [@@js.global "unlinkSync"]
+  val unlink_sync : path:PathLike.t -> unit [@@js.global "unlinkSync"]
 
   module RmDirOptions : sig
     type t
@@ -2174,17 +2176,17 @@ module Fs : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_maxRetries : t -> int [@@js.get "maxRetries"]
+    val get_max_retries : t -> int [@@js.get "maxRetries"]
 
-    val set_maxRetries : t -> int -> unit [@@js.set "maxRetries"]
+    val set_max_retries : t -> int -> unit [@@js.set "maxRetries"]
 
     val get_recursive : t -> bool [@@js.get "recursive"]
 
     val set_recursive : t -> bool -> unit [@@js.set "recursive"]
 
-    val get_retryDelay : t -> int [@@js.get "retryDelay"]
+    val get_retry_delay : t -> int [@@js.get "retryDelay"]
 
-    val set_retryDelay : t -> int -> unit [@@js.set "retryDelay"]
+    val set_retry_delay : t -> int -> unit [@@js.set "retryDelay"]
   end
   [@@js.scope "RmDirOptions"]
 
@@ -2208,7 +2210,7 @@ module Fs : sig
   end
   [@@js.scope "rmdir"]
 
-  val rmdirSync : path:PathLike.t -> ?options:RmDirOptions.t -> unit -> unit
+  val rmdir_sync : path:PathLike.t -> ?options:RmDirOptions.t -> unit -> unit
     [@@js.global "rmdirSync"]
 
   module RmOptions : sig
@@ -2222,17 +2224,17 @@ module Fs : sig
 
     val set_force : t -> bool -> unit [@@js.set "force"]
 
-    val get_maxRetries : t -> int [@@js.get "maxRetries"]
+    val get_max_retries : t -> int [@@js.get "maxRetries"]
 
-    val set_maxRetries : t -> int -> unit [@@js.set "maxRetries"]
+    val set_max_retries : t -> int -> unit [@@js.set "maxRetries"]
 
     val get_recursive : t -> bool [@@js.get "recursive"]
 
     val set_recursive : t -> bool -> unit [@@js.set "recursive"]
 
-    val get_retryDelay : t -> int [@@js.get "retryDelay"]
+    val get_retry_delay : t -> int [@@js.get "retryDelay"]
 
-    val set_retryDelay : t -> int -> unit [@@js.set "retryDelay"]
+    val set_retry_delay : t -> int -> unit [@@js.set "retryDelay"]
   end
   [@@js.scope "RmOptions"]
 
@@ -2256,7 +2258,7 @@ module Fs : sig
   end
   [@@js.scope "rm"]
 
-  val rmSync : path:PathLike.t -> ?options:RmOptions.t -> unit -> unit
+  val rm_sync : path:PathLike.t -> ?options:RmOptions.t -> unit -> unit
     [@@js.global "rmSync"]
 
   module MakeDirectoryOptions : sig
@@ -2325,16 +2327,16 @@ module Fs : sig
   end
   [@@js.scope "mkdir"]
 
-  val mkdirSync
+  val mkdir_sync
     :  path:PathLike.t
     -> options:(MakeDirectoryOptions.t, AnonymousInterface18.t) intersection2
     -> string or_undefined
     [@@js.global "mkdirSync"]
 
-  val mkdirSync : path:PathLike.t -> ?options:Mode.t or_null -> unit -> unit
+  val mkdir_sync : path:PathLike.t -> ?options:Mode.t or_null -> unit -> unit
     [@@js.global "mkdirSync"]
 
-  val mkdirSync
+  val mkdir_sync
     :  path:PathLike.t
     -> ?options:(MakeDirectoryOptions.t, Mode.t) union2 or_null
     -> unit
@@ -2393,17 +2395,17 @@ module Fs : sig
   end
   [@@js.scope "mkdtemp"]
 
-  val mkdtempSync
+  val mkdtemp_sync
     :  prefix:string
     -> ?options:(BaseEncodingOptions.t, BufferEncoding.t) union2 or_null
     -> unit
     -> string
     [@@js.global "mkdtempSync"]
 
-  val mkdtempSync : prefix:string -> options:BufferEncodingOption.t -> Buffer.t
+  val mkdtemp_sync : prefix:string -> options:BufferEncodingOption.t -> Buffer.t
     [@@js.global "mkdtempSync"]
 
-  val mkdtempSync
+  val mkdtemp_sync
     :  prefix:string
     -> ?options:BaseEncodingOptions.t or_string or_null
     -> unit
@@ -2475,27 +2477,27 @@ module Fs : sig
   end
   [@@js.scope "readdir"]
 
-  val readdirSync
+  val readdir_sync
     :  path:PathLike.t
     -> ?options:(BufferEncoding.t, AnonymousInterface11.t) union2 or_null
     -> unit
     -> string list
     [@@js.global "readdirSync"]
 
-  val readdirSync
+  val readdir_sync
     :  path:PathLike.t
     -> options:(AnonymousInterface9.t, ([ `buffer ][@js.enum])) or_enum
     -> Buffer.t list
     [@@js.global "readdirSync"]
 
-  val readdirSync
+  val readdir_sync
     :  path:PathLike.t
     -> ?options:BufferEncoding.t or_null
     -> unit
     -> Buffer.t or_string list
     [@@js.global "readdirSync"]
 
-  val readdirSync
+  val readdir_sync
     :  path:PathLike.t
     -> options:(BaseEncodingOptions.t, AnonymousInterface20.t) intersection2
     -> Dirent.t list
@@ -2508,7 +2510,7 @@ module Fs : sig
   end
   [@@js.scope "close"]
 
-  val closeSync : fd:int -> unit [@@js.global "closeSync"]
+  val close_sync : fd:int -> unit [@@js.global "closeSync"]
 
   val open_
     :  path:PathLike.t
@@ -2536,7 +2538,7 @@ module Fs : sig
   end
   [@@js.scope "open"]
 
-  val openSync
+  val open_sync
     :  path:PathLike.t
     -> flags:OpenMode.t
     -> ?mode:Mode.t or_null
@@ -2562,7 +2564,7 @@ module Fs : sig
   end
   [@@js.scope "utimes"]
 
-  val utimesSync
+  val utimes_sync
     :  path:PathLike.t
     -> atime:Date.t or_string or_number
     -> mtime:Date.t or_string or_number
@@ -2587,7 +2589,7 @@ module Fs : sig
   end
   [@@js.scope "futimes"]
 
-  val futimesSync
+  val futimes_sync
     :  fd:int
     -> atime:Date.t or_string or_number
     -> mtime:Date.t or_string or_number
@@ -2601,7 +2603,7 @@ module Fs : sig
   end
   [@@js.scope "fsync"]
 
-  val fsyncSync : fd:int -> unit [@@js.global "fsyncSync"]
+  val fsync_sync : fd:int -> unit [@@js.global "fsyncSync"]
 
   val write
     :  fd:int
@@ -2702,7 +2704,7 @@ module Fs : sig
   end
   [@@js.scope "write"]
 
-  val writeSync
+  val write_sync
     :  fd:int
     -> buffer:ArrayBufferView.t
     -> ?offset:int or_null
@@ -2712,7 +2714,7 @@ module Fs : sig
     -> int
     [@@js.global "writeSync"]
 
-  val writeSync
+  val write_sync
     :  fd:int
     -> string:string
     -> ?position:int or_null
@@ -2729,7 +2731,7 @@ module Fs : sig
     -> position:int or_null
     -> callback:
          (err:ErrnoException.t or_null
-          -> bytesRead:int
+          -> bytes_read:int
           -> buffer:'TBuffer
           -> unit)
     -> unit
@@ -2768,7 +2770,7 @@ module Fs : sig
   end
   [@@js.scope "ReadSyncOptions"]
 
-  val readSync
+  val read_sync
     :  fd:int
     -> buffer:ArrayBufferView.t
     -> offset:int
@@ -2777,7 +2779,7 @@ module Fs : sig
     -> int
     [@@js.global "readSync"]
 
-  val readSync
+  val read_sync
     :  fd:int
     -> buffer:ArrayBufferView.t
     -> ?opts:ReadSyncOptions.t
@@ -2785,21 +2787,21 @@ module Fs : sig
     -> int
     [@@js.global "readSync"]
 
-  val readFile
+  val read_file
     :  path:PathLike.t or_number
     -> options:AnonymousInterface6.t or_null_or_undefined
     -> callback:(err:ErrnoException.t or_null -> data:Buffer.t -> unit)
     -> unit
     [@@js.global "readFile"]
 
-  val readFile
+  val read_file
     :  path:PathLike.t or_number
     -> options:AnonymousInterface5.t or_string
     -> callback:(err:ErrnoException.t or_null -> data:string -> unit)
     -> unit
     [@@js.global "readFile"]
 
-  val readFile
+  val read_file
     :  path:PathLike.t or_number
     -> options:
          (BaseEncodingOptions.t, AnonymousInterface12.t) intersection2 or_string
@@ -2809,7 +2811,7 @@ module Fs : sig
     -> unit
     [@@js.global "readFile"]
 
-  val readFile
+  val read_file
     :  path:PathLike.t or_number
     -> callback:(err:ErrnoException.t or_null -> data:Buffer.t -> unit)
     -> unit
@@ -2841,20 +2843,20 @@ module Fs : sig
   end
   [@@js.scope "readFile"]
 
-  val readFileSync
+  val read_file_sync
     :  path:PathLike.t or_number
     -> ?options:AnonymousInterface6.t or_null
     -> unit
     -> Buffer.t
     [@@js.global "readFileSync"]
 
-  val readFileSync
+  val read_file_sync
     :  path:PathLike.t or_number
     -> options:(BufferEncoding.t, AnonymousInterface5.t) union2
     -> string
     [@@js.global "readFileSync"]
 
-  val readFileSync
+  val read_file_sync
     :  path:PathLike.t or_number
     -> ?options:BufferEncoding.t or_null
     -> unit
@@ -2869,7 +2871,7 @@ module Fs : sig
     val t_of_js : Ojs.t -> t
   end
 
-  val writeFile
+  val write_file
     :  path:PathLike.t or_number
     -> data:ArrayBufferView.t or_string
     -> options:WriteFileOptions.t
@@ -2877,7 +2879,7 @@ module Fs : sig
     -> unit
     [@@js.global "writeFile"]
 
-  val writeFile
+  val write_file
     :  path:PathLike.t or_number
     -> data:ArrayBufferView.t or_string
     -> callback:NoParamCallback.t
@@ -2895,7 +2897,7 @@ module Fs : sig
   end
   [@@js.scope "writeFile"]
 
-  val writeFileSync
+  val write_file_sync
     :  path:PathLike.t or_number
     -> data:ArrayBufferView.t or_string
     -> ?options:WriteFileOptions.t
@@ -2903,7 +2905,7 @@ module Fs : sig
     -> unit
     [@@js.global "writeFileSync"]
 
-  val appendFile
+  val append_file
     :  file:string or_number
     -> data:Uint8Array.t or_string
     -> options:WriteFileOptions.t
@@ -2911,7 +2913,7 @@ module Fs : sig
     -> unit
     [@@js.global "appendFile"]
 
-  val appendFile
+  val append_file
     :  file:string or_number
     -> data:Uint8Array.t or_string
     -> callback:NoParamCallback.t
@@ -2929,7 +2931,7 @@ module Fs : sig
   end
   [@@js.scope "appendFile"]
 
-  val appendFileSync
+  val append_file_sync
     :  file:string or_number
     -> data:Uint8Array.t or_string
     -> ?options:WriteFileOptions.t
@@ -2937,20 +2939,20 @@ module Fs : sig
     -> unit
     [@@js.global "appendFileSync"]
 
-  val watchFile
+  val watch_file
     :  filename:string
     -> options:AnonymousInterface16.t or_undefined
     -> listener:(curr:Stats.t -> prev:Stats.t -> unit)
     -> unit
     [@@js.global "watchFile"]
 
-  val watchFile
+  val watch_file
     :  filename:string
     -> listener:(curr:Stats.t -> prev:Stats.t -> unit)
     -> unit
     [@@js.global "watchFile"]
 
-  val unwatchFile
+  val unwatch_file
     :  filename:string
     -> ?listener:(curr:Stats.t -> prev:Stats.t -> unit)
     -> unit
@@ -3010,96 +3012,96 @@ module Fs : sig
   end
   [@@js.scope "exists"]
 
-  val existsSync : path:PathLike.t -> bool [@@js.global "existsSync"]
+  val exists_sync : path:PathLike.t -> bool [@@js.global "existsSync"]
 
   module Constants : sig
-    val f_OK : int [@@js.global "F_OK"]
+    val f_ok : int [@@js.global "F_OK"]
 
-    val r_OK : int [@@js.global "R_OK"]
+    val r_ok : int [@@js.global "R_OK"]
 
-    val w_OK : int [@@js.global "W_OK"]
+    val w_ok : int [@@js.global "W_OK"]
 
-    val x_OK : int [@@js.global "X_OK"]
+    val x_ok : int [@@js.global "X_OK"]
 
-    val cOPYFILE_EXCL : int [@@js.global "COPYFILE_EXCL"]
+    val c_opyfile_excl : int [@@js.global "COPYFILE_EXCL"]
 
-    val cOPYFILE_FICLONE : int [@@js.global "COPYFILE_FICLONE"]
+    val c_opyfile_ficlone : int [@@js.global "COPYFILE_FICLONE"]
 
-    val cOPYFILE_FICLONE_FORCE : int [@@js.global "COPYFILE_FICLONE_FORCE"]
+    val c_opyfile_ficlone_force : int [@@js.global "COPYFILE_FICLONE_FORCE"]
 
-    val o_RDONLY : int [@@js.global "O_RDONLY"]
+    val o_rdonly : int [@@js.global "O_RDONLY"]
 
-    val o_WRONLY : int [@@js.global "O_WRONLY"]
+    val o_wronly : int [@@js.global "O_WRONLY"]
 
-    val o_RDWR : int [@@js.global "O_RDWR"]
+    val o_rdwr : int [@@js.global "O_RDWR"]
 
-    val o_CREAT : int [@@js.global "O_CREAT"]
+    val o_creat : int [@@js.global "O_CREAT"]
 
-    val o_EXCL : int [@@js.global "O_EXCL"]
+    val o_excl : int [@@js.global "O_EXCL"]
 
-    val o_NOCTTY : int [@@js.global "O_NOCTTY"]
+    val o_noctty : int [@@js.global "O_NOCTTY"]
 
-    val o_TRUNC : int [@@js.global "O_TRUNC"]
+    val o_trunc : int [@@js.global "O_TRUNC"]
 
-    val o_APPEND : int [@@js.global "O_APPEND"]
+    val o_append : int [@@js.global "O_APPEND"]
 
-    val o_DIRECTORY : int [@@js.global "O_DIRECTORY"]
+    val o_directory : int [@@js.global "O_DIRECTORY"]
 
-    val o_NOATIME : int [@@js.global "O_NOATIME"]
+    val o_noatime : int [@@js.global "O_NOATIME"]
 
-    val o_NOFOLLOW : int [@@js.global "O_NOFOLLOW"]
+    val o_nofollow : int [@@js.global "O_NOFOLLOW"]
 
-    val o_SYNC : int [@@js.global "O_SYNC"]
+    val o_sync : int [@@js.global "O_SYNC"]
 
-    val o_DSYNC : int [@@js.global "O_DSYNC"]
+    val o_dsync : int [@@js.global "O_DSYNC"]
 
-    val o_SYMLINK : int [@@js.global "O_SYMLINK"]
+    val o_symlink : int [@@js.global "O_SYMLINK"]
 
-    val o_DIRECT : int [@@js.global "O_DIRECT"]
+    val o_direct : int [@@js.global "O_DIRECT"]
 
-    val o_NONBLOCK : int [@@js.global "O_NONBLOCK"]
+    val o_nonblock : int [@@js.global "O_NONBLOCK"]
 
-    val s_IFMT : int [@@js.global "S_IFMT"]
+    val s_ifmt : int [@@js.global "S_IFMT"]
 
-    val s_IFREG : int [@@js.global "S_IFREG"]
+    val s_ifreg : int [@@js.global "S_IFREG"]
 
-    val s_IFDIR : int [@@js.global "S_IFDIR"]
+    val s_ifdir : int [@@js.global "S_IFDIR"]
 
-    val s_IFCHR : int [@@js.global "S_IFCHR"]
+    val s_ifchr : int [@@js.global "S_IFCHR"]
 
-    val s_IFBLK : int [@@js.global "S_IFBLK"]
+    val s_ifblk : int [@@js.global "S_IFBLK"]
 
-    val s_IFIFO : int [@@js.global "S_IFIFO"]
+    val s_ififo : int [@@js.global "S_IFIFO"]
 
-    val s_IFLNK : int [@@js.global "S_IFLNK"]
+    val s_iflnk : int [@@js.global "S_IFLNK"]
 
-    val s_IFSOCK : int [@@js.global "S_IFSOCK"]
+    val s_ifsock : int [@@js.global "S_IFSOCK"]
 
-    val s_IRWXU : int [@@js.global "S_IRWXU"]
+    val s_irwxu : int [@@js.global "S_IRWXU"]
 
-    val s_IRUSR : int [@@js.global "S_IRUSR"]
+    val s_irusr : int [@@js.global "S_IRUSR"]
 
-    val s_IWUSR : int [@@js.global "S_IWUSR"]
+    val s_iwusr : int [@@js.global "S_IWUSR"]
 
-    val s_IXUSR : int [@@js.global "S_IXUSR"]
+    val s_ixusr : int [@@js.global "S_IXUSR"]
 
-    val s_IRWXG : int [@@js.global "S_IRWXG"]
+    val s_irwxg : int [@@js.global "S_IRWXG"]
 
-    val s_IRGRP : int [@@js.global "S_IRGRP"]
+    val s_irgrp : int [@@js.global "S_IRGRP"]
 
-    val s_IWGRP : int [@@js.global "S_IWGRP"]
+    val s_iwgrp : int [@@js.global "S_IWGRP"]
 
-    val s_IXGRP : int [@@js.global "S_IXGRP"]
+    val s_ixgrp : int [@@js.global "S_IXGRP"]
 
-    val s_IRWXO : int [@@js.global "S_IRWXO"]
+    val s_irwxo : int [@@js.global "S_IRWXO"]
 
-    val s_IROTH : int [@@js.global "S_IROTH"]
+    val s_iroth : int [@@js.global "S_IROTH"]
 
-    val s_IWOTH : int [@@js.global "S_IWOTH"]
+    val s_iwoth : int [@@js.global "S_IWOTH"]
 
-    val s_IXOTH : int [@@js.global "S_IXOTH"]
+    val s_ixoth : int [@@js.global "S_IXOTH"]
 
-    val uV_O_FILEMAP_FS : int [@@js.global "UV_O_FILEMAP_FS"]
+    val u_v_o_filemap_fs : int [@@js.global "UV_O_FILEMAP_FS"]
   end
   [@@js.scope "constants"]
 
@@ -3119,17 +3121,17 @@ module Fs : sig
   end
   [@@js.scope "access"]
 
-  val accessSync : path:PathLike.t -> ?mode:int -> unit -> unit
+  val access_sync : path:PathLike.t -> ?mode:int -> unit -> unit
     [@@js.global "accessSync"]
 
-  val createReadStream
+  val create_read_stream
     :  path:PathLike.t
     -> ?options:AnonymousInterface13.t or_string
     -> unit
     -> ReadStream.t
     [@@js.global "createReadStream"]
 
-  val createWriteStream
+  val create_write_stream
     :  path:PathLike.t
     -> ?options:AnonymousInterface14.t or_string
     -> unit
@@ -3144,12 +3146,16 @@ module Fs : sig
   end
   [@@js.scope "fdatasync"]
 
-  val fdatasyncSync : fd:int -> unit [@@js.global "fdatasyncSync"]
+  val fdatasync_sync : fd:int -> unit [@@js.global "fdatasyncSync"]
 
-  val copyFile : src:string -> dest:string -> callback:NoParamCallback.t -> unit
+  val copy_file
+    :  src:string
+    -> dest:string
+    -> callback:NoParamCallback.t
+    -> unit
     [@@js.global "copyFile"]
 
-  val copyFile
+  val copy_file
     :  src:string
     -> dest:string
     -> flags:int
@@ -3168,7 +3174,7 @@ module Fs : sig
   end
   [@@js.scope "copyFile"]
 
-  val copyFileSync : src:string -> dest:string -> ?flags:int -> unit -> unit
+  val copy_file_sync : src:string -> dest:string -> ?flags:int -> unit -> unit
     [@@js.global "copyFileSync"]
 
   val writev
@@ -3176,7 +3182,7 @@ module Fs : sig
     -> buffers:ArrayBufferView.t list
     -> cb:
          (err:ErrnoException.t or_null
-          -> bytesWritten:int
+          -> bytes_written:int
           -> buffers:ArrayBufferView.t list
           -> unit)
     -> unit
@@ -3188,7 +3194,7 @@ module Fs : sig
     -> position:int
     -> cb:
          (err:ErrnoException.t or_null
-          -> bytesWritten:int
+          -> bytes_written:int
           -> buffers:ArrayBufferView.t list
           -> unit)
     -> unit
@@ -3201,9 +3207,9 @@ module Fs : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_bytesWritten : t -> int [@@js.get "bytesWritten"]
+    val get_bytes_written : t -> int [@@js.get "bytesWritten"]
 
-    val set_bytesWritten : t -> int -> unit [@@js.set "bytesWritten"]
+    val set_bytes_written : t -> int -> unit [@@js.set "bytesWritten"]
 
     val get_buffers : t -> ArrayBufferView.t list [@@js.get "buffers"]
 
@@ -3222,7 +3228,7 @@ module Fs : sig
   end
   [@@js.scope "writev"]
 
-  val writevSync
+  val writev_sync
     :  fd:int
     -> buffers:ArrayBufferView.t list
     -> ?position:int
@@ -3235,7 +3241,7 @@ module Fs : sig
     -> buffers:ArrayBufferView.t list
     -> cb:
          (err:ErrnoException.t or_null
-          -> bytesRead:int
+          -> bytes_read:int
           -> buffers:ArrayBufferView.t list
           -> unit)
     -> unit
@@ -3247,7 +3253,7 @@ module Fs : sig
     -> position:int
     -> cb:
          (err:ErrnoException.t or_null
-          -> bytesRead:int
+          -> bytes_read:int
           -> buffers:ArrayBufferView.t list
           -> unit)
     -> unit
@@ -3260,9 +3266,9 @@ module Fs : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_bytesRead : t -> int [@@js.get "bytesRead"]
+    val get_bytes_read : t -> int [@@js.get "bytesRead"]
 
-    val set_bytesRead : t -> int -> unit [@@js.set "bytesRead"]
+    val set_bytes_read : t -> int -> unit [@@js.set "bytesRead"]
 
     val get_buffers : t -> ArrayBufferView.t list [@@js.get "buffers"]
 
@@ -3281,7 +3287,7 @@ module Fs : sig
   end
   [@@js.scope "readv"]
 
-  val readvSync
+  val readv_sync
     :  fd:int
     -> buffers:ArrayBufferView.t list
     -> ?position:int
@@ -3300,13 +3306,13 @@ module Fs : sig
 
     val set_encoding : t -> BufferEncoding.t -> unit [@@js.set "encoding"]
 
-    val get_bufferSize : t -> int [@@js.get "bufferSize"]
+    val get_buffer_size : t -> int [@@js.get "bufferSize"]
 
-    val set_bufferSize : t -> int -> unit [@@js.set "bufferSize"]
+    val set_buffer_size : t -> int -> unit [@@js.set "bufferSize"]
   end
   [@@js.scope "OpenDirOptions"]
 
-  val opendirSync
+  val opendir_sync
     :  path:PathLike.t
     -> ?options:OpenDirOptions.t
     -> unit

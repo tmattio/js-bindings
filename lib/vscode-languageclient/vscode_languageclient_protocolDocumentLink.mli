@@ -6,7 +6,7 @@ open Es5
 
 (* import * as code from 'vscode'; *)
 module ProtocolDocumentLink : sig
-  type t = _ProtocolDocumentLink
+  type t
 
   val t_to_js : t -> Ojs.t
 

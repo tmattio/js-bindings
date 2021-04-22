@@ -11,13 +11,13 @@ module AnonymousInterface0 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_run : t -> _Executable [@@js.get "run"]
+  val get_run : t -> Executable.t [@@js.get "run"]
 
-  val set_run : t -> _Executable -> unit [@@js.set "run"]
+  val set_run : t -> Executable.t -> unit [@@js.set "run"]
 
-  val get_debug : t -> _Executable [@@js.get "debug"]
+  val get_debug : t -> Executable.t [@@js.get "debug"]
 
-  val set_debug : t -> _Executable -> unit [@@js.set "debug"]
+  val set_debug : t -> Executable.t -> unit [@@js.set "debug"]
 end
 
 module AnonymousInterface1 : sig
@@ -27,13 +27,13 @@ module AnonymousInterface1 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_run : t -> _NodeModule [@@js.get "run"]
+  val get_run : t -> NodeModule.t [@@js.get "run"]
 
-  val set_run : t -> _NodeModule -> unit [@@js.set "run"]
+  val set_run : t -> NodeModule.t -> unit [@@js.set "run"]
 
-  val get_debug : t -> _NodeModule [@@js.get "debug"]
+  val get_debug : t -> NodeModule.t [@@js.get "debug"]
 
-  val set_debug : t -> _NodeModule -> unit [@@js.set "debug"]
+  val set_debug : t -> NodeModule.t -> unit [@@js.set "debug"]
 end
 
 (* import * as cp from 'child_process'; *)
@@ -45,7 +45,7 @@ end
 (* export * from 'vscode-languageserver-protocol/node'; *)
 (* export * from '../common/api'; *)
 module ExecutableOptions : sig
-  type t = _ExecutableOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -70,7 +70,7 @@ end
 [@@js.scope "ExecutableOptions"]
 
 module Executable : sig
-  type t = _Executable
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -84,14 +84,14 @@ module Executable : sig
 
   val set_args : t -> string list -> unit [@@js.set "args"]
 
-  val get_options : t -> _ExecutableOptions [@@js.get "options"]
+  val get_options : t -> ExecutableOptions.t [@@js.get "options"]
 
-  val set_options : t -> _ExecutableOptions -> unit [@@js.set "options"]
+  val set_options : t -> ExecutableOptions.t -> unit [@@js.set "options"]
 end
 [@@js.scope "Executable"]
 
 module ForkOptions : sig
-  type t = _ForkOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -109,9 +109,9 @@ module ForkOptions : sig
 
   val set_encoding : t -> string -> unit [@@js.set "encoding"]
 
-  val get_execArgv : t -> string list [@@js.get "execArgv"]
+  val get_exec_argv : t -> string list [@@js.get "execArgv"]
 
-  val set_execArgv : t -> string list -> unit [@@js.set "execArgv"]
+  val set_exec_argv : t -> string list -> unit [@@js.set "execArgv"]
 end
 [@@js.scope "ForkOptions"]
 
@@ -130,15 +130,15 @@ module TransportKind : sig
 end
 
 module SocketTransport : sig
-  type t = _SocketTransport
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_kind : t -> _TransportKind_socket [@@js.get "kind"]
+  val get_kind : t -> TransportKind_socket.t [@@js.get "kind"]
 
-  val set_kind : t -> _TransportKind_socket -> unit [@@js.set "kind"]
+  val set_kind : t -> TransportKind_socket.t -> unit [@@js.set "kind"]
 
   val get_port : t -> int [@@js.get "port"]
 
@@ -148,7 +148,7 @@ end
 
 module Transport : sig
   type t =
-    ( _SocketTransport
+    ( SocketTransport.t
     , ([ `ipc [@js 1] | `pipe [@js 2] | `socket [@js 3] | `stdio [@js 0] ]
       [@js.enum]) )
     or_enum
@@ -159,7 +159,7 @@ module Transport : sig
 end
 
 module NodeModule : sig
-  type t = _NodeModule
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -169,9 +169,9 @@ module NodeModule : sig
 
   val set_module : t -> string -> unit [@@js.set "module"]
 
-  val get_transport : t -> _Transport [@@js.get "transport"]
+  val get_transport : t -> Transport.t [@@js.get "transport"]
 
-  val set_transport : t -> _Transport -> unit [@@js.set "transport"]
+  val set_transport : t -> Transport.t -> unit [@@js.set "transport"]
 
   val get_args : t -> string list [@@js.get "args"]
 
@@ -181,14 +181,14 @@ module NodeModule : sig
 
   val set_runtime : t -> string -> unit [@@js.set "runtime"]
 
-  val get_options : t -> _ForkOptions [@@js.get "options"]
+  val get_options : t -> ForkOptions.t [@@js.get "options"]
 
-  val set_options : t -> _ForkOptions -> unit [@@js.set "options"]
+  val set_options : t -> ForkOptions.t -> unit [@@js.set "options"]
 end
 [@@js.scope "NodeModule"]
 
 module StreamInfo : sig
-  type t = _StreamInfo
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -209,7 +209,7 @@ end
 [@@js.scope "StreamInfo"]
 
 module ChildProcessInfo : sig
-  type t = _ChildProcessInfo
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -227,15 +227,15 @@ end
 
 module ServerOptions : sig
   type t =
-    ( _Executable
-    , _NodeModule
+    ( Executable.t
+    , NodeModule.t
     , AnonymousInterface0.t
     , AnonymousInterface1.t
     , unit
       -> ( ChildProcess.t
-         , _ChildProcessInfo
+         , ChildProcessInfo.t
          , MessageTransports.t
-         , _StreamInfo )
+         , StreamInfo.t )
          union4
          Promise.t )
     union5
@@ -246,47 +246,47 @@ module ServerOptions : sig
 end
 
 module LanguageClient : sig
-  type t = _LanguageClient
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get__serverOptions : t -> (* FIXME: unknown type *) any
+  val get_server_options : t -> (* FIXME: unknown type *) any
     [@@js.get "_serverOptions"]
 
-  val set__serverOptions : t -> (* FIXME: unknown type *) any -> unit
+  val set_server_options : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_serverOptions"]
 
-  val get__forceDebug : t -> (* FIXME: unknown type *) any
+  val get_force_debug : t -> (* FIXME: unknown type *) any
     [@@js.get "_forceDebug"]
 
-  val set__forceDebug : t -> (* FIXME: unknown type *) any -> unit
+  val set_force_debug : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_forceDebug"]
 
-  val get__serverProcess : t -> (* FIXME: unknown type *) any
+  val get_server_process : t -> (* FIXME: unknown type *) any
     [@@js.get "_serverProcess"]
 
-  val set__serverProcess : t -> (* FIXME: unknown type *) any -> unit
+  val set_server_process : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_serverProcess"]
 
-  val get__isDetached : t -> (* FIXME: unknown type *) any
+  val get_is_detached : t -> (* FIXME: unknown type *) any
     [@@js.get "_isDetached"]
 
-  val set__isDetached : t -> (* FIXME: unknown type *) any -> unit
+  val set_is_detached : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_isDetached"]
 
-  val get__isInDebugMode : t -> (* FIXME: unknown type *) any
+  val get_is_in_debug_mode : t -> (* FIXME: unknown type *) any
     [@@js.get "_isInDebugMode"]
 
-  val set__isInDebugMode : t -> (* FIXME: unknown type *) any -> unit
+  val set_is_in_debug_mode : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_isInDebugMode"]
 
   val create
     :  name:string
-    -> serverOptions:_ServerOptions
-    -> clientOptions:LanguageClientOptions.t
-    -> ?forceDebug:bool
+    -> server_options:ServerOptions.t
+    -> client_options:LanguageClientOptions.t
+    -> ?force_debug:bool
     -> unit
     -> t
     [@@js.create]
@@ -294,66 +294,66 @@ module LanguageClient : sig
   val create'
     :  id:string
     -> name:string
-    -> serverOptions:_ServerOptions
-    -> clientOptions:LanguageClientOptions.t
-    -> ?forceDebug:bool
+    -> server_options:ServerOptions.t
+    -> client_options:LanguageClientOptions.t
+    -> ?force_debug:bool
     -> unit
     -> t
     [@@js.create]
 
-  val get_checkVersion : t -> (* FIXME: unknown type *) any
+  val get_check_version : t -> (* FIXME: unknown type *) any
     [@@js.get "checkVersion"]
 
-  val set_checkVersion : t -> (* FIXME: unknown type *) any -> unit
+  val set_check_version : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "checkVersion"]
 
-  val get_isInDebugMode : t -> bool [@@js.get "isInDebugMode"]
+  val get_is_in_debug_mode : t -> bool [@@js.get "isInDebugMode"]
 
   val stop : t -> unit Promise.t [@@js.call "stop"]
 
-  val get_checkProcessDied : t -> (* FIXME: unknown type *) any
+  val get_check_process_died : t -> (* FIXME: unknown type *) any
     [@@js.get "checkProcessDied"]
 
-  val set_checkProcessDied : t -> (* FIXME: unknown type *) any -> unit
+  val set_check_process_died : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "checkProcessDied"]
 
-  val handleConnectionClosed : t -> unit [@@js.call "handleConnectionClosed"]
+  val handle_connection_closed : t -> unit [@@js.call "handleConnectionClosed"]
 
-  val fillInitializeParams : t -> params:InitializeParams.t -> unit
+  val fill_initialize_params : t -> params:InitializeParams.t -> unit
     [@@js.call "fillInitializeParams"]
 
-  val createMessageTransports
+  val create_message_transports
     :  t
     -> encoding:string
     -> MessageTransports.t Promise.t
     [@@js.call "createMessageTransports"]
 
-  val get__getRuntimePath : t -> (* FIXME: unknown type *) any
+  val get_get_runtime_path : t -> (* FIXME: unknown type *) any
     [@@js.get "_getRuntimePath"]
 
-  val set__getRuntimePath : t -> (* FIXME: unknown type *) any -> unit
+  val set_get_runtime_path : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_getRuntimePath"]
 
-  val get__mainGetRootPath : t -> (* FIXME: unknown type *) any
+  val get_main_get_root_path : t -> (* FIXME: unknown type *) any
     [@@js.get "_mainGetRootPath"]
 
-  val set__mainGetRootPath : t -> (* FIXME: unknown type *) any -> unit
+  val set_main_get_root_path : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_mainGetRootPath"]
 
-  val get__getServerWorkingDir : t -> (* FIXME: unknown type *) any
+  val get_get_server_working_dir : t -> (* FIXME: unknown type *) any
     [@@js.get "_getServerWorkingDir"]
 
-  val set__getServerWorkingDir : t -> (* FIXME: unknown type *) any -> unit
+  val set_get_server_working_dir : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_getServerWorkingDir"]
 
-  val getLocale : t -> string [@@js.call "getLocale"]
+  val get_locale : t -> string [@@js.call "getLocale"]
 
   val cast : t -> CommonLanguageClient.t [@@js.cast]
 end
 [@@js.scope "LanguageClient"]
 
 module SettingMonitor : sig
-  type t = _SettingMonitor
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -375,14 +375,17 @@ module SettingMonitor : sig
   val set__listeners : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_listeners"]
 
-  val create : _client:_LanguageClient -> _setting:string -> t [@@js.create]
+  val create : _client:LanguageClient.t -> _setting:string -> t [@@js.create]
 
   val start : t -> Disposable.t [@@js.call "start"]
 
-  val get_onDidChangeConfiguration : t -> (* FIXME: unknown type *) any
+  val get_on_did_change_configuration : t -> (* FIXME: unknown type *) any
     [@@js.get "onDidChangeConfiguration"]
 
-  val set_onDidChangeConfiguration : t -> (* FIXME: unknown type *) any -> unit
+  val set_on_did_change_configuration
+    :  t
+    -> (* FIXME: unknown type *) any
+    -> unit
     [@@js.set "onDidChangeConfiguration"]
 end
 [@@js.scope "SettingMonitor"]

@@ -4,8 +4,6 @@
 
 open Es2020
 
-
-
 module AnonymousInterface0 : sig
   type t
 
@@ -13,13 +11,13 @@ module AnonymousInterface0 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val asReadableStream
+  val as_readable_stream
     :  t
     -> stream:Node.ReadableStream.t
     -> Vscode_jsonrpc_ral.RAL.ReadableStream.t
     [@@js.call "asReadableStream"]
 
-  val asWritableStream
+  val as_writable_stream
     :  t
     -> stream:Node.WritableStream.t
     -> Vscode_jsonrpc_ral.RAL.WritableStream.t
@@ -27,7 +25,7 @@ module AnonymousInterface0 : sig
 end
 
 module RIL : sig
-  type t = _RIL
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -41,6 +39,6 @@ module RIL : sig
 end
 [@@js.scope "RIL"]
 
-val ril : unit -> _RIL [@@js.global "RIL"]
+val ril : unit -> RIL.t [@@js.global "RIL"]
 
 (* export = RIL *)

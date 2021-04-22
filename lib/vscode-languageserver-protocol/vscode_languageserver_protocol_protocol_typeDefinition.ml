@@ -2,142 +2,117 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module Types =
-      struct
-        type _TypeDefinitionRequest_HandlerSignature =
-          (_TypeDefinitionParams,
-            (Definition.t, DefinitionLink.t) or_array or_null, unit)
-            RequestHandler.t
-        let rec _TypeDefinitionRequest_HandlerSignature_of_js :
-          Ojs.t -> _TypeDefinitionRequest_HandlerSignature =
-          fun (x8 : Ojs.t) ->
-            RequestHandler.t_of_js _TypeDefinitionParams_of_js
-              (fun (x10 : Ojs.t) ->
-                 or_null_of_js
-                   (fun (x11 : Ojs.t) ->
-                      or_array_of_js Definition.t_of_js
-                        DefinitionLink.t_of_js x11) x10) Ojs.unit_of_js x8
-        and _TypeDefinitionRequest_HandlerSignature_to_js :
-          _TypeDefinitionRequest_HandlerSignature -> Ojs.t =
-          fun
-            (x1 :
-              (_TypeDefinitionParams,
-                (Definition.t, DefinitionLink.t) or_array or_null, unit)
-                RequestHandler.t)
-            ->
-            RequestHandler.t_to_js _TypeDefinitionParams_to_js
-              (fun (x3 : (Definition.t, DefinitionLink.t) or_array or_null)
-                 ->
-                 or_null_to_js
-                   (fun (x4 : (Definition.t, DefinitionLink.t) or_array) ->
-                      or_array_to_js Definition.t_to_js
-                        DefinitionLink.t_to_js x4) x3) Ojs.unit_to_js x1
-      end
-  end
 module TypeDefinitionClientCapabilities =
   struct
-    type t = _TypeDefinitionClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x16 : Ojs.t) -> _TypeDefinitionClientCapabilities_of_js x16
-    and t_to_js : t -> Ojs.t =
-      fun (x15 : _TypeDefinitionClientCapabilities) ->
-        _TypeDefinitionClientCapabilities_to_js x15
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x17 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
+    let (get_dynamic_registration : t -> bool) =
+      fun (x3 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x17) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x18 : t) ->
-        fun (x19 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x18) "dynamicRegistration"
-            (Ojs.bool_to_js x19)
-    let (get_linkSupport : t -> bool) =
-      fun (x20 : t) ->
-        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x20) "linkSupport")
-    let (set_linkSupport : t -> bool -> unit) =
-      fun (x21 : t) ->
-        fun (x22 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x21) "linkSupport" (Ojs.bool_to_js x22)
+          (Ojs.get_prop_ascii (t_to_js x3) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x4 : t) ->
+        fun (x5 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x4) "dynamicRegistration"
+            (Ojs.bool_to_js x5)
+    let (get_link_support : t -> bool) =
+      fun (x6 : t) ->
+        Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x6) "linkSupport")
+    let (set_link_support : t -> bool -> unit) =
+      fun (x7 : t) ->
+        fun (x8 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x7) "linkSupport" (Ojs.bool_to_js x8)
   end
 module TypeDefinitionOptions =
   struct
-    type t = _TypeDefinitionOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x24 : Ojs.t) -> _TypeDefinitionOptions_of_js x24
-    and t_to_js : t -> Ojs.t =
-      fun (x23 : _TypeDefinitionOptions) -> _TypeDefinitionOptions_to_js x23
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x10 : Ojs.t) -> x10
+    and t_to_js : t -> Ojs.t = fun (x9 : Ojs.t) -> x9
     let (cast : t -> WorkDoneProgressOptions.t) =
-      fun (x25 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x25)
+      fun (x11 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x11)
   end
 module TypeDefinitionRegistrationOptions =
   struct
-    type t = _TypeDefinitionRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x27 : Ojs.t) -> _TypeDefinitionRegistrationOptions_of_js x27
-    and t_to_js : t -> Ojs.t =
-      fun (x26 : _TypeDefinitionRegistrationOptions) ->
-        _TypeDefinitionRegistrationOptions_to_js x26
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x13 : Ojs.t) -> x13
+    and t_to_js : t -> Ojs.t = fun (x12 : Ojs.t) -> x12
     let (cast : t -> TextDocumentRegistrationOptions.t) =
-      fun (x28 : t) -> TextDocumentRegistrationOptions.t_of_js (t_to_js x28)
-    let (cast' : t -> _TypeDefinitionOptions) =
-      fun (x29 : t) -> _TypeDefinitionOptions_of_js (t_to_js x29)
+      fun (x14 : t) -> TextDocumentRegistrationOptions.t_of_js (t_to_js x14)
+    let (cast' : t -> TypeDefinitionOptions.t) =
+      fun (x15 : t) -> TypeDefinitionOptions.t_of_js (t_to_js x15)
     let (cast'' : t -> StaticRegistrationOptions.t) =
-      fun (x30 : t) -> StaticRegistrationOptions.t_of_js (t_to_js x30)
+      fun (x16 : t) -> StaticRegistrationOptions.t_of_js (t_to_js x16)
   end
 module TypeDefinitionParams =
   struct
-    type t = _TypeDefinitionParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x32 : Ojs.t) -> _TypeDefinitionParams_of_js x32
-    and t_to_js : t -> Ojs.t =
-      fun (x31 : _TypeDefinitionParams) -> _TypeDefinitionParams_to_js x31
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x18 : Ojs.t) -> x18
+    and t_to_js : t -> Ojs.t = fun (x17 : Ojs.t) -> x17
     let (cast : t -> TextDocumentPositionParams.t) =
-      fun (x33 : t) -> TextDocumentPositionParams.t_of_js (t_to_js x33)
+      fun (x19 : t) -> TextDocumentPositionParams.t_of_js (t_to_js x19)
     let (cast' : t -> WorkDoneProgressParams.t) =
-      fun (x34 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x34)
+      fun (x20 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x20)
     let (cast'' : t -> PartialResultParams.t) =
-      fun (x35 : t) -> PartialResultParams.t_of_js (t_to_js x35)
+      fun (x21 : t) -> PartialResultParams.t_of_js (t_to_js x21)
   end
 module TypeDefinitionRequest =
   struct
     let (method_ : [ `L_s0_textDocument_typeDefinition ]) =
-      let x36 =
+      let x22 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "TypeDefinitionRequest") "method" in
-      match Ojs.string_of_js x36 with
+      match Ojs.string_of_js x22 with
       | "textDocument/typeDefinition" -> `L_s0_textDocument_typeDefinition
       | _ -> assert false
     let (type_ :
-      (_TypeDefinitionParams,
+      (TypeDefinitionParams.t,
         (Location.t, (Location.t, LocationLink.t) union2) or_array or_null,
         (Location.t, LocationLink.t) union2 list, unit,
-        _TypeDefinitionRegistrationOptions) ProtocolRequestType.t)
+        TypeDefinitionRegistrationOptions.t) ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _TypeDefinitionParams_of_js
-        (fun (x38 : Ojs.t) ->
+      ProtocolRequestType.t_of_js TypeDefinitionParams.t_of_js
+        (fun (x24 : Ojs.t) ->
            or_null_of_js
-             (fun (x39 : Ojs.t) ->
+             (fun (x25 : Ojs.t) ->
                 or_array_of_js Location.t_of_js
-                  (fun (x41 : Ojs.t) ->
-                     union2_of_js Location.t_of_js LocationLink.t_of_js x41)
-                  x39) x38)
-        (fun (x44 : Ojs.t) ->
+                  (fun (x27 : Ojs.t) ->
+                     union2_of_js Location.t_of_js LocationLink.t_of_js x27)
+                  x25) x24)
+        (fun (x30 : Ojs.t) ->
            Ojs.list_of_js
-             (fun (x45 : Ojs.t) ->
-                union2_of_js Location.t_of_js LocationLink.t_of_js x45) x44)
-        Ojs.unit_of_js _TypeDefinitionRegistrationOptions_of_js
+             (fun (x31 : Ojs.t) ->
+                union2_of_js Location.t_of_js LocationLink.t_of_js x31) x30)
+        Ojs.unit_of_js TypeDefinitionRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "TypeDefinitionRequest") "type")
     module HandlerSignature =
       struct
-        type t = _TypeDefinitionRequest_HandlerSignature
+        type t =
+          (TypeDefinitionParams.t,
+            (Definition.t, DefinitionLink.t) or_array or_null, unit)
+            RequestHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x51 : Ojs.t) ->
-            _TypeDefinitionRequest_HandlerSignature_of_js x51
+          fun (x43 : Ojs.t) ->
+            RequestHandler.t_of_js TypeDefinitionParams.t_of_js
+              (fun (x45 : Ojs.t) ->
+                 or_null_of_js
+                   (fun (x46 : Ojs.t) ->
+                      or_array_of_js Definition.t_of_js
+                        DefinitionLink.t_of_js x46) x45) Ojs.unit_of_js x43
         and t_to_js : t -> Ojs.t =
-          fun (x50 : _TypeDefinitionRequest_HandlerSignature) ->
-            _TypeDefinitionRequest_HandlerSignature_to_js x50
+          fun
+            (x36 :
+              (TypeDefinitionParams.t,
+                (Definition.t, DefinitionLink.t) or_array or_null, unit)
+                RequestHandler.t)
+            ->
+            RequestHandler.t_to_js TypeDefinitionParams.t_to_js
+              (fun (x38 : (Definition.t, DefinitionLink.t) or_array or_null)
+                 ->
+                 or_null_to_js
+                   (fun (x39 : (Definition.t, DefinitionLink.t) or_array) ->
+                      or_array_to_js Definition.t_to_js
+                        DefinitionLink.t_to_js x39) x38) Ojs.unit_to_js x36
       end
   end

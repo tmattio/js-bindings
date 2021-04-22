@@ -24,9 +24,9 @@ module AnonymousInterface1 : sig
 
   val set_fatal : t -> bool -> unit [@@js.set "fatal"]
 
-  val get_ignoreBOM : t -> bool [@@js.get "ignoreBOM"]
+  val get_ignore_bom : t -> bool [@@js.get "ignoreBOM"]
 
-  val set_ignoreBOM : t -> bool -> unit [@@js.set "ignoreBOM"]
+  val set_ignore_bom : t -> bool -> unit [@@js.set "ignoreBOM"]
 end
 
 module AnonymousInterface2 : sig
@@ -43,7 +43,7 @@ end
 
 module Util : sig
   module InspectOptions : sig
-    type t = util_InspectOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -75,36 +75,36 @@ module Util : sig
   end
 
   module CustomInspectFunction : sig
-    type t = util_CustomInspectFunction
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val apply : t -> depth:int -> options:util_InspectOptionsStylized -> string
+    val apply : t -> depth:int -> options:InspectOptionsStylized.t -> string
       [@@js.apply]
   end
   [@@js.scope "CustomInspectFunction"]
 
   module InspectOptionsStylized : sig
-    type t = util_InspectOptionsStylized
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val stylize : t -> text:string -> styleType:util_Style -> string
+    val stylize : t -> text:string -> style_type:Style.t -> string
       [@@js.call "stylize"]
 
-    val cast : t -> util_InspectOptions [@@js.cast]
+    val cast : t -> InspectOptions.t [@@js.cast]
   end
   [@@js.scope "InspectOptionsStylized"]
 
   val format : ?format:any -> param:(any list[@js.variadic]) -> string
     [@@js.global "format"]
 
-  val formatWithOptions
-    :  inspectOptions:util_InspectOptions
+  val format_with_options
+    :  inspect_options:InspectOptions.t
     -> ?format:any
     -> param:(any list[@js.variadic])
     -> string
@@ -114,14 +114,14 @@ module Util : sig
 
   val inspect
     :  object_:any
-    -> ?showHidden:bool
+    -> ?show_hidden:bool
     -> ?depth:int or_null
     -> ?color:bool
     -> unit
     -> string
     [@@js.global "inspect"]
 
-  val inspect : object_:any -> options:util_InspectOptions -> string
+  val inspect : object_:any -> options:InspectOptions.t -> string
     [@@js.global "inspect"]
 
   module Inspect : sig
@@ -130,24 +130,24 @@ module Util : sig
     val styles : (* FIXME: unknown type '{ [K in Style]: string }' *) any
       [@@js.global "styles"]
 
-    val defaultOptions : util_InspectOptions [@@js.global "defaultOptions"]
+    val default_options : util_InspectOptions [@@js.global "defaultOptions"]
 
-    val replDefaults : util_InspectOptions [@@js.global "replDefaults"]
+    val repl_defaults : util_InspectOptions [@@js.global "replDefaults"]
 
     val custom : (* FIXME: unknown type 'unique symbol' *) any
       [@@js.global "custom"]
   end
   [@@js.scope "inspect"]
 
-  val isArray : object_:any -> bool [@@js.global "isArray"]
+  val is_array : object_:any -> bool [@@js.global "isArray"]
 
-  val isRegExp : object_:any -> bool [@@js.global "isRegExp"]
+  val is_reg_exp : object_:any -> bool [@@js.global "isRegExp"]
 
-  val isDate : object_:any -> bool [@@js.global "isDate"]
+  val is_date : object_:any -> bool [@@js.global "isDate"]
 
-  val isError : object_:any -> bool [@@js.global "isError"]
+  val is_error : object_:any -> bool [@@js.global "isError"]
 
-  val inherits : constructor:any -> superConstructor:any -> unit
+  val inherits : constructor:any -> super_constructor:any -> unit
     [@@js.global "inherits"]
 
   val debuglog
@@ -155,32 +155,33 @@ module Util : sig
     -> (msg:string -> param:(any list[@js.variadic]) -> unit[@js.dummy])
     [@@js.global "debuglog"]
 
-  val isBoolean : object_:any -> bool [@@js.global "isBoolean"]
+  val is_boolean : object_:any -> bool [@@js.global "isBoolean"]
 
-  val isBuffer : object_:any -> bool [@@js.global "isBuffer"]
+  val is_buffer : object_:any -> bool [@@js.global "isBuffer"]
 
-  val isFunction : object_:any -> bool [@@js.global "isFunction"]
+  val is_function : object_:any -> bool [@@js.global "isFunction"]
 
-  val isNull : object_:any -> bool [@@js.global "isNull"]
+  val is_null : object_:any -> bool [@@js.global "isNull"]
 
-  val isNullOrUndefined : object_:any -> bool [@@js.global "isNullOrUndefined"]
+  val is_null_or_undefined : object_:any -> bool
+    [@@js.global "isNullOrUndefined"]
 
-  val isNumber : object_:any -> bool [@@js.global "isNumber"]
+  val is_number : object_:any -> bool [@@js.global "isNumber"]
 
-  val isObject : object_:any -> bool [@@js.global "isObject"]
+  val is_object : object_:any -> bool [@@js.global "isObject"]
 
-  val isPrimitive : object_:any -> bool [@@js.global "isPrimitive"]
+  val is_primitive : object_:any -> bool [@@js.global "isPrimitive"]
 
-  val isString : object_:any -> bool [@@js.global "isString"]
+  val is_string : object_:any -> bool [@@js.global "isString"]
 
-  val isSymbol : object_:any -> bool [@@js.global "isSymbol"]
+  val is_symbol : object_:any -> bool [@@js.global "isSymbol"]
 
-  val isUndefined : object_:any -> bool [@@js.global "isUndefined"]
+  val is_undefined : object_:any -> bool [@@js.global "isUndefined"]
 
   val deprecate : fn:'T -> message:string -> ?code:string -> unit -> 'T
     [@@js.global "deprecate"]
 
-  val isDeepStrictEqual : val1:any -> val2:any -> bool
+  val is_deep_strict_equal : val1:any -> val2:any -> bool
     [@@js.global "isDeepStrictEqual"]
 
   val callbackify
@@ -341,7 +342,7 @@ module Util : sig
     [@@js.global "callbackify"]
 
   module CustomPromisifyLegacy : sig
-    type 'TCustom t = 'TCustom util_CustomPromisifyLegacy
+    type 'TCustom t
 
     val t_to_js : ('TCustom -> Ojs.t) -> 'TCustom t -> Ojs.t
 
@@ -357,7 +358,7 @@ module Util : sig
   [@@js.scope "CustomPromisifyLegacy"]
 
   module CustomPromisifySymbol : sig
-    type 'TCustom t = 'TCustom util_CustomPromisifySymbol
+    type 'TCustom t
 
     val t_to_js : ('TCustom -> Ojs.t) -> 'TCustom t -> Ojs.t
 
@@ -511,97 +512,99 @@ module Util : sig
   [@@js.scope "promisify"]
 
   module Types : sig
-    val isAnyArrayBuffer : object_:any -> bool [@@js.global "isAnyArrayBuffer"]
+    val is_any_array_buffer : object_:any -> bool
+      [@@js.global "isAnyArrayBuffer"]
 
-    val isArgumentsObject : object_:any -> bool
+    val is_arguments_object : object_:any -> bool
       [@@js.global "isArgumentsObject"]
 
-    val isArrayBuffer : object_:any -> bool [@@js.global "isArrayBuffer"]
+    val is_array_buffer : object_:any -> bool [@@js.global "isArrayBuffer"]
 
-    val isArrayBufferView : object_:any -> bool
+    val is_array_buffer_view : object_:any -> bool
       [@@js.global "isArrayBufferView"]
 
-    val isAsyncFunction : object_:any -> bool [@@js.global "isAsyncFunction"]
+    val is_async_function : object_:any -> bool [@@js.global "isAsyncFunction"]
 
-    val isBigInt64Array : value:any -> bool [@@js.global "isBigInt64Array"]
+    val is_big_int64Array : value:any -> bool [@@js.global "isBigInt64Array"]
 
-    val isBigUint64Array : value:any -> bool [@@js.global "isBigUint64Array"]
+    val is_big_uint64Array : value:any -> bool [@@js.global "isBigUint64Array"]
 
-    val isBooleanObject : object_:any -> bool [@@js.global "isBooleanObject"]
+    val is_boolean_object : object_:any -> bool [@@js.global "isBooleanObject"]
 
-    val isBoxedPrimitive : object_:any -> bool [@@js.global "isBoxedPrimitive"]
+    val is_boxed_primitive : object_:any -> bool
+      [@@js.global "isBoxedPrimitive"]
 
-    val isDataView : object_:any -> bool [@@js.global "isDataView"]
+    val is_data_view : object_:any -> bool [@@js.global "isDataView"]
 
-    val isDate : object_:any -> bool [@@js.global "isDate"]
+    val is_date : object_:any -> bool [@@js.global "isDate"]
 
-    val isExternal : object_:any -> bool [@@js.global "isExternal"]
+    val is_external : object_:any -> bool [@@js.global "isExternal"]
 
-    val isFloat32Array : object_:any -> bool [@@js.global "isFloat32Array"]
+    val is_float32Array : object_:any -> bool [@@js.global "isFloat32Array"]
 
-    val isFloat64Array : object_:any -> bool [@@js.global "isFloat64Array"]
+    val is_float64Array : object_:any -> bool [@@js.global "isFloat64Array"]
 
-    val isGeneratorFunction : object_:any -> bool
+    val is_generator_function : object_:any -> bool
       [@@js.global "isGeneratorFunction"]
 
-    val isGeneratorObject : object_:any -> bool
+    val is_generator_object : object_:any -> bool
       [@@js.global "isGeneratorObject"]
 
-    val isInt8Array : object_:any -> bool [@@js.global "isInt8Array"]
+    val is_int8Array : object_:any -> bool [@@js.global "isInt8Array"]
 
-    val isInt16Array : object_:any -> bool [@@js.global "isInt16Array"]
+    val is_int16Array : object_:any -> bool [@@js.global "isInt16Array"]
 
-    val isInt32Array : object_:any -> bool [@@js.global "isInt32Array"]
+    val is_int32Array : object_:any -> bool [@@js.global "isInt32Array"]
 
-    val isMap : object_:('T, AnonymousInterface0.t) union2 -> bool
+    val is_map : object_:('T, AnonymousInterface0.t) union2 -> bool
       [@@js.global "isMap"]
 
-    val isMapIterator : object_:any -> bool [@@js.global "isMapIterator"]
+    val is_map_iterator : object_:any -> bool [@@js.global "isMapIterator"]
 
-    val isModuleNamespaceObject : value:any -> bool
+    val is_module_namespace_object : value:any -> bool
       [@@js.global "isModuleNamespaceObject"]
 
-    val isNativeError : object_:any -> bool [@@js.global "isNativeError"]
+    val is_native_error : object_:any -> bool [@@js.global "isNativeError"]
 
-    val isNumberObject : object_:any -> bool [@@js.global "isNumberObject"]
+    val is_number_object : object_:any -> bool [@@js.global "isNumberObject"]
 
-    val isPromise : object_:any -> bool [@@js.global "isPromise"]
+    val is_promise : object_:any -> bool [@@js.global "isPromise"]
 
-    val isProxy : object_:any -> bool [@@js.global "isProxy"]
+    val is_proxy : object_:any -> bool [@@js.global "isProxy"]
 
-    val isRegExp : object_:any -> bool [@@js.global "isRegExp"]
+    val is_reg_exp : object_:any -> bool [@@js.global "isRegExp"]
 
-    val isSet : object_:('T, AnonymousInterface0.t) union2 -> bool
+    val is_set : object_:('T, AnonymousInterface0.t) union2 -> bool
       [@@js.global "isSet"]
 
-    val isSetIterator : object_:any -> bool [@@js.global "isSetIterator"]
+    val is_set_iterator : object_:any -> bool [@@js.global "isSetIterator"]
 
-    val isSharedArrayBuffer : object_:any -> bool
+    val is_shared_array_buffer : object_:any -> bool
       [@@js.global "isSharedArrayBuffer"]
 
-    val isStringObject : object_:any -> bool [@@js.global "isStringObject"]
+    val is_string_object : object_:any -> bool [@@js.global "isStringObject"]
 
-    val isSymbolObject : object_:any -> bool [@@js.global "isSymbolObject"]
+    val is_symbol_object : object_:any -> bool [@@js.global "isSymbolObject"]
 
-    val isTypedArray : object_:any -> bool [@@js.global "isTypedArray"]
+    val is_typed_array : object_:any -> bool [@@js.global "isTypedArray"]
 
-    val isUint8Array : object_:any -> bool [@@js.global "isUint8Array"]
+    val is_uint8Array : object_:any -> bool [@@js.global "isUint8Array"]
 
-    val isUint8ClampedArray : object_:any -> bool
+    val is_uint8ClampedArray : object_:any -> bool
       [@@js.global "isUint8ClampedArray"]
 
-    val isUint16Array : object_:any -> bool [@@js.global "isUint16Array"]
+    val is_uint16Array : object_:any -> bool [@@js.global "isUint16Array"]
 
-    val isUint32Array : object_:any -> bool [@@js.global "isUint32Array"]
+    val is_uint32Array : object_:any -> bool [@@js.global "isUint32Array"]
 
-    val isWeakMap : object_:any -> bool [@@js.global "isWeakMap"]
+    val is_weak_map : object_:any -> bool [@@js.global "isWeakMap"]
 
-    val isWeakSet : object_:any -> bool [@@js.global "isWeakSet"]
+    val is_weak_set : object_:any -> bool [@@js.global "isWeakSet"]
   end
   [@@js.scope "types"]
 
   module TextDecoder : sig
-    type t = util_TextDecoder
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -611,7 +614,7 @@ module Util : sig
 
     val get_fatal : t -> bool [@@js.get "fatal"]
 
-    val get_ignoreBOM : t -> bool [@@js.get "ignoreBOM"]
+    val get_ignore_bom : t -> bool [@@js.get "ignoreBOM"]
 
     val create : ?encoding:string -> ?options:AnonymousInterface1.t -> unit -> t
       [@@js.create]
@@ -627,7 +630,7 @@ module Util : sig
   [@@js.scope "TextDecoder"]
 
   module EncodeIntoResult : sig
-    type t = util_EncodeIntoResult
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -644,7 +647,7 @@ module Util : sig
   [@@js.scope "EncodeIntoResult"]
 
   module TextEncoder : sig
-    type t = util_TextEncoder
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -654,11 +657,11 @@ module Util : sig
 
     val encode : t -> ?input:string -> unit -> Uint8Array.t [@@js.call "encode"]
 
-    val encodeInto
+    val encode_into
       :  t
       -> input:string
       -> output:Uint8Array.t
-      -> util_EncodeIntoResult
+      -> EncodeIntoResult.t
       [@@js.call "encodeInto"]
   end
   [@@js.scope "TextEncoder"]

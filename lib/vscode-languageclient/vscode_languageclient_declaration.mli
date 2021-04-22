@@ -11,7 +11,7 @@ open Es5
    'vscode-languageserver-protocol'; *)
 (* import { TextDocumentFeature, BaseLanguageClient } from './client'; *)
 module ProvideDeclarationSignature : sig
-  type t = _ProvideDeclarationSignature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -29,26 +29,26 @@ end
 [@@js.scope "ProvideDeclarationSignature"]
 
 module DeclarationMiddleware : sig
-  type t = _DeclarationMiddleware
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val provideDeclaration
+  val provide_declaration
     :  t
     -> this:unit
     -> document:TextDocument.t
     -> position:VPosition.t
     -> token:CancellationToken.t
-    -> next:_ProvideDeclarationSignature
+    -> next:ProvideDeclarationSignature.t
     -> VDeclaration.t ProviderResult.t
     [@@js.call "provideDeclaration"]
 end
 [@@js.scope "DeclarationMiddleware"]
 
 module DeclarationFeature : sig
-  type t = _DeclarationFeature
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -56,17 +56,17 @@ module DeclarationFeature : sig
 
   val create : client:BaseLanguageClient.t -> t [@@js.create]
 
-  val fillClientCapabilities : t -> capabilities:ClientCapabilities.t -> unit
+  val fill_client_capabilities : t -> capabilities:ClientCapabilities.t -> unit
     [@@js.call "fillClientCapabilities"]
 
   val initialize
     :  t
     -> capabilities:ServerCapabilities.t
-    -> documentSelector:DocumentSelector.t
+    -> document_selector:DocumentSelector.t
     -> unit
     [@@js.call "initialize"]
 
-  val registerLanguageProvider
+  val register_language_provider
     :  t
     -> options:DeclarationRegistrationOptions.t
     -> Disposable.t * DeclarationProvider.t

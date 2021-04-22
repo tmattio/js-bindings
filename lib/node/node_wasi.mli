@@ -7,7 +7,7 @@ open Node_globals
 
 module Wasi : sig
   module WASIOptions : sig
-    type t = wasi_WASIOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -25,9 +25,9 @@ module Wasi : sig
 
     val set_preopens : t -> string Dict.t -> unit [@@js.set "preopens"]
 
-    val get_returnOnExit : t -> bool [@@js.get "returnOnExit"]
+    val get_return_on_exit : t -> bool [@@js.get "returnOnExit"]
 
-    val set_returnOnExit : t -> bool -> unit [@@js.set "returnOnExit"]
+    val set_return_on_exit : t -> bool -> unit [@@js.set "returnOnExit"]
 
     val get_stdin : t -> int [@@js.get "stdin"]
 
@@ -44,20 +44,20 @@ module Wasi : sig
   [@@js.scope "WASIOptions"]
 
   module WASI : sig
-    type t = wasi_WASI
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val create : ?options:wasi_WASIOptions -> unit -> t [@@js.create]
+    val create : ?options:WASIOptions.t -> unit -> t [@@js.create]
 
     val start : t -> instance:untyped_object -> unit [@@js.call "start"]
 
     val initialize : t -> instance:untyped_object -> unit
       [@@js.call "initialize"]
 
-    val get_wasiImport : t -> any Dict.t [@@js.get "wasiImport"]
+    val get_wasi_import : t -> any Dict.t [@@js.get "wasiImport"]
   end
   [@@js.scope "WASI"]
 end

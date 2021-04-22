@@ -8,13 +8,13 @@ open Es5
 (* import { ProgressToken, ProgressType, NotificationHandler,
    ProtocolNotificationType } from 'vscode-languageserver-protocol'; *)
 module ProgressContext : sig
-  type t = _ProgressContext
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val onProgress
+  val on_progress
     :  t
     -> type_:'P ProgressType.t
     -> token:string or_number
@@ -22,7 +22,7 @@ module ProgressContext : sig
     -> Disposable.t
     [@@js.call "onProgress"]
 
-  val sendNotification
+  val send_notification
     :  t
     -> type_:('P, 'RO) ProtocolNotificationType.t
     -> ?params:'P
@@ -33,7 +33,7 @@ end
 [@@js.scope "ProgressContext"]
 
 module ProgressPart : sig
-  type t = _ProgressPart
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -64,10 +64,10 @@ module ProgressPart : sig
   val set__progress : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_progress"]
 
-  val get__cancellationToken : t -> (* FIXME: unknown type *) any
+  val get_cancellation_token : t -> (* FIXME: unknown type *) any
     [@@js.get "_cancellationToken"]
 
-  val set__cancellationToken : t -> (* FIXME: unknown type *) any -> unit
+  val set_cancellation_token : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_cancellationToken"]
 
   val get__disposable : t -> (* FIXME: unknown type *) any
@@ -87,7 +87,7 @@ module ProgressPart : sig
     [@@js.set "_reject"]
 
   val create
-    :  _client:_ProgressContext
+    :  _client:ProgressContext.t
     -> _token:ProgressToken.t
     -> ?done_:(part:t -> unit)
     -> unit

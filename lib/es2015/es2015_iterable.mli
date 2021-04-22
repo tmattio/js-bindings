@@ -153,7 +153,7 @@ module Array : sig
   val from_iterable'
     :  iterable:('T Array.t, 'T Iterable.t) union2
     -> mapfn:(v:'T -> k:int -> 'U)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> 'U list
     [@@js.global "Array.from"]
@@ -174,7 +174,7 @@ module ArrayConstructor : sig
     :  t
     -> iterable:('T Array.t, 'T Iterable.t) union2
     -> mapfn:(v:'T -> k:int -> 'U)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> 'U list
     [@@js.call "from"]
@@ -383,7 +383,7 @@ module Int8Array : sig
   val from_iterable
     :  array:int Iterable.t
     -> ?mapfn:(v:int -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.global "Int8Array.from"]
@@ -400,7 +400,7 @@ module Int8ArrayConstructor : sig
     :  t
     -> array:int Iterable.t
     -> ?mapfn:(v:int -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> Int8Array.t
     [@@js.call "from"]
@@ -425,7 +425,7 @@ module Uint8Array : sig
   val from_iterable
     :  array:int Iterable.t
     -> ?mapfn:(v:int -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.global "Uint8Array.from"]
@@ -442,7 +442,7 @@ module Uint8ArrayConstructor : sig
     :  t
     -> array:int Iterable.t
     -> ?mapfn:(v:int -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> Uint8Array.t
     [@@js.call "from"]
@@ -467,7 +467,7 @@ module Uint8ClampedArray : sig
   val from_iterable
     :  array:int Iterable.t
     -> ?mapfn:(v:int -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.global "Uint8ClampedArray.from"]
@@ -485,7 +485,7 @@ module Uint8ClampedArrayConstructor : sig
     :  t
     -> array:int Iterable.t
     -> ?mapfn:(v:int -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> Uint8ClampedArray.t
     [@@js.call "from"]
@@ -510,7 +510,7 @@ module Int16Array : sig
   val from_iterable
     :  array:int Iterable.t
     -> ?mapfn:(v:int -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.global "Int16Array.from"]
@@ -527,7 +527,7 @@ module Int16ArrayConstructor : sig
     :  t
     -> array:int Iterable.t
     -> ?mapfn:(v:int -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> Int16Array.t
     [@@js.call "from"]
@@ -552,7 +552,7 @@ module Uint16Array : sig
   val from_iterable
     :  array:int Iterable.t
     -> ?mapfn:(v:int -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.global "Uint16Array.from"]
@@ -570,7 +570,7 @@ module Uint16ArrayConstructor : sig
     :  t
     -> array:int Iterable.t
     -> ?mapfn:(v:int -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> Uint16Array.t
     [@@js.call "from"]
@@ -595,7 +595,7 @@ module Int32Array : sig
   val from_iterable
     :  array:int Iterable.t
     -> ?mapfn:(v:int -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.global "Int32Array.from"]
@@ -612,7 +612,7 @@ module Int32ArrayConstructor : sig
     :  t
     -> array:int Iterable.t
     -> ?mapfn:(v:int -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> Int32Array.t
     [@@js.call "from"]
@@ -637,7 +637,7 @@ module Uint32Array : sig
   val from_iterable
     :  array:int Iterable.t
     -> ?mapfn:(v:int -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.global "Uint32Array.from"]
@@ -655,7 +655,7 @@ module Uint32ArrayConstructor : sig
     :  t
     -> array:int Iterable.t
     -> ?mapfn:(v:int -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> Uint32Array.t
     [@@js.call "from"]
@@ -680,7 +680,7 @@ module Float32Array : sig
   val from_iterable
     :  array:int Iterable.t
     -> ?mapfn:(v:int -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.global "Float32Array.from"]
@@ -698,7 +698,7 @@ module Float32ArrayConstructor : sig
     :  t
     -> array:int Iterable.t
     -> ?mapfn:(v:int -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> Float32Array.t
     [@@js.call "from"]
@@ -723,7 +723,7 @@ module Float64Array : sig
   val from_iterable
     :  array:int Iterable.t
     -> ?mapfn:(v:int -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.global "Float64Array.from"]
@@ -741,7 +741,7 @@ module Float64ArrayConstructor : sig
     :  t
     -> array:int Iterable.t
     -> ?mapfn:(v:int -> k:int -> int)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> Float64Array.t
     [@@js.call "from"]

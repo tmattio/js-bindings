@@ -4,11 +4,9 @@
 open Es5
 module DiagnosticCode =
   struct
-    type t = _DiagnosticCode
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> _DiagnosticCode_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : _DiagnosticCode) -> _DiagnosticCode_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get_value : t -> string or_number) =
       fun (x3 : t) ->
         or_number_of_js Ojs.string_of_js
@@ -29,35 +27,34 @@ module DiagnosticCode =
 module DiagnosticCode =
   struct
     let (is :
-      value:_DiagnosticCode or_string or_number or_null_or_undefined -> bool)
+      value:DiagnosticCode.t or_string or_number or_null_or_undefined -> bool)
       =
       fun
         ~value:(x11 :
-                 _DiagnosticCode or_string or_number or_null_or_undefined)
+                 DiagnosticCode.t or_string or_number or_null_or_undefined)
         ->
         Ojs.bool_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "DiagnosticCode") "is"
              [|(or_null_or_undefined_to_js
-                  (fun (x12 : _DiagnosticCode or_string or_number) ->
+                  (fun (x12 : DiagnosticCode.t or_string or_number) ->
                      or_number_to_js
-                       (fun (x13 : _DiagnosticCode or_string) ->
-                          or_string_to_js _DiagnosticCode_to_js x13) x12) x11)|])
+                       (fun (x13 : DiagnosticCode.t or_string) ->
+                          or_string_to_js DiagnosticCode.t_to_js x13) x12)
+                  x11)|])
   end
 module ProtocolDiagnostic =
   struct
-    type t = _ProtocolDiagnostic
-    let rec t_of_js : Ojs.t -> t =
-      fun (x16 : Ojs.t) -> _ProtocolDiagnostic_of_js x16
-    and t_to_js : t -> Ojs.t =
-      fun (x15 : _ProtocolDiagnostic) -> _ProtocolDiagnostic_to_js x15
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x16 : Ojs.t) -> x16
+    and t_to_js : t -> Ojs.t = fun (x15 : Ojs.t) -> x15
     let (get_data : t -> unknown or_undefined) =
       fun (x17 : t) ->
         or_undefined_of_js unknown_of_js
           (Ojs.get_prop_ascii (t_to_js x17) "data")
-    let (get_hasDiagnosticCode : t -> bool) =
+    let (get_has_diagnostic_code : t -> bool) =
       fun (x19 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x19) "hasDiagnosticCode")
-    let (set_hasDiagnosticCode : t -> bool -> unit) =
+    let (set_has_diagnostic_code : t -> bool -> unit) =
       fun (x20 : t) ->
         fun (x21 : bool) ->
           Ojs.set_prop_ascii (t_to_js x20) "hasDiagnosticCode"

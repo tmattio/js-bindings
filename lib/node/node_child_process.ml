@@ -198,11 +198,11 @@ module Child_process =
         let (get_connected : t -> bool) =
           fun (x82 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x82) "connected")
-        let (get_exitCode : t -> int or_null) =
+        let (get_exit_code : t -> int or_null) =
           fun (x83 : t) ->
             or_null_of_js Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x83) "exitCode")
-        let (get_signalCode : t -> Node_process.Process.Signals.t or_null) =
+        let (get_signal_code : t -> Node_process.Process.Signals.t or_null) =
           fun (x85 : t) ->
             or_null_of_js Node_process.Process.Signals.t_of_js
               (Ojs.get_prop_ascii (t_to_js x85) "signalCode")
@@ -272,12 +272,12 @@ module Child_process =
         let (send' :
           t ->
             message:Serializable.t ->
-              ?sendHandle:SendHandle.t ->
+              ?send_handle:SendHandle.t ->
                 ?callback:(error:Error.t or_null -> unit) -> unit -> bool)
           =
           fun (x112 : t) ->
             fun ~message:(x104 : Serializable.t) ->
-              fun ?sendHandle:(x105 : SendHandle.t option) ->
+              fun ?send_handle:(x105 : SendHandle.t option) ->
                 fun ?callback:(x106 : (error:Error.t or_null -> unit) option)
                   ->
                   fun () ->
@@ -312,13 +312,13 @@ module Child_process =
         let (send'' :
           t ->
             message:Serializable.t ->
-              ?sendHandle:SendHandle.t ->
+              ?send_handle:SendHandle.t ->
                 ?options:MessageOptions.t ->
                   ?callback:(error:Error.t or_null -> unit) -> unit -> bool)
           =
           fun (x124 : t) ->
             fun ~message:(x114 : Serializable.t) ->
-              fun ?sendHandle:(x115 : SendHandle.t option) ->
+              fun ?send_handle:(x115 : SendHandle.t option) ->
                 fun ?options:(x116 : MessageOptions.t option) ->
                   fun
                     ?callback:(x117 : (error:Error.t or_null -> unit) option)
@@ -365,7 +365,7 @@ module Child_process =
           fun (x127 : t) -> ignore (Ojs.call (t_to_js x127) "unref" [||])
         let (ref : t -> unit) =
           fun (x128 : t) -> ignore (Ojs.call (t_to_js x128) "ref" [||])
-        let (addListener :
+        let (add_listener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
           fun (x133 : t) ->
             fun ~event:(x129 : string) ->
@@ -378,7 +378,7 @@ module Child_process =
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
                                                                 x131 0)))|])
-        let (addListener' :
+        let (add_listener' :
           t ->
             event:[ `close ] ->
               listener:(code:int or_null ->
@@ -404,7 +404,7 @@ module Child_process =
                                 ~signal:(or_null_of_js
                                            Node_process.Process.Signals.t_of_js
                                            x138)))|])
-        let (addListener'' :
+        let (add_listener'' :
           t -> event:[ `disconnect ] -> listener:(unit -> unit) -> t) =
           fun (x143 : t) ->
             fun ~event:(x141 : [ `disconnect ]) ->
@@ -414,7 +414,7 @@ module Child_process =
                      [|((match x141 with
                          | `disconnect -> Ojs.string_to_js "disconnect"));(
                        Ojs.fun_to_js 1 (fun _ -> x142 ()))|])
-        let (addListener''' :
+        let (add_listener''' :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
           fun (x147 : t) ->
             fun ~event:(x144 : [ `error ]) ->
@@ -425,7 +425,7 @@ module Child_process =
                        Ojs.fun_to_js 1
                          (fun (x146 : Ojs.t) ->
                             x145 ~err:(Error.t_of_js x146)))|])
-        let (addListener'''' :
+        let (add_listener'''' :
           t ->
             event:[ `exit ] ->
               listener:(code:int or_null ->
@@ -451,11 +451,11 @@ module Child_process =
                                 ~signal:(or_null_of_js
                                            Node_process.Process.Signals.t_of_js
                                            x152)))|])
-        let (addListener''''' :
+        let (add_listener''''' :
           t ->
             event:[ `message ] ->
               listener:(message:Serializable.t ->
-                          sendHandle:SendHandle.t -> unit)
+                          send_handle:SendHandle.t -> unit)
                 -> t)
           =
           fun (x159 : t) ->
@@ -463,7 +463,7 @@ module Child_process =
               fun
                 ~listener:(x156 :
                             message:Serializable.t ->
-                              sendHandle:SendHandle.t -> unit)
+                              send_handle:SendHandle.t -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x159) "addListener"
@@ -473,7 +473,7 @@ module Child_process =
                          (fun (x157 : Ojs.t) ->
                             fun (x158 : Ojs.t) ->
                               x156 ~message:(Serializable.t_of_js x157)
-                                ~sendHandle:(SendHandle.t_of_js x158)))|])
+                                ~send_handle:(SendHandle.t_of_js x158)))|])
         let (emit : t -> event:symbol or_string -> args:any list -> bool) =
           fun (x165 : t) ->
             fun ~event:(x160 : symbol or_string) ->
@@ -548,12 +548,12 @@ module Child_process =
         let (emit''''' :
           t ->
             event:[ `message ] ->
-              message:Serializable.t -> sendHandle:SendHandle.t -> bool)
+              message:Serializable.t -> send_handle:SendHandle.t -> bool)
           =
           fun (x187 : t) ->
             fun ~event:(x184 : [ `message ]) ->
               fun ~message:(x185 : Serializable.t) ->
-                fun ~sendHandle:(x186 : SendHandle.t) ->
+                fun ~send_handle:(x186 : SendHandle.t) ->
                   Ojs.bool_of_js
                     (Ojs.call (t_to_js x187) "emit"
                        [|((match x184 with
@@ -649,7 +649,7 @@ module Child_process =
           t ->
             event:[ `message ] ->
               listener:(message:Serializable.t ->
-                          sendHandle:SendHandle.t -> unit)
+                          send_handle:SendHandle.t -> unit)
                 -> t)
           =
           fun (x218 : t) ->
@@ -657,7 +657,7 @@ module Child_process =
               fun
                 ~listener:(x215 :
                             message:Serializable.t ->
-                              sendHandle:SendHandle.t -> unit)
+                              send_handle:SendHandle.t -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x218) "on"
@@ -667,7 +667,7 @@ module Child_process =
                          (fun (x216 : Ojs.t) ->
                             fun (x217 : Ojs.t) ->
                               x215 ~message:(Serializable.t_of_js x216)
-                                ~sendHandle:(SendHandle.t_of_js x217)))|])
+                                ~send_handle:(SendHandle.t_of_js x217)))|])
         let (once :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
           fun (x223 : t) ->
@@ -758,7 +758,7 @@ module Child_process =
           t ->
             event:[ `message ] ->
               listener:(message:Serializable.t ->
-                          sendHandle:SendHandle.t -> unit)
+                          send_handle:SendHandle.t -> unit)
                 -> t)
           =
           fun (x249 : t) ->
@@ -766,7 +766,7 @@ module Child_process =
               fun
                 ~listener:(x246 :
                             message:Serializable.t ->
-                              sendHandle:SendHandle.t -> unit)
+                              send_handle:SendHandle.t -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x249) "once"
@@ -776,8 +776,8 @@ module Child_process =
                          (fun (x247 : Ojs.t) ->
                             fun (x248 : Ojs.t) ->
                               x246 ~message:(Serializable.t_of_js x247)
-                                ~sendHandle:(SendHandle.t_of_js x248)))|])
-        let (prependListener :
+                                ~send_handle:(SendHandle.t_of_js x248)))|])
+        let (prepend_listener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
           fun (x254 : t) ->
             fun ~event:(x250 : string) ->
@@ -790,7 +790,7 @@ module Child_process =
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
                                                                 x252 0)))|])
-        let (prependListener' :
+        let (prepend_listener' :
           t ->
             event:[ `close ] ->
               listener:(code:int or_null ->
@@ -816,7 +816,7 @@ module Child_process =
                                 ~signal:(or_null_of_js
                                            Node_process.Process.Signals.t_of_js
                                            x259)))|])
-        let (prependListener'' :
+        let (prepend_listener'' :
           t -> event:[ `disconnect ] -> listener:(unit -> unit) -> t) =
           fun (x264 : t) ->
             fun ~event:(x262 : [ `disconnect ]) ->
@@ -826,7 +826,7 @@ module Child_process =
                      [|((match x262 with
                          | `disconnect -> Ojs.string_to_js "disconnect"));(
                        Ojs.fun_to_js 1 (fun _ -> x263 ()))|])
-        let (prependListener''' :
+        let (prepend_listener''' :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
           fun (x268 : t) ->
             fun ~event:(x265 : [ `error ]) ->
@@ -837,7 +837,7 @@ module Child_process =
                        Ojs.fun_to_js 1
                          (fun (x267 : Ojs.t) ->
                             x266 ~err:(Error.t_of_js x267)))|])
-        let (prependListener'''' :
+        let (prepend_listener'''' :
           t ->
             event:[ `exit ] ->
               listener:(code:int or_null ->
@@ -863,11 +863,11 @@ module Child_process =
                                 ~signal:(or_null_of_js
                                            Node_process.Process.Signals.t_of_js
                                            x273)))|])
-        let (prependListener''''' :
+        let (prepend_listener''''' :
           t ->
             event:[ `message ] ->
               listener:(message:Serializable.t ->
-                          sendHandle:SendHandle.t -> unit)
+                          send_handle:SendHandle.t -> unit)
                 -> t)
           =
           fun (x280 : t) ->
@@ -875,7 +875,7 @@ module Child_process =
               fun
                 ~listener:(x277 :
                             message:Serializable.t ->
-                              sendHandle:SendHandle.t -> unit)
+                              send_handle:SendHandle.t -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x280) "prependListener"
@@ -885,8 +885,8 @@ module Child_process =
                          (fun (x278 : Ojs.t) ->
                             fun (x279 : Ojs.t) ->
                               x277 ~message:(Serializable.t_of_js x278)
-                                ~sendHandle:(SendHandle.t_of_js x279)))|])
-        let (prependOnceListener :
+                                ~send_handle:(SendHandle.t_of_js x279)))|])
+        let (prepend_once_listener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
           fun (x285 : t) ->
             fun ~event:(x281 : string) ->
@@ -899,7 +899,7 @@ module Child_process =
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
                                                                 x283 0)))|])
-        let (prependOnceListener' :
+        let (prepend_once_listener' :
           t ->
             event:[ `close ] ->
               listener:(code:int or_null ->
@@ -925,7 +925,7 @@ module Child_process =
                                 ~signal:(or_null_of_js
                                            Node_process.Process.Signals.t_of_js
                                            x290)))|])
-        let (prependOnceListener'' :
+        let (prepend_once_listener'' :
           t -> event:[ `disconnect ] -> listener:(unit -> unit) -> t) =
           fun (x295 : t) ->
             fun ~event:(x293 : [ `disconnect ]) ->
@@ -935,7 +935,7 @@ module Child_process =
                      [|((match x293 with
                          | `disconnect -> Ojs.string_to_js "disconnect"));(
                        Ojs.fun_to_js 1 (fun _ -> x294 ()))|])
-        let (prependOnceListener''' :
+        let (prepend_once_listener''' :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
           fun (x299 : t) ->
             fun ~event:(x296 : [ `error ]) ->
@@ -946,7 +946,7 @@ module Child_process =
                        Ojs.fun_to_js 1
                          (fun (x298 : Ojs.t) ->
                             x297 ~err:(Error.t_of_js x298)))|])
-        let (prependOnceListener'''' :
+        let (prepend_once_listener'''' :
           t ->
             event:[ `exit ] ->
               listener:(code:int or_null ->
@@ -972,11 +972,11 @@ module Child_process =
                                 ~signal:(or_null_of_js
                                            Node_process.Process.Signals.t_of_js
                                            x304)))|])
-        let (prependOnceListener''''' :
+        let (prepend_once_listener''''' :
           t ->
             event:[ `message ] ->
               listener:(message:Serializable.t ->
-                          sendHandle:SendHandle.t -> unit)
+                          send_handle:SendHandle.t -> unit)
                 -> t)
           =
           fun (x311 : t) ->
@@ -984,7 +984,7 @@ module Child_process =
               fun
                 ~listener:(x308 :
                             message:Serializable.t ->
-                              sendHandle:SendHandle.t -> unit)
+                              send_handle:SendHandle.t -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x311) "prependOnceListener"
@@ -994,7 +994,7 @@ module Child_process =
                          (fun (x309 : Ojs.t) ->
                             fun (x310 : Ojs.t) ->
                               x308 ~message:(Serializable.t_of_js x309)
-                                ~sendHandle:(SendHandle.t_of_js x310)))|])
+                                ~send_handle:(SendHandle.t_of_js x310)))|])
         let (cast : t -> Events.EventEmitter.t) =
           fun (x312 : t) -> Events.EventEmitter.t_of_js (t_to_js x312)
       end
@@ -1144,10 +1144,10 @@ module Child_process =
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x384 : Ojs.t) -> x384
         and t_to_js : t -> Ojs.t = fun (x383 : Ojs.t) -> x383
-        let (get_keepOpen : t -> bool) =
+        let (get_keep_open : t -> bool) =
           fun (x385 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x385) "keepOpen")
-        let (set_keepOpen : t -> bool -> unit) =
+        let (set_keep_open : t -> bool -> unit) =
           fun (x386 : t) ->
             fun (x387 : bool) ->
               Ojs.set_prop_ascii (t_to_js x386) "keepOpen"
@@ -1316,10 +1316,10 @@ module Child_process =
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x429 : Ojs.t) -> x429
         and t_to_js : t -> Ojs.t = fun (x428 : Ojs.t) -> x428
-        let (get_windowsHide : t -> bool) =
+        let (get_windows_hide : t -> bool) =
           fun (x430 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x430) "windowsHide")
-        let (set_windowsHide : t -> bool -> unit) =
+        let (set_windows_hide : t -> bool -> unit) =
           fun (x431 : t) ->
             fun (x432 : bool) ->
               Ojs.set_prop_ascii (t_to_js x431) "windowsHide"
@@ -1365,11 +1365,11 @@ module Child_process =
             fun (x448 : bool or_string) ->
               Ojs.set_prop_ascii (t_to_js x447) "shell"
                 (or_string_to_js Ojs.bool_to_js x448)
-        let (get_windowsVerbatimArguments : t -> bool) =
+        let (get_windows_verbatim_arguments : t -> bool) =
           fun (x450 : t) ->
             Ojs.bool_of_js
               (Ojs.get_prop_ascii (t_to_js x450) "windowsVerbatimArguments")
-        let (set_windowsVerbatimArguments : t -> bool -> unit) =
+        let (set_windows_verbatim_arguments : t -> bool -> unit) =
           fun (x451 : t) ->
             fun (x452 : bool) ->
               Ojs.set_prop_ascii (t_to_js x451) "windowsVerbatimArguments"
@@ -2038,20 +2038,20 @@ module Child_process =
             fun (x717 : string) ->
               Ojs.set_prop_ascii (t_to_js x716) "shell"
                 (Ojs.string_to_js x717)
-        let (get_maxBuffer : t -> int) =
+        let (get_max_buffer : t -> int) =
           fun (x718 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x718) "maxBuffer")
-        let (set_maxBuffer : t -> int -> unit) =
+        let (set_max_buffer : t -> int -> unit) =
           fun (x719 : t) ->
             fun (x720 : int) ->
               Ojs.set_prop_ascii (t_to_js x719) "maxBuffer"
                 (Ojs.int_to_js x720)
-        let (get_killSignal : t -> Node_process.Process.Signals.t or_number)
+        let (get_kill_signal : t -> Node_process.Process.Signals.t or_number)
           =
           fun (x721 : t) ->
             or_number_of_js Node_process.Process.Signals.t_of_js
               (Ojs.get_prop_ascii (t_to_js x721) "killSignal")
-        let (set_killSignal :
+        let (set_kill_signal :
           t -> Node_process.Process.Signals.t or_number -> unit) =
           fun (x723 : t) ->
             fun (x724 : Node_process.Process.Signals.t or_number) ->
@@ -2562,30 +2562,30 @@ module Child_process =
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x863 : Ojs.t) -> x863
         and t_to_js : t -> Ojs.t = fun (x862 : Ojs.t) -> x862
-        let (get_maxBuffer : t -> int) =
+        let (get_max_buffer : t -> int) =
           fun (x864 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x864) "maxBuffer")
-        let (set_maxBuffer : t -> int -> unit) =
+        let (set_max_buffer : t -> int -> unit) =
           fun (x865 : t) ->
             fun (x866 : int) ->
               Ojs.set_prop_ascii (t_to_js x865) "maxBuffer"
                 (Ojs.int_to_js x866)
-        let (get_killSignal : t -> Node_process.Process.Signals.t or_number)
+        let (get_kill_signal : t -> Node_process.Process.Signals.t or_number)
           =
           fun (x867 : t) ->
             or_number_of_js Node_process.Process.Signals.t_of_js
               (Ojs.get_prop_ascii (t_to_js x867) "killSignal")
-        let (set_killSignal :
+        let (set_kill_signal :
           t -> Node_process.Process.Signals.t or_number -> unit) =
           fun (x869 : t) ->
             fun (x870 : Node_process.Process.Signals.t or_number) ->
               Ojs.set_prop_ascii (t_to_js x869) "killSignal"
                 (or_number_to_js Node_process.Process.Signals.t_to_js x870)
-        let (get_windowsVerbatimArguments : t -> bool) =
+        let (get_windows_verbatim_arguments : t -> bool) =
           fun (x872 : t) ->
             Ojs.bool_of_js
               (Ojs.get_prop_ascii (t_to_js x872) "windowsVerbatimArguments")
-        let (set_windowsVerbatimArguments : t -> bool -> unit) =
+        let (set_windows_verbatim_arguments : t -> bool -> unit) =
           fun (x873 : t) ->
             fun (x874 : bool) ->
               Ojs.set_prop_ascii (t_to_js x873) "windowsVerbatimArguments"
@@ -2667,12 +2667,12 @@ module Child_process =
         let rec t_of_js : Ojs.t -> t = fun (x903 : Ojs.t) -> x903
         and t_to_js : t -> Ojs.t = fun (x902 : Ojs.t) -> x902
       end
-    let (execFile : file:string -> ChildProcess.t) =
+    let (exec_file : file:string -> ChildProcess.t) =
       fun ~file:(x904 : string) ->
         ChildProcess.t_of_js
           (Ojs.call Import.child_process "execFile"
              [|(Ojs.string_to_js x904)|])
-    let (execFile :
+    let (exec_file :
       file:string ->
         options:(Node_fs.Fs.BaseEncodingOptions.t, ExecFileOptions.t)
           intersection2 or_null_or_undefined -> ChildProcess.t)
@@ -2696,7 +2696,7 @@ module Child_process =
                                                  Node_fs.Fs.BaseEncodingOptions.t_to_js
                                                  ExecFileOptions.t_to_js x907)
                                             x906)|])
-    let (execFile :
+    let (exec_file :
       file:string -> ?args:string list or_null -> unit -> ChildProcess.t) =
       fun ~file:(x910 : string) ->
         fun ?args:(x911 : string list or_null option) ->
@@ -2720,7 +2720,7 @@ module Child_process =
                                               x914) x913)|])
                            | None -> ());
                           x912))|])
-    let (execFile :
+    let (exec_file :
       file:string ->
         args:string list or_null_or_undefined ->
           options:(Node_fs.Fs.BaseEncodingOptions.t, ExecFileOptions.t)
@@ -2750,7 +2750,7 @@ module Child_process =
                                                             Node_fs.Fs.BaseEncodingOptions.t_to_js
                                                             ExecFileOptions.t_to_js
                                                             x922) x921)|])
-    let (execFile :
+    let (exec_file :
       file:string ->
         callback:(error:ExecFileException.t or_null ->
                     stdout:string -> stderr:string -> unit)
@@ -2776,7 +2776,7 @@ module Child_process =
                                                                 x929)
                                                      ~stderr:(Ojs.string_of_js
                                                                 x930)))|])
-    let (execFile :
+    let (exec_file :
       file:string ->
         args:string list or_null_or_undefined ->
           callback:(error:ExecFileException.t or_null ->
@@ -2814,7 +2814,7 @@ module Child_process =
                                                                 ~stderr:(
                                                                 Ojs.string_of_js
                                                                   x939)))|])
-    let (execFile :
+    let (exec_file :
       file:string ->
         options:ExecFileOptionsWithBufferEncoding.t ->
           callback:(error:ExecFileException.t or_null ->
@@ -2849,7 +2849,7 @@ module Child_process =
                                                                 ~stderr:(
                                                                 Buffer.t_of_js
                                                                   x946)))|])
-    let (execFile :
+    let (exec_file :
       file:string ->
         args:string list or_null_or_undefined ->
           options:ExecFileOptionsWithBufferEncoding.t ->
@@ -2894,7 +2894,7 @@ module Child_process =
                                                                     ~stderr:(
                                                                     Buffer.t_of_js
                                                                     x956)))|])
-    let (execFile :
+    let (exec_file :
       file:string ->
         options:ExecFileOptionsWithStringEncoding.t ->
           callback:(error:ExecFileException.t or_null ->
@@ -2929,7 +2929,7 @@ module Child_process =
                                                                 ~stderr:(
                                                                 Ojs.string_of_js
                                                                   x963)))|])
-    let (execFile :
+    let (exec_file :
       file:string ->
         args:string list or_null_or_undefined ->
           options:ExecFileOptionsWithStringEncoding.t ->
@@ -2974,7 +2974,7 @@ module Child_process =
                                                                     ~stderr:(
                                                                     Ojs.string_of_js
                                                                     x973)))|])
-    let (execFile :
+    let (exec_file :
       file:string ->
         options:ExecFileOptionsWithOtherEncoding.t ->
           callback:(error:ExecFileException.t or_null ->
@@ -3013,7 +3013,7 @@ module Child_process =
                                                                 or_string_of_js
                                                                   Buffer.t_of_js
                                                                   x981)))|])
-    let (execFile :
+    let (exec_file :
       file:string ->
         args:string list or_null_or_undefined ->
           options:ExecFileOptionsWithOtherEncoding.t ->
@@ -3062,7 +3062,7 @@ module Child_process =
                                                                     or_string_of_js
                                                                     Buffer.t_of_js
                                                                     x993)))|])
-    let (execFile :
+    let (exec_file :
       file:string ->
         options:ExecFileOptions.t ->
           callback:(error:ExecFileException.t or_null ->
@@ -3088,7 +3088,7 @@ module Child_process =
                                         x998)
                               ~stdout:(Ojs.string_of_js x1000)
                               ~stderr:(Ojs.string_of_js x1001)))|])
-    let (execFile :
+    let (exec_file :
       file:string ->
         args:string list or_null_or_undefined ->
           options:ExecFileOptions.t ->
@@ -3134,7 +3134,7 @@ module Child_process =
                                                                     ~stderr:(
                                                                     Ojs.string_of_js
                                                                     x1011)))|])
-    let (execFile :
+    let (exec_file :
       file:string ->
         options:(Node_fs.Fs.BaseEncodingOptions.t, ExecFileOptions.t)
           intersection2 or_null_or_undefined ->
@@ -3206,7 +3206,7 @@ module Child_process =
                                                                     Buffer.t_of_js
                                                                     x1023)))
                                                                     x1017)|])
-    let (execFile :
+    let (exec_file :
       file:string ->
         args:string list or_null_or_undefined ->
           options:(Node_fs.Fs.BaseEncodingOptions.t, ExecFileOptions.t)
@@ -3491,19 +3491,19 @@ module Child_process =
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x1100 : Ojs.t) -> x1100
         and t_to_js : t -> Ojs.t = fun (x1099 : Ojs.t) -> x1099
-        let (get_execPath : t -> string) =
+        let (get_exec_path : t -> string) =
           fun (x1101 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1101) "execPath")
-        let (set_execPath : t -> string -> unit) =
+        let (set_exec_path : t -> string -> unit) =
           fun (x1102 : t) ->
             fun (x1103 : string) ->
               Ojs.set_prop_ascii (t_to_js x1102) "execPath"
                 (Ojs.string_to_js x1103)
-        let (get_execArgv : t -> string list) =
+        let (get_exec_argv : t -> string list) =
           fun (x1104 : t) ->
             Ojs.list_of_js Ojs.string_of_js
               (Ojs.get_prop_ascii (t_to_js x1104) "execArgv")
-        let (set_execArgv : t -> string list -> unit) =
+        let (set_exec_argv : t -> string list -> unit) =
           fun (x1106 : t) ->
             fun (x1107 : string list) ->
               Ojs.set_prop_ascii (t_to_js x1106) "execArgv"
@@ -3532,11 +3532,11 @@ module Child_process =
             fun (x1117 : bool) ->
               Ojs.set_prop_ascii (t_to_js x1116) "detached"
                 (Ojs.bool_to_js x1117)
-        let (get_windowsVerbatimArguments : t -> bool) =
+        let (get_windows_verbatim_arguments : t -> bool) =
           fun (x1118 : t) ->
             Ojs.bool_of_js
               (Ojs.get_prop_ascii (t_to_js x1118) "windowsVerbatimArguments")
-        let (set_windowsVerbatimArguments : t -> bool -> unit) =
+        let (set_windows_verbatim_arguments : t -> bool -> unit) =
           fun (x1119 : t) ->
             fun (x1120 : bool) ->
               Ojs.set_prop_ascii (t_to_js x1119) "windowsVerbatimArguments"
@@ -3547,9 +3547,9 @@ module Child_process =
           fun (x1122 : t) -> MessagingOptions.t_of_js (t_to_js x1122)
       end
     let (fork :
-      modulePath:string -> ?options:ForkOptions.t -> unit -> ChildProcess.t)
+      module_path:string -> ?options:ForkOptions.t -> unit -> ChildProcess.t)
       =
-      fun ~modulePath:(x1123 : string) ->
+      fun ~module_path:(x1123 : string) ->
         fun ?options:(x1124 : ForkOptions.t option) ->
           fun () ->
             ChildProcess.t_of_js
@@ -3570,10 +3570,10 @@ module Child_process =
                             | None -> ());
                            x1125))|])
     let (fork :
-      modulePath:string ->
+      module_path:string ->
         ?args:string list -> ?options:ForkOptions.t -> unit -> ChildProcess.t)
       =
-      fun ~modulePath:(x1128 : string) ->
+      fun ~module_path:(x1128 : string) ->
         fun ?args:(x1129 : string list option) ->
           fun ?options:(x1130 : ForkOptions.t option) ->
             fun () ->
@@ -3615,21 +3615,21 @@ module Child_process =
             fun (x1141 : ArrayBufferView.t or_string) ->
               Ojs.set_prop_ascii (t_to_js x1140) "input"
                 (or_string_to_js ArrayBufferView.t_to_js x1141)
-        let (get_killSignal : t -> Node_process.Process.Signals.t or_number)
+        let (get_kill_signal : t -> Node_process.Process.Signals.t or_number)
           =
           fun (x1143 : t) ->
             or_number_of_js Node_process.Process.Signals.t_of_js
               (Ojs.get_prop_ascii (t_to_js x1143) "killSignal")
-        let (set_killSignal :
+        let (set_kill_signal :
           t -> Node_process.Process.Signals.t or_number -> unit) =
           fun (x1145 : t) ->
             fun (x1146 : Node_process.Process.Signals.t or_number) ->
               Ojs.set_prop_ascii (t_to_js x1145) "killSignal"
                 (or_number_to_js Node_process.Process.Signals.t_to_js x1146)
-        let (get_maxBuffer : t -> int) =
+        let (get_max_buffer : t -> int) =
           fun (x1148 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1148) "maxBuffer")
-        let (set_maxBuffer : t -> int -> unit) =
+        let (set_max_buffer : t -> int -> unit) =
           fun (x1149 : t) ->
             fun (x1150 : int) ->
               Ojs.set_prop_ascii (t_to_js x1149) "maxBuffer"
@@ -3990,21 +3990,21 @@ module Child_process =
             fun (x1279 : string) ->
               Ojs.set_prop_ascii (t_to_js x1278) "shell"
                 (Ojs.string_to_js x1279)
-        let (get_killSignal : t -> Node_process.Process.Signals.t or_number)
+        let (get_kill_signal : t -> Node_process.Process.Signals.t or_number)
           =
           fun (x1280 : t) ->
             or_number_of_js Node_process.Process.Signals.t_of_js
               (Ojs.get_prop_ascii (t_to_js x1280) "killSignal")
-        let (set_killSignal :
+        let (set_kill_signal :
           t -> Node_process.Process.Signals.t or_number -> unit) =
           fun (x1282 : t) ->
             fun (x1283 : Node_process.Process.Signals.t or_number) ->
               Ojs.set_prop_ascii (t_to_js x1282) "killSignal"
                 (or_number_to_js Node_process.Process.Signals.t_to_js x1283)
-        let (get_maxBuffer : t -> int) =
+        let (get_max_buffer : t -> int) =
           fun (x1285 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1285) "maxBuffer")
-        let (set_maxBuffer : t -> int -> unit) =
+        let (set_max_buffer : t -> int -> unit) =
           fun (x1286 : t) ->
             fun (x1287 : int) ->
               Ojs.set_prop_ascii (t_to_js x1286) "maxBuffer"
@@ -4078,12 +4078,12 @@ module Child_process =
         let (cast : t -> ExecSyncOptions.t) =
           fun (x1313 : t) -> ExecSyncOptions.t_of_js (t_to_js x1313)
       end
-    let (execSync : command:string -> Buffer.t) =
+    let (exec_sync : command:string -> Buffer.t) =
       fun ~command:(x1314 : string) ->
         Buffer.t_of_js
           (Ojs.call Import.child_process "execSync"
              [|(Ojs.string_to_js x1314)|])
-    let (execSync :
+    let (exec_sync :
       command:string ->
         ?options:ExecSyncOptionsWithStringEncoding.t -> unit -> string)
       =
@@ -4108,7 +4108,7 @@ module Child_process =
                                           x1318)|])
                             | None -> ());
                            x1317))|])
-    let (execSync :
+    let (exec_sync :
       command:string ->
         ?options:ExecSyncOptionsWithBufferEncoding.t -> unit -> Buffer.t)
       =
@@ -4133,7 +4133,7 @@ module Child_process =
                                           x1323)|])
                             | None -> ());
                            x1322))|])
-    let (execSync :
+    let (exec_sync :
       command:string -> ?options:ExecSyncOptions.t -> unit -> Buffer.t) =
       fun ~command:(x1325 : string) ->
         fun ?options:(x1326 : ExecSyncOptions.t option) ->
@@ -4177,21 +4177,21 @@ module Child_process =
             fun (x1339 : StdioOptions.t) ->
               Ojs.set_prop_ascii (t_to_js x1338) "stdio"
                 (StdioOptions.t_to_js x1339)
-        let (get_killSignal : t -> Node_process.Process.Signals.t or_number)
+        let (get_kill_signal : t -> Node_process.Process.Signals.t or_number)
           =
           fun (x1340 : t) ->
             or_number_of_js Node_process.Process.Signals.t_of_js
               (Ojs.get_prop_ascii (t_to_js x1340) "killSignal")
-        let (set_killSignal :
+        let (set_kill_signal :
           t -> Node_process.Process.Signals.t or_number -> unit) =
           fun (x1342 : t) ->
             fun (x1343 : Node_process.Process.Signals.t or_number) ->
               Ojs.set_prop_ascii (t_to_js x1342) "killSignal"
                 (or_number_to_js Node_process.Process.Signals.t_to_js x1343)
-        let (get_maxBuffer : t -> int) =
+        let (get_max_buffer : t -> int) =
           fun (x1345 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1345) "maxBuffer")
-        let (set_maxBuffer : t -> int -> unit) =
+        let (set_max_buffer : t -> int -> unit) =
           fun (x1346 : t) ->
             fun (x1347 : int) ->
               Ojs.set_prop_ascii (t_to_js x1346) "maxBuffer"
@@ -4251,12 +4251,12 @@ module Child_process =
         let (cast : t -> ExecFileSyncOptions.t) =
           fun (x1368 : t) -> ExecFileSyncOptions.t_of_js (t_to_js x1368)
       end
-    let (execFileSync : command:string -> Buffer.t) =
+    let (exec_file_sync : command:string -> Buffer.t) =
       fun ~command:(x1369 : string) ->
         Buffer.t_of_js
           (Ojs.call Import.child_process "execFileSync"
              [|(Ojs.string_to_js x1369)|])
-    let (execFileSync :
+    let (exec_file_sync :
       command:string ->
         ?options:ExecFileSyncOptionsWithStringEncoding.t -> unit -> string)
       =
@@ -4282,7 +4282,7 @@ module Child_process =
                                           x1373)|])
                             | None -> ());
                            x1372))|])
-    let (execFileSync :
+    let (exec_file_sync :
       command:string ->
         ?options:ExecFileSyncOptionsWithBufferEncoding.t -> unit -> Buffer.t)
       =
@@ -4308,7 +4308,7 @@ module Child_process =
                                           x1378)|])
                             | None -> ());
                            x1377))|])
-    let (execFileSync :
+    let (exec_file_sync :
       command:string -> ?options:ExecFileSyncOptions.t -> unit -> Buffer.t) =
       fun ~command:(x1380 : string) ->
         fun ?options:(x1381 : ExecFileSyncOptions.t option) ->
@@ -4330,7 +4330,7 @@ module Child_process =
                                      [|(ExecFileSyncOptions.t_to_js x1383)|])
                             | None -> ());
                            x1382))|])
-    let (execFileSync :
+    let (exec_file_sync :
       command:string ->
         ?args:string list ->
           ?options:ExecFileSyncOptionsWithStringEncoding.t -> unit -> string)
@@ -4366,7 +4366,7 @@ module Child_process =
                                             x1389)|])
                               | None -> ());
                              x1388))|])
-    let (execFileSync :
+    let (exec_file_sync :
       command:string ->
         ?args:string list ->
           ?options:ExecFileSyncOptionsWithBufferEncoding.t ->
@@ -4403,7 +4403,7 @@ module Child_process =
                                             x1397)|])
                               | None -> ());
                              x1396))|])
-    let (execFileSync :
+    let (exec_file_sync :
       command:string ->
         ?args:string list ->
           ?options:ExecFileSyncOptions.t -> unit -> Buffer.t)

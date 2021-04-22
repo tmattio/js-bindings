@@ -7,7 +7,7 @@ open Node_globals
 
 module String_decoder : sig
   module StringDecoder : sig
-    type t = string_decoder_StringDecoder
+    type t
 
     val t_to_js : t -> Ojs.t
 

@@ -7,11 +7,9 @@ module Wasi =
   struct
     module WASIOptions =
       struct
-        type t = wasi_WASIOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x2 : Ojs.t) -> wasi_WASIOptions_of_js x2
-        and t_to_js : t -> Ojs.t =
-          fun (x1 : wasi_WASIOptions) -> wasi_WASIOptions_to_js x1
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+        and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
         let (get_args : t -> string list) =
           fun (x3 : t) ->
             Ojs.list_of_js Ojs.string_of_js
@@ -38,10 +36,10 @@ module Wasi =
             fun (x14 : string Dict.t) ->
               Ojs.set_prop_ascii (t_to_js x13) "preopens"
                 (Dict.t_to_js Ojs.string_to_js x14)
-        let (get_returnOnExit : t -> bool) =
+        let (get_return_on_exit : t -> bool) =
           fun (x16 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x16) "returnOnExit")
-        let (set_returnOnExit : t -> bool -> unit) =
+        let (set_return_on_exit : t -> bool -> unit) =
           fun (x17 : t) ->
             fun (x18 : bool) ->
               Ojs.set_prop_ascii (t_to_js x17) "returnOnExit"
@@ -70,13 +68,11 @@ module Wasi =
       end
     module WASI =
       struct
-        type t = wasi_WASI
-        let rec t_of_js : Ojs.t -> t =
-          fun (x29 : Ojs.t) -> wasi_WASI_of_js x29
-        and t_to_js : t -> Ojs.t =
-          fun (x28 : wasi_WASI) -> wasi_WASI_to_js x28
-        let (create : ?options:wasi_WASIOptions -> unit -> t) =
-          fun ?options:(x30 : wasi_WASIOptions option) ->
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x29 : Ojs.t) -> x29
+        and t_to_js : t -> Ojs.t = fun (x28 : Ojs.t) -> x28
+        let (create : ?options:WASIOptions.t -> unit -> t) =
+          fun ?options:(x30 : WASIOptions.t option) ->
             fun () ->
               t_of_js
                 (Ojs.new_obj_arr (Ojs.get_prop_ascii Import.wasi "WASI")
@@ -86,8 +82,7 @@ module Wasi =
                     (match x30 with
                      | Some x32 ->
                          ignore
-                           (Ojs.call x31 "push"
-                              [|(wasi_WASIOptions_to_js x32)|])
+                           (Ojs.call x31 "push" [|(WASIOptions.t_to_js x32)|])
                      | None -> ());
                     x31))
         let (start : t -> instance:untyped_object -> unit) =
@@ -102,7 +97,7 @@ module Wasi =
               ignore
                 (Ojs.call (t_to_js x36) "initialize"
                    [|(untyped_object_to_js x35)|])
-        let (get_wasiImport : t -> any Dict.t) =
+        let (get_wasi_import : t -> any Dict.t) =
           fun (x37 : t) ->
             Dict.t_of_js any_of_js
               (Ojs.get_prop_ascii (t_to_js x37) "wasiImport")

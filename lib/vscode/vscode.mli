@@ -5344,25 +5344,25 @@ module Vscode : sig
       include Error
     end
 
-    val file_not_found : ?messageOrUri:Uri.t or_string -> unit -> t
+    val file_not_found : ?message_or_uri:Uri.t or_string -> unit -> t
       [@@js.global "FileNotFound"]
 
-    val file_exists : ?messageOrUri:Uri.t or_string -> unit -> t
+    val file_exists : ?message_or_uri:Uri.t or_string -> unit -> t
       [@@js.global "FileExists"]
 
-    val file_not_a_directory : ?messageOrUri:Uri.t or_string -> unit -> t
+    val file_not_a_directory : ?message_or_uri:Uri.t or_string -> unit -> t
       [@@js.global "FileNotADirectory"]
 
-    val file_is_a_directory : ?messageOrUri:Uri.t or_string -> unit -> t
+    val file_is_a_directory : ?message_or_uri:Uri.t or_string -> unit -> t
       [@@js.global "FileIsADirectory"]
 
-    val no_permissions : ?messageOrUri:Uri.t or_string -> unit -> t
+    val no_permissions : ?message_or_uri:Uri.t or_string -> unit -> t
       [@@js.global "NoPermissions"]
 
-    val unavailable : ?messageOrUri:Uri.t or_string -> unit -> t
+    val unavailable : ?message_or_uri:Uri.t or_string -> unit -> t
       [@@js.global "Unavailable"]
 
-    val create : ?messageOrUri:Uri.t or_string -> unit -> t [@@js.create]
+    val create : ?message_or_uri:Uri.t or_string -> unit -> t [@@js.create]
 
     val code : t -> string [@@js.get "code"]
   end
@@ -6049,7 +6049,7 @@ module Vscode : sig
       -> 'T or_undefined Promise.t
       [@@js.global "executeCommand"]
 
-    val get_commands : ?filterInternal:bool -> unit -> string list Promise.t
+    val get_commands : ?filter_internal:bool -> unit -> string list Promise.t
       [@@js.global "getCommands"]
   end
   [@@js.scope "commands"]
@@ -7302,7 +7302,7 @@ module Vscode : sig
       -> Uri.t list Promise.t
       [@@js.global "findFiles"]
 
-    val save_all : ?includeUntitled:bool -> unit -> bool Promise.t
+    val save_all : ?include_untitled:bool -> unit -> bool Promise.t
       [@@js.global "saveAll"]
 
     val apply_edit : WorkspaceEdit.t -> bool Promise.t [@@js.global "applyEdit"]
@@ -8298,10 +8298,10 @@ module Vscode : sig
   [@@js.scope "debug"]
 
   module Extensions : sig
-    val get_extension : extensionId:string -> any Extension.t or_undefined
+    val get_extension : extension_id:string -> any Extension.t or_undefined
       [@@js.global "getExtension"]
 
-    val get_extension : extensionId:string -> 'T Extension.t or_undefined
+    val get_extension : extension_id:string -> 'T Extension.t or_undefined
       [@@js.global "getExtension"]
 
     val all : any Extension.t list [@@js.global "all"]

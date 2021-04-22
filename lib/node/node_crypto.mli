@@ -12,9 +12,9 @@ module AnonymousInterface0 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_plaintextLength : t -> int [@@js.get "plaintextLength"]
+  val get_plaintext_length : t -> int [@@js.get "plaintextLength"]
 
-  val set_plaintextLength : t -> int -> unit [@@js.set "plaintextLength"]
+  val set_plaintext_length : t -> int -> unit [@@js.set "plaintextLength"]
 end
 
 module AnonymousInterface1 : sig
@@ -24,13 +24,13 @@ module AnonymousInterface1 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_privateKey : t -> crypto_KeyObject [@@js.get "privateKey"]
+  val get_private_key : t -> KeyObject.t [@@js.get "privateKey"]
 
-  val set_privateKey : t -> crypto_KeyObject -> unit [@@js.set "privateKey"]
+  val set_private_key : t -> KeyObject.t -> unit [@@js.set "privateKey"]
 
-  val get_publicKey : t -> crypto_KeyObject [@@js.get "publicKey"]
+  val get_public_key : t -> KeyObject.t [@@js.get "publicKey"]
 
-  val set_publicKey : t -> crypto_KeyObject -> unit [@@js.set "publicKey"]
+  val set_public_key : t -> KeyObject.t -> unit [@@js.set "publicKey"]
 end
 
 module AnonymousInterface2 : sig
@@ -40,13 +40,13 @@ module AnonymousInterface2 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_publicKey : t -> Buffer.t [@@js.get "publicKey"]
+  val get_public_key : t -> Buffer.t [@@js.get "publicKey"]
 
-  val set_publicKey : t -> Buffer.t -> unit [@@js.set "publicKey"]
+  val set_public_key : t -> Buffer.t -> unit [@@js.set "publicKey"]
 
-  val get_privateKey : t -> Buffer.t [@@js.get "privateKey"]
+  val get_private_key : t -> Buffer.t [@@js.get "privateKey"]
 
-  val set_privateKey : t -> Buffer.t -> unit [@@js.set "privateKey"]
+  val set_private_key : t -> Buffer.t -> unit [@@js.set "privateKey"]
 end
 
 module AnonymousInterface3 : sig
@@ -56,13 +56,13 @@ module AnonymousInterface3 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_publicKey : t -> Buffer.t [@@js.get "publicKey"]
+  val get_public_key : t -> Buffer.t [@@js.get "publicKey"]
 
-  val set_publicKey : t -> Buffer.t -> unit [@@js.set "publicKey"]
+  val set_public_key : t -> Buffer.t -> unit [@@js.set "publicKey"]
 
-  val get_privateKey : t -> string [@@js.get "privateKey"]
+  val get_private_key : t -> string [@@js.get "privateKey"]
 
-  val set_privateKey : t -> string -> unit [@@js.set "privateKey"]
+  val set_private_key : t -> string -> unit [@@js.set "privateKey"]
 end
 
 module AnonymousInterface4 : sig
@@ -72,13 +72,13 @@ module AnonymousInterface4 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_publicKey : t -> string [@@js.get "publicKey"]
+  val get_public_key : t -> string [@@js.get "publicKey"]
 
-  val set_publicKey : t -> string -> unit [@@js.set "publicKey"]
+  val set_public_key : t -> string -> unit [@@js.set "publicKey"]
 
-  val get_privateKey : t -> Buffer.t [@@js.get "privateKey"]
+  val get_private_key : t -> Buffer.t [@@js.get "privateKey"]
 
-  val set_privateKey : t -> Buffer.t -> unit [@@js.set "privateKey"]
+  val set_private_key : t -> Buffer.t -> unit [@@js.set "privateKey"]
 end
 
 module AnonymousInterface5 : sig
@@ -88,13 +88,13 @@ module AnonymousInterface5 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_publicKey : t -> string [@@js.get "publicKey"]
+  val get_public_key : t -> string [@@js.get "publicKey"]
 
-  val set_publicKey : t -> string -> unit [@@js.set "publicKey"]
+  val set_public_key : t -> string -> unit [@@js.set "publicKey"]
 
-  val get_privateKey : t -> string [@@js.get "privateKey"]
+  val get_private_key : t -> string [@@js.get "privateKey"]
 
-  val set_privateKey : t -> string -> unit [@@js.set "privateKey"]
+  val set_private_key : t -> string -> unit [@@js.set "privateKey"]
 end
 
 module AnonymousInterface6 : sig
@@ -177,205 +177,205 @@ module AnonymousInterface11 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val create : t -> crypto_Certificate [@@js.apply_newable]
+  val create : t -> Certificate.t [@@js.apply_newable]
 
-  val apply : t -> crypto_Certificate [@@js.apply]
+  val apply : t -> Certificate.t [@@js.apply]
 end
 
 module Crypto : sig
   open Node_stream
 
   module Certificate : sig
-    type t = crypto_Certificate
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val exportChallenge : t -> spkac:crypto_BinaryLike -> Buffer.t
+    val export_challenge : t -> spkac:BinaryLike.t -> Buffer.t
       [@@js.call "exportChallenge"]
 
-    val exportPublicKey
+    val export_public_key
       :  t
-      -> spkac:crypto_BinaryLike
+      -> spkac:BinaryLike.t
       -> ?encoding:string
       -> unit
       -> Buffer.t
       [@@js.call "exportPublicKey"]
 
-    val verifySpkac : t -> spkac:ArrayBufferView.t -> bool
+    val verify_spkac : t -> spkac:ArrayBufferView.t -> bool
       [@@js.call "verifySpkac"]
   end
   [@@js.scope "Certificate"]
 
-  val certificate : (crypto_Certificate, AnonymousInterface11.t) intersection2
+  val certificate : (Certificate.t, AnonymousInterface11.t) intersection2
     [@@js.global "Certificate"]
 
   module Constants : sig
-    val oPENSSL_VERSION_NUMBER : int [@@js.global "OPENSSL_VERSION_NUMBER"]
+    val o_penssl_version_number : int [@@js.global "OPENSSL_VERSION_NUMBER"]
 
-    val sSL_OP_ALL : int [@@js.global "SSL_OP_ALL"]
+    val ssl_op_all : int [@@js.global "SSL_OP_ALL"]
 
-    val sSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION : int
+    val ssl_op_allow_unsafe_legacy_renegotiation : int
       [@@js.global "SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION"]
 
-    val sSL_OP_CIPHER_SERVER_PREFERENCE : int
+    val ssl_op_cipher_server_preference : int
       [@@js.global "SSL_OP_CIPHER_SERVER_PREFERENCE"]
 
-    val sSL_OP_CISCO_ANYCONNECT : int [@@js.global "SSL_OP_CISCO_ANYCONNECT"]
+    val ssl_op_cisco_anyconnect : int [@@js.global "SSL_OP_CISCO_ANYCONNECT"]
 
-    val sSL_OP_COOKIE_EXCHANGE : int [@@js.global "SSL_OP_COOKIE_EXCHANGE"]
+    val ssl_op_cookie_exchange : int [@@js.global "SSL_OP_COOKIE_EXCHANGE"]
 
-    val sSL_OP_CRYPTOPRO_TLSEXT_BUG : int
+    val ssl_op_cryptopro_tlsext_bug : int
       [@@js.global "SSL_OP_CRYPTOPRO_TLSEXT_BUG"]
 
-    val sSL_OP_DONT_INSERT_EMPTY_FRAGMENTS : int
+    val ssl_op_dont_insert_empty_fragments : int
       [@@js.global "SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS"]
 
-    val sSL_OP_EPHEMERAL_RSA : int [@@js.global "SSL_OP_EPHEMERAL_RSA"]
+    val ssl_op_ephemeral_rsa : int [@@js.global "SSL_OP_EPHEMERAL_RSA"]
 
-    val sSL_OP_LEGACY_SERVER_CONNECT : int
+    val ssl_op_legacy_server_connect : int
       [@@js.global "SSL_OP_LEGACY_SERVER_CONNECT"]
 
-    val sSL_OP_MICROSOFT_BIG_SSLV3_BUFFER : int
+    val ssl_op_microsoft_big_sslv3_BUFFER : int
       [@@js.global "SSL_OP_MICROSOFT_BIG_SSLV3_BUFFER"]
 
-    val sSL_OP_MICROSOFT_SESS_ID_BUG : int
+    val ssl_op_microsoft_sess_id_bug : int
       [@@js.global "SSL_OP_MICROSOFT_SESS_ID_BUG"]
 
-    val sSL_OP_MSIE_SSLV2_RSA_PADDING : int
+    val ssl_op_msie_sslv2_RSA_PADDING : int
       [@@js.global "SSL_OP_MSIE_SSLV2_RSA_PADDING"]
 
-    val sSL_OP_NETSCAPE_CA_DN_BUG : int
+    val ssl_op_netscape_ca_dn_bug : int
       [@@js.global "SSL_OP_NETSCAPE_CA_DN_BUG"]
 
-    val sSL_OP_NETSCAPE_CHALLENGE_BUG : int
+    val ssl_op_netscape_challenge_bug : int
       [@@js.global "SSL_OP_NETSCAPE_CHALLENGE_BUG"]
 
-    val sSL_OP_NETSCAPE_DEMO_CIPHER_CHANGE_BUG : int
+    val ssl_op_netscape_demo_cipher_change_bug : int
       [@@js.global "SSL_OP_NETSCAPE_DEMO_CIPHER_CHANGE_BUG"]
 
-    val sSL_OP_NETSCAPE_REUSE_CIPHER_CHANGE_BUG : int
+    val ssl_op_netscape_reuse_cipher_change_bug : int
       [@@js.global "SSL_OP_NETSCAPE_REUSE_CIPHER_CHANGE_BUG"]
 
-    val sSL_OP_NO_COMPRESSION : int [@@js.global "SSL_OP_NO_COMPRESSION"]
+    val ssl_op_no_compression : int [@@js.global "SSL_OP_NO_COMPRESSION"]
 
-    val sSL_OP_NO_QUERY_MTU : int [@@js.global "SSL_OP_NO_QUERY_MTU"]
+    val ssl_op_no_query_mtu : int [@@js.global "SSL_OP_NO_QUERY_MTU"]
 
-    val sSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION : int
+    val ssl_op_no_session_resumption_on_renegotiation : int
       [@@js.global "SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION"]
 
-    val sSL_OP_NO_SSLv2 : int [@@js.global "SSL_OP_NO_SSLv2"]
+    val ssl_op_no_ss_lv2 : int [@@js.global "SSL_OP_NO_SSLv2"]
 
-    val sSL_OP_NO_SSLv3 : int [@@js.global "SSL_OP_NO_SSLv3"]
+    val ssl_op_no_ss_lv3 : int [@@js.global "SSL_OP_NO_SSLv3"]
 
-    val sSL_OP_NO_TICKET : int [@@js.global "SSL_OP_NO_TICKET"]
+    val ssl_op_no_ticket : int [@@js.global "SSL_OP_NO_TICKET"]
 
-    val sSL_OP_NO_TLSv1 : int [@@js.global "SSL_OP_NO_TLSv1"]
+    val ssl_op_no_tl_sv1 : int [@@js.global "SSL_OP_NO_TLSv1"]
 
-    val sSL_OP_NO_TLSv1_1 : int [@@js.global "SSL_OP_NO_TLSv1_1"]
+    val ssl_op_no_tl_sv1_1 : int [@@js.global "SSL_OP_NO_TLSv1_1"]
 
-    val sSL_OP_NO_TLSv1_2 : int [@@js.global "SSL_OP_NO_TLSv1_2"]
+    val ssl_op_no_tl_sv1_2 : int [@@js.global "SSL_OP_NO_TLSv1_2"]
 
-    val sSL_OP_PKCS1_CHECK_1 : int [@@js.global "SSL_OP_PKCS1_CHECK_1"]
+    val ssl_op_pkcs1_CHECK_1 : int [@@js.global "SSL_OP_PKCS1_CHECK_1"]
 
-    val sSL_OP_PKCS1_CHECK_2 : int [@@js.global "SSL_OP_PKCS1_CHECK_2"]
+    val ssl_op_pkcs1_CHECK_2 : int [@@js.global "SSL_OP_PKCS1_CHECK_2"]
 
-    val sSL_OP_SINGLE_DH_USE : int [@@js.global "SSL_OP_SINGLE_DH_USE"]
+    val ssl_op_single_dh_use : int [@@js.global "SSL_OP_SINGLE_DH_USE"]
 
-    val sSL_OP_SINGLE_ECDH_USE : int [@@js.global "SSL_OP_SINGLE_ECDH_USE"]
+    val ssl_op_single_ecdh_use : int [@@js.global "SSL_OP_SINGLE_ECDH_USE"]
 
-    val sSL_OP_SSLEAY_080_CLIENT_DH_BUG : int
+    val ssl_op_ssleay080_CLIENT_DH_BUG : int
       [@@js.global "SSL_OP_SSLEAY_080_CLIENT_DH_BUG"]
 
-    val sSL_OP_SSLREF2_REUSE_CERT_TYPE_BUG : int
+    val ssl_op_sslref2_REUSE_CERT_TYPE_BUG : int
       [@@js.global "SSL_OP_SSLREF2_REUSE_CERT_TYPE_BUG"]
 
-    val sSL_OP_TLS_BLOCK_PADDING_BUG : int
+    val ssl_op_tls_block_padding_bug : int
       [@@js.global "SSL_OP_TLS_BLOCK_PADDING_BUG"]
 
-    val sSL_OP_TLS_D5_BUG : int [@@js.global "SSL_OP_TLS_D5_BUG"]
+    val ssl_op_tls_d5_BUG : int [@@js.global "SSL_OP_TLS_D5_BUG"]
 
-    val sSL_OP_TLS_ROLLBACK_BUG : int [@@js.global "SSL_OP_TLS_ROLLBACK_BUG"]
+    val ssl_op_tls_rollback_bug : int [@@js.global "SSL_OP_TLS_ROLLBACK_BUG"]
 
-    val eNGINE_METHOD_RSA : int [@@js.global "ENGINE_METHOD_RSA"]
+    val engine_method_rsa : int [@@js.global "ENGINE_METHOD_RSA"]
 
-    val eNGINE_METHOD_DSA : int [@@js.global "ENGINE_METHOD_DSA"]
+    val engine_method_dsa : int [@@js.global "ENGINE_METHOD_DSA"]
 
-    val eNGINE_METHOD_DH : int [@@js.global "ENGINE_METHOD_DH"]
+    val engine_method_dh : int [@@js.global "ENGINE_METHOD_DH"]
 
-    val eNGINE_METHOD_RAND : int [@@js.global "ENGINE_METHOD_RAND"]
+    val engine_method_rand : int [@@js.global "ENGINE_METHOD_RAND"]
 
-    val eNGINE_METHOD_EC : int [@@js.global "ENGINE_METHOD_EC"]
+    val engine_method_ec : int [@@js.global "ENGINE_METHOD_EC"]
 
-    val eNGINE_METHOD_CIPHERS : int [@@js.global "ENGINE_METHOD_CIPHERS"]
+    val engine_method_ciphers : int [@@js.global "ENGINE_METHOD_CIPHERS"]
 
-    val eNGINE_METHOD_DIGESTS : int [@@js.global "ENGINE_METHOD_DIGESTS"]
+    val engine_method_digests : int [@@js.global "ENGINE_METHOD_DIGESTS"]
 
-    val eNGINE_METHOD_PKEY_METHS : int [@@js.global "ENGINE_METHOD_PKEY_METHS"]
+    val engine_method_pkey_meths : int [@@js.global "ENGINE_METHOD_PKEY_METHS"]
 
-    val eNGINE_METHOD_PKEY_ASN1_METHS : int
+    val engine_method_pkey_asn1_METHS : int
       [@@js.global "ENGINE_METHOD_PKEY_ASN1_METHS"]
 
-    val eNGINE_METHOD_ALL : int [@@js.global "ENGINE_METHOD_ALL"]
+    val engine_method_all : int [@@js.global "ENGINE_METHOD_ALL"]
 
-    val eNGINE_METHOD_NONE : int [@@js.global "ENGINE_METHOD_NONE"]
+    val engine_method_none : int [@@js.global "ENGINE_METHOD_NONE"]
 
-    val dH_CHECK_P_NOT_SAFE_PRIME : int
+    val dh_check_p_not_safe_prime : int
       [@@js.global "DH_CHECK_P_NOT_SAFE_PRIME"]
 
-    val dH_CHECK_P_NOT_PRIME : int [@@js.global "DH_CHECK_P_NOT_PRIME"]
+    val dh_check_p_not_prime : int [@@js.global "DH_CHECK_P_NOT_PRIME"]
 
-    val dH_UNABLE_TO_CHECK_GENERATOR : int
+    val dh_unable_to_check_generator : int
       [@@js.global "DH_UNABLE_TO_CHECK_GENERATOR"]
 
-    val dH_NOT_SUITABLE_GENERATOR : int
+    val dh_not_suitable_generator : int
       [@@js.global "DH_NOT_SUITABLE_GENERATOR"]
 
-    val aLPN_ENABLED : int [@@js.global "ALPN_ENABLED"]
+    val alpn_enabled : int [@@js.global "ALPN_ENABLED"]
 
-    val rSA_PKCS1_PADDING : int [@@js.global "RSA_PKCS1_PADDING"]
+    val rsa_pkcs1_PADDING : int [@@js.global "RSA_PKCS1_PADDING"]
 
-    val rSA_SSLV23_PADDING : int [@@js.global "RSA_SSLV23_PADDING"]
+    val rsa_sslv23_PADDING : int [@@js.global "RSA_SSLV23_PADDING"]
 
-    val rSA_NO_PADDING : int [@@js.global "RSA_NO_PADDING"]
+    val rsa_no_padding : int [@@js.global "RSA_NO_PADDING"]
 
-    val rSA_PKCS1_OAEP_PADDING : int [@@js.global "RSA_PKCS1_OAEP_PADDING"]
+    val rsa_pkcs1_OAEP_PADDING : int [@@js.global "RSA_PKCS1_OAEP_PADDING"]
 
-    val rSA_X931_PADDING : int [@@js.global "RSA_X931_PADDING"]
+    val rsa_x931_PADDING : int [@@js.global "RSA_X931_PADDING"]
 
-    val rSA_PKCS1_PSS_PADDING : int [@@js.global "RSA_PKCS1_PSS_PADDING"]
+    val rsa_pkcs1_PSS_PADDING : int [@@js.global "RSA_PKCS1_PSS_PADDING"]
 
-    val rSA_PSS_SALTLEN_DIGEST : int [@@js.global "RSA_PSS_SALTLEN_DIGEST"]
+    val rsa_pss_saltlen_digest : int [@@js.global "RSA_PSS_SALTLEN_DIGEST"]
 
-    val rSA_PSS_SALTLEN_MAX_SIGN : int [@@js.global "RSA_PSS_SALTLEN_MAX_SIGN"]
+    val rsa_pss_saltlen_max_sign : int [@@js.global "RSA_PSS_SALTLEN_MAX_SIGN"]
 
-    val rSA_PSS_SALTLEN_AUTO : int [@@js.global "RSA_PSS_SALTLEN_AUTO"]
+    val rsa_pss_saltlen_auto : int [@@js.global "RSA_PSS_SALTLEN_AUTO"]
 
-    val pOINT_CONVERSION_COMPRESSED : int
+    val point_conversion_compressed : int
       [@@js.global "POINT_CONVERSION_COMPRESSED"]
 
-    val pOINT_CONVERSION_UNCOMPRESSED : int
+    val point_conversion_uncompressed : int
       [@@js.global "POINT_CONVERSION_UNCOMPRESSED"]
 
-    val pOINT_CONVERSION_HYBRID : int [@@js.global "POINT_CONVERSION_HYBRID"]
+    val point_conversion_hybrid : int [@@js.global "POINT_CONVERSION_HYBRID"]
 
-    val defaultCoreCipherList : string [@@js.global "defaultCoreCipherList"]
+    val default_core_cipher_list : string [@@js.global "defaultCoreCipherList"]
 
-    val defaultCipherList : string [@@js.global "defaultCipherList"]
+    val default_cipher_list : string [@@js.global "defaultCipherList"]
   end
   [@@js.scope "constants"]
 
   module HashOptions : sig
-    type t = crypto_HashOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_outputLength : t -> int [@@js.get "outputLength"]
+    val get_output_length : t -> int [@@js.get "outputLength"]
 
-    val set_outputLength : t -> int -> unit [@@js.set "outputLength"]
+    val set_output_length : t -> int -> unit [@@js.set "outputLength"]
 
     val cast : t -> Stream.TransformOptions.t [@@js.cast]
   end
@@ -383,19 +383,15 @@ module Crypto : sig
 
   val fips : bool [@@js.global "fips"]
 
-  val createHash
-    :  algorithm:string
-    -> ?options:crypto_HashOptions
-    -> unit
-    -> crypto_Hash
+  val create_hash : algorithm:string -> ?options:HashOptions.t -> unit -> Hash.t
     [@@js.global "createHash"]
 
-  val createHmac
+  val create_hmac
     :  algorithm:string
-    -> key:(crypto_BinaryLike, crypto_KeyObject) union2
+    -> key:(BinaryLike.t, KeyObject.t) union2
     -> ?options:Stream.TransformOptions.t
     -> unit
-    -> crypto_Hmac
+    -> Hmac.t
     [@@js.global "createHmac"]
 
   module BinaryToTextEncoding : sig
@@ -440,9 +436,9 @@ module Crypto : sig
 
   module Encoding : sig
     type t =
-      ( ( crypto_BinaryToTextEncoding
-        , crypto_CharacterEncoding
-        , crypto_LegacyCharacterEncoding )
+      ( ( BinaryToTextEncoding.t
+        , CharacterEncoding.t
+        , LegacyCharacterEncoding.t )
         union3
       , ([ `ascii [@js "ascii"]
          | `base64 [@js "base64"]
@@ -477,7 +473,7 @@ module Crypto : sig
   end
 
   module Hash : sig
-    type t = crypto_Hash
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -487,14 +483,14 @@ module Crypto : sig
 
     val copy : t -> t [@@js.call "copy"]
 
-    val update : t -> data:crypto_BinaryLike -> t [@@js.call "update"]
+    val update : t -> data:BinaryLike.t -> t [@@js.call "update"]
 
-    val update' : t -> data:string -> input_encoding:crypto_Encoding -> t
+    val update' : t -> data:string -> input_encoding:Encoding.t -> t
       [@@js.call "update"]
 
     val digest : t -> Buffer.t [@@js.call "digest"]
 
-    val digest' : t -> encoding:crypto_BinaryToTextEncoding -> string
+    val digest' : t -> encoding:BinaryToTextEncoding.t -> string
       [@@js.call "digest"]
 
     val cast : t -> Stream.Transform.t [@@js.cast]
@@ -502,7 +498,7 @@ module Crypto : sig
   [@@js.scope "Hash"]
 
   module Hmac : sig
-    type t = crypto_Hmac
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -510,14 +506,14 @@ module Crypto : sig
 
     val create : unit -> t [@@js.create]
 
-    val update : t -> data:crypto_BinaryLike -> t [@@js.call "update"]
+    val update : t -> data:BinaryLike.t -> t [@@js.call "update"]
 
-    val update' : t -> data:string -> input_encoding:crypto_Encoding -> t
+    val update' : t -> data:string -> input_encoding:Encoding.t -> t
       [@@js.call "update"]
 
     val digest : t -> Buffer.t [@@js.call "digest"]
 
-    val digest' : t -> encoding:crypto_BinaryToTextEncoding -> string
+    val digest' : t -> encoding:BinaryToTextEncoding.t -> string
       [@@js.call "digest"]
 
     val cast : t -> Stream.Transform.t [@@js.cast]
@@ -538,7 +534,7 @@ module Crypto : sig
   end
 
   module KeyExportOptions : sig
-    type 'T t = 'T crypto_KeyExportOptions
+    type 'T t
 
     val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
@@ -576,7 +572,7 @@ module Crypto : sig
   [@@js.scope "KeyExportOptions"]
 
   module KeyObject : sig
-    type t = crypto_KeyObject
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -584,36 +580,36 @@ module Crypto : sig
 
     val create : unit -> t [@@js.create]
 
-    val get_asymmetricKeyType : t -> crypto_KeyType
-      [@@js.get "asymmetricKeyType"]
+    val get_asymmetric_key_type : t -> KeyType.t [@@js.get "asymmetricKeyType"]
 
-    val set_asymmetricKeyType : t -> crypto_KeyType -> unit
+    val set_asymmetric_key_type : t -> KeyType.t -> unit
       [@@js.set "asymmetricKeyType"]
 
-    val get_asymmetricKeySize : t -> int [@@js.get "asymmetricKeySize"]
+    val get_asymmetric_key_size : t -> int [@@js.get "asymmetricKeySize"]
 
-    val set_asymmetricKeySize : t -> int -> unit [@@js.set "asymmetricKeySize"]
+    val set_asymmetric_key_size : t -> int -> unit
+      [@@js.set "asymmetricKeySize"]
 
     val export
       :  t
-      -> options:([ `pem ][@js.enum]) crypto_KeyExportOptions
+      -> options:([ `pem ][@js.enum]) KeyExportOptions.t
       -> Buffer.t or_string
       [@@js.call "export"]
 
     val export'
       :  t
-      -> ?options:([ `der ][@js.enum]) crypto_KeyExportOptions
+      -> ?options:([ `der ][@js.enum]) KeyExportOptions.t
       -> unit
       -> Buffer.t
       [@@js.call "export"]
 
-    val get_symmetricKeySize : t -> int [@@js.get "symmetricKeySize"]
+    val get_symmetric_key_size : t -> int [@@js.get "symmetricKeySize"]
 
-    val set_symmetricKeySize : t -> int -> unit [@@js.set "symmetricKeySize"]
+    val set_symmetric_key_size : t -> int -> unit [@@js.set "symmetricKeySize"]
 
-    val get_type : t -> crypto_KeyObjectType [@@js.get "type"]
+    val get_type : t -> KeyObjectType.t [@@js.get "type"]
 
-    val set_type : t -> crypto_KeyObjectType -> unit [@@js.set "type"]
+    val set_type : t -> KeyObjectType.t -> unit [@@js.set "type"]
   end
   [@@js.scope "KeyObject"]
 
@@ -645,7 +641,7 @@ module Crypto : sig
   end
 
   module BinaryLike : sig
-    type t = crypto_BinaryLike
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -653,7 +649,7 @@ module Crypto : sig
   end
 
   module CipherKey : sig
-    type t = (crypto_BinaryLike, crypto_KeyObject) union2
+    type t = (BinaryLike.t, KeyObject.t) union2
 
     val t_to_js : t -> Ojs.t
 
@@ -661,86 +657,86 @@ module Crypto : sig
   end
 
   module CipherCCMOptions : sig
-    type t = crypto_CipherCCMOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_authTagLength : t -> int [@@js.get "authTagLength"]
+    val get_auth_tag_length : t -> int [@@js.get "authTagLength"]
 
-    val set_authTagLength : t -> int -> unit [@@js.set "authTagLength"]
+    val set_auth_tag_length : t -> int -> unit [@@js.set "authTagLength"]
 
     val cast : t -> Stream.TransformOptions.t [@@js.cast]
   end
   [@@js.scope "CipherCCMOptions"]
 
   module CipherGCMOptions : sig
-    type t = crypto_CipherGCMOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_authTagLength : t -> int [@@js.get "authTagLength"]
+    val get_auth_tag_length : t -> int [@@js.get "authTagLength"]
 
-    val set_authTagLength : t -> int -> unit [@@js.set "authTagLength"]
+    val set_auth_tag_length : t -> int -> unit [@@js.set "authTagLength"]
 
     val cast : t -> Stream.TransformOptions.t [@@js.cast]
   end
   [@@js.scope "CipherGCMOptions"]
 
-  val createCipher
-    :  algorithm:crypto_CipherCCMTypes
-    -> password:crypto_BinaryLike
-    -> options:crypto_CipherCCMOptions
-    -> crypto_CipherCCM
+  val create_cipher
+    :  algorithm:CipherCCMTypes.t
+    -> password:BinaryLike.t
+    -> options:CipherCCMOptions.t
+    -> CipherCCM.t
     [@@js.global "createCipher"]
 
-  val createCipher
-    :  algorithm:crypto_CipherGCMTypes
-    -> password:crypto_BinaryLike
-    -> ?options:crypto_CipherGCMOptions
+  val create_cipher
+    :  algorithm:CipherGCMTypes.t
+    -> password:BinaryLike.t
+    -> ?options:CipherGCMOptions.t
     -> unit
-    -> crypto_CipherGCM
+    -> CipherGCM.t
     [@@js.global "createCipher"]
 
-  val createCipher
+  val create_cipher
     :  algorithm:string
-    -> password:crypto_BinaryLike
+    -> password:BinaryLike.t
     -> ?options:Stream.TransformOptions.t
     -> unit
-    -> crypto_Cipher
+    -> Cipher.t
     [@@js.global "createCipher"]
 
-  val createCipheriv
-    :  algorithm:crypto_CipherCCMTypes
-    -> key:crypto_CipherKey
-    -> iv:crypto_BinaryLike or_null
-    -> options:crypto_CipherCCMOptions
-    -> crypto_CipherCCM
+  val create_cipheriv
+    :  algorithm:CipherCCMTypes.t
+    -> key:CipherKey.t
+    -> iv:BinaryLike.t or_null
+    -> options:CipherCCMOptions.t
+    -> CipherCCM.t
     [@@js.global "createCipheriv"]
 
-  val createCipheriv
-    :  algorithm:crypto_CipherGCMTypes
-    -> key:crypto_CipherKey
-    -> iv:crypto_BinaryLike or_null
-    -> ?options:crypto_CipherGCMOptions
+  val create_cipheriv
+    :  algorithm:CipherGCMTypes.t
+    -> key:CipherKey.t
+    -> iv:BinaryLike.t or_null
+    -> ?options:CipherGCMOptions.t
     -> unit
-    -> crypto_CipherGCM
+    -> CipherGCM.t
     [@@js.global "createCipheriv"]
 
-  val createCipheriv
+  val create_cipheriv
     :  algorithm:string
-    -> key:crypto_CipherKey
-    -> iv:crypto_BinaryLike or_null
+    -> key:CipherKey.t
+    -> iv:BinaryLike.t or_null
     -> ?options:Stream.TransformOptions.t
     -> unit
-    -> crypto_Cipher
+    -> Cipher.t
     [@@js.global "createCipheriv"]
 
   module Cipher : sig
-    type t = crypto_Cipher
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -748,24 +744,24 @@ module Crypto : sig
 
     val create : unit -> t [@@js.create]
 
-    val update : t -> data:crypto_BinaryLike -> Buffer.t [@@js.call "update"]
+    val update : t -> data:BinaryLike.t -> Buffer.t [@@js.call "update"]
 
-    val update' : t -> data:string -> input_encoding:crypto_Encoding -> Buffer.t
+    val update' : t -> data:string -> input_encoding:Encoding.t -> Buffer.t
       [@@js.call "update"]
 
     val update''
       :  t
       -> data:ArrayBufferView.t
       -> input_encoding:never or_undefined
-      -> output_encoding:crypto_Encoding
+      -> output_encoding:Encoding.t
       -> string
       [@@js.call "update"]
 
     val update'''
       :  t
       -> data:string
-      -> input_encoding:crypto_Encoding or_undefined
-      -> output_encoding:crypto_Encoding
+      -> input_encoding:Encoding.t or_undefined
+      -> output_encoding:Encoding.t
       -> string
       [@@js.call "update"]
 
@@ -774,7 +770,7 @@ module Crypto : sig
     val final' : t -> output_encoding:BufferEncoding.t -> string
       [@@js.call "final"]
 
-    val setAutoPadding : t -> ?auto_padding:bool -> unit -> t
+    val set_auto_padding : t -> ?auto_padding:bool -> unit -> t
       [@@js.call "setAutoPadding"]
 
     val cast : t -> Stream.Transform.t [@@js.cast]
@@ -782,33 +778,33 @@ module Crypto : sig
   [@@js.scope "Cipher"]
 
   module CipherCCM : sig
-    type t = crypto_CipherCCM
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val setAAD
+    val set_aad
       :  t
       -> buffer:ArrayBufferView.t
       -> options:AnonymousInterface0.t
       -> t
       [@@js.call "setAAD"]
 
-    val getAuthTag : t -> Buffer.t [@@js.call "getAuthTag"]
+    val get_auth_tag : t -> Buffer.t [@@js.call "getAuthTag"]
 
-    val cast : t -> crypto_Cipher [@@js.cast]
+    val cast : t -> Cipher.t [@@js.cast]
   end
   [@@js.scope "CipherCCM"]
 
   module CipherGCM : sig
-    type t = crypto_CipherGCM
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val setAAD
+    val set_aad
       :  t
       -> buffer:ArrayBufferView.t
       -> ?options:AnonymousInterface0.t
@@ -816,63 +812,63 @@ module Crypto : sig
       -> t
       [@@js.call "setAAD"]
 
-    val getAuthTag : t -> Buffer.t [@@js.call "getAuthTag"]
+    val get_auth_tag : t -> Buffer.t [@@js.call "getAuthTag"]
 
-    val cast : t -> crypto_Cipher [@@js.cast]
+    val cast : t -> Cipher.t [@@js.cast]
   end
   [@@js.scope "CipherGCM"]
 
-  val createDecipher
-    :  algorithm:crypto_CipherCCMTypes
-    -> password:crypto_BinaryLike
-    -> options:crypto_CipherCCMOptions
-    -> crypto_DecipherCCM
+  val create_decipher
+    :  algorithm:CipherCCMTypes.t
+    -> password:BinaryLike.t
+    -> options:CipherCCMOptions.t
+    -> DecipherCCM.t
     [@@js.global "createDecipher"]
 
-  val createDecipher
-    :  algorithm:crypto_CipherGCMTypes
-    -> password:crypto_BinaryLike
-    -> ?options:crypto_CipherGCMOptions
+  val create_decipher
+    :  algorithm:CipherGCMTypes.t
+    -> password:BinaryLike.t
+    -> ?options:CipherGCMOptions.t
     -> unit
-    -> crypto_DecipherGCM
+    -> DecipherGCM.t
     [@@js.global "createDecipher"]
 
-  val createDecipher
+  val create_decipher
     :  algorithm:string
-    -> password:crypto_BinaryLike
+    -> password:BinaryLike.t
     -> ?options:Stream.TransformOptions.t
     -> unit
-    -> crypto_Decipher
+    -> Decipher.t
     [@@js.global "createDecipher"]
 
-  val createDecipheriv
-    :  algorithm:crypto_CipherCCMTypes
-    -> key:crypto_CipherKey
-    -> iv:crypto_BinaryLike or_null
-    -> options:crypto_CipherCCMOptions
-    -> crypto_DecipherCCM
+  val create_decipheriv
+    :  algorithm:CipherCCMTypes.t
+    -> key:CipherKey.t
+    -> iv:BinaryLike.t or_null
+    -> options:CipherCCMOptions.t
+    -> DecipherCCM.t
     [@@js.global "createDecipheriv"]
 
-  val createDecipheriv
-    :  algorithm:crypto_CipherGCMTypes
-    -> key:crypto_CipherKey
-    -> iv:crypto_BinaryLike or_null
-    -> ?options:crypto_CipherGCMOptions
+  val create_decipheriv
+    :  algorithm:CipherGCMTypes.t
+    -> key:CipherKey.t
+    -> iv:BinaryLike.t or_null
+    -> ?options:CipherGCMOptions.t
     -> unit
-    -> crypto_DecipherGCM
+    -> DecipherGCM.t
     [@@js.global "createDecipheriv"]
 
-  val createDecipheriv
+  val create_decipheriv
     :  algorithm:string
-    -> key:crypto_CipherKey
-    -> iv:crypto_BinaryLike or_null
+    -> key:CipherKey.t
+    -> iv:BinaryLike.t or_null
     -> ?options:Stream.TransformOptions.t
     -> unit
-    -> crypto_Decipher
+    -> Decipher.t
     [@@js.global "createDecipheriv"]
 
   module Decipher : sig
-    type t = crypto_Decipher
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -882,22 +878,22 @@ module Crypto : sig
 
     val update : t -> data:ArrayBufferView.t -> Buffer.t [@@js.call "update"]
 
-    val update' : t -> data:string -> input_encoding:crypto_Encoding -> Buffer.t
+    val update' : t -> data:string -> input_encoding:Encoding.t -> Buffer.t
       [@@js.call "update"]
 
     val update''
       :  t
       -> data:ArrayBufferView.t
       -> input_encoding:never or_undefined
-      -> output_encoding:crypto_Encoding
+      -> output_encoding:Encoding.t
       -> string
       [@@js.call "update"]
 
     val update'''
       :  t
       -> data:string
-      -> input_encoding:crypto_Encoding or_undefined
-      -> output_encoding:crypto_Encoding
+      -> input_encoding:Encoding.t or_undefined
+      -> output_encoding:Encoding.t
       -> string
       [@@js.call "update"]
 
@@ -906,7 +902,7 @@ module Crypto : sig
     val final' : t -> output_encoding:BufferEncoding.t -> string
       [@@js.call "final"]
 
-    val setAutoPadding : t -> ?auto_padding:bool -> unit -> t
+    val set_auto_padding : t -> ?auto_padding:bool -> unit -> t
       [@@js.call "setAutoPadding"]
 
     val cast : t -> Stream.Transform.t [@@js.cast]
@@ -914,35 +910,37 @@ module Crypto : sig
   [@@js.scope "Decipher"]
 
   module DecipherCCM : sig
-    type t = crypto_DecipherCCM
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val setAuthTag : t -> buffer:ArrayBufferView.t -> t [@@js.call "setAuthTag"]
+    val set_auth_tag : t -> buffer:ArrayBufferView.t -> t
+      [@@js.call "setAuthTag"]
 
-    val setAAD
+    val set_aad
       :  t
       -> buffer:ArrayBufferView.t
       -> options:AnonymousInterface0.t
       -> t
       [@@js.call "setAAD"]
 
-    val cast : t -> crypto_Decipher [@@js.cast]
+    val cast : t -> Decipher.t [@@js.cast]
   end
   [@@js.scope "DecipherCCM"]
 
   module DecipherGCM : sig
-    type t = crypto_DecipherGCM
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val setAuthTag : t -> buffer:ArrayBufferView.t -> t [@@js.call "setAuthTag"]
+    val set_auth_tag : t -> buffer:ArrayBufferView.t -> t
+      [@@js.call "setAuthTag"]
 
-    val setAAD
+    val set_aad
       :  t
       -> buffer:ArrayBufferView.t
       -> ?options:AnonymousInterface0.t
@@ -950,12 +948,12 @@ module Crypto : sig
       -> t
       [@@js.call "setAAD"]
 
-    val cast : t -> crypto_Decipher [@@js.cast]
+    val cast : t -> Decipher.t [@@js.cast]
   end
   [@@js.scope "DecipherGCM"]
 
   module PrivateKeyInput : sig
-    type t = crypto_PrivateKeyInput
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -965,9 +963,9 @@ module Crypto : sig
 
     val set_key : t -> Buffer.t or_string -> unit [@@js.set "key"]
 
-    val get_format : t -> crypto_KeyFormat [@@js.get "format"]
+    val get_format : t -> KeyFormat.t [@@js.get "format"]
 
-    val set_format : t -> crypto_KeyFormat -> unit [@@js.set "format"]
+    val set_format : t -> KeyFormat.t -> unit [@@js.set "format"]
 
     val get_type
       :  t
@@ -985,7 +983,7 @@ module Crypto : sig
   [@@js.scope "PrivateKeyInput"]
 
   module PublicKeyInput : sig
-    type t = crypto_PublicKeyInput
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -995,9 +993,9 @@ module Crypto : sig
 
     val set_key : t -> Buffer.t or_string -> unit [@@js.set "key"]
 
-    val get_format : t -> crypto_KeyFormat [@@js.get "format"]
+    val get_format : t -> KeyFormat.t [@@js.get "format"]
 
-    val set_format : t -> crypto_KeyFormat -> unit [@@js.set "format"]
+    val set_format : t -> KeyFormat.t -> unit [@@js.set "format"]
 
     val get_type
       :  t
@@ -1008,34 +1006,34 @@ module Crypto : sig
   end
   [@@js.scope "PublicKeyInput"]
 
-  val createPrivateKey
-    :  key:(Buffer.t, crypto_PrivateKeyInput) union2 or_string
-    -> crypto_KeyObject
+  val create_private_key
+    :  key:(Buffer.t, PrivateKeyInput.t) union2 or_string
+    -> KeyObject.t
     [@@js.global "createPrivateKey"]
 
-  val createPublicKey
+  val create_public_key
     :  key:
-         ( ([ `U_s21_pkcs1 of crypto_PublicKeyInput
-            | `U_s23_private of crypto_KeyObject
-            | `U_s24_public of crypto_KeyObject
-            | `U_s27_secret of crypto_KeyObject
-            | `U_s28_spki of crypto_PublicKeyInput
+         ( ([ `U_s21_pkcs1 of PublicKeyInput.t
+            | `U_s23_private of KeyObject.t
+            | `U_s24_public of KeyObject.t
+            | `U_s27_secret of KeyObject.t
+            | `U_s28_spki of PublicKeyInput.t
             ]
            [@js.union on_field "type"])
          , Buffer.t )
          or_
          or_string
-    -> crypto_KeyObject
+    -> KeyObject.t
     [@@js.global "createPublicKey"]
 
-  val createSecretKey : key:ArrayBufferView.t -> crypto_KeyObject
+  val create_secret_key : key:ArrayBufferView.t -> KeyObject.t
     [@@js.global "createSecretKey"]
 
-  val createSign
+  val create_sign
     :  algorithm:string
     -> ?options:Stream.WritableOptions.t
     -> unit
-    -> crypto_Signer
+    -> Signer.t
     [@@js.global "createSign"]
 
   module DSAEncoding : sig
@@ -1051,7 +1049,7 @@ module Crypto : sig
   end
 
   module SigningOptions : sig
-    type t = crypto_SigningOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -1061,75 +1059,74 @@ module Crypto : sig
 
     val set_padding : t -> int -> unit [@@js.set "padding"]
 
-    val get_saltLength : t -> int [@@js.get "saltLength"]
+    val get_salt_length : t -> int [@@js.get "saltLength"]
 
-    val set_saltLength : t -> int -> unit [@@js.set "saltLength"]
+    val set_salt_length : t -> int -> unit [@@js.set "saltLength"]
 
-    val get_dsaEncoding : t -> crypto_DSAEncoding [@@js.get "dsaEncoding"]
+    val get_dsa_encoding : t -> DSAEncoding.t [@@js.get "dsaEncoding"]
 
-    val set_dsaEncoding : t -> crypto_DSAEncoding -> unit
-      [@@js.set "dsaEncoding"]
+    val set_dsa_encoding : t -> DSAEncoding.t -> unit [@@js.set "dsaEncoding"]
   end
   [@@js.scope "SigningOptions"]
 
   module SignPrivateKeyInput : sig
-    type t = crypto_SignPrivateKeyInput
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val cast : t -> crypto_PrivateKeyInput [@@js.cast]
+    val cast : t -> PrivateKeyInput.t [@@js.cast]
 
-    val cast' : t -> crypto_SigningOptions [@@js.cast]
+    val cast' : t -> SigningOptions.t [@@js.cast]
   end
   [@@js.scope "SignPrivateKeyInput"]
 
   module SignKeyObjectInput : sig
-    type t = crypto_SignKeyObjectInput
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_key : t -> crypto_KeyObject [@@js.get "key"]
+    val get_key : t -> KeyObject.t [@@js.get "key"]
 
-    val set_key : t -> crypto_KeyObject -> unit [@@js.set "key"]
+    val set_key : t -> KeyObject.t -> unit [@@js.set "key"]
 
-    val cast : t -> crypto_SigningOptions [@@js.cast]
+    val cast : t -> SigningOptions.t [@@js.cast]
   end
   [@@js.scope "SignKeyObjectInput"]
 
   module VerifyPublicKeyInput : sig
-    type t = crypto_VerifyPublicKeyInput
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val cast : t -> crypto_PublicKeyInput [@@js.cast]
+    val cast : t -> PublicKeyInput.t [@@js.cast]
 
-    val cast' : t -> crypto_SigningOptions [@@js.cast]
+    val cast' : t -> SigningOptions.t [@@js.cast]
   end
   [@@js.scope "VerifyPublicKeyInput"]
 
   module VerifyKeyObjectInput : sig
-    type t = crypto_VerifyKeyObjectInput
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_key : t -> crypto_KeyObject [@@js.get "key"]
+    val get_key : t -> KeyObject.t [@@js.get "key"]
 
-    val set_key : t -> crypto_KeyObject -> unit [@@js.set "key"]
+    val set_key : t -> KeyObject.t -> unit [@@js.set "key"]
 
-    val cast : t -> crypto_SigningOptions [@@js.cast]
+    val cast : t -> SigningOptions.t [@@js.cast]
   end
   [@@js.scope "VerifyKeyObjectInput"]
 
   module KeyLike : sig
-    type t = (Buffer.t, crypto_KeyObject) union2 or_string
+    type t = (Buffer.t, KeyObject.t) union2 or_string
 
     val t_to_js : t -> Ojs.t
 
@@ -1137,7 +1134,7 @@ module Crypto : sig
   end
 
   module Signer : sig
-    type t = crypto_Signer
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -1145,24 +1142,24 @@ module Crypto : sig
 
     val create : unit -> t [@@js.create]
 
-    val update : t -> data:crypto_BinaryLike -> t [@@js.call "update"]
+    val update : t -> data:BinaryLike.t -> t [@@js.call "update"]
 
-    val update' : t -> data:string -> input_encoding:crypto_Encoding -> t
+    val update' : t -> data:string -> input_encoding:Encoding.t -> t
       [@@js.call "update"]
 
     val sign
       :  t
       -> private_key:
-           ( ([ `U_s11_der of crypto_SignKeyObjectInput
-              | `U_s18_ieee_p1363 of crypto_SignKeyObjectInput
+           ( ([ `U_s11_der of SignKeyObjectInput.t
+              | `U_s18_ieee_p1363 of SignKeyObjectInput.t
               ]
              [@js.union on_field "dsaEncoding"])
-           , ([ `U_s21_pkcs1 of crypto_SignPrivateKeyInput
-              | `U_s22_pkcs8 of crypto_SignPrivateKeyInput
-              | `U_s23_private of crypto_KeyLike
-              | `U_s24_public of crypto_KeyLike
-              | `U_s26_sec1 of crypto_SignPrivateKeyInput
-              | `U_s27_secret of crypto_KeyLike
+           , ([ `U_s21_pkcs1 of SignPrivateKeyInput.t
+              | `U_s22_pkcs8 of SignPrivateKeyInput.t
+              | `U_s23_private of KeyLike.t
+              | `U_s24_public of KeyLike.t
+              | `U_s26_sec1 of SignPrivateKeyInput.t
+              | `U_s27_secret of KeyLike.t
               ]
              [@js.union on_field "type"]) )
            union2
@@ -1172,20 +1169,20 @@ module Crypto : sig
     val sign'
       :  t
       -> private_key:
-           ( ([ `U_s11_der of crypto_SignKeyObjectInput
-              | `U_s18_ieee_p1363 of crypto_SignKeyObjectInput
+           ( ([ `U_s11_der of SignKeyObjectInput.t
+              | `U_s18_ieee_p1363 of SignKeyObjectInput.t
               ]
              [@js.union on_field "dsaEncoding"])
-           , ([ `U_s21_pkcs1 of crypto_SignPrivateKeyInput
-              | `U_s22_pkcs8 of crypto_SignPrivateKeyInput
-              | `U_s23_private of crypto_KeyLike
-              | `U_s24_public of crypto_KeyLike
-              | `U_s26_sec1 of crypto_SignPrivateKeyInput
-              | `U_s27_secret of crypto_KeyLike
+           , ([ `U_s21_pkcs1 of SignPrivateKeyInput.t
+              | `U_s22_pkcs8 of SignPrivateKeyInput.t
+              | `U_s23_private of KeyLike.t
+              | `U_s24_public of KeyLike.t
+              | `U_s26_sec1 of SignPrivateKeyInput.t
+              | `U_s27_secret of KeyLike.t
               ]
              [@js.union on_field "type"]) )
            union2
-      -> output_format:crypto_BinaryToTextEncoding
+      -> output_format:BinaryToTextEncoding.t
       -> string
       [@@js.call "sign"]
 
@@ -1193,15 +1190,15 @@ module Crypto : sig
   end
   [@@js.scope "Signer"]
 
-  val createVerify
+  val create_verify
     :  algorithm:string
     -> ?options:Stream.WritableOptions.t
     -> unit
-    -> crypto_Verify
+    -> Verify.t
     [@@js.global "createVerify"]
 
   module Verify : sig
-    type t = crypto_Verify
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -1209,23 +1206,23 @@ module Crypto : sig
 
     val create : unit -> t [@@js.create]
 
-    val update : t -> data:crypto_BinaryLike -> t [@@js.call "update"]
+    val update : t -> data:BinaryLike.t -> t [@@js.call "update"]
 
-    val update' : t -> data:string -> input_encoding:crypto_Encoding -> t
+    val update' : t -> data:string -> input_encoding:Encoding.t -> t
       [@@js.call "update"]
 
     val verify
       :  t
       -> object_:
-           ( ([ `U_s11_der of crypto_VerifyKeyObjectInput
-              | `U_s18_ieee_p1363 of crypto_VerifyKeyObjectInput
+           ( ([ `U_s11_der of VerifyKeyObjectInput.t
+              | `U_s18_ieee_p1363 of VerifyKeyObjectInput.t
               ]
              [@js.union on_field "dsaEncoding"])
-           , ([ `U_s21_pkcs1 of crypto_VerifyPublicKeyInput
-              | `U_s23_private of crypto_KeyLike
-              | `U_s24_public of crypto_KeyLike
-              | `U_s27_secret of crypto_KeyLike
-              | `U_s28_spki of crypto_VerifyPublicKeyInput
+           , ([ `U_s21_pkcs1 of VerifyPublicKeyInput.t
+              | `U_s23_private of KeyLike.t
+              | `U_s24_public of KeyLike.t
+              | `U_s27_secret of KeyLike.t
+              | `U_s28_spki of VerifyPublicKeyInput.t
               ]
              [@js.union on_field "type"]) )
            union2
@@ -1236,20 +1233,20 @@ module Crypto : sig
     val verify'
       :  t
       -> object_:
-           ( ([ `U_s11_der of crypto_VerifyKeyObjectInput
-              | `U_s18_ieee_p1363 of crypto_VerifyKeyObjectInput
+           ( ([ `U_s11_der of VerifyKeyObjectInput.t
+              | `U_s18_ieee_p1363 of VerifyKeyObjectInput.t
               ]
              [@js.union on_field "dsaEncoding"])
-           , ([ `U_s21_pkcs1 of crypto_VerifyPublicKeyInput
-              | `U_s23_private of crypto_KeyLike
-              | `U_s24_public of crypto_KeyLike
-              | `U_s27_secret of crypto_KeyLike
-              | `U_s28_spki of crypto_VerifyPublicKeyInput
+           , ([ `U_s21_pkcs1 of VerifyPublicKeyInput.t
+              | `U_s23_private of KeyLike.t
+              | `U_s24_public of KeyLike.t
+              | `U_s27_secret of KeyLike.t
+              | `U_s28_spki of VerifyPublicKeyInput.t
               ]
              [@js.union on_field "type"]) )
            union2
       -> signature:string
-      -> ?signature_format:crypto_BinaryToTextEncoding
+      -> ?signature_format:BinaryToTextEncoding.t
       -> unit
       -> bool
       [@@js.call "verify"]
@@ -1258,39 +1255,39 @@ module Crypto : sig
   end
   [@@js.scope "Verify"]
 
-  val createDiffieHellman
+  val create_diffie_hellman
     :  prime_length:int
     -> ?generator:ArrayBufferView.t or_number
     -> unit
-    -> crypto_DiffieHellman
+    -> DiffieHellman.t
     [@@js.global "createDiffieHellman"]
 
-  val createDiffieHellman : prime:ArrayBufferView.t -> crypto_DiffieHellman
+  val create_diffie_hellman : prime:ArrayBufferView.t -> DiffieHellman.t
     [@@js.global "createDiffieHellman"]
 
-  val createDiffieHellman
+  val create_diffie_hellman
     :  prime:string
-    -> prime_encoding:crypto_BinaryToTextEncoding
-    -> crypto_DiffieHellman
+    -> prime_encoding:BinaryToTextEncoding.t
+    -> DiffieHellman.t
     [@@js.global "createDiffieHellman"]
 
-  val createDiffieHellman
+  val create_diffie_hellman
     :  prime:string
-    -> prime_encoding:crypto_BinaryToTextEncoding
+    -> prime_encoding:BinaryToTextEncoding.t
     -> generator:ArrayBufferView.t or_number
-    -> crypto_DiffieHellman
+    -> DiffieHellman.t
     [@@js.global "createDiffieHellman"]
 
-  val createDiffieHellman
+  val create_diffie_hellman
     :  prime:string
-    -> prime_encoding:crypto_BinaryToTextEncoding
+    -> prime_encoding:BinaryToTextEncoding.t
     -> generator:string
-    -> generator_encoding:crypto_BinaryToTextEncoding
-    -> crypto_DiffieHellman
+    -> generator_encoding:BinaryToTextEncoding.t
+    -> DiffieHellman.t
     [@@js.global "createDiffieHellman"]
 
   module DiffieHellman : sig
-    type t = crypto_DiffieHellman
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -1298,154 +1295,155 @@ module Crypto : sig
 
     val create : unit -> t [@@js.create]
 
-    val generateKeys : t -> Buffer.t [@@js.call "generateKeys"]
+    val generate_keys : t -> Buffer.t [@@js.call "generateKeys"]
 
-    val generateKeys' : t -> encoding:crypto_BinaryToTextEncoding -> string
+    val generate_keys' : t -> encoding:BinaryToTextEncoding.t -> string
       [@@js.call "generateKeys"]
 
-    val computeSecret : t -> other_public_key:ArrayBufferView.t -> Buffer.t
+    val compute_secret : t -> other_public_key:ArrayBufferView.t -> Buffer.t
       [@@js.call "computeSecret"]
 
-    val computeSecret'
+    val compute_secret'
       :  t
       -> other_public_key:string
-      -> input_encoding:crypto_BinaryToTextEncoding
+      -> input_encoding:BinaryToTextEncoding.t
       -> Buffer.t
       [@@js.call "computeSecret"]
 
-    val computeSecret''
+    val compute_secret''
       :  t
       -> other_public_key:ArrayBufferView.t
-      -> output_encoding:crypto_BinaryToTextEncoding
+      -> output_encoding:BinaryToTextEncoding.t
       -> string
       [@@js.call "computeSecret"]
 
-    val computeSecret'''
+    val compute_secret'''
       :  t
       -> other_public_key:string
-      -> input_encoding:crypto_BinaryToTextEncoding
-      -> output_encoding:crypto_BinaryToTextEncoding
+      -> input_encoding:BinaryToTextEncoding.t
+      -> output_encoding:BinaryToTextEncoding.t
       -> string
       [@@js.call "computeSecret"]
 
-    val getPrime : t -> Buffer.t [@@js.call "getPrime"]
+    val get_prime : t -> Buffer.t [@@js.call "getPrime"]
 
-    val getPrime' : t -> encoding:crypto_BinaryToTextEncoding -> string
+    val get_prime' : t -> encoding:BinaryToTextEncoding.t -> string
       [@@js.call "getPrime"]
 
-    val getGenerator : t -> Buffer.t [@@js.call "getGenerator"]
+    val get_generator : t -> Buffer.t [@@js.call "getGenerator"]
 
-    val getGenerator' : t -> encoding:crypto_BinaryToTextEncoding -> string
+    val get_generator' : t -> encoding:BinaryToTextEncoding.t -> string
       [@@js.call "getGenerator"]
 
-    val getPublicKey : t -> Buffer.t [@@js.call "getPublicKey"]
+    val get_public_key : t -> Buffer.t [@@js.call "getPublicKey"]
 
-    val getPublicKey' : t -> encoding:crypto_BinaryToTextEncoding -> string
+    val get_public_key' : t -> encoding:BinaryToTextEncoding.t -> string
       [@@js.call "getPublicKey"]
 
-    val getPrivateKey : t -> Buffer.t [@@js.call "getPrivateKey"]
+    val get_private_key : t -> Buffer.t [@@js.call "getPrivateKey"]
 
-    val getPrivateKey' : t -> encoding:crypto_BinaryToTextEncoding -> string
+    val get_private_key' : t -> encoding:BinaryToTextEncoding.t -> string
       [@@js.call "getPrivateKey"]
 
-    val setPublicKey : t -> public_key:ArrayBufferView.t -> unit
+    val set_public_key : t -> public_key:ArrayBufferView.t -> unit
       [@@js.call "setPublicKey"]
 
-    val setPublicKey'
+    val set_public_key'
       :  t
       -> public_key:string
       -> encoding:BufferEncoding.t
       -> unit
       [@@js.call "setPublicKey"]
 
-    val setPrivateKey : t -> private_key:ArrayBufferView.t -> unit
+    val set_private_key : t -> private_key:ArrayBufferView.t -> unit
       [@@js.call "setPrivateKey"]
 
-    val setPrivateKey'
+    val set_private_key'
       :  t
       -> private_key:string
       -> encoding:BufferEncoding.t
       -> unit
       [@@js.call "setPrivateKey"]
 
-    val get_verifyError : t -> int [@@js.get "verifyError"]
+    val get_verify_error : t -> int [@@js.get "verifyError"]
 
-    val set_verifyError : t -> int -> unit [@@js.set "verifyError"]
+    val set_verify_error : t -> int -> unit [@@js.set "verifyError"]
   end
   [@@js.scope "DiffieHellman"]
 
-  val getDiffieHellman : group_name:string -> crypto_DiffieHellman
+  val get_diffie_hellman : group_name:string -> DiffieHellman.t
     [@@js.global "getDiffieHellman"]
 
   val pbkdf2
-    :  password:crypto_BinaryLike
-    -> salt:crypto_BinaryLike
+    :  password:BinaryLike.t
+    -> salt:BinaryLike.t
     -> iterations:int
     -> keylen:int
     -> digest:string
-    -> callback:(err:Error.t or_null -> derivedKey:Buffer.t -> any)
+    -> callback:(err:Error.t or_null -> derived_key:Buffer.t -> any)
     -> unit
     [@@js.global "pbkdf2"]
 
   val pbkdf2Sync
-    :  password:crypto_BinaryLike
-    -> salt:crypto_BinaryLike
+    :  password:BinaryLike.t
+    -> salt:BinaryLike.t
     -> iterations:int
     -> keylen:int
     -> digest:string
     -> Buffer.t
     [@@js.global "pbkdf2Sync"]
 
-  val randomBytes : size:int -> Buffer.t [@@js.global "randomBytes"]
+  val random_bytes : size:int -> Buffer.t [@@js.global "randomBytes"]
 
-  val randomBytes
+  val random_bytes
     :  size:int
     -> callback:(err:Error.t or_null -> buf:Buffer.t -> unit)
     -> unit
     [@@js.global "randomBytes"]
 
-  val pseudoRandomBytes : size:int -> Buffer.t [@@js.global "pseudoRandomBytes"]
+  val pseudo_random_bytes : size:int -> Buffer.t
+    [@@js.global "pseudoRandomBytes"]
 
-  val pseudoRandomBytes
+  val pseudo_random_bytes
     :  size:int
     -> callback:(err:Error.t or_null -> buf:Buffer.t -> unit)
     -> unit
     [@@js.global "pseudoRandomBytes"]
 
-  val randomInt : max:int -> int [@@js.global "randomInt"]
+  val random_int : max:int -> int [@@js.global "randomInt"]
 
-  val randomInt : min:int -> max:int -> int [@@js.global "randomInt"]
+  val random_int : min:int -> max:int -> int [@@js.global "randomInt"]
 
-  val randomInt
+  val random_int
     :  max:int
     -> callback:(err:Error.t or_null -> value:int -> unit)
     -> unit
     [@@js.global "randomInt"]
 
-  val randomInt
+  val random_int
     :  min:int
     -> max:int
     -> callback:(err:Error.t or_null -> value:int -> unit)
     -> unit
     [@@js.global "randomInt"]
 
-  val randomFillSync : buffer:'T -> ?offset:int -> ?size:int -> unit -> 'T
+  val random_fill_sync : buffer:'T -> ?offset:int -> ?size:int -> unit -> 'T
     [@@js.global "randomFillSync"]
 
-  val randomFill
+  val random_fill
     :  buffer:'T
     -> callback:(err:Error.t or_null -> buf:'T -> unit)
     -> unit
     [@@js.global "randomFill"]
 
-  val randomFill
+  val random_fill
     :  buffer:'T
     -> offset:int
     -> callback:(err:Error.t or_null -> buf:'T -> unit)
     -> unit
     [@@js.global "randomFill"]
 
-  val randomFill
+  val random_fill
     :  buffer:'T
     -> offset:int
     -> size:int
@@ -1454,7 +1452,7 @@ module Crypto : sig
     [@@js.global "randomFill"]
 
   module ScryptOptions : sig
-    type t = crypto_ScryptOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -1464,17 +1462,17 @@ module Crypto : sig
 
     val set_cost : t -> int -> unit [@@js.set "cost"]
 
-    val get_blockSize : t -> int [@@js.get "blockSize"]
+    val get_block_size : t -> int [@@js.get "blockSize"]
 
-    val set_blockSize : t -> int -> unit [@@js.set "blockSize"]
+    val set_block_size : t -> int -> unit [@@js.set "blockSize"]
 
     val get_parallelization : t -> int [@@js.get "parallelization"]
 
     val set_parallelization : t -> int -> unit [@@js.set "parallelization"]
 
-    val get_N : t -> int [@@js.get "N"]
+    val get_n : t -> int [@@js.get "N"]
 
-    val set_N : t -> int -> unit [@@js.set "N"]
+    val set_n : t -> int -> unit [@@js.set "N"]
 
     val get_r : t -> int [@@js.get "r"]
 
@@ -1491,41 +1489,41 @@ module Crypto : sig
   [@@js.scope "ScryptOptions"]
 
   val scrypt
-    :  password:crypto_BinaryLike
-    -> salt:crypto_BinaryLike
+    :  password:BinaryLike.t
+    -> salt:BinaryLike.t
     -> keylen:int
-    -> callback:(err:Error.t or_null -> derivedKey:Buffer.t -> unit)
+    -> callback:(err:Error.t or_null -> derived_key:Buffer.t -> unit)
     -> unit
     [@@js.global "scrypt"]
 
   val scrypt
-    :  password:crypto_BinaryLike
-    -> salt:crypto_BinaryLike
+    :  password:BinaryLike.t
+    -> salt:BinaryLike.t
     -> keylen:int
-    -> options:crypto_ScryptOptions
-    -> callback:(err:Error.t or_null -> derivedKey:Buffer.t -> unit)
+    -> options:ScryptOptions.t
+    -> callback:(err:Error.t or_null -> derived_key:Buffer.t -> unit)
     -> unit
     [@@js.global "scrypt"]
 
-  val scryptSync
-    :  password:crypto_BinaryLike
-    -> salt:crypto_BinaryLike
+  val scrypt_sync
+    :  password:BinaryLike.t
+    -> salt:BinaryLike.t
     -> keylen:int
-    -> ?options:crypto_ScryptOptions
+    -> ?options:ScryptOptions.t
     -> unit
     -> Buffer.t
     [@@js.global "scryptSync"]
 
   module RsaPublicKey : sig
-    type t = crypto_RsaPublicKey
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_key : t -> crypto_KeyLike [@@js.get "key"]
+    val get_key : t -> KeyLike.t [@@js.get "key"]
 
-    val set_key : t -> crypto_KeyLike -> unit [@@js.set "key"]
+    val set_key : t -> KeyLike.t -> unit [@@js.set "key"]
 
     val get_padding : t -> int [@@js.get "padding"]
 
@@ -1534,27 +1532,27 @@ module Crypto : sig
   [@@js.scope "RsaPublicKey"]
 
   module RsaPrivateKey : sig
-    type t = crypto_RsaPrivateKey
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_key : t -> crypto_KeyLike [@@js.get "key"]
+    val get_key : t -> KeyLike.t [@@js.get "key"]
 
-    val set_key : t -> crypto_KeyLike -> unit [@@js.set "key"]
+    val set_key : t -> KeyLike.t -> unit [@@js.set "key"]
 
     val get_passphrase : t -> string [@@js.get "passphrase"]
 
     val set_passphrase : t -> string -> unit [@@js.set "passphrase"]
 
-    val get_oaepHash : t -> string [@@js.get "oaepHash"]
+    val get_oaep_hash : t -> string [@@js.get "oaepHash"]
 
-    val set_oaepHash : t -> string -> unit [@@js.set "oaepHash"]
+    val set_oaep_hash : t -> string -> unit [@@js.set "oaepHash"]
 
-    val get_oaepLabel : t -> TypedArray.t [@@js.get "oaepLabel"]
+    val get_oaep_label : t -> TypedArray.t [@@js.get "oaepLabel"]
 
-    val set_oaepLabel : t -> TypedArray.t -> unit [@@js.set "oaepLabel"]
+    val set_oaep_label : t -> TypedArray.t -> unit [@@js.set "oaepLabel"]
 
     val get_padding : t -> int [@@js.get "padding"]
 
@@ -1562,41 +1560,41 @@ module Crypto : sig
   end
   [@@js.scope "RsaPrivateKey"]
 
-  val publicEncrypt
-    :  key:(crypto_KeyLike, crypto_RsaPrivateKey, crypto_RsaPublicKey) union3
+  val public_encrypt
+    :  key:(KeyLike.t, RsaPrivateKey.t, RsaPublicKey.t) union3
     -> buffer:ArrayBufferView.t
     -> Buffer.t
     [@@js.global "publicEncrypt"]
 
-  val publicDecrypt
-    :  key:(crypto_KeyLike, crypto_RsaPrivateKey, crypto_RsaPublicKey) union3
+  val public_decrypt
+    :  key:(KeyLike.t, RsaPrivateKey.t, RsaPublicKey.t) union3
     -> buffer:ArrayBufferView.t
     -> Buffer.t
     [@@js.global "publicDecrypt"]
 
-  val privateDecrypt
-    :  private_key:(crypto_KeyLike, crypto_RsaPrivateKey) union2
+  val private_decrypt
+    :  private_key:(KeyLike.t, RsaPrivateKey.t) union2
     -> buffer:ArrayBufferView.t
     -> Buffer.t
     [@@js.global "privateDecrypt"]
 
-  val privateEncrypt
-    :  private_key:(crypto_KeyLike, crypto_RsaPrivateKey) union2
+  val private_encrypt
+    :  private_key:(KeyLike.t, RsaPrivateKey.t) union2
     -> buffer:ArrayBufferView.t
     -> Buffer.t
     [@@js.global "privateEncrypt"]
 
-  val getCiphers : unit -> string list [@@js.global "getCiphers"]
+  val get_ciphers : unit -> string list [@@js.global "getCiphers"]
 
-  val getCurves : unit -> string list [@@js.global "getCurves"]
+  val get_curves : unit -> string list [@@js.global "getCurves"]
 
-  val getFips : unit -> ([ `L_n_0 [@js 0] | `L_n_1 [@js 1] ][@js.enum])
+  val get_fips : unit -> ([ `L_n_0 [@js 0] | `L_n_1 [@js 1] ][@js.enum])
     [@@js.global "getFips"]
 
-  val getHashes : unit -> string list [@@js.global "getHashes"]
+  val get_hashes : unit -> string list [@@js.global "getHashes"]
 
   module ECDH : sig
-    type t = crypto_ECDH
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -1604,84 +1602,84 @@ module Crypto : sig
 
     val create : unit -> t [@@js.create]
 
-    val convertKey
-      :  key:crypto_BinaryLike
+    val convert_key
+      :  key:BinaryLike.t
       -> curve:string
-      -> ?inputEncoding:crypto_BinaryToTextEncoding
-      -> ?outputEncoding:([ `base64 | `hex | `latin1 ][@js.enum])
+      -> ?input_encoding:BinaryToTextEncoding.t
+      -> ?output_encoding:([ `base64 | `hex | `latin1 ][@js.enum])
       -> ?format:([ `compressed | `hybrid | `uncompressed ][@js.enum])
       -> unit
       -> Buffer.t or_string
       [@@js.global "convertKey"]
 
-    val generateKeys : t -> Buffer.t [@@js.call "generateKeys"]
+    val generate_keys : t -> Buffer.t [@@js.call "generateKeys"]
 
-    val generateKeys'
+    val generate_keys'
       :  t
-      -> encoding:crypto_BinaryToTextEncoding
-      -> ?format:crypto_ECDHKeyFormat
+      -> encoding:BinaryToTextEncoding.t
+      -> ?format:ECDHKeyFormat.t
       -> unit
       -> string
       [@@js.call "generateKeys"]
 
-    val computeSecret : t -> other_public_key:ArrayBufferView.t -> Buffer.t
+    val compute_secret : t -> other_public_key:ArrayBufferView.t -> Buffer.t
       [@@js.call "computeSecret"]
 
-    val computeSecret'
+    val compute_secret'
       :  t
       -> other_public_key:string
-      -> input_encoding:crypto_BinaryToTextEncoding
+      -> input_encoding:BinaryToTextEncoding.t
       -> Buffer.t
       [@@js.call "computeSecret"]
 
-    val computeSecret''
+    val compute_secret''
       :  t
       -> other_public_key:ArrayBufferView.t
-      -> output_encoding:crypto_BinaryToTextEncoding
+      -> output_encoding:BinaryToTextEncoding.t
       -> string
       [@@js.call "computeSecret"]
 
-    val computeSecret'''
+    val compute_secret'''
       :  t
       -> other_public_key:string
-      -> input_encoding:crypto_BinaryToTextEncoding
-      -> output_encoding:crypto_BinaryToTextEncoding
+      -> input_encoding:BinaryToTextEncoding.t
+      -> output_encoding:BinaryToTextEncoding.t
       -> string
       [@@js.call "computeSecret"]
 
-    val getPrivateKey : t -> Buffer.t [@@js.call "getPrivateKey"]
+    val get_private_key : t -> Buffer.t [@@js.call "getPrivateKey"]
 
-    val getPrivateKey' : t -> encoding:crypto_BinaryToTextEncoding -> string
+    val get_private_key' : t -> encoding:BinaryToTextEncoding.t -> string
       [@@js.call "getPrivateKey"]
 
-    val getPublicKey : t -> Buffer.t [@@js.call "getPublicKey"]
+    val get_public_key : t -> Buffer.t [@@js.call "getPublicKey"]
 
-    val getPublicKey'
+    val get_public_key'
       :  t
-      -> encoding:crypto_BinaryToTextEncoding
-      -> ?format:crypto_ECDHKeyFormat
+      -> encoding:BinaryToTextEncoding.t
+      -> ?format:ECDHKeyFormat.t
       -> unit
       -> string
       [@@js.call "getPublicKey"]
 
-    val setPrivateKey : t -> private_key:ArrayBufferView.t -> unit
+    val set_private_key : t -> private_key:ArrayBufferView.t -> unit
       [@@js.call "setPrivateKey"]
 
-    val setPrivateKey'
+    val set_private_key'
       :  t
       -> private_key:string
-      -> encoding:crypto_BinaryToTextEncoding
+      -> encoding:BinaryToTextEncoding.t
       -> unit
       [@@js.call "setPrivateKey"]
   end
   [@@js.scope "ECDH"]
 
-  val createECDH : curve_name:string -> crypto_ECDH [@@js.global "createECDH"]
+  val create_ecdh : curve_name:string -> ECDH.t [@@js.global "createECDH"]
 
-  val timingSafeEqual : a:ArrayBufferView.t -> b:ArrayBufferView.t -> bool
+  val timing_safe_equal : a:ArrayBufferView.t -> b:ArrayBufferView.t -> bool
     [@@js.global "timingSafeEqual"]
 
-  val dEFAULT_ENCODING : BufferEncoding.t [@@js.global "DEFAULT_ENCODING"]
+  val d_efault_encoding : BufferEncoding.t [@@js.global "DEFAULT_ENCODING"]
 
   module KeyType : sig
     type t =
@@ -1713,7 +1711,7 @@ module Crypto : sig
   end
 
   module BasePrivateKeyEncodingOptions : sig
-    type 'T t = 'T crypto_BasePrivateKeyEncodingOptions
+    type 'T t
 
     val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
@@ -1734,24 +1732,24 @@ module Crypto : sig
   [@@js.scope "BasePrivateKeyEncodingOptions"]
 
   module KeyPairKeyObjectResult : sig
-    type t = crypto_KeyPairKeyObjectResult
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_publicKey : t -> crypto_KeyObject [@@js.get "publicKey"]
+    val get_public_key : t -> KeyObject.t [@@js.get "publicKey"]
 
-    val set_publicKey : t -> crypto_KeyObject -> unit [@@js.set "publicKey"]
+    val set_public_key : t -> KeyObject.t -> unit [@@js.set "publicKey"]
 
-    val get_privateKey : t -> crypto_KeyObject [@@js.get "privateKey"]
+    val get_private_key : t -> KeyObject.t [@@js.get "privateKey"]
 
-    val set_privateKey : t -> crypto_KeyObject -> unit [@@js.set "privateKey"]
+    val set_private_key : t -> KeyObject.t -> unit [@@js.set "privateKey"]
   end
   [@@js.scope "KeyPairKeyObjectResult"]
 
   module ED25519KeyPairKeyObjectOptions : sig
-    type t = crypto_ED25519KeyPairKeyObjectOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -1759,7 +1757,7 @@ module Crypto : sig
   end
 
   module ED448KeyPairKeyObjectOptions : sig
-    type t = crypto_ED448KeyPairKeyObjectOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -1767,7 +1765,7 @@ module Crypto : sig
   end
 
   module X25519KeyPairKeyObjectOptions : sig
-    type t = crypto_X25519KeyPairKeyObjectOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -1775,7 +1773,7 @@ module Crypto : sig
   end
 
   module X448KeyPairKeyObjectOptions : sig
-    type t = crypto_X448KeyPairKeyObjectOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -1783,54 +1781,54 @@ module Crypto : sig
   end
 
   module ECKeyPairKeyObjectOptions : sig
-    type t = crypto_ECKeyPairKeyObjectOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_namedCurve : t -> string [@@js.get "namedCurve"]
+    val get_named_curve : t -> string [@@js.get "namedCurve"]
 
-    val set_namedCurve : t -> string -> unit [@@js.set "namedCurve"]
+    val set_named_curve : t -> string -> unit [@@js.set "namedCurve"]
   end
   [@@js.scope "ECKeyPairKeyObjectOptions"]
 
   module RSAKeyPairKeyObjectOptions : sig
-    type t = crypto_RSAKeyPairKeyObjectOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_modulusLength : t -> int [@@js.get "modulusLength"]
+    val get_modulus_length : t -> int [@@js.get "modulusLength"]
 
-    val set_modulusLength : t -> int -> unit [@@js.set "modulusLength"]
+    val set_modulus_length : t -> int -> unit [@@js.set "modulusLength"]
 
-    val get_publicExponent : t -> int [@@js.get "publicExponent"]
+    val get_public_exponent : t -> int [@@js.get "publicExponent"]
 
-    val set_publicExponent : t -> int -> unit [@@js.set "publicExponent"]
+    val set_public_exponent : t -> int -> unit [@@js.set "publicExponent"]
   end
   [@@js.scope "RSAKeyPairKeyObjectOptions"]
 
   module DSAKeyPairKeyObjectOptions : sig
-    type t = crypto_DSAKeyPairKeyObjectOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_modulusLength : t -> int [@@js.get "modulusLength"]
+    val get_modulus_length : t -> int [@@js.get "modulusLength"]
 
-    val set_modulusLength : t -> int -> unit [@@js.set "modulusLength"]
+    val set_modulus_length : t -> int -> unit [@@js.set "modulusLength"]
 
-    val get_divisorLength : t -> int [@@js.get "divisorLength"]
+    val get_divisor_length : t -> int [@@js.get "divisorLength"]
 
-    val set_divisorLength : t -> int -> unit [@@js.set "divisorLength"]
+    val set_divisor_length : t -> int -> unit [@@js.set "divisorLength"]
   end
   [@@js.scope "DSAKeyPairKeyObjectOptions"]
 
   module RSAKeyPairOptions : sig
-    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) crypto_RSAKeyPairOptions
+    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) RSAKeyPairOptions.t
 
     val t_to_js
       :  ('PubF -> Ojs.t)
@@ -1844,36 +1842,36 @@ module Crypto : sig
       -> Ojs.t
       -> ('PubF, 'PrivF) t
 
-    val get_modulusLength : ('PubF, 'PrivF) t -> int [@@js.get "modulusLength"]
+    val get_modulus_length : ('PubF, 'PrivF) t -> int [@@js.get "modulusLength"]
 
-    val set_modulusLength : ('PubF, 'PrivF) t -> int -> unit
+    val set_modulus_length : ('PubF, 'PrivF) t -> int -> unit
       [@@js.set "modulusLength"]
 
-    val get_publicExponent : ('PubF, 'PrivF) t -> int
+    val get_public_exponent : ('PubF, 'PrivF) t -> int
       [@@js.get "publicExponent"]
 
-    val set_publicExponent : ('PubF, 'PrivF) t -> int -> unit
+    val set_public_exponent : ('PubF, 'PrivF) t -> int -> unit
       [@@js.set "publicExponent"]
 
-    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> AnonymousInterface9.t
+    val get_public_key_encoding : ('PubF, 'PrivF) t -> AnonymousInterface9.t
       [@@js.get "publicKeyEncoding"]
 
-    val set_publicKeyEncoding
+    val set_public_key_encoding
       :  ('PubF, 'PrivF) t
       -> AnonymousInterface9.t
       -> unit
       [@@js.set "publicKeyEncoding"]
 
-    val get_privateKeyEncoding
+    val get_private_key_encoding
       :  ('PubF, 'PrivF) t
-      -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
+      -> ( 'PrivF BasePrivateKeyEncodingOptions.t
          , AnonymousInterface8.t )
          intersection2
       [@@js.get "privateKeyEncoding"]
 
-    val set_privateKeyEncoding
+    val set_private_key_encoding
       :  ('PubF, 'PrivF) t
-      -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
+      -> ( 'PrivF BasePrivateKeyEncodingOptions.t
          , AnonymousInterface8.t )
          intersection2
       -> unit
@@ -1882,7 +1880,7 @@ module Crypto : sig
   [@@js.scope "RSAKeyPairOptions"]
 
   module DSAKeyPairOptions : sig
-    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) crypto_DSAKeyPairOptions
+    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) DSAKeyPairOptions.t
 
     val t_to_js
       :  ('PubF -> Ojs.t)
@@ -1896,35 +1894,35 @@ module Crypto : sig
       -> Ojs.t
       -> ('PubF, 'PrivF) t
 
-    val get_modulusLength : ('PubF, 'PrivF) t -> int [@@js.get "modulusLength"]
+    val get_modulus_length : ('PubF, 'PrivF) t -> int [@@js.get "modulusLength"]
 
-    val set_modulusLength : ('PubF, 'PrivF) t -> int -> unit
+    val set_modulus_length : ('PubF, 'PrivF) t -> int -> unit
       [@@js.set "modulusLength"]
 
-    val get_divisorLength : ('PubF, 'PrivF) t -> int [@@js.get "divisorLength"]
+    val get_divisor_length : ('PubF, 'PrivF) t -> int [@@js.get "divisorLength"]
 
-    val set_divisorLength : ('PubF, 'PrivF) t -> int -> unit
+    val set_divisor_length : ('PubF, 'PrivF) t -> int -> unit
       [@@js.set "divisorLength"]
 
-    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> AnonymousInterface7.t
+    val get_public_key_encoding : ('PubF, 'PrivF) t -> AnonymousInterface7.t
       [@@js.get "publicKeyEncoding"]
 
-    val set_publicKeyEncoding
+    val set_public_key_encoding
       :  ('PubF, 'PrivF) t
       -> AnonymousInterface7.t
       -> unit
       [@@js.set "publicKeyEncoding"]
 
-    val get_privateKeyEncoding
+    val get_private_key_encoding
       :  ('PubF, 'PrivF) t
-      -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
+      -> ( 'PrivF BasePrivateKeyEncodingOptions.t
          , AnonymousInterface6.t )
          intersection2
       [@@js.get "privateKeyEncoding"]
 
-    val set_privateKeyEncoding
+    val set_private_key_encoding
       :  ('PubF, 'PrivF) t
-      -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
+      -> ( 'PrivF BasePrivateKeyEncodingOptions.t
          , AnonymousInterface6.t )
          intersection2
       -> unit
@@ -1933,7 +1931,7 @@ module Crypto : sig
   [@@js.scope "DSAKeyPairOptions"]
 
   module ECKeyPairOptions : sig
-    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) crypto_ECKeyPairOptions
+    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) ECKeyPairOptions.t
 
     val t_to_js
       :  ('PubF -> Ojs.t)
@@ -1947,30 +1945,30 @@ module Crypto : sig
       -> Ojs.t
       -> ('PubF, 'PrivF) t
 
-    val get_namedCurve : ('PubF, 'PrivF) t -> string [@@js.get "namedCurve"]
+    val get_named_curve : ('PubF, 'PrivF) t -> string [@@js.get "namedCurve"]
 
-    val set_namedCurve : ('PubF, 'PrivF) t -> string -> unit
+    val set_named_curve : ('PubF, 'PrivF) t -> string -> unit
       [@@js.set "namedCurve"]
 
-    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> AnonymousInterface9.t
+    val get_public_key_encoding : ('PubF, 'PrivF) t -> AnonymousInterface9.t
       [@@js.get "publicKeyEncoding"]
 
-    val set_publicKeyEncoding
+    val set_public_key_encoding
       :  ('PubF, 'PrivF) t
       -> AnonymousInterface9.t
       -> unit
       [@@js.set "publicKeyEncoding"]
 
-    val get_privateKeyEncoding
+    val get_private_key_encoding
       :  ('PubF, 'PrivF) t
-      -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
+      -> ( 'PrivF BasePrivateKeyEncodingOptions.t
          , AnonymousInterface10.t )
          intersection2
       [@@js.get "privateKeyEncoding"]
 
-    val set_privateKeyEncoding
+    val set_private_key_encoding
       :  ('PubF, 'PrivF) t
-      -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
+      -> ( 'PrivF BasePrivateKeyEncodingOptions.t
          , AnonymousInterface10.t )
          intersection2
       -> unit
@@ -1979,7 +1977,7 @@ module Crypto : sig
   [@@js.scope "ECKeyPairOptions"]
 
   module ED25519KeyPairOptions : sig
-    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) crypto_ED25519KeyPairOptions
+    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) ED25519KeyPairOptions.t
 
     val t_to_js
       :  ('PubF -> Ojs.t)
@@ -1993,25 +1991,25 @@ module Crypto : sig
       -> Ojs.t
       -> ('PubF, 'PrivF) t
 
-    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> AnonymousInterface7.t
+    val get_public_key_encoding : ('PubF, 'PrivF) t -> AnonymousInterface7.t
       [@@js.get "publicKeyEncoding"]
 
-    val set_publicKeyEncoding
+    val set_public_key_encoding
       :  ('PubF, 'PrivF) t
       -> AnonymousInterface7.t
       -> unit
       [@@js.set "publicKeyEncoding"]
 
-    val get_privateKeyEncoding
+    val get_private_key_encoding
       :  ('PubF, 'PrivF) t
-      -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
+      -> ( 'PrivF BasePrivateKeyEncodingOptions.t
          , AnonymousInterface6.t )
          intersection2
       [@@js.get "privateKeyEncoding"]
 
-    val set_privateKeyEncoding
+    val set_private_key_encoding
       :  ('PubF, 'PrivF) t
-      -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
+      -> ( 'PrivF BasePrivateKeyEncodingOptions.t
          , AnonymousInterface6.t )
          intersection2
       -> unit
@@ -2020,7 +2018,7 @@ module Crypto : sig
   [@@js.scope "ED25519KeyPairOptions"]
 
   module ED448KeyPairOptions : sig
-    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) crypto_ED448KeyPairOptions
+    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) ED448KeyPairOptions.t
 
     val t_to_js
       :  ('PubF -> Ojs.t)
@@ -2034,25 +2032,25 @@ module Crypto : sig
       -> Ojs.t
       -> ('PubF, 'PrivF) t
 
-    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> AnonymousInterface7.t
+    val get_public_key_encoding : ('PubF, 'PrivF) t -> AnonymousInterface7.t
       [@@js.get "publicKeyEncoding"]
 
-    val set_publicKeyEncoding
+    val set_public_key_encoding
       :  ('PubF, 'PrivF) t
       -> AnonymousInterface7.t
       -> unit
       [@@js.set "publicKeyEncoding"]
 
-    val get_privateKeyEncoding
+    val get_private_key_encoding
       :  ('PubF, 'PrivF) t
-      -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
+      -> ( 'PrivF BasePrivateKeyEncodingOptions.t
          , AnonymousInterface6.t )
          intersection2
       [@@js.get "privateKeyEncoding"]
 
-    val set_privateKeyEncoding
+    val set_private_key_encoding
       :  ('PubF, 'PrivF) t
-      -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
+      -> ( 'PrivF BasePrivateKeyEncodingOptions.t
          , AnonymousInterface6.t )
          intersection2
       -> unit
@@ -2061,7 +2059,7 @@ module Crypto : sig
   [@@js.scope "ED448KeyPairOptions"]
 
   module X25519KeyPairOptions : sig
-    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) crypto_X25519KeyPairOptions
+    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) X25519KeyPairOptions.t
 
     val t_to_js
       :  ('PubF -> Ojs.t)
@@ -2075,25 +2073,25 @@ module Crypto : sig
       -> Ojs.t
       -> ('PubF, 'PrivF) t
 
-    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> AnonymousInterface7.t
+    val get_public_key_encoding : ('PubF, 'PrivF) t -> AnonymousInterface7.t
       [@@js.get "publicKeyEncoding"]
 
-    val set_publicKeyEncoding
+    val set_public_key_encoding
       :  ('PubF, 'PrivF) t
       -> AnonymousInterface7.t
       -> unit
       [@@js.set "publicKeyEncoding"]
 
-    val get_privateKeyEncoding
+    val get_private_key_encoding
       :  ('PubF, 'PrivF) t
-      -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
+      -> ( 'PrivF BasePrivateKeyEncodingOptions.t
          , AnonymousInterface6.t )
          intersection2
       [@@js.get "privateKeyEncoding"]
 
-    val set_privateKeyEncoding
+    val set_private_key_encoding
       :  ('PubF, 'PrivF) t
-      -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
+      -> ( 'PrivF BasePrivateKeyEncodingOptions.t
          , AnonymousInterface6.t )
          intersection2
       -> unit
@@ -2102,7 +2100,7 @@ module Crypto : sig
   [@@js.scope "X25519KeyPairOptions"]
 
   module X448KeyPairOptions : sig
-    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) crypto_X448KeyPairOptions
+    type ('PubF, 'PrivF) t = ('PubF, 'PrivF) X448KeyPairOptions.t
 
     val t_to_js
       :  ('PubF -> Ojs.t)
@@ -2116,25 +2114,25 @@ module Crypto : sig
       -> Ojs.t
       -> ('PubF, 'PrivF) t
 
-    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> AnonymousInterface7.t
+    val get_public_key_encoding : ('PubF, 'PrivF) t -> AnonymousInterface7.t
       [@@js.get "publicKeyEncoding"]
 
-    val set_publicKeyEncoding
+    val set_public_key_encoding
       :  ('PubF, 'PrivF) t
       -> AnonymousInterface7.t
       -> unit
       [@@js.set "publicKeyEncoding"]
 
-    val get_privateKeyEncoding
+    val get_private_key_encoding
       :  ('PubF, 'PrivF) t
-      -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
+      -> ( 'PrivF BasePrivateKeyEncodingOptions.t
          , AnonymousInterface6.t )
          intersection2
       [@@js.get "privateKeyEncoding"]
 
-    val set_privateKeyEncoding
+    val set_private_key_encoding
       :  ('PubF, 'PrivF) t
-      -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
+      -> ( 'PrivF BasePrivateKeyEncodingOptions.t
          , AnonymousInterface6.t )
          intersection2
       -> unit
@@ -2143,684 +2141,641 @@ module Crypto : sig
   [@@js.scope "X448KeyPairOptions"]
 
   module KeyPairSyncResult : sig
-    type ('T1, 'T2) t = ('T1, 'T2) crypto_KeyPairSyncResult
+    type ('T1, 'T2) t = ('T1, 'T2) KeyPairSyncResult.t
 
     val t_to_js : ('T1 -> Ojs.t) -> ('T2 -> Ojs.t) -> ('T1, 'T2) t -> Ojs.t
 
     val t_of_js : (Ojs.t -> 'T1) -> (Ojs.t -> 'T2) -> Ojs.t -> ('T1, 'T2) t
 
-    val get_publicKey : ('T1, 'T2) t -> 'T1 [@@js.get "publicKey"]
+    val get_public_key : ('T1, 'T2) t -> 'T1 [@@js.get "publicKey"]
 
-    val set_publicKey : ('T1, 'T2) t -> 'T1 -> unit [@@js.set "publicKey"]
+    val set_public_key : ('T1, 'T2) t -> 'T1 -> unit [@@js.set "publicKey"]
 
-    val get_privateKey : ('T1, 'T2) t -> 'T2 [@@js.get "privateKey"]
+    val get_private_key : ('T1, 'T2) t -> 'T2 [@@js.get "privateKey"]
 
-    val set_privateKey : ('T1, 'T2) t -> 'T2 -> unit [@@js.set "privateKey"]
+    val set_private_key : ('T1, 'T2) t -> 'T2 -> unit [@@js.set "privateKey"]
   end
   [@@js.scope "KeyPairSyncResult"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `rsa ][@js.enum])
-    -> options:
-         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_RSAKeyPairOptions
-    -> (string, string) crypto_KeyPairSyncResult
+    -> options:(([ `pem ][@js.enum]), ([ `pem ][@js.enum])) RSAKeyPairOptions.t
+    -> (string, string) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `rsa ][@js.enum])
-    -> options:
-         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_RSAKeyPairOptions
-    -> (string, Buffer.t) crypto_KeyPairSyncResult
+    -> options:(([ `pem ][@js.enum]), ([ `der ][@js.enum])) RSAKeyPairOptions.t
+    -> (string, Buffer.t) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `rsa ][@js.enum])
-    -> options:
-         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_RSAKeyPairOptions
-    -> (Buffer.t, string) crypto_KeyPairSyncResult
+    -> options:(([ `der ][@js.enum]), ([ `pem ][@js.enum])) RSAKeyPairOptions.t
+    -> (Buffer.t, string) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `rsa ][@js.enum])
-    -> options:
-         (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_RSAKeyPairOptions
-    -> (Buffer.t, Buffer.t) crypto_KeyPairSyncResult
+    -> options:(([ `der ][@js.enum]), ([ `der ][@js.enum])) RSAKeyPairOptions.t
+    -> (Buffer.t, Buffer.t) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `rsa ][@js.enum])
-    -> options:crypto_RSAKeyPairKeyObjectOptions
-    -> crypto_KeyPairKeyObjectResult
+    -> options:RSAKeyPairKeyObjectOptions.t
+    -> KeyPairKeyObjectResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `dsa ][@js.enum])
-    -> options:
-         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_DSAKeyPairOptions
-    -> (string, string) crypto_KeyPairSyncResult
+    -> options:(([ `pem ][@js.enum]), ([ `pem ][@js.enum])) DSAKeyPairOptions.t
+    -> (string, string) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `dsa ][@js.enum])
-    -> options:
-         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_DSAKeyPairOptions
-    -> (string, Buffer.t) crypto_KeyPairSyncResult
+    -> options:(([ `pem ][@js.enum]), ([ `der ][@js.enum])) DSAKeyPairOptions.t
+    -> (string, Buffer.t) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `dsa ][@js.enum])
-    -> options:
-         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_DSAKeyPairOptions
-    -> (Buffer.t, string) crypto_KeyPairSyncResult
+    -> options:(([ `der ][@js.enum]), ([ `pem ][@js.enum])) DSAKeyPairOptions.t
+    -> (Buffer.t, string) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `dsa ][@js.enum])
-    -> options:
-         (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_DSAKeyPairOptions
-    -> (Buffer.t, Buffer.t) crypto_KeyPairSyncResult
+    -> options:(([ `der ][@js.enum]), ([ `der ][@js.enum])) DSAKeyPairOptions.t
+    -> (Buffer.t, Buffer.t) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `dsa ][@js.enum])
-    -> options:crypto_DSAKeyPairKeyObjectOptions
-    -> crypto_KeyPairKeyObjectResult
+    -> options:DSAKeyPairKeyObjectOptions.t
+    -> KeyPairKeyObjectResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `ec ][@js.enum])
-    -> options:
-         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_ECKeyPairOptions
-    -> (string, string) crypto_KeyPairSyncResult
+    -> options:(([ `pem ][@js.enum]), ([ `pem ][@js.enum])) ECKeyPairOptions.t
+    -> (string, string) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `ec ][@js.enum])
-    -> options:
-         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_ECKeyPairOptions
-    -> (string, Buffer.t) crypto_KeyPairSyncResult
+    -> options:(([ `pem ][@js.enum]), ([ `der ][@js.enum])) ECKeyPairOptions.t
+    -> (string, Buffer.t) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `ec ][@js.enum])
-    -> options:
-         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_ECKeyPairOptions
-    -> (Buffer.t, string) crypto_KeyPairSyncResult
+    -> options:(([ `der ][@js.enum]), ([ `pem ][@js.enum])) ECKeyPairOptions.t
+    -> (Buffer.t, string) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `ec ][@js.enum])
-    -> options:
-         (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_ECKeyPairOptions
-    -> (Buffer.t, Buffer.t) crypto_KeyPairSyncResult
+    -> options:(([ `der ][@js.enum]), ([ `der ][@js.enum])) ECKeyPairOptions.t
+    -> (Buffer.t, Buffer.t) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `ec ][@js.enum])
-    -> options:crypto_ECKeyPairKeyObjectOptions
-    -> crypto_KeyPairKeyObjectResult
+    -> options:ECKeyPairKeyObjectOptions.t
+    -> KeyPairKeyObjectResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `ed25519 ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_ED25519KeyPairOptions
-    -> (string, string) crypto_KeyPairSyncResult
+         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) ED25519KeyPairOptions.t
+    -> (string, string) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `ed25519 ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_ED25519KeyPairOptions
-    -> (string, Buffer.t) crypto_KeyPairSyncResult
+         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) ED25519KeyPairOptions.t
+    -> (string, Buffer.t) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `ed25519 ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_ED25519KeyPairOptions
-    -> (Buffer.t, string) crypto_KeyPairSyncResult
+         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) ED25519KeyPairOptions.t
+    -> (Buffer.t, string) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `ed25519 ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_ED25519KeyPairOptions
-    -> (Buffer.t, Buffer.t) crypto_KeyPairSyncResult
+         (([ `der ][@js.enum]), ([ `der ][@js.enum])) ED25519KeyPairOptions.t
+    -> (Buffer.t, Buffer.t) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `ed25519 ][@js.enum])
-    -> ?options:crypto_ED25519KeyPairKeyObjectOptions
+    -> ?options:ED25519KeyPairKeyObjectOptions.t
     -> unit
-    -> crypto_KeyPairKeyObjectResult
+    -> KeyPairKeyObjectResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `ed448 ][@js.enum])
     -> options:
-         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_ED448KeyPairOptions
-    -> (string, string) crypto_KeyPairSyncResult
+         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) ED448KeyPairOptions.t
+    -> (string, string) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `ed448 ][@js.enum])
     -> options:
-         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_ED448KeyPairOptions
-    -> (string, Buffer.t) crypto_KeyPairSyncResult
+         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) ED448KeyPairOptions.t
+    -> (string, Buffer.t) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `ed448 ][@js.enum])
     -> options:
-         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_ED448KeyPairOptions
-    -> (Buffer.t, string) crypto_KeyPairSyncResult
+         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) ED448KeyPairOptions.t
+    -> (Buffer.t, string) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `ed448 ][@js.enum])
     -> options:
-         (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_ED448KeyPairOptions
-    -> (Buffer.t, Buffer.t) crypto_KeyPairSyncResult
+         (([ `der ][@js.enum]), ([ `der ][@js.enum])) ED448KeyPairOptions.t
+    -> (Buffer.t, Buffer.t) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `ed448 ][@js.enum])
-    -> ?options:crypto_ED448KeyPairKeyObjectOptions
+    -> ?options:ED448KeyPairKeyObjectOptions.t
     -> unit
-    -> crypto_KeyPairKeyObjectResult
+    -> KeyPairKeyObjectResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `x25519 ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_X25519KeyPairOptions
-    -> (string, string) crypto_KeyPairSyncResult
+         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) X25519KeyPairOptions.t
+    -> (string, string) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `x25519 ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_X25519KeyPairOptions
-    -> (string, Buffer.t) crypto_KeyPairSyncResult
+         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) X25519KeyPairOptions.t
+    -> (string, Buffer.t) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `x25519 ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_X25519KeyPairOptions
-    -> (Buffer.t, string) crypto_KeyPairSyncResult
+         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) X25519KeyPairOptions.t
+    -> (Buffer.t, string) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `x25519 ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_X25519KeyPairOptions
-    -> (Buffer.t, Buffer.t) crypto_KeyPairSyncResult
+         (([ `der ][@js.enum]), ([ `der ][@js.enum])) X25519KeyPairOptions.t
+    -> (Buffer.t, Buffer.t) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `x25519 ][@js.enum])
-    -> ?options:crypto_X25519KeyPairKeyObjectOptions
+    -> ?options:X25519KeyPairKeyObjectOptions.t
     -> unit
-    -> crypto_KeyPairKeyObjectResult
+    -> KeyPairKeyObjectResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `x448 ][@js.enum])
-    -> options:
-         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_X448KeyPairOptions
-    -> (string, string) crypto_KeyPairSyncResult
+    -> options:(([ `pem ][@js.enum]), ([ `pem ][@js.enum])) X448KeyPairOptions.t
+    -> (string, string) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `x448 ][@js.enum])
-    -> options:
-         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_X448KeyPairOptions
-    -> (string, Buffer.t) crypto_KeyPairSyncResult
+    -> options:(([ `pem ][@js.enum]), ([ `der ][@js.enum])) X448KeyPairOptions.t
+    -> (string, Buffer.t) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `x448 ][@js.enum])
-    -> options:
-         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_X448KeyPairOptions
-    -> (Buffer.t, string) crypto_KeyPairSyncResult
+    -> options:(([ `der ][@js.enum]), ([ `pem ][@js.enum])) X448KeyPairOptions.t
+    -> (Buffer.t, string) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `x448 ][@js.enum])
-    -> options:
-         (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_X448KeyPairOptions
-    -> (Buffer.t, Buffer.t) crypto_KeyPairSyncResult
+    -> options:(([ `der ][@js.enum]), ([ `der ][@js.enum])) X448KeyPairOptions.t
+    -> (Buffer.t, Buffer.t) KeyPairSyncResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPairSync
+  val generate_key_pair_sync
     :  type_:([ `x448 ][@js.enum])
-    -> ?options:crypto_X448KeyPairKeyObjectOptions
+    -> ?options:X448KeyPairKeyObjectOptions.t
     -> unit
-    -> crypto_KeyPairKeyObjectResult
+    -> KeyPairKeyObjectResult.t
     [@@js.global "generateKeyPairSync"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `rsa ][@js.enum])
-    -> options:
-         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_RSAKeyPairOptions
+    -> options:(([ `pem ][@js.enum]), ([ `pem ][@js.enum])) RSAKeyPairOptions.t
     -> callback:
-         (err:Error.t or_null -> publicKey:string -> privateKey:string -> unit)
+         (err:Error.t or_null
+          -> public_key:string
+          -> private_key:string
+          -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `rsa ][@js.enum])
-    -> options:
-         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_RSAKeyPairOptions
+    -> options:(([ `pem ][@js.enum]), ([ `der ][@js.enum])) RSAKeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:string
-          -> privateKey:Buffer.t
+          -> public_key:string
+          -> private_key:Buffer.t
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `rsa ][@js.enum])
-    -> options:
-         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_RSAKeyPairOptions
+    -> options:(([ `der ][@js.enum]), ([ `pem ][@js.enum])) RSAKeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:Buffer.t
-          -> privateKey:string
+          -> public_key:Buffer.t
+          -> private_key:string
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `rsa ][@js.enum])
-    -> options:
-         (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_RSAKeyPairOptions
+    -> options:(([ `der ][@js.enum]), ([ `der ][@js.enum])) RSAKeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:Buffer.t
-          -> privateKey:Buffer.t
+          -> public_key:Buffer.t
+          -> private_key:Buffer.t
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `rsa ][@js.enum])
-    -> options:crypto_RSAKeyPairKeyObjectOptions
+    -> options:RSAKeyPairKeyObjectOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:crypto_KeyObject
-          -> privateKey:crypto_KeyObject
+          -> public_key:KeyObject.t
+          -> private_key:KeyObject.t
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `dsa ][@js.enum])
-    -> options:
-         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_DSAKeyPairOptions
+    -> options:(([ `pem ][@js.enum]), ([ `pem ][@js.enum])) DSAKeyPairOptions.t
     -> callback:
-         (err:Error.t or_null -> publicKey:string -> privateKey:string -> unit)
+         (err:Error.t or_null
+          -> public_key:string
+          -> private_key:string
+          -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `dsa ][@js.enum])
-    -> options:
-         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_DSAKeyPairOptions
+    -> options:(([ `pem ][@js.enum]), ([ `der ][@js.enum])) DSAKeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:string
-          -> privateKey:Buffer.t
+          -> public_key:string
+          -> private_key:Buffer.t
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `dsa ][@js.enum])
-    -> options:
-         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_DSAKeyPairOptions
+    -> options:(([ `der ][@js.enum]), ([ `pem ][@js.enum])) DSAKeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:Buffer.t
-          -> privateKey:string
+          -> public_key:Buffer.t
+          -> private_key:string
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `dsa ][@js.enum])
-    -> options:
-         (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_DSAKeyPairOptions
+    -> options:(([ `der ][@js.enum]), ([ `der ][@js.enum])) DSAKeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:Buffer.t
-          -> privateKey:Buffer.t
+          -> public_key:Buffer.t
+          -> private_key:Buffer.t
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `dsa ][@js.enum])
-    -> options:crypto_DSAKeyPairKeyObjectOptions
+    -> options:DSAKeyPairKeyObjectOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:crypto_KeyObject
-          -> privateKey:crypto_KeyObject
+          -> public_key:KeyObject.t
+          -> private_key:KeyObject.t
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `ec ][@js.enum])
-    -> options:
-         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_ECKeyPairOptions
-    -> callback:
-         (err:Error.t or_null -> publicKey:string -> privateKey:string -> unit)
-    -> unit
-    [@@js.global "generateKeyPair"]
-
-  val generateKeyPair
-    :  type_:([ `ec ][@js.enum])
-    -> options:
-         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_ECKeyPairOptions
+    -> options:(([ `pem ][@js.enum]), ([ `pem ][@js.enum])) ECKeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:string
-          -> privateKey:Buffer.t
+          -> public_key:string
+          -> private_key:string
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `ec ][@js.enum])
-    -> options:
-         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_ECKeyPairOptions
+    -> options:(([ `pem ][@js.enum]), ([ `der ][@js.enum])) ECKeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:Buffer.t
-          -> privateKey:string
+          -> public_key:string
+          -> private_key:Buffer.t
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `ec ][@js.enum])
-    -> options:
-         (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_ECKeyPairOptions
+    -> options:(([ `der ][@js.enum]), ([ `pem ][@js.enum])) ECKeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:Buffer.t
-          -> privateKey:Buffer.t
+          -> public_key:Buffer.t
+          -> private_key:string
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `ec ][@js.enum])
-    -> options:crypto_ECKeyPairKeyObjectOptions
+    -> options:(([ `der ][@js.enum]), ([ `der ][@js.enum])) ECKeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:crypto_KeyObject
-          -> privateKey:crypto_KeyObject
+          -> public_key:Buffer.t
+          -> private_key:Buffer.t
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
+    :  type_:([ `ec ][@js.enum])
+    -> options:ECKeyPairKeyObjectOptions.t
+    -> callback:
+         (err:Error.t or_null
+          -> public_key:KeyObject.t
+          -> private_key:KeyObject.t
+          -> unit)
+    -> unit
+    [@@js.global "generateKeyPair"]
+
+  val generate_key_pair
     :  type_:([ `ed25519 ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_ED25519KeyPairOptions
+         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) ED25519KeyPairOptions.t
     -> callback:
-         (err:Error.t or_null -> publicKey:string -> privateKey:string -> unit)
+         (err:Error.t or_null
+          -> public_key:string
+          -> private_key:string
+          -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `ed25519 ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_ED25519KeyPairOptions
+         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) ED25519KeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:string
-          -> privateKey:Buffer.t
+          -> public_key:string
+          -> private_key:Buffer.t
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `ed25519 ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_ED25519KeyPairOptions
+         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) ED25519KeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:Buffer.t
-          -> privateKey:string
+          -> public_key:Buffer.t
+          -> private_key:string
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `ed25519 ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_ED25519KeyPairOptions
+         (([ `der ][@js.enum]), ([ `der ][@js.enum])) ED25519KeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:Buffer.t
-          -> privateKey:Buffer.t
+          -> public_key:Buffer.t
+          -> private_key:Buffer.t
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `ed25519 ][@js.enum])
-    -> options:crypto_ED25519KeyPairKeyObjectOptions or_undefined
+    -> options:ED25519KeyPairKeyObjectOptions.t or_undefined
     -> callback:
          (err:Error.t or_null
-          -> publicKey:crypto_KeyObject
-          -> privateKey:crypto_KeyObject
+          -> public_key:KeyObject.t
+          -> private_key:KeyObject.t
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `ed448 ][@js.enum])
     -> options:
-         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_ED448KeyPairOptions
+         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) ED448KeyPairOptions.t
     -> callback:
-         (err:Error.t or_null -> publicKey:string -> privateKey:string -> unit)
+         (err:Error.t or_null
+          -> public_key:string
+          -> private_key:string
+          -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `ed448 ][@js.enum])
     -> options:
-         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_ED448KeyPairOptions
+         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) ED448KeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:string
-          -> privateKey:Buffer.t
+          -> public_key:string
+          -> private_key:Buffer.t
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `ed448 ][@js.enum])
     -> options:
-         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_ED448KeyPairOptions
+         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) ED448KeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:Buffer.t
-          -> privateKey:string
+          -> public_key:Buffer.t
+          -> private_key:string
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `ed448 ][@js.enum])
     -> options:
-         (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_ED448KeyPairOptions
+         (([ `der ][@js.enum]), ([ `der ][@js.enum])) ED448KeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:Buffer.t
-          -> privateKey:Buffer.t
+          -> public_key:Buffer.t
+          -> private_key:Buffer.t
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `ed448 ][@js.enum])
-    -> options:crypto_ED448KeyPairKeyObjectOptions or_undefined
+    -> options:ED448KeyPairKeyObjectOptions.t or_undefined
     -> callback:
          (err:Error.t or_null
-          -> publicKey:crypto_KeyObject
-          -> privateKey:crypto_KeyObject
+          -> public_key:KeyObject.t
+          -> private_key:KeyObject.t
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `x25519 ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_X25519KeyPairOptions
+         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) X25519KeyPairOptions.t
     -> callback:
-         (err:Error.t or_null -> publicKey:string -> privateKey:string -> unit)
+         (err:Error.t or_null
+          -> public_key:string
+          -> private_key:string
+          -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `x25519 ][@js.enum])
     -> options:
-         ( ([ `pem ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_X25519KeyPairOptions
+         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) X25519KeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:string
-          -> privateKey:Buffer.t
+          -> public_key:string
+          -> private_key:Buffer.t
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `x25519 ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `pem ][@js.enum]) )
-         crypto_X25519KeyPairOptions
+         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) X25519KeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:Buffer.t
-          -> privateKey:string
+          -> public_key:Buffer.t
+          -> private_key:string
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `x25519 ][@js.enum])
     -> options:
-         ( ([ `der ][@js.enum])
-         , ([ `der ][@js.enum]) )
-         crypto_X25519KeyPairOptions
+         (([ `der ][@js.enum]), ([ `der ][@js.enum])) X25519KeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:Buffer.t
-          -> privateKey:Buffer.t
+          -> public_key:Buffer.t
+          -> private_key:Buffer.t
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `x25519 ][@js.enum])
-    -> options:crypto_X25519KeyPairKeyObjectOptions or_undefined
+    -> options:X25519KeyPairKeyObjectOptions.t or_undefined
     -> callback:
          (err:Error.t or_null
-          -> publicKey:crypto_KeyObject
-          -> privateKey:crypto_KeyObject
+          -> public_key:KeyObject.t
+          -> private_key:KeyObject.t
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `x448 ][@js.enum])
-    -> options:
-         (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_X448KeyPairOptions
-    -> callback:
-         (err:Error.t or_null -> publicKey:string -> privateKey:string -> unit)
-    -> unit
-    [@@js.global "generateKeyPair"]
-
-  val generateKeyPair
-    :  type_:([ `x448 ][@js.enum])
-    -> options:
-         (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_X448KeyPairOptions
+    -> options:(([ `pem ][@js.enum]), ([ `pem ][@js.enum])) X448KeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:string
-          -> privateKey:Buffer.t
+          -> public_key:string
+          -> private_key:string
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `x448 ][@js.enum])
-    -> options:
-         (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_X448KeyPairOptions
+    -> options:(([ `pem ][@js.enum]), ([ `der ][@js.enum])) X448KeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:Buffer.t
-          -> privateKey:string
+          -> public_key:string
+          -> private_key:Buffer.t
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `x448 ][@js.enum])
-    -> options:
-         (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_X448KeyPairOptions
+    -> options:(([ `der ][@js.enum]), ([ `pem ][@js.enum])) X448KeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:Buffer.t
-          -> privateKey:Buffer.t
+          -> public_key:Buffer.t
+          -> private_key:string
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
 
-  val generateKeyPair
+  val generate_key_pair
     :  type_:([ `x448 ][@js.enum])
-    -> options:crypto_X448KeyPairKeyObjectOptions or_undefined
+    -> options:(([ `der ][@js.enum]), ([ `der ][@js.enum])) X448KeyPairOptions.t
     -> callback:
          (err:Error.t or_null
-          -> publicKey:crypto_KeyObject
-          -> privateKey:crypto_KeyObject
+          -> public_key:Buffer.t
+          -> private_key:Buffer.t
+          -> unit)
+    -> unit
+    [@@js.global "generateKeyPair"]
+
+  val generate_key_pair
+    :  type_:([ `x448 ][@js.enum])
+    -> options:X448KeyPairKeyObjectOptions.t or_undefined
+    -> callback:
+         (err:Error.t or_null
+          -> public_key:KeyObject.t
+          -> private_key:KeyObject.t
           -> unit)
     -> unit
     [@@js.global "generateKeyPair"]
@@ -2829,275 +2784,239 @@ module Crypto : sig
     val __promisify__
       :  type_:([ `rsa ][@js.enum])
       -> options:
-           (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_RSAKeyPairOptions
+           (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) RSAKeyPairOptions.t
       -> AnonymousInterface5.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `rsa ][@js.enum])
       -> options:
-           (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_RSAKeyPairOptions
+           (([ `pem ][@js.enum]), ([ `der ][@js.enum])) RSAKeyPairOptions.t
       -> AnonymousInterface4.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `rsa ][@js.enum])
       -> options:
-           (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_RSAKeyPairOptions
+           (([ `der ][@js.enum]), ([ `pem ][@js.enum])) RSAKeyPairOptions.t
       -> AnonymousInterface3.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `rsa ][@js.enum])
       -> options:
-           (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_RSAKeyPairOptions
+           (([ `der ][@js.enum]), ([ `der ][@js.enum])) RSAKeyPairOptions.t
       -> AnonymousInterface2.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `rsa ][@js.enum])
-      -> options:crypto_RSAKeyPairKeyObjectOptions
-      -> crypto_KeyPairKeyObjectResult Promise.t
+      -> options:RSAKeyPairKeyObjectOptions.t
+      -> KeyPairKeyObjectResult.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `dsa ][@js.enum])
       -> options:
-           (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_DSAKeyPairOptions
+           (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) DSAKeyPairOptions.t
       -> AnonymousInterface5.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `dsa ][@js.enum])
       -> options:
-           (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_DSAKeyPairOptions
+           (([ `pem ][@js.enum]), ([ `der ][@js.enum])) DSAKeyPairOptions.t
       -> AnonymousInterface4.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `dsa ][@js.enum])
       -> options:
-           (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_DSAKeyPairOptions
+           (([ `der ][@js.enum]), ([ `pem ][@js.enum])) DSAKeyPairOptions.t
       -> AnonymousInterface3.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `dsa ][@js.enum])
       -> options:
-           (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_DSAKeyPairOptions
+           (([ `der ][@js.enum]), ([ `der ][@js.enum])) DSAKeyPairOptions.t
       -> AnonymousInterface2.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `dsa ][@js.enum])
-      -> options:crypto_DSAKeyPairKeyObjectOptions
-      -> crypto_KeyPairKeyObjectResult Promise.t
+      -> options:DSAKeyPairKeyObjectOptions.t
+      -> KeyPairKeyObjectResult.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ec ][@js.enum])
-      -> options:
-           (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_ECKeyPairOptions
+      -> options:(([ `pem ][@js.enum]), ([ `pem ][@js.enum])) ECKeyPairOptions.t
       -> AnonymousInterface5.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ec ][@js.enum])
-      -> options:
-           (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_ECKeyPairOptions
+      -> options:(([ `pem ][@js.enum]), ([ `der ][@js.enum])) ECKeyPairOptions.t
       -> AnonymousInterface4.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ec ][@js.enum])
-      -> options:
-           (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_ECKeyPairOptions
+      -> options:(([ `der ][@js.enum]), ([ `pem ][@js.enum])) ECKeyPairOptions.t
       -> AnonymousInterface3.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ec ][@js.enum])
-      -> options:
-           (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_ECKeyPairOptions
+      -> options:(([ `der ][@js.enum]), ([ `der ][@js.enum])) ECKeyPairOptions.t
       -> AnonymousInterface2.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ec ][@js.enum])
-      -> options:crypto_ECKeyPairKeyObjectOptions
-      -> crypto_KeyPairKeyObjectResult Promise.t
+      -> options:ECKeyPairKeyObjectOptions.t
+      -> KeyPairKeyObjectResult.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ed25519 ][@js.enum])
       -> options:
-           ( ([ `pem ][@js.enum])
-           , ([ `pem ][@js.enum]) )
-           crypto_ED25519KeyPairOptions
+           (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) ED25519KeyPairOptions.t
       -> AnonymousInterface5.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ed25519 ][@js.enum])
       -> options:
-           ( ([ `pem ][@js.enum])
-           , ([ `der ][@js.enum]) )
-           crypto_ED25519KeyPairOptions
+           (([ `pem ][@js.enum]), ([ `der ][@js.enum])) ED25519KeyPairOptions.t
       -> AnonymousInterface4.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ed25519 ][@js.enum])
       -> options:
-           ( ([ `der ][@js.enum])
-           , ([ `pem ][@js.enum]) )
-           crypto_ED25519KeyPairOptions
+           (([ `der ][@js.enum]), ([ `pem ][@js.enum])) ED25519KeyPairOptions.t
       -> AnonymousInterface3.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ed25519 ][@js.enum])
       -> options:
-           ( ([ `der ][@js.enum])
-           , ([ `der ][@js.enum]) )
-           crypto_ED25519KeyPairOptions
+           (([ `der ][@js.enum]), ([ `der ][@js.enum])) ED25519KeyPairOptions.t
       -> AnonymousInterface2.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ed25519 ][@js.enum])
-      -> ?options:crypto_ED25519KeyPairKeyObjectOptions
+      -> ?options:ED25519KeyPairKeyObjectOptions.t
       -> unit
-      -> crypto_KeyPairKeyObjectResult Promise.t
+      -> KeyPairKeyObjectResult.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ed448 ][@js.enum])
       -> options:
-           ( ([ `pem ][@js.enum])
-           , ([ `pem ][@js.enum]) )
-           crypto_ED448KeyPairOptions
+           (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) ED448KeyPairOptions.t
       -> AnonymousInterface5.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ed448 ][@js.enum])
       -> options:
-           ( ([ `pem ][@js.enum])
-           , ([ `der ][@js.enum]) )
-           crypto_ED448KeyPairOptions
+           (([ `pem ][@js.enum]), ([ `der ][@js.enum])) ED448KeyPairOptions.t
       -> AnonymousInterface4.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ed448 ][@js.enum])
       -> options:
-           ( ([ `der ][@js.enum])
-           , ([ `pem ][@js.enum]) )
-           crypto_ED448KeyPairOptions
+           (([ `der ][@js.enum]), ([ `pem ][@js.enum])) ED448KeyPairOptions.t
       -> AnonymousInterface3.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ed448 ][@js.enum])
       -> options:
-           ( ([ `der ][@js.enum])
-           , ([ `der ][@js.enum]) )
-           crypto_ED448KeyPairOptions
+           (([ `der ][@js.enum]), ([ `der ][@js.enum])) ED448KeyPairOptions.t
       -> AnonymousInterface2.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ed448 ][@js.enum])
-      -> ?options:crypto_ED448KeyPairKeyObjectOptions
+      -> ?options:ED448KeyPairKeyObjectOptions.t
       -> unit
-      -> crypto_KeyPairKeyObjectResult Promise.t
+      -> KeyPairKeyObjectResult.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `x25519 ][@js.enum])
       -> options:
-           ( ([ `pem ][@js.enum])
-           , ([ `pem ][@js.enum]) )
-           crypto_X25519KeyPairOptions
+           (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) X25519KeyPairOptions.t
       -> AnonymousInterface5.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `x25519 ][@js.enum])
       -> options:
-           ( ([ `pem ][@js.enum])
-           , ([ `der ][@js.enum]) )
-           crypto_X25519KeyPairOptions
+           (([ `pem ][@js.enum]), ([ `der ][@js.enum])) X25519KeyPairOptions.t
       -> AnonymousInterface4.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `x25519 ][@js.enum])
       -> options:
-           ( ([ `der ][@js.enum])
-           , ([ `pem ][@js.enum]) )
-           crypto_X25519KeyPairOptions
+           (([ `der ][@js.enum]), ([ `pem ][@js.enum])) X25519KeyPairOptions.t
       -> AnonymousInterface3.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `x25519 ][@js.enum])
       -> options:
-           ( ([ `der ][@js.enum])
-           , ([ `der ][@js.enum]) )
-           crypto_X25519KeyPairOptions
+           (([ `der ][@js.enum]), ([ `der ][@js.enum])) X25519KeyPairOptions.t
       -> AnonymousInterface2.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `x25519 ][@js.enum])
-      -> ?options:crypto_X25519KeyPairKeyObjectOptions
+      -> ?options:X25519KeyPairKeyObjectOptions.t
       -> unit
-      -> crypto_KeyPairKeyObjectResult Promise.t
+      -> KeyPairKeyObjectResult.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `x448 ][@js.enum])
       -> options:
-           ( ([ `pem ][@js.enum])
-           , ([ `pem ][@js.enum]) )
-           crypto_X448KeyPairOptions
+           (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) X448KeyPairOptions.t
       -> AnonymousInterface5.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `x448 ][@js.enum])
       -> options:
-           ( ([ `pem ][@js.enum])
-           , ([ `der ][@js.enum]) )
-           crypto_X448KeyPairOptions
+           (([ `pem ][@js.enum]), ([ `der ][@js.enum])) X448KeyPairOptions.t
       -> AnonymousInterface4.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `x448 ][@js.enum])
       -> options:
-           ( ([ `der ][@js.enum])
-           , ([ `pem ][@js.enum]) )
-           crypto_X448KeyPairOptions
+           (([ `der ][@js.enum]), ([ `pem ][@js.enum])) X448KeyPairOptions.t
       -> AnonymousInterface3.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `x448 ][@js.enum])
       -> options:
-           ( ([ `der ][@js.enum])
-           , ([ `der ][@js.enum]) )
-           crypto_X448KeyPairOptions
+           (([ `der ][@js.enum]), ([ `der ][@js.enum])) X448KeyPairOptions.t
       -> AnonymousInterface2.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `x448 ][@js.enum])
-      -> ?options:crypto_X448KeyPairKeyObjectOptions
+      -> ?options:X448KeyPairKeyObjectOptions.t
       -> unit
-      -> crypto_KeyPairKeyObjectResult Promise.t
+      -> KeyPairKeyObjectResult.t Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "generateKeyPair"]
@@ -3106,16 +3025,16 @@ module Crypto : sig
     :  algorithm:string or_null_or_undefined
     -> data:ArrayBufferView.t
     -> key:
-         ( ([ `U_s11_der of crypto_SignKeyObjectInput
-            | `U_s18_ieee_p1363 of crypto_SignKeyObjectInput
+         ( ([ `U_s11_der of SignKeyObjectInput.t
+            | `U_s18_ieee_p1363 of SignKeyObjectInput.t
             ]
            [@js.union on_field "dsaEncoding"])
-         , ([ `U_s21_pkcs1 of crypto_SignPrivateKeyInput
-            | `U_s22_pkcs8 of crypto_SignPrivateKeyInput
-            | `U_s23_private of crypto_KeyLike
-            | `U_s24_public of crypto_KeyLike
-            | `U_s26_sec1 of crypto_SignPrivateKeyInput
-            | `U_s27_secret of crypto_KeyLike
+         , ([ `U_s21_pkcs1 of SignPrivateKeyInput.t
+            | `U_s22_pkcs8 of SignPrivateKeyInput.t
+            | `U_s23_private of KeyLike.t
+            | `U_s24_public of KeyLike.t
+            | `U_s26_sec1 of SignPrivateKeyInput.t
+            | `U_s27_secret of KeyLike.t
             ]
            [@js.union on_field "type"]) )
          union2
@@ -3126,15 +3045,15 @@ module Crypto : sig
     :  algorithm:string or_null_or_undefined
     -> data:ArrayBufferView.t
     -> key:
-         ( ([ `U_s11_der of crypto_VerifyKeyObjectInput
-            | `U_s18_ieee_p1363 of crypto_VerifyKeyObjectInput
+         ( ([ `U_s11_der of VerifyKeyObjectInput.t
+            | `U_s18_ieee_p1363 of VerifyKeyObjectInput.t
             ]
            [@js.union on_field "dsaEncoding"])
-         , ([ `U_s21_pkcs1 of crypto_VerifyPublicKeyInput
-            | `U_s23_private of crypto_KeyLike
-            | `U_s24_public of crypto_KeyLike
-            | `U_s27_secret of crypto_KeyLike
-            | `U_s28_spki of crypto_VerifyPublicKeyInput
+         , ([ `U_s21_pkcs1 of VerifyPublicKeyInput.t
+            | `U_s23_private of KeyLike.t
+            | `U_s24_public of KeyLike.t
+            | `U_s27_secret of KeyLike.t
+            | `U_s28_spki of VerifyPublicKeyInput.t
             ]
            [@js.union on_field "type"]) )
          union2
@@ -3142,7 +3061,7 @@ module Crypto : sig
     -> bool
     [@@js.global "verify"]
 
-  val diffieHellman : options:AnonymousInterface1.t -> Buffer.t
+  val diffie_hellman : options:AnonymousInterface1.t -> Buffer.t
     [@@js.global "diffieHellman"]
 end
 [@@js.scope Import.crypto]

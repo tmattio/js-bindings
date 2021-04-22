@@ -12,77 +12,79 @@ module AnonymousInterface0 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_rejectUnauthorized : t -> bool [@@js.get "rejectUnauthorized"]
+  val get_reject_unauthorized : t -> bool [@@js.get "rejectUnauthorized"]
 
-  val set_rejectUnauthorized : t -> bool -> unit [@@js.set "rejectUnauthorized"]
+  val set_reject_unauthorized : t -> bool -> unit
+    [@@js.set "rejectUnauthorized"]
 
-  val get_requestCert : t -> bool [@@js.get "requestCert"]
+  val get_request_cert : t -> bool [@@js.get "requestCert"]
 
-  val set_requestCert : t -> bool -> unit [@@js.set "requestCert"]
+  val set_request_cert : t -> bool -> unit [@@js.set "requestCert"]
 end
 
 module Tls : sig
   open Node_net
 
-  val cLIENT_RENEG_LIMIT : int [@@js.global "CLIENT_RENEG_LIMIT"]
+  val client_reneg_limit : int [@@js.global "CLIENT_RENEG_LIMIT"]
 
-  val cLIENT_RENEG_WINDOW : int [@@js.global "CLIENT_RENEG_WINDOW"]
+  val client_reneg_window : int [@@js.global "CLIENT_RENEG_WINDOW"]
 
   module Certificate : sig
-    type t = tls_Certificate
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_C : t -> string [@@js.get "C"]
+    val get_c : t -> string [@@js.get "C"]
 
-    val set_C : t -> string -> unit [@@js.set "C"]
+    val set_c : t -> string -> unit [@@js.set "C"]
 
-    val get_ST : t -> string [@@js.get "ST"]
+    val get_st : t -> string [@@js.get "ST"]
 
-    val set_ST : t -> string -> unit [@@js.set "ST"]
+    val set_st : t -> string -> unit [@@js.set "ST"]
 
-    val get_L : t -> string [@@js.get "L"]
+    val get_l : t -> string [@@js.get "L"]
 
-    val set_L : t -> string -> unit [@@js.set "L"]
+    val set_l : t -> string -> unit [@@js.set "L"]
 
-    val get_O : t -> string [@@js.get "O"]
+    val get_o : t -> string [@@js.get "O"]
 
-    val set_O : t -> string -> unit [@@js.set "O"]
+    val set_o : t -> string -> unit [@@js.set "O"]
 
-    val get_OU : t -> string [@@js.get "OU"]
+    val get_ou : t -> string [@@js.get "OU"]
 
-    val set_OU : t -> string -> unit [@@js.set "OU"]
+    val set_ou : t -> string -> unit [@@js.set "OU"]
 
-    val get_CN : t -> string [@@js.get "CN"]
+    val get_cn : t -> string [@@js.get "CN"]
 
-    val set_CN : t -> string -> unit [@@js.set "CN"]
+    val set_cn : t -> string -> unit [@@js.set "CN"]
   end
   [@@js.scope "Certificate"]
 
   module PeerCertificate : sig
-    type t = tls_PeerCertificate
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_subject : t -> tls_Certificate [@@js.get "subject"]
+    val get_subject : t -> Certificate.t [@@js.get "subject"]
 
-    val set_subject : t -> tls_Certificate -> unit [@@js.set "subject"]
+    val set_subject : t -> Certificate.t -> unit [@@js.set "subject"]
 
-    val get_issuer : t -> tls_Certificate [@@js.get "issuer"]
+    val get_issuer : t -> Certificate.t [@@js.get "issuer"]
 
-    val set_issuer : t -> tls_Certificate -> unit [@@js.set "issuer"]
+    val set_issuer : t -> Certificate.t -> unit [@@js.set "issuer"]
 
     val get_subjectaltname : t -> string [@@js.get "subjectaltname"]
 
     val set_subjectaltname : t -> string -> unit [@@js.set "subjectaltname"]
 
-    val get_infoAccess : t -> string list Dict.t [@@js.get "infoAccess"]
+    val get_info_access : t -> string list Dict.t [@@js.get "infoAccess"]
 
-    val set_infoAccess : t -> string list Dict.t -> unit [@@js.set "infoAccess"]
+    val set_info_access : t -> string list Dict.t -> unit
+      [@@js.set "infoAccess"]
 
     val get_modulus : t -> string [@@js.get "modulus"]
 
@@ -112,9 +114,9 @@ module Tls : sig
 
     val set_ext_key_usage : t -> string list -> unit [@@js.set "ext_key_usage"]
 
-    val get_serialNumber : t -> string [@@js.get "serialNumber"]
+    val get_serial_number : t -> string [@@js.get "serialNumber"]
 
-    val set_serialNumber : t -> string -> unit [@@js.set "serialNumber"]
+    val set_serial_number : t -> string -> unit [@@js.set "serialNumber"]
 
     val get_raw : t -> Buffer.t [@@js.get "raw"]
 
@@ -123,22 +125,22 @@ module Tls : sig
   [@@js.scope "PeerCertificate"]
 
   module DetailedPeerCertificate : sig
-    type t = tls_DetailedPeerCertificate
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_issuerCertificate : t -> t [@@js.get "issuerCertificate"]
+    val get_issuer_certificate : t -> t [@@js.get "issuerCertificate"]
 
-    val set_issuerCertificate : t -> t -> unit [@@js.set "issuerCertificate"]
+    val set_issuer_certificate : t -> t -> unit [@@js.set "issuerCertificate"]
 
-    val cast : t -> tls_PeerCertificate [@@js.cast]
+    val cast : t -> PeerCertificate.t [@@js.cast]
   end
   [@@js.scope "DetailedPeerCertificate"]
 
   module CipherNameAndProtocol : sig
-    type t = tls_CipherNameAndProtocol
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -152,14 +154,14 @@ module Tls : sig
 
     val set_version : t -> string -> unit [@@js.set "version"]
 
-    val get_standardName : t -> string [@@js.get "standardName"]
+    val get_standard_name : t -> string [@@js.get "standardName"]
 
-    val set_standardName : t -> string -> unit [@@js.set "standardName"]
+    val set_standard_name : t -> string -> unit [@@js.set "standardName"]
   end
   [@@js.scope "CipherNameAndProtocol"]
 
   module EphemeralKeyInfo : sig
-    type t = tls_EphemeralKeyInfo
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -180,7 +182,7 @@ module Tls : sig
   [@@js.scope "EphemeralKeyInfo"]
 
   module KeyObject : sig
-    type t = tls_KeyObject
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -197,7 +199,7 @@ module Tls : sig
   [@@js.scope "KeyObject"]
 
   module PxfObject : sig
-    type t = tls_PxfObject
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -214,15 +216,15 @@ module Tls : sig
   [@@js.scope "PxfObject"]
 
   module TLSSocketOptions : sig
-    type t = tls_TLSSocketOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_isServer : t -> bool [@@js.get "isServer"]
+    val get_is_server : t -> bool [@@js.get "isServer"]
 
-    val set_isServer : t -> bool -> unit [@@js.set "isServer"]
+    val set_is_server : t -> bool -> unit [@@js.set "isServer"]
 
     val get_server : t -> Net.Server.t [@@js.get "server"]
 
@@ -232,93 +234,89 @@ module Tls : sig
 
     val set_session : t -> Buffer.t -> unit [@@js.set "session"]
 
-    val get_requestOCSP : t -> bool [@@js.get "requestOCSP"]
+    val get_request_ocsp : t -> bool [@@js.get "requestOCSP"]
 
-    val set_requestOCSP : t -> bool -> unit [@@js.set "requestOCSP"]
+    val set_request_ocsp : t -> bool -> unit [@@js.set "requestOCSP"]
 
-    val cast : t -> tls_SecureContextOptions [@@js.cast]
+    val cast : t -> SecureContextOptions.t [@@js.cast]
 
-    val cast' : t -> tls_CommonConnectionOptions [@@js.cast]
+    val cast' : t -> CommonConnectionOptions.t [@@js.cast]
   end
   [@@js.scope "TLSSocketOptions"]
 
   module TLSSocket : sig
-    type t = tls_TLSSocket
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val create
-      :  socket:Net.Socket.t
-      -> ?options:tls_TLSSocketOptions
-      -> unit
-      -> t
+    val create : socket:Net.Socket.t -> ?options:TLSSocketOptions.t -> unit -> t
       [@@js.create]
 
     val get_authorized : t -> bool [@@js.get "authorized"]
 
     val set_authorized : t -> bool -> unit [@@js.set "authorized"]
 
-    val get_authorizationError : t -> Error.t [@@js.get "authorizationError"]
+    val get_authorization_error : t -> Error.t [@@js.get "authorizationError"]
 
-    val set_authorizationError : t -> Error.t -> unit
+    val set_authorization_error : t -> Error.t -> unit
       [@@js.set "authorizationError"]
 
     val get_encrypted : t -> bool [@@js.get "encrypted"]
 
     val set_encrypted : t -> bool -> unit [@@js.set "encrypted"]
 
-    val get_alpnProtocol : t -> string [@@js.get "alpnProtocol"]
+    val get_alpn_protocol : t -> string [@@js.get "alpnProtocol"]
 
-    val set_alpnProtocol : t -> string -> unit [@@js.set "alpnProtocol"]
+    val set_alpn_protocol : t -> string -> unit [@@js.set "alpnProtocol"]
 
-    val getCertificate
+    val get_certificate
       :  t
-      -> (tls_PeerCertificate, untyped_object) union2 or_null
+      -> (PeerCertificate.t, untyped_object) union2 or_null
       [@@js.call "getCertificate"]
 
-    val getCipher : t -> tls_CipherNameAndProtocol [@@js.call "getCipher"]
+    val get_cipher : t -> CipherNameAndProtocol.t [@@js.call "getCipher"]
 
-    val getEphemeralKeyInfo
+    val get_ephemeral_key_info
       :  t
-      -> (tls_EphemeralKeyInfo, untyped_object) union2 or_null
+      -> (EphemeralKeyInfo.t, untyped_object) union2 or_null
       [@@js.call "getEphemeralKeyInfo"]
 
-    val getFinished : t -> Buffer.t or_undefined [@@js.call "getFinished"]
+    val get_finished : t -> Buffer.t or_undefined [@@js.call "getFinished"]
 
-    val getPeerCertificate
+    val get_peer_certificate
       :  t
       -> detailed:([ `L_b_true ][@js.enum])
-      -> tls_DetailedPeerCertificate
+      -> DetailedPeerCertificate.t
       [@@js.call "getPeerCertificate"]
 
-    val getPeerCertificate'
+    val get_peer_certificate'
       :  t
       -> ?detailed:([ `L_b_false ][@js.enum])
       -> unit
-      -> tls_PeerCertificate
+      -> PeerCertificate.t
       [@@js.call "getPeerCertificate"]
 
-    val getPeerCertificate''
+    val get_peer_certificate''
       :  t
       -> ?detailed:bool
       -> unit
-      -> (tls_DetailedPeerCertificate, tls_PeerCertificate) union2
+      -> (DetailedPeerCertificate.t, PeerCertificate.t) union2
       [@@js.call "getPeerCertificate"]
 
-    val getPeerFinished : t -> Buffer.t or_undefined
+    val get_peer_finished : t -> Buffer.t or_undefined
       [@@js.call "getPeerFinished"]
 
-    val getProtocol : t -> string or_null [@@js.call "getProtocol"]
+    val get_protocol : t -> string or_null [@@js.call "getProtocol"]
 
-    val getSession : t -> Buffer.t or_undefined [@@js.call "getSession"]
+    val get_session : t -> Buffer.t or_undefined [@@js.call "getSession"]
 
-    val getSharedSigalgs : t -> string list [@@js.call "getSharedSigalgs"]
+    val get_shared_sigalgs : t -> string list [@@js.call "getSharedSigalgs"]
 
-    val getTLSTicket : t -> Buffer.t or_undefined [@@js.call "getTLSTicket"]
+    val get_tls_ticket : t -> Buffer.t or_undefined [@@js.call "getTLSTicket"]
 
-    val isSessionReused : t -> bool [@@js.call "isSessionReused"]
+    val is_session_reused : t -> bool [@@js.call "isSessionReused"]
 
     val renegotiate
       :  t
@@ -327,14 +325,14 @@ module Tls : sig
       -> bool or_undefined
       [@@js.call "renegotiate"]
 
-    val setMaxSendFragment : t -> size:int -> bool
+    val set_max_send_fragment : t -> size:int -> bool
       [@@js.call "setMaxSendFragment"]
 
-    val disableRenegotiation : t -> unit [@@js.call "disableRenegotiation"]
+    val disable_renegotiation : t -> unit [@@js.call "disableRenegotiation"]
 
-    val enableTrace : t -> unit [@@js.call "enableTrace"]
+    val enable_trace : t -> unit [@@js.call "enableTrace"]
 
-    val exportKeyingMaterial
+    val export_keying_material
       :  t
       -> length:int
       -> label:string
@@ -342,35 +340,35 @@ module Tls : sig
       -> Buffer.t
       [@@js.call "exportKeyingMaterial"]
 
-    val addListener
+    val add_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'
+    val add_listener'
       :  t
       -> event:([ `OCSPResponse ][@js.enum])
       -> listener:(response:Buffer.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''
+    val add_listener''
       :  t
       -> event:([ `secureConnect ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''
+    val add_listener'''
       :  t
       -> event:([ `session ][@js.enum])
       -> listener:(session:Buffer.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''
+    val add_listener''''
       :  t
       -> event:([ `keylog ][@js.enum])
       -> listener:(line:Buffer.t -> unit)
@@ -474,70 +472,70 @@ module Tls : sig
       -> t
       [@@js.call "once"]
 
-    val prependListener
+    val prepend_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'
+    val prepend_listener'
       :  t
       -> event:([ `OCSPResponse ][@js.enum])
       -> listener:(response:Buffer.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''
+    val prepend_listener''
       :  t
       -> event:([ `secureConnect ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''
+    val prepend_listener'''
       :  t
       -> event:([ `session ][@js.enum])
       -> listener:(session:Buffer.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''
+    val prepend_listener''''
       :  t
       -> event:([ `keylog ][@js.enum])
       -> listener:(line:Buffer.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependOnceListener
+    val prepend_once_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'
+    val prepend_once_listener'
       :  t
       -> event:([ `OCSPResponse ][@js.enum])
       -> listener:(response:Buffer.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''
+    val prepend_once_listener''
       :  t
       -> event:([ `secureConnect ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''
+    val prepend_once_listener'''
       :  t
       -> event:([ `session ][@js.enum])
       -> listener:(session:Buffer.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''
+    val prepend_once_listener''''
       :  t
       -> event:([ `keylog ][@js.enum])
       -> listener:(line:Buffer.t -> unit)
@@ -549,88 +547,90 @@ module Tls : sig
   [@@js.scope "TLSSocket"]
 
   module CommonConnectionOptions : sig
-    type t = tls_CommonConnectionOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_secureContext : t -> tls_SecureContext [@@js.get "secureContext"]
+    val get_secure_context : t -> SecureContext.t [@@js.get "secureContext"]
 
-    val set_secureContext : t -> tls_SecureContext -> unit
+    val set_secure_context : t -> SecureContext.t -> unit
       [@@js.set "secureContext"]
 
-    val get_enableTrace : t -> bool [@@js.get "enableTrace"]
+    val get_enable_trace : t -> bool [@@js.get "enableTrace"]
 
-    val set_enableTrace : t -> bool -> unit [@@js.set "enableTrace"]
+    val set_enable_trace : t -> bool -> unit [@@js.set "enableTrace"]
 
-    val get_requestCert : t -> bool [@@js.get "requestCert"]
+    val get_request_cert : t -> bool [@@js.get "requestCert"]
 
-    val set_requestCert : t -> bool -> unit [@@js.set "requestCert"]
+    val set_request_cert : t -> bool -> unit [@@js.set "requestCert"]
 
-    val get_ALPNProtocols : t -> (Uint8Array.t, Uint8Array.t or_string) or_array
+    val get_alpn_protocols
+      :  t
+      -> (Uint8Array.t, Uint8Array.t or_string) or_array
       [@@js.get "ALPNProtocols"]
 
-    val set_ALPNProtocols
+    val set_alpn_protocols
       :  t
       -> (Uint8Array.t, Uint8Array.t or_string) or_array
       -> unit
       [@@js.set "ALPNProtocols"]
 
-    val sNICallback
+    val s_ni_callback
       :  t
       -> servername:string
-      -> cb:(err:Error.t or_null -> ctx:tls_SecureContext -> unit)
+      -> cb:(err:Error.t or_null -> ctx:SecureContext.t -> unit)
       -> unit
       [@@js.call "SNICallback"]
 
-    val get_rejectUnauthorized : t -> bool [@@js.get "rejectUnauthorized"]
+    val get_reject_unauthorized : t -> bool [@@js.get "rejectUnauthorized"]
 
-    val set_rejectUnauthorized : t -> bool -> unit
+    val set_reject_unauthorized : t -> bool -> unit
       [@@js.set "rejectUnauthorized"]
   end
   [@@js.scope "CommonConnectionOptions"]
 
   module TlsOptions : sig
-    type t = tls_TlsOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_handshakeTimeout : t -> int [@@js.get "handshakeTimeout"]
+    val get_handshake_timeout : t -> int [@@js.get "handshakeTimeout"]
 
-    val set_handshakeTimeout : t -> int -> unit [@@js.set "handshakeTimeout"]
+    val set_handshake_timeout : t -> int -> unit [@@js.set "handshakeTimeout"]
 
-    val get_sessionTimeout : t -> int [@@js.get "sessionTimeout"]
+    val get_session_timeout : t -> int [@@js.get "sessionTimeout"]
 
-    val set_sessionTimeout : t -> int -> unit [@@js.set "sessionTimeout"]
+    val set_session_timeout : t -> int -> unit [@@js.set "sessionTimeout"]
 
-    val get_ticketKeys : t -> Buffer.t [@@js.get "ticketKeys"]
+    val get_ticket_keys : t -> Buffer.t [@@js.get "ticketKeys"]
 
-    val set_ticketKeys : t -> Buffer.t -> unit [@@js.set "ticketKeys"]
+    val set_ticket_keys : t -> Buffer.t -> unit [@@js.set "ticketKeys"]
 
-    val pskCallback
+    val psk_callback
       :  t
-      -> socket:tls_TLSSocket
+      -> socket:TLSSocket.t
       -> identity:string
       -> (DataView.t, TypedArray.t) union2 or_null
       [@@js.call "pskCallback"]
 
-    val get_pskIdentityHint : t -> string [@@js.get "pskIdentityHint"]
+    val get_psk_identity_hint : t -> string [@@js.get "pskIdentityHint"]
 
-    val set_pskIdentityHint : t -> string -> unit [@@js.set "pskIdentityHint"]
+    val set_psk_identity_hint : t -> string -> unit [@@js.set "pskIdentityHint"]
 
-    val cast : t -> tls_SecureContextOptions [@@js.cast]
+    val cast : t -> SecureContextOptions.t [@@js.cast]
 
-    val cast' : t -> tls_CommonConnectionOptions [@@js.cast]
+    val cast' : t -> CommonConnectionOptions.t [@@js.cast]
 
     val cast'' : t -> Net.ServerOpts.t [@@js.cast]
   end
   [@@js.scope "TlsOptions"]
 
   module PSKCallbackNegotation : sig
-    type t = tls_PSKCallbackNegotation
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -648,7 +648,7 @@ module Tls : sig
   [@@js.scope "PSKCallbackNegotation"]
 
   module ConnectionOptions : sig
-    type t = tls_ConnectionOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -670,10 +670,10 @@ module Tls : sig
 
     val set_socket : t -> Net.Socket.t -> unit [@@js.set "socket"]
 
-    val checkServerIdentity
+    val check_server_identity
       :  t
       -> host:string
-      -> cert:tls_PeerCertificate
+      -> cert:PeerCertificate.t
       -> Error.t or_undefined
       [@@js.call "checkServerIdentity"]
 
@@ -685,9 +685,9 @@ module Tls : sig
 
     val set_session : t -> Buffer.t -> unit [@@js.set "session"]
 
-    val get_minDHSize : t -> int [@@js.get "minDHSize"]
+    val get_min_dh_size : t -> int [@@js.get "minDHSize"]
 
-    val set_minDHSize : t -> int -> unit [@@js.set "minDHSize"]
+    val set_min_dh_size : t -> int -> unit [@@js.set "minDHSize"]
 
     val get_lookup : t -> Net.LookupFunction.t [@@js.get "lookup"]
 
@@ -697,78 +697,78 @@ module Tls : sig
 
     val set_timeout : t -> int -> unit [@@js.set "timeout"]
 
-    val pskCallback
+    val psk_callback
       :  t
       -> hint:string or_null
-      -> tls_PSKCallbackNegotation or_null
+      -> PSKCallbackNegotation.t or_null
       [@@js.call "pskCallback"]
 
-    val cast : t -> tls_SecureContextOptions [@@js.cast]
+    val cast : t -> SecureContextOptions.t [@@js.cast]
 
-    val cast' : t -> tls_CommonConnectionOptions [@@js.cast]
+    val cast' : t -> CommonConnectionOptions.t [@@js.cast]
   end
   [@@js.scope "ConnectionOptions"]
 
   module Server : sig
-    type t = tls_Server
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
     val create
-      :  ?secureConnectionListener:(socket:tls_TLSSocket -> unit)
+      :  ?secure_connection_listener:(socket:TLSSocket.t -> unit)
       -> unit
       -> t
       [@@js.create]
 
     val create'
-      :  options:tls_TlsOptions
-      -> ?secureConnectionListener:(socket:tls_TLSSocket -> unit)
+      :  options:TlsOptions.t
+      -> ?secure_connection_listener:(socket:TLSSocket.t -> unit)
       -> unit
       -> t
       [@@js.create]
 
-    val addContext
+    val add_context
       :  t
-      -> hostName:string
-      -> credentials:tls_SecureContextOptions
+      -> host_name:string
+      -> credentials:SecureContextOptions.t
       -> unit
       [@@js.call "addContext"]
 
-    val getTicketKeys : t -> Buffer.t [@@js.call "getTicketKeys"]
+    val get_ticket_keys : t -> Buffer.t [@@js.call "getTicketKeys"]
 
-    val setSecureContext : t -> details:tls_SecureContextOptions -> unit
+    val set_secure_context : t -> details:SecureContextOptions.t -> unit
       [@@js.call "setSecureContext"]
 
-    val setTicketKeys : t -> keys:Buffer.t -> unit [@@js.call "setTicketKeys"]
+    val set_ticket_keys : t -> keys:Buffer.t -> unit [@@js.call "setTicketKeys"]
 
-    val addListener
+    val add_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'
+    val add_listener'
       :  t
       -> event:([ `tlsClientError ][@js.enum])
-      -> listener:(err:Error.t -> tlsSocket:tls_TLSSocket -> unit)
+      -> listener:(err:Error.t -> tls_socket:TLSSocket.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''
+    val add_listener''
       :  t
       -> event:([ `newSession ][@js.enum])
       -> listener:
            (sessionId:Buffer.t
-            -> sessionData:Buffer.t
+            -> session_data:Buffer.t
             -> callback:(err:Error.t -> resp:Buffer.t -> unit)
             -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''
+    val add_listener'''
       :  t
       -> event:([ `OCSPRequest ][@js.enum])
       -> listener:
@@ -779,27 +779,27 @@ module Tls : sig
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''
+    val add_listener''''
       :  t
       -> event:([ `resumeSession ][@js.enum])
       -> listener:
            (sessionId:Buffer.t
-            -> callback:(err:Error.t -> sessionData:Buffer.t -> unit)
+            -> callback:(err:Error.t -> session_data:Buffer.t -> unit)
             -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''
+    val add_listener'''''
       :  t
       -> event:([ `secureConnection ][@js.enum])
-      -> listener:(tlsSocket:tls_TLSSocket -> unit)
+      -> listener:(tlsSocket:TLSSocket.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''''
+    val add_listener''''''
       :  t
       -> event:([ `keylog ][@js.enum])
-      -> listener:(line:Buffer.t -> tlsSocket:tls_TLSSocket -> unit)
+      -> listener:(line:Buffer.t -> tls_socket:TLSSocket.t -> unit)
       -> t
       [@@js.call "addListener"]
 
@@ -814,15 +814,15 @@ module Tls : sig
       :  t
       -> event:([ `tlsClientError ][@js.enum])
       -> err:Error.t
-      -> tlsSocket:tls_TLSSocket
+      -> tls_socket:TLSSocket.t
       -> bool
       [@@js.call "emit"]
 
     val emit''
       :  t
       -> event:([ `newSession ][@js.enum])
-      -> sessionId:Buffer.t
-      -> sessionData:Buffer.t
+      -> session_id:Buffer.t
+      -> session_data:Buffer.t
       -> callback:(err:Error.t -> resp:Buffer.t -> unit)
       -> bool
       [@@js.call "emit"]
@@ -839,15 +839,15 @@ module Tls : sig
     val emit''''
       :  t
       -> event:([ `resumeSession ][@js.enum])
-      -> sessionId:Buffer.t
-      -> callback:(err:Error.t -> sessionData:Buffer.t -> unit)
+      -> session_id:Buffer.t
+      -> callback:(err:Error.t -> session_data:Buffer.t -> unit)
       -> bool
       [@@js.call "emit"]
 
     val emit'''''
       :  t
       -> event:([ `secureConnection ][@js.enum])
-      -> tlsSocket:tls_TLSSocket
+      -> tls_socket:TLSSocket.t
       -> bool
       [@@js.call "emit"]
 
@@ -855,7 +855,7 @@ module Tls : sig
       :  t
       -> event:([ `keylog ][@js.enum])
       -> line:Buffer.t
-      -> tlsSocket:tls_TLSSocket
+      -> tls_socket:TLSSocket.t
       -> bool
       [@@js.call "emit"]
 
@@ -869,7 +869,7 @@ module Tls : sig
     val on'
       :  t
       -> event:([ `tlsClientError ][@js.enum])
-      -> listener:(err:Error.t -> tlsSocket:tls_TLSSocket -> unit)
+      -> listener:(err:Error.t -> tls_socket:TLSSocket.t -> unit)
       -> t
       [@@js.call "on"]
 
@@ -878,7 +878,7 @@ module Tls : sig
       -> event:([ `newSession ][@js.enum])
       -> listener:
            (sessionId:Buffer.t
-            -> sessionData:Buffer.t
+            -> session_data:Buffer.t
             -> callback:(err:Error.t -> resp:Buffer.t -> unit)
             -> unit)
       -> t
@@ -900,7 +900,7 @@ module Tls : sig
       -> event:([ `resumeSession ][@js.enum])
       -> listener:
            (sessionId:Buffer.t
-            -> callback:(err:Error.t -> sessionData:Buffer.t -> unit)
+            -> callback:(err:Error.t -> session_data:Buffer.t -> unit)
             -> unit)
       -> t
       [@@js.call "on"]
@@ -908,14 +908,14 @@ module Tls : sig
     val on'''''
       :  t
       -> event:([ `secureConnection ][@js.enum])
-      -> listener:(tlsSocket:tls_TLSSocket -> unit)
+      -> listener:(tlsSocket:TLSSocket.t -> unit)
       -> t
       [@@js.call "on"]
 
     val on''''''
       :  t
       -> event:([ `keylog ][@js.enum])
-      -> listener:(line:Buffer.t -> tlsSocket:tls_TLSSocket -> unit)
+      -> listener:(line:Buffer.t -> tls_socket:TLSSocket.t -> unit)
       -> t
       [@@js.call "on"]
 
@@ -929,7 +929,7 @@ module Tls : sig
     val once'
       :  t
       -> event:([ `tlsClientError ][@js.enum])
-      -> listener:(err:Error.t -> tlsSocket:tls_TLSSocket -> unit)
+      -> listener:(err:Error.t -> tls_socket:TLSSocket.t -> unit)
       -> t
       [@@js.call "once"]
 
@@ -938,7 +938,7 @@ module Tls : sig
       -> event:([ `newSession ][@js.enum])
       -> listener:
            (sessionId:Buffer.t
-            -> sessionData:Buffer.t
+            -> session_data:Buffer.t
             -> callback:(err:Error.t -> resp:Buffer.t -> unit)
             -> unit)
       -> t
@@ -960,7 +960,7 @@ module Tls : sig
       -> event:([ `resumeSession ][@js.enum])
       -> listener:
            (sessionId:Buffer.t
-            -> callback:(err:Error.t -> sessionData:Buffer.t -> unit)
+            -> callback:(err:Error.t -> session_data:Buffer.t -> unit)
             -> unit)
       -> t
       [@@js.call "once"]
@@ -968,43 +968,43 @@ module Tls : sig
     val once'''''
       :  t
       -> event:([ `secureConnection ][@js.enum])
-      -> listener:(tlsSocket:tls_TLSSocket -> unit)
+      -> listener:(tlsSocket:TLSSocket.t -> unit)
       -> t
       [@@js.call "once"]
 
     val once''''''
       :  t
       -> event:([ `keylog ][@js.enum])
-      -> listener:(line:Buffer.t -> tlsSocket:tls_TLSSocket -> unit)
+      -> listener:(line:Buffer.t -> tls_socket:TLSSocket.t -> unit)
       -> t
       [@@js.call "once"]
 
-    val prependListener
+    val prepend_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'
+    val prepend_listener'
       :  t
       -> event:([ `tlsClientError ][@js.enum])
-      -> listener:(err:Error.t -> tlsSocket:tls_TLSSocket -> unit)
+      -> listener:(err:Error.t -> tls_socket:TLSSocket.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''
+    val prepend_listener''
       :  t
       -> event:([ `newSession ][@js.enum])
       -> listener:
            (sessionId:Buffer.t
-            -> sessionData:Buffer.t
+            -> session_data:Buffer.t
             -> callback:(err:Error.t -> resp:Buffer.t -> unit)
             -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''
+    val prepend_listener'''
       :  t
       -> event:([ `OCSPRequest ][@js.enum])
       -> listener:
@@ -1015,56 +1015,56 @@ module Tls : sig
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''
+    val prepend_listener''''
       :  t
       -> event:([ `resumeSession ][@js.enum])
       -> listener:
            (sessionId:Buffer.t
-            -> callback:(err:Error.t -> sessionData:Buffer.t -> unit)
+            -> callback:(err:Error.t -> session_data:Buffer.t -> unit)
             -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''
+    val prepend_listener'''''
       :  t
       -> event:([ `secureConnection ][@js.enum])
-      -> listener:(tlsSocket:tls_TLSSocket -> unit)
+      -> listener:(tlsSocket:TLSSocket.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''''
+    val prepend_listener''''''
       :  t
       -> event:([ `keylog ][@js.enum])
-      -> listener:(line:Buffer.t -> tlsSocket:tls_TLSSocket -> unit)
+      -> listener:(line:Buffer.t -> tls_socket:TLSSocket.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependOnceListener
+    val prepend_once_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'
+    val prepend_once_listener'
       :  t
       -> event:([ `tlsClientError ][@js.enum])
-      -> listener:(err:Error.t -> tlsSocket:tls_TLSSocket -> unit)
+      -> listener:(err:Error.t -> tls_socket:TLSSocket.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''
+    val prepend_once_listener''
       :  t
       -> event:([ `newSession ][@js.enum])
       -> listener:
            (sessionId:Buffer.t
-            -> sessionData:Buffer.t
+            -> session_data:Buffer.t
             -> callback:(err:Error.t -> resp:Buffer.t -> unit)
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''
+    val prepend_once_listener'''
       :  t
       -> event:([ `OCSPRequest ][@js.enum])
       -> listener:
@@ -1075,27 +1075,27 @@ module Tls : sig
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''
+    val prepend_once_listener''''
       :  t
       -> event:([ `resumeSession ][@js.enum])
       -> listener:
            (sessionId:Buffer.t
-            -> callback:(err:Error.t -> sessionData:Buffer.t -> unit)
+            -> callback:(err:Error.t -> session_data:Buffer.t -> unit)
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''
+    val prepend_once_listener'''''
       :  t
       -> event:([ `secureConnection ][@js.enum])
-      -> listener:(tlsSocket:tls_TLSSocket -> unit)
+      -> listener:(tlsSocket:TLSSocket.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''''
+    val prepend_once_listener''''''
       :  t
       -> event:([ `keylog ][@js.enum])
-      -> listener:(line:Buffer.t -> tlsSocket:tls_TLSSocket -> unit)
+      -> listener:(line:Buffer.t -> tls_socket:TLSSocket.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
@@ -1104,19 +1104,19 @@ module Tls : sig
   [@@js.scope "Server"]
 
   module SecurePair : sig
-    type t = tls_SecurePair
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_encrypted : t -> tls_TLSSocket [@@js.get "encrypted"]
+    val get_encrypted : t -> TLSSocket.t [@@js.get "encrypted"]
 
-    val set_encrypted : t -> tls_TLSSocket -> unit [@@js.set "encrypted"]
+    val set_encrypted : t -> TLSSocket.t -> unit [@@js.set "encrypted"]
 
-    val get_cleartext : t -> tls_TLSSocket [@@js.get "cleartext"]
+    val get_cleartext : t -> TLSSocket.t [@@js.get "cleartext"]
 
-    val set_cleartext : t -> tls_TLSSocket -> unit [@@js.set "cleartext"]
+    val set_cleartext : t -> TLSSocket.t -> unit [@@js.set "cleartext"]
   end
   [@@js.scope "SecurePair"]
 
@@ -1135,7 +1135,7 @@ module Tls : sig
   end
 
   module SecureContextOptions : sig
-    type t = tls_SecureContextOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -1167,9 +1167,10 @@ module Tls : sig
 
     val set_ciphers : t -> string -> unit [@@js.set "ciphers"]
 
-    val get_clientCertEngine : t -> string [@@js.get "clientCertEngine"]
+    val get_client_cert_engine : t -> string [@@js.get "clientCertEngine"]
 
-    val set_clientCertEngine : t -> string -> unit [@@js.set "clientCertEngine"]
+    val set_client_cert_engine : t -> string -> unit
+      [@@js.set "clientCertEngine"]
 
     val get_crl : t -> (Buffer.t, Buffer.t or_string list) union2 or_string
       [@@js.get "crl"]
@@ -1184,41 +1185,43 @@ module Tls : sig
 
     val set_dhparam : t -> Buffer.t or_string -> unit [@@js.set "dhparam"]
 
-    val get_ecdhCurve : t -> string [@@js.get "ecdhCurve"]
+    val get_ecdh_curve : t -> string [@@js.get "ecdhCurve"]
 
-    val set_ecdhCurve : t -> string -> unit [@@js.set "ecdhCurve"]
+    val set_ecdh_curve : t -> string -> unit [@@js.set "ecdhCurve"]
 
-    val get_honorCipherOrder : t -> bool [@@js.get "honorCipherOrder"]
+    val get_honor_cipher_order : t -> bool [@@js.get "honorCipherOrder"]
 
-    val set_honorCipherOrder : t -> bool -> unit [@@js.set "honorCipherOrder"]
+    val set_honor_cipher_order : t -> bool -> unit [@@js.set "honorCipherOrder"]
 
     val get_key
       :  t
-      -> (Buffer.t, (Buffer.t, tls_KeyObject) union2 list) union2 or_string
+      -> (Buffer.t, (Buffer.t, KeyObject.t) union2 list) union2 or_string
       [@@js.get "key"]
 
     val set_key
       :  t
-      -> (Buffer.t, (Buffer.t, tls_KeyObject) union2 list) union2 or_string
+      -> (Buffer.t, (Buffer.t, KeyObject.t) union2 list) union2 or_string
       -> unit
       [@@js.set "key"]
 
-    val get_privateKeyEngine : t -> string [@@js.get "privateKeyEngine"]
+    val get_private_key_engine : t -> string [@@js.get "privateKeyEngine"]
 
-    val set_privateKeyEngine : t -> string -> unit [@@js.set "privateKeyEngine"]
+    val set_private_key_engine : t -> string -> unit
+      [@@js.set "privateKeyEngine"]
 
-    val get_privateKeyIdentifier : t -> string [@@js.get "privateKeyIdentifier"]
+    val get_private_key_identifier : t -> string
+      [@@js.get "privateKeyIdentifier"]
 
-    val set_privateKeyIdentifier : t -> string -> unit
+    val set_private_key_identifier : t -> string -> unit
       [@@js.set "privateKeyIdentifier"]
 
-    val get_maxVersion : t -> tls_SecureVersion [@@js.get "maxVersion"]
+    val get_max_version : t -> SecureVersion.t [@@js.get "maxVersion"]
 
-    val set_maxVersion : t -> tls_SecureVersion -> unit [@@js.set "maxVersion"]
+    val set_max_version : t -> SecureVersion.t -> unit [@@js.set "maxVersion"]
 
-    val get_minVersion : t -> tls_SecureVersion [@@js.get "minVersion"]
+    val get_min_version : t -> SecureVersion.t [@@js.get "minVersion"]
 
-    val set_minVersion : t -> tls_SecureVersion -> unit [@@js.set "minVersion"]
+    val set_min_version : t -> SecureVersion.t -> unit [@@js.set "minVersion"]
 
     val get_passphrase : t -> string [@@js.get "passphrase"]
 
@@ -1226,41 +1229,42 @@ module Tls : sig
 
     val get_pfx
       :  t
-      -> (Buffer.t, (Buffer.t, tls_PxfObject) union2 or_string list) union2
+      -> (Buffer.t, (Buffer.t, PxfObject.t) union2 or_string list) union2
          or_string
       [@@js.get "pfx"]
 
     val set_pfx
       :  t
-      -> (Buffer.t, (Buffer.t, tls_PxfObject) union2 or_string list) union2
+      -> (Buffer.t, (Buffer.t, PxfObject.t) union2 or_string list) union2
          or_string
       -> unit
       [@@js.set "pfx"]
 
-    val get_secureOptions : t -> int [@@js.get "secureOptions"]
+    val get_secure_options : t -> int [@@js.get "secureOptions"]
 
-    val set_secureOptions : t -> int -> unit [@@js.set "secureOptions"]
+    val set_secure_options : t -> int -> unit [@@js.set "secureOptions"]
 
-    val get_secureProtocol : t -> string [@@js.get "secureProtocol"]
+    val get_secure_protocol : t -> string [@@js.get "secureProtocol"]
 
-    val set_secureProtocol : t -> string -> unit [@@js.set "secureProtocol"]
+    val set_secure_protocol : t -> string -> unit [@@js.set "secureProtocol"]
 
-    val get_sessionIdContext : t -> string [@@js.get "sessionIdContext"]
+    val get_session_id_context : t -> string [@@js.get "sessionIdContext"]
 
-    val set_sessionIdContext : t -> string -> unit [@@js.set "sessionIdContext"]
+    val set_session_id_context : t -> string -> unit
+      [@@js.set "sessionIdContext"]
 
-    val get_ticketKeys : t -> Buffer.t [@@js.get "ticketKeys"]
+    val get_ticket_keys : t -> Buffer.t [@@js.get "ticketKeys"]
 
-    val set_ticketKeys : t -> Buffer.t -> unit [@@js.set "ticketKeys"]
+    val set_ticket_keys : t -> Buffer.t -> unit [@@js.set "ticketKeys"]
 
-    val get_sessionTimeout : t -> int [@@js.get "sessionTimeout"]
+    val get_session_timeout : t -> int [@@js.get "sessionTimeout"]
 
-    val set_sessionTimeout : t -> int -> unit [@@js.set "sessionTimeout"]
+    val set_session_timeout : t -> int -> unit [@@js.set "sessionTimeout"]
   end
   [@@js.scope "SecureContextOptions"]
 
   module SecureContext : sig
-    type t = tls_SecureContext
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -1272,74 +1276,74 @@ module Tls : sig
   end
   [@@js.scope "SecureContext"]
 
-  val checkServerIdentity
+  val check_server_identity
     :  host:string
-    -> cert:tls_PeerCertificate
+    -> cert:PeerCertificate.t
     -> Error.t or_undefined
     [@@js.global "checkServerIdentity"]
 
-  val createServer
-    :  ?secureConnectionListener:(socket:tls_TLSSocket -> unit)
+  val create_server
+    :  ?secure_connection_listener:(socket:TLSSocket.t -> unit)
     -> unit
-    -> tls_Server
+    -> Server.t
     [@@js.global "createServer"]
 
-  val createServer
-    :  options:tls_TlsOptions
-    -> ?secureConnectionListener:(socket:tls_TLSSocket -> unit)
+  val create_server
+    :  options:TlsOptions.t
+    -> ?secure_connection_listener:(socket:TLSSocket.t -> unit)
     -> unit
-    -> tls_Server
+    -> Server.t
     [@@js.global "createServer"]
 
   val connect
-    :  options:tls_ConnectionOptions
-    -> ?secureConnectListener:(unit -> unit)
+    :  options:ConnectionOptions.t
+    -> ?secure_connect_listener:(unit -> unit)
     -> unit
-    -> tls_TLSSocket
+    -> TLSSocket.t
     [@@js.global "connect"]
 
   val connect
     :  port:int
     -> ?host:string
-    -> ?options:tls_ConnectionOptions
-    -> ?secureConnectListener:(unit -> unit)
+    -> ?options:ConnectionOptions.t
+    -> ?secure_connect_listener:(unit -> unit)
     -> unit
-    -> tls_TLSSocket
+    -> TLSSocket.t
     [@@js.global "connect"]
 
   val connect
     :  port:int
-    -> ?options:tls_ConnectionOptions
-    -> ?secureConnectListener:(unit -> unit)
+    -> ?options:ConnectionOptions.t
+    -> ?secure_connect_listener:(unit -> unit)
     -> unit
-    -> tls_TLSSocket
+    -> TLSSocket.t
     [@@js.global "connect"]
 
-  val createSecurePair
-    :  ?credentials:tls_SecureContext
-    -> ?isServer:bool
-    -> ?requestCert:bool
-    -> ?rejectUnauthorized:bool
+  val create_secure_pair
+    :  ?credentials:SecureContext.t
+    -> ?is_server:bool
+    -> ?request_cert:bool
+    -> ?reject_unauthorized:bool
     -> unit
-    -> tls_SecurePair
+    -> SecurePair.t
     [@@js.global "createSecurePair"]
 
-  val createSecureContext
-    :  ?options:tls_SecureContextOptions
+  val create_secure_context
+    :  ?options:SecureContextOptions.t
     -> unit
-    -> tls_SecureContext
+    -> SecureContext.t
     [@@js.global "createSecureContext"]
 
-  val getCiphers : unit -> string list [@@js.global "getCiphers"]
+  val get_ciphers : unit -> string list [@@js.global "getCiphers"]
 
-  val dEFAULT_ECDH_CURVE : string [@@js.global "DEFAULT_ECDH_CURVE"]
+  val d_efault_ecdh_curve : string [@@js.global "DEFAULT_ECDH_CURVE"]
 
-  val dEFAULT_MAX_VERSION : tls_SecureVersion
+  val d_efault_max_version : tls_SecureVersion
     [@@js.global "DEFAULT_MAX_VERSION"]
 
-  val dEFAULT_MIN_VERSION : tls_SecureVersion
+  val d_efault_min_version : tls_SecureVersion
     [@@js.global "DEFAULT_MIN_VERSION"]
 
-  val rootCertificates : string list [@@js.global "rootCertificates"]
+  val root_certificates : string list [@@js.global "rootCertificates"]
 end
 [@@js.scope Import.tls]

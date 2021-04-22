@@ -33,11 +33,11 @@ module AnonymousInterface0 =
       fun (x13 : t) ->
         fun (x14 : string) ->
           Ojs.set_prop_ascii (t_to_js x13) "operator" (Ojs.string_to_js x14)
-    let (get_stackStartFn : t -> untyped_function) =
+    let (get_stack_start_fn : t -> untyped_function) =
       fun (x15 : t) ->
         untyped_function_of_js
           (Ojs.get_prop_ascii (t_to_js x15) "stackStartFn")
-    let (set_stackStartFn : t -> untyped_function -> unit) =
+    let (set_stack_start_fn : t -> untyped_function -> unit) =
       fun (x16 : t) ->
         fun (x17 : untyped_function) ->
           Ojs.set_prop_ascii (t_to_js x16) "stackStartFn"
@@ -113,7 +113,7 @@ module AnonymousInterface3 =
         fun (x37 : AnonymousInterface1.t) ->
           Ojs.set_prop_ascii (t_to_js x36) "equal"
             (AnonymousInterface1.t_to_js x37)
-    let (notEqual :
+    let (not_equal :
       t ->
         actual:any ->
           expected:any -> ?message:Error.t or_string -> unit -> unit)
@@ -139,16 +139,16 @@ module AnonymousInterface3 =
                                        [|(or_string_to_js Error.t_to_js x42)|])
                               | None -> ());
                              x41))|])
-    let (get_deepEqual : t -> AnonymousInterface1.t) =
+    let (get_deep_equal : t -> AnonymousInterface1.t) =
       fun (x46 : t) ->
         AnonymousInterface1.t_of_js
           (Ojs.get_prop_ascii (t_to_js x46) "deepEqual")
-    let (set_deepEqual : t -> AnonymousInterface1.t -> unit) =
+    let (set_deep_equal : t -> AnonymousInterface1.t -> unit) =
       fun (x47 : t) ->
         fun (x48 : AnonymousInterface1.t) ->
           Ojs.set_prop_ascii (t_to_js x47) "deepEqual"
             (AnonymousInterface1.t_to_js x48)
-    let (notDeepEqual :
+    let (not_deep_equal :
       t ->
         actual:any ->
           expected:any -> ?message:Error.t or_string -> unit -> unit)
@@ -194,25 +194,25 @@ module AnonymousInterface3 =
                                      [|(or_string_to_js Error.t_to_js x60)|])
                             | None -> ());
                            x59))|])
-    let (get_strictEqual : t -> AnonymousInterface1.t) =
+    let (get_strict_equal : t -> AnonymousInterface1.t) =
       fun (x64 : t) ->
         AnonymousInterface1.t_of_js
           (Ojs.get_prop_ascii (t_to_js x64) "strictEqual")
-    let (set_strictEqual : t -> AnonymousInterface1.t -> unit) =
+    let (set_strict_equal : t -> AnonymousInterface1.t -> unit) =
       fun (x65 : t) ->
         fun (x66 : AnonymousInterface1.t) ->
           Ojs.set_prop_ascii (t_to_js x65) "strictEqual"
             (AnonymousInterface1.t_to_js x66)
-    let (get_deepStrictEqual : t -> AnonymousInterface1.t) =
+    let (get_deep_strict_equal : t -> AnonymousInterface1.t) =
       fun (x67 : t) ->
         AnonymousInterface1.t_of_js
           (Ojs.get_prop_ascii (t_to_js x67) "deepStrictEqual")
-    let (set_deepStrictEqual : t -> AnonymousInterface1.t -> unit) =
+    let (set_deep_strict_equal : t -> AnonymousInterface1.t -> unit) =
       fun (x68 : t) ->
         fun (x69 : AnonymousInterface1.t) ->
           Ojs.set_prop_ascii (t_to_js x68) "deepStrictEqual"
             (AnonymousInterface1.t_to_js x69)
-    let (ifError : t -> value:any -> bool) =
+    let (if_error : t -> value:any -> bool) =
       fun (x71 : t) ->
         fun ~value:(x70 : any) ->
           Ojs.bool_of_js
@@ -260,7 +260,7 @@ module AnonymousInterface2 =
         fun (x85 : AnonymousInterface1.t) ->
           Ojs.set_prop_ascii (t_to_js x84) "equal"
             (AnonymousInterface1.t_to_js x85)
-    let (notEqual :
+    let (not_equal :
       t ->
         actual:any ->
           expected:any -> ?message:Error.t or_string -> unit -> unit)
@@ -286,16 +286,16 @@ module AnonymousInterface2 =
                                        [|(or_string_to_js Error.t_to_js x90)|])
                               | None -> ());
                              x89))|])
-    let (get_deepEqual : t -> AnonymousInterface1.t) =
+    let (get_deep_equal : t -> AnonymousInterface1.t) =
       fun (x94 : t) ->
         AnonymousInterface1.t_of_js
           (Ojs.get_prop_ascii (t_to_js x94) "deepEqual")
-    let (set_deepEqual : t -> AnonymousInterface1.t -> unit) =
+    let (set_deep_equal : t -> AnonymousInterface1.t -> unit) =
       fun (x95 : t) ->
         fun (x96 : AnonymousInterface1.t) ->
           Ojs.set_prop_ascii (t_to_js x95) "deepEqual"
             (AnonymousInterface1.t_to_js x96)
-    let (notDeepEqual :
+    let (not_deep_equal :
       t ->
         actual:any ->
           expected:any -> ?message:Error.t or_string -> unit -> unit)
@@ -344,25 +344,25 @@ module AnonymousInterface2 =
                                       [|(or_string_to_js Error.t_to_js x108)|])
                              | None -> ());
                             x107))|])
-    let (get_strictEqual : t -> AnonymousInterface1.t) =
+    let (get_strict_equal : t -> AnonymousInterface1.t) =
       fun (x112 : t) ->
         AnonymousInterface1.t_of_js
           (Ojs.get_prop_ascii (t_to_js x112) "strictEqual")
-    let (set_strictEqual : t -> AnonymousInterface1.t -> unit) =
+    let (set_strict_equal : t -> AnonymousInterface1.t -> unit) =
       fun (x113 : t) ->
         fun (x114 : AnonymousInterface1.t) ->
           Ojs.set_prop_ascii (t_to_js x113) "strictEqual"
             (AnonymousInterface1.t_to_js x114)
-    let (get_deepStrictEqual : t -> AnonymousInterface1.t) =
+    let (get_deep_strict_equal : t -> AnonymousInterface1.t) =
       fun (x115 : t) ->
         AnonymousInterface1.t_of_js
           (Ojs.get_prop_ascii (t_to_js x115) "deepStrictEqual")
-    let (set_deepStrictEqual : t -> AnonymousInterface1.t -> unit) =
+    let (set_deep_strict_equal : t -> AnonymousInterface1.t -> unit) =
       fun (x116 : t) ->
         fun (x117 : AnonymousInterface1.t) ->
           Ojs.set_prop_ascii (t_to_js x116) "deepStrictEqual"
             (AnonymousInterface1.t_to_js x117)
-    let (ifError : t -> value:any -> bool) =
+    let (if_error : t -> value:any -> bool) =
       fun (x119 : t) ->
         fun ~value:(x118 : any) ->
           Ojs.bool_of_js
@@ -540,11 +540,11 @@ module Assert =
                 fun (x160 : string) ->
                   Ojs.set_prop_ascii (t_to_js x159) "operator"
                     (Ojs.string_to_js x160)
-            let (get_generatedMessage : t -> bool) =
+            let (get_generated_message : t -> bool) =
               fun (x161 : t) ->
                 Ojs.bool_of_js
                   (Ojs.get_prop_ascii (t_to_js x161) "generatedMessage")
-            let (set_generatedMessage : t -> bool -> unit) =
+            let (set_generated_message : t -> bool -> unit) =
               fun (x162 : t) ->
                 fun (x163 : bool) ->
                   Ojs.set_prop_ascii (t_to_js x162) "generatedMessage"
@@ -741,13 +741,13 @@ module Assert =
             expected:any ->
               ?message:Error.t or_string ->
                 ?operator:string ->
-                  ?stackStartFn:untyped_function -> unit -> never)
+                  ?stack_start_fn:untyped_function -> unit -> never)
           =
           fun ~actual:(x225 : any) ->
             fun ~expected:(x226 : any) ->
               fun ?message:(x227 : Error.t or_string option) ->
                 fun ?operator:(x228 : string option) ->
-                  fun ?stackStartFn:(x229 : untyped_function option) ->
+                  fun ?stack_start_fn:(x229 : untyped_function option) ->
                     fun () ->
                       never_of_js
                         (let x235 =
@@ -830,7 +830,7 @@ module Assert =
                                                x246)|])
                                  | None -> ());
                                 x245))|])
-        let (notEqual :
+        let (not_equal :
           actual:any ->
             expected:any -> ?message:Error.t or_string -> unit -> unit)
           =
@@ -857,7 +857,7 @@ module Assert =
                                                x253)|])
                                  | None -> ());
                                 x252))|])
-        let (deepEqual :
+        let (deep_equal :
           actual:any ->
             expected:any -> ?message:Error.t or_string -> unit -> unit)
           =
@@ -884,7 +884,7 @@ module Assert =
                                                x260)|])
                                  | None -> ());
                                 x259))|])
-        let (notDeepEqual :
+        let (not_deep_equal :
           actual:any ->
             expected:any -> ?message:Error.t or_string -> unit -> unit)
           =
@@ -912,7 +912,7 @@ module Assert =
                                                x267)|])
                                  | None -> ());
                                 x266))|])
-        let (strictEqual :
+        let (strict_equal :
           actual:any ->
             expected:'T -> ?message:Error.t or_string -> unit -> bool)
           =
@@ -939,7 +939,7 @@ module Assert =
                                                x274)|])
                                  | None -> ());
                                 x273))|])
-        let (notStrictEqual :
+        let (not_strict_equal :
           actual:any ->
             expected:any -> ?message:Error.t or_string -> unit -> unit)
           =
@@ -967,7 +967,7 @@ module Assert =
                                                x281)|])
                                  | None -> ());
                                 x280))|])
-        let (deepStrictEqual :
+        let (deep_strict_equal :
           actual:any ->
             expected:'T -> ?message:Error.t or_string -> unit -> bool)
           =
@@ -995,7 +995,7 @@ module Assert =
                                                x288)|])
                                  | None -> ());
                                 x287))|])
-        let (notDeepStrictEqual :
+        let (not_deep_strict_equal :
           actual:any ->
             expected:any -> ?message:Error.t or_string -> unit -> unit)
           =
@@ -1078,7 +1078,7 @@ module Assert =
                                                x308)|])
                                  | None -> ());
                                 x307))|])
-        let (doesNotThrow :
+        let (does_not_throw :
           block:(unit -> any) -> ?message:Error.t or_string -> unit -> unit)
           =
           fun ~block:(x311 : unit -> any) ->
@@ -1102,7 +1102,7 @@ module Assert =
                                         [|(or_string_to_js Error.t_to_js x314)|])
                                | None -> ());
                               x313))|])
-        let (doesNotThrow :
+        let (does_not_throw :
           block:(unit -> any) ->
             error:AssertPredicate.t ->
               ?message:Error.t or_string -> unit -> unit)
@@ -1134,7 +1134,7 @@ module Assert =
                                                x321)|])
                                  | None -> ());
                                 x320))|])
-        let (ifError : value:any -> bool) =
+        let (if_error : value:any -> bool) =
           fun ~value:(x324 : any) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.assert_ "assert")
@@ -1213,7 +1213,7 @@ module Assert =
                                                x340)|])
                                  | None -> ());
                                 x339))|])
-        let (doesNotReject :
+        let (does_not_reject :
           block:(unit -> any Promise.t, any Promise.t) union2 ->
             ?message:Error.t or_string -> unit -> unit Promise.t)
           =
@@ -1247,7 +1247,7 @@ module Assert =
                                         [|(or_string_to_js Error.t_to_js x351)|])
                                | None -> ());
                               x350))|])
-        let (doesNotReject :
+        let (does_not_reject :
           block:(unit -> any Promise.t, any Promise.t) union2 ->
             error:AssertPredicate.t ->
               ?message:Error.t or_string -> unit -> unit Promise.t)
@@ -1290,10 +1290,10 @@ module Assert =
                                 x362))|])
         let (match_ :
           value:string ->
-            regExp:regexp -> ?message:Error.t or_string -> unit -> unit)
+            reg_exp:regexp -> ?message:Error.t or_string -> unit -> unit)
           =
           fun ~value:(x371 : string) ->
-            fun ~regExp:(x372 : regexp) ->
+            fun ~reg_exp:(x372 : regexp) ->
               fun ?message:(x373 : Error.t or_string option) ->
                 fun () ->
                   ignore
@@ -1317,12 +1317,12 @@ module Assert =
                                                x375)|])
                                  | None -> ());
                                 x374))|])
-        let (doesNotMatch :
+        let (does_not_match :
           value:string ->
-            regExp:regexp -> ?message:Error.t or_string -> unit -> unit)
+            reg_exp:regexp -> ?message:Error.t or_string -> unit -> unit)
           =
           fun ~value:(x378 : string) ->
-            fun ~regExp:(x379 : regexp) ->
+            fun ~reg_exp:(x379 : regexp) ->
               fun ?message:(x380 : Error.t or_string option) ->
                 fun () ->
                   ignore

@@ -22,14 +22,14 @@ module AnonymousInterface0 : sig
 end
 
 module Dns : sig
-  val aDDRCONFIG : int [@@js.global "ADDRCONFIG"]
+  val addrconfig : int [@@js.global "ADDRCONFIG"]
 
   val v4MAPPED : int [@@js.global "V4MAPPED"]
 
-  val aLL : int [@@js.global "ALL"]
+  val all : int [@@js.global "ALL"]
 
   module LookupOptions : sig
-    type t = dns_LookupOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -54,7 +54,7 @@ module Dns : sig
   [@@js.scope "LookupOptions"]
 
   module LookupOneOptions : sig
-    type t = dns_LookupOneOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -64,12 +64,12 @@ module Dns : sig
 
     val set_all : t -> ([ `L_b_false ][@js.enum]) -> unit [@@js.set "all"]
 
-    val cast : t -> dns_LookupOptions [@@js.cast]
+    val cast : t -> LookupOptions.t [@@js.cast]
   end
   [@@js.scope "LookupOneOptions"]
 
   module LookupAllOptions : sig
-    type t = dns_LookupAllOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -79,12 +79,12 @@ module Dns : sig
 
     val set_all : t -> ([ `L_b_true ][@js.enum]) -> unit [@@js.set "all"]
 
-    val cast : t -> dns_LookupOptions [@@js.cast]
+    val cast : t -> LookupOptions.t [@@js.cast]
   end
   [@@js.scope "LookupAllOptions"]
 
   module LookupAddress : sig
-    type t = dns_LookupAddress
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -110,7 +110,7 @@ module Dns : sig
 
   val lookup
     :  hostname:string
-    -> options:dns_LookupOneOptions
+    -> options:LookupOneOptions.t
     -> callback:
          (err:ErrnoException.t or_null -> address:string -> family:int -> unit)
     -> unit
@@ -118,20 +118,20 @@ module Dns : sig
 
   val lookup
     :  hostname:string
-    -> options:dns_LookupAllOptions
+    -> options:LookupAllOptions.t
     -> callback:
          (err:ErrnoException.t or_null
-          -> addresses:dns_LookupAddress list
+          -> addresses:LookupAddress.t list
           -> unit)
     -> unit
     [@@js.global "lookup"]
 
   val lookup
     :  hostname:string
-    -> options:dns_LookupOptions
+    -> options:LookupOptions.t
     -> callback:
          (err:ErrnoException.t or_null
-          -> address:dns_LookupAddress list or_string
+          -> address:LookupAddress.t list or_string
           -> family:int
           -> unit)
     -> unit
@@ -147,26 +147,26 @@ module Dns : sig
   module Lookup : sig
     val __promisify__
       :  hostname:string
-      -> options:dns_LookupAllOptions
-      -> dns_LookupAddress list Promise.t
+      -> options:LookupAllOptions.t
+      -> LookupAddress.t list Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  hostname:string
-      -> ?options:dns_LookupOneOptions or_number
+      -> ?options:LookupOneOptions.t or_number
       -> unit
-      -> dns_LookupAddress Promise.t
+      -> LookupAddress.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  hostname:string
-      -> options:dns_LookupOptions
-      -> (dns_LookupAddress, dns_LookupAddress) or_array Promise.t
+      -> options:LookupOptions.t
+      -> (LookupAddress.t, LookupAddress.t) or_array Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "lookup"]
 
-  val lookupService
+  val lookup_service
     :  address:string
     -> port:int
     -> callback:
@@ -187,7 +187,7 @@ module Dns : sig
   [@@js.scope "lookupService"]
 
   module ResolveOptions : sig
-    type t = dns_ResolveOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -200,7 +200,7 @@ module Dns : sig
   [@@js.scope "ResolveOptions"]
 
   module ResolveWithTtlOptions : sig
-    type t = dns_ResolveWithTtlOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -210,12 +210,12 @@ module Dns : sig
 
     val set_ttl : t -> ([ `L_b_true ][@js.enum]) -> unit [@@js.set "ttl"]
 
-    val cast : t -> dns_ResolveOptions [@@js.cast]
+    val cast : t -> ResolveOptions.t [@@js.cast]
   end
   [@@js.scope "ResolveWithTtlOptions"]
 
   module RecordWithTtl : sig
-    type t = dns_RecordWithTtl
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -233,8 +233,8 @@ module Dns : sig
 
   module AnyRecordWithTtl : sig
     type t =
-      ([ `U_s0_A of dns_AnyARecord [@js "A"]
-       | `U_s1_AAAA of dns_AnyAaaaRecord [@js "AAAA"]
+      ([ `U_s0_A of AnyARecord.t [@js "A"]
+       | `U_s1_AAAA of AnyAaaaRecord.t [@js "AAAA"]
        ]
       [@js.union on_field "type"])
 
@@ -244,7 +244,7 @@ module Dns : sig
   end
 
   module AnyARecord : sig
-    type t = dns_AnyARecord
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -254,12 +254,12 @@ module Dns : sig
 
     val set_type : t -> ([ `A ][@js.enum]) -> unit [@@js.set "type"]
 
-    val cast : t -> dns_RecordWithTtl [@@js.cast]
+    val cast : t -> RecordWithTtl.t [@@js.cast]
   end
   [@@js.scope "AnyARecord"]
 
   module AnyAaaaRecord : sig
-    type t = dns_AnyAaaaRecord
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -269,12 +269,12 @@ module Dns : sig
 
     val set_type : t -> ([ `AAAA ][@js.enum]) -> unit [@@js.set "type"]
 
-    val cast : t -> dns_RecordWithTtl [@@js.cast]
+    val cast : t -> RecordWithTtl.t [@@js.cast]
   end
   [@@js.scope "AnyAaaaRecord"]
 
   module MxRecord : sig
-    type t = dns_MxRecord
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -291,7 +291,7 @@ module Dns : sig
   [@@js.scope "MxRecord"]
 
   module AnyMxRecord : sig
-    type t = dns_AnyMxRecord
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -301,12 +301,12 @@ module Dns : sig
 
     val set_type : t -> ([ `MX ][@js.enum]) -> unit [@@js.set "type"]
 
-    val cast : t -> dns_MxRecord [@@js.cast]
+    val cast : t -> MxRecord.t [@@js.cast]
   end
   [@@js.scope "AnyMxRecord"]
 
   module NaptrRecord : sig
-    type t = dns_NaptrRecord
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -339,7 +339,7 @@ module Dns : sig
   [@@js.scope "NaptrRecord"]
 
   module AnyNaptrRecord : sig
-    type t = dns_AnyNaptrRecord
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -349,12 +349,12 @@ module Dns : sig
 
     val set_type : t -> ([ `NAPTR ][@js.enum]) -> unit [@@js.set "type"]
 
-    val cast : t -> dns_NaptrRecord [@@js.cast]
+    val cast : t -> NaptrRecord.t [@@js.cast]
   end
   [@@js.scope "AnyNaptrRecord"]
 
   module SoaRecord : sig
-    type t = dns_SoaRecord
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -391,7 +391,7 @@ module Dns : sig
   [@@js.scope "SoaRecord"]
 
   module AnySoaRecord : sig
-    type t = dns_AnySoaRecord
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -401,12 +401,12 @@ module Dns : sig
 
     val set_type : t -> ([ `SOA ][@js.enum]) -> unit [@@js.set "type"]
 
-    val cast : t -> dns_SoaRecord [@@js.cast]
+    val cast : t -> SoaRecord.t [@@js.cast]
   end
   [@@js.scope "AnySoaRecord"]
 
   module SrvRecord : sig
-    type t = dns_SrvRecord
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -431,7 +431,7 @@ module Dns : sig
   [@@js.scope "SrvRecord"]
 
   module AnySrvRecord : sig
-    type t = dns_AnySrvRecord
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -441,12 +441,12 @@ module Dns : sig
 
     val set_type : t -> ([ `SRV ][@js.enum]) -> unit [@@js.set "type"]
 
-    val cast : t -> dns_SrvRecord [@@js.cast]
+    val cast : t -> SrvRecord.t [@@js.cast]
   end
   [@@js.scope "AnySrvRecord"]
 
   module AnyTxtRecord : sig
-    type t = dns_AnyTxtRecord
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -463,7 +463,7 @@ module Dns : sig
   [@@js.scope "AnyTxtRecord"]
 
   module AnyNsRecord : sig
-    type t = dns_AnyNsRecord
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -480,7 +480,7 @@ module Dns : sig
   [@@js.scope "AnyNsRecord"]
 
   module AnyPtrRecord : sig
-    type t = dns_AnyPtrRecord
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -497,7 +497,7 @@ module Dns : sig
   [@@js.scope "AnyPtrRecord"]
 
   module AnyCnameRecord : sig
-    type t = dns_AnyCnameRecord
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -515,16 +515,16 @@ module Dns : sig
 
   module AnyRecord : sig
     type t =
-      ([ `U_s0_A of dns_AnyARecord [@js "A"]
-       | `U_s1_AAAA of dns_AnyAaaaRecord [@js "AAAA"]
-       | `U_s3_CNAME of dns_AnyCnameRecord [@js "CNAME"]
-       | `U_s4_MX of dns_AnyMxRecord [@js "MX"]
-       | `U_s5_NAPTR of dns_AnyNaptrRecord [@js "NAPTR"]
-       | `U_s6_NS of dns_AnyNsRecord [@js "NS"]
-       | `U_s7_PTR of dns_AnyPtrRecord [@js "PTR"]
-       | `U_s8_SOA of dns_AnySoaRecord [@js "SOA"]
-       | `U_s9_SRV of dns_AnySrvRecord [@js "SRV"]
-       | `U_s10_TXT of dns_AnyTxtRecord [@js "TXT"]
+      ([ `U_s0_A of AnyARecord.t [@js "A"]
+       | `U_s1_AAAA of AnyAaaaRecord.t [@js "AAAA"]
+       | `U_s3_CNAME of AnyCnameRecord.t [@js "CNAME"]
+       | `U_s4_MX of AnyMxRecord.t [@js "MX"]
+       | `U_s5_NAPTR of AnyNaptrRecord.t [@js "NAPTR"]
+       | `U_s6_NS of AnyNsRecord.t [@js "NS"]
+       | `U_s7_PTR of AnyPtrRecord.t [@js "PTR"]
+       | `U_s8_SOA of AnySoaRecord.t [@js "SOA"]
+       | `U_s9_SRV of AnySrvRecord.t [@js "SRV"]
+       | `U_s10_TXT of AnyTxtRecord.t [@js "TXT"]
        ]
       [@js.union on_field "type"])
 
@@ -557,7 +557,7 @@ module Dns : sig
     :  hostname:string
     -> rrtype:([ `ANY ][@js.enum])
     -> callback:
-         (err:ErrnoException.t or_null -> addresses:dns_AnyRecord list -> unit)
+         (err:ErrnoException.t or_null -> addresses:AnyRecord.t list -> unit)
     -> unit
     [@@js.global "resolve"]
 
@@ -572,7 +572,7 @@ module Dns : sig
     :  hostname:string
     -> rrtype:([ `MX ][@js.enum])
     -> callback:
-         (err:ErrnoException.t or_null -> addresses:dns_MxRecord list -> unit)
+         (err:ErrnoException.t or_null -> addresses:MxRecord.t list -> unit)
     -> unit
     [@@js.global "resolve"]
 
@@ -580,9 +580,7 @@ module Dns : sig
     :  hostname:string
     -> rrtype:([ `NAPTR ][@js.enum])
     -> callback:
-         (err:ErrnoException.t or_null
-          -> addresses:dns_NaptrRecord list
-          -> unit)
+         (err:ErrnoException.t or_null -> addresses:NaptrRecord.t list -> unit)
     -> unit
     [@@js.global "resolve"]
 
@@ -603,8 +601,7 @@ module Dns : sig
   val resolve
     :  hostname:string
     -> rrtype:([ `SOA ][@js.enum])
-    -> callback:
-         (err:ErrnoException.t or_null -> addresses:dns_SoaRecord -> unit)
+    -> callback:(err:ErrnoException.t or_null -> addresses:SoaRecord.t -> unit)
     -> unit
     [@@js.global "resolve"]
 
@@ -612,7 +609,7 @@ module Dns : sig
     :  hostname:string
     -> rrtype:([ `SRV ][@js.enum])
     -> callback:
-         (err:ErrnoException.t or_null -> addresses:dns_SrvRecord list -> unit)
+         (err:ErrnoException.t or_null -> addresses:SrvRecord.t list -> unit)
     -> unit
     [@@js.global "resolve"]
 
@@ -631,11 +628,7 @@ module Dns : sig
          (err:ErrnoException.t or_null
           -> addresses:
                ( dns_SoaRecord
-               , ( ( dns_AnyRecord
-                   , dns_MxRecord
-                   , dns_NaptrRecord
-                   , dns_SrvRecord )
-                   union4
+               , ( (dns_AnyRecord, MxRecord.t, NaptrRecord.t, SrvRecord.t) union4
                  , string )
                  or_array
                  or_string )
@@ -655,31 +648,31 @@ module Dns : sig
     val __promisify__
       :  hostname:string
       -> rrtype:([ `ANY ][@js.enum])
-      -> dns_AnyRecord list Promise.t
+      -> AnyRecord.t list Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  hostname:string
       -> rrtype:([ `MX ][@js.enum])
-      -> dns_MxRecord list Promise.t
+      -> MxRecord.t list Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  hostname:string
       -> rrtype:([ `NAPTR ][@js.enum])
-      -> dns_NaptrRecord list Promise.t
+      -> NaptrRecord.t list Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  hostname:string
       -> rrtype:([ `SOA ][@js.enum])
-      -> dns_SoaRecord Promise.t
+      -> SoaRecord.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  hostname:string
       -> rrtype:([ `SRV ][@js.enum])
-      -> dns_SrvRecord list Promise.t
+      -> SrvRecord.t list Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -692,7 +685,7 @@ module Dns : sig
       :  hostname:string
       -> rrtype:string
       -> ( dns_SoaRecord
-         , ( (dns_AnyRecord, dns_MxRecord, dns_NaptrRecord, dns_SrvRecord) union4
+         , ( (AnyRecord.t, MxRecord.t, NaptrRecord.t, SrvRecord.t) union4
            , string )
            or_array
            or_string )
@@ -710,20 +703,20 @@ module Dns : sig
 
   val resolve4
     :  hostname:string
-    -> options:dns_ResolveWithTtlOptions
+    -> options:ResolveWithTtlOptions.t
     -> callback:
          (err:ErrnoException.t or_null
-          -> addresses:dns_RecordWithTtl list
+          -> addresses:RecordWithTtl.t list
           -> unit)
     -> unit
     [@@js.global "resolve4"]
 
   val resolve4
     :  hostname:string
-    -> options:dns_ResolveOptions
+    -> options:ResolveOptions.t
     -> callback:
          (err:ErrnoException.t or_null
-          -> addresses:dns_RecordWithTtl or_string list
+          -> addresses:RecordWithTtl.t or_string list
           -> unit)
     -> unit
     [@@js.global "resolve4"]
@@ -734,15 +727,15 @@ module Dns : sig
 
     val __promisify__
       :  hostname:string
-      -> options:dns_ResolveWithTtlOptions
-      -> dns_RecordWithTtl list Promise.t
+      -> options:ResolveWithTtlOptions.t
+      -> RecordWithTtl.t list Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  hostname:string
-      -> ?options:dns_ResolveOptions
+      -> ?options:ResolveOptions.t
       -> unit
-      -> dns_RecordWithTtl or_string list Promise.t
+      -> RecordWithTtl.t or_string list Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "resolve4"]
@@ -755,20 +748,20 @@ module Dns : sig
 
   val resolve6
     :  hostname:string
-    -> options:dns_ResolveWithTtlOptions
+    -> options:ResolveWithTtlOptions.t
     -> callback:
          (err:ErrnoException.t or_null
-          -> addresses:dns_RecordWithTtl list
+          -> addresses:RecordWithTtl.t list
           -> unit)
     -> unit
     [@@js.global "resolve6"]
 
   val resolve6
     :  hostname:string
-    -> options:dns_ResolveOptions
+    -> options:ResolveOptions.t
     -> callback:
          (err:ErrnoException.t or_null
-          -> addresses:dns_RecordWithTtl or_string list
+          -> addresses:RecordWithTtl.t or_string list
           -> unit)
     -> unit
     [@@js.global "resolve6"]
@@ -779,20 +772,20 @@ module Dns : sig
 
     val __promisify__
       :  hostname:string
-      -> options:dns_ResolveWithTtlOptions
-      -> dns_RecordWithTtl list Promise.t
+      -> options:ResolveWithTtlOptions.t
+      -> RecordWithTtl.t list Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  hostname:string
-      -> ?options:dns_ResolveOptions
+      -> ?options:ResolveOptions.t
       -> unit
-      -> dns_RecordWithTtl or_string list Promise.t
+      -> RecordWithTtl.t or_string list Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "resolve6"]
 
-  val resolveCname
+  val resolve_cname
     :  hostname:string
     -> callback:(err:ErrnoException.t or_null -> addresses:string list -> unit)
     -> unit
@@ -804,35 +797,33 @@ module Dns : sig
   end
   [@@js.scope "resolveCname"]
 
-  val resolveMx
+  val resolve_mx
     :  hostname:string
     -> callback:
-         (err:ErrnoException.t or_null -> addresses:dns_MxRecord list -> unit)
+         (err:ErrnoException.t or_null -> addresses:MxRecord.t list -> unit)
     -> unit
     [@@js.global "resolveMx"]
 
   module ResolveMx : sig
-    val __promisify__ : hostname:string -> dns_MxRecord list Promise.t
+    val __promisify__ : hostname:string -> MxRecord.t list Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "resolveMx"]
 
-  val resolveNaptr
+  val resolve_naptr
     :  hostname:string
     -> callback:
-         (err:ErrnoException.t or_null
-          -> addresses:dns_NaptrRecord list
-          -> unit)
+         (err:ErrnoException.t or_null -> addresses:NaptrRecord.t list -> unit)
     -> unit
     [@@js.global "resolveNaptr"]
 
   module ResolveNaptr : sig
-    val __promisify__ : hostname:string -> dns_NaptrRecord list Promise.t
+    val __promisify__ : hostname:string -> NaptrRecord.t list Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "resolveNaptr"]
 
-  val resolveNs
+  val resolve_ns
     :  hostname:string
     -> callback:(err:ErrnoException.t or_null -> addresses:string list -> unit)
     -> unit
@@ -844,7 +835,7 @@ module Dns : sig
   end
   [@@js.scope "resolveNs"]
 
-  val resolvePtr
+  val resolve_ptr
     :  hostname:string
     -> callback:(err:ErrnoException.t or_null -> addresses:string list -> unit)
     -> unit
@@ -856,32 +847,32 @@ module Dns : sig
   end
   [@@js.scope "resolvePtr"]
 
-  val resolveSoa
+  val resolve_soa
     :  hostname:string
-    -> callback:(err:ErrnoException.t or_null -> address:dns_SoaRecord -> unit)
+    -> callback:(err:ErrnoException.t or_null -> address:SoaRecord.t -> unit)
     -> unit
     [@@js.global "resolveSoa"]
 
   module ResolveSoa : sig
-    val __promisify__ : hostname:string -> dns_SoaRecord Promise.t
+    val __promisify__ : hostname:string -> SoaRecord.t Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "resolveSoa"]
 
-  val resolveSrv
+  val resolve_srv
     :  hostname:string
     -> callback:
-         (err:ErrnoException.t or_null -> addresses:dns_SrvRecord list -> unit)
+         (err:ErrnoException.t or_null -> addresses:SrvRecord.t list -> unit)
     -> unit
     [@@js.global "resolveSrv"]
 
   module ResolveSrv : sig
-    val __promisify__ : hostname:string -> dns_SrvRecord list Promise.t
+    val __promisify__ : hostname:string -> SrvRecord.t list Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "resolveSrv"]
 
-  val resolveTxt
+  val resolve_txt
     :  hostname:string
     -> callback:
          (err:ErrnoException.t or_null -> addresses:string list list -> unit)
@@ -894,15 +885,15 @@ module Dns : sig
   end
   [@@js.scope "resolveTxt"]
 
-  val resolveAny
+  val resolve_any
     :  hostname:string
     -> callback:
-         (err:ErrnoException.t or_null -> addresses:dns_AnyRecord list -> unit)
+         (err:ErrnoException.t or_null -> addresses:AnyRecord.t list -> unit)
     -> unit
     [@@js.global "resolveAny"]
 
   module ResolveAny : sig
-    val __promisify__ : hostname:string -> dns_AnyRecord list Promise.t
+    val __promisify__ : hostname:string -> AnyRecord.t list Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "resolveAny"]
@@ -913,60 +904,60 @@ module Dns : sig
     -> unit
     [@@js.global "reverse"]
 
-  val setServers : servers:string list -> unit [@@js.global "setServers"]
+  val set_servers : servers:string list -> unit [@@js.global "setServers"]
 
-  val getServers : unit -> string list [@@js.global "getServers"]
+  val get_servers : unit -> string list [@@js.global "getServers"]
 
-  val nODATA : string [@@js.global "NODATA"]
+  val n_odata : string [@@js.global "NODATA"]
 
-  val fORMERR : string [@@js.global "FORMERR"]
+  val f_ormerr : string [@@js.global "FORMERR"]
 
-  val sERVFAIL : string [@@js.global "SERVFAIL"]
+  val s_ervfail : string [@@js.global "SERVFAIL"]
 
-  val nOTFOUND : string [@@js.global "NOTFOUND"]
+  val n_otfound : string [@@js.global "NOTFOUND"]
 
-  val nOTIMP : string [@@js.global "NOTIMP"]
+  val n_otimp : string [@@js.global "NOTIMP"]
 
-  val rEFUSED : string [@@js.global "REFUSED"]
+  val r_efused : string [@@js.global "REFUSED"]
 
-  val bADQUERY : string [@@js.global "BADQUERY"]
+  val b_adquery : string [@@js.global "BADQUERY"]
 
-  val bADNAME : string [@@js.global "BADNAME"]
+  val b_adname : string [@@js.global "BADNAME"]
 
-  val bADFAMILY : string [@@js.global "BADFAMILY"]
+  val b_adfamily : string [@@js.global "BADFAMILY"]
 
-  val bADRESP : string [@@js.global "BADRESP"]
+  val b_adresp : string [@@js.global "BADRESP"]
 
-  val cONNREFUSED : string [@@js.global "CONNREFUSED"]
+  val c_onnrefused : string [@@js.global "CONNREFUSED"]
 
-  val tIMEOUT : string [@@js.global "TIMEOUT"]
+  val t_imeout : string [@@js.global "TIMEOUT"]
 
-  val eOF : string [@@js.global "EOF"]
+  val e_of : string [@@js.global "EOF"]
 
-  val fILE : string [@@js.global "FILE"]
+  val f_ile : string [@@js.global "FILE"]
 
-  val nOMEM : string [@@js.global "NOMEM"]
+  val n_omem : string [@@js.global "NOMEM"]
 
-  val dESTRUCTION : string [@@js.global "DESTRUCTION"]
+  val d_estruction : string [@@js.global "DESTRUCTION"]
 
-  val bADSTR : string [@@js.global "BADSTR"]
+  val b_adstr : string [@@js.global "BADSTR"]
 
-  val bADFLAGS : string [@@js.global "BADFLAGS"]
+  val b_adflags : string [@@js.global "BADFLAGS"]
 
-  val nONAME : string [@@js.global "NONAME"]
+  val n_oname : string [@@js.global "NONAME"]
 
-  val bADHINTS : string [@@js.global "BADHINTS"]
+  val b_adhints : string [@@js.global "BADHINTS"]
 
-  val nOTINITIALIZED : string [@@js.global "NOTINITIALIZED"]
+  val n_otinitialized : string [@@js.global "NOTINITIALIZED"]
 
-  val lOADIPHLPAPI : string [@@js.global "LOADIPHLPAPI"]
+  val l_oadiphlpapi : string [@@js.global "LOADIPHLPAPI"]
 
-  val aDDRGETNETWORKPARAMS : string [@@js.global "ADDRGETNETWORKPARAMS"]
+  val a_ddrgetnetworkparams : string [@@js.global "ADDRGETNETWORKPARAMS"]
 
-  val cANCELLED : string [@@js.global "CANCELLED"]
+  val c_ancelled : string [@@js.global "CANCELLED"]
 
   module ResolverOptions : sig
-    type t = dns_ResolverOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -979,17 +970,17 @@ module Dns : sig
   [@@js.scope "ResolverOptions"]
 
   module Resolver : sig
-    type t = dns_Resolver
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val create : ?options:dns_ResolverOptions -> unit -> t [@@js.create]
+    val create : ?options:ResolverOptions.t -> unit -> t [@@js.create]
 
     val cancel : t -> unit [@@js.call "cancel"]
 
-    val getServers : t -> string list [@@js.call "getServers"]
+    val get_servers : t -> string list [@@js.call "getServers"]
 
     val resolve
       :  t
@@ -1015,17 +1006,15 @@ module Dns : sig
       -> unit
       [@@js.call "resolve6"]
 
-    val resolveAny
+    val resolve_any
       :  t
       -> hostname:string
       -> callback:
-           (err:ErrnoException.t or_null
-            -> addresses:dns_AnyRecord list
-            -> unit)
+           (err:ErrnoException.t or_null -> addresses:AnyRecord.t list -> unit)
       -> unit
       [@@js.call "resolveAny"]
 
-    val resolveCname
+    val resolve_cname
       :  t
       -> hostname:string
       -> callback:
@@ -1033,25 +1022,25 @@ module Dns : sig
       -> unit
       [@@js.call "resolveCname"]
 
-    val resolveMx
+    val resolve_mx
       :  t
       -> hostname:string
       -> callback:
-           (err:ErrnoException.t or_null -> addresses:dns_MxRecord list -> unit)
+           (err:ErrnoException.t or_null -> addresses:MxRecord.t list -> unit)
       -> unit
       [@@js.call "resolveMx"]
 
-    val resolveNaptr
+    val resolve_naptr
       :  t
       -> hostname:string
       -> callback:
            (err:ErrnoException.t or_null
-            -> addresses:dns_NaptrRecord list
+            -> addresses:NaptrRecord.t list
             -> unit)
       -> unit
       [@@js.call "resolveNaptr"]
 
-    val resolveNs
+    val resolve_ns
       :  t
       -> hostname:string
       -> callback:
@@ -1059,7 +1048,7 @@ module Dns : sig
       -> unit
       [@@js.call "resolveNs"]
 
-    val resolvePtr
+    val resolve_ptr
       :  t
       -> hostname:string
       -> callback:
@@ -1067,25 +1056,22 @@ module Dns : sig
       -> unit
       [@@js.call "resolvePtr"]
 
-    val resolveSoa
+    val resolve_soa
       :  t
       -> hostname:string
-      -> callback:
-           (err:ErrnoException.t or_null -> address:dns_SoaRecord -> unit)
+      -> callback:(err:ErrnoException.t or_null -> address:SoaRecord.t -> unit)
       -> unit
       [@@js.call "resolveSoa"]
 
-    val resolveSrv
+    val resolve_srv
       :  t
       -> hostname:string
       -> callback:
-           (err:ErrnoException.t or_null
-            -> addresses:dns_SrvRecord list
-            -> unit)
+           (err:ErrnoException.t or_null -> addresses:SrvRecord.t list -> unit)
       -> unit
       [@@js.call "resolveSrv"]
 
-    val resolveTxt
+    val resolve_txt
       :  t
       -> hostname:string
       -> callback:
@@ -1101,41 +1087,41 @@ module Dns : sig
       -> unit
       [@@js.call "reverse"]
 
-    val setLocalAddress : t -> ?ipv4:string -> ?ipv6:string -> unit -> unit
+    val set_local_address : t -> ?ipv4:string -> ?ipv6:string -> unit -> unit
       [@@js.call "setLocalAddress"]
 
-    val setServers : t -> servers:string list -> unit [@@js.call "setServers"]
+    val set_servers : t -> servers:string list -> unit [@@js.call "setServers"]
   end
   [@@js.scope "Resolver"]
 
   module Promises : sig
-    val getServers : unit -> string list [@@js.global "getServers"]
+    val get_servers : unit -> string list [@@js.global "getServers"]
 
-    val lookup : hostname:string -> family:int -> dns_LookupAddress Promise.t
+    val lookup : hostname:string -> family:int -> LookupAddress.t Promise.t
       [@@js.global "lookup"]
 
     val lookup
       :  hostname:string
-      -> options:dns_LookupOneOptions
-      -> dns_LookupAddress Promise.t
+      -> options:LookupOneOptions.t
+      -> LookupAddress.t Promise.t
       [@@js.global "lookup"]
 
     val lookup
       :  hostname:string
-      -> options:dns_LookupAllOptions
-      -> dns_LookupAddress list Promise.t
+      -> options:LookupAllOptions.t
+      -> LookupAddress.t list Promise.t
       [@@js.global "lookup"]
 
     val lookup
       :  hostname:string
-      -> options:dns_LookupOptions
-      -> (dns_LookupAddress, dns_LookupAddress) or_array Promise.t
+      -> options:LookupOptions.t
+      -> (LookupAddress.t, LookupAddress.t) or_array Promise.t
       [@@js.global "lookup"]
 
-    val lookup : hostname:string -> dns_LookupAddress Promise.t
+    val lookup : hostname:string -> LookupAddress.t Promise.t
       [@@js.global "lookup"]
 
-    val lookupService
+    val lookup_service
       :  address:string
       -> port:int
       -> AnonymousInterface0.t Promise.t
@@ -1159,7 +1145,7 @@ module Dns : sig
     val resolve
       :  hostname:string
       -> rrtype:([ `ANY ][@js.enum])
-      -> dns_AnyRecord list Promise.t
+      -> AnyRecord.t list Promise.t
       [@@js.global "resolve"]
 
     val resolve
@@ -1171,13 +1157,13 @@ module Dns : sig
     val resolve
       :  hostname:string
       -> rrtype:([ `MX ][@js.enum])
-      -> dns_MxRecord list Promise.t
+      -> MxRecord.t list Promise.t
       [@@js.global "resolve"]
 
     val resolve
       :  hostname:string
       -> rrtype:([ `NAPTR ][@js.enum])
-      -> dns_NaptrRecord list Promise.t
+      -> NaptrRecord.t list Promise.t
       [@@js.global "resolve"]
 
     val resolve
@@ -1195,13 +1181,13 @@ module Dns : sig
     val resolve
       :  hostname:string
       -> rrtype:([ `SOA ][@js.enum])
-      -> dns_SoaRecord Promise.t
+      -> SoaRecord.t Promise.t
       [@@js.global "resolve"]
 
     val resolve
       :  hostname:string
       -> rrtype:([ `SRV ][@js.enum])
-      -> dns_SrvRecord list Promise.t
+      -> SrvRecord.t list Promise.t
       [@@js.global "resolve"]
 
     val resolve
@@ -1214,7 +1200,7 @@ module Dns : sig
       :  hostname:string
       -> rrtype:string
       -> ( dns_SoaRecord
-         , ( (dns_AnyRecord, dns_MxRecord, dns_NaptrRecord, dns_SrvRecord) union4
+         , ( (AnyRecord.t, MxRecord.t, NaptrRecord.t, SrvRecord.t) union4
            , string )
            or_array
            or_string )
@@ -1227,14 +1213,14 @@ module Dns : sig
 
     val resolve4
       :  hostname:string
-      -> options:dns_ResolveWithTtlOptions
-      -> dns_RecordWithTtl list Promise.t
+      -> options:ResolveWithTtlOptions.t
+      -> RecordWithTtl.t list Promise.t
       [@@js.global "resolve4"]
 
     val resolve4
       :  hostname:string
-      -> options:dns_ResolveOptions
-      -> dns_RecordWithTtl or_string list Promise.t
+      -> options:ResolveOptions.t
+      -> RecordWithTtl.t or_string list Promise.t
       [@@js.global "resolve4"]
 
     val resolve6 : hostname:string -> string list Promise.t
@@ -1242,46 +1228,46 @@ module Dns : sig
 
     val resolve6
       :  hostname:string
-      -> options:dns_ResolveWithTtlOptions
-      -> dns_RecordWithTtl list Promise.t
+      -> options:ResolveWithTtlOptions.t
+      -> RecordWithTtl.t list Promise.t
       [@@js.global "resolve6"]
 
     val resolve6
       :  hostname:string
-      -> options:dns_ResolveOptions
-      -> dns_RecordWithTtl or_string list Promise.t
+      -> options:ResolveOptions.t
+      -> RecordWithTtl.t or_string list Promise.t
       [@@js.global "resolve6"]
 
-    val resolveAny : hostname:string -> dns_AnyRecord list Promise.t
+    val resolve_any : hostname:string -> AnyRecord.t list Promise.t
       [@@js.global "resolveAny"]
 
-    val resolveCname : hostname:string -> string list Promise.t
+    val resolve_cname : hostname:string -> string list Promise.t
       [@@js.global "resolveCname"]
 
-    val resolveMx : hostname:string -> dns_MxRecord list Promise.t
+    val resolve_mx : hostname:string -> MxRecord.t list Promise.t
       [@@js.global "resolveMx"]
 
-    val resolveNaptr : hostname:string -> dns_NaptrRecord list Promise.t
+    val resolve_naptr : hostname:string -> NaptrRecord.t list Promise.t
       [@@js.global "resolveNaptr"]
 
-    val resolveNs : hostname:string -> string list Promise.t
+    val resolve_ns : hostname:string -> string list Promise.t
       [@@js.global "resolveNs"]
 
-    val resolvePtr : hostname:string -> string list Promise.t
+    val resolve_ptr : hostname:string -> string list Promise.t
       [@@js.global "resolvePtr"]
 
-    val resolveSoa : hostname:string -> dns_SoaRecord Promise.t
+    val resolve_soa : hostname:string -> SoaRecord.t Promise.t
       [@@js.global "resolveSoa"]
 
-    val resolveSrv : hostname:string -> dns_SrvRecord list Promise.t
+    val resolve_srv : hostname:string -> SrvRecord.t list Promise.t
       [@@js.global "resolveSrv"]
 
-    val resolveTxt : hostname:string -> string list list Promise.t
+    val resolve_txt : hostname:string -> string list list Promise.t
       [@@js.global "resolveTxt"]
 
     val reverse : ip:string -> string list Promise.t [@@js.global "reverse"]
 
-    val setServers : servers:string list -> unit [@@js.global "setServers"]
+    val set_servers : servers:string list -> unit [@@js.global "setServers"]
 
     module Resolver : sig
       type t = dns_promises_Resolver
@@ -1290,11 +1276,11 @@ module Dns : sig
 
       val t_of_js : Ojs.t -> t
 
-      val create : ?options:dns_ResolverOptions -> unit -> t [@@js.create]
+      val create : ?options:ResolverOptions.t -> unit -> t [@@js.create]
 
       val cancel : t -> unit [@@js.call "cancel"]
 
-      val getServers : t -> string list [@@js.call "getServers"]
+      val get_servers : t -> string list [@@js.call "getServers"]
 
       val resolve : t -> hostname:string -> string list Promise.t
         [@@js.call "resolve"]
@@ -1305,40 +1291,41 @@ module Dns : sig
       val resolve6 : t -> hostname:string -> string list Promise.t
         [@@js.call "resolve6"]
 
-      val resolveAny : t -> hostname:string -> dns_AnyRecord list Promise.t
+      val resolve_any : t -> hostname:string -> AnyRecord.t list Promise.t
         [@@js.call "resolveAny"]
 
-      val resolveCname : t -> hostname:string -> string list Promise.t
+      val resolve_cname : t -> hostname:string -> string list Promise.t
         [@@js.call "resolveCname"]
 
-      val resolveMx : t -> hostname:string -> dns_MxRecord list Promise.t
+      val resolve_mx : t -> hostname:string -> MxRecord.t list Promise.t
         [@@js.call "resolveMx"]
 
-      val resolveNaptr : t -> hostname:string -> dns_NaptrRecord list Promise.t
+      val resolve_naptr : t -> hostname:string -> NaptrRecord.t list Promise.t
         [@@js.call "resolveNaptr"]
 
-      val resolveNs : t -> hostname:string -> string list Promise.t
+      val resolve_ns : t -> hostname:string -> string list Promise.t
         [@@js.call "resolveNs"]
 
-      val resolvePtr : t -> hostname:string -> string list Promise.t
+      val resolve_ptr : t -> hostname:string -> string list Promise.t
         [@@js.call "resolvePtr"]
 
-      val resolveSoa : t -> hostname:string -> dns_SoaRecord Promise.t
+      val resolve_soa : t -> hostname:string -> SoaRecord.t Promise.t
         [@@js.call "resolveSoa"]
 
-      val resolveSrv : t -> hostname:string -> dns_SrvRecord list Promise.t
+      val resolve_srv : t -> hostname:string -> SrvRecord.t list Promise.t
         [@@js.call "resolveSrv"]
 
-      val resolveTxt : t -> hostname:string -> string list list Promise.t
+      val resolve_txt : t -> hostname:string -> string list list Promise.t
         [@@js.call "resolveTxt"]
 
       val reverse : t -> ip:string -> string list Promise.t
         [@@js.call "reverse"]
 
-      val setLocalAddress : t -> ?ipv4:string -> ?ipv6:string -> unit -> unit
+      val set_local_address : t -> ?ipv4:string -> ?ipv6:string -> unit -> unit
         [@@js.call "setLocalAddress"]
 
-      val setServers : t -> servers:string list -> unit [@@js.call "setServers"]
+      val set_servers : t -> servers:string list -> unit
+        [@@js.call "setServers"]
     end
     [@@js.scope "Resolver"]
   end

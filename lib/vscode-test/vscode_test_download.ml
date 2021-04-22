@@ -2,149 +2,108 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _DownloadPlatform =
-          ([ `L_s0_darwin  | `L_s2_linux_x64  | `L_s4_win32_archive 
-           | `L_s5_win32_x64_archive ], string) _StringLiteralUnion
-        and _DownloadVersion =
-          ([ `L_s1_insiders  | `L_s3_stable ], string) _StringLiteralUnion
-        and ('T, 'U) _StringLiteralUnion = 'T
-        let rec _DownloadPlatform_of_js : Ojs.t -> _DownloadPlatform =
-          fun (x4 : Ojs.t) ->
-            _StringLiteralUnion_of_js
-              (fun (x5 : Ojs.t) ->
-                 let x6 = x5 in
-                 match Ojs.string_of_js x6 with
-                 | "darwin" -> `L_s0_darwin
-                 | "linux-x64" -> `L_s2_linux_x64
-                 | "win32-archive" -> `L_s4_win32_archive
-                 | "win32-x64-archive" -> `L_s5_win32_x64_archive
-                 | _ -> assert false) Ojs.string_of_js x4
-        and _DownloadPlatform_to_js : _DownloadPlatform -> Ojs.t =
-          fun
-            (x1 :
-              ([ `L_s0_darwin  | `L_s2_linux_x64  | `L_s4_win32_archive 
-               | `L_s5_win32_x64_archive ], string) _StringLiteralUnion)
-            ->
-            _StringLiteralUnion_to_js
-              (fun
-                 (x2 :
-                   [ `L_s0_darwin  | `L_s2_linux_x64  | `L_s4_win32_archive 
-                   | `L_s5_win32_x64_archive ])
-                 ->
-                 match x2 with
-                 | `L_s0_darwin -> Ojs.string_to_js "darwin"
-                 | `L_s2_linux_x64 -> Ojs.string_to_js "linux-x64"
-                 | `L_s4_win32_archive -> Ojs.string_to_js "win32-archive"
-                 | `L_s5_win32_x64_archive ->
-                     Ojs.string_to_js "win32-x64-archive") Ojs.string_to_js
-              x1
-        and _DownloadVersion_of_js : Ojs.t -> _DownloadVersion =
-          fun (x11 : Ojs.t) ->
-            _StringLiteralUnion_of_js
-              (fun (x12 : Ojs.t) ->
-                 let x13 = x12 in
-                 match Ojs.string_of_js x13 with
-                 | "insiders" -> `L_s1_insiders
-                 | "stable" -> `L_s3_stable
-                 | _ -> assert false) Ojs.string_of_js x11
-        and _DownloadVersion_to_js : _DownloadVersion -> Ojs.t =
-          fun
-            (x8 :
-              ([ `L_s1_insiders  | `L_s3_stable ], string)
-                _StringLiteralUnion)
-            ->
-            _StringLiteralUnion_to_js
-              (fun (x9 : [ `L_s1_insiders  | `L_s3_stable ]) ->
-                 match x9 with
-                 | `L_s1_insiders -> Ojs.string_to_js "insiders"
-                 | `L_s3_stable -> Ojs.string_to_js "stable")
-              Ojs.string_to_js x8
-        and _StringLiteralUnion_of_js :
-          'T 'U .
-            (Ojs.t -> 'T) ->
-              (Ojs.t -> 'U) -> Ojs.t -> ('T, 'U) _StringLiteralUnion
-          = fun (type __T) -> fun (type __U) ->
-          fun (__T_of_js : Ojs.t -> __T) ->
-            fun (__U_of_js : Ojs.t -> __U) ->
-              fun (x16 : Ojs.t) -> __T_of_js x16
-        and _StringLiteralUnion_to_js :
-          'T 'U .
-            ('T -> Ojs.t) ->
-              ('U -> Ojs.t) -> ('T, 'U) _StringLiteralUnion -> Ojs.t
-          = fun (type __T) -> fun (type __U) ->
-          fun (__T_to_js : __T -> Ojs.t) ->
-            fun (__U_to_js : __U -> Ojs.t) ->
-              fun (x15 : __T) -> __T_to_js x15
-      end
-  end
 module AnonymousInterface0 =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x18 : Ojs.t) -> x18
-    and t_to_js : t -> Ojs.t = fun (x17 : Ojs.t) -> x17
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
   end
 module StringLiteralUnion =
   struct
-    type ('T, 'U) t = ('T, 'U) _StringLiteralUnion
+    type ('T, 'U) t = 'T
     let rec t_of_js :
       'T 'U . (Ojs.t -> 'T) -> (Ojs.t -> 'U) -> Ojs.t -> ('T, 'U) t = fun
       (type __T) -> fun (type __U) ->
       fun (__T_of_js : Ojs.t -> __T) ->
-        fun (__U_of_js : Ojs.t -> __U) ->
-          fun (x22 : Ojs.t) ->
-            _StringLiteralUnion_of_js __T_of_js __U_of_js x22
+        fun (__U_of_js : Ojs.t -> __U) -> fun (x4 : Ojs.t) -> __T_of_js x4
     and t_to_js :
       'T 'U . ('T -> Ojs.t) -> ('U -> Ojs.t) -> ('T, 'U) t -> Ojs.t = fun
       (type __T) -> fun (type __U) ->
       fun (__T_to_js : __T -> Ojs.t) ->
-        fun (__U_to_js : __U -> Ojs.t) ->
-          fun (x19 : (__T, __U) _StringLiteralUnion) ->
-            _StringLiteralUnion_to_js __T_to_js __U_to_js x19
+        fun (__U_to_js : __U -> Ojs.t) -> fun (x3 : __T) -> __T_to_js x3
   end
 module DownloadVersion =
   struct
-    type t = _DownloadVersion
+    type t =
+      ([ `L_s1_insiders  | `L_s3_stable ], string) StringLiteralUnion.t
     let rec t_of_js : Ojs.t -> t =
-      fun (x26 : Ojs.t) -> _DownloadVersion_of_js x26
+      fun (x8 : Ojs.t) ->
+        StringLiteralUnion.t_of_js
+          (fun (x9 : Ojs.t) ->
+             let x10 = x9 in
+             match Ojs.string_of_js x10 with
+             | "insiders" -> `L_s1_insiders
+             | "stable" -> `L_s3_stable
+             | _ -> assert false) Ojs.string_of_js x8
     and t_to_js : t -> Ojs.t =
-      fun (x25 : _DownloadVersion) -> _DownloadVersion_to_js x25
+      fun
+        (x5 :
+          ([ `L_s1_insiders  | `L_s3_stable ], string) StringLiteralUnion.t)
+        ->
+        StringLiteralUnion.t_to_js
+          (fun (x6 : [ `L_s1_insiders  | `L_s3_stable ]) ->
+             match x6 with
+             | `L_s1_insiders -> Ojs.string_to_js "insiders"
+             | `L_s3_stable -> Ojs.string_to_js "stable") Ojs.string_to_js x5
   end
 module DownloadPlatform =
   struct
-    type t = _DownloadPlatform
+    type t =
+      ([ `L_s0_darwin  | `L_s2_linux_x64  | `L_s4_win32_archive 
+       | `L_s5_win32_x64_archive ], string) StringLiteralUnion.t
     let rec t_of_js : Ojs.t -> t =
-      fun (x28 : Ojs.t) -> _DownloadPlatform_of_js x28
+      fun (x15 : Ojs.t) ->
+        StringLiteralUnion.t_of_js
+          (fun (x16 : Ojs.t) ->
+             let x17 = x16 in
+             match Ojs.string_of_js x17 with
+             | "darwin" -> `L_s0_darwin
+             | "linux-x64" -> `L_s2_linux_x64
+             | "win32-archive" -> `L_s4_win32_archive
+             | "win32-x64-archive" -> `L_s5_win32_x64_archive
+             | _ -> assert false) Ojs.string_of_js x15
     and t_to_js : t -> Ojs.t =
-      fun (x27 : _DownloadPlatform) -> _DownloadPlatform_to_js x27
+      fun
+        (x12 :
+          ([ `L_s0_darwin  | `L_s2_linux_x64  | `L_s4_win32_archive 
+           | `L_s5_win32_x64_archive ], string) StringLiteralUnion.t)
+        ->
+        StringLiteralUnion.t_to_js
+          (fun
+             (x13 :
+               [ `L_s0_darwin  | `L_s2_linux_x64  | `L_s4_win32_archive 
+               | `L_s5_win32_x64_archive ])
+             ->
+             match x13 with
+             | `L_s0_darwin -> Ojs.string_to_js "darwin"
+             | `L_s2_linux_x64 -> Ojs.string_to_js "linux-x64"
+             | `L_s4_win32_archive -> Ojs.string_to_js "win32-archive"
+             | `L_s5_win32_x64_archive ->
+                 Ojs.string_to_js "win32-x64-archive") Ojs.string_to_js x12
   end
-let (downloadAndUnzipVSCode :
-  ?version:_DownloadVersion ->
-    ?platform:_DownloadPlatform -> unit -> string Promise.t)
+let (download_and_unzip_vs_code :
+  ?version:DownloadVersion.t ->
+    ?platform:DownloadPlatform.t -> unit -> string Promise.t)
   =
-  fun ?version:(x29 : _DownloadVersion option) ->
-    fun ?platform:(x30 : _DownloadPlatform option) ->
+  fun ?version:(x19 : DownloadVersion.t option) ->
+    fun ?platform:(x20 : DownloadPlatform.t option) ->
       fun () ->
         Promise.t_of_js Ojs.string_of_js
-          (let x34 = Ojs.global in
-           Ojs.call (Ojs.get_prop_ascii x34 "downloadAndUnzipVSCode") "apply"
-             [|x34;((let x31 =
+          (let x24 = Ojs.global in
+           Ojs.call (Ojs.get_prop_ascii x24 "downloadAndUnzipVSCode") "apply"
+             [|x24;((let x21 =
                        Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                          [||] in
-                     (match x29 with
-                      | Some x33 ->
+                     (match x19 with
+                      | Some x23 ->
                           ignore
-                            (Ojs.call x31 "push"
-                               [|(_DownloadVersion_to_js x33)|])
+                            (Ojs.call x21 "push"
+                               [|(DownloadVersion.t_to_js x23)|])
                       | None -> ());
-                     (match x30 with
-                      | Some x32 ->
+                     (match x20 with
+                      | Some x22 ->
                           ignore
-                            (Ojs.call x31 "push"
-                               [|(_DownloadPlatform_to_js x32)|])
+                            (Ojs.call x21 "push"
+                               [|(DownloadPlatform.t_to_js x22)|])
                       | None -> ());
-                     x31))|])
+                     x21))|])

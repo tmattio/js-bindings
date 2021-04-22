@@ -38,9 +38,9 @@ module AnonymousInterface2 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_bytesRead : t -> int [@@js.get "bytesRead"]
+  val get_bytes_read : t -> int [@@js.get "bytesRead"]
 
-  val set_bytesRead : t -> int -> unit [@@js.set "bytesRead"]
+  val set_bytes_read : t -> int -> unit [@@js.set "bytesRead"]
 
   val get_buffer : t -> 'TBuffer [@@js.get "buffer"]
 
@@ -54,9 +54,9 @@ module AnonymousInterface3 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_bytesWritten : t -> int [@@js.get "bytesWritten"]
+  val get_bytes_written : t -> int [@@js.get "bytesWritten"]
 
-  val set_bytesWritten : t -> int -> unit [@@js.set "bytesWritten"]
+  val set_bytes_written : t -> int -> unit [@@js.set "bytesWritten"]
 
   val get_buffer : t -> 'TBuffer [@@js.get "buffer"]
 
@@ -70,9 +70,9 @@ module AnonymousInterface4 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_bytesWritten : t -> int [@@js.get "bytesWritten"]
+  val get_bytes_written : t -> int [@@js.get "bytesWritten"]
 
-  val set_bytesWritten : t -> int -> unit [@@js.set "bytesWritten"]
+  val set_bytes_written : t -> int -> unit [@@js.set "bytesWritten"]
 
   val get_buffer : t -> string [@@js.get "buffer"]
 
@@ -123,10 +123,10 @@ module AnonymousInterface7 : sig
 
   val set_encoding : t -> ([ `buffer ][@js.enum]) -> unit [@@js.set "encoding"]
 
-  val get_withFileTypes : t -> ([ `L_b_false [@js false] ][@js.enum])
+  val get_with_file_types : t -> ([ `L_b_false [@js false] ][@js.enum])
     [@@js.get "withFileTypes"]
 
-  val set_withFileTypes : t -> ([ `L_b_false ][@js.enum]) -> unit
+  val set_with_file_types : t -> ([ `L_b_false ][@js.enum]) -> unit
     [@@js.set "withFileTypes"]
 end
 
@@ -193,10 +193,10 @@ module AnonymousInterface12 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_withFileTypes : t -> ([ `L_b_false [@js false] ][@js.enum])
+  val get_with_file_types : t -> ([ `L_b_false [@js false] ][@js.enum])
     [@@js.get "withFileTypes"]
 
-  val set_withFileTypes : t -> ([ `L_b_false ][@js.enum]) -> unit
+  val set_with_file_types : t -> ([ `L_b_false ][@js.enum]) -> unit
     [@@js.set "withFileTypes"]
 end
 
@@ -207,10 +207,10 @@ module AnonymousInterface13 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_withFileTypes : t -> ([ `L_b_true [@js true] ][@js.enum])
+  val get_with_file_types : t -> ([ `L_b_true [@js true] ][@js.enum])
     [@@js.get "withFileTypes"]
 
-  val set_withFileTypes : t -> ([ `L_b_true ][@js.enum]) -> unit
+  val set_with_file_types : t -> ([ `L_b_true ][@js.enum]) -> unit
     [@@js.set "withFileTypes"]
 end
 
@@ -224,7 +224,7 @@ module Fs_promises : sig
 
     val get_fd : t -> int [@@js.get "fd"]
 
-    val appendFile
+    val append_file
       :  t
       -> data:Uint8Array.t or_string
       -> ?options:BufferEncoding.t or_null
@@ -250,20 +250,20 @@ module Fs_promises : sig
       -> AnonymousInterface2.t Promise.t
       [@@js.call "read"]
 
-    val readFile
+    val read_file
       :  t
       -> ?options:AnonymousInterface6.t or_null
       -> unit
       -> Buffer.t Promise.t
       [@@js.call "readFile"]
 
-    val readFile'
+    val read_file'
       :  t
       -> options:(BufferEncoding.t, AnonymousInterface5.t) union2
       -> string Promise.t
       [@@js.call "readFile"]
 
-    val readFile''
+    val read_file''
       :  t
       -> ?options:BufferEncoding.t or_null
       -> unit
@@ -319,7 +319,7 @@ module Fs_promises : sig
       -> AnonymousInterface4.t Promise.t
       [@@js.call "write"]
 
-    val writeFile
+    val write_file
       :  t
       -> data:Uint8Array.t or_string
       -> ?options:BufferEncoding.t or_null
@@ -350,7 +350,7 @@ module Fs_promises : sig
   val access : path:string -> ?mode:int -> unit -> unit Promise.t
     [@@js.global "access"]
 
-  val copyFile
+  val copy_file
     :  src:string
     -> dest:string
     -> ?flags:int
@@ -363,11 +363,11 @@ module Fs_promises : sig
     -> flags:string or_number
     -> ?mode:Mode.t
     -> unit
-    -> node_fs_promises_FileHandle Promise.t
+    -> FileHandle.t Promise.t
     [@@js.global "open"]
 
   val read
-    :  handle:node_fs_promises_FileHandle
+    :  handle:FileHandle.t
     -> buffer:'TBuffer
     -> ?offset:int or_null
     -> ?length:int or_null
@@ -377,7 +377,7 @@ module Fs_promises : sig
     [@@js.global "read"]
 
   val write
-    :  handle:node_fs_promises_FileHandle
+    :  handle:FileHandle.t
     -> buffer:'TBuffer
     -> ?offset:int or_null
     -> ?length:int or_null
@@ -387,7 +387,7 @@ module Fs_promises : sig
     [@@js.global "write"]
 
   val write
-    :  handle:node_fs_promises_FileHandle
+    :  handle:FileHandle.t
     -> string:string
     -> ?position:int or_null
     -> ?encoding:BufferEncoding.t or_null
@@ -395,17 +395,13 @@ module Fs_promises : sig
     -> AnonymousInterface4.t Promise.t
     [@@js.global "write"]
 
-  val rename : oldPath:string -> newPath:string -> unit Promise.t
+  val rename : old_path:string -> new_path:string -> unit Promise.t
     [@@js.global "rename"]
 
   val truncate : path:string -> ?len:int -> unit -> unit Promise.t
     [@@js.global "truncate"]
 
-  val ftruncate
-    :  handle:node_fs_promises_FileHandle
-    -> ?len:int
-    -> unit
-    -> unit Promise.t
+  val ftruncate : handle:FileHandle.t -> ?len:int -> unit -> unit Promise.t
     [@@js.global "ftruncate"]
 
   val rmdir : path:string -> ?options:RmDirOptions.t -> unit -> unit Promise.t
@@ -414,11 +410,10 @@ module Fs_promises : sig
   val rm : path:string -> ?options:RmOptions.t -> unit -> unit Promise.t
     [@@js.global "rm"]
 
-  val fdatasync : handle:node_fs_promises_FileHandle -> unit Promise.t
+  val fdatasync : handle:FileHandle.t -> unit Promise.t
     [@@js.global "fdatasync"]
 
-  val fsync : handle:node_fs_promises_FileHandle -> unit Promise.t
-    [@@js.global "fsync"]
+  val fsync : handle:FileHandle.t -> unit Promise.t [@@js.global "fsync"]
 
   val mkdir
     :  path:string
@@ -530,15 +525,12 @@ module Fs_promises : sig
     -> (BigIntStats.t, Stats.t) union2 Promise.t
     [@@js.global "stat"]
 
-  val link : existingPath:string -> newPath:string -> unit Promise.t
+  val link : existing_path:string -> new_path:string -> unit Promise.t
     [@@js.global "link"]
 
   val unlink : path:string -> unit Promise.t [@@js.global "unlink"]
 
-  val fchmod
-    :  handle:node_fs_promises_FileHandle
-    -> mode:Mode.t
-    -> unit Promise.t
+  val fchmod : handle:FileHandle.t -> mode:Mode.t -> unit Promise.t
     [@@js.global "fchmod"]
 
   val chmod : path:string -> mode:Mode.t -> unit Promise.t [@@js.global "chmod"]
@@ -556,11 +548,7 @@ module Fs_promises : sig
     -> unit Promise.t
     [@@js.global "lutimes"]
 
-  val fchown
-    :  handle:node_fs_promises_FileHandle
-    -> uid:int
-    -> gid:int
-    -> unit Promise.t
+  val fchown : handle:FileHandle.t -> uid:int -> gid:int -> unit Promise.t
     [@@js.global "fchown"]
 
   val chown : path:string -> uid:int -> gid:int -> unit Promise.t
@@ -574,7 +562,7 @@ module Fs_promises : sig
     [@@js.global "utimes"]
 
   val futimes
-    :  handle:node_fs_promises_FileHandle
+    :  handle:FileHandle.t
     -> atime:Date.t or_string or_number
     -> mtime:Date.t or_string or_number
     -> unit Promise.t
@@ -620,37 +608,37 @@ module Fs_promises : sig
     -> Buffer.t or_string Promise.t
     [@@js.global "mkdtemp"]
 
-  val writeFile
-    :  path:(node_fs_promises_FileHandle, string) union2
+  val write_file
+    :  path:(FileHandle.t, string) union2
     -> data:Uint8Array.t or_string
     -> ?options:BufferEncoding.t or_null
     -> unit
     -> unit Promise.t
     [@@js.global "writeFile"]
 
-  val appendFile
-    :  path:(node_fs_promises_FileHandle, string) union2
+  val append_file
+    :  path:(FileHandle.t, string) union2
     -> data:Uint8Array.t or_string
     -> ?options:BufferEncoding.t or_null
     -> unit
     -> unit Promise.t
     [@@js.global "appendFile"]
 
-  val readFile
-    :  path:(node_fs_promises_FileHandle, string) union2
+  val read_file
+    :  path:(FileHandle.t, string) union2
     -> ?options:AnonymousInterface6.t or_null
     -> unit
     -> Buffer.t Promise.t
     [@@js.global "readFile"]
 
-  val readFile
-    :  path:(node_fs_promises_FileHandle, string) union2
+  val read_file
+    :  path:(FileHandle.t, string) union2
     -> options:(BufferEncoding.t, AnonymousInterface5.t) union2
     -> string Promise.t
     [@@js.global "readFile"]
 
-  val readFile
-    :  path:(node_fs_promises_FileHandle, string) union2
+  val read_file
+    :  path:(FileHandle.t, string) union2
     -> ?options:BufferEncoding.t or_null
     -> unit
     -> Buffer.t or_string Promise.t

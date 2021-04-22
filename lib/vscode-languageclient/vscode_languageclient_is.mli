@@ -16,15 +16,15 @@ val func : value:any -> bool [@@js.global "func"]
 
 val array : value:any -> bool [@@js.global "array"]
 
-val stringArray : value:any -> bool [@@js.global "stringArray"]
+val string_array : value:any -> bool [@@js.global "stringArray"]
 
-val typedArray : value:any -> check:(value:any -> bool) -> bool
+val typed_array : value:any -> check:(value:any -> bool) -> bool
   [@@js.global "typedArray"]
 
 val thenable : value:any -> bool [@@js.global "thenable"]
 
-val asPromise : value:'T Promise.t -> 'T Promise.t [@@js.global "asPromise"]
+val as_promise : value:'T Promise.t -> 'T Promise.t [@@js.global "asPromise"]
 
-val asPromise : value:'T Promise.t -> 'T Promise.t [@@js.global "asPromise"]
+val as_promise : value:'T Promise.t -> 'T Promise.t [@@js.global "asPromise"]
 
-val asPromise : value:'T -> 'T Promise.t [@@js.global "asPromise"]
+val as_promise : value:'T -> 'T Promise.t [@@js.global "asPromise"]

@@ -3,8 +3,6 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
 open Node_globals
-module Internal =
-  struct module Types = struct open AnonymousInterfaces end end
 module AnonymousInterface0 =
   struct
     type t = Ojs.t
@@ -24,11 +22,9 @@ module Repl =
   struct
     module ReplOptions =
       struct
-        type t = repl_ReplOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x7 : Ojs.t) -> repl_ReplOptions_of_js x7
-        and t_to_js : t -> Ojs.t =
-          fun (x6 : repl_ReplOptions) -> repl_ReplOptions_to_js x6
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x7 : Ojs.t) -> x7
+        and t_to_js : t -> Ojs.t = fun (x6 : Ojs.t) -> x6
         let (get_prompt : t -> string) =
           fun (x8 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x8) "prompt")
@@ -61,14 +57,13 @@ module Repl =
             fun (x19 : bool) ->
               Ojs.set_prop_ascii (t_to_js x18) "terminal"
                 (Ojs.bool_to_js x19)
-        let (get_eval : t -> repl_REPLEval) =
+        let (get_eval : t -> REPLEval.t) =
           fun (x20 : t) ->
-            repl_REPLEval_of_js (Ojs.get_prop_ascii (t_to_js x20) "eval")
-        let (set_eval : t -> repl_REPLEval -> unit) =
+            REPLEval.t_of_js (Ojs.get_prop_ascii (t_to_js x20) "eval")
+        let (set_eval : t -> REPLEval.t -> unit) =
           fun (x21 : t) ->
-            fun (x22 : repl_REPLEval) ->
-              Ojs.set_prop_ascii (t_to_js x21) "eval"
-                (repl_REPLEval_to_js x22)
+            fun (x22 : REPLEval.t) ->
+              Ojs.set_prop_ascii (t_to_js x21) "eval" (REPLEval.t_to_js x22)
         let (get_preview : t -> bool) =
           fun (x23 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x23) "preview")
@@ -76,39 +71,39 @@ module Repl =
           fun (x24 : t) ->
             fun (x25 : bool) ->
               Ojs.set_prop_ascii (t_to_js x24) "preview" (Ojs.bool_to_js x25)
-        let (get_useColors : t -> bool) =
+        let (get_use_colors : t -> bool) =
           fun (x26 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x26) "useColors")
-        let (set_useColors : t -> bool -> unit) =
+        let (set_use_colors : t -> bool -> unit) =
           fun (x27 : t) ->
             fun (x28 : bool) ->
               Ojs.set_prop_ascii (t_to_js x27) "useColors"
                 (Ojs.bool_to_js x28)
-        let (get_useGlobal : t -> bool) =
+        let (get_use_global : t -> bool) =
           fun (x29 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x29) "useGlobal")
-        let (set_useGlobal : t -> bool -> unit) =
+        let (set_use_global : t -> bool -> unit) =
           fun (x30 : t) ->
             fun (x31 : bool) ->
               Ojs.set_prop_ascii (t_to_js x30) "useGlobal"
                 (Ojs.bool_to_js x31)
-        let (get_ignoreUndefined : t -> bool) =
+        let (get_ignore_undefined : t -> bool) =
           fun (x32 : t) ->
             Ojs.bool_of_js
               (Ojs.get_prop_ascii (t_to_js x32) "ignoreUndefined")
-        let (set_ignoreUndefined : t -> bool -> unit) =
+        let (set_ignore_undefined : t -> bool -> unit) =
           fun (x33 : t) ->
             fun (x34 : bool) ->
               Ojs.set_prop_ascii (t_to_js x33) "ignoreUndefined"
                 (Ojs.bool_to_js x34)
-        let (get_writer : t -> repl_REPLWriter) =
+        let (get_writer : t -> REPLWriter.t) =
           fun (x35 : t) ->
-            repl_REPLWriter_of_js (Ojs.get_prop_ascii (t_to_js x35) "writer")
-        let (set_writer : t -> repl_REPLWriter -> unit) =
+            REPLWriter.t_of_js (Ojs.get_prop_ascii (t_to_js x35) "writer")
+        let (set_writer : t -> REPLWriter.t -> unit) =
           fun (x36 : t) ->
-            fun (x37 : repl_REPLWriter) ->
+            fun (x37 : REPLWriter.t) ->
               Ojs.set_prop_ascii (t_to_js x36) "writer"
-                (repl_REPLWriter_to_js x37)
+                (REPLWriter.t_to_js x37)
         let (get_completer :
           t ->
             (Node_readline.Readline.AsyncCompleter.t,
@@ -132,18 +127,18 @@ module Repl =
               Ojs.set_prop_ascii (t_to_js x41) "completer"
                 (union2_to_js Node_readline.Readline.AsyncCompleter.t_to_js
                    Node_readline.Readline.Completer.t_to_js x42)
-        let (get_replMode : t -> any) =
+        let (get_repl_mode : t -> any) =
           fun (x45 : t) ->
             any_of_js (Ojs.get_prop_ascii (t_to_js x45) "replMode")
-        let (set_replMode : t -> any -> unit) =
+        let (set_repl_mode : t -> any -> unit) =
           fun (x46 : t) ->
             fun (x47 : any) ->
               Ojs.set_prop_ascii (t_to_js x46) "replMode" (any_to_js x47)
-        let (get_breakEvalOnSigint : t -> bool) =
+        let (get_break_eval_on_sigint : t -> bool) =
           fun (x48 : t) ->
             Ojs.bool_of_js
               (Ojs.get_prop_ascii (t_to_js x48) "breakEvalOnSigint")
-        let (set_breakEvalOnSigint : t -> bool -> unit) =
+        let (set_break_eval_on_sigint : t -> bool -> unit) =
           fun (x49 : t) ->
             fun (x50 : bool) ->
               Ojs.set_prop_ascii (t_to_js x49) "breakEvalOnSigint"
@@ -151,82 +146,70 @@ module Repl =
       end
     module REPLEval =
       struct
-        type t = repl_REPLEval
-        let rec t_of_js : Ojs.t -> t =
-          fun (x52 : Ojs.t) -> repl_REPLEval_of_js x52
-        and t_to_js : t -> Ojs.t =
-          fun (x51 : repl_REPLEval) -> repl_REPLEval_to_js x51
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x52 : Ojs.t) -> x52
+        and t_to_js : t -> Ojs.t = fun (x51 : Ojs.t) -> x51
         let (apply :
           t ->
-            this:repl_REPLServer ->
-              evalCmd:string ->
+            this:REPLServer.t ->
+              eval_cmd:string ->
                 context:Node_vm.Vm.Context.t ->
                   file:string ->
                     cb:(err:Error.t or_null -> result:any -> unit) -> unit)
           =
           fun (x61 : t) ->
-            fun ~this:(x53 : repl_REPLServer) ->
-              fun ~evalCmd:(x54 : string) ->
+            fun ~this:(x53 : REPLServer.t) ->
+              fun ~eval_cmd:(x54 : string) ->
                 fun ~context:(x55 : Node_vm.Vm.Context.t) ->
                   fun ~file:(x56 : string) ->
                     fun ~cb:(x57 : err:Error.t or_null -> result:any -> unit)
                       ->
                       ignore
                         (Ojs.apply (t_to_js x61)
-                           [|(repl_REPLServer_to_js x53);(Ojs.string_to_js
-                                                            x54);(Node_vm.Vm.Context.t_to_js
-                                                                    x55);(
-                             Ojs.string_to_js x56);(Ojs.fun_to_js 2
-                                                      (fun (x58 : Ojs.t) ->
-                                                         fun (x60 : Ojs.t) ->
-                                                           x57
-                                                             ~err:(or_null_of_js
-                                                                    Error.t_of_js
-                                                                    x58)
-                                                             ~result:(
-                                                             any_of_js x60)))|])
+                           [|(REPLServer.t_to_js x53);(Ojs.string_to_js x54);(
+                             Node_vm.Vm.Context.t_to_js x55);(Ojs.string_to_js
+                                                                x56);(
+                             Ojs.fun_to_js 2
+                               (fun (x58 : Ojs.t) ->
+                                  fun (x60 : Ojs.t) ->
+                                    x57
+                                      ~err:(or_null_of_js Error.t_of_js x58)
+                                      ~result:(any_of_js x60)))|])
       end
     module REPLWriter =
       struct
-        type t = repl_REPLWriter
-        let rec t_of_js : Ojs.t -> t =
-          fun (x63 : Ojs.t) -> repl_REPLWriter_of_js x63
-        and t_to_js : t -> Ojs.t =
-          fun (x62 : repl_REPLWriter) -> repl_REPLWriter_to_js x62
-        let (apply : t -> this:repl_REPLServer -> obj:any -> string) =
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x63 : Ojs.t) -> x63
+        and t_to_js : t -> Ojs.t = fun (x62 : Ojs.t) -> x62
+        let (apply : t -> this:REPLServer.t -> obj:any -> string) =
           fun (x66 : t) ->
-            fun ~this:(x64 : repl_REPLServer) ->
+            fun ~this:(x64 : REPLServer.t) ->
               fun ~obj:(x65 : any) ->
                 Ojs.string_of_js
                   (Ojs.apply (t_to_js x66)
-                     [|(repl_REPLServer_to_js x64);(any_to_js x65)|])
+                     [|(REPLServer.t_to_js x64);(any_to_js x65)|])
       end
-    let (writer : (repl_REPLWriter, AnonymousInterface0.t) intersection2) =
-      intersection2_of_js repl_REPLWriter_of_js AnonymousInterface0.t_of_js
+    let (writer : (REPLWriter.t, AnonymousInterface0.t) intersection2) =
+      intersection2_of_js REPLWriter.t_of_js AnonymousInterface0.t_of_js
         (Ojs.get_prop_ascii Import.repl "writer")
     module REPLCommandAction =
       struct
-        type t = repl_REPLCommandAction
-        let rec t_of_js : Ojs.t -> t =
-          fun (x70 : Ojs.t) -> repl_REPLCommandAction_of_js x70
-        and t_to_js : t -> Ojs.t =
-          fun (x69 : repl_REPLCommandAction) ->
-            repl_REPLCommandAction_to_js x69
-        let (apply : t -> this:repl_REPLServer -> text:string -> unit) =
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x70 : Ojs.t) -> x70
+        and t_to_js : t -> Ojs.t = fun (x69 : Ojs.t) -> x69
+        let (apply : t -> this:REPLServer.t -> text:string -> unit) =
           fun (x73 : t) ->
-            fun ~this:(x71 : repl_REPLServer) ->
+            fun ~this:(x71 : REPLServer.t) ->
               fun ~text:(x72 : string) ->
                 ignore
                   (Ojs.apply (t_to_js x73)
-                     [|(repl_REPLServer_to_js x71);(Ojs.string_to_js x72)|])
+                     [|(REPLServer.t_to_js x71);(Ojs.string_to_js x72)|])
       end
     module REPLCommand =
       struct
-        type t = repl_REPLCommand
-        let rec t_of_js : Ojs.t -> t =
-          fun (x75 : Ojs.t) -> repl_REPLCommand_of_js x75
-        and t_to_js : t -> Ojs.t =
-          fun (x74 : repl_REPLCommand) -> repl_REPLCommand_to_js x74
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x75 : Ojs.t) -> x75
+        and t_to_js : t -> Ojs.t = fun (x74 : Ojs.t) -> x74
         let (get_help : t -> string) =
           fun (x76 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x76) "help")
@@ -234,32 +217,30 @@ module Repl =
           fun (x77 : t) ->
             fun (x78 : string) ->
               Ojs.set_prop_ascii (t_to_js x77) "help" (Ojs.string_to_js x78)
-        let (get_action : t -> repl_REPLCommandAction) =
+        let (get_action : t -> REPLCommandAction.t) =
           fun (x79 : t) ->
-            repl_REPLCommandAction_of_js
+            REPLCommandAction.t_of_js
               (Ojs.get_prop_ascii (t_to_js x79) "action")
-        let (set_action : t -> repl_REPLCommandAction -> unit) =
+        let (set_action : t -> REPLCommandAction.t -> unit) =
           fun (x80 : t) ->
-            fun (x81 : repl_REPLCommandAction) ->
+            fun (x81 : REPLCommandAction.t) ->
               Ojs.set_prop_ascii (t_to_js x80) "action"
-                (repl_REPLCommandAction_to_js x81)
+                (REPLCommandAction.t_to_js x81)
       end
     module REPLServer =
       struct
-        type t = repl_REPLServer
-        let rec t_of_js : Ojs.t -> t =
-          fun (x83 : Ojs.t) -> repl_REPLServer_of_js x83
-        and t_to_js : t -> Ojs.t =
-          fun (x82 : repl_REPLServer) -> repl_REPLServer_to_js x82
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x83 : Ojs.t) -> x83
+        and t_to_js : t -> Ojs.t = fun (x82 : Ojs.t) -> x82
         let (get_context : t -> Node_vm.Vm.Context.t) =
           fun (x84 : t) ->
             Node_vm.Vm.Context.t_of_js
               (Ojs.get_prop_ascii (t_to_js x84) "context")
-        let (get_inputStream : t -> ReadableStream.t) =
+        let (get_input_stream : t -> ReadableStream.t) =
           fun (x85 : t) ->
             ReadableStream.t_of_js
               (Ojs.get_prop_ascii (t_to_js x85) "inputStream")
-        let (get_outputStream : t -> WritableStream.t) =
+        let (get_output_stream : t -> WritableStream.t) =
           fun (x86 : t) ->
             WritableStream.t_of_js
               (Ojs.get_prop_ascii (t_to_js x86) "outputStream")
@@ -270,44 +251,43 @@ module Repl =
           fun (x88 : t) ->
             WritableStream.t_of_js
               (Ojs.get_prop_ascii (t_to_js x88) "output")
-        let (get_commands : t -> repl_REPLCommand ReadOnlyDict.t) =
+        let (get_commands : t -> REPLCommand.t ReadOnlyDict.t) =
           fun (x89 : t) ->
-            ReadOnlyDict.t_of_js repl_REPLCommand_of_js
+            ReadOnlyDict.t_of_js REPLCommand.t_of_js
               (Ojs.get_prop_ascii (t_to_js x89) "commands")
-        let (get_editorMode : t -> bool) =
+        let (get_editor_mode : t -> bool) =
           fun (x91 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x91) "editorMode")
-        let (get_underscoreAssigned : t -> bool) =
+        let (get_underscore_assigned : t -> bool) =
           fun (x92 : t) ->
             Ojs.bool_of_js
               (Ojs.get_prop_ascii (t_to_js x92) "underscoreAssigned")
         let (get_last : t -> any) =
           fun (x93 : t) ->
             any_of_js (Ojs.get_prop_ascii (t_to_js x93) "last")
-        let (get_underscoreErrAssigned : t -> bool) =
+        let (get_underscore_err_assigned : t -> bool) =
           fun (x94 : t) ->
             Ojs.bool_of_js
               (Ojs.get_prop_ascii (t_to_js x94) "underscoreErrAssigned")
-        let (get_lastError : t -> any) =
+        let (get_last_error : t -> any) =
           fun (x95 : t) ->
             any_of_js (Ojs.get_prop_ascii (t_to_js x95) "lastError")
-        let (get_eval : t -> repl_REPLEval) =
+        let (get_eval : t -> REPLEval.t) =
           fun (x96 : t) ->
-            repl_REPLEval_of_js (Ojs.get_prop_ascii (t_to_js x96) "eval")
-        let (get_useColors : t -> bool) =
+            REPLEval.t_of_js (Ojs.get_prop_ascii (t_to_js x96) "eval")
+        let (get_use_colors : t -> bool) =
           fun (x97 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x97) "useColors")
-        let (get_useGlobal : t -> bool) =
+        let (get_use_global : t -> bool) =
           fun (x98 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x98) "useGlobal")
-        let (get_ignoreUndefined : t -> bool) =
+        let (get_ignore_undefined : t -> bool) =
           fun (x99 : t) ->
             Ojs.bool_of_js
               (Ojs.get_prop_ascii (t_to_js x99) "ignoreUndefined")
-        let (get_writer : t -> repl_REPLWriter) =
+        let (get_writer : t -> REPLWriter.t) =
           fun (x100 : t) ->
-            repl_REPLWriter_of_js
-              (Ojs.get_prop_ascii (t_to_js x100) "writer")
+            REPLWriter.t_of_js (Ojs.get_prop_ascii (t_to_js x100) "writer")
         let (get_completer :
           t ->
             (Node_readline.Readline.AsyncCompleter.t,
@@ -317,33 +297,31 @@ module Repl =
             union2_of_js Node_readline.Readline.AsyncCompleter.t_of_js
               Node_readline.Readline.Completer.t_of_js
               (Ojs.get_prop_ascii (t_to_js x101) "completer")
-        let (get_replMode : t -> any) =
+        let (get_repl_mode : t -> any) =
           fun (x104 : t) ->
             any_of_js (Ojs.get_prop_ascii (t_to_js x104) "replMode")
         let (create : unit -> t) =
           fun () ->
             t_of_js
               (Ojs.new_obj (Ojs.get_prop_ascii Import.repl "REPLServer") [||])
-        let (defineCommand :
+        let (define_command :
           t ->
             keyword:string ->
-              cmd:(repl_REPLCommand, repl_REPLCommandAction) union2 -> unit)
+              cmd:(REPLCommand.t, REPLCommandAction.t) union2 -> unit)
           =
           fun (x109 : t) ->
             fun ~keyword:(x105 : string) ->
-              fun
-                ~cmd:(x106 :
-                       (repl_REPLCommand, repl_REPLCommandAction) union2)
+              fun ~cmd:(x106 : (REPLCommand.t, REPLCommandAction.t) union2)
                 ->
                 ignore
                   (Ojs.call (t_to_js x109) "defineCommand"
                      [|(Ojs.string_to_js x105);(union2_to_js
-                                                  repl_REPLCommand_to_js
-                                                  repl_REPLCommandAction_to_js
+                                                  REPLCommand.t_to_js
+                                                  REPLCommandAction.t_to_js
                                                   x106)|])
-        let (displayPrompt : t -> ?preserveCursor:bool -> unit -> unit) =
+        let (display_prompt : t -> ?preserve_cursor:bool -> unit -> unit) =
           fun (x113 : t) ->
-            fun ?preserveCursor:(x110 : bool option) ->
+            fun ?preserve_cursor:(x110 : bool option) ->
               fun () ->
                 ignore
                   (let x114 = t_to_js x113 in
@@ -359,10 +337,10 @@ module Repl =
                                         [|(Ojs.bool_to_js x112)|])
                                | None -> ());
                               x111))|])
-        let (clearBufferedCommand : t -> unit) =
+        let (clear_buffered_command : t -> unit) =
           fun (x115 : t) ->
             ignore (Ojs.call (t_to_js x115) "clearBufferedCommand" [||])
-        let (setupHistory :
+        let (setup_history :
           t ->
             path:string -> cb:(err:Error.t or_null -> repl:t -> unit) -> unit)
           =
@@ -379,7 +357,7 @@ module Repl =
                                                                  Error.t_of_js
                                                                  x118)
                                                          ~repl:(t_of_js x120)))|])
-        let (addListener :
+        let (add_listener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
           fun (x126 : t) ->
             fun ~event:(x122 : string) ->
@@ -392,7 +370,7 @@ module Repl =
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
                                                                 x124 0)))|])
-        let (addListener' :
+        let (add_listener' :
           t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
           fun (x129 : t) ->
             fun ~event:(x127 : [ `close ]) ->
@@ -401,7 +379,7 @@ module Repl =
                   (Ojs.call (t_to_js x129) "addListener"
                      [|((match x127 with | `close -> Ojs.string_to_js "close"));(
                        Ojs.fun_to_js 1 (fun _ -> x128 ()))|])
-        let (addListener'' :
+        let (add_listener'' :
           t -> event:[ `line ] -> listener:(input:string -> unit) -> t) =
           fun (x133 : t) ->
             fun ~event:(x130 : [ `line ]) ->
@@ -412,7 +390,7 @@ module Repl =
                        Ojs.fun_to_js 1
                          (fun (x132 : Ojs.t) ->
                             x131 ~input:(Ojs.string_of_js x132)))|])
-        let (addListener''' :
+        let (add_listener''' :
           t -> event:[ `pause ] -> listener:(unit -> unit) -> t) =
           fun (x136 : t) ->
             fun ~event:(x134 : [ `pause ]) ->
@@ -421,7 +399,7 @@ module Repl =
                   (Ojs.call (t_to_js x136) "addListener"
                      [|((match x134 with | `pause -> Ojs.string_to_js "pause"));(
                        Ojs.fun_to_js 1 (fun _ -> x135 ()))|])
-        let (addListener'''' :
+        let (add_listener'''' :
           t -> event:[ `resume ] -> listener:(unit -> unit) -> t) =
           fun (x139 : t) ->
             fun ~event:(x137 : [ `resume ]) ->
@@ -433,7 +411,7 @@ module Repl =
                                                                     1
                                                                     (fun _ ->
                                                                     x138 ()))|])
-        let (addListener''''' :
+        let (add_listener''''' :
           t -> event:[ `SIGCONT ] -> listener:(unit -> unit) -> t) =
           fun (x142 : t) ->
             fun ~event:(x140 : [ `SIGCONT ]) ->
@@ -443,7 +421,7 @@ module Repl =
                      [|((match x140 with
                          | `SIGCONT -> Ojs.string_to_js "SIGCONT"));(
                        Ojs.fun_to_js 1 (fun _ -> x141 ()))|])
-        let (addListener'''''' :
+        let (add_listener'''''' :
           t -> event:[ `SIGINT ] -> listener:(unit -> unit) -> t) =
           fun (x145 : t) ->
             fun ~event:(x143 : [ `SIGINT ]) ->
@@ -455,7 +433,7 @@ module Repl =
                                                                     1
                                                                     (fun _ ->
                                                                     x144 ()))|])
-        let (addListener''''''' :
+        let (add_listener''''''' :
           t -> event:[ `SIGTSTP ] -> listener:(unit -> unit) -> t) =
           fun (x148 : t) ->
             fun ~event:(x146 : [ `SIGTSTP ]) ->
@@ -465,7 +443,7 @@ module Repl =
                      [|((match x146 with
                          | `SIGTSTP -> Ojs.string_to_js "SIGTSTP"));(
                        Ojs.fun_to_js 1 (fun _ -> x147 ()))|])
-        let (addListener'''''''' :
+        let (add_listener'''''''' :
           t -> event:[ `exit ] -> listener:(unit -> unit) -> t) =
           fun (x151 : t) ->
             fun ~event:(x149 : [ `exit ]) ->
@@ -474,7 +452,7 @@ module Repl =
                   (Ojs.call (t_to_js x151) "addListener"
                      [|((match x149 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 1 (fun _ -> x150 ()))|])
-        let (addListener''''''''' :
+        let (add_listener''''''''' :
           t ->
             event:[ `reset ] ->
               listener:(context:Node_vm.Vm.Context.t -> unit) -> t)
@@ -784,7 +762,7 @@ module Repl =
                        Ojs.fun_to_js 1
                          (fun (x249 : Ojs.t) ->
                             x248 ~context:(Node_vm.Vm.Context.t_of_js x249)))|])
-        let (prependListener :
+        let (prepend_listener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
           fun (x255 : t) ->
             fun ~event:(x251 : string) ->
@@ -797,7 +775,7 @@ module Repl =
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
                                                                 x253 0)))|])
-        let (prependListener' :
+        let (prepend_listener' :
           t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
           fun (x258 : t) ->
             fun ~event:(x256 : [ `close ]) ->
@@ -806,7 +784,7 @@ module Repl =
                   (Ojs.call (t_to_js x258) "prependListener"
                      [|((match x256 with | `close -> Ojs.string_to_js "close"));(
                        Ojs.fun_to_js 1 (fun _ -> x257 ()))|])
-        let (prependListener'' :
+        let (prepend_listener'' :
           t -> event:[ `line ] -> listener:(input:string -> unit) -> t) =
           fun (x262 : t) ->
             fun ~event:(x259 : [ `line ]) ->
@@ -817,7 +795,7 @@ module Repl =
                        Ojs.fun_to_js 1
                          (fun (x261 : Ojs.t) ->
                             x260 ~input:(Ojs.string_of_js x261)))|])
-        let (prependListener''' :
+        let (prepend_listener''' :
           t -> event:[ `pause ] -> listener:(unit -> unit) -> t) =
           fun (x265 : t) ->
             fun ~event:(x263 : [ `pause ]) ->
@@ -826,7 +804,7 @@ module Repl =
                   (Ojs.call (t_to_js x265) "prependListener"
                      [|((match x263 with | `pause -> Ojs.string_to_js "pause"));(
                        Ojs.fun_to_js 1 (fun _ -> x264 ()))|])
-        let (prependListener'''' :
+        let (prepend_listener'''' :
           t -> event:[ `resume ] -> listener:(unit -> unit) -> t) =
           fun (x268 : t) ->
             fun ~event:(x266 : [ `resume ]) ->
@@ -838,7 +816,7 @@ module Repl =
                                                                     1
                                                                     (fun _ ->
                                                                     x267 ()))|])
-        let (prependListener''''' :
+        let (prepend_listener''''' :
           t -> event:[ `SIGCONT ] -> listener:(unit -> unit) -> t) =
           fun (x271 : t) ->
             fun ~event:(x269 : [ `SIGCONT ]) ->
@@ -848,7 +826,7 @@ module Repl =
                      [|((match x269 with
                          | `SIGCONT -> Ojs.string_to_js "SIGCONT"));(
                        Ojs.fun_to_js 1 (fun _ -> x270 ()))|])
-        let (prependListener'''''' :
+        let (prepend_listener'''''' :
           t -> event:[ `SIGINT ] -> listener:(unit -> unit) -> t) =
           fun (x274 : t) ->
             fun ~event:(x272 : [ `SIGINT ]) ->
@@ -860,7 +838,7 @@ module Repl =
                                                                     1
                                                                     (fun _ ->
                                                                     x273 ()))|])
-        let (prependListener''''''' :
+        let (prepend_listener''''''' :
           t -> event:[ `SIGTSTP ] -> listener:(unit -> unit) -> t) =
           fun (x277 : t) ->
             fun ~event:(x275 : [ `SIGTSTP ]) ->
@@ -870,7 +848,7 @@ module Repl =
                      [|((match x275 with
                          | `SIGTSTP -> Ojs.string_to_js "SIGTSTP"));(
                        Ojs.fun_to_js 1 (fun _ -> x276 ()))|])
-        let (prependListener'''''''' :
+        let (prepend_listener'''''''' :
           t -> event:[ `exit ] -> listener:(unit -> unit) -> t) =
           fun (x280 : t) ->
             fun ~event:(x278 : [ `exit ]) ->
@@ -879,7 +857,7 @@ module Repl =
                   (Ojs.call (t_to_js x280) "prependListener"
                      [|((match x278 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 1 (fun _ -> x279 ()))|])
-        let (prependListener''''''''' :
+        let (prepend_listener''''''''' :
           t ->
             event:[ `reset ] ->
               listener:(context:Node_vm.Vm.Context.t -> unit) -> t)
@@ -893,7 +871,7 @@ module Repl =
                        Ojs.fun_to_js 1
                          (fun (x283 : Ojs.t) ->
                             x282 ~context:(Node_vm.Vm.Context.t_of_js x283)))|])
-        let (prependOnceListener :
+        let (prepend_once_listener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
           fun (x289 : t) ->
             fun ~event:(x285 : string) ->
@@ -906,7 +884,7 @@ module Repl =
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
                                                                 x287 0)))|])
-        let (prependOnceListener' :
+        let (prepend_once_listener' :
           t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
           fun (x292 : t) ->
             fun ~event:(x290 : [ `close ]) ->
@@ -915,7 +893,7 @@ module Repl =
                   (Ojs.call (t_to_js x292) "prependOnceListener"
                      [|((match x290 with | `close -> Ojs.string_to_js "close"));(
                        Ojs.fun_to_js 1 (fun _ -> x291 ()))|])
-        let (prependOnceListener'' :
+        let (prepend_once_listener'' :
           t -> event:[ `line ] -> listener:(input:string -> unit) -> t) =
           fun (x296 : t) ->
             fun ~event:(x293 : [ `line ]) ->
@@ -926,7 +904,7 @@ module Repl =
                        Ojs.fun_to_js 1
                          (fun (x295 : Ojs.t) ->
                             x294 ~input:(Ojs.string_of_js x295)))|])
-        let (prependOnceListener''' :
+        let (prepend_once_listener''' :
           t -> event:[ `pause ] -> listener:(unit -> unit) -> t) =
           fun (x299 : t) ->
             fun ~event:(x297 : [ `pause ]) ->
@@ -935,7 +913,7 @@ module Repl =
                   (Ojs.call (t_to_js x299) "prependOnceListener"
                      [|((match x297 with | `pause -> Ojs.string_to_js "pause"));(
                        Ojs.fun_to_js 1 (fun _ -> x298 ()))|])
-        let (prependOnceListener'''' :
+        let (prepend_once_listener'''' :
           t -> event:[ `resume ] -> listener:(unit -> unit) -> t) =
           fun (x302 : t) ->
             fun ~event:(x300 : [ `resume ]) ->
@@ -947,7 +925,7 @@ module Repl =
                                                                     1
                                                                     (fun _ ->
                                                                     x301 ()))|])
-        let (prependOnceListener''''' :
+        let (prepend_once_listener''''' :
           t -> event:[ `SIGCONT ] -> listener:(unit -> unit) -> t) =
           fun (x305 : t) ->
             fun ~event:(x303 : [ `SIGCONT ]) ->
@@ -957,7 +935,7 @@ module Repl =
                      [|((match x303 with
                          | `SIGCONT -> Ojs.string_to_js "SIGCONT"));(
                        Ojs.fun_to_js 1 (fun _ -> x304 ()))|])
-        let (prependOnceListener'''''' :
+        let (prepend_once_listener'''''' :
           t -> event:[ `SIGINT ] -> listener:(unit -> unit) -> t) =
           fun (x308 : t) ->
             fun ~event:(x306 : [ `SIGINT ]) ->
@@ -969,7 +947,7 @@ module Repl =
                                                                     1
                                                                     (fun _ ->
                                                                     x307 ()))|])
-        let (prependOnceListener''''''' :
+        let (prepend_once_listener''''''' :
           t -> event:[ `SIGTSTP ] -> listener:(unit -> unit) -> t) =
           fun (x311 : t) ->
             fun ~event:(x309 : [ `SIGTSTP ]) ->
@@ -979,7 +957,7 @@ module Repl =
                      [|((match x309 with
                          | `SIGTSTP -> Ojs.string_to_js "SIGTSTP"));(
                        Ojs.fun_to_js 1 (fun _ -> x310 ()))|])
-        let (prependOnceListener'''''''' :
+        let (prepend_once_listener'''''''' :
           t -> event:[ `exit ] -> listener:(unit -> unit) -> t) =
           fun (x314 : t) ->
             fun ~event:(x312 : [ `exit ]) ->
@@ -988,7 +966,7 @@ module Repl =
                   (Ojs.call (t_to_js x314) "prependOnceListener"
                      [|((match x312 with | `exit -> Ojs.string_to_js "exit"));(
                        Ojs.fun_to_js 1 (fun _ -> x313 ()))|])
-        let (prependOnceListener''''''''' :
+        let (prepend_once_listener''''''''' :
           t ->
             event:[ `reset ] ->
               listener:(context:Node_vm.Vm.Context.t -> unit) -> t)
@@ -1006,15 +984,14 @@ module Repl =
           fun (x319 : t) ->
             Node_readline.Readline.Interface.t_of_js (t_to_js x319)
       end
-    let (rEPL_MODE_SLOPPY : any) =
+    let (r_epl_mode_sloppy : any) =
       any_of_js (Ojs.get_prop_ascii Import.repl "REPL_MODE_SLOPPY")
-    let (rEPL_MODE_STRICT : any) =
+    let (r_epl_mode_strict : any) =
       any_of_js (Ojs.get_prop_ascii Import.repl "REPL_MODE_STRICT")
-    let (start :
-      ?options:repl_ReplOptions or_string -> unit -> repl_REPLServer) =
-      fun ?options:(x320 : repl_ReplOptions or_string option) ->
+    let (start : ?options:ReplOptions.t or_string -> unit -> REPLServer.t) =
+      fun ?options:(x320 : ReplOptions.t or_string option) ->
         fun () ->
-          repl_REPLServer_of_js
+          REPLServer.t_of_js
             (let x324 = Import.repl in
              Ojs.call (Ojs.get_prop_ascii x324 "start") "apply"
                [|x324;((let x321 =
@@ -1024,17 +1001,14 @@ module Repl =
                          | Some x322 ->
                              ignore
                                (Ojs.call x321 "push"
-                                  [|(or_string_to_js repl_ReplOptions_to_js
-                                       x322)|])
+                                  [|(or_string_to_js ReplOptions.t_to_js x322)|])
                          | None -> ());
                         x321))|])
     module Recoverable =
       struct
-        type t = repl_Recoverable
-        let rec t_of_js : Ojs.t -> t =
-          fun (x326 : Ojs.t) -> repl_Recoverable_of_js x326
-        and t_to_js : t -> Ojs.t =
-          fun (x325 : repl_Recoverable) -> repl_Recoverable_to_js x325
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x326 : Ojs.t) -> x326
+        and t_to_js : t -> Ojs.t = fun (x325 : Ojs.t) -> x325
         let (get_err : t -> Error.t) =
           fun (x327 : t) ->
             Error.t_of_js (Ojs.get_prop_ascii (t_to_js x327) "err")

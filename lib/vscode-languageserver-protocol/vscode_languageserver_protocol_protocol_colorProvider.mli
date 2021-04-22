@@ -12,21 +12,21 @@ open Es5
    PartialResultParams, WorkDoneProgressParams, WorkDoneProgressOptions } from
    './protocol'; *)
 module DocumentColorClientCapabilities : sig
-  type t = _DocumentColorClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 end
 [@@js.scope "DocumentColorClientCapabilities"]
 
 module DocumentColorOptions : sig
-  type t = _DocumentColorOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -37,7 +37,7 @@ end
 [@@js.scope "DocumentColorOptions"]
 
 module DocumentColorRegistrationOptions : sig
-  type t = _DocumentColorRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -47,20 +47,21 @@ module DocumentColorRegistrationOptions : sig
 
   val cast' : t -> StaticRegistrationOptions.t [@@js.cast]
 
-  val cast'' : t -> _DocumentColorOptions [@@js.cast]
+  val cast'' : t -> DocumentColorOptions.t [@@js.cast]
 end
 [@@js.scope "DocumentColorRegistrationOptions"]
 
 module DocumentColorParams : sig
-  type t = _DocumentColorParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentIdentifier.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentIdentifier.t
+    [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentIdentifier.t -> unit
+  val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
   val cast : t -> WorkDoneProgressParams.t [@@js.cast]
@@ -76,17 +77,17 @@ module DocumentColorRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _DocumentColorParams
+    : ( DocumentColorParams.t
       , ColorInformation.t list
       , ColorInformation.t list
       , unit
-      , _DocumentColorRegistrationOptions )
+      , DocumentColorRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
     type t =
-      (_DocumentColorParams, ColorInformation.t list, unit) RequestHandler.t
+      (DocumentColorParams.t, ColorInformation.t list, unit) RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -96,15 +97,16 @@ end
 [@@js.scope "DocumentColorRequest"]
 
 module ColorPresentationParams : sig
-  type t = _ColorPresentationParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentIdentifier.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentIdentifier.t
+    [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentIdentifier.t -> unit
+  val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
   val get_color : t -> Color.t [@@js.get "color"]
@@ -123,7 +125,7 @@ end
 
 module ColorPresentationRequest : sig
   val type_
-    : ( _ColorPresentationParams
+    : ( ColorPresentationParams.t
       , ColorPresentation.t list
       , ColorPresentation.t list
       , unit
@@ -135,7 +137,7 @@ module ColorPresentationRequest : sig
 
   module HandlerSignature : sig
     type t =
-      ( _ColorPresentationParams
+      ( ColorPresentationParams.t
       , ColorPresentation.t list
       , unit )
       RequestHandler.t

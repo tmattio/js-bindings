@@ -11,21 +11,21 @@ open Es5
    TextDocumentRegistrationOptions, WorkDoneProgressOptions,
    WorkDoneProgressParams } from './protocol'; *)
 module LinkedEditingRangeClientCapabilities : sig
-  type t = _LinkedEditingRangeClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 end
 [@@js.scope "LinkedEditingRangeClientCapabilities"]
 
 module LinkedEditingRangeParams : sig
-  type t = _LinkedEditingRangeParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -38,7 +38,7 @@ end
 [@@js.scope "LinkedEditingRangeParams"]
 
 module LinkedEditingRangeOptions : sig
-  type t = _LinkedEditingRangeOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -49,7 +49,7 @@ end
 [@@js.scope "LinkedEditingRangeOptions"]
 
 module LinkedEditingRangeRegistrationOptions : sig
-  type t = _LinkedEditingRangeRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -57,14 +57,14 @@ module LinkedEditingRangeRegistrationOptions : sig
 
   val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _LinkedEditingRangeOptions [@@js.cast]
+  val cast' : t -> LinkedEditingRangeOptions.t [@@js.cast]
 
   val cast'' : t -> StaticRegistrationOptions.t [@@js.cast]
 end
 [@@js.scope "LinkedEditingRangeRegistrationOptions"]
 
 module LinkedEditingRanges : sig
-  type t = _LinkedEditingRanges
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -74,9 +74,9 @@ module LinkedEditingRanges : sig
 
   val set_ranges : t -> Range.t list -> unit [@@js.set "ranges"]
 
-  val get_wordPattern : t -> string [@@js.get "wordPattern"]
+  val get_word_pattern : t -> string [@@js.get "wordPattern"]
 
-  val set_wordPattern : t -> string -> unit [@@js.set "wordPattern"]
+  val set_word_pattern : t -> string -> unit [@@js.set "wordPattern"]
 end
 [@@js.scope "LinkedEditingRanges"]
 
@@ -89,18 +89,18 @@ module LinkedEditingRangeRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _LinkedEditingRangeParams
-      , _LinkedEditingRanges or_null
+    : ( LinkedEditingRangeParams.t
+      , LinkedEditingRanges.t or_null
       , unit
       , any
-      , _LinkedEditingRangeRegistrationOptions )
+      , LinkedEditingRangeRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
     type t =
-      ( _LinkedEditingRangeParams
-      , _LinkedEditingRanges or_null
+      ( LinkedEditingRangeParams.t
+      , LinkedEditingRanges.t or_null
       , unit )
       RequestHandler.t
 

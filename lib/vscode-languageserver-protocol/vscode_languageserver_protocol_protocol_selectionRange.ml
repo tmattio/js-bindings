@@ -2,141 +2,116 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module Types =
-      struct
-        type _SelectionRangeRequest_HandlerSignature =
-          (_SelectionRangeParams, SelectionRange.t list or_null, unit)
-            RequestHandler.t
-        let rec _SelectionRangeRequest_HandlerSignature_of_js :
-          Ojs.t -> _SelectionRangeRequest_HandlerSignature =
-          fun (x7 : Ojs.t) ->
-            RequestHandler.t_of_js _SelectionRangeParams_of_js
-              (fun (x9 : Ojs.t) ->
-                 or_null_of_js
-                   (fun (x10 : Ojs.t) ->
-                      Ojs.list_of_js SelectionRange.t_of_js x10) x9)
-              Ojs.unit_of_js x7
-        and _SelectionRangeRequest_HandlerSignature_to_js :
-          _SelectionRangeRequest_HandlerSignature -> Ojs.t =
-          fun
-            (x1 :
-              (_SelectionRangeParams, SelectionRange.t list or_null, 
-                unit) RequestHandler.t)
-            ->
-            RequestHandler.t_to_js _SelectionRangeParams_to_js
-              (fun (x3 : SelectionRange.t list or_null) ->
-                 or_null_to_js
-                   (fun (x4 : SelectionRange.t list) ->
-                      Ojs.list_to_js SelectionRange.t_to_js x4) x3)
-              Ojs.unit_to_js x1
-      end
-  end
 module SelectionRangeClientCapabilities =
   struct
-    type t = _SelectionRangeClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x14 : Ojs.t) -> _SelectionRangeClientCapabilities_of_js x14
-    and t_to_js : t -> Ojs.t =
-      fun (x13 : _SelectionRangeClientCapabilities) ->
-        _SelectionRangeClientCapabilities_to_js x13
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x15 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
+    let (get_dynamic_registration : t -> bool) =
+      fun (x3 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x15) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x16 : t) ->
-        fun (x17 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x16) "dynamicRegistration"
-            (Ojs.bool_to_js x17)
+          (Ojs.get_prop_ascii (t_to_js x3) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x4 : t) ->
+        fun (x5 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x4) "dynamicRegistration"
+            (Ojs.bool_to_js x5)
   end
 module SelectionRangeOptions =
   struct
-    type t = _SelectionRangeOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x19 : Ojs.t) -> _SelectionRangeOptions_of_js x19
-    and t_to_js : t -> Ojs.t =
-      fun (x18 : _SelectionRangeOptions) -> _SelectionRangeOptions_to_js x18
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x7 : Ojs.t) -> x7
+    and t_to_js : t -> Ojs.t = fun (x6 : Ojs.t) -> x6
     let (cast : t -> WorkDoneProgressOptions.t) =
-      fun (x20 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x20)
+      fun (x8 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x8)
   end
 module SelectionRangeRegistrationOptions =
   struct
-    type t = _SelectionRangeRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x22 : Ojs.t) -> _SelectionRangeRegistrationOptions_of_js x22
-    and t_to_js : t -> Ojs.t =
-      fun (x21 : _SelectionRangeRegistrationOptions) ->
-        _SelectionRangeRegistrationOptions_to_js x21
-    let (cast : t -> _SelectionRangeOptions) =
-      fun (x23 : t) -> _SelectionRangeOptions_of_js (t_to_js x23)
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x10 : Ojs.t) -> x10
+    and t_to_js : t -> Ojs.t = fun (x9 : Ojs.t) -> x9
+    let (cast : t -> SelectionRangeOptions.t) =
+      fun (x11 : t) -> SelectionRangeOptions.t_of_js (t_to_js x11)
     let (cast' : t -> TextDocumentRegistrationOptions.t) =
-      fun (x24 : t) -> TextDocumentRegistrationOptions.t_of_js (t_to_js x24)
+      fun (x12 : t) -> TextDocumentRegistrationOptions.t_of_js (t_to_js x12)
     let (cast'' : t -> StaticRegistrationOptions.t) =
-      fun (x25 : t) -> StaticRegistrationOptions.t_of_js (t_to_js x25)
+      fun (x13 : t) -> StaticRegistrationOptions.t_of_js (t_to_js x13)
   end
 module SelectionRangeParams =
   struct
-    type t = _SelectionRangeParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x27 : Ojs.t) -> _SelectionRangeParams_of_js x27
-    and t_to_js : t -> Ojs.t =
-      fun (x26 : _SelectionRangeParams) -> _SelectionRangeParams_to_js x26
-    let (get_textDocument : t -> TextDocumentIdentifier.t) =
-      fun (x28 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x15 : Ojs.t) -> x15
+    and t_to_js : t -> Ojs.t = fun (x14 : Ojs.t) -> x14
+    let (get_text_document : t -> TextDocumentIdentifier.t) =
+      fun (x16 : t) ->
         TextDocumentIdentifier.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x28) "textDocument")
-    let (set_textDocument : t -> TextDocumentIdentifier.t -> unit) =
-      fun (x29 : t) ->
-        fun (x30 : TextDocumentIdentifier.t) ->
-          Ojs.set_prop_ascii (t_to_js x29) "textDocument"
-            (TextDocumentIdentifier.t_to_js x30)
+          (Ojs.get_prop_ascii (t_to_js x16) "textDocument")
+    let (set_text_document : t -> TextDocumentIdentifier.t -> unit) =
+      fun (x17 : t) ->
+        fun (x18 : TextDocumentIdentifier.t) ->
+          Ojs.set_prop_ascii (t_to_js x17) "textDocument"
+            (TextDocumentIdentifier.t_to_js x18)
     let (get_positions : t -> Position.t list) =
-      fun (x31 : t) ->
+      fun (x19 : t) ->
         Ojs.list_of_js Position.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x31) "positions")
+          (Ojs.get_prop_ascii (t_to_js x19) "positions")
     let (set_positions : t -> Position.t list -> unit) =
-      fun (x33 : t) ->
-        fun (x34 : Position.t list) ->
-          Ojs.set_prop_ascii (t_to_js x33) "positions"
-            (Ojs.list_to_js Position.t_to_js x34)
+      fun (x21 : t) ->
+        fun (x22 : Position.t list) ->
+          Ojs.set_prop_ascii (t_to_js x21) "positions"
+            (Ojs.list_to_js Position.t_to_js x22)
     let (cast : t -> WorkDoneProgressParams.t) =
-      fun (x36 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x36)
+      fun (x24 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x24)
     let (cast' : t -> PartialResultParams.t) =
-      fun (x37 : t) -> PartialResultParams.t_of_js (t_to_js x37)
+      fun (x25 : t) -> PartialResultParams.t_of_js (t_to_js x25)
   end
 module SelectionRangeRequest =
   struct
     let (method_ : [ `L_s0_textDocument_selectionRange ]) =
-      let x38 =
+      let x26 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "SelectionRangeRequest") "method" in
-      match Ojs.string_of_js x38 with
+      match Ojs.string_of_js x26 with
       | "textDocument/selectionRange" -> `L_s0_textDocument_selectionRange
       | _ -> assert false
     let (type_ :
-      (_SelectionRangeParams, SelectionRange.t list or_null,
-        SelectionRange.t list, any, _SelectionRangeRegistrationOptions)
+      (SelectionRangeParams.t, SelectionRange.t list or_null,
+        SelectionRange.t list, any, SelectionRangeRegistrationOptions.t)
         ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _SelectionRangeParams_of_js
-        (fun (x40 : Ojs.t) ->
+      ProtocolRequestType.t_of_js SelectionRangeParams.t_of_js
+        (fun (x28 : Ojs.t) ->
            or_null_of_js
-             (fun (x41 : Ojs.t) -> Ojs.list_of_js SelectionRange.t_of_js x41)
-             x40)
-        (fun (x43 : Ojs.t) -> Ojs.list_of_js SelectionRange.t_of_js x43)
-        any_of_js _SelectionRangeRegistrationOptions_of_js
+             (fun (x29 : Ojs.t) -> Ojs.list_of_js SelectionRange.t_of_js x29)
+             x28)
+        (fun (x31 : Ojs.t) -> Ojs.list_of_js SelectionRange.t_of_js x31)
+        any_of_js SelectionRangeRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "SelectionRangeRequest") "type")
     module HandlerSignature =
       struct
-        type t = _SelectionRangeRequest_HandlerSignature
+        type t =
+          (SelectionRangeParams.t, SelectionRange.t list or_null, unit)
+            RequestHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x48 : Ojs.t) ->
-            _SelectionRangeRequest_HandlerSignature_of_js x48
+          fun (x41 : Ojs.t) ->
+            RequestHandler.t_of_js SelectionRangeParams.t_of_js
+              (fun (x43 : Ojs.t) ->
+                 or_null_of_js
+                   (fun (x44 : Ojs.t) ->
+                      Ojs.list_of_js SelectionRange.t_of_js x44) x43)
+              Ojs.unit_of_js x41
         and t_to_js : t -> Ojs.t =
-          fun (x47 : _SelectionRangeRequest_HandlerSignature) ->
-            _SelectionRangeRequest_HandlerSignature_to_js x47
+          fun
+            (x35 :
+              (SelectionRangeParams.t, SelectionRange.t list or_null, 
+                unit) RequestHandler.t)
+            ->
+            RequestHandler.t_to_js SelectionRangeParams.t_to_js
+              (fun (x37 : SelectionRange.t list or_null) ->
+                 or_null_to_js
+                   (fun (x38 : SelectionRange.t list) ->
+                      Ojs.list_to_js SelectionRange.t_to_js x38) x37)
+              Ojs.unit_to_js x35
       end
   end

@@ -2,155 +2,147 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
-module Internal =
-  struct module Types = struct open AnonymousInterfaces end end
 module Event =
   struct
-    type 'T t = 'T _Event
+    type 'T t = Ojs.t
     let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type __T) ->
-      fun (__T_of_js : Ojs.t -> __T) ->
-        fun (x3 : Ojs.t) -> _Event_of_js __T_of_js x3
+      fun (__T_of_js : Ojs.t -> __T) -> fun (x2 : Ojs.t) -> x2
     and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-      fun (__T_to_js : __T -> Ojs.t) ->
-        fun (x1 : __T _Event) -> _Event_to_js __T_to_js x1
+      fun (__T_to_js : __T -> Ojs.t) -> fun (x1 : Ojs.t) -> x1
     let (apply :
       'T t ->
         listener:(e:'T -> any) ->
-          ?thisArgs:any ->
+          ?this_args:any ->
             ?disposables:Vscode_jsonrpc_disposable.Disposable.t list ->
               unit -> Vscode_jsonrpc_disposable.Disposable.t)
       =
-      fun (x13 : 'T t) ->
-        fun ~listener:(x5 : e:'T -> any) ->
-          fun ?thisArgs:(x6 : any option) ->
+      fun (x11 : 'T t) ->
+        fun ~listener:(x3 : e:'T -> any) ->
+          fun ?this_args:(x4 : any option) ->
             fun
-              ?disposables:(x7 :
+              ?disposables:(x5 :
                              Vscode_jsonrpc_disposable.Disposable.t list
                                option)
               ->
               fun () ->
                 Vscode_jsonrpc_disposable.Disposable.t_of_js
-                  (Ojs.call (t_to_js Obj.magic x13) "apply"
-                     [|Ojs.null;((let x8 =
+                  (Ojs.call (t_to_js Obj.magic x11) "apply"
+                     [|Ojs.null;((let x6 =
                                     Ojs.new_obj
                                       (Ojs.get_prop_ascii Ojs.global "Array")
                                       [||] in
                                   ignore
-                                    (Ojs.call x8 "push"
+                                    (Ojs.call x6 "push"
                                        [|(Ojs.fun_to_js 1
-                                            (fun (x12 : Ojs.t) ->
+                                            (fun (x10 : Ojs.t) ->
                                                any_to_js
-                                                 (x5 ~e:(Obj.magic x12))))|]);
-                                  (match x6 with
-                                   | Some x11 ->
-                                       ignore
-                                         (Ojs.call x8 "push"
-                                            [|(any_to_js x11)|])
-                                   | None -> ());
-                                  (match x7 with
+                                                 (x3 ~e:(Obj.magic x10))))|]);
+                                  (match x4 with
                                    | Some x9 ->
                                        ignore
-                                         (Ojs.call x8 "push"
+                                         (Ojs.call x6 "push"
+                                            [|(any_to_js x9)|])
+                                   | None -> ());
+                                  (match x5 with
+                                   | Some x7 ->
+                                       ignore
+                                         (Ojs.call x6 "push"
                                             [|(Ojs.list_to_js
                                                  Vscode_jsonrpc_disposable.Disposable.t_to_js
-                                                 x9)|])
+                                                 x7)|])
                                    | None -> ());
-                                  x8))|])
-    let (none : any _Event) =
-      _Event_of_js any_of_js
+                                  x6))|])
+    let (none : any Event.t) =
+      Event.t_of_js any_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "Event") "None")
   end
 module EmitterOptions =
   struct
-    type t = _EmitterOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x17 : Ojs.t) -> _EmitterOptions_of_js x17
-    and t_to_js : t -> Ojs.t =
-      fun (x16 : _EmitterOptions) -> _EmitterOptions_to_js x16
-    let (get_onFirstListenerAdd : t -> untyped_function) =
-      fun (x18 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x15 : Ojs.t) -> x15
+    and t_to_js : t -> Ojs.t = fun (x14 : Ojs.t) -> x14
+    let (get_on_first_listener_add : t -> untyped_function) =
+      fun (x16 : t) ->
         untyped_function_of_js
-          (Ojs.get_prop_ascii (t_to_js x18) "onFirstListenerAdd")
-    let (set_onFirstListenerAdd : t -> untyped_function -> unit) =
+          (Ojs.get_prop_ascii (t_to_js x16) "onFirstListenerAdd")
+    let (set_on_first_listener_add : t -> untyped_function -> unit) =
+      fun (x17 : t) ->
+        fun (x18 : untyped_function) ->
+          Ojs.set_prop_ascii (t_to_js x17) "onFirstListenerAdd"
+            (untyped_function_to_js x18)
+    let (get_on_last_listener_remove : t -> untyped_function) =
       fun (x19 : t) ->
-        fun (x20 : untyped_function) ->
-          Ojs.set_prop_ascii (t_to_js x19) "onFirstListenerAdd"
-            (untyped_function_to_js x20)
-    let (get_onLastListenerRemove : t -> untyped_function) =
-      fun (x21 : t) ->
         untyped_function_of_js
-          (Ojs.get_prop_ascii (t_to_js x21) "onLastListenerRemove")
-    let (set_onLastListenerRemove : t -> untyped_function -> unit) =
-      fun (x22 : t) ->
-        fun (x23 : untyped_function) ->
-          Ojs.set_prop_ascii (t_to_js x22) "onLastListenerRemove"
-            (untyped_function_to_js x23)
+          (Ojs.get_prop_ascii (t_to_js x19) "onLastListenerRemove")
+    let (set_on_last_listener_remove : t -> untyped_function -> unit) =
+      fun (x20 : t) ->
+        fun (x21 : untyped_function) ->
+          Ojs.set_prop_ascii (t_to_js x20) "onLastListenerRemove"
+            (untyped_function_to_js x21)
   end
 module Emitter =
   struct
-    type 'T t = 'T _Emitter
+    type 'T t = Ojs.t
     let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type __T) ->
-      fun (__T_of_js : Ojs.t -> __T) ->
-        fun (x26 : Ojs.t) -> _Emitter_of_js __T_of_js x26
+      fun (__T_of_js : Ojs.t -> __T) -> fun (x23 : Ojs.t) -> x23
     and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-      fun (__T_to_js : __T -> Ojs.t) ->
-        fun (x24 : __T _Emitter) -> _Emitter_to_js __T_to_js x24
+      fun (__T_to_js : __T -> Ojs.t) -> fun (x22 : Ojs.t) -> x22
     let (get__options : 'T t -> any) =
-      fun (x28 : 'T t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x28) "_options")
+      fun (x24 : 'T t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x24) "_options")
     let (set__options : 'T t -> any -> unit) =
-      fun (x30 : 'T t) ->
-        fun (x31 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x30) "_options"
-            (any_to_js x31)
+      fun (x26 : 'T t) ->
+        fun (x27 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x26) "_options"
+            (any_to_js x27)
     let (get__noop : unit -> any) =
       fun () ->
         any_of_js
           (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "Emitter")
              "_noop")
     let (set__noop : any -> unit) =
-      fun (x33 : any) ->
+      fun (x29 : any) ->
         Ojs.set_prop_ascii (Ojs.get_prop_ascii Ojs.global "Emitter") "_noop"
-          (any_to_js x33)
+          (any_to_js x29)
     let (get__event : 'T t -> any) =
-      fun (x34 : 'T t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x34) "_event")
+      fun (x30 : 'T t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x30) "_event")
     let (set__event : 'T t -> any -> unit) =
-      fun (x36 : 'T t) ->
-        fun (x37 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x36) "_event" (any_to_js x37)
+      fun (x32 : 'T t) ->
+        fun (x33 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x32) "_event" (any_to_js x33)
     let (get__callbacks : 'T t -> any) =
-      fun (x39 : 'T t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x39) "_callbacks")
+      fun (x35 : 'T t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x35) "_callbacks")
     let (set__callbacks : 'T t -> any -> unit) =
-      fun (x41 : 'T t) ->
-        fun (x42 : any) ->
-          Ojs.set_prop_ascii (t_to_js Obj.magic x41) "_callbacks"
-            (any_to_js x42)
-    let (create : ?_options:_EmitterOptions or_undefined -> unit -> 'T t) =
-      fun ?_options:(x44 : _EmitterOptions or_undefined option) ->
+      fun (x37 : 'T t) ->
+        fun (x38 : any) ->
+          Ojs.set_prop_ascii (t_to_js Obj.magic x37) "_callbacks"
+            (any_to_js x38)
+    let (create : ?_options:EmitterOptions.t or_undefined -> unit -> 'T t) =
+      fun ?_options:(x40 : EmitterOptions.t or_undefined option) ->
         fun () ->
           t_of_js Obj.magic
             (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "Emitter")
-               (let x45 =
+               (let x41 =
                   Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
-                (match x44 with
-                 | Some x46 ->
+                (match x40 with
+                 | Some x42 ->
                      ignore
-                       (Ojs.call x45 "push"
-                          [|(or_undefined_to_js _EmitterOptions_to_js x46)|])
+                       (Ojs.call x41 "push"
+                          [|(or_undefined_to_js EmitterOptions.t_to_js x42)|])
                  | None -> ());
-                x45))
-    let (get_event : 'T t -> 'T _Event) =
-      fun (x49 : 'T t) ->
-        _Event_of_js Obj.magic
-          (Ojs.get_prop_ascii (t_to_js Obj.magic x49) "event")
+                x41))
+    let (get_event : 'T t -> 'T Event.t) =
+      fun (x45 : 'T t) ->
+        Event.t_of_js Obj.magic
+          (Ojs.get_prop_ascii (t_to_js Obj.magic x45) "event")
     let (fire : 'T t -> event:'T -> any) =
-      fun (x53 : 'T t) ->
-        fun ~event:(x52 : 'T) ->
+      fun (x49 : 'T t) ->
+        fun ~event:(x48 : 'T) ->
           any_of_js
-            (Ojs.call (t_to_js Obj.magic x53) "fire" [|(Obj.magic x52)|])
+            (Ojs.call (t_to_js Obj.magic x49) "fire" [|(Obj.magic x48)|])
     let (dispose : 'T t -> unit) =
-      fun (x55 : 'T t) ->
-        ignore (Ojs.call (t_to_js Obj.magic x55) "dispose" [||])
+      fun (x51 : 'T t) ->
+        ignore (Ojs.call (t_to_js Obj.magic x51) "dispose" [||])
   end

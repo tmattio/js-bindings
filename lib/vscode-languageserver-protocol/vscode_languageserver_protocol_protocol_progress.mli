@@ -11,9 +11,9 @@ module AnonymousInterface0 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_workDoneProgress : t -> bool [@@js.get "workDoneProgress"]
+  val get_work_done_progress : t -> bool [@@js.get "workDoneProgress"]
 
-  val set_workDoneProgress : t -> bool -> unit [@@js.set "workDoneProgress"]
+  val set_work_done_progress : t -> bool -> unit [@@js.set "workDoneProgress"]
 end
 
 (* import { NotificationHandler, RequestHandler, ProgressType, ProgressToken }
@@ -21,7 +21,7 @@ end
 (* import { uinteger } from 'vscode-languageserver-types'; *)
 (* import { ProtocolRequestType, ProtocolNotificationType } from './messages'; *)
 module WorkDoneProgressClientCapabilities : sig
-  type t = _WorkDoneProgressClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -34,7 +34,7 @@ end
 [@@js.scope "WorkDoneProgressClientCapabilities"]
 
 module WorkDoneProgressBegin : sig
-  type t = _WorkDoneProgressBegin
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -64,7 +64,7 @@ end
 [@@js.scope "WorkDoneProgressBegin"]
 
 module WorkDoneProgressReport : sig
-  type t = _WorkDoneProgressReport
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -90,7 +90,7 @@ end
 [@@js.scope "WorkDoneProgressReport"]
 
 module WorkDoneProgressEnd : sig
-  type t = _WorkDoneProgressEnd
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -108,9 +108,9 @@ end
 
 module WorkDoneProgress : sig
   val type_
-    : ([ `U_s0_begin of _WorkDoneProgressBegin [@js "begin"]
-       | `U_s1_end of _WorkDoneProgressEnd [@js "end"]
-       | `U_s2_report of _WorkDoneProgressReport [@js "report"]
+    : ([ `U_s0_begin of WorkDoneProgressBegin.t [@js "begin"]
+       | `U_s1_end of WorkDoneProgressEnd.t [@js "end"]
+       | `U_s2_report of WorkDoneProgressReport.t [@js "report"]
        ]
       [@js.union on_field "kind"])
       ProgressType.t
@@ -121,7 +121,7 @@ end
 [@@js.scope "WorkDoneProgress"]
 
 module WorkDoneProgressCreateParams : sig
-  type t = _WorkDoneProgressCreateParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -135,7 +135,7 @@ end
 
 module WorkDoneProgressCreateRequest : sig
   val type_
-    : ( _WorkDoneProgressCreateParams
+    : ( WorkDoneProgressCreateParams.t
       , unit
       , never
       , unit
@@ -144,7 +144,7 @@ module WorkDoneProgressCreateRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = (_WorkDoneProgressCreateParams, unit, unit) RequestHandler.t
+    type t = (WorkDoneProgressCreateParams.t, unit, unit) RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -154,7 +154,7 @@ end
 [@@js.scope "WorkDoneProgressCreateRequest"]
 
 module WorkDoneProgressCancelParams : sig
-  type t = _WorkDoneProgressCancelParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -167,11 +167,11 @@ end
 [@@js.scope "WorkDoneProgressCancelParams"]
 
 module WorkDoneProgressCancelNotification : sig
-  val type_ : (_WorkDoneProgressCancelParams, unit) ProtocolNotificationType.t
+  val type_ : (WorkDoneProgressCancelParams.t, unit) ProtocolNotificationType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _WorkDoneProgressCancelParams NotificationHandler.t
+    type t = WorkDoneProgressCancelParams.t NotificationHandler.t
 
     val t_to_js : t -> Ojs.t
 

@@ -11,11 +11,11 @@ module Cluster =
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
         and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
-        let (get_execArgv : t -> string list) =
+        let (get_exec_argv : t -> string list) =
           fun (x3 : t) ->
             Ojs.list_of_js Ojs.string_of_js
               (Ojs.get_prop_ascii (t_to_js x3) "execArgv")
-        let (set_execArgv : t -> string list -> unit) =
+        let (set_exec_argv : t -> string list -> unit) =
           fun (x5 : t) ->
             fun (x6 : string list) ->
               Ojs.set_prop_ascii (t_to_js x5) "execArgv"
@@ -66,13 +66,13 @@ module Cluster =
           fun (x28 : t) ->
             fun (x29 : int) ->
               Ojs.set_prop_ascii (t_to_js x28) "gid" (Ojs.int_to_js x29)
-        let (get_inspectPort : t -> (unit -> int) or_number) =
+        let (get_inspect_port : t -> (unit -> int) or_number) =
           fun (x30 : t) ->
             or_number_of_js
               (fun (x31 : Ojs.t) ->
                  fun () -> Ojs.int_of_js (Ojs.apply x31 [||]))
               (Ojs.get_prop_ascii (t_to_js x30) "inspectPort")
-        let (set_inspectPort : t -> (unit -> int) or_number -> unit) =
+        let (set_inspect_port : t -> (unit -> int) or_number -> unit) =
           fun (x32 : t) ->
             fun (x33 : (unit -> int) or_number) ->
               Ojs.set_prop_ascii (t_to_js x32) "inspectPort"
@@ -100,7 +100,7 @@ module Cluster =
           fun (x41 : t) ->
             fun (x42 : int) ->
               Ojs.set_prop_ascii (t_to_js x41) "port" (Ojs.int_to_js x42)
-        let (get_addressType : t -> [ `udp4  | `udp6 ] or_number) =
+        let (get_address_type : t -> [ `udp4  | `udp6 ] or_number) =
           fun (x43 : t) ->
             or_number_of_js
               (fun (x44 : Ojs.t) ->
@@ -110,7 +110,7 @@ module Cluster =
                  | "udp6" -> `udp6
                  | _ -> assert false)
               (Ojs.get_prop_ascii (t_to_js x43) "addressType")
-        let (set_addressType : t -> [ `udp4  | `udp6 ] or_number -> unit) =
+        let (set_address_type : t -> [ `udp4  | `udp6 ] or_number -> unit) =
           fun (x46 : t) ->
             fun (x47 : [ `udp4  | `udp6 ] or_number) ->
               Ojs.set_prop_ascii (t_to_js x46) "addressType"
@@ -146,7 +146,7 @@ module Cluster =
         let (send :
           t ->
             message:Node_child_process.Child_process.Serializable.t ->
-              ?sendHandle:Node_child_process.Child_process.SendHandle.t ->
+              ?send_handle:Node_child_process.Child_process.SendHandle.t ->
                 ?callback:(error:Error.t or_null -> unit) -> unit -> bool)
           =
           fun (x65 : t) ->
@@ -155,9 +155,9 @@ module Cluster =
                          Node_child_process.Child_process.Serializable.t)
               ->
               fun
-                ?sendHandle:(x58 :
-                              Node_child_process.Child_process.SendHandle.t
-                                option)
+                ?send_handle:(x58 :
+                               Node_child_process.Child_process.SendHandle.t
+                                 option)
                 ->
                 fun ?callback:(x59 : (error:Error.t or_null -> unit) option)
                   ->
@@ -230,22 +230,22 @@ module Cluster =
                              x73))|])
         let (disconnect : t -> unit) =
           fun (x77 : t) -> ignore (Ojs.call (t_to_js x77) "disconnect" [||])
-        let (isConnected : t -> bool) =
+        let (is_connected : t -> bool) =
           fun (x78 : t) ->
             Ojs.bool_of_js (Ojs.call (t_to_js x78) "isConnected" [||])
-        let (isDead : t -> bool) =
+        let (is_dead : t -> bool) =
           fun (x79 : t) ->
             Ojs.bool_of_js (Ojs.call (t_to_js x79) "isDead" [||])
-        let (get_exitedAfterDisconnect : t -> bool) =
+        let (get_exited_after_disconnect : t -> bool) =
           fun (x80 : t) ->
             Ojs.bool_of_js
               (Ojs.get_prop_ascii (t_to_js x80) "exitedAfterDisconnect")
-        let (set_exitedAfterDisconnect : t -> bool -> unit) =
+        let (set_exited_after_disconnect : t -> bool -> unit) =
           fun (x81 : t) ->
             fun (x82 : bool) ->
               Ojs.set_prop_ascii (t_to_js x81) "exitedAfterDisconnect"
                 (Ojs.bool_to_js x82)
-        let (addListener :
+        let (add_listener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
           fun (x87 : t) ->
             fun ~event:(x83 : string) ->
@@ -258,7 +258,7 @@ module Cluster =
                                                       ~args:(Ojs.list_of_js_from
                                                                any_of_js x85
                                                                0)))|])
-        let (addListener' :
+        let (add_listener' :
           t -> event:[ `disconnect ] -> listener:(unit -> unit) -> t) =
           fun (x90 : t) ->
             fun ~event:(x88 : [ `disconnect ]) ->
@@ -268,7 +268,7 @@ module Cluster =
                      [|((match x88 with
                          | `disconnect -> Ojs.string_to_js "disconnect"));(
                        Ojs.fun_to_js 1 (fun _ -> x89 ()))|])
-        let (addListener'' :
+        let (add_listener'' :
           t -> event:[ `error ] -> listener:(error:Error.t -> unit) -> t) =
           fun (x94 : t) ->
             fun ~event:(x91 : [ `error ]) ->
@@ -278,7 +278,7 @@ module Cluster =
                      [|((match x91 with | `error -> Ojs.string_to_js "error"));(
                        Ojs.fun_to_js 1
                          (fun (x93 : Ojs.t) -> x92 ~error:(Error.t_of_js x93)))|])
-        let (addListener''' :
+        let (add_listener''' :
           t ->
             event:[ `exit ] ->
               listener:(code:int -> signal:string -> unit) -> t)
@@ -294,7 +294,7 @@ module Cluster =
                             fun (x98 : Ojs.t) ->
                               x96 ~code:(Ojs.int_of_js x97)
                                 ~signal:(Ojs.string_of_js x98)))|])
-        let (addListener'''' :
+        let (add_listener'''' :
           t ->
             event:[ `listening ] -> listener:(address:Address.t -> unit) -> t)
           =
@@ -308,7 +308,7 @@ module Cluster =
                        Ojs.fun_to_js 1
                          (fun (x102 : Ojs.t) ->
                             x101 ~address:(Address.t_of_js x102)))|])
-        let (addListener''''' :
+        let (add_listener''''' :
           t ->
             event:[ `message ] ->
               listener:(message:any ->
@@ -333,7 +333,7 @@ module Cluster =
                               x105 ~message:(any_of_js x106)
                                 ~handle:(union2_of_js Net.Server.t_of_js
                                            Net.Socket.t_of_js x107)))|])
-        let (addListener'''''' :
+        let (add_listener'''''' :
           t -> event:[ `online ] -> listener:(unit -> unit) -> t) =
           fun (x113 : t) ->
             fun ~event:(x111 : [ `online ]) ->
@@ -624,7 +624,7 @@ module Cluster =
                                                                     1
                                                                     (fun _ ->
                                                                     x201 ()))|])
-        let (prependListener :
+        let (prepend_listener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
           fun (x207 : t) ->
             fun ~event:(x203 : string) ->
@@ -637,7 +637,7 @@ module Cluster =
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
                                                                 x205 0)))|])
-        let (prependListener' :
+        let (prepend_listener' :
           t -> event:[ `disconnect ] -> listener:(unit -> unit) -> t) =
           fun (x210 : t) ->
             fun ~event:(x208 : [ `disconnect ]) ->
@@ -647,7 +647,7 @@ module Cluster =
                      [|((match x208 with
                          | `disconnect -> Ojs.string_to_js "disconnect"));(
                        Ojs.fun_to_js 1 (fun _ -> x209 ()))|])
-        let (prependListener'' :
+        let (prepend_listener'' :
           t -> event:[ `error ] -> listener:(error:Error.t -> unit) -> t) =
           fun (x214 : t) ->
             fun ~event:(x211 : [ `error ]) ->
@@ -658,7 +658,7 @@ module Cluster =
                        Ojs.fun_to_js 1
                          (fun (x213 : Ojs.t) ->
                             x212 ~error:(Error.t_of_js x213)))|])
-        let (prependListener''' :
+        let (prepend_listener''' :
           t ->
             event:[ `exit ] ->
               listener:(code:int -> signal:string -> unit) -> t)
@@ -674,7 +674,7 @@ module Cluster =
                             fun (x218 : Ojs.t) ->
                               x216 ~code:(Ojs.int_of_js x217)
                                 ~signal:(Ojs.string_of_js x218)))|])
-        let (prependListener'''' :
+        let (prepend_listener'''' :
           t ->
             event:[ `listening ] -> listener:(address:Address.t -> unit) -> t)
           =
@@ -688,7 +688,7 @@ module Cluster =
                        Ojs.fun_to_js 1
                          (fun (x222 : Ojs.t) ->
                             x221 ~address:(Address.t_of_js x222)))|])
-        let (prependListener''''' :
+        let (prepend_listener''''' :
           t ->
             event:[ `message ] ->
               listener:(message:any ->
@@ -713,7 +713,7 @@ module Cluster =
                               x225 ~message:(any_of_js x226)
                                 ~handle:(union2_of_js Net.Server.t_of_js
                                            Net.Socket.t_of_js x227)))|])
-        let (prependListener'''''' :
+        let (prepend_listener'''''' :
           t -> event:[ `online ] -> listener:(unit -> unit) -> t) =
           fun (x233 : t) ->
             fun ~event:(x231 : [ `online ]) ->
@@ -725,7 +725,7 @@ module Cluster =
                                                                     1
                                                                     (fun _ ->
                                                                     x232 ()))|])
-        let (prependOnceListener :
+        let (prepend_once_listener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
           fun (x238 : t) ->
             fun ~event:(x234 : string) ->
@@ -738,7 +738,7 @@ module Cluster =
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
                                                                 x236 0)))|])
-        let (prependOnceListener' :
+        let (prepend_once_listener' :
           t -> event:[ `disconnect ] -> listener:(unit -> unit) -> t) =
           fun (x241 : t) ->
             fun ~event:(x239 : [ `disconnect ]) ->
@@ -748,7 +748,7 @@ module Cluster =
                      [|((match x239 with
                          | `disconnect -> Ojs.string_to_js "disconnect"));(
                        Ojs.fun_to_js 1 (fun _ -> x240 ()))|])
-        let (prependOnceListener'' :
+        let (prepend_once_listener'' :
           t -> event:[ `error ] -> listener:(error:Error.t -> unit) -> t) =
           fun (x245 : t) ->
             fun ~event:(x242 : [ `error ]) ->
@@ -759,7 +759,7 @@ module Cluster =
                        Ojs.fun_to_js 1
                          (fun (x244 : Ojs.t) ->
                             x243 ~error:(Error.t_of_js x244)))|])
-        let (prependOnceListener''' :
+        let (prepend_once_listener''' :
           t ->
             event:[ `exit ] ->
               listener:(code:int -> signal:string -> unit) -> t)
@@ -775,7 +775,7 @@ module Cluster =
                             fun (x249 : Ojs.t) ->
                               x247 ~code:(Ojs.int_of_js x248)
                                 ~signal:(Ojs.string_of_js x249)))|])
-        let (prependOnceListener'''' :
+        let (prepend_once_listener'''' :
           t ->
             event:[ `listening ] -> listener:(address:Address.t -> unit) -> t)
           =
@@ -789,7 +789,7 @@ module Cluster =
                        Ojs.fun_to_js 1
                          (fun (x253 : Ojs.t) ->
                             x252 ~address:(Address.t_of_js x253)))|])
-        let (prependOnceListener''''' :
+        let (prepend_once_listener''''' :
           t ->
             event:[ `message ] ->
               listener:(message:any ->
@@ -814,7 +814,7 @@ module Cluster =
                               x256 ~message:(any_of_js x257)
                                 ~handle:(union2_of_js Net.Server.t_of_js
                                            Net.Socket.t_of_js x258)))|])
-        let (prependOnceListener'''''' :
+        let (prepend_once_listener'''''' :
           t -> event:[ `online ] -> listener:(unit -> unit) -> t) =
           fun (x264 : t) ->
             fun ~event:(x262 : [ `online ]) ->
@@ -835,10 +835,10 @@ module Cluster =
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x267 : Ojs.t) -> x267
         and t_to_js : t -> Ojs.t = fun (x266 : Ojs.t) -> x266
-        let (get_Worker : t -> Worker.t) =
+        let (get_worker : t -> Worker.t) =
           fun (x268 : t) ->
             Worker.t_of_js (Ojs.get_prop_ascii (t_to_js x268) "Worker")
-        let (set_Worker : t -> Worker.t -> unit) =
+        let (set_worker : t -> Worker.t -> unit) =
           fun (x269 : t) ->
             fun (x270 : Worker.t) ->
               Ojs.set_prop_ascii (t_to_js x269) "Worker"
@@ -879,27 +879,27 @@ module Cluster =
                                         [|(any_to_js x278)|])
                                | None -> ());
                               x277))|])
-        let (get_isMaster : t -> bool) =
+        let (get_is_master : t -> bool) =
           fun (x281 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x281) "isMaster")
-        let (set_isMaster : t -> bool -> unit) =
+        let (set_is_master : t -> bool -> unit) =
           fun (x282 : t) ->
             fun (x283 : bool) ->
               Ojs.set_prop_ascii (t_to_js x282) "isMaster"
                 (Ojs.bool_to_js x283)
-        let (get_isWorker : t -> bool) =
+        let (get_is_worker : t -> bool) =
           fun (x284 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x284) "isWorker")
-        let (set_isWorker : t -> bool -> unit) =
+        let (set_is_worker : t -> bool -> unit) =
           fun (x285 : t) ->
             fun (x286 : bool) ->
               Ojs.set_prop_ascii (t_to_js x285) "isWorker"
                 (Ojs.bool_to_js x286)
-        let (get_schedulingPolicy : t -> int) =
+        let (get_scheduling_policy : t -> int) =
           fun (x287 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x287) "schedulingPolicy")
-        let (set_schedulingPolicy : t -> int -> unit) =
+        let (set_scheduling_policy : t -> int -> unit) =
           fun (x288 : t) ->
             fun (x289 : int) ->
               Ojs.set_prop_ascii (t_to_js x288) "schedulingPolicy"
@@ -913,7 +913,7 @@ module Cluster =
             fun (x292 : ClusterSettings.t) ->
               Ojs.set_prop_ascii (t_to_js x291) "settings"
                 (ClusterSettings.t_to_js x292)
-        let (setupMaster : t -> ?settings:ClusterSettings.t -> unit -> unit)
+        let (setup_master : t -> ?settings:ClusterSettings.t -> unit -> unit)
           =
           fun (x296 : t) ->
             fun ?settings:(x293 : ClusterSettings.t option) ->
@@ -949,13 +949,13 @@ module Cluster =
             fun (x304 : Worker.t Dict.t) ->
               Ojs.set_prop_ascii (t_to_js x303) "workers"
                 (Dict.t_to_js Worker.t_to_js x304)
-        let (get_SCHED_NONE : t -> int) =
+        let (get_sched_none : t -> int) =
           fun (x306 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x306) "SCHED_NONE")
-        let (get_SCHED_RR : t -> int) =
+        let (get_sched_rr : t -> int) =
           fun (x307 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x307) "SCHED_RR")
-        let (addListener :
+        let (add_listener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
           fun (x312 : t) ->
             fun ~event:(x308 : string) ->
@@ -968,7 +968,7 @@ module Cluster =
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
                                                                 x310 0)))|])
-        let (addListener' :
+        let (add_listener' :
           t ->
             event:[ `disconnect ] -> listener:(worker:Worker.t -> unit) -> t)
           =
@@ -982,7 +982,7 @@ module Cluster =
                        Ojs.fun_to_js 1
                          (fun (x315 : Ojs.t) ->
                             x314 ~worker:(Worker.t_of_js x315)))|])
-        let (addListener'' :
+        let (add_listener'' :
           t ->
             event:[ `exit ] ->
               listener:(worker:Worker.t -> code:int -> signal:string -> unit)
@@ -1005,7 +1005,7 @@ module Cluster =
                                 x318 ~worker:(Worker.t_of_js x319)
                                   ~code:(Ojs.int_of_js x320)
                                   ~signal:(Ojs.string_of_js x321)))|])
-        let (addListener''' :
+        let (add_listener''' :
           t -> event:[ `fork ] -> listener:(worker:Worker.t -> unit) -> t) =
           fun (x326 : t) ->
             fun ~event:(x323 : [ `fork ]) ->
@@ -1016,7 +1016,7 @@ module Cluster =
                        Ojs.fun_to_js 1
                          (fun (x325 : Ojs.t) ->
                             x324 ~worker:(Worker.t_of_js x325)))|])
-        let (addListener'''' :
+        let (add_listener'''' :
           t ->
             event:[ `listening ] ->
               listener:(worker:Worker.t -> address:Address.t -> unit) -> t)
@@ -1036,7 +1036,7 @@ module Cluster =
                             fun (x330 : Ojs.t) ->
                               x328 ~worker:(Worker.t_of_js x329)
                                 ~address:(Address.t_of_js x330)))|])
-        let (addListener''''' :
+        let (add_listener''''' :
           t ->
             event:[ `message ] ->
               listener:(worker:Worker.t ->
@@ -1066,7 +1066,7 @@ module Cluster =
                                   ~message:(any_of_js x335)
                                   ~handle:(union2_of_js Net.Server.t_of_js
                                              Net.Socket.t_of_js x336)))|])
-        let (addListener'''''' :
+        let (add_listener'''''' :
           t -> event:[ `online ] -> listener:(worker:Worker.t -> unit) -> t)
           =
           fun (x343 : t) ->
@@ -1084,7 +1084,7 @@ module Cluster =
                                                                     ~worker:(
                                                                     Worker.t_of_js
                                                                     x342)))|])
-        let (addListener''''''' :
+        let (add_listener''''''' :
           t ->
             event:[ `setup ] ->
               listener:(settings:ClusterSettings.t -> unit) -> t)
@@ -1490,7 +1490,7 @@ module Cluster =
                        Ojs.fun_to_js 1
                          (fun (x461 : Ojs.t) ->
                             x460 ~settings:(ClusterSettings.t_of_js x461)))|])
-        let (prependListener :
+        let (prepend_listener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
           fun (x467 : t) ->
             fun ~event:(x463 : string) ->
@@ -1503,7 +1503,7 @@ module Cluster =
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
                                                                 x465 0)))|])
-        let (prependListener' :
+        let (prepend_listener' :
           t ->
             event:[ `disconnect ] -> listener:(worker:Worker.t -> unit) -> t)
           =
@@ -1517,7 +1517,7 @@ module Cluster =
                        Ojs.fun_to_js 1
                          (fun (x470 : Ojs.t) ->
                             x469 ~worker:(Worker.t_of_js x470)))|])
-        let (prependListener'' :
+        let (prepend_listener'' :
           t ->
             event:[ `exit ] ->
               listener:(worker:Worker.t -> code:int -> signal:string -> unit)
@@ -1540,7 +1540,7 @@ module Cluster =
                                 x473 ~worker:(Worker.t_of_js x474)
                                   ~code:(Ojs.int_of_js x475)
                                   ~signal:(Ojs.string_of_js x476)))|])
-        let (prependListener''' :
+        let (prepend_listener''' :
           t -> event:[ `fork ] -> listener:(worker:Worker.t -> unit) -> t) =
           fun (x481 : t) ->
             fun ~event:(x478 : [ `fork ]) ->
@@ -1551,7 +1551,7 @@ module Cluster =
                        Ojs.fun_to_js 1
                          (fun (x480 : Ojs.t) ->
                             x479 ~worker:(Worker.t_of_js x480)))|])
-        let (prependListener'''' :
+        let (prepend_listener'''' :
           t ->
             event:[ `listening ] ->
               listener:(worker:Worker.t -> address:Address.t -> unit) -> t)
@@ -1571,7 +1571,7 @@ module Cluster =
                             fun (x485 : Ojs.t) ->
                               x483 ~worker:(Worker.t_of_js x484)
                                 ~address:(Address.t_of_js x485)))|])
-        let (prependListener''''' :
+        let (prepend_listener''''' :
           t ->
             event:[ `message ] ->
               listener:(worker:Worker.t ->
@@ -1601,7 +1601,7 @@ module Cluster =
                                   ~message:(any_of_js x490)
                                   ~handle:(union2_of_js Net.Server.t_of_js
                                              Net.Socket.t_of_js x491)))|])
-        let (prependListener'''''' :
+        let (prepend_listener'''''' :
           t -> event:[ `online ] -> listener:(worker:Worker.t -> unit) -> t)
           =
           fun (x498 : t) ->
@@ -1619,7 +1619,7 @@ module Cluster =
                                                                     ~worker:(
                                                                     Worker.t_of_js
                                                                     x497)))|])
-        let (prependListener''''''' :
+        let (prepend_listener''''''' :
           t ->
             event:[ `setup ] ->
               listener:(settings:ClusterSettings.t -> unit) -> t)
@@ -1633,7 +1633,7 @@ module Cluster =
                        Ojs.fun_to_js 1
                          (fun (x501 : Ojs.t) ->
                             x500 ~settings:(ClusterSettings.t_of_js x501)))|])
-        let (prependOnceListener :
+        let (prepend_once_listener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
           fun (x507 : t) ->
             fun ~event:(x503 : string) ->
@@ -1646,7 +1646,7 @@ module Cluster =
                                                        ~args:(Ojs.list_of_js_from
                                                                 any_of_js
                                                                 x505 0)))|])
-        let (prependOnceListener' :
+        let (prepend_once_listener' :
           t ->
             event:[ `disconnect ] -> listener:(worker:Worker.t -> unit) -> t)
           =
@@ -1660,7 +1660,7 @@ module Cluster =
                        Ojs.fun_to_js 1
                          (fun (x510 : Ojs.t) ->
                             x509 ~worker:(Worker.t_of_js x510)))|])
-        let (prependOnceListener'' :
+        let (prepend_once_listener'' :
           t ->
             event:[ `exit ] ->
               listener:(worker:Worker.t -> code:int -> signal:string -> unit)
@@ -1683,7 +1683,7 @@ module Cluster =
                                 x513 ~worker:(Worker.t_of_js x514)
                                   ~code:(Ojs.int_of_js x515)
                                   ~signal:(Ojs.string_of_js x516)))|])
-        let (prependOnceListener''' :
+        let (prepend_once_listener''' :
           t -> event:[ `fork ] -> listener:(worker:Worker.t -> unit) -> t) =
           fun (x521 : t) ->
             fun ~event:(x518 : [ `fork ]) ->
@@ -1694,7 +1694,7 @@ module Cluster =
                        Ojs.fun_to_js 1
                          (fun (x520 : Ojs.t) ->
                             x519 ~worker:(Worker.t_of_js x520)))|])
-        let (prependOnceListener'''' :
+        let (prepend_once_listener'''' :
           t ->
             event:[ `listening ] ->
               listener:(worker:Worker.t -> address:Address.t -> unit) -> t)
@@ -1714,7 +1714,7 @@ module Cluster =
                             fun (x525 : Ojs.t) ->
                               x523 ~worker:(Worker.t_of_js x524)
                                 ~address:(Address.t_of_js x525)))|])
-        let (prependOnceListener''''' :
+        let (prepend_once_listener''''' :
           t ->
             event:[ `message ] ->
               listener:(worker:Worker.t ->
@@ -1744,7 +1744,7 @@ module Cluster =
                                   ~message:(any_of_js x530)
                                   ~handle:(union2_of_js Net.Server.t_of_js
                                              Net.Socket.t_of_js x531)))|])
-        let (prependOnceListener'''''' :
+        let (prepend_once_listener'''''' :
           t -> event:[ `online ] -> listener:(worker:Worker.t -> unit) -> t)
           =
           fun (x538 : t) ->
@@ -1762,7 +1762,7 @@ module Cluster =
                                                                     ~worker:(
                                                                     Worker.t_of_js
                                                                     x537)))|])
-        let (prependOnceListener''''''' :
+        let (prepend_once_listener''''''' :
           t ->
             event:[ `setup ] ->
               listener:(settings:ClusterSettings.t -> unit) -> t)
@@ -1780,9 +1780,9 @@ module Cluster =
           fun (x543 : t) ->
             Node_events.Events.EventEmitter.t_of_js (t_to_js x543)
       end
-    let (sCHED_NONE : int) =
+    let (s_ched_none : int) =
       Ojs.int_of_js (Ojs.get_prop_ascii Import.cluster "SCHED_NONE")
-    let (sCHED_RR : int) =
+    let (s_ched_rr : int) =
       Ojs.int_of_js (Ojs.get_prop_ascii Import.cluster "SCHED_RR")
     let (disconnect : ?callback:(unit -> unit) -> unit -> unit) =
       fun ?callback:(x544 : (unit -> unit) option) ->
@@ -1815,15 +1815,15 @@ module Cluster =
                                (Ojs.call x549 "push" [|(any_to_js x550)|])
                          | None -> ());
                         x549))|])
-    let (isMaster : bool) =
+    let (is_master : bool) =
       Ojs.bool_of_js (Ojs.get_prop_ascii Import.cluster "isMaster")
-    let (isWorker : bool) =
+    let (is_worker : bool) =
       Ojs.bool_of_js (Ojs.get_prop_ascii Import.cluster "isWorker")
-    let (schedulingPolicy : int) =
+    let (scheduling_policy : int) =
       Ojs.int_of_js (Ojs.get_prop_ascii Import.cluster "schedulingPolicy")
     let (settings : ClusterSettings.t) =
       ClusterSettings.t_of_js (Ojs.get_prop_ascii Import.cluster "settings")
-    let (setupMaster : ?settings:ClusterSettings.t -> unit -> unit) =
+    let (setup_master : ?settings:ClusterSettings.t -> unit -> unit) =
       fun ?settings:(x552 : ClusterSettings.t option) ->
         fun () ->
           ignore
@@ -1844,7 +1844,7 @@ module Cluster =
     let (workers : Worker.t Dict.t) =
       Dict.t_of_js Worker.t_of_js
         (Ojs.get_prop_ascii Import.cluster "workers")
-    let (addListener :
+    let (add_listener :
       event:string -> listener:(args:any list -> unit) -> Cluster.t) =
       fun ~event:(x557 : string) ->
         fun ~listener:(x558 : args:any list -> unit) ->
@@ -1855,7 +1855,7 @@ module Cluster =
                                                x558
                                                  ~args:(Ojs.list_of_js_from
                                                           any_of_js x559 0)))|])
-    let (addListener :
+    let (add_listener :
       event:[ `disconnect ] ->
         listener:(worker:Worker.t -> unit) -> Cluster.t)
       =
@@ -1867,7 +1867,7 @@ module Cluster =
                    | `disconnect -> Ojs.string_to_js "disconnect"));(
                  Ojs.fun_to_js 1
                    (fun (x563 : Ojs.t) -> x562 ~worker:(Worker.t_of_js x563)))|])
-    let (addListener :
+    let (add_listener :
       event:[ `exit ] ->
         listener:(worker:Worker.t -> code:int -> signal:string -> unit) ->
           Cluster.t)
@@ -1887,7 +1887,7 @@ module Cluster =
                           x565 ~worker:(Worker.t_of_js x566)
                             ~code:(Ojs.int_of_js x567)
                             ~signal:(Ojs.string_of_js x568)))|])
-    let (addListener :
+    let (add_listener :
       event:[ `fork ] -> listener:(worker:Worker.t -> unit) -> Cluster.t) =
       fun ~event:(x569 : [ `fork ]) ->
         fun ~listener:(x570 : worker:Worker.t -> unit) ->
@@ -1896,7 +1896,7 @@ module Cluster =
                [|((match x569 with | `fork -> Ojs.string_to_js "fork"));(
                  Ojs.fun_to_js 1
                    (fun (x571 : Ojs.t) -> x570 ~worker:(Worker.t_of_js x571)))|])
-    let (addListener :
+    let (add_listener :
       event:[ `listening ] ->
         listener:(worker:Worker.t -> address:Address.t -> unit) -> Cluster.t)
       =
@@ -1921,7 +1921,7 @@ module Cluster =
                                                                     ~address:(
                                                                     Address.t_of_js
                                                                     x575)))|])
-    let (addListener :
+    let (add_listener :
       event:[ `message ] ->
         listener:(worker:Worker.t ->
                     message:any ->
@@ -1946,7 +1946,7 @@ module Cluster =
                             ~message:(any_of_js x579)
                             ~handle:(union2_of_js Net.Server.t_of_js
                                        Net.Socket.t_of_js x580)))|])
-    let (addListener :
+    let (add_listener :
       event:[ `online ] -> listener:(worker:Worker.t -> unit) -> Cluster.t) =
       fun ~event:(x583 : [ `online ]) ->
         fun ~listener:(x584 : worker:Worker.t -> unit) ->
@@ -1955,7 +1955,7 @@ module Cluster =
                [|((match x583 with | `online -> Ojs.string_to_js "online"));(
                  Ojs.fun_to_js 1
                    (fun (x585 : Ojs.t) -> x584 ~worker:(Worker.t_of_js x585)))|])
-    let (addListener :
+    let (add_listener :
       event:[ `setup ] ->
         listener:(settings:ClusterSettings.t -> unit) -> Cluster.t)
       =
@@ -2298,7 +2298,7 @@ module Cluster =
                  Ojs.fun_to_js 1
                    (fun (x679 : Ojs.t) ->
                       x678 ~settings:(ClusterSettings.t_of_js x679)))|])
-    let (removeListener :
+    let (remove_listener :
       event:string -> listener:(args:any list -> unit) -> Cluster.t) =
       fun ~event:(x680 : string) ->
         fun ~listener:(x681 : args:any list -> unit) ->
@@ -2309,7 +2309,7 @@ module Cluster =
                                                x681
                                                  ~args:(Ojs.list_of_js_from
                                                           any_of_js x682 0)))|])
-    let (removeAllListeners : ?event:string -> unit -> Cluster.t) =
+    let (remove_all_listeners : ?event:string -> unit -> Cluster.t) =
       fun ?event:(x684 : string option) ->
         fun () ->
           Cluster.t_of_js
@@ -2325,23 +2325,23 @@ module Cluster =
                                   [|(Ojs.string_to_js x686)|])
                          | None -> ());
                         x685))|])
-    let (setMaxListeners : n:int -> Cluster.t) =
+    let (set_max_listeners : n:int -> Cluster.t) =
       fun ~n:(x688 : int) ->
         Cluster.t_of_js
           (Ojs.call Import.cluster "setMaxListeners" [|(Ojs.int_to_js x688)|])
-    let (getMaxListeners : unit -> int) =
+    let (get_max_listeners : unit -> int) =
       fun () ->
         Ojs.int_of_js (Ojs.call Import.cluster "getMaxListeners" [||])
     let (listeners : event:string -> untyped_function list) =
       fun ~event:(x689 : string) ->
         Ojs.list_of_js untyped_function_of_js
           (Ojs.call Import.cluster "listeners" [|(Ojs.string_to_js x689)|])
-    let (listenerCount : type_:string -> int) =
+    let (listener_count : type_:string -> int) =
       fun ~type_:(x691 : string) ->
         Ojs.int_of_js
           (Ojs.call Import.cluster "listenerCount"
              [|(Ojs.string_to_js x691)|])
-    let (prependListener :
+    let (prepend_listener :
       event:string -> listener:(args:any list -> unit) -> Cluster.t) =
       fun ~event:(x692 : string) ->
         fun ~listener:(x693 : args:any list -> unit) ->
@@ -2352,7 +2352,7 @@ module Cluster =
                                                x693
                                                  ~args:(Ojs.list_of_js_from
                                                           any_of_js x694 0)))|])
-    let (prependListener :
+    let (prepend_listener :
       event:[ `disconnect ] ->
         listener:(worker:Worker.t -> unit) -> Cluster.t)
       =
@@ -2364,7 +2364,7 @@ module Cluster =
                    | `disconnect -> Ojs.string_to_js "disconnect"));(
                  Ojs.fun_to_js 1
                    (fun (x698 : Ojs.t) -> x697 ~worker:(Worker.t_of_js x698)))|])
-    let (prependListener :
+    let (prepend_listener :
       event:[ `exit ] ->
         listener:(worker:Worker.t -> code:int -> signal:string -> unit) ->
           Cluster.t)
@@ -2384,7 +2384,7 @@ module Cluster =
                           x700 ~worker:(Worker.t_of_js x701)
                             ~code:(Ojs.int_of_js x702)
                             ~signal:(Ojs.string_of_js x703)))|])
-    let (prependListener :
+    let (prepend_listener :
       event:[ `fork ] -> listener:(worker:Worker.t -> unit) -> Cluster.t) =
       fun ~event:(x704 : [ `fork ]) ->
         fun ~listener:(x705 : worker:Worker.t -> unit) ->
@@ -2393,7 +2393,7 @@ module Cluster =
                [|((match x704 with | `fork -> Ojs.string_to_js "fork"));(
                  Ojs.fun_to_js 1
                    (fun (x706 : Ojs.t) -> x705 ~worker:(Worker.t_of_js x706)))|])
-    let (prependListener :
+    let (prepend_listener :
       event:[ `listening ] ->
         listener:(worker:Worker.t -> address:Address.t -> unit) -> Cluster.t)
       =
@@ -2418,7 +2418,7 @@ module Cluster =
                                                                     ~address:(
                                                                     Address.t_of_js
                                                                     x710)))|])
-    let (prependListener :
+    let (prepend_listener :
       event:[ `message ] ->
         listener:(worker:Worker.t ->
                     message:any ->
@@ -2443,7 +2443,7 @@ module Cluster =
                             ~message:(any_of_js x714)
                             ~handle:(union2_of_js Net.Server.t_of_js
                                        Net.Socket.t_of_js x715)))|])
-    let (prependListener :
+    let (prepend_listener :
       event:[ `online ] -> listener:(worker:Worker.t -> unit) -> Cluster.t) =
       fun ~event:(x718 : [ `online ]) ->
         fun ~listener:(x719 : worker:Worker.t -> unit) ->
@@ -2452,7 +2452,7 @@ module Cluster =
                [|((match x718 with | `online -> Ojs.string_to_js "online"));(
                  Ojs.fun_to_js 1
                    (fun (x720 : Ojs.t) -> x719 ~worker:(Worker.t_of_js x720)))|])
-    let (prependListener :
+    let (prepend_listener :
       event:[ `setup ] ->
         listener:(settings:ClusterSettings.t -> unit) -> Cluster.t)
       =
@@ -2464,7 +2464,7 @@ module Cluster =
                  Ojs.fun_to_js 1
                    (fun (x723 : Ojs.t) ->
                       x722 ~settings:(ClusterSettings.t_of_js x723)))|])
-    let (prependOnceListener :
+    let (prepend_once_listener :
       event:string -> listener:(args:any list -> unit) -> Cluster.t) =
       fun ~event:(x724 : string) ->
         fun ~listener:(x725 : args:any list -> unit) ->
@@ -2475,7 +2475,7 @@ module Cluster =
                                                x725
                                                  ~args:(Ojs.list_of_js_from
                                                           any_of_js x726 0)))|])
-    let (prependOnceListener :
+    let (prepend_once_listener :
       event:[ `disconnect ] ->
         listener:(worker:Worker.t -> unit) -> Cluster.t)
       =
@@ -2487,7 +2487,7 @@ module Cluster =
                    | `disconnect -> Ojs.string_to_js "disconnect"));(
                  Ojs.fun_to_js 1
                    (fun (x730 : Ojs.t) -> x729 ~worker:(Worker.t_of_js x730)))|])
-    let (prependOnceListener :
+    let (prepend_once_listener :
       event:[ `exit ] ->
         listener:(worker:Worker.t -> code:int -> signal:string -> unit) ->
           Cluster.t)
@@ -2507,7 +2507,7 @@ module Cluster =
                           x732 ~worker:(Worker.t_of_js x733)
                             ~code:(Ojs.int_of_js x734)
                             ~signal:(Ojs.string_of_js x735)))|])
-    let (prependOnceListener :
+    let (prepend_once_listener :
       event:[ `fork ] -> listener:(worker:Worker.t -> unit) -> Cluster.t) =
       fun ~event:(x736 : [ `fork ]) ->
         fun ~listener:(x737 : worker:Worker.t -> unit) ->
@@ -2516,7 +2516,7 @@ module Cluster =
                [|((match x736 with | `fork -> Ojs.string_to_js "fork"));(
                  Ojs.fun_to_js 1
                    (fun (x738 : Ojs.t) -> x737 ~worker:(Worker.t_of_js x738)))|])
-    let (prependOnceListener :
+    let (prepend_once_listener :
       event:[ `listening ] ->
         listener:(worker:Worker.t -> address:Address.t -> unit) -> Cluster.t)
       =
@@ -2541,7 +2541,7 @@ module Cluster =
                                                                     ~address:(
                                                                     Address.t_of_js
                                                                     x742)))|])
-    let (prependOnceListener :
+    let (prepend_once_listener :
       event:[ `message ] ->
         listener:(worker:Worker.t ->
                     message:any ->
@@ -2566,7 +2566,7 @@ module Cluster =
                             ~message:(any_of_js x746)
                             ~handle:(union2_of_js Net.Server.t_of_js
                                        Net.Socket.t_of_js x747)))|])
-    let (prependOnceListener :
+    let (prepend_once_listener :
       event:[ `online ] -> listener:(worker:Worker.t -> unit) -> Cluster.t) =
       fun ~event:(x750 : [ `online ]) ->
         fun ~listener:(x751 : worker:Worker.t -> unit) ->
@@ -2575,7 +2575,7 @@ module Cluster =
                [|((match x750 with | `online -> Ojs.string_to_js "online"));(
                  Ojs.fun_to_js 1
                    (fun (x752 : Ojs.t) -> x751 ~worker:(Worker.t_of_js x752)))|])
-    let (prependOnceListener :
+    let (prepend_once_listener :
       event:[ `setup ] ->
         listener:(settings:ClusterSettings.t -> unit) -> Cluster.t)
       =
@@ -2587,7 +2587,7 @@ module Cluster =
                  Ojs.fun_to_js 1
                    (fun (x755 : Ojs.t) ->
                       x754 ~settings:(ClusterSettings.t_of_js x755)))|])
-    let (eventNames : unit -> string list) =
+    let (event_names : unit -> string list) =
       fun () ->
         Ojs.list_of_js Ojs.string_of_js
           (Ojs.call Import.cluster "eventNames" [||])

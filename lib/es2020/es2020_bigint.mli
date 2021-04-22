@@ -397,7 +397,7 @@ module BigInt64Array : sig
   val every
     :  t
     -> predicate:(value:bigint -> index:int -> array:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "every"]
@@ -408,7 +408,7 @@ module BigInt64Array : sig
   val filter
     :  t
     -> predicate:(value:bigint -> index:int -> array:t -> any)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "filter"]
@@ -416,7 +416,7 @@ module BigInt64Array : sig
   val find
     :  t
     -> predicate:(value:bigint -> index:int -> array:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bigint or_undefined
     [@@js.call "find"]
@@ -424,7 +424,7 @@ module BigInt64Array : sig
   val find_index
     :  t
     -> predicate:(value:bigint -> index:int -> array:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int
     [@@js.call "findIndex"]
@@ -432,22 +432,27 @@ module BigInt64Array : sig
   val for_each
     :  t
     -> callbackfn:(value:bigint -> index:int -> array:t -> unit)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> unit
     [@@js.call "forEach"]
 
-  val includes : t -> searchElement:bigint -> ?fromIndex:int -> unit -> bool
+  val includes : t -> search_element:bigint -> ?from_index:int -> unit -> bool
     [@@js.call "includes"]
 
-  val index_of : t -> searchElement:bigint -> ?fromIndex:int -> unit -> int
+  val index_of : t -> search_element:bigint -> ?from_index:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
   val keys : t -> int IterableIterator.t [@@js.call "keys"]
 
-  val last_index_of : t -> searchElement:bigint -> ?fromIndex:int -> unit -> int
+  val last_index_of
+    :  t
+    -> search_element:bigint
+    -> ?from_index:int
+    -> unit
+    -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -455,7 +460,7 @@ module BigInt64Array : sig
   val map
     :  t
     -> callbackfn:(value:bigint -> index:int -> array:t -> bigint)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "map"]
@@ -464,8 +469,8 @@ module BigInt64Array : sig
     :  t
     -> callbackfn:
          (previousValue:bigint
-          -> currentValue:bigint
-          -> currentIndex:int
+          -> current_value:bigint
+          -> current_index:int
           -> array:t
           -> bigint)
     -> bigint
@@ -475,11 +480,11 @@ module BigInt64Array : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:bigint
-          -> currentIndex:int
+          -> current_value:bigint
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduce"]
 
@@ -487,8 +492,8 @@ module BigInt64Array : sig
     :  t
     -> callbackfn:
          (previousValue:bigint
-          -> currentValue:bigint
-          -> currentIndex:int
+          -> current_value:bigint
+          -> current_index:int
           -> array:t
           -> bigint)
     -> bigint
@@ -498,11 +503,11 @@ module BigInt64Array : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:bigint
-          -> currentIndex:int
+          -> current_value:bigint
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduceRight"]
 
@@ -516,14 +521,14 @@ module BigInt64Array : sig
   val some
     :  t
     -> predicate:(value:bigint -> index:int -> array:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "some"]
 
   val sort
     :  t
-    -> ?compareFn:(a:bigint -> b:bigint -> bigint or_number)
+    -> ?compare_fn:(a:bigint -> b:bigint -> bigint or_number)
     -> unit
     -> t
     [@@js.call "sort"]
@@ -552,7 +557,7 @@ module BigInt64Array : sig
   val create''
     :  t
     -> buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> t
@@ -566,7 +571,7 @@ module BigInt64Array : sig
   val from'
     :  array:'U Array.t
     -> mapfn:(v:'U -> k:int -> bigint)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.global "BigInt64Array.from"]
@@ -589,7 +594,7 @@ module BigInt64ArrayConstructor : sig
   val create''
     :  t
     -> buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> BigInt64Array.t
@@ -606,7 +611,7 @@ module BigInt64ArrayConstructor : sig
     :  t
     -> array:'U Array.t
     -> mapfn:(v:'U -> k:int -> bigint)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> BigInt64Array.t
     [@@js.call "from"]
@@ -638,7 +643,7 @@ module BigUint64Array : sig
   val every
     :  t
     -> predicate:(value:bigint -> index:int -> array:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "every"]
@@ -649,7 +654,7 @@ module BigUint64Array : sig
   val filter
     :  t
     -> predicate:(value:bigint -> index:int -> array:t -> any)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "filter"]
@@ -657,7 +662,7 @@ module BigUint64Array : sig
   val find
     :  t
     -> predicate:(value:bigint -> index:int -> array:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bigint or_undefined
     [@@js.call "find"]
@@ -665,7 +670,7 @@ module BigUint64Array : sig
   val find_index
     :  t
     -> predicate:(value:bigint -> index:int -> array:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> int
     [@@js.call "findIndex"]
@@ -673,22 +678,27 @@ module BigUint64Array : sig
   val for_each
     :  t
     -> callbackfn:(value:bigint -> index:int -> array:t -> unit)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> unit
     [@@js.call "forEach"]
 
-  val includes : t -> searchElement:bigint -> ?fromIndex:int -> unit -> bool
+  val includes : t -> search_element:bigint -> ?from_index:int -> unit -> bool
     [@@js.call "includes"]
 
-  val index_of : t -> searchElement:bigint -> ?fromIndex:int -> unit -> int
+  val index_of : t -> search_element:bigint -> ?from_index:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
   val keys : t -> int IterableIterator.t [@@js.call "keys"]
 
-  val last_index_of : t -> searchElement:bigint -> ?fromIndex:int -> unit -> int
+  val last_index_of
+    :  t
+    -> search_element:bigint
+    -> ?from_index:int
+    -> unit
+    -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -696,7 +706,7 @@ module BigUint64Array : sig
   val map
     :  t
     -> callbackfn:(value:bigint -> index:int -> array:t -> bigint)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.call "map"]
@@ -705,8 +715,8 @@ module BigUint64Array : sig
     :  t
     -> callbackfn:
          (previousValue:bigint
-          -> currentValue:bigint
-          -> currentIndex:int
+          -> current_value:bigint
+          -> current_index:int
           -> array:t
           -> bigint)
     -> bigint
@@ -716,11 +726,11 @@ module BigUint64Array : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:bigint
-          -> currentIndex:int
+          -> current_value:bigint
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduce"]
 
@@ -728,8 +738,8 @@ module BigUint64Array : sig
     :  t
     -> callbackfn:
          (previousValue:bigint
-          -> currentValue:bigint
-          -> currentIndex:int
+          -> current_value:bigint
+          -> current_index:int
           -> array:t
           -> bigint)
     -> bigint
@@ -739,11 +749,11 @@ module BigUint64Array : sig
     :  t
     -> callbackfn:
          (previousValue:'U
-          -> currentValue:bigint
-          -> currentIndex:int
+          -> current_value:bigint
+          -> current_index:int
           -> array:t
           -> 'U)
-    -> initialValue:'U
+    -> initial_value:'U
     -> 'U
     [@@js.call "reduceRight"]
 
@@ -757,14 +767,14 @@ module BigUint64Array : sig
   val some
     :  t
     -> predicate:(value:bigint -> index:int -> array:t -> bool)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> bool
     [@@js.call "some"]
 
   val sort
     :  t
-    -> ?compareFn:(a:bigint -> b:bigint -> bigint or_number)
+    -> ?compare_fn:(a:bigint -> b:bigint -> bigint or_number)
     -> unit
     -> t
     [@@js.call "sort"]
@@ -793,7 +803,7 @@ module BigUint64Array : sig
   val create''
     :  t
     -> buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> t
@@ -807,7 +817,7 @@ module BigUint64Array : sig
   val from'
     :  array:'U Array.t
     -> mapfn:(v:'U -> k:int -> bigint)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> t
     [@@js.global "BigUint64Array.from"]
@@ -830,7 +840,7 @@ module BigUint64ArrayConstructor : sig
   val create''
     :  t
     -> buffer:ArrayBuffer.t
-    -> ?byteOffset:int
+    -> ?byte_offset:int
     -> ?length:int
     -> unit
     -> BigUint64Array.t
@@ -847,7 +857,7 @@ module BigUint64ArrayConstructor : sig
     :  t
     -> array:'U Array.t
     -> mapfn:(v:'U -> k:int -> bigint)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> BigUint64Array.t
     [@@js.call "from"]
@@ -864,34 +874,34 @@ module DataView : sig
 
   val get_big_int64
     :  t
-    -> byteOffset:int
-    -> ?littleEndian:bool
+    -> byte_offset:int
+    -> ?little_endian:bool
     -> unit
     -> bigint
     [@@js.call "getBigInt64"]
 
   val get_big_uint64
     :  t
-    -> byteOffset:int
-    -> ?littleEndian:bool
+    -> byte_offset:int
+    -> ?little_endian:bool
     -> unit
     -> bigint
     [@@js.call "getBigUint64"]
 
   val set_big_int64
     :  t
-    -> byteOffset:int
+    -> byte_offset:int
     -> value:bigint
-    -> ?littleEndian:bool
+    -> ?little_endian:bool
     -> unit
     -> unit
     [@@js.call "setBigInt64"]
 
   val set_big_uint64
     :  t
-    -> byteOffset:int
+    -> byte_offset:int
     -> value:bigint
-    -> ?littleEndian:bool
+    -> ?little_endian:bool
     -> unit
     -> unit
     [@@js.call "setBigUint64"]

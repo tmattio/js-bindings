@@ -4,41 +4,39 @@
 open Es5
 module ProtocolCompletionItem =
   struct
-    type t = _ProtocolCompletionItem
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> _ProtocolCompletionItem_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : _ProtocolCompletionItem) -> _ProtocolCompletionItem_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get_data : t -> any) =
       fun (x3 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x3) "data")
     let (set_data : t -> any -> unit) =
       fun (x4 : t) ->
         fun (x5 : any) ->
           Ojs.set_prop_ascii (t_to_js x4) "data" (any_to_js x5)
-    let (get_fromEdit : t -> bool or_undefined) =
+    let (get_from_edit : t -> bool or_undefined) =
       fun (x6 : t) ->
         or_undefined_of_js Ojs.bool_of_js
           (Ojs.get_prop_ascii (t_to_js x6) "fromEdit")
-    let (set_fromEdit : t -> bool or_undefined -> unit) =
+    let (set_from_edit : t -> bool or_undefined -> unit) =
       fun (x8 : t) ->
         fun (x9 : bool or_undefined) ->
           Ojs.set_prop_ascii (t_to_js x8) "fromEdit"
             (or_undefined_to_js Ojs.bool_to_js x9)
-    let (get_documentationFormat : t -> string or_undefined) =
+    let (get_documentation_format : t -> string or_undefined) =
       fun (x11 : t) ->
         or_undefined_of_js Ojs.string_of_js
           (Ojs.get_prop_ascii (t_to_js x11) "documentationFormat")
-    let (set_documentationFormat : t -> string or_undefined -> unit) =
+    let (set_documentation_format : t -> string or_undefined -> unit) =
       fun (x13 : t) ->
         fun (x14 : string or_undefined) ->
           Ojs.set_prop_ascii (t_to_js x13) "documentationFormat"
             (or_undefined_to_js Ojs.string_to_js x14)
-    let (get_originalItemKind : t -> Proto.CompletionItemKind.t or_undefined)
-      =
+    let (get_original_item_kind :
+      t -> Proto.CompletionItemKind.t or_undefined) =
       fun (x16 : t) ->
         or_undefined_of_js Proto.CompletionItemKind.t_of_js
           (Ojs.get_prop_ascii (t_to_js x16) "originalItemKind")
-    let (set_originalItemKind :
+    let (set_original_item_kind :
       t -> Proto.CompletionItemKind.t or_undefined -> unit) =
       fun (x18 : t) ->
         fun (x19 : Proto.CompletionItemKind.t or_undefined) ->
@@ -53,11 +51,11 @@ module ProtocolCompletionItem =
         fun (x24 : bool or_undefined) ->
           Ojs.set_prop_ascii (t_to_js x23) "deprecated"
             (or_undefined_to_js Ojs.bool_to_js x24)
-    let (get_insertTextMode : t -> Proto.InsertTextMode.t or_undefined) =
+    let (get_insert_text_mode : t -> Proto.InsertTextMode.t or_undefined) =
       fun (x26 : t) ->
         or_undefined_of_js Proto.InsertTextMode.t_of_js
           (Ojs.get_prop_ascii (t_to_js x26) "insertTextMode")
-    let (set_insertTextMode :
+    let (set_insert_text_mode :
       t -> Proto.InsertTextMode.t or_undefined -> unit) =
       fun (x28 : t) ->
         fun (x29 : Proto.InsertTextMode.t or_undefined) ->

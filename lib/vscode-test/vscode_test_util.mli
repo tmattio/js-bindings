@@ -6,8 +6,6 @@ open Es5
 open Node
 open Download
 
-
-
 module AnonymousInterface0 : sig
   type t
 
@@ -26,29 +24,29 @@ end
 
 (* import * as https from 'https'; *)
 (* import { DownloadPlatform } from './download'; *)
-val systemDefaultPlatform : string [@@js.global "systemDefaultPlatform"]
+val system_default_platform : string [@@js.global "systemDefaultPlatform"]
 
-val getVSCodeDownloadUrl
+val get_vs_code_download_url
   :  version:string
   -> ?platform:DownloadPlatform.t
   -> unit
   -> string
   [@@js.global "getVSCodeDownloadUrl"]
 
-val urlToOptions : url:string -> Https.RequestOptions.t
+val url_to_options : url:string -> Https.RequestOptions.t
   [@@js.global "urlToOptions"]
 
-val downloadDirToExecutablePath : dir:string -> string
+val download_dir_to_executable_path : dir:string -> string
   [@@js.global "downloadDirToExecutablePath"]
 
-val insidersDownloadDirToExecutablePath : dir:string -> string
+val insiders_download_dir_to_executable_path : dir:string -> string
   [@@js.global "insidersDownloadDirToExecutablePath"]
 
-val insidersDownloadDirMetadata : dir:string -> AnonymousInterface0.t
+val insiders_download_dir_metadata : dir:string -> AnonymousInterface0.t
   [@@js.global "insidersDownloadDirMetadata"]
 
 module IUpdateMetadata : sig
-  type t = _IUpdateMetadata
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -66,9 +64,9 @@ module IUpdateMetadata : sig
 
   val set_version : t -> string -> unit [@@js.set "version"]
 
-  val get_productVersion : t -> string [@@js.get "productVersion"]
+  val get_product_version : t -> string [@@js.get "productVersion"]
 
-  val set_productVersion : t -> string -> unit [@@js.set "productVersion"]
+  val set_product_version : t -> string -> unit [@@js.set "productVersion"]
 
   val get_hash : t -> string [@@js.get "hash"]
 
@@ -82,16 +80,19 @@ module IUpdateMetadata : sig
 
   val set_sha256hash : t -> string -> unit [@@js.set "sha256hash"]
 
-  val get_supportsFastUpdate : t -> bool [@@js.get "supportsFastUpdate"]
+  val get_supports_fast_update : t -> bool [@@js.get "supportsFastUpdate"]
 
-  val set_supportsFastUpdate : t -> bool -> unit [@@js.set "supportsFastUpdate"]
+  val set_supports_fast_update : t -> bool -> unit
+    [@@js.set "supportsFastUpdate"]
 end
 [@@js.scope "IUpdateMetadata"]
 
-val getLatestInsidersMetadata : platform:string -> _IUpdateMetadata Promise.t
+val get_latest_insiders_metadata
+  :  platform:string
+  -> IUpdateMetadata.t Promise.t
   [@@js.global "getLatestInsidersMetadata"]
 
-val resolveCliPathFromVSCodeExecutablePath
-  :  vscodeExecutablePath:string
+val resolve_cli_path_from_vs_code_executable_path
+  :  vscode_executable_path:string
   -> string
   [@@js.global "resolveCliPathFromVSCodeExecutablePath"]

@@ -7,11 +7,9 @@ module Url =
   struct
     module UrlObject =
       struct
-        type t = url_UrlObject
-        let rec t_of_js : Ojs.t -> t =
-          fun (x2 : Ojs.t) -> url_UrlObject_of_js x2
-        and t_to_js : t -> Ojs.t =
-          fun (x1 : url_UrlObject) -> url_UrlObject_to_js x1
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+        and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
         let (get_auth : t -> string or_null) =
           fun (x3 : t) ->
             or_null_of_js Ojs.string_of_js
@@ -140,9 +138,9 @@ module Url =
       end
     module Url =
       struct
-        type t = url_Url
-        let rec t_of_js : Ojs.t -> t = fun (x63 : Ojs.t) -> url_Url_of_js x63
-        and t_to_js : t -> Ojs.t = fun (x62 : url_Url) -> url_Url_to_js x62
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x63 : Ojs.t) -> x63
+        and t_to_js : t -> Ojs.t = fun (x62 : Ojs.t) -> x62
         let (get_auth : t -> string or_null) =
           fun (x64 : t) ->
             or_null_of_js Ojs.string_of_js
@@ -274,12 +272,9 @@ module Url =
       end
     module UrlWithParsedQuery =
       struct
-        type t = url_UrlWithParsedQuery
-        let rec t_of_js : Ojs.t -> t =
-          fun (x125 : Ojs.t) -> url_UrlWithParsedQuery_of_js x125
-        and t_to_js : t -> Ojs.t =
-          fun (x124 : url_UrlWithParsedQuery) ->
-            url_UrlWithParsedQuery_to_js x124
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x125 : Ojs.t) -> x125
+        and t_to_js : t -> Ojs.t = fun (x124 : Ojs.t) -> x124
         let (get_query : t -> Node_querystring.Querystring.ParsedUrlQuery.t)
           =
           fun (x126 : t) ->
@@ -291,17 +286,14 @@ module Url =
             fun (x128 : Node_querystring.Querystring.ParsedUrlQuery.t) ->
               Ojs.set_prop_ascii (t_to_js x127) "query"
                 (Node_querystring.Querystring.ParsedUrlQuery.t_to_js x128)
-        let (cast : t -> url_Url) =
-          fun (x129 : t) -> url_Url_of_js (t_to_js x129)
+        let (cast : t -> Url.t) =
+          fun (x129 : t) -> Url.t_of_js (t_to_js x129)
       end
     module UrlWithStringQuery =
       struct
-        type t = url_UrlWithStringQuery
-        let rec t_of_js : Ojs.t -> t =
-          fun (x131 : Ojs.t) -> url_UrlWithStringQuery_of_js x131
-        and t_to_js : t -> Ojs.t =
-          fun (x130 : url_UrlWithStringQuery) ->
-            url_UrlWithStringQuery_to_js x130
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x131 : Ojs.t) -> x131
+        and t_to_js : t -> Ojs.t = fun (x130 : Ojs.t) -> x130
         let (get_query : t -> string or_null) =
           fun (x132 : t) ->
             or_null_of_js Ojs.string_of_js
@@ -311,23 +303,23 @@ module Url =
             fun (x135 : string or_null) ->
               Ojs.set_prop_ascii (t_to_js x134) "query"
                 (or_null_to_js Ojs.string_to_js x135)
-        let (cast : t -> url_Url) =
-          fun (x137 : t) -> url_Url_of_js (t_to_js x137)
+        let (cast : t -> Url.t) =
+          fun (x137 : t) -> Url.t_of_js (t_to_js x137)
       end
-    let (parse : urlStr:string -> url_UrlWithStringQuery) =
-      fun ~urlStr:(x138 : string) ->
-        url_UrlWithStringQuery_of_js
+    let (parse : string -> UrlWithStringQuery.t) =
+      fun (x138 : string) ->
+        UrlWithStringQuery.t_of_js
           (Ojs.call Import.url "parse" [|(Ojs.string_to_js x138)|])
     let (parse :
-      urlStr:string ->
-        parseQueryString:[ `L_b_false ] or_undefined ->
-          ?slashesDenoteHost:bool -> unit -> url_UrlWithStringQuery)
+      url_str:string ->
+        parse_query_string:[ `L_b_false ] or_undefined ->
+          ?slashes_denote_host:bool -> unit -> UrlWithStringQuery.t)
       =
-      fun ~urlStr:(x139 : string) ->
-        fun ~parseQueryString:(x140 : [ `L_b_false ] or_undefined) ->
-          fun ?slashesDenoteHost:(x141 : bool option) ->
+      fun ~url_str:(x139 : string) ->
+        fun ~parse_query_string:(x140 : [ `L_b_false ] or_undefined) ->
+          fun ?slashes_denote_host:(x141 : bool option) ->
             fun () ->
-              url_UrlWithStringQuery_of_js
+              UrlWithStringQuery.t_of_js
                 (let x145 = Import.url in
                  Ojs.call (Ojs.get_prop_ascii x145 "parse") "apply"
                    [|x145;((let x142 =
@@ -352,15 +344,15 @@ module Url =
                              | None -> ());
                             x142))|])
     let (parse :
-      urlStr:string ->
-        parseQueryString:[ `L_b_true ] ->
-          ?slashesDenoteHost:bool -> unit -> url_UrlWithParsedQuery)
+      url_str:string ->
+        parse_query_string:[ `L_b_true ] ->
+          ?slashes_denote_host:bool -> unit -> UrlWithParsedQuery.t)
       =
-      fun ~urlStr:(x146 : string) ->
-        fun ~parseQueryString:(x147 : [ `L_b_true ]) ->
-          fun ?slashesDenoteHost:(x148 : bool option) ->
+      fun ~url_str:(x146 : string) ->
+        fun ~parse_query_string:(x147 : [ `L_b_true ]) ->
+          fun ?slashes_denote_host:(x148 : bool option) ->
             fun () ->
-              url_UrlWithParsedQuery_of_js
+              UrlWithParsedQuery.t_of_js
                 (let x151 = Import.url in
                  Ojs.call (Ojs.get_prop_ascii x151 "parse") "apply"
                    [|x151;((let x149 =
@@ -382,14 +374,14 @@ module Url =
                              | None -> ());
                             x149))|])
     let (parse :
-      urlStr:string ->
-        parseQueryString:bool -> ?slashesDenoteHost:bool -> unit -> url_Url)
+      url_str:string ->
+        parse_query_string:bool -> ?slashes_denote_host:bool -> unit -> Url.t)
       =
-      fun ~urlStr:(x152 : string) ->
-        fun ~parseQueryString:(x153 : bool) ->
-          fun ?slashesDenoteHost:(x154 : bool option) ->
+      fun ~url_str:(x152 : string) ->
+        fun ~parse_query_string:(x153 : bool) ->
+          fun ?slashes_denote_host:(x154 : bool option) ->
             fun () ->
-              url_Url_of_js
+              Url.t_of_js
                 (let x157 = Import.url in
                  Ojs.call (Ojs.get_prop_ascii x157 "parse") "apply"
                    [|x157;((let x155 =
@@ -408,10 +400,10 @@ module Url =
                                       [|(Ojs.bool_to_js x156)|])
                              | None -> ());
                             x155))|])
-    let (format :
-      uRL:url_URL -> ?options:url_URLFormatOptions -> unit -> string) =
-      fun ~uRL:(x158 : url_URL) ->
-        fun ?options:(x159 : url_URLFormatOptions option) ->
+    let (format : url:URL.t -> ?options:URLFormatOptions.t -> unit -> string)
+      =
+      fun ~url:(x158 : URL.t) ->
+        fun ?options:(x159 : URLFormatOptions.t option) ->
           fun () ->
             Ojs.string_of_js
               (let x162 = Import.url in
@@ -421,50 +413,47 @@ module Url =
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x160 "push" [|(url_URL_to_js x158)|]);
+                            (Ojs.call x160 "push" [|(URL.t_to_js x158)|]);
                           (match x159 with
                            | Some x161 ->
                                ignore
                                  (Ojs.call x160 "push"
-                                    [|(url_URLFormatOptions_to_js x161)|])
+                                    [|(URLFormatOptions.t_to_js x161)|])
                            | None -> ());
                           x160))|])
-    let (format : urlObject:url_UrlObject or_string -> string) =
-      fun ~urlObject:(x163 : url_UrlObject or_string) ->
+    let (format : url_object:UrlObject.t or_string -> string) =
+      fun ~url_object:(x163 : UrlObject.t or_string) ->
         Ojs.string_of_js
           (Ojs.call Import.url "format"
-             [|(or_string_to_js url_UrlObject_to_js x163)|])
+             [|(or_string_to_js UrlObject.t_to_js x163)|])
     let (resolve : from:string -> to_:string -> string) =
       fun ~from:(x165 : string) ->
         fun ~to_:(x166 : string) ->
           Ojs.string_of_js
             (Ojs.call Import.url "resolve"
                [|(Ojs.string_to_js x165);(Ojs.string_to_js x166)|])
-    let (domainToASCII : domain:string -> string) =
+    let (domain_to_ascii : domain:string -> string) =
       fun ~domain:(x167 : string) ->
         Ojs.string_of_js
           (Ojs.call Import.url "domainToASCII" [|(Ojs.string_to_js x167)|])
-    let (domainToUnicode : domain:string -> string) =
+    let (domain_to_unicode : domain:string -> string) =
       fun ~domain:(x168 : string) ->
         Ojs.string_of_js
           (Ojs.call Import.url "domainToUnicode" [|(Ojs.string_to_js x168)|])
-    let (fileURLToPath : url:url_URL or_string -> string) =
-      fun ~url:(x169 : url_URL or_string) ->
+    let (file_url_to_path : url:URL.t or_string -> string) =
+      fun ~url:(x169 : URL.t or_string) ->
         Ojs.string_of_js
           (Ojs.call Import.url "fileURLToPath"
-             [|(or_string_to_js url_URL_to_js x169)|])
-    let (pathToFileURL : url:string -> url_URL) =
+             [|(or_string_to_js URL.t_to_js x169)|])
+    let (path_to_file_url : url:string -> URL.t) =
       fun ~url:(x171 : string) ->
-        url_URL_of_js
+        URL.t_of_js
           (Ojs.call Import.url "pathToFileURL" [|(Ojs.string_to_js x171)|])
     module URLFormatOptions =
       struct
-        type t = url_URLFormatOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x173 : Ojs.t) -> url_URLFormatOptions_of_js x173
-        and t_to_js : t -> Ojs.t =
-          fun (x172 : url_URLFormatOptions) ->
-            url_URLFormatOptions_to_js x172
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x173 : Ojs.t) -> x173
+        and t_to_js : t -> Ojs.t = fun (x172 : Ojs.t) -> x172
         let (get_auth : t -> bool) =
           fun (x174 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x174) "auth")
@@ -499,10 +488,9 @@ module Url =
       end
     module URL =
       struct
-        type t = url_URL
-        let rec t_of_js : Ojs.t -> t =
-          fun (x187 : Ojs.t) -> url_URL_of_js x187
-        and t_to_js : t -> Ojs.t = fun (x186 : url_URL) -> url_URL_to_js x186
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x187 : Ojs.t) -> x187
+        and t_to_js : t -> Ojs.t = fun (x186 : Ojs.t) -> x186
         let (create : input:string -> ?base:t or_string -> unit -> t) =
           fun ~input:(x188 : string) ->
             fun ?base:(x189 : t or_string option) ->
@@ -596,9 +584,9 @@ module Url =
             fun (x220 : string) ->
               Ojs.set_prop_ascii (t_to_js x219) "search"
                 (Ojs.string_to_js x220)
-        let (get_searchParams : t -> url_URLSearchParams) =
+        let (get_search_params : t -> URLSearchParams.t) =
           fun (x221 : t) ->
-            url_URLSearchParams_of_js
+            URLSearchParams.t_of_js
               (Ojs.get_prop_ascii (t_to_js x221) "searchParams")
         let (get_username : t -> string) =
           fun (x222 : t) ->
@@ -608,20 +596,18 @@ module Url =
             fun (x224 : string) ->
               Ojs.set_prop_ascii (t_to_js x223) "username"
                 (Ojs.string_to_js x224)
-        let (toString : t -> string) =
+        let (to_string : t -> string) =
           fun (x225 : t) ->
             Ojs.string_of_js (Ojs.call (t_to_js x225) "toString" [||])
-        let (toJSON : t -> string) =
+        let (to_json : t -> string) =
           fun (x226 : t) ->
             Ojs.string_of_js (Ojs.call (t_to_js x226) "toJSON" [||])
       end
     module URLSearchParams =
       struct
-        type t = url_URLSearchParams
-        let rec t_of_js : Ojs.t -> t =
-          fun (x228 : Ojs.t) -> url_URLSearchParams_of_js x228
-        and t_to_js : t -> Ojs.t =
-          fun (x227 : url_URLSearchParams) -> url_URLSearchParams_to_js x227
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x228 : Ojs.t) -> x228
+        and t_to_js : t -> Ojs.t = fun (x227 : Ojs.t) -> x227
         let (create :
           ?init:(t, (string * string) Iterable.t,
             string list or_string Dict.t, (string * string) list) union4
@@ -715,16 +701,16 @@ module Url =
                  ((Ojs.string_of_js (Ojs.array_get x255 0)),
                    (Ojs.string_of_js (Ojs.array_get x255 1))))
               (Ojs.call (t_to_js x253) "entries" [||])
-        let (forEach :
+        let (for_each :
           t ->
-            callback:(value:string -> name:string -> searchParams:t -> unit)
+            callback:(value:string -> name:string -> search_params:t -> unit)
               -> unit)
           =
           fun (x260 : t) ->
             fun
               ~callback:(x256 :
                           value:string ->
-                            name:string -> searchParams:t -> unit)
+                            name:string -> search_params:t -> unit)
               ->
               ignore
                 (Ojs.call (t_to_js x260) "forEach"
@@ -734,13 +720,13 @@ module Url =
                              fun (x259 : Ojs.t) ->
                                x256 ~value:(Ojs.string_of_js x257)
                                  ~name:(Ojs.string_of_js x258)
-                                 ~searchParams:(t_of_js x259)))|])
+                                 ~search_params:(t_of_js x259)))|])
         let (get_ : t -> name:string -> string or_null) =
           fun (x262 : t) ->
             fun ~name:(x261 : string) ->
               or_null_of_js Ojs.string_of_js
                 (Ojs.call (t_to_js x262) "get" [|(Ojs.string_to_js x261)|])
-        let (getAll : t -> name:string -> string list) =
+        let (get_all : t -> name:string -> string list) =
           fun (x265 : t) ->
             fun ~name:(x264 : string) ->
               Ojs.list_of_js Ojs.string_of_js
@@ -763,7 +749,7 @@ module Url =
                      [|(Ojs.string_to_js x271);(Ojs.string_to_js x272)|])
         let (sort : t -> unit) =
           fun (x274 : t) -> ignore (Ojs.call (t_to_js x274) "sort" [||])
-        let (toString : t -> string) =
+        let (to_string : t -> string) =
           fun (x275 : t) ->
             Ojs.string_of_js (Ojs.call (t_to_js x275) "toString" [||])
         let (values : t -> string IterableIterator.t) =

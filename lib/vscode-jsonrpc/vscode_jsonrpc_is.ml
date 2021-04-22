@@ -20,6 +20,6 @@ let (func : value:any -> bool) =
 let (array : value:any -> bool) =
   fun ~value:(x6 : any) ->
     Ojs.bool_of_js (Ojs.call Ojs.global "array" [|(any_to_js x6)|])
-let (stringArray : value:any -> bool) =
+let (string_array : value:any -> bool) =
   fun ~value:(x7 : any) ->
     Ojs.bool_of_js (Ojs.call Ojs.global "stringArray" [|(any_to_js x7)|])

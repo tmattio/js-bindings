@@ -8,60 +8,60 @@ open Es5
 (* import { WorkspaceEdit } from 'vscode-languageserver-types'; *)
 (* import { ProtocolNotificationType, ProtocolRequestType } from './messages'; *)
 module FileOperationOptions : sig
-  type t = _FileOperationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_didCreate : t -> _FileOperationRegistrationOptions
+  val get_did_create : t -> FileOperationRegistrationOptions.t
     [@@js.get "didCreate"]
 
-  val set_didCreate : t -> _FileOperationRegistrationOptions -> unit
+  val set_did_create : t -> FileOperationRegistrationOptions.t -> unit
     [@@js.set "didCreate"]
 
-  val get_willCreate : t -> _FileOperationRegistrationOptions
+  val get_will_create : t -> FileOperationRegistrationOptions.t
     [@@js.get "willCreate"]
 
-  val set_willCreate : t -> _FileOperationRegistrationOptions -> unit
+  val set_will_create : t -> FileOperationRegistrationOptions.t -> unit
     [@@js.set "willCreate"]
 
-  val get_didRename : t -> _FileOperationRegistrationOptions
+  val get_did_rename : t -> FileOperationRegistrationOptions.t
     [@@js.get "didRename"]
 
-  val set_didRename : t -> _FileOperationRegistrationOptions -> unit
+  val set_did_rename : t -> FileOperationRegistrationOptions.t -> unit
     [@@js.set "didRename"]
 
-  val get_willRename : t -> _FileOperationRegistrationOptions
+  val get_will_rename : t -> FileOperationRegistrationOptions.t
     [@@js.get "willRename"]
 
-  val set_willRename : t -> _FileOperationRegistrationOptions -> unit
+  val set_will_rename : t -> FileOperationRegistrationOptions.t -> unit
     [@@js.set "willRename"]
 
-  val get_didDelete : t -> _FileOperationRegistrationOptions
+  val get_did_delete : t -> FileOperationRegistrationOptions.t
     [@@js.get "didDelete"]
 
-  val set_didDelete : t -> _FileOperationRegistrationOptions -> unit
+  val set_did_delete : t -> FileOperationRegistrationOptions.t -> unit
     [@@js.set "didDelete"]
 
-  val get_willDelete : t -> _FileOperationRegistrationOptions
+  val get_will_delete : t -> FileOperationRegistrationOptions.t
     [@@js.get "willDelete"]
 
-  val set_willDelete : t -> _FileOperationRegistrationOptions -> unit
+  val set_will_delete : t -> FileOperationRegistrationOptions.t -> unit
     [@@js.set "willDelete"]
 end
 [@@js.scope "FileOperationOptions"]
 
 module FileOperationRegistrationOptions : sig
-  type t = _FileOperationRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_filters : t -> _FileOperationFilter list [@@js.get "filters"]
+  val get_filters : t -> FileOperationFilter.t list [@@js.get "filters"]
 
-  val set_filters : t -> _FileOperationFilter list -> unit [@@js.set "filters"]
+  val set_filters : t -> FileOperationFilter.t list -> unit [@@js.set "filters"]
 end
 [@@js.scope "FileOperationRegistrationOptions"]
 
@@ -86,20 +86,20 @@ module FileOperationPatternKind : sig
 end
 
 module FileOperationPatternOptions : sig
-  type t = _FileOperationPatternOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_ignoreCase : t -> bool [@@js.get "ignoreCase"]
+  val get_ignore_case : t -> bool [@@js.get "ignoreCase"]
 
-  val set_ignoreCase : t -> bool -> unit [@@js.set "ignoreCase"]
+  val set_ignore_case : t -> bool -> unit [@@js.set "ignoreCase"]
 end
 [@@js.scope "FileOperationPatternOptions"]
 
 module FileOperationPattern : sig
-  type t = _FileOperationPattern
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -109,19 +109,19 @@ module FileOperationPattern : sig
 
   val set_glob : t -> string -> unit [@@js.set "glob"]
 
-  val get_matches : t -> _FileOperationPatternKind [@@js.get "matches"]
+  val get_matches : t -> FileOperationPatternKind.t [@@js.get "matches"]
 
-  val set_matches : t -> _FileOperationPatternKind -> unit [@@js.set "matches"]
+  val set_matches : t -> FileOperationPatternKind.t -> unit [@@js.set "matches"]
 
-  val get_options : t -> _FileOperationPatternOptions [@@js.get "options"]
+  val get_options : t -> FileOperationPatternOptions.t [@@js.get "options"]
 
-  val set_options : t -> _FileOperationPatternOptions -> unit
+  val set_options : t -> FileOperationPatternOptions.t -> unit
     [@@js.set "options"]
 end
 [@@js.scope "FileOperationPattern"]
 
 module FileOperationFilter : sig
-  type t = _FileOperationFilter
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -131,65 +131,65 @@ module FileOperationFilter : sig
 
   val set_scheme : t -> string -> unit [@@js.set "scheme"]
 
-  val get_pattern : t -> _FileOperationPattern [@@js.get "pattern"]
+  val get_pattern : t -> FileOperationPattern.t [@@js.get "pattern"]
 
-  val set_pattern : t -> _FileOperationPattern -> unit [@@js.set "pattern"]
+  val set_pattern : t -> FileOperationPattern.t -> unit [@@js.set "pattern"]
 end
 [@@js.scope "FileOperationFilter"]
 
 module FileOperationClientCapabilities : sig
-  type t = _FileOperationClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
-  val get_didCreate : t -> bool [@@js.get "didCreate"]
+  val get_did_create : t -> bool [@@js.get "didCreate"]
 
-  val set_didCreate : t -> bool -> unit [@@js.set "didCreate"]
+  val set_did_create : t -> bool -> unit [@@js.set "didCreate"]
 
-  val get_willCreate : t -> bool [@@js.get "willCreate"]
+  val get_will_create : t -> bool [@@js.get "willCreate"]
 
-  val set_willCreate : t -> bool -> unit [@@js.set "willCreate"]
+  val set_will_create : t -> bool -> unit [@@js.set "willCreate"]
 
-  val get_didRename : t -> bool [@@js.get "didRename"]
+  val get_did_rename : t -> bool [@@js.get "didRename"]
 
-  val set_didRename : t -> bool -> unit [@@js.set "didRename"]
+  val set_did_rename : t -> bool -> unit [@@js.set "didRename"]
 
-  val get_willRename : t -> bool [@@js.get "willRename"]
+  val get_will_rename : t -> bool [@@js.get "willRename"]
 
-  val set_willRename : t -> bool -> unit [@@js.set "willRename"]
+  val set_will_rename : t -> bool -> unit [@@js.set "willRename"]
 
-  val get_didDelete : t -> bool [@@js.get "didDelete"]
+  val get_did_delete : t -> bool [@@js.get "didDelete"]
 
-  val set_didDelete : t -> bool -> unit [@@js.set "didDelete"]
+  val set_did_delete : t -> bool -> unit [@@js.set "didDelete"]
 
-  val get_willDelete : t -> bool [@@js.get "willDelete"]
+  val get_will_delete : t -> bool [@@js.get "willDelete"]
 
-  val set_willDelete : t -> bool -> unit [@@js.set "willDelete"]
+  val set_will_delete : t -> bool -> unit [@@js.set "willDelete"]
 end
 [@@js.scope "FileOperationClientCapabilities"]
 
 module CreateFilesParams : sig
-  type t = _CreateFilesParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_files : t -> _FileCreate list [@@js.get "files"]
+  val get_files : t -> FileCreate.t list [@@js.get "files"]
 
-  val set_files : t -> _FileCreate list -> unit [@@js.set "files"]
+  val set_files : t -> FileCreate.t list -> unit [@@js.set "files"]
 end
 [@@js.scope "CreateFilesParams"]
 
 module FileCreate : sig
-  type t = _FileCreate
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -202,50 +202,50 @@ end
 [@@js.scope "FileCreate"]
 
 module RenameFilesParams : sig
-  type t = _RenameFilesParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_files : t -> _FileRename list [@@js.get "files"]
+  val get_files : t -> FileRename.t list [@@js.get "files"]
 
-  val set_files : t -> _FileRename list -> unit [@@js.set "files"]
+  val set_files : t -> FileRename.t list -> unit [@@js.set "files"]
 end
 [@@js.scope "RenameFilesParams"]
 
 module FileRename : sig
-  type t = _FileRename
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_oldUri : t -> string [@@js.get "oldUri"]
+  val get_old_uri : t -> string [@@js.get "oldUri"]
 
-  val set_oldUri : t -> string -> unit [@@js.set "oldUri"]
+  val set_old_uri : t -> string -> unit [@@js.set "oldUri"]
 
-  val get_newUri : t -> string [@@js.get "newUri"]
+  val get_new_uri : t -> string [@@js.get "newUri"]
 
-  val set_newUri : t -> string -> unit [@@js.set "newUri"]
+  val set_new_uri : t -> string -> unit [@@js.set "newUri"]
 end
 [@@js.scope "FileRename"]
 
 module DeleteFilesParams : sig
-  type t = _DeleteFilesParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_files : t -> _FileDelete list [@@js.get "files"]
+  val get_files : t -> FileDelete.t list [@@js.get "files"]
 
-  val set_files : t -> _FileDelete list -> unit [@@js.set "files"]
+  val set_files : t -> FileDelete.t list -> unit [@@js.set "files"]
 end
 [@@js.scope "DeleteFilesParams"]
 
 module FileDelete : sig
-  type t = _FileDelete
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -264,17 +264,17 @@ module WillCreateFilesRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _CreateFilesParams
+    : ( CreateFilesParams.t
       , WorkspaceEdit.t or_null
       , never
       , unit
-      , _FileOperationRegistrationOptions )
+      , FileOperationRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
     type t =
-      ( _CreateFilesParams
+      ( CreateFilesParams.t
       , WorkspaceEdit.t or_null_or_undefined
       , unit )
       RequestHandler.t
@@ -293,13 +293,13 @@ module DidCreateFilesNotification : sig
     [@@js.global "method"]
 
   val type_
-    : ( _CreateFilesParams
-      , _FileOperationRegistrationOptions )
+    : ( CreateFilesParams.t
+      , FileOperationRegistrationOptions.t )
       ProtocolNotificationType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _CreateFilesParams NotificationHandler.t
+    type t = CreateFilesParams.t NotificationHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -315,17 +315,17 @@ module WillRenameFilesRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _RenameFilesParams
+    : ( RenameFilesParams.t
       , WorkspaceEdit.t or_null
       , never
       , unit
-      , _FileOperationRegistrationOptions )
+      , FileOperationRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
     type t =
-      ( _RenameFilesParams
+      ( RenameFilesParams.t
       , WorkspaceEdit.t or_null_or_undefined
       , unit )
       RequestHandler.t
@@ -344,13 +344,13 @@ module DidRenameFilesNotification : sig
     [@@js.global "method"]
 
   val type_
-    : ( _RenameFilesParams
-      , _FileOperationRegistrationOptions )
+    : ( RenameFilesParams.t
+      , FileOperationRegistrationOptions.t )
       ProtocolNotificationType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _RenameFilesParams NotificationHandler.t
+    type t = RenameFilesParams.t NotificationHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -366,13 +366,13 @@ module DidDeleteFilesNotification : sig
     [@@js.global "method"]
 
   val type_
-    : ( _DeleteFilesParams
-      , _FileOperationRegistrationOptions )
+    : ( DeleteFilesParams.t
+      , FileOperationRegistrationOptions.t )
       ProtocolNotificationType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _DeleteFilesParams NotificationHandler.t
+    type t = DeleteFilesParams.t NotificationHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -388,17 +388,17 @@ module WillDeleteFilesRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _DeleteFilesParams
+    : ( DeleteFilesParams.t
       , WorkspaceEdit.t or_null
       , never
       , unit
-      , _FileOperationRegistrationOptions )
+      , FileOperationRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
     type t =
-      ( _DeleteFilesParams
+      ( DeleteFilesParams.t
       , WorkspaceEdit.t or_null_or_undefined
       , unit )
       RequestHandler.t

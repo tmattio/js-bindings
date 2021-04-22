@@ -19,17 +19,14 @@ module Events =
   struct
     module EventEmitterOptions =
       struct
-        type t = events_EventEmitterOptions
-        let rec t_of_js : Ojs.t -> t =
-          fun (x7 : Ojs.t) -> events_EventEmitterOptions_of_js x7
-        and t_to_js : t -> Ojs.t =
-          fun (x6 : events_EventEmitterOptions) ->
-            events_EventEmitterOptions_to_js x6
-        let (get_captureRejections : t -> bool) =
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x7 : Ojs.t) -> x7
+        and t_to_js : t -> Ojs.t = fun (x6 : Ojs.t) -> x6
+        let (get_capture_rejections : t -> bool) =
           fun (x8 : t) ->
             Ojs.bool_of_js
               (Ojs.get_prop_ascii (t_to_js x8) "captureRejections")
-        let (set_captureRejections : t -> bool -> unit) =
+        let (set_capture_rejections : t -> bool -> unit) =
           fun (x9 : t) ->
             fun (x10 : bool) ->
               Ojs.set_prop_ascii (t_to_js x9) "captureRejections"
@@ -37,12 +34,9 @@ module Events =
       end
     module NodeEventTarget =
       struct
-        type t = events_NodeEventTarget
-        let rec t_of_js : Ojs.t -> t =
-          fun (x12 : Ojs.t) -> events_NodeEventTarget_of_js x12
-        and t_to_js : t -> Ojs.t =
-          fun (x11 : events_NodeEventTarget) ->
-            events_NodeEventTarget_to_js x11
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x12 : Ojs.t) -> x12
+        and t_to_js : t -> Ojs.t = fun (x11 : Ojs.t) -> x11
         let (once :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
@@ -63,13 +57,10 @@ module Events =
       end
     module DOMEventTarget =
       struct
-        type t = events_DOMEventTarget
-        let rec t_of_js : Ojs.t -> t =
-          fun (x20 : Ojs.t) -> events_DOMEventTarget_of_js x20
-        and t_to_js : t -> Ojs.t =
-          fun (x19 : events_DOMEventTarget) ->
-            events_DOMEventTarget_to_js x19
-        let (addEventListener :
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x20 : Ojs.t) -> x20
+        and t_to_js : t -> Ojs.t = fun (x19 : Ojs.t) -> x19
+        let (add_event_listener :
           t ->
             event:string ->
               listener:(args:any list -> unit) ->
@@ -108,13 +99,11 @@ module Events =
       end
     module EventEmitter =
       struct
-        type t = events_EventEmitter
-        let rec t_of_js : Ojs.t -> t =
-          fun (x31 : Ojs.t) -> events_EventEmitter_of_js x31
-        and t_to_js : t -> Ojs.t =
-          fun (x30 : events_EventEmitter) -> events_EventEmitter_to_js x30
-        let (create : ?options:events_EventEmitterOptions -> unit -> t) =
-          fun ?options:(x32 : events_EventEmitterOptions option) ->
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x31 : Ojs.t) -> x31
+        and t_to_js : t -> Ojs.t = fun (x30 : Ojs.t) -> x30
+        let (create : ?options:EventEmitterOptions.t -> unit -> t) =
+          fun ?options:(x32 : EventEmitterOptions.t option) ->
             fun () ->
               t_of_js
                 (Ojs.new_obj_arr
@@ -126,74 +115,73 @@ module Events =
                      | Some x34 ->
                          ignore
                            (Ojs.call x33 "push"
-                              [|(events_EventEmitterOptions_to_js x34)|])
+                              [|(EventEmitterOptions.t_to_js x34)|])
                      | None -> ());
                     x33))
         let (once :
-          emitter:events_NodeEventTarget ->
+          emitter:NodeEventTarget.t ->
             event:symbol or_string -> any list Promise.t)
           =
-          fun ~emitter:(x35 : events_NodeEventTarget) ->
+          fun ~emitter:(x35 : NodeEventTarget.t) ->
             fun ~event:(x36 : symbol or_string) ->
               Promise.t_of_js
                 (fun (x38 : Ojs.t) -> Ojs.list_of_js any_of_js x38)
                 (Ojs.call (Ojs.get_prop_ascii Import.events "EventEmitter")
                    "once"
-                   [|(events_NodeEventTarget_to_js x35);(or_string_to_js
-                                                           symbol_to_js x36)|])
+                   [|(NodeEventTarget.t_to_js x35);(or_string_to_js
+                                                      symbol_to_js x36)|])
         let (once' :
-          emitter:events_DOMEventTarget -> event:string -> any list Promise.t)
-          =
-          fun ~emitter:(x40 : events_DOMEventTarget) ->
+          emitter:DOMEventTarget.t -> event:string -> any list Promise.t) =
+          fun ~emitter:(x40 : DOMEventTarget.t) ->
             fun ~event:(x41 : string) ->
               Promise.t_of_js
                 (fun (x42 : Ojs.t) -> Ojs.list_of_js any_of_js x42)
                 (Ojs.call (Ojs.get_prop_ascii Import.events "EventEmitter")
                    "once"
-                   [|(events_DOMEventTarget_to_js x40);(Ojs.string_to_js x41)|])
+                   [|(DOMEventTarget.t_to_js x40);(Ojs.string_to_js x41)|])
         let (on : emitter:t -> event:string -> any AsyncIterableIterator.t) =
           fun ~emitter:(x44 : t) ->
             fun ~event:(x45 : string) ->
               AsyncIterableIterator.t_of_js any_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.events "EventEmitter")
                    "on" [|(t_to_js x44);(Ojs.string_to_js x45)|])
-        let (listenerCount : emitter:t -> event:symbol or_string -> int) =
+        let (listener_count : emitter:t -> event:symbol or_string -> int) =
           fun ~emitter:(x47 : t) ->
             fun ~event:(x48 : symbol or_string) ->
               Ojs.int_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.events "EventEmitter")
                    "listenerCount"
                    [|(t_to_js x47);(or_string_to_js symbol_to_js x48)|])
-        let (get_errorMonitor : unit -> any) =
+        let (get_error_monitor : unit -> any) =
           fun () ->
             any_of_js
               (Ojs.get_prop_ascii
                  (Ojs.get_prop_ascii Import.events "EventEmitter")
                  "errorMonitor")
-        let (get_captureRejectionSymbol : unit -> any) =
+        let (get_capture_rejection_symbol : unit -> any) =
           fun () ->
             any_of_js
               (Ojs.get_prop_ascii
                  (Ojs.get_prop_ascii Import.events "EventEmitter")
                  "captureRejectionSymbol")
-        let (get_captureRejections : unit -> bool) =
+        let (get_capture_rejections : unit -> bool) =
           fun () ->
             Ojs.bool_of_js
               (Ojs.get_prop_ascii
                  (Ojs.get_prop_ascii Import.events "EventEmitter")
                  "captureRejections")
-        let (set_captureRejections : bool -> unit) =
+        let (set_capture_rejections : bool -> unit) =
           fun (x50 : bool) ->
             Ojs.set_prop_ascii
               (Ojs.get_prop_ascii Import.events "EventEmitter")
               "captureRejections" (Ojs.bool_to_js x50)
-        let (get_defaultMaxListeners : unit -> int) =
+        let (get_default_max_listeners : unit -> int) =
           fun () ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii
                  (Ojs.get_prop_ascii Import.events "EventEmitter")
                  "defaultMaxListeners")
-        let (set_defaultMaxListeners : int -> unit) =
+        let (set_default_max_listeners : int -> unit) =
           fun (x51 : int) ->
             Ojs.set_prop_ascii
               (Ojs.get_prop_ascii Import.events "EventEmitter")
@@ -202,13 +190,10 @@ module Events =
   end
 module EventEmitter =
   struct
-    type t = events_global_NodeJS_EventEmitter
-    let rec t_of_js : Ojs.t -> t =
-      fun (x53 : Ojs.t) -> events_global_NodeJS_EventEmitter_of_js x53
-    and t_to_js : t -> Ojs.t =
-      fun (x52 : events_global_NodeJS_EventEmitter) ->
-        events_global_NodeJS_EventEmitter_to_js x52
-    let (addListener :
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x53 : Ojs.t) -> x53
+    and t_to_js : t -> Ojs.t = fun (x52 : Ojs.t) -> x52
+    let (add_listener :
       t -> event:symbol or_string -> listener:(args:any list -> unit) -> t) =
       fun (x59 : t) ->
         fun ~event:(x54 : symbol or_string) ->
@@ -250,7 +235,7 @@ module EventEmitter =
                                                               Ojs.list_of_js_from
                                                                 any_of_js x69
                                                                 0)))|])
-    let (removeListener :
+    let (remove_listener :
       t -> event:symbol or_string -> listener:(args:any list -> unit) -> t) =
       fun (x77 : t) ->
         fun ~event:(x72 : symbol or_string) ->
@@ -278,7 +263,7 @@ module EventEmitter =
                                                               Ojs.list_of_js_from
                                                                 any_of_js x81
                                                                 0)))|])
-    let (removeAllListeners : t -> ?event:symbol or_string -> unit -> t) =
+    let (remove_all_listeners : t -> ?event:symbol or_string -> unit -> t) =
       fun (x88 : t) ->
         fun ?event:(x84 : symbol or_string option) ->
           fun () ->
@@ -296,12 +281,12 @@ module EventEmitter =
                                    [|(or_string_to_js symbol_to_js x86)|])
                           | None -> ());
                          x85))|])
-    let (setMaxListeners : t -> n:int -> t) =
+    let (set_max_listeners : t -> n:int -> t) =
       fun (x91 : t) ->
         fun ~n:(x90 : int) ->
           t_of_js
             (Ojs.call (t_to_js x91) "setMaxListeners" [|(Ojs.int_to_js x90)|])
-    let (getMaxListeners : t -> int) =
+    let (get_max_listeners : t -> int) =
       fun (x92 : t) ->
         Ojs.int_of_js (Ojs.call (t_to_js x92) "getMaxListeners" [||])
     let (listeners : t -> event:symbol or_string -> untyped_function list) =
@@ -310,8 +295,8 @@ module EventEmitter =
           Ojs.list_of_js untyped_function_of_js
             (Ojs.call (t_to_js x95) "listeners"
                [|(or_string_to_js symbol_to_js x93)|])
-    let (rawListeners : t -> event:symbol or_string -> untyped_function list)
-      =
+    let (raw_listeners :
+      t -> event:symbol or_string -> untyped_function list) =
       fun (x99 : t) ->
         fun ~event:(x97 : symbol or_string) ->
           Ojs.list_of_js untyped_function_of_js
@@ -337,13 +322,13 @@ module EventEmitter =
                                  (Ojs.call x103 "push" [|(any_to_js x104)|]))
                             x102;
                           x103))|])
-    let (listenerCount : t -> event:symbol or_string -> int) =
+    let (listener_count : t -> event:symbol or_string -> int) =
       fun (x110 : t) ->
         fun ~event:(x108 : symbol or_string) ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x110) "listenerCount"
                [|(or_string_to_js symbol_to_js x108)|])
-    let (prependListener :
+    let (prepend_listener :
       t -> event:symbol or_string -> listener:(args:any list -> unit) -> t) =
       fun (x116 : t) ->
         fun ~event:(x111 : symbol or_string) ->
@@ -357,7 +342,7 @@ module EventEmitter =
                                                                Ojs.list_of_js_from
                                                                  any_of_js
                                                                  x114 0)))|])
-    let (prependOnceListener :
+    let (prepend_once_listener :
       t -> event:symbol or_string -> listener:(args:any list -> unit) -> t) =
       fun (x122 : t) ->
         fun ~event:(x117 : symbol or_string) ->
@@ -371,7 +356,7 @@ module EventEmitter =
                                                                Ojs.list_of_js_from
                                                                  any_of_js
                                                                  x120 0)))|])
-    let (eventNames : t -> symbol or_string list) =
+    let (event_names : t -> symbol or_string list) =
       fun (x123 : t) ->
         Ojs.list_of_js
           (fun (x124 : Ojs.t) -> or_string_of_js symbol_of_js x124)

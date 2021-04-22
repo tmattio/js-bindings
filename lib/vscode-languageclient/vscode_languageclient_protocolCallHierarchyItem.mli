@@ -6,7 +6,7 @@ open Es5
 
 (* import * as code from 'vscode'; *)
 module ProtocolCallHierarchyItem : sig
-  type t = _ProtocolCallHierarchyItem
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -22,7 +22,7 @@ module ProtocolCallHierarchyItem : sig
     -> detail:string
     -> uri:Code.Uri.t
     -> range:Code.Range.t
-    -> selectionRange:Code.Range.t
+    -> selection_range:Code.Range.t
     -> ?data:unknown
     -> unit
     -> t

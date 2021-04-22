@@ -25,14 +25,14 @@ module ProxyHandler : sig
 
   val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
 
-  val apply : 'T t -> target:'T -> thisArg:any -> argArray:any list -> any
+  val apply : 'T t -> target:'T -> this_arg:any -> arg_array:any list -> any
     [@@js.call "apply"]
 
   val construct
     :  'T t
     -> target:'T
-    -> argArray:any list
-    -> newTarget:untyped_function
+    -> arg_array:any list
+    -> new_target:untyped_function
     -> untyped_object
     [@@js.call "construct"]
 

@@ -25,7 +25,7 @@ module Http : sig
   open Node_stream
 
   module IncomingHttpHeaders : sig
-    type t = http_IncomingHttpHeaders
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -324,18 +324,18 @@ module Http : sig
   end
 
   module OutgoingHttpHeaders : sig
-    type t = http_OutgoingHttpHeaders
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val cast : t -> http_OutgoingHttpHeader Dict.t [@@js.cast]
+    val cast : t -> OutgoingHttpHeader.t Dict.t [@@js.cast]
   end
   [@@js.scope "OutgoingHttpHeaders"]
 
   module ClientRequestArgs : sig
-    type t = http_ClientRequestArgs
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -361,21 +361,22 @@ module Http : sig
 
     val set_port : t -> string or_number or_null -> unit [@@js.set "port"]
 
-    val get_defaultPort : t -> string or_number [@@js.get "defaultPort"]
+    val get_default_port : t -> string or_number [@@js.get "defaultPort"]
 
-    val set_defaultPort : t -> string or_number -> unit [@@js.set "defaultPort"]
+    val set_default_port : t -> string or_number -> unit
+      [@@js.set "defaultPort"]
 
-    val get_localAddress : t -> string [@@js.get "localAddress"]
+    val get_local_address : t -> string [@@js.get "localAddress"]
 
-    val set_localAddress : t -> string -> unit [@@js.set "localAddress"]
+    val set_local_address : t -> string -> unit [@@js.set "localAddress"]
 
-    val get_socketPath : t -> string [@@js.get "socketPath"]
+    val get_socket_path : t -> string [@@js.get "socketPath"]
 
-    val set_socketPath : t -> string -> unit [@@js.set "socketPath"]
+    val set_socket_path : t -> string -> unit [@@js.set "socketPath"]
 
-    val get_maxHeaderSize : t -> int [@@js.get "maxHeaderSize"]
+    val get_max_header_size : t -> int [@@js.get "maxHeaderSize"]
 
-    val set_maxHeaderSize : t -> int -> unit [@@js.set "maxHeaderSize"]
+    val set_max_header_size : t -> int -> unit [@@js.set "maxHeaderSize"]
 
     val get_method : t -> string [@@js.get "method"]
 
@@ -385,31 +386,31 @@ module Http : sig
 
     val set_path : t -> string or_null -> unit [@@js.set "path"]
 
-    val get_headers : t -> http_OutgoingHttpHeaders [@@js.get "headers"]
+    val get_headers : t -> OutgoingHttpHeaders.t [@@js.get "headers"]
 
-    val set_headers : t -> http_OutgoingHttpHeaders -> unit [@@js.set "headers"]
+    val set_headers : t -> OutgoingHttpHeaders.t -> unit [@@js.set "headers"]
 
     val get_auth : t -> string or_null [@@js.get "auth"]
 
     val set_auth : t -> string or_null -> unit [@@js.set "auth"]
 
-    val get_agent : t -> http_Agent or_boolean [@@js.get "agent"]
+    val get_agent : t -> Agent.t or_boolean [@@js.get "agent"]
 
-    val set_agent : t -> http_Agent or_boolean -> unit [@@js.set "agent"]
+    val set_agent : t -> Agent.t or_boolean -> unit [@@js.set "agent"]
 
-    val get__defaultAgent : t -> http_Agent [@@js.get "_defaultAgent"]
+    val get_default_agent : t -> Agent.t [@@js.get "_defaultAgent"]
 
-    val set__defaultAgent : t -> http_Agent -> unit [@@js.set "_defaultAgent"]
+    val set_default_agent : t -> Agent.t -> unit [@@js.set "_defaultAgent"]
 
     val get_timeout : t -> int [@@js.get "timeout"]
 
     val set_timeout : t -> int -> unit [@@js.set "timeout"]
 
-    val get_setHost : t -> bool [@@js.get "setHost"]
+    val get_set_host : t -> bool [@@js.get "setHost"]
 
-    val set_setHost : t -> bool -> unit [@@js.set "setHost"]
+    val set_set_host : t -> bool -> unit [@@js.set "setHost"]
 
-    val createConnection
+    val create_connection
       :  t
       -> options:t
       -> oncreate:(err:Error.t -> socket:Node_net.Net.Socket.t -> unit)
@@ -419,107 +420,107 @@ module Http : sig
   [@@js.scope "ClientRequestArgs"]
 
   module ServerOptions : sig
-    type t = http_ServerOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_IncomingMessage
+    val get_incoming_message
       :  t
       -> (* FIXME: unknown type 'typeof IncomingMessage' *) any
       [@@js.get "IncomingMessage"]
 
-    val set_IncomingMessage
+    val set_incoming_message
       :  t
       -> (* FIXME: unknown type 'typeof IncomingMessage' *) any
       -> unit
       [@@js.set "IncomingMessage"]
 
-    val get_ServerResponse
+    val get_server_response
       :  t
       -> (* FIXME: unknown type 'typeof ServerResponse' *) any
       [@@js.get "ServerResponse"]
 
-    val set_ServerResponse
+    val set_server_response
       :  t
       -> (* FIXME: unknown type 'typeof ServerResponse' *) any
       -> unit
       [@@js.set "ServerResponse"]
 
-    val get_maxHeaderSize : t -> int [@@js.get "maxHeaderSize"]
+    val get_max_header_size : t -> int [@@js.get "maxHeaderSize"]
 
-    val set_maxHeaderSize : t -> int -> unit [@@js.set "maxHeaderSize"]
+    val set_max_header_size : t -> int -> unit [@@js.set "maxHeaderSize"]
 
-    val get_insecureHTTPParser : t -> bool [@@js.get "insecureHTTPParser"]
+    val get_insecure_http_parser : t -> bool [@@js.get "insecureHTTPParser"]
 
-    val set_insecureHTTPParser : t -> bool -> unit
+    val set_insecure_http_parser : t -> bool -> unit
       [@@js.set "insecureHTTPParser"]
   end
   [@@js.scope "ServerOptions"]
 
   module RequestListener : sig
-    type t = http_RequestListener
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val apply : t -> req:http_IncomingMessage -> res:http_ServerResponse -> unit
+    val apply : t -> req:IncomingMessage.t -> res:ServerResponse.t -> unit
       [@@js.apply]
   end
   [@@js.scope "RequestListener"]
 
   module HttpBase : sig
-    type t = http_HttpBase
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val setTimeout : t -> ?msecs:int -> ?callback:(unit -> unit) -> unit -> t
+    val set_timeout : t -> ?msecs:int -> ?callback:(unit -> unit) -> unit -> t
       [@@js.call "setTimeout"]
 
-    val setTimeout' : t -> callback:(unit -> unit) -> t [@@js.call "setTimeout"]
+    val set_timeout' : t -> callback:(unit -> unit) -> t
+      [@@js.call "setTimeout"]
 
-    val get_maxHeadersCount : t -> int or_null [@@js.get "maxHeadersCount"]
+    val get_max_headers_count : t -> int or_null [@@js.get "maxHeadersCount"]
 
-    val set_maxHeadersCount : t -> int or_null -> unit
+    val set_max_headers_count : t -> int or_null -> unit
       [@@js.set "maxHeadersCount"]
 
     val get_timeout : t -> int [@@js.get "timeout"]
 
     val set_timeout : t -> int -> unit [@@js.set "timeout"]
 
-    val get_headersTimeout : t -> int [@@js.get "headersTimeout"]
+    val get_headers_timeout : t -> int [@@js.get "headersTimeout"]
 
-    val set_headersTimeout : t -> int -> unit [@@js.set "headersTimeout"]
+    val set_headers_timeout : t -> int -> unit [@@js.set "headersTimeout"]
 
-    val get_keepAliveTimeout : t -> int [@@js.get "keepAliveTimeout"]
+    val get_keep_alive_timeout : t -> int [@@js.get "keepAliveTimeout"]
 
-    val set_keepAliveTimeout : t -> int -> unit [@@js.set "keepAliveTimeout"]
+    val set_keep_alive_timeout : t -> int -> unit [@@js.set "keepAliveTimeout"]
 
-    val get_requestTimeout : t -> int [@@js.get "requestTimeout"]
+    val get_request_timeout : t -> int [@@js.get "requestTimeout"]
 
-    val set_requestTimeout : t -> int -> unit [@@js.set "requestTimeout"]
+    val set_request_timeout : t -> int -> unit [@@js.set "requestTimeout"]
   end
   [@@js.scope "HttpBase"]
 
   module Server : sig
-    type t = http_Server
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val cast : t -> http_HttpBase [@@js.cast]
+    val cast : t -> HttpBase.t [@@js.cast]
 
-    val create : ?requestListener:http_RequestListener -> unit -> t
-      [@@js.create]
+    val create : ?request_listener:RequestListener.t -> unit -> t [@@js.create]
 
     val create'
-      :  options:http_ServerOptions
-      -> ?requestListener:http_RequestListener
+      :  options:ServerOptions.t
+      -> ?request_listener:RequestListener.t
       -> unit
       -> t
       [@@js.create]
@@ -529,7 +530,7 @@ module Http : sig
   [@@js.scope "Server"]
 
   module OutgoingMessage : sig
-    type t = http_OutgoingMessage
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -539,31 +540,31 @@ module Http : sig
 
     val set_upgrading : t -> bool -> unit [@@js.set "upgrading"]
 
-    val get_chunkedEncoding : t -> bool [@@js.get "chunkedEncoding"]
+    val get_chunked_encoding : t -> bool [@@js.get "chunkedEncoding"]
 
-    val set_chunkedEncoding : t -> bool -> unit [@@js.set "chunkedEncoding"]
+    val set_chunked_encoding : t -> bool -> unit [@@js.set "chunkedEncoding"]
 
-    val get_shouldKeepAlive : t -> bool [@@js.get "shouldKeepAlive"]
+    val get_should_keep_alive : t -> bool [@@js.get "shouldKeepAlive"]
 
-    val set_shouldKeepAlive : t -> bool -> unit [@@js.set "shouldKeepAlive"]
+    val set_should_keep_alive : t -> bool -> unit [@@js.set "shouldKeepAlive"]
 
-    val get_useChunkedEncodingByDefault : t -> bool
+    val get_use_chunked_encoding_by_default : t -> bool
       [@@js.get "useChunkedEncodingByDefault"]
 
-    val set_useChunkedEncodingByDefault : t -> bool -> unit
+    val set_use_chunked_encoding_by_default : t -> bool -> unit
       [@@js.set "useChunkedEncodingByDefault"]
 
-    val get_sendDate : t -> bool [@@js.get "sendDate"]
+    val get_send_date : t -> bool [@@js.get "sendDate"]
 
-    val set_sendDate : t -> bool -> unit [@@js.set "sendDate"]
+    val set_send_date : t -> bool -> unit [@@js.set "sendDate"]
 
     val get_finished : t -> bool [@@js.get "finished"]
 
     val set_finished : t -> bool -> unit [@@js.set "finished"]
 
-    val get_headersSent : t -> bool [@@js.get "headersSent"]
+    val get_headers_sent : t -> bool [@@js.get "headersSent"]
 
-    val set_headersSent : t -> bool -> unit [@@js.set "headersSent"]
+    val set_headers_sent : t -> bool -> unit [@@js.set "headersSent"]
 
     val get_connection : t -> Node_net.Net.Socket.t or_null
       [@@js.get "connection"]
@@ -578,130 +579,130 @@ module Http : sig
 
     val create : unit -> t [@@js.create]
 
-    val setTimeout : t -> msecs:int -> ?callback:(unit -> unit) -> unit -> t
+    val set_timeout : t -> msecs:int -> ?callback:(unit -> unit) -> unit -> t
       [@@js.call "setTimeout"]
 
-    val setHeader
+    val set_header
       :  t
       -> name:string
       -> value:string list or_string or_number
       -> unit
       [@@js.call "setHeader"]
 
-    val getHeader
+    val get_header
       :  t
       -> name:string
       -> string list or_string or_number or_undefined
       [@@js.call "getHeader"]
 
-    val getHeaders : t -> http_OutgoingHttpHeaders [@@js.call "getHeaders"]
+    val get_headers : t -> OutgoingHttpHeaders.t [@@js.call "getHeaders"]
 
-    val getHeaderNames : t -> string list [@@js.call "getHeaderNames"]
+    val get_header_names : t -> string list [@@js.call "getHeaderNames"]
 
-    val hasHeader : t -> name:string -> bool [@@js.call "hasHeader"]
+    val has_header : t -> name:string -> bool [@@js.call "hasHeader"]
 
-    val removeHeader : t -> name:string -> unit [@@js.call "removeHeader"]
+    val remove_header : t -> name:string -> unit [@@js.call "removeHeader"]
 
-    val addTrailers
+    val add_trailers
       :  t
-      -> headers:(http_OutgoingHttpHeaders, (string * string) list) union2
+      -> headers:(OutgoingHttpHeaders.t, (string * string) list) union2
       -> unit
       [@@js.call "addTrailers"]
 
-    val flushHeaders : t -> unit [@@js.call "flushHeaders"]
+    val flush_headers : t -> unit [@@js.call "flushHeaders"]
 
     val cast : t -> Stream.Writable.t [@@js.cast]
   end
   [@@js.scope "OutgoingMessage"]
 
   module ServerResponse : sig
-    type t = http_ServerResponse
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_statusCode : t -> int [@@js.get "statusCode"]
+    val get_status_code : t -> int [@@js.get "statusCode"]
 
-    val set_statusCode : t -> int -> unit [@@js.set "statusCode"]
+    val set_status_code : t -> int -> unit [@@js.set "statusCode"]
 
-    val get_statusMessage : t -> string [@@js.get "statusMessage"]
+    val get_status_message : t -> string [@@js.get "statusMessage"]
 
-    val set_statusMessage : t -> string -> unit [@@js.set "statusMessage"]
+    val set_status_message : t -> string -> unit [@@js.set "statusMessage"]
 
-    val create : req:http_IncomingMessage -> t [@@js.create]
+    val create : req:IncomingMessage.t -> t [@@js.create]
 
-    val assignSocket : t -> socket:Node_net.Net.Socket.t -> unit
+    val assign_socket : t -> socket:Node_net.Net.Socket.t -> unit
       [@@js.call "assignSocket"]
 
-    val detachSocket : t -> socket:Node_net.Net.Socket.t -> unit
+    val detach_socket : t -> socket:Node_net.Net.Socket.t -> unit
       [@@js.call "detachSocket"]
 
-    val writeContinue : t -> ?callback:(unit -> unit) -> unit -> unit
+    val write_continue : t -> ?callback:(unit -> unit) -> unit -> unit
       [@@js.call "writeContinue"]
 
-    val writeHead
+    val write_head
       :  t
-      -> statusCode:int
-      -> ?reasonPhrase:string
-      -> ?headers:(http_OutgoingHttpHeaders, http_OutgoingHttpHeader) or_array
+      -> status_code:int
+      -> ?reason_phrase:string
+      -> ?headers:(OutgoingHttpHeaders.t, OutgoingHttpHeader.t) or_array
       -> unit
       -> t
       [@@js.call "writeHead"]
 
-    val writeHead'
+    val write_head'
       :  t
-      -> statusCode:int
-      -> ?headers:(http_OutgoingHttpHeaders, http_OutgoingHttpHeader) or_array
+      -> status_code:int
+      -> ?headers:(OutgoingHttpHeaders.t, OutgoingHttpHeader.t) or_array
       -> unit
       -> t
       [@@js.call "writeHead"]
 
-    val writeProcessing : t -> unit [@@js.call "writeProcessing"]
+    val write_processing : t -> unit [@@js.call "writeProcessing"]
 
-    val cast : t -> http_OutgoingMessage [@@js.cast]
+    val cast : t -> OutgoingMessage.t [@@js.cast]
   end
   [@@js.scope "ServerResponse"]
 
   module InformationEvent : sig
-    type t = http_InformationEvent
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_statusCode : t -> int [@@js.get "statusCode"]
+    val get_status_code : t -> int [@@js.get "statusCode"]
 
-    val set_statusCode : t -> int -> unit [@@js.set "statusCode"]
+    val set_status_code : t -> int -> unit [@@js.set "statusCode"]
 
-    val get_statusMessage : t -> string [@@js.get "statusMessage"]
+    val get_status_message : t -> string [@@js.get "statusMessage"]
 
-    val set_statusMessage : t -> string -> unit [@@js.set "statusMessage"]
+    val set_status_message : t -> string -> unit [@@js.set "statusMessage"]
 
-    val get_httpVersion : t -> string [@@js.get "httpVersion"]
+    val get_http_version : t -> string [@@js.get "httpVersion"]
 
-    val set_httpVersion : t -> string -> unit [@@js.set "httpVersion"]
+    val set_http_version : t -> string -> unit [@@js.set "httpVersion"]
 
-    val get_httpVersionMajor : t -> int [@@js.get "httpVersionMajor"]
+    val get_http_version_major : t -> int [@@js.get "httpVersionMajor"]
 
-    val set_httpVersionMajor : t -> int -> unit [@@js.set "httpVersionMajor"]
+    val set_http_version_major : t -> int -> unit [@@js.set "httpVersionMajor"]
 
-    val get_httpVersionMinor : t -> int [@@js.get "httpVersionMinor"]
+    val get_http_version_minor : t -> int [@@js.get "httpVersionMinor"]
 
-    val set_httpVersionMinor : t -> int -> unit [@@js.set "httpVersionMinor"]
+    val set_http_version_minor : t -> int -> unit [@@js.set "httpVersionMinor"]
 
-    val get_headers : t -> http_IncomingHttpHeaders [@@js.get "headers"]
+    val get_headers : t -> IncomingHttpHeaders.t [@@js.get "headers"]
 
-    val set_headers : t -> http_IncomingHttpHeaders -> unit [@@js.set "headers"]
+    val set_headers : t -> IncomingHttpHeaders.t -> unit [@@js.set "headers"]
 
-    val get_rawHeaders : t -> string list [@@js.get "rawHeaders"]
+    val get_raw_headers : t -> string list [@@js.get "rawHeaders"]
 
-    val set_rawHeaders : t -> string list -> unit [@@js.set "rawHeaders"]
+    val set_raw_headers : t -> string list -> unit [@@js.set "rawHeaders"]
   end
   [@@js.scope "InformationEvent"]
 
   module ClientRequest : sig
-    type t = http_ClientRequest
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -720,8 +721,8 @@ module Http : sig
     val set_protocol : t -> string -> unit [@@js.set "protocol"]
 
     val create
-      :  url:(http_ClientRequestArgs, Node_url.Url.Url.t) union2 or_string
-      -> ?cb:(res:http_IncomingMessage -> unit)
+      :  url:(ClientRequestArgs.t, Node_url.Url.Url.t) union2 or_string
+      -> ?cb:(res:IncomingMessage.t -> unit)
       -> unit
       -> t
       [@@js.create]
@@ -736,129 +737,130 @@ module Http : sig
 
     val abort : t -> unit [@@js.call "abort"]
 
-    val onSocket : t -> socket:Node_net.Net.Socket.t -> unit
+    val on_socket : t -> socket:Node_net.Net.Socket.t -> unit
       [@@js.call "onSocket"]
 
-    val setTimeout : t -> timeout:int -> ?callback:(unit -> unit) -> unit -> t
+    val set_timeout : t -> timeout:int -> ?callback:(unit -> unit) -> unit -> t
       [@@js.call "setTimeout"]
 
-    val setNoDelay : t -> ?noDelay:bool -> unit -> unit [@@js.call "setNoDelay"]
+    val set_no_delay : t -> ?no_delay:bool -> unit -> unit
+      [@@js.call "setNoDelay"]
 
-    val setSocketKeepAlive
+    val set_socket_keep_alive
       :  t
       -> ?enable:bool
-      -> ?initialDelay:int
+      -> ?initial_delay:int
       -> unit
       -> unit
       [@@js.call "setSocketKeepAlive"]
 
-    val addListener
+    val add_listener
       :  t
       -> event:([ `abort ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'
+    val add_listener'
       :  t
       -> event:([ `connect ][@js.enum])
       -> listener:
-           (response:http_IncomingMessage
+           (response:IncomingMessage.t
             -> socket:Node_net.Net.Socket.t
             -> head:Buffer.t
             -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''
+    val add_listener''
       :  t
       -> event:([ `continue ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''
+    val add_listener'''
       :  t
       -> event:([ `information ][@js.enum])
-      -> listener:(info:http_InformationEvent -> unit)
+      -> listener:(info:InformationEvent.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''
+    val add_listener''''
       :  t
       -> event:([ `response ][@js.enum])
-      -> listener:(response:http_IncomingMessage -> unit)
+      -> listener:(response:IncomingMessage.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''
+    val add_listener'''''
       :  t
       -> event:([ `socket ][@js.enum])
       -> listener:(socket:Node_net.Net.Socket.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''''
+    val add_listener''''''
       :  t
       -> event:([ `timeout ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''''
+    val add_listener'''''''
       :  t
       -> event:([ `upgrade ][@js.enum])
       -> listener:
-           (response:http_IncomingMessage
+           (response:IncomingMessage.t
             -> socket:Node_net.Net.Socket.t
             -> head:Buffer.t
             -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''''''
+    val add_listener''''''''
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''''''
+    val add_listener'''''''''
       :  t
       -> event:([ `drain ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''''''''
+    val add_listener''''''''''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''''''''
+    val add_listener'''''''''''
       :  t
       -> event:([ `finish ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''''''''''
+    val add_listener''''''''''''
       :  t
       -> event:([ `pipe ][@js.enum])
       -> listener:(src:Stream.Readable.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''''''''''
+    val add_listener'''''''''''''
       :  t
       -> event:([ `unpipe ][@js.enum])
       -> listener:(src:Stream.Readable.t -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''''''''''''
+    val add_listener''''''''''''''
       :  t
       -> event:symbol or_string
       -> listener:(args:(any list[@js.variadic]) -> unit)
@@ -872,7 +874,7 @@ module Http : sig
       :  t
       -> event:([ `connect ][@js.enum])
       -> listener:
-           (response:http_IncomingMessage
+           (response:IncomingMessage.t
             -> socket:Node_net.Net.Socket.t
             -> head:Buffer.t
             -> unit)
@@ -889,14 +891,14 @@ module Http : sig
     val on'''
       :  t
       -> event:([ `information ][@js.enum])
-      -> listener:(info:http_InformationEvent -> unit)
+      -> listener:(info:InformationEvent.t -> unit)
       -> t
       [@@js.call "on"]
 
     val on''''
       :  t
       -> event:([ `response ][@js.enum])
-      -> listener:(response:http_IncomingMessage -> unit)
+      -> listener:(response:IncomingMessage.t -> unit)
       -> t
       [@@js.call "on"]
 
@@ -918,7 +920,7 @@ module Http : sig
       :  t
       -> event:([ `upgrade ][@js.enum])
       -> listener:
-           (response:http_IncomingMessage
+           (response:IncomingMessage.t
             -> socket:Node_net.Net.Socket.t
             -> head:Buffer.t
             -> unit)
@@ -981,7 +983,7 @@ module Http : sig
       :  t
       -> event:([ `connect ][@js.enum])
       -> listener:
-           (response:http_IncomingMessage
+           (response:IncomingMessage.t
             -> socket:Node_net.Net.Socket.t
             -> head:Buffer.t
             -> unit)
@@ -998,14 +1000,14 @@ module Http : sig
     val once'''
       :  t
       -> event:([ `information ][@js.enum])
-      -> listener:(info:http_InformationEvent -> unit)
+      -> listener:(info:InformationEvent.t -> unit)
       -> t
       [@@js.call "once"]
 
     val once''''
       :  t
       -> event:([ `response ][@js.enum])
-      -> listener:(response:http_IncomingMessage -> unit)
+      -> listener:(response:IncomingMessage.t -> unit)
       -> t
       [@@js.call "once"]
 
@@ -1027,7 +1029,7 @@ module Http : sig
       :  t
       -> event:([ `upgrade ][@js.enum])
       -> listener:
-           (response:http_IncomingMessage
+           (response:IncomingMessage.t
             -> socket:Node_net.Net.Socket.t
             -> head:Buffer.t
             -> unit)
@@ -1083,233 +1085,233 @@ module Http : sig
       -> t
       [@@js.call "once"]
 
-    val prependListener
+    val prepend_listener
       :  t
       -> event:([ `abort ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'
+    val prepend_listener'
       :  t
       -> event:([ `connect ][@js.enum])
       -> listener:
-           (response:http_IncomingMessage
+           (response:IncomingMessage.t
             -> socket:Node_net.Net.Socket.t
             -> head:Buffer.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''
+    val prepend_listener''
       :  t
       -> event:([ `continue ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''
+    val prepend_listener'''
       :  t
       -> event:([ `information ][@js.enum])
-      -> listener:(info:http_InformationEvent -> unit)
+      -> listener:(info:InformationEvent.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''
+    val prepend_listener''''
       :  t
       -> event:([ `response ][@js.enum])
-      -> listener:(response:http_IncomingMessage -> unit)
+      -> listener:(response:IncomingMessage.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''
+    val prepend_listener'''''
       :  t
       -> event:([ `socket ][@js.enum])
       -> listener:(socket:Node_net.Net.Socket.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''''
+    val prepend_listener''''''
       :  t
       -> event:([ `timeout ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''''
+    val prepend_listener'''''''
       :  t
       -> event:([ `upgrade ][@js.enum])
       -> listener:
-           (response:http_IncomingMessage
+           (response:IncomingMessage.t
             -> socket:Node_net.Net.Socket.t
             -> head:Buffer.t
             -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''''''
+    val prepend_listener''''''''
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''''''
+    val prepend_listener'''''''''
       :  t
       -> event:([ `drain ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''''''''
+    val prepend_listener''''''''''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''''''''
+    val prepend_listener'''''''''''
       :  t
       -> event:([ `finish ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''''''''''
+    val prepend_listener''''''''''''
       :  t
       -> event:([ `pipe ][@js.enum])
       -> listener:(src:Stream.Readable.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''''''''''
+    val prepend_listener'''''''''''''
       :  t
       -> event:([ `unpipe ][@js.enum])
       -> listener:(src:Stream.Readable.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''''''''''''
+    val prepend_listener''''''''''''''
       :  t
       -> event:symbol or_string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependOnceListener
+    val prepend_once_listener
       :  t
       -> event:([ `abort ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'
+    val prepend_once_listener'
       :  t
       -> event:([ `connect ][@js.enum])
       -> listener:
-           (response:http_IncomingMessage
+           (response:IncomingMessage.t
             -> socket:Node_net.Net.Socket.t
             -> head:Buffer.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''
+    val prepend_once_listener''
       :  t
       -> event:([ `continue ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''
+    val prepend_once_listener'''
       :  t
       -> event:([ `information ][@js.enum])
-      -> listener:(info:http_InformationEvent -> unit)
+      -> listener:(info:InformationEvent.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''
+    val prepend_once_listener''''
       :  t
       -> event:([ `response ][@js.enum])
-      -> listener:(response:http_IncomingMessage -> unit)
+      -> listener:(response:IncomingMessage.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''
+    val prepend_once_listener'''''
       :  t
       -> event:([ `socket ][@js.enum])
       -> listener:(socket:Node_net.Net.Socket.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''''
+    val prepend_once_listener''''''
       :  t
       -> event:([ `timeout ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''''
+    val prepend_once_listener'''''''
       :  t
       -> event:([ `upgrade ][@js.enum])
       -> listener:
-           (response:http_IncomingMessage
+           (response:IncomingMessage.t
             -> socket:Node_net.Net.Socket.t
             -> head:Buffer.t
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''''''
+    val prepend_once_listener''''''''
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''''''
+    val prepend_once_listener'''''''''
       :  t
       -> event:([ `drain ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''''''''
+    val prepend_once_listener''''''''''
       :  t
       -> event:([ `error ][@js.enum])
       -> listener:(err:Error.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''''''''
+    val prepend_once_listener'''''''''''
       :  t
       -> event:([ `finish ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''''''''''
+    val prepend_once_listener''''''''''''
       :  t
       -> event:([ `pipe ][@js.enum])
       -> listener:(src:Stream.Readable.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''''''''''
+    val prepend_once_listener'''''''''''''
       :  t
       -> event:([ `unpipe ][@js.enum])
       -> listener:(src:Stream.Readable.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''''''''''''
+    val prepend_once_listener''''''''''''''
       :  t
       -> event:symbol or_string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val cast : t -> http_OutgoingMessage [@@js.cast]
+    val cast : t -> OutgoingMessage.t [@@js.cast]
   end
   [@@js.scope "ClientRequest"]
 
@@ -1324,17 +1326,17 @@ module Http : sig
 
     val set_aborted : t -> bool -> unit [@@js.set "aborted"]
 
-    val get_httpVersion : t -> string [@@js.get "httpVersion"]
+    val get_http_version : t -> string [@@js.get "httpVersion"]
 
-    val set_httpVersion : t -> string -> unit [@@js.set "httpVersion"]
+    val set_http_version : t -> string -> unit [@@js.set "httpVersion"]
 
-    val get_httpVersionMajor : t -> int [@@js.get "httpVersionMajor"]
+    val get_http_version_major : t -> int [@@js.get "httpVersionMajor"]
 
-    val set_httpVersionMajor : t -> int -> unit [@@js.set "httpVersionMajor"]
+    val set_http_version_major : t -> int -> unit [@@js.set "httpVersionMajor"]
 
-    val get_httpVersionMinor : t -> int [@@js.get "httpVersionMinor"]
+    val get_http_version_minor : t -> int [@@js.get "httpVersionMinor"]
 
-    val set_httpVersionMinor : t -> int -> unit [@@js.set "httpVersionMinor"]
+    val set_http_version_minor : t -> int -> unit [@@js.set "httpVersionMinor"]
 
     val get_complete : t -> bool [@@js.get "complete"]
 
@@ -1349,23 +1351,23 @@ module Http : sig
 
     val set_socket : t -> Node_net.Net.Socket.t -> unit [@@js.set "socket"]
 
-    val get_headers : t -> http_IncomingHttpHeaders [@@js.get "headers"]
+    val get_headers : t -> IncomingHttpHeaders.t [@@js.get "headers"]
 
-    val set_headers : t -> http_IncomingHttpHeaders -> unit [@@js.set "headers"]
+    val set_headers : t -> IncomingHttpHeaders.t -> unit [@@js.set "headers"]
 
-    val get_rawHeaders : t -> string list [@@js.get "rawHeaders"]
+    val get_raw_headers : t -> string list [@@js.get "rawHeaders"]
 
-    val set_rawHeaders : t -> string list -> unit [@@js.set "rawHeaders"]
+    val set_raw_headers : t -> string list -> unit [@@js.set "rawHeaders"]
 
     val get_trailers : t -> string Dict.t [@@js.get "trailers"]
 
     val set_trailers : t -> string Dict.t -> unit [@@js.set "trailers"]
 
-    val get_rawTrailers : t -> string list [@@js.get "rawTrailers"]
+    val get_raw_trailers : t -> string list [@@js.get "rawTrailers"]
 
-    val set_rawTrailers : t -> string list -> unit [@@js.set "rawTrailers"]
+    val set_raw_trailers : t -> string list -> unit [@@js.set "rawTrailers"]
 
-    val setTimeout : t -> msecs:int -> ?callback:(unit -> unit) -> unit -> t
+    val set_timeout : t -> msecs:int -> ?callback:(unit -> unit) -> unit -> t
       [@@js.call "setTimeout"]
 
     val get_method : t -> string [@@js.get "method"]
@@ -1376,44 +1378,44 @@ module Http : sig
 
     val set_url : t -> string -> unit [@@js.set "url"]
 
-    val get_statusCode : t -> int [@@js.get "statusCode"]
+    val get_status_code : t -> int [@@js.get "statusCode"]
 
-    val set_statusCode : t -> int -> unit [@@js.set "statusCode"]
+    val set_status_code : t -> int -> unit [@@js.set "statusCode"]
 
-    val get_statusMessage : t -> string [@@js.get "statusMessage"]
+    val get_status_message : t -> string [@@js.get "statusMessage"]
 
-    val set_statusMessage : t -> string -> unit [@@js.set "statusMessage"]
+    val set_status_message : t -> string -> unit [@@js.set "statusMessage"]
 
     val destroy : t -> ?error:Error.t -> unit -> unit [@@js.call "destroy"]
   end
   [@@js.scope "IncomingMessage"]
 
   module AgentOptions : sig
-    type t = http_AgentOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_keepAlive : t -> bool [@@js.get "keepAlive"]
+    val get_keep_alive : t -> bool [@@js.get "keepAlive"]
 
-    val set_keepAlive : t -> bool -> unit [@@js.set "keepAlive"]
+    val set_keep_alive : t -> bool -> unit [@@js.set "keepAlive"]
 
-    val get_keepAliveMsecs : t -> int [@@js.get "keepAliveMsecs"]
+    val get_keep_alive_msecs : t -> int [@@js.get "keepAliveMsecs"]
 
-    val set_keepAliveMsecs : t -> int -> unit [@@js.set "keepAliveMsecs"]
+    val set_keep_alive_msecs : t -> int -> unit [@@js.set "keepAliveMsecs"]
 
-    val get_maxSockets : t -> int [@@js.get "maxSockets"]
+    val get_max_sockets : t -> int [@@js.get "maxSockets"]
 
-    val set_maxSockets : t -> int -> unit [@@js.set "maxSockets"]
+    val set_max_sockets : t -> int -> unit [@@js.set "maxSockets"]
 
-    val get_maxTotalSockets : t -> int [@@js.get "maxTotalSockets"]
+    val get_max_total_sockets : t -> int [@@js.get "maxTotalSockets"]
 
-    val set_maxTotalSockets : t -> int -> unit [@@js.set "maxTotalSockets"]
+    val set_max_total_sockets : t -> int -> unit [@@js.set "maxTotalSockets"]
 
-    val get_maxFreeSockets : t -> int [@@js.get "maxFreeSockets"]
+    val get_max_free_sockets : t -> int [@@js.get "maxFreeSockets"]
 
-    val set_maxFreeSockets : t -> int -> unit [@@js.set "maxFreeSockets"]
+    val set_max_free_sockets : t -> int -> unit [@@js.set "maxFreeSockets"]
 
     val get_timeout : t -> int [@@js.get "timeout"]
 
@@ -1430,99 +1432,96 @@ module Http : sig
   [@@js.scope "AgentOptions"]
 
   module Agent : sig
-    type t = http_Agent
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_maxFreeSockets : t -> int [@@js.get "maxFreeSockets"]
+    val get_max_free_sockets : t -> int [@@js.get "maxFreeSockets"]
 
-    val set_maxFreeSockets : t -> int -> unit [@@js.set "maxFreeSockets"]
+    val set_max_free_sockets : t -> int -> unit [@@js.set "maxFreeSockets"]
 
-    val get_maxSockets : t -> int [@@js.get "maxSockets"]
+    val get_max_sockets : t -> int [@@js.get "maxSockets"]
 
-    val set_maxSockets : t -> int -> unit [@@js.set "maxSockets"]
+    val set_max_sockets : t -> int -> unit [@@js.set "maxSockets"]
 
-    val get_maxTotalSockets : t -> int [@@js.get "maxTotalSockets"]
+    val get_max_total_sockets : t -> int [@@js.get "maxTotalSockets"]
 
-    val set_maxTotalSockets : t -> int -> unit [@@js.set "maxTotalSockets"]
+    val set_max_total_sockets : t -> int -> unit [@@js.set "maxTotalSockets"]
 
-    val get_freeSockets : t -> Node_net.Net.Socket.t list ReadOnlyDict.t
+    val get_free_sockets : t -> Node_net.Net.Socket.t list ReadOnlyDict.t
       [@@js.get "freeSockets"]
 
     val get_sockets : t -> Node_net.Net.Socket.t list ReadOnlyDict.t
       [@@js.get "sockets"]
 
-    val get_requests : t -> http_IncomingMessage list ReadOnlyDict.t
+    val get_requests : t -> IncomingMessage.t list ReadOnlyDict.t
       [@@js.get "requests"]
 
-    val create : ?opts:http_AgentOptions -> unit -> t [@@js.create]
+    val create : ?opts:AgentOptions.t -> unit -> t [@@js.create]
 
     val destroy : t -> unit [@@js.call "destroy"]
   end
   [@@js.scope "Agent"]
 
-  val mETHODS : string list [@@js.global "METHODS"]
+  val m_ethods : string list [@@js.global "METHODS"]
 
-  val sTATUS_CODES : AnonymousInterface0.t [@@js.global "STATUS_CODES"]
+  val s_tatus_codes : AnonymousInterface0.t [@@js.global "STATUS_CODES"]
 
-  val createServer
-    :  ?requestListener:http_RequestListener
-    -> unit
-    -> http_Server
+  val create_server : ?request_listener:RequestListener.t -> unit -> Server.t
     [@@js.global "createServer"]
 
-  val createServer
-    :  options:http_ServerOptions
-    -> ?requestListener:http_RequestListener
+  val create_server
+    :  options:ServerOptions.t
+    -> ?request_listener:RequestListener.t
     -> unit
-    -> http_Server
+    -> Server.t
     [@@js.global "createServer"]
 
   module RequestOptions : sig
-    type t = http_RequestOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val cast : t -> http_ClientRequestArgs [@@js.cast]
+    val cast : t -> ClientRequestArgs.t [@@js.cast]
   end
   [@@js.scope "RequestOptions"]
 
   val request
-    :  options:(http_RequestOptions, Node_url.Url.Url.t) union2 or_string
-    -> ?callback:(res:http_IncomingMessage -> unit)
+    :  options:(RequestOptions.t, Node_url.Url.Url.t) union2 or_string
+    -> ?callback:(res:IncomingMessage.t -> unit)
     -> unit
-    -> http_ClientRequest
+    -> ClientRequest.t
     [@@js.global "request"]
 
   val request
     :  url:Node_url.Url.Url.t or_string
-    -> options:http_RequestOptions
-    -> ?callback:(res:http_IncomingMessage -> unit)
+    -> options:RequestOptions.t
+    -> ?callback:(res:IncomingMessage.t -> unit)
     -> unit
-    -> http_ClientRequest
+    -> ClientRequest.t
     [@@js.global "request"]
 
   val get_
-    :  options:(http_RequestOptions, Node_url.Url.Url.t) union2 or_string
-    -> ?callback:(res:http_IncomingMessage -> unit)
+    :  options:(RequestOptions.t, Node_url.Url.Url.t) union2 or_string
+    -> ?callback:(res:IncomingMessage.t -> unit)
     -> unit
-    -> http_ClientRequest
+    -> ClientRequest.t
     [@@js.global "get"]
 
   val get_
     :  url:Node_url.Url.Url.t or_string
-    -> options:http_RequestOptions
-    -> ?callback:(res:http_IncomingMessage -> unit)
+    -> options:RequestOptions.t
+    -> ?callback:(res:IncomingMessage.t -> unit)
     -> unit
-    -> http_ClientRequest
+    -> ClientRequest.t
     [@@js.global "get"]
 
-  val globalAgent : http_Agent [@@js.global "globalAgent"]
+  val global_agent : http_Agent [@@js.global "globalAgent"]
 
-  val maxHeaderSize : int [@@js.global "maxHeaderSize"]
+  val max_header_size : int [@@js.global "maxHeaderSize"]
 end
 [@@js.scope Import.http]

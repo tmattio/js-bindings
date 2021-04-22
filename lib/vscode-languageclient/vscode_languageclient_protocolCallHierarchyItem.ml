@@ -4,12 +4,9 @@
 open Es5
 module ProtocolCallHierarchyItem =
   struct
-    type t = _ProtocolCallHierarchyItem
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> _ProtocolCallHierarchyItem_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : _ProtocolCallHierarchyItem) ->
-        _ProtocolCallHierarchyItem_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get_data : t -> unknown) =
       fun (x3 : t) -> unknown_of_js (Ojs.get_prop_ascii (t_to_js x3) "data")
     let (set_data : t -> unknown -> unit) =
@@ -22,14 +19,14 @@ module ProtocolCallHierarchyItem =
           detail:string ->
             uri:Code.Uri.t ->
               range:Code.Range.t ->
-                selectionRange:Code.Range.t -> ?data:unknown -> unit -> t)
+                selection_range:Code.Range.t -> ?data:unknown -> unit -> t)
       =
       fun ~kind:(x6 : Code.SymbolKind.t) ->
         fun ~name:(x7 : string) ->
           fun ~detail:(x8 : string) ->
             fun ~uri:(x9 : Code.Uri.t) ->
               fun ~range:(x10 : Code.Range.t) ->
-                fun ~selectionRange:(x11 : Code.Range.t) ->
+                fun ~selection_range:(x11 : Code.Range.t) ->
                   fun ?data:(x12 : unknown option) ->
                     fun () ->
                       t_of_js

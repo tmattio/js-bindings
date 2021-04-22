@@ -7,12 +7,9 @@ module String_decoder =
   struct
     module StringDecoder =
       struct
-        type t = string_decoder_StringDecoder
-        let rec t_of_js : Ojs.t -> t =
-          fun (x2 : Ojs.t) -> string_decoder_StringDecoder_of_js x2
-        and t_to_js : t -> Ojs.t =
-          fun (x1 : string_decoder_StringDecoder) ->
-            string_decoder_StringDecoder_to_js x1
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+        and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
         let (create : ?encoding:BufferEncoding.t -> unit -> t) =
           fun ?encoding:(x3 : BufferEncoding.t option) ->
             fun () ->

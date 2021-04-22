@@ -20,23 +20,23 @@ module Touch : sig
 
   val first : ([ `L_n_1 [@js 1] ][@js.enum]) [@@js.global "First"]
 
-  val asOld : ([ `L_n_1 [@js 1] ][@js.enum]) [@@js.global "AsOld"]
+  val as_old : ([ `L_n_1 [@js 1] ][@js.enum]) [@@js.global "AsOld"]
 
   val last : ([ `L_n_2 [@js 2] ][@js.enum]) [@@js.global "Last"]
 
-  val asNew : ([ `L_n_2 [@js 2] ][@js.enum]) [@@js.global "AsNew"]
+  val as_new : ([ `L_n_2 [@js 2] ][@js.enum]) [@@js.global "AsNew"]
 end
 [@@js.scope "Touch"]
 
 module LinkedMap : sig
-  type ('K, 'V) t = ('K, 'V) _LinkedMap
+  type ('K, 'V) t = ('K, 'V) LinkedMap.t
 
   val t_to_js : ('K -> Ojs.t) -> ('V -> Ojs.t) -> ('K, 'V) t -> Ojs.t
 
   val t_of_js : (Ojs.t -> 'K) -> (Ojs.t -> 'V) -> Ojs.t -> ('K, 'V) t
 
-  val get__Symbol_toStringTag_ : ('K, 'V) t -> (* FIXME: unknown type *) any
-    [@@js.get "[Symbol.toStringTag]"]
+  (* val get_symbol_to_string_tag : ('K, 'V) t -> (* FIXME: unknown type *) any
+     [@@js.get "[Symbol.toStringTag]"] *)
 
   val get__map : ('K, 'V) t -> (* FIXME: unknown type *) any [@@js.get "_map"]
 
@@ -68,7 +68,7 @@ module LinkedMap : sig
 
   val clear : ('K, 'V) t -> unit [@@js.call "clear"]
 
-  val isEmpty : ('K, 'V) t -> bool [@@js.call "isEmpty"]
+  val is_empty : ('K, 'V) t -> bool [@@js.call "isEmpty"]
 
   val get_size : ('K, 'V) t -> int [@@js.get "size"]
 
@@ -78,14 +78,14 @@ module LinkedMap : sig
 
   val has : ('K, 'V) t -> key:'K -> bool [@@js.call "has"]
 
-  val get_ : ('K, 'V) t -> key:'K -> ?touch:_Touch -> unit -> 'V or_undefined
+  val get_ : ('K, 'V) t -> key:'K -> ?touch:Touch.t -> unit -> 'V or_undefined
     [@@js.call "get"]
 
   val set_
     :  ('K, 'V) t
     -> key:'K
     -> value:'V
-    -> ?touch:_Touch
+    -> ?touch:Touch.t
     -> unit
     -> ('K, 'V) t
     [@@js.call "set"]
@@ -96,10 +96,10 @@ module LinkedMap : sig
 
   val shift : ('K, 'V) t -> 'V or_undefined [@@js.call "shift"]
 
-  val forEach
+  val for_each
     :  ('K, 'V) t
     -> callbackfn:(value:'V -> key:'K -> map:('K, 'V) t -> unit)
-    -> ?thisArg:any
+    -> ?this_arg:any
     -> unit
     -> unit
     [@@js.call "forEach"]
@@ -110,27 +110,27 @@ module LinkedMap : sig
 
   val entries : ('K, 'V) t -> ('K * 'V) IterableIterator.t [@@js.call "entries"]
 
-  val _Symbol_iterator_ : ('K, 'V) t -> ('K * 'V) IterableIterator.t
-    [@@js.call "[Symbol.iterator]"]
+  (* val symbol_iterator : ('K, 'V) t -> ('K * 'V) IterableIterator.t [@@js.call
+     "[Symbol.iterator]"] *)
 
-  val trimOld : ('K, 'V) t -> newSize:int -> unit [@@js.call "trimOld"]
+  val trim_old : ('K, 'V) t -> new_size:int -> unit [@@js.call "trimOld"]
 
-  val get_addItemFirst : ('K, 'V) t -> (* FIXME: unknown type *) any
+  val get_add_item_first : ('K, 'V) t -> (* FIXME: unknown type *) any
     [@@js.get "addItemFirst"]
 
-  val set_addItemFirst : ('K, 'V) t -> (* FIXME: unknown type *) any -> unit
+  val set_add_item_first : ('K, 'V) t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "addItemFirst"]
 
-  val get_addItemLast : ('K, 'V) t -> (* FIXME: unknown type *) any
+  val get_add_item_last : ('K, 'V) t -> (* FIXME: unknown type *) any
     [@@js.get "addItemLast"]
 
-  val set_addItemLast : ('K, 'V) t -> (* FIXME: unknown type *) any -> unit
+  val set_add_item_last : ('K, 'V) t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "addItemLast"]
 
-  val get_removeItem : ('K, 'V) t -> (* FIXME: unknown type *) any
+  val get_remove_item : ('K, 'V) t -> (* FIXME: unknown type *) any
     [@@js.get "removeItem"]
 
-  val set_removeItem : ('K, 'V) t -> (* FIXME: unknown type *) any -> unit
+  val set_remove_item : ('K, 'V) t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "removeItem"]
 
   val get_touch : ('K, 'V) t -> (* FIXME: unknown type *) any [@@js.get "touch"]
@@ -138,9 +138,9 @@ module LinkedMap : sig
   val set_touch : ('K, 'V) t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "touch"]
 
-  val toJSON : ('K, 'V) t -> ('K * 'V) list [@@js.call "toJSON"]
+  val to_json : ('K, 'V) t -> ('K * 'V) list [@@js.call "toJSON"]
 
-  val fromJSON : ('K, 'V) t -> data:('K * 'V) list -> unit
+  val from_json : ('K, 'V) t -> data:('K * 'V) list -> unit
     [@@js.call "fromJSON"]
 
   val cast : ('K, 'V) t -> ('K, 'V) Map.t [@@js.cast]
@@ -148,7 +148,7 @@ end
 [@@js.scope "LinkedMap"]
 
 module LRUCache : sig
-  type ('K, 'V) t = ('K, 'V) _LRUCache
+  type ('K, 'V) t = ('K, 'V) LRUCache.t
 
   val t_to_js : ('K -> Ojs.t) -> ('V -> Ojs.t) -> ('K, 'V) t -> Ojs.t
 
@@ -176,19 +176,19 @@ module LRUCache : sig
 
   val set_ratio : ('K, 'V) t -> int -> unit [@@js.set "ratio"]
 
-  val get_ : ('K, 'V) t -> key:'K -> ?touch:_Touch -> unit -> 'V or_undefined
+  val get_ : ('K, 'V) t -> key:'K -> ?touch:Touch.t -> unit -> 'V or_undefined
     [@@js.call "get"]
 
   val peek : ('K, 'V) t -> key:'K -> 'V or_undefined [@@js.call "peek"]
 
   val set_ : ('K, 'V) t -> key:'K -> value:'V -> ('K, 'V) t [@@js.call "set"]
 
-  val get_checkTrim : ('K, 'V) t -> (* FIXME: unknown type *) any
+  val get_check_trim : ('K, 'V) t -> (* FIXME: unknown type *) any
     [@@js.get "checkTrim"]
 
-  val set_checkTrim : ('K, 'V) t -> (* FIXME: unknown type *) any -> unit
+  val set_check_trim : ('K, 'V) t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "checkTrim"]
 
-  val cast : ('K, 'V) t -> ('K, 'V) _LinkedMap [@@js.cast]
+  val cast : ('K, 'V) t -> ('K, 'V) LinkedMap.t [@@js.cast]
 end
 [@@js.scope "LRUCache"]

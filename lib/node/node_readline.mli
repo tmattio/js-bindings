@@ -7,7 +7,7 @@ open Node_globals
 
 module Readline : sig
   module Key : sig
-    type t = readline_Key
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -51,17 +51,17 @@ module Readline : sig
     val create
       :  input:ReadableStream.t
       -> ?output:WritableStream.t
-      -> ?completer:(readline_AsyncCompleter, readline_Completer) union2
+      -> ?completer:(AsyncCompleter.t, Completer.t) union2
       -> ?terminal:bool
       -> unit
       -> t
       [@@js.create]
 
-    val create' : options:readline_ReadLineOptions -> t [@@js.create]
+    val create' : options:ReadLineOptions.t -> t [@@js.create]
 
-    val setPrompt : t -> prompt:string -> unit [@@js.call "setPrompt"]
+    val set_prompt : t -> prompt:string -> unit [@@js.call "setPrompt"]
 
-    val prompt : t -> ?preserveCursor:bool -> unit -> unit [@@js.call "prompt"]
+    val prompt : t -> ?preserve_cursor:bool -> unit -> unit [@@js.call "prompt"]
 
     val question : t -> query:string -> callback:(answer:string -> unit) -> unit
       [@@js.call "question"]
@@ -72,66 +72,61 @@ module Readline : sig
 
     val close : t -> unit [@@js.call "close"]
 
-    val write
-      :  t
-      -> data:Buffer.t or_string
-      -> ?key:readline_Key
-      -> unit
-      -> unit
+    val write : t -> data:Buffer.t or_string -> ?key:Key.t -> unit -> unit
       [@@js.call "write"]
 
-    val getCursorPos : t -> readline_CursorPos [@@js.call "getCursorPos"]
+    val get_cursor_pos : t -> CursorPos.t [@@js.call "getCursorPos"]
 
-    val addListener
+    val add_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'
+    val add_listener'
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''
+    val add_listener''
       :  t
       -> event:([ `line ][@js.enum])
       -> listener:(input:string -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''
+    val add_listener'''
       :  t
       -> event:([ `pause ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''
+    val add_listener''''
       :  t
       -> event:([ `resume ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''
+    val add_listener'''''
       :  t
       -> event:([ `SIGCONT ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''''
+    val add_listener''''''
       :  t
       -> event:([ `SIGINT ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''''
+    val add_listener'''''''
       :  t
       -> event:([ `SIGTSTP ][@js.enum])
       -> listener:(unit -> unit)
@@ -271,112 +266,112 @@ module Readline : sig
       -> t
       [@@js.call "once"]
 
-    val prependListener
+    val prepend_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'
+    val prepend_listener'
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''
+    val prepend_listener''
       :  t
       -> event:([ `line ][@js.enum])
       -> listener:(input:string -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''
+    val prepend_listener'''
       :  t
       -> event:([ `pause ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''
+    val prepend_listener''''
       :  t
       -> event:([ `resume ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''
+    val prepend_listener'''''
       :  t
       -> event:([ `SIGCONT ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''''
+    val prepend_listener''''''
       :  t
       -> event:([ `SIGINT ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''''
+    val prepend_listener'''''''
       :  t
       -> event:([ `SIGTSTP ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependOnceListener
+    val prepend_once_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'
+    val prepend_once_listener'
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''
+    val prepend_once_listener''
       :  t
       -> event:([ `line ][@js.enum])
       -> listener:(input:string -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''
+    val prepend_once_listener'''
       :  t
       -> event:([ `pause ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''
+    val prepend_once_listener''''
       :  t
       -> event:([ `resume ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''
+    val prepend_once_listener'''''
       :  t
       -> event:([ `SIGCONT ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''''
+    val prepend_once_listener''''''
       :  t
       -> event:([ `SIGINT ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''''
+    val prepend_once_listener'''''''
       :  t
       -> event:([ `SIGTSTP ][@js.enum])
       -> listener:(unit -> unit)
@@ -396,18 +391,18 @@ module Readline : sig
   end
 
   module Completer : sig
-    type t = readline_Completer
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val apply : t -> line:string -> readline_CompleterResult [@@js.apply]
+    val apply : t -> line:string -> CompleterResult.t [@@js.apply]
   end
   [@@js.scope "Completer"]
 
   module AsyncCompleter : sig
-    type t = readline_AsyncCompleter
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -417,10 +412,7 @@ module Readline : sig
       :  t
       -> line:string
       -> callback:
-           (?err:Error.t or_null
-            -> ?result:readline_CompleterResult
-            -> unit
-            -> unit)
+           (?err:Error.t or_null -> ?result:CompleterResult.t -> unit -> unit)
       -> any
       [@@js.apply]
   end
@@ -435,7 +427,7 @@ module Readline : sig
   end
 
   module ReadLineOptions : sig
-    type t = readline_ReadLineOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -449,64 +441,60 @@ module Readline : sig
 
     val set_output : t -> WritableStream.t -> unit [@@js.set "output"]
 
-    val get_completer
-      :  t
-      -> (readline_AsyncCompleter, readline_Completer) union2
+    val get_completer : t -> (AsyncCompleter.t, Completer.t) union2
       [@@js.get "completer"]
 
-    val set_completer
-      :  t
-      -> (readline_AsyncCompleter, readline_Completer) union2
-      -> unit
+    val set_completer : t -> (AsyncCompleter.t, Completer.t) union2 -> unit
       [@@js.set "completer"]
 
     val get_terminal : t -> bool [@@js.get "terminal"]
 
     val set_terminal : t -> bool -> unit [@@js.set "terminal"]
 
-    val get_historySize : t -> int [@@js.get "historySize"]
+    val get_history_size : t -> int [@@js.get "historySize"]
 
-    val set_historySize : t -> int -> unit [@@js.set "historySize"]
+    val set_history_size : t -> int -> unit [@@js.set "historySize"]
 
     val get_prompt : t -> string [@@js.get "prompt"]
 
     val set_prompt : t -> string -> unit [@@js.set "prompt"]
 
-    val get_crlfDelay : t -> int [@@js.get "crlfDelay"]
+    val get_crlf_delay : t -> int [@@js.get "crlfDelay"]
 
-    val set_crlfDelay : t -> int -> unit [@@js.set "crlfDelay"]
+    val set_crlf_delay : t -> int -> unit [@@js.set "crlfDelay"]
 
-    val get_removeHistoryDuplicates : t -> bool
+    val get_remove_history_duplicates : t -> bool
       [@@js.get "removeHistoryDuplicates"]
 
-    val set_removeHistoryDuplicates : t -> bool -> unit
+    val set_remove_history_duplicates : t -> bool -> unit
       [@@js.set "removeHistoryDuplicates"]
 
-    val get_escapeCodeTimeout : t -> int [@@js.get "escapeCodeTimeout"]
+    val get_escape_code_timeout : t -> int [@@js.get "escapeCodeTimeout"]
 
-    val set_escapeCodeTimeout : t -> int -> unit [@@js.set "escapeCodeTimeout"]
+    val set_escape_code_timeout : t -> int -> unit
+      [@@js.set "escapeCodeTimeout"]
 
-    val get_tabSize : t -> int [@@js.get "tabSize"]
+    val get_tab_size : t -> int [@@js.get "tabSize"]
 
-    val set_tabSize : t -> int -> unit [@@js.set "tabSize"]
+    val set_tab_size : t -> int -> unit [@@js.set "tabSize"]
   end
   [@@js.scope "ReadLineOptions"]
 
-  val createInterface
+  val create_interface
     :  input:ReadableStream.t
     -> ?output:WritableStream.t
-    -> ?completer:(readline_AsyncCompleter, readline_Completer) union2
+    -> ?completer:(AsyncCompleter.t, Completer.t) union2
     -> ?terminal:bool
     -> unit
-    -> readline_Interface
+    -> Interface.t
     [@@js.global "createInterface"]
 
-  val createInterface : options:readline_ReadLineOptions -> readline_Interface
+  val create_interface : options:ReadLineOptions.t -> Interface.t
     [@@js.global "createInterface"]
 
-  val emitKeypressEvents
+  val emit_keypress_events
     :  stream:ReadableStream.t
-    -> ?readlineInterface:readline_Interface
+    -> ?readline_interface:Interface.t
     -> unit
     -> unit
     [@@js.global "emitKeypressEvents"]
@@ -525,7 +513,7 @@ module Readline : sig
   end
 
   module CursorPos : sig
-    type t = readline_CursorPos
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -541,22 +529,22 @@ module Readline : sig
   end
   [@@js.scope "CursorPos"]
 
-  val clearLine
+  val clear_line
     :  stream:WritableStream.t
-    -> dir:readline_Direction
+    -> dir:Direction.t
     -> ?callback:(unit -> unit)
     -> unit
     -> bool
     [@@js.global "clearLine"]
 
-  val clearScreenDown
+  val clear_screen_down
     :  stream:WritableStream.t
     -> ?callback:(unit -> unit)
     -> unit
     -> bool
     [@@js.global "clearScreenDown"]
 
-  val cursorTo
+  val cursor_to
     :  stream:WritableStream.t
     -> x:int
     -> ?y:int
@@ -565,7 +553,7 @@ module Readline : sig
     -> bool
     [@@js.global "cursorTo"]
 
-  val moveCursor
+  val move_cursor
     :  stream:WritableStream.t
     -> dx:int
     -> dy:int

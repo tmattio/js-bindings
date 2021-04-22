@@ -4,12 +4,9 @@
 open Es5
 module ConfigurationWorkspaceMiddleware =
   struct
-    type t = _ConfigurationWorkspaceMiddleware
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> _ConfigurationWorkspaceMiddleware_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : _ConfigurationWorkspaceMiddleware) ->
-        _ConfigurationWorkspaceMiddleware_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get_configuration : t -> ConfigurationRequest.MiddlewareSignature.t)
       =
       fun (x3 : t) ->
@@ -24,11 +21,9 @@ module ConfigurationWorkspaceMiddleware =
   end
 module ConfigurationFeature =
   struct
-    type t = _ConfigurationFeature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x7 : Ojs.t) -> _ConfigurationFeature_of_js x7
-    and t_to_js : t -> Ojs.t =
-      fun (x6 : _ConfigurationFeature) -> _ConfigurationFeature_to_js x6
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x7 : Ojs.t) -> x7
+    and t_to_js : t -> Ojs.t = fun (x6 : Ojs.t) -> x6
     let (get__client : t -> any) =
       fun (x8 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x8) "_client")
     let (set__client : t -> any -> unit) =
@@ -40,7 +35,7 @@ module ConfigurationFeature =
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "ConfigurationFeature")
              [|(BaseLanguageClient.t_to_js x11)|])
-    let (fillClientCapabilities :
+    let (fill_client_capabilities :
       t -> capabilities:ClientCapabilities.t -> unit) =
       fun (x13 : t) ->
         fun ~capabilities:(x12 : ClientCapabilities.t) ->
@@ -49,10 +44,10 @@ module ConfigurationFeature =
                [|(ClientCapabilities.t_to_js x12)|])
     let (initialize : t -> unit) =
       fun (x14 : t) -> ignore (Ojs.call (t_to_js x14) "initialize" [||])
-    let (get_getConfiguration : t -> any) =
+    let (get_get_configuration : t -> any) =
       fun (x15 : t) ->
         any_of_js (Ojs.get_prop_ascii (t_to_js x15) "getConfiguration")
-    let (set_getConfiguration : t -> any -> unit) =
+    let (set_get_configuration : t -> any -> unit) =
       fun (x16 : t) ->
         fun (x17 : any) ->
           Ojs.set_prop_ascii (t_to_js x16) "getConfiguration" (any_to_js x17)
@@ -61,6 +56,6 @@ module ConfigurationFeature =
     let (cast : t -> StaticFeature.t) =
       fun (x19 : t) -> StaticFeature.t_of_js (t_to_js x19)
   end
-let (toJSONObject : obj:any -> any) =
+let (to_json_object : obj:any -> any) =
   fun ~obj:(x20 : any) ->
     any_of_js (Ojs.call Ojs.global "toJSONObject" [|(any_to_js x20)|])

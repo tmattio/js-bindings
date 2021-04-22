@@ -2,211 +2,174 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module Types =
-      struct
-        type _ColorPresentationRequest_HandlerSignature =
-          (_ColorPresentationParams, ColorPresentation.t list, unit)
-            RequestHandler.t
-        and _DocumentColorRequest_HandlerSignature =
-          (_DocumentColorParams, ColorInformation.t list, unit)
-            RequestHandler.t
-        let rec _ColorPresentationRequest_HandlerSignature_of_js :
-          Ojs.t -> _ColorPresentationRequest_HandlerSignature =
-          fun (x6 : Ojs.t) ->
-            RequestHandler.t_of_js _ColorPresentationParams_of_js
-              (fun (x8 : Ojs.t) ->
-                 Ojs.list_of_js ColorPresentation.t_of_js x8) Ojs.unit_of_js
-              x6
-        and _ColorPresentationRequest_HandlerSignature_to_js :
-          _ColorPresentationRequest_HandlerSignature -> Ojs.t =
-          fun
-            (x1 :
-              (_ColorPresentationParams, ColorPresentation.t list, unit)
-                RequestHandler.t)
-            ->
-            RequestHandler.t_to_js _ColorPresentationParams_to_js
-              (fun (x3 : ColorPresentation.t list) ->
-                 Ojs.list_to_js ColorPresentation.t_to_js x3) Ojs.unit_to_js
-              x1
-        and _DocumentColorRequest_HandlerSignature_of_js :
-          Ojs.t -> _DocumentColorRequest_HandlerSignature =
-          fun (x16 : Ojs.t) ->
-            RequestHandler.t_of_js _DocumentColorParams_of_js
-              (fun (x18 : Ojs.t) ->
-                 Ojs.list_of_js ColorInformation.t_of_js x18) Ojs.unit_of_js
-              x16
-        and _DocumentColorRequest_HandlerSignature_to_js :
-          _DocumentColorRequest_HandlerSignature -> Ojs.t =
-          fun
-            (x11 :
-              (_DocumentColorParams, ColorInformation.t list, unit)
-                RequestHandler.t)
-            ->
-            RequestHandler.t_to_js _DocumentColorParams_to_js
-              (fun (x13 : ColorInformation.t list) ->
-                 Ojs.list_to_js ColorInformation.t_to_js x13) Ojs.unit_to_js
-              x11
-      end
-  end
 module DocumentColorClientCapabilities =
   struct
-    type t = _DocumentColorClientCapabilities
-    let rec t_of_js : Ojs.t -> t =
-      fun (x22 : Ojs.t) -> _DocumentColorClientCapabilities_of_js x22
-    and t_to_js : t -> Ojs.t =
-      fun (x21 : _DocumentColorClientCapabilities) ->
-        _DocumentColorClientCapabilities_to_js x21
-    let (get_dynamicRegistration : t -> bool) =
-      fun (x23 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
+    let (get_dynamic_registration : t -> bool) =
+      fun (x3 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x23) "dynamicRegistration")
-    let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x24 : t) ->
-        fun (x25 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x24) "dynamicRegistration"
-            (Ojs.bool_to_js x25)
+          (Ojs.get_prop_ascii (t_to_js x3) "dynamicRegistration")
+    let (set_dynamic_registration : t -> bool -> unit) =
+      fun (x4 : t) ->
+        fun (x5 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x4) "dynamicRegistration"
+            (Ojs.bool_to_js x5)
   end
 module DocumentColorOptions =
   struct
-    type t = _DocumentColorOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x27 : Ojs.t) -> _DocumentColorOptions_of_js x27
-    and t_to_js : t -> Ojs.t =
-      fun (x26 : _DocumentColorOptions) -> _DocumentColorOptions_to_js x26
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x7 : Ojs.t) -> x7
+    and t_to_js : t -> Ojs.t = fun (x6 : Ojs.t) -> x6
     let (cast : t -> WorkDoneProgressOptions.t) =
-      fun (x28 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x28)
+      fun (x8 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x8)
   end
 module DocumentColorRegistrationOptions =
   struct
-    type t = _DocumentColorRegistrationOptions
-    let rec t_of_js : Ojs.t -> t =
-      fun (x30 : Ojs.t) -> _DocumentColorRegistrationOptions_of_js x30
-    and t_to_js : t -> Ojs.t =
-      fun (x29 : _DocumentColorRegistrationOptions) ->
-        _DocumentColorRegistrationOptions_to_js x29
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x10 : Ojs.t) -> x10
+    and t_to_js : t -> Ojs.t = fun (x9 : Ojs.t) -> x9
     let (cast : t -> TextDocumentRegistrationOptions.t) =
-      fun (x31 : t) -> TextDocumentRegistrationOptions.t_of_js (t_to_js x31)
+      fun (x11 : t) -> TextDocumentRegistrationOptions.t_of_js (t_to_js x11)
     let (cast' : t -> StaticRegistrationOptions.t) =
-      fun (x32 : t) -> StaticRegistrationOptions.t_of_js (t_to_js x32)
-    let (cast'' : t -> _DocumentColorOptions) =
-      fun (x33 : t) -> _DocumentColorOptions_of_js (t_to_js x33)
+      fun (x12 : t) -> StaticRegistrationOptions.t_of_js (t_to_js x12)
+    let (cast'' : t -> DocumentColorOptions.t) =
+      fun (x13 : t) -> DocumentColorOptions.t_of_js (t_to_js x13)
   end
 module DocumentColorParams =
   struct
-    type t = _DocumentColorParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x35 : Ojs.t) -> _DocumentColorParams_of_js x35
-    and t_to_js : t -> Ojs.t =
-      fun (x34 : _DocumentColorParams) -> _DocumentColorParams_to_js x34
-    let (get_textDocument : t -> TextDocumentIdentifier.t) =
-      fun (x36 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x15 : Ojs.t) -> x15
+    and t_to_js : t -> Ojs.t = fun (x14 : Ojs.t) -> x14
+    let (get_text_document : t -> TextDocumentIdentifier.t) =
+      fun (x16 : t) ->
         TextDocumentIdentifier.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x36) "textDocument")
-    let (set_textDocument : t -> TextDocumentIdentifier.t -> unit) =
-      fun (x37 : t) ->
-        fun (x38 : TextDocumentIdentifier.t) ->
-          Ojs.set_prop_ascii (t_to_js x37) "textDocument"
-            (TextDocumentIdentifier.t_to_js x38)
+          (Ojs.get_prop_ascii (t_to_js x16) "textDocument")
+    let (set_text_document : t -> TextDocumentIdentifier.t -> unit) =
+      fun (x17 : t) ->
+        fun (x18 : TextDocumentIdentifier.t) ->
+          Ojs.set_prop_ascii (t_to_js x17) "textDocument"
+            (TextDocumentIdentifier.t_to_js x18)
     let (cast : t -> WorkDoneProgressParams.t) =
-      fun (x39 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x39)
+      fun (x19 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x19)
     let (cast' : t -> PartialResultParams.t) =
-      fun (x40 : t) -> PartialResultParams.t_of_js (t_to_js x40)
+      fun (x20 : t) -> PartialResultParams.t_of_js (t_to_js x20)
   end
 module DocumentColorRequest =
   struct
     let (method_ : [ `L_s0_textDocument_documentColor ]) =
-      let x41 =
+      let x21 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "DocumentColorRequest") "method" in
-      match Ojs.string_of_js x41 with
+      match Ojs.string_of_js x21 with
       | "textDocument/documentColor" -> `L_s0_textDocument_documentColor
       | _ -> assert false
     let (type_ :
-      (_DocumentColorParams, ColorInformation.t list,
-        ColorInformation.t list, unit, _DocumentColorRegistrationOptions)
+      (DocumentColorParams.t, ColorInformation.t list,
+        ColorInformation.t list, unit, DocumentColorRegistrationOptions.t)
         ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _DocumentColorParams_of_js
-        (fun (x43 : Ojs.t) -> Ojs.list_of_js ColorInformation.t_of_js x43)
-        (fun (x45 : Ojs.t) -> Ojs.list_of_js ColorInformation.t_of_js x45)
-        Ojs.unit_of_js _DocumentColorRegistrationOptions_of_js
+      ProtocolRequestType.t_of_js DocumentColorParams.t_of_js
+        (fun (x23 : Ojs.t) -> Ojs.list_of_js ColorInformation.t_of_js x23)
+        (fun (x25 : Ojs.t) -> Ojs.list_of_js ColorInformation.t_of_js x25)
+        Ojs.unit_of_js DocumentColorRegistrationOptions.t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "DocumentColorRequest") "type")
     module HandlerSignature =
       struct
-        type t = _DocumentColorRequest_HandlerSignature
+        type t =
+          (DocumentColorParams.t, ColorInformation.t list, unit)
+            RequestHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x50 : Ojs.t) ->
-            _DocumentColorRequest_HandlerSignature_of_js x50
+          fun (x34 : Ojs.t) ->
+            RequestHandler.t_of_js DocumentColorParams.t_of_js
+              (fun (x36 : Ojs.t) ->
+                 Ojs.list_of_js ColorInformation.t_of_js x36) Ojs.unit_of_js
+              x34
         and t_to_js : t -> Ojs.t =
-          fun (x49 : _DocumentColorRequest_HandlerSignature) ->
-            _DocumentColorRequest_HandlerSignature_to_js x49
+          fun
+            (x29 :
+              (DocumentColorParams.t, ColorInformation.t list, unit)
+                RequestHandler.t)
+            ->
+            RequestHandler.t_to_js DocumentColorParams.t_to_js
+              (fun (x31 : ColorInformation.t list) ->
+                 Ojs.list_to_js ColorInformation.t_to_js x31) Ojs.unit_to_js
+              x29
       end
   end
 module ColorPresentationParams =
   struct
-    type t = _ColorPresentationParams
-    let rec t_of_js : Ojs.t -> t =
-      fun (x52 : Ojs.t) -> _ColorPresentationParams_of_js x52
-    and t_to_js : t -> Ojs.t =
-      fun (x51 : _ColorPresentationParams) ->
-        _ColorPresentationParams_to_js x51
-    let (get_textDocument : t -> TextDocumentIdentifier.t) =
-      fun (x53 : t) ->
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x40 : Ojs.t) -> x40
+    and t_to_js : t -> Ojs.t = fun (x39 : Ojs.t) -> x39
+    let (get_text_document : t -> TextDocumentIdentifier.t) =
+      fun (x41 : t) ->
         TextDocumentIdentifier.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x53) "textDocument")
-    let (set_textDocument : t -> TextDocumentIdentifier.t -> unit) =
-      fun (x54 : t) ->
-        fun (x55 : TextDocumentIdentifier.t) ->
-          Ojs.set_prop_ascii (t_to_js x54) "textDocument"
-            (TextDocumentIdentifier.t_to_js x55)
+          (Ojs.get_prop_ascii (t_to_js x41) "textDocument")
+    let (set_text_document : t -> TextDocumentIdentifier.t -> unit) =
+      fun (x42 : t) ->
+        fun (x43 : TextDocumentIdentifier.t) ->
+          Ojs.set_prop_ascii (t_to_js x42) "textDocument"
+            (TextDocumentIdentifier.t_to_js x43)
     let (get_color : t -> Color.t) =
-      fun (x56 : t) ->
-        Color.t_of_js (Ojs.get_prop_ascii (t_to_js x56) "color")
+      fun (x44 : t) ->
+        Color.t_of_js (Ojs.get_prop_ascii (t_to_js x44) "color")
     let (set_color : t -> Color.t -> unit) =
-      fun (x57 : t) ->
-        fun (x58 : Color.t) ->
-          Ojs.set_prop_ascii (t_to_js x57) "color" (Color.t_to_js x58)
+      fun (x45 : t) ->
+        fun (x46 : Color.t) ->
+          Ojs.set_prop_ascii (t_to_js x45) "color" (Color.t_to_js x46)
     let (get_range : t -> Range.t) =
-      fun (x59 : t) ->
-        Range.t_of_js (Ojs.get_prop_ascii (t_to_js x59) "range")
+      fun (x47 : t) ->
+        Range.t_of_js (Ojs.get_prop_ascii (t_to_js x47) "range")
     let (set_range : t -> Range.t -> unit) =
-      fun (x60 : t) ->
-        fun (x61 : Range.t) ->
-          Ojs.set_prop_ascii (t_to_js x60) "range" (Range.t_to_js x61)
+      fun (x48 : t) ->
+        fun (x49 : Range.t) ->
+          Ojs.set_prop_ascii (t_to_js x48) "range" (Range.t_to_js x49)
     let (cast : t -> WorkDoneProgressParams.t) =
-      fun (x62 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x62)
+      fun (x50 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x50)
     let (cast' : t -> PartialResultParams.t) =
-      fun (x63 : t) -> PartialResultParams.t_of_js (t_to_js x63)
+      fun (x51 : t) -> PartialResultParams.t_of_js (t_to_js x51)
   end
 module ColorPresentationRequest =
   struct
     let (type_ :
-      (_ColorPresentationParams, ColorPresentation.t list,
+      (ColorPresentationParams.t, ColorPresentation.t list,
         ColorPresentation.t list, unit,
         (WorkDoneProgressOptions.t, TextDocumentRegistrationOptions.t)
           intersection2)
         ProtocolRequestType.t)
       =
-      ProtocolRequestType.t_of_js _ColorPresentationParams_of_js
-        (fun (x65 : Ojs.t) -> Ojs.list_of_js ColorPresentation.t_of_js x65)
-        (fun (x67 : Ojs.t) -> Ojs.list_of_js ColorPresentation.t_of_js x67)
+      ProtocolRequestType.t_of_js ColorPresentationParams.t_of_js
+        (fun (x53 : Ojs.t) -> Ojs.list_of_js ColorPresentation.t_of_js x53)
+        (fun (x55 : Ojs.t) -> Ojs.list_of_js ColorPresentation.t_of_js x55)
         Ojs.unit_of_js
-        (fun (x70 : Ojs.t) ->
+        (fun (x58 : Ojs.t) ->
            intersection2_of_js WorkDoneProgressOptions.t_of_js
-             TextDocumentRegistrationOptions.t_of_js x70)
+             TextDocumentRegistrationOptions.t_of_js x58)
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "ColorPresentationRequest") "type")
     module HandlerSignature =
       struct
-        type t = _ColorPresentationRequest_HandlerSignature
+        type t =
+          (ColorPresentationParams.t, ColorPresentation.t list, unit)
+            RequestHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x74 : Ojs.t) ->
-            _ColorPresentationRequest_HandlerSignature_of_js x74
+          fun (x66 : Ojs.t) ->
+            RequestHandler.t_of_js ColorPresentationParams.t_of_js
+              (fun (x68 : Ojs.t) ->
+                 Ojs.list_of_js ColorPresentation.t_of_js x68) Ojs.unit_of_js
+              x66
         and t_to_js : t -> Ojs.t =
-          fun (x73 : _ColorPresentationRequest_HandlerSignature) ->
-            _ColorPresentationRequest_HandlerSignature_to_js x73
+          fun
+            (x61 :
+              (ColorPresentationParams.t, ColorPresentation.t list, unit)
+                RequestHandler.t)
+            ->
+            RequestHandler.t_to_js ColorPresentationParams.t_to_js
+              (fun (x63 : ColorPresentation.t list) ->
+                 Ojs.list_to_js ColorPresentation.t_to_js x63) Ojs.unit_to_js
+              x61
       end
   end

@@ -2,20 +2,15 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
-module Internal =
-  struct module Types = struct open AnonymousInterfaces end end
 module Path =
   struct
     module Path =
       struct
         module ParsedPath =
           struct
-            type t = path_path_ParsedPath
-            let rec t_of_js : Ojs.t -> t =
-              fun (x2 : Ojs.t) -> path_path_ParsedPath_of_js x2
-            and t_to_js : t -> Ojs.t =
-              fun (x1 : path_path_ParsedPath) ->
-                path_path_ParsedPath_to_js x1
+            type t = Ojs.t
+            let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+            and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
             let (get_root : t -> string) =
               fun (x3 : t) ->
                 Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x3) "root")
@@ -58,12 +53,9 @@ module Path =
           end
         module FormatInputPathObject =
           struct
-            type t = path_path_FormatInputPathObject
-            let rec t_of_js : Ojs.t -> t =
-              fun (x19 : Ojs.t) -> path_path_FormatInputPathObject_of_js x19
-            and t_to_js : t -> Ojs.t =
-              fun (x18 : path_path_FormatInputPathObject) ->
-                path_path_FormatInputPathObject_to_js x18
+            type t = Ojs.t
+            let rec t_of_js : Ojs.t -> t = fun (x19 : Ojs.t) -> x19
+            and t_to_js : t -> Ojs.t = fun (x18 : Ojs.t) -> x18
             let (get_root : t -> string) =
               fun (x20 : t) ->
                 Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x20) "root")
@@ -107,15 +99,12 @@ module Path =
           end
         module PlatformPath =
           struct
-            type t = path_path_PlatformPath
-            let rec t_of_js : Ojs.t -> t =
-              fun (x36 : Ojs.t) -> path_path_PlatformPath_of_js x36
-            and t_to_js : t -> Ojs.t =
-              fun (x35 : path_path_PlatformPath) ->
-                path_path_PlatformPath_to_js x35
-            let (normalize : t -> p:string -> string) =
+            type t = Ojs.t
+            let rec t_of_js : Ojs.t -> t = fun (x36 : Ojs.t) -> x36
+            and t_to_js : t -> Ojs.t = fun (x35 : Ojs.t) -> x35
+            let (normalize : t -> string -> string) =
               fun (x38 : t) ->
-                fun ~p:(x37 : string) ->
+                fun (x37 : string) ->
                   Ojs.string_of_js
                     (Ojs.call (t_to_js x38) "normalize"
                        [|(Ojs.string_to_js x37)|])
@@ -135,9 +124,9 @@ module Path =
                                       (Ojs.call x40 "push"
                                          [|(Ojs.string_to_js x41)|])) x39;
                                x40))|])
-            let (resolve : t -> pathSegments:string list -> string) =
+            let (resolve : t -> string list -> string) =
               fun (x47 : t) ->
-                fun ~pathSegments:(x44 : string list) ->
+                fun (x44 : string list) ->
                   Ojs.string_of_js
                     (let x48 = t_to_js x47 in
                      Ojs.call (Ojs.get_prop_ascii x48 "resolve") "apply"
@@ -151,9 +140,9 @@ module Path =
                                       (Ojs.call x45 "push"
                                          [|(Ojs.string_to_js x46)|])) x44;
                                x45))|])
-            let (isAbsolute : t -> p:string -> bool) =
+            let (is_absolute : t -> string -> bool) =
               fun (x50 : t) ->
-                fun ~p:(x49 : string) ->
+                fun (x49 : string) ->
                   Ojs.bool_of_js
                     (Ojs.call (t_to_js x50) "isAbsolute"
                        [|(Ojs.string_to_js x49)|])
@@ -164,15 +153,15 @@ module Path =
                     Ojs.string_of_js
                       (Ojs.call (t_to_js x53) "relative"
                          [|(Ojs.string_to_js x51);(Ojs.string_to_js x52)|])
-            let (dirname : t -> p:string -> string) =
+            let (dirname : t -> string -> string) =
               fun (x55 : t) ->
-                fun ~p:(x54 : string) ->
+                fun (x54 : string) ->
                   Ojs.string_of_js
                     (Ojs.call (t_to_js x55) "dirname"
                        [|(Ojs.string_to_js x54)|])
-            let (basename : t -> p:string -> ?ext:string -> unit -> string) =
+            let (basename : t -> string -> ?ext:string -> unit -> string) =
               fun (x60 : t) ->
-                fun ~p:(x56 : string) ->
+                fun (x56 : string) ->
                   fun ?ext:(x57 : string option) ->
                     fun () ->
                       Ojs.string_of_js
@@ -192,9 +181,9 @@ module Path =
                                              [|(Ojs.string_to_js x59)|])
                                     | None -> ());
                                    x58))|])
-            let (extname : t -> p:string -> string) =
+            let (extname : t -> string -> string) =
               fun (x63 : t) ->
-                fun ~p:(x62 : string) ->
+                fun (x62 : string) ->
                   Ojs.string_of_js
                     (Ojs.call (t_to_js x63) "extname"
                        [|(Ojs.string_to_js x62)|])
@@ -205,22 +194,21 @@ module Path =
               fun (x65 : t) ->
                 Ojs.string_of_js
                   (Ojs.get_prop_ascii (t_to_js x65) "delimiter")
-            let (parse : t -> p:string -> path_path_ParsedPath) =
+            let (parse : t -> string -> ParsedPath.t) =
               fun (x67 : t) ->
-                fun ~p:(x66 : string) ->
-                  path_path_ParsedPath_of_js
+                fun (x66 : string) ->
+                  ParsedPath.t_of_js
                     (Ojs.call (t_to_js x67) "parse"
                        [|(Ojs.string_to_js x66)|])
-            let (format : t -> pP:path_path_FormatInputPathObject -> string)
-              =
+            let (format : t -> FormatInputPathObject.t -> string) =
               fun (x69 : t) ->
-                fun ~pP:(x68 : path_path_FormatInputPathObject) ->
+                fun (x68 : FormatInputPathObject.t) ->
                   Ojs.string_of_js
                     (Ojs.call (t_to_js x69) "format"
-                       [|(path_path_FormatInputPathObject_to_js x68)|])
-            let (toNamespacedPath : t -> path:string -> string) =
+                       [|(FormatInputPathObject.t_to_js x68)|])
+            let (to_namespaced_path : t -> string -> string) =
               fun (x71 : t) ->
-                fun ~path:(x70 : string) ->
+                fun (x70 : string) ->
                   Ojs.string_of_js
                     (Ojs.call (t_to_js x71) "toNamespacedPath"
                        [|(Ojs.string_to_js x70)|])
@@ -232,6 +220,6 @@ module Path =
                 t_of_js (Ojs.get_prop_ascii (t_to_js x73) "win32")
           end
       end
-    let (path : path_path_PlatformPath) =
-      path_path_PlatformPath_of_js (Ojs.get_prop_ascii Import.path "path")
+    let (path : PlatformPath.t) =
+      PlatformPath.t_of_js (Ojs.get_prop_ascii Import.path "path")
   end

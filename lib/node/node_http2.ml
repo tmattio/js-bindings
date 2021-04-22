@@ -134,11 +134,11 @@ module Http2 =
           fun (x43 : Ojs.t) -> http2_StreamState_of_js x43
         and t_to_js : t -> Ojs.t =
           fun (x42 : http2_StreamState) -> http2_StreamState_to_js x42
-        let (get_localWindowSize : t -> int) =
+        let (get_local_window_size : t -> int) =
           fun (x44 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x44) "localWindowSize")
-        let (set_localWindowSize : t -> int -> unit) =
+        let (set_local_window_size : t -> int -> unit) =
           fun (x45 : t) ->
             fun (x46 : int) ->
               Ojs.set_prop_ascii (t_to_js x45) "localWindowSize"
@@ -150,27 +150,27 @@ module Http2 =
           fun (x48 : t) ->
             fun (x49 : int) ->
               Ojs.set_prop_ascii (t_to_js x48) "state" (Ojs.int_to_js x49)
-        let (get_localClose : t -> int) =
+        let (get_local_close : t -> int) =
           fun (x50 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x50) "localClose")
-        let (set_localClose : t -> int -> unit) =
+        let (set_local_close : t -> int -> unit) =
           fun (x51 : t) ->
             fun (x52 : int) ->
               Ojs.set_prop_ascii (t_to_js x51) "localClose"
                 (Ojs.int_to_js x52)
-        let (get_remoteClose : t -> int) =
+        let (get_remote_close : t -> int) =
           fun (x53 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x53) "remoteClose")
-        let (set_remoteClose : t -> int -> unit) =
+        let (set_remote_close : t -> int -> unit) =
           fun (x54 : t) ->
             fun (x55 : int) ->
               Ojs.set_prop_ascii (t_to_js x54) "remoteClose"
                 (Ojs.int_to_js x55)
-        let (get_sumDependencyWeight : t -> int) =
+        let (get_sum_dependency_weight : t -> int) =
           fun (x56 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x56) "sumDependencyWeight")
-        let (set_sumDependencyWeight : t -> int -> unit) =
+        let (set_sum_dependency_weight : t -> int -> unit) =
           fun (x57 : t) ->
             fun (x58 : int) ->
               Ojs.set_prop_ascii (t_to_js x57) "sumDependencyWeight"
@@ -191,19 +191,19 @@ module Http2 =
         and t_to_js : t -> Ojs.t =
           fun (x62 : http2_ServerStreamResponseOptions) ->
             http2_ServerStreamResponseOptions_to_js x62
-        let (get_endStream : t -> bool) =
+        let (get_end_stream : t -> bool) =
           fun (x64 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x64) "endStream")
-        let (set_endStream : t -> bool -> unit) =
+        let (set_end_stream : t -> bool -> unit) =
           fun (x65 : t) ->
             fun (x66 : bool) ->
               Ojs.set_prop_ascii (t_to_js x65) "endStream"
                 (Ojs.bool_to_js x66)
-        let (get_waitForTrailers : t -> bool) =
+        let (get_wait_for_trailers : t -> bool) =
           fun (x67 : t) ->
             Ojs.bool_of_js
               (Ojs.get_prop_ascii (t_to_js x67) "waitForTrailers")
-        let (set_waitForTrailers : t -> bool -> unit) =
+        let (set_wait_for_trailers : t -> bool -> unit) =
           fun (x68 : t) ->
             fun (x69 : bool) ->
               Ojs.set_prop_ascii (t_to_js x68) "waitForTrailers"
@@ -240,26 +240,26 @@ module Http2 =
         and t_to_js : t -> Ojs.t =
           fun (x78 : http2_ServerStreamFileResponseOptions) ->
             http2_ServerStreamFileResponseOptions_to_js x78
-        let (statCheck :
+        let (stat_check :
           t ->
             stats:Fs.Stats.t ->
               headers:Node_http.Http.OutgoingHttpHeaders.t ->
-                statOptions:http2_StatOptions -> unit or_boolean)
+                stat_options:http2_StatOptions -> unit or_boolean)
           =
           fun (x83 : t) ->
             fun ~stats:(x80 : Fs.Stats.t) ->
               fun ~headers:(x81 : Node_http.Http.OutgoingHttpHeaders.t) ->
-                fun ~statOptions:(x82 : http2_StatOptions) ->
+                fun ~stat_options:(x82 : http2_StatOptions) ->
                   or_boolean_of_js Ojs.unit_of_js
                     (Ojs.call (t_to_js x83) "statCheck"
                        [|(Fs.Stats.t_to_js x80);(Node_http.Http.OutgoingHttpHeaders.t_to_js
                                                    x81);(http2_StatOptions_to_js
                                                            x82)|])
-        let (get_waitForTrailers : t -> bool) =
+        let (get_wait_for_trailers : t -> bool) =
           fun (x85 : t) ->
             Ojs.bool_of_js
               (Ojs.get_prop_ascii (t_to_js x85) "waitForTrailers")
-        let (set_waitForTrailers : t -> bool -> unit) =
+        let (set_wait_for_trailers : t -> bool -> unit) =
           fun (x86 : t) ->
             fun (x87 : bool) ->
               Ojs.set_prop_ascii (t_to_js x86) "waitForTrailers"
@@ -288,7 +288,7 @@ module Http2 =
         and t_to_js : t -> Ojs.t =
           fun (x94 : http2_ServerStreamFileResponseOptionsWithError) ->
             http2_ServerStreamFileResponseOptionsWithError_to_js x94
-        let (onError : t -> err:ErrnoException.t -> unit) =
+        let (on_error : t -> err:ErrnoException.t -> unit) =
           fun (x97 : t) ->
             fun ~err:(x96 : ErrnoException.t) ->
               ignore
@@ -308,7 +308,7 @@ module Http2 =
         let (get_aborted : t -> bool) =
           fun (x101 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x101) "aborted")
-        let (get_bufferSize : t -> int) =
+        let (get_buffer_size : t -> int) =
           fun (x102 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x102) "bufferSize")
         let (get_closed : t -> bool) =
@@ -317,7 +317,7 @@ module Http2 =
         let (get_destroyed : t -> bool) =
           fun (x104 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x104) "destroyed")
-        let (get_endAfterHeaders : t -> bool) =
+        let (get_end_after_headers : t -> bool) =
           fun (x105 : t) ->
             Ojs.bool_of_js
               (Ojs.get_prop_ascii (t_to_js x105) "endAfterHeaders")
@@ -327,19 +327,19 @@ module Http2 =
         let (get_pending : t -> bool) =
           fun (x107 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x107) "pending")
-        let (get_rstCode : t -> int) =
+        let (get_rst_code : t -> int) =
           fun (x108 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x108) "rstCode")
-        let (get_sentHeaders : t -> Node_http.Http.OutgoingHttpHeaders.t) =
+        let (get_sent_headers : t -> Node_http.Http.OutgoingHttpHeaders.t) =
           fun (x109 : t) ->
             Node_http.Http.OutgoingHttpHeaders.t_of_js
               (Ojs.get_prop_ascii (t_to_js x109) "sentHeaders")
-        let (get_sentInfoHeaders :
+        let (get_sent_info_headers :
           t -> Node_http.Http.OutgoingHttpHeaders.t list) =
           fun (x110 : t) ->
             Ojs.list_of_js Node_http.Http.OutgoingHttpHeaders.t_of_js
               (Ojs.get_prop_ascii (t_to_js x110) "sentInfoHeaders")
-        let (get_sentTrailers : t -> Node_http.Http.OutgoingHttpHeaders.t) =
+        let (get_sent_trailers : t -> Node_http.Http.OutgoingHttpHeaders.t) =
           fun (x112 : t) ->
             Node_http.Http.OutgoingHttpHeaders.t_of_js
               (Ojs.get_prop_ascii (t_to_js x112) "sentTrailers")
@@ -384,7 +384,7 @@ module Http2 =
               ignore
                 (Ojs.call (t_to_js x123) "priority"
                    [|(http2_StreamPriorityOptions_to_js x122)|])
-        let (setTimeout :
+        let (set_timeout :
           t -> msecs:int -> ?callback:(unit -> unit) -> unit -> unit) =
           fun (x128 : t) ->
             fun ~msecs:(x124 : int) ->
@@ -408,14 +408,14 @@ module Http2 =
                                                (fun _ -> x127 ()))|])
                                  | None -> ());
                                 x126))|])
-        let (sendTrailers :
+        let (send_trailers :
           t -> headers:Node_http.Http.OutgoingHttpHeaders.t -> unit) =
           fun (x131 : t) ->
             fun ~headers:(x130 : Node_http.Http.OutgoingHttpHeaders.t) ->
               ignore
                 (Ojs.call (t_to_js x131) "sendTrailers"
                    [|(Node_http.Http.OutgoingHttpHeaders.t_to_js x130)|])
-        let (addListener :
+        let (add_listener :
           t -> event:[ `aborted ] -> listener:(unit -> unit) -> t) =
           fun (x134 : t) ->
             fun ~event:(x132 : [ `aborted ]) ->
@@ -425,7 +425,7 @@ module Http2 =
                      [|((match x132 with
                          | `aborted -> Ojs.string_to_js "aborted"));(
                        Ojs.fun_to_js 1 (fun _ -> x133 ()))|])
-        let (addListener' :
+        let (add_listener' :
           t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
           fun (x137 : t) ->
             fun ~event:(x135 : [ `close ]) ->
@@ -434,7 +434,7 @@ module Http2 =
                   (Ojs.call (t_to_js x137) "addListener"
                      [|((match x135 with | `close -> Ojs.string_to_js "close"));(
                        Ojs.fun_to_js 1 (fun _ -> x136 ()))|])
-        let (addListener'' :
+        let (add_listener'' :
           t ->
             event:[ `data ] ->
               listener:(chunk:Buffer.t or_string -> unit) -> t)
@@ -448,7 +448,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x140 : Ojs.t) ->
                             x139 ~chunk:(or_string_of_js Buffer.t_of_js x140)))|])
-        let (addListener''' :
+        let (add_listener''' :
           t -> event:[ `drain ] -> listener:(unit -> unit) -> t) =
           fun (x145 : t) ->
             fun ~event:(x143 : [ `drain ]) ->
@@ -457,7 +457,7 @@ module Http2 =
                   (Ojs.call (t_to_js x145) "addListener"
                      [|((match x143 with | `drain -> Ojs.string_to_js "drain"));(
                        Ojs.fun_to_js 1 (fun _ -> x144 ()))|])
-        let (addListener'''' :
+        let (add_listener'''' :
           t -> event:[ `end_ ] -> listener:(unit -> unit) -> t) =
           fun (x148 : t) ->
             fun ~event:(x146 : [ `end_ ]) ->
@@ -466,7 +466,7 @@ module Http2 =
                   (Ojs.call (t_to_js x148) "addListener"
                      [|((match x146 with | `end_ -> Ojs.string_to_js "end"));(
                        Ojs.fun_to_js 1 (fun _ -> x147 ()))|])
-        let (addListener''''' :
+        let (add_listener''''' :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
           fun (x152 : t) ->
             fun ~event:(x149 : [ `error ]) ->
@@ -477,7 +477,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x151 : Ojs.t) ->
                             x150 ~err:(Error.t_of_js x151)))|])
-        let (addListener'''''' :
+        let (add_listener'''''' :
           t -> event:[ `finish ] -> listener:(unit -> unit) -> t) =
           fun (x155 : t) ->
             fun ~event:(x153 : [ `finish ]) ->
@@ -489,14 +489,14 @@ module Http2 =
                                                                     1
                                                                     (fun _ ->
                                                                     x154 ()))|])
-        let (addListener''''''' :
+        let (add_listener''''''' :
           t ->
             event:[ `frameError ] ->
-              listener:(frameType:int -> errorCode:int -> unit) -> t)
+              listener:(frameType:int -> error_code:int -> unit) -> t)
           =
           fun (x160 : t) ->
             fun ~event:(x156 : [ `frameError ]) ->
-              fun ~listener:(x157 : frameType:int -> errorCode:int -> unit)
+              fun ~listener:(x157 : frameType:int -> error_code:int -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x160) "addListener"
@@ -506,8 +506,8 @@ module Http2 =
                          (fun (x158 : Ojs.t) ->
                             fun (x159 : Ojs.t) ->
                               x157 ~frameType:(Ojs.int_of_js x158)
-                                ~errorCode:(Ojs.int_of_js x159)))|])
-        let (addListener'''''''' :
+                                ~error_code:(Ojs.int_of_js x159)))|])
+        let (add_listener'''''''' :
           t ->
             event:[ `pipe ] -> listener:(src:Stream.Readable.t -> unit) -> t)
           =
@@ -520,7 +520,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x163 : Ojs.t) ->
                             x162 ~src:(Stream.Readable.t_of_js x163)))|])
-        let (addListener''''''''' :
+        let (add_listener''''''''' :
           t ->
             event:[ `unpipe ] ->
               listener:(src:Stream.Readable.t -> unit) -> t)
@@ -540,7 +540,7 @@ module Http2 =
                                                                     ~src:(
                                                                     Stream.Readable.t_of_js
                                                                     x167)))|])
-        let (addListener'''''''''' :
+        let (add_listener'''''''''' :
           t -> event:[ `streamClosed ] -> listener:(code:int -> unit) -> t) =
           fun (x172 : t) ->
             fun ~event:(x169 : [ `streamClosed ]) ->
@@ -552,7 +552,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x171 : Ojs.t) ->
                             x170 ~code:(Ojs.int_of_js x171)))|])
-        let (addListener''''''''''' :
+        let (add_listener''''''''''' :
           t -> event:[ `timeout ] -> listener:(unit -> unit) -> t) =
           fun (x175 : t) ->
             fun ~event:(x173 : [ `timeout ]) ->
@@ -562,7 +562,7 @@ module Http2 =
                      [|((match x173 with
                          | `timeout -> Ojs.string_to_js "timeout"));(
                        Ojs.fun_to_js 1 (fun _ -> x174 ()))|])
-        let (addListener'''''''''''' :
+        let (add_listener'''''''''''' :
           t ->
             event:[ `trailers ] ->
               listener:(trailers:http2_IncomingHttpHeaders ->
@@ -587,7 +587,7 @@ module Http2 =
                                 ~trailers:(http2_IncomingHttpHeaders_of_js
                                              x178)
                                 ~flags:(Ojs.int_of_js x179)))|])
-        let (addListener''''''''''''' :
+        let (add_listener''''''''''''' :
           t -> event:[ `wantTrailers ] -> listener:(unit -> unit) -> t) =
           fun (x183 : t) ->
             fun ~event:(x181 : [ `wantTrailers ]) ->
@@ -597,7 +597,7 @@ module Http2 =
                      [|((match x181 with
                          | `wantTrailers -> Ojs.string_to_js "wantTrailers"));(
                        Ojs.fun_to_js 1 (fun _ -> x182 ()))|])
-        let (addListener'''''''''''''' :
+        let (add_listener'''''''''''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -664,12 +664,12 @@ module Http2 =
                    [|((match x205 with | `finish -> Ojs.string_to_js "finish"))|])
         let (emit''''''' :
           t ->
-            event:[ `frameError ] -> frameType:int -> errorCode:int -> bool)
+            event:[ `frameError ] -> frame_type:int -> error_code:int -> bool)
           =
           fun (x210 : t) ->
             fun ~event:(x207 : [ `frameError ]) ->
-              fun ~frameType:(x208 : int) ->
-                fun ~errorCode:(x209 : int) ->
+              fun ~frame_type:(x208 : int) ->
+                fun ~error_code:(x209 : int) ->
                   Ojs.bool_of_js
                     (Ojs.call (t_to_js x210) "emit"
                        [|((match x207 with
@@ -827,11 +827,11 @@ module Http2 =
         let (on''''''' :
           t ->
             event:[ `frameError ] ->
-              listener:(frameType:int -> errorCode:int -> unit) -> t)
+              listener:(frameType:int -> error_code:int -> unit) -> t)
           =
           fun (x263 : t) ->
             fun ~event:(x259 : [ `frameError ]) ->
-              fun ~listener:(x260 : frameType:int -> errorCode:int -> unit)
+              fun ~listener:(x260 : frameType:int -> error_code:int -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x263) "on"
@@ -841,7 +841,7 @@ module Http2 =
                          (fun (x261 : Ojs.t) ->
                             fun (x262 : Ojs.t) ->
                               x260 ~frameType:(Ojs.int_of_js x261)
-                                ~errorCode:(Ojs.int_of_js x262)))|])
+                                ~error_code:(Ojs.int_of_js x262)))|])
         let (on'''''''' :
           t ->
             event:[ `pipe ] -> listener:(src:Stream.Readable.t -> unit) -> t)
@@ -1025,11 +1025,11 @@ module Http2 =
         let (once''''''' :
           t ->
             event:[ `frameError ] ->
-              listener:(frameType:int -> errorCode:int -> unit) -> t)
+              listener:(frameType:int -> error_code:int -> unit) -> t)
           =
           fun (x321 : t) ->
             fun ~event:(x317 : [ `frameError ]) ->
-              fun ~listener:(x318 : frameType:int -> errorCode:int -> unit)
+              fun ~listener:(x318 : frameType:int -> error_code:int -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x321) "once"
@@ -1039,7 +1039,7 @@ module Http2 =
                          (fun (x319 : Ojs.t) ->
                             fun (x320 : Ojs.t) ->
                               x318 ~frameType:(Ojs.int_of_js x319)
-                                ~errorCode:(Ojs.int_of_js x320)))|])
+                                ~error_code:(Ojs.int_of_js x320)))|])
         let (once'''''''' :
           t ->
             event:[ `pipe ] -> listener:(src:Stream.Readable.t -> unit) -> t)
@@ -1147,7 +1147,7 @@ module Http2 =
                                                                    Ojs.list_of_js_from
                                                                     any_of_js
                                                                     x348 0)))|])
-        let (prependListener :
+        let (prepend_listener :
           t -> event:[ `aborted ] -> listener:(unit -> unit) -> t) =
           fun (x353 : t) ->
             fun ~event:(x351 : [ `aborted ]) ->
@@ -1157,7 +1157,7 @@ module Http2 =
                      [|((match x351 with
                          | `aborted -> Ojs.string_to_js "aborted"));(
                        Ojs.fun_to_js 1 (fun _ -> x352 ()))|])
-        let (prependListener' :
+        let (prepend_listener' :
           t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
           fun (x356 : t) ->
             fun ~event:(x354 : [ `close ]) ->
@@ -1166,7 +1166,7 @@ module Http2 =
                   (Ojs.call (t_to_js x356) "prependListener"
                      [|((match x354 with | `close -> Ojs.string_to_js "close"));(
                        Ojs.fun_to_js 1 (fun _ -> x355 ()))|])
-        let (prependListener'' :
+        let (prepend_listener'' :
           t ->
             event:[ `data ] ->
               listener:(chunk:Buffer.t or_string -> unit) -> t)
@@ -1180,7 +1180,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x359 : Ojs.t) ->
                             x358 ~chunk:(or_string_of_js Buffer.t_of_js x359)))|])
-        let (prependListener''' :
+        let (prepend_listener''' :
           t -> event:[ `drain ] -> listener:(unit -> unit) -> t) =
           fun (x364 : t) ->
             fun ~event:(x362 : [ `drain ]) ->
@@ -1189,7 +1189,7 @@ module Http2 =
                   (Ojs.call (t_to_js x364) "prependListener"
                      [|((match x362 with | `drain -> Ojs.string_to_js "drain"));(
                        Ojs.fun_to_js 1 (fun _ -> x363 ()))|])
-        let (prependListener'''' :
+        let (prepend_listener'''' :
           t -> event:[ `end_ ] -> listener:(unit -> unit) -> t) =
           fun (x367 : t) ->
             fun ~event:(x365 : [ `end_ ]) ->
@@ -1198,7 +1198,7 @@ module Http2 =
                   (Ojs.call (t_to_js x367) "prependListener"
                      [|((match x365 with | `end_ -> Ojs.string_to_js "end"));(
                        Ojs.fun_to_js 1 (fun _ -> x366 ()))|])
-        let (prependListener''''' :
+        let (prepend_listener''''' :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
           fun (x371 : t) ->
             fun ~event:(x368 : [ `error ]) ->
@@ -1209,7 +1209,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x370 : Ojs.t) ->
                             x369 ~err:(Error.t_of_js x370)))|])
-        let (prependListener'''''' :
+        let (prepend_listener'''''' :
           t -> event:[ `finish ] -> listener:(unit -> unit) -> t) =
           fun (x374 : t) ->
             fun ~event:(x372 : [ `finish ]) ->
@@ -1221,14 +1221,14 @@ module Http2 =
                                                                     1
                                                                     (fun _ ->
                                                                     x373 ()))|])
-        let (prependListener''''''' :
+        let (prepend_listener''''''' :
           t ->
             event:[ `frameError ] ->
-              listener:(frameType:int -> errorCode:int -> unit) -> t)
+              listener:(frameType:int -> error_code:int -> unit) -> t)
           =
           fun (x379 : t) ->
             fun ~event:(x375 : [ `frameError ]) ->
-              fun ~listener:(x376 : frameType:int -> errorCode:int -> unit)
+              fun ~listener:(x376 : frameType:int -> error_code:int -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x379) "prependListener"
@@ -1238,8 +1238,8 @@ module Http2 =
                          (fun (x377 : Ojs.t) ->
                             fun (x378 : Ojs.t) ->
                               x376 ~frameType:(Ojs.int_of_js x377)
-                                ~errorCode:(Ojs.int_of_js x378)))|])
-        let (prependListener'''''''' :
+                                ~error_code:(Ojs.int_of_js x378)))|])
+        let (prepend_listener'''''''' :
           t ->
             event:[ `pipe ] -> listener:(src:Stream.Readable.t -> unit) -> t)
           =
@@ -1252,7 +1252,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x382 : Ojs.t) ->
                             x381 ~src:(Stream.Readable.t_of_js x382)))|])
-        let (prependListener''''''''' :
+        let (prepend_listener''''''''' :
           t ->
             event:[ `unpipe ] ->
               listener:(src:Stream.Readable.t -> unit) -> t)
@@ -1272,7 +1272,7 @@ module Http2 =
                                                                     ~src:(
                                                                     Stream.Readable.t_of_js
                                                                     x386)))|])
-        let (prependListener'''''''''' :
+        let (prepend_listener'''''''''' :
           t -> event:[ `streamClosed ] -> listener:(code:int -> unit) -> t) =
           fun (x391 : t) ->
             fun ~event:(x388 : [ `streamClosed ]) ->
@@ -1284,7 +1284,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x390 : Ojs.t) ->
                             x389 ~code:(Ojs.int_of_js x390)))|])
-        let (prependListener''''''''''' :
+        let (prepend_listener''''''''''' :
           t -> event:[ `timeout ] -> listener:(unit -> unit) -> t) =
           fun (x394 : t) ->
             fun ~event:(x392 : [ `timeout ]) ->
@@ -1294,7 +1294,7 @@ module Http2 =
                      [|((match x392 with
                          | `timeout -> Ojs.string_to_js "timeout"));(
                        Ojs.fun_to_js 1 (fun _ -> x393 ()))|])
-        let (prependListener'''''''''''' :
+        let (prepend_listener'''''''''''' :
           t ->
             event:[ `trailers ] ->
               listener:(trailers:http2_IncomingHttpHeaders ->
@@ -1319,7 +1319,7 @@ module Http2 =
                                 ~trailers:(http2_IncomingHttpHeaders_of_js
                                              x397)
                                 ~flags:(Ojs.int_of_js x398)))|])
-        let (prependListener''''''''''''' :
+        let (prepend_listener''''''''''''' :
           t -> event:[ `wantTrailers ] -> listener:(unit -> unit) -> t) =
           fun (x402 : t) ->
             fun ~event:(x400 : [ `wantTrailers ]) ->
@@ -1329,7 +1329,7 @@ module Http2 =
                      [|((match x400 with
                          | `wantTrailers -> Ojs.string_to_js "wantTrailers"));(
                        Ojs.fun_to_js 1 (fun _ -> x401 ()))|])
-        let (prependListener'''''''''''''' :
+        let (prepend_listener'''''''''''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -1346,7 +1346,7 @@ module Http2 =
                                                                    Ojs.list_of_js_from
                                                                     any_of_js
                                                                     x406 0)))|])
-        let (prependOnceListener :
+        let (prepend_once_listener :
           t -> event:[ `aborted ] -> listener:(unit -> unit) -> t) =
           fun (x411 : t) ->
             fun ~event:(x409 : [ `aborted ]) ->
@@ -1356,7 +1356,7 @@ module Http2 =
                      [|((match x409 with
                          | `aborted -> Ojs.string_to_js "aborted"));(
                        Ojs.fun_to_js 1 (fun _ -> x410 ()))|])
-        let (prependOnceListener' :
+        let (prepend_once_listener' :
           t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
           fun (x414 : t) ->
             fun ~event:(x412 : [ `close ]) ->
@@ -1365,7 +1365,7 @@ module Http2 =
                   (Ojs.call (t_to_js x414) "prependOnceListener"
                      [|((match x412 with | `close -> Ojs.string_to_js "close"));(
                        Ojs.fun_to_js 1 (fun _ -> x413 ()))|])
-        let (prependOnceListener'' :
+        let (prepend_once_listener'' :
           t ->
             event:[ `data ] ->
               listener:(chunk:Buffer.t or_string -> unit) -> t)
@@ -1379,7 +1379,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x417 : Ojs.t) ->
                             x416 ~chunk:(or_string_of_js Buffer.t_of_js x417)))|])
-        let (prependOnceListener''' :
+        let (prepend_once_listener''' :
           t -> event:[ `drain ] -> listener:(unit -> unit) -> t) =
           fun (x422 : t) ->
             fun ~event:(x420 : [ `drain ]) ->
@@ -1388,7 +1388,7 @@ module Http2 =
                   (Ojs.call (t_to_js x422) "prependOnceListener"
                      [|((match x420 with | `drain -> Ojs.string_to_js "drain"));(
                        Ojs.fun_to_js 1 (fun _ -> x421 ()))|])
-        let (prependOnceListener'''' :
+        let (prepend_once_listener'''' :
           t -> event:[ `end_ ] -> listener:(unit -> unit) -> t) =
           fun (x425 : t) ->
             fun ~event:(x423 : [ `end_ ]) ->
@@ -1397,7 +1397,7 @@ module Http2 =
                   (Ojs.call (t_to_js x425) "prependOnceListener"
                      [|((match x423 with | `end_ -> Ojs.string_to_js "end"));(
                        Ojs.fun_to_js 1 (fun _ -> x424 ()))|])
-        let (prependOnceListener''''' :
+        let (prepend_once_listener''''' :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
           fun (x429 : t) ->
             fun ~event:(x426 : [ `error ]) ->
@@ -1408,7 +1408,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x428 : Ojs.t) ->
                             x427 ~err:(Error.t_of_js x428)))|])
-        let (prependOnceListener'''''' :
+        let (prepend_once_listener'''''' :
           t -> event:[ `finish ] -> listener:(unit -> unit) -> t) =
           fun (x432 : t) ->
             fun ~event:(x430 : [ `finish ]) ->
@@ -1420,14 +1420,14 @@ module Http2 =
                                                                     1
                                                                     (fun _ ->
                                                                     x431 ()))|])
-        let (prependOnceListener''''''' :
+        let (prepend_once_listener''''''' :
           t ->
             event:[ `frameError ] ->
-              listener:(frameType:int -> errorCode:int -> unit) -> t)
+              listener:(frameType:int -> error_code:int -> unit) -> t)
           =
           fun (x437 : t) ->
             fun ~event:(x433 : [ `frameError ]) ->
-              fun ~listener:(x434 : frameType:int -> errorCode:int -> unit)
+              fun ~listener:(x434 : frameType:int -> error_code:int -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x437) "prependOnceListener"
@@ -1437,8 +1437,8 @@ module Http2 =
                          (fun (x435 : Ojs.t) ->
                             fun (x436 : Ojs.t) ->
                               x434 ~frameType:(Ojs.int_of_js x435)
-                                ~errorCode:(Ojs.int_of_js x436)))|])
-        let (prependOnceListener'''''''' :
+                                ~error_code:(Ojs.int_of_js x436)))|])
+        let (prepend_once_listener'''''''' :
           t ->
             event:[ `pipe ] -> listener:(src:Stream.Readable.t -> unit) -> t)
           =
@@ -1451,7 +1451,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x440 : Ojs.t) ->
                             x439 ~src:(Stream.Readable.t_of_js x440)))|])
-        let (prependOnceListener''''''''' :
+        let (prepend_once_listener''''''''' :
           t ->
             event:[ `unpipe ] ->
               listener:(src:Stream.Readable.t -> unit) -> t)
@@ -1471,7 +1471,7 @@ module Http2 =
                                                                     ~src:(
                                                                     Stream.Readable.t_of_js
                                                                     x444)))|])
-        let (prependOnceListener'''''''''' :
+        let (prepend_once_listener'''''''''' :
           t -> event:[ `streamClosed ] -> listener:(code:int -> unit) -> t) =
           fun (x449 : t) ->
             fun ~event:(x446 : [ `streamClosed ]) ->
@@ -1483,7 +1483,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x448 : Ojs.t) ->
                             x447 ~code:(Ojs.int_of_js x448)))|])
-        let (prependOnceListener''''''''''' :
+        let (prepend_once_listener''''''''''' :
           t -> event:[ `timeout ] -> listener:(unit -> unit) -> t) =
           fun (x452 : t) ->
             fun ~event:(x450 : [ `timeout ]) ->
@@ -1493,7 +1493,7 @@ module Http2 =
                      [|((match x450 with
                          | `timeout -> Ojs.string_to_js "timeout"));(
                        Ojs.fun_to_js 1 (fun _ -> x451 ()))|])
-        let (prependOnceListener'''''''''''' :
+        let (prepend_once_listener'''''''''''' :
           t ->
             event:[ `trailers ] ->
               listener:(trailers:http2_IncomingHttpHeaders ->
@@ -1518,7 +1518,7 @@ module Http2 =
                                 ~trailers:(http2_IncomingHttpHeaders_of_js
                                              x455)
                                 ~flags:(Ojs.int_of_js x456)))|])
-        let (prependOnceListener''''''''''''' :
+        let (prepend_once_listener''''''''''''' :
           t -> event:[ `wantTrailers ] -> listener:(unit -> unit) -> t) =
           fun (x460 : t) ->
             fun ~event:(x458 : [ `wantTrailers ]) ->
@@ -1528,7 +1528,7 @@ module Http2 =
                      [|((match x458 with
                          | `wantTrailers -> Ojs.string_to_js "wantTrailers"));(
                        Ojs.fun_to_js 1 (fun _ -> x459 ()))|])
-        let (prependOnceListener'''''''''''''' :
+        let (prepend_once_listener'''''''''''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -1556,7 +1556,7 @@ module Http2 =
         and t_to_js : t -> Ojs.t =
           fun (x468 : http2_ClientHttp2Stream) ->
             http2_ClientHttp2Stream_to_js x468
-        let (addListener :
+        let (add_listener :
           t ->
             event:[ `continue ] ->
               listener:(unit -> AnonymousInterface0.t) -> t)
@@ -1570,7 +1570,7 @@ module Http2 =
                          | `continue -> Ojs.string_to_js "continue"));(
                        Ojs.fun_to_js 1
                          (fun _ -> AnonymousInterface0.t_to_js (x471 ())))|])
-        let (addListener' :
+        let (add_listener' :
           t ->
             event:[ `headers ] ->
               listener:(headers:(http2_IncomingHttpHeaders,
@@ -1598,7 +1598,7 @@ module Http2 =
                                             http2_IncomingHttpHeaders_of_js
                                             http2_IncomingHttpStatusHeader_of_js
                                             x475) ~flags:(Ojs.int_of_js x478)))|])
-        let (addListener'' :
+        let (add_listener'' :
           t ->
             event:[ `push ] ->
               listener:(headers:http2_IncomingHttpHeaders ->
@@ -1621,7 +1621,7 @@ module Http2 =
                               x481
                                 ~headers:(http2_IncomingHttpHeaders_of_js
                                             x482) ~flags:(Ojs.int_of_js x483)))|])
-        let (addListener''' :
+        let (add_listener''' :
           t ->
             event:[ `response ] ->
               listener:(headers:(http2_IncomingHttpHeaders,
@@ -1649,7 +1649,7 @@ module Http2 =
                                             http2_IncomingHttpHeaders_of_js
                                             http2_IncomingHttpStatusHeader_of_js
                                             x487) ~flags:(Ojs.int_of_js x490)))|])
-        let (addListener'''' :
+        let (add_listener'''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -1972,7 +1972,7 @@ module Http2 =
                                                                    Ojs.list_of_js_from
                                                                     any_of_js
                                                                     x576 0)))|])
-        let (prependListener :
+        let (prepend_listener :
           t ->
             event:[ `continue ] ->
               listener:(unit -> AnonymousInterface0.t) -> t)
@@ -1986,7 +1986,7 @@ module Http2 =
                          | `continue -> Ojs.string_to_js "continue"));(
                        Ojs.fun_to_js 1
                          (fun _ -> AnonymousInterface0.t_to_js (x580 ())))|])
-        let (prependListener' :
+        let (prepend_listener' :
           t ->
             event:[ `headers ] ->
               listener:(headers:(http2_IncomingHttpHeaders,
@@ -2014,7 +2014,7 @@ module Http2 =
                                             http2_IncomingHttpHeaders_of_js
                                             http2_IncomingHttpStatusHeader_of_js
                                             x584) ~flags:(Ojs.int_of_js x587)))|])
-        let (prependListener'' :
+        let (prepend_listener'' :
           t ->
             event:[ `push ] ->
               listener:(headers:http2_IncomingHttpHeaders ->
@@ -2037,7 +2037,7 @@ module Http2 =
                               x590
                                 ~headers:(http2_IncomingHttpHeaders_of_js
                                             x591) ~flags:(Ojs.int_of_js x592)))|])
-        let (prependListener''' :
+        let (prepend_listener''' :
           t ->
             event:[ `response ] ->
               listener:(headers:(http2_IncomingHttpHeaders,
@@ -2065,7 +2065,7 @@ module Http2 =
                                             http2_IncomingHttpHeaders_of_js
                                             http2_IncomingHttpStatusHeader_of_js
                                             x596) ~flags:(Ojs.int_of_js x599)))|])
-        let (prependListener'''' :
+        let (prepend_listener'''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -2082,7 +2082,7 @@ module Http2 =
                                                                    Ojs.list_of_js_from
                                                                     any_of_js
                                                                     x604 0)))|])
-        let (prependOnceListener :
+        let (prepend_once_listener :
           t ->
             event:[ `continue ] ->
               listener:(unit -> AnonymousInterface0.t) -> t)
@@ -2096,7 +2096,7 @@ module Http2 =
                          | `continue -> Ojs.string_to_js "continue"));(
                        Ojs.fun_to_js 1
                          (fun _ -> AnonymousInterface0.t_to_js (x608 ())))|])
-        let (prependOnceListener' :
+        let (prepend_once_listener' :
           t ->
             event:[ `headers ] ->
               listener:(headers:(http2_IncomingHttpHeaders,
@@ -2124,7 +2124,7 @@ module Http2 =
                                             http2_IncomingHttpHeaders_of_js
                                             http2_IncomingHttpStatusHeader_of_js
                                             x612) ~flags:(Ojs.int_of_js x615)))|])
-        let (prependOnceListener'' :
+        let (prepend_once_listener'' :
           t ->
             event:[ `push ] ->
               listener:(headers:http2_IncomingHttpHeaders ->
@@ -2147,7 +2147,7 @@ module Http2 =
                               x618
                                 ~headers:(http2_IncomingHttpHeaders_of_js
                                             x619) ~flags:(Ojs.int_of_js x620)))|])
-        let (prependOnceListener''' :
+        let (prepend_once_listener''' :
           t ->
             event:[ `response ] ->
               listener:(headers:(http2_IncomingHttpHeaders,
@@ -2175,7 +2175,7 @@ module Http2 =
                                             http2_IncomingHttpHeaders_of_js
                                             http2_IncomingHttpStatusHeader_of_js
                                             x624) ~flags:(Ojs.int_of_js x627)))|])
-        let (prependOnceListener'''' :
+        let (prepend_once_listener'''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -2203,24 +2203,24 @@ module Http2 =
         and t_to_js : t -> Ojs.t =
           fun (x636 : http2_ServerHttp2Stream) ->
             http2_ServerHttp2Stream_to_js x636
-        let (get_headersSent : t -> bool) =
+        let (get_headers_sent : t -> bool) =
           fun (x638 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x638) "headersSent")
-        let (get_pushAllowed : t -> bool) =
+        let (get_push_allowed : t -> bool) =
           fun (x639 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x639) "pushAllowed")
-        let (additionalHeaders :
+        let (additional_headers :
           t -> headers:Node_http.Http.OutgoingHttpHeaders.t -> unit) =
           fun (x641 : t) ->
             fun ~headers:(x640 : Node_http.Http.OutgoingHttpHeaders.t) ->
               ignore
                 (Ojs.call (t_to_js x641) "additionalHeaders"
                    [|(Node_http.Http.OutgoingHttpHeaders.t_to_js x640)|])
-        let (pushStream :
+        let (push_stream :
           t ->
             headers:Node_http.Http.OutgoingHttpHeaders.t ->
               ?callback:(err:Error.t or_null ->
-                           pushStream:t ->
+                           push_stream:t ->
                              headers:Node_http.Http.OutgoingHttpHeaders.t ->
                                unit)
                 -> unit -> unit)
@@ -2230,7 +2230,7 @@ module Http2 =
               fun
                 ?callback:(x643 :
                             (err:Error.t or_null ->
-                               pushStream:t ->
+                               push_stream:t ->
                                  headers:Node_http.Http.OutgoingHttpHeaders.t
                                    -> unit)
                               option)
@@ -2259,18 +2259,18 @@ module Http2 =
                                                         ~err:(or_null_of_js
                                                                 Error.t_of_js
                                                                 x646)
-                                                        ~pushStream:(
+                                                        ~push_stream:(
                                                         t_of_js x648)
                                                         ~headers:(Node_http.Http.OutgoingHttpHeaders.t_of_js
                                                                     x649)))|])
                                  | None -> ());
                                 x644))|])
-        let (pushStream' :
+        let (push_stream' :
           t ->
             headers:Node_http.Http.OutgoingHttpHeaders.t ->
               ?options:http2_StreamPriorityOptions ->
                 ?callback:(err:Error.t or_null ->
-                             pushStream:t ->
+                             push_stream:t ->
                                headers:Node_http.Http.OutgoingHttpHeaders.t
                                  -> unit)
                   -> unit -> unit)
@@ -2281,7 +2281,7 @@ module Http2 =
                 fun
                   ?callback:(x654 :
                               (err:Error.t or_null ->
-                                 pushStream:t ->
+                                 push_stream:t ->
                                    headers:Node_http.Http.OutgoingHttpHeaders.t
                                      -> unit)
                                 option)
@@ -2318,7 +2318,7 @@ module Http2 =
                                                           ~err:(or_null_of_js
                                                                   Error.t_of_js
                                                                   x657)
-                                                          ~pushStream:(
+                                                          ~push_stream:(
                                                           t_of_js x659)
                                                           ~headers:(Node_http.Http.OutgoingHttpHeaders.t_of_js
                                                                     x660)))|])
@@ -2357,7 +2357,7 @@ module Http2 =
                                                x667)|])
                                  | None -> ());
                                 x666))|])
-        let (respondWithFD :
+        let (respond_with_fd :
           t ->
             fd:Fs_promises.FileHandle.t or_number ->
               ?headers:Node_http.Http.OutgoingHttpHeaders.t ->
@@ -2402,7 +2402,7 @@ module Http2 =
                                                  x675)|])
                                    | None -> ());
                                   x674))|])
-        let (respondWithFile :
+        let (respond_with_file :
           t ->
             path:string ->
               ?headers:Node_http.Http.OutgoingHttpHeaders.t ->
@@ -2456,63 +2456,63 @@ module Http2 =
           fun (x690 : Ojs.t) -> http2_Settings_of_js x690
         and t_to_js : t -> Ojs.t =
           fun (x689 : http2_Settings) -> http2_Settings_to_js x689
-        let (get_headerTableSize : t -> int) =
+        let (get_header_table_size : t -> int) =
           fun (x691 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x691) "headerTableSize")
-        let (set_headerTableSize : t -> int -> unit) =
+        let (set_header_table_size : t -> int -> unit) =
           fun (x692 : t) ->
             fun (x693 : int) ->
               Ojs.set_prop_ascii (t_to_js x692) "headerTableSize"
                 (Ojs.int_to_js x693)
-        let (get_enablePush : t -> bool) =
+        let (get_enable_push : t -> bool) =
           fun (x694 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x694) "enablePush")
-        let (set_enablePush : t -> bool -> unit) =
+        let (set_enable_push : t -> bool -> unit) =
           fun (x695 : t) ->
             fun (x696 : bool) ->
               Ojs.set_prop_ascii (t_to_js x695) "enablePush"
                 (Ojs.bool_to_js x696)
-        let (get_initialWindowSize : t -> int) =
+        let (get_initial_window_size : t -> int) =
           fun (x697 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x697) "initialWindowSize")
-        let (set_initialWindowSize : t -> int -> unit) =
+        let (set_initial_window_size : t -> int -> unit) =
           fun (x698 : t) ->
             fun (x699 : int) ->
               Ojs.set_prop_ascii (t_to_js x698) "initialWindowSize"
                 (Ojs.int_to_js x699)
-        let (get_maxFrameSize : t -> int) =
+        let (get_max_frame_size : t -> int) =
           fun (x700 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x700) "maxFrameSize")
-        let (set_maxFrameSize : t -> int -> unit) =
+        let (set_max_frame_size : t -> int -> unit) =
           fun (x701 : t) ->
             fun (x702 : int) ->
               Ojs.set_prop_ascii (t_to_js x701) "maxFrameSize"
                 (Ojs.int_to_js x702)
-        let (get_maxConcurrentStreams : t -> int) =
+        let (get_max_concurrent_streams : t -> int) =
           fun (x703 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x703) "maxConcurrentStreams")
-        let (set_maxConcurrentStreams : t -> int -> unit) =
+        let (set_max_concurrent_streams : t -> int -> unit) =
           fun (x704 : t) ->
             fun (x705 : int) ->
               Ojs.set_prop_ascii (t_to_js x704) "maxConcurrentStreams"
                 (Ojs.int_to_js x705)
-        let (get_maxHeaderListSize : t -> int) =
+        let (get_max_header_list_size : t -> int) =
           fun (x706 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x706) "maxHeaderListSize")
-        let (set_maxHeaderListSize : t -> int -> unit) =
+        let (set_max_header_list_size : t -> int -> unit) =
           fun (x707 : t) ->
             fun (x708 : int) ->
               Ojs.set_prop_ascii (t_to_js x707) "maxHeaderListSize"
                 (Ojs.int_to_js x708)
-        let (get_enableConnectProtocol : t -> bool) =
+        let (get_enable_connect_protocol : t -> bool) =
           fun (x709 : t) ->
             Ojs.bool_of_js
               (Ojs.get_prop_ascii (t_to_js x709) "enableConnectProtocol")
-        let (set_enableConnectProtocol : t -> bool -> unit) =
+        let (set_enable_connect_protocol : t -> bool -> unit) =
           fun (x710 : t) ->
             fun (x711 : bool) ->
               Ojs.set_prop_ascii (t_to_js x710) "enableConnectProtocol"
@@ -2526,10 +2526,10 @@ module Http2 =
         and t_to_js : t -> Ojs.t =
           fun (x712 : http2_ClientSessionRequestOptions) ->
             http2_ClientSessionRequestOptions_to_js x712
-        let (get_endStream : t -> bool) =
+        let (get_end_stream : t -> bool) =
           fun (x714 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x714) "endStream")
-        let (set_endStream : t -> bool -> unit) =
+        let (set_end_stream : t -> bool -> unit) =
           fun (x715 : t) ->
             fun (x716 : bool) ->
               Ojs.set_prop_ascii (t_to_js x715) "endStream"
@@ -2556,11 +2556,11 @@ module Http2 =
           fun (x724 : t) ->
             fun (x725 : int) ->
               Ojs.set_prop_ascii (t_to_js x724) "weight" (Ojs.int_to_js x725)
-        let (get_waitForTrailers : t -> bool) =
+        let (get_wait_for_trailers : t -> bool) =
           fun (x726 : t) ->
             Ojs.bool_of_js
               (Ojs.get_prop_ascii (t_to_js x726) "waitForTrailers")
-        let (set_waitForTrailers : t -> bool -> unit) =
+        let (set_wait_for_trailers : t -> bool -> unit) =
           fun (x727 : t) ->
             fun (x728 : bool) ->
               Ojs.set_prop_ascii (t_to_js x727) "waitForTrailers"
@@ -2573,82 +2573,82 @@ module Http2 =
           fun (x730 : Ojs.t) -> http2_SessionState_of_js x730
         and t_to_js : t -> Ojs.t =
           fun (x729 : http2_SessionState) -> http2_SessionState_to_js x729
-        let (get_effectiveLocalWindowSize : t -> int) =
+        let (get_effective_local_window_size : t -> int) =
           fun (x731 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x731) "effectiveLocalWindowSize")
-        let (set_effectiveLocalWindowSize : t -> int -> unit) =
+        let (set_effective_local_window_size : t -> int -> unit) =
           fun (x732 : t) ->
             fun (x733 : int) ->
               Ojs.set_prop_ascii (t_to_js x732) "effectiveLocalWindowSize"
                 (Ojs.int_to_js x733)
-        let (get_effectiveRecvDataLength : t -> int) =
+        let (get_effective_recv_data_length : t -> int) =
           fun (x734 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x734) "effectiveRecvDataLength")
-        let (set_effectiveRecvDataLength : t -> int -> unit) =
+        let (set_effective_recv_data_length : t -> int -> unit) =
           fun (x735 : t) ->
             fun (x736 : int) ->
               Ojs.set_prop_ascii (t_to_js x735) "effectiveRecvDataLength"
                 (Ojs.int_to_js x736)
-        let (get_nextStreamID : t -> int) =
+        let (get_next_stream_id : t -> int) =
           fun (x737 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x737) "nextStreamID")
-        let (set_nextStreamID : t -> int -> unit) =
+        let (set_next_stream_id : t -> int -> unit) =
           fun (x738 : t) ->
             fun (x739 : int) ->
               Ojs.set_prop_ascii (t_to_js x738) "nextStreamID"
                 (Ojs.int_to_js x739)
-        let (get_localWindowSize : t -> int) =
+        let (get_local_window_size : t -> int) =
           fun (x740 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x740) "localWindowSize")
-        let (set_localWindowSize : t -> int -> unit) =
+        let (set_local_window_size : t -> int -> unit) =
           fun (x741 : t) ->
             fun (x742 : int) ->
               Ojs.set_prop_ascii (t_to_js x741) "localWindowSize"
                 (Ojs.int_to_js x742)
-        let (get_lastProcStreamID : t -> int) =
+        let (get_last_proc_stream_id : t -> int) =
           fun (x743 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x743) "lastProcStreamID")
-        let (set_lastProcStreamID : t -> int -> unit) =
+        let (set_last_proc_stream_id : t -> int -> unit) =
           fun (x744 : t) ->
             fun (x745 : int) ->
               Ojs.set_prop_ascii (t_to_js x744) "lastProcStreamID"
                 (Ojs.int_to_js x745)
-        let (get_remoteWindowSize : t -> int) =
+        let (get_remote_window_size : t -> int) =
           fun (x746 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x746) "remoteWindowSize")
-        let (set_remoteWindowSize : t -> int -> unit) =
+        let (set_remote_window_size : t -> int -> unit) =
           fun (x747 : t) ->
             fun (x748 : int) ->
               Ojs.set_prop_ascii (t_to_js x747) "remoteWindowSize"
                 (Ojs.int_to_js x748)
-        let (get_outboundQueueSize : t -> int) =
+        let (get_outbound_queue_size : t -> int) =
           fun (x749 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x749) "outboundQueueSize")
-        let (set_outboundQueueSize : t -> int -> unit) =
+        let (set_outbound_queue_size : t -> int -> unit) =
           fun (x750 : t) ->
             fun (x751 : int) ->
               Ojs.set_prop_ascii (t_to_js x750) "outboundQueueSize"
                 (Ojs.int_to_js x751)
-        let (get_deflateDynamicTableSize : t -> int) =
+        let (get_deflate_dynamic_table_size : t -> int) =
           fun (x752 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x752) "deflateDynamicTableSize")
-        let (set_deflateDynamicTableSize : t -> int -> unit) =
+        let (set_deflate_dynamic_table_size : t -> int -> unit) =
           fun (x753 : t) ->
             fun (x754 : int) ->
               Ojs.set_prop_ascii (t_to_js x753) "deflateDynamicTableSize"
                 (Ojs.int_to_js x754)
-        let (get_inflateDynamicTableSize : t -> int) =
+        let (get_inflate_dynamic_table_size : t -> int) =
           fun (x755 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x755) "inflateDynamicTableSize")
-        let (set_inflateDynamicTableSize : t -> int -> unit) =
+        let (set_inflate_dynamic_table_size : t -> int -> unit) =
           fun (x756 : t) ->
             fun (x757 : int) ->
               Ojs.set_prop_ascii (t_to_js x756) "inflateDynamicTableSize"
@@ -2661,7 +2661,7 @@ module Http2 =
           fun (x759 : Ojs.t) -> http2_Http2Session_of_js x759
         and t_to_js : t -> Ojs.t =
           fun (x758 : http2_Http2Session) -> http2_Http2Session_to_js x758
-        let (get_alpnProtocol : t -> string) =
+        let (get_alpn_protocol : t -> string) =
           fun (x760 : t) ->
             Ojs.string_of_js
               (Ojs.get_prop_ascii (t_to_js x760) "alpnProtocol")
@@ -2677,19 +2677,19 @@ module Http2 =
         let (get_encrypted : t -> bool) =
           fun (x764 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x764) "encrypted")
-        let (get_localSettings : t -> http2_Settings) =
+        let (get_local_settings : t -> http2_Settings) =
           fun (x765 : t) ->
             http2_Settings_of_js
               (Ojs.get_prop_ascii (t_to_js x765) "localSettings")
-        let (get_originSet : t -> string list) =
+        let (get_origin_set : t -> string list) =
           fun (x766 : t) ->
             Ojs.list_of_js Ojs.string_of_js
               (Ojs.get_prop_ascii (t_to_js x766) "originSet")
-        let (get_pendingSettingsAck : t -> bool) =
+        let (get_pending_settings_ack : t -> bool) =
           fun (x768 : t) ->
             Ojs.bool_of_js
               (Ojs.get_prop_ascii (t_to_js x768) "pendingSettingsAck")
-        let (get_remoteSettings : t -> http2_Settings) =
+        let (get_remote_settings : t -> http2_Settings) =
           fun (x769 : t) ->
             http2_Settings_of_js
               (Ojs.get_prop_ascii (t_to_js x769) "remoteSettings")
@@ -2750,13 +2750,13 @@ module Http2 =
         let (goaway :
           t ->
             ?code:int ->
-              ?lastStreamID:int ->
-                ?opaqueData:ArrayBufferView.t -> unit -> unit)
+              ?last_stream_id:int ->
+                ?opaque_data:ArrayBufferView.t -> unit -> unit)
           =
           fun (x794 : t) ->
             fun ?code:(x787 : int option) ->
-              fun ?lastStreamID:(x788 : int option) ->
-                fun ?opaqueData:(x789 : ArrayBufferView.t option) ->
+              fun ?last_stream_id:(x788 : int option) ->
+                fun ?opaque_data:(x789 : ArrayBufferView.t option) ->
                   fun () ->
                     ignore
                       (let x795 = t_to_js x794 in
@@ -2844,13 +2844,13 @@ module Http2 =
                                                                     x807)))|])
         let (ref : t -> unit) =
           fun (x809 : t) -> ignore (Ojs.call (t_to_js x809) "ref" [||])
-        let (setLocalWindowSize : t -> windowSize:int -> unit) =
+        let (set_local_window_size : t -> window_size:int -> unit) =
           fun (x811 : t) ->
-            fun ~windowSize:(x810 : int) ->
+            fun ~window_size:(x810 : int) ->
               ignore
                 (Ojs.call (t_to_js x811) "setLocalWindowSize"
                    [|(Ojs.int_to_js x810)|])
-        let (setTimeout :
+        let (set_timeout :
           t -> msecs:int -> ?callback:(unit -> unit) -> unit -> unit) =
           fun (x816 : t) ->
             fun ~msecs:(x812 : int) ->
@@ -2882,7 +2882,7 @@ module Http2 =
                    [|(http2_Settings_to_js x818)|])
         let (unref : t -> unit) =
           fun (x820 : t) -> ignore (Ojs.call (t_to_js x820) "unref" [||])
-        let (addListener :
+        let (add_listener :
           t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
           fun (x823 : t) ->
             fun ~event:(x821 : [ `close ]) ->
@@ -2891,7 +2891,7 @@ module Http2 =
                   (Ojs.call (t_to_js x823) "addListener"
                      [|((match x821 with | `close -> Ojs.string_to_js "close"));(
                        Ojs.fun_to_js 1 (fun _ -> x822 ()))|])
-        let (addListener' :
+        let (add_listener' :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
           fun (x827 : t) ->
             fun ~event:(x824 : [ `error ]) ->
@@ -2902,11 +2902,11 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x826 : Ojs.t) ->
                             x825 ~err:(Error.t_of_js x826)))|])
-        let (addListener'' :
+        let (add_listener'' :
           t ->
             event:[ `frameError ] ->
               listener:(frameType:int ->
-                          errorCode:int -> streamID:int -> unit)
+                          error_code:int -> stream_id:int -> unit)
                 -> t)
           =
           fun (x833 : t) ->
@@ -2914,7 +2914,7 @@ module Http2 =
               fun
                 ~listener:(x829 :
                             frameType:int ->
-                              errorCode:int -> streamID:int -> unit)
+                              error_code:int -> stream_id:int -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x833) "addListener"
@@ -2925,13 +2925,13 @@ module Http2 =
                             fun (x831 : Ojs.t) ->
                               fun (x832 : Ojs.t) ->
                                 x829 ~frameType:(Ojs.int_of_js x830)
-                                  ~errorCode:(Ojs.int_of_js x831)
-                                  ~streamID:(Ojs.int_of_js x832)))|])
-        let (addListener''' :
+                                  ~error_code:(Ojs.int_of_js x831)
+                                  ~stream_id:(Ojs.int_of_js x832)))|])
+        let (add_listener''' :
           t ->
             event:[ `goaway ] ->
               listener:(errorCode:int ->
-                          lastStreamID:int -> opaqueData:Buffer.t -> unit)
+                          last_stream_id:int -> opaque_data:Buffer.t -> unit)
                 -> t)
           =
           fun (x839 : t) ->
@@ -2939,7 +2939,8 @@ module Http2 =
               fun
                 ~listener:(x835 :
                             errorCode:int ->
-                              lastStreamID:int -> opaqueData:Buffer.t -> unit)
+                              last_stream_id:int ->
+                                opaque_data:Buffer.t -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x839) "addListener"
@@ -2959,13 +2960,13 @@ module Http2 =
                                                                     ~errorCode:(
                                                                     Ojs.int_of_js
                                                                     x836)
-                                                                    ~lastStreamID:(
+                                                                    ~last_stream_id:(
                                                                     Ojs.int_of_js
                                                                     x837)
-                                                                    ~opaqueData:(
+                                                                    ~opaque_data:(
                                                                     Buffer.t_of_js
                                                                     x838)))|])
-        let (addListener'''' :
+        let (add_listener'''' :
           t ->
             event:[ `localSettings ] ->
               listener:(settings:http2_Settings -> unit) -> t)
@@ -2980,7 +2981,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x842 : Ojs.t) ->
                             x841 ~settings:(http2_Settings_of_js x842)))|])
-        let (addListener''''' :
+        let (add_listener''''' :
           t -> event:[ `ping ] -> listener:(unit -> unit) -> t) =
           fun (x846 : t) ->
             fun ~event:(x844 : [ `ping ]) ->
@@ -2989,7 +2990,7 @@ module Http2 =
                   (Ojs.call (t_to_js x846) "addListener"
                      [|((match x844 with | `ping -> Ojs.string_to_js "ping"));(
                        Ojs.fun_to_js 1 (fun _ -> x845 ()))|])
-        let (addListener'''''' :
+        let (add_listener'''''' :
           t ->
             event:[ `remoteSettings ] ->
               listener:(settings:http2_Settings -> unit) -> t)
@@ -3011,7 +3012,7 @@ module Http2 =
                                                                     ~settings:(
                                                                     http2_Settings_of_js
                                                                     x849)))|])
-        let (addListener''''''' :
+        let (add_listener''''''' :
           t -> event:[ `timeout ] -> listener:(unit -> unit) -> t) =
           fun (x853 : t) ->
             fun ~event:(x851 : [ `timeout ]) ->
@@ -3021,7 +3022,7 @@ module Http2 =
                      [|((match x851 with
                          | `timeout -> Ojs.string_to_js "timeout"));(
                        Ojs.fun_to_js 1 (fun _ -> x852 ()))|])
-        let (addListener'''''''' :
+        let (add_listener'''''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -3055,13 +3056,13 @@ module Http2 =
         let (emit'' :
           t ->
             event:[ `frameError ] ->
-              frameType:int -> errorCode:int -> streamID:int -> bool)
+              frame_type:int -> error_code:int -> stream_id:int -> bool)
           =
           fun (x869 : t) ->
             fun ~event:(x865 : [ `frameError ]) ->
-              fun ~frameType:(x866 : int) ->
-                fun ~errorCode:(x867 : int) ->
-                  fun ~streamID:(x868 : int) ->
+              fun ~frame_type:(x866 : int) ->
+                fun ~error_code:(x867 : int) ->
+                  fun ~stream_id:(x868 : int) ->
                     Ojs.bool_of_js
                       (Ojs.call (t_to_js x869) "emit"
                          [|((match x865 with
@@ -3071,14 +3072,14 @@ module Http2 =
         let (emit''' :
           t ->
             event:[ `goaway ] ->
-              errorCode:int ->
-                lastStreamID:int -> opaqueData:Buffer.t -> bool)
+              error_code:int ->
+                last_stream_id:int -> opaque_data:Buffer.t -> bool)
           =
           fun (x874 : t) ->
             fun ~event:(x870 : [ `goaway ]) ->
-              fun ~errorCode:(x871 : int) ->
-                fun ~lastStreamID:(x872 : int) ->
-                  fun ~opaqueData:(x873 : Buffer.t) ->
+              fun ~error_code:(x871 : int) ->
+                fun ~last_stream_id:(x872 : int) ->
+                  fun ~opaque_data:(x873 : Buffer.t) ->
                     Ojs.bool_of_js
                       (Ojs.call (t_to_js x874) "emit"
                          [|((match x870 with
@@ -3164,7 +3165,7 @@ module Http2 =
           t ->
             event:[ `frameError ] ->
               listener:(frameType:int ->
-                          errorCode:int -> streamID:int -> unit)
+                          error_code:int -> stream_id:int -> unit)
                 -> t)
           =
           fun (x904 : t) ->
@@ -3172,7 +3173,7 @@ module Http2 =
               fun
                 ~listener:(x900 :
                             frameType:int ->
-                              errorCode:int -> streamID:int -> unit)
+                              error_code:int -> stream_id:int -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x904) "on"
@@ -3183,13 +3184,13 @@ module Http2 =
                             fun (x902 : Ojs.t) ->
                               fun (x903 : Ojs.t) ->
                                 x900 ~frameType:(Ojs.int_of_js x901)
-                                  ~errorCode:(Ojs.int_of_js x902)
-                                  ~streamID:(Ojs.int_of_js x903)))|])
+                                  ~error_code:(Ojs.int_of_js x902)
+                                  ~stream_id:(Ojs.int_of_js x903)))|])
         let (on''' :
           t ->
             event:[ `goaway ] ->
               listener:(errorCode:int ->
-                          lastStreamID:int -> opaqueData:Buffer.t -> unit)
+                          last_stream_id:int -> opaque_data:Buffer.t -> unit)
                 -> t)
           =
           fun (x910 : t) ->
@@ -3197,7 +3198,8 @@ module Http2 =
               fun
                 ~listener:(x906 :
                             errorCode:int ->
-                              lastStreamID:int -> opaqueData:Buffer.t -> unit)
+                              last_stream_id:int ->
+                                opaque_data:Buffer.t -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x910) "on"
@@ -3217,10 +3219,10 @@ module Http2 =
                                                                     ~errorCode:(
                                                                     Ojs.int_of_js
                                                                     x907)
-                                                                    ~lastStreamID:(
+                                                                    ~last_stream_id:(
                                                                     Ojs.int_of_js
                                                                     x908)
-                                                                    ~opaqueData:(
+                                                                    ~opaque_data:(
                                                                     Buffer.t_of_js
                                                                     x909)))|])
         let (on'''' :
@@ -3319,7 +3321,7 @@ module Http2 =
           t ->
             event:[ `frameError ] ->
               listener:(frameType:int ->
-                          errorCode:int -> streamID:int -> unit)
+                          error_code:int -> stream_id:int -> unit)
                 -> t)
           =
           fun (x943 : t) ->
@@ -3327,7 +3329,7 @@ module Http2 =
               fun
                 ~listener:(x939 :
                             frameType:int ->
-                              errorCode:int -> streamID:int -> unit)
+                              error_code:int -> stream_id:int -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x943) "once"
@@ -3338,13 +3340,13 @@ module Http2 =
                             fun (x941 : Ojs.t) ->
                               fun (x942 : Ojs.t) ->
                                 x939 ~frameType:(Ojs.int_of_js x940)
-                                  ~errorCode:(Ojs.int_of_js x941)
-                                  ~streamID:(Ojs.int_of_js x942)))|])
+                                  ~error_code:(Ojs.int_of_js x941)
+                                  ~stream_id:(Ojs.int_of_js x942)))|])
         let (once''' :
           t ->
             event:[ `goaway ] ->
               listener:(errorCode:int ->
-                          lastStreamID:int -> opaqueData:Buffer.t -> unit)
+                          last_stream_id:int -> opaque_data:Buffer.t -> unit)
                 -> t)
           =
           fun (x949 : t) ->
@@ -3352,7 +3354,8 @@ module Http2 =
               fun
                 ~listener:(x945 :
                             errorCode:int ->
-                              lastStreamID:int -> opaqueData:Buffer.t -> unit)
+                              last_stream_id:int ->
+                                opaque_data:Buffer.t -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x949) "once"
@@ -3372,10 +3375,10 @@ module Http2 =
                                                                     ~errorCode:(
                                                                     Ojs.int_of_js
                                                                     x946)
-                                                                    ~lastStreamID:(
+                                                                    ~last_stream_id:(
                                                                     Ojs.int_of_js
                                                                     x947)
-                                                                    ~opaqueData:(
+                                                                    ~opaque_data:(
                                                                     Buffer.t_of_js
                                                                     x948)))|])
         let (once'''' :
@@ -3451,7 +3454,7 @@ module Http2 =
                                                                    Ojs.list_of_js_from
                                                                     any_of_js
                                                                     x967 0)))|])
-        let (prependListener :
+        let (prepend_listener :
           t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
           fun (x972 : t) ->
             fun ~event:(x970 : [ `close ]) ->
@@ -3460,7 +3463,7 @@ module Http2 =
                   (Ojs.call (t_to_js x972) "prependListener"
                      [|((match x970 with | `close -> Ojs.string_to_js "close"));(
                        Ojs.fun_to_js 1 (fun _ -> x971 ()))|])
-        let (prependListener' :
+        let (prepend_listener' :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
           fun (x976 : t) ->
             fun ~event:(x973 : [ `error ]) ->
@@ -3471,11 +3474,11 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x975 : Ojs.t) ->
                             x974 ~err:(Error.t_of_js x975)))|])
-        let (prependListener'' :
+        let (prepend_listener'' :
           t ->
             event:[ `frameError ] ->
               listener:(frameType:int ->
-                          errorCode:int -> streamID:int -> unit)
+                          error_code:int -> stream_id:int -> unit)
                 -> t)
           =
           fun (x982 : t) ->
@@ -3483,7 +3486,7 @@ module Http2 =
               fun
                 ~listener:(x978 :
                             frameType:int ->
-                              errorCode:int -> streamID:int -> unit)
+                              error_code:int -> stream_id:int -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x982) "prependListener"
@@ -3494,13 +3497,13 @@ module Http2 =
                             fun (x980 : Ojs.t) ->
                               fun (x981 : Ojs.t) ->
                                 x978 ~frameType:(Ojs.int_of_js x979)
-                                  ~errorCode:(Ojs.int_of_js x980)
-                                  ~streamID:(Ojs.int_of_js x981)))|])
-        let (prependListener''' :
+                                  ~error_code:(Ojs.int_of_js x980)
+                                  ~stream_id:(Ojs.int_of_js x981)))|])
+        let (prepend_listener''' :
           t ->
             event:[ `goaway ] ->
               listener:(errorCode:int ->
-                          lastStreamID:int -> opaqueData:Buffer.t -> unit)
+                          last_stream_id:int -> opaque_data:Buffer.t -> unit)
                 -> t)
           =
           fun (x988 : t) ->
@@ -3508,7 +3511,8 @@ module Http2 =
               fun
                 ~listener:(x984 :
                             errorCode:int ->
-                              lastStreamID:int -> opaqueData:Buffer.t -> unit)
+                              last_stream_id:int ->
+                                opaque_data:Buffer.t -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x988) "prependListener"
@@ -3528,13 +3532,13 @@ module Http2 =
                                                                     ~errorCode:(
                                                                     Ojs.int_of_js
                                                                     x985)
-                                                                    ~lastStreamID:(
+                                                                    ~last_stream_id:(
                                                                     Ojs.int_of_js
                                                                     x986)
-                                                                    ~opaqueData:(
+                                                                    ~opaque_data:(
                                                                     Buffer.t_of_js
                                                                     x987)))|])
-        let (prependListener'''' :
+        let (prepend_listener'''' :
           t ->
             event:[ `localSettings ] ->
               listener:(settings:http2_Settings -> unit) -> t)
@@ -3549,7 +3553,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x991 : Ojs.t) ->
                             x990 ~settings:(http2_Settings_of_js x991)))|])
-        let (prependListener''''' :
+        let (prepend_listener''''' :
           t -> event:[ `ping ] -> listener:(unit -> unit) -> t) =
           fun (x995 : t) ->
             fun ~event:(x993 : [ `ping ]) ->
@@ -3558,7 +3562,7 @@ module Http2 =
                   (Ojs.call (t_to_js x995) "prependListener"
                      [|((match x993 with | `ping -> Ojs.string_to_js "ping"));(
                        Ojs.fun_to_js 1 (fun _ -> x994 ()))|])
-        let (prependListener'''''' :
+        let (prepend_listener'''''' :
           t ->
             event:[ `remoteSettings ] ->
               listener:(settings:http2_Settings -> unit) -> t)
@@ -3580,7 +3584,7 @@ module Http2 =
                                                                     ~settings:(
                                                                     http2_Settings_of_js
                                                                     x998)))|])
-        let (prependListener''''''' :
+        let (prepend_listener''''''' :
           t -> event:[ `timeout ] -> listener:(unit -> unit) -> t) =
           fun (x1002 : t) ->
             fun ~event:(x1000 : [ `timeout ]) ->
@@ -3590,7 +3594,7 @@ module Http2 =
                      [|((match x1000 with
                          | `timeout -> Ojs.string_to_js "timeout"));(
                        Ojs.fun_to_js 1 (fun _ -> x1001 ()))|])
-        let (prependListener'''''''' :
+        let (prepend_listener'''''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -3608,7 +3612,7 @@ module Http2 =
                                                                     Ojs.list_of_js_from
                                                                     any_of_js
                                                                     x1006 0)))|])
-        let (prependOnceListener :
+        let (prepend_once_listener :
           t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
           fun (x1011 : t) ->
             fun ~event:(x1009 : [ `close ]) ->
@@ -3620,7 +3624,7 @@ module Http2 =
                                                                    1
                                                                    (fun _ ->
                                                                     x1010 ()))|])
-        let (prependOnceListener' :
+        let (prepend_once_listener' :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
           fun (x1015 : t) ->
             fun ~event:(x1012 : [ `error ]) ->
@@ -3637,11 +3641,11 @@ module Http2 =
                                                                     ~err:(
                                                                     Error.t_of_js
                                                                     x1014)))|])
-        let (prependOnceListener'' :
+        let (prepend_once_listener'' :
           t ->
             event:[ `frameError ] ->
               listener:(frameType:int ->
-                          errorCode:int -> streamID:int -> unit)
+                          error_code:int -> stream_id:int -> unit)
                 -> t)
           =
           fun (x1021 : t) ->
@@ -3649,7 +3653,7 @@ module Http2 =
               fun
                 ~listener:(x1017 :
                             frameType:int ->
-                              errorCode:int -> streamID:int -> unit)
+                              error_code:int -> stream_id:int -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x1021) "prependOnceListener"
@@ -3660,13 +3664,13 @@ module Http2 =
                             fun (x1019 : Ojs.t) ->
                               fun (x1020 : Ojs.t) ->
                                 x1017 ~frameType:(Ojs.int_of_js x1018)
-                                  ~errorCode:(Ojs.int_of_js x1019)
-                                  ~streamID:(Ojs.int_of_js x1020)))|])
-        let (prependOnceListener''' :
+                                  ~error_code:(Ojs.int_of_js x1019)
+                                  ~stream_id:(Ojs.int_of_js x1020)))|])
+        let (prepend_once_listener''' :
           t ->
             event:[ `goaway ] ->
               listener:(errorCode:int ->
-                          lastStreamID:int -> opaqueData:Buffer.t -> unit)
+                          last_stream_id:int -> opaque_data:Buffer.t -> unit)
                 -> t)
           =
           fun (x1027 : t) ->
@@ -3674,7 +3678,8 @@ module Http2 =
               fun
                 ~listener:(x1023 :
                             errorCode:int ->
-                              lastStreamID:int -> opaqueData:Buffer.t -> unit)
+                              last_stream_id:int ->
+                                opaque_data:Buffer.t -> unit)
                 ->
                 t_of_js
                   (Ojs.call (t_to_js x1027) "prependOnceListener"
@@ -3694,13 +3699,13 @@ module Http2 =
                                                                     ~errorCode:(
                                                                     Ojs.int_of_js
                                                                     x1024)
-                                                                    ~lastStreamID:(
+                                                                    ~last_stream_id:(
                                                                     Ojs.int_of_js
                                                                     x1025)
-                                                                    ~opaqueData:(
+                                                                    ~opaque_data:(
                                                                     Buffer.t_of_js
                                                                     x1026)))|])
-        let (prependOnceListener'''' :
+        let (prepend_once_listener'''' :
           t ->
             event:[ `localSettings ] ->
               listener:(settings:http2_Settings -> unit) -> t)
@@ -3715,7 +3720,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x1030 : Ojs.t) ->
                             x1029 ~settings:(http2_Settings_of_js x1030)))|])
-        let (prependOnceListener''''' :
+        let (prepend_once_listener''''' :
           t -> event:[ `ping ] -> listener:(unit -> unit) -> t) =
           fun (x1034 : t) ->
             fun ~event:(x1032 : [ `ping ]) ->
@@ -3724,7 +3729,7 @@ module Http2 =
                   (Ojs.call (t_to_js x1034) "prependOnceListener"
                      [|((match x1032 with | `ping -> Ojs.string_to_js "ping"));(
                        Ojs.fun_to_js 1 (fun _ -> x1033 ()))|])
-        let (prependOnceListener'''''' :
+        let (prepend_once_listener'''''' :
           t ->
             event:[ `remoteSettings ] ->
               listener:(settings:http2_Settings -> unit) -> t)
@@ -3746,7 +3751,7 @@ module Http2 =
                                                                     ~settings:(
                                                                     http2_Settings_of_js
                                                                     x1037)))|])
-        let (prependOnceListener''''''' :
+        let (prepend_once_listener''''''' :
           t -> event:[ `timeout ] -> listener:(unit -> unit) -> t) =
           fun (x1041 : t) ->
             fun ~event:(x1039 : [ `timeout ]) ->
@@ -3756,7 +3761,7 @@ module Http2 =
                      [|((match x1039 with
                          | `timeout -> Ojs.string_to_js "timeout"));(
                        Ojs.fun_to_js 1 (fun _ -> x1040 ()))|])
-        let (prependOnceListener'''''''' :
+        let (prepend_once_listener'''''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -3821,7 +3826,7 @@ module Http2 =
                                                 x1054)|])
                                   | None -> ());
                                  x1053))|])
-        let (addListener :
+        let (add_listener :
           t ->
             event:[ `altsvc ] ->
               listener:(alt:string -> origin:string -> stream:int -> unit) ->
@@ -3857,7 +3862,7 @@ module Http2 =
                                                                     ~stream:(
                                                                     Ojs.int_of_js
                                                                     x1062)))|])
-        let (addListener' :
+        let (add_listener' :
           t ->
             event:[ `origin ] -> listener:(origins:string list -> unit) -> t)
           =
@@ -3877,7 +3882,7 @@ module Http2 =
                                                                     Ojs.list_of_js
                                                                     Ojs.string_of_js
                                                                     x1066)))|])
-        let (addListener'' :
+        let (add_listener'' :
           t ->
             event:[ `connect ] ->
               listener:(session:t ->
@@ -3903,7 +3908,7 @@ module Http2 =
                               x1070 ~session:(t_of_js x1071)
                                 ~socket:(union2_of_js Net.Socket.t_of_js
                                            Tls.TLSSocket.t_of_js x1072)))|])
-        let (addListener''' :
+        let (add_listener''' :
           t ->
             event:[ `stream ] ->
               listener:(stream:http2_ClientHttp2Stream ->
@@ -3947,7 +3952,7 @@ module Http2 =
                                                                     ~flags:(
                                                                     Ojs.int_of_js
                                                                     x1082)))|])
-        let (addListener'''' :
+        let (add_listener'''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -4343,7 +4348,7 @@ module Http2 =
                                                                     Ojs.list_of_js_from
                                                                     any_of_js
                                                                     x1180 0)))|])
-        let (prependListener :
+        let (prepend_listener :
           t ->
             event:[ `altsvc ] ->
               listener:(alt:string -> origin:string -> stream:int -> unit) ->
@@ -4379,7 +4384,7 @@ module Http2 =
                                                                     ~stream:(
                                                                     Ojs.int_of_js
                                                                     x1187)))|])
-        let (prependListener' :
+        let (prepend_listener' :
           t ->
             event:[ `origin ] -> listener:(origins:string list -> unit) -> t)
           =
@@ -4399,7 +4404,7 @@ module Http2 =
                                                                     Ojs.list_of_js
                                                                     Ojs.string_of_js
                                                                     x1191)))|])
-        let (prependListener'' :
+        let (prepend_listener'' :
           t ->
             event:[ `connect ] ->
               listener:(session:t ->
@@ -4425,7 +4430,7 @@ module Http2 =
                               x1195 ~session:(t_of_js x1196)
                                 ~socket:(union2_of_js Net.Socket.t_of_js
                                            Tls.TLSSocket.t_of_js x1197)))|])
-        let (prependListener''' :
+        let (prepend_listener''' :
           t ->
             event:[ `stream ] ->
               listener:(stream:http2_ClientHttp2Stream ->
@@ -4469,7 +4474,7 @@ module Http2 =
                                                                     ~flags:(
                                                                     Ojs.int_of_js
                                                                     x1207)))|])
-        let (prependListener'''' :
+        let (prepend_listener'''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -4487,7 +4492,7 @@ module Http2 =
                                                                     Ojs.list_of_js_from
                                                                     any_of_js
                                                                     x1212 0)))|])
-        let (prependOnceListener :
+        let (prepend_once_listener :
           t ->
             event:[ `altsvc ] ->
               listener:(alt:string -> origin:string -> stream:int -> unit) ->
@@ -4523,7 +4528,7 @@ module Http2 =
                                                                     ~stream:(
                                                                     Ojs.int_of_js
                                                                     x1219)))|])
-        let (prependOnceListener' :
+        let (prepend_once_listener' :
           t ->
             event:[ `origin ] -> listener:(origins:string list -> unit) -> t)
           =
@@ -4543,7 +4548,7 @@ module Http2 =
                                                                     Ojs.list_of_js
                                                                     Ojs.string_of_js
                                                                     x1223)))|])
-        let (prependOnceListener'' :
+        let (prepend_once_listener'' :
           t ->
             event:[ `connect ] ->
               listener:(session:t ->
@@ -4569,7 +4574,7 @@ module Http2 =
                               x1227 ~session:(t_of_js x1228)
                                 ~socket:(union2_of_js Net.Socket.t_of_js
                                            Tls.TLSSocket.t_of_js x1229)))|])
-        let (prependOnceListener''' :
+        let (prepend_once_listener''' :
           t ->
             event:[ `stream ] ->
               listener:(stream:http2_ClientHttp2Stream ->
@@ -4613,7 +4618,7 @@ module Http2 =
                                                                     ~flags:(
                                                                     Ojs.int_of_js
                                                                     x1239)))|])
-        let (prependOnceListener'''' :
+        let (prepend_once_listener'''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -4672,15 +4677,15 @@ module Http2 =
         let (altsvc :
           t ->
             alt:string ->
-              originOrStream:(http2_AlternativeServiceOptions, Url.URL.t)
+              origin_or_stream:(http2_AlternativeServiceOptions, Url.URL.t)
                 union2 or_string or_number -> unit)
           =
           fun (x1268 : t) ->
             fun ~alt:(x1262 : string) ->
               fun
-                ~originOrStream:(x1263 :
-                                  (http2_AlternativeServiceOptions,
-                                    Url.URL.t) union2 or_string or_number)
+                ~origin_or_stream:(x1263 :
+                                    (http2_AlternativeServiceOptions,
+                                      Url.URL.t) union2 or_string or_number)
                 ->
                 ignore
                   (Ojs.call (t_to_js x1268) "altsvc"
@@ -4719,7 +4724,7 @@ module Http2 =
                                     (Ojs.call x1270 "push"
                                        [|(any_to_js x1271)|])) x1269;
                              x1270))|])
-        let (addListener :
+        let (add_listener :
           t ->
             event:[ `connect ] ->
               listener:(session:t ->
@@ -4745,7 +4750,7 @@ module Http2 =
                               x1275 ~session:(t_of_js x1276)
                                 ~socket:(union2_of_js Net.Socket.t_of_js
                                            Tls.TLSSocket.t_of_js x1277)))|])
-        let (addListener' :
+        let (add_listener' :
           t ->
             event:[ `stream ] ->
               listener:(stream:http2_ServerHttp2Stream ->
@@ -4785,7 +4790,7 @@ module Http2 =
                                                                     ~flags:(
                                                                     Ojs.int_of_js
                                                                     x1285)))|])
-        let (addListener'' :
+        let (add_listener'' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -5026,7 +5031,7 @@ module Http2 =
                                                                     Ojs.list_of_js_from
                                                                     any_of_js
                                                                     x1346 0)))|])
-        let (prependListener :
+        let (prepend_listener :
           t ->
             event:[ `connect ] ->
               listener:(session:t ->
@@ -5052,7 +5057,7 @@ module Http2 =
                               x1350 ~session:(t_of_js x1351)
                                 ~socket:(union2_of_js Net.Socket.t_of_js
                                            Tls.TLSSocket.t_of_js x1352)))|])
-        let (prependListener' :
+        let (prepend_listener' :
           t ->
             event:[ `stream ] ->
               listener:(stream:http2_ServerHttp2Stream ->
@@ -5092,7 +5097,7 @@ module Http2 =
                                                                     ~flags:(
                                                                     Ojs.int_of_js
                                                                     x1360)))|])
-        let (prependListener'' :
+        let (prepend_listener'' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -5110,7 +5115,7 @@ module Http2 =
                                                                     Ojs.list_of_js_from
                                                                     any_of_js
                                                                     x1365 0)))|])
-        let (prependOnceListener :
+        let (prepend_once_listener :
           t ->
             event:[ `connect ] ->
               listener:(session:t ->
@@ -5136,7 +5141,7 @@ module Http2 =
                               x1369 ~session:(t_of_js x1370)
                                 ~socket:(union2_of_js Net.Socket.t_of_js
                                            Tls.TLSSocket.t_of_js x1371)))|])
-        let (prependOnceListener' :
+        let (prepend_once_listener' :
           t ->
             event:[ `stream ] ->
               listener:(stream:http2_ServerHttp2Stream ->
@@ -5176,7 +5181,7 @@ module Http2 =
                                                                     ~flags:(
                                                                     Ojs.int_of_js
                                                                     x1379)))|])
-        let (prependOnceListener'' :
+        let (prepend_once_listener'' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -5205,66 +5210,66 @@ module Http2 =
         and t_to_js : t -> Ojs.t =
           fun (x1388 : http2_SessionOptions) ->
             http2_SessionOptions_to_js x1388
-        let (get_maxDeflateDynamicTableSize : t -> int) =
+        let (get_max_deflate_dynamic_table_size : t -> int) =
           fun (x1390 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x1390)
                  "maxDeflateDynamicTableSize")
-        let (set_maxDeflateDynamicTableSize : t -> int -> unit) =
+        let (set_max_deflate_dynamic_table_size : t -> int -> unit) =
           fun (x1391 : t) ->
             fun (x1392 : int) ->
               Ojs.set_prop_ascii (t_to_js x1391) "maxDeflateDynamicTableSize"
                 (Ojs.int_to_js x1392)
-        let (get_maxSessionMemory : t -> int) =
+        let (get_max_session_memory : t -> int) =
           fun (x1393 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x1393) "maxSessionMemory")
-        let (set_maxSessionMemory : t -> int -> unit) =
+        let (set_max_session_memory : t -> int -> unit) =
           fun (x1394 : t) ->
             fun (x1395 : int) ->
               Ojs.set_prop_ascii (t_to_js x1394) "maxSessionMemory"
                 (Ojs.int_to_js x1395)
-        let (get_maxHeaderListPairs : t -> int) =
+        let (get_max_header_list_pairs : t -> int) =
           fun (x1396 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x1396) "maxHeaderListPairs")
-        let (set_maxHeaderListPairs : t -> int -> unit) =
+        let (set_max_header_list_pairs : t -> int -> unit) =
           fun (x1397 : t) ->
             fun (x1398 : int) ->
               Ojs.set_prop_ascii (t_to_js x1397) "maxHeaderListPairs"
                 (Ojs.int_to_js x1398)
-        let (get_maxOutstandingPings : t -> int) =
+        let (get_max_outstanding_pings : t -> int) =
           fun (x1399 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x1399) "maxOutstandingPings")
-        let (set_maxOutstandingPings : t -> int -> unit) =
+        let (set_max_outstanding_pings : t -> int -> unit) =
           fun (x1400 : t) ->
             fun (x1401 : int) ->
               Ojs.set_prop_ascii (t_to_js x1400) "maxOutstandingPings"
                 (Ojs.int_to_js x1401)
-        let (get_maxSendHeaderBlockLength : t -> int) =
+        let (get_max_send_header_block_length : t -> int) =
           fun (x1402 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x1402) "maxSendHeaderBlockLength")
-        let (set_maxSendHeaderBlockLength : t -> int -> unit) =
+        let (set_max_send_header_block_length : t -> int -> unit) =
           fun (x1403 : t) ->
             fun (x1404 : int) ->
               Ojs.set_prop_ascii (t_to_js x1403) "maxSendHeaderBlockLength"
                 (Ojs.int_to_js x1404)
-        let (get_paddingStrategy : t -> int) =
+        let (get_padding_strategy : t -> int) =
           fun (x1405 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x1405) "paddingStrategy")
-        let (set_paddingStrategy : t -> int -> unit) =
+        let (set_padding_strategy : t -> int -> unit) =
           fun (x1406 : t) ->
             fun (x1407 : int) ->
               Ojs.set_prop_ascii (t_to_js x1406) "paddingStrategy"
                 (Ojs.int_to_js x1407)
-        let (get_peerMaxConcurrentStreams : t -> int) =
+        let (get_peer_max_concurrent_streams : t -> int) =
           fun (x1408 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x1408) "peerMaxConcurrentStreams")
-        let (set_peerMaxConcurrentStreams : t -> int -> unit) =
+        let (set_peer_max_concurrent_streams : t -> int -> unit) =
           fun (x1409 : t) ->
             fun (x1410 : int) ->
               Ojs.set_prop_ascii (t_to_js x1409) "peerMaxConcurrentStreams"
@@ -5278,14 +5283,15 @@ module Http2 =
             fun (x1413 : http2_Settings) ->
               Ojs.set_prop_ascii (t_to_js x1412) "settings"
                 (http2_Settings_to_js x1413)
-        let (selectPadding : t -> frameLen:int -> maxFrameLen:int -> int) =
+        let (select_padding : t -> frame_len:int -> max_frame_len:int -> int)
+          =
           fun (x1416 : t) ->
-            fun ~frameLen:(x1414 : int) ->
-              fun ~maxFrameLen:(x1415 : int) ->
+            fun ~frame_len:(x1414 : int) ->
+              fun ~max_frame_len:(x1415 : int) ->
                 Ojs.int_of_js
                   (Ojs.call (t_to_js x1416) "selectPadding"
                      [|(Ojs.int_to_js x1414);(Ojs.int_to_js x1415)|])
-        let (createConnection :
+        let (create_connection :
           t -> authority:Url.URL.t -> option:t -> Stream.Duplex.t) =
           fun (x1419 : t) ->
             fun ~authority:(x1417 : Url.URL.t) ->
@@ -5302,16 +5308,16 @@ module Http2 =
         and t_to_js : t -> Ojs.t =
           fun (x1420 : http2_ClientSessionOptions) ->
             http2_ClientSessionOptions_to_js x1420
-        let (get_maxReservedRemoteStreams : t -> int) =
+        let (get_max_reserved_remote_streams : t -> int) =
           fun (x1422 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x1422) "maxReservedRemoteStreams")
-        let (set_maxReservedRemoteStreams : t -> int -> unit) =
+        let (set_max_reserved_remote_streams : t -> int -> unit) =
           fun (x1423 : t) ->
             fun (x1424 : int) ->
               Ojs.set_prop_ascii (t_to_js x1423) "maxReservedRemoteStreams"
                 (Ojs.int_to_js x1424)
-        let (createConnection :
+        let (create_connection :
           t ->
             authority:Url.URL.t ->
               option:http2_SessionOptions -> Stream.Duplex.t)
@@ -5348,38 +5354,38 @@ module Http2 =
         and t_to_js : t -> Ojs.t =
           fun (x1433 : http2_ServerSessionOptions) ->
             http2_ServerSessionOptions_to_js x1433
-        let (get_Http1IncomingMessage : t -> any) =
+        let (get_http1IncomingMessage : t -> any) =
           fun (x1435 : t) ->
             any_of_js
               (Ojs.get_prop_ascii (t_to_js x1435) "Http1IncomingMessage")
-        let (set_Http1IncomingMessage : t -> any -> unit) =
+        let (set_http1IncomingMessage : t -> any -> unit) =
           fun (x1436 : t) ->
             fun (x1437 : any) ->
               Ojs.set_prop_ascii (t_to_js x1436) "Http1IncomingMessage"
                 (any_to_js x1437)
-        let (get_Http1ServerResponse : t -> any) =
+        let (get_http1ServerResponse : t -> any) =
           fun (x1438 : t) ->
             any_of_js
               (Ojs.get_prop_ascii (t_to_js x1438) "Http1ServerResponse")
-        let (set_Http1ServerResponse : t -> any -> unit) =
+        let (set_http1ServerResponse : t -> any -> unit) =
           fun (x1439 : t) ->
             fun (x1440 : any) ->
               Ojs.set_prop_ascii (t_to_js x1439) "Http1ServerResponse"
                 (any_to_js x1440)
-        let (get_Http2ServerRequest : t -> any) =
+        let (get_http2ServerRequest : t -> any) =
           fun (x1441 : t) ->
             any_of_js
               (Ojs.get_prop_ascii (t_to_js x1441) "Http2ServerRequest")
-        let (set_Http2ServerRequest : t -> any -> unit) =
+        let (set_http2ServerRequest : t -> any -> unit) =
           fun (x1442 : t) ->
             fun (x1443 : any) ->
               Ojs.set_prop_ascii (t_to_js x1442) "Http2ServerRequest"
                 (any_to_js x1443)
-        let (get_Http2ServerResponse : t -> any) =
+        let (get_http2ServerResponse : t -> any) =
           fun (x1444 : t) ->
             any_of_js
               (Ojs.get_prop_ascii (t_to_js x1444) "Http2ServerResponse")
-        let (set_Http2ServerResponse : t -> any -> unit) =
+        let (set_http2ServerResponse : t -> any -> unit) =
           fun (x1445 : t) ->
             fun (x1446 : any) ->
               Ojs.set_prop_ascii (t_to_js x1445) "Http2ServerResponse"
@@ -5432,10 +5438,10 @@ module Http2 =
         and t_to_js : t -> Ojs.t =
           fun (x1459 : http2_SecureServerOptions) ->
             http2_SecureServerOptions_to_js x1459
-        let (get_allowHTTP1 : t -> bool) =
+        let (get_allow_http1 : t -> bool) =
           fun (x1461 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1461) "allowHTTP1")
-        let (set_allowHTTP1 : t -> bool -> unit) =
+        let (set_allow_http1 : t -> bool -> unit) =
           fun (x1462 : t) ->
             fun (x1463 : bool) ->
               Ojs.set_prop_ascii (t_to_js x1462) "allowHTTP1"
@@ -5460,7 +5466,7 @@ module Http2 =
           fun (x1471 : Ojs.t) -> http2_Http2Server_of_js x1471
         and t_to_js : t -> Ojs.t =
           fun (x1470 : http2_Http2Server) -> http2_Http2Server_to_js x1470
-        let (addListener :
+        let (add_listener :
           t ->
             event:[ `checkContinue ] ->
               listener:(request:http2_Http2ServerRequest ->
@@ -5486,7 +5492,7 @@ module Http2 =
                                             x1474)
                                 ~response:(http2_Http2ServerResponse_of_js
                                              x1475)))|])
-        let (addListener' :
+        let (add_listener' :
           t ->
             event:[ `request ] ->
               listener:(request:http2_Http2ServerRequest ->
@@ -5512,7 +5518,7 @@ module Http2 =
                                             x1479)
                                 ~response:(http2_Http2ServerResponse_of_js
                                              x1480)))|])
-        let (addListener'' :
+        let (add_listener'' :
           t ->
             event:[ `session ] ->
               listener:(session:http2_ServerHttp2Session -> unit) -> t)
@@ -5530,7 +5536,7 @@ module Http2 =
                          (fun (x1484 : Ojs.t) ->
                             x1483
                               ~session:(http2_ServerHttp2Session_of_js x1484)))|])
-        let (addListener''' :
+        let (add_listener''' :
           t -> event:[ `sessionError ] -> listener:(err:Error.t -> unit) -> t)
           =
           fun (x1489 : t) ->
@@ -5543,7 +5549,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x1488 : Ojs.t) ->
                             x1487 ~err:(Error.t_of_js x1488)))|])
-        let (addListener'''' :
+        let (add_listener'''' :
           t ->
             event:[ `stream ] ->
               listener:(stream:http2_ServerHttp2Stream ->
@@ -5583,7 +5589,7 @@ module Http2 =
                                                                     ~flags:(
                                                                     Ojs.int_of_js
                                                                     x1494)))|])
-        let (addListener''''' :
+        let (add_listener''''' :
           t -> event:[ `timeout ] -> listener:(unit -> unit) -> t) =
           fun (x1498 : t) ->
             fun ~event:(x1496 : [ `timeout ]) ->
@@ -5593,7 +5599,7 @@ module Http2 =
                      [|((match x1496 with
                          | `timeout -> Ojs.string_to_js "timeout"));(
                        Ojs.fun_to_js 1 (fun _ -> x1497 ()))|])
-        let (addListener'''''' :
+        let (add_listener'''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -6012,7 +6018,7 @@ module Http2 =
                                                                     Ojs.list_of_js_from
                                                                     any_of_js
                                                                     x1596 0)))|])
-        let (prependListener :
+        let (prepend_listener :
           t ->
             event:[ `checkContinue ] ->
               listener:(request:http2_Http2ServerRequest ->
@@ -6038,7 +6044,7 @@ module Http2 =
                                             x1601)
                                 ~response:(http2_Http2ServerResponse_of_js
                                              x1602)))|])
-        let (prependListener' :
+        let (prepend_listener' :
           t ->
             event:[ `request ] ->
               listener:(request:http2_Http2ServerRequest ->
@@ -6064,7 +6070,7 @@ module Http2 =
                                             x1606)
                                 ~response:(http2_Http2ServerResponse_of_js
                                              x1607)))|])
-        let (prependListener'' :
+        let (prepend_listener'' :
           t ->
             event:[ `session ] ->
               listener:(session:http2_ServerHttp2Session -> unit) -> t)
@@ -6082,7 +6088,7 @@ module Http2 =
                          (fun (x1611 : Ojs.t) ->
                             x1610
                               ~session:(http2_ServerHttp2Session_of_js x1611)))|])
-        let (prependListener''' :
+        let (prepend_listener''' :
           t -> event:[ `sessionError ] -> listener:(err:Error.t -> unit) -> t)
           =
           fun (x1616 : t) ->
@@ -6095,7 +6101,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x1615 : Ojs.t) ->
                             x1614 ~err:(Error.t_of_js x1615)))|])
-        let (prependListener'''' :
+        let (prepend_listener'''' :
           t ->
             event:[ `stream ] ->
               listener:(stream:http2_ServerHttp2Stream ->
@@ -6135,7 +6141,7 @@ module Http2 =
                                                                     ~flags:(
                                                                     Ojs.int_of_js
                                                                     x1621)))|])
-        let (prependListener''''' :
+        let (prepend_listener''''' :
           t -> event:[ `timeout ] -> listener:(unit -> unit) -> t) =
           fun (x1625 : t) ->
             fun ~event:(x1623 : [ `timeout ]) ->
@@ -6145,7 +6151,7 @@ module Http2 =
                      [|((match x1623 with
                          | `timeout -> Ojs.string_to_js "timeout"));(
                        Ojs.fun_to_js 1 (fun _ -> x1624 ()))|])
-        let (prependListener'''''' :
+        let (prepend_listener'''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -6163,7 +6169,7 @@ module Http2 =
                                                                     Ojs.list_of_js_from
                                                                     any_of_js
                                                                     x1629 0)))|])
-        let (prependOnceListener :
+        let (prepend_once_listener :
           t ->
             event:[ `checkContinue ] ->
               listener:(request:http2_Http2ServerRequest ->
@@ -6189,7 +6195,7 @@ module Http2 =
                                             x1634)
                                 ~response:(http2_Http2ServerResponse_of_js
                                              x1635)))|])
-        let (prependOnceListener' :
+        let (prepend_once_listener' :
           t ->
             event:[ `request ] ->
               listener:(request:http2_Http2ServerRequest ->
@@ -6215,7 +6221,7 @@ module Http2 =
                                             x1639)
                                 ~response:(http2_Http2ServerResponse_of_js
                                              x1640)))|])
-        let (prependOnceListener'' :
+        let (prepend_once_listener'' :
           t ->
             event:[ `session ] ->
               listener:(session:http2_ServerHttp2Session -> unit) -> t)
@@ -6233,7 +6239,7 @@ module Http2 =
                          (fun (x1644 : Ojs.t) ->
                             x1643
                               ~session:(http2_ServerHttp2Session_of_js x1644)))|])
-        let (prependOnceListener''' :
+        let (prepend_once_listener''' :
           t -> event:[ `sessionError ] -> listener:(err:Error.t -> unit) -> t)
           =
           fun (x1649 : t) ->
@@ -6246,7 +6252,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x1648 : Ojs.t) ->
                             x1647 ~err:(Error.t_of_js x1648)))|])
-        let (prependOnceListener'''' :
+        let (prepend_once_listener'''' :
           t ->
             event:[ `stream ] ->
               listener:(stream:http2_ServerHttp2Stream ->
@@ -6286,7 +6292,7 @@ module Http2 =
                                                                     ~flags:(
                                                                     Ojs.int_of_js
                                                                     x1654)))|])
-        let (prependOnceListener''''' :
+        let (prepend_once_listener''''' :
           t -> event:[ `timeout ] -> listener:(unit -> unit) -> t) =
           fun (x1658 : t) ->
             fun ~event:(x1656 : [ `timeout ]) ->
@@ -6296,7 +6302,7 @@ module Http2 =
                      [|((match x1656 with
                          | `timeout -> Ojs.string_to_js "timeout"));(
                        Ojs.fun_to_js 1 (fun _ -> x1657 ()))|])
-        let (prependOnceListener'''''' :
+        let (prepend_once_listener'''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -6314,7 +6320,7 @@ module Http2 =
                                                                     Ojs.list_of_js_from
                                                                     any_of_js
                                                                     x1662 0)))|])
-        let (setTimeout :
+        let (set_timeout :
           t -> ?msec:int -> ?callback:(unit -> unit) -> unit -> t) =
           fun (x1670 : t) ->
             fun ?msec:(x1665 : int option) ->
@@ -6352,7 +6358,7 @@ module Http2 =
         and t_to_js : t -> Ojs.t =
           fun (x1673 : http2_Http2SecureServer) ->
             http2_Http2SecureServer_to_js x1673
-        let (addListener :
+        let (add_listener :
           t ->
             event:[ `checkContinue ] ->
               listener:(request:http2_Http2ServerRequest ->
@@ -6378,7 +6384,7 @@ module Http2 =
                                             x1677)
                                 ~response:(http2_Http2ServerResponse_of_js
                                              x1678)))|])
-        let (addListener' :
+        let (add_listener' :
           t ->
             event:[ `request ] ->
               listener:(request:http2_Http2ServerRequest ->
@@ -6404,7 +6410,7 @@ module Http2 =
                                             x1682)
                                 ~response:(http2_Http2ServerResponse_of_js
                                              x1683)))|])
-        let (addListener'' :
+        let (add_listener'' :
           t ->
             event:[ `session ] ->
               listener:(session:http2_ServerHttp2Session -> unit) -> t)
@@ -6422,7 +6428,7 @@ module Http2 =
                          (fun (x1687 : Ojs.t) ->
                             x1686
                               ~session:(http2_ServerHttp2Session_of_js x1687)))|])
-        let (addListener''' :
+        let (add_listener''' :
           t -> event:[ `sessionError ] -> listener:(err:Error.t -> unit) -> t)
           =
           fun (x1692 : t) ->
@@ -6435,7 +6441,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x1691 : Ojs.t) ->
                             x1690 ~err:(Error.t_of_js x1691)))|])
-        let (addListener'''' :
+        let (add_listener'''' :
           t ->
             event:[ `stream ] ->
               listener:(stream:http2_ServerHttp2Stream ->
@@ -6475,7 +6481,7 @@ module Http2 =
                                                                     ~flags:(
                                                                     Ojs.int_of_js
                                                                     x1697)))|])
-        let (addListener''''' :
+        let (add_listener''''' :
           t -> event:[ `timeout ] -> listener:(unit -> unit) -> t) =
           fun (x1701 : t) ->
             fun ~event:(x1699 : [ `timeout ]) ->
@@ -6485,7 +6491,7 @@ module Http2 =
                      [|((match x1699 with
                          | `timeout -> Ojs.string_to_js "timeout"));(
                        Ojs.fun_to_js 1 (fun _ -> x1700 ()))|])
-        let (addListener'''''' :
+        let (add_listener'''''' :
           t ->
             event:[ `unknownProtocol ] ->
               listener:(socket:Tls.TLSSocket.t -> unit) -> t)
@@ -6506,7 +6512,7 @@ module Http2 =
                                                                     ~socket:(
                                                                     Tls.TLSSocket.t_of_js
                                                                     x1704)))|])
-        let (addListener''''''' :
+        let (add_listener''''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -6979,7 +6985,7 @@ module Http2 =
                                                                     Ojs.list_of_js_from
                                                                     any_of_js
                                                                     x1814 0)))|])
-        let (prependListener :
+        let (prepend_listener :
           t ->
             event:[ `checkContinue ] ->
               listener:(request:http2_Http2ServerRequest ->
@@ -7005,7 +7011,7 @@ module Http2 =
                                             x1819)
                                 ~response:(http2_Http2ServerResponse_of_js
                                              x1820)))|])
-        let (prependListener' :
+        let (prepend_listener' :
           t ->
             event:[ `request ] ->
               listener:(request:http2_Http2ServerRequest ->
@@ -7031,7 +7037,7 @@ module Http2 =
                                             x1824)
                                 ~response:(http2_Http2ServerResponse_of_js
                                              x1825)))|])
-        let (prependListener'' :
+        let (prepend_listener'' :
           t ->
             event:[ `session ] ->
               listener:(session:http2_ServerHttp2Session -> unit) -> t)
@@ -7049,7 +7055,7 @@ module Http2 =
                          (fun (x1829 : Ojs.t) ->
                             x1828
                               ~session:(http2_ServerHttp2Session_of_js x1829)))|])
-        let (prependListener''' :
+        let (prepend_listener''' :
           t -> event:[ `sessionError ] -> listener:(err:Error.t -> unit) -> t)
           =
           fun (x1834 : t) ->
@@ -7062,7 +7068,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x1833 : Ojs.t) ->
                             x1832 ~err:(Error.t_of_js x1833)))|])
-        let (prependListener'''' :
+        let (prepend_listener'''' :
           t ->
             event:[ `stream ] ->
               listener:(stream:http2_ServerHttp2Stream ->
@@ -7102,7 +7108,7 @@ module Http2 =
                                                                     ~flags:(
                                                                     Ojs.int_of_js
                                                                     x1839)))|])
-        let (prependListener''''' :
+        let (prepend_listener''''' :
           t -> event:[ `timeout ] -> listener:(unit -> unit) -> t) =
           fun (x1843 : t) ->
             fun ~event:(x1841 : [ `timeout ]) ->
@@ -7112,7 +7118,7 @@ module Http2 =
                      [|((match x1841 with
                          | `timeout -> Ojs.string_to_js "timeout"));(
                        Ojs.fun_to_js 1 (fun _ -> x1842 ()))|])
-        let (prependListener'''''' :
+        let (prepend_listener'''''' :
           t ->
             event:[ `unknownProtocol ] ->
               listener:(socket:Tls.TLSSocket.t -> unit) -> t)
@@ -7133,7 +7139,7 @@ module Http2 =
                                                                     ~socket:(
                                                                     Tls.TLSSocket.t_of_js
                                                                     x1846)))|])
-        let (prependListener''''''' :
+        let (prepend_listener''''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -7151,7 +7157,7 @@ module Http2 =
                                                                     Ojs.list_of_js_from
                                                                     any_of_js
                                                                     x1851 0)))|])
-        let (prependOnceListener :
+        let (prepend_once_listener :
           t ->
             event:[ `checkContinue ] ->
               listener:(request:http2_Http2ServerRequest ->
@@ -7177,7 +7183,7 @@ module Http2 =
                                             x1856)
                                 ~response:(http2_Http2ServerResponse_of_js
                                              x1857)))|])
-        let (prependOnceListener' :
+        let (prepend_once_listener' :
           t ->
             event:[ `request ] ->
               listener:(request:http2_Http2ServerRequest ->
@@ -7203,7 +7209,7 @@ module Http2 =
                                             x1861)
                                 ~response:(http2_Http2ServerResponse_of_js
                                              x1862)))|])
-        let (prependOnceListener'' :
+        let (prepend_once_listener'' :
           t ->
             event:[ `session ] ->
               listener:(session:http2_ServerHttp2Session -> unit) -> t)
@@ -7221,7 +7227,7 @@ module Http2 =
                          (fun (x1866 : Ojs.t) ->
                             x1865
                               ~session:(http2_ServerHttp2Session_of_js x1866)))|])
-        let (prependOnceListener''' :
+        let (prepend_once_listener''' :
           t -> event:[ `sessionError ] -> listener:(err:Error.t -> unit) -> t)
           =
           fun (x1871 : t) ->
@@ -7234,7 +7240,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x1870 : Ojs.t) ->
                             x1869 ~err:(Error.t_of_js x1870)))|])
-        let (prependOnceListener'''' :
+        let (prepend_once_listener'''' :
           t ->
             event:[ `stream ] ->
               listener:(stream:http2_ServerHttp2Stream ->
@@ -7274,7 +7280,7 @@ module Http2 =
                                                                     ~flags:(
                                                                     Ojs.int_of_js
                                                                     x1876)))|])
-        let (prependOnceListener''''' :
+        let (prepend_once_listener''''' :
           t -> event:[ `timeout ] -> listener:(unit -> unit) -> t) =
           fun (x1880 : t) ->
             fun ~event:(x1878 : [ `timeout ]) ->
@@ -7284,7 +7290,7 @@ module Http2 =
                      [|((match x1878 with
                          | `timeout -> Ojs.string_to_js "timeout"));(
                        Ojs.fun_to_js 1 (fun _ -> x1879 ()))|])
-        let (prependOnceListener'''''' :
+        let (prepend_once_listener'''''' :
           t ->
             event:[ `unknownProtocol ] ->
               listener:(socket:Tls.TLSSocket.t -> unit) -> t)
@@ -7305,7 +7311,7 @@ module Http2 =
                                                                     ~socket:(
                                                                     Tls.TLSSocket.t_of_js
                                                                     x1883)))|])
-        let (prependOnceListener''''''' :
+        let (prepend_once_listener''''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -7323,7 +7329,7 @@ module Http2 =
                                                                     Ojs.list_of_js_from
                                                                     any_of_js
                                                                     x1888 0)))|])
-        let (setTimeout :
+        let (set_timeout :
           t -> ?msec:int -> ?callback:(unit -> unit) -> unit -> t) =
           fun (x1896 : t) ->
             fun ?msec:(x1891 : int option) ->
@@ -7364,12 +7370,13 @@ module Http2 =
         let (create :
           stream:http2_ServerHttp2Stream ->
             headers:http2_IncomingHttpHeaders ->
-              options:Stream.ReadableOptions.t -> rawHeaders:string list -> t)
+              options:Stream.ReadableOptions.t ->
+                raw_headers:string list -> t)
           =
           fun ~stream:(x1901 : http2_ServerHttp2Stream) ->
             fun ~headers:(x1902 : http2_IncomingHttpHeaders) ->
               fun ~options:(x1903 : Stream.ReadableOptions.t) ->
-                fun ~rawHeaders:(x1904 : string list) ->
+                fun ~raw_headers:(x1904 : string list) ->
                   t_of_js
                     (Ojs.new_obj
                        (Ojs.get_prop_ascii Import.http2 "Http2ServerRequest")
@@ -7395,26 +7402,26 @@ module Http2 =
           fun (x1912 : t) ->
             http2_IncomingHttpHeaders_of_js
               (Ojs.get_prop_ascii (t_to_js x1912) "headers")
-        let (get_httpVersion : t -> string) =
+        let (get_http_version : t -> string) =
           fun (x1913 : t) ->
             Ojs.string_of_js
               (Ojs.get_prop_ascii (t_to_js x1913) "httpVersion")
-        let (get_httpVersionMinor : t -> int) =
+        let (get_http_version_minor : t -> int) =
           fun (x1914 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x1914) "httpVersionMinor")
-        let (get_httpVersionMajor : t -> int) =
+        let (get_http_version_major : t -> int) =
           fun (x1915 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x1915) "httpVersionMajor")
         let (get_method : t -> string) =
           fun (x1916 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1916) "method")
-        let (get_rawHeaders : t -> string list) =
+        let (get_raw_headers : t -> string list) =
           fun (x1917 : t) ->
             Ojs.list_of_js Ojs.string_of_js
               (Ojs.get_prop_ascii (t_to_js x1917) "rawHeaders")
-        let (get_rawTrailers : t -> string list) =
+        let (get_raw_trailers : t -> string list) =
           fun (x1919 : t) ->
             Ojs.list_of_js Ojs.string_of_js
               (Ojs.get_prop_ascii (t_to_js x1919) "rawTrailers")
@@ -7436,7 +7443,7 @@ module Http2 =
         let (get_url : t -> string) =
           fun (x1927 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1927) "url")
-        let (setTimeout :
+        let (set_timeout :
           t -> msecs:int -> ?callback:(unit -> unit) -> unit -> unit) =
           fun (x1932 : t) ->
             fun ~msecs:(x1928 : int) ->
@@ -7480,7 +7487,7 @@ module Http2 =
                                          [|(Ojs.int_to_js x1936)|])
                                 | None -> ());
                                x1935))|])
-        let (addListener :
+        let (add_listener :
           t ->
             event:[ `aborted ] ->
               listener:(hadError:bool -> code:int -> unit) -> t)
@@ -7497,7 +7504,7 @@ module Http2 =
                             fun (x1944 : Ojs.t) ->
                               x1942 ~hadError:(Ojs.bool_of_js x1943)
                                 ~code:(Ojs.int_of_js x1944)))|])
-        let (addListener' :
+        let (add_listener' :
           t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
           fun (x1948 : t) ->
             fun ~event:(x1946 : [ `close ]) ->
@@ -7509,7 +7516,7 @@ module Http2 =
                                                                    1
                                                                    (fun _ ->
                                                                     x1947 ()))|])
-        let (addListener'' :
+        let (add_listener'' :
           t ->
             event:[ `data ] ->
               listener:(chunk:Buffer.t or_string -> unit) -> t)
@@ -7524,7 +7531,7 @@ module Http2 =
                          (fun (x1951 : Ojs.t) ->
                             x1950
                               ~chunk:(or_string_of_js Buffer.t_of_js x1951)))|])
-        let (addListener''' :
+        let (add_listener''' :
           t -> event:[ `end_ ] -> listener:(unit -> unit) -> t) =
           fun (x1956 : t) ->
             fun ~event:(x1954 : [ `end_ ]) ->
@@ -7533,7 +7540,7 @@ module Http2 =
                   (Ojs.call (t_to_js x1956) "addListener"
                      [|((match x1954 with | `end_ -> Ojs.string_to_js "end"));(
                        Ojs.fun_to_js 1 (fun _ -> x1955 ()))|])
-        let (addListener'''' :
+        let (add_listener'''' :
           t -> event:[ `readable ] -> listener:(unit -> unit) -> t) =
           fun (x1959 : t) ->
             fun ~event:(x1957 : [ `readable ]) ->
@@ -7543,7 +7550,7 @@ module Http2 =
                      [|((match x1957 with
                          | `readable -> Ojs.string_to_js "readable"));(
                        Ojs.fun_to_js 1 (fun _ -> x1958 ()))|])
-        let (addListener''''' :
+        let (add_listener''''' :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
           fun (x1963 : t) ->
             fun ~event:(x1960 : [ `error ]) ->
@@ -7560,7 +7567,7 @@ module Http2 =
                                                                     ~err:(
                                                                     Error.t_of_js
                                                                     x1962)))|])
-        let (addListener'''''' :
+        let (add_listener'''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -7579,10 +7586,10 @@ module Http2 =
                                                                     any_of_js
                                                                     x1967 0)))|])
         let (emit :
-          t -> event:[ `aborted ] -> hadError:bool -> code:int -> bool) =
+          t -> event:[ `aborted ] -> had_error:bool -> code:int -> bool) =
           fun (x1973 : t) ->
             fun ~event:(x1970 : [ `aborted ]) ->
-              fun ~hadError:(x1971 : bool) ->
+              fun ~had_error:(x1971 : bool) ->
                 fun ~code:(x1972 : int) ->
                   Ojs.bool_of_js
                     (Ojs.call (t_to_js x1973) "emit"
@@ -7840,7 +7847,7 @@ module Http2 =
                                                                     Ojs.list_of_js_from
                                                                     any_of_js
                                                                     x2049 0)))|])
-        let (prependListener :
+        let (prepend_listener :
           t ->
             event:[ `aborted ] ->
               listener:(hadError:bool -> code:int -> unit) -> t)
@@ -7857,7 +7864,7 @@ module Http2 =
                             fun (x2055 : Ojs.t) ->
                               x2053 ~hadError:(Ojs.bool_of_js x2054)
                                 ~code:(Ojs.int_of_js x2055)))|])
-        let (prependListener' :
+        let (prepend_listener' :
           t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
           fun (x2059 : t) ->
             fun ~event:(x2057 : [ `close ]) ->
@@ -7869,7 +7876,7 @@ module Http2 =
                                                                    1
                                                                    (fun _ ->
                                                                     x2058 ()))|])
-        let (prependListener'' :
+        let (prepend_listener'' :
           t ->
             event:[ `data ] ->
               listener:(chunk:Buffer.t or_string -> unit) -> t)
@@ -7884,7 +7891,7 @@ module Http2 =
                          (fun (x2062 : Ojs.t) ->
                             x2061
                               ~chunk:(or_string_of_js Buffer.t_of_js x2062)))|])
-        let (prependListener''' :
+        let (prepend_listener''' :
           t -> event:[ `end_ ] -> listener:(unit -> unit) -> t) =
           fun (x2067 : t) ->
             fun ~event:(x2065 : [ `end_ ]) ->
@@ -7893,7 +7900,7 @@ module Http2 =
                   (Ojs.call (t_to_js x2067) "prependListener"
                      [|((match x2065 with | `end_ -> Ojs.string_to_js "end"));(
                        Ojs.fun_to_js 1 (fun _ -> x2066 ()))|])
-        let (prependListener'''' :
+        let (prepend_listener'''' :
           t -> event:[ `readable ] -> listener:(unit -> unit) -> t) =
           fun (x2070 : t) ->
             fun ~event:(x2068 : [ `readable ]) ->
@@ -7903,7 +7910,7 @@ module Http2 =
                      [|((match x2068 with
                          | `readable -> Ojs.string_to_js "readable"));(
                        Ojs.fun_to_js 1 (fun _ -> x2069 ()))|])
-        let (prependListener''''' :
+        let (prepend_listener''''' :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
           fun (x2074 : t) ->
             fun ~event:(x2071 : [ `error ]) ->
@@ -7920,7 +7927,7 @@ module Http2 =
                                                                     ~err:(
                                                                     Error.t_of_js
                                                                     x2073)))|])
-        let (prependListener'''''' :
+        let (prepend_listener'''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -7938,7 +7945,7 @@ module Http2 =
                                                                     Ojs.list_of_js_from
                                                                     any_of_js
                                                                     x2078 0)))|])
-        let (prependOnceListener :
+        let (prepend_once_listener :
           t ->
             event:[ `aborted ] ->
               listener:(hadError:bool -> code:int -> unit) -> t)
@@ -7955,7 +7962,7 @@ module Http2 =
                             fun (x2084 : Ojs.t) ->
                               x2082 ~hadError:(Ojs.bool_of_js x2083)
                                 ~code:(Ojs.int_of_js x2084)))|])
-        let (prependOnceListener' :
+        let (prepend_once_listener' :
           t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
           fun (x2088 : t) ->
             fun ~event:(x2086 : [ `close ]) ->
@@ -7967,7 +7974,7 @@ module Http2 =
                                                                    1
                                                                    (fun _ ->
                                                                     x2087 ()))|])
-        let (prependOnceListener'' :
+        let (prepend_once_listener'' :
           t ->
             event:[ `data ] ->
               listener:(chunk:Buffer.t or_string -> unit) -> t)
@@ -7982,7 +7989,7 @@ module Http2 =
                          (fun (x2091 : Ojs.t) ->
                             x2090
                               ~chunk:(or_string_of_js Buffer.t_of_js x2091)))|])
-        let (prependOnceListener''' :
+        let (prepend_once_listener''' :
           t -> event:[ `end_ ] -> listener:(unit -> unit) -> t) =
           fun (x2096 : t) ->
             fun ~event:(x2094 : [ `end_ ]) ->
@@ -7991,7 +7998,7 @@ module Http2 =
                   (Ojs.call (t_to_js x2096) "prependOnceListener"
                      [|((match x2094 with | `end_ -> Ojs.string_to_js "end"));(
                        Ojs.fun_to_js 1 (fun _ -> x2095 ()))|])
-        let (prependOnceListener'''' :
+        let (prepend_once_listener'''' :
           t -> event:[ `readable ] -> listener:(unit -> unit) -> t) =
           fun (x2099 : t) ->
             fun ~event:(x2097 : [ `readable ]) ->
@@ -8001,7 +8008,7 @@ module Http2 =
                      [|((match x2097 with
                          | `readable -> Ojs.string_to_js "readable"));(
                        Ojs.fun_to_js 1 (fun _ -> x2098 ()))|])
-        let (prependOnceListener''''' :
+        let (prepend_once_listener''''' :
           t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
           fun (x2103 : t) ->
             fun ~event:(x2100 : [ `error ]) ->
@@ -8018,7 +8025,7 @@ module Http2 =
                                                                     ~err:(
                                                                     Error.t_of_js
                                                                     x2102)))|])
-        let (prependOnceListener'''''' :
+        let (prepend_once_listener'''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -8060,7 +8067,7 @@ module Http2 =
         let (get_finished : t -> bool) =
           fun (x2117 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x2117) "finished")
-        let (get_headersSent : t -> bool) =
+        let (get_headers_sent : t -> bool) =
           fun (x2118 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x2118) "headersSent")
         let (get_socket : t -> (Net.Socket.t, Tls.TLSSocket.t) union2) =
@@ -8071,34 +8078,34 @@ module Http2 =
           fun (x2122 : t) ->
             http2_ServerHttp2Stream_of_js
               (Ojs.get_prop_ascii (t_to_js x2122) "stream")
-        let (get_sendDate : t -> bool) =
+        let (get_send_date : t -> bool) =
           fun (x2123 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x2123) "sendDate")
-        let (set_sendDate : t -> bool -> unit) =
+        let (set_send_date : t -> bool -> unit) =
           fun (x2124 : t) ->
             fun (x2125 : bool) ->
               Ojs.set_prop_ascii (t_to_js x2124) "sendDate"
                 (Ojs.bool_to_js x2125)
-        let (get_statusCode : t -> int) =
+        let (get_status_code : t -> int) =
           fun (x2126 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x2126) "statusCode")
-        let (set_statusCode : t -> int -> unit) =
+        let (set_status_code : t -> int -> unit) =
           fun (x2127 : t) ->
             fun (x2128 : int) ->
               Ojs.set_prop_ascii (t_to_js x2127) "statusCode"
                 (Ojs.int_to_js x2128)
-        let (get_statusMessage : t -> [ `L_s0 ]) =
+        let (get_status_message : t -> [ `L_s0 ]) =
           fun (x2129 : t) ->
             let x2130 = Ojs.get_prop_ascii (t_to_js x2129) "statusMessage" in
             match Ojs.string_of_js x2130 with
             | "" -> `L_s0
             | _ -> assert false
-        let (set_statusMessage : t -> [ `L_s0 ] -> unit) =
+        let (set_status_message : t -> [ `L_s0 ] -> unit) =
           fun (x2131 : t) ->
             fun (x2132 : [ `L_s0 ]) ->
               Ojs.set_prop_ascii (t_to_js x2131) "statusMessage"
                 (match x2132 with | `L_s0 -> Ojs.string_to_js "LS0")
-        let (addTrailers :
+        let (add_trailers :
           t -> trailers:Node_http.Http.OutgoingHttpHeaders.t -> unit) =
           fun (x2134 : t) ->
             fun ~trailers:(x2133 : Node_http.Http.OutgoingHttpHeaders.t) ->
@@ -8185,33 +8192,33 @@ module Http2 =
                                                   (fun _ -> x2151 ()))|])
                                     | None -> ());
                                    x2150))|])
-        let (getHeader : t -> name:string -> string) =
+        let (get_header : t -> name:string -> string) =
           fun (x2156 : t) ->
             fun ~name:(x2155 : string) ->
               Ojs.string_of_js
                 (Ojs.call (t_to_js x2156) "getHeader"
                    [|(Ojs.string_to_js x2155)|])
-        let (getHeaderNames : t -> string list) =
+        let (get_header_names : t -> string list) =
           fun (x2157 : t) ->
             Ojs.list_of_js Ojs.string_of_js
               (Ojs.call (t_to_js x2157) "getHeaderNames" [||])
-        let (getHeaders : t -> Node_http.Http.OutgoingHttpHeaders.t) =
+        let (get_headers : t -> Node_http.Http.OutgoingHttpHeaders.t) =
           fun (x2159 : t) ->
             Node_http.Http.OutgoingHttpHeaders.t_of_js
               (Ojs.call (t_to_js x2159) "getHeaders" [||])
-        let (hasHeader : t -> name:string -> bool) =
+        let (has_header : t -> name:string -> bool) =
           fun (x2161 : t) ->
             fun ~name:(x2160 : string) ->
               Ojs.bool_of_js
                 (Ojs.call (t_to_js x2161) "hasHeader"
                    [|(Ojs.string_to_js x2160)|])
-        let (removeHeader : t -> name:string -> unit) =
+        let (remove_header : t -> name:string -> unit) =
           fun (x2163 : t) ->
             fun ~name:(x2162 : string) ->
               ignore
                 (Ojs.call (t_to_js x2163) "removeHeader"
                    [|(Ojs.string_to_js x2162)|])
-        let (setHeader :
+        let (set_header :
           t -> name:string -> value:string list or_string or_number -> unit)
           =
           fun (x2169 : t) ->
@@ -8233,7 +8240,7 @@ module Http2 =
                                                              Ojs.string_to_js
                                                              x2167) x2166)
                                                    x2165)|])
-        let (setTimeout :
+        let (set_timeout :
           t -> msecs:int -> ?callback:(unit -> unit) -> unit -> unit) =
           fun (x2174 : t) ->
             fun ~msecs:(x2170 : int) ->
@@ -8324,16 +8331,16 @@ module Http2 =
                                                                x2189)))|])
                                     | None -> ());
                                    x2187))|])
-        let (writeContinue : t -> unit) =
+        let (write_continue : t -> unit) =
           fun (x2193 : t) ->
             ignore (Ojs.call (t_to_js x2193) "writeContinue" [||])
-        let (writeHead :
+        let (write_head :
           t ->
-            statusCode:int ->
+            status_code:int ->
               ?headers:Node_http.Http.OutgoingHttpHeaders.t -> unit -> t)
           =
           fun (x2198 : t) ->
-            fun ~statusCode:(x2194 : int) ->
+            fun ~status_code:(x2194 : int) ->
               fun
                 ?headers:(x2195 :
                            Node_http.Http.OutgoingHttpHeaders.t option)
@@ -8357,15 +8364,15 @@ module Http2 =
                                                 x2197)|])
                                   | None -> ());
                                  x2196))|])
-        let (writeHead' :
+        let (write_head' :
           t ->
-            statusCode:int ->
-              statusMessage:string ->
+            status_code:int ->
+              status_message:string ->
                 ?headers:Node_http.Http.OutgoingHttpHeaders.t -> unit -> t)
           =
           fun (x2205 : t) ->
-            fun ~statusCode:(x2200 : int) ->
-              fun ~statusMessage:(x2201 : string) ->
+            fun ~status_code:(x2200 : int) ->
+              fun ~status_message:(x2201 : string) ->
                 fun
                   ?headers:(x2202 :
                              Node_http.Http.OutgoingHttpHeaders.t option)
@@ -8393,7 +8400,7 @@ module Http2 =
                                                   x2204)|])
                                     | None -> ());
                                    x2203))|])
-        let (createPushResponse :
+        let (create_push_response :
           t ->
             headers:Node_http.Http.OutgoingHttpHeaders.t ->
               callback:(err:Error.t or_null -> res:t -> unit) -> unit)
@@ -8409,7 +8416,7 @@ module Http2 =
                             fun (x2211 : Ojs.t) ->
                               x2208 ~err:(or_null_of_js Error.t_of_js x2209)
                                 ~res:(t_of_js x2211)))|])
-        let (addListener :
+        let (add_listener :
           t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
           fun (x2215 : t) ->
             fun ~event:(x2213 : [ `close ]) ->
@@ -8421,7 +8428,7 @@ module Http2 =
                                                                    1
                                                                    (fun _ ->
                                                                     x2214 ()))|])
-        let (addListener' :
+        let (add_listener' :
           t -> event:[ `drain ] -> listener:(unit -> unit) -> t) =
           fun (x2218 : t) ->
             fun ~event:(x2216 : [ `drain ]) ->
@@ -8433,7 +8440,7 @@ module Http2 =
                                                                    1
                                                                    (fun _ ->
                                                                     x2217 ()))|])
-        let (addListener'' :
+        let (add_listener'' :
           t -> event:[ `error ] -> listener:(error:Error.t -> unit) -> t) =
           fun (x2222 : t) ->
             fun ~event:(x2219 : [ `error ]) ->
@@ -8450,7 +8457,7 @@ module Http2 =
                                                                     ~error:(
                                                                     Error.t_of_js
                                                                     x2221)))|])
-        let (addListener''' :
+        let (add_listener''' :
           t -> event:[ `finish ] -> listener:(unit -> unit) -> t) =
           fun (x2225 : t) ->
             fun ~event:(x2223 : [ `finish ]) ->
@@ -8462,7 +8469,7 @@ module Http2 =
                                                                     1
                                                                     (fun _ ->
                                                                     x2224 ()))|])
-        let (addListener'''' :
+        let (add_listener'''' :
           t ->
             event:[ `pipe ] -> listener:(src:Stream.Readable.t -> unit) -> t)
           =
@@ -8475,7 +8482,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x2228 : Ojs.t) ->
                             x2227 ~src:(Stream.Readable.t_of_js x2228)))|])
-        let (addListener''''' :
+        let (add_listener''''' :
           t ->
             event:[ `unpipe ] ->
               listener:(src:Stream.Readable.t -> unit) -> t)
@@ -8495,7 +8502,7 @@ module Http2 =
                                                                     ~src:(
                                                                     Stream.Readable.t_of_js
                                                                     x2232)))|])
-        let (addListener'''''' :
+        let (add_listener'''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -8785,7 +8792,7 @@ module Http2 =
                                                                     Ojs.list_of_js_from
                                                                     any_of_js
                                                                     x2313 0)))|])
-        let (prependListener :
+        let (prepend_listener :
           t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
           fun (x2318 : t) ->
             fun ~event:(x2316 : [ `close ]) ->
@@ -8797,7 +8804,7 @@ module Http2 =
                                                                    1
                                                                    (fun _ ->
                                                                     x2317 ()))|])
-        let (prependListener' :
+        let (prepend_listener' :
           t -> event:[ `drain ] -> listener:(unit -> unit) -> t) =
           fun (x2321 : t) ->
             fun ~event:(x2319 : [ `drain ]) ->
@@ -8809,7 +8816,7 @@ module Http2 =
                                                                    1
                                                                    (fun _ ->
                                                                     x2320 ()))|])
-        let (prependListener'' :
+        let (prepend_listener'' :
           t -> event:[ `error ] -> listener:(error:Error.t -> unit) -> t) =
           fun (x2325 : t) ->
             fun ~event:(x2322 : [ `error ]) ->
@@ -8826,7 +8833,7 @@ module Http2 =
                                                                     ~error:(
                                                                     Error.t_of_js
                                                                     x2324)))|])
-        let (prependListener''' :
+        let (prepend_listener''' :
           t -> event:[ `finish ] -> listener:(unit -> unit) -> t) =
           fun (x2328 : t) ->
             fun ~event:(x2326 : [ `finish ]) ->
@@ -8838,7 +8845,7 @@ module Http2 =
                                                                     1
                                                                     (fun _ ->
                                                                     x2327 ()))|])
-        let (prependListener'''' :
+        let (prepend_listener'''' :
           t ->
             event:[ `pipe ] -> listener:(src:Stream.Readable.t -> unit) -> t)
           =
@@ -8851,7 +8858,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x2331 : Ojs.t) ->
                             x2330 ~src:(Stream.Readable.t_of_js x2331)))|])
-        let (prependListener''''' :
+        let (prepend_listener''''' :
           t ->
             event:[ `unpipe ] ->
               listener:(src:Stream.Readable.t -> unit) -> t)
@@ -8871,7 +8878,7 @@ module Http2 =
                                                                     ~src:(
                                                                     Stream.Readable.t_of_js
                                                                     x2335)))|])
-        let (prependListener'''''' :
+        let (prepend_listener'''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -8889,7 +8896,7 @@ module Http2 =
                                                                     Ojs.list_of_js_from
                                                                     any_of_js
                                                                     x2340 0)))|])
-        let (prependOnceListener :
+        let (prepend_once_listener :
           t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
           fun (x2345 : t) ->
             fun ~event:(x2343 : [ `close ]) ->
@@ -8901,7 +8908,7 @@ module Http2 =
                                                                    1
                                                                    (fun _ ->
                                                                     x2344 ()))|])
-        let (prependOnceListener' :
+        let (prepend_once_listener' :
           t -> event:[ `drain ] -> listener:(unit -> unit) -> t) =
           fun (x2348 : t) ->
             fun ~event:(x2346 : [ `drain ]) ->
@@ -8913,7 +8920,7 @@ module Http2 =
                                                                    1
                                                                    (fun _ ->
                                                                     x2347 ()))|])
-        let (prependOnceListener'' :
+        let (prepend_once_listener'' :
           t -> event:[ `error ] -> listener:(error:Error.t -> unit) -> t) =
           fun (x2352 : t) ->
             fun ~event:(x2349 : [ `error ]) ->
@@ -8930,7 +8937,7 @@ module Http2 =
                                                                     ~error:(
                                                                     Error.t_of_js
                                                                     x2351)))|])
-        let (prependOnceListener''' :
+        let (prepend_once_listener''' :
           t -> event:[ `finish ] -> listener:(unit -> unit) -> t) =
           fun (x2355 : t) ->
             fun ~event:(x2353 : [ `finish ]) ->
@@ -8942,7 +8949,7 @@ module Http2 =
                                                                     1
                                                                     (fun _ ->
                                                                     x2354 ()))|])
-        let (prependOnceListener'''' :
+        let (prepend_once_listener'''' :
           t ->
             event:[ `pipe ] -> listener:(src:Stream.Readable.t -> unit) -> t)
           =
@@ -8955,7 +8962,7 @@ module Http2 =
                        Ojs.fun_to_js 1
                          (fun (x2358 : Ojs.t) ->
                             x2357 ~src:(Stream.Readable.t_of_js x2358)))|])
-        let (prependOnceListener''''' :
+        let (prepend_once_listener''''' :
           t ->
             event:[ `unpipe ] ->
               listener:(src:Stream.Readable.t -> unit) -> t)
@@ -8975,7 +8982,7 @@ module Http2 =
                                                                     ~src:(
                                                                     Stream.Readable.t_of_js
                                                                     x2362)))|])
-        let (prependOnceListener'''''' :
+        let (prepend_once_listener'''''' :
           t ->
             event:symbol or_string -> listener:(args:any list -> unit) -> t)
           =
@@ -8998,863 +9005,863 @@ module Http2 =
       end
     module Constants =
       struct
-        let (nGHTTP2_SESSION_SERVER : int) =
+        let (n_ghttp2_SESSION_SERVER : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_SESSION_SERVER")
-        let (nGHTTP2_SESSION_CLIENT : int) =
+        let (n_ghttp2_SESSION_CLIENT : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_SESSION_CLIENT")
-        let (nGHTTP2_STREAM_STATE_IDLE : int) =
+        let (n_ghttp2_STREAM_STATE_IDLE : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_STREAM_STATE_IDLE")
-        let (nGHTTP2_STREAM_STATE_OPEN : int) =
+        let (n_ghttp2_STREAM_STATE_OPEN : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_STREAM_STATE_OPEN")
-        let (nGHTTP2_STREAM_STATE_RESERVED_LOCAL : int) =
+        let (n_ghttp2_STREAM_STATE_RESERVED_LOCAL : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_STREAM_STATE_RESERVED_LOCAL")
-        let (nGHTTP2_STREAM_STATE_RESERVED_REMOTE : int) =
+        let (n_ghttp2_STREAM_STATE_RESERVED_REMOTE : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_STREAM_STATE_RESERVED_REMOTE")
-        let (nGHTTP2_STREAM_STATE_HALF_CLOSED_LOCAL : int) =
+        let (n_ghttp2_STREAM_STATE_HALF_CLOSED_LOCAL : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_STREAM_STATE_HALF_CLOSED_LOCAL")
-        let (nGHTTP2_STREAM_STATE_HALF_CLOSED_REMOTE : int) =
+        let (n_ghttp2_STREAM_STATE_HALF_CLOSED_REMOTE : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_STREAM_STATE_HALF_CLOSED_REMOTE")
-        let (nGHTTP2_STREAM_STATE_CLOSED : int) =
+        let (n_ghttp2_STREAM_STATE_CLOSED : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_STREAM_STATE_CLOSED")
-        let (nGHTTP2_NO_ERROR : int) =
+        let (n_ghttp2_NO_ERROR : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_NO_ERROR")
-        let (nGHTTP2_PROTOCOL_ERROR : int) =
+        let (n_ghttp2_PROTOCOL_ERROR : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_PROTOCOL_ERROR")
-        let (nGHTTP2_INTERNAL_ERROR : int) =
+        let (n_ghttp2_INTERNAL_ERROR : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_INTERNAL_ERROR")
-        let (nGHTTP2_FLOW_CONTROL_ERROR : int) =
+        let (n_ghttp2_FLOW_CONTROL_ERROR : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_FLOW_CONTROL_ERROR")
-        let (nGHTTP2_SETTINGS_TIMEOUT : int) =
+        let (n_ghttp2_SETTINGS_TIMEOUT : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_SETTINGS_TIMEOUT")
-        let (nGHTTP2_STREAM_CLOSED : int) =
+        let (n_ghttp2_STREAM_CLOSED : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_STREAM_CLOSED")
-        let (nGHTTP2_FRAME_SIZE_ERROR : int) =
+        let (n_ghttp2_FRAME_SIZE_ERROR : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_FRAME_SIZE_ERROR")
-        let (nGHTTP2_REFUSED_STREAM : int) =
+        let (n_ghttp2_REFUSED_STREAM : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_REFUSED_STREAM")
-        let (nGHTTP2_CANCEL : int) =
+        let (n_ghttp2_CANCEL : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_CANCEL")
-        let (nGHTTP2_COMPRESSION_ERROR : int) =
+        let (n_ghttp2_COMPRESSION_ERROR : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_COMPRESSION_ERROR")
-        let (nGHTTP2_CONNECT_ERROR : int) =
+        let (n_ghttp2_CONNECT_ERROR : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_CONNECT_ERROR")
-        let (nGHTTP2_ENHANCE_YOUR_CALM : int) =
+        let (n_ghttp2_ENHANCE_YOUR_CALM : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_ENHANCE_YOUR_CALM")
-        let (nGHTTP2_INADEQUATE_SECURITY : int) =
+        let (n_ghttp2_INADEQUATE_SECURITY : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_INADEQUATE_SECURITY")
-        let (nGHTTP2_HTTP_1_1_REQUIRED : int) =
+        let (n_ghttp2_HTTP_1_1_REQUIRED : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_HTTP_1_1_REQUIRED")
-        let (nGHTTP2_ERR_FRAME_SIZE_ERROR : int) =
+        let (n_ghttp2_ERR_FRAME_SIZE_ERROR : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_ERR_FRAME_SIZE_ERROR")
-        let (nGHTTP2_FLAG_NONE : int) =
+        let (n_ghttp2_FLAG_NONE : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_FLAG_NONE")
-        let (nGHTTP2_FLAG_END_STREAM : int) =
+        let (n_ghttp2_FLAG_END_STREAM : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_FLAG_END_STREAM")
-        let (nGHTTP2_FLAG_END_HEADERS : int) =
+        let (n_ghttp2_FLAG_END_HEADERS : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_FLAG_END_HEADERS")
-        let (nGHTTP2_FLAG_ACK : int) =
+        let (n_ghttp2_FLAG_ACK : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_FLAG_ACK")
-        let (nGHTTP2_FLAG_PADDED : int) =
+        let (n_ghttp2_FLAG_PADDED : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_FLAG_PADDED")
-        let (nGHTTP2_FLAG_PRIORITY : int) =
+        let (n_ghttp2_FLAG_PRIORITY : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_FLAG_PRIORITY")
-        let (dEFAULT_SETTINGS_HEADER_TABLE_SIZE : int) =
+        let (d_efault_settings_header_table_size : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "DEFAULT_SETTINGS_HEADER_TABLE_SIZE")
-        let (dEFAULT_SETTINGS_ENABLE_PUSH : int) =
+        let (d_efault_settings_enable_push : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "DEFAULT_SETTINGS_ENABLE_PUSH")
-        let (dEFAULT_SETTINGS_INITIAL_WINDOW_SIZE : int) =
+        let (d_efault_settings_initial_window_size : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "DEFAULT_SETTINGS_INITIAL_WINDOW_SIZE")
-        let (dEFAULT_SETTINGS_MAX_FRAME_SIZE : int) =
+        let (d_efault_settings_max_frame_size : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "DEFAULT_SETTINGS_MAX_FRAME_SIZE")
-        let (mAX_MAX_FRAME_SIZE : int) =
+        let (m_ax_max_frame_size : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "MAX_MAX_FRAME_SIZE")
-        let (mIN_MAX_FRAME_SIZE : int) =
+        let (m_in_max_frame_size : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "MIN_MAX_FRAME_SIZE")
-        let (mAX_INITIAL_WINDOW_SIZE : int) =
+        let (m_ax_initial_window_size : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "MAX_INITIAL_WINDOW_SIZE")
-        let (nGHTTP2_DEFAULT_WEIGHT : int) =
+        let (n_ghttp2_DEFAULT_WEIGHT : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_DEFAULT_WEIGHT")
-        let (nGHTTP2_SETTINGS_HEADER_TABLE_SIZE : int) =
+        let (n_ghttp2_SETTINGS_HEADER_TABLE_SIZE : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_SETTINGS_HEADER_TABLE_SIZE")
-        let (nGHTTP2_SETTINGS_ENABLE_PUSH : int) =
+        let (n_ghttp2_SETTINGS_ENABLE_PUSH : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_SETTINGS_ENABLE_PUSH")
-        let (nGHTTP2_SETTINGS_MAX_CONCURRENT_STREAMS : int) =
+        let (n_ghttp2_SETTINGS_MAX_CONCURRENT_STREAMS : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_SETTINGS_MAX_CONCURRENT_STREAMS")
-        let (nGHTTP2_SETTINGS_INITIAL_WINDOW_SIZE : int) =
+        let (n_ghttp2_SETTINGS_INITIAL_WINDOW_SIZE : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_SETTINGS_INITIAL_WINDOW_SIZE")
-        let (nGHTTP2_SETTINGS_MAX_FRAME_SIZE : int) =
+        let (n_ghttp2_SETTINGS_MAX_FRAME_SIZE : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_SETTINGS_MAX_FRAME_SIZE")
-        let (nGHTTP2_SETTINGS_MAX_HEADER_LIST_SIZE : int) =
+        let (n_ghttp2_SETTINGS_MAX_HEADER_LIST_SIZE : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "NGHTTP2_SETTINGS_MAX_HEADER_LIST_SIZE")
-        let (pADDING_STRATEGY_NONE : int) =
+        let (p_adding_strategy_none : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "PADDING_STRATEGY_NONE")
-        let (pADDING_STRATEGY_MAX : int) =
+        let (p_adding_strategy_max : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "PADDING_STRATEGY_MAX")
-        let (pADDING_STRATEGY_CALLBACK : int) =
+        let (p_adding_strategy_callback : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "PADDING_STRATEGY_CALLBACK")
-        let (hTTP2_HEADER_STATUS : string) =
+        let (h_ttp2_HEADER_STATUS : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_STATUS")
-        let (hTTP2_HEADER_METHOD : string) =
+        let (h_ttp2_HEADER_METHOD : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_METHOD")
-        let (hTTP2_HEADER_AUTHORITY : string) =
+        let (h_ttp2_HEADER_AUTHORITY : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_AUTHORITY")
-        let (hTTP2_HEADER_SCHEME : string) =
+        let (h_ttp2_HEADER_SCHEME : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_SCHEME")
-        let (hTTP2_HEADER_PATH : string) =
+        let (h_ttp2_HEADER_PATH : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_PATH")
-        let (hTTP2_HEADER_ACCEPT_CHARSET : string) =
+        let (h_ttp2_HEADER_ACCEPT_CHARSET : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_ACCEPT_CHARSET")
-        let (hTTP2_HEADER_ACCEPT_ENCODING : string) =
+        let (h_ttp2_HEADER_ACCEPT_ENCODING : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_ACCEPT_ENCODING")
-        let (hTTP2_HEADER_ACCEPT_LANGUAGE : string) =
+        let (h_ttp2_HEADER_ACCEPT_LANGUAGE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_ACCEPT_LANGUAGE")
-        let (hTTP2_HEADER_ACCEPT_RANGES : string) =
+        let (h_ttp2_HEADER_ACCEPT_RANGES : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_ACCEPT_RANGES")
-        let (hTTP2_HEADER_ACCEPT : string) =
+        let (h_ttp2_HEADER_ACCEPT : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_ACCEPT")
-        let (hTTP2_HEADER_ACCESS_CONTROL_ALLOW_ORIGIN : string) =
+        let (h_ttp2_HEADER_ACCESS_CONTROL_ALLOW_ORIGIN : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_ACCESS_CONTROL_ALLOW_ORIGIN")
-        let (hTTP2_HEADER_AGE : string) =
+        let (h_ttp2_HEADER_AGE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_AGE")
-        let (hTTP2_HEADER_ALLOW : string) =
+        let (h_ttp2_HEADER_ALLOW : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_ALLOW")
-        let (hTTP2_HEADER_AUTHORIZATION : string) =
+        let (h_ttp2_HEADER_AUTHORIZATION : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_AUTHORIZATION")
-        let (hTTP2_HEADER_CACHE_CONTROL : string) =
+        let (h_ttp2_HEADER_CACHE_CONTROL : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_CACHE_CONTROL")
-        let (hTTP2_HEADER_CONNECTION : string) =
+        let (h_ttp2_HEADER_CONNECTION : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_CONNECTION")
-        let (hTTP2_HEADER_CONTENT_DISPOSITION : string) =
+        let (h_ttp2_HEADER_CONTENT_DISPOSITION : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_CONTENT_DISPOSITION")
-        let (hTTP2_HEADER_CONTENT_ENCODING : string) =
+        let (h_ttp2_HEADER_CONTENT_ENCODING : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_CONTENT_ENCODING")
-        let (hTTP2_HEADER_CONTENT_LANGUAGE : string) =
+        let (h_ttp2_HEADER_CONTENT_LANGUAGE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_CONTENT_LANGUAGE")
-        let (hTTP2_HEADER_CONTENT_LENGTH : string) =
+        let (h_ttp2_HEADER_CONTENT_LENGTH : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_CONTENT_LENGTH")
-        let (hTTP2_HEADER_CONTENT_LOCATION : string) =
+        let (h_ttp2_HEADER_CONTENT_LOCATION : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_CONTENT_LOCATION")
-        let (hTTP2_HEADER_CONTENT_MD5 : string) =
+        let (h_ttp2_HEADER_CONTENT_MD5 : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_CONTENT_MD5")
-        let (hTTP2_HEADER_CONTENT_RANGE : string) =
+        let (h_ttp2_HEADER_CONTENT_RANGE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_CONTENT_RANGE")
-        let (hTTP2_HEADER_CONTENT_TYPE : string) =
+        let (h_ttp2_HEADER_CONTENT_TYPE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_CONTENT_TYPE")
-        let (hTTP2_HEADER_COOKIE : string) =
+        let (h_ttp2_HEADER_COOKIE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_COOKIE")
-        let (hTTP2_HEADER_DATE : string) =
+        let (h_ttp2_HEADER_DATE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_DATE")
-        let (hTTP2_HEADER_ETAG : string) =
+        let (h_ttp2_HEADER_ETAG : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_ETAG")
-        let (hTTP2_HEADER_EXPECT : string) =
+        let (h_ttp2_HEADER_EXPECT : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_EXPECT")
-        let (hTTP2_HEADER_EXPIRES : string) =
+        let (h_ttp2_HEADER_EXPIRES : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_EXPIRES")
-        let (hTTP2_HEADER_FROM : string) =
+        let (h_ttp2_HEADER_FROM : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_FROM")
-        let (hTTP2_HEADER_HOST : string) =
+        let (h_ttp2_HEADER_HOST : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_HOST")
-        let (hTTP2_HEADER_IF_MATCH : string) =
+        let (h_ttp2_HEADER_IF_MATCH : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_IF_MATCH")
-        let (hTTP2_HEADER_IF_MODIFIED_SINCE : string) =
+        let (h_ttp2_HEADER_IF_MODIFIED_SINCE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_IF_MODIFIED_SINCE")
-        let (hTTP2_HEADER_IF_NONE_MATCH : string) =
+        let (h_ttp2_HEADER_IF_NONE_MATCH : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_IF_NONE_MATCH")
-        let (hTTP2_HEADER_IF_RANGE : string) =
+        let (h_ttp2_HEADER_IF_RANGE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_IF_RANGE")
-        let (hTTP2_HEADER_IF_UNMODIFIED_SINCE : string) =
+        let (h_ttp2_HEADER_IF_UNMODIFIED_SINCE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_IF_UNMODIFIED_SINCE")
-        let (hTTP2_HEADER_LAST_MODIFIED : string) =
+        let (h_ttp2_HEADER_LAST_MODIFIED : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_LAST_MODIFIED")
-        let (hTTP2_HEADER_LINK : string) =
+        let (h_ttp2_HEADER_LINK : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_LINK")
-        let (hTTP2_HEADER_LOCATION : string) =
+        let (h_ttp2_HEADER_LOCATION : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_LOCATION")
-        let (hTTP2_HEADER_MAX_FORWARDS : string) =
+        let (h_ttp2_HEADER_MAX_FORWARDS : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_MAX_FORWARDS")
-        let (hTTP2_HEADER_PREFER : string) =
+        let (h_ttp2_HEADER_PREFER : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_PREFER")
-        let (hTTP2_HEADER_PROXY_AUTHENTICATE : string) =
+        let (h_ttp2_HEADER_PROXY_AUTHENTICATE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_PROXY_AUTHENTICATE")
-        let (hTTP2_HEADER_PROXY_AUTHORIZATION : string) =
+        let (h_ttp2_HEADER_PROXY_AUTHORIZATION : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_PROXY_AUTHORIZATION")
-        let (hTTP2_HEADER_RANGE : string) =
+        let (h_ttp2_HEADER_RANGE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_RANGE")
-        let (hTTP2_HEADER_REFERER : string) =
+        let (h_ttp2_HEADER_REFERER : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_REFERER")
-        let (hTTP2_HEADER_REFRESH : string) =
+        let (h_ttp2_HEADER_REFRESH : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_REFRESH")
-        let (hTTP2_HEADER_RETRY_AFTER : string) =
+        let (h_ttp2_HEADER_RETRY_AFTER : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_RETRY_AFTER")
-        let (hTTP2_HEADER_SERVER : string) =
+        let (h_ttp2_HEADER_SERVER : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_SERVER")
-        let (hTTP2_HEADER_SET_COOKIE : string) =
+        let (h_ttp2_HEADER_SET_COOKIE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_SET_COOKIE")
-        let (hTTP2_HEADER_STRICT_TRANSPORT_SECURITY : string) =
+        let (h_ttp2_HEADER_STRICT_TRANSPORT_SECURITY : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_STRICT_TRANSPORT_SECURITY")
-        let (hTTP2_HEADER_TRANSFER_ENCODING : string) =
+        let (h_ttp2_HEADER_TRANSFER_ENCODING : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_TRANSFER_ENCODING")
-        let (hTTP2_HEADER_TE : string) =
+        let (h_ttp2_HEADER_TE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_TE")
-        let (hTTP2_HEADER_UPGRADE : string) =
+        let (h_ttp2_HEADER_UPGRADE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_UPGRADE")
-        let (hTTP2_HEADER_USER_AGENT : string) =
+        let (h_ttp2_HEADER_USER_AGENT : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_USER_AGENT")
-        let (hTTP2_HEADER_VARY : string) =
+        let (h_ttp2_HEADER_VARY : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_VARY")
-        let (hTTP2_HEADER_VIA : string) =
+        let (h_ttp2_HEADER_VIA : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_VIA")
-        let (hTTP2_HEADER_WWW_AUTHENTICATE : string) =
+        let (h_ttp2_HEADER_WWW_AUTHENTICATE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_WWW_AUTHENTICATE")
-        let (hTTP2_HEADER_HTTP2_SETTINGS : string) =
+        let (h_ttp2_HEADER_HTTP2_SETTINGS : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_HTTP2_SETTINGS")
-        let (hTTP2_HEADER_KEEP_ALIVE : string) =
+        let (h_ttp2_HEADER_KEEP_ALIVE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_KEEP_ALIVE")
-        let (hTTP2_HEADER_PROXY_CONNECTION : string) =
+        let (h_ttp2_HEADER_PROXY_CONNECTION : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_HEADER_PROXY_CONNECTION")
-        let (hTTP2_METHOD_ACL : string) =
+        let (h_ttp2_METHOD_ACL : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_ACL")
-        let (hTTP2_METHOD_BASELINE_CONTROL : string) =
+        let (h_ttp2_METHOD_BASELINE_CONTROL : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_BASELINE_CONTROL")
-        let (hTTP2_METHOD_BIND : string) =
+        let (h_ttp2_METHOD_BIND : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_BIND")
-        let (hTTP2_METHOD_CHECKIN : string) =
+        let (h_ttp2_METHOD_CHECKIN : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_CHECKIN")
-        let (hTTP2_METHOD_CHECKOUT : string) =
+        let (h_ttp2_METHOD_CHECKOUT : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_CHECKOUT")
-        let (hTTP2_METHOD_CONNECT : string) =
+        let (h_ttp2_METHOD_CONNECT : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_CONNECT")
-        let (hTTP2_METHOD_COPY : string) =
+        let (h_ttp2_METHOD_COPY : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_COPY")
-        let (hTTP2_METHOD_DELETE : string) =
+        let (h_ttp2_METHOD_DELETE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_DELETE")
-        let (hTTP2_METHOD_GET : string) =
+        let (h_ttp2_METHOD_GET : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_GET")
-        let (hTTP2_METHOD_HEAD : string) =
+        let (h_ttp2_METHOD_HEAD : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_HEAD")
-        let (hTTP2_METHOD_LABEL : string) =
+        let (h_ttp2_METHOD_LABEL : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_LABEL")
-        let (hTTP2_METHOD_LINK : string) =
+        let (h_ttp2_METHOD_LINK : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_LINK")
-        let (hTTP2_METHOD_LOCK : string) =
+        let (h_ttp2_METHOD_LOCK : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_LOCK")
-        let (hTTP2_METHOD_MERGE : string) =
+        let (h_ttp2_METHOD_MERGE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_MERGE")
-        let (hTTP2_METHOD_MKACTIVITY : string) =
+        let (h_ttp2_METHOD_MKACTIVITY : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_MKACTIVITY")
-        let (hTTP2_METHOD_MKCALENDAR : string) =
+        let (h_ttp2_METHOD_MKCALENDAR : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_MKCALENDAR")
-        let (hTTP2_METHOD_MKCOL : string) =
+        let (h_ttp2_METHOD_MKCOL : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_MKCOL")
-        let (hTTP2_METHOD_MKREDIRECTREF : string) =
+        let (h_ttp2_METHOD_MKREDIRECTREF : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_MKREDIRECTREF")
-        let (hTTP2_METHOD_MKWORKSPACE : string) =
+        let (h_ttp2_METHOD_MKWORKSPACE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_MKWORKSPACE")
-        let (hTTP2_METHOD_MOVE : string) =
+        let (h_ttp2_METHOD_MOVE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_MOVE")
-        let (hTTP2_METHOD_OPTIONS : string) =
+        let (h_ttp2_METHOD_OPTIONS : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_OPTIONS")
-        let (hTTP2_METHOD_ORDERPATCH : string) =
+        let (h_ttp2_METHOD_ORDERPATCH : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_ORDERPATCH")
-        let (hTTP2_METHOD_PATCH : string) =
+        let (h_ttp2_METHOD_PATCH : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_PATCH")
-        let (hTTP2_METHOD_POST : string) =
+        let (h_ttp2_METHOD_POST : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_POST")
-        let (hTTP2_METHOD_PRI : string) =
+        let (h_ttp2_METHOD_PRI : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_PRI")
-        let (hTTP2_METHOD_PROPFIND : string) =
+        let (h_ttp2_METHOD_PROPFIND : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_PROPFIND")
-        let (hTTP2_METHOD_PROPPATCH : string) =
+        let (h_ttp2_METHOD_PROPPATCH : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_PROPPATCH")
-        let (hTTP2_METHOD_PUT : string) =
+        let (h_ttp2_METHOD_PUT : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_PUT")
-        let (hTTP2_METHOD_REBIND : string) =
+        let (h_ttp2_METHOD_REBIND : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_REBIND")
-        let (hTTP2_METHOD_REPORT : string) =
+        let (h_ttp2_METHOD_REPORT : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_REPORT")
-        let (hTTP2_METHOD_SEARCH : string) =
+        let (h_ttp2_METHOD_SEARCH : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_SEARCH")
-        let (hTTP2_METHOD_TRACE : string) =
+        let (h_ttp2_METHOD_TRACE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_TRACE")
-        let (hTTP2_METHOD_UNBIND : string) =
+        let (h_ttp2_METHOD_UNBIND : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_UNBIND")
-        let (hTTP2_METHOD_UNCHECKOUT : string) =
+        let (h_ttp2_METHOD_UNCHECKOUT : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_UNCHECKOUT")
-        let (hTTP2_METHOD_UNLINK : string) =
+        let (h_ttp2_METHOD_UNLINK : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_UNLINK")
-        let (hTTP2_METHOD_UNLOCK : string) =
+        let (h_ttp2_METHOD_UNLOCK : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_UNLOCK")
-        let (hTTP2_METHOD_UPDATE : string) =
+        let (h_ttp2_METHOD_UPDATE : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_UPDATE")
-        let (hTTP2_METHOD_UPDATEREDIRECTREF : string) =
+        let (h_ttp2_METHOD_UPDATEREDIRECTREF : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_UPDATEREDIRECTREF")
-        let (hTTP2_METHOD_VERSION_CONTROL : string) =
+        let (h_ttp2_METHOD_VERSION_CONTROL : string) =
           Ojs.string_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP2_METHOD_VERSION_CONTROL")
-        let (hTTP_STATUS_CONTINUE : int) =
+        let (h_ttp_status_continue : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_CONTINUE")
-        let (hTTP_STATUS_SWITCHING_PROTOCOLS : int) =
+        let (h_ttp_status_switching_protocols : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_SWITCHING_PROTOCOLS")
-        let (hTTP_STATUS_PROCESSING : int) =
+        let (h_ttp_status_processing : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_PROCESSING")
-        let (hTTP_STATUS_OK : int) =
+        let (h_ttp_status_ok : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_OK")
-        let (hTTP_STATUS_CREATED : int) =
+        let (h_ttp_status_created : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_CREATED")
-        let (hTTP_STATUS_ACCEPTED : int) =
+        let (h_ttp_status_accepted : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_ACCEPTED")
-        let (hTTP_STATUS_NON_AUTHORITATIVE_INFORMATION : int) =
+        let (h_ttp_status_non_authoritative_information : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_NON_AUTHORITATIVE_INFORMATION")
-        let (hTTP_STATUS_NO_CONTENT : int) =
+        let (h_ttp_status_no_content : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_NO_CONTENT")
-        let (hTTP_STATUS_RESET_CONTENT : int) =
+        let (h_ttp_status_reset_content : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_RESET_CONTENT")
-        let (hTTP_STATUS_PARTIAL_CONTENT : int) =
+        let (h_ttp_status_partial_content : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_PARTIAL_CONTENT")
-        let (hTTP_STATUS_MULTI_STATUS : int) =
+        let (h_ttp_status_multi_status : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_MULTI_STATUS")
-        let (hTTP_STATUS_ALREADY_REPORTED : int) =
+        let (h_ttp_status_already_reported : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_ALREADY_REPORTED")
-        let (hTTP_STATUS_IM_USED : int) =
+        let (h_ttp_status_im_used : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_IM_USED")
-        let (hTTP_STATUS_MULTIPLE_CHOICES : int) =
+        let (h_ttp_status_multiple_choices : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_MULTIPLE_CHOICES")
-        let (hTTP_STATUS_MOVED_PERMANENTLY : int) =
+        let (h_ttp_status_moved_permanently : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_MOVED_PERMANENTLY")
-        let (hTTP_STATUS_FOUND : int) =
+        let (h_ttp_status_found : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_FOUND")
-        let (hTTP_STATUS_SEE_OTHER : int) =
+        let (h_ttp_status_see_other : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_SEE_OTHER")
-        let (hTTP_STATUS_NOT_MODIFIED : int) =
+        let (h_ttp_status_not_modified : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_NOT_MODIFIED")
-        let (hTTP_STATUS_USE_PROXY : int) =
+        let (h_ttp_status_use_proxy : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_USE_PROXY")
-        let (hTTP_STATUS_TEMPORARY_REDIRECT : int) =
+        let (h_ttp_status_temporary_redirect : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_TEMPORARY_REDIRECT")
-        let (hTTP_STATUS_PERMANENT_REDIRECT : int) =
+        let (h_ttp_status_permanent_redirect : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_PERMANENT_REDIRECT")
-        let (hTTP_STATUS_BAD_REQUEST : int) =
+        let (h_ttp_status_bad_request : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_BAD_REQUEST")
-        let (hTTP_STATUS_UNAUTHORIZED : int) =
+        let (h_ttp_status_unauthorized : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_UNAUTHORIZED")
-        let (hTTP_STATUS_PAYMENT_REQUIRED : int) =
+        let (h_ttp_status_payment_required : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_PAYMENT_REQUIRED")
-        let (hTTP_STATUS_FORBIDDEN : int) =
+        let (h_ttp_status_forbidden : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_FORBIDDEN")
-        let (hTTP_STATUS_NOT_FOUND : int) =
+        let (h_ttp_status_not_found : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_NOT_FOUND")
-        let (hTTP_STATUS_METHOD_NOT_ALLOWED : int) =
+        let (h_ttp_status_method_not_allowed : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_METHOD_NOT_ALLOWED")
-        let (hTTP_STATUS_NOT_ACCEPTABLE : int) =
+        let (h_ttp_status_not_acceptable : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_NOT_ACCEPTABLE")
-        let (hTTP_STATUS_PROXY_AUTHENTICATION_REQUIRED : int) =
+        let (h_ttp_status_proxy_authentication_required : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_PROXY_AUTHENTICATION_REQUIRED")
-        let (hTTP_STATUS_REQUEST_TIMEOUT : int) =
+        let (h_ttp_status_request_timeout : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_REQUEST_TIMEOUT")
-        let (hTTP_STATUS_CONFLICT : int) =
+        let (h_ttp_status_conflict : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_CONFLICT")
-        let (hTTP_STATUS_GONE : int) =
+        let (h_ttp_status_gone : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_GONE")
-        let (hTTP_STATUS_LENGTH_REQUIRED : int) =
+        let (h_ttp_status_length_required : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_LENGTH_REQUIRED")
-        let (hTTP_STATUS_PRECONDITION_FAILED : int) =
+        let (h_ttp_status_precondition_failed : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_PRECONDITION_FAILED")
-        let (hTTP_STATUS_PAYLOAD_TOO_LARGE : int) =
+        let (h_ttp_status_payload_too_large : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_PAYLOAD_TOO_LARGE")
-        let (hTTP_STATUS_URI_TOO_LONG : int) =
+        let (h_ttp_status_uri_too_long : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_URI_TOO_LONG")
-        let (hTTP_STATUS_UNSUPPORTED_MEDIA_TYPE : int) =
+        let (h_ttp_status_unsupported_media_type : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_UNSUPPORTED_MEDIA_TYPE")
-        let (hTTP_STATUS_RANGE_NOT_SATISFIABLE : int) =
+        let (h_ttp_status_range_not_satisfiable : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_RANGE_NOT_SATISFIABLE")
-        let (hTTP_STATUS_EXPECTATION_FAILED : int) =
+        let (h_ttp_status_expectation_failed : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_EXPECTATION_FAILED")
-        let (hTTP_STATUS_TEAPOT : int) =
+        let (h_ttp_status_teapot : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_TEAPOT")
-        let (hTTP_STATUS_MISDIRECTED_REQUEST : int) =
+        let (h_ttp_status_misdirected_request : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_MISDIRECTED_REQUEST")
-        let (hTTP_STATUS_UNPROCESSABLE_ENTITY : int) =
+        let (h_ttp_status_unprocessable_entity : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_UNPROCESSABLE_ENTITY")
-        let (hTTP_STATUS_LOCKED : int) =
+        let (h_ttp_status_locked : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_LOCKED")
-        let (hTTP_STATUS_FAILED_DEPENDENCY : int) =
+        let (h_ttp_status_failed_dependency : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_FAILED_DEPENDENCY")
-        let (hTTP_STATUS_UNORDERED_COLLECTION : int) =
+        let (h_ttp_status_unordered_collection : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_UNORDERED_COLLECTION")
-        let (hTTP_STATUS_UPGRADE_REQUIRED : int) =
+        let (h_ttp_status_upgrade_required : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_UPGRADE_REQUIRED")
-        let (hTTP_STATUS_PRECONDITION_REQUIRED : int) =
+        let (h_ttp_status_precondition_required : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_PRECONDITION_REQUIRED")
-        let (hTTP_STATUS_TOO_MANY_REQUESTS : int) =
+        let (h_ttp_status_too_many_requests : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_TOO_MANY_REQUESTS")
-        let (hTTP_STATUS_REQUEST_HEADER_FIELDS_TOO_LARGE : int) =
+        let (h_ttp_status_request_header_fields_too_large : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_REQUEST_HEADER_FIELDS_TOO_LARGE")
-        let (hTTP_STATUS_UNAVAILABLE_FOR_LEGAL_REASONS : int) =
+        let (h_ttp_status_unavailable_for_legal_reasons : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_UNAVAILABLE_FOR_LEGAL_REASONS")
-        let (hTTP_STATUS_INTERNAL_SERVER_ERROR : int) =
+        let (h_ttp_status_internal_server_error : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_INTERNAL_SERVER_ERROR")
-        let (hTTP_STATUS_NOT_IMPLEMENTED : int) =
+        let (h_ttp_status_not_implemented : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_NOT_IMPLEMENTED")
-        let (hTTP_STATUS_BAD_GATEWAY : int) =
+        let (h_ttp_status_bad_gateway : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_BAD_GATEWAY")
-        let (hTTP_STATUS_SERVICE_UNAVAILABLE : int) =
+        let (h_ttp_status_service_unavailable : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_SERVICE_UNAVAILABLE")
-        let (hTTP_STATUS_GATEWAY_TIMEOUT : int) =
+        let (h_ttp_status_gateway_timeout : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_GATEWAY_TIMEOUT")
-        let (hTTP_STATUS_HTTP_VERSION_NOT_SUPPORTED : int) =
+        let (h_ttp_status_http_version_not_supported : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_HTTP_VERSION_NOT_SUPPORTED")
-        let (hTTP_STATUS_VARIANT_ALSO_NEGOTIATES : int) =
+        let (h_ttp_status_variant_also_negotiates : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_VARIANT_ALSO_NEGOTIATES")
-        let (hTTP_STATUS_INSUFFICIENT_STORAGE : int) =
+        let (h_ttp_status_insufficient_storage : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_INSUFFICIENT_STORAGE")
-        let (hTTP_STATUS_LOOP_DETECTED : int) =
+        let (h_ttp_status_loop_detected : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_LOOP_DETECTED")
-        let (hTTP_STATUS_BANDWIDTH_LIMIT_EXCEEDED : int) =
+        let (h_ttp_status_bandwidth_limit_exceeded : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_BANDWIDTH_LIMIT_EXCEEDED")
-        let (hTTP_STATUS_NOT_EXTENDED : int) =
+        let (h_ttp_status_not_extended : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_NOT_EXTENDED")
-        let (hTTP_STATUS_NETWORK_AUTHENTICATION_REQUIRED : int) =
+        let (h_ttp_status_network_authentication_required : int) =
           Ojs.int_of_js
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.http2 "constants")
                "HTTP_STATUS_NETWORK_AUTHENTICATION_REQUIRED")
       end
-    let (getDefaultSettings : unit -> http2_Settings) =
+    let (get_default_settings : unit -> http2_Settings) =
       fun () ->
         http2_Settings_of_js
           (Ojs.call Import.http2 "getDefaultSettings" [||])
-    let (getPackedSettings : settings:http2_Settings -> Buffer.t) =
+    let (get_packed_settings : settings:http2_Settings -> Buffer.t) =
       fun ~settings:(x2371 : http2_Settings) ->
         Buffer.t_of_js
           (Ojs.call Import.http2 "getPackedSettings"
              [|(http2_Settings_to_js x2371)|])
-    let (getUnpackedSettings : buf:Uint8Array.t -> http2_Settings) =
+    let (get_unpacked_settings : buf:Uint8Array.t -> http2_Settings) =
       fun ~buf:(x2372 : Uint8Array.t) ->
         http2_Settings_of_js
           (Ojs.call Import.http2 "getUnpackedSettings"
              [|(Uint8Array.t_to_js x2372)|])
-    let (createServer :
-      ?onRequestHandler:(request:http2_Http2ServerRequest ->
-                           response:http2_Http2ServerResponse -> unit)
+    let (create_server :
+      ?on_request_handler:(request:http2_Http2ServerRequest ->
+                             response:http2_Http2ServerResponse -> unit)
         -> unit -> http2_Http2Server)
       =
       fun
-        ?onRequestHandler:(x2373 :
-                            (request:http2_Http2ServerRequest ->
-                               response:http2_Http2ServerResponse -> unit)
-                              option)
+        ?on_request_handler:(x2373 :
+                              (request:http2_Http2ServerRequest ->
+                                 response:http2_Http2ServerResponse -> unit)
+                                option)
         ->
         fun () ->
           http2_Http2Server_of_js
@@ -9878,18 +9885,18 @@ module Http2 =
                                                             x2377)))|])
                           | None -> ());
                          x2374))|])
-    let (createServer :
+    let (create_server :
       options:http2_ServerOptions ->
-        ?onRequestHandler:(request:http2_Http2ServerRequest ->
-                             response:http2_Http2ServerResponse -> unit)
+        ?on_request_handler:(request:http2_Http2ServerRequest ->
+                               response:http2_Http2ServerResponse -> unit)
           -> unit -> http2_Http2Server)
       =
       fun ~options:(x2379 : http2_ServerOptions) ->
         fun
-          ?onRequestHandler:(x2380 :
-                              (request:http2_Http2ServerRequest ->
-                                 response:http2_Http2ServerResponse -> unit)
-                                option)
+          ?on_request_handler:(x2380 :
+                                (request:http2_Http2ServerRequest ->
+                                   response:http2_Http2ServerResponse -> unit)
+                                  option)
           ->
           fun () ->
             http2_Http2Server_of_js
@@ -9916,16 +9923,16 @@ module Http2 =
                                                               x2384)))|])
                             | None -> ());
                            x2381))|])
-    let (createSecureServer :
-      ?onRequestHandler:(request:http2_Http2ServerRequest ->
-                           response:http2_Http2ServerResponse -> unit)
+    let (create_secure_server :
+      ?on_request_handler:(request:http2_Http2ServerRequest ->
+                             response:http2_Http2ServerResponse -> unit)
         -> unit -> http2_Http2SecureServer)
       =
       fun
-        ?onRequestHandler:(x2386 :
-                            (request:http2_Http2ServerRequest ->
-                               response:http2_Http2ServerResponse -> unit)
-                              option)
+        ?on_request_handler:(x2386 :
+                              (request:http2_Http2ServerRequest ->
+                                 response:http2_Http2ServerResponse -> unit)
+                                option)
         ->
         fun () ->
           http2_Http2SecureServer_of_js
@@ -9949,18 +9956,18 @@ module Http2 =
                                                             x2390)))|])
                           | None -> ());
                          x2387))|])
-    let (createSecureServer :
+    let (create_secure_server :
       options:http2_SecureServerOptions ->
-        ?onRequestHandler:(request:http2_Http2ServerRequest ->
-                             response:http2_Http2ServerResponse -> unit)
+        ?on_request_handler:(request:http2_Http2ServerRequest ->
+                               response:http2_Http2ServerResponse -> unit)
           -> unit -> http2_Http2SecureServer)
       =
       fun ~options:(x2392 : http2_SecureServerOptions) ->
         fun
-          ?onRequestHandler:(x2393 :
-                              (request:http2_Http2ServerRequest ->
-                                 response:http2_Http2ServerResponse -> unit)
-                                option)
+          ?on_request_handler:(x2393 :
+                                (request:http2_Http2ServerRequest ->
+                                   response:http2_Http2ServerResponse -> unit)
+                                  option)
           ->
           fun () ->
             http2_Http2SecureServer_of_js

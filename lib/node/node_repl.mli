@@ -5,8 +5,6 @@
 open Es2020
 open Node_globals
 
-
-
 module AnonymousInterface0 : sig
   type t
 
@@ -22,7 +20,7 @@ end
 
 module Repl : sig
   module ReplOptions : sig
-    type t = repl_ReplOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -44,29 +42,29 @@ module Repl : sig
 
     val set_terminal : t -> bool -> unit [@@js.set "terminal"]
 
-    val get_eval : t -> repl_REPLEval [@@js.get "eval"]
+    val get_eval : t -> REPLEval.t [@@js.get "eval"]
 
-    val set_eval : t -> repl_REPLEval -> unit [@@js.set "eval"]
+    val set_eval : t -> REPLEval.t -> unit [@@js.set "eval"]
 
     val get_preview : t -> bool [@@js.get "preview"]
 
     val set_preview : t -> bool -> unit [@@js.set "preview"]
 
-    val get_useColors : t -> bool [@@js.get "useColors"]
+    val get_use_colors : t -> bool [@@js.get "useColors"]
 
-    val set_useColors : t -> bool -> unit [@@js.set "useColors"]
+    val set_use_colors : t -> bool -> unit [@@js.set "useColors"]
 
-    val get_useGlobal : t -> bool [@@js.get "useGlobal"]
+    val get_use_global : t -> bool [@@js.get "useGlobal"]
 
-    val set_useGlobal : t -> bool -> unit [@@js.set "useGlobal"]
+    val set_use_global : t -> bool -> unit [@@js.set "useGlobal"]
 
-    val get_ignoreUndefined : t -> bool [@@js.get "ignoreUndefined"]
+    val get_ignore_undefined : t -> bool [@@js.get "ignoreUndefined"]
 
-    val set_ignoreUndefined : t -> bool -> unit [@@js.set "ignoreUndefined"]
+    val set_ignore_undefined : t -> bool -> unit [@@js.set "ignoreUndefined"]
 
-    val get_writer : t -> repl_REPLWriter [@@js.get "writer"]
+    val get_writer : t -> REPLWriter.t [@@js.get "writer"]
 
-    val set_writer : t -> repl_REPLWriter -> unit [@@js.set "writer"]
+    val set_writer : t -> REPLWriter.t -> unit [@@js.set "writer"]
 
     val get_completer
       :  t
@@ -83,23 +81,24 @@ module Repl : sig
       -> unit
       [@@js.set "completer"]
 
-    val get_replMode : t -> (* FIXME: unknown type 'unique symbol' *) any
+    val get_repl_mode : t -> (* FIXME: unknown type 'unique symbol' *) any
       [@@js.get "replMode"]
 
-    val set_replMode
+    val set_repl_mode
       :  t
       -> (* FIXME: unknown type 'unique symbol' *) any
       -> unit
       [@@js.set "replMode"]
 
-    val get_breakEvalOnSigint : t -> bool [@@js.get "breakEvalOnSigint"]
+    val get_break_eval_on_sigint : t -> bool [@@js.get "breakEvalOnSigint"]
 
-    val set_breakEvalOnSigint : t -> bool -> unit [@@js.set "breakEvalOnSigint"]
+    val set_break_eval_on_sigint : t -> bool -> unit
+      [@@js.set "breakEvalOnSigint"]
   end
   [@@js.scope "ReplOptions"]
 
   module REPLEval : sig
-    type t = repl_REPLEval
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -107,8 +106,8 @@ module Repl : sig
 
     val apply
       :  t
-      -> this:repl_REPLServer
-      -> evalCmd:string
+      -> this:REPLServer.t
+      -> eval_cmd:string
       -> context:Node_vm.Vm.Context.t
       -> file:string
       -> cb:(err:Error.t or_null -> result:any -> unit)
@@ -118,32 +117,32 @@ module Repl : sig
   [@@js.scope "REPLEval"]
 
   module REPLWriter : sig
-    type t = repl_REPLWriter
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val apply : t -> this:repl_REPLServer -> obj:any -> string [@@js.apply]
+    val apply : t -> this:REPLServer.t -> obj:any -> string [@@js.apply]
   end
   [@@js.scope "REPLWriter"]
 
-  val writer : (repl_REPLWriter, AnonymousInterface0.t) intersection2
+  val writer : (REPLWriter.t, AnonymousInterface0.t) intersection2
     [@@js.global "writer"]
 
   module REPLCommandAction : sig
-    type t = repl_REPLCommandAction
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val apply : t -> this:repl_REPLServer -> text:string -> unit [@@js.apply]
+    val apply : t -> this:REPLServer.t -> text:string -> unit [@@js.apply]
   end
   [@@js.scope "REPLCommandAction"]
 
   module REPLCommand : sig
-    type t = repl_REPLCommand
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -153,14 +152,14 @@ module Repl : sig
 
     val set_help : t -> string -> unit [@@js.set "help"]
 
-    val get_action : t -> repl_REPLCommandAction [@@js.get "action"]
+    val get_action : t -> REPLCommandAction.t [@@js.get "action"]
 
-    val set_action : t -> repl_REPLCommandAction -> unit [@@js.set "action"]
+    val set_action : t -> REPLCommandAction.t -> unit [@@js.set "action"]
   end
   [@@js.scope "REPLCommand"]
 
   module REPLServer : sig
-    type t = repl_REPLServer
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -168,36 +167,36 @@ module Repl : sig
 
     val get_context : t -> Node_vm.Vm.Context.t [@@js.get "context"]
 
-    val get_inputStream : t -> ReadableStream.t [@@js.get "inputStream"]
+    val get_input_stream : t -> ReadableStream.t [@@js.get "inputStream"]
 
-    val get_outputStream : t -> WritableStream.t [@@js.get "outputStream"]
+    val get_output_stream : t -> WritableStream.t [@@js.get "outputStream"]
 
     val get_input : t -> ReadableStream.t [@@js.get "input"]
 
     val get_output : t -> WritableStream.t [@@js.get "output"]
 
-    val get_commands : t -> repl_REPLCommand ReadOnlyDict.t
-      [@@js.get "commands"]
+    val get_commands : t -> REPLCommand.t ReadOnlyDict.t [@@js.get "commands"]
 
-    val get_editorMode : t -> bool [@@js.get "editorMode"]
+    val get_editor_mode : t -> bool [@@js.get "editorMode"]
 
-    val get_underscoreAssigned : t -> bool [@@js.get "underscoreAssigned"]
+    val get_underscore_assigned : t -> bool [@@js.get "underscoreAssigned"]
 
     val get_last : t -> any [@@js.get "last"]
 
-    val get_underscoreErrAssigned : t -> bool [@@js.get "underscoreErrAssigned"]
+    val get_underscore_err_assigned : t -> bool
+      [@@js.get "underscoreErrAssigned"]
 
-    val get_lastError : t -> any [@@js.get "lastError"]
+    val get_last_error : t -> any [@@js.get "lastError"]
 
-    val get_eval : t -> repl_REPLEval [@@js.get "eval"]
+    val get_eval : t -> REPLEval.t [@@js.get "eval"]
 
-    val get_useColors : t -> bool [@@js.get "useColors"]
+    val get_use_colors : t -> bool [@@js.get "useColors"]
 
-    val get_useGlobal : t -> bool [@@js.get "useGlobal"]
+    val get_use_global : t -> bool [@@js.get "useGlobal"]
 
-    val get_ignoreUndefined : t -> bool [@@js.get "ignoreUndefined"]
+    val get_ignore_undefined : t -> bool [@@js.get "ignoreUndefined"]
 
-    val get_writer : t -> repl_REPLWriter [@@js.get "writer"]
+    val get_writer : t -> REPLWriter.t [@@js.get "writer"]
 
     val get_completer
       :  t
@@ -206,94 +205,94 @@ module Repl : sig
          union2
       [@@js.get "completer"]
 
-    val get_replMode : t -> (* FIXME: unknown type 'unique symbol' *) any
+    val get_repl_mode : t -> (* FIXME: unknown type 'unique symbol' *) any
       [@@js.get "replMode"]
 
     val create : unit -> t [@@js.create]
 
-    val defineCommand
+    val define_command
       :  t
       -> keyword:string
-      -> cmd:(repl_REPLCommand, repl_REPLCommandAction) union2
+      -> cmd:(REPLCommand.t, REPLCommandAction.t) union2
       -> unit
       [@@js.call "defineCommand"]
 
-    val displayPrompt : t -> ?preserveCursor:bool -> unit -> unit
+    val display_prompt : t -> ?preserve_cursor:bool -> unit -> unit
       [@@js.call "displayPrompt"]
 
-    val clearBufferedCommand : t -> unit [@@js.call "clearBufferedCommand"]
+    val clear_buffered_command : t -> unit [@@js.call "clearBufferedCommand"]
 
-    val setupHistory
+    val setup_history
       :  t
       -> path:string
       -> cb:(err:Error.t or_null -> repl:t -> unit)
       -> unit
       [@@js.call "setupHistory"]
 
-    val addListener
+    val add_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'
+    val add_listener'
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''
+    val add_listener''
       :  t
       -> event:([ `line ][@js.enum])
       -> listener:(input:string -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''
+    val add_listener'''
       :  t
       -> event:([ `pause ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''
+    val add_listener''''
       :  t
       -> event:([ `resume ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''
+    val add_listener'''''
       :  t
       -> event:([ `SIGCONT ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''''
+    val add_listener''''''
       :  t
       -> event:([ `SIGINT ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''''
+    val add_listener'''''''
       :  t
       -> event:([ `SIGTSTP ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener''''''''
+    val add_listener''''''''
       :  t
       -> event:([ `exit ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "addListener"]
 
-    val addListener'''''''''
+    val add_listener'''''''''
       :  t
       -> event:([ `reset ][@js.enum])
       -> listener:(context:Node_vm.Vm.Context.t -> unit)
@@ -471,140 +470,140 @@ module Repl : sig
       -> t
       [@@js.call "once"]
 
-    val prependListener
+    val prepend_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'
+    val prepend_listener'
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''
+    val prepend_listener''
       :  t
       -> event:([ `line ][@js.enum])
       -> listener:(input:string -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''
+    val prepend_listener'''
       :  t
       -> event:([ `pause ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''
+    val prepend_listener''''
       :  t
       -> event:([ `resume ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''
+    val prepend_listener'''''
       :  t
       -> event:([ `SIGCONT ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''''
+    val prepend_listener''''''
       :  t
       -> event:([ `SIGINT ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''''
+    val prepend_listener'''''''
       :  t
       -> event:([ `SIGTSTP ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener''''''''
+    val prepend_listener''''''''
       :  t
       -> event:([ `exit ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependListener'''''''''
+    val prepend_listener'''''''''
       :  t
       -> event:([ `reset ][@js.enum])
       -> listener:(context:Node_vm.Vm.Context.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
-    val prependOnceListener
+    val prepend_once_listener
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'
+    val prepend_once_listener'
       :  t
       -> event:([ `close ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''
+    val prepend_once_listener''
       :  t
       -> event:([ `line ][@js.enum])
       -> listener:(input:string -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''
+    val prepend_once_listener'''
       :  t
       -> event:([ `pause ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''
+    val prepend_once_listener''''
       :  t
       -> event:([ `resume ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''
+    val prepend_once_listener'''''
       :  t
       -> event:([ `SIGCONT ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''''
+    val prepend_once_listener''''''
       :  t
       -> event:([ `SIGINT ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''''
+    val prepend_once_listener'''''''
       :  t
       -> event:([ `SIGTSTP ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener''''''''
+    val prepend_once_listener''''''''
       :  t
       -> event:([ `exit ][@js.enum])
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
-    val prependOnceListener'''''''''
+    val prepend_once_listener'''''''''
       :  t
       -> event:([ `reset ][@js.enum])
       -> listener:(context:Node_vm.Vm.Context.t -> unit)
@@ -615,17 +614,17 @@ module Repl : sig
   end
   [@@js.scope "REPLServer"]
 
-  val rEPL_MODE_SLOPPY : (* FIXME: unknown type 'unique symbol' *) any
+  val r_epl_mode_sloppy : (* FIXME: unknown type 'unique symbol' *) any
     [@@js.global "REPL_MODE_SLOPPY"]
 
-  val rEPL_MODE_STRICT : (* FIXME: unknown type 'unique symbol' *) any
+  val r_epl_mode_strict : (* FIXME: unknown type 'unique symbol' *) any
     [@@js.global "REPL_MODE_STRICT"]
 
-  val start : ?options:repl_ReplOptions or_string -> unit -> repl_REPLServer
+  val start : ?options:ReplOptions.t or_string -> unit -> REPLServer.t
     [@@js.global "start"]
 
   module Recoverable : sig
-    type t = repl_Recoverable
+    type t
 
     val t_to_js : t -> Ojs.t
 

@@ -254,9 +254,9 @@ module Console =
                               | None -> ());
                              x71))|])
         let (table :
-          t -> tabularData:any -> ?properties:string list -> unit -> unit) =
+          t -> tabular_data:any -> ?properties:string list -> unit -> unit) =
           fun (x82 : t) ->
-            fun ~tabularData:(x77 : any) ->
+            fun ~tabular_data:(x77 : any) ->
               fun ?properties:(x78 : string list option) ->
                 fun () ->
                   ignore
@@ -518,12 +518,13 @@ module Console =
             let (create :
               t ->
                 stdout:WritableStream.t ->
-                  ?stderr:WritableStream.t -> ?ignoreErrors:bool -> unit -> t)
+                  ?stderr:WritableStream.t ->
+                    ?ignore_errors:bool -> unit -> t)
               =
               fun (x163 : t) ->
                 fun ~stdout:(x157 : WritableStream.t) ->
                   fun ?stderr:(x158 : WritableStream.t option) ->
-                    fun ?ignoreErrors:(x159 : bool option) ->
+                    fun ?ignore_errors:(x159 : bool option) ->
                       fun () ->
                         t_of_js
                           (Ojs.new_obj_arr (t_to_js x163)
@@ -768,9 +769,9 @@ module Console =
                                        [|(any_to_js x223)|])) x224
                          | None -> ());
                         x222))|])
-    let (table : tabularData:any -> ?properties:string list -> unit -> unit)
+    let (table : tabular_data:any -> ?properties:string list -> unit -> unit)
       =
-      fun ~tabularData:(x226 : any) ->
+      fun ~tabular_data:(x226 : any) ->
         fun ?properties:(x227 : string list option) ->
           fun () ->
             ignore

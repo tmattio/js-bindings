@@ -4,11 +4,9 @@
 open Es2020
 module AbstractMessageBuffer =
   struct
-    type t = _AbstractMessageBuffer
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> _AbstractMessageBuffer_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : _AbstractMessageBuffer) -> _AbstractMessageBuffer_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get__encoding : t -> any) =
       fun (x3 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x3) "_encoding")
     let (set__encoding : t -> any -> unit) =
@@ -21,10 +19,10 @@ module AbstractMessageBuffer =
       fun (x7 : t) ->
         fun (x8 : any) ->
           Ojs.set_prop_ascii (t_to_js x7) "_chunks" (any_to_js x8)
-    let (get__totalLength : t -> any) =
+    let (get_total_length : t -> any) =
       fun (x9 : t) ->
         any_of_js (Ojs.get_prop_ascii (t_to_js x9) "_totalLength")
-    let (set__totalLength : t -> any -> unit) =
+    let (set_total_length : t -> any -> unit) =
       fun (x10 : t) ->
         fun (x11 : any) ->
           Ojs.set_prop_ascii (t_to_js x10) "_totalLength" (any_to_js x11)
@@ -49,10 +47,10 @@ module AbstractMessageBuffer =
                                x14)|])
                  | None -> ());
                 x13))
-    let (emptyBuffer : t -> Uint8Array.t) =
+    let (empty_buffer : t -> Uint8Array.t) =
       fun (x15 : t) ->
         Uint8Array.t_of_js (Ojs.call (t_to_js x15) "emptyBuffer" [||])
-    let (fromString :
+    let (from_string :
       t ->
         value:string ->
           encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t ->
@@ -67,7 +65,7 @@ module AbstractMessageBuffer =
               (Ojs.call (t_to_js x18) "fromString"
                  [|(Ojs.string_to_js x16);(Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t_to_js
                                              x17)|])
-    let (toString :
+    let (to_string :
       t ->
         value:Uint8Array.t ->
           encoding:Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t -> string)
@@ -81,7 +79,7 @@ module AbstractMessageBuffer =
               (Ojs.call (t_to_js x21) "toString"
                  [|(Uint8Array.t_to_js x19);(Vscode_jsonrpc_ral.RAL.MessageBufferEncoding.t_to_js
                                                x20)|])
-    let (asNative :
+    let (as_native :
       t -> buffer:Uint8Array.t -> ?length:int -> unit -> Uint8Array.t) =
       fun (x26 : t) ->
         fun ~buffer:(x22 : Uint8Array.t) ->
@@ -104,7 +102,7 @@ module AbstractMessageBuffer =
                                      [|(Ojs.int_to_js x25)|])
                             | None -> ());
                            x24))|])
-    let (allocNative : t -> length:int -> Uint8Array.t) =
+    let (alloc_native : t -> length:int -> Uint8Array.t) =
       fun (x29 : t) ->
         fun ~length:(x28 : int) ->
           Uint8Array.t_of_js
@@ -120,18 +118,18 @@ module AbstractMessageBuffer =
           ignore
             (Ojs.call (t_to_js x33) "append"
                [|(or_string_to_js Uint8Array.t_to_js x31)|])
-    let (tryReadHeaders : t -> (string, string) Map.t or_undefined) =
+    let (try_read_headers : t -> (string, string) Map.t or_undefined) =
       fun (x34 : t) ->
         or_undefined_of_js
           (fun (x35 : Ojs.t) ->
              Map.t_of_js Ojs.string_of_js Ojs.string_of_js x35)
           (Ojs.call (t_to_js x34) "tryReadHeaders" [||])
-    let (tryReadBody : t -> length:int -> Uint8Array.t or_undefined) =
+    let (try_read_body : t -> length:int -> Uint8Array.t or_undefined) =
       fun (x39 : t) ->
         fun ~length:(x38 : int) ->
           or_undefined_of_js Uint8Array.t_of_js
             (Ojs.call (t_to_js x39) "tryReadBody" [|(Ojs.int_to_js x38)|])
-    let (get_numberOfBytes : t -> int) =
+    let (get_number_of_bytes : t -> int) =
       fun (x41 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x41) "numberOfBytes")
     let (get__read : t -> any) =

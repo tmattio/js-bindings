@@ -4,10 +4,8 @@
 
 open Es5
 
-
-
 module Semaphore : sig
-  type 'T t = 'T _Semaphore
+  type 'T t
 
   val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
@@ -42,15 +40,15 @@ module Semaphore : sig
 
   val get_active : 'T t -> int [@@js.get "active"]
 
-  val get_runNext : 'T t -> (* FIXME: unknown type *) any [@@js.get "runNext"]
+  val get_run_next : 'T t -> (* FIXME: unknown type *) any [@@js.get "runNext"]
 
-  val set_runNext : 'T t -> (* FIXME: unknown type *) any -> unit
+  val set_run_next : 'T t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "runNext"]
 
-  val get_doRunNext : 'T t -> (* FIXME: unknown type *) any
+  val get_do_run_next : 'T t -> (* FIXME: unknown type *) any
     [@@js.get "doRunNext"]
 
-  val set_doRunNext : 'T t -> (* FIXME: unknown type *) any -> unit
+  val set_do_run_next : 'T t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "doRunNext"]
 end
 [@@js.scope "Semaphore"]

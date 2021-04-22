@@ -609,12 +609,12 @@ module BigInt64Array =
     let (every :
       t ->
         predicate:(value:bigint -> index:int -> array:t -> bool) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x108 : t) ->
         fun ~predicate:(x101 : value:bigint -> index:int -> array:t -> bool)
           ->
-          fun ?thisArg:(x102 : any option) ->
+          fun ?this_arg:(x102 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x109 = t_to_js x108 in
@@ -671,12 +671,12 @@ module BigInt64Array =
     let (filter :
       t ->
         predicate:(value:bigint -> index:int -> array:t -> any) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x125 : t) ->
         fun ~predicate:(x118 : value:bigint -> index:int -> array:t -> any)
           ->
-          fun ?thisArg:(x119 : any option) ->
+          fun ?this_arg:(x119 : any option) ->
             fun () ->
               t_of_js
                 (let x126 = t_to_js x125 in
@@ -705,12 +705,12 @@ module BigInt64Array =
     let (find :
       t ->
         predicate:(value:bigint -> index:int -> array:t -> bool) ->
-          ?thisArg:any -> unit -> bigint or_undefined)
+          ?this_arg:any -> unit -> bigint or_undefined)
       =
       fun (x134 : t) ->
         fun ~predicate:(x127 : value:bigint -> index:int -> array:t -> bool)
           ->
-          fun ?thisArg:(x128 : any option) ->
+          fun ?this_arg:(x128 : any option) ->
             fun () ->
               or_undefined_of_js bigint_of_js
                 (let x135 = t_to_js x134 in
@@ -739,12 +739,12 @@ module BigInt64Array =
     let (find_index :
       t ->
         predicate:(value:bigint -> index:int -> array:t -> bool) ->
-          ?thisArg:any -> unit -> int)
+          ?this_arg:any -> unit -> int)
       =
       fun (x144 : t) ->
         fun ~predicate:(x137 : value:bigint -> index:int -> array:t -> bool)
           ->
-          fun ?thisArg:(x138 : any option) ->
+          fun ?this_arg:(x138 : any option) ->
             fun () ->
               Ojs.int_of_js
                 (let x145 = t_to_js x144 in
@@ -773,12 +773,12 @@ module BigInt64Array =
     let (for_each :
       t ->
         callbackfn:(value:bigint -> index:int -> array:t -> unit) ->
-          ?thisArg:any -> unit -> unit)
+          ?this_arg:any -> unit -> unit)
       =
       fun (x153 : t) ->
         fun ~callbackfn:(x146 : value:bigint -> index:int -> array:t -> unit)
           ->
-          fun ?thisArg:(x147 : any option) ->
+          fun ?this_arg:(x147 : any option) ->
             fun () ->
               ignore
                 (let x154 = t_to_js x153 in
@@ -803,10 +803,10 @@ module BigInt64Array =
                              | None -> ());
                             x148))|])
     let (includes :
-      t -> searchElement:bigint -> ?fromIndex:int -> unit -> bool) =
+      t -> search_element:bigint -> ?from_index:int -> unit -> bool) =
       fun (x159 : t) ->
-        fun ~searchElement:(x155 : bigint) ->
-          fun ?fromIndex:(x156 : int option) ->
+        fun ~search_element:(x155 : bigint) ->
+          fun ?from_index:(x156 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x160 = t_to_js x159 in
@@ -825,10 +825,10 @@ module BigInt64Array =
                              | None -> ());
                             x157))|])
     let (index_of :
-      t -> searchElement:bigint -> ?fromIndex:int -> unit -> int) =
+      t -> search_element:bigint -> ?from_index:int -> unit -> int) =
       fun (x165 : t) ->
-        fun ~searchElement:(x161 : bigint) ->
-          fun ?fromIndex:(x162 : int option) ->
+        fun ~search_element:(x161 : bigint) ->
+          fun ?from_index:(x162 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x166 = t_to_js x165 in
@@ -869,10 +869,10 @@ module BigInt64Array =
         IterableIterator.t_of_js Ojs.int_of_js
           (Ojs.call (t_to_js x172) "keys" [||])
     let (last_index_of :
-      t -> searchElement:bigint -> ?fromIndex:int -> unit -> int) =
+      t -> search_element:bigint -> ?from_index:int -> unit -> int) =
       fun (x178 : t) ->
-        fun ~searchElement:(x174 : bigint) ->
-          fun ?fromIndex:(x175 : int option) ->
+        fun ~search_element:(x174 : bigint) ->
+          fun ?from_index:(x175 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x179 = t_to_js x178 in
@@ -896,13 +896,13 @@ module BigInt64Array =
     let (map :
       t ->
         callbackfn:(value:bigint -> index:int -> array:t -> bigint) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x188 : t) ->
         fun
           ~callbackfn:(x181 : value:bigint -> index:int -> array:t -> bigint)
           ->
-          fun ?thisArg:(x182 : any option) ->
+          fun ?this_arg:(x182 : any option) ->
             fun () ->
               t_of_js
                 (let x189 = t_to_js x188 in
@@ -931,16 +931,16 @@ module BigInt64Array =
     let (reduce :
       t ->
         callbackfn:(previousValue:bigint ->
-                      currentValue:bigint ->
-                        currentIndex:int -> array:t -> bigint)
+                      current_value:bigint ->
+                        current_index:int -> array:t -> bigint)
           -> bigint)
       =
       fun (x195 : t) ->
         fun
           ~callbackfn:(x190 :
                         previousValue:bigint ->
-                          currentValue:bigint ->
-                            currentIndex:int -> array:t -> bigint)
+                          current_value:bigint ->
+                            current_index:int -> array:t -> bigint)
           ->
           bigint_of_js
             (Ojs.call (t_to_js x195) "reduce"
@@ -951,24 +951,24 @@ module BigInt64Array =
                            fun (x194 : Ojs.t) ->
                              bigint_to_js
                                (x190 ~previousValue:(bigint_of_js x191)
-                                  ~currentValue:(bigint_of_js x192)
-                                  ~currentIndex:(Ojs.int_of_js x193)
+                                  ~current_value:(bigint_of_js x192)
+                                  ~current_index:(Ojs.int_of_js x193)
                                   ~array:(t_of_js x194))))|])
     let (reduce' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:bigint ->
-                        currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:bigint ->
+                        current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x202 : t) ->
         fun
           ~callbackfn:(x196 :
                         previousValue:'U ->
-                          currentValue:bigint ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:bigint ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x201 : 'U) ->
+          fun ~initial_value:(x201 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x202) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -978,22 +978,22 @@ module BigInt64Array =
                              fun (x200 : Ojs.t) ->
                                Obj.magic
                                  (x196 ~previousValue:(Obj.magic x197)
-                                    ~currentValue:(bigint_of_js x198)
-                                    ~currentIndex:(Ojs.int_of_js x199)
+                                    ~current_value:(bigint_of_js x198)
+                                    ~current_index:(Ojs.int_of_js x199)
                                     ~array:(t_of_js x200))));(Obj.magic x201)|])
     let (reduce_right :
       t ->
         callbackfn:(previousValue:bigint ->
-                      currentValue:bigint ->
-                        currentIndex:int -> array:t -> bigint)
+                      current_value:bigint ->
+                        current_index:int -> array:t -> bigint)
           -> bigint)
       =
       fun (x208 : t) ->
         fun
           ~callbackfn:(x203 :
                         previousValue:bigint ->
-                          currentValue:bigint ->
-                            currentIndex:int -> array:t -> bigint)
+                          current_value:bigint ->
+                            current_index:int -> array:t -> bigint)
           ->
           bigint_of_js
             (Ojs.call (t_to_js x208) "reduceRight"
@@ -1004,24 +1004,24 @@ module BigInt64Array =
                            fun (x207 : Ojs.t) ->
                              bigint_to_js
                                (x203 ~previousValue:(bigint_of_js x204)
-                                  ~currentValue:(bigint_of_js x205)
-                                  ~currentIndex:(Ojs.int_of_js x206)
+                                  ~current_value:(bigint_of_js x205)
+                                  ~current_index:(Ojs.int_of_js x206)
                                   ~array:(t_of_js x207))))|])
     let (reduce_right' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:bigint ->
-                        currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:bigint ->
+                        current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x215 : t) ->
         fun
           ~callbackfn:(x209 :
                         previousValue:'U ->
-                          currentValue:bigint ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:bigint ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x214 : 'U) ->
+          fun ~initial_value:(x214 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x215) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -1031,8 +1031,8 @@ module BigInt64Array =
                              fun (x213 : Ojs.t) ->
                                Obj.magic
                                  (x209 ~previousValue:(Obj.magic x210)
-                                    ~currentValue:(bigint_of_js x211)
-                                    ~currentIndex:(Ojs.int_of_js x212)
+                                    ~current_value:(bigint_of_js x211)
+                                    ~current_index:(Ojs.int_of_js x212)
                                     ~array:(t_of_js x213))));(Obj.magic x214)|])
     let (reverse : t -> t) =
       fun (x216 : t) -> t_of_js (Ojs.call (t_to_js x216) "reverse" [||])
@@ -1086,12 +1086,12 @@ module BigInt64Array =
     let (some :
       t ->
         predicate:(value:bigint -> index:int -> array:t -> bool) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x238 : t) ->
         fun ~predicate:(x231 : value:bigint -> index:int -> array:t -> bool)
           ->
-          fun ?thisArg:(x232 : any option) ->
+          fun ?this_arg:(x232 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x239 = t_to_js x238 in
@@ -1118,12 +1118,13 @@ module BigInt64Array =
                              | None -> ());
                             x233))|])
     let (sort :
-      t -> ?compareFn:(a:bigint -> b:bigint -> bigint or_number) -> unit -> t)
+      t ->
+        ?compare_fn:(a:bigint -> b:bigint -> bigint or_number) -> unit -> t)
       =
       fun (x246 : t) ->
         fun
-          ?compareFn:(x240 :
-                       (a:bigint -> b:bigint -> bigint or_number) option)
+          ?compare_fn:(x240 :
+                        (a:bigint -> b:bigint -> bigint or_number) option)
           ->
           fun () ->
             t_of_js
@@ -1209,11 +1210,11 @@ module BigInt64Array =
              [|(Iterable.t_to_js bigint_to_js x268)|])
     let (create'' :
       t ->
-        buffer:ArrayBuffer.t -> ?byteOffset:int -> ?length:int -> unit -> t)
+        buffer:ArrayBuffer.t -> ?byte_offset:int -> ?length:int -> unit -> t)
       =
       fun (x270 : t) ->
         fun ~buffer:(x271 : ArrayBuffer.t) ->
-          fun ?byteOffset:(x272 : int option) ->
+          fun ?byte_offset:(x272 : int option) ->
             fun ?length:(x273 : int option) ->
               fun () ->
                 t_of_js
@@ -1257,11 +1258,11 @@ module BigInt64Array =
              [|(Array.t_to_js bigint_to_js x281)|])
     let (from' :
       array:'U Array.t ->
-        mapfn:(v:'U -> k:int -> bigint) -> ?thisArg:any -> unit -> t)
+        mapfn:(v:'U -> k:int -> bigint) -> ?this_arg:any -> unit -> t)
       =
       fun ~array:(x283 : 'U Array.t) ->
         fun ~mapfn:(x284 : v:'U -> k:int -> bigint) ->
-          fun ?thisArg:(x285 : any option) ->
+          fun ?this_arg:(x285 : any option) ->
             fun () ->
               t_of_js
                 (let x291 = Ojs.get_prop_ascii Ojs.global "BigInt64Array" in
@@ -1318,11 +1319,11 @@ module BigInt64ArrayConstructor =
     let (create'' :
       t ->
         buffer:ArrayBuffer.t ->
-          ?byteOffset:int -> ?length:int -> unit -> BigInt64Array.t)
+          ?byte_offset:int -> ?length:int -> unit -> BigInt64Array.t)
       =
       fun (x308 : t) ->
         fun ~buffer:(x302 : ArrayBuffer.t) ->
-          fun ?byteOffset:(x303 : int option) ->
+          fun ?byte_offset:(x303 : int option) ->
             fun ?length:(x304 : int option) ->
               fun () ->
                 BigInt64Array.t_of_js
@@ -1371,12 +1372,12 @@ module BigInt64ArrayConstructor =
       t ->
         array:'U Array.t ->
           mapfn:(v:'U -> k:int -> bigint) ->
-            ?thisArg:any -> unit -> BigInt64Array.t)
+            ?this_arg:any -> unit -> BigInt64Array.t)
       =
       fun (x326 : t) ->
         fun ~array:(x318 : 'U Array.t) ->
           fun ~mapfn:(x319 : v:'U -> k:int -> bigint) ->
-            fun ?thisArg:(x320 : any option) ->
+            fun ?this_arg:(x320 : any option) ->
               fun () ->
                 BigInt64Array.t_of_js
                   (let x327 = t_to_js x326 in
@@ -1462,12 +1463,12 @@ module BigUint64Array =
     let (every :
       t ->
         predicate:(value:bigint -> index:int -> array:t -> bool) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x351 : t) ->
         fun ~predicate:(x344 : value:bigint -> index:int -> array:t -> bool)
           ->
-          fun ?thisArg:(x345 : any option) ->
+          fun ?this_arg:(x345 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x352 = t_to_js x351 in
@@ -1524,12 +1525,12 @@ module BigUint64Array =
     let (filter :
       t ->
         predicate:(value:bigint -> index:int -> array:t -> any) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x368 : t) ->
         fun ~predicate:(x361 : value:bigint -> index:int -> array:t -> any)
           ->
-          fun ?thisArg:(x362 : any option) ->
+          fun ?this_arg:(x362 : any option) ->
             fun () ->
               t_of_js
                 (let x369 = t_to_js x368 in
@@ -1558,12 +1559,12 @@ module BigUint64Array =
     let (find :
       t ->
         predicate:(value:bigint -> index:int -> array:t -> bool) ->
-          ?thisArg:any -> unit -> bigint or_undefined)
+          ?this_arg:any -> unit -> bigint or_undefined)
       =
       fun (x377 : t) ->
         fun ~predicate:(x370 : value:bigint -> index:int -> array:t -> bool)
           ->
-          fun ?thisArg:(x371 : any option) ->
+          fun ?this_arg:(x371 : any option) ->
             fun () ->
               or_undefined_of_js bigint_of_js
                 (let x378 = t_to_js x377 in
@@ -1592,12 +1593,12 @@ module BigUint64Array =
     let (find_index :
       t ->
         predicate:(value:bigint -> index:int -> array:t -> bool) ->
-          ?thisArg:any -> unit -> int)
+          ?this_arg:any -> unit -> int)
       =
       fun (x387 : t) ->
         fun ~predicate:(x380 : value:bigint -> index:int -> array:t -> bool)
           ->
-          fun ?thisArg:(x381 : any option) ->
+          fun ?this_arg:(x381 : any option) ->
             fun () ->
               Ojs.int_of_js
                 (let x388 = t_to_js x387 in
@@ -1626,12 +1627,12 @@ module BigUint64Array =
     let (for_each :
       t ->
         callbackfn:(value:bigint -> index:int -> array:t -> unit) ->
-          ?thisArg:any -> unit -> unit)
+          ?this_arg:any -> unit -> unit)
       =
       fun (x396 : t) ->
         fun ~callbackfn:(x389 : value:bigint -> index:int -> array:t -> unit)
           ->
-          fun ?thisArg:(x390 : any option) ->
+          fun ?this_arg:(x390 : any option) ->
             fun () ->
               ignore
                 (let x397 = t_to_js x396 in
@@ -1656,10 +1657,10 @@ module BigUint64Array =
                              | None -> ());
                             x391))|])
     let (includes :
-      t -> searchElement:bigint -> ?fromIndex:int -> unit -> bool) =
+      t -> search_element:bigint -> ?from_index:int -> unit -> bool) =
       fun (x402 : t) ->
-        fun ~searchElement:(x398 : bigint) ->
-          fun ?fromIndex:(x399 : int option) ->
+        fun ~search_element:(x398 : bigint) ->
+          fun ?from_index:(x399 : int option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x403 = t_to_js x402 in
@@ -1678,10 +1679,10 @@ module BigUint64Array =
                              | None -> ());
                             x400))|])
     let (index_of :
-      t -> searchElement:bigint -> ?fromIndex:int -> unit -> int) =
+      t -> search_element:bigint -> ?from_index:int -> unit -> int) =
       fun (x408 : t) ->
-        fun ~searchElement:(x404 : bigint) ->
-          fun ?fromIndex:(x405 : int option) ->
+        fun ~search_element:(x404 : bigint) ->
+          fun ?from_index:(x405 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x409 = t_to_js x408 in
@@ -1722,10 +1723,10 @@ module BigUint64Array =
         IterableIterator.t_of_js Ojs.int_of_js
           (Ojs.call (t_to_js x415) "keys" [||])
     let (last_index_of :
-      t -> searchElement:bigint -> ?fromIndex:int -> unit -> int) =
+      t -> search_element:bigint -> ?from_index:int -> unit -> int) =
       fun (x421 : t) ->
-        fun ~searchElement:(x417 : bigint) ->
-          fun ?fromIndex:(x418 : int option) ->
+        fun ~search_element:(x417 : bigint) ->
+          fun ?from_index:(x418 : int option) ->
             fun () ->
               Ojs.int_of_js
                 (let x422 = t_to_js x421 in
@@ -1749,13 +1750,13 @@ module BigUint64Array =
     let (map :
       t ->
         callbackfn:(value:bigint -> index:int -> array:t -> bigint) ->
-          ?thisArg:any -> unit -> t)
+          ?this_arg:any -> unit -> t)
       =
       fun (x431 : t) ->
         fun
           ~callbackfn:(x424 : value:bigint -> index:int -> array:t -> bigint)
           ->
-          fun ?thisArg:(x425 : any option) ->
+          fun ?this_arg:(x425 : any option) ->
             fun () ->
               t_of_js
                 (let x432 = t_to_js x431 in
@@ -1784,16 +1785,16 @@ module BigUint64Array =
     let (reduce :
       t ->
         callbackfn:(previousValue:bigint ->
-                      currentValue:bigint ->
-                        currentIndex:int -> array:t -> bigint)
+                      current_value:bigint ->
+                        current_index:int -> array:t -> bigint)
           -> bigint)
       =
       fun (x438 : t) ->
         fun
           ~callbackfn:(x433 :
                         previousValue:bigint ->
-                          currentValue:bigint ->
-                            currentIndex:int -> array:t -> bigint)
+                          current_value:bigint ->
+                            current_index:int -> array:t -> bigint)
           ->
           bigint_of_js
             (Ojs.call (t_to_js x438) "reduce"
@@ -1804,24 +1805,24 @@ module BigUint64Array =
                            fun (x437 : Ojs.t) ->
                              bigint_to_js
                                (x433 ~previousValue:(bigint_of_js x434)
-                                  ~currentValue:(bigint_of_js x435)
-                                  ~currentIndex:(Ojs.int_of_js x436)
+                                  ~current_value:(bigint_of_js x435)
+                                  ~current_index:(Ojs.int_of_js x436)
                                   ~array:(t_of_js x437))))|])
     let (reduce' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:bigint ->
-                        currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:bigint ->
+                        current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x445 : t) ->
         fun
           ~callbackfn:(x439 :
                         previousValue:'U ->
-                          currentValue:bigint ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:bigint ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x444 : 'U) ->
+          fun ~initial_value:(x444 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x445) "reduce"
                  [|(Ojs.fun_to_js 4
@@ -1831,22 +1832,22 @@ module BigUint64Array =
                              fun (x443 : Ojs.t) ->
                                Obj.magic
                                  (x439 ~previousValue:(Obj.magic x440)
-                                    ~currentValue:(bigint_of_js x441)
-                                    ~currentIndex:(Ojs.int_of_js x442)
+                                    ~current_value:(bigint_of_js x441)
+                                    ~current_index:(Ojs.int_of_js x442)
                                     ~array:(t_of_js x443))));(Obj.magic x444)|])
     let (reduce_right :
       t ->
         callbackfn:(previousValue:bigint ->
-                      currentValue:bigint ->
-                        currentIndex:int -> array:t -> bigint)
+                      current_value:bigint ->
+                        current_index:int -> array:t -> bigint)
           -> bigint)
       =
       fun (x451 : t) ->
         fun
           ~callbackfn:(x446 :
                         previousValue:bigint ->
-                          currentValue:bigint ->
-                            currentIndex:int -> array:t -> bigint)
+                          current_value:bigint ->
+                            current_index:int -> array:t -> bigint)
           ->
           bigint_of_js
             (Ojs.call (t_to_js x451) "reduceRight"
@@ -1857,24 +1858,24 @@ module BigUint64Array =
                            fun (x450 : Ojs.t) ->
                              bigint_to_js
                                (x446 ~previousValue:(bigint_of_js x447)
-                                  ~currentValue:(bigint_of_js x448)
-                                  ~currentIndex:(Ojs.int_of_js x449)
+                                  ~current_value:(bigint_of_js x448)
+                                  ~current_index:(Ojs.int_of_js x449)
                                   ~array:(t_of_js x450))))|])
     let (reduce_right' :
       t ->
         callbackfn:(previousValue:'U ->
-                      currentValue:bigint ->
-                        currentIndex:int -> array:t -> 'U)
-          -> initialValue:'U -> 'U)
+                      current_value:bigint ->
+                        current_index:int -> array:t -> 'U)
+          -> initial_value:'U -> 'U)
       =
       fun (x458 : t) ->
         fun
           ~callbackfn:(x452 :
                         previousValue:'U ->
-                          currentValue:bigint ->
-                            currentIndex:int -> array:t -> 'U)
+                          current_value:bigint ->
+                            current_index:int -> array:t -> 'U)
           ->
-          fun ~initialValue:(x457 : 'U) ->
+          fun ~initial_value:(x457 : 'U) ->
             Obj.magic
               (Ojs.call (t_to_js x458) "reduceRight"
                  [|(Ojs.fun_to_js 4
@@ -1884,8 +1885,8 @@ module BigUint64Array =
                              fun (x456 : Ojs.t) ->
                                Obj.magic
                                  (x452 ~previousValue:(Obj.magic x453)
-                                    ~currentValue:(bigint_of_js x454)
-                                    ~currentIndex:(Ojs.int_of_js x455)
+                                    ~current_value:(bigint_of_js x454)
+                                    ~current_index:(Ojs.int_of_js x455)
                                     ~array:(t_of_js x456))));(Obj.magic x457)|])
     let (reverse : t -> t) =
       fun (x459 : t) -> t_of_js (Ojs.call (t_to_js x459) "reverse" [||])
@@ -1939,12 +1940,12 @@ module BigUint64Array =
     let (some :
       t ->
         predicate:(value:bigint -> index:int -> array:t -> bool) ->
-          ?thisArg:any -> unit -> bool)
+          ?this_arg:any -> unit -> bool)
       =
       fun (x481 : t) ->
         fun ~predicate:(x474 : value:bigint -> index:int -> array:t -> bool)
           ->
-          fun ?thisArg:(x475 : any option) ->
+          fun ?this_arg:(x475 : any option) ->
             fun () ->
               Ojs.bool_of_js
                 (let x482 = t_to_js x481 in
@@ -1971,12 +1972,13 @@ module BigUint64Array =
                              | None -> ());
                             x476))|])
     let (sort :
-      t -> ?compareFn:(a:bigint -> b:bigint -> bigint or_number) -> unit -> t)
+      t ->
+        ?compare_fn:(a:bigint -> b:bigint -> bigint or_number) -> unit -> t)
       =
       fun (x489 : t) ->
         fun
-          ?compareFn:(x483 :
-                       (a:bigint -> b:bigint -> bigint or_number) option)
+          ?compare_fn:(x483 :
+                        (a:bigint -> b:bigint -> bigint or_number) option)
           ->
           fun () ->
             t_of_js
@@ -2062,11 +2064,11 @@ module BigUint64Array =
              [|(Iterable.t_to_js bigint_to_js x511)|])
     let (create'' :
       t ->
-        buffer:ArrayBuffer.t -> ?byteOffset:int -> ?length:int -> unit -> t)
+        buffer:ArrayBuffer.t -> ?byte_offset:int -> ?length:int -> unit -> t)
       =
       fun (x513 : t) ->
         fun ~buffer:(x514 : ArrayBuffer.t) ->
-          fun ?byteOffset:(x515 : int option) ->
+          fun ?byte_offset:(x515 : int option) ->
             fun ?length:(x516 : int option) ->
               fun () ->
                 t_of_js
@@ -2110,11 +2112,11 @@ module BigUint64Array =
              [|(Array.t_to_js bigint_to_js x524)|])
     let (from' :
       array:'U Array.t ->
-        mapfn:(v:'U -> k:int -> bigint) -> ?thisArg:any -> unit -> t)
+        mapfn:(v:'U -> k:int -> bigint) -> ?this_arg:any -> unit -> t)
       =
       fun ~array:(x526 : 'U Array.t) ->
         fun ~mapfn:(x527 : v:'U -> k:int -> bigint) ->
-          fun ?thisArg:(x528 : any option) ->
+          fun ?this_arg:(x528 : any option) ->
             fun () ->
               t_of_js
                 (let x534 = Ojs.get_prop_ascii Ojs.global "BigUint64Array" in
@@ -2172,11 +2174,11 @@ module BigUint64ArrayConstructor =
     let (create'' :
       t ->
         buffer:ArrayBuffer.t ->
-          ?byteOffset:int -> ?length:int -> unit -> BigUint64Array.t)
+          ?byte_offset:int -> ?length:int -> unit -> BigUint64Array.t)
       =
       fun (x551 : t) ->
         fun ~buffer:(x545 : ArrayBuffer.t) ->
-          fun ?byteOffset:(x546 : int option) ->
+          fun ?byte_offset:(x546 : int option) ->
             fun ?length:(x547 : int option) ->
               fun () ->
                 BigUint64Array.t_of_js
@@ -2225,12 +2227,12 @@ module BigUint64ArrayConstructor =
       t ->
         array:'U Array.t ->
           mapfn:(v:'U -> k:int -> bigint) ->
-            ?thisArg:any -> unit -> BigUint64Array.t)
+            ?this_arg:any -> unit -> BigUint64Array.t)
       =
       fun (x569 : t) ->
         fun ~array:(x561 : 'U Array.t) ->
           fun ~mapfn:(x562 : v:'U -> k:int -> bigint) ->
-            fun ?thisArg:(x563 : any option) ->
+            fun ?this_arg:(x563 : any option) ->
               fun () ->
                 BigUint64Array.t_of_js
                   (let x570 = t_to_js x569 in
@@ -2265,10 +2267,10 @@ module DataView =
   struct
     include struct include DataView end
     let (get_big_int64 :
-      t -> byteOffset:int -> ?littleEndian:bool -> unit -> bigint) =
+      t -> byte_offset:int -> ?little_endian:bool -> unit -> bigint) =
       fun (x575 : t) ->
-        fun ~byteOffset:(x571 : int) ->
-          fun ?littleEndian:(x572 : bool option) ->
+        fun ~byte_offset:(x571 : int) ->
+          fun ?little_endian:(x572 : bool option) ->
             fun () ->
               bigint_of_js
                 (let x576 = t_to_js x575 in
@@ -2287,10 +2289,10 @@ module DataView =
                              | None -> ());
                             x573))|])
     let (get_big_uint64 :
-      t -> byteOffset:int -> ?littleEndian:bool -> unit -> bigint) =
+      t -> byte_offset:int -> ?little_endian:bool -> unit -> bigint) =
       fun (x581 : t) ->
-        fun ~byteOffset:(x577 : int) ->
-          fun ?littleEndian:(x578 : bool option) ->
+        fun ~byte_offset:(x577 : int) ->
+          fun ?little_endian:(x578 : bool option) ->
             fun () ->
               bigint_of_js
                 (let x582 = t_to_js x581 in
@@ -2310,12 +2312,13 @@ module DataView =
                             x579))|])
     let (set_big_int64 :
       t ->
-        byteOffset:int -> value:bigint -> ?littleEndian:bool -> unit -> unit)
+        byte_offset:int ->
+          value:bigint -> ?little_endian:bool -> unit -> unit)
       =
       fun (x588 : t) ->
-        fun ~byteOffset:(x583 : int) ->
+        fun ~byte_offset:(x583 : int) ->
           fun ~value:(x584 : bigint) ->
-            fun ?littleEndian:(x585 : bool option) ->
+            fun ?little_endian:(x585 : bool option) ->
               fun () ->
                 ignore
                   (let x589 = t_to_js x588 in
@@ -2338,12 +2341,13 @@ module DataView =
                               x586))|])
     let (set_big_uint64 :
       t ->
-        byteOffset:int -> value:bigint -> ?littleEndian:bool -> unit -> unit)
+        byte_offset:int ->
+          value:bigint -> ?little_endian:bool -> unit -> unit)
       =
       fun (x595 : t) ->
-        fun ~byteOffset:(x590 : int) ->
+        fun ~byte_offset:(x590 : int) ->
           fun ~value:(x591 : bigint) ->
-            fun ?littleEndian:(x592 : bool option) ->
+            fun ?little_endian:(x592 : bool option) ->
               fun () ->
                 ignore
                   (let x596 = t_to_js x595 in

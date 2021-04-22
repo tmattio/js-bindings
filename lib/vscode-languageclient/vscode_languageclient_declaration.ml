@@ -4,12 +4,9 @@
 open Es5
 module ProvideDeclarationSignature =
   struct
-    type t = _ProvideDeclarationSignature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> _ProvideDeclarationSignature_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : _ProvideDeclarationSignature) ->
-        _ProvideDeclarationSignature_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (apply :
       t ->
         this:unit ->
@@ -29,18 +26,16 @@ module ProvideDeclarationSignature =
   end
 module DeclarationMiddleware =
   struct
-    type t = _DeclarationMiddleware
-    let rec t_of_js : Ojs.t -> t =
-      fun (x10 : Ojs.t) -> _DeclarationMiddleware_of_js x10
-    and t_to_js : t -> Ojs.t =
-      fun (x9 : _DeclarationMiddleware) -> _DeclarationMiddleware_to_js x9
-    let (provideDeclaration :
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x10 : Ojs.t) -> x10
+    and t_to_js : t -> Ojs.t = fun (x9 : Ojs.t) -> x9
+    let (provide_declaration :
       t ->
         this:unit ->
           document:TextDocument.t ->
             position:VPosition.t ->
               token:CancellationToken.t ->
-                next:_ProvideDeclarationSignature ->
+                next:ProvideDeclarationSignature.t ->
                   VDeclaration.t ProviderResult.t)
       =
       fun (x16 : t) ->
@@ -48,27 +43,25 @@ module DeclarationMiddleware =
           fun ~document:(x12 : TextDocument.t) ->
             fun ~position:(x13 : VPosition.t) ->
               fun ~token:(x14 : CancellationToken.t) ->
-                fun ~next:(x15 : _ProvideDeclarationSignature) ->
+                fun ~next:(x15 : ProvideDeclarationSignature.t) ->
                   ProviderResult.t_of_js VDeclaration.t_of_js
                     (Ojs.call (t_to_js x16) "provideDeclaration"
                        [|(Ojs.unit_to_js x11);(TextDocument.t_to_js x12);(
                          VPosition.t_to_js x13);(CancellationToken.t_to_js
-                                                   x14);(_ProvideDeclarationSignature_to_js
+                                                   x14);(ProvideDeclarationSignature.t_to_js
                                                            x15)|])
   end
 module DeclarationFeature =
   struct
-    type t = _DeclarationFeature
-    let rec t_of_js : Ojs.t -> t =
-      fun (x19 : Ojs.t) -> _DeclarationFeature_of_js x19
-    and t_to_js : t -> Ojs.t =
-      fun (x18 : _DeclarationFeature) -> _DeclarationFeature_to_js x18
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x19 : Ojs.t) -> x19
+    and t_to_js : t -> Ojs.t = fun (x18 : Ojs.t) -> x18
     let (create : client:BaseLanguageClient.t -> t) =
       fun ~client:(x20 : BaseLanguageClient.t) ->
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "DeclarationFeature")
              [|(BaseLanguageClient.t_to_js x20)|])
-    let (fillClientCapabilities :
+    let (fill_client_capabilities :
       t -> capabilities:ClientCapabilities.t -> unit) =
       fun (x22 : t) ->
         fun ~capabilities:(x21 : ClientCapabilities.t) ->
@@ -78,16 +71,16 @@ module DeclarationFeature =
     let (initialize :
       t ->
         capabilities:ServerCapabilities.t ->
-          documentSelector:DocumentSelector.t -> unit)
+          document_selector:DocumentSelector.t -> unit)
       =
       fun (x25 : t) ->
         fun ~capabilities:(x23 : ServerCapabilities.t) ->
-          fun ~documentSelector:(x24 : DocumentSelector.t) ->
+          fun ~document_selector:(x24 : DocumentSelector.t) ->
             ignore
               (Ojs.call (t_to_js x25) "initialize"
                  [|(ServerCapabilities.t_to_js x23);(DocumentSelector.t_to_js
                                                        x24)|])
-    let (registerLanguageProvider :
+    let (register_language_provider :
       t ->
         options:DeclarationRegistrationOptions.t ->
           (Disposable.t * DeclarationProvider.t))

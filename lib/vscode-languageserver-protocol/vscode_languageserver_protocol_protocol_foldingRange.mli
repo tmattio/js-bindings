@@ -12,29 +12,29 @@ open Es5
    PartialResultParams, WorkDoneProgressParams, WorkDoneProgressOptions } from
    './protocol'; *)
 module FoldingRangeClientCapabilities : sig
-  type t = _FoldingRangeClientCapabilities
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_dynamicRegistration : t -> bool [@@js.get "dynamicRegistration"]
+  val get_dynamic_registration : t -> bool [@@js.get "dynamicRegistration"]
 
-  val set_dynamicRegistration : t -> bool -> unit
+  val set_dynamic_registration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
-  val get_rangeLimit : t -> Uinteger.t [@@js.get "rangeLimit"]
+  val get_range_limit : t -> Uinteger.t [@@js.get "rangeLimit"]
 
-  val set_rangeLimit : t -> Uinteger.t -> unit [@@js.set "rangeLimit"]
+  val set_range_limit : t -> Uinteger.t -> unit [@@js.set "rangeLimit"]
 
-  val get_lineFoldingOnly : t -> bool [@@js.get "lineFoldingOnly"]
+  val get_line_folding_only : t -> bool [@@js.get "lineFoldingOnly"]
 
-  val set_lineFoldingOnly : t -> bool -> unit [@@js.set "lineFoldingOnly"]
+  val set_line_folding_only : t -> bool -> unit [@@js.set "lineFoldingOnly"]
 end
 [@@js.scope "FoldingRangeClientCapabilities"]
 
 module FoldingRangeOptions : sig
-  type t = _FoldingRangeOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -45,7 +45,7 @@ end
 [@@js.scope "FoldingRangeOptions"]
 
 module FoldingRangeRegistrationOptions : sig
-  type t = _FoldingRangeRegistrationOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -53,7 +53,7 @@ module FoldingRangeRegistrationOptions : sig
 
   val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
-  val cast' : t -> _FoldingRangeOptions [@@js.cast]
+  val cast' : t -> FoldingRangeOptions.t [@@js.cast]
 
   val cast'' : t -> StaticRegistrationOptions.t [@@js.cast]
 end
@@ -73,15 +73,16 @@ module FoldingRangeKind : sig
 end
 
 module FoldingRangeParams : sig
-  type t = _FoldingRangeParams
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> TextDocumentIdentifier.t [@@js.get "textDocument"]
+  val get_text_document : t -> TextDocumentIdentifier.t
+    [@@js.get "textDocument"]
 
-  val set_textDocument : t -> TextDocumentIdentifier.t -> unit
+  val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
   val cast : t -> WorkDoneProgressParams.t [@@js.cast]
@@ -97,17 +98,17 @@ module FoldingRangeRequest : sig
     [@@js.global "method"]
 
   val type_
-    : ( _FoldingRangeParams
+    : ( FoldingRangeParams.t
       , FoldingRange.t list or_null
       , FoldingRange.t list
       , any
-      , _FoldingRangeRegistrationOptions )
+      , FoldingRangeRegistrationOptions.t )
       ProtocolRequestType.t
     [@@js.global "type"]
 
   module HandlerSignature : sig
     type t =
-      (_FoldingRangeParams, FoldingRange.t list or_null, unit) RequestHandler.t
+      (FoldingRangeParams.t, FoldingRange.t list or_null, unit) RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 

@@ -2,14 +2,12 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
-module Internal =
-  struct module Types = struct open AnonymousInterfaces end end
 module AnonymousInterface0 =
   struct
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
     and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
-    let (asReadableStream :
+    let (as_readable_stream :
       t ->
         stream:Node.ReadableStream.t ->
           Vscode_jsonrpc_ral.RAL.ReadableStream.t)
@@ -19,7 +17,7 @@ module AnonymousInterface0 =
           Vscode_jsonrpc_ral.RAL.ReadableStream.t_of_js
             (Ojs.call (t_to_js x4) "asReadableStream"
                [|(Node.ReadableStream.t_to_js x3)|])
-    let (asWritableStream :
+    let (as_writable_stream :
       t ->
         stream:Node.WritableStream.t ->
           Vscode_jsonrpc_ral.RAL.WritableStream.t)
@@ -32,9 +30,9 @@ module AnonymousInterface0 =
   end
 module RIL =
   struct
-    type t = _RIL
-    let rec t_of_js : Ojs.t -> t = fun (x8 : Ojs.t) -> _RIL_of_js x8
-    and t_to_js : t -> Ojs.t = fun (x7 : _RIL) -> _RIL_to_js x7
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x8 : Ojs.t) -> x8
+    and t_to_js : t -> Ojs.t = fun (x7 : Ojs.t) -> x7
     let (get_stream : t -> AnonymousInterface0.t) =
       fun (x9 : t) ->
         AnonymousInterface0.t_of_js
@@ -46,5 +44,5 @@ module RIL =
         ignore
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "RIL") "install" [||])
   end
-let (ril : unit -> _RIL) =
-  fun () -> _RIL_of_js (Ojs.call Ojs.global "RIL" [||])
+let (ril : unit -> RIL.t) =
+  fun () -> RIL.t_of_js (Ojs.call Ojs.global "RIL" [||])

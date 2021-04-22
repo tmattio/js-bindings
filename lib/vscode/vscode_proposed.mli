@@ -53,9 +53,9 @@ module Vscode : sig
 
     val set_editable : t -> bool or_null -> unit [@@js.set "editable"]
 
-    val cellEditable : t -> bool or_null [@@js.get "cellEditable"]
+    val cell_editable : t -> bool or_null [@@js.get "cellEditable"]
 
-    val set_cellEditable : t -> bool or_null -> unit [@@js.set "cellEditable"]
+    val set_cell_editable : t -> bool or_null -> unit [@@js.set "cellEditable"]
 
     val custom : t -> AnonymousInterface16.t or_null [@@js.get "custom"]
 
@@ -76,7 +76,7 @@ module Vscode : sig
 
     val editable : t -> bool [@@js.get "editable"]
 
-    val cellEditable : t -> bool [@@js.get "cellEditable"]
+    val cell_editable : t -> bool [@@js.get "cellEditable"]
 
     val custom : t -> AnonymousInterface16.t [@@js.get "custom"]
 
@@ -84,7 +84,7 @@ module Vscode : sig
 
     val create
       :  ?editable:bool
-      -> ?cellEditable:bool
+      -> ?cell_editable:bool
       -> ?custom:AnonymousInterface16.t
       -> ?trusted:bool
       -> unit
@@ -102,18 +102,18 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val transientOutputs : t -> bool [@@js.get "transientOutputs"]
+    val transient_outputs : t -> bool [@@js.get "transientOutputs"]
 
-    val set_transientOutputs : t -> bool -> unit [@@js.set "transientOutputs"]
+    val set_transient_outputs : t -> bool -> unit [@@js.set "transientOutputs"]
 
-    val transientMetadata
+    val transient_metadata
       :  t
       -> (* FIXME: unknown type '{ [K in keyof NotebookCellMetadata]?: boolean
             }' *)
          any
       [@@js.get "transientMetadata"]
 
-    val set_transientMetadata
+    val set_transient_metadata
       :  t
       -> (* FIXME: unknown type '{ [K in keyof NotebookCellMetadata]?: boolean
             }' *)
@@ -150,7 +150,7 @@ module Vscode : sig
 
     val end_ : t -> int [@@js.get "end"]
 
-    val isEmpty : t -> bool [@@js.get "isEmpty"]
+    val is_empty : t -> bool [@@js.get "isEmpty"]
 
     val create : start:int -> end_:int -> t [@@js.create]
 
@@ -234,29 +234,29 @@ module Vscode : sig
 
     val set_editable : t -> bool or_null -> unit [@@js.set "editable"]
 
-    val breakpointMargin : t -> bool or_null [@@js.get "breakpointMargin"]
+    val breakpoint_margin : t -> bool or_null [@@js.get "breakpointMargin"]
 
-    val set_breakpointMargin : t -> bool or_null -> unit
+    val set_breakpoint_margin : t -> bool or_null -> unit
       [@@js.set "breakpointMargin"]
 
-    val statusMessage : t -> string or_null [@@js.get "statusMessage"]
+    val status_message : t -> string or_null [@@js.get "statusMessage"]
 
-    val set_statusMessage : t -> string or_null -> unit
+    val set_status_message : t -> string or_null -> unit
       [@@js.set "statusMessage"]
 
-    val lastRunDuration : t -> int or_null [@@js.get "lastRunDuration"]
+    val last_run_duration : t -> int or_null [@@js.get "lastRunDuration"]
 
-    val set_lastRunDuration : t -> int or_null -> unit
+    val set_last_run_duration : t -> int or_null -> unit
       [@@js.set "lastRunDuration"]
 
-    val inputCollapsed : t -> bool or_null [@@js.get "inputCollapsed"]
+    val input_collapsed : t -> bool or_null [@@js.get "inputCollapsed"]
 
-    val set_inputCollapsed : t -> bool or_null -> unit
+    val set_input_collapsed : t -> bool or_null -> unit
       [@@js.set "inputCollapsed"]
 
-    val outputCollapsed : t -> bool or_null [@@js.get "outputCollapsed"]
+    val output_collapsed : t -> bool or_null [@@js.get "outputCollapsed"]
 
-    val set_outputCollapsed : t -> bool or_null -> unit
+    val set_output_collapsed : t -> bool or_null -> unit
       [@@js.set "outputCollapsed"]
 
     val custom : t -> (string, any) Record.t or_null [@@js.get "custom"]
@@ -274,23 +274,23 @@ module Vscode : sig
 
     val editable : t -> bool [@@js.get "editable"]
 
-    val breakpointMargin : t -> bool [@@js.get "breakpointMargin"]
+    val breakpoint_margin : t -> bool [@@js.get "breakpointMargin"]
 
-    val outputCollapsed : t -> bool [@@js.get "outputCollapsed"]
+    val output_collapsed : t -> bool [@@js.get "outputCollapsed"]
 
-    val inputCollapsed : t -> bool [@@js.get "inputCollapsed"]
+    val input_collapsed : t -> bool [@@js.get "inputCollapsed"]
 
     val custom : t -> (string, any) Record.t [@@js.get "custom"]
 
-    val statusMessage : t -> string [@@js.get "statusMessage"]
+    val status_message : t -> string [@@js.get "statusMessage"]
 
     val create
       :  ?editable:bool
-      -> ?breakpointMargin:bool
-      -> ?statusMessage:string
-      -> ?lastRunDuration:int
-      -> ?inputCollapsed:bool
-      -> ?outputCollapsed:bool
+      -> ?breakpoint_margin:bool
+      -> ?status_message:string
+      -> ?last_run_duration:int
+      -> ?input_collapsed:bool
+      -> ?output_collapsed:bool
       -> ?custom:(string, any) Record.t
       -> unit
       -> t
@@ -307,9 +307,9 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val executionOrder : t -> int [@@js.get "executionOrder"]
+    val execution_order : t -> int [@@js.get "executionOrder"]
 
-    val set_executionOrder : t -> int -> unit [@@js.set "executionOrder"]
+    val set_execution_order : t -> int -> unit [@@js.set "executionOrder"]
 
     val success : t -> bool [@@js.get "success"]
 
@@ -340,7 +340,7 @@ module Vscode : sig
 
     val outputs : t -> NotebookCellOutput.t list [@@js.get "outputs"]
 
-    val latestExecutionSummary
+    val latest_execution_summary
       :  t
       -> NotebookCellExecutionSummary.t or_undefined
       [@@js.get "latestExecutionSummary"]
@@ -358,23 +358,23 @@ module Vscode : sig
 
     val version : t -> int [@@js.get "version"]
 
-    val fileName : t -> string [@@js.get "fileName"]
+    val file_name : t -> string [@@js.get "fileName"]
 
-    val isDirty : t -> bool [@@js.get "isDirty"]
+    val is_dirty : t -> bool [@@js.get "isDirty"]
 
-    val isUntitled : t -> bool [@@js.get "isUntitled"]
+    val is_untitled : t -> bool [@@js.get "isUntitled"]
 
-    val isClosed : t -> bool [@@js.get "isClosed"]
+    val is_closed : t -> bool [@@js.get "isClosed"]
 
     val metadata : t -> NotebookDocumentMetadata.t [@@js.get "metadata"]
 
-    val viewType : t -> string [@@js.get "viewType"]
+    val view_type : t -> string [@@js.get "viewType"]
 
-    val cellCount : t -> int [@@js.get "cellCount"]
+    val cell_count : t -> int [@@js.get "cellCount"]
 
-    val cellAt : t -> index:int -> NotebookCell.t [@@js.call "cellAt"]
+    val cell_at : t -> index:int -> NotebookCell.t [@@js.call "cellAt"]
 
-    val getCells
+    val get_cells
       :  t
       -> ?range:NotebookCellRange.t
       -> unit
@@ -406,23 +406,23 @@ module Vscode : sig
 
     val set_detail : t -> string -> unit [@@js.set "detail"]
 
-    val isPreferred : t -> bool [@@js.get "isPreferred"]
+    val is_preferred : t -> bool [@@js.get "isPreferred"]
 
-    val set_isPreferred : t -> bool -> unit [@@js.set "isPreferred"]
+    val set_is_preferred : t -> bool -> unit [@@js.set "isPreferred"]
 
     val preloads : t -> Uri.t list [@@js.get "preloads"]
 
     val set_preloads : t -> Uri.t list -> unit [@@js.set "preloads"]
 
-    val supportedLanguages : t -> string list [@@js.get "supportedLanguages"]
+    val supported_languages : t -> string list [@@js.get "supportedLanguages"]
 
-    val set_supportedLanguages : t -> string list -> unit
+    val set_supported_languages : t -> string list -> unit
       [@@js.set "supportedLanguages"]
 
     val interrupt : t -> document:NotebookDocument.t -> unit
       [@@js.call "interrupt"]
 
-    val executeCellsRequest
+    val execute_cells_request
       :  t
       -> document:NotebookDocument.t
       -> ranges:NotebookCellRange.t list
@@ -438,14 +438,14 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val displayName : t -> string [@@js.get "displayName"]
+    val display_name : t -> string [@@js.get "displayName"]
 
-    val set_displayName : t -> string -> unit [@@js.set "displayName"]
+    val set_display_name : t -> string -> unit [@@js.set "displayName"]
 
-    val filenamePattern : t -> NotebookFilenamePattern.t list
+    val filename_pattern : t -> NotebookFilenamePattern.t list
       [@@js.get "filenamePattern"]
 
-    val set_filenamePattern : t -> NotebookFilenamePattern.t list -> unit
+    val set_filename_pattern : t -> NotebookFilenamePattern.t list -> unit
       [@@js.set "filenamePattern"]
 
     val exclusive : t -> bool [@@js.get "exclusive"]
@@ -513,13 +513,13 @@ module Vscode : sig
 
     val set_pid : t -> int -> unit [@@js.set "pid"]
 
-    val portRange : t -> int * int [@@js.get "portRange"]
+    val port_range : t -> int * int [@@js.get "portRange"]
 
-    val set_portRange : t -> int * int -> unit [@@js.set "portRange"]
+    val set_port_range : t -> int * int -> unit [@@js.set "portRange"]
 
-    val commandMatcher : t -> regexp [@@js.get "commandMatcher"]
+    val command_matcher : t -> regexp [@@js.get "commandMatcher"]
 
-    val set_commandMatcher : t -> regexp -> unit [@@js.set "commandMatcher"]
+    val set_command_matcher : t -> regexp -> unit [@@js.set "commandMatcher"]
   end
 
   module AnonymousInterface11 : sig
@@ -581,9 +581,9 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val viewOptions : t -> AnonymousInterface3.t [@@js.get "viewOptions"]
+    val view_options : t -> AnonymousInterface3.t [@@js.get "viewOptions"]
 
-    val set_viewOptions : t -> AnonymousInterface3.t -> unit
+    val set_view_options : t -> AnonymousInterface3.t -> unit
       [@@js.set "viewOptions"]
   end
 
@@ -614,14 +614,14 @@ module Vscode : sig
   [@@js.scope "AuthenticationProvidersChangeEvent"]
 
   module Authentication : sig
-    val onDidChangeAuthenticationProviders
+    val on_did_change_authentication_providers
       : AuthenticationProvidersChangeEvent.t Event.t
       [@@js.global "onDidChangeAuthenticationProviders"]
 
     val providers : AuthenticationProviderInformation.t list
       [@@js.global "providers"]
 
-    val logout : providerId:string -> sessionId:string -> unit Promise.t
+    val logout : provider_id:string -> session_id:string -> unit Promise.t
       [@@js.global "logout"]
   end
   [@@js.scope "authentication"]
@@ -633,9 +633,9 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val useCustom : t -> bool [@@js.get "useCustom"]
+    val use_custom : t -> bool [@@js.get "useCustom"]
 
-    val set_useCustom : t -> bool -> unit [@@js.set "useCustom"]
+    val set_use_custom : t -> bool -> unit [@@js.set "useCustom"]
   end
   [@@js.scope "MessageOptions"]
 
@@ -646,9 +646,9 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val resolveAttempt : t -> int [@@js.get "resolveAttempt"]
+    val resolve_attempt : t -> int [@@js.get "resolveAttempt"]
 
-    val set_resolveAttempt : t -> int -> unit [@@js.set "resolveAttempt"]
+    val set_resolve_attempt : t -> int -> unit [@@js.set "resolveAttempt"]
   end
   [@@js.scope "RemoteAuthorityResolverContext"]
 
@@ -663,9 +663,14 @@ module Vscode : sig
 
     val port : t -> int [@@js.get "port"]
 
-    val connectionToken : t -> string or_undefined [@@js.get "connectionToken"]
+    val connection_token : t -> string or_undefined [@@js.get "connectionToken"]
 
-    val create : host:string -> port:int -> ?connectionToken:string -> unit -> t
+    val create
+      :  host:string
+      -> port:int
+      -> ?connection_token:string
+      -> unit
+      -> t
       [@@js.create]
   end
   [@@js.scope "ResolvedAuthority"]
@@ -677,10 +682,10 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val extensionHostEnv : t -> AnonymousInterface17.t
+    val extension_host_env : t -> AnonymousInterface17.t
       [@@js.get "extensionHostEnv"]
 
-    val set_extensionHostEnv : t -> AnonymousInterface17.t -> unit
+    val set_extension_host_env : t -> AnonymousInterface17.t -> unit
       [@@js.set "extensionHostEnv"]
   end
   [@@js.scope "ResolvedOptions"]
@@ -692,14 +697,14 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val remoteAddress : t -> AnonymousInterface11.t [@@js.get "remoteAddress"]
+    val remote_address : t -> AnonymousInterface11.t [@@js.get "remoteAddress"]
 
-    val set_remoteAddress : t -> AnonymousInterface11.t -> unit
+    val set_remote_address : t -> AnonymousInterface11.t -> unit
       [@@js.set "remoteAddress"]
 
-    val localAddressPort : t -> int [@@js.get "localAddressPort"]
+    val local_address_port : t -> int [@@js.get "localAddressPort"]
 
-    val set_localAddressPort : t -> int -> unit [@@js.set "localAddressPort"]
+    val set_local_address_port : t -> int -> unit [@@js.set "localAddressPort"]
 
     val label : t -> string [@@js.get "label"]
 
@@ -718,15 +723,15 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val remoteAddress : t -> AnonymousInterface11.t [@@js.get "remoteAddress"]
+    val remote_address : t -> AnonymousInterface11.t [@@js.get "remoteAddress"]
 
-    val set_remoteAddress : t -> AnonymousInterface11.t -> unit
+    val set_remote_address : t -> AnonymousInterface11.t -> unit
       [@@js.set "remoteAddress"]
 
-    val localAddress : t -> AnonymousInterface11.t or_string
+    val local_address : t -> AnonymousInterface11.t or_string
       [@@js.get "localAddress"]
 
-    val set_localAddress : t -> AnonymousInterface11.t or_string -> unit
+    val set_local_address : t -> AnonymousInterface11.t or_string -> unit
       [@@js.set "localAddress"]
 
     val public : t -> bool [@@js.get "public"]
@@ -740,9 +745,9 @@ module Vscode : sig
       include TunnelDescription
     end
 
-    val onDidDispose : t -> unit Event.t [@@js.get "onDidDispose"]
+    val on_did_dispose : t -> unit Event.t [@@js.get "onDidDispose"]
 
-    val set_onDidDispose : t -> unit Event.t -> unit [@@js.set "onDidDispose"]
+    val set_on_did_dispose : t -> unit Event.t -> unit [@@js.set "onDidDispose"]
 
     val dispose : t -> (unit, unit Promise.t) union2 [@@js.call "dispose"]
   end
@@ -755,10 +760,10 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val environmentTunnels : t -> TunnelDescription.t list
+    val environment_tunnels : t -> TunnelDescription.t list
       [@@js.get "environmentTunnels"]
 
-    val set_environmentTunnels : t -> TunnelDescription.t list -> unit
+    val set_environment_tunnels : t -> TunnelDescription.t list -> unit
       [@@js.set "environmentTunnels"]
   end
   [@@js.scope "TunnelInformation"]
@@ -770,9 +775,10 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val elevationRequired : t -> bool [@@js.get "elevationRequired"]
+    val elevation_required : t -> bool [@@js.get "elevationRequired"]
 
-    val set_elevationRequired : t -> bool -> unit [@@js.set "elevationRequired"]
+    val set_elevation_required : t -> bool -> unit
+      [@@js.set "elevationRequired"]
   end
   [@@js.scope "TunnelCreationOptions"]
 
@@ -806,10 +812,10 @@ module Vscode : sig
       include Error
     end
 
-    val notAvailable : ?message:string -> ?handled:bool -> unit -> t
+    val not_available : ?message:string -> ?handled:bool -> unit -> t
       [@@js.global "NotAvailable"]
 
-    val temporarilyNotAvailable : ?message:string -> unit -> t
+    val temporarily_not_available : ?message:string -> unit -> t
       [@@js.global "TemporarilyNotAvailable"]
 
     val create : ?message:string -> unit -> t [@@js.create]
@@ -830,14 +836,14 @@ module Vscode : sig
       -> (ResolverResult.t, ResolverResult.t Promise.t) union2
       [@@js.call "resolve"]
 
-    val tunnelFactory
+    val tunnel_factory
       :  t
-      -> tunnelOptions:TunnelOptions.t
-      -> tunnelCreationOptions:TunnelCreationOptions.t
+      -> tunnel_options:TunnelOptions.t
+      -> tunnel_creation_options:TunnelCreationOptions.t
       -> Tunnel.t Promise.t or_undefined
       [@@js.call "tunnelFactory"]
 
-    val showCandidatePort
+    val show_candidate_port
       :  t
       -> host:string
       -> port:int
@@ -845,15 +851,15 @@ module Vscode : sig
       -> bool Promise.t
       [@@js.call "showCandidatePort"]
 
-    val tunnelFeatures : t -> AnonymousInterface7.t [@@js.get "tunnelFeatures"]
+    val tunnel_features : t -> AnonymousInterface7.t [@@js.get "tunnelFeatures"]
 
-    val set_tunnelFeatures : t -> AnonymousInterface7.t -> unit
+    val set_tunnel_features : t -> AnonymousInterface7.t -> unit
       [@@js.set "tunnelFeatures"]
 
-    val candidatePortSource : t -> CandidatePortSource.t
+    val candidate_port_source : t -> CandidatePortSource.t
       [@@js.get "candidatePortSource"]
 
-    val set_candidatePortSource : t -> CandidatePortSource.t -> unit
+    val set_candidate_port_source : t -> CandidatePortSource.t -> unit
       [@@js.set "candidatePortSource"]
   end
   [@@js.scope "RemoteAuthorityResolver"]
@@ -881,23 +887,23 @@ module Vscode : sig
 
     val set_tildify : t -> bool -> unit [@@js.set "tildify"]
 
-    val normalizeDriveLetter : t -> bool [@@js.get "normalizeDriveLetter"]
+    val normalize_drive_letter : t -> bool [@@js.get "normalizeDriveLetter"]
 
-    val set_normalizeDriveLetter : t -> bool -> unit
+    val set_normalize_drive_letter : t -> bool -> unit
       [@@js.set "normalizeDriveLetter"]
 
-    val workspaceSuffix : t -> string [@@js.get "workspaceSuffix"]
+    val workspace_suffix : t -> string [@@js.get "workspaceSuffix"]
 
-    val set_workspaceSuffix : t -> string -> unit [@@js.set "workspaceSuffix"]
+    val set_workspace_suffix : t -> string -> unit [@@js.set "workspaceSuffix"]
 
-    val authorityPrefix : t -> string [@@js.get "authorityPrefix"]
+    val authority_prefix : t -> string [@@js.get "authorityPrefix"]
 
-    val set_authorityPrefix : t -> string -> unit [@@js.set "authorityPrefix"]
+    val set_authority_prefix : t -> string -> unit [@@js.set "authorityPrefix"]
 
-    val stripPathStartingSeparator : t -> bool
+    val strip_path_starting_separator : t -> bool
       [@@js.get "stripPathStartingSeparator"]
 
-    val set_stripPathStartingSeparator : t -> bool -> unit
+    val set_strip_path_starting_separator : t -> bool -> unit
       [@@js.set "stripPathStartingSeparator"]
   end
   [@@js.scope "ResourceLabelFormatting"]
@@ -985,21 +991,21 @@ module Vscode : sig
 
     val set_pattern : t -> string -> unit [@@js.set "pattern"]
 
-    val isMultiline : t -> bool [@@js.get "isMultiline"]
+    val is_multiline : t -> bool [@@js.get "isMultiline"]
 
-    val set_isMultiline : t -> bool -> unit [@@js.set "isMultiline"]
+    val set_is_multiline : t -> bool -> unit [@@js.set "isMultiline"]
 
-    val isRegExp : t -> bool [@@js.get "isRegExp"]
+    val is_reg_exp : t -> bool [@@js.get "isRegExp"]
 
-    val set_isRegExp : t -> bool -> unit [@@js.set "isRegExp"]
+    val set_is_reg_exp : t -> bool -> unit [@@js.set "isRegExp"]
 
-    val isCaseSensitive : t -> bool [@@js.get "isCaseSensitive"]
+    val is_case_sensitive : t -> bool [@@js.get "isCaseSensitive"]
 
-    val set_isCaseSensitive : t -> bool -> unit [@@js.set "isCaseSensitive"]
+    val set_is_case_sensitive : t -> bool -> unit [@@js.set "isCaseSensitive"]
 
-    val isWordMatch : t -> bool [@@js.get "isWordMatch"]
+    val is_word_match : t -> bool [@@js.get "isWordMatch"]
 
-    val set_isWordMatch : t -> bool -> unit [@@js.set "isWordMatch"]
+    val set_is_word_match : t -> bool -> unit [@@js.set "isWordMatch"]
   end
   [@@js.scope "TextSearchQuery"]
 
@@ -1030,17 +1036,17 @@ module Vscode : sig
 
     val set_excludes : t -> GlobString.t list -> unit [@@js.set "excludes"]
 
-    val useIgnoreFiles : t -> bool [@@js.get "useIgnoreFiles"]
+    val use_ignore_files : t -> bool [@@js.get "useIgnoreFiles"]
 
-    val set_useIgnoreFiles : t -> bool -> unit [@@js.set "useIgnoreFiles"]
+    val set_use_ignore_files : t -> bool -> unit [@@js.set "useIgnoreFiles"]
 
-    val followSymlinks : t -> bool [@@js.get "followSymlinks"]
+    val follow_symlinks : t -> bool [@@js.get "followSymlinks"]
 
-    val set_followSymlinks : t -> bool -> unit [@@js.set "followSymlinks"]
+    val set_follow_symlinks : t -> bool -> unit [@@js.set "followSymlinks"]
 
-    val useGlobalIgnoreFiles : t -> bool [@@js.get "useGlobalIgnoreFiles"]
+    val use_global_ignore_files : t -> bool [@@js.get "useGlobalIgnoreFiles"]
 
-    val set_useGlobalIgnoreFiles : t -> bool -> unit
+    val set_use_global_ignore_files : t -> bool -> unit
       [@@js.set "useGlobalIgnoreFiles"]
   end
   [@@js.scope "SearchOptions"]
@@ -1052,13 +1058,13 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val matchLines : t -> int [@@js.get "matchLines"]
+    val match_lines : t -> int [@@js.get "matchLines"]
 
-    val set_matchLines : t -> int -> unit [@@js.set "matchLines"]
+    val set_match_lines : t -> int -> unit [@@js.set "matchLines"]
 
-    val charsPerLine : t -> int [@@js.get "charsPerLine"]
+    val chars_per_line : t -> int [@@js.get "charsPerLine"]
 
-    val set_charsPerLine : t -> int -> unit [@@js.set "charsPerLine"]
+    val set_chars_per_line : t -> int -> unit [@@js.set "charsPerLine"]
   end
   [@@js.scope "TextSearchPreviewOptions"]
 
@@ -1067,31 +1073,31 @@ module Vscode : sig
       include SearchOptions
     end
 
-    val maxResults : t -> int [@@js.get "maxResults"]
+    val max_results : t -> int [@@js.get "maxResults"]
 
-    val set_maxResults : t -> int -> unit [@@js.set "maxResults"]
+    val set_max_results : t -> int -> unit [@@js.set "maxResults"]
 
-    val previewOptions : t -> TextSearchPreviewOptions.t
+    val preview_options : t -> TextSearchPreviewOptions.t
       [@@js.get "previewOptions"]
 
-    val set_previewOptions : t -> TextSearchPreviewOptions.t -> unit
+    val set_preview_options : t -> TextSearchPreviewOptions.t -> unit
       [@@js.set "previewOptions"]
 
-    val maxFileSize : t -> int [@@js.get "maxFileSize"]
+    val max_file_size : t -> int [@@js.get "maxFileSize"]
 
-    val set_maxFileSize : t -> int -> unit [@@js.set "maxFileSize"]
+    val set_max_file_size : t -> int -> unit [@@js.set "maxFileSize"]
 
     val encoding : t -> string [@@js.get "encoding"]
 
     val set_encoding : t -> string -> unit [@@js.set "encoding"]
 
-    val beforeContext : t -> int [@@js.get "beforeContext"]
+    val before_context : t -> int [@@js.get "beforeContext"]
 
-    val set_beforeContext : t -> int -> unit [@@js.set "beforeContext"]
+    val set_before_context : t -> int -> unit [@@js.set "beforeContext"]
 
-    val afterContext : t -> int [@@js.get "afterContext"]
+    val after_context : t -> int [@@js.get "afterContext"]
 
-    val set_afterContext : t -> int -> unit [@@js.set "afterContext"]
+    val set_after_context : t -> int -> unit [@@js.set "afterContext"]
   end
   [@@js.scope "TextSearchOptions"]
 
@@ -1102,9 +1108,9 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val limitHit : t -> bool [@@js.get "limitHit"]
+    val limit_hit : t -> bool [@@js.get "limitHit"]
 
-    val set_limitHit : t -> bool -> unit [@@js.set "limitHit"]
+    val set_limit_hit : t -> bool -> unit [@@js.set "limitHit"]
   end
   [@@js.scope "TextSearchComplete"]
 
@@ -1163,9 +1169,9 @@ module Vscode : sig
 
     val set_text : t -> string -> unit [@@js.set "text"]
 
-    val lineNumber : t -> int [@@js.get "lineNumber"]
+    val line_number : t -> int [@@js.get "lineNumber"]
 
-    val set_lineNumber : t -> int -> unit [@@js.set "lineNumber"]
+    val set_line_number : t -> int -> unit [@@js.set "lineNumber"]
   end
   [@@js.scope "TextSearchContext"]
 
@@ -1184,7 +1190,7 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val provideTextSearchResults
+    val provide_text_search_results
       :  t
       -> query:TextSearchQuery.t
       -> options:TextSearchOptions.t
@@ -1213,9 +1219,9 @@ module Vscode : sig
       include SearchOptions
     end
 
-    val maxResults : t -> int [@@js.get "maxResults"]
+    val max_results : t -> int [@@js.get "maxResults"]
 
-    val set_maxResults : t -> int -> unit [@@js.set "maxResults"]
+    val set_max_results : t -> int -> unit [@@js.set "maxResults"]
 
     val session : t -> CancellationToken.t [@@js.get "session"]
 
@@ -1230,7 +1236,7 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val provideFileSearchResults
+    val provide_file_search_results
       :  t
       -> query:FileSearchQuery.t
       -> options:FileSearchOptions.t
@@ -1255,7 +1261,7 @@ module Vscode : sig
 
     val webview : t -> Webview.t [@@js.get "webview"]
 
-    val onDidDispose : t -> unit Event.t [@@js.get "onDidDispose"]
+    val on_did_dispose : t -> unit Event.t [@@js.get "onDidDispose"]
 
     val dispose : t -> unit [@@js.call "dispose"]
   end
@@ -1327,45 +1333,45 @@ module Vscode : sig
 
     val set_exclude : t -> GlobPattern.t -> unit [@@js.set "exclude"]
 
-    val useDefaultExcludes : t -> bool [@@js.get "useDefaultExcludes"]
+    val use_default_excludes : t -> bool [@@js.get "useDefaultExcludes"]
 
-    val set_useDefaultExcludes : t -> bool -> unit
+    val set_use_default_excludes : t -> bool -> unit
       [@@js.set "useDefaultExcludes"]
 
-    val maxResults : t -> int [@@js.get "maxResults"]
+    val max_results : t -> int [@@js.get "maxResults"]
 
-    val set_maxResults : t -> int -> unit [@@js.set "maxResults"]
+    val set_max_results : t -> int -> unit [@@js.set "maxResults"]
 
-    val useIgnoreFiles : t -> bool [@@js.get "useIgnoreFiles"]
+    val use_ignore_files : t -> bool [@@js.get "useIgnoreFiles"]
 
-    val set_useIgnoreFiles : t -> bool -> unit [@@js.set "useIgnoreFiles"]
+    val set_use_ignore_files : t -> bool -> unit [@@js.set "useIgnoreFiles"]
 
-    val useGlobalIgnoreFiles : t -> bool [@@js.get "useGlobalIgnoreFiles"]
+    val use_global_ignore_files : t -> bool [@@js.get "useGlobalIgnoreFiles"]
 
-    val set_useGlobalIgnoreFiles : t -> bool -> unit
+    val set_use_global_ignore_files : t -> bool -> unit
       [@@js.set "useGlobalIgnoreFiles"]
 
-    val followSymlinks : t -> bool [@@js.get "followSymlinks"]
+    val follow_symlinks : t -> bool [@@js.get "followSymlinks"]
 
-    val set_followSymlinks : t -> bool -> unit [@@js.set "followSymlinks"]
+    val set_follow_symlinks : t -> bool -> unit [@@js.set "followSymlinks"]
 
     val encoding : t -> string [@@js.get "encoding"]
 
     val set_encoding : t -> string -> unit [@@js.set "encoding"]
 
-    val previewOptions : t -> TextSearchPreviewOptions.t
+    val preview_options : t -> TextSearchPreviewOptions.t
       [@@js.get "previewOptions"]
 
-    val set_previewOptions : t -> TextSearchPreviewOptions.t -> unit
+    val set_preview_options : t -> TextSearchPreviewOptions.t -> unit
       [@@js.set "previewOptions"]
 
-    val beforeContext : t -> int [@@js.get "beforeContext"]
+    val before_context : t -> int [@@js.get "beforeContext"]
 
-    val set_beforeContext : t -> int -> unit [@@js.set "beforeContext"]
+    val set_before_context : t -> int -> unit [@@js.set "beforeContext"]
 
-    val afterContext : t -> int [@@js.get "afterContext"]
+    val after_context : t -> int [@@js.get "afterContext"]
 
-    val set_afterContext : t -> int -> unit [@@js.set "afterContext"]
+    val set_after_context : t -> int -> unit [@@js.set "afterContext"]
   end
   [@@js.scope "FindTextInFilesOptions"]
 
@@ -1376,22 +1382,24 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val originalStartLineNumber : t -> int [@@js.get "originalStartLineNumber"]
+    val original_start_line_number : t -> int
+      [@@js.get "originalStartLineNumber"]
 
-    val originalEndLineNumber : t -> int [@@js.get "originalEndLineNumber"]
+    val original_end_line_number : t -> int [@@js.get "originalEndLineNumber"]
 
-    val modifiedStartLineNumber : t -> int [@@js.get "modifiedStartLineNumber"]
+    val modified_start_line_number : t -> int
+      [@@js.get "modifiedStartLineNumber"]
 
-    val modifiedEndLineNumber : t -> int [@@js.get "modifiedEndLineNumber"]
+    val modified_end_line_number : t -> int [@@js.get "modifiedEndLineNumber"]
   end
   [@@js.scope "LineChange"]
 
   module Commands : sig
-    val registerDiffInformationCommand
+    val register_diff_information_command
       :  command:string
       -> callback:
            (diff:LineChange.t list -> args:(any list[@js.variadic]) -> any)
-      -> ?thisArg:any
+      -> ?this_arg:any
       -> unit
       -> Disposable.t
       [@@js.global "registerDiffInformationCommand"]
@@ -1449,17 +1457,17 @@ module Vscode : sig
 
     val focus : t -> unit [@@js.call "focus"]
 
-    val showValidationMessage
+    val show_validation_message
       :  t
       -> message:string
       -> type_:SourceControlInputBoxValidationType.t
       -> unit
       [@@js.call "showValidationMessage"]
 
-    val validateInput
+    val validate_input
       :  t
       -> value:string
-      -> cursorPosition:int
+      -> cursor_position:int
       -> SourceControlInputBoxValidation.t ProviderResult.t
       [@@js.call "validateInput"]
   end
@@ -1474,7 +1482,7 @@ module Vscode : sig
 
     val selected : t -> bool [@@js.get "selected"]
 
-    val onDidChangeSelection : t -> bool Event.t
+    val on_did_change_selection : t -> bool Event.t
       [@@js.get "onDidChangeSelection"]
   end
   [@@js.scope "SourceControl"]
@@ -1495,7 +1503,7 @@ module Vscode : sig
       include Disposable
     end
 
-    type 'T t = Disposable.t
+    type 'T t
 
     val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
@@ -1539,10 +1547,10 @@ module Vscode : sig
 
     val set_name : t -> string -> unit [@@js.set "name"]
 
-    val accessibilityInformation : t -> AccessibilityInformation.t
+    val accessibility_information : t -> AccessibilityInformation.t
       [@@js.get "accessibilityInformation"]
 
-    val set_accessibilityInformation : t -> AccessibilityInformation.t -> unit
+    val set_accessibility_information : t -> AccessibilityInformation.t -> unit
       [@@js.set "accessibilityInformation"]
 
     val alignment : t -> StatusBarAlignment.t [@@js.get "alignment"]
@@ -1562,10 +1570,10 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val moveCustomTextEditor
+    val move_custom_text_editor
       :  t
-      -> newDocument:TextDocument.t
-      -> existingWebviewPanel:WebviewPanel.t
+      -> new_document:TextDocument.t
+      -> existing_webview_panel:WebviewPanel.t
       -> token:CancellationToken.t
       -> unit Promise.t
       [@@js.call "moveCustomTextEditor"]
@@ -1577,15 +1585,15 @@ module Vscode : sig
       include QuickInput
     end
 
-    type 'T t = QuickInput.t
+    type 'T t
 
     val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
     val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
 
-    val sortByLabel : 'T t -> bool [@@js.get "sortByLabel"]
+    val sort_by_label : 'T t -> bool [@@js.get "sortByLabel"]
 
-    val set_sortByLabel : 'T t -> bool -> unit [@@js.set "sortByLabel"]
+    val set_sort_by_label : 'T t -> bool -> unit [@@js.set "sortByLabel"]
   end
   [@@js.scope "QuickPick"]
 
@@ -1657,10 +1665,13 @@ module Vscode : sig
 
     val set_metadata : t -> NotebookCellMetadata.t -> unit [@@js.set "metadata"]
 
-    val latestExecutionSummary : t -> NotebookCellExecutionSummary.t
+    val latest_execution_summary : t -> NotebookCellExecutionSummary.t
       [@@js.get "latestExecutionSummary"]
 
-    val set_latestExecutionSummary : t -> NotebookCellExecutionSummary.t -> unit
+    val set_latest_execution_summary
+      :  t
+      -> NotebookCellExecutionSummary.t
+      -> unit
       [@@js.set "latestExecutionSummary"]
 
     val create
@@ -1669,7 +1680,7 @@ module Vscode : sig
       -> language:string
       -> ?outputs:NotebookCellOutput.t list
       -> ?metadata:NotebookCellMetadata.t
-      -> ?latestExecutionSummary:NotebookCellExecutionSummary.t
+      -> ?latest_execution_summary:NotebookCellExecutionSummary.t
       -> unit
       -> t
       [@@js.create]
@@ -1683,10 +1694,10 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val replaceMetadata : t -> value:NotebookDocumentMetadata.t -> unit
+    val replace_metadata : t -> value:NotebookDocumentMetadata.t -> unit
       [@@js.call "replaceMetadata"]
 
-    val replaceCells
+    val replace_cells
       :  t
       -> start:int
       -> end_:int
@@ -1694,14 +1705,14 @@ module Vscode : sig
       -> unit
       [@@js.call "replaceCells"]
 
-    val replaceCellOutput
+    val replace_cell_output
       :  t
       -> index:int
       -> outputs:NotebookCellOutput.t list
       -> unit
       [@@js.call "replaceCellOutput"]
 
-    val replaceCellMetadata
+    val replace_cell_metadata
       :  t
       -> index:int
       -> metadata:NotebookCellMetadata.t
@@ -1730,9 +1741,9 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val setDecorations
+    val set_decorations
       :  t
-      -> decorationType:NotebookEditorDecorationType.t
+      -> decoration_type:NotebookEditorDecorationType.t
       -> range:NotebookCellRange.t
       -> unit
       [@@js.call "setDecorations"]
@@ -1751,17 +1762,18 @@ module Vscode : sig
 
     val selections : t -> NotebookCellRange.t list [@@js.get "selections"]
 
-    val visibleRanges : t -> NotebookCellRange.t list [@@js.get "visibleRanges"]
+    val visible_ranges : t -> NotebookCellRange.t list
+      [@@js.get "visibleRanges"]
 
-    val revealRange
+    val reveal_range
       :  t
       -> range:NotebookCellRange.t
-      -> ?revealType:NotebookEditorRevealType.t
+      -> ?reveal_type:NotebookEditorRevealType.t
       -> unit
       -> unit
       [@@js.call "revealRange"]
 
-    val viewColumn : t -> ViewColumn.t [@@js.get "viewColumn"]
+    val view_column : t -> ViewColumn.t [@@js.get "viewColumn"]
   end
   [@@js.scope "NotebookEditor"]
 
@@ -1785,9 +1797,9 @@ module Vscode : sig
 
     val start : t -> int [@@js.get "start"]
 
-    val deletedCount : t -> int [@@js.get "deletedCount"]
+    val deleted_count : t -> int [@@js.get "deletedCount"]
 
-    val deletedItems : t -> NotebookCell.t list [@@js.get "deletedItems"]
+    val deleted_items : t -> NotebookCell.t list [@@js.get "deletedItems"]
 
     val items : t -> NotebookCell.t list [@@js.get "items"]
   end
@@ -1839,7 +1851,7 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val notebookEditor : t -> NotebookEditor.t [@@js.get "notebookEditor"]
+    val notebook_editor : t -> NotebookEditor.t [@@js.get "notebookEditor"]
 
     val selections : t -> NotebookCellRange.t list [@@js.get "selections"]
   end
@@ -1852,9 +1864,10 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val notebookEditor : t -> NotebookEditor.t [@@js.get "notebookEditor"]
+    val notebook_editor : t -> NotebookEditor.t [@@js.get "notebookEditor"]
 
-    val visibleRanges : t -> NotebookCellRange.t list [@@js.get "visibleRanges"]
+    val visible_ranges : t -> NotebookCellRange.t list
+      [@@js.get "visibleRanges"]
   end
   [@@js.scope "NotebookEditorVisibleRangesChangeEvent"]
 
@@ -1882,7 +1895,7 @@ module Vscode : sig
 
     val cell : t -> NotebookCell.t [@@js.get "cell"]
 
-    val executionState : t -> NotebookCellExecutionState.t
+    val execution_state : t -> NotebookCellExecutionState.t
       [@@js.get "executionState"]
   end
   [@@js.scope "NotebookCellExecutionStateChangeEvent"]
@@ -1919,14 +1932,15 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val editorId : t -> string [@@js.get "editorId"]
+    val editor_id : t -> string [@@js.get "editorId"]
 
-    val onDidReceiveMessage : t -> any Event.t [@@js.get "onDidReceiveMessage"]
+    val on_did_receive_message : t -> any Event.t
+      [@@js.get "onDidReceiveMessage"]
 
-    val postMessage : t -> message:any -> bool Promise.t
+    val post_message : t -> message:any -> bool Promise.t
       [@@js.call "postMessage"]
 
-    val asWebviewUri : t -> localResource:Uri.t -> Uri.t
+    val as_webview_uri : t -> local_resource:Uri.t -> Uri.t
       [@@js.call "asWebviewUri"]
   end
   [@@js.scope "NotebookCommunication"]
@@ -1938,13 +1952,13 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val viewColumn : t -> ViewColumn.t [@@js.get "viewColumn"]
+    val view_column : t -> ViewColumn.t [@@js.get "viewColumn"]
 
-    val set_viewColumn : t -> ViewColumn.t -> unit [@@js.set "viewColumn"]
+    val set_view_column : t -> ViewColumn.t -> unit [@@js.set "viewColumn"]
 
-    val preserveFocus : t -> bool [@@js.get "preserveFocus"]
+    val preserve_focus : t -> bool [@@js.get "preserveFocus"]
 
-    val set_preserveFocus : t -> bool -> unit [@@js.set "preserveFocus"]
+    val set_preserve_focus : t -> bool -> unit [@@js.set "preserveFocus"]
 
     val preview : t -> bool [@@js.get "preview"]
 
@@ -1963,13 +1977,13 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val dataToNotebook
+    val data_to_notebook
       :  t
       -> data:Uint8Array.t
       -> (NotebookData.t, NotebookData.t Promise.t) union2
       [@@js.call "dataToNotebook"]
 
-    val notebookToData
+    val notebook_to_data
       :  t
       -> data:NotebookData.t
       -> (Uint8Array.t, Uint8Array.t Promise.t) union2
@@ -1984,7 +1998,7 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val viewType : t -> string [@@js.get "viewType"]
+    val view_type : t -> string [@@js.get "viewType"]
 
     val scheme : t -> string [@@js.get "scheme"]
 
@@ -2008,9 +2022,9 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val startTime : t -> int [@@js.get "startTime"]
+    val start_time : t -> int [@@js.get "startTime"]
 
-    val set_startTime : t -> int -> unit [@@js.set "startTime"]
+    val set_start_time : t -> int -> unit [@@js.set "startTime"]
   end
   [@@js.scope "NotebookCellExecuteStartContext"]
 
@@ -2045,9 +2059,9 @@ module Vscode : sig
     val start : t -> ?context:NotebookCellExecuteStartContext.t -> unit -> unit
       [@@js.call "start"]
 
-    val executionOrder : t -> int or_undefined [@@js.get "executionOrder"]
+    val execution_order : t -> int or_undefined [@@js.get "executionOrder"]
 
-    val set_executionOrder : t -> int or_undefined -> unit
+    val set_execution_order : t -> int or_undefined -> unit
       [@@js.set "executionOrder"]
 
     val end_ : t -> ?result:NotebookCellExecuteEndContext.t -> unit -> unit
@@ -2055,36 +2069,36 @@ module Vscode : sig
 
     val token : t -> CancellationToken.t [@@js.get "token"]
 
-    val clearOutput : t -> ?cellIndex:int -> unit -> unit Promise.t
+    val clear_output : t -> ?cell_index:int -> unit -> unit Promise.t
       [@@js.call "clearOutput"]
 
-    val appendOutput
+    val append_output
       :  t
       -> out:(NotebookCellOutput.t, NotebookCellOutput.t) or_array
-      -> ?cellIndex:int
+      -> ?cell_index:int
       -> unit
       -> unit Promise.t
       [@@js.call "appendOutput"]
 
-    val replaceOutput
+    val replace_output
       :  t
       -> out:(NotebookCellOutput.t, NotebookCellOutput.t) or_array
-      -> ?cellIndex:int
+      -> ?cell_index:int
       -> unit
       -> unit Promise.t
       [@@js.call "replaceOutput"]
 
-    val appendOutputItems
+    val append_output_items
       :  t
       -> items:(NotebookCellOutputItem.t, NotebookCellOutputItem.t) or_array
-      -> outputId:string
+      -> output_id:string
       -> unit Promise.t
       [@@js.call "appendOutputItems"]
 
-    val replaceOutputItems
+    val replace_output_items
       :  t
       -> items:(NotebookCellOutputItem.t, NotebookCellOutputItem.t) or_array
-      -> outputId:string
+      -> output_id:string
       -> unit Promise.t
       [@@js.call "replaceOutputItems"]
   end
@@ -2097,15 +2111,15 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val backgroundColor : t -> ThemeColor.t or_string
+    val background_color : t -> ThemeColor.t or_string
       [@@js.get "backgroundColor"]
 
-    val set_backgroundColor : t -> ThemeColor.t or_string -> unit
+    val set_background_color : t -> ThemeColor.t or_string -> unit
       [@@js.set "backgroundColor"]
 
-    val borderColor : t -> ThemeColor.t or_string [@@js.get "borderColor"]
+    val border_color : t -> ThemeColor.t or_string [@@js.get "borderColor"]
 
-    val set_borderColor : t -> ThemeColor.t or_string -> unit
+    val set_border_color : t -> ThemeColor.t or_string -> unit
       [@@js.set "borderColor"]
 
     val top : t -> ThemableDecorationAttachmentRenderOptions.t [@@js.get "top"]
@@ -2138,22 +2152,23 @@ module Vscode : sig
 
     val set_selector : t -> NotebookSelector.t -> unit [@@js.set "selector"]
 
-    val supportedLanguages : t -> string list [@@js.get "supportedLanguages"]
+    val supported_languages : t -> string list [@@js.get "supportedLanguages"]
 
-    val set_supportedLanguages : t -> string list -> unit
+    val set_supported_languages : t -> string list -> unit
       [@@js.set "supportedLanguages"]
 
-    val hasExecutionOrder : t -> bool [@@js.get "hasExecutionOrder"]
+    val has_execution_order : t -> bool [@@js.get "hasExecutionOrder"]
 
-    val set_hasExecutionOrder : t -> bool -> unit [@@js.set "hasExecutionOrder"]
+    val set_has_execution_order : t -> bool -> unit
+      [@@js.set "hasExecutionOrder"]
 
-    val executeHandler
+    val execute_handler
       :  t
       -> executions:NotebookCellExecutionTask.t list
       -> unit
       [@@js.call "executeHandler"]
 
-    val interruptHandler : t -> notebook:NotebookDocument.t -> unit
+    val interrupt_handler : t -> notebook:NotebookDocument.t -> unit
       [@@js.call "interruptHandler"]
   end
   [@@js.scope "NotebookKernelOptions"]
@@ -2177,27 +2192,28 @@ module Vscode : sig
 
     val set_description : t -> string -> unit [@@js.set "description"]
 
-    val supportedLanguages : t -> string list [@@js.get "supportedLanguages"]
+    val supported_languages : t -> string list [@@js.get "supportedLanguages"]
 
-    val set_supportedLanguages : t -> string list -> unit
+    val set_supported_languages : t -> string list -> unit
       [@@js.set "supportedLanguages"]
 
-    val hasExecutionOrder : t -> bool [@@js.get "hasExecutionOrder"]
+    val has_execution_order : t -> bool [@@js.get "hasExecutionOrder"]
 
-    val set_hasExecutionOrder : t -> bool -> unit [@@js.set "hasExecutionOrder"]
+    val set_has_execution_order : t -> bool -> unit
+      [@@js.set "hasExecutionOrder"]
 
-    val executeHandler
+    val execute_handler
       :  t
       -> executions:NotebookCellExecutionTask.t list
       -> unit
       [@@js.call "executeHandler"]
 
-    val interruptHandler : t -> notebook:NotebookDocument.t -> unit
+    val interrupt_handler : t -> notebook:NotebookDocument.t -> unit
       [@@js.call "interruptHandler"]
 
     val dispose : t -> unit [@@js.call "dispose"]
 
-    val createNotebookCellExecutionTask
+    val create_notebook_cell_execution_task
       :  t
       -> cell:NotebookCell.t
       -> NotebookCellExecutionTask.t
@@ -2236,9 +2252,9 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val backupId : t -> string [@@js.get "backupId"]
+    val backup_id : t -> string [@@js.get "backupId"]
 
-    val untitledDocumentData : t -> Uint8Array.t
+    val untitled_document_data : t -> Uint8Array.t
       [@@js.get "untitledDocumentData"]
   end
   [@@js.scope "NotebookDocumentOpenContext"]
@@ -2252,35 +2268,35 @@ module Vscode : sig
 
     val options : t -> NotebookDocumentContentOptions.t [@@js.get "options"]
 
-    val onDidChangeNotebookContentOptions
+    val on_did_change_notebook_content_options
       :  t
       -> NotebookDocumentContentOptions.t Event.t
       [@@js.get "onDidChangeNotebookContentOptions"]
 
-    val openNotebook
+    val open_notebook
       :  t
       -> uri:Uri.t
-      -> openContext:NotebookDocumentOpenContext.t
+      -> open_context:NotebookDocumentOpenContext.t
       -> token:CancellationToken.t
       -> (NotebookData.t, NotebookData.t Promise.t) union2
       [@@js.call "openNotebook"]
 
-    val saveNotebook
+    val save_notebook
       :  t
       -> document:NotebookDocument.t
       -> token:CancellationToken.t
       -> unit Promise.t
       [@@js.call "saveNotebook"]
 
-    val saveNotebookAs
+    val save_notebook_as
       :  t
-      -> targetResource:Uri.t
+      -> target_resource:Uri.t
       -> document:NotebookDocument.t
       -> token:CancellationToken.t
       -> unit Promise.t
       [@@js.call "saveNotebookAs"]
 
-    val backupNotebook
+    val backup_notebook
       :  t
       -> document:NotebookDocument.t
       -> context:NotebookDocumentBackupContext.t
@@ -2297,14 +2313,14 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val viewType : t -> string list or_string [@@js.get "viewType"]
+    val view_type : t -> string list or_string [@@js.get "viewType"]
 
-    val set_viewType : t -> string list or_string -> unit [@@js.set "viewType"]
+    val set_view_type : t -> string list or_string -> unit [@@js.set "viewType"]
 
-    val filenamePattern : t -> NotebookFilenamePattern.t
+    val filename_pattern : t -> NotebookFilenamePattern.t
       [@@js.get "filenamePattern"]
 
-    val set_filenamePattern : t -> NotebookFilenamePattern.t -> unit
+    val set_filename_pattern : t -> NotebookFilenamePattern.t -> unit
       [@@js.set "filenamePattern"]
   end
   [@@js.scope "NotebookDocumentFilter"]
@@ -2322,23 +2338,23 @@ module Vscode : sig
 
     val t_0_of_js : Ojs.t -> t_0
 
-    val onDidChangeKernels : 'T t -> NotebookDocument.t or_undefined Event.t
+    val on_did_change_kernels : 'T t -> NotebookDocument.t or_undefined Event.t
       [@@js.get "onDidChangeKernels"]
 
-    val set_onDidChangeKernels
+    val set_on_did_change_kernels
       :  'T t
       -> NotebookDocument.t or_undefined Event.t
       -> unit
       [@@js.set "onDidChangeKernels"]
 
-    val provideKernels
+    val provide_kernels
       :  'T t
       -> document:NotebookDocument.t
       -> token:CancellationToken.t
       -> 'T list ProviderResult.t
       [@@js.call "provideKernels"]
 
-    val resolveKernel
+    val resolve_kernel
       :  'T t
       -> kernel:'T
       -> document:NotebookDocument.t
@@ -2387,10 +2403,10 @@ module Vscode : sig
     val set_command : t -> Command.t or_string or_undefined -> unit
       [@@js.set "command"]
 
-    val accessibilityInformation : t -> AccessibilityInformation.t
+    val accessibility_information : t -> AccessibilityInformation.t
       [@@js.get "accessibilityInformation"]
 
-    val set_accessibilityInformation : t -> AccessibilityInformation.t -> unit
+    val set_accessibility_information : t -> AccessibilityInformation.t -> unit
       [@@js.set "accessibilityInformation"]
 
     val show : t -> unit [@@js.call "show"]
@@ -2412,41 +2428,41 @@ module Vscode : sig
 
     val set_uri : t -> Uri.t -> unit [@@js.set "uri"]
 
-    val isClosed : t -> bool [@@js.get "isClosed"]
+    val is_closed : t -> bool [@@js.get "isClosed"]
 
-    val set_isClosed : t -> bool -> unit [@@js.set "isClosed"]
+    val set_is_closed : t -> bool -> unit [@@js.set "isClosed"]
 
     val dispose : t -> unit [@@js.call "dispose"]
 
-    val onDidChange : t -> unit Event.t [@@js.get "onDidChange"]
+    val on_did_change : t -> unit Event.t [@@js.get "onDidChange"]
 
-    val set_onDidChange : t -> unit Event.t -> unit [@@js.set "onDidChange"]
+    val set_on_did_change : t -> unit Event.t -> unit [@@js.set "onDidChange"]
 
     val version : t -> int [@@js.get "version"]
 
     val set_version : t -> int -> unit [@@js.set "version"]
 
-    val getText : t -> string [@@js.call "getText"]
+    val get_text : t -> string [@@js.call "getText"]
 
-    val getText' : t -> range:Range.t -> string [@@js.call "getText"]
+    val get_text' : t -> range:Range.t -> string [@@js.call "getText"]
 
-    val offsetAt : t -> position:Position.t -> int [@@js.call "offsetAt"]
+    val offset_at : t -> position:Position.t -> int [@@js.call "offsetAt"]
 
-    val positionAt : t -> offset:int -> Position.t [@@js.call "positionAt"]
+    val position_at : t -> offset:int -> Position.t [@@js.call "positionAt"]
 
-    val validateRange : t -> range:Range.t -> Range.t
+    val validate_range : t -> range:Range.t -> Range.t
       [@@js.call "validateRange"]
 
-    val validatePosition : t -> position:Position.t -> Position.t
+    val validate_position : t -> position:Position.t -> Position.t
       [@@js.call "validatePosition"]
 
-    val locationAt
+    val location_at
       :  t
-      -> positionOrRange:(Position.t, Range.t) union2
+      -> position_or_range:(Position.t, Range.t) union2
       -> Location.t
       [@@js.call "locationAt"]
 
-    val positionAt' : t -> location:Location.t -> Position.t
+    val position_at' : t -> location:Location.t -> Position.t
       [@@js.call "positionAt"]
 
     val contains : t -> uri:Uri.t -> bool [@@js.call "contains"]
@@ -2454,49 +2470,49 @@ module Vscode : sig
   [@@js.scope "NotebookConcatTextDocument"]
 
   module Notebook : sig
-    val openNotebookDocument : uri:Uri.t -> NotebookDocument.t Promise.t
+    val open_notebook_document : uri:Uri.t -> NotebookDocument.t Promise.t
       [@@js.global "openNotebookDocument"]
 
-    val onDidOpenNotebookDocument : NotebookDocument.t Event.t
+    val on_did_open_notebook_document : NotebookDocument.t Event.t
       [@@js.global "onDidOpenNotebookDocument"]
 
-    val onDidCloseNotebookDocument : NotebookDocument.t Event.t
+    val on_did_close_notebook_document : NotebookDocument.t Event.t
       [@@js.global "onDidCloseNotebookDocument"]
 
-    val onDidSaveNotebookDocument : NotebookDocument.t Event.t
+    val on_did_save_notebook_document : NotebookDocument.t Event.t
       [@@js.global "onDidSaveNotebookDocument"]
 
-    val notebookDocuments : NotebookDocument.t list
+    val notebook_documents : NotebookDocument.t list
       [@@js.global "notebookDocuments"]
 
-    val onDidChangeNotebookDocumentMetadata
+    val on_did_change_notebook_document_metadata
       : NotebookDocumentMetadataChangeEvent.t Event.t
       [@@js.global "onDidChangeNotebookDocumentMetadata"]
 
-    val onDidChangeNotebookCells : NotebookCellsChangeEvent.t Event.t
+    val on_did_change_notebook_cells : NotebookCellsChangeEvent.t Event.t
       [@@js.global "onDidChangeNotebookCells"]
 
-    val onDidChangeCellOutputs : NotebookCellOutputsChangeEvent.t Event.t
+    val on_did_change_cell_outputs : NotebookCellOutputsChangeEvent.t Event.t
       [@@js.global "onDidChangeCellOutputs"]
 
-    val onDidChangeCellMetadata : NotebookCellMetadataChangeEvent.t Event.t
+    val on_did_change_cell_metadata : NotebookCellMetadataChangeEvent.t Event.t
       [@@js.global "onDidChangeCellMetadata"]
 
-    val registerNotebookSerializer
-      :  notebookType:string
+    val register_notebook_serializer
+      :  notebook_type:string
       -> provider:NotebookSerializer.t
       -> ?options:NotebookDocumentContentOptions.t
       -> unit
       -> Disposable.t
       [@@js.global "registerNotebookSerializer"]
 
-    val createNotebookKernel
+    val create_notebook_kernel
       :  options:NotebookKernelOptions.t
       -> NotebookKernel2.t
       [@@js.global "createNotebookKernel"]
 
-    val registerNotebookContentProvider
-      :  notebookType:string
+    val register_notebook_content_provider
+      :  notebook_type:string
       -> provider:NotebookContentProvider.t
       -> ?options:
            ( NotebookDocumentContentOptions.t
@@ -2506,32 +2522,32 @@ module Vscode : sig
       -> Disposable.t
       [@@js.global "registerNotebookContentProvider"]
 
-    val createNotebookCellExecutionTask
+    val create_notebook_cell_execution_task
       :  uri:Uri.t
       -> index:int
-      -> kernelId:string
+      -> kernel_id:string
       -> NotebookCellExecutionTask.t or_undefined
       [@@js.global "createNotebookCellExecutionTask"]
 
-    val onDidChangeCellExecutionState
+    val on_did_change_cell_execution_state
       : NotebookCellExecutionStateChangeEvent.t Event.t
       [@@js.global "onDidChangeCellExecutionState"]
 
-    val onDidChangeActiveNotebookKernel : AnonymousInterface4.t Event.t
+    val on_did_change_active_notebook_kernel : AnonymousInterface4.t Event.t
       [@@js.global "onDidChangeActiveNotebookKernel"]
 
-    val registerNotebookKernelProvider
+    val register_notebook_kernel_provider
       :  selector:NotebookDocumentFilter.t
       -> provider:NotebookKernel.t NotebookKernelProvider.t
       -> Disposable.t
       [@@js.global "registerNotebookKernelProvider"]
 
-    val createNotebookEditorDecorationType
+    val create_notebook_editor_decoration_type
       :  options:NotebookDecorationRenderOptions.t
       -> NotebookEditorDecorationType.t
       [@@js.global "createNotebookEditorDecorationType"]
 
-    val createCellStatusBarItem
+    val create_cell_status_bar_item
       :  cell:NotebookCell.t
       -> ?alignment:NotebookCellStatusBarAlignment.t
       -> ?priority:int
@@ -2539,7 +2555,7 @@ module Vscode : sig
       -> NotebookCellStatusBarItem.t
       [@@js.global "createCellStatusBarItem"]
 
-    val createConcatTextDocument
+    val create_concat_text_document
       :  notebook:NotebookDocument.t
       -> ?selector:DocumentSelector.t
       -> unit
@@ -2555,14 +2571,14 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val replaceNotebookMetadata
+    val replace_notebook_metadata
       :  t
       -> uri:Uri.t
       -> value:NotebookDocumentMetadata.t
       -> unit
       [@@js.call "replaceNotebookMetadata"]
 
-    val replaceNotebookCells
+    val replace_notebook_cells
       :  t
       -> uri:Uri.t
       -> start:int
@@ -2573,17 +2589,17 @@ module Vscode : sig
       -> unit
       [@@js.call "replaceNotebookCells"]
 
-    val replaceNotebookCellMetadata
+    val replace_notebook_cell_metadata
       :  t
       -> uri:Uri.t
       -> index:int
-      -> cellMetadata:NotebookCellMetadata.t
+      -> cell_metadata:NotebookCellMetadata.t
       -> ?metadata:WorkspaceEditEntryMetadata.t
       -> unit
       -> unit
       [@@js.call "replaceNotebookCellMetadata"]
 
-    val replaceNotebookCellOutput
+    val replace_notebook_cell_output
       :  t
       -> uri:Uri.t
       -> index:int
@@ -2593,7 +2609,7 @@ module Vscode : sig
       -> unit
       [@@js.call "replaceNotebookCellOutput"]
 
-    val appendNotebookCellOutput
+    val append_notebook_cell_output
       :  t
       -> uri:Uri.t
       -> index:int
@@ -2603,22 +2619,22 @@ module Vscode : sig
       -> unit
       [@@js.call "appendNotebookCellOutput"]
 
-    val replaceNotebookCellOutputItems
+    val replace_notebook_cell_output_items
       :  t
       -> uri:Uri.t
       -> index:int
-      -> outputId:string
+      -> output_id:string
       -> items:NotebookCellOutputItem.t list
       -> ?metadata:WorkspaceEditEntryMetadata.t
       -> unit
       -> unit
       [@@js.call "replaceNotebookCellOutputItems"]
 
-    val appendNotebookCellOutputItems
+    val append_notebook_cell_output_items
       :  t
       -> uri:Uri.t
       -> index:int
-      -> outputId:string
+      -> output_id:string
       -> items:NotebookCellOutputItem.t list
       -> ?metadata:WorkspaceEditEntryMetadata.t
       -> unit
@@ -2684,10 +2700,10 @@ module Vscode : sig
 
     val set_id : t -> string -> unit [@@js.set "id"]
 
-    val iconPath : t -> (ThemeIcon.t, Uri.t, AnonymousInterface9.t) union3
+    val icon_path : t -> (ThemeIcon.t, Uri.t, AnonymousInterface9.t) union3
       [@@js.get "iconPath"]
 
-    val set_iconPath
+    val set_icon_path
       :  t
       -> (ThemeIcon.t, Uri.t, AnonymousInterface9.t) union3
       -> unit
@@ -2705,14 +2721,14 @@ module Vscode : sig
 
     val set_command : t -> Command.t -> unit [@@js.set "command"]
 
-    val contextValue : t -> string [@@js.get "contextValue"]
+    val context_value : t -> string [@@js.get "contextValue"]
 
-    val set_contextValue : t -> string -> unit [@@js.set "contextValue"]
+    val set_context_value : t -> string -> unit [@@js.set "contextValue"]
 
-    val accessibilityInformation : t -> AccessibilityInformation.t
+    val accessibility_information : t -> AccessibilityInformation.t
       [@@js.get "accessibilityInformation"]
 
-    val set_accessibilityInformation : t -> AccessibilityInformation.t -> unit
+    val set_accessibility_information : t -> AccessibilityInformation.t -> unit
       [@@js.set "accessibilityInformation"]
 
     val create : label:string -> timestamp:int -> t [@@js.create]
@@ -2784,10 +2800,10 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val onDidChange : t -> TimelineChangeEvent.t or_undefined Event.t
+    val on_did_change : t -> TimelineChangeEvent.t or_undefined Event.t
       [@@js.get "onDidChange"]
 
-    val set_onDidChange
+    val set_on_did_change
       :  t
       -> TimelineChangeEvent.t or_undefined Event.t
       -> unit
@@ -2797,7 +2813,7 @@ module Vscode : sig
 
     val label : t -> string [@@js.get "label"]
 
-    val provideTimeline
+    val provide_timeline
       :  t
       -> uri:Uri.t
       -> options:TimelineOptions.t
@@ -2875,13 +2891,13 @@ module Vscode : sig
     val set_description : t -> MarkdownString.t or_string -> unit
       [@@js.set "description"]
 
-    val whitespaceBefore : t -> bool [@@js.get "whitespaceBefore"]
+    val whitespace_before : t -> bool [@@js.get "whitespaceBefore"]
 
-    val set_whitespaceBefore : t -> bool -> unit [@@js.set "whitespaceBefore"]
+    val set_whitespace_before : t -> bool -> unit [@@js.set "whitespaceBefore"]
 
-    val whitespaceAfter : t -> bool [@@js.get "whitespaceAfter"]
+    val whitespace_after : t -> bool [@@js.get "whitespaceAfter"]
 
-    val set_whitespaceAfter : t -> bool -> unit [@@js.set "whitespaceAfter"]
+    val set_whitespace_after : t -> bool -> unit [@@js.set "whitespaceAfter"]
 
     val create
       :  text:string
@@ -2900,13 +2916,13 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val onDidChangeInlineHints : t -> unit Event.t
+    val on_did_change_inline_hints : t -> unit Event.t
       [@@js.get "onDidChangeInlineHints"]
 
-    val set_onDidChangeInlineHints : t -> unit Event.t -> unit
+    val set_on_did_change_inline_hints : t -> unit Event.t -> unit
       [@@js.set "onDidChangeInlineHints"]
 
-    val provideInlineHints
+    val provide_inline_hints
       :  t
       -> model:TextDocument.t
       -> range:Range.t
@@ -2917,13 +2933,13 @@ module Vscode : sig
   [@@js.scope "InlineHintsProvider"]
 
   module Languages : sig
-    val getTokenInformationAtPosition
+    val get_token_information_at_position
       :  document:TextDocument.t
       -> position:Position.t
       -> TokenInformation.t Promise.t
       [@@js.global "getTokenInformationAtPosition"]
 
-    val registerInlineHintsProvider
+    val register_inline_hints_provider
       :  selector:DocumentSelector.t
       -> provider:InlineHintsProvider.t
       -> Disposable.t
@@ -2950,7 +2966,8 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val extensionRuntime : t -> ExtensionRuntime.t [@@js.get "extensionRuntime"]
+    val extension_runtime : t -> ExtensionRuntime.t
+      [@@js.get "extensionRuntime"]
   end
   [@@js.scope "ExtensionContext"]
 
@@ -3052,7 +3069,7 @@ module Vscode : sig
 
     val invalidate : 'TChildren t -> unit [@@js.call "invalidate"]
 
-    val discoverChildren
+    val discover_children
       :  'TChildren t
       -> progress:AnonymousInterface0.t Progress.t
       -> token:CancellationToken.t
@@ -3085,10 +3102,10 @@ module Vscode : sig
 
     val tests : t -> any TestItem.t list [@@js.get "tests"]
 
-    val onDidChangeTest : t -> TestsChangeEvent.t Event.t
+    val on_did_change_test : t -> TestsChangeEvent.t Event.t
       [@@js.get "onDidChangeTest"]
 
-    val onDidDiscoverInitialTests : t -> unit Event.t
+    val on_did_discover_initial_tests : t -> unit Event.t
       [@@js.get "onDidDiscoverInitialTests"]
 
     val dispose : t -> unit [@@js.call "dispose"]
@@ -3169,13 +3186,13 @@ module Vscode : sig
 
     val set_severity : t -> TestMessageSeverity.t -> unit [@@js.set "severity"]
 
-    val expectedOutput : t -> string [@@js.get "expectedOutput"]
+    val expected_output : t -> string [@@js.get "expectedOutput"]
 
-    val set_expectedOutput : t -> string -> unit [@@js.set "expectedOutput"]
+    val set_expected_output : t -> string -> unit [@@js.set "expectedOutput"]
 
-    val actualOutput : t -> string [@@js.get "actualOutput"]
+    val actual_output : t -> string [@@js.get "actualOutput"]
 
-    val set_actualOutput : t -> string -> unit [@@js.set "actualOutput"]
+    val set_actual_output : t -> string -> unit [@@js.set "actualOutput"]
 
     val location : t -> Location.t [@@js.get "location"]
 
@@ -3226,9 +3243,9 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val completedAt : t -> int [@@js.get "completedAt"]
+    val completed_at : t -> int [@@js.get "completedAt"]
 
-    val set_completedAt : t -> int -> unit [@@js.set "completedAt"]
+    val set_completed_at : t -> int -> unit [@@js.set "completedAt"]
 
     val output : t -> string [@@js.get "output"]
 
@@ -3252,7 +3269,7 @@ module Vscode : sig
 
     val t_0_of_js : Ojs.t -> t_0
 
-    val setState
+    val set_state
       :  'T t
       -> test:'T
       -> state:TestResultState.t
@@ -3261,10 +3278,10 @@ module Vscode : sig
       -> unit
       [@@js.call "setState"]
 
-    val appendMessage : 'T t -> test:'T -> message:TestMessage.t -> unit
+    val append_message : 'T t -> test:'T -> message:TestMessage.t -> unit
       [@@js.call "appendMessage"]
 
-    val appendOutput : 'T t -> output:string -> unit [@@js.call "appendOutput"]
+    val append_output : 'T t -> output:string -> unit [@@js.call "appendOutput"]
   end
   [@@js.scope "TestRunOptions"]
 
@@ -3281,21 +3298,21 @@ module Vscode : sig
 
     val t_0_of_js : Ojs.t -> t_0
 
-    val provideWorkspaceTestRoot
+    val provide_workspace_test_root
       :  'T t
       -> workspace:WorkspaceFolder.t
       -> token:CancellationToken.t
       -> 'T ProviderResult.t
       [@@js.call "provideWorkspaceTestRoot"]
 
-    val provideDocumentTestRoot
+    val provide_document_test_root
       :  'T t
       -> document:TextDocument.t
       -> token:CancellationToken.t
       -> 'T ProviderResult.t
       [@@js.call "provideDocumentTestRoot"]
 
-    val runTests
+    val run_tests
       :  'T t
       -> options:'T TestRunOptions.t
       -> token:CancellationToken.t
@@ -3305,34 +3322,36 @@ module Vscode : sig
   [@@js.scope "TestProvider"]
 
   module Test : sig
-    val registerTestProvider : testProvider:'T TestProvider.t -> Disposable.t
+    val register_test_provider : test_provider:'T TestProvider.t -> Disposable.t
       [@@js.global "registerTestProvider"]
 
-    val runTests
+    val run_tests
       :  run:'T TestRunRequest.t
       -> ?token:CancellationToken.t
       -> unit
       -> unit Promise.t
       [@@js.global "runTests"]
 
-    val createWorkspaceTestObserver
-      :  workspaceFolder:WorkspaceFolder.t
+    val create_workspace_test_observer
+      :  workspace_folder:WorkspaceFolder.t
       -> TestObserver.t
       [@@js.global "createWorkspaceTestObserver"]
 
-    val createDocumentTestObserver : document:TextDocument.t -> TestObserver.t
+    val create_document_test_observer
+      :  document:TextDocument.t
+      -> TestObserver.t
       [@@js.global "createDocumentTestObserver"]
 
-    val publishTestResult
+    val publish_test_result
       :  results:TestRunResult.t
       -> ?persist:bool
       -> unit
       -> unit
       [@@js.global "publishTestResult"]
 
-    val testResults : TestRunResult.t list [@@js.global "testResults"]
+    val test_results : TestRunResult.t list [@@js.global "testResults"]
 
-    val onDidChangeTestResults : unit Event.t
+    val on_did_change_test_results : unit Event.t
       [@@js.global "onDidChangeTestResults"]
   end
   [@@js.scope "test"]
@@ -3358,7 +3377,7 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val sourceUri : t -> Uri.t [@@js.get "sourceUri"]
+    val source_uri : t -> Uri.t [@@js.get "sourceUri"]
   end
   [@@js.scope "OpenExternalUriContext"]
 
@@ -3369,7 +3388,7 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val canOpenExternalUri
+    val can_open_external_uri
       :  t
       -> uri:Uri.t
       -> token:CancellationToken.t
@@ -3385,9 +3404,9 @@ module Vscode : sig
          or_enum
       [@@js.call "canOpenExternalUri"]
 
-    val openExternalUri
+    val open_external_uri
       :  t
-      -> resolvedUri:Uri.t
+      -> resolved_uri:Uri.t
       -> ctx:OpenExternalUriContext.t
       -> token:CancellationToken.t
       -> (unit, unit Promise.t) union2
@@ -3415,13 +3434,13 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val allowContributedOpeners : t -> bool or_string
+    val allow_contributed_openers : t -> bool or_string
       [@@js.get "allowContributedOpeners"]
   end
   [@@js.scope "OpenExternalOptions"]
 
   module Env : sig
-    val openExternal
+    val open_external
       :  target:Uri.t
       -> ?options:OpenExternalOptions.t
       -> unit
@@ -3467,7 +3486,7 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val newTrustState : t -> WorkspaceTrustState.t [@@js.get "newTrustState"]
+    val new_trust_state : t -> WorkspaceTrustState.t [@@js.get "newTrustState"]
   end
   [@@js.scope "WorkspaceTrustStateChangeEvent"]
 
@@ -3489,7 +3508,7 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val postMessage : t -> message:any -> bool Promise.t
+    val post_message : t -> message:any -> bool Promise.t
       [@@js.call "postMessage"]
   end
   [@@js.scope "Webview"]
@@ -3520,10 +3539,10 @@ module Vscode : sig
 
     val set_port : t -> int -> unit [@@js.set "port"]
 
-    val autoForwardAction : t -> PortAutoForwardAction.t
+    val auto_forward_action : t -> PortAutoForwardAction.t
       [@@js.get "autoForwardAction"]
 
-    val set_autoForwardAction : t -> PortAutoForwardAction.t -> unit
+    val set_auto_forward_action : t -> PortAutoForwardAction.t -> unit
       [@@js.set "autoForwardAction"]
   end
   [@@js.scope "PortAttributes"]
@@ -3535,11 +3554,11 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val providePortAttributes
+    val provide_port_attributes
       :  t
       -> port:int
       -> pid:int or_undefined
-      -> commandLine:string or_undefined
+      -> command_line:string or_undefined
       -> token:CancellationToken.t
       -> PortAttributes.t ProviderResult.t
       [@@js.call "providePortAttributes"]
@@ -3547,7 +3566,7 @@ module Vscode : sig
   [@@js.scope "PortAttributesProvider"]
 
   module Window : sig
-    val createWebviewTextEditorInset
+    val create_webview_text_editor_inset
       :  editor:TextEditor.t
       -> line:int
       -> height:int
@@ -3556,98 +3575,100 @@ module Vscode : sig
       -> WebviewEditorInset.t
       [@@js.global "createWebviewTextEditorInset"]
 
-    val onDidWriteTerminalData : TerminalDataWriteEvent.t Event.t
+    val on_did_write_terminal_data : TerminalDataWriteEvent.t Event.t
       [@@js.global "onDidWriteTerminalData"]
 
-    val onDidChangeTerminalDimensions : TerminalDimensionsChangeEvent.t Event.t
+    val on_did_change_terminal_dimensions
+      : TerminalDimensionsChangeEvent.t Event.t
       [@@js.global "onDidChangeTerminalDimensions"]
 
-    val createStatusBarItem
+    val create_status_bar_item
       :  ?options:StatusBarItemOptions.t
       -> unit
       -> StatusBarItem.t
       [@@js.global "createStatusBarItem"]
 
-    val visibleNotebookEditors : NotebookEditor.t list
+    val visible_notebook_editors : NotebookEditor.t list
       [@@js.global "visibleNotebookEditors"]
 
-    val onDidChangeVisibleNotebookEditors : NotebookEditor.t list Event.t
+    val on_did_change_visible_notebook_editors : NotebookEditor.t list Event.t
       [@@js.global "onDidChangeVisibleNotebookEditors"]
 
-    val activeNotebookEditor : NotebookEditor.t or_undefined
+    val active_notebook_editor : NotebookEditor.t or_undefined
       [@@js.global "activeNotebookEditor"]
 
-    val onDidChangeActiveNotebookEditor : NotebookEditor.t or_undefined Event.t
+    val on_did_change_active_notebook_editor
+      : NotebookEditor.t or_undefined Event.t
       [@@js.global "onDidChangeActiveNotebookEditor"]
 
-    val onDidChangeNotebookEditorSelection
+    val on_did_change_notebook_editor_selection
       : NotebookEditorSelectionChangeEvent.t Event.t
       [@@js.global "onDidChangeNotebookEditorSelection"]
 
-    val onDidChangeNotebookEditorVisibleRanges
+    val on_did_change_notebook_editor_visible_ranges
       : NotebookEditorVisibleRangesChangeEvent.t Event.t
       [@@js.global "onDidChangeNotebookEditorVisibleRanges"]
 
-    val showNotebookDocument
+    val show_notebook_document
       :  uri:Uri.t
       -> ?options:NotebookDocumentShowOptions.t
       -> unit
       -> NotebookEditor.t Promise.t
       [@@js.global "showNotebookDocument"]
 
-    val showNotebookDocument
+    val show_notebook_document
       :  document:NotebookDocument.t
       -> ?options:NotebookDocumentShowOptions.t
       -> unit
       -> NotebookEditor.t Promise.t
       [@@js.global "showNotebookDocument"]
 
-    val registerExternalUriOpener
+    val register_external_uri_opener
       :  id:string
       -> opener:ExternalUriOpener.t
       -> metadata:ExternalUriOpenerMetadata.t
       -> Disposable.t
       [@@js.global "registerExternalUriOpener"]
 
-    val openEditors : OpenEditorInfo.t list [@@js.global "openEditors"]
+    val open_editors : OpenEditorInfo.t list [@@js.global "openEditors"]
 
-    val onDidChangeOpenEditors : unit Event.t
+    val on_did_change_open_editors : unit Event.t
       [@@js.global "onDidChangeOpenEditors"]
   end
   [@@js.scope "window"]
 
   module Workspace : sig
-    val openTunnel : tunnelOptions:TunnelOptions.t -> Tunnel.t Promise.t
+    val open_tunnel : tunnel_options:TunnelOptions.t -> Tunnel.t Promise.t
       [@@js.global "openTunnel"]
 
     val tunnels : TunnelDescription.t list Promise.t [@@js.global "tunnels"]
 
-    val onDidChangeTunnels : unit Event.t [@@js.global "onDidChangeTunnels"]
+    val on_did_change_tunnels : unit Event.t [@@js.global "onDidChangeTunnels"]
 
-    val registerRemoteAuthorityResolver
-      :  authorityPrefix:string
+    val register_remote_authority_resolver
+      :  authority_prefix:string
       -> resolver:RemoteAuthorityResolver.t
       -> Disposable.t
       [@@js.global "registerRemoteAuthorityResolver"]
 
-    val registerResourceLabelFormatter
+    val register_resource_label_formatter
       :  formatter:ResourceLabelFormatter.t
       -> Disposable.t
       [@@js.global "registerResourceLabelFormatter"]
 
-    val registerFileSearchProvider
+    val register_file_search_provider
       :  scheme:string
       -> provider:FileSearchProvider.t
       -> Disposable.t
       [@@js.global "registerFileSearchProvider"]
 
-    val registerTextSearchProvider
+    val register_text_search_provider
       :  scheme:string
       -> provider:TextSearchProvider.t
       -> Disposable.t
       [@@js.global "registerTextSearchProvider"]
 
-    val findTextInFiles
+    val find_text_in_files
       :  query:TextSearchQuery.t
       -> callback:(result:TextSearchResult.t -> unit)
       -> ?token:CancellationToken.t
@@ -3655,7 +3676,7 @@ module Vscode : sig
       -> TextSearchComplete.t Promise.t
       [@@js.global "findTextInFiles"]
 
-    val findTextInFiles
+    val find_text_in_files
       :  query:TextSearchQuery.t
       -> options:FindTextInFilesOptions.t
       -> callback:(result:TextSearchResult.t -> unit)
@@ -3664,26 +3685,26 @@ module Vscode : sig
       -> TextSearchComplete.t Promise.t
       [@@js.global "findTextInFiles"]
 
-    val registerTimelineProvider
+    val register_timeline_provider
       :  scheme:string list or_string
       -> provider:TimelineProvider.t
       -> Disposable.t
       [@@js.global "registerTimelineProvider"]
 
-    val trustState : WorkspaceTrustState.t [@@js.global "trustState"]
+    val trust_state : WorkspaceTrustState.t [@@js.global "trustState"]
 
-    val requestWorkspaceTrust
+    val request_workspace_trust
       :  ?options:WorkspaceTrustRequestOptions.t
       -> unit
       -> WorkspaceTrustState.t or_undefined Promise.t
       [@@js.global "requestWorkspaceTrust"]
 
-    val onDidChangeWorkspaceTrustState
+    val on_did_change_workspace_trust_state
       : WorkspaceTrustStateChangeEvent.t Event.t
       [@@js.global "onDidChangeWorkspaceTrustState"]
 
-    val registerPortAttributesProvider
-      :  portSelector:AnonymousInterface10.t
+    val register_port_attributes_provider
+      :  port_selector:AnonymousInterface10.t
       -> provider:PortAttributesProvider.t
       -> Disposable.t
       [@@js.global "registerPortAttributesProvider"]

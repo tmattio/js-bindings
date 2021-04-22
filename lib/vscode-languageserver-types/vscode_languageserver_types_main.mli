@@ -39,9 +39,9 @@ module AnonymousInterface2 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get : t -> string -> _ChangeAnnotation [@@js.index_get]
+  val get : t -> string -> ChangeAnnotation.t [@@js.index_get]
 
-  val set : t -> string -> _ChangeAnnotation -> unit [@@js.index_set]
+  val set : t -> string -> ChangeAnnotation.t -> unit [@@js.index_set]
 end
 
 module AnonymousInterface3 : sig
@@ -51,9 +51,9 @@ module AnonymousInterface3 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get : t -> string -> _TextEdit list [@@js.index_get]
+  val get : t -> string -> TextEdit.t list [@@js.index_get]
 
-  val set : t -> string -> _TextEdit list -> unit [@@js.index_set]
+  val set : t -> string -> TextEdit.t list -> unit [@@js.index_set]
 end
 
 module DocumentUri : sig
@@ -77,9 +77,9 @@ module Integer : sig
 
   val t_to_js : t -> Ojs.t
 
-  val mIN_VALUE : (* FIXME: unknown type *) any [@@js.global "MIN_VALUE"]
+  val min_value : (* FIXME: unknown type *) any [@@js.global "MIN_VALUE"]
 
-  val mAX_VALUE : int [@@js.global "MAX_VALUE"]
+  val max_value : int [@@js.global "MAX_VALUE"]
 end
 [@@js.scope "integer"]
 
@@ -90,9 +90,9 @@ module Uinteger : sig
 
   val t_of_js : Ojs.t -> t
 
-  val mIN_VALUE : int [@@js.global "MIN_VALUE"]
+  val min_value : int [@@js.global "MIN_VALUE"]
 
-  val mAX_VALUE : int [@@js.global "MAX_VALUE"]
+  val max_value : int [@@js.global "MAX_VALUE"]
 end
 [@@js.scope "uinteger"]
 
@@ -105,7 +105,7 @@ module Decimal : sig
 end
 
 module Position : sig
-  type t = _Position
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -119,7 +119,7 @@ module Position : sig
 
   val set_character : t -> uinteger -> unit [@@js.set "character"]
 
-  val create_ : line:uinteger -> character:uinteger -> _Position
+  val create_ : line:uinteger -> character:uinteger -> Position.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -127,29 +127,29 @@ end
 [@@js.scope "Position"]
 
 module Range : sig
-  type t = _Range
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_start : t -> _Position [@@js.get "start"]
+  val get_start : t -> Position.t [@@js.get "start"]
 
-  val set_start : t -> _Position -> unit [@@js.set "start"]
+  val set_start : t -> Position.t -> unit [@@js.set "start"]
 
-  val get_end : t -> _Position [@@js.get "end"]
+  val get_end : t -> Position.t [@@js.get "end"]
 
-  val set_end : t -> _Position -> unit [@@js.set "end"]
+  val set_end : t -> Position.t -> unit [@@js.set "end"]
 
-  val create_ : start:_Position -> end_:_Position -> _Range
+  val create_ : start:Position.t -> end_:Position.t -> Range.t
     [@@js.global "create"]
 
   val create_
-    :  startLine:uinteger
-    -> startCharacter:uinteger
-    -> endLine:uinteger
-    -> endCharacter:uinteger
-    -> _Range
+    :  start_line:uinteger
+    -> start_character:uinteger
+    -> end_line:uinteger
+    -> end_character:uinteger
+    -> Range.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -157,21 +157,21 @@ end
 [@@js.scope "Range"]
 
 module Location : sig
-  type t = _Location
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_uri : t -> _DocumentUri [@@js.get "uri"]
+  val get_uri : t -> DocumentUri.t [@@js.get "uri"]
 
-  val set_uri : t -> _DocumentUri -> unit [@@js.set "uri"]
+  val set_uri : t -> DocumentUri.t -> unit [@@js.set "uri"]
 
-  val get_range : t -> _Range [@@js.get "range"]
+  val get_range : t -> Range.t [@@js.get "range"]
 
-  val set_range : t -> _Range -> unit [@@js.set "range"]
+  val set_range : t -> Range.t -> unit [@@js.set "range"]
 
-  val create_ : uri:_DocumentUri -> range:_Range -> _Location
+  val create_ : uri:DocumentUri.t -> range:Range.t -> Location.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -179,37 +179,39 @@ end
 [@@js.scope "Location"]
 
 module LocationLink : sig
-  type t = _LocationLink
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_originSelectionRange : t -> _Range [@@js.get "originSelectionRange"]
+  val get_origin_selection_range : t -> Range.t
+    [@@js.get "originSelectionRange"]
 
-  val set_originSelectionRange : t -> _Range -> unit
+  val set_origin_selection_range : t -> Range.t -> unit
     [@@js.set "originSelectionRange"]
 
-  val get_targetUri : t -> _DocumentUri [@@js.get "targetUri"]
+  val get_target_uri : t -> DocumentUri.t [@@js.get "targetUri"]
 
-  val set_targetUri : t -> _DocumentUri -> unit [@@js.set "targetUri"]
+  val set_target_uri : t -> DocumentUri.t -> unit [@@js.set "targetUri"]
 
-  val get_targetRange : t -> _Range [@@js.get "targetRange"]
+  val get_target_range : t -> Range.t [@@js.get "targetRange"]
 
-  val set_targetRange : t -> _Range -> unit [@@js.set "targetRange"]
+  val set_target_range : t -> Range.t -> unit [@@js.set "targetRange"]
 
-  val get_targetSelectionRange : t -> _Range [@@js.get "targetSelectionRange"]
+  val get_target_selection_range : t -> Range.t
+    [@@js.get "targetSelectionRange"]
 
-  val set_targetSelectionRange : t -> _Range -> unit
+  val set_target_selection_range : t -> Range.t -> unit
     [@@js.set "targetSelectionRange"]
 
   val create_
-    :  targetUri:_DocumentUri
-    -> targetRange:_Range
-    -> targetSelectionRange:_Range
-    -> ?originSelectionRange:_Range
+    :  target_uri:DocumentUri.t
+    -> target_range:Range.t
+    -> target_selection_range:Range.t
+    -> ?origin_selection_range:Range.t
     -> unit
-    -> _LocationLink
+    -> LocationLink.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -217,7 +219,7 @@ end
 [@@js.scope "LocationLink"]
 
 module Color : sig
-  type t = _Color
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -236,7 +238,7 @@ module Color : sig
     -> green:decimal
     -> blue:decimal
     -> alpha:decimal
-    -> _Color
+    -> Color.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -244,21 +246,21 @@ end
 [@@js.scope "Color"]
 
 module ColorInformation : sig
-  type t = _ColorInformation
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_range : t -> _Range [@@js.get "range"]
+  val get_range : t -> Range.t [@@js.get "range"]
 
-  val set_range : t -> _Range -> unit [@@js.set "range"]
+  val set_range : t -> Range.t -> unit [@@js.set "range"]
 
-  val get_color : t -> _Color [@@js.get "color"]
+  val get_color : t -> Color.t [@@js.get "color"]
 
-  val set_color : t -> _Color -> unit [@@js.set "color"]
+  val set_color : t -> Color.t -> unit [@@js.set "color"]
 
-  val create_ : range:_Range -> color:_Color -> _ColorInformation
+  val create_ : range:Range.t -> color:Color.t -> ColorInformation.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -266,7 +268,7 @@ end
 [@@js.scope "ColorInformation"]
 
 module ColorPresentation : sig
-  type t = _ColorPresentation
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -276,22 +278,22 @@ module ColorPresentation : sig
 
   val set_label : t -> string -> unit [@@js.set "label"]
 
-  val get_textEdit : t -> _TextEdit [@@js.get "textEdit"]
+  val get_text_edit : t -> TextEdit.t [@@js.get "textEdit"]
 
-  val set_textEdit : t -> _TextEdit -> unit [@@js.set "textEdit"]
+  val set_text_edit : t -> TextEdit.t -> unit [@@js.set "textEdit"]
 
-  val get_additionalTextEdits : t -> _TextEdit list
+  val get_additional_text_edits : t -> TextEdit.t list
     [@@js.get "additionalTextEdits"]
 
-  val set_additionalTextEdits : t -> _TextEdit list -> unit
+  val set_additional_text_edits : t -> TextEdit.t list -> unit
     [@@js.set "additionalTextEdits"]
 
   val create_
     :  label:string
-    -> ?textEdit:_TextEdit
-    -> ?additionalTextEdits:_TextEdit list
+    -> ?text_edit:TextEdit.t
+    -> ?additional_text_edits:TextEdit.t list
     -> unit
-    -> _ColorPresentation
+    -> ColorPresentation.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -312,40 +314,40 @@ module FoldingRangeKind : sig
 end
 
 module FoldingRange : sig
-  type t = _FoldingRange
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_startLine : t -> uinteger [@@js.get "startLine"]
+  val get_start_line : t -> uinteger [@@js.get "startLine"]
 
-  val set_startLine : t -> uinteger -> unit [@@js.set "startLine"]
+  val set_start_line : t -> uinteger -> unit [@@js.set "startLine"]
 
-  val get_startCharacter : t -> uinteger [@@js.get "startCharacter"]
+  val get_start_character : t -> uinteger [@@js.get "startCharacter"]
 
-  val set_startCharacter : t -> uinteger -> unit [@@js.set "startCharacter"]
+  val set_start_character : t -> uinteger -> unit [@@js.set "startCharacter"]
 
-  val get_endLine : t -> uinteger [@@js.get "endLine"]
+  val get_end_line : t -> uinteger [@@js.get "endLine"]
 
-  val set_endLine : t -> uinteger -> unit [@@js.set "endLine"]
+  val set_end_line : t -> uinteger -> unit [@@js.set "endLine"]
 
-  val get_endCharacter : t -> uinteger [@@js.get "endCharacter"]
+  val get_end_character : t -> uinteger [@@js.get "endCharacter"]
 
-  val set_endCharacter : t -> uinteger -> unit [@@js.set "endCharacter"]
+  val set_end_character : t -> uinteger -> unit [@@js.set "endCharacter"]
 
   val get_kind : t -> string [@@js.get "kind"]
 
   val set_kind : t -> string -> unit [@@js.set "kind"]
 
   val create_
-    :  startLine:uinteger
-    -> endLine:uinteger
-    -> ?startCharacter:uinteger
-    -> ?endCharacter:uinteger
+    :  start_line:uinteger
+    -> end_line:uinteger
+    -> ?start_character:uinteger
+    -> ?end_character:uinteger
     -> ?kind:string
     -> unit
-    -> _FoldingRange
+    -> FoldingRange.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -353,24 +355,24 @@ end
 [@@js.scope "FoldingRange"]
 
 module DiagnosticRelatedInformation : sig
-  type t = _DiagnosticRelatedInformation
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_location : t -> _Location [@@js.get "location"]
+  val get_location : t -> Location.t [@@js.get "location"]
 
-  val set_location : t -> _Location -> unit [@@js.set "location"]
+  val set_location : t -> Location.t -> unit [@@js.set "location"]
 
   val get_message : t -> string [@@js.get "message"]
 
   val set_message : t -> string -> unit [@@js.set "message"]
 
   val create_
-    :  location:_Location
+    :  location:Location.t
     -> message:string
-    -> _DiagnosticRelatedInformation
+    -> DiagnosticRelatedInformation.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -418,43 +420,43 @@ end
 [@@js.scope "DiagnosticTag"]
 
 module CodeDescription : sig
-  type t = _CodeDescription
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_href : t -> _URI [@@js.get "href"]
+  val get_href : t -> URI.t [@@js.get "href"]
 
-  val set_href : t -> _URI -> unit [@@js.set "href"]
+  val set_href : t -> URI.t -> unit [@@js.set "href"]
 
-  val is : value:_CodeDescription or_null_or_undefined -> bool
+  val is : value:CodeDescription.t or_null_or_undefined -> bool
     [@@js.global "is"]
 end
 [@@js.scope "CodeDescription"]
 
 module Diagnostic : sig
-  type t = _Diagnostic
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_range : t -> _Range [@@js.get "range"]
+  val get_range : t -> Range.t [@@js.get "range"]
 
-  val set_range : t -> _Range -> unit [@@js.set "range"]
+  val set_range : t -> Range.t -> unit [@@js.set "range"]
 
-  val get_severity : t -> _DiagnosticSeverity [@@js.get "severity"]
+  val get_severity : t -> DiagnosticSeverity.t [@@js.get "severity"]
 
-  val set_severity : t -> _DiagnosticSeverity -> unit [@@js.set "severity"]
+  val set_severity : t -> DiagnosticSeverity.t -> unit [@@js.set "severity"]
 
   val get_code : t -> integer or_string [@@js.get "code"]
 
   val set_code : t -> integer or_string -> unit [@@js.set "code"]
 
-  val get_codeDescription : t -> _CodeDescription [@@js.get "codeDescription"]
+  val get_code_description : t -> CodeDescription.t [@@js.get "codeDescription"]
 
-  val set_codeDescription : t -> _CodeDescription -> unit
+  val set_code_description : t -> CodeDescription.t -> unit
     [@@js.set "codeDescription"]
 
   val get_source : t -> string [@@js.get "source"]
@@ -465,14 +467,14 @@ module Diagnostic : sig
 
   val set_message : t -> string -> unit [@@js.set "message"]
 
-  val get_tags : t -> _DiagnosticTag list [@@js.get "tags"]
+  val get_tags : t -> DiagnosticTag.t list [@@js.get "tags"]
 
-  val set_tags : t -> _DiagnosticTag list -> unit [@@js.set "tags"]
+  val set_tags : t -> DiagnosticTag.t list -> unit [@@js.set "tags"]
 
-  val get_relatedInformation : t -> _DiagnosticRelatedInformation list
+  val get_related_information : t -> DiagnosticRelatedInformation.t list
     [@@js.get "relatedInformation"]
 
-  val set_relatedInformation : t -> _DiagnosticRelatedInformation list -> unit
+  val set_related_information : t -> DiagnosticRelatedInformation.t list -> unit
     [@@js.set "relatedInformation"]
 
   val get_data : t -> unknown [@@js.get "data"]
@@ -480,14 +482,14 @@ module Diagnostic : sig
   val set_data : t -> unknown -> unit [@@js.set "data"]
 
   val create_
-    :  range:_Range
+    :  range:Range.t
     -> message:string
-    -> ?severity:_DiagnosticSeverity
+    -> ?severity:DiagnosticSeverity.t
     -> ?code:integer or_string
     -> ?source:string
-    -> ?relatedInformation:_DiagnosticRelatedInformation list
+    -> ?related_information:DiagnosticRelatedInformation.t list
     -> unit
-    -> _Diagnostic
+    -> Diagnostic.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -495,7 +497,7 @@ end
 [@@js.scope "Diagnostic"]
 
 module Command : sig
-  type t = _Command
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -517,7 +519,7 @@ module Command : sig
     :  title:string
     -> command:string
     -> args:(any list[@js.variadic])
-    -> _Command
+    -> Command.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -525,34 +527,34 @@ end
 [@@js.scope "Command"]
 
 module TextEdit : sig
-  type t = _TextEdit
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_range : t -> _Range [@@js.get "range"]
+  val get_range : t -> Range.t [@@js.get "range"]
 
-  val set_range : t -> _Range -> unit [@@js.set "range"]
+  val set_range : t -> Range.t -> unit [@@js.set "range"]
 
-  val get_newText : t -> string [@@js.get "newText"]
+  val get_new_text : t -> string [@@js.get "newText"]
 
-  val set_newText : t -> string -> unit [@@js.set "newText"]
+  val set_new_text : t -> string -> unit [@@js.set "newText"]
 
-  val replace : range:_Range -> newText:string -> _TextEdit
+  val replace : range:Range.t -> new_text:string -> TextEdit.t
     [@@js.global "replace"]
 
-  val insert : position:_Position -> newText:string -> _TextEdit
+  val insert : position:Position.t -> new_text:string -> TextEdit.t
     [@@js.global "insert"]
 
-  val del : range:_Range -> _TextEdit [@@js.global "del"]
+  val del : range:Range.t -> TextEdit.t [@@js.global "del"]
 
   val is : value:any -> bool [@@js.global "is"]
 end
 [@@js.scope "TextEdit"]
 
 module ChangeAnnotation : sig
-  type t = _ChangeAnnotation
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -562,9 +564,9 @@ module ChangeAnnotation : sig
 
   val set_label : t -> string -> unit [@@js.set "label"]
 
-  val get_needsConfirmation : t -> bool [@@js.get "needsConfirmation"]
+  val get_needs_confirmation : t -> bool [@@js.get "needsConfirmation"]
 
-  val set_needsConfirmation : t -> bool -> unit [@@js.set "needsConfirmation"]
+  val set_needs_confirmation : t -> bool -> unit [@@js.set "needsConfirmation"]
 
   val get_description : t -> string [@@js.get "description"]
 
@@ -572,10 +574,10 @@ module ChangeAnnotation : sig
 
   val create_
     :  label:string
-    -> ?needsConfirmation:bool
+    -> ?needs_confirmation:bool
     -> ?description:string
     -> unit
-    -> _ChangeAnnotation
+    -> ChangeAnnotation.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -594,38 +596,38 @@ end
 [@@js.scope "ChangeAnnotationIdentifier"]
 
 module AnnotatedTextEdit : sig
-  type t = _AnnotatedTextEdit
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_annotationId : t -> _ChangeAnnotationIdentifier
+  val get_annotation_id : t -> ChangeAnnotationIdentifier.t
     [@@js.get "annotationId"]
 
-  val set_annotationId : t -> _ChangeAnnotationIdentifier -> unit
+  val set_annotation_id : t -> ChangeAnnotationIdentifier.t -> unit
     [@@js.set "annotationId"]
 
-  val cast : t -> _TextEdit [@@js.cast]
+  val cast : t -> TextEdit.t [@@js.cast]
 
   val replace
-    :  range:_Range
-    -> newText:string
-    -> annotation:_ChangeAnnotationIdentifier
-    -> _AnnotatedTextEdit
+    :  range:Range.t
+    -> new_text:string
+    -> annotation:ChangeAnnotationIdentifier.t
+    -> AnnotatedTextEdit.t
     [@@js.global "replace"]
 
   val insert
-    :  position:_Position
-    -> newText:string
-    -> annotation:_ChangeAnnotationIdentifier
-    -> _AnnotatedTextEdit
+    :  position:Position.t
+    -> new_text:string
+    -> annotation:ChangeAnnotationIdentifier.t
+    -> AnnotatedTextEdit.t
     [@@js.global "insert"]
 
   val del
-    :  range:_Range
-    -> annotation:_ChangeAnnotationIdentifier
-    -> _AnnotatedTextEdit
+    :  range:Range.t
+    -> annotation:ChangeAnnotationIdentifier.t
+    -> AnnotatedTextEdit.t
     [@@js.global "del"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -633,28 +635,28 @@ end
 [@@js.scope "AnnotatedTextEdit"]
 
 module TextDocumentEdit : sig
-  type t = _TextDocumentEdit
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_textDocument : t -> _OptionalVersionedTextDocumentIdentifier
+  val get_text_document : t -> OptionalVersionedTextDocumentIdentifier.t
     [@@js.get "textDocument"]
 
-  val set_textDocument : t -> _OptionalVersionedTextDocumentIdentifier -> unit
+  val set_text_document : t -> OptionalVersionedTextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
-  val get_edits : t -> (_AnnotatedTextEdit, _TextEdit) union2 list
+  val get_edits : t -> (AnnotatedTextEdit.t, TextEdit.t) union2 list
     [@@js.get "edits"]
 
-  val set_edits : t -> (_AnnotatedTextEdit, _TextEdit) union2 list -> unit
+  val set_edits : t -> (AnnotatedTextEdit.t, TextEdit.t) union2 list -> unit
     [@@js.set "edits"]
 
   val create_
-    :  textDocument:_OptionalVersionedTextDocumentIdentifier
-    -> edits:(_AnnotatedTextEdit, _TextEdit) union2 list
-    -> _TextDocumentEdit
+    :  text_document:OptionalVersionedTextDocumentIdentifier.t
+    -> edits:(AnnotatedTextEdit.t, TextEdit.t) union2 list
+    -> TextDocumentEdit.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -662,7 +664,7 @@ end
 [@@js.scope "TextDocumentEdit"]
 
 module ResourceOperation : sig
-  type t = _ResourceOperation
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -672,16 +674,16 @@ module ResourceOperation : sig
 
   val set_kind : t -> string -> unit [@@js.set "kind"]
 
-  val get_annotationId : t -> _ChangeAnnotationIdentifier
+  val get_annotation_id : t -> ChangeAnnotationIdentifier.t
     [@@js.get "annotationId"]
 
-  val set_annotationId : t -> _ChangeAnnotationIdentifier -> unit
+  val set_annotation_id : t -> ChangeAnnotationIdentifier.t -> unit
     [@@js.set "annotationId"]
 end
 [@@js.scope "ResourceOperation"]
 
 module CreateFileOptions : sig
-  type t = _CreateFileOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -691,14 +693,14 @@ module CreateFileOptions : sig
 
   val set_overwrite : t -> bool -> unit [@@js.set "overwrite"]
 
-  val get_ignoreIfExists : t -> bool [@@js.get "ignoreIfExists"]
+  val get_ignore_if_exists : t -> bool [@@js.get "ignoreIfExists"]
 
-  val set_ignoreIfExists : t -> bool -> unit [@@js.set "ignoreIfExists"]
+  val set_ignore_if_exists : t -> bool -> unit [@@js.set "ignoreIfExists"]
 end
 [@@js.scope "CreateFileOptions"]
 
 module CreateFile : sig
-  type t = _CreateFile
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -709,22 +711,22 @@ module CreateFile : sig
 
   val set_kind : t -> ([ `L_s4_create ][@js.enum]) -> unit [@@js.set "kind"]
 
-  val get_uri : t -> _DocumentUri [@@js.get "uri"]
+  val get_uri : t -> DocumentUri.t [@@js.get "uri"]
 
-  val set_uri : t -> _DocumentUri -> unit [@@js.set "uri"]
+  val set_uri : t -> DocumentUri.t -> unit [@@js.set "uri"]
 
-  val get_options : t -> _CreateFileOptions [@@js.get "options"]
+  val get_options : t -> CreateFileOptions.t [@@js.get "options"]
 
-  val set_options : t -> _CreateFileOptions -> unit [@@js.set "options"]
+  val set_options : t -> CreateFileOptions.t -> unit [@@js.set "options"]
 
-  val cast : t -> _ResourceOperation [@@js.cast]
+  val cast : t -> ResourceOperation.t [@@js.cast]
 
   val create_
-    :  uri:_DocumentUri
-    -> ?options:_CreateFileOptions
-    -> ?annotation:_ChangeAnnotationIdentifier
+    :  uri:DocumentUri.t
+    -> ?options:CreateFileOptions.t
+    -> ?annotation:ChangeAnnotationIdentifier.t
     -> unit
-    -> _CreateFile
+    -> CreateFile.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -732,7 +734,7 @@ end
 [@@js.scope "CreateFile"]
 
 module RenameFileOptions : sig
-  type t = _RenameFileOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -742,14 +744,14 @@ module RenameFileOptions : sig
 
   val set_overwrite : t -> bool -> unit [@@js.set "overwrite"]
 
-  val get_ignoreIfExists : t -> bool [@@js.get "ignoreIfExists"]
+  val get_ignore_if_exists : t -> bool [@@js.get "ignoreIfExists"]
 
-  val set_ignoreIfExists : t -> bool -> unit [@@js.set "ignoreIfExists"]
+  val set_ignore_if_exists : t -> bool -> unit [@@js.set "ignoreIfExists"]
 end
 [@@js.scope "RenameFileOptions"]
 
 module RenameFile : sig
-  type t = _RenameFile
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -760,27 +762,27 @@ module RenameFile : sig
 
   val set_kind : t -> ([ `L_s32_rename ][@js.enum]) -> unit [@@js.set "kind"]
 
-  val get_oldUri : t -> _DocumentUri [@@js.get "oldUri"]
+  val get_old_uri : t -> DocumentUri.t [@@js.get "oldUri"]
 
-  val set_oldUri : t -> _DocumentUri -> unit [@@js.set "oldUri"]
+  val set_old_uri : t -> DocumentUri.t -> unit [@@js.set "oldUri"]
 
-  val get_newUri : t -> _DocumentUri [@@js.get "newUri"]
+  val get_new_uri : t -> DocumentUri.t [@@js.get "newUri"]
 
-  val set_newUri : t -> _DocumentUri -> unit [@@js.set "newUri"]
+  val set_new_uri : t -> DocumentUri.t -> unit [@@js.set "newUri"]
 
-  val get_options : t -> _RenameFileOptions [@@js.get "options"]
+  val get_options : t -> RenameFileOptions.t [@@js.get "options"]
 
-  val set_options : t -> _RenameFileOptions -> unit [@@js.set "options"]
+  val set_options : t -> RenameFileOptions.t -> unit [@@js.set "options"]
 
-  val cast : t -> _ResourceOperation [@@js.cast]
+  val cast : t -> ResourceOperation.t [@@js.cast]
 
   val create_
-    :  oldUri:_DocumentUri
-    -> newUri:_DocumentUri
-    -> ?options:_RenameFileOptions
-    -> ?annotation:_ChangeAnnotationIdentifier
+    :  old_uri:DocumentUri.t
+    -> new_uri:DocumentUri.t
+    -> ?options:RenameFileOptions.t
+    -> ?annotation:ChangeAnnotationIdentifier.t
     -> unit
-    -> _RenameFile
+    -> RenameFile.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -788,7 +790,7 @@ end
 [@@js.scope "RenameFile"]
 
 module DeleteFileOptions : sig
-  type t = _DeleteFileOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -798,14 +800,15 @@ module DeleteFileOptions : sig
 
   val set_recursive : t -> bool -> unit [@@js.set "recursive"]
 
-  val get_ignoreIfNotExists : t -> bool [@@js.get "ignoreIfNotExists"]
+  val get_ignore_if_not_exists : t -> bool [@@js.get "ignoreIfNotExists"]
 
-  val set_ignoreIfNotExists : t -> bool -> unit [@@js.set "ignoreIfNotExists"]
+  val set_ignore_if_not_exists : t -> bool -> unit
+    [@@js.set "ignoreIfNotExists"]
 end
 [@@js.scope "DeleteFileOptions"]
 
 module DeleteFile : sig
-  type t = _DeleteFile
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -816,22 +819,22 @@ module DeleteFile : sig
 
   val set_kind : t -> ([ `L_s8_delete ][@js.enum]) -> unit [@@js.set "kind"]
 
-  val get_uri : t -> _DocumentUri [@@js.get "uri"]
+  val get_uri : t -> DocumentUri.t [@@js.get "uri"]
 
-  val set_uri : t -> _DocumentUri -> unit [@@js.set "uri"]
+  val set_uri : t -> DocumentUri.t -> unit [@@js.set "uri"]
 
-  val get_options : t -> _DeleteFileOptions [@@js.get "options"]
+  val get_options : t -> DeleteFileOptions.t [@@js.get "options"]
 
-  val set_options : t -> _DeleteFileOptions -> unit [@@js.set "options"]
+  val set_options : t -> DeleteFileOptions.t -> unit [@@js.set "options"]
 
-  val cast : t -> _ResourceOperation [@@js.cast]
+  val cast : t -> ResourceOperation.t [@@js.cast]
 
   val create_
-    :  uri:_DocumentUri
-    -> ?options:_DeleteFileOptions
-    -> ?annotation:_ChangeAnnotationIdentifier
+    :  uri:DocumentUri.t
+    -> ?options:DeleteFileOptions.t
+    -> ?annotation:ChangeAnnotationIdentifier.t
     -> unit
-    -> _DeleteFile
+    -> DeleteFile.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -839,7 +842,7 @@ end
 [@@js.scope "DeleteFile"]
 
 module WorkspaceEdit : sig
-  type t = _WorkspaceEdit
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -849,35 +852,35 @@ module WorkspaceEdit : sig
 
   val set_changes : t -> AnonymousInterface3.t -> unit [@@js.set "changes"]
 
-  val get_documentChanges
+  val get_document_changes
     :  t
-    -> ( ([ `U_s4_create of _CreateFile [@js "create"]
-          | `U_s8_delete of _DeleteFile [@js "delete"]
-          | `U_s32_rename of _RenameFile [@js "rename"]
+    -> ( ([ `U_s4_create of CreateFile.t [@js "create"]
+          | `U_s8_delete of DeleteFile.t [@js "delete"]
+          | `U_s32_rename of RenameFile.t [@js "rename"]
           ]
          [@js.union on_field "kind"])
-       , _TextDocumentEdit )
+       , TextDocumentEdit.t )
        or_
        list
     [@@js.get "documentChanges"]
 
-  val set_documentChanges
+  val set_document_changes
     :  t
-    -> ( ([ `U_s4_create of _CreateFile
-          | `U_s8_delete of _DeleteFile
-          | `U_s32_rename of _RenameFile
+    -> ( ([ `U_s4_create of CreateFile.t
+          | `U_s8_delete of DeleteFile.t
+          | `U_s32_rename of RenameFile.t
           ]
          [@js.union on_field "kind"])
-       , _TextDocumentEdit )
+       , TextDocumentEdit.t )
        or_
        list
     -> unit
     [@@js.set "documentChanges"]
 
-  val get_changeAnnotations : t -> AnonymousInterface2.t
+  val get_change_annotations : t -> AnonymousInterface2.t
     [@@js.get "changeAnnotations"]
 
-  val set_changeAnnotations : t -> AnonymousInterface2.t -> unit
+  val set_change_annotations : t -> AnonymousInterface2.t -> unit
     [@@js.set "changeAnnotations"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -885,171 +888,171 @@ end
 [@@js.scope "WorkspaceEdit"]
 
 module TextEditChange : sig
-  type t = _TextEditChange
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val all : t -> (_AnnotatedTextEdit, _TextEdit) union2 list [@@js.call "all"]
+  val all : t -> (AnnotatedTextEdit.t, TextEdit.t) union2 list [@@js.call "all"]
 
   val clear : t -> unit [@@js.call "clear"]
 
-  val add : t -> edit:(_AnnotatedTextEdit, _TextEdit) union2 -> unit
+  val add : t -> edit:(AnnotatedTextEdit.t, TextEdit.t) union2 -> unit
     [@@js.call "add"]
 
-  val insert : t -> position:_Position -> newText:string -> unit
+  val insert : t -> position:Position.t -> new_text:string -> unit
     [@@js.call "insert"]
 
   val insert'
     :  t
-    -> position:_Position
-    -> newText:string
-    -> annotation:(_ChangeAnnotation, _ChangeAnnotationIdentifier) union2
-    -> _ChangeAnnotationIdentifier
+    -> position:Position.t
+    -> new_text:string
+    -> annotation:(ChangeAnnotation.t, ChangeAnnotationIdentifier.t) union2
+    -> ChangeAnnotationIdentifier.t
     [@@js.call "insert"]
 
-  val replace : t -> range:_Range -> newText:string -> unit
+  val replace : t -> range:Range.t -> new_text:string -> unit
     [@@js.call "replace"]
 
   val replace'
     :  t
-    -> range:_Range
-    -> newText:string
-    -> ?annotation:(_ChangeAnnotation, _ChangeAnnotationIdentifier) union2
+    -> range:Range.t
+    -> new_text:string
+    -> ?annotation:(ChangeAnnotation.t, ChangeAnnotationIdentifier.t) union2
     -> unit
-    -> _ChangeAnnotationIdentifier
+    -> ChangeAnnotationIdentifier.t
     [@@js.call "replace"]
 
-  val delete : t -> range:_Range -> unit [@@js.call "delete"]
+  val delete : t -> range:Range.t -> unit [@@js.call "delete"]
 
   val delete'
     :  t
-    -> range:_Range
-    -> ?annotation:(_ChangeAnnotation, _ChangeAnnotationIdentifier) union2
+    -> range:Range.t
+    -> ?annotation:(ChangeAnnotation.t, ChangeAnnotationIdentifier.t) union2
     -> unit
-    -> _ChangeAnnotationIdentifier
+    -> ChangeAnnotationIdentifier.t
     [@@js.call "delete"]
 end
 [@@js.scope "TextEditChange"]
 
 module WorkspaceChange : sig
-  type t = _WorkspaceChange
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get__workspaceEdit : t -> (* FIXME: unknown type *) any
+  val get_workspace_edit : t -> (* FIXME: unknown type *) any
     [@@js.get "_workspaceEdit"]
 
-  val set__workspaceEdit : t -> (* FIXME: unknown type *) any -> unit
+  val set_workspace_edit : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_workspaceEdit"]
 
-  val get__textEditChanges : t -> (* FIXME: unknown type *) any
+  val get_text_edit_changes : t -> (* FIXME: unknown type *) any
     [@@js.get "_textEditChanges"]
 
-  val set__textEditChanges : t -> (* FIXME: unknown type *) any -> unit
+  val set_text_edit_changes : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_textEditChanges"]
 
-  val get__changeAnnotations : t -> (* FIXME: unknown type *) any
+  val get_change_annotations : t -> (* FIXME: unknown type *) any
     [@@js.get "_changeAnnotations"]
 
-  val set__changeAnnotations : t -> (* FIXME: unknown type *) any -> unit
+  val set_change_annotations : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "_changeAnnotations"]
 
-  val create : ?workspaceEdit:_WorkspaceEdit -> unit -> t [@@js.create]
+  val create : ?workspace_edit:WorkspaceEdit.t -> unit -> t [@@js.create]
 
-  val get_edit : t -> _WorkspaceEdit [@@js.get "edit"]
+  val get_edit : t -> WorkspaceEdit.t [@@js.get "edit"]
 
-  val getTextEditChange
+  val get_text_edit_change
     :  t
-    -> textDocument:_OptionalVersionedTextDocumentIdentifier
-    -> _TextEditChange
+    -> text_document:OptionalVersionedTextDocumentIdentifier.t
+    -> TextEditChange.t
     [@@js.call "getTextEditChange"]
 
-  val getTextEditChange' : t -> uri:_DocumentUri -> _TextEditChange
+  val get_text_edit_change' : t -> uri:DocumentUri.t -> TextEditChange.t
     [@@js.call "getTextEditChange"]
 
-  val get_initDocumentChanges : t -> (* FIXME: unknown type *) any
+  val get_init_document_changes : t -> (* FIXME: unknown type *) any
     [@@js.get "initDocumentChanges"]
 
-  val set_initDocumentChanges : t -> (* FIXME: unknown type *) any -> unit
+  val set_init_document_changes : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "initDocumentChanges"]
 
-  val get_initChanges : t -> (* FIXME: unknown type *) any
+  val get_init_changes : t -> (* FIXME: unknown type *) any
     [@@js.get "initChanges"]
 
-  val set_initChanges : t -> (* FIXME: unknown type *) any -> unit
+  val set_init_changes : t -> (* FIXME: unknown type *) any -> unit
     [@@js.set "initChanges"]
 
-  val createFile
+  val create_file
     :  t
-    -> uri:_DocumentUri
-    -> ?options:_CreateFileOptions
+    -> uri:DocumentUri.t
+    -> ?options:CreateFileOptions.t
     -> unit
     -> unit
     [@@js.call "createFile"]
 
-  val createFile'
+  val create_file'
     :  t
-    -> uri:_DocumentUri
-    -> annotation:(_ChangeAnnotation, _ChangeAnnotationIdentifier) union2
-    -> ?options:_CreateFileOptions
+    -> uri:DocumentUri.t
+    -> annotation:(ChangeAnnotation.t, ChangeAnnotationIdentifier.t) union2
+    -> ?options:CreateFileOptions.t
     -> unit
-    -> _ChangeAnnotationIdentifier
+    -> ChangeAnnotationIdentifier.t
     [@@js.call "createFile"]
 
-  val renameFile
+  val rename_file
     :  t
-    -> oldUri:_DocumentUri
-    -> newUri:_DocumentUri
-    -> ?options:_RenameFileOptions
+    -> old_uri:DocumentUri.t
+    -> new_uri:DocumentUri.t
+    -> ?options:RenameFileOptions.t
     -> unit
     -> unit
     [@@js.call "renameFile"]
 
-  val renameFile'
+  val rename_file'
     :  t
-    -> oldUri:_DocumentUri
-    -> newUri:_DocumentUri
-    -> ?annotation:(_ChangeAnnotation, _ChangeAnnotationIdentifier) union2
-    -> ?options:_RenameFileOptions
+    -> old_uri:DocumentUri.t
+    -> new_uri:DocumentUri.t
+    -> ?annotation:(ChangeAnnotation.t, ChangeAnnotationIdentifier.t) union2
+    -> ?options:RenameFileOptions.t
     -> unit
-    -> _ChangeAnnotationIdentifier
+    -> ChangeAnnotationIdentifier.t
     [@@js.call "renameFile"]
 
-  val deleteFile
+  val delete_file
     :  t
-    -> uri:_DocumentUri
-    -> ?options:_DeleteFileOptions
+    -> uri:DocumentUri.t
+    -> ?options:DeleteFileOptions.t
     -> unit
     -> unit
     [@@js.call "deleteFile"]
 
-  val deleteFile'
+  val delete_file'
     :  t
-    -> uri:_DocumentUri
-    -> annotation:(_ChangeAnnotation, _ChangeAnnotationIdentifier) union2
-    -> ?options:_DeleteFileOptions
+    -> uri:DocumentUri.t
+    -> annotation:(ChangeAnnotation.t, ChangeAnnotationIdentifier.t) union2
+    -> ?options:DeleteFileOptions.t
     -> unit
-    -> _ChangeAnnotationIdentifier
+    -> ChangeAnnotationIdentifier.t
     [@@js.call "deleteFile"]
 end
 [@@js.scope "WorkspaceChange"]
 
 module TextDocumentIdentifier : sig
-  type t = _TextDocumentIdentifier
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_uri : t -> _DocumentUri [@@js.get "uri"]
+  val get_uri : t -> DocumentUri.t [@@js.get "uri"]
 
-  val set_uri : t -> _DocumentUri -> unit [@@js.set "uri"]
+  val set_uri : t -> DocumentUri.t -> unit [@@js.set "uri"]
 
-  val create_ : uri:_DocumentUri -> _TextDocumentIdentifier
+  val create_ : uri:DocumentUri.t -> TextDocumentIdentifier.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -1057,7 +1060,7 @@ end
 [@@js.scope "TextDocumentIdentifier"]
 
 module VersionedTextDocumentIdentifier : sig
-  type t = _VersionedTextDocumentIdentifier
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1067,12 +1070,12 @@ module VersionedTextDocumentIdentifier : sig
 
   val set_version : t -> integer -> unit [@@js.set "version"]
 
-  val cast : t -> _TextDocumentIdentifier [@@js.cast]
+  val cast : t -> TextDocumentIdentifier.t [@@js.cast]
 
   val create_
-    :  uri:_DocumentUri
+    :  uri:DocumentUri.t
     -> version:integer
-    -> _VersionedTextDocumentIdentifier
+    -> VersionedTextDocumentIdentifier.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -1080,7 +1083,7 @@ end
 [@@js.scope "VersionedTextDocumentIdentifier"]
 
 module OptionalVersionedTextDocumentIdentifier : sig
-  type t = _OptionalVersionedTextDocumentIdentifier
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1090,12 +1093,12 @@ module OptionalVersionedTextDocumentIdentifier : sig
 
   val set_version : t -> integer or_null -> unit [@@js.set "version"]
 
-  val cast : t -> _TextDocumentIdentifier [@@js.cast]
+  val cast : t -> TextDocumentIdentifier.t [@@js.cast]
 
   val create_
-    :  uri:_DocumentUri
+    :  uri:DocumentUri.t
     -> version:integer or_null
-    -> _OptionalVersionedTextDocumentIdentifier
+    -> OptionalVersionedTextDocumentIdentifier.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -1103,19 +1106,19 @@ end
 [@@js.scope "OptionalVersionedTextDocumentIdentifier"]
 
 module TextDocumentItem : sig
-  type t = _TextDocumentItem
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_uri : t -> _DocumentUri [@@js.get "uri"]
+  val get_uri : t -> DocumentUri.t [@@js.get "uri"]
 
-  val set_uri : t -> _DocumentUri -> unit [@@js.set "uri"]
+  val set_uri : t -> DocumentUri.t -> unit [@@js.set "uri"]
 
-  val get_languageId : t -> string [@@js.get "languageId"]
+  val get_language_id : t -> string [@@js.get "languageId"]
 
-  val set_languageId : t -> string -> unit [@@js.set "languageId"]
+  val set_language_id : t -> string -> unit [@@js.set "languageId"]
 
   val get_version : t -> integer [@@js.get "version"]
 
@@ -1126,11 +1129,11 @@ module TextDocumentItem : sig
   val set_text : t -> string -> unit [@@js.set "text"]
 
   val create_
-    :  uri:_DocumentUri
-    -> languageId:string
+    :  uri:DocumentUri.t
+    -> language_id:string
     -> version:integer
     -> text:string
-    -> _TextDocumentItem
+    -> TextDocumentItem.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -1148,7 +1151,7 @@ module MarkupKind : sig
 
   val t_of_js : Ojs.t -> t
 
-  val plainText : ([ `L_s27_plaintext [@js "plaintext"] ][@js.enum])
+  val plain_text : ([ `L_s27_plaintext [@js "plaintext"] ][@js.enum])
     [@@js.global "PlainText"]
 
   val markdown : ([ `L_s19_markdown [@js "markdown"] ][@js.enum])
@@ -1159,15 +1162,15 @@ end
 [@@js.scope "MarkupKind"]
 
 module MarkupContent : sig
-  type t = _MarkupContent
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_kind : t -> _MarkupKind [@@js.get "kind"]
+  val get_kind : t -> MarkupKind.t [@@js.get "kind"]
 
-  val set_kind : t -> _MarkupKind -> unit [@@js.set "kind"]
+  val set_kind : t -> MarkupKind.t -> unit [@@js.set "kind"]
 
   val get_value : t -> string [@@js.get "value"]
 
@@ -1249,7 +1252,7 @@ module CompletionItemKind : sig
 
   val folder : ([ `L_n_19 [@js 19] ][@js.enum]) [@@js.global "Folder"]
 
-  val enumMember : ([ `L_n_20 [@js 20] ][@js.enum]) [@@js.global "EnumMember"]
+  val enum_member : ([ `L_n_20 [@js 20] ][@js.enum]) [@@js.global "EnumMember"]
 
   val constant : ([ `L_n_21 [@js 21] ][@js.enum]) [@@js.global "Constant"]
 
@@ -1259,7 +1262,7 @@ module CompletionItemKind : sig
 
   val operator : ([ `L_n_24 [@js 24] ][@js.enum]) [@@js.global "Operator"]
 
-  val typeParameter : ([ `L_n_25 [@js 25] ][@js.enum])
+  val type_parameter : ([ `L_n_25 [@js 25] ][@js.enum])
     [@@js.global "TypeParameter"]
 end
 [@@js.scope "CompletionItemKind"]
@@ -1275,7 +1278,7 @@ module InsertTextFormat : sig
 
   val t_of_js : Ojs.t -> t
 
-  val plainText : ([ `L_n_1 [@js 1] ][@js.enum]) [@@js.global "PlainText"]
+  val plain_text : ([ `L_n_1 [@js 1] ][@js.enum]) [@@js.global "PlainText"]
 
   val snippet : ([ `L_n_2 [@js 2] ][@js.enum]) [@@js.global "Snippet"]
 end
@@ -1293,32 +1296,32 @@ end
 [@@js.scope "CompletionItemTag"]
 
 module InsertReplaceEdit : sig
-  type t = _InsertReplaceEdit
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_newText : t -> string [@@js.get "newText"]
+  val get_new_text : t -> string [@@js.get "newText"]
 
-  val set_newText : t -> string -> unit [@@js.set "newText"]
+  val set_new_text : t -> string -> unit [@@js.set "newText"]
 
-  val get_insert : t -> _Range [@@js.get "insert"]
+  val get_insert : t -> Range.t [@@js.get "insert"]
 
-  val set_insert : t -> _Range -> unit [@@js.set "insert"]
+  val set_insert : t -> Range.t -> unit [@@js.set "insert"]
 
-  val get_replace : t -> _Range [@@js.get "replace"]
+  val get_replace : t -> Range.t [@@js.get "replace"]
 
-  val set_replace : t -> _Range -> unit [@@js.set "replace"]
+  val set_replace : t -> Range.t -> unit [@@js.set "replace"]
 
   val create_
-    :  newText:string
-    -> insert:_Range
-    -> replace:_Range
-    -> _InsertReplaceEdit
+    :  new_text:string
+    -> insert:Range.t
+    -> replace:Range.t
+    -> InsertReplaceEdit.t
     [@@js.global "create"]
 
-  val is : value:(_InsertReplaceEdit, _TextEdit) union2 -> bool
+  val is : value:(InsertReplaceEdit.t, TextEdit.t) union2 -> bool
     [@@js.global "is"]
 end
 [@@js.scope "InsertReplaceEdit"]
@@ -1334,15 +1337,15 @@ module InsertTextMode : sig
 
   val t_of_js : Ojs.t -> t
 
-  val asIs : ([ `L_n_1 [@js 1] ][@js.enum]) [@@js.global "asIs"]
+  val as_is : ([ `L_n_1 [@js 1] ][@js.enum]) [@@js.global "asIs"]
 
-  val adjustIndentation : ([ `L_n_2 [@js 2] ][@js.enum])
+  val adjust_indentation : ([ `L_n_2 [@js 2] ][@js.enum])
     [@@js.global "adjustIndentation"]
 end
 [@@js.scope "InsertTextMode"]
 
 module CompletionItemLabelDetails : sig
-  type t = _CompletionItemLabelDetails
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1365,7 +1368,7 @@ end
 [@@js.scope "CompletionItemLabelDetails"]
 
 module CompletionItem : sig
-  type t = _CompletionItem
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1375,28 +1378,28 @@ module CompletionItem : sig
 
   val set_label : t -> string -> unit [@@js.set "label"]
 
-  val get_labelDetails : t -> _CompletionItemLabelDetails
+  val get_label_details : t -> CompletionItemLabelDetails.t
     [@@js.get "labelDetails"]
 
-  val set_labelDetails : t -> _CompletionItemLabelDetails -> unit
+  val set_label_details : t -> CompletionItemLabelDetails.t -> unit
     [@@js.set "labelDetails"]
 
-  val get_kind : t -> _CompletionItemKind [@@js.get "kind"]
+  val get_kind : t -> CompletionItemKind.t [@@js.get "kind"]
 
-  val set_kind : t -> _CompletionItemKind -> unit [@@js.set "kind"]
+  val set_kind : t -> CompletionItemKind.t -> unit [@@js.set "kind"]
 
-  val get_tags : t -> _CompletionItemTag list [@@js.get "tags"]
+  val get_tags : t -> CompletionItemTag.t list [@@js.get "tags"]
 
-  val set_tags : t -> _CompletionItemTag list -> unit [@@js.set "tags"]
+  val set_tags : t -> CompletionItemTag.t list -> unit [@@js.set "tags"]
 
   val get_detail : t -> string [@@js.get "detail"]
 
   val set_detail : t -> string -> unit [@@js.set "detail"]
 
-  val get_documentation : t -> _MarkupContent or_string
+  val get_documentation : t -> MarkupContent.t or_string
     [@@js.get "documentation"]
 
-  val set_documentation : t -> _MarkupContent or_string -> unit
+  val set_documentation : t -> MarkupContent.t or_string -> unit
     [@@js.set "documentation"]
 
   val get_deprecated : t -> bool [@@js.get "deprecated"]
@@ -1407,78 +1410,78 @@ module CompletionItem : sig
 
   val set_preselect : t -> bool -> unit [@@js.set "preselect"]
 
-  val get_sortText : t -> string [@@js.get "sortText"]
+  val get_sort_text : t -> string [@@js.get "sortText"]
 
-  val set_sortText : t -> string -> unit [@@js.set "sortText"]
+  val set_sort_text : t -> string -> unit [@@js.set "sortText"]
 
-  val get_filterText : t -> string [@@js.get "filterText"]
+  val get_filter_text : t -> string [@@js.get "filterText"]
 
-  val set_filterText : t -> string -> unit [@@js.set "filterText"]
+  val set_filter_text : t -> string -> unit [@@js.set "filterText"]
 
-  val get_insertText : t -> string [@@js.get "insertText"]
+  val get_insert_text : t -> string [@@js.get "insertText"]
 
-  val set_insertText : t -> string -> unit [@@js.set "insertText"]
+  val set_insert_text : t -> string -> unit [@@js.set "insertText"]
 
-  val get_insertTextFormat : t -> _InsertTextFormat
+  val get_insert_text_format : t -> InsertTextFormat.t
     [@@js.get "insertTextFormat"]
 
-  val set_insertTextFormat : t -> _InsertTextFormat -> unit
+  val set_insert_text_format : t -> InsertTextFormat.t -> unit
     [@@js.set "insertTextFormat"]
 
-  val get_insertTextMode : t -> _InsertTextMode [@@js.get "insertTextMode"]
+  val get_insert_text_mode : t -> InsertTextMode.t [@@js.get "insertTextMode"]
 
-  val set_insertTextMode : t -> _InsertTextMode -> unit
+  val set_insert_text_mode : t -> InsertTextMode.t -> unit
     [@@js.set "insertTextMode"]
 
-  val get_textEdit : t -> (_InsertReplaceEdit, _TextEdit) union2
+  val get_text_edit : t -> (InsertReplaceEdit.t, TextEdit.t) union2
     [@@js.get "textEdit"]
 
-  val set_textEdit : t -> (_InsertReplaceEdit, _TextEdit) union2 -> unit
+  val set_text_edit : t -> (InsertReplaceEdit.t, TextEdit.t) union2 -> unit
     [@@js.set "textEdit"]
 
-  val get_additionalTextEdits : t -> _TextEdit list
+  val get_additional_text_edits : t -> TextEdit.t list
     [@@js.get "additionalTextEdits"]
 
-  val set_additionalTextEdits : t -> _TextEdit list -> unit
+  val set_additional_text_edits : t -> TextEdit.t list -> unit
     [@@js.set "additionalTextEdits"]
 
-  val get_commitCharacters : t -> string list [@@js.get "commitCharacters"]
+  val get_commit_characters : t -> string list [@@js.get "commitCharacters"]
 
-  val set_commitCharacters : t -> string list -> unit
+  val set_commit_characters : t -> string list -> unit
     [@@js.set "commitCharacters"]
 
-  val get_command : t -> _Command [@@js.get "command"]
+  val get_command : t -> Command.t [@@js.get "command"]
 
-  val set_command : t -> _Command -> unit [@@js.set "command"]
+  val set_command : t -> Command.t -> unit [@@js.set "command"]
 
   val get_data : t -> any [@@js.get "data"]
 
   val set_data : t -> any -> unit [@@js.set "data"]
 
-  val create_ : label:string -> _CompletionItem [@@js.global "create"]
+  val create_ : label:string -> CompletionItem.t [@@js.global "create"]
 end
 [@@js.scope "CompletionItem"]
 
 module CompletionList : sig
-  type t = _CompletionList
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_isIncomplete : t -> bool [@@js.get "isIncomplete"]
+  val get_is_incomplete : t -> bool [@@js.get "isIncomplete"]
 
-  val set_isIncomplete : t -> bool -> unit [@@js.set "isIncomplete"]
+  val set_is_incomplete : t -> bool -> unit [@@js.set "isIncomplete"]
 
-  val get_items : t -> _CompletionItem list [@@js.get "items"]
+  val get_items : t -> CompletionItem.t list [@@js.get "items"]
 
-  val set_items : t -> _CompletionItem list -> unit [@@js.set "items"]
+  val set_items : t -> CompletionItem.t list -> unit [@@js.set "items"]
 
   val create_
-    :  ?items:_CompletionItem list
-    -> ?isIncomplete:bool
+    :  ?items:CompletionItem.t list
+    -> ?is_incomplete:bool
     -> unit
-    -> _CompletionList
+    -> CompletionList.t
     [@@js.global "create"]
 end
 [@@js.scope "CompletionList"]
@@ -1490,13 +1493,14 @@ module MarkedString : sig
 
   val t_of_js : Ojs.t -> t
 
-  val fromPlainText : plainText:string -> string [@@js.global "fromPlainText"]
+  val from_plain_text : plain_text:string -> string
+    [@@js.global "fromPlainText"]
 
   val is : value:any -> bool [@@js.global "is"]
 end
 
 module Hover : sig
-  type t = _Hover
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1504,25 +1508,25 @@ module Hover : sig
 
   val get_contents
     :  t
-    -> ((_MarkedString, _MarkupContent) union2, _MarkedString) or_array
+    -> ((MarkedString.t, MarkupContent.t) union2, MarkedString.t) or_array
     [@@js.get "contents"]
 
   val set_contents
     :  t
-    -> ((_MarkedString, _MarkupContent) union2, _MarkedString) or_array
+    -> ((MarkedString.t, MarkupContent.t) union2, MarkedString.t) or_array
     -> unit
     [@@js.set "contents"]
 
-  val get_range : t -> _Range [@@js.get "range"]
+  val get_range : t -> Range.t [@@js.get "range"]
 
-  val set_range : t -> _Range -> unit [@@js.set "range"]
+  val set_range : t -> Range.t -> unit [@@js.set "range"]
 
   val is : value:any -> bool [@@js.global "is"]
 end
 [@@js.scope "Hover"]
 
 module ParameterInformation : sig
-  type t = _ParameterInformation
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1533,23 +1537,23 @@ module ParameterInformation : sig
   val set_label : t -> (uinteger * uinteger) or_string -> unit
     [@@js.set "label"]
 
-  val get_documentation : t -> _MarkupContent or_string
+  val get_documentation : t -> MarkupContent.t or_string
     [@@js.get "documentation"]
 
-  val set_documentation : t -> _MarkupContent or_string -> unit
+  val set_documentation : t -> MarkupContent.t or_string -> unit
     [@@js.set "documentation"]
 
   val create_
     :  label:(uinteger * uinteger) or_string
     -> ?documentation:string
     -> unit
-    -> _ParameterInformation
+    -> ParameterInformation.t
     [@@js.global "create"]
 end
 [@@js.scope "ParameterInformation"]
 
 module SignatureInformation : sig
-  type t = _SignatureInformation
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1559,56 +1563,56 @@ module SignatureInformation : sig
 
   val set_label : t -> string -> unit [@@js.set "label"]
 
-  val get_documentation : t -> _MarkupContent or_string
+  val get_documentation : t -> MarkupContent.t or_string
     [@@js.get "documentation"]
 
-  val set_documentation : t -> _MarkupContent or_string -> unit
+  val set_documentation : t -> MarkupContent.t or_string -> unit
     [@@js.set "documentation"]
 
-  val get_parameters : t -> _ParameterInformation list [@@js.get "parameters"]
+  val get_parameters : t -> ParameterInformation.t list [@@js.get "parameters"]
 
-  val set_parameters : t -> _ParameterInformation list -> unit
+  val set_parameters : t -> ParameterInformation.t list -> unit
     [@@js.set "parameters"]
 
-  val get_activeParameter : t -> uinteger [@@js.get "activeParameter"]
+  val get_active_parameter : t -> uinteger [@@js.get "activeParameter"]
 
-  val set_activeParameter : t -> uinteger -> unit [@@js.set "activeParameter"]
+  val set_active_parameter : t -> uinteger -> unit [@@js.set "activeParameter"]
 
   val create_
     :  label:string
     -> ?documentation:string
-    -> parameters:(_ParameterInformation list[@js.variadic])
-    -> _SignatureInformation
+    -> parameters:(ParameterInformation.t list[@js.variadic])
+    -> SignatureInformation.t
     [@@js.global "create"]
 end
 [@@js.scope "SignatureInformation"]
 
 module SignatureHelp : sig
-  type t = _SignatureHelp
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_signatures : t -> _SignatureInformation list [@@js.get "signatures"]
+  val get_signatures : t -> SignatureInformation.t list [@@js.get "signatures"]
 
-  val set_signatures : t -> _SignatureInformation list -> unit
+  val set_signatures : t -> SignatureInformation.t list -> unit
     [@@js.set "signatures"]
 
-  val get_activeSignature : t -> uinteger or_null [@@js.get "activeSignature"]
+  val get_active_signature : t -> uinteger or_null [@@js.get "activeSignature"]
 
-  val set_activeSignature : t -> uinteger or_null -> unit
+  val set_active_signature : t -> uinteger or_null -> unit
     [@@js.set "activeSignature"]
 
-  val get_activeParameter : t -> uinteger or_null [@@js.get "activeParameter"]
+  val get_active_parameter : t -> uinteger or_null [@@js.get "activeParameter"]
 
-  val set_activeParameter : t -> uinteger or_null -> unit
+  val set_active_parameter : t -> uinteger or_null -> unit
     [@@js.set "activeParameter"]
 end
 [@@js.scope "SignatureHelp"]
 
 module Definition : sig
-  type t = (_Location, _Location) or_array
+  type t = (Location.t, Location.t) or_array
 
   val t_to_js : t -> Ojs.t
 
@@ -1616,7 +1620,7 @@ module Definition : sig
 end
 
 module DefinitionLink : sig
-  type t = _LocationLink
+  type t = LocationLink.t
 
   val t_to_js : t -> Ojs.t
 
@@ -1624,7 +1628,7 @@ module DefinitionLink : sig
 end
 
 module Declaration : sig
-  type t = (_Location, _Location) or_array
+  type t = (Location.t, Location.t) or_array
 
   val t_to_js : t -> Ojs.t
 
@@ -1632,7 +1636,7 @@ module Declaration : sig
 end
 
 module DeclarationLink : sig
-  type t = _LocationLink
+  type t = LocationLink.t
 
   val t_to_js : t -> Ojs.t
 
@@ -1640,15 +1644,16 @@ module DeclarationLink : sig
 end
 
 module ReferenceContext : sig
-  type t = _ReferenceContext
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_includeDeclaration : t -> bool [@@js.get "includeDeclaration"]
+  val get_include_declaration : t -> bool [@@js.get "includeDeclaration"]
 
-  val set_includeDeclaration : t -> bool -> unit [@@js.set "includeDeclaration"]
+  val set_include_declaration : t -> bool -> unit
+    [@@js.set "includeDeclaration"]
 end
 [@@js.scope "ReferenceContext"]
 
@@ -1673,25 +1678,25 @@ end
 [@@js.scope "DocumentHighlightKind"]
 
 module DocumentHighlight : sig
-  type t = _DocumentHighlight
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_range : t -> _Range [@@js.get "range"]
+  val get_range : t -> Range.t [@@js.get "range"]
 
-  val set_range : t -> _Range -> unit [@@js.set "range"]
+  val set_range : t -> Range.t -> unit [@@js.set "range"]
 
-  val get_kind : t -> _DocumentHighlightKind [@@js.get "kind"]
+  val get_kind : t -> DocumentHighlightKind.t [@@js.get "kind"]
 
-  val set_kind : t -> _DocumentHighlightKind -> unit [@@js.set "kind"]
+  val set_kind : t -> DocumentHighlightKind.t -> unit [@@js.set "kind"]
 
   val create_
-    :  range:_Range
-    -> ?kind:_DocumentHighlightKind
+    :  range:Range.t
+    -> ?kind:DocumentHighlightKind.t
     -> unit
-    -> _DocumentHighlight
+    -> DocumentHighlight.t
     [@@js.global "create"]
 end
 [@@js.scope "DocumentHighlight"]
@@ -1773,7 +1778,7 @@ module SymbolKind : sig
 
   val null : ([ `L_n_21 [@js 21] ][@js.enum]) [@@js.global "Null"]
 
-  val enumMember : ([ `L_n_22 [@js 22] ][@js.enum]) [@@js.global "EnumMember"]
+  val enum_member : ([ `L_n_22 [@js 22] ][@js.enum]) [@@js.global "EnumMember"]
 
   val struct_ : ([ `L_n_23 [@js 23] ][@js.enum]) [@@js.global "Struct"]
 
@@ -1781,7 +1786,7 @@ module SymbolKind : sig
 
   val operator : ([ `L_n_25 [@js 25] ][@js.enum]) [@@js.global "Operator"]
 
-  val typeParameter : ([ `L_n_26 [@js 26] ][@js.enum])
+  val type_parameter : ([ `L_n_26 [@js 26] ][@js.enum])
     [@@js.global "TypeParameter"]
 end
 [@@js.scope "SymbolKind"]
@@ -1798,7 +1803,7 @@ end
 [@@js.scope "SymbolTag"]
 
 module SymbolInformation : sig
-  type t = _SymbolInformation
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1808,40 +1813,40 @@ module SymbolInformation : sig
 
   val set_name : t -> string -> unit [@@js.set "name"]
 
-  val get_kind : t -> _SymbolKind [@@js.get "kind"]
+  val get_kind : t -> SymbolKind.t [@@js.get "kind"]
 
-  val set_kind : t -> _SymbolKind -> unit [@@js.set "kind"]
+  val set_kind : t -> SymbolKind.t -> unit [@@js.set "kind"]
 
-  val get_tags : t -> _SymbolTag list [@@js.get "tags"]
+  val get_tags : t -> SymbolTag.t list [@@js.get "tags"]
 
-  val set_tags : t -> _SymbolTag list -> unit [@@js.set "tags"]
+  val set_tags : t -> SymbolTag.t list -> unit [@@js.set "tags"]
 
   val get_deprecated : t -> bool [@@js.get "deprecated"]
 
   val set_deprecated : t -> bool -> unit [@@js.set "deprecated"]
 
-  val get_location : t -> _Location [@@js.get "location"]
+  val get_location : t -> Location.t [@@js.get "location"]
 
-  val set_location : t -> _Location -> unit [@@js.set "location"]
+  val set_location : t -> Location.t -> unit [@@js.set "location"]
 
-  val get_containerName : t -> string [@@js.get "containerName"]
+  val get_container_name : t -> string [@@js.get "containerName"]
 
-  val set_containerName : t -> string -> unit [@@js.set "containerName"]
+  val set_container_name : t -> string -> unit [@@js.set "containerName"]
 
   val create_
     :  name:string
-    -> kind:_SymbolKind
-    -> range:_Range
+    -> kind:SymbolKind.t
+    -> range:Range.t
     -> ?uri:string
-    -> ?containerName:string
+    -> ?container_name:string
     -> unit
-    -> _SymbolInformation
+    -> SymbolInformation.t
     [@@js.global "create"]
 end
 [@@js.scope "SymbolInformation"]
 
 module DocumentSymbol : sig
-  type t = _DocumentSymbol
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1855,25 +1860,25 @@ module DocumentSymbol : sig
 
   val set_detail : t -> string -> unit [@@js.set "detail"]
 
-  val get_kind : t -> _SymbolKind [@@js.get "kind"]
+  val get_kind : t -> SymbolKind.t [@@js.get "kind"]
 
-  val set_kind : t -> _SymbolKind -> unit [@@js.set "kind"]
+  val set_kind : t -> SymbolKind.t -> unit [@@js.set "kind"]
 
-  val get_tags : t -> _SymbolTag list [@@js.get "tags"]
+  val get_tags : t -> SymbolTag.t list [@@js.get "tags"]
 
-  val set_tags : t -> _SymbolTag list -> unit [@@js.set "tags"]
+  val set_tags : t -> SymbolTag.t list -> unit [@@js.set "tags"]
 
   val get_deprecated : t -> bool [@@js.get "deprecated"]
 
   val set_deprecated : t -> bool -> unit [@@js.set "deprecated"]
 
-  val get_range : t -> _Range [@@js.get "range"]
+  val get_range : t -> Range.t [@@js.get "range"]
 
-  val set_range : t -> _Range -> unit [@@js.set "range"]
+  val set_range : t -> Range.t -> unit [@@js.set "range"]
 
-  val get_selectionRange : t -> _Range [@@js.get "selectionRange"]
+  val get_selection_range : t -> Range.t [@@js.get "selectionRange"]
 
-  val set_selectionRange : t -> _Range -> unit [@@js.set "selectionRange"]
+  val set_selection_range : t -> Range.t -> unit [@@js.set "selectionRange"]
 
   val get_children : t -> t list [@@js.get "children"]
 
@@ -1882,12 +1887,12 @@ module DocumentSymbol : sig
   val create_
     :  name:string
     -> detail:string or_undefined
-    -> kind:_SymbolKind
-    -> range:_Range
-    -> selectionRange:_Range
-    -> ?children:_DocumentSymbol list
+    -> kind:SymbolKind.t
+    -> range:Range.t
+    -> selection_range:Range.t
+    -> ?children:DocumentSymbol.t list
     -> unit
-    -> _DocumentSymbol
+    -> DocumentSymbol.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -1901,47 +1906,47 @@ module CodeActionKind : sig
 
   val t_of_js : Ojs.t -> t
 
-  val empty : _CodeActionKind [@@js.global "Empty"]
+  val empty : CodeActionKind.t [@@js.global "Empty"]
 
-  val quickFix : _CodeActionKind [@@js.global "QuickFix"]
+  val quick_fix : CodeActionKind.t [@@js.global "QuickFix"]
 
-  val refactor : _CodeActionKind [@@js.global "Refactor"]
+  val refactor : CodeActionKind.t [@@js.global "Refactor"]
 
-  val refactorExtract : _CodeActionKind [@@js.global "RefactorExtract"]
+  val refactor_extract : CodeActionKind.t [@@js.global "RefactorExtract"]
 
-  val refactorInline : _CodeActionKind [@@js.global "RefactorInline"]
+  val refactor_inline : CodeActionKind.t [@@js.global "RefactorInline"]
 
-  val refactorRewrite : _CodeActionKind [@@js.global "RefactorRewrite"]
+  val refactor_rewrite : CodeActionKind.t [@@js.global "RefactorRewrite"]
 
-  val source : _CodeActionKind [@@js.global "Source"]
+  val source : CodeActionKind.t [@@js.global "Source"]
 
-  val sourceOrganizeImports : _CodeActionKind
+  val source_organize_imports : CodeActionKind.t
     [@@js.global "SourceOrganizeImports"]
 
-  val sourceFixAll : _CodeActionKind [@@js.global "SourceFixAll"]
+  val source_fix_all : CodeActionKind.t [@@js.global "SourceFixAll"]
 end
 [@@js.scope "CodeActionKind"]
 
 module CodeActionContext : sig
-  type t = _CodeActionContext
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_diagnostics : t -> _Diagnostic list [@@js.get "diagnostics"]
+  val get_diagnostics : t -> Diagnostic.t list [@@js.get "diagnostics"]
 
-  val set_diagnostics : t -> _Diagnostic list -> unit [@@js.set "diagnostics"]
+  val set_diagnostics : t -> Diagnostic.t list -> unit [@@js.set "diagnostics"]
 
-  val get_only : t -> _CodeActionKind list [@@js.get "only"]
+  val get_only : t -> CodeActionKind.t list [@@js.get "only"]
 
-  val set_only : t -> _CodeActionKind list -> unit [@@js.set "only"]
+  val set_only : t -> CodeActionKind.t list -> unit [@@js.set "only"]
 
   val create_
-    :  diagnostics:_Diagnostic list
-    -> ?only:_CodeActionKind list
+    :  diagnostics:Diagnostic.t list
+    -> ?only:CodeActionKind.t list
     -> unit
-    -> _CodeActionContext
+    -> CodeActionContext.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -1949,7 +1954,7 @@ end
 [@@js.scope "CodeActionContext"]
 
 module CodeAction : sig
-  type t = _CodeAction
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1959,51 +1964,51 @@ module CodeAction : sig
 
   val set_title : t -> string -> unit [@@js.set "title"]
 
-  val get_kind : t -> _CodeActionKind [@@js.get "kind"]
+  val get_kind : t -> CodeActionKind.t [@@js.get "kind"]
 
-  val set_kind : t -> _CodeActionKind -> unit [@@js.set "kind"]
+  val set_kind : t -> CodeActionKind.t -> unit [@@js.set "kind"]
 
-  val get_diagnostics : t -> _Diagnostic list [@@js.get "diagnostics"]
+  val get_diagnostics : t -> Diagnostic.t list [@@js.get "diagnostics"]
 
-  val set_diagnostics : t -> _Diagnostic list -> unit [@@js.set "diagnostics"]
+  val set_diagnostics : t -> Diagnostic.t list -> unit [@@js.set "diagnostics"]
 
-  val get_isPreferred : t -> bool [@@js.get "isPreferred"]
+  val get_is_preferred : t -> bool [@@js.get "isPreferred"]
 
-  val set_isPreferred : t -> bool -> unit [@@js.set "isPreferred"]
+  val set_is_preferred : t -> bool -> unit [@@js.set "isPreferred"]
 
   val get_disabled : t -> AnonymousInterface1.t [@@js.get "disabled"]
 
   val set_disabled : t -> AnonymousInterface1.t -> unit [@@js.set "disabled"]
 
-  val get_edit : t -> _WorkspaceEdit [@@js.get "edit"]
+  val get_edit : t -> WorkspaceEdit.t [@@js.get "edit"]
 
-  val set_edit : t -> _WorkspaceEdit -> unit [@@js.set "edit"]
+  val set_edit : t -> WorkspaceEdit.t -> unit [@@js.set "edit"]
 
-  val get_command : t -> _Command [@@js.get "command"]
+  val get_command : t -> Command.t [@@js.get "command"]
 
-  val set_command : t -> _Command -> unit [@@js.set "command"]
+  val set_command : t -> Command.t -> unit [@@js.set "command"]
 
   val get_data : t -> unknown [@@js.get "data"]
 
   val set_data : t -> unknown -> unit [@@js.set "data"]
 
-  val create_ : title:string -> ?kind:_CodeActionKind -> unit -> _CodeAction
+  val create_ : title:string -> ?kind:CodeActionKind.t -> unit -> CodeAction.t
     [@@js.global "create"]
 
   val create_''
     :  title:string
-    -> command:_Command
-    -> ?kind:_CodeActionKind
+    -> command:Command.t
+    -> ?kind:CodeActionKind.t
     -> unit
-    -> _CodeAction
+    -> CodeAction.t
     [@@js.global "create"]
 
   val create_''
     :  title:string
-    -> edit:_WorkspaceEdit
-    -> ?kind:_CodeActionKind
+    -> edit:WorkspaceEdit.t
+    -> ?kind:CodeActionKind.t
     -> unit
-    -> _CodeAction
+    -> CodeAction.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -2011,25 +2016,25 @@ end
 [@@js.scope "CodeAction"]
 
 module CodeLens : sig
-  type t = _CodeLens
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_range : t -> _Range [@@js.get "range"]
+  val get_range : t -> Range.t [@@js.get "range"]
 
-  val set_range : t -> _Range -> unit [@@js.set "range"]
+  val set_range : t -> Range.t -> unit [@@js.set "range"]
 
-  val get_command : t -> _Command [@@js.get "command"]
+  val get_command : t -> Command.t [@@js.get "command"]
 
-  val set_command : t -> _Command -> unit [@@js.set "command"]
+  val set_command : t -> Command.t -> unit [@@js.set "command"]
 
   val get_data : t -> any [@@js.get "data"]
 
   val set_data : t -> any -> unit [@@js.set "data"]
 
-  val create_ : range:_Range -> ?data:any -> unit -> _CodeLens
+  val create_ : range:Range.t -> ?data:any -> unit -> CodeLens.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -2037,32 +2042,34 @@ end
 [@@js.scope "CodeLens"]
 
 module FormattingOptions : sig
-  type t = _FormattingOptions
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_tabSize : t -> uinteger [@@js.get "tabSize"]
+  val get_tab_size : t -> uinteger [@@js.get "tabSize"]
 
-  val set_tabSize : t -> uinteger -> unit [@@js.set "tabSize"]
+  val set_tab_size : t -> uinteger -> unit [@@js.set "tabSize"]
 
-  val get_insertSpaces : t -> bool [@@js.get "insertSpaces"]
+  val get_insert_spaces : t -> bool [@@js.get "insertSpaces"]
 
-  val set_insertSpaces : t -> bool -> unit [@@js.set "insertSpaces"]
+  val set_insert_spaces : t -> bool -> unit [@@js.set "insertSpaces"]
 
-  val get_trimTrailingWhitespace : t -> bool [@@js.get "trimTrailingWhitespace"]
+  val get_trim_trailing_whitespace : t -> bool
+    [@@js.get "trimTrailingWhitespace"]
 
-  val set_trimTrailingWhitespace : t -> bool -> unit
+  val set_trim_trailing_whitespace : t -> bool -> unit
     [@@js.set "trimTrailingWhitespace"]
 
-  val get_insertFinalNewline : t -> bool [@@js.get "insertFinalNewline"]
+  val get_insert_final_newline : t -> bool [@@js.get "insertFinalNewline"]
 
-  val set_insertFinalNewline : t -> bool -> unit [@@js.set "insertFinalNewline"]
+  val set_insert_final_newline : t -> bool -> unit
+    [@@js.set "insertFinalNewline"]
 
-  val get_trimFinalNewlines : t -> bool [@@js.get "trimFinalNewlines"]
+  val get_trim_final_newlines : t -> bool [@@js.get "trimFinalNewlines"]
 
-  val set_trimFinalNewlines : t -> bool -> unit [@@js.set "trimFinalNewlines"]
+  val set_trim_final_newlines : t -> bool -> unit [@@js.set "trimFinalNewlines"]
 
   val get : t -> string -> integer or_boolean or_string or_undefined
     [@@js.index_get]
@@ -2070,7 +2077,7 @@ module FormattingOptions : sig
   val set : t -> string -> integer or_boolean or_string or_undefined -> unit
     [@@js.index_set]
 
-  val create_ : tabSize:uinteger -> insertSpaces:bool -> _FormattingOptions
+  val create_ : tab_size:uinteger -> insert_spaces:bool -> FormattingOptions.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -2078,15 +2085,15 @@ end
 [@@js.scope "FormattingOptions"]
 
 module DocumentLink : sig
-  type t = _DocumentLink
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_range : t -> _Range [@@js.get "range"]
+  val get_range : t -> Range.t [@@js.get "range"]
 
-  val set_range : t -> _Range -> unit [@@js.set "range"]
+  val set_range : t -> Range.t -> unit [@@js.set "range"]
 
   val get_target : t -> string [@@js.get "target"]
 
@@ -2101,11 +2108,11 @@ module DocumentLink : sig
   val set_data : t -> any -> unit [@@js.set "data"]
 
   val create_
-    :  range:_Range
+    :  range:Range.t
     -> ?target:string
     -> ?data:any
     -> unit
-    -> _DocumentLink
+    -> DocumentLink.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -2113,25 +2120,25 @@ end
 [@@js.scope "DocumentLink"]
 
 module SelectionRange : sig
-  type t = _SelectionRange
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_range : t -> _Range [@@js.get "range"]
+  val get_range : t -> Range.t [@@js.get "range"]
 
-  val set_range : t -> _Range -> unit [@@js.set "range"]
+  val set_range : t -> Range.t -> unit [@@js.set "range"]
 
   val get_parent : t -> t [@@js.get "parent"]
 
   val set_parent : t -> t -> unit [@@js.set "parent"]
 
   val create_
-    :  range:_Range
-    -> ?parent:_SelectionRange
+    :  range:Range.t
+    -> ?parent:SelectionRange.t
     -> unit
-    -> _SelectionRange
+    -> SelectionRange.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -2139,7 +2146,7 @@ end
 [@@js.scope "SelectionRange"]
 
 module CallHierarchyItem : sig
-  type t = _CallHierarchyItem
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -2149,29 +2156,29 @@ module CallHierarchyItem : sig
 
   val set_name : t -> string -> unit [@@js.set "name"]
 
-  val get_kind : t -> _SymbolKind [@@js.get "kind"]
+  val get_kind : t -> SymbolKind.t [@@js.get "kind"]
 
-  val set_kind : t -> _SymbolKind -> unit [@@js.set "kind"]
+  val set_kind : t -> SymbolKind.t -> unit [@@js.set "kind"]
 
-  val get_tags : t -> _SymbolTag list [@@js.get "tags"]
+  val get_tags : t -> SymbolTag.t list [@@js.get "tags"]
 
-  val set_tags : t -> _SymbolTag list -> unit [@@js.set "tags"]
+  val set_tags : t -> SymbolTag.t list -> unit [@@js.set "tags"]
 
   val get_detail : t -> string [@@js.get "detail"]
 
   val set_detail : t -> string -> unit [@@js.set "detail"]
 
-  val get_uri : t -> _DocumentUri [@@js.get "uri"]
+  val get_uri : t -> DocumentUri.t [@@js.get "uri"]
 
-  val set_uri : t -> _DocumentUri -> unit [@@js.set "uri"]
+  val set_uri : t -> DocumentUri.t -> unit [@@js.set "uri"]
 
-  val get_range : t -> _Range [@@js.get "range"]
+  val get_range : t -> Range.t [@@js.get "range"]
 
-  val set_range : t -> _Range -> unit [@@js.set "range"]
+  val set_range : t -> Range.t -> unit [@@js.set "range"]
 
-  val get_selectionRange : t -> _Range [@@js.get "selectionRange"]
+  val get_selection_range : t -> Range.t [@@js.get "selectionRange"]
 
-  val set_selectionRange : t -> _Range -> unit [@@js.set "selectionRange"]
+  val set_selection_range : t -> Range.t -> unit [@@js.set "selectionRange"]
 
   val get_data : t -> unknown [@@js.get "data"]
 
@@ -2180,36 +2187,36 @@ end
 [@@js.scope "CallHierarchyItem"]
 
 module CallHierarchyIncomingCall : sig
-  type t = _CallHierarchyIncomingCall
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_from : t -> _CallHierarchyItem [@@js.get "from"]
+  val get_from : t -> CallHierarchyItem.t [@@js.get "from"]
 
-  val set_from : t -> _CallHierarchyItem -> unit [@@js.set "from"]
+  val set_from : t -> CallHierarchyItem.t -> unit [@@js.set "from"]
 
-  val get_fromRanges : t -> _Range list [@@js.get "fromRanges"]
+  val get_from_ranges : t -> Range.t list [@@js.get "fromRanges"]
 
-  val set_fromRanges : t -> _Range list -> unit [@@js.set "fromRanges"]
+  val set_from_ranges : t -> Range.t list -> unit [@@js.set "fromRanges"]
 end
 [@@js.scope "CallHierarchyIncomingCall"]
 
 module CallHierarchyOutgoingCall : sig
-  type t = _CallHierarchyOutgoingCall
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_to : t -> _CallHierarchyItem [@@js.get "to"]
+  val get_to : t -> CallHierarchyItem.t [@@js.get "to"]
 
-  val set_to : t -> _CallHierarchyItem -> unit [@@js.set "to"]
+  val set_to : t -> CallHierarchyItem.t -> unit [@@js.set "to"]
 
-  val get_fromRanges : t -> _Range list [@@js.get "fromRanges"]
+  val get_from_ranges : t -> Range.t list [@@js.get "fromRanges"]
 
-  val set_fromRanges : t -> _Range list -> unit [@@js.set "fromRanges"]
+  val set_from_ranges : t -> Range.t list -> unit [@@js.set "fromRanges"]
 end
 [@@js.scope "CallHierarchyOutgoingCall"]
 
@@ -2266,32 +2273,32 @@ module SemanticTokenModifiers : sig
 end
 
 module SemanticTokensLegend : sig
-  type t = _SemanticTokensLegend
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_tokenTypes : t -> string list [@@js.get "tokenTypes"]
+  val get_token_types : t -> string list [@@js.get "tokenTypes"]
 
-  val set_tokenTypes : t -> string list -> unit [@@js.set "tokenTypes"]
+  val set_token_types : t -> string list -> unit [@@js.set "tokenTypes"]
 
-  val get_tokenModifiers : t -> string list [@@js.get "tokenModifiers"]
+  val get_token_modifiers : t -> string list [@@js.get "tokenModifiers"]
 
-  val set_tokenModifiers : t -> string list -> unit [@@js.set "tokenModifiers"]
+  val set_token_modifiers : t -> string list -> unit [@@js.set "tokenModifiers"]
 end
 [@@js.scope "SemanticTokensLegend"]
 
 module SemanticTokens : sig
-  type t = _SemanticTokens
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_resultId : t -> string [@@js.get "resultId"]
+  val get_result_id : t -> string [@@js.get "resultId"]
 
-  val set_resultId : t -> string -> unit [@@js.set "resultId"]
+  val set_result_id : t -> string -> unit [@@js.set "resultId"]
 
   val get_data : t -> uinteger list [@@js.get "data"]
 
@@ -2302,7 +2309,7 @@ end
 [@@js.scope "SemanticTokens"]
 
 module SemanticTokensEdit : sig
-  type t = _SemanticTokensEdit
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -2312,9 +2319,9 @@ module SemanticTokensEdit : sig
 
   val set_start : t -> uinteger -> unit [@@js.set "start"]
 
-  val get_deleteCount : t -> uinteger [@@js.get "deleteCount"]
+  val get_delete_count : t -> uinteger [@@js.get "deleteCount"]
 
-  val set_deleteCount : t -> uinteger -> unit [@@js.set "deleteCount"]
+  val set_delete_count : t -> uinteger -> unit [@@js.set "deleteCount"]
 
   val get_data : t -> uinteger list [@@js.get "data"]
 
@@ -2323,54 +2330,54 @@ end
 [@@js.scope "SemanticTokensEdit"]
 
 module SemanticTokensDelta : sig
-  type t = _SemanticTokensDelta
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_resultId : t -> string [@@js.get "resultId"]
+  val get_result_id : t -> string [@@js.get "resultId"]
 
-  val get_edits : t -> _SemanticTokensEdit list [@@js.get "edits"]
+  val get_edits : t -> SemanticTokensEdit.t list [@@js.get "edits"]
 
-  val set_edits : t -> _SemanticTokensEdit list -> unit [@@js.set "edits"]
+  val set_edits : t -> SemanticTokensEdit.t list -> unit [@@js.set "edits"]
 end
 [@@js.scope "SemanticTokensDelta"]
 
-val eOL : string list [@@js.global "EOL"]
+val e_ol : string list [@@js.global "EOL"]
 
 module TextDocument : sig
-  type t = _TextDocument
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_uri : t -> _DocumentUri [@@js.get "uri"]
+  val get_uri : t -> DocumentUri.t [@@js.get "uri"]
 
-  val get_languageId : t -> string [@@js.get "languageId"]
+  val get_language_id : t -> string [@@js.get "languageId"]
 
   val get_version : t -> integer [@@js.get "version"]
 
-  val getText : t -> ?range:_Range -> unit -> string [@@js.call "getText"]
+  val get_text : t -> ?range:Range.t -> unit -> string [@@js.call "getText"]
 
-  val positionAt : t -> offset:uinteger -> _Position [@@js.call "positionAt"]
+  val position_at : t -> offset:uinteger -> Position.t [@@js.call "positionAt"]
 
-  val offsetAt : t -> position:_Position -> uinteger [@@js.call "offsetAt"]
+  val offset_at : t -> position:Position.t -> uinteger [@@js.call "offsetAt"]
 
-  val get_lineCount : t -> uinteger [@@js.get "lineCount"]
+  val get_line_count : t -> uinteger [@@js.get "lineCount"]
 
   val create_
-    :  uri:_DocumentUri
-    -> languageId:string
+    :  uri:DocumentUri.t
+    -> language_id:string
     -> version:integer
     -> content:string
-    -> _TextDocument
+    -> TextDocument.t
     [@@js.global "create"]
 
   val is : value:any -> bool [@@js.global "is"]
 
-  val applyEdits : document:_TextDocument -> edits:_TextEdit list -> string
+  val apply_edits : document:TextDocument.t -> edits:TextEdit.t list -> string
     [@@js.global "applyEdits"]
 end
 [@@js.scope "TextDocument"]

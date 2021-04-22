@@ -12,13 +12,13 @@ module AnonymousInterface0 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_jsMemoryEstimate : t -> int [@@js.get "jsMemoryEstimate"]
+  val get_js_memory_estimate : t -> int [@@js.get "jsMemoryEstimate"]
 
-  val set_jsMemoryEstimate : t -> int -> unit [@@js.set "jsMemoryEstimate"]
+  val set_js_memory_estimate : t -> int -> unit [@@js.set "jsMemoryEstimate"]
 
-  val get_jsMemoryRange : t -> int * int [@@js.get "jsMemoryRange"]
+  val get_js_memory_range : t -> int * int [@@js.get "jsMemoryRange"]
 
-  val set_jsMemoryRange : t -> int * int -> unit [@@js.set "jsMemoryRange"]
+  val set_js_memory_range : t -> int * int -> unit [@@js.set "jsMemoryRange"]
 end
 
 module AnonymousInterface1 : sig
@@ -39,7 +39,7 @@ end
 
 module Vm : sig
   module Context : sig
-    type t = vm_Context
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -50,7 +50,7 @@ module Vm : sig
   [@@js.scope "Context"]
 
   module BaseOptions : sig
-    type t = vm_BaseOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -60,105 +60,107 @@ module Vm : sig
 
     val set_filename : t -> string -> unit [@@js.set "filename"]
 
-    val get_lineOffset : t -> int [@@js.get "lineOffset"]
+    val get_line_offset : t -> int [@@js.get "lineOffset"]
 
-    val set_lineOffset : t -> int -> unit [@@js.set "lineOffset"]
+    val set_line_offset : t -> int -> unit [@@js.set "lineOffset"]
 
-    val get_columnOffset : t -> int [@@js.get "columnOffset"]
+    val get_column_offset : t -> int [@@js.get "columnOffset"]
 
-    val set_columnOffset : t -> int -> unit [@@js.set "columnOffset"]
+    val set_column_offset : t -> int -> unit [@@js.set "columnOffset"]
   end
   [@@js.scope "BaseOptions"]
 
   module ScriptOptions : sig
-    type t = vm_ScriptOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_displayErrors : t -> bool [@@js.get "displayErrors"]
+    val get_display_errors : t -> bool [@@js.get "displayErrors"]
 
-    val set_displayErrors : t -> bool -> unit [@@js.set "displayErrors"]
+    val set_display_errors : t -> bool -> unit [@@js.set "displayErrors"]
 
     val get_timeout : t -> int [@@js.get "timeout"]
 
     val set_timeout : t -> int -> unit [@@js.set "timeout"]
 
-    val get_cachedData : t -> Buffer.t [@@js.get "cachedData"]
+    val get_cached_data : t -> Buffer.t [@@js.get "cachedData"]
 
-    val set_cachedData : t -> Buffer.t -> unit [@@js.set "cachedData"]
+    val set_cached_data : t -> Buffer.t -> unit [@@js.set "cachedData"]
 
-    val get_produceCachedData : t -> bool [@@js.get "produceCachedData"]
+    val get_produce_cached_data : t -> bool [@@js.get "produceCachedData"]
 
-    val set_produceCachedData : t -> bool -> unit [@@js.set "produceCachedData"]
+    val set_produce_cached_data : t -> bool -> unit
+      [@@js.set "produceCachedData"]
 
-    val cast : t -> vm_BaseOptions [@@js.cast]
+    val cast : t -> BaseOptions.t [@@js.cast]
   end
   [@@js.scope "ScriptOptions"]
 
   module RunningScriptOptions : sig
-    type t = vm_RunningScriptOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_displayErrors : t -> bool [@@js.get "displayErrors"]
+    val get_display_errors : t -> bool [@@js.get "displayErrors"]
 
-    val set_displayErrors : t -> bool -> unit [@@js.set "displayErrors"]
+    val set_display_errors : t -> bool -> unit [@@js.set "displayErrors"]
 
     val get_timeout : t -> int [@@js.get "timeout"]
 
     val set_timeout : t -> int -> unit [@@js.set "timeout"]
 
-    val get_breakOnSigint : t -> bool [@@js.get "breakOnSigint"]
+    val get_break_on_sigint : t -> bool [@@js.get "breakOnSigint"]
 
-    val set_breakOnSigint : t -> bool -> unit [@@js.set "breakOnSigint"]
+    val set_break_on_sigint : t -> bool -> unit [@@js.set "breakOnSigint"]
 
-    val get_microtaskMode
+    val get_microtask_mode
       :  t
       -> ([ `afterEvaluate [@js "afterEvaluate"] ][@js.enum])
       [@@js.get "microtaskMode"]
 
-    val set_microtaskMode : t -> ([ `afterEvaluate ][@js.enum]) -> unit
+    val set_microtask_mode : t -> ([ `afterEvaluate ][@js.enum]) -> unit
       [@@js.set "microtaskMode"]
 
-    val cast : t -> vm_BaseOptions [@@js.cast]
+    val cast : t -> BaseOptions.t [@@js.cast]
   end
   [@@js.scope "RunningScriptOptions"]
 
   module CompileFunctionOptions : sig
-    type t = vm_CompileFunctionOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_cachedData : t -> Buffer.t [@@js.get "cachedData"]
+    val get_cached_data : t -> Buffer.t [@@js.get "cachedData"]
 
-    val set_cachedData : t -> Buffer.t -> unit [@@js.set "cachedData"]
+    val set_cached_data : t -> Buffer.t -> unit [@@js.set "cachedData"]
 
-    val get_produceCachedData : t -> bool [@@js.get "produceCachedData"]
+    val get_produce_cached_data : t -> bool [@@js.get "produceCachedData"]
 
-    val set_produceCachedData : t -> bool -> unit [@@js.set "produceCachedData"]
+    val set_produce_cached_data : t -> bool -> unit
+      [@@js.set "produceCachedData"]
 
-    val get_parsingContext : t -> vm_Context [@@js.get "parsingContext"]
+    val get_parsing_context : t -> Context.t [@@js.get "parsingContext"]
 
-    val set_parsingContext : t -> vm_Context -> unit [@@js.set "parsingContext"]
+    val set_parsing_context : t -> Context.t -> unit [@@js.set "parsingContext"]
 
-    val get_contextExtensions : t -> untyped_object list
+    val get_context_extensions : t -> untyped_object list
       [@@js.get "contextExtensions"]
 
-    val set_contextExtensions : t -> untyped_object list -> unit
+    val set_context_extensions : t -> untyped_object list -> unit
       [@@js.set "contextExtensions"]
 
-    val cast : t -> vm_BaseOptions [@@js.cast]
+    val cast : t -> BaseOptions.t [@@js.cast]
   end
   [@@js.scope "CompileFunctionOptions"]
 
   module CreateContextOptions : sig
-    type t = vm_CreateContextOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -172,18 +174,18 @@ module Vm : sig
 
     val set_origin : t -> string -> unit [@@js.set "origin"]
 
-    val get_codeGeneration : t -> AnonymousInterface1.t
+    val get_code_generation : t -> AnonymousInterface1.t
       [@@js.get "codeGeneration"]
 
-    val set_codeGeneration : t -> AnonymousInterface1.t -> unit
+    val set_code_generation : t -> AnonymousInterface1.t -> unit
       [@@js.set "codeGeneration"]
 
-    val get_microtaskMode
+    val get_microtask_mode
       :  t
       -> ([ `afterEvaluate [@js "afterEvaluate"] ][@js.enum])
       [@@js.get "microtaskMode"]
 
-    val set_microtaskMode : t -> ([ `afterEvaluate ][@js.enum]) -> unit
+    val set_microtask_mode : t -> ([ `afterEvaluate ][@js.enum]) -> unit
       [@@js.set "microtaskMode"]
   end
   [@@js.scope "CreateContextOptions"]
@@ -201,24 +203,24 @@ module Vm : sig
   end
 
   module MeasureMemoryOptions : sig
-    type t = vm_MeasureMemoryOptions
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_mode : t -> vm_MeasureMemoryMode [@@js.get "mode"]
+    val get_mode : t -> MeasureMemoryMode.t [@@js.get "mode"]
 
-    val set_mode : t -> vm_MeasureMemoryMode -> unit [@@js.set "mode"]
+    val set_mode : t -> MeasureMemoryMode.t -> unit [@@js.set "mode"]
 
-    val get_context : t -> vm_Context [@@js.get "context"]
+    val get_context : t -> Context.t [@@js.get "context"]
 
-    val set_context : t -> vm_Context -> unit [@@js.set "context"]
+    val set_context : t -> Context.t -> unit [@@js.set "context"]
   end
   [@@js.scope "MeasureMemoryOptions"]
 
   module MemoryMeasurement : sig
-    type t = vm_MemoryMeasurement
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -231,87 +233,91 @@ module Vm : sig
   [@@js.scope "MemoryMeasurement"]
 
   module Script : sig
-    type t = vm_Script
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val create : code:string -> ?options:vm_ScriptOptions -> unit -> t
+    val create : code:string -> ?options:ScriptOptions.t -> unit -> t
       [@@js.create]
 
-    val runInContext
+    val run_in_context
       :  t
-      -> contextifiedSandbox:vm_Context
-      -> ?options:vm_RunningScriptOptions
+      -> contextified_sandbox:Context.t
+      -> ?options:RunningScriptOptions.t
       -> unit
       -> any
       [@@js.call "runInContext"]
 
-    val runInNewContext
+    val run_in_new_context
       :  t
-      -> ?sandbox:vm_Context
-      -> ?options:vm_RunningScriptOptions
+      -> ?sandbox:Context.t
+      -> ?options:RunningScriptOptions.t
       -> unit
       -> any
       [@@js.call "runInNewContext"]
 
-    val runInThisContext : t -> ?options:vm_RunningScriptOptions -> unit -> any
+    val run_in_this_context
+      :  t
+      -> ?options:RunningScriptOptions.t
+      -> unit
+      -> any
       [@@js.call "runInThisContext"]
 
-    val createCachedData : t -> Buffer.t [@@js.call "createCachedData"]
+    val create_cached_data : t -> Buffer.t [@@js.call "createCachedData"]
 
-    val get_cachedDataRejected : t -> bool [@@js.get "cachedDataRejected"]
+    val get_cached_data_rejected : t -> bool [@@js.get "cachedDataRejected"]
 
-    val set_cachedDataRejected : t -> bool -> unit
+    val set_cached_data_rejected : t -> bool -> unit
       [@@js.set "cachedDataRejected"]
   end
   [@@js.scope "Script"]
 
-  val createContext
-    :  ?sandbox:vm_Context
-    -> ?options:vm_CreateContextOptions
+  val create_context
+    :  ?sandbox:Context.t
+    -> ?options:CreateContextOptions.t
     -> unit
-    -> vm_Context
+    -> Context.t
     [@@js.global "createContext"]
 
-  val isContext : sandbox:vm_Context -> bool [@@js.global "isContext"]
+  val is_context : sandbox:Context.t -> bool [@@js.global "isContext"]
 
-  val runInContext
+  val run_in_context
     :  code:string
-    -> contextifiedSandbox:vm_Context
-    -> ?options:vm_RunningScriptOptions or_string
+    -> contextified_sandbox:Context.t
+    -> ?options:RunningScriptOptions.t or_string
     -> unit
     -> any
     [@@js.global "runInContext"]
 
-  val runInNewContext
+  val run_in_new_context
     :  code:string
-    -> ?sandbox:vm_Context
-    -> ?options:vm_RunningScriptOptions or_string
+    -> ?sandbox:Context.t
+    -> ?options:RunningScriptOptions.t or_string
     -> unit
     -> any
     [@@js.global "runInNewContext"]
 
-  val runInThisContext
+  val run_in_this_context
     :  code:string
-    -> ?options:vm_RunningScriptOptions or_string
+    -> ?options:RunningScriptOptions.t or_string
     -> unit
     -> any
     [@@js.global "runInThisContext"]
 
-  val compileFunction
+  val compile_function
     :  code:string
     -> ?params:string list
-    -> ?options:vm_CompileFunctionOptions
+    -> ?options:CompileFunctionOptions.t
     -> unit
     -> untyped_function
     [@@js.global "compileFunction"]
 
-  val measureMemory
-    :  ?options:vm_MeasureMemoryOptions
+  val measure_memory
+    :  ?options:MeasureMemoryOptions.t
     -> unit
-    -> vm_MemoryMeasurement Promise.t
+    -> MemoryMeasurement.t Promise.t
     [@@js.global "measureMemory"]
 end
 [@@js.scope Import.vm]

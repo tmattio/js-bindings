@@ -121,12 +121,12 @@ module ErrorConstructor =
     and t_to_js : t -> Ojs.t = fun (x50 : Ojs.t) -> x50
     let (capture_stack_trace :
       t ->
-        targetObject:untyped_object ->
-          ?constructorOpt:untyped_function -> unit -> unit)
+        target_object:untyped_object ->
+          ?constructor_opt:untyped_function -> unit -> unit)
       =
       fun (x56 : t) ->
-        fun ~targetObject:(x52 : untyped_object) ->
-          fun ?constructorOpt:(x53 : untyped_function option) ->
+        fun ~target_object:(x52 : untyped_object) ->
+          fun ?constructor_opt:(x53 : untyped_function option) ->
             fun () ->
               ignore
                 (let x57 = t_to_js x56 in
@@ -147,10 +147,10 @@ module ErrorConstructor =
                             | None -> ());
                            x54))|])
     let (prepare_stack_trace :
-      t -> err:Error.t -> stackTraces:CallSite.t list -> any) =
+      t -> err:Error.t -> stack_traces:CallSite.t list -> any) =
       fun (x61 : t) ->
         fun ~err:(x58 : Error.t) ->
-          fun ~stackTraces:(x59 : CallSite.t list) ->
+          fun ~stack_traces:(x59 : CallSite.t list) ->
             any_of_js
               (Ojs.call (t_to_js x61) "prepareStackTrace"
                  [|(Error.t_to_js x58);(Ojs.list_to_js CallSite.t_to_js x59)|])
@@ -283,8 +283,9 @@ module Buffer =
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Buffer")
              [|(Uint8Array.t_to_js x94)|])
     let (create''' :
-      arrayBuffer:(ArrayBuffer.t, SharedArrayBuffer.t) union2 -> t) =
-      fun ~arrayBuffer:(x95 : (ArrayBuffer.t, SharedArrayBuffer.t) union2) ->
+      array_buffer:(ArrayBuffer.t, SharedArrayBuffer.t) union2 -> t) =
+      fun ~array_buffer:(x95 : (ArrayBuffer.t, SharedArrayBuffer.t) union2)
+        ->
         t_of_js
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Buffer")
              [|(union2_to_js ArrayBuffer.t_to_js SharedArrayBuffer.t_to_js
@@ -300,15 +301,16 @@ module Buffer =
           (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Buffer")
              [|(t_to_js x100)|])
     let (from :
-      arrayBuffer:(ArrayBuffer.t, SharedArrayBuffer.t) union2
-        WithImplicitCoercion.t -> ?byteOffset:int -> ?length:int -> unit -> t)
+      array_buffer:(ArrayBuffer.t, SharedArrayBuffer.t) union2
+        WithImplicitCoercion.t ->
+        ?byte_offset:int -> ?length:int -> unit -> t)
       =
       fun
-        ~arrayBuffer:(x101 :
-                       (ArrayBuffer.t, SharedArrayBuffer.t) union2
-                         WithImplicitCoercion.t)
+        ~array_buffer:(x101 :
+                        (ArrayBuffer.t, SharedArrayBuffer.t) union2
+                          WithImplicitCoercion.t)
         ->
-        fun ?byteOffset:(x102 : int option) ->
+        fun ?byte_offset:(x102 : int option) ->
           fun ?length:(x103 : int option) ->
             fun () ->
               t_of_js
@@ -428,9 +430,9 @@ module Buffer =
                                     [|(BufferEncoding.t_to_js x130)|])
                            | None -> ());
                           x129))|])
-    let (concat : list:Uint8Array.t list -> ?totalLength:int -> unit -> t) =
+    let (concat : list:Uint8Array.t list -> ?total_length:int -> unit -> t) =
       fun ~list:(x136 : Uint8Array.t list) ->
-        fun ?totalLength:(x137 : int option) ->
+        fun ?total_length:(x137 : int option) ->
           fun () ->
             t_of_js
               (let x141 = Ojs.get_prop_ascii Ojs.global "Buffer" in
@@ -635,24 +637,24 @@ module Buffer =
     let (to_json : t -> AnonymousInterface2.t) =
       fun (x186 : t) ->
         AnonymousInterface2.t_of_js (Ojs.call (t_to_js x186) "toJSON" [||])
-    let (equals : t -> otherBuffer:Uint8Array.t -> bool) =
+    let (equals : t -> other_buffer:Uint8Array.t -> bool) =
       fun (x188 : t) ->
-        fun ~otherBuffer:(x187 : Uint8Array.t) ->
+        fun ~other_buffer:(x187 : Uint8Array.t) ->
           Ojs.bool_of_js
             (Ojs.call (t_to_js x188) "equals" [|(Uint8Array.t_to_js x187)|])
     let (compare' :
       t ->
-        otherBuffer:Uint8Array.t ->
-          ?targetStart:int ->
-            ?targetEnd:int ->
-              ?sourceStart:int -> ?sourceEnd:int -> unit -> int)
+        other_buffer:Uint8Array.t ->
+          ?target_start:int ->
+            ?target_end:int ->
+              ?source_start:int -> ?source_end:int -> unit -> int)
       =
       fun (x199 : t) ->
-        fun ~otherBuffer:(x189 : Uint8Array.t) ->
-          fun ?targetStart:(x190 : int option) ->
-            fun ?targetEnd:(x191 : int option) ->
-              fun ?sourceStart:(x192 : int option) ->
-                fun ?sourceEnd:(x193 : int option) ->
+        fun ~other_buffer:(x189 : Uint8Array.t) ->
+          fun ?target_start:(x190 : int option) ->
+            fun ?target_end:(x191 : int option) ->
+              fun ?source_start:(x192 : int option) ->
+                fun ?source_end:(x193 : int option) ->
                   fun () ->
                     Ojs.int_of_js
                       (let x200 = t_to_js x199 in
@@ -691,15 +693,15 @@ module Buffer =
                                   x194))|])
     let (copy :
       t ->
-        targetBuffer:Uint8Array.t ->
-          ?targetStart:int ->
-            ?sourceStart:int -> ?sourceEnd:int -> unit -> int)
+        target_buffer:Uint8Array.t ->
+          ?target_start:int ->
+            ?source_start:int -> ?source_end:int -> unit -> int)
       =
       fun (x209 : t) ->
-        fun ~targetBuffer:(x201 : Uint8Array.t) ->
-          fun ?targetStart:(x202 : int option) ->
-            fun ?sourceStart:(x203 : int option) ->
-              fun ?sourceEnd:(x204 : int option) ->
+        fun ~target_buffer:(x201 : Uint8Array.t) ->
+          fun ?target_start:(x202 : int option) ->
+            fun ?source_start:(x203 : int option) ->
+              fun ?source_end:(x204 : int option) ->
                 fun () ->
                   Ojs.int_of_js
                     (let x210 = t_to_js x209 in
@@ -867,41 +869,41 @@ module Buffer =
                              | None -> ());
                             x245))|])
     let (write_u_int_le :
-      t -> value:int -> offset:int -> byteLength:int -> int) =
+      t -> value:int -> offset:int -> byte_length:int -> int) =
       fun (x252 : t) ->
         fun ~value:(x249 : int) ->
           fun ~offset:(x250 : int) ->
-            fun ~byteLength:(x251 : int) ->
+            fun ~byte_length:(x251 : int) ->
               Ojs.int_of_js
                 (Ojs.call (t_to_js x252) "writeUIntLE"
                    [|(Ojs.int_to_js x249);(Ojs.int_to_js x250);(Ojs.int_to_js
                                                                   x251)|])
     let (write_u_int_be :
-      t -> value:int -> offset:int -> byteLength:int -> int) =
+      t -> value:int -> offset:int -> byte_length:int -> int) =
       fun (x256 : t) ->
         fun ~value:(x253 : int) ->
           fun ~offset:(x254 : int) ->
-            fun ~byteLength:(x255 : int) ->
+            fun ~byte_length:(x255 : int) ->
               Ojs.int_of_js
                 (Ojs.call (t_to_js x256) "writeUIntBE"
                    [|(Ojs.int_to_js x253);(Ojs.int_to_js x254);(Ojs.int_to_js
                                                                   x255)|])
     let (write_int_le :
-      t -> value:int -> offset:int -> byteLength:int -> int) =
+      t -> value:int -> offset:int -> byte_length:int -> int) =
       fun (x260 : t) ->
         fun ~value:(x257 : int) ->
           fun ~offset:(x258 : int) ->
-            fun ~byteLength:(x259 : int) ->
+            fun ~byte_length:(x259 : int) ->
               Ojs.int_of_js
                 (Ojs.call (t_to_js x260) "writeIntLE"
                    [|(Ojs.int_to_js x257);(Ojs.int_to_js x258);(Ojs.int_to_js
                                                                   x259)|])
     let (write_int_be :
-      t -> value:int -> offset:int -> byteLength:int -> int) =
+      t -> value:int -> offset:int -> byte_length:int -> int) =
       fun (x264 : t) ->
         fun ~value:(x261 : int) ->
           fun ~offset:(x262 : int) ->
-            fun ~byteLength:(x263 : int) ->
+            fun ~byte_length:(x263 : int) ->
               Ojs.int_of_js
                 (Ojs.call (t_to_js x264) "writeIntBE"
                    [|(Ojs.int_to_js x261);(Ojs.int_to_js x262);(Ojs.int_to_js
@@ -978,31 +980,31 @@ module Buffer =
                                     [|(Ojs.int_to_js x282)|])
                            | None -> ());
                           x281))|])
-    let (read_u_int_le : t -> offset:int -> byteLength:int -> int) =
+    let (read_u_int_le : t -> offset:int -> byte_length:int -> int) =
       fun (x287 : t) ->
         fun ~offset:(x285 : int) ->
-          fun ~byteLength:(x286 : int) ->
+          fun ~byte_length:(x286 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x287) "readUIntLE"
                  [|(Ojs.int_to_js x285);(Ojs.int_to_js x286)|])
-    let (read_u_int_be : t -> offset:int -> byteLength:int -> int) =
+    let (read_u_int_be : t -> offset:int -> byte_length:int -> int) =
       fun (x290 : t) ->
         fun ~offset:(x288 : int) ->
-          fun ~byteLength:(x289 : int) ->
+          fun ~byte_length:(x289 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x290) "readUIntBE"
                  [|(Ojs.int_to_js x288);(Ojs.int_to_js x289)|])
-    let (read_int_le : t -> offset:int -> byteLength:int -> int) =
+    let (read_int_le : t -> offset:int -> byte_length:int -> int) =
       fun (x293 : t) ->
         fun ~offset:(x291 : int) ->
-          fun ~byteLength:(x292 : int) ->
+          fun ~byte_length:(x292 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x293) "readIntLE"
                  [|(Ojs.int_to_js x291);(Ojs.int_to_js x292)|])
-    let (read_int_be : t -> offset:int -> byteLength:int -> int) =
+    let (read_int_be : t -> offset:int -> byte_length:int -> int) =
       fun (x296 : t) ->
         fun ~offset:(x294 : int) ->
-          fun ~byteLength:(x295 : int) ->
+          fun ~byte_length:(x295 : int) ->
             Ojs.int_of_js
               (Ojs.call (t_to_js x296) "readIntBE"
                  [|(Ojs.int_to_js x294);(Ojs.int_to_js x295)|])
@@ -1608,11 +1610,11 @@ module Buffer =
     let (index_of :
       t ->
         value:Uint8Array.t or_string or_number ->
-          ?byteOffset:int -> ?encoding:BufferEncoding.t -> unit -> int)
+          ?byte_offset:int -> ?encoding:BufferEncoding.t -> unit -> int)
       =
       fun (x475 : t) ->
         fun ~value:(x467 : Uint8Array.t or_string or_number) ->
-          fun ?byteOffset:(x468 : int option) ->
+          fun ?byte_offset:(x468 : int option) ->
             fun ?encoding:(x469 : BufferEncoding.t option) ->
               fun () ->
                 Ojs.int_of_js
@@ -1645,11 +1647,11 @@ module Buffer =
     let (last_index_of :
       t ->
         value:Uint8Array.t or_string or_number ->
-          ?byteOffset:int -> ?encoding:BufferEncoding.t -> unit -> int)
+          ?byte_offset:int -> ?encoding:BufferEncoding.t -> unit -> int)
       =
       fun (x485 : t) ->
         fun ~value:(x477 : Uint8Array.t or_string or_number) ->
-          fun ?byteOffset:(x478 : int option) ->
+          fun ?byte_offset:(x478 : int option) ->
             fun ?encoding:(x479 : BufferEncoding.t option) ->
               fun () ->
                 Ojs.int_of_js
@@ -1690,11 +1692,11 @@ module Buffer =
     let (includes :
       t ->
         value:t or_string or_number ->
-          ?byteOffset:int -> ?encoding:BufferEncoding.t -> unit -> bool)
+          ?byte_offset:int -> ?encoding:BufferEncoding.t -> unit -> bool)
       =
       fun (x498 : t) ->
         fun ~value:(x490 : t or_string or_number) ->
-          fun ?byteOffset:(x491 : int option) ->
+          fun ?byte_offset:(x491 : int option) ->
             fun ?encoding:(x492 : BufferEncoding.t option) ->
               fun () ->
                 Ojs.bool_of_js
@@ -2171,9 +2173,9 @@ module ReadableStream =
                                       [|(BufferEncoding.t_to_js x651)|])
                              | None -> ());
                             x650))|])
-    let (wrap : t -> oldStream:t -> t) =
+    let (wrap : t -> old_stream:t -> t) =
       fun (x656 : t) ->
-        fun ~oldStream:(x655 : t) ->
+        fun ~old_stream:(x655 : t) ->
           t_of_js (Ojs.call (t_to_js x656) "wrap" [|(t_to_js x655)|])
   end
 module ReadWriteStream =
@@ -2514,21 +2516,21 @@ module Global =
         fun (x797 : WeakSetConstructor.t) ->
           Ojs.set_prop_ascii (t_to_js x796) "WeakSet"
             (WeakSetConstructor.t_to_js x797)
-    let (clear_immediate : t -> immediateId:Immediate.t -> unit) =
+    let (clear_immediate : t -> immediate_id:Immediate.t -> unit) =
       fun (x799 : t) ->
-        fun ~immediateId:(x798 : Immediate.t) ->
+        fun ~immediate_id:(x798 : Immediate.t) ->
           ignore
             (Ojs.call (t_to_js x799) "clearImmediate"
                [|(Immediate.t_to_js x798)|])
-    let (clear_interval : t -> intervalId:Timeout.t -> unit) =
+    let (clear_interval : t -> interval_id:Timeout.t -> unit) =
       fun (x801 : t) ->
-        fun ~intervalId:(x800 : Timeout.t) ->
+        fun ~interval_id:(x800 : Timeout.t) ->
           ignore
             (Ojs.call (t_to_js x801) "clearInterval"
                [|(Timeout.t_to_js x800)|])
-    let (clear_timeout : t -> timeoutId:Timeout.t -> unit) =
+    let (clear_timeout : t -> timeout_id:Timeout.t -> unit) =
       fun (x803 : t) ->
-        fun ~timeoutId:(x802 : Timeout.t) ->
+        fun ~timeout_id:(x802 : Timeout.t) ->
           ignore
             (Ojs.call (t_to_js x803) "clearTimeout"
                [|(Timeout.t_to_js x802)|])
@@ -3054,8 +3056,8 @@ module SetTimeout =
             (Ojs.call (Ojs.get_prop_ascii Ojs.global "setTimeout")
                "__promisify__" [|(Ojs.int_to_js x998);(Obj.magic x999)|])
   end
-let (clear_timeout : timeoutId:Timeout.t -> unit) =
-  fun ~timeoutId:(x1001 : Timeout.t) ->
+let (clear_timeout : timeout_id:Timeout.t -> unit) =
+  fun ~timeout_id:(x1001 : Timeout.t) ->
     ignore (Ojs.call Ojs.global "clearTimeout" [|(Timeout.t_to_js x1001)|])
 let (set_interval :
   callback:(args:any list -> unit) -> ?ms:int -> args:any list -> Timeout.t)
@@ -3088,8 +3090,8 @@ let (set_interval :
                               (Ojs.call x1005 "push" [|(any_to_js x1006)|]))
                          x1004;
                        x1005))|])
-let (clear_interval : intervalId:Timeout.t -> unit) =
-  fun ~intervalId:(x1011 : Timeout.t) ->
+let (clear_interval : interval_id:Timeout.t -> unit) =
+  fun ~interval_id:(x1011 : Timeout.t) ->
     ignore (Ojs.call Ojs.global "clearInterval" [|(Timeout.t_to_js x1011)|])
 let (set_immediate :
   callback:(args:any list -> unit) -> args:any list -> Immediate.t) =
@@ -3127,8 +3129,8 @@ module SetImmediate =
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "setImmediate")
              "__promisify__" [|(Obj.magic x1020)|])
   end
-let (clear_immediate : immediateId:Immediate.t -> unit) =
-  fun ~immediateId:(x1022 : Immediate.t) ->
+let (clear_immediate : immediate_id:Immediate.t -> unit) =
+  fun ~immediate_id:(x1022 : Immediate.t) ->
     ignore
       (Ojs.call Ojs.global "clearImmediate" [|(Immediate.t_to_js x1022)|])
 let (queue_microtask : callback:(unit -> unit) -> unit) =
