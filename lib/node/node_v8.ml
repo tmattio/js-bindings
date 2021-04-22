@@ -5,13 +5,9 @@ open Es2020
 open Node_globals
 module Internal =
   struct
-    module AnonymousInterfaces = struct  end
     module Types =
       struct
-        open AnonymousInterfaces
-        type v8_DefaultDeserializer =
-          [ `V8_DefaultDeserializer  | `V8_Deserializer ] intf
-        and v8_DefaultSerializer =
+        type v8_DefaultSerializer =
           [ `V8_DefaultSerializer  | `V8_Serializer ] intf
         and v8_Deserializer = [ `V8_Deserializer ] intf
         and v8_DoesZapCodeSpaceFlag = [ `L_n_0  | `L_n_1 ]
@@ -19,11 +15,7 @@ module Internal =
         and v8_HeapInfo = [ `V8_HeapInfo ] intf
         and v8_HeapSpaceInfo = [ `V8_HeapSpaceInfo ] intf
         and v8_Serializer = [ `V8_Serializer ] intf
-        let rec v8_DefaultDeserializer_of_js :
-          Ojs.t -> v8_DefaultDeserializer = Obj.magic
-        and v8_DefaultDeserializer_to_js : v8_DefaultDeserializer -> Ojs.t =
-          Obj.magic
-        and v8_DefaultSerializer_of_js : Ojs.t -> v8_DefaultSerializer =
+        let rec v8_DefaultSerializer_of_js : Ojs.t -> v8_DefaultSerializer =
           Obj.magic
         and v8_DefaultSerializer_to_js : v8_DefaultSerializer -> Ojs.t =
           Obj.magic
@@ -55,9 +47,6 @@ module Internal =
         and v8_Serializer_to_js : v8_Serializer -> Ojs.t = Obj.magic
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module V8 =
   struct
     open Node_stream

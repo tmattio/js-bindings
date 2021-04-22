@@ -4,14 +4,6 @@
 open Es5
 module Internal =
   struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
     module Types =
       struct
         open AnonymousInterfaces
@@ -90,16 +82,11 @@ module Internal =
               fun (x15 : __T) -> __T_to_js x15
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x18 : Ojs.t) -> anonymous_interface_0_of_js x18
-    and t_to_js : t -> Ojs.t =
-      fun (x17 : anonymous_interface_0) -> anonymous_interface_0_to_js x17
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x18 : Ojs.t) -> x18
+    and t_to_js : t -> Ojs.t = fun (x17 : Ojs.t) -> x17
   end
 module StringLiteralUnion =
   struct

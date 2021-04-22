@@ -4,28 +4,16 @@
 open Es5
 module Internal =
   struct
-    module AnonymousInterfaces = struct  end
     module Types =
       struct
-        open AnonymousInterfaces
-        type _FoldingRangeClientCapabilities =
-          [ `FoldingRangeClientCapabilities ] intf
-        and _FoldingRangeKind = [ `Comment  | `Imports  | `Region ]
+        type _FoldingRangeKind = [ `Comment  | `Imports  | `Region ]
         and _FoldingRangeKind_Comment = [ `Comment ]
         and _FoldingRangeKind_Imports = [ `Imports ]
         and _FoldingRangeKind_Region = [ `Region ]
-        and _FoldingRangeOptions = [ `FoldingRangeOptions ] intf
-        and _FoldingRangeParams = [ `FoldingRangeParams ] intf
-        and _FoldingRangeRegistrationOptions =
-          [ `FoldingRangeRegistrationOptions  | `FoldingRangeOptions ] intf
         and _FoldingRangeRequest_HandlerSignature =
           (_FoldingRangeParams, FoldingRange.t list or_null, unit)
             RequestHandler.t
-        let rec _FoldingRangeClientCapabilities_of_js :
-          Ojs.t -> _FoldingRangeClientCapabilities = Obj.magic
-        and _FoldingRangeClientCapabilities_to_js :
-          _FoldingRangeClientCapabilities -> Ojs.t = Obj.magic
-        and _FoldingRangeKind_of_js : Ojs.t -> _FoldingRangeKind =
+        let rec _FoldingRangeKind_of_js : Ojs.t -> _FoldingRangeKind =
           fun (x2 : Ojs.t) ->
             let x3 = x2 in
             match Ojs.string_of_js x3 with
@@ -72,18 +60,6 @@ module Internal =
           _FoldingRangeKind_Region -> Ojs.t =
           fun (x10 : [ `Region ]) ->
             match x10 with | `Region -> Ojs.string_to_js "region"
-        and _FoldingRangeOptions_of_js : Ojs.t -> _FoldingRangeOptions =
-          Obj.magic
-        and _FoldingRangeOptions_to_js : _FoldingRangeOptions -> Ojs.t =
-          Obj.magic
-        and _FoldingRangeParams_of_js : Ojs.t -> _FoldingRangeParams =
-          Obj.magic
-        and _FoldingRangeParams_to_js : _FoldingRangeParams -> Ojs.t =
-          Obj.magic
-        and _FoldingRangeRegistrationOptions_of_js :
-          Ojs.t -> _FoldingRangeRegistrationOptions = Obj.magic
-        and _FoldingRangeRegistrationOptions_to_js :
-          _FoldingRangeRegistrationOptions -> Ojs.t = Obj.magic
         and _FoldingRangeRequest_HandlerSignature_of_js :
           Ojs.t -> _FoldingRangeRequest_HandlerSignature =
           fun (x19 : Ojs.t) ->
@@ -108,9 +84,6 @@ module Internal =
               Ojs.unit_to_js x13
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module FoldingRangeClientCapabilities =
   struct
     type t = _FoldingRangeClientCapabilities

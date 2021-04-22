@@ -2,50 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _IPCMessageReader = [ `IPCMessageReader ] intf
-        and _IPCMessageWriter = [ `IPCMessageWriter ] intf
-        and _PipeTransport = [ `PipeTransport ] intf
-        and _SocketMessageReader = [ `SocketMessageReader ] intf
-        and _SocketMessageWriter = [ `SocketMessageWriter ] intf
-        and _SocketTransport = [ `SocketTransport ] intf
-        and _StreamMessageReader = [ `StreamMessageReader ] intf
-        and _StreamMessageWriter = [ `StreamMessageWriter ] intf
-        let rec _IPCMessageReader_of_js : Ojs.t -> _IPCMessageReader =
-          Obj.magic
-        and _IPCMessageReader_to_js : _IPCMessageReader -> Ojs.t = Obj.magic
-        and _IPCMessageWriter_of_js : Ojs.t -> _IPCMessageWriter = Obj.magic
-        and _IPCMessageWriter_to_js : _IPCMessageWriter -> Ojs.t = Obj.magic
-        and _PipeTransport_of_js : Ojs.t -> _PipeTransport = Obj.magic
-        and _PipeTransport_to_js : _PipeTransport -> Ojs.t = Obj.magic
-        and _SocketMessageReader_of_js : Ojs.t -> _SocketMessageReader =
-          Obj.magic
-        and _SocketMessageReader_to_js : _SocketMessageReader -> Ojs.t =
-          Obj.magic
-        and _SocketMessageWriter_of_js : Ojs.t -> _SocketMessageWriter =
-          Obj.magic
-        and _SocketMessageWriter_to_js : _SocketMessageWriter -> Ojs.t =
-          Obj.magic
-        and _SocketTransport_of_js : Ojs.t -> _SocketTransport = Obj.magic
-        and _SocketTransport_to_js : _SocketTransport -> Ojs.t = Obj.magic
-        and _StreamMessageReader_of_js : Ojs.t -> _StreamMessageReader =
-          Obj.magic
-        and _StreamMessageReader_to_js : _StreamMessageReader -> Ojs.t =
-          Obj.magic
-        and _StreamMessageWriter_of_js : Ojs.t -> _StreamMessageWriter =
-          Obj.magic
-        and _StreamMessageWriter_to_js : _StreamMessageWriter -> Ojs.t =
-          Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 include struct include Vscode_jsonrpc_api end
 module IPCMessageReader =
   struct

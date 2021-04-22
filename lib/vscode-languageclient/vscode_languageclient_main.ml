@@ -4,38 +4,15 @@
 open Es5
 module Internal =
   struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-        let rec anonymous_interface_1_of_js : Ojs.t -> anonymous_interface_1
-          = Obj.magic
-        and anonymous_interface_1_to_js : anonymous_interface_1 -> Ojs.t =
-          Obj.magic
-      end
     module Types =
       struct
-        open AnonymousInterfaces
-        type _ChildProcessInfo = [ `ChildProcessInfo ] intf
-        and _Executable = [ `Executable ] intf
-        and _ExecutableOptions = [ `ExecutableOptions ] intf
-        and _ForkOptions = [ `ForkOptions ] intf
-        and _LanguageClient = [ `LanguageClient ] intf
-        and _NodeModule = [ `NodeModule ] intf
-        and _ServerOptions =
-          (_Executable, _NodeModule, anonymous_interface_0,
-            anonymous_interface_1,
+        type _ServerOptions =
+          (_Executable, _NodeModule, AnonymousInterface0.t,
+            AnonymousInterface1.t,
             unit ->
               (ChildProcess.t, _ChildProcessInfo, MessageTransports.t,
                 _StreamInfo) union4 Promise.t)
             union5
-        and _SettingMonitor = [ `SettingMonitor ] intf
-        and _SocketTransport = [ `SocketTransport ] intf
-        and _StreamInfo = [ `StreamInfo ] intf
         and _Transport =
           (_SocketTransport, [ `ipc  | `pipe  | `socket  | `stdio ]) or_enum
         and _TransportKind = [ `stdio  | `ipc  | `pipe  | `socket ]
@@ -43,25 +20,10 @@ module Internal =
         and _TransportKind_ipc = [ `ipc ]
         and _TransportKind_pipe = [ `pipe ]
         and _TransportKind_socket = [ `socket ]
-        let rec _ChildProcessInfo_of_js : Ojs.t -> _ChildProcessInfo =
-          Obj.magic
-        and _ChildProcessInfo_to_js : _ChildProcessInfo -> Ojs.t = Obj.magic
-        and _Executable_of_js : Ojs.t -> _Executable = Obj.magic
-        and _Executable_to_js : _Executable -> Ojs.t = Obj.magic
-        and _ExecutableOptions_of_js : Ojs.t -> _ExecutableOptions =
-          Obj.magic
-        and _ExecutableOptions_to_js : _ExecutableOptions -> Ojs.t =
-          Obj.magic
-        and _ForkOptions_of_js : Ojs.t -> _ForkOptions = Obj.magic
-        and _ForkOptions_to_js : _ForkOptions -> Ojs.t = Obj.magic
-        and _LanguageClient_of_js : Ojs.t -> _LanguageClient = Obj.magic
-        and _LanguageClient_to_js : _LanguageClient -> Ojs.t = Obj.magic
-        and _NodeModule_of_js : Ojs.t -> _NodeModule = Obj.magic
-        and _NodeModule_to_js : _NodeModule -> Ojs.t = Obj.magic
-        and _ServerOptions_of_js : Ojs.t -> _ServerOptions =
+        let rec _ServerOptions_of_js : Ojs.t -> _ServerOptions =
           fun (x12 : Ojs.t) ->
             union5_of_js _Executable_of_js _NodeModule_of_js
-              anonymous_interface_0_of_js anonymous_interface_1_of_js
+              AnonymousInterface0.t_of_js AnonymousInterface1.t_of_js
               (fun (x17 : Ojs.t) ->
                  fun () ->
                    Promise.t_of_js
@@ -72,15 +34,15 @@ module Internal =
         and _ServerOptions_to_js : _ServerOptions -> Ojs.t =
           fun
             (x1 :
-              (_Executable, _NodeModule, anonymous_interface_0,
-                anonymous_interface_1,
+              (_Executable, _NodeModule, AnonymousInterface0.t,
+                AnonymousInterface1.t,
                 unit ->
                   (ChildProcess.t, _ChildProcessInfo, MessageTransports.t,
                     _StreamInfo) union4 Promise.t)
                 union5)
             ->
             union5_to_js _Executable_to_js _NodeModule_to_js
-              anonymous_interface_0_to_js anonymous_interface_1_to_js
+              AnonymousInterface0.t_to_js AnonymousInterface1.t_to_js
               (fun
                  (x6 :
                    unit ->
@@ -99,12 +61,6 @@ module Internal =
                              _ChildProcessInfo_to_js
                              MessageTransports.t_to_js _StreamInfo_to_js x7)
                         (x6 ()))) x1
-        and _SettingMonitor_of_js : Ojs.t -> _SettingMonitor = Obj.magic
-        and _SettingMonitor_to_js : _SettingMonitor -> Ojs.t = Obj.magic
-        and _SocketTransport_of_js : Ojs.t -> _SocketTransport = Obj.magic
-        and _SocketTransport_to_js : _SocketTransport -> Ojs.t = Obj.magic
-        and _StreamInfo_of_js : Ojs.t -> _StreamInfo = Obj.magic
-        and _StreamInfo_to_js : _StreamInfo -> Ojs.t = Obj.magic
         and _Transport_of_js : Ojs.t -> _Transport =
           fun (x26 : Ojs.t) ->
             or_enum_of_js _SocketTransport_of_js
@@ -173,16 +129,11 @@ module Internal =
             match x42 with | `socket -> Ojs.int_to_js 3
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x46 : Ojs.t) -> anonymous_interface_0_of_js x46
-    and t_to_js : t -> Ojs.t =
-      fun (x45 : anonymous_interface_0) -> anonymous_interface_0_to_js x45
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x46 : Ojs.t) -> x46
+    and t_to_js : t -> Ojs.t = fun (x45 : Ojs.t) -> x45
     let (get_run : t -> _Executable) =
       fun (x47 : t) ->
         _Executable_of_js (Ojs.get_prop_ascii (t_to_js x47) "run")
@@ -200,11 +151,9 @@ module AnonymousInterface0 =
   end
 module AnonymousInterface1 =
   struct
-    type t = anonymous_interface_1
-    let rec t_of_js : Ojs.t -> t =
-      fun (x54 : Ojs.t) -> anonymous_interface_1_of_js x54
-    and t_to_js : t -> Ojs.t =
-      fun (x53 : anonymous_interface_1) -> anonymous_interface_1_to_js x53
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x54 : Ojs.t) -> x54
+    and t_to_js : t -> Ojs.t = fun (x53 : Ojs.t) -> x53
     let (get_run : t -> _NodeModule) =
       fun (x55 : t) ->
         _NodeModule_of_js (Ojs.get_prop_ascii (t_to_js x55) "run")

@@ -4,38 +4,6 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _SelectionRangeClientCapabilities =
-      [ `SelectionRangeClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SelectionRangeOptions = [ `SelectionRangeOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SelectionRangeParams = [ `SelectionRangeParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SelectionRangeRegistrationOptions =
-      [ `SelectionRangeRegistrationOptions | `SelectionRangeOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SelectionRangeRequest_HandlerSignature =
-      ( _SelectionRangeParams
-      , SelectionRange.t list or_null
-      , unit )
-      RequestHandler.t
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 (* import { RequestHandler } from 'vscode-jsonrpc'; *)
 (* import { TextDocumentIdentifier, Position, SelectionRange } from
    'vscode-languageserver-types'; *)
@@ -121,7 +89,11 @@ module SelectionRangeRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _SelectionRangeRequest_HandlerSignature
+    type t =
+      ( _SelectionRangeParams
+      , SelectionRange.t list or_null
+      , unit )
+      RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 

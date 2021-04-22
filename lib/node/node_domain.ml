@@ -3,26 +3,6 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
 open Node_globals
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type domain_Domain = [ `Domain_Domain ] intf
-        and domain_global_NodeJS_Domain =
-          [ `Domain_global_NodeJS_Domain ] intf
-        let rec domain_Domain_of_js : Ojs.t -> domain_Domain = Obj.magic
-        and domain_Domain_to_js : domain_Domain -> Ojs.t = Obj.magic
-        and domain_global_NodeJS_Domain_of_js :
-          Ojs.t -> domain_global_NodeJS_Domain = Obj.magic
-        and domain_global_NodeJS_Domain_to_js :
-          domain_global_NodeJS_Domain -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module Domain =
   struct
     module Global =

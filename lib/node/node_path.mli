@@ -4,27 +4,7 @@
 
 open Es2020
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
 
-  module Types : sig
-    open AnonymousInterfaces
-
-    type path_path_FormatInputPathObject =
-      [ `Path_path_FormatInputPathObject ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and path_path_ParsedPath = [ `Path_path_ParsedPath ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and path_path_PlatformPath = [ `Path_path_PlatformPath ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
 
 module Path : sig
   module Path : sig

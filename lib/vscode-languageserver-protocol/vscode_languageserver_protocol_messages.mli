@@ -4,52 +4,6 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type ('P, 'RO) _ProtocolNotificationType =
-      [ `ProtocolNotificationType of 'P * 'RO | `RegistrationType of 'RO ] intf
-    [@@js.custom
-      { of_js = (fun _P _RO -> Obj.magic); to_js = (fun _P _RO -> Obj.magic) }]
-
-    and 'RO _ProtocolNotificationType0 =
-      [ `ProtocolNotificationType0 of 'RO | `RegistrationType of 'RO ] intf
-    [@@js.custom
-      { of_js = (fun _RO -> Obj.magic); to_js = (fun _RO -> Obj.magic) }]
-
-    and ('P, 'R, 'PR, 'E, 'RO) _ProtocolRequestType =
-      [ `ProtocolRequestType of 'P * 'R * 'PR * 'E * 'RO
-      | `RegistrationType of 'RO
-      ]
-      intf
-    [@@js.custom
-      { of_js = (fun _P _R _PR _E _RO -> Obj.magic)
-      ; to_js = (fun _P _R _PR _E _RO -> Obj.magic)
-      }]
-
-    and ('R, 'PR, 'E, 'RO) _ProtocolRequestType0 =
-      [ `ProtocolRequestType0 of 'R * 'PR * 'E * 'RO
-      | `RegistrationType of 'RO
-      ]
-      intf
-    [@@js.custom
-      { of_js = (fun _R _PR _E _RO -> Obj.magic)
-      ; to_js = (fun _R _PR _E _RO -> Obj.magic)
-      }]
-
-    and 'RO _RegistrationType = [ `RegistrationType of 'RO ] intf
-    [@@js.custom
-      { of_js = (fun _RO -> Obj.magic); to_js = (fun _RO -> Obj.magic) }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 (* import { RequestType, RequestType0, NotificationType, NotificationType0,
    ProgressType, _EM } from 'vscode-jsonrpc'; *)
 module RegistrationType : sig

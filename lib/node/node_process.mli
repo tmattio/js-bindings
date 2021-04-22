@@ -5,204 +5,8 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_3 = [ `anonymous_interface_3 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_4 = [ `anonymous_interface_4 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_5 = [ `anonymous_interface_5 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_6 = [ `anonymous_interface_6 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_7 = [ `anonymous_interface_7 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_8 = [ `anonymous_interface_8 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type process_global_NodeJS_BeforeExitListener =
-      [ `Process_global_NodeJS_BeforeExitListener ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_CpuUsage =
-      [ `Process_global_NodeJS_CpuUsage ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_DisconnectListener =
-      [ `Process_global_NodeJS_DisconnectListener ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_ExitListener =
-      [ `Process_global_NodeJS_ExitListener ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_Global = [ `Process_global_NodeJS_Global ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_HRTime = [ `Process_global_NodeJS_HRTime ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_MemoryUsage =
-      [ `Process_global_NodeJS_MemoryUsage ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_MessageListener =
-      [ `Process_global_NodeJS_MessageListener ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_MultipleResolveListener =
-      [ `Process_global_NodeJS_MultipleResolveListener ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_MultipleResolveType =
-      ([ `reject [@js "reject"]
-       | `resolve [@js "resolve"]
-       ]
-      [@js.enum])
-
-    and process_global_NodeJS_NewListenerListener =
-      [ `Process_global_NodeJS_NewListenerListener ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_Platform =
-      ([ `aix [@js "aix"]
-       | `android [@js "android"]
-       | `cygwin [@js "cygwin"]
-       | `darwin [@js "darwin"]
-       | `freebsd [@js "freebsd"]
-       | `linux [@js "linux"]
-       | `netbsd [@js "netbsd"]
-       | `openbsd [@js "openbsd"]
-       | `sunos [@js "sunos"]
-       | `win32 [@js "win32"]
-       ]
-      [@js.enum])
-
-    and process_global_NodeJS_Process = [ `Process_global_NodeJS_Process ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_ProcessEnv =
-      [ `Process_global_NodeJS_ProcessEnv ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_ProcessRelease =
-      [ `Process_global_NodeJS_ProcessRelease ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_ProcessReport =
-      [ `Process_global_NodeJS_ProcessReport ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_ProcessVersions =
-      [ `Process_global_NodeJS_ProcessVersions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_ReadStream =
-      [ `Process_global_NodeJS_ReadStream ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_RejectionHandledListener =
-      [ `Process_global_NodeJS_RejectionHandledListener ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_RemoveListenerListener =
-      [ `Process_global_NodeJS_RemoveListenerListener ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_ResourceUsage =
-      [ `Process_global_NodeJS_ResourceUsage ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_Signals =
-      ([ `SIGABRT [@js "SIGABRT"]
-       | `SIGALRM [@js "SIGALRM"]
-       | `SIGBREAK [@js "SIGBREAK"]
-       | `SIGBUS [@js "SIGBUS"]
-       | `SIGCHLD [@js "SIGCHLD"]
-       | `SIGCONT [@js "SIGCONT"]
-       | `SIGFPE [@js "SIGFPE"]
-       | `SIGHUP [@js "SIGHUP"]
-       | `SIGILL [@js "SIGILL"]
-       | `SIGINFO [@js "SIGINFO"]
-       | `SIGINT [@js "SIGINT"]
-       | `SIGIO [@js "SIGIO"]
-       | `SIGIOT [@js "SIGIOT"]
-       | `SIGKILL [@js "SIGKILL"]
-       | `SIGLOST [@js "SIGLOST"]
-       | `SIGPIPE [@js "SIGPIPE"]
-       | `SIGPOLL [@js "SIGPOLL"]
-       | `SIGPROF [@js "SIGPROF"]
-       | `SIGPWR [@js "SIGPWR"]
-       | `SIGQUIT [@js "SIGQUIT"]
-       | `SIGSEGV [@js "SIGSEGV"]
-       | `SIGSTKFLT [@js "SIGSTKFLT"]
-       | `SIGSTOP [@js "SIGSTOP"]
-       | `SIGSYS [@js "SIGSYS"]
-       | `SIGTERM [@js "SIGTERM"]
-       | `SIGTRAP [@js "SIGTRAP"]
-       | `SIGTSTP [@js "SIGTSTP"]
-       | `SIGTTIN [@js "SIGTTIN"]
-       | `SIGTTOU [@js "SIGTTOU"]
-       | `SIGUNUSED [@js "SIGUNUSED"]
-       | `SIGURG [@js "SIGURG"]
-       | `SIGUSR1 [@js "SIGUSR1"]
-       | `SIGUSR2 [@js "SIGUSR2"]
-       | `SIGVTALRM [@js "SIGVTALRM"]
-       | `SIGWINCH [@js "SIGWINCH"]
-       | `SIGXCPU [@js "SIGXCPU"]
-       | `SIGXFSZ [@js "SIGXFSZ"]
-       ]
-      [@js.enum])
-
-    and process_global_NodeJS_SignalsListener =
-      [ `Process_global_NodeJS_SignalsListener ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_Socket = [ `Process_global_NodeJS_Socket ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_UncaughtExceptionListener =
-      [ `Process_global_NodeJS_UncaughtExceptionListener ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_UnhandledRejectionListener =
-      [ `Process_global_NodeJS_UnhandledRejectionListener ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_WarningListener =
-      [ `Process_global_NodeJS_WarningListener ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and process_global_NodeJS_WriteStream =
-      [ `Process_global_NodeJS_WriteStream ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -210,7 +14,7 @@ module AnonymousInterface0 : sig
 end
 
 module AnonymousInterface1 : sig
-  type t = anonymous_interface_1
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -239,7 +43,7 @@ module AnonymousInterface1 : sig
 end
 
 module AnonymousInterface2 : sig
-  type t = anonymous_interface_2
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -309,7 +113,7 @@ module AnonymousInterface2 : sig
 end
 
 module AnonymousInterface3 : sig
-  type t = anonymous_interface_3
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -321,7 +125,7 @@ module AnonymousInterface3 : sig
 end
 
 module AnonymousInterface4 : sig
-  type t = anonymous_interface_4
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -333,7 +137,7 @@ module AnonymousInterface4 : sig
 end
 
 module AnonymousInterface5 : sig
-  type t = anonymous_interface_5
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -345,7 +149,7 @@ module AnonymousInterface5 : sig
 end
 
 module AnonymousInterface6 : sig
-  type t = anonymous_interface_6
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -385,7 +189,7 @@ module AnonymousInterface6 : sig
 end
 
 module AnonymousInterface7 : sig
-  type t = anonymous_interface_7
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -397,21 +201,21 @@ module AnonymousInterface7 : sig
 end
 
 module AnonymousInterface8 : sig
-  type t = anonymous_interface_8
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_target_defaults : t -> anonymous_interface_1
+  val get_target_defaults : t -> AnonymousInterface1.t
     [@@js.get "target_defaults"]
 
-  val set_target_defaults : t -> anonymous_interface_1 -> unit
+  val set_target_defaults : t -> AnonymousInterface1.t -> unit
     [@@js.set "target_defaults"]
 
-  val get_variables : t -> anonymous_interface_2 [@@js.get "variables"]
+  val get_variables : t -> AnonymousInterface2.t [@@js.get "variables"]
 
-  val set_variables : t -> anonymous_interface_2 -> unit [@@js.set "variables"]
+  val set_variables : t -> AnonymousInterface2.t -> unit [@@js.set "variables"]
 end
 
 val process : process_global_NodeJS_Process [@@js.global "process"]
@@ -560,7 +364,19 @@ module Process : sig
   [@@js.scope "ProcessVersions"]
 
   module Platform : sig
-    type t = process_global_NodeJS_Platform
+    type t =
+      ([ `aix [@js "aix"]
+       | `android [@js "android"]
+       | `cygwin [@js "cygwin"]
+       | `darwin [@js "darwin"]
+       | `freebsd [@js "freebsd"]
+       | `linux [@js "linux"]
+       | `netbsd [@js "netbsd"]
+       | `openbsd [@js "openbsd"]
+       | `sunos [@js "sunos"]
+       | `win32 [@js "win32"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -568,7 +384,46 @@ module Process : sig
   end
 
   module Signals : sig
-    type t = process_global_NodeJS_Signals
+    type t =
+      ([ `SIGABRT [@js "SIGABRT"]
+       | `SIGALRM [@js "SIGALRM"]
+       | `SIGBREAK [@js "SIGBREAK"]
+       | `SIGBUS [@js "SIGBUS"]
+       | `SIGCHLD [@js "SIGCHLD"]
+       | `SIGCONT [@js "SIGCONT"]
+       | `SIGFPE [@js "SIGFPE"]
+       | `SIGHUP [@js "SIGHUP"]
+       | `SIGILL [@js "SIGILL"]
+       | `SIGINFO [@js "SIGINFO"]
+       | `SIGINT [@js "SIGINT"]
+       | `SIGIO [@js "SIGIO"]
+       | `SIGIOT [@js "SIGIOT"]
+       | `SIGKILL [@js "SIGKILL"]
+       | `SIGLOST [@js "SIGLOST"]
+       | `SIGPIPE [@js "SIGPIPE"]
+       | `SIGPOLL [@js "SIGPOLL"]
+       | `SIGPROF [@js "SIGPROF"]
+       | `SIGPWR [@js "SIGPWR"]
+       | `SIGQUIT [@js "SIGQUIT"]
+       | `SIGSEGV [@js "SIGSEGV"]
+       | `SIGSTKFLT [@js "SIGSTKFLT"]
+       | `SIGSTOP [@js "SIGSTOP"]
+       | `SIGSYS [@js "SIGSYS"]
+       | `SIGTERM [@js "SIGTERM"]
+       | `SIGTRAP [@js "SIGTRAP"]
+       | `SIGTSTP [@js "SIGTSTP"]
+       | `SIGTTIN [@js "SIGTTIN"]
+       | `SIGTTOU [@js "SIGTTOU"]
+       | `SIGUNUSED [@js "SIGUNUSED"]
+       | `SIGURG [@js "SIGURG"]
+       | `SIGUSR1 [@js "SIGUSR1"]
+       | `SIGUSR2 [@js "SIGUSR2"]
+       | `SIGVTALRM [@js "SIGVTALRM"]
+       | `SIGWINCH [@js "SIGWINCH"]
+       | `SIGXCPU [@js "SIGXCPU"]
+       | `SIGXFSZ [@js "SIGXFSZ"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -576,7 +431,11 @@ module Process : sig
   end
 
   module MultipleResolveType : sig
-    type t = process_global_NodeJS_MultipleResolveType
+    type t =
+      ([ `reject [@js "reject"]
+       | `resolve [@js "resolve"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -647,7 +506,7 @@ module Process : sig
 
     val apply
       :  t
-      -> reason:anonymous_interface_0 or_null_or_undefined
+      -> reason:AnonymousInterface0.t or_null_or_undefined
       -> promise:any Promise.t
       -> unit
       [@@js.apply]
@@ -910,14 +769,14 @@ module Process : sig
     val get_stdout
       :  t
       -> ( process_global_NodeJS_WriteStream
-         , anonymous_interface_4 )
+         , AnonymousInterface4.t )
          intersection2
       [@@js.get "stdout"]
 
     val set_stdout
       :  t
       -> ( process_global_NodeJS_WriteStream
-         , anonymous_interface_4 )
+         , AnonymousInterface4.t )
          intersection2
       -> unit
       [@@js.set "stdout"]
@@ -925,26 +784,26 @@ module Process : sig
     val get_stderr
       :  t
       -> ( process_global_NodeJS_WriteStream
-         , anonymous_interface_5 )
+         , AnonymousInterface5.t )
          intersection2
       [@@js.get "stderr"]
 
     val set_stderr
       :  t
       -> ( process_global_NodeJS_WriteStream
-         , anonymous_interface_5 )
+         , AnonymousInterface5.t )
          intersection2
       -> unit
       [@@js.set "stderr"]
 
     val get_stdin
       :  t
-      -> (process_global_NodeJS_ReadStream, anonymous_interface_3) intersection2
+      -> (process_global_NodeJS_ReadStream, AnonymousInterface3.t) intersection2
       [@@js.get "stdin"]
 
     val set_stdin
       :  t
-      -> (process_global_NodeJS_ReadStream, anonymous_interface_3) intersection2
+      -> (process_global_NodeJS_ReadStream, AnonymousInterface3.t) intersection2
       -> unit
       [@@js.set "stdin"]
 
@@ -1035,9 +894,9 @@ module Process : sig
     val set_versions : t -> process_global_NodeJS_ProcessVersions -> unit
       [@@js.set "versions"]
 
-    val get_config : t -> anonymous_interface_8 [@@js.get "config"]
+    val get_config : t -> AnonymousInterface8.t [@@js.get "config"]
 
-    val set_config : t -> anonymous_interface_8 -> unit [@@js.set "config"]
+    val set_config : t -> AnonymousInterface8.t -> unit [@@js.set "config"]
 
     val kill
       :  t
@@ -1095,9 +954,9 @@ module Process : sig
     val set_release : t -> process_global_NodeJS_ProcessRelease -> unit
       [@@js.set "release"]
 
-    val get_features : t -> anonymous_interface_6 [@@js.get "features"]
+    val get_features : t -> AnonymousInterface6.t [@@js.get "features"]
 
-    val set_features : t -> anonymous_interface_6 -> unit [@@js.set "features"]
+    val set_features : t -> AnonymousInterface6.t -> unit [@@js.set "features"]
 
     val umask : t -> int [@@js.call "umask"]
 
@@ -1119,7 +978,7 @@ module Process : sig
       :  t
       -> message:any
       -> ?sendHandle:any
-      -> ?options:anonymous_interface_7
+      -> ?options:AnonymousInterface7.t
       -> ?callback:(error:Error.t or_null -> unit)
       -> unit
       -> bool

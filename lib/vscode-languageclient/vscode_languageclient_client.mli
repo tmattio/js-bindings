@@ -4,350 +4,8 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_3 = [ `anonymous_interface_3 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_4 = [ `anonymous_interface_4 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_5 = [ `anonymous_interface_5 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_6 = [ `anonymous_interface_6 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_7 = [ `anonymous_interface_7 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_8 = [ `anonymous_interface_8 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_9 = [ `anonymous_interface_9 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_10 = [ `anonymous_interface_10 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_11 = [ `anonymous_interface_11 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _BaseLanguageClient = [ `BaseLanguageClient ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CloseAction =
-      ([ `DoNotRestart [@js 1]
-       | `Restart [@js 2]
-       ]
-      [@js.enum])
-
-    and _CloseAction_DoNotRestart = ([ `DoNotRestart [@js 1] ][@js.enum])
-
-    and _CloseAction_Restart = ([ `Restart [@js 2] ][@js.enum])
-
-    and _ConnectionOptions = [ `ConnectionOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DiagnosticPullMode =
-      ([ `onType [@js "onType"]
-       | `onSave [@js "onSave"]
-       ]
-      [@js.enum])
-
-    and _DiagnosticPullMode_onType = ([ `onType [@js "onType"] ][@js.enum])
-
-    and _DiagnosticPullMode_onSave = ([ `onSave [@js "onSave"] ][@js.enum])
-
-    and _DiagnosticPullOptions = [ `DiagnosticPullOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DidChangeConfigurationSignature =
-      [ `DidChangeConfigurationSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DidChangeTextDocumentFeatureShape =
-      [ `DidChangeTextDocumentFeatureShape
-      | `DynamicFeature of TextDocumentRegistrationOptions.t
-      | `NotificationFeature of event:TextDocumentChangeEvent.t -> unit
-      | `NotifyingFeature of
-        TextDocumentChangeEvent.t * DidChangeTextDocumentParams.t
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DidChangeWatchedFileSignature = [ `DidChangeWatchedFileSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DidCloseTextDocumentFeatureShape =
-      [ `DidCloseTextDocumentFeatureShape
-      | `DynamicFeature of TextDocumentRegistrationOptions.t
-      | `NotificationFeature of textDocument:TextDocument.t -> unit
-      | `NotifyingFeature of TextDocument.t * DidCloseTextDocumentParams.t
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DidOpenTextDocumentFeatureShape =
-      [ `DidOpenTextDocumentFeatureShape
-      | `DynamicFeature of TextDocumentRegistrationOptions.t
-      | `NotificationFeature of textDocument:TextDocument.t -> unit
-      | `NotifyingFeature of TextDocument.t * DidOpenTextDocumentParams.t
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DidSaveTextDocumentFeatureShape =
-      [ `DidSaveTextDocumentFeatureShape
-      | `DynamicFeature of TextDocumentRegistrationOptions.t
-      | `NotificationFeature of textDocument:TextDocument.t -> unit
-      | `NotifyingFeature of TextDocument.t * DidSaveTextDocumentParams.t
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and 'RO _DynamicFeature = [ `DynamicFeature of 'RO ] intf
-    [@@js.custom
-      { of_js = (fun _RO -> Obj.magic); to_js = (fun _RO -> Obj.magic) }]
-
-    and _ErrorAction =
-      ([ `Continue [@js 1]
-       | `Shutdown [@js 2]
-       ]
-      [@js.enum])
-
-    and _ErrorAction_Continue = ([ `Continue [@js 1] ][@js.enum])
-
-    and _ErrorAction_Shutdown = ([ `Shutdown [@js 2] ][@js.enum])
-
-    and _ErrorHandler = [ `ErrorHandler ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ExecuteCommandSignature = [ `ExecuteCommandSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _HandleDiagnosticsSignature = [ `HandleDiagnosticsSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _HandleWorkDoneProgressSignature =
-      [ `HandleWorkDoneProgressSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _InitializationFailedHandler = [ `InitializationFailedHandler ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _LSPCancellationError = [ `LSPCancellationError ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _LanguageClientOptions = [ `LanguageClientOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _MessageTransports = [ `MessageTransports ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _Middleware =
-      ( ( ( ImplementationMiddleware.t
-          , ColorProviderMiddleware.t
-          , FoldingRangeProviderMiddleware.t
-          , DeclarationMiddleware.t
-          , SelectionRangeProviderMiddleware.t
-          , CallHierarchyMiddleware.t
-          , SemanticTokensMiddleware.t
-          , LinkedEditingRangeMiddleware.t )
-          intersection8
-        , TypeDefinitionMiddleware.t )
-        and_
-      , _Middleware )
-      and_
-
-    and ('P, 'R) _NextSignature = [ `NextSignature of 'P * 'R ] intf
-    [@@js.custom
-      { of_js = (fun _P _R -> Obj.magic); to_js = (fun _P _R -> Obj.magic) }]
-
-    and 'T _NotificationFeature = [ `NotificationFeature of 'T ] intf
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-
-    and ('E, 'P) _NotificationSendEvent =
-      [ `NotificationSendEvent of 'E * 'P ] intf
-    [@@js.custom
-      { of_js = (fun _E _P -> Obj.magic); to_js = (fun _E _P -> Obj.magic) }]
-
-    and ('E, 'P) _NotifyingFeature = [ `NotifyingFeature of 'E * 'P ] intf
-    [@@js.custom
-      { of_js = (fun _E _P -> Obj.magic); to_js = (fun _E _P -> Obj.magic) }]
-
-    and _PrepareRenameSignature = [ `PrepareRenameSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ProvideCodeActionsSignature = [ `ProvideCodeActionsSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ProvideCodeLensesSignature = [ `ProvideCodeLensesSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ProvideCompletionItemsSignature =
-      [ `ProvideCompletionItemsSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ProvideDefinitionSignature = [ `ProvideDefinitionSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ProvideDocumentFormattingEditsSignature =
-      [ `ProvideDocumentFormattingEditsSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ProvideDocumentHighlightsSignature =
-      [ `ProvideDocumentHighlightsSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ProvideDocumentLinksSignature = [ `ProvideDocumentLinksSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ProvideDocumentRangeFormattingEditsSignature =
-      [ `ProvideDocumentRangeFormattingEditsSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ProvideDocumentSymbolsSignature =
-      [ `ProvideDocumentSymbolsSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ProvideHoverSignature = [ `ProvideHoverSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ProvideOnTypeFormattingEditsSignature =
-      [ `ProvideOnTypeFormattingEditsSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ProvideReferencesSignature = [ `ProvideReferencesSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ProvideRenameEditsSignature = [ `ProvideRenameEditsSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and ('T1, 'T2) _ProvideResolveFeature =
-      [ `ProvideResolveFeature of 'T1 * 'T2 ] intf
-    [@@js.custom
-      { of_js = (fun _T1 _T2 -> Obj.magic); to_js = (fun _T1 _T2 -> Obj.magic) }]
-
-    and _ProvideSignatureHelpSignature = [ `ProvideSignatureHelpSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ProvideWorkspaceSymbolsSignature =
-      [ `ProvideWorkspaceSymbolsSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and 'T _RegistrationData = [ `RegistrationData of 'T ] intf
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-
-    and _ResolveCodeActionSignature = [ `ResolveCodeActionSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ResolveCodeLensSignature = [ `ResolveCodeLensSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ResolveCompletionItemSignature =
-      [ `ResolveCompletionItemSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ResolveDocumentLinkSignature = [ `ResolveDocumentLinkSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _RevealOutputChannelOn =
-      ([ `Info [@js 1]
-       | `Warn [@js 2]
-       | `Error [@js 3]
-       | `Never [@js 4]
-       ]
-      [@js.enum])
-
-    and _RevealOutputChannelOn_Info = ([ `Info [@js 1] ][@js.enum])
-
-    and _RevealOutputChannelOn_Warn = ([ `Warn [@js 2] ][@js.enum])
-
-    and _RevealOutputChannelOn_Error = ([ `Error [@js 3] ][@js.enum])
-
-    and _RevealOutputChannelOn_Never = ([ `Never [@js 4] ][@js.enum])
-
-    and _State =
-      ([ `Stopped [@js 1]
-       | `Starting [@js 3]
-       | `Running [@js 2]
-       ]
-      [@js.enum])
-
-    and _State_Stopped = ([ `Stopped [@js 1] ][@js.enum])
-
-    and _State_Starting = ([ `Starting [@js 3] ][@js.enum])
-
-    and _State_Running = ([ `Running [@js 2] ][@js.enum])
-
-    and _StateChangeEvent = [ `StateChangeEvent ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _StaticFeature = [ `StaticFeature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SynchronizeOptions = [ `SynchronizeOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and ('PO, 'RO, 'PR) _TextDocumentFeature =
-      [ `TextDocumentFeature of 'PO * 'RO * 'PR | `DynamicFeature of 'RO ] intf
-    [@@js.custom
-      { of_js = (fun _PO _RO _PR -> Obj.magic)
-      ; to_js = (fun _PO _RO _PR -> Obj.magic)
-      }]
-
-    and 'T _TextDocumentProviderFeature =
-      [ `TextDocumentProviderFeature of 'T ] intf
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-
-    and _WindowMiddleware = _WindowMiddleware
-
-    and _WorkspaceMiddleware =
-      ( _WorkspaceMiddleware
-      , ConfigurationWorkspaceMiddleware.t
-      , WorkspaceFolderWorkspaceMiddleware.t
-      , FileOperationsMiddleware.t )
-      intersection4
-
-    and 'PR _WorkspaceProviderFeature =
-      [ `WorkspaceProviderFeature of 'PR ] intf
-    [@@js.custom
-      { of_js = (fun _PR -> Obj.magic); to_js = (fun _PR -> Obj.magic) }]
-
-    and _Middleware = [ `_Middleware ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WindowMiddleware = [ `_WindowMiddleware ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkspaceMiddleware = [ `_WorkspaceMiddleware ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -365,7 +23,7 @@ module AnonymousInterface0 : sig
 end
 
 module AnonymousInterface1 : sig
-  type t = anonymous_interface_1
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -379,7 +37,7 @@ module AnonymousInterface1 : sig
 end
 
 module AnonymousInterface2 : sig
-  type t = anonymous_interface_2
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -391,7 +49,7 @@ module AnonymousInterface2 : sig
 end
 
 module AnonymousInterface3 : sig
-  type t = anonymous_interface_3
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -403,7 +61,7 @@ module AnonymousInterface3 : sig
 end
 
 module AnonymousInterface4 : sig
-  type t = anonymous_interface_4
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -419,7 +77,7 @@ module AnonymousInterface4 : sig
 end
 
 module AnonymousInterface5 : sig
-  type t = anonymous_interface_5
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -431,7 +89,7 @@ module AnonymousInterface5 : sig
 end
 
 module AnonymousInterface6 : sig
-  type t = anonymous_interface_6
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -441,7 +99,7 @@ module AnonymousInterface6 : sig
 end
 
 module AnonymousInterface7 : sig
-  type t = anonymous_interface_7
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -451,7 +109,7 @@ module AnonymousInterface7 : sig
 end
 
 module AnonymousInterface8 : sig
-  type t = anonymous_interface_8
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -461,7 +119,7 @@ module AnonymousInterface8 : sig
 end
 
 module AnonymousInterface9 : sig
-  type t = anonymous_interface_9
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -472,7 +130,7 @@ module AnonymousInterface9 : sig
 end
 
 module AnonymousInterface10 : sig
-  type t = anonymous_interface_10
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -483,7 +141,7 @@ module AnonymousInterface10 : sig
 end
 
 module AnonymousInterface11 : sig
-  type t = anonymous_interface_11
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -580,7 +238,11 @@ end
 [@@js.scope "ConnectionOptions"]
 
 module ErrorAction : sig
-  type t = _ErrorAction
+  type t =
+    ([ `Continue [@js 1]
+     | `Shutdown [@js 2]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -588,7 +250,11 @@ module ErrorAction : sig
 end
 
 module CloseAction : sig
-  type t = _CloseAction
+  type t =
+    ([ `DoNotRestart [@js 1]
+     | `Restart [@js 2]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -656,7 +322,11 @@ end
 [@@js.scope "SynchronizeOptions"]
 
 module DiagnosticPullMode : sig
-  type t = _DiagnosticPullMode
+  type t =
+    ([ `onType [@js "onType"]
+     | `onSave [@js "onSave"]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -684,7 +354,13 @@ end
 [@@js.scope "DiagnosticPullOptions"]
 
 module RevealOutputChannelOn : sig
-  type t = _RevealOutputChannelOn
+  type t =
+    ([ `Info [@js 1]
+     | `Warn [@js 2]
+     | `Error [@js 3]
+     | `Never [@js 4]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -832,7 +508,7 @@ module ProvideReferencesSignature : sig
     -> this:unit
     -> document:TextDocument.t
     -> position:VPosition.t
-    -> options:anonymous_interface_2
+    -> options:AnonymousInterface2.t
     -> token:CancellationToken.t
     -> VLocation.t list ProviderResult.t
     [@@js.apply]
@@ -1050,7 +726,7 @@ module PrepareRenameSignature : sig
     -> document:TextDocument.t
     -> position:VPosition.t
     -> token:CancellationToken.t
-    -> (VRange.t, anonymous_interface_4) union2 ProviderResult.t
+    -> (VRange.t, AnonymousInterface4.t) union2 ProviderResult.t
     [@@js.apply]
 end
 [@@js.scope "PrepareRenameSignature"]
@@ -1141,8 +817,21 @@ module DidChangeWatchedFileSignature : sig
 end
 [@@js.scope "DidChangeWatchedFileSignature"]
 
+module WorkspaceMiddleware : sig
+  type t
+
+  val t_to_js : t -> Ojs.t
+
+  val t_of_js : Ojs.t -> t
+end
+
 module M_WorkspaceMiddleware : sig
-  type t = _WorkspaceMiddleware
+  type t =
+    ( WorkspaceMiddleware.t
+    , ConfigurationWorkspaceMiddleware.t
+    , WorkspaceFolderWorkspaceMiddleware.t
+    , FileOperationsMiddleware.t )
+    intersection4
 
   val t_to_js : t -> Ojs.t
 
@@ -1166,8 +855,8 @@ module M_WorkspaceMiddleware : sig
 end
 [@@js.scope "_WorkspaceMiddleware"]
 
-module WorkspaceMiddleware : sig
-  type t = _WorkspaceMiddleware
+module WindowMiddleware : sig
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1175,7 +864,7 @@ module WorkspaceMiddleware : sig
 end
 
 module M_WindowMiddleware : sig
-  type t = _WindowMiddleware
+  type t = WindowMiddleware.t
 
   val t_to_js : t -> Ojs.t
 
@@ -1191,16 +880,21 @@ module M_WindowMiddleware : sig
 end
 [@@js.scope "_WindowMiddleware"]
 
-module WindowMiddleware : sig
-  type t = _WindowMiddleware
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-end
-
 module M_Middleware : sig
-  type t = _Middleware
+  type t =
+    ( ( ( ImplementationMiddleware.t
+        , ColorProviderMiddleware.t
+        , FoldingRangeProviderMiddleware.t
+        , DeclarationMiddleware.t
+        , SelectionRangeProviderMiddleware.t
+        , CallHierarchyMiddleware.t
+        , SemanticTokensMiddleware.t
+        , LinkedEditingRangeMiddleware.t )
+        intersection8
+      , TypeDefinitionMiddleware.t )
+      and_
+    , _Middleware )
+    and_
 
   val t_to_js : t -> Ojs.t
 
@@ -1331,7 +1025,7 @@ module M_Middleware : sig
     -> this:unit
     -> document:TextDocument.t
     -> position:VPosition.t
-    -> options:anonymous_interface_2
+    -> options:AnonymousInterface2.t
     -> token:CancellationToken.t
     -> next:_ProvideReferencesSignature
     -> VLocation.t list ProviderResult.t
@@ -1454,7 +1148,7 @@ module M_Middleware : sig
     -> position:VPosition.t
     -> token:CancellationToken.t
     -> next:_PrepareRenameSignature
-    -> (VRange.t, anonymous_interface_4) union2 ProviderResult.t
+    -> (VRange.t, AnonymousInterface4.t) union2 ProviderResult.t
     [@@js.call "prepareRename"]
 
   val provideDocumentLinks
@@ -1580,9 +1274,9 @@ module LanguageClientOptions : sig
 
   val set_middleware : t -> _Middleware -> unit [@@js.set "middleware"]
 
-  val get_uriConverters : t -> anonymous_interface_0 [@@js.get "uriConverters"]
+  val get_uriConverters : t -> AnonymousInterface0.t [@@js.get "uriConverters"]
 
-  val set_uriConverters : t -> anonymous_interface_0 -> unit
+  val set_uriConverters : t -> AnonymousInterface0.t -> unit
     [@@js.set "uriConverters"]
 
   val get_workspaceFolder : t -> VWorkspaceFolder.t [@@js.get "workspaceFolder"]
@@ -1596,9 +1290,9 @@ module LanguageClientOptions : sig
   val set_connectionOptions : t -> _ConnectionOptions -> unit
     [@@js.set "connectionOptions"]
 
-  val get_markdown : t -> anonymous_interface_3 [@@js.get "markdown"]
+  val get_markdown : t -> AnonymousInterface3.t [@@js.get "markdown"]
 
-  val set_markdown : t -> anonymous_interface_3 -> unit [@@js.set "markdown"]
+  val set_markdown : t -> AnonymousInterface3.t -> unit [@@js.set "markdown"]
 
   val get_diagnosticPullOptions : t -> _DiagnosticPullOptions
     [@@js.get "diagnosticPullOptions"]
@@ -1609,7 +1303,12 @@ end
 [@@js.scope "LanguageClientOptions"]
 
 module State : sig
-  type t = _State
+  type t =
+    ([ `Stopped [@js 1]
+     | `Starting [@js 3]
+     | `Running [@js 2]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -1722,7 +1421,7 @@ module NotificationFeature : sig
   val getProvider
     :  'T t
     -> document:TextDocument.t
-    -> anonymous_interface_5 or_undefined
+    -> AnonymousInterface5.t or_undefined
     [@@js.call "getProvider"]
 end
 [@@js.scope "NotificationFeature"]
@@ -1956,14 +1655,14 @@ module TextDocumentFeature : sig
     -> documentSelector:DocumentSelector.t or_undefined
     -> capability:'PO or_undefined
     -> string or_undefined
-       * ('RO, anonymous_interface_1) intersection2 or_undefined
+       * ('RO, AnonymousInterface1.t) intersection2 or_undefined
     [@@js.call "getRegistration"]
 
   val getRegistrationOptions
     :  ('PO, 'RO, 'PR) t
     -> documentSelector:DocumentSelector.t or_undefined
     -> capability:'PO or_undefined
-    -> ('RO, anonymous_interface_1) intersection2 or_undefined
+    -> ('RO, AnonymousInterface1.t) intersection2 or_undefined
     [@@js.call "getRegistrationOptions"]
 
   val getProvider
@@ -2671,7 +2370,7 @@ module BaseLanguageClient : sig
          (* FIXME: unknown type 'typeof DidCreateFilesNotification.method' *)
          any
     -> ( FileOperationRegistrationOptions.t _DynamicFeature
-       , anonymous_interface_6 )
+       , AnonymousInterface6.t )
        intersection2
     [@@js.call "getFeature"]
 
@@ -2681,7 +2380,7 @@ module BaseLanguageClient : sig
          (* FIXME: unknown type 'typeof DidRenameFilesNotification.method' *)
          any
     -> ( FileOperationRegistrationOptions.t _DynamicFeature
-       , anonymous_interface_8 )
+       , AnonymousInterface8.t )
        intersection2
     [@@js.call "getFeature"]
 
@@ -2691,7 +2390,7 @@ module BaseLanguageClient : sig
          (* FIXME: unknown type 'typeof DidDeleteFilesNotification.method' *)
          any
     -> ( FileOperationRegistrationOptions.t _DynamicFeature
-       , anonymous_interface_7 )
+       , AnonymousInterface7.t )
        intersection2
     [@@js.call "getFeature"]
 
@@ -2700,7 +2399,7 @@ module BaseLanguageClient : sig
     -> request:
          (* FIXME: unknown type 'typeof WillCreateFilesRequest.method' *) any
     -> ( FileOperationRegistrationOptions.t _DynamicFeature
-       , anonymous_interface_9 )
+       , AnonymousInterface9.t )
        intersection2
     [@@js.call "getFeature"]
 
@@ -2709,7 +2408,7 @@ module BaseLanguageClient : sig
     -> request:
          (* FIXME: unknown type 'typeof WillRenameFilesRequest.method' *) any
     -> ( FileOperationRegistrationOptions.t _DynamicFeature
-       , anonymous_interface_11 )
+       , AnonymousInterface11.t )
        intersection2
     [@@js.call "getFeature"]
 
@@ -2718,7 +2417,7 @@ module BaseLanguageClient : sig
     -> request:
          (* FIXME: unknown type 'typeof WillDeleteFilesRequest.method' *) any
     -> ( FileOperationRegistrationOptions.t _DynamicFeature
-       , anonymous_interface_10 )
+       , AnonymousInterface10.t )
        intersection2
     [@@js.call "getFeature"]
 

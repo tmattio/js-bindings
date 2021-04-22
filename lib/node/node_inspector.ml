@@ -5,712 +5,37 @@ open Es2020
 open Node_globals
 module Internal =
   struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
     module Types =
       struct
-        open AnonymousInterfaces
-        type inspector_Console_ConsoleMessage =
-          [ `Inspector_Console_ConsoleMessage ] intf
-        and inspector_Console_MessageAddedEventDataType =
-          [ `Inspector_Console_MessageAddedEventDataType ] intf
-        and inspector_Debugger_BreakLocation =
-          [ `Inspector_Debugger_BreakLocation ] intf
-        and inspector_Debugger_BreakpointId = string
-        and inspector_Debugger_BreakpointResolvedEventDataType =
-          [ `Inspector_Debugger_BreakpointResolvedEventDataType ] intf
-        and inspector_Debugger_CallFrame =
-          [ `Inspector_Debugger_CallFrame ] intf
+        type inspector_Debugger_BreakpointId = string
         and inspector_Debugger_CallFrameId = string
-        and inspector_Debugger_ContinueToLocationParameterType =
-          [ `Inspector_Debugger_ContinueToLocationParameterType ] intf
-        and inspector_Debugger_EnableReturnType =
-          [ `Inspector_Debugger_EnableReturnType ] intf
-        and inspector_Debugger_EvaluateOnCallFrameParameterType =
-          [ `Inspector_Debugger_EvaluateOnCallFrameParameterType ] intf
-        and inspector_Debugger_EvaluateOnCallFrameReturnType =
-          [ `Inspector_Debugger_EvaluateOnCallFrameReturnType ] intf
-        and inspector_Debugger_GetPossibleBreakpointsParameterType =
-          [ `Inspector_Debugger_GetPossibleBreakpointsParameterType ] intf
-        and inspector_Debugger_GetPossibleBreakpointsReturnType =
-          [ `Inspector_Debugger_GetPossibleBreakpointsReturnType ] intf
-        and inspector_Debugger_GetScriptSourceParameterType =
-          [ `Inspector_Debugger_GetScriptSourceParameterType ] intf
-        and inspector_Debugger_GetScriptSourceReturnType =
-          [ `Inspector_Debugger_GetScriptSourceReturnType ] intf
-        and inspector_Debugger_GetStackTraceParameterType =
-          [ `Inspector_Debugger_GetStackTraceParameterType ] intf
-        and inspector_Debugger_GetStackTraceReturnType =
-          [ `Inspector_Debugger_GetStackTraceReturnType ] intf
-        and inspector_Debugger_Location =
-          [ `Inspector_Debugger_Location ] intf
-        and inspector_Debugger_PauseOnAsyncCallParameterType =
-          [ `Inspector_Debugger_PauseOnAsyncCallParameterType ] intf
-        and inspector_Debugger_PausedEventDataType =
-          [ `Inspector_Debugger_PausedEventDataType ] intf
-        and inspector_Debugger_RemoveBreakpointParameterType =
-          [ `Inspector_Debugger_RemoveBreakpointParameterType ] intf
-        and inspector_Debugger_RestartFrameParameterType =
-          [ `Inspector_Debugger_RestartFrameParameterType ] intf
-        and inspector_Debugger_RestartFrameReturnType =
-          [ `Inspector_Debugger_RestartFrameReturnType ] intf
-        and inspector_Debugger_Scope = [ `Inspector_Debugger_Scope ] intf
-        and inspector_Debugger_ScriptFailedToParseEventDataType =
-          [ `Inspector_Debugger_ScriptFailedToParseEventDataType ] intf
-        and inspector_Debugger_ScriptParsedEventDataType =
-          [ `Inspector_Debugger_ScriptParsedEventDataType ] intf
-        and inspector_Debugger_ScriptPosition =
-          [ `Inspector_Debugger_ScriptPosition ] intf
-        and inspector_Debugger_SearchInContentParameterType =
-          [ `Inspector_Debugger_SearchInContentParameterType ] intf
-        and inspector_Debugger_SearchInContentReturnType =
-          [ `Inspector_Debugger_SearchInContentReturnType ] intf
-        and inspector_Debugger_SearchMatch =
-          [ `Inspector_Debugger_SearchMatch ] intf
-        and inspector_Debugger_SetAsyncCallStackDepthParameterType =
-          [ `Inspector_Debugger_SetAsyncCallStackDepthParameterType ] intf
-        and inspector_Debugger_SetBlackboxPatternsParameterType =
-          [ `Inspector_Debugger_SetBlackboxPatternsParameterType ] intf
-        and inspector_Debugger_SetBlackboxedRangesParameterType =
-          [ `Inspector_Debugger_SetBlackboxedRangesParameterType ] intf
-        and inspector_Debugger_SetBreakpointByUrlParameterType =
-          [ `Inspector_Debugger_SetBreakpointByUrlParameterType ] intf
-        and inspector_Debugger_SetBreakpointByUrlReturnType =
-          [ `Inspector_Debugger_SetBreakpointByUrlReturnType ] intf
-        and inspector_Debugger_SetBreakpointParameterType =
-          [ `Inspector_Debugger_SetBreakpointParameterType ] intf
-        and inspector_Debugger_SetBreakpointReturnType =
-          [ `Inspector_Debugger_SetBreakpointReturnType ] intf
-        and inspector_Debugger_SetBreakpointsActiveParameterType =
-          [ `Inspector_Debugger_SetBreakpointsActiveParameterType ] intf
-        and inspector_Debugger_SetPauseOnExceptionsParameterType =
-          [ `Inspector_Debugger_SetPauseOnExceptionsParameterType ] intf
-        and inspector_Debugger_SetReturnValueParameterType =
-          [ `Inspector_Debugger_SetReturnValueParameterType ] intf
-        and inspector_Debugger_SetScriptSourceParameterType =
-          [ `Inspector_Debugger_SetScriptSourceParameterType ] intf
-        and inspector_Debugger_SetScriptSourceReturnType =
-          [ `Inspector_Debugger_SetScriptSourceReturnType ] intf
-        and inspector_Debugger_SetSkipAllPausesParameterType =
-          [ `Inspector_Debugger_SetSkipAllPausesParameterType ] intf
-        and inspector_Debugger_SetVariableValueParameterType =
-          [ `Inspector_Debugger_SetVariableValueParameterType ] intf
-        and inspector_Debugger_StepIntoParameterType =
-          [ `Inspector_Debugger_StepIntoParameterType ] intf
-        and inspector_HeapProfiler_AddHeapSnapshotChunkEventDataType =
-          [ `Inspector_HeapProfiler_AddHeapSnapshotChunkEventDataType ] intf
-        and inspector_HeapProfiler_AddInspectedHeapObjectParameterType =
-          [ `Inspector_HeapProfiler_AddInspectedHeapObjectParameterType ]
-            intf
-        and inspector_HeapProfiler_GetHeapObjectIdParameterType =
-          [ `Inspector_HeapProfiler_GetHeapObjectIdParameterType ] intf
-        and inspector_HeapProfiler_GetHeapObjectIdReturnType =
-          [ `Inspector_HeapProfiler_GetHeapObjectIdReturnType ] intf
-        and inspector_HeapProfiler_GetObjectByHeapObjectIdParameterType =
-          [ `Inspector_HeapProfiler_GetObjectByHeapObjectIdParameterType ]
-            intf
-        and inspector_HeapProfiler_GetObjectByHeapObjectIdReturnType =
-          [ `Inspector_HeapProfiler_GetObjectByHeapObjectIdReturnType ] intf
-        and inspector_HeapProfiler_GetSamplingProfileReturnType =
-          [ `Inspector_HeapProfiler_GetSamplingProfileReturnType ] intf
         and inspector_HeapProfiler_HeapSnapshotObjectId = string
-        and inspector_HeapProfiler_HeapStatsUpdateEventDataType =
-          [ `Inspector_HeapProfiler_HeapStatsUpdateEventDataType ] intf
-        and inspector_HeapProfiler_LastSeenObjectIdEventDataType =
-          [ `Inspector_HeapProfiler_LastSeenObjectIdEventDataType ] intf
-        and inspector_HeapProfiler_ReportHeapSnapshotProgressEventDataType =
-          [ `Inspector_HeapProfiler_ReportHeapSnapshotProgressEventDataType ]
-            intf
-        and inspector_HeapProfiler_SamplingHeapProfile =
-          [ `Inspector_HeapProfiler_SamplingHeapProfile ] intf
-        and inspector_HeapProfiler_SamplingHeapProfileNode =
-          [ `Inspector_HeapProfiler_SamplingHeapProfileNode ] intf
-        and inspector_HeapProfiler_StartSamplingParameterType =
-          [ `Inspector_HeapProfiler_StartSamplingParameterType ] intf
-        and inspector_HeapProfiler_StartTrackingHeapObjectsParameterType =
-          [ `Inspector_HeapProfiler_StartTrackingHeapObjectsParameterType ]
-            intf
-        and inspector_HeapProfiler_StopSamplingReturnType =
-          [ `Inspector_HeapProfiler_StopSamplingReturnType ] intf
-        and inspector_HeapProfiler_StopTrackingHeapObjectsParameterType =
-          [ `Inspector_HeapProfiler_StopTrackingHeapObjectsParameterType ]
-            intf
-        and inspector_HeapProfiler_TakeHeapSnapshotParameterType =
-          [ `Inspector_HeapProfiler_TakeHeapSnapshotParameterType ] intf
-        and 'T inspector_InspectorNotification =
-          [ `Inspector_InspectorNotification of 'T ] intf
-        and inspector_NodeRuntime_NotifyWhenWaitingForDisconnectParameterType =
-          [
-            `Inspector_NodeRuntime_NotifyWhenWaitingForDisconnectParameterType
-              ]
-            intf
-        and inspector_NodeTracing_DataCollectedEventDataType =
-          [ `Inspector_NodeTracing_DataCollectedEventDataType ] intf
-        and inspector_NodeTracing_GetCategoriesReturnType =
-          [ `Inspector_NodeTracing_GetCategoriesReturnType ] intf
-        and inspector_NodeTracing_StartParameterType =
-          [ `Inspector_NodeTracing_StartParameterType ] intf
-        and inspector_NodeTracing_TraceConfig =
-          [ `Inspector_NodeTracing_TraceConfig ] intf
-        and inspector_NodeWorker_AttachedToWorkerEventDataType =
-          [ `Inspector_NodeWorker_AttachedToWorkerEventDataType ] intf
-        and inspector_NodeWorker_DetachParameterType =
-          [ `Inspector_NodeWorker_DetachParameterType ] intf
-        and inspector_NodeWorker_DetachedFromWorkerEventDataType =
-          [ `Inspector_NodeWorker_DetachedFromWorkerEventDataType ] intf
-        and inspector_NodeWorker_EnableParameterType =
-          [ `Inspector_NodeWorker_EnableParameterType ] intf
-        and inspector_NodeWorker_ReceivedMessageFromWorkerEventDataType =
-          [ `Inspector_NodeWorker_ReceivedMessageFromWorkerEventDataType ]
-            intf
-        and inspector_NodeWorker_SendMessageToWorkerParameterType =
-          [ `Inspector_NodeWorker_SendMessageToWorkerParameterType ] intf
         and inspector_NodeWorker_SessionID = string
         and inspector_NodeWorker_WorkerID = string
-        and inspector_NodeWorker_WorkerInfo =
-          [ `Inspector_NodeWorker_WorkerInfo ] intf
-        and inspector_Profiler_ConsoleProfileFinishedEventDataType =
-          [ `Inspector_Profiler_ConsoleProfileFinishedEventDataType ] intf
-        and inspector_Profiler_ConsoleProfileStartedEventDataType =
-          [ `Inspector_Profiler_ConsoleProfileStartedEventDataType ] intf
-        and inspector_Profiler_CoverageRange =
-          [ `Inspector_Profiler_CoverageRange ] intf
-        and inspector_Profiler_FunctionCoverage =
-          [ `Inspector_Profiler_FunctionCoverage ] intf
-        and inspector_Profiler_GetBestEffortCoverageReturnType =
-          [ `Inspector_Profiler_GetBestEffortCoverageReturnType ] intf
-        and inspector_Profiler_PositionTickInfo =
-          [ `Inspector_Profiler_PositionTickInfo ] intf
-        and inspector_Profiler_Profile = [ `Inspector_Profiler_Profile ] intf
-        and inspector_Profiler_ProfileNode =
-          [ `Inspector_Profiler_ProfileNode ] intf
-        and inspector_Profiler_ScriptCoverage =
-          [ `Inspector_Profiler_ScriptCoverage ] intf
-        and inspector_Profiler_ScriptTypeProfile =
-          [ `Inspector_Profiler_ScriptTypeProfile ] intf
-        and inspector_Profiler_SetSamplingIntervalParameterType =
-          [ `Inspector_Profiler_SetSamplingIntervalParameterType ] intf
-        and inspector_Profiler_StartPreciseCoverageParameterType =
-          [ `Inspector_Profiler_StartPreciseCoverageParameterType ] intf
-        and inspector_Profiler_StopReturnType =
-          [ `Inspector_Profiler_StopReturnType ] intf
-        and inspector_Profiler_TakePreciseCoverageReturnType =
-          [ `Inspector_Profiler_TakePreciseCoverageReturnType ] intf
-        and inspector_Profiler_TakeTypeProfileReturnType =
-          [ `Inspector_Profiler_TakeTypeProfileReturnType ] intf
-        and inspector_Profiler_TypeObject =
-          [ `Inspector_Profiler_TypeObject ] intf
-        and inspector_Profiler_TypeProfileEntry =
-          [ `Inspector_Profiler_TypeProfileEntry ] intf
-        and inspector_Runtime_AwaitPromiseParameterType =
-          [ `Inspector_Runtime_AwaitPromiseParameterType ] intf
-        and inspector_Runtime_AwaitPromiseReturnType =
-          [ `Inspector_Runtime_AwaitPromiseReturnType ] intf
-        and inspector_Runtime_CallArgument =
-          [ `Inspector_Runtime_CallArgument ] intf
-        and inspector_Runtime_CallFrame =
-          [ `Inspector_Runtime_CallFrame ] intf
-        and inspector_Runtime_CallFunctionOnParameterType =
-          [ `Inspector_Runtime_CallFunctionOnParameterType ] intf
-        and inspector_Runtime_CallFunctionOnReturnType =
-          [ `Inspector_Runtime_CallFunctionOnReturnType ] intf
-        and inspector_Runtime_CompileScriptParameterType =
-          [ `Inspector_Runtime_CompileScriptParameterType ] intf
-        and inspector_Runtime_CompileScriptReturnType =
-          [ `Inspector_Runtime_CompileScriptReturnType ] intf
-        and inspector_Runtime_ConsoleAPICalledEventDataType =
-          [ `Inspector_Runtime_ConsoleAPICalledEventDataType ] intf
-        and inspector_Runtime_CustomPreview =
-          [ `Inspector_Runtime_CustomPreview ] intf
-        and inspector_Runtime_EntryPreview =
-          [ `Inspector_Runtime_EntryPreview ] intf
-        and inspector_Runtime_EvaluateParameterType =
-          [ `Inspector_Runtime_EvaluateParameterType ] intf
-        and inspector_Runtime_EvaluateReturnType =
-          [ `Inspector_Runtime_EvaluateReturnType ] intf
-        and inspector_Runtime_ExceptionDetails =
-          [ `Inspector_Runtime_ExceptionDetails ] intf
-        and inspector_Runtime_ExceptionRevokedEventDataType =
-          [ `Inspector_Runtime_ExceptionRevokedEventDataType ] intf
-        and inspector_Runtime_ExceptionThrownEventDataType =
-          [ `Inspector_Runtime_ExceptionThrownEventDataType ] intf
-        and inspector_Runtime_ExecutionContextCreatedEventDataType =
-          [ `Inspector_Runtime_ExecutionContextCreatedEventDataType ] intf
-        and inspector_Runtime_ExecutionContextDescription =
-          [ `Inspector_Runtime_ExecutionContextDescription ] intf
-        and inspector_Runtime_ExecutionContextDestroyedEventDataType =
-          [ `Inspector_Runtime_ExecutionContextDestroyedEventDataType ] intf
         and inspector_Runtime_ExecutionContextId = int
-        and inspector_Runtime_GetPropertiesParameterType =
-          [ `Inspector_Runtime_GetPropertiesParameterType ] intf
-        and inspector_Runtime_GetPropertiesReturnType =
-          [ `Inspector_Runtime_GetPropertiesReturnType ] intf
-        and inspector_Runtime_GlobalLexicalScopeNamesParameterType =
-          [ `Inspector_Runtime_GlobalLexicalScopeNamesParameterType ] intf
-        and inspector_Runtime_GlobalLexicalScopeNamesReturnType =
-          [ `Inspector_Runtime_GlobalLexicalScopeNamesReturnType ] intf
-        and inspector_Runtime_InspectRequestedEventDataType =
-          [ `Inspector_Runtime_InspectRequestedEventDataType ] intf
-        and inspector_Runtime_InternalPropertyDescriptor =
-          [ `Inspector_Runtime_InternalPropertyDescriptor ] intf
-        and inspector_Runtime_ObjectPreview =
-          [ `Inspector_Runtime_ObjectPreview ] intf
-        and inspector_Runtime_PropertyDescriptor =
-          [ `Inspector_Runtime_PropertyDescriptor ] intf
-        and inspector_Runtime_PropertyPreview =
-          [ `Inspector_Runtime_PropertyPreview ] intf
-        and inspector_Runtime_QueryObjectsParameterType =
-          [ `Inspector_Runtime_QueryObjectsParameterType ] intf
-        and inspector_Runtime_QueryObjectsReturnType =
-          [ `Inspector_Runtime_QueryObjectsReturnType ] intf
-        and inspector_Runtime_ReleaseObjectGroupParameterType =
-          [ `Inspector_Runtime_ReleaseObjectGroupParameterType ] intf
-        and inspector_Runtime_ReleaseObjectParameterType =
-          [ `Inspector_Runtime_ReleaseObjectParameterType ] intf
-        and inspector_Runtime_RemoteObject =
-          [ `Inspector_Runtime_RemoteObject ] intf
         and inspector_Runtime_RemoteObjectId = string
-        and inspector_Runtime_RunScriptParameterType =
-          [ `Inspector_Runtime_RunScriptParameterType ] intf
-        and inspector_Runtime_RunScriptReturnType =
-          [ `Inspector_Runtime_RunScriptReturnType ] intf
         and inspector_Runtime_ScriptId = string
-        and inspector_Runtime_SetCustomObjectFormatterEnabledParameterType =
-          [ `Inspector_Runtime_SetCustomObjectFormatterEnabledParameterType ]
-            intf
-        and inspector_Runtime_StackTrace =
-          [ `Inspector_Runtime_StackTrace ] intf
-        and inspector_Runtime_StackTraceId =
-          [ `Inspector_Runtime_StackTraceId ] intf
         and inspector_Runtime_Timestamp = int
         and inspector_Runtime_UniqueDebuggerId = string
         and inspector_Runtime_UnserializableValue = string
-        and inspector_Schema_Domain = [ `Inspector_Schema_Domain ] intf
-        and inspector_Schema_GetDomainsReturnType =
-          [ `Inspector_Schema_GetDomainsReturnType ] intf
-        and inspector_Session = [ `Inspector_Session ] intf
-        let rec inspector_Console_ConsoleMessage_of_js :
-          Ojs.t -> inspector_Console_ConsoleMessage = Obj.magic
-        and inspector_Console_ConsoleMessage_to_js :
-          inspector_Console_ConsoleMessage -> Ojs.t = Obj.magic
-        and inspector_Console_MessageAddedEventDataType_of_js :
-          Ojs.t -> inspector_Console_MessageAddedEventDataType = Obj.magic
-        and inspector_Console_MessageAddedEventDataType_to_js :
-          inspector_Console_MessageAddedEventDataType -> Ojs.t = Obj.magic
-        and inspector_Debugger_BreakLocation_of_js :
-          Ojs.t -> inspector_Debugger_BreakLocation = Obj.magic
-        and inspector_Debugger_BreakLocation_to_js :
-          inspector_Debugger_BreakLocation -> Ojs.t = Obj.magic
-        and inspector_Debugger_BreakpointId_of_js :
+        let rec inspector_Debugger_BreakpointId_of_js :
           Ojs.t -> inspector_Debugger_BreakpointId =
           fun (x2 : Ojs.t) -> Ojs.string_of_js x2
         and inspector_Debugger_BreakpointId_to_js :
           inspector_Debugger_BreakpointId -> Ojs.t =
           fun (x1 : string) -> Ojs.string_to_js x1
-        and inspector_Debugger_BreakpointResolvedEventDataType_of_js :
-          Ojs.t -> inspector_Debugger_BreakpointResolvedEventDataType =
-          Obj.magic
-        and inspector_Debugger_BreakpointResolvedEventDataType_to_js :
-          inspector_Debugger_BreakpointResolvedEventDataType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_CallFrame_of_js :
-          Ojs.t -> inspector_Debugger_CallFrame = Obj.magic
-        and inspector_Debugger_CallFrame_to_js :
-          inspector_Debugger_CallFrame -> Ojs.t = Obj.magic
         and inspector_Debugger_CallFrameId_of_js :
           Ojs.t -> inspector_Debugger_CallFrameId =
           fun (x4 : Ojs.t) -> Ojs.string_of_js x4
         and inspector_Debugger_CallFrameId_to_js :
           inspector_Debugger_CallFrameId -> Ojs.t =
           fun (x3 : string) -> Ojs.string_to_js x3
-        and inspector_Debugger_ContinueToLocationParameterType_of_js :
-          Ojs.t -> inspector_Debugger_ContinueToLocationParameterType =
-          Obj.magic
-        and inspector_Debugger_ContinueToLocationParameterType_to_js :
-          inspector_Debugger_ContinueToLocationParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_EnableReturnType_of_js :
-          Ojs.t -> inspector_Debugger_EnableReturnType = Obj.magic
-        and inspector_Debugger_EnableReturnType_to_js :
-          inspector_Debugger_EnableReturnType -> Ojs.t = Obj.magic
-        and inspector_Debugger_EvaluateOnCallFrameParameterType_of_js :
-          Ojs.t -> inspector_Debugger_EvaluateOnCallFrameParameterType =
-          Obj.magic
-        and inspector_Debugger_EvaluateOnCallFrameParameterType_to_js :
-          inspector_Debugger_EvaluateOnCallFrameParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_EvaluateOnCallFrameReturnType_of_js :
-          Ojs.t -> inspector_Debugger_EvaluateOnCallFrameReturnType =
-          Obj.magic
-        and inspector_Debugger_EvaluateOnCallFrameReturnType_to_js :
-          inspector_Debugger_EvaluateOnCallFrameReturnType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_GetPossibleBreakpointsParameterType_of_js :
-          Ojs.t -> inspector_Debugger_GetPossibleBreakpointsParameterType =
-          Obj.magic
-        and inspector_Debugger_GetPossibleBreakpointsParameterType_to_js :
-          inspector_Debugger_GetPossibleBreakpointsParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_GetPossibleBreakpointsReturnType_of_js :
-          Ojs.t -> inspector_Debugger_GetPossibleBreakpointsReturnType =
-          Obj.magic
-        and inspector_Debugger_GetPossibleBreakpointsReturnType_to_js :
-          inspector_Debugger_GetPossibleBreakpointsReturnType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_GetScriptSourceParameterType_of_js :
-          Ojs.t -> inspector_Debugger_GetScriptSourceParameterType =
-          Obj.magic
-        and inspector_Debugger_GetScriptSourceParameterType_to_js :
-          inspector_Debugger_GetScriptSourceParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_GetScriptSourceReturnType_of_js :
-          Ojs.t -> inspector_Debugger_GetScriptSourceReturnType = Obj.magic
-        and inspector_Debugger_GetScriptSourceReturnType_to_js :
-          inspector_Debugger_GetScriptSourceReturnType -> Ojs.t = Obj.magic
-        and inspector_Debugger_GetStackTraceParameterType_of_js :
-          Ojs.t -> inspector_Debugger_GetStackTraceParameterType = Obj.magic
-        and inspector_Debugger_GetStackTraceParameterType_to_js :
-          inspector_Debugger_GetStackTraceParameterType -> Ojs.t = Obj.magic
-        and inspector_Debugger_GetStackTraceReturnType_of_js :
-          Ojs.t -> inspector_Debugger_GetStackTraceReturnType = Obj.magic
-        and inspector_Debugger_GetStackTraceReturnType_to_js :
-          inspector_Debugger_GetStackTraceReturnType -> Ojs.t = Obj.magic
-        and inspector_Debugger_Location_of_js :
-          Ojs.t -> inspector_Debugger_Location = Obj.magic
-        and inspector_Debugger_Location_to_js :
-          inspector_Debugger_Location -> Ojs.t = Obj.magic
-        and inspector_Debugger_PauseOnAsyncCallParameterType_of_js :
-          Ojs.t -> inspector_Debugger_PauseOnAsyncCallParameterType =
-          Obj.magic
-        and inspector_Debugger_PauseOnAsyncCallParameterType_to_js :
-          inspector_Debugger_PauseOnAsyncCallParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_PausedEventDataType_of_js :
-          Ojs.t -> inspector_Debugger_PausedEventDataType = Obj.magic
-        and inspector_Debugger_PausedEventDataType_to_js :
-          inspector_Debugger_PausedEventDataType -> Ojs.t = Obj.magic
-        and inspector_Debugger_RemoveBreakpointParameterType_of_js :
-          Ojs.t -> inspector_Debugger_RemoveBreakpointParameterType =
-          Obj.magic
-        and inspector_Debugger_RemoveBreakpointParameterType_to_js :
-          inspector_Debugger_RemoveBreakpointParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_RestartFrameParameterType_of_js :
-          Ojs.t -> inspector_Debugger_RestartFrameParameterType = Obj.magic
-        and inspector_Debugger_RestartFrameParameterType_to_js :
-          inspector_Debugger_RestartFrameParameterType -> Ojs.t = Obj.magic
-        and inspector_Debugger_RestartFrameReturnType_of_js :
-          Ojs.t -> inspector_Debugger_RestartFrameReturnType = Obj.magic
-        and inspector_Debugger_RestartFrameReturnType_to_js :
-          inspector_Debugger_RestartFrameReturnType -> Ojs.t = Obj.magic
-        and inspector_Debugger_Scope_of_js :
-          Ojs.t -> inspector_Debugger_Scope = Obj.magic
-        and inspector_Debugger_Scope_to_js :
-          inspector_Debugger_Scope -> Ojs.t = Obj.magic
-        and inspector_Debugger_ScriptFailedToParseEventDataType_of_js :
-          Ojs.t -> inspector_Debugger_ScriptFailedToParseEventDataType =
-          Obj.magic
-        and inspector_Debugger_ScriptFailedToParseEventDataType_to_js :
-          inspector_Debugger_ScriptFailedToParseEventDataType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_ScriptParsedEventDataType_of_js :
-          Ojs.t -> inspector_Debugger_ScriptParsedEventDataType = Obj.magic
-        and inspector_Debugger_ScriptParsedEventDataType_to_js :
-          inspector_Debugger_ScriptParsedEventDataType -> Ojs.t = Obj.magic
-        and inspector_Debugger_ScriptPosition_of_js :
-          Ojs.t -> inspector_Debugger_ScriptPosition = Obj.magic
-        and inspector_Debugger_ScriptPosition_to_js :
-          inspector_Debugger_ScriptPosition -> Ojs.t = Obj.magic
-        and inspector_Debugger_SearchInContentParameterType_of_js :
-          Ojs.t -> inspector_Debugger_SearchInContentParameterType =
-          Obj.magic
-        and inspector_Debugger_SearchInContentParameterType_to_js :
-          inspector_Debugger_SearchInContentParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_SearchInContentReturnType_of_js :
-          Ojs.t -> inspector_Debugger_SearchInContentReturnType = Obj.magic
-        and inspector_Debugger_SearchInContentReturnType_to_js :
-          inspector_Debugger_SearchInContentReturnType -> Ojs.t = Obj.magic
-        and inspector_Debugger_SearchMatch_of_js :
-          Ojs.t -> inspector_Debugger_SearchMatch = Obj.magic
-        and inspector_Debugger_SearchMatch_to_js :
-          inspector_Debugger_SearchMatch -> Ojs.t = Obj.magic
-        and inspector_Debugger_SetAsyncCallStackDepthParameterType_of_js :
-          Ojs.t -> inspector_Debugger_SetAsyncCallStackDepthParameterType =
-          Obj.magic
-        and inspector_Debugger_SetAsyncCallStackDepthParameterType_to_js :
-          inspector_Debugger_SetAsyncCallStackDepthParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_SetBlackboxPatternsParameterType_of_js :
-          Ojs.t -> inspector_Debugger_SetBlackboxPatternsParameterType =
-          Obj.magic
-        and inspector_Debugger_SetBlackboxPatternsParameterType_to_js :
-          inspector_Debugger_SetBlackboxPatternsParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_SetBlackboxedRangesParameterType_of_js :
-          Ojs.t -> inspector_Debugger_SetBlackboxedRangesParameterType =
-          Obj.magic
-        and inspector_Debugger_SetBlackboxedRangesParameterType_to_js :
-          inspector_Debugger_SetBlackboxedRangesParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_SetBreakpointByUrlParameterType_of_js :
-          Ojs.t -> inspector_Debugger_SetBreakpointByUrlParameterType =
-          Obj.magic
-        and inspector_Debugger_SetBreakpointByUrlParameterType_to_js :
-          inspector_Debugger_SetBreakpointByUrlParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_SetBreakpointByUrlReturnType_of_js :
-          Ojs.t -> inspector_Debugger_SetBreakpointByUrlReturnType =
-          Obj.magic
-        and inspector_Debugger_SetBreakpointByUrlReturnType_to_js :
-          inspector_Debugger_SetBreakpointByUrlReturnType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_SetBreakpointParameterType_of_js :
-          Ojs.t -> inspector_Debugger_SetBreakpointParameterType = Obj.magic
-        and inspector_Debugger_SetBreakpointParameterType_to_js :
-          inspector_Debugger_SetBreakpointParameterType -> Ojs.t = Obj.magic
-        and inspector_Debugger_SetBreakpointReturnType_of_js :
-          Ojs.t -> inspector_Debugger_SetBreakpointReturnType = Obj.magic
-        and inspector_Debugger_SetBreakpointReturnType_to_js :
-          inspector_Debugger_SetBreakpointReturnType -> Ojs.t = Obj.magic
-        and inspector_Debugger_SetBreakpointsActiveParameterType_of_js :
-          Ojs.t -> inspector_Debugger_SetBreakpointsActiveParameterType =
-          Obj.magic
-        and inspector_Debugger_SetBreakpointsActiveParameterType_to_js :
-          inspector_Debugger_SetBreakpointsActiveParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_SetPauseOnExceptionsParameterType_of_js :
-          Ojs.t -> inspector_Debugger_SetPauseOnExceptionsParameterType =
-          Obj.magic
-        and inspector_Debugger_SetPauseOnExceptionsParameterType_to_js :
-          inspector_Debugger_SetPauseOnExceptionsParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_SetReturnValueParameterType_of_js :
-          Ojs.t -> inspector_Debugger_SetReturnValueParameterType = Obj.magic
-        and inspector_Debugger_SetReturnValueParameterType_to_js :
-          inspector_Debugger_SetReturnValueParameterType -> Ojs.t = Obj.magic
-        and inspector_Debugger_SetScriptSourceParameterType_of_js :
-          Ojs.t -> inspector_Debugger_SetScriptSourceParameterType =
-          Obj.magic
-        and inspector_Debugger_SetScriptSourceParameterType_to_js :
-          inspector_Debugger_SetScriptSourceParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_SetScriptSourceReturnType_of_js :
-          Ojs.t -> inspector_Debugger_SetScriptSourceReturnType = Obj.magic
-        and inspector_Debugger_SetScriptSourceReturnType_to_js :
-          inspector_Debugger_SetScriptSourceReturnType -> Ojs.t = Obj.magic
-        and inspector_Debugger_SetSkipAllPausesParameterType_of_js :
-          Ojs.t -> inspector_Debugger_SetSkipAllPausesParameterType =
-          Obj.magic
-        and inspector_Debugger_SetSkipAllPausesParameterType_to_js :
-          inspector_Debugger_SetSkipAllPausesParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_SetVariableValueParameterType_of_js :
-          Ojs.t -> inspector_Debugger_SetVariableValueParameterType =
-          Obj.magic
-        and inspector_Debugger_SetVariableValueParameterType_to_js :
-          inspector_Debugger_SetVariableValueParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_Debugger_StepIntoParameterType_of_js :
-          Ojs.t -> inspector_Debugger_StepIntoParameterType = Obj.magic
-        and inspector_Debugger_StepIntoParameterType_to_js :
-          inspector_Debugger_StepIntoParameterType -> Ojs.t = Obj.magic
-        and inspector_HeapProfiler_AddHeapSnapshotChunkEventDataType_of_js :
-          Ojs.t -> inspector_HeapProfiler_AddHeapSnapshotChunkEventDataType =
-          Obj.magic
-        and inspector_HeapProfiler_AddHeapSnapshotChunkEventDataType_to_js :
-          inspector_HeapProfiler_AddHeapSnapshotChunkEventDataType -> Ojs.t =
-          Obj.magic
-        and inspector_HeapProfiler_AddInspectedHeapObjectParameterType_of_js
-          :
-          Ojs.t -> inspector_HeapProfiler_AddInspectedHeapObjectParameterType
-          = Obj.magic
-        and inspector_HeapProfiler_AddInspectedHeapObjectParameterType_to_js
-          :
-          inspector_HeapProfiler_AddInspectedHeapObjectParameterType -> Ojs.t
-          = Obj.magic
-        and inspector_HeapProfiler_GetHeapObjectIdParameterType_of_js :
-          Ojs.t -> inspector_HeapProfiler_GetHeapObjectIdParameterType =
-          Obj.magic
-        and inspector_HeapProfiler_GetHeapObjectIdParameterType_to_js :
-          inspector_HeapProfiler_GetHeapObjectIdParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_HeapProfiler_GetHeapObjectIdReturnType_of_js :
-          Ojs.t -> inspector_HeapProfiler_GetHeapObjectIdReturnType =
-          Obj.magic
-        and inspector_HeapProfiler_GetHeapObjectIdReturnType_to_js :
-          inspector_HeapProfiler_GetHeapObjectIdReturnType -> Ojs.t =
-          Obj.magic
-        and inspector_HeapProfiler_GetObjectByHeapObjectIdParameterType_of_js
-          :
-          Ojs.t ->
-            inspector_HeapProfiler_GetObjectByHeapObjectIdParameterType
-          = Obj.magic
-        and inspector_HeapProfiler_GetObjectByHeapObjectIdParameterType_to_js
-          :
-          inspector_HeapProfiler_GetObjectByHeapObjectIdParameterType ->
-            Ojs.t
-          = Obj.magic
-        and inspector_HeapProfiler_GetObjectByHeapObjectIdReturnType_of_js :
-          Ojs.t -> inspector_HeapProfiler_GetObjectByHeapObjectIdReturnType =
-          Obj.magic
-        and inspector_HeapProfiler_GetObjectByHeapObjectIdReturnType_to_js :
-          inspector_HeapProfiler_GetObjectByHeapObjectIdReturnType -> Ojs.t =
-          Obj.magic
-        and inspector_HeapProfiler_GetSamplingProfileReturnType_of_js :
-          Ojs.t -> inspector_HeapProfiler_GetSamplingProfileReturnType =
-          Obj.magic
-        and inspector_HeapProfiler_GetSamplingProfileReturnType_to_js :
-          inspector_HeapProfiler_GetSamplingProfileReturnType -> Ojs.t =
-          Obj.magic
         and inspector_HeapProfiler_HeapSnapshotObjectId_of_js :
           Ojs.t -> inspector_HeapProfiler_HeapSnapshotObjectId =
           fun (x6 : Ojs.t) -> Ojs.string_of_js x6
         and inspector_HeapProfiler_HeapSnapshotObjectId_to_js :
           inspector_HeapProfiler_HeapSnapshotObjectId -> Ojs.t =
           fun (x5 : string) -> Ojs.string_to_js x5
-        and inspector_HeapProfiler_HeapStatsUpdateEventDataType_of_js :
-          Ojs.t -> inspector_HeapProfiler_HeapStatsUpdateEventDataType =
-          Obj.magic
-        and inspector_HeapProfiler_HeapStatsUpdateEventDataType_to_js :
-          inspector_HeapProfiler_HeapStatsUpdateEventDataType -> Ojs.t =
-          Obj.magic
-        and inspector_HeapProfiler_LastSeenObjectIdEventDataType_of_js :
-          Ojs.t -> inspector_HeapProfiler_LastSeenObjectIdEventDataType =
-          Obj.magic
-        and inspector_HeapProfiler_LastSeenObjectIdEventDataType_to_js :
-          inspector_HeapProfiler_LastSeenObjectIdEventDataType -> Ojs.t =
-          Obj.magic
-        and inspector_HeapProfiler_ReportHeapSnapshotProgressEventDataType_of_js
-          :
-          Ojs.t ->
-            inspector_HeapProfiler_ReportHeapSnapshotProgressEventDataType
-          = Obj.magic
-        and inspector_HeapProfiler_ReportHeapSnapshotProgressEventDataType_to_js
-          :
-          inspector_HeapProfiler_ReportHeapSnapshotProgressEventDataType ->
-            Ojs.t
-          = Obj.magic
-        and inspector_HeapProfiler_SamplingHeapProfile_of_js :
-          Ojs.t -> inspector_HeapProfiler_SamplingHeapProfile = Obj.magic
-        and inspector_HeapProfiler_SamplingHeapProfile_to_js :
-          inspector_HeapProfiler_SamplingHeapProfile -> Ojs.t = Obj.magic
-        and inspector_HeapProfiler_SamplingHeapProfileNode_of_js :
-          Ojs.t -> inspector_HeapProfiler_SamplingHeapProfileNode = Obj.magic
-        and inspector_HeapProfiler_SamplingHeapProfileNode_to_js :
-          inspector_HeapProfiler_SamplingHeapProfileNode -> Ojs.t = Obj.magic
-        and inspector_HeapProfiler_StartSamplingParameterType_of_js :
-          Ojs.t -> inspector_HeapProfiler_StartSamplingParameterType =
-          Obj.magic
-        and inspector_HeapProfiler_StartSamplingParameterType_to_js :
-          inspector_HeapProfiler_StartSamplingParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_HeapProfiler_StartTrackingHeapObjectsParameterType_of_js
-          :
-          Ojs.t ->
-            inspector_HeapProfiler_StartTrackingHeapObjectsParameterType
-          = Obj.magic
-        and inspector_HeapProfiler_StartTrackingHeapObjectsParameterType_to_js
-          :
-          inspector_HeapProfiler_StartTrackingHeapObjectsParameterType ->
-            Ojs.t
-          = Obj.magic
-        and inspector_HeapProfiler_StopSamplingReturnType_of_js :
-          Ojs.t -> inspector_HeapProfiler_StopSamplingReturnType = Obj.magic
-        and inspector_HeapProfiler_StopSamplingReturnType_to_js :
-          inspector_HeapProfiler_StopSamplingReturnType -> Ojs.t = Obj.magic
-        and inspector_HeapProfiler_StopTrackingHeapObjectsParameterType_of_js
-          :
-          Ojs.t ->
-            inspector_HeapProfiler_StopTrackingHeapObjectsParameterType
-          = Obj.magic
-        and inspector_HeapProfiler_StopTrackingHeapObjectsParameterType_to_js
-          :
-          inspector_HeapProfiler_StopTrackingHeapObjectsParameterType ->
-            Ojs.t
-          = Obj.magic
-        and inspector_HeapProfiler_TakeHeapSnapshotParameterType_of_js :
-          Ojs.t -> inspector_HeapProfiler_TakeHeapSnapshotParameterType =
-          Obj.magic
-        and inspector_HeapProfiler_TakeHeapSnapshotParameterType_to_js :
-          inspector_HeapProfiler_TakeHeapSnapshotParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_InspectorNotification_of_js :
-          'T . (Ojs.t -> 'T) -> Ojs.t -> 'T inspector_InspectorNotification =
-          fun _T -> Obj.magic
-        and inspector_InspectorNotification_to_js :
-          'T . ('T -> Ojs.t) -> 'T inspector_InspectorNotification -> Ojs.t =
-          fun _T -> Obj.magic
-        and inspector_NodeRuntime_NotifyWhenWaitingForDisconnectParameterType_of_js
-          :
-          Ojs.t ->
-            inspector_NodeRuntime_NotifyWhenWaitingForDisconnectParameterType
-          = Obj.magic
-        and inspector_NodeRuntime_NotifyWhenWaitingForDisconnectParameterType_to_js
-          :
-          inspector_NodeRuntime_NotifyWhenWaitingForDisconnectParameterType
-            -> Ojs.t
-          = Obj.magic
-        and inspector_NodeTracing_DataCollectedEventDataType_of_js :
-          Ojs.t -> inspector_NodeTracing_DataCollectedEventDataType =
-          Obj.magic
-        and inspector_NodeTracing_DataCollectedEventDataType_to_js :
-          inspector_NodeTracing_DataCollectedEventDataType -> Ojs.t =
-          Obj.magic
-        and inspector_NodeTracing_GetCategoriesReturnType_of_js :
-          Ojs.t -> inspector_NodeTracing_GetCategoriesReturnType = Obj.magic
-        and inspector_NodeTracing_GetCategoriesReturnType_to_js :
-          inspector_NodeTracing_GetCategoriesReturnType -> Ojs.t = Obj.magic
-        and inspector_NodeTracing_StartParameterType_of_js :
-          Ojs.t -> inspector_NodeTracing_StartParameterType = Obj.magic
-        and inspector_NodeTracing_StartParameterType_to_js :
-          inspector_NodeTracing_StartParameterType -> Ojs.t = Obj.magic
-        and inspector_NodeTracing_TraceConfig_of_js :
-          Ojs.t -> inspector_NodeTracing_TraceConfig = Obj.magic
-        and inspector_NodeTracing_TraceConfig_to_js :
-          inspector_NodeTracing_TraceConfig -> Ojs.t = Obj.magic
-        and inspector_NodeWorker_AttachedToWorkerEventDataType_of_js :
-          Ojs.t -> inspector_NodeWorker_AttachedToWorkerEventDataType =
-          Obj.magic
-        and inspector_NodeWorker_AttachedToWorkerEventDataType_to_js :
-          inspector_NodeWorker_AttachedToWorkerEventDataType -> Ojs.t =
-          Obj.magic
-        and inspector_NodeWorker_DetachParameterType_of_js :
-          Ojs.t -> inspector_NodeWorker_DetachParameterType = Obj.magic
-        and inspector_NodeWorker_DetachParameterType_to_js :
-          inspector_NodeWorker_DetachParameterType -> Ojs.t = Obj.magic
-        and inspector_NodeWorker_DetachedFromWorkerEventDataType_of_js :
-          Ojs.t -> inspector_NodeWorker_DetachedFromWorkerEventDataType =
-          Obj.magic
-        and inspector_NodeWorker_DetachedFromWorkerEventDataType_to_js :
-          inspector_NodeWorker_DetachedFromWorkerEventDataType -> Ojs.t =
-          Obj.magic
-        and inspector_NodeWorker_EnableParameterType_of_js :
-          Ojs.t -> inspector_NodeWorker_EnableParameterType = Obj.magic
-        and inspector_NodeWorker_EnableParameterType_to_js :
-          inspector_NodeWorker_EnableParameterType -> Ojs.t = Obj.magic
-        and inspector_NodeWorker_ReceivedMessageFromWorkerEventDataType_of_js
-          :
-          Ojs.t ->
-            inspector_NodeWorker_ReceivedMessageFromWorkerEventDataType
-          = Obj.magic
-        and inspector_NodeWorker_ReceivedMessageFromWorkerEventDataType_to_js
-          :
-          inspector_NodeWorker_ReceivedMessageFromWorkerEventDataType ->
-            Ojs.t
-          = Obj.magic
-        and inspector_NodeWorker_SendMessageToWorkerParameterType_of_js :
-          Ojs.t -> inspector_NodeWorker_SendMessageToWorkerParameterType =
-          Obj.magic
-        and inspector_NodeWorker_SendMessageToWorkerParameterType_to_js :
-          inspector_NodeWorker_SendMessageToWorkerParameterType -> Ojs.t =
-          Obj.magic
         and inspector_NodeWorker_SessionID_of_js :
           Ojs.t -> inspector_NodeWorker_SessionID =
           fun (x8 : Ojs.t) -> Ojs.string_of_js x8
@@ -723,282 +48,24 @@ module Internal =
         and inspector_NodeWorker_WorkerID_to_js :
           inspector_NodeWorker_WorkerID -> Ojs.t =
           fun (x9 : string) -> Ojs.string_to_js x9
-        and inspector_NodeWorker_WorkerInfo_of_js :
-          Ojs.t -> inspector_NodeWorker_WorkerInfo = Obj.magic
-        and inspector_NodeWorker_WorkerInfo_to_js :
-          inspector_NodeWorker_WorkerInfo -> Ojs.t = Obj.magic
-        and inspector_Profiler_ConsoleProfileFinishedEventDataType_of_js :
-          Ojs.t -> inspector_Profiler_ConsoleProfileFinishedEventDataType =
-          Obj.magic
-        and inspector_Profiler_ConsoleProfileFinishedEventDataType_to_js :
-          inspector_Profiler_ConsoleProfileFinishedEventDataType -> Ojs.t =
-          Obj.magic
-        and inspector_Profiler_ConsoleProfileStartedEventDataType_of_js :
-          Ojs.t -> inspector_Profiler_ConsoleProfileStartedEventDataType =
-          Obj.magic
-        and inspector_Profiler_ConsoleProfileStartedEventDataType_to_js :
-          inspector_Profiler_ConsoleProfileStartedEventDataType -> Ojs.t =
-          Obj.magic
-        and inspector_Profiler_CoverageRange_of_js :
-          Ojs.t -> inspector_Profiler_CoverageRange = Obj.magic
-        and inspector_Profiler_CoverageRange_to_js :
-          inspector_Profiler_CoverageRange -> Ojs.t = Obj.magic
-        and inspector_Profiler_FunctionCoverage_of_js :
-          Ojs.t -> inspector_Profiler_FunctionCoverage = Obj.magic
-        and inspector_Profiler_FunctionCoverage_to_js :
-          inspector_Profiler_FunctionCoverage -> Ojs.t = Obj.magic
-        and inspector_Profiler_GetBestEffortCoverageReturnType_of_js :
-          Ojs.t -> inspector_Profiler_GetBestEffortCoverageReturnType =
-          Obj.magic
-        and inspector_Profiler_GetBestEffortCoverageReturnType_to_js :
-          inspector_Profiler_GetBestEffortCoverageReturnType -> Ojs.t =
-          Obj.magic
-        and inspector_Profiler_PositionTickInfo_of_js :
-          Ojs.t -> inspector_Profiler_PositionTickInfo = Obj.magic
-        and inspector_Profiler_PositionTickInfo_to_js :
-          inspector_Profiler_PositionTickInfo -> Ojs.t = Obj.magic
-        and inspector_Profiler_Profile_of_js :
-          Ojs.t -> inspector_Profiler_Profile = Obj.magic
-        and inspector_Profiler_Profile_to_js :
-          inspector_Profiler_Profile -> Ojs.t = Obj.magic
-        and inspector_Profiler_ProfileNode_of_js :
-          Ojs.t -> inspector_Profiler_ProfileNode = Obj.magic
-        and inspector_Profiler_ProfileNode_to_js :
-          inspector_Profiler_ProfileNode -> Ojs.t = Obj.magic
-        and inspector_Profiler_ScriptCoverage_of_js :
-          Ojs.t -> inspector_Profiler_ScriptCoverage = Obj.magic
-        and inspector_Profiler_ScriptCoverage_to_js :
-          inspector_Profiler_ScriptCoverage -> Ojs.t = Obj.magic
-        and inspector_Profiler_ScriptTypeProfile_of_js :
-          Ojs.t -> inspector_Profiler_ScriptTypeProfile = Obj.magic
-        and inspector_Profiler_ScriptTypeProfile_to_js :
-          inspector_Profiler_ScriptTypeProfile -> Ojs.t = Obj.magic
-        and inspector_Profiler_SetSamplingIntervalParameterType_of_js :
-          Ojs.t -> inspector_Profiler_SetSamplingIntervalParameterType =
-          Obj.magic
-        and inspector_Profiler_SetSamplingIntervalParameterType_to_js :
-          inspector_Profiler_SetSamplingIntervalParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_Profiler_StartPreciseCoverageParameterType_of_js :
-          Ojs.t -> inspector_Profiler_StartPreciseCoverageParameterType =
-          Obj.magic
-        and inspector_Profiler_StartPreciseCoverageParameterType_to_js :
-          inspector_Profiler_StartPreciseCoverageParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_Profiler_StopReturnType_of_js :
-          Ojs.t -> inspector_Profiler_StopReturnType = Obj.magic
-        and inspector_Profiler_StopReturnType_to_js :
-          inspector_Profiler_StopReturnType -> Ojs.t = Obj.magic
-        and inspector_Profiler_TakePreciseCoverageReturnType_of_js :
-          Ojs.t -> inspector_Profiler_TakePreciseCoverageReturnType =
-          Obj.magic
-        and inspector_Profiler_TakePreciseCoverageReturnType_to_js :
-          inspector_Profiler_TakePreciseCoverageReturnType -> Ojs.t =
-          Obj.magic
-        and inspector_Profiler_TakeTypeProfileReturnType_of_js :
-          Ojs.t -> inspector_Profiler_TakeTypeProfileReturnType = Obj.magic
-        and inspector_Profiler_TakeTypeProfileReturnType_to_js :
-          inspector_Profiler_TakeTypeProfileReturnType -> Ojs.t = Obj.magic
-        and inspector_Profiler_TypeObject_of_js :
-          Ojs.t -> inspector_Profiler_TypeObject = Obj.magic
-        and inspector_Profiler_TypeObject_to_js :
-          inspector_Profiler_TypeObject -> Ojs.t = Obj.magic
-        and inspector_Profiler_TypeProfileEntry_of_js :
-          Ojs.t -> inspector_Profiler_TypeProfileEntry = Obj.magic
-        and inspector_Profiler_TypeProfileEntry_to_js :
-          inspector_Profiler_TypeProfileEntry -> Ojs.t = Obj.magic
-        and inspector_Runtime_AwaitPromiseParameterType_of_js :
-          Ojs.t -> inspector_Runtime_AwaitPromiseParameterType = Obj.magic
-        and inspector_Runtime_AwaitPromiseParameterType_to_js :
-          inspector_Runtime_AwaitPromiseParameterType -> Ojs.t = Obj.magic
-        and inspector_Runtime_AwaitPromiseReturnType_of_js :
-          Ojs.t -> inspector_Runtime_AwaitPromiseReturnType = Obj.magic
-        and inspector_Runtime_AwaitPromiseReturnType_to_js :
-          inspector_Runtime_AwaitPromiseReturnType -> Ojs.t = Obj.magic
-        and inspector_Runtime_CallArgument_of_js :
-          Ojs.t -> inspector_Runtime_CallArgument = Obj.magic
-        and inspector_Runtime_CallArgument_to_js :
-          inspector_Runtime_CallArgument -> Ojs.t = Obj.magic
-        and inspector_Runtime_CallFrame_of_js :
-          Ojs.t -> inspector_Runtime_CallFrame = Obj.magic
-        and inspector_Runtime_CallFrame_to_js :
-          inspector_Runtime_CallFrame -> Ojs.t = Obj.magic
-        and inspector_Runtime_CallFunctionOnParameterType_of_js :
-          Ojs.t -> inspector_Runtime_CallFunctionOnParameterType = Obj.magic
-        and inspector_Runtime_CallFunctionOnParameterType_to_js :
-          inspector_Runtime_CallFunctionOnParameterType -> Ojs.t = Obj.magic
-        and inspector_Runtime_CallFunctionOnReturnType_of_js :
-          Ojs.t -> inspector_Runtime_CallFunctionOnReturnType = Obj.magic
-        and inspector_Runtime_CallFunctionOnReturnType_to_js :
-          inspector_Runtime_CallFunctionOnReturnType -> Ojs.t = Obj.magic
-        and inspector_Runtime_CompileScriptParameterType_of_js :
-          Ojs.t -> inspector_Runtime_CompileScriptParameterType = Obj.magic
-        and inspector_Runtime_CompileScriptParameterType_to_js :
-          inspector_Runtime_CompileScriptParameterType -> Ojs.t = Obj.magic
-        and inspector_Runtime_CompileScriptReturnType_of_js :
-          Ojs.t -> inspector_Runtime_CompileScriptReturnType = Obj.magic
-        and inspector_Runtime_CompileScriptReturnType_to_js :
-          inspector_Runtime_CompileScriptReturnType -> Ojs.t = Obj.magic
-        and inspector_Runtime_ConsoleAPICalledEventDataType_of_js :
-          Ojs.t -> inspector_Runtime_ConsoleAPICalledEventDataType =
-          Obj.magic
-        and inspector_Runtime_ConsoleAPICalledEventDataType_to_js :
-          inspector_Runtime_ConsoleAPICalledEventDataType -> Ojs.t =
-          Obj.magic
-        and inspector_Runtime_CustomPreview_of_js :
-          Ojs.t -> inspector_Runtime_CustomPreview = Obj.magic
-        and inspector_Runtime_CustomPreview_to_js :
-          inspector_Runtime_CustomPreview -> Ojs.t = Obj.magic
-        and inspector_Runtime_EntryPreview_of_js :
-          Ojs.t -> inspector_Runtime_EntryPreview = Obj.magic
-        and inspector_Runtime_EntryPreview_to_js :
-          inspector_Runtime_EntryPreview -> Ojs.t = Obj.magic
-        and inspector_Runtime_EvaluateParameterType_of_js :
-          Ojs.t -> inspector_Runtime_EvaluateParameterType = Obj.magic
-        and inspector_Runtime_EvaluateParameterType_to_js :
-          inspector_Runtime_EvaluateParameterType -> Ojs.t = Obj.magic
-        and inspector_Runtime_EvaluateReturnType_of_js :
-          Ojs.t -> inspector_Runtime_EvaluateReturnType = Obj.magic
-        and inspector_Runtime_EvaluateReturnType_to_js :
-          inspector_Runtime_EvaluateReturnType -> Ojs.t = Obj.magic
-        and inspector_Runtime_ExceptionDetails_of_js :
-          Ojs.t -> inspector_Runtime_ExceptionDetails = Obj.magic
-        and inspector_Runtime_ExceptionDetails_to_js :
-          inspector_Runtime_ExceptionDetails -> Ojs.t = Obj.magic
-        and inspector_Runtime_ExceptionRevokedEventDataType_of_js :
-          Ojs.t -> inspector_Runtime_ExceptionRevokedEventDataType =
-          Obj.magic
-        and inspector_Runtime_ExceptionRevokedEventDataType_to_js :
-          inspector_Runtime_ExceptionRevokedEventDataType -> Ojs.t =
-          Obj.magic
-        and inspector_Runtime_ExceptionThrownEventDataType_of_js :
-          Ojs.t -> inspector_Runtime_ExceptionThrownEventDataType = Obj.magic
-        and inspector_Runtime_ExceptionThrownEventDataType_to_js :
-          inspector_Runtime_ExceptionThrownEventDataType -> Ojs.t = Obj.magic
-        and inspector_Runtime_ExecutionContextCreatedEventDataType_of_js :
-          Ojs.t -> inspector_Runtime_ExecutionContextCreatedEventDataType =
-          Obj.magic
-        and inspector_Runtime_ExecutionContextCreatedEventDataType_to_js :
-          inspector_Runtime_ExecutionContextCreatedEventDataType -> Ojs.t =
-          Obj.magic
-        and inspector_Runtime_ExecutionContextDescription_of_js :
-          Ojs.t -> inspector_Runtime_ExecutionContextDescription = Obj.magic
-        and inspector_Runtime_ExecutionContextDescription_to_js :
-          inspector_Runtime_ExecutionContextDescription -> Ojs.t = Obj.magic
-        and inspector_Runtime_ExecutionContextDestroyedEventDataType_of_js :
-          Ojs.t -> inspector_Runtime_ExecutionContextDestroyedEventDataType =
-          Obj.magic
-        and inspector_Runtime_ExecutionContextDestroyedEventDataType_to_js :
-          inspector_Runtime_ExecutionContextDestroyedEventDataType -> Ojs.t =
-          Obj.magic
         and inspector_Runtime_ExecutionContextId_of_js :
           Ojs.t -> inspector_Runtime_ExecutionContextId =
           fun (x12 : Ojs.t) -> Ojs.int_of_js x12
         and inspector_Runtime_ExecutionContextId_to_js :
           inspector_Runtime_ExecutionContextId -> Ojs.t =
           fun (x11 : int) -> Ojs.int_to_js x11
-        and inspector_Runtime_GetPropertiesParameterType_of_js :
-          Ojs.t -> inspector_Runtime_GetPropertiesParameterType = Obj.magic
-        and inspector_Runtime_GetPropertiesParameterType_to_js :
-          inspector_Runtime_GetPropertiesParameterType -> Ojs.t = Obj.magic
-        and inspector_Runtime_GetPropertiesReturnType_of_js :
-          Ojs.t -> inspector_Runtime_GetPropertiesReturnType = Obj.magic
-        and inspector_Runtime_GetPropertiesReturnType_to_js :
-          inspector_Runtime_GetPropertiesReturnType -> Ojs.t = Obj.magic
-        and inspector_Runtime_GlobalLexicalScopeNamesParameterType_of_js :
-          Ojs.t -> inspector_Runtime_GlobalLexicalScopeNamesParameterType =
-          Obj.magic
-        and inspector_Runtime_GlobalLexicalScopeNamesParameterType_to_js :
-          inspector_Runtime_GlobalLexicalScopeNamesParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_Runtime_GlobalLexicalScopeNamesReturnType_of_js :
-          Ojs.t -> inspector_Runtime_GlobalLexicalScopeNamesReturnType =
-          Obj.magic
-        and inspector_Runtime_GlobalLexicalScopeNamesReturnType_to_js :
-          inspector_Runtime_GlobalLexicalScopeNamesReturnType -> Ojs.t =
-          Obj.magic
-        and inspector_Runtime_InspectRequestedEventDataType_of_js :
-          Ojs.t -> inspector_Runtime_InspectRequestedEventDataType =
-          Obj.magic
-        and inspector_Runtime_InspectRequestedEventDataType_to_js :
-          inspector_Runtime_InspectRequestedEventDataType -> Ojs.t =
-          Obj.magic
-        and inspector_Runtime_InternalPropertyDescriptor_of_js :
-          Ojs.t -> inspector_Runtime_InternalPropertyDescriptor = Obj.magic
-        and inspector_Runtime_InternalPropertyDescriptor_to_js :
-          inspector_Runtime_InternalPropertyDescriptor -> Ojs.t = Obj.magic
-        and inspector_Runtime_ObjectPreview_of_js :
-          Ojs.t -> inspector_Runtime_ObjectPreview = Obj.magic
-        and inspector_Runtime_ObjectPreview_to_js :
-          inspector_Runtime_ObjectPreview -> Ojs.t = Obj.magic
-        and inspector_Runtime_PropertyDescriptor_of_js :
-          Ojs.t -> inspector_Runtime_PropertyDescriptor = Obj.magic
-        and inspector_Runtime_PropertyDescriptor_to_js :
-          inspector_Runtime_PropertyDescriptor -> Ojs.t = Obj.magic
-        and inspector_Runtime_PropertyPreview_of_js :
-          Ojs.t -> inspector_Runtime_PropertyPreview = Obj.magic
-        and inspector_Runtime_PropertyPreview_to_js :
-          inspector_Runtime_PropertyPreview -> Ojs.t = Obj.magic
-        and inspector_Runtime_QueryObjectsParameterType_of_js :
-          Ojs.t -> inspector_Runtime_QueryObjectsParameterType = Obj.magic
-        and inspector_Runtime_QueryObjectsParameterType_to_js :
-          inspector_Runtime_QueryObjectsParameterType -> Ojs.t = Obj.magic
-        and inspector_Runtime_QueryObjectsReturnType_of_js :
-          Ojs.t -> inspector_Runtime_QueryObjectsReturnType = Obj.magic
-        and inspector_Runtime_QueryObjectsReturnType_to_js :
-          inspector_Runtime_QueryObjectsReturnType -> Ojs.t = Obj.magic
-        and inspector_Runtime_ReleaseObjectGroupParameterType_of_js :
-          Ojs.t -> inspector_Runtime_ReleaseObjectGroupParameterType =
-          Obj.magic
-        and inspector_Runtime_ReleaseObjectGroupParameterType_to_js :
-          inspector_Runtime_ReleaseObjectGroupParameterType -> Ojs.t =
-          Obj.magic
-        and inspector_Runtime_ReleaseObjectParameterType_of_js :
-          Ojs.t -> inspector_Runtime_ReleaseObjectParameterType = Obj.magic
-        and inspector_Runtime_ReleaseObjectParameterType_to_js :
-          inspector_Runtime_ReleaseObjectParameterType -> Ojs.t = Obj.magic
-        and inspector_Runtime_RemoteObject_of_js :
-          Ojs.t -> inspector_Runtime_RemoteObject = Obj.magic
-        and inspector_Runtime_RemoteObject_to_js :
-          inspector_Runtime_RemoteObject -> Ojs.t = Obj.magic
         and inspector_Runtime_RemoteObjectId_of_js :
           Ojs.t -> inspector_Runtime_RemoteObjectId =
           fun (x14 : Ojs.t) -> Ojs.string_of_js x14
         and inspector_Runtime_RemoteObjectId_to_js :
           inspector_Runtime_RemoteObjectId -> Ojs.t =
           fun (x13 : string) -> Ojs.string_to_js x13
-        and inspector_Runtime_RunScriptParameterType_of_js :
-          Ojs.t -> inspector_Runtime_RunScriptParameterType = Obj.magic
-        and inspector_Runtime_RunScriptParameterType_to_js :
-          inspector_Runtime_RunScriptParameterType -> Ojs.t = Obj.magic
-        and inspector_Runtime_RunScriptReturnType_of_js :
-          Ojs.t -> inspector_Runtime_RunScriptReturnType = Obj.magic
-        and inspector_Runtime_RunScriptReturnType_to_js :
-          inspector_Runtime_RunScriptReturnType -> Ojs.t = Obj.magic
         and inspector_Runtime_ScriptId_of_js :
           Ojs.t -> inspector_Runtime_ScriptId =
           fun (x16 : Ojs.t) -> Ojs.string_of_js x16
         and inspector_Runtime_ScriptId_to_js :
           inspector_Runtime_ScriptId -> Ojs.t =
           fun (x15 : string) -> Ojs.string_to_js x15
-        and inspector_Runtime_SetCustomObjectFormatterEnabledParameterType_of_js
-          :
-          Ojs.t ->
-            inspector_Runtime_SetCustomObjectFormatterEnabledParameterType
-          = Obj.magic
-        and inspector_Runtime_SetCustomObjectFormatterEnabledParameterType_to_js
-          :
-          inspector_Runtime_SetCustomObjectFormatterEnabledParameterType ->
-            Ojs.t
-          = Obj.magic
-        and inspector_Runtime_StackTrace_of_js :
-          Ojs.t -> inspector_Runtime_StackTrace = Obj.magic
-        and inspector_Runtime_StackTrace_to_js :
-          inspector_Runtime_StackTrace -> Ojs.t = Obj.magic
-        and inspector_Runtime_StackTraceId_of_js :
-          Ojs.t -> inspector_Runtime_StackTraceId = Obj.magic
-        and inspector_Runtime_StackTraceId_to_js :
-          inspector_Runtime_StackTraceId -> Ojs.t = Obj.magic
         and inspector_Runtime_Timestamp_of_js :
           Ojs.t -> inspector_Runtime_Timestamp =
           fun (x18 : Ojs.t) -> Ojs.int_of_js x18
@@ -1017,28 +84,13 @@ module Internal =
         and inspector_Runtime_UnserializableValue_to_js :
           inspector_Runtime_UnserializableValue -> Ojs.t =
           fun (x21 : string) -> Ojs.string_to_js x21
-        and inspector_Schema_Domain_of_js : Ojs.t -> inspector_Schema_Domain
-          = Obj.magic
-        and inspector_Schema_Domain_to_js : inspector_Schema_Domain -> Ojs.t
-          = Obj.magic
-        and inspector_Schema_GetDomainsReturnType_of_js :
-          Ojs.t -> inspector_Schema_GetDomainsReturnType = Obj.magic
-        and inspector_Schema_GetDomainsReturnType_to_js :
-          inspector_Schema_GetDomainsReturnType -> Ojs.t = Obj.magic
-        and inspector_Session_of_js : Ojs.t -> inspector_Session = Obj.magic
-        and inspector_Session_to_js : inspector_Session -> Ojs.t = Obj.magic
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x24 : Ojs.t) -> anonymous_interface_0_of_js x24
-    and t_to_js : t -> Ojs.t =
-      fun (x23 : anonymous_interface_0) -> anonymous_interface_0_to_js x23
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x24 : Ojs.t) -> x24
+    and t_to_js : t -> Ojs.t = fun (x23 : Ojs.t) -> x23
   end
 module Inspector =
   struct
@@ -1652,15 +704,15 @@ module Inspector =
                 fun (x218 : string) ->
                   Ojs.set_prop_ascii (t_to_js x217) "name"
                     (Ojs.string_to_js x218)
-            let (get_auxData : t -> anonymous_interface_0) =
+            let (get_auxData : t -> AnonymousInterface0.t) =
               fun (x219 : t) ->
-                anonymous_interface_0_of_js
+                AnonymousInterface0.t_of_js
                   (Ojs.get_prop_ascii (t_to_js x219) "auxData")
-            let (set_auxData : t -> anonymous_interface_0 -> unit) =
+            let (set_auxData : t -> AnonymousInterface0.t -> unit) =
               fun (x220 : t) ->
-                fun (x221 : anonymous_interface_0) ->
+                fun (x221 : AnonymousInterface0.t) ->
                   Ojs.set_prop_ascii (t_to_js x220) "auxData"
-                    (anonymous_interface_0_to_js x221)
+                    (AnonymousInterface0.t_to_js x221)
           end
         module ExceptionDetails =
           struct
@@ -2857,15 +1909,15 @@ module Inspector =
                 fun (x568 : inspector_Runtime_RemoteObject) ->
                   Ojs.set_prop_ascii (t_to_js x567) "object"
                     (inspector_Runtime_RemoteObject_to_js x568)
-            let (get_hints : t -> anonymous_interface_0) =
+            let (get_hints : t -> AnonymousInterface0.t) =
               fun (x569 : t) ->
-                anonymous_interface_0_of_js
+                AnonymousInterface0.t_of_js
                   (Ojs.get_prop_ascii (t_to_js x569) "hints")
-            let (set_hints : t -> anonymous_interface_0 -> unit) =
+            let (set_hints : t -> AnonymousInterface0.t -> unit) =
               fun (x570 : t) ->
-                fun (x571 : anonymous_interface_0) ->
+                fun (x571 : AnonymousInterface0.t) ->
                   Ojs.set_prop_ascii (t_to_js x570) "hints"
-                    (anonymous_interface_0_to_js x571)
+                    (AnonymousInterface0.t_to_js x571)
           end
       end
     module Debugger =
@@ -4202,17 +3254,17 @@ module Inspector =
                 fun (x958 : string) ->
                   Ojs.set_prop_ascii (t_to_js x957) "hash"
                     (Ojs.string_to_js x958)
-            let (get_executionContextAuxData : t -> anonymous_interface_0) =
+            let (get_executionContextAuxData : t -> AnonymousInterface0.t) =
               fun (x959 : t) ->
-                anonymous_interface_0_of_js
+                AnonymousInterface0.t_of_js
                   (Ojs.get_prop_ascii (t_to_js x959)
                      "executionContextAuxData")
             let (set_executionContextAuxData :
-              t -> anonymous_interface_0 -> unit) =
+              t -> AnonymousInterface0.t -> unit) =
               fun (x960 : t) ->
-                fun (x961 : anonymous_interface_0) ->
+                fun (x961 : AnonymousInterface0.t) ->
                   Ojs.set_prop_ascii (t_to_js x960) "executionContextAuxData"
-                    (anonymous_interface_0_to_js x961)
+                    (AnonymousInterface0.t_to_js x961)
             let (get_isLiveEdit : t -> bool) =
               fun (x962 : t) ->
                 Ojs.bool_of_js
@@ -4349,18 +3401,18 @@ module Inspector =
                 fun (x1005 : string) ->
                   Ojs.set_prop_ascii (t_to_js x1004) "hash"
                     (Ojs.string_to_js x1005)
-            let (get_executionContextAuxData : t -> anonymous_interface_0) =
+            let (get_executionContextAuxData : t -> AnonymousInterface0.t) =
               fun (x1006 : t) ->
-                anonymous_interface_0_of_js
+                AnonymousInterface0.t_of_js
                   (Ojs.get_prop_ascii (t_to_js x1006)
                      "executionContextAuxData")
             let (set_executionContextAuxData :
-              t -> anonymous_interface_0 -> unit) =
+              t -> AnonymousInterface0.t -> unit) =
               fun (x1007 : t) ->
-                fun (x1008 : anonymous_interface_0) ->
+                fun (x1008 : AnonymousInterface0.t) ->
                   Ojs.set_prop_ascii (t_to_js x1007)
                     "executionContextAuxData"
-                    (anonymous_interface_0_to_js x1008)
+                    (AnonymousInterface0.t_to_js x1008)
             let (get_sourceMapURL : t -> string) =
               fun (x1009 : t) ->
                 Ojs.string_of_js
@@ -4468,15 +3520,15 @@ module Inspector =
                 fun (x1041 : string) ->
                   Ojs.set_prop_ascii (t_to_js x1040) "reason"
                     (Ojs.string_to_js x1041)
-            let (get_data : t -> anonymous_interface_0) =
+            let (get_data : t -> AnonymousInterface0.t) =
               fun (x1042 : t) ->
-                anonymous_interface_0_of_js
+                AnonymousInterface0.t_of_js
                   (Ojs.get_prop_ascii (t_to_js x1042) "data")
-            let (set_data : t -> anonymous_interface_0 -> unit) =
+            let (set_data : t -> AnonymousInterface0.t -> unit) =
               fun (x1043 : t) ->
-                fun (x1044 : anonymous_interface_0) ->
+                fun (x1044 : AnonymousInterface0.t) ->
                   Ojs.set_prop_ascii (t_to_js x1043) "data"
-                    (anonymous_interface_0_to_js x1044)
+                    (AnonymousInterface0.t_to_js x1044)
             let (get_hitBreakpoints : t -> string list) =
               fun (x1045 : t) ->
                 Ojs.list_of_js Ojs.string_of_js
@@ -5726,15 +4778,15 @@ module Inspector =
               fun (x1399 : inspector_NodeTracing_DataCollectedEventDataType)
                 ->
                 inspector_NodeTracing_DataCollectedEventDataType_to_js x1399
-            let (get_value : t -> anonymous_interface_0 list) =
+            let (get_value : t -> AnonymousInterface0.t list) =
               fun (x1401 : t) ->
-                Ojs.list_of_js anonymous_interface_0_of_js
+                Ojs.list_of_js AnonymousInterface0.t_of_js
                   (Ojs.get_prop_ascii (t_to_js x1401) "value")
-            let (set_value : t -> anonymous_interface_0 list -> unit) =
+            let (set_value : t -> AnonymousInterface0.t list -> unit) =
               fun (x1403 : t) ->
-                fun (x1404 : anonymous_interface_0 list) ->
+                fun (x1404 : AnonymousInterface0.t list) ->
                   Ojs.set_prop_ascii (t_to_js x1403) "value"
-                    (Ojs.list_to_js anonymous_interface_0_to_js x1404)
+                    (Ojs.list_to_js AnonymousInterface0.t_to_js x1404)
           end
       end
     module NodeWorker =
@@ -6027,18 +5079,18 @@ module Inspector =
         let (post :
           t ->
             method_:string ->
-              ?params:anonymous_interface_0 ->
+              ?params:AnonymousInterface0.t ->
                 ?callback:(err:Error.t or_null ->
-                             ?params:anonymous_interface_0 -> unit -> unit)
+                             ?params:AnonymousInterface0.t -> unit -> unit)
                   -> unit -> unit)
           =
           fun (x1485 : t) ->
             fun ~method_:(x1475 : string) ->
-              fun ?params:(x1476 : anonymous_interface_0 option) ->
+              fun ?params:(x1476 : AnonymousInterface0.t option) ->
                 fun
                   ?callback:(x1477 :
                               (err:Error.t or_null ->
-                                 ?params:anonymous_interface_0 ->
+                                 ?params:AnonymousInterface0.t ->
                                    unit -> unit)
                                 option)
                   ->
@@ -6057,7 +5109,7 @@ module Inspector =
                                     | Some x1484 ->
                                         ignore
                                           (Ojs.call x1478 "push"
-                                             [|(anonymous_interface_0_to_js
+                                             [|(AnonymousInterface0.t_to_js
                                                   x1484)|])
                                     | None -> ());
                                    (match x1477 with
@@ -6072,7 +5124,7 @@ module Inspector =
                                                                  Error.t_of_js
                                                                  x1480)
                                                          ?params:(Ojs.option_of_js
-                                                                    anonymous_interface_0_of_js
+                                                                    AnonymousInterface0.t_of_js
                                                                     x1482) ()))|])
                                     | None -> ());
                                    x1478))|])
@@ -6080,7 +5132,7 @@ module Inspector =
           t ->
             method_:string ->
               ?callback:(err:Error.t or_null ->
-                           ?params:anonymous_interface_0 -> unit -> unit)
+                           ?params:AnonymousInterface0.t -> unit -> unit)
                 -> unit -> unit)
           =
           fun (x1495 : t) ->
@@ -6088,7 +5140,7 @@ module Inspector =
               fun
                 ?callback:(x1488 :
                             (err:Error.t or_null ->
-                               ?params:anonymous_interface_0 -> unit -> unit)
+                               ?params:AnonymousInterface0.t -> unit -> unit)
                               option)
                 ->
                 fun () ->
@@ -6114,7 +5166,7 @@ module Inspector =
                                                                Error.t_of_js
                                                                x1491)
                                                        ?params:(Ojs.option_of_js
-                                                                  anonymous_interface_0_of_js
+                                                                  AnonymousInterface0.t_of_js
                                                                   x1493) ()))|])
                                   | None -> ());
                                  x1489))|])
@@ -11680,7 +10732,7 @@ module Inspector =
         let (addListener' :
           t ->
             event:[ `inspectorNotification ] ->
-              listener:(message:anonymous_interface_0
+              listener:(message:AnonymousInterface0.t
                           inspector_InspectorNotification -> unit)
                 -> t)
           =
@@ -11688,7 +10740,7 @@ module Inspector =
             fun ~event:(x2641 : [ `inspectorNotification ]) ->
               fun
                 ~listener:(x2642 :
-                            message:anonymous_interface_0
+                            message:AnonymousInterface0.t
                               inspector_InspectorNotification -> unit)
                 ->
                 t_of_js
@@ -11700,7 +10752,7 @@ module Inspector =
                          (fun (x2643 : Ojs.t) ->
                             x2642
                               ~message:(inspector_InspectorNotification_of_js
-                                          anonymous_interface_0_of_js x2643)))|])
+                                          AnonymousInterface0.t_of_js x2643)))|])
         let (addListener'' :
           t ->
             event:[ `Runtime_executionContextCreated ] ->
@@ -12341,14 +11393,14 @@ module Inspector =
         let (emit' :
           t ->
             event:[ `inspectorNotification ] ->
-              message:anonymous_interface_0 inspector_InspectorNotification
+              message:AnonymousInterface0.t inspector_InspectorNotification
                 -> bool)
           =
           fun (x2776 : t) ->
             fun ~event:(x2773 : [ `inspectorNotification ]) ->
               fun
                 ~message:(x2774 :
-                           anonymous_interface_0
+                           AnonymousInterface0.t
                              inspector_InspectorNotification)
                 ->
                 Ojs.bool_of_js
@@ -12357,7 +11409,7 @@ module Inspector =
                          | `inspectorNotification ->
                              Ojs.string_to_js "inspectorNotification"));(
                        inspector_InspectorNotification_to_js
-                         anonymous_interface_0_to_js x2774)|])
+                         AnonymousInterface0.t_to_js x2774)|])
         let (emit'' :
           t ->
             event:[ `Runtime_executionContextCreated ] ->
@@ -12863,7 +11915,7 @@ module Inspector =
         let (on' :
           t ->
             event:[ `inspectorNotification ] ->
-              listener:(message:anonymous_interface_0
+              listener:(message:AnonymousInterface0.t
                           inspector_InspectorNotification -> unit)
                 -> t)
           =
@@ -12871,7 +11923,7 @@ module Inspector =
             fun ~event:(x2876 : [ `inspectorNotification ]) ->
               fun
                 ~listener:(x2877 :
-                            message:anonymous_interface_0
+                            message:AnonymousInterface0.t
                               inspector_InspectorNotification -> unit)
                 ->
                 t_of_js
@@ -12883,7 +11935,7 @@ module Inspector =
                          (fun (x2878 : Ojs.t) ->
                             x2877
                               ~message:(inspector_InspectorNotification_of_js
-                                          anonymous_interface_0_of_js x2878)))|])
+                                          AnonymousInterface0.t_of_js x2878)))|])
         let (on'' :
           t ->
             event:[ `Runtime_executionContextCreated ] ->
@@ -13517,7 +12569,7 @@ module Inspector =
         let (once' :
           t ->
             event:[ `inspectorNotification ] ->
-              listener:(message:anonymous_interface_0
+              listener:(message:AnonymousInterface0.t
                           inspector_InspectorNotification -> unit)
                 -> t)
           =
@@ -13525,7 +12577,7 @@ module Inspector =
             fun ~event:(x3006 : [ `inspectorNotification ]) ->
               fun
                 ~listener:(x3007 :
-                            message:anonymous_interface_0
+                            message:AnonymousInterface0.t
                               inspector_InspectorNotification -> unit)
                 ->
                 t_of_js
@@ -13537,7 +12589,7 @@ module Inspector =
                          (fun (x3008 : Ojs.t) ->
                             x3007
                               ~message:(inspector_InspectorNotification_of_js
-                                          anonymous_interface_0_of_js x3008)))|])
+                                          AnonymousInterface0.t_of_js x3008)))|])
         let (once'' :
           t ->
             event:[ `Runtime_executionContextCreated ] ->
@@ -14171,7 +13223,7 @@ module Inspector =
         let (prependListener' :
           t ->
             event:[ `inspectorNotification ] ->
-              listener:(message:anonymous_interface_0
+              listener:(message:AnonymousInterface0.t
                           inspector_InspectorNotification -> unit)
                 -> t)
           =
@@ -14179,7 +13231,7 @@ module Inspector =
             fun ~event:(x3136 : [ `inspectorNotification ]) ->
               fun
                 ~listener:(x3137 :
-                            message:anonymous_interface_0
+                            message:AnonymousInterface0.t
                               inspector_InspectorNotification -> unit)
                 ->
                 t_of_js
@@ -14191,7 +13243,7 @@ module Inspector =
                          (fun (x3138 : Ojs.t) ->
                             x3137
                               ~message:(inspector_InspectorNotification_of_js
-                                          anonymous_interface_0_of_js x3138)))|])
+                                          AnonymousInterface0.t_of_js x3138)))|])
         let (prependListener'' :
           t ->
             event:[ `Runtime_executionContextCreated ] ->
@@ -14825,7 +13877,7 @@ module Inspector =
         let (prependOnceListener' :
           t ->
             event:[ `inspectorNotification ] ->
-              listener:(message:anonymous_interface_0
+              listener:(message:AnonymousInterface0.t
                           inspector_InspectorNotification -> unit)
                 -> t)
           =
@@ -14833,7 +13885,7 @@ module Inspector =
             fun ~event:(x3266 : [ `inspectorNotification ]) ->
               fun
                 ~listener:(x3267 :
-                            message:anonymous_interface_0
+                            message:AnonymousInterface0.t
                               inspector_InspectorNotification -> unit)
                 ->
                 t_of_js
@@ -14845,7 +13897,7 @@ module Inspector =
                          (fun (x3268 : Ojs.t) ->
                             x3267
                               ~message:(inspector_InspectorNotification_of_js
-                                          anonymous_interface_0_of_js x3268)))|])
+                                          AnonymousInterface0.t_of_js x3268)))|])
         let (prependOnceListener'' :
           t ->
             event:[ `Runtime_executionContextCreated ] ->

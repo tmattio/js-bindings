@@ -4,37 +4,13 @@
 open Es5
 module Internal =
   struct
-    module AnonymousInterfaces = struct  end
     module Types =
       struct
-        open AnonymousInterfaces
-        type _DeclarationClientCapabilities =
-          [ `DeclarationClientCapabilities ] intf
-        and _DeclarationOptions = [ `DeclarationOptions ] intf
-        and _DeclarationParams = [ `DeclarationParams ] intf
-        and _DeclarationRegistrationOptions =
-          [ `DeclarationRegistrationOptions  | `DeclarationOptions ] intf
-        and _DeclarationRequest_HandlerSignature =
+        type _DeclarationRequest_HandlerSignature =
           (_DeclarationParams,
             (Declaration.t, DeclarationLink.t) or_array or_null, unit)
             RequestHandler.t
-        let rec _DeclarationClientCapabilities_of_js :
-          Ojs.t -> _DeclarationClientCapabilities = Obj.magic
-        and _DeclarationClientCapabilities_to_js :
-          _DeclarationClientCapabilities -> Ojs.t = Obj.magic
-        and _DeclarationOptions_of_js : Ojs.t -> _DeclarationOptions =
-          Obj.magic
-        and _DeclarationOptions_to_js : _DeclarationOptions -> Ojs.t =
-          Obj.magic
-        and _DeclarationParams_of_js : Ojs.t -> _DeclarationParams =
-          Obj.magic
-        and _DeclarationParams_to_js : _DeclarationParams -> Ojs.t =
-          Obj.magic
-        and _DeclarationRegistrationOptions_of_js :
-          Ojs.t -> _DeclarationRegistrationOptions = Obj.magic
-        and _DeclarationRegistrationOptions_to_js :
-          _DeclarationRegistrationOptions -> Ojs.t = Obj.magic
-        and _DeclarationRequest_HandlerSignature_of_js :
+        let rec _DeclarationRequest_HandlerSignature_of_js :
           Ojs.t -> _DeclarationRequest_HandlerSignature =
           fun (x8 : Ojs.t) ->
             RequestHandler.t_of_js _DeclarationParams_of_js
@@ -60,9 +36,6 @@ module Internal =
                         DeclarationLink.t_to_js x4) x3) Ojs.unit_to_js x1
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module DeclarationClientCapabilities =
   struct
     type t = _DeclarationClientCapabilities

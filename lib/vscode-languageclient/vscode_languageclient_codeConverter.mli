@@ -4,32 +4,10 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
 
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _Converter = [ `Converter ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _FileFormattingOptions = [ `FileFormattingOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _URIConverter = [ `URIConverter ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
 
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -273,7 +251,7 @@ module Converter : sig
     :  t
     -> textDocument:Code.TextDocument.t
     -> position:Code.Position.t
-    -> options:anonymous_interface_0
+    -> options:AnonymousInterface0.t
     -> Proto.ReferenceParams.t
     [@@js.call "asReferenceParams"]
 

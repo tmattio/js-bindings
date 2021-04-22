@@ -4,21 +4,6 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _ProtocolCodeAction = [ `ProtocolCodeAction ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 (* import * as vscode from 'vscode'; *)
 module ProtocolCodeAction : sig
   type t = _ProtocolCodeAction

@@ -4,32 +4,15 @@
 open Es5
 module Internal =
   struct
-    module AnonymousInterfaces = struct  end
     module Types =
       struct
-        open AnonymousInterfaces
-        type _CreateFilesParams = [ `CreateFilesParams ] intf
-        and _DeleteFilesParams = [ `DeleteFilesParams ] intf
-        and _DidCreateFilesNotification_HandlerSignature =
+        type _DidCreateFilesNotification_HandlerSignature =
           _CreateFilesParams NotificationHandler.t
         and _DidDeleteFilesNotification_HandlerSignature =
           _DeleteFilesParams NotificationHandler.t
         and _DidRenameFilesNotification_HandlerSignature =
           _RenameFilesParams NotificationHandler.t
-        and _FileCreate = [ `FileCreate ] intf
-        and _FileDelete = [ `FileDelete ] intf
-        and _FileOperationClientCapabilities =
-          [ `FileOperationClientCapabilities ] intf
-        and _FileOperationFilter = [ `FileOperationFilter ] intf
-        and _FileOperationOptions = [ `FileOperationOptions ] intf
-        and _FileOperationPattern = [ `FileOperationPattern ] intf
         and _FileOperationPatternKind = [ `L_s0_file  | `L_s1_folder ]
-        and _FileOperationPatternOptions =
-          [ `FileOperationPatternOptions ] intf
-        and _FileOperationRegistrationOptions =
-          [ `FileOperationRegistrationOptions ] intf
-        and _FileRename = [ `FileRename ] intf
-        and _RenameFilesParams = [ `RenameFilesParams ] intf
         and _WillCreateFilesRequest_HandlerSignature =
           (_CreateFilesParams, WorkspaceEdit.t or_null_or_undefined, 
             unit) RequestHandler.t
@@ -39,15 +22,7 @@ module Internal =
         and _WillRenameFilesRequest_HandlerSignature =
           (_RenameFilesParams, WorkspaceEdit.t or_null_or_undefined, 
             unit) RequestHandler.t
-        let rec _CreateFilesParams_of_js : Ojs.t -> _CreateFilesParams =
-          Obj.magic
-        and _CreateFilesParams_to_js : _CreateFilesParams -> Ojs.t =
-          Obj.magic
-        and _DeleteFilesParams_of_js : Ojs.t -> _DeleteFilesParams =
-          Obj.magic
-        and _DeleteFilesParams_to_js : _DeleteFilesParams -> Ojs.t =
-          Obj.magic
-        and _DidCreateFilesNotification_HandlerSignature_of_js :
+        let rec _DidCreateFilesNotification_HandlerSignature_of_js :
           Ojs.t -> _DidCreateFilesNotification_HandlerSignature =
           fun (x3 : Ojs.t) ->
             NotificationHandler.t_of_js _CreateFilesParams_of_js x3
@@ -71,26 +46,6 @@ module Internal =
           _DidRenameFilesNotification_HandlerSignature -> Ojs.t =
           fun (x9 : _RenameFilesParams NotificationHandler.t) ->
             NotificationHandler.t_to_js _RenameFilesParams_to_js x9
-        and _FileCreate_of_js : Ojs.t -> _FileCreate = Obj.magic
-        and _FileCreate_to_js : _FileCreate -> Ojs.t = Obj.magic
-        and _FileDelete_of_js : Ojs.t -> _FileDelete = Obj.magic
-        and _FileDelete_to_js : _FileDelete -> Ojs.t = Obj.magic
-        and _FileOperationClientCapabilities_of_js :
-          Ojs.t -> _FileOperationClientCapabilities = Obj.magic
-        and _FileOperationClientCapabilities_to_js :
-          _FileOperationClientCapabilities -> Ojs.t = Obj.magic
-        and _FileOperationFilter_of_js : Ojs.t -> _FileOperationFilter =
-          Obj.magic
-        and _FileOperationFilter_to_js : _FileOperationFilter -> Ojs.t =
-          Obj.magic
-        and _FileOperationOptions_of_js : Ojs.t -> _FileOperationOptions =
-          Obj.magic
-        and _FileOperationOptions_to_js : _FileOperationOptions -> Ojs.t =
-          Obj.magic
-        and _FileOperationPattern_of_js : Ojs.t -> _FileOperationPattern =
-          Obj.magic
-        and _FileOperationPattern_to_js : _FileOperationPattern -> Ojs.t =
-          Obj.magic
         and _FileOperationPatternKind_of_js :
           Ojs.t -> _FileOperationPatternKind =
           fun (x14 : Ojs.t) ->
@@ -105,20 +60,6 @@ module Internal =
             match x13 with
             | `L_s0_file -> Ojs.string_to_js "file"
             | `L_s1_folder -> Ojs.string_to_js "folder"
-        and _FileOperationPatternOptions_of_js :
-          Ojs.t -> _FileOperationPatternOptions = Obj.magic
-        and _FileOperationPatternOptions_to_js :
-          _FileOperationPatternOptions -> Ojs.t = Obj.magic
-        and _FileOperationRegistrationOptions_of_js :
-          Ojs.t -> _FileOperationRegistrationOptions = Obj.magic
-        and _FileOperationRegistrationOptions_to_js :
-          _FileOperationRegistrationOptions -> Ojs.t = Obj.magic
-        and _FileRename_of_js : Ojs.t -> _FileRename = Obj.magic
-        and _FileRename_to_js : _FileRename -> Ojs.t = Obj.magic
-        and _RenameFilesParams_of_js : Ojs.t -> _RenameFilesParams =
-          Obj.magic
-        and _RenameFilesParams_to_js : _RenameFilesParams -> Ojs.t =
-          Obj.magic
         and _WillCreateFilesRequest_HandlerSignature_of_js :
           Ojs.t -> _WillCreateFilesRequest_HandlerSignature =
           fun (x21 : Ojs.t) ->
@@ -175,9 +116,6 @@ module Internal =
               Ojs.unit_to_js x36
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module FileOperationOptions =
   struct
     type t = _FileOperationOptions

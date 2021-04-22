@@ -5,31 +5,6 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type querystring_ParseOptions = [ `Querystring_ParseOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and querystring_ParsedUrlQuery = [ `Querystring_ParsedUrlQuery ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and querystring_ParsedUrlQueryInput =
-      [ `Querystring_ParsedUrlQueryInput ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and querystring_StringifyOptions = [ `Querystring_StringifyOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module Querystring : sig
   module StringifyOptions : sig
     type t = querystring_StringifyOptions

@@ -5,20 +5,10 @@ open Es2020
 open Node_globals
 module Internal =
   struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
     module Types =
       struct
         open AnonymousInterfaces
         type tty_Direction = [ `L_n_minus1  | `L_n_0  | `L_n_1 ]
-        and tty_ReadStream = [ `Tty_ReadStream ] intf
-        and tty_WriteStream = [ `Tty_WriteStream ] intf
         let rec tty_Direction_of_js : Ojs.t -> tty_Direction =
           fun (x2 : Ojs.t) ->
             let x3 = x2 in
@@ -33,22 +23,13 @@ module Internal =
             | `L_n_minus1 -> Ojs.int_to_js (-1)
             | `L_n_0 -> Ojs.int_to_js 0
             | `L_n_1 -> Ojs.int_to_js 1
-        and tty_ReadStream_of_js : Ojs.t -> tty_ReadStream = Obj.magic
-        and tty_ReadStream_to_js : tty_ReadStream -> Ojs.t = Obj.magic
-        and tty_WriteStream_of_js : Ojs.t -> tty_WriteStream = Obj.magic
-        and tty_WriteStream_to_js : tty_WriteStream -> Ojs.t = Obj.magic
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x5 : Ojs.t) -> anonymous_interface_0_of_js x5
-    and t_to_js : t -> Ojs.t =
-      fun (x4 : anonymous_interface_0) -> anonymous_interface_0_to_js x4
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x5 : Ojs.t) -> x5
+    and t_to_js : t -> Ojs.t = fun (x4 : Ojs.t) -> x4
   end
 module Tty =
   struct
@@ -386,10 +367,10 @@ module Tty =
                                                  (fun _ -> x102 ()))|])
                                    | None -> ());
                                   x101))|])
-        let (getColorDepth : t -> ?env:anonymous_interface_0 -> unit -> int)
+        let (getColorDepth : t -> ?env:AnonymousInterface0.t -> unit -> int)
           =
           fun (x108 : t) ->
-            fun ?env:(x105 : anonymous_interface_0 option) ->
+            fun ?env:(x105 : AnonymousInterface0.t option) ->
               fun () ->
                 Ojs.int_of_js
                   (let x109 = t_to_js x108 in
@@ -402,7 +383,7 @@ module Tty =
                                | Some x107 ->
                                    ignore
                                      (Ojs.call x106 "push"
-                                        [|(anonymous_interface_0_to_js x107)|])
+                                        [|(AnonymousInterface0.t_to_js x107)|])
                                | None -> ());
                               x106))|])
         let (hasColors : t -> ?depth:int -> unit -> bool) =
@@ -423,9 +404,9 @@ module Tty =
                                         [|(Ojs.int_to_js x112)|])
                                | None -> ());
                               x111))|])
-        let (hasColors' : t -> ?env:anonymous_interface_0 -> unit -> bool) =
+        let (hasColors' : t -> ?env:AnonymousInterface0.t -> unit -> bool) =
           fun (x118 : t) ->
-            fun ?env:(x115 : anonymous_interface_0 option) ->
+            fun ?env:(x115 : AnonymousInterface0.t option) ->
               fun () ->
                 Ojs.bool_of_js
                   (let x119 = t_to_js x118 in
@@ -438,14 +419,14 @@ module Tty =
                                | Some x117 ->
                                    ignore
                                      (Ojs.call x116 "push"
-                                        [|(anonymous_interface_0_to_js x117)|])
+                                        [|(AnonymousInterface0.t_to_js x117)|])
                                | None -> ());
                               x116))|])
         let (hasColors'' :
-          t -> depth:int -> ?env:anonymous_interface_0 -> unit -> bool) =
+          t -> depth:int -> ?env:AnonymousInterface0.t -> unit -> bool) =
           fun (x124 : t) ->
             fun ~depth:(x120 : int) ->
-              fun ?env:(x121 : anonymous_interface_0 option) ->
+              fun ?env:(x121 : AnonymousInterface0.t option) ->
                 fun () ->
                   Ojs.bool_of_js
                     (let x125 = t_to_js x124 in
@@ -461,7 +442,7 @@ module Tty =
                                  | Some x123 ->
                                      ignore
                                        (Ojs.call x122 "push"
-                                          [|(anonymous_interface_0_to_js x123)|])
+                                          [|(AnonymousInterface0.t_to_js x123)|])
                                  | None -> ());
                                 x122))|])
         let (getWindowSize : t -> (int * int)) =

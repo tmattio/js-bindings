@@ -4,6 +4,7 @@
 open Es2019
 module Intl =
   struct
+    include struct include Intl end
     module BCP47LanguageTag =
       struct
         type t = string
@@ -408,11 +409,11 @@ module Intl =
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x22 : Ojs.t) -> x22
         and t_to_js : t -> Ojs.t = fun (x21 : Ojs.t) -> x21
-        let (get_localeMatcher : t -> RelativeTimeFormatLocaleMatcher.t) =
+        let (get_locale_matcher : t -> RelativeTimeFormatLocaleMatcher.t) =
           fun (x23 : t) ->
             RelativeTimeFormatLocaleMatcher.t_of_js
               (Ojs.get_prop_ascii (t_to_js x23) "localeMatcher")
-        let (set_localeMatcher :
+        let (set_locale_matcher :
           t -> RelativeTimeFormatLocaleMatcher.t -> unit) =
           fun (x24 : t) ->
             fun (x25 : RelativeTimeFormatLocaleMatcher.t) ->
@@ -468,11 +469,11 @@ module Intl =
             fun (x42 : RelativeTimeFormatNumeric.t) ->
               Ojs.set_prop_ascii (t_to_js x41) "numeric"
                 (RelativeTimeFormatNumeric.t_to_js x42)
-        let (get_numberingSystem : t -> string) =
+        let (get_numbering_system : t -> string) =
           fun (x43 : t) ->
             Ojs.string_of_js
               (Ojs.get_prop_ascii (t_to_js x43) "numberingSystem")
-        let (set_numberingSystem : t -> string -> unit) =
+        let (set_numbering_system : t -> string -> unit) =
           fun (x44 : t) ->
             fun (x45 : string) ->
               Ojs.set_prop_ascii (t_to_js x44) "numberingSystem"
@@ -521,7 +522,7 @@ module Intl =
                   (Ojs.call (t_to_js x61) "format"
                      [|(Ojs.int_to_js x59);(RelativeTimeFormatUnit.t_to_js
                                               x60)|])
-        let (formatToParts :
+        let (format_to_parts :
           t ->
             value:int ->
               unit:RelativeTimeFormatUnit.t -> RelativeTimeFormatPart.t list)
@@ -533,7 +534,7 @@ module Intl =
                   (Ojs.call (t_to_js x64) "formatToParts"
                      [|(Ojs.int_to_js x62);(RelativeTimeFormatUnit.t_to_js
                                               x63)|])
-        let (resolvedOptions : t -> ResolvedRelativeTimeFormatOptions.t) =
+        let (resolved_options : t -> ResolvedRelativeTimeFormatOptions.t) =
           fun (x66 : t) ->
             ResolvedRelativeTimeFormatOptions.t_of_js
               (Ojs.call (t_to_js x66) "resolvedOptions" [||])
@@ -572,7 +573,7 @@ module Intl =
                                   [|(RelativeTimeFormatOptions.t_to_js x72)|])
                          | None -> ());
                         x71))
-        let (supportedLocalesOf :
+        let (supported_locales_of :
           t ->
             locales:(string, string) or_array ->
               ?options:RelativeTimeFormatOptions.t -> unit -> string list)
@@ -602,18 +603,18 @@ module Intl =
                                 | None -> ());
                                x79))|])
       end
-    let (relativeTimeFormat : AnonymousInterface0.t) =
+    let (relative_time_format : AnonymousInterface0.t) =
       AnonymousInterface0.t_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "Intl")
            "RelativeTimeFormat")
     module NumberFormatOptions =
       struct
         include struct include NumberFormatOptions end
-        let (get_compactDisplay : t -> string) =
+        let (get_compact_display : t -> string) =
           fun (x86 : t) ->
             Ojs.string_of_js
               (Ojs.get_prop_ascii (t_to_js x86) "compactDisplay")
-        let (set_compactDisplay : t -> string -> unit) =
+        let (set_compact_display : t -> string -> unit) =
           fun (x87 : t) ->
             fun (x88 : string) ->
               Ojs.set_prop_ascii (t_to_js x87) "compactDisplay"
@@ -626,10 +627,10 @@ module Intl =
             fun (x91 : string) ->
               Ojs.set_prop_ascii (t_to_js x90) "notation"
                 (Ojs.string_to_js x91)
-        let (get_signDisplay : t -> string) =
+        let (get_sign_display : t -> string) =
           fun (x92 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x92) "signDisplay")
-        let (set_signDisplay : t -> string -> unit) =
+        let (set_sign_display : t -> string -> unit) =
           fun (x93 : t) ->
             fun (x94 : string) ->
               Ojs.set_prop_ascii (t_to_js x93) "signDisplay"
@@ -641,10 +642,10 @@ module Intl =
           fun (x96 : t) ->
             fun (x97 : string) ->
               Ojs.set_prop_ascii (t_to_js x96) "unit" (Ojs.string_to_js x97)
-        let (get_unitDisplay : t -> string) =
+        let (get_unit_display : t -> string) =
           fun (x98 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x98) "unitDisplay")
-        let (set_unitDisplay : t -> string -> unit) =
+        let (set_unit_display : t -> string -> unit) =
           fun (x99 : t) ->
             fun (x100 : string) ->
               Ojs.set_prop_ascii (t_to_js x99) "unitDisplay"
@@ -655,11 +656,11 @@ module Intl =
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x102 : Ojs.t) -> x102
         and t_to_js : t -> Ojs.t = fun (x101 : Ojs.t) -> x101
-        let (get_compactDisplay : t -> string) =
+        let (get_compact_display : t -> string) =
           fun (x103 : t) ->
             Ojs.string_of_js
               (Ojs.get_prop_ascii (t_to_js x103) "compactDisplay")
-        let (set_compactDisplay : t -> string -> unit) =
+        let (set_compact_display : t -> string -> unit) =
           fun (x104 : t) ->
             fun (x105 : string) ->
               Ojs.set_prop_ascii (t_to_js x104) "compactDisplay"
@@ -672,11 +673,11 @@ module Intl =
             fun (x108 : string) ->
               Ojs.set_prop_ascii (t_to_js x107) "notation"
                 (Ojs.string_to_js x108)
-        let (get_signDisplay : t -> string) =
+        let (get_sign_display : t -> string) =
           fun (x109 : t) ->
             Ojs.string_of_js
               (Ojs.get_prop_ascii (t_to_js x109) "signDisplay")
-        let (set_signDisplay : t -> string -> unit) =
+        let (set_sign_display : t -> string -> unit) =
           fun (x110 : t) ->
             fun (x111 : string) ->
               Ojs.set_prop_ascii (t_to_js x110) "signDisplay"
@@ -689,11 +690,11 @@ module Intl =
             fun (x114 : string) ->
               Ojs.set_prop_ascii (t_to_js x113) "unit"
                 (Ojs.string_to_js x114)
-        let (get_unitDisplay : t -> string) =
+        let (get_unit_display : t -> string) =
           fun (x115 : t) ->
             Ojs.string_of_js
               (Ojs.get_prop_ascii (t_to_js x115) "unitDisplay")
-        let (set_unitDisplay : t -> string -> unit) =
+        let (set_unit_display : t -> string -> unit) =
           fun (x116 : t) ->
             fun (x117 : string) ->
               Ojs.set_prop_ascii (t_to_js x116) "unitDisplay"
@@ -702,7 +703,7 @@ module Intl =
     module DateTimeFormatOptions =
       struct
         include struct include DateTimeFormatOptions end
-        let (get_dateStyle : t -> [ `full  | `long  | `medium  | `short ]) =
+        let (get_date_style : t -> [ `full  | `long  | `medium  | `short ]) =
           fun (x118 : t) ->
             let x119 = Ojs.get_prop_ascii (t_to_js x118) "dateStyle" in
             match Ojs.string_of_js x119 with
@@ -711,7 +712,7 @@ module Intl =
             | "medium" -> `medium
             | "short" -> `short
             | _ -> assert false
-        let (set_dateStyle :
+        let (set_date_style :
           t -> [ `full  | `long  | `medium  | `short ] -> unit) =
           fun (x120 : t) ->
             fun (x121 : [ `full  | `long  | `medium  | `short ]) ->
@@ -721,7 +722,7 @@ module Intl =
                  | `long -> Ojs.string_to_js "long"
                  | `medium -> Ojs.string_to_js "medium"
                  | `short -> Ojs.string_to_js "short")
-        let (get_timeStyle : t -> [ `full  | `long  | `medium  | `short ]) =
+        let (get_time_style : t -> [ `full  | `long  | `medium  | `short ]) =
           fun (x122 : t) ->
             let x123 = Ojs.get_prop_ascii (t_to_js x122) "timeStyle" in
             match Ojs.string_of_js x123 with
@@ -730,7 +731,7 @@ module Intl =
             | "medium" -> `medium
             | "short" -> `short
             | _ -> assert false
-        let (set_timeStyle :
+        let (set_time_style :
           t -> [ `full  | `long  | `medium  | `short ] -> unit) =
           fun (x124 : t) ->
             fun (x125 : [ `full  | `long  | `medium  | `short ]) ->
@@ -748,7 +749,7 @@ module Intl =
             fun (x128 : Calendar.t) ->
               Ojs.set_prop_ascii (t_to_js x127) "calendar"
                 (Calendar.t_to_js x128)
-        let (get_dayPeriod : t -> [ `long  | `narrow  | `short ]) =
+        let (get_day_period : t -> [ `long  | `narrow  | `short ]) =
           fun (x129 : t) ->
             let x130 = Ojs.get_prop_ascii (t_to_js x129) "dayPeriod" in
             match Ojs.string_of_js x130 with
@@ -756,7 +757,7 @@ module Intl =
             | "narrow" -> `narrow
             | "short" -> `short
             | _ -> assert false
-        let (set_dayPeriod : t -> [ `long  | `narrow  | `short ] -> unit) =
+        let (set_day_period : t -> [ `long  | `narrow  | `short ] -> unit) =
           fun (x131 : t) ->
             fun (x132 : [ `long  | `narrow  | `short ]) ->
               Ojs.set_prop_ascii (t_to_js x131) "dayPeriod"
@@ -764,16 +765,16 @@ module Intl =
                  | `long -> Ojs.string_to_js "long"
                  | `narrow -> Ojs.string_to_js "narrow"
                  | `short -> Ojs.string_to_js "short")
-        let (get_numberingSystem : t -> NumberingSystem.t) =
+        let (get_numbering_system : t -> NumberingSystem.t) =
           fun (x133 : t) ->
             NumberingSystem.t_of_js
               (Ojs.get_prop_ascii (t_to_js x133) "numberingSystem")
-        let (set_numberingSystem : t -> NumberingSystem.t -> unit) =
+        let (set_numbering_system : t -> NumberingSystem.t -> unit) =
           fun (x134 : t) ->
             fun (x135 : NumberingSystem.t) ->
               Ojs.set_prop_ascii (t_to_js x134) "numberingSystem"
                 (NumberingSystem.t_to_js x135)
-        let (get_hourCycle : t -> [ `h11  | `h12  | `h23  | `h24 ]) =
+        let (get_hour_cycle : t -> [ `h11  | `h12  | `h23  | `h24 ]) =
           fun (x136 : t) ->
             let x137 = Ojs.get_prop_ascii (t_to_js x136) "hourCycle" in
             match Ojs.string_of_js x137 with
@@ -782,7 +783,8 @@ module Intl =
             | "h23" -> `h23
             | "h24" -> `h24
             | _ -> assert false
-        let (set_hourCycle : t -> [ `h11  | `h12  | `h23  | `h24 ] -> unit) =
+        let (set_hour_cycle : t -> [ `h11  | `h12  | `h23  | `h24 ] -> unit)
+          =
           fun (x138 : t) ->
             fun (x139 : [ `h11  | `h12  | `h23  | `h24 ]) ->
               Ojs.set_prop_ascii (t_to_js x138) "hourCycle"
@@ -791,7 +793,7 @@ module Intl =
                  | `h12 -> Ojs.string_to_js "h12"
                  | `h23 -> Ojs.string_to_js "h23"
                  | `h24 -> Ojs.string_to_js "h24")
-        let (get_fractionalSecondDigits :
+        let (get_fractional_second_digits :
           t -> [ `L_n_0  | `L_n_1  | `L_n_2  | `L_n_3 ]) =
           fun (x140 : t) ->
             let x141 =
@@ -802,7 +804,7 @@ module Intl =
             | 2 -> `L_n_2
             | 3 -> `L_n_3
             | _ -> assert false
-        let (set_fractionalSecondDigits :
+        let (set_fractional_second_digits :
           t -> [ `L_n_0  | `L_n_1  | `L_n_2  | `L_n_3 ] -> unit) =
           fun (x142 : t) ->
             fun (x143 : [ `L_n_0  | `L_n_1  | `L_n_2  | `L_n_3 ]) ->
@@ -814,4 +816,3 @@ module Intl =
                  | `L_n_3 -> Ojs.string_to_js "LN3")
       end
   end
-include struct include Intl end

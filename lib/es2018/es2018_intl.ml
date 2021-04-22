@@ -4,6 +4,7 @@
 open Es2017
 module Intl =
   struct
+    include struct include Intl end
     module LDMLPluralRule =
       struct
         type t = [ `few  | `many  | `one  | `other  | `two  | `zero ]
@@ -49,14 +50,14 @@ module Intl =
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x8 : Ojs.t) -> x8
         and t_to_js : t -> Ojs.t = fun (x7 : Ojs.t) -> x7
-        let (get_localeMatcher : t -> [ `best_fit  | `lookup ]) =
+        let (get_locale_matcher : t -> [ `best_fit  | `lookup ]) =
           fun (x9 : t) ->
             let x10 = Ojs.get_prop_ascii (t_to_js x9) "localeMatcher" in
             match Ojs.string_of_js x10 with
             | "best fit" -> `best_fit
             | "lookup" -> `lookup
             | _ -> assert false
-        let (set_localeMatcher : t -> [ `best_fit  | `lookup ] -> unit) =
+        let (set_locale_matcher : t -> [ `best_fit  | `lookup ] -> unit) =
           fun (x11 : t) ->
             fun (x12 : [ `best_fit  | `lookup ]) ->
               Ojs.set_prop_ascii (t_to_js x11) "localeMatcher"
@@ -71,47 +72,47 @@ module Intl =
             fun (x15 : PluralRuleType.t) ->
               Ojs.set_prop_ascii (t_to_js x14) "type"
                 (PluralRuleType.t_to_js x15)
-        let (get_minimumIntegerDigits : t -> int) =
+        let (get_minimum_integer_digits : t -> int) =
           fun (x16 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x16) "minimumIntegerDigits")
-        let (set_minimumIntegerDigits : t -> int -> unit) =
+        let (set_minimum_integer_digits : t -> int -> unit) =
           fun (x17 : t) ->
             fun (x18 : int) ->
               Ojs.set_prop_ascii (t_to_js x17) "minimumIntegerDigits"
                 (Ojs.int_to_js x18)
-        let (get_minimumFractionDigits : t -> int) =
+        let (get_minimum_fraction_digits : t -> int) =
           fun (x19 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x19) "minimumFractionDigits")
-        let (set_minimumFractionDigits : t -> int -> unit) =
+        let (set_minimum_fraction_digits : t -> int -> unit) =
           fun (x20 : t) ->
             fun (x21 : int) ->
               Ojs.set_prop_ascii (t_to_js x20) "minimumFractionDigits"
                 (Ojs.int_to_js x21)
-        let (get_maximumFractionDigits : t -> int) =
+        let (get_maximum_fraction_digits : t -> int) =
           fun (x22 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x22) "maximumFractionDigits")
-        let (set_maximumFractionDigits : t -> int -> unit) =
+        let (set_maximum_fraction_digits : t -> int -> unit) =
           fun (x23 : t) ->
             fun (x24 : int) ->
               Ojs.set_prop_ascii (t_to_js x23) "maximumFractionDigits"
                 (Ojs.int_to_js x24)
-        let (get_minimumSignificantDigits : t -> int) =
+        let (get_minimum_significant_digits : t -> int) =
           fun (x25 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x25) "minimumSignificantDigits")
-        let (set_minimumSignificantDigits : t -> int -> unit) =
+        let (set_minimum_significant_digits : t -> int -> unit) =
           fun (x26 : t) ->
             fun (x27 : int) ->
               Ojs.set_prop_ascii (t_to_js x26) "minimumSignificantDigits"
                 (Ojs.int_to_js x27)
-        let (get_maximumSignificantDigits : t -> int) =
+        let (get_maximum_significant_digits : t -> int) =
           fun (x28 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x28) "maximumSignificantDigits")
-        let (set_maximumSignificantDigits : t -> int -> unit) =
+        let (set_maximum_significant_digits : t -> int -> unit) =
           fun (x29 : t) ->
             fun (x30 : int) ->
               Ojs.set_prop_ascii (t_to_js x29) "maximumSignificantDigits"
@@ -130,11 +131,11 @@ module Intl =
             fun (x35 : string) ->
               Ojs.set_prop_ascii (t_to_js x34) "locale"
                 (Ojs.string_to_js x35)
-        let (get_pluralCategories : t -> LDMLPluralRule.t list) =
+        let (get_plural_categories : t -> LDMLPluralRule.t list) =
           fun (x36 : t) ->
             Ojs.list_of_js LDMLPluralRule.t_of_js
               (Ojs.get_prop_ascii (t_to_js x36) "pluralCategories")
-        let (set_pluralCategories : t -> LDMLPluralRule.t list -> unit) =
+        let (set_plural_categories : t -> LDMLPluralRule.t list -> unit) =
           fun (x38 : t) ->
             fun (x39 : LDMLPluralRule.t list) ->
               Ojs.set_prop_ascii (t_to_js x38) "pluralCategories"
@@ -147,47 +148,47 @@ module Intl =
             fun (x43 : PluralRuleType.t) ->
               Ojs.set_prop_ascii (t_to_js x42) "type"
                 (PluralRuleType.t_to_js x43)
-        let (get_minimumIntegerDigits : t -> int) =
+        let (get_minimum_integer_digits : t -> int) =
           fun (x44 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x44) "minimumIntegerDigits")
-        let (set_minimumIntegerDigits : t -> int -> unit) =
+        let (set_minimum_integer_digits : t -> int -> unit) =
           fun (x45 : t) ->
             fun (x46 : int) ->
               Ojs.set_prop_ascii (t_to_js x45) "minimumIntegerDigits"
                 (Ojs.int_to_js x46)
-        let (get_minimumFractionDigits : t -> int) =
+        let (get_minimum_fraction_digits : t -> int) =
           fun (x47 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x47) "minimumFractionDigits")
-        let (set_minimumFractionDigits : t -> int -> unit) =
+        let (set_minimum_fraction_digits : t -> int -> unit) =
           fun (x48 : t) ->
             fun (x49 : int) ->
               Ojs.set_prop_ascii (t_to_js x48) "minimumFractionDigits"
                 (Ojs.int_to_js x49)
-        let (get_maximumFractionDigits : t -> int) =
+        let (get_maximum_fraction_digits : t -> int) =
           fun (x50 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x50) "maximumFractionDigits")
-        let (set_maximumFractionDigits : t -> int -> unit) =
+        let (set_maximum_fraction_digits : t -> int -> unit) =
           fun (x51 : t) ->
             fun (x52 : int) ->
               Ojs.set_prop_ascii (t_to_js x51) "maximumFractionDigits"
                 (Ojs.int_to_js x52)
-        let (get_minimumSignificantDigits : t -> int) =
+        let (get_minimum_significant_digits : t -> int) =
           fun (x53 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x53) "minimumSignificantDigits")
-        let (set_minimumSignificantDigits : t -> int -> unit) =
+        let (set_minimum_significant_digits : t -> int -> unit) =
           fun (x54 : t) ->
             fun (x55 : int) ->
               Ojs.set_prop_ascii (t_to_js x54) "minimumSignificantDigits"
                 (Ojs.int_to_js x55)
-        let (get_maximumSignificantDigits : t -> int) =
+        let (get_maximum_significant_digits : t -> int) =
           fun (x56 : t) ->
             Ojs.int_of_js
               (Ojs.get_prop_ascii (t_to_js x56) "maximumSignificantDigits")
-        let (set_maximumSignificantDigits : t -> int -> unit) =
+        let (set_maximum_significant_digits : t -> int -> unit) =
           fun (x57 : t) ->
             fun (x58 : int) ->
               Ojs.set_prop_ascii (t_to_js x57) "maximumSignificantDigits"
@@ -198,7 +199,7 @@ module Intl =
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x60 : Ojs.t) -> x60
         and t_to_js : t -> Ojs.t = fun (x59 : Ojs.t) -> x59
-        let (resolvedOptions : t -> ResolvedPluralRulesOptions.t) =
+        let (resolved_options : t -> ResolvedPluralRulesOptions.t) =
           fun (x61 : t) ->
             ResolvedPluralRulesOptions.t_of_js
               (Ojs.call (t_to_js x61) "resolvedOptions" [||])
@@ -277,7 +278,7 @@ module Intl =
                                                    x77)|])
                                      | None -> ());
                                     x76))|])
-        let (supportedLocalesOf :
+        let (supported_locales_of :
           t ->
             locales:string list or_string ->
               ?options:PluralRulesOptions.t -> unit -> string list)
@@ -308,9 +309,8 @@ module Intl =
                                 | None -> ());
                                x84))|])
       end
-    let (pluralRules : AnonymousInterface0.t) =
+    let (plural_rules : AnonymousInterface0.t) =
       AnonymousInterface0.t_of_js
         (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "Intl")
            "PluralRules")
   end
-include struct include Intl end

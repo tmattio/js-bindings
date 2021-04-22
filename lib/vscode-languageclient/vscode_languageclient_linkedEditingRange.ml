@@ -2,34 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _LinkedEditingFeature = [ `LinkedEditingFeature ] intf
-        and _LinkedEditingRangeMiddleware =
-          [ `LinkedEditingRangeMiddleware ] intf
-        and _ProvideLinkedEditingRangeSignature =
-          [ `ProvideLinkedEditingRangeSignature ] intf
-        let rec _LinkedEditingFeature_of_js : Ojs.t -> _LinkedEditingFeature
-          = Obj.magic
-        and _LinkedEditingFeature_to_js : _LinkedEditingFeature -> Ojs.t =
-          Obj.magic
-        and _LinkedEditingRangeMiddleware_of_js :
-          Ojs.t -> _LinkedEditingRangeMiddleware = Obj.magic
-        and _LinkedEditingRangeMiddleware_to_js :
-          _LinkedEditingRangeMiddleware -> Ojs.t = Obj.magic
-        and _ProvideLinkedEditingRangeSignature_of_js :
-          Ojs.t -> _ProvideLinkedEditingRangeSignature = Obj.magic
-        and _ProvideLinkedEditingRangeSignature_to_js :
-          _ProvideLinkedEditingRangeSignature -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module ProvideLinkedEditingRangeSignature =
   struct
     type t = _ProvideLinkedEditingRangeSignature

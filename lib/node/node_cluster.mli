@@ -5,35 +5,11 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type cluster_Address = [ `Cluster_Address ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and cluster_Cluster = [ `Cluster_Cluster ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and cluster_ClusterSettings = [ `Cluster_ClusterSettings ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and cluster_Worker = [ `Cluster_Worker ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module Cluster : sig
   open Node_net
 
   module ClusterSettings : sig
-    type t = cluster_ClusterSettings
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -75,7 +51,7 @@ module Cluster : sig
   [@@js.scope "ClusterSettings"]
 
   module Address : sig
-    type t = cluster_Address
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -100,7 +76,7 @@ module Cluster : sig
   [@@js.scope "Address"]
 
   module Worker : sig
-    type t = cluster_Worker
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -174,7 +150,7 @@ module Cluster : sig
     val addListener''''
       :  t
       -> event:([ `listening ][@js.enum])
-      -> listener:(address:cluster_Address -> unit)
+      -> listener:(address:Address.t -> unit)
       -> t
       [@@js.call "addListener"]
 
@@ -217,7 +193,7 @@ module Cluster : sig
     val emit''''
       :  t
       -> event:([ `listening ][@js.enum])
-      -> address:cluster_Address
+      -> address:Address.t
       -> bool
       [@@js.call "emit"]
 
@@ -263,7 +239,7 @@ module Cluster : sig
     val on''''
       :  t
       -> event:([ `listening ][@js.enum])
-      -> listener:(address:cluster_Address -> unit)
+      -> listener:(address:Address.t -> unit)
       -> t
       [@@js.call "on"]
 
@@ -313,7 +289,7 @@ module Cluster : sig
     val once''''
       :  t
       -> event:([ `listening ][@js.enum])
-      -> listener:(address:cluster_Address -> unit)
+      -> listener:(address:Address.t -> unit)
       -> t
       [@@js.call "once"]
 
@@ -363,7 +339,7 @@ module Cluster : sig
     val prependListener''''
       :  t
       -> event:([ `listening ][@js.enum])
-      -> listener:(address:cluster_Address -> unit)
+      -> listener:(address:Address.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
@@ -413,7 +389,7 @@ module Cluster : sig
     val prependOnceListener''''
       :  t
       -> event:([ `listening ][@js.enum])
-      -> listener:(address:cluster_Address -> unit)
+      -> listener:(address:Address.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
@@ -437,20 +413,20 @@ module Cluster : sig
   [@@js.scope "Worker"]
 
   module Cluster : sig
-    type t = cluster_Cluster
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_Worker : t -> cluster_Worker [@@js.get "Worker"]
+    val get_Worker : t -> Worker.t [@@js.get "Worker"]
 
-    val set_Worker : t -> cluster_Worker -> unit [@@js.set "Worker"]
+    val set_Worker : t -> Worker.t -> unit [@@js.set "Worker"]
 
     val disconnect : t -> ?callback:(unit -> unit) -> unit -> unit
       [@@js.call "disconnect"]
 
-    val fork : t -> ?env:any -> unit -> cluster_Worker [@@js.call "fork"]
+    val fork : t -> ?env:any -> unit -> Worker.t [@@js.call "fork"]
 
     val get_isMaster : t -> bool [@@js.get "isMaster"]
 
@@ -464,21 +440,20 @@ module Cluster : sig
 
     val set_schedulingPolicy : t -> int -> unit [@@js.set "schedulingPolicy"]
 
-    val get_settings : t -> cluster_ClusterSettings [@@js.get "settings"]
+    val get_settings : t -> ClusterSettings.t [@@js.get "settings"]
 
-    val set_settings : t -> cluster_ClusterSettings -> unit
-      [@@js.set "settings"]
+    val set_settings : t -> ClusterSettings.t -> unit [@@js.set "settings"]
 
-    val setupMaster : t -> ?settings:cluster_ClusterSettings -> unit -> unit
+    val setupMaster : t -> ?settings:ClusterSettings.t -> unit -> unit
       [@@js.call "setupMaster"]
 
-    val get_worker : t -> cluster_Worker [@@js.get "worker"]
+    val get_worker : t -> Worker.t [@@js.get "worker"]
 
-    val set_worker : t -> cluster_Worker -> unit [@@js.set "worker"]
+    val set_worker : t -> Worker.t -> unit [@@js.set "worker"]
 
-    val get_workers : t -> cluster_Worker Dict.t [@@js.get "workers"]
+    val get_workers : t -> Worker.t Dict.t [@@js.get "workers"]
 
-    val set_workers : t -> cluster_Worker Dict.t -> unit [@@js.set "workers"]
+    val set_workers : t -> Worker.t Dict.t -> unit [@@js.set "workers"]
 
     val get_SCHED_NONE : t -> int [@@js.get "SCHED_NONE"]
 
@@ -494,28 +469,28 @@ module Cluster : sig
     val addListener'
       :  t
       -> event:([ `disconnect ][@js.enum])
-      -> listener:(worker:cluster_Worker -> unit)
+      -> listener:(worker:Worker.t -> unit)
       -> t
       [@@js.call "addListener"]
 
     val addListener''
       :  t
       -> event:([ `exit ][@js.enum])
-      -> listener:(worker:cluster_Worker -> code:int -> signal:string -> unit)
+      -> listener:(worker:Worker.t -> code:int -> signal:string -> unit)
       -> t
       [@@js.call "addListener"]
 
     val addListener'''
       :  t
       -> event:([ `fork ][@js.enum])
-      -> listener:(worker:cluster_Worker -> unit)
+      -> listener:(worker:Worker.t -> unit)
       -> t
       [@@js.call "addListener"]
 
     val addListener''''
       :  t
       -> event:([ `listening ][@js.enum])
-      -> listener:(worker:cluster_Worker -> address:cluster_Address -> unit)
+      -> listener:(worker:Worker.t -> address:Address.t -> unit)
       -> t
       [@@js.call "addListener"]
 
@@ -523,7 +498,7 @@ module Cluster : sig
       :  t
       -> event:([ `message ][@js.enum])
       -> listener:
-           (worker:cluster_Worker
+           (worker:Worker.t
             -> message:any
             -> handle:(Net.Server.t, Net.Socket.t) union2
             -> unit)
@@ -533,14 +508,14 @@ module Cluster : sig
     val addListener''''''
       :  t
       -> event:([ `online ][@js.enum])
-      -> listener:(worker:cluster_Worker -> unit)
+      -> listener:(worker:Worker.t -> unit)
       -> t
       [@@js.call "addListener"]
 
     val addListener'''''''
       :  t
       -> event:([ `setup ][@js.enum])
-      -> listener:(settings:cluster_ClusterSettings -> unit)
+      -> listener:(settings:ClusterSettings.t -> unit)
       -> t
       [@@js.call "addListener"]
 
@@ -554,38 +529,34 @@ module Cluster : sig
     val emit'
       :  t
       -> event:([ `disconnect ][@js.enum])
-      -> worker:cluster_Worker
+      -> worker:Worker.t
       -> bool
       [@@js.call "emit"]
 
     val emit''
       :  t
       -> event:([ `exit ][@js.enum])
-      -> worker:cluster_Worker
+      -> worker:Worker.t
       -> code:int
       -> signal:string
       -> bool
       [@@js.call "emit"]
 
-    val emit'''
-      :  t
-      -> event:([ `fork ][@js.enum])
-      -> worker:cluster_Worker
-      -> bool
+    val emit''' : t -> event:([ `fork ][@js.enum]) -> worker:Worker.t -> bool
       [@@js.call "emit"]
 
     val emit''''
       :  t
       -> event:([ `listening ][@js.enum])
-      -> worker:cluster_Worker
-      -> address:cluster_Address
+      -> worker:Worker.t
+      -> address:Address.t
       -> bool
       [@@js.call "emit"]
 
     val emit'''''
       :  t
       -> event:([ `message ][@js.enum])
-      -> worker:cluster_Worker
+      -> worker:Worker.t
       -> message:any
       -> handle:(Net.Server.t, Net.Socket.t) union2
       -> bool
@@ -594,14 +565,14 @@ module Cluster : sig
     val emit''''''
       :  t
       -> event:([ `online ][@js.enum])
-      -> worker:cluster_Worker
+      -> worker:Worker.t
       -> bool
       [@@js.call "emit"]
 
     val emit'''''''
       :  t
       -> event:([ `setup ][@js.enum])
-      -> settings:cluster_ClusterSettings
+      -> settings:ClusterSettings.t
       -> bool
       [@@js.call "emit"]
 
@@ -615,28 +586,28 @@ module Cluster : sig
     val on'
       :  t
       -> event:([ `disconnect ][@js.enum])
-      -> listener:(worker:cluster_Worker -> unit)
+      -> listener:(worker:Worker.t -> unit)
       -> t
       [@@js.call "on"]
 
     val on''
       :  t
       -> event:([ `exit ][@js.enum])
-      -> listener:(worker:cluster_Worker -> code:int -> signal:string -> unit)
+      -> listener:(worker:Worker.t -> code:int -> signal:string -> unit)
       -> t
       [@@js.call "on"]
 
     val on'''
       :  t
       -> event:([ `fork ][@js.enum])
-      -> listener:(worker:cluster_Worker -> unit)
+      -> listener:(worker:Worker.t -> unit)
       -> t
       [@@js.call "on"]
 
     val on''''
       :  t
       -> event:([ `listening ][@js.enum])
-      -> listener:(worker:cluster_Worker -> address:cluster_Address -> unit)
+      -> listener:(worker:Worker.t -> address:Address.t -> unit)
       -> t
       [@@js.call "on"]
 
@@ -644,7 +615,7 @@ module Cluster : sig
       :  t
       -> event:([ `message ][@js.enum])
       -> listener:
-           (worker:cluster_Worker
+           (worker:Worker.t
             -> message:any
             -> handle:(Net.Server.t, Net.Socket.t) union2
             -> unit)
@@ -654,14 +625,14 @@ module Cluster : sig
     val on''''''
       :  t
       -> event:([ `online ][@js.enum])
-      -> listener:(worker:cluster_Worker -> unit)
+      -> listener:(worker:Worker.t -> unit)
       -> t
       [@@js.call "on"]
 
     val on'''''''
       :  t
       -> event:([ `setup ][@js.enum])
-      -> listener:(settings:cluster_ClusterSettings -> unit)
+      -> listener:(settings:ClusterSettings.t -> unit)
       -> t
       [@@js.call "on"]
 
@@ -675,28 +646,28 @@ module Cluster : sig
     val once'
       :  t
       -> event:([ `disconnect ][@js.enum])
-      -> listener:(worker:cluster_Worker -> unit)
+      -> listener:(worker:Worker.t -> unit)
       -> t
       [@@js.call "once"]
 
     val once''
       :  t
       -> event:([ `exit ][@js.enum])
-      -> listener:(worker:cluster_Worker -> code:int -> signal:string -> unit)
+      -> listener:(worker:Worker.t -> code:int -> signal:string -> unit)
       -> t
       [@@js.call "once"]
 
     val once'''
       :  t
       -> event:([ `fork ][@js.enum])
-      -> listener:(worker:cluster_Worker -> unit)
+      -> listener:(worker:Worker.t -> unit)
       -> t
       [@@js.call "once"]
 
     val once''''
       :  t
       -> event:([ `listening ][@js.enum])
-      -> listener:(worker:cluster_Worker -> address:cluster_Address -> unit)
+      -> listener:(worker:Worker.t -> address:Address.t -> unit)
       -> t
       [@@js.call "once"]
 
@@ -704,7 +675,7 @@ module Cluster : sig
       :  t
       -> event:([ `message ][@js.enum])
       -> listener:
-           (worker:cluster_Worker
+           (worker:Worker.t
             -> message:any
             -> handle:(Net.Server.t, Net.Socket.t) union2
             -> unit)
@@ -714,14 +685,14 @@ module Cluster : sig
     val once''''''
       :  t
       -> event:([ `online ][@js.enum])
-      -> listener:(worker:cluster_Worker -> unit)
+      -> listener:(worker:Worker.t -> unit)
       -> t
       [@@js.call "once"]
 
     val once'''''''
       :  t
       -> event:([ `setup ][@js.enum])
-      -> listener:(settings:cluster_ClusterSettings -> unit)
+      -> listener:(settings:ClusterSettings.t -> unit)
       -> t
       [@@js.call "once"]
 
@@ -735,28 +706,28 @@ module Cluster : sig
     val prependListener'
       :  t
       -> event:([ `disconnect ][@js.enum])
-      -> listener:(worker:cluster_Worker -> unit)
+      -> listener:(worker:Worker.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
     val prependListener''
       :  t
       -> event:([ `exit ][@js.enum])
-      -> listener:(worker:cluster_Worker -> code:int -> signal:string -> unit)
+      -> listener:(worker:Worker.t -> code:int -> signal:string -> unit)
       -> t
       [@@js.call "prependListener"]
 
     val prependListener'''
       :  t
       -> event:([ `fork ][@js.enum])
-      -> listener:(worker:cluster_Worker -> unit)
+      -> listener:(worker:Worker.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
     val prependListener''''
       :  t
       -> event:([ `listening ][@js.enum])
-      -> listener:(worker:cluster_Worker -> address:cluster_Address -> unit)
+      -> listener:(worker:Worker.t -> address:Address.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
@@ -764,7 +735,7 @@ module Cluster : sig
       :  t
       -> event:([ `message ][@js.enum])
       -> listener:
-           (worker:cluster_Worker
+           (worker:Worker.t
             -> message:any
             -> handle:(Net.Server.t, Net.Socket.t) union2
             -> unit)
@@ -774,14 +745,14 @@ module Cluster : sig
     val prependListener''''''
       :  t
       -> event:([ `online ][@js.enum])
-      -> listener:(worker:cluster_Worker -> unit)
+      -> listener:(worker:Worker.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
     val prependListener'''''''
       :  t
       -> event:([ `setup ][@js.enum])
-      -> listener:(settings:cluster_ClusterSettings -> unit)
+      -> listener:(settings:ClusterSettings.t -> unit)
       -> t
       [@@js.call "prependListener"]
 
@@ -795,28 +766,28 @@ module Cluster : sig
     val prependOnceListener'
       :  t
       -> event:([ `disconnect ][@js.enum])
-      -> listener:(worker:cluster_Worker -> unit)
+      -> listener:(worker:Worker.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
     val prependOnceListener''
       :  t
       -> event:([ `exit ][@js.enum])
-      -> listener:(worker:cluster_Worker -> code:int -> signal:string -> unit)
+      -> listener:(worker:Worker.t -> code:int -> signal:string -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
     val prependOnceListener'''
       :  t
       -> event:([ `fork ][@js.enum])
-      -> listener:(worker:cluster_Worker -> unit)
+      -> listener:(worker:Worker.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
     val prependOnceListener''''
       :  t
       -> event:([ `listening ][@js.enum])
-      -> listener:(worker:cluster_Worker -> address:cluster_Address -> unit)
+      -> listener:(worker:Worker.t -> address:Address.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
@@ -824,7 +795,7 @@ module Cluster : sig
       :  t
       -> event:([ `message ][@js.enum])
       -> listener:
-           (worker:cluster_Worker
+           (worker:Worker.t
             -> message:any
             -> handle:(Net.Server.t, Net.Socket.t) union2
             -> unit)
@@ -834,14 +805,14 @@ module Cluster : sig
     val prependOnceListener''''''
       :  t
       -> event:([ `online ][@js.enum])
-      -> listener:(worker:cluster_Worker -> unit)
+      -> listener:(worker:Worker.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
     val prependOnceListener'''''''
       :  t
       -> event:([ `setup ][@js.enum])
-      -> listener:(settings:cluster_ClusterSettings -> unit)
+      -> listener:(settings:ClusterSettings.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
 
@@ -856,7 +827,7 @@ module Cluster : sig
   val disconnect : ?callback:(unit -> unit) -> unit -> unit
     [@@js.global "disconnect"]
 
-  val fork : ?env:any -> unit -> cluster_Worker [@@js.global "fork"]
+  val fork : ?env:any -> unit -> Worker.t [@@js.global "fork"]
 
   val isMaster : bool [@@js.global "isMaster"]
 
@@ -864,222 +835,219 @@ module Cluster : sig
 
   val schedulingPolicy : int [@@js.global "schedulingPolicy"]
 
-  val settings : cluster_ClusterSettings [@@js.global "settings"]
+  val settings : ClusterSettings.t [@@js.global "settings"]
 
-  val setupMaster : ?settings:cluster_ClusterSettings -> unit -> unit
+  val setupMaster : ?settings:ClusterSettings.t -> unit -> unit
     [@@js.global "setupMaster"]
 
-  val worker : cluster_Worker [@@js.global "worker"]
+  val worker : Worker.t [@@js.global "worker"]
 
-  val workers : cluster_Worker Dict.t [@@js.global "workers"]
+  val workers : Worker.t Dict.t [@@js.global "workers"]
 
   val addListener
     :  event:string
     -> listener:(args:(any list[@js.variadic]) -> unit)
-    -> cluster_Cluster
+    -> Cluster.t
     [@@js.global "addListener"]
 
   val addListener
     :  event:([ `disconnect ][@js.enum])
-    -> listener:(worker:cluster_Worker -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> unit)
+    -> Cluster.t
     [@@js.global "addListener"]
 
   val addListener
     :  event:([ `exit ][@js.enum])
-    -> listener:(worker:cluster_Worker -> code:int -> signal:string -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> code:int -> signal:string -> unit)
+    -> Cluster.t
     [@@js.global "addListener"]
 
   val addListener
     :  event:([ `fork ][@js.enum])
-    -> listener:(worker:cluster_Worker -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> unit)
+    -> Cluster.t
     [@@js.global "addListener"]
 
   val addListener
     :  event:([ `listening ][@js.enum])
-    -> listener:(worker:cluster_Worker -> address:cluster_Address -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> address:Address.t -> unit)
+    -> Cluster.t
     [@@js.global "addListener"]
 
   val addListener
     :  event:([ `message ][@js.enum])
     -> listener:
-         (worker:cluster_Worker
+         (worker:Worker.t
           -> message:any
           -> handle:(Net.Server.t, Net.Socket.t) union2
           -> unit)
-    -> cluster_Cluster
+    -> Cluster.t
     [@@js.global "addListener"]
 
   val addListener
     :  event:([ `online ][@js.enum])
-    -> listener:(worker:cluster_Worker -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> unit)
+    -> Cluster.t
     [@@js.global "addListener"]
 
   val addListener
     :  event:([ `setup ][@js.enum])
-    -> listener:(settings:cluster_ClusterSettings -> unit)
-    -> cluster_Cluster
+    -> listener:(settings:ClusterSettings.t -> unit)
+    -> Cluster.t
     [@@js.global "addListener"]
 
   val emit : event:symbol or_string -> args:(any list[@js.variadic]) -> bool
     [@@js.global "emit"]
 
-  val emit : event:([ `disconnect ][@js.enum]) -> worker:cluster_Worker -> bool
+  val emit : event:([ `disconnect ][@js.enum]) -> worker:Worker.t -> bool
     [@@js.global "emit"]
 
   val emit
     :  event:([ `exit ][@js.enum])
-    -> worker:cluster_Worker
+    -> worker:Worker.t
     -> code:int
     -> signal:string
     -> bool
     [@@js.global "emit"]
 
-  val emit : event:([ `fork ][@js.enum]) -> worker:cluster_Worker -> bool
+  val emit : event:([ `fork ][@js.enum]) -> worker:Worker.t -> bool
     [@@js.global "emit"]
 
   val emit
     :  event:([ `listening ][@js.enum])
-    -> worker:cluster_Worker
-    -> address:cluster_Address
+    -> worker:Worker.t
+    -> address:Address.t
     -> bool
     [@@js.global "emit"]
 
   val emit
     :  event:([ `message ][@js.enum])
-    -> worker:cluster_Worker
+    -> worker:Worker.t
     -> message:any
     -> handle:(Net.Server.t, Net.Socket.t) union2
     -> bool
     [@@js.global "emit"]
 
-  val emit : event:([ `online ][@js.enum]) -> worker:cluster_Worker -> bool
+  val emit : event:([ `online ][@js.enum]) -> worker:Worker.t -> bool
     [@@js.global "emit"]
 
-  val emit
-    :  event:([ `setup ][@js.enum])
-    -> settings:cluster_ClusterSettings
-    -> bool
+  val emit : event:([ `setup ][@js.enum]) -> settings:ClusterSettings.t -> bool
     [@@js.global "emit"]
 
   val on
     :  event:string
     -> listener:(args:(any list[@js.variadic]) -> unit)
-    -> cluster_Cluster
+    -> Cluster.t
     [@@js.global "on"]
 
   val on
     :  event:([ `disconnect ][@js.enum])
-    -> listener:(worker:cluster_Worker -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> unit)
+    -> Cluster.t
     [@@js.global "on"]
 
   val on
     :  event:([ `exit ][@js.enum])
-    -> listener:(worker:cluster_Worker -> code:int -> signal:string -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> code:int -> signal:string -> unit)
+    -> Cluster.t
     [@@js.global "on"]
 
   val on
     :  event:([ `fork ][@js.enum])
-    -> listener:(worker:cluster_Worker -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> unit)
+    -> Cluster.t
     [@@js.global "on"]
 
   val on
     :  event:([ `listening ][@js.enum])
-    -> listener:(worker:cluster_Worker -> address:cluster_Address -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> address:Address.t -> unit)
+    -> Cluster.t
     [@@js.global "on"]
 
   val on
     :  event:([ `message ][@js.enum])
     -> listener:
-         (worker:cluster_Worker
+         (worker:Worker.t
           -> message:any
           -> handle:(Net.Server.t, Net.Socket.t) union2
           -> unit)
-    -> cluster_Cluster
+    -> Cluster.t
     [@@js.global "on"]
 
   val on
     :  event:([ `online ][@js.enum])
-    -> listener:(worker:cluster_Worker -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> unit)
+    -> Cluster.t
     [@@js.global "on"]
 
   val on
     :  event:([ `setup ][@js.enum])
-    -> listener:(settings:cluster_ClusterSettings -> unit)
-    -> cluster_Cluster
+    -> listener:(settings:ClusterSettings.t -> unit)
+    -> Cluster.t
     [@@js.global "on"]
 
   val once
     :  event:string
     -> listener:(args:(any list[@js.variadic]) -> unit)
-    -> cluster_Cluster
+    -> Cluster.t
     [@@js.global "once"]
 
   val once
     :  event:([ `disconnect ][@js.enum])
-    -> listener:(worker:cluster_Worker -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> unit)
+    -> Cluster.t
     [@@js.global "once"]
 
   val once
     :  event:([ `exit ][@js.enum])
-    -> listener:(worker:cluster_Worker -> code:int -> signal:string -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> code:int -> signal:string -> unit)
+    -> Cluster.t
     [@@js.global "once"]
 
   val once
     :  event:([ `fork ][@js.enum])
-    -> listener:(worker:cluster_Worker -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> unit)
+    -> Cluster.t
     [@@js.global "once"]
 
   val once
     :  event:([ `listening ][@js.enum])
-    -> listener:(worker:cluster_Worker -> address:cluster_Address -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> address:Address.t -> unit)
+    -> Cluster.t
     [@@js.global "once"]
 
   val once
     :  event:([ `message ][@js.enum])
     -> listener:
-         (worker:cluster_Worker
+         (worker:Worker.t
           -> message:any
           -> handle:(Net.Server.t, Net.Socket.t) union2
           -> unit)
-    -> cluster_Cluster
+    -> Cluster.t
     [@@js.global "once"]
 
   val once
     :  event:([ `online ][@js.enum])
-    -> listener:(worker:cluster_Worker -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> unit)
+    -> Cluster.t
     [@@js.global "once"]
 
   val once
     :  event:([ `setup ][@js.enum])
-    -> listener:(settings:cluster_ClusterSettings -> unit)
-    -> cluster_Cluster
+    -> listener:(settings:ClusterSettings.t -> unit)
+    -> Cluster.t
     [@@js.global "once"]
 
   val removeListener
     :  event:string
     -> listener:(args:(any list[@js.variadic]) -> unit)
-    -> cluster_Cluster
+    -> Cluster.t
     [@@js.global "removeListener"]
 
-  val removeAllListeners : ?event:string -> unit -> cluster_Cluster
+  val removeAllListeners : ?event:string -> unit -> Cluster.t
     [@@js.global "removeAllListeners"]
 
-  val setMaxListeners : n:int -> cluster_Cluster [@@js.global "setMaxListeners"]
+  val setMaxListeners : n:int -> Cluster.t [@@js.global "setMaxListeners"]
 
   val getMaxListeners : unit -> int [@@js.global "getMaxListeners"]
 
@@ -1091,105 +1059,105 @@ module Cluster : sig
   val prependListener
     :  event:string
     -> listener:(args:(any list[@js.variadic]) -> unit)
-    -> cluster_Cluster
+    -> Cluster.t
     [@@js.global "prependListener"]
 
   val prependListener
     :  event:([ `disconnect ][@js.enum])
-    -> listener:(worker:cluster_Worker -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> unit)
+    -> Cluster.t
     [@@js.global "prependListener"]
 
   val prependListener
     :  event:([ `exit ][@js.enum])
-    -> listener:(worker:cluster_Worker -> code:int -> signal:string -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> code:int -> signal:string -> unit)
+    -> Cluster.t
     [@@js.global "prependListener"]
 
   val prependListener
     :  event:([ `fork ][@js.enum])
-    -> listener:(worker:cluster_Worker -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> unit)
+    -> Cluster.t
     [@@js.global "prependListener"]
 
   val prependListener
     :  event:([ `listening ][@js.enum])
-    -> listener:(worker:cluster_Worker -> address:cluster_Address -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> address:Address.t -> unit)
+    -> Cluster.t
     [@@js.global "prependListener"]
 
   val prependListener
     :  event:([ `message ][@js.enum])
     -> listener:
-         (worker:cluster_Worker
+         (worker:Worker.t
           -> message:any
           -> handle:(Net.Server.t, Net.Socket.t) union2
           -> unit)
-    -> cluster_Cluster
+    -> Cluster.t
     [@@js.global "prependListener"]
 
   val prependListener
     :  event:([ `online ][@js.enum])
-    -> listener:(worker:cluster_Worker -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> unit)
+    -> Cluster.t
     [@@js.global "prependListener"]
 
   val prependListener
     :  event:([ `setup ][@js.enum])
-    -> listener:(settings:cluster_ClusterSettings -> unit)
-    -> cluster_Cluster
+    -> listener:(settings:ClusterSettings.t -> unit)
+    -> Cluster.t
     [@@js.global "prependListener"]
 
   val prependOnceListener
     :  event:string
     -> listener:(args:(any list[@js.variadic]) -> unit)
-    -> cluster_Cluster
+    -> Cluster.t
     [@@js.global "prependOnceListener"]
 
   val prependOnceListener
     :  event:([ `disconnect ][@js.enum])
-    -> listener:(worker:cluster_Worker -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> unit)
+    -> Cluster.t
     [@@js.global "prependOnceListener"]
 
   val prependOnceListener
     :  event:([ `exit ][@js.enum])
-    -> listener:(worker:cluster_Worker -> code:int -> signal:string -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> code:int -> signal:string -> unit)
+    -> Cluster.t
     [@@js.global "prependOnceListener"]
 
   val prependOnceListener
     :  event:([ `fork ][@js.enum])
-    -> listener:(worker:cluster_Worker -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> unit)
+    -> Cluster.t
     [@@js.global "prependOnceListener"]
 
   val prependOnceListener
     :  event:([ `listening ][@js.enum])
-    -> listener:(worker:cluster_Worker -> address:cluster_Address -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> address:Address.t -> unit)
+    -> Cluster.t
     [@@js.global "prependOnceListener"]
 
   val prependOnceListener
     :  event:([ `message ][@js.enum])
     -> listener:
-         (worker:cluster_Worker
+         (worker:Worker.t
           -> message:any
           -> handle:(Net.Server.t, Net.Socket.t) union2
           -> unit)
-    -> cluster_Cluster
+    -> Cluster.t
     [@@js.global "prependOnceListener"]
 
   val prependOnceListener
     :  event:([ `online ][@js.enum])
-    -> listener:(worker:cluster_Worker -> unit)
-    -> cluster_Cluster
+    -> listener:(worker:Worker.t -> unit)
+    -> Cluster.t
     [@@js.global "prependOnceListener"]
 
   val prependOnceListener
     :  event:([ `setup ][@js.enum])
-    -> listener:(settings:cluster_ClusterSettings -> unit)
-    -> cluster_Cluster
+    -> listener:(settings:ClusterSettings.t -> unit)
+    -> Cluster.t
     [@@js.global "prependOnceListener"]
 
   val eventNames : unit -> string list [@@js.global "eventNames"]

@@ -25,7 +25,7 @@ module ReadonlyArray : sig
     include ReadonlyArray
   end
 
-  val flatMap
+  val flat_map
     :  'T t
     -> callback:
          (this:'This
@@ -52,7 +52,7 @@ module Array : sig
     include Array
   end
 
-  val flatMap
+  val flat_map
     :  'T t
     -> callback:
          (this:'This

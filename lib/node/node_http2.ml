@@ -3,201 +3,17 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
 open Node_globals
-module Internal =
-  struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-        let rec anonymous_interface_1_of_js : Ojs.t -> anonymous_interface_1
-          = Obj.magic
-        and anonymous_interface_1_to_js : anonymous_interface_1 -> Ojs.t =
-          Obj.magic
-      end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type http2_AlternativeServiceOptions =
-          [ `Http2_AlternativeServiceOptions ] intf
-        and http2_ClientHttp2Session =
-          [ `Http2_ClientHttp2Session  | `Http2_Http2Session ] intf
-        and http2_ClientHttp2Stream =
-          [ `Http2_ClientHttp2Stream  | `Http2_Http2Stream ] intf
-        and http2_ClientSessionOptions =
-          [ `Http2_ClientSessionOptions  | `Http2_SessionOptions ] intf
-        and http2_ClientSessionRequestOptions =
-          [ `Http2_ClientSessionRequestOptions ] intf
-        and http2_Http2SecureServer = [ `Http2_Http2SecureServer ] intf
-        and http2_Http2Server = [ `Http2_Http2Server ] intf
-        and http2_Http2ServerRequest = [ `Http2_Http2ServerRequest ] intf
-        and http2_Http2ServerResponse = [ `Http2_Http2ServerResponse ] intf
-        and http2_Http2Session = [ `Http2_Http2Session ] intf
-        and http2_Http2Stream = [ `Http2_Http2Stream ] intf
-        and http2_IncomingHttpHeaders = [ `Http2_IncomingHttpHeaders ] intf
-        and http2_IncomingHttpStatusHeader =
-          [ `Http2_IncomingHttpStatusHeader ] intf
-        and http2_SecureClientSessionOptions =
-          [ `Http2_SecureClientSessionOptions  | `Http2_ClientSessionOptions 
-          | `Http2_SessionOptions ] intf
-        and http2_SecureServerOptions =
-          [ `Http2_SecureServerOptions  | `Http2_SecureServerSessionOptions 
-          | `Http2_ServerSessionOptions  | `Http2_SessionOptions ] intf
-        and http2_SecureServerSessionOptions =
-          [ `Http2_SecureServerSessionOptions  | `Http2_ServerSessionOptions 
-          | `Http2_SessionOptions ] intf
-        and http2_ServerHttp2Session =
-          [ `Http2_ServerHttp2Session  | `Http2_Http2Session ] intf
-        and http2_ServerHttp2Stream =
-          [ `Http2_ServerHttp2Stream  | `Http2_Http2Stream ] intf
-        and http2_ServerOptions =
-          [ `Http2_ServerOptions  | `Http2_ServerSessionOptions 
-          | `Http2_SessionOptions ] intf
-        and http2_ServerSessionOptions =
-          [ `Http2_ServerSessionOptions  | `Http2_SessionOptions ] intf
-        and http2_ServerStreamFileResponseOptions =
-          [ `Http2_ServerStreamFileResponseOptions ] intf
-        and http2_ServerStreamFileResponseOptionsWithError =
-          [ `Http2_ServerStreamFileResponseOptionsWithError 
-          | `Http2_ServerStreamFileResponseOptions ] intf
-        and http2_ServerStreamResponseOptions =
-          [ `Http2_ServerStreamResponseOptions ] intf
-        and http2_SessionOptions = [ `Http2_SessionOptions ] intf
-        and http2_SessionState = [ `Http2_SessionState ] intf
-        and http2_Settings = [ `Http2_Settings ] intf
-        and http2_StatOptions = [ `Http2_StatOptions ] intf
-        and http2_StreamPriorityOptions =
-          [ `Http2_StreamPriorityOptions ] intf
-        and http2_StreamState = [ `Http2_StreamState ] intf
-        let rec http2_AlternativeServiceOptions_of_js :
-          Ojs.t -> http2_AlternativeServiceOptions = Obj.magic
-        and http2_AlternativeServiceOptions_to_js :
-          http2_AlternativeServiceOptions -> Ojs.t = Obj.magic
-        and http2_ClientHttp2Session_of_js :
-          Ojs.t -> http2_ClientHttp2Session = Obj.magic
-        and http2_ClientHttp2Session_to_js :
-          http2_ClientHttp2Session -> Ojs.t = Obj.magic
-        and http2_ClientHttp2Stream_of_js : Ojs.t -> http2_ClientHttp2Stream
-          = Obj.magic
-        and http2_ClientHttp2Stream_to_js : http2_ClientHttp2Stream -> Ojs.t
-          = Obj.magic
-        and http2_ClientSessionOptions_of_js :
-          Ojs.t -> http2_ClientSessionOptions = Obj.magic
-        and http2_ClientSessionOptions_to_js :
-          http2_ClientSessionOptions -> Ojs.t = Obj.magic
-        and http2_ClientSessionRequestOptions_of_js :
-          Ojs.t -> http2_ClientSessionRequestOptions = Obj.magic
-        and http2_ClientSessionRequestOptions_to_js :
-          http2_ClientSessionRequestOptions -> Ojs.t = Obj.magic
-        and http2_Http2SecureServer_of_js : Ojs.t -> http2_Http2SecureServer
-          = Obj.magic
-        and http2_Http2SecureServer_to_js : http2_Http2SecureServer -> Ojs.t
-          = Obj.magic
-        and http2_Http2Server_of_js : Ojs.t -> http2_Http2Server = Obj.magic
-        and http2_Http2Server_to_js : http2_Http2Server -> Ojs.t = Obj.magic
-        and http2_Http2ServerRequest_of_js :
-          Ojs.t -> http2_Http2ServerRequest = Obj.magic
-        and http2_Http2ServerRequest_to_js :
-          http2_Http2ServerRequest -> Ojs.t = Obj.magic
-        and http2_Http2ServerResponse_of_js :
-          Ojs.t -> http2_Http2ServerResponse = Obj.magic
-        and http2_Http2ServerResponse_to_js :
-          http2_Http2ServerResponse -> Ojs.t = Obj.magic
-        and http2_Http2Session_of_js : Ojs.t -> http2_Http2Session =
-          Obj.magic
-        and http2_Http2Session_to_js : http2_Http2Session -> Ojs.t =
-          Obj.magic
-        and http2_Http2Stream_of_js : Ojs.t -> http2_Http2Stream = Obj.magic
-        and http2_Http2Stream_to_js : http2_Http2Stream -> Ojs.t = Obj.magic
-        and http2_IncomingHttpHeaders_of_js :
-          Ojs.t -> http2_IncomingHttpHeaders = Obj.magic
-        and http2_IncomingHttpHeaders_to_js :
-          http2_IncomingHttpHeaders -> Ojs.t = Obj.magic
-        and http2_IncomingHttpStatusHeader_of_js :
-          Ojs.t -> http2_IncomingHttpStatusHeader = Obj.magic
-        and http2_IncomingHttpStatusHeader_to_js :
-          http2_IncomingHttpStatusHeader -> Ojs.t = Obj.magic
-        and http2_SecureClientSessionOptions_of_js :
-          Ojs.t -> http2_SecureClientSessionOptions = Obj.magic
-        and http2_SecureClientSessionOptions_to_js :
-          http2_SecureClientSessionOptions -> Ojs.t = Obj.magic
-        and http2_SecureServerOptions_of_js :
-          Ojs.t -> http2_SecureServerOptions = Obj.magic
-        and http2_SecureServerOptions_to_js :
-          http2_SecureServerOptions -> Ojs.t = Obj.magic
-        and http2_SecureServerSessionOptions_of_js :
-          Ojs.t -> http2_SecureServerSessionOptions = Obj.magic
-        and http2_SecureServerSessionOptions_to_js :
-          http2_SecureServerSessionOptions -> Ojs.t = Obj.magic
-        and http2_ServerHttp2Session_of_js :
-          Ojs.t -> http2_ServerHttp2Session = Obj.magic
-        and http2_ServerHttp2Session_to_js :
-          http2_ServerHttp2Session -> Ojs.t = Obj.magic
-        and http2_ServerHttp2Stream_of_js : Ojs.t -> http2_ServerHttp2Stream
-          = Obj.magic
-        and http2_ServerHttp2Stream_to_js : http2_ServerHttp2Stream -> Ojs.t
-          = Obj.magic
-        and http2_ServerOptions_of_js : Ojs.t -> http2_ServerOptions =
-          Obj.magic
-        and http2_ServerOptions_to_js : http2_ServerOptions -> Ojs.t =
-          Obj.magic
-        and http2_ServerSessionOptions_of_js :
-          Ojs.t -> http2_ServerSessionOptions = Obj.magic
-        and http2_ServerSessionOptions_to_js :
-          http2_ServerSessionOptions -> Ojs.t = Obj.magic
-        and http2_ServerStreamFileResponseOptions_of_js :
-          Ojs.t -> http2_ServerStreamFileResponseOptions = Obj.magic
-        and http2_ServerStreamFileResponseOptions_to_js :
-          http2_ServerStreamFileResponseOptions -> Ojs.t = Obj.magic
-        and http2_ServerStreamFileResponseOptionsWithError_of_js :
-          Ojs.t -> http2_ServerStreamFileResponseOptionsWithError = Obj.magic
-        and http2_ServerStreamFileResponseOptionsWithError_to_js :
-          http2_ServerStreamFileResponseOptionsWithError -> Ojs.t = Obj.magic
-        and http2_ServerStreamResponseOptions_of_js :
-          Ojs.t -> http2_ServerStreamResponseOptions = Obj.magic
-        and http2_ServerStreamResponseOptions_to_js :
-          http2_ServerStreamResponseOptions -> Ojs.t = Obj.magic
-        and http2_SessionOptions_of_js : Ojs.t -> http2_SessionOptions =
-          Obj.magic
-        and http2_SessionOptions_to_js : http2_SessionOptions -> Ojs.t =
-          Obj.magic
-        and http2_SessionState_of_js : Ojs.t -> http2_SessionState =
-          Obj.magic
-        and http2_SessionState_to_js : http2_SessionState -> Ojs.t =
-          Obj.magic
-        and http2_Settings_of_js : Ojs.t -> http2_Settings = Obj.magic
-        and http2_Settings_to_js : http2_Settings -> Ojs.t = Obj.magic
-        and http2_StatOptions_of_js : Ojs.t -> http2_StatOptions = Obj.magic
-        and http2_StatOptions_to_js : http2_StatOptions -> Ojs.t = Obj.magic
-        and http2_StreamPriorityOptions_of_js :
-          Ojs.t -> http2_StreamPriorityOptions = Obj.magic
-        and http2_StreamPriorityOptions_to_js :
-          http2_StreamPriorityOptions -> Ojs.t = Obj.magic
-        and http2_StreamState_of_js : Ojs.t -> http2_StreamState = Obj.magic
-        and http2_StreamState_to_js : http2_StreamState -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> anonymous_interface_0_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : anonymous_interface_0) -> anonymous_interface_0_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
   end
 module AnonymousInterface1 =
   struct
-    type t = anonymous_interface_1
-    let rec t_of_js : Ojs.t -> t =
-      fun (x4 : Ojs.t) -> anonymous_interface_1_of_js x4
-    and t_to_js : t -> Ojs.t =
-      fun (x3 : anonymous_interface_1) -> anonymous_interface_1_to_js x3
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x4 : Ojs.t) -> x4
+    and t_to_js : t -> Ojs.t = fun (x3 : Ojs.t) -> x3
     let (get_origin : t -> string) =
       fun (x5 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x5) "origin")
@@ -1743,17 +1559,17 @@ module Http2 =
         let (addListener :
           t ->
             event:[ `continue ] ->
-              listener:(unit -> anonymous_interface_0) -> t)
+              listener:(unit -> AnonymousInterface0.t) -> t)
           =
           fun (x472 : t) ->
             fun ~event:(x470 : [ `continue ]) ->
-              fun ~listener:(x471 : unit -> anonymous_interface_0) ->
+              fun ~listener:(x471 : unit -> AnonymousInterface0.t) ->
                 t_of_js
                   (Ojs.call (t_to_js x472) "addListener"
                      [|((match x470 with
                          | `continue -> Ojs.string_to_js "continue"));(
                        Ojs.fun_to_js 1
-                         (fun _ -> anonymous_interface_0_to_js (x471 ())))|])
+                         (fun _ -> AnonymousInterface0.t_to_js (x471 ())))|])
         let (addListener' :
           t ->
             event:[ `headers ] ->
@@ -1939,17 +1755,17 @@ module Http2 =
         let (on :
           t ->
             event:[ `continue ] ->
-              listener:(unit -> anonymous_interface_0) -> t)
+              listener:(unit -> AnonymousInterface0.t) -> t)
           =
           fun (x525 : t) ->
             fun ~event:(x523 : [ `continue ]) ->
-              fun ~listener:(x524 : unit -> anonymous_interface_0) ->
+              fun ~listener:(x524 : unit -> AnonymousInterface0.t) ->
                 t_of_js
                   (Ojs.call (t_to_js x525) "on"
                      [|((match x523 with
                          | `continue -> Ojs.string_to_js "continue"));(
                        Ojs.fun_to_js 1
-                         (fun _ -> anonymous_interface_0_to_js (x524 ())))|])
+                         (fun _ -> AnonymousInterface0.t_to_js (x524 ())))|])
         let (on' :
           t ->
             event:[ `headers ] ->
@@ -2049,17 +1865,17 @@ module Http2 =
         let (once :
           t ->
             event:[ `continue ] ->
-              listener:(unit -> anonymous_interface_0) -> t)
+              listener:(unit -> AnonymousInterface0.t) -> t)
           =
           fun (x553 : t) ->
             fun ~event:(x551 : [ `continue ]) ->
-              fun ~listener:(x552 : unit -> anonymous_interface_0) ->
+              fun ~listener:(x552 : unit -> AnonymousInterface0.t) ->
                 t_of_js
                   (Ojs.call (t_to_js x553) "once"
                      [|((match x551 with
                          | `continue -> Ojs.string_to_js "continue"));(
                        Ojs.fun_to_js 1
-                         (fun _ -> anonymous_interface_0_to_js (x552 ())))|])
+                         (fun _ -> AnonymousInterface0.t_to_js (x552 ())))|])
         let (once' :
           t ->
             event:[ `headers ] ->
@@ -2159,17 +1975,17 @@ module Http2 =
         let (prependListener :
           t ->
             event:[ `continue ] ->
-              listener:(unit -> anonymous_interface_0) -> t)
+              listener:(unit -> AnonymousInterface0.t) -> t)
           =
           fun (x581 : t) ->
             fun ~event:(x579 : [ `continue ]) ->
-              fun ~listener:(x580 : unit -> anonymous_interface_0) ->
+              fun ~listener:(x580 : unit -> AnonymousInterface0.t) ->
                 t_of_js
                   (Ojs.call (t_to_js x581) "prependListener"
                      [|((match x579 with
                          | `continue -> Ojs.string_to_js "continue"));(
                        Ojs.fun_to_js 1
-                         (fun _ -> anonymous_interface_0_to_js (x580 ())))|])
+                         (fun _ -> AnonymousInterface0.t_to_js (x580 ())))|])
         let (prependListener' :
           t ->
             event:[ `headers ] ->
@@ -2269,17 +2085,17 @@ module Http2 =
         let (prependOnceListener :
           t ->
             event:[ `continue ] ->
-              listener:(unit -> anonymous_interface_0) -> t)
+              listener:(unit -> AnonymousInterface0.t) -> t)
           =
           fun (x609 : t) ->
             fun ~event:(x607 : [ `continue ]) ->
-              fun ~listener:(x608 : unit -> anonymous_interface_0) ->
+              fun ~listener:(x608 : unit -> AnonymousInterface0.t) ->
                 t_of_js
                   (Ojs.call (t_to_js x609) "prependOnceListener"
                      [|((match x607 with
                          | `continue -> Ojs.string_to_js "continue"));(
                        Ojs.fun_to_js 1
-                         (fun _ -> anonymous_interface_0_to_js (x608 ())))|])
+                         (fun _ -> AnonymousInterface0.t_to_js (x608 ())))|])
         let (prependOnceListener' :
           t ->
             event:[ `headers ] ->

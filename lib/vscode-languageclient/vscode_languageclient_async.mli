@@ -4,25 +4,7 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
 
-  module Types : sig
-    open AnonymousInterfaces
-
-    type 'T _Delayer = [ `Delayer of 'T ] intf
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-
-    and 'T _ITask = [ `ITask of 'T ] intf
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
 
 module ITask : sig
   type 'T t = 'T _ITask

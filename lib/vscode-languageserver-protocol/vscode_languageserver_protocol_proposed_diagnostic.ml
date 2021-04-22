@@ -4,88 +4,25 @@
 open Es5
 module Internal =
   struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-        let rec anonymous_interface_1_of_js : Ojs.t -> anonymous_interface_1
-          = Obj.magic
-        and anonymous_interface_1_to_js : anonymous_interface_1 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-        let rec anonymous_interface_2_of_js : Ojs.t -> anonymous_interface_2
-          = Obj.magic
-        and anonymous_interface_2_to_js : anonymous_interface_2 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_3 = [ `anonymous_interface_3 ] intf
-        let rec anonymous_interface_3_of_js : Ojs.t -> anonymous_interface_3
-          = Obj.magic
-        and anonymous_interface_3_to_js : anonymous_interface_3 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_4 = [ `anonymous_interface_4 ] intf
-        let rec anonymous_interface_4_of_js : Ojs.t -> anonymous_interface_4
-          = Obj.magic
-        and anonymous_interface_4_to_js : anonymous_interface_4 -> Ojs.t =
-          Obj.magic
-      end
     module Types =
       struct
-        open AnonymousInterfaces
-        type _DiagnosticClientCapabilities =
-          [ `_DiagnosticClientCapabilities ] intf
-        and _DiagnosticServerCapabilities =
-          [ `_DiagnosticServerCapabilities ] intf
-        and _DiagnosticClientCapabilities =
-          [ `DiagnosticClientCapabilities ] intf
-        and _DiagnosticOptions = [ `DiagnosticOptions ] intf
-        and _DiagnosticRefreshRequest_HandlerSignature =
+        type _DiagnosticRefreshRequest_HandlerSignature =
           (unit, unit) RequestHandler0.t
-        and _DiagnosticRegistrationOptions =
-          [ `DiagnosticRegistrationOptions  | `DiagnosticOptions ] intf
-        and _DiagnosticServerCancellationData =
-          [ `DiagnosticServerCancellationData ] intf
-        and _DocumentDiagnosticParams = [ `DocumentDiagnosticParams ] intf
         and _DocumentDiagnosticReport =
-          [ `U_s0_new of anonymous_interface_1 
-          | `U_s2_unChanged of anonymous_interface_2 ]
+          [ `U_s0_new of AnonymousInterface1.t 
+          | `U_s2_unChanged of AnonymousInterface2.t ]
         and _DocumentDiagnosticReportKind = [ `new_  | `unChanged ]
         and _DocumentDiagnosticReportKind_new = [ `new_ ]
         and _DocumentDiagnosticReportKind_unChanged = [ `unChanged ]
-        and _DocumentDiagnosticReportPartialResult =
-          [ `DocumentDiagnosticReportPartialResult ] intf
         and _DocumentDiagnosticRequest_HandlerSignature =
           (_DocumentDiagnosticParams, _DocumentDiagnosticReport, unit)
             RequestHandler.t
-        and _WorkspaceDiagnosticParams = [ `WorkspaceDiagnosticParams ] intf
-        and _WorkspaceDiagnosticReport = [ `WorkspaceDiagnosticReport ] intf
-        and _WorkspaceDiagnosticReportPartialResult =
-          [ `WorkspaceDiagnosticReportPartialResult ] intf
         and _WorkspaceDiagnosticRequest_HandlerSignature =
           (_WorkspaceDiagnosticParams, _WorkspaceDiagnosticReport or_null,
             unit) RequestHandler.t
         and _WorkspaceDocumentDiagnosticReport =
-          (anonymous_interface_4, _DocumentDiagnosticReport) intersection2
-        let rec _DiagnosticClientCapabilities_of_js :
-          Ojs.t -> _DiagnosticClientCapabilities = Obj.magic
-        and _DiagnosticClientCapabilities_to_js :
-          _DiagnosticClientCapabilities -> Ojs.t = Obj.magic
-        and _DiagnosticServerCapabilities_of_js :
-          Ojs.t -> _DiagnosticServerCapabilities = Obj.magic
-        and _DiagnosticServerCapabilities_to_js :
-          _DiagnosticServerCapabilities -> Ojs.t = Obj.magic
-        and _DiagnosticClientCapabilities_of_js :
-          Ojs.t -> _DiagnosticClientCapabilities = Obj.magic
-        and _DiagnosticClientCapabilities_to_js :
-          _DiagnosticClientCapabilities -> Ojs.t = Obj.magic
-        and _DiagnosticOptions_of_js : Ojs.t -> _DiagnosticOptions =
-          Obj.magic
-        and _DiagnosticOptions_to_js : _DiagnosticOptions -> Ojs.t =
-          Obj.magic
-        and _DiagnosticRefreshRequest_HandlerSignature_of_js :
+          (AnonymousInterface4.t, _DocumentDiagnosticReport) intersection2
+        let rec _DiagnosticRefreshRequest_HandlerSignature_of_js :
           Ojs.t -> _DiagnosticRefreshRequest_HandlerSignature =
           fun (x4 : Ojs.t) ->
             RequestHandler0.t_of_js Ojs.unit_of_js Ojs.unit_of_js x4
@@ -93,37 +30,25 @@ module Internal =
           _DiagnosticRefreshRequest_HandlerSignature -> Ojs.t =
           fun (x1 : (unit, unit) RequestHandler0.t) ->
             RequestHandler0.t_to_js Ojs.unit_to_js Ojs.unit_to_js x1
-        and _DiagnosticRegistrationOptions_of_js :
-          Ojs.t -> _DiagnosticRegistrationOptions = Obj.magic
-        and _DiagnosticRegistrationOptions_to_js :
-          _DiagnosticRegistrationOptions -> Ojs.t = Obj.magic
-        and _DiagnosticServerCancellationData_of_js :
-          Ojs.t -> _DiagnosticServerCancellationData = Obj.magic
-        and _DiagnosticServerCancellationData_to_js :
-          _DiagnosticServerCancellationData -> Ojs.t = Obj.magic
-        and _DocumentDiagnosticParams_of_js :
-          Ojs.t -> _DocumentDiagnosticParams = Obj.magic
-        and _DocumentDiagnosticParams_to_js :
-          _DocumentDiagnosticParams -> Ojs.t = Obj.magic
         and _DocumentDiagnosticReport_of_js :
           Ojs.t -> _DocumentDiagnosticReport =
           fun (x10 : Ojs.t) ->
             let x11 = x10 in
             match Ojs.string_of_js (Ojs.get_prop_ascii x11 "kind") with
-            | "new" -> `U_s0_new (anonymous_interface_1_of_js x11)
+            | "new" -> `U_s0_new (AnonymousInterface1.t_of_js x11)
             | "unChanged" ->
-                `U_s2_unChanged (anonymous_interface_2_of_js x11)
+                `U_s2_unChanged (AnonymousInterface2.t_of_js x11)
             | _ -> assert false
         and _DocumentDiagnosticReport_to_js :
           _DocumentDiagnosticReport -> Ojs.t =
           fun
             (x7 :
-              [ `U_s0_new of anonymous_interface_1 
-              | `U_s2_unChanged of anonymous_interface_2 ])
+              [ `U_s0_new of AnonymousInterface1.t 
+              | `U_s2_unChanged of AnonymousInterface2.t ])
             ->
             match x7 with
-            | `U_s0_new x8 -> anonymous_interface_1_to_js x8
-            | `U_s2_unChanged x9 -> anonymous_interface_2_to_js x9
+            | `U_s0_new x8 -> AnonymousInterface1.t_to_js x8
+            | `U_s2_unChanged x9 -> AnonymousInterface2.t_to_js x9
         and _DocumentDiagnosticReportKind_of_js :
           Ojs.t -> _DocumentDiagnosticReportKind =
           fun (x13 : Ojs.t) ->
@@ -160,10 +85,6 @@ module Internal =
           _DocumentDiagnosticReportKind_unChanged -> Ojs.t =
           fun (x18 : [ `unChanged ]) ->
             match x18 with | `unChanged -> Ojs.string_to_js "unChanged"
-        and _DocumentDiagnosticReportPartialResult_of_js :
-          Ojs.t -> _DocumentDiagnosticReportPartialResult = Obj.magic
-        and _DocumentDiagnosticReportPartialResult_to_js :
-          _DocumentDiagnosticReportPartialResult -> Ojs.t = Obj.magic
         and _DocumentDiagnosticRequest_HandlerSignature_of_js :
           Ojs.t -> _DocumentDiagnosticRequest_HandlerSignature =
           fun (x25 : Ojs.t) ->
@@ -178,18 +99,6 @@ module Internal =
             ->
             RequestHandler.t_to_js _DocumentDiagnosticParams_to_js
               _DocumentDiagnosticReport_to_js Ojs.unit_to_js x21
-        and _WorkspaceDiagnosticParams_of_js :
-          Ojs.t -> _WorkspaceDiagnosticParams = Obj.magic
-        and _WorkspaceDiagnosticParams_to_js :
-          _WorkspaceDiagnosticParams -> Ojs.t = Obj.magic
-        and _WorkspaceDiagnosticReport_of_js :
-          Ojs.t -> _WorkspaceDiagnosticReport = Obj.magic
-        and _WorkspaceDiagnosticReport_to_js :
-          _WorkspaceDiagnosticReport -> Ojs.t = Obj.magic
-        and _WorkspaceDiagnosticReportPartialResult_of_js :
-          Ojs.t -> _WorkspaceDiagnosticReportPartialResult = Obj.magic
-        and _WorkspaceDiagnosticReportPartialResult_to_js :
-          _WorkspaceDiagnosticReportPartialResult -> Ojs.t = Obj.magic
         and _WorkspaceDiagnosticRequest_HandlerSignature_of_js :
           Ojs.t -> _WorkspaceDiagnosticRequest_HandlerSignature =
           fun (x34 : Ojs.t) ->
@@ -211,29 +120,24 @@ module Internal =
         and _WorkspaceDocumentDiagnosticReport_of_js :
           Ojs.t -> _WorkspaceDocumentDiagnosticReport =
           fun (x42 : Ojs.t) ->
-            intersection2_of_js anonymous_interface_4_of_js
+            intersection2_of_js AnonymousInterface4.t_of_js
               _DocumentDiagnosticReport_of_js x42
         and _WorkspaceDocumentDiagnosticReport_to_js :
           _WorkspaceDocumentDiagnosticReport -> Ojs.t =
           fun
             (x39 :
-              (anonymous_interface_4, _DocumentDiagnosticReport)
+              (AnonymousInterface4.t, _DocumentDiagnosticReport)
                 intersection2)
             ->
-            intersection2_to_js anonymous_interface_4_to_js
+            intersection2_to_js AnonymousInterface4.t_to_js
               _DocumentDiagnosticReport_to_js x39
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x46 : Ojs.t) -> anonymous_interface_0_of_js x46
-    and t_to_js : t -> Ojs.t =
-      fun (x45 : anonymous_interface_0) -> anonymous_interface_0_to_js x45
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x46 : Ojs.t) -> x46
+    and t_to_js : t -> Ojs.t = fun (x45 : Ojs.t) -> x45
     let (get_diagnostic : t -> _DiagnosticClientCapabilities) =
       fun (x47 : t) ->
         _DiagnosticClientCapabilities_of_js
@@ -246,11 +150,9 @@ module AnonymousInterface0 =
   end
 module AnonymousInterface1 =
   struct
-    type t = anonymous_interface_1
-    let rec t_of_js : Ojs.t -> t =
-      fun (x51 : Ojs.t) -> anonymous_interface_1_of_js x51
-    and t_to_js : t -> Ojs.t =
-      fun (x50 : anonymous_interface_1) -> anonymous_interface_1_to_js x50
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x51 : Ojs.t) -> x51
+    and t_to_js : t -> Ojs.t = fun (x50 : Ojs.t) -> x50
     let (get_kind : t -> _DocumentDiagnosticReportKind_new) =
       fun (x52 : t) ->
         _DocumentDiagnosticReportKind_new_of_js
@@ -279,11 +181,9 @@ module AnonymousInterface1 =
   end
 module AnonymousInterface2 =
   struct
-    type t = anonymous_interface_2
-    let rec t_of_js : Ojs.t -> t =
-      fun (x64 : Ojs.t) -> anonymous_interface_2_of_js x64
-    and t_to_js : t -> Ojs.t =
-      fun (x63 : anonymous_interface_2) -> anonymous_interface_2_to_js x63
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x64 : Ojs.t) -> x64
+    and t_to_js : t -> Ojs.t = fun (x63 : Ojs.t) -> x63
     let (get_kind : t -> _DocumentDiagnosticReportKind_unChanged) =
       fun (x65 : t) ->
         _DocumentDiagnosticReportKind_unChanged_of_js
@@ -303,11 +203,9 @@ module AnonymousInterface2 =
   end
 module AnonymousInterface3 =
   struct
-    type t = anonymous_interface_3
-    let rec t_of_js : Ojs.t -> t =
-      fun (x72 : Ojs.t) -> anonymous_interface_3_of_js x72
-    and t_to_js : t -> Ojs.t =
-      fun (x71 : anonymous_interface_3) -> anonymous_interface_3_to_js x71
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x72 : Ojs.t) -> x72
+    and t_to_js : t -> Ojs.t = fun (x71 : Ojs.t) -> x71
     let (get_uri : t -> DocumentUri.t) =
       fun (x73 : t) ->
         DocumentUri.t_of_js (Ojs.get_prop_ascii (t_to_js x73) "uri")
@@ -325,11 +223,9 @@ module AnonymousInterface3 =
   end
 module AnonymousInterface4 =
   struct
-    type t = anonymous_interface_4
-    let rec t_of_js : Ojs.t -> t =
-      fun (x80 : Ojs.t) -> anonymous_interface_4_of_js x80
-    and t_to_js : t -> Ojs.t =
-      fun (x79 : anonymous_interface_4) -> anonymous_interface_4_to_js x79
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x80 : Ojs.t) -> x80
+    and t_to_js : t -> Ojs.t = fun (x79 : Ojs.t) -> x79
     let (get_uri : t -> DocumentUri.t) =
       fun (x81 : t) ->
         DocumentUri.t_of_js (Ojs.get_prop_ascii (t_to_js x81) "uri")
@@ -375,27 +271,27 @@ module M_DiagnosticClientCapabilities =
         _DiagnosticClientCapabilities_to_js x94
     let (get_textDocument :
       t ->
-        (TextDocumentClientCapabilities.t, anonymous_interface_0)
+        (TextDocumentClientCapabilities.t, AnonymousInterface0.t)
           intersection2)
       =
       fun (x96 : t) ->
         intersection2_of_js TextDocumentClientCapabilities.t_of_js
-          anonymous_interface_0_of_js
+          AnonymousInterface0.t_of_js
           (Ojs.get_prop_ascii (t_to_js x96) "textDocument")
     let (set_textDocument :
       t ->
-        (TextDocumentClientCapabilities.t, anonymous_interface_0)
+        (TextDocumentClientCapabilities.t, AnonymousInterface0.t)
           intersection2 -> unit)
       =
       fun (x99 : t) ->
         fun
           (x100 :
-            (TextDocumentClientCapabilities.t, anonymous_interface_0)
+            (TextDocumentClientCapabilities.t, AnonymousInterface0.t)
               intersection2)
           ->
           Ojs.set_prop_ascii (t_to_js x99) "textDocument"
             (intersection2_to_js TextDocumentClientCapabilities.t_to_js
-               anonymous_interface_0_to_js x100)
+               AnonymousInterface0.t_to_js x100)
   end
 module DiagnosticOptions =
   struct
@@ -618,15 +514,15 @@ module WorkspaceDiagnosticParams =
         fun (x167 : string) ->
           Ojs.set_prop_ascii (t_to_js x166) "identifier"
             (Ojs.string_to_js x167)
-    let (get_previousResultIds : t -> anonymous_interface_3 list) =
+    let (get_previousResultIds : t -> AnonymousInterface3.t list) =
       fun (x168 : t) ->
-        Ojs.list_of_js anonymous_interface_3_of_js
+        Ojs.list_of_js AnonymousInterface3.t_of_js
           (Ojs.get_prop_ascii (t_to_js x168) "previousResultIds")
-    let (set_previousResultIds : t -> anonymous_interface_3 list -> unit) =
+    let (set_previousResultIds : t -> AnonymousInterface3.t list -> unit) =
       fun (x170 : t) ->
-        fun (x171 : anonymous_interface_3 list) ->
+        fun (x171 : AnonymousInterface3.t list) ->
           Ojs.set_prop_ascii (t_to_js x170) "previousResultIds"
-            (Ojs.list_to_js anonymous_interface_3_to_js x171)
+            (Ojs.list_to_js AnonymousInterface3.t_to_js x171)
     let (cast : t -> WorkDoneProgressParams.t) =
       fun (x173 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x173)
     let (cast' : t -> PartialResultParams.t) =

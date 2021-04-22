@@ -2,33 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _DeclarationFeature = [ `DeclarationFeature ] intf
-        and _DeclarationMiddleware = [ `DeclarationMiddleware ] intf
-        and _ProvideDeclarationSignature =
-          [ `ProvideDeclarationSignature ] intf
-        let rec _DeclarationFeature_of_js : Ojs.t -> _DeclarationFeature =
-          Obj.magic
-        and _DeclarationFeature_to_js : _DeclarationFeature -> Ojs.t =
-          Obj.magic
-        and _DeclarationMiddleware_of_js : Ojs.t -> _DeclarationMiddleware =
-          Obj.magic
-        and _DeclarationMiddleware_to_js : _DeclarationMiddleware -> Ojs.t =
-          Obj.magic
-        and _ProvideDeclarationSignature_of_js :
-          Ojs.t -> _ProvideDeclarationSignature = Obj.magic
-        and _ProvideDeclarationSignature_to_js :
-          _ProvideDeclarationSignature -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module ProvideDeclarationSignature =
   struct
     type t = _ProvideDeclarationSignature

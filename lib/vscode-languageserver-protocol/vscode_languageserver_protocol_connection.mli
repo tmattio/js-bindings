@@ -4,21 +4,6 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _ProtocolConnection = [ `ProtocolConnection ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 (* import { Message, NotificationMessage, CancellationToken, RequestHandler0,
    RequestHandler, GenericRequestHandler, NotificationHandler0,
    NotificationHandler, GenericNotificationHandler, ProgressType, Trace, Tracer,

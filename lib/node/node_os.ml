@@ -5,46 +5,14 @@ open Es2020
 open Node_globals
 module Internal =
   struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-        let rec anonymous_interface_1_of_js : Ojs.t -> anonymous_interface_1
-          = Obj.magic
-        and anonymous_interface_1_to_js : anonymous_interface_1 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-        let rec anonymous_interface_2_of_js : Ojs.t -> anonymous_interface_2
-          = Obj.magic
-        and anonymous_interface_2_to_js : anonymous_interface_2 -> Ojs.t =
-          Obj.magic
-      end
     module Types =
       struct
-        open AnonymousInterfaces
-        type os_CpuInfo = [ `Os_CpuInfo ] intf
-        and os_NetworkInterfaceBase = [ `Os_NetworkInterfaceBase ] intf
-        and os_NetworkInterfaceInfo =
+        type os_NetworkInterfaceInfo =
           [ `U_s1_IPv4 of os_NetworkInterfaceInfoIPv4 
           | `U_s2_IPv6 of os_NetworkInterfaceInfoIPv6 ]
-        and os_NetworkInterfaceInfoIPv4 =
-          [ `Os_NetworkInterfaceInfoIPv4  | `Os_NetworkInterfaceBase ] intf
-        and os_NetworkInterfaceInfoIPv6 =
-          [ `Os_NetworkInterfaceInfoIPv6  | `Os_NetworkInterfaceBase ] intf
         and os_SignalConstants = any
-        and 'T os_UserInfo = [ `Os_UserInfo of 'T ] intf
-        let rec os_CpuInfo_of_js : Ojs.t -> os_CpuInfo = Obj.magic
-        and os_CpuInfo_to_js : os_CpuInfo -> Ojs.t = Obj.magic
-        and os_NetworkInterfaceBase_of_js : Ojs.t -> os_NetworkInterfaceBase
-          = Obj.magic
-        and os_NetworkInterfaceBase_to_js : os_NetworkInterfaceBase -> Ojs.t
-          = Obj.magic
-        and os_NetworkInterfaceInfo_of_js : Ojs.t -> os_NetworkInterfaceInfo
-          =
+        let rec os_NetworkInterfaceInfo_of_js :
+          Ojs.t -> os_NetworkInterfaceInfo =
           fun (x4 : Ojs.t) ->
             let x5 = x4 in
             match Ojs.string_of_js (Ojs.get_prop_ascii x5 "family") with
@@ -61,34 +29,17 @@ module Internal =
             match x1 with
             | `U_s1_IPv4 x2 -> os_NetworkInterfaceInfoIPv4_to_js x2
             | `U_s2_IPv6 x3 -> os_NetworkInterfaceInfoIPv6_to_js x3
-        and os_NetworkInterfaceInfoIPv4_of_js :
-          Ojs.t -> os_NetworkInterfaceInfoIPv4 = Obj.magic
-        and os_NetworkInterfaceInfoIPv4_to_js :
-          os_NetworkInterfaceInfoIPv4 -> Ojs.t = Obj.magic
-        and os_NetworkInterfaceInfoIPv6_of_js :
-          Ojs.t -> os_NetworkInterfaceInfoIPv6 = Obj.magic
-        and os_NetworkInterfaceInfoIPv6_to_js :
-          os_NetworkInterfaceInfoIPv6 -> Ojs.t = Obj.magic
         and os_SignalConstants_of_js : Ojs.t -> os_SignalConstants =
           fun (x7 : Ojs.t) -> any_of_js x7
         and os_SignalConstants_to_js : os_SignalConstants -> Ojs.t =
           fun (x6 : any) -> any_to_js x6
-        and os_UserInfo_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T os_UserInfo
-          = fun _T -> Obj.magic
-        and os_UserInfo_to_js : 'T . ('T -> Ojs.t) -> 'T os_UserInfo -> Ojs.t
-          = fun _T -> Obj.magic
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x9 : Ojs.t) -> anonymous_interface_0_of_js x9
-    and t_to_js : t -> Ojs.t =
-      fun (x8 : anonymous_interface_0) -> anonymous_interface_0_to_js x8
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x9 : Ojs.t) -> x9
+    and t_to_js : t -> Ojs.t = fun (x8 : Ojs.t) -> x8
     let (get_encoding : t -> BufferEncoding.t) =
       fun (x10 : t) ->
         BufferEncoding.t_of_js (Ojs.get_prop_ascii (t_to_js x10) "encoding")
@@ -100,11 +51,9 @@ module AnonymousInterface0 =
   end
 module AnonymousInterface1 =
   struct
-    type t = anonymous_interface_1
-    let rec t_of_js : Ojs.t -> t =
-      fun (x14 : Ojs.t) -> anonymous_interface_1_of_js x14
-    and t_to_js : t -> Ojs.t =
-      fun (x13 : anonymous_interface_1) -> anonymous_interface_1_to_js x13
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x14 : Ojs.t) -> x14
+    and t_to_js : t -> Ojs.t = fun (x13 : Ojs.t) -> x13
     let (get_encoding : t -> [ `buffer ]) =
       fun (x15 : t) ->
         let x16 = Ojs.get_prop_ascii (t_to_js x15) "encoding" in
@@ -119,11 +68,9 @@ module AnonymousInterface1 =
   end
 module AnonymousInterface2 =
   struct
-    type t = anonymous_interface_2
-    let rec t_of_js : Ojs.t -> t =
-      fun (x20 : Ojs.t) -> anonymous_interface_2_of_js x20
-    and t_to_js : t -> Ojs.t =
-      fun (x19 : anonymous_interface_2) -> anonymous_interface_2_to_js x19
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x20 : Ojs.t) -> x20
+    and t_to_js : t -> Ojs.t = fun (x19 : Ojs.t) -> x19
     let (get_user : t -> int) =
       fun (x21 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x21) "user")
@@ -181,15 +128,15 @@ module Os =
           fun (x42 : t) ->
             fun (x43 : int) ->
               Ojs.set_prop_ascii (t_to_js x42) "speed" (Ojs.int_to_js x43)
-        let (get_times : t -> anonymous_interface_2) =
+        let (get_times : t -> AnonymousInterface2.t) =
           fun (x44 : t) ->
-            anonymous_interface_2_of_js
+            AnonymousInterface2.t_of_js
               (Ojs.get_prop_ascii (t_to_js x44) "times")
-        let (set_times : t -> anonymous_interface_2 -> unit) =
+        let (set_times : t -> AnonymousInterface2.t -> unit) =
           fun (x45 : t) ->
-            fun (x46 : anonymous_interface_2) ->
+            fun (x46 : AnonymousInterface2.t) ->
               Ojs.set_prop_ascii (t_to_js x45) "times"
-                (anonymous_interface_2_to_js x46)
+                (AnonymousInterface2.t_to_js x46)
       end
     module NetworkInterfaceBase =
       struct
@@ -377,14 +324,14 @@ module Os =
           (Ojs.call Import.os "networkInterfaces" [||])
     let (homedir : unit -> string) =
       fun () -> Ojs.string_of_js (Ojs.call Import.os "homedir" [||])
-    let (userInfo : options:anonymous_interface_1 -> Buffer.t os_UserInfo) =
-      fun ~options:(x118 : anonymous_interface_1) ->
+    let (userInfo : options:AnonymousInterface1.t -> Buffer.t os_UserInfo) =
+      fun ~options:(x118 : AnonymousInterface1.t) ->
         os_UserInfo_of_js Buffer.t_of_js
           (Ojs.call Import.os "userInfo"
-             [|(anonymous_interface_1_to_js x118)|])
+             [|(AnonymousInterface1.t_to_js x118)|])
     let (userInfo :
-      ?options:anonymous_interface_0 -> unit -> string os_UserInfo) =
-      fun ?options:(x120 : anonymous_interface_0 option) ->
+      ?options:AnonymousInterface0.t -> unit -> string os_UserInfo) =
+      fun ?options:(x120 : AnonymousInterface0.t option) ->
         fun () ->
           os_UserInfo_of_js Ojs.string_of_js
             (let x123 = Import.os in
@@ -396,7 +343,7 @@ module Os =
                          | Some x122 ->
                              ignore
                                (Ojs.call x121 "push"
-                                  [|(anonymous_interface_0_to_js x122)|])
+                                  [|(AnonymousInterface0.t_to_js x122)|])
                          | None -> ());
                         x121))|])
     module SignalConstants =

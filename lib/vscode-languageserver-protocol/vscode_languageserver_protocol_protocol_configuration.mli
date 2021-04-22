@@ -4,40 +4,8 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _ConfigurationClientCapabilities =
-      [ `ConfigurationClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ConfigurationItem = [ `ConfigurationItem ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ConfigurationParams = [ `ConfigurationParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ConfigurationRequest_HandlerSignature =
-      (_ConfigurationParams, any list, unit) RequestHandler.t
-
-    and _ConfigurationRequest_MiddlewareSignature =
-      [ `ConfigurationRequest_MiddlewareSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -59,9 +27,9 @@ module ConfigurationClientCapabilities : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_workspace : t -> anonymous_interface_0 [@@js.get "workspace"]
+  val get_workspace : t -> AnonymousInterface0.t [@@js.get "workspace"]
 
-  val set_workspace : t -> anonymous_interface_0 -> unit [@@js.set "workspace"]
+  val set_workspace : t -> AnonymousInterface0.t -> unit [@@js.set "workspace"]
 end
 [@@js.scope "ConfigurationClientCapabilities"]
 
@@ -76,7 +44,7 @@ module ConfigurationRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _ConfigurationRequest_HandlerSignature
+    type t = (_ConfigurationParams, any list, unit) RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 

@@ -5,118 +5,8 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type dns_AnyARecord = [ `Dns_AnyARecord | `Dns_RecordWithTtl ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_AnyAaaaRecord = [ `Dns_AnyAaaaRecord | `Dns_RecordWithTtl ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_AnyCnameRecord = [ `Dns_AnyCnameRecord ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_AnyMxRecord = [ `Dns_AnyMxRecord | `Dns_MxRecord ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_AnyNaptrRecord = [ `Dns_AnyNaptrRecord | `Dns_NaptrRecord ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_AnyNsRecord = [ `Dns_AnyNsRecord ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_AnyPtrRecord = [ `Dns_AnyPtrRecord ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_AnyRecord =
-      ([ `U_s0_A of dns_AnyARecord [@js "A"]
-       | `U_s1_AAAA of dns_AnyAaaaRecord [@js "AAAA"]
-       | `U_s3_CNAME of dns_AnyCnameRecord [@js "CNAME"]
-       | `U_s4_MX of dns_AnyMxRecord [@js "MX"]
-       | `U_s5_NAPTR of dns_AnyNaptrRecord [@js "NAPTR"]
-       | `U_s6_NS of dns_AnyNsRecord [@js "NS"]
-       | `U_s7_PTR of dns_AnyPtrRecord [@js "PTR"]
-       | `U_s8_SOA of dns_AnySoaRecord [@js "SOA"]
-       | `U_s9_SRV of dns_AnySrvRecord [@js "SRV"]
-       | `U_s10_TXT of dns_AnyTxtRecord [@js "TXT"]
-       ]
-      [@js.union on_field "type"])
-
-    and dns_AnyRecordWithTtl =
-      ([ `U_s0_A of dns_AnyARecord [@js "A"]
-       | `U_s1_AAAA of dns_AnyAaaaRecord [@js "AAAA"]
-       ]
-      [@js.union on_field "type"])
-
-    and dns_AnySoaRecord = [ `Dns_AnySoaRecord | `Dns_SoaRecord ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_AnySrvRecord = [ `Dns_AnySrvRecord | `Dns_SrvRecord ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_AnyTxtRecord = [ `Dns_AnyTxtRecord ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_LookupAddress = [ `Dns_LookupAddress ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_LookupAllOptions =
-      [ `Dns_LookupAllOptions | `Dns_LookupOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_LookupOneOptions =
-      [ `Dns_LookupOneOptions | `Dns_LookupOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_LookupOptions = [ `Dns_LookupOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_MxRecord = [ `Dns_MxRecord ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_NaptrRecord = [ `Dns_NaptrRecord ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_RecordWithTtl = [ `Dns_RecordWithTtl ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_ResolveOptions = [ `Dns_ResolveOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_ResolveWithTtlOptions =
-      [ `Dns_ResolveWithTtlOptions | `Dns_ResolveOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_Resolver = [ `Dns_Resolver ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_ResolverOptions = [ `Dns_ResolverOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_SoaRecord = [ `Dns_SoaRecord ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_SrvRecord = [ `Dns_SrvRecord ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dns_promises_Resolver = [ `Dns_promises_Resolver ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -291,7 +181,7 @@ module Dns : sig
     val __promisify__
       :  address:string
       -> port:int
-      -> anonymous_interface_0 Promise.t
+      -> AnonymousInterface0.t Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "lookupService"]
@@ -342,7 +232,11 @@ module Dns : sig
   [@@js.scope "RecordWithTtl"]
 
   module AnyRecordWithTtl : sig
-    type t = dns_AnyRecordWithTtl
+    type t =
+      ([ `U_s0_A of dns_AnyARecord [@js "A"]
+       | `U_s1_AAAA of dns_AnyAaaaRecord [@js "AAAA"]
+       ]
+      [@js.union on_field "type"])
 
     val t_to_js : t -> Ojs.t
 
@@ -620,7 +514,19 @@ module Dns : sig
   [@@js.scope "AnyCnameRecord"]
 
   module AnyRecord : sig
-    type t = dns_AnyRecord
+    type t =
+      ([ `U_s0_A of dns_AnyARecord [@js "A"]
+       | `U_s1_AAAA of dns_AnyAaaaRecord [@js "AAAA"]
+       | `U_s3_CNAME of dns_AnyCnameRecord [@js "CNAME"]
+       | `U_s4_MX of dns_AnyMxRecord [@js "MX"]
+       | `U_s5_NAPTR of dns_AnyNaptrRecord [@js "NAPTR"]
+       | `U_s6_NS of dns_AnyNsRecord [@js "NS"]
+       | `U_s7_PTR of dns_AnyPtrRecord [@js "PTR"]
+       | `U_s8_SOA of dns_AnySoaRecord [@js "SOA"]
+       | `U_s9_SRV of dns_AnySrvRecord [@js "SRV"]
+       | `U_s10_TXT of dns_AnyTxtRecord [@js "TXT"]
+       ]
+      [@js.union on_field "type"])
 
     val t_to_js : t -> Ojs.t
 
@@ -1232,7 +1138,7 @@ module Dns : sig
     val lookupService
       :  address:string
       -> port:int
-      -> anonymous_interface_0 Promise.t
+      -> AnonymousInterface0.t Promise.t
       [@@js.global "lookupService"]
 
     val resolve : hostname:string -> string list Promise.t

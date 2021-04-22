@@ -4,16 +4,6 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-
 module Array : sig
   include module type of struct
     include Array
@@ -35,7 +25,7 @@ module Array : sig
     -> 'T or_undefined
     [@@js.call "find"]
 
-  val findIndex
+  val find_index
     :  'T t
     -> (value:'T -> index:int -> obj:'T list -> unknown)
     -> ?thisArg:any
@@ -46,7 +36,7 @@ module Array : sig
   val fill : 'T t -> value:'T -> ?start:int -> ?end_:int -> unit -> 'T t
     [@@js.call "fill"]
 
-  val copyWithin : 'T t -> target:int -> start:int -> ?end_:int -> unit -> 'T t
+  val copy_within : 'T t -> target:int -> start:int -> ?end_:int -> unit -> 'T t
     [@@js.call "copyWithin"]
 
   val to_ml : 'T t -> 'T list [@@js.cast]
@@ -139,23 +129,23 @@ module NumberConstructor : sig
     include NumberConstructor
   end
 
-  val get_EPSILON : t -> int [@@js.get "EPSILON"]
+  val get_epsilon : t -> int [@@js.get "EPSILON"]
 
-  val isFinite : t -> number:unknown -> bool [@@js.call "isFinite"]
+  val is_finite : t -> number:unknown -> bool [@@js.call "isFinite"]
 
-  val isInteger : t -> number:unknown -> bool [@@js.call "isInteger"]
+  val is_integer : t -> number:unknown -> bool [@@js.call "isInteger"]
 
-  val isNaN : t -> number:unknown -> bool [@@js.call "isNaN"]
+  val is_na_n : t -> number:unknown -> bool [@@js.call "isNaN"]
 
-  val isSafeInteger : t -> number:unknown -> bool [@@js.call "isSafeInteger"]
+  val is_safe_integer : t -> number:unknown -> bool [@@js.call "isSafeInteger"]
 
-  val get_MAX_SAFE_INTEGER : t -> int [@@js.get "MAX_SAFE_INTEGER"]
+  val get_max_safe_integer : t -> int [@@js.get "MAX_SAFE_INTEGER"]
 
-  val get_MIN_SAFE_INTEGER : t -> int [@@js.get "MIN_SAFE_INTEGER"]
+  val get_min_safe_integer : t -> int [@@js.get "MIN_SAFE_INTEGER"]
 
-  val parseFloat : t -> string:string -> int [@@js.call "parseFloat"]
+  val parse_float : t -> string:string -> int [@@js.call "parseFloat"]
 
-  val parseInt : t -> string:string -> ?radix:int -> unit -> int
+  val parse_int : t -> string:string -> ?radix:int -> unit -> int
     [@@js.call "parseInt"]
 end
 [@@js.scope "NumberConstructor"]
@@ -192,14 +182,14 @@ module ObjectConstructor : sig
     -> any
     [@@js.call "assign"]
 
-  val getOwnPropertySymbols : t -> any -> symbol list
+  val get_own_property_symbols : t -> any -> symbol list
     [@@js.call "getOwnPropertySymbols"]
 
   val keys : t -> any -> string list [@@js.call "keys"]
 
   val is : t -> value1:any -> value2:any -> bool [@@js.call "is"]
 
-  val setPrototypeOf : t -> any -> proto:untyped_object or_null -> any
+  val set_prototype_of : t -> any -> proto:untyped_object or_null -> any
     [@@js.call "setPrototypeOf"]
 end
 [@@js.scope "ObjectConstructor"]
@@ -225,7 +215,7 @@ module ReadonlyArray : sig
     -> 'T or_undefined
     [@@js.call "find"]
 
-  val findIndex
+  val find_index
     :  'T t
     -> (value:'T -> index:int -> obj:'T list -> unknown)
     -> ?thisArg:any
@@ -280,12 +270,12 @@ module String : sig
     include String
   end
 
-  val codePointAt : t -> pos:int -> int or_undefined [@@js.call "codePointAt"]
+  val code_point_at : t -> pos:int -> int or_undefined [@@js.call "codePointAt"]
 
   val includes : t -> searchString:string -> ?position:int -> unit -> bool
     [@@js.call "includes"]
 
-  val endsWith : t -> searchString:string -> ?endPosition:int -> unit -> bool
+  val ends_with : t -> searchString:string -> ?endPosition:int -> unit -> bool
     [@@js.call "endsWith"]
 
   val normalize
@@ -298,7 +288,7 @@ module String : sig
 
   val repeat : t -> count:int -> string [@@js.call "repeat"]
 
-  val startsWith : t -> searchString:string -> ?position:int -> unit -> bool
+  val starts_with : t -> searchString:string -> ?position:int -> unit -> bool
     [@@js.call "startsWith"]
 
   val anchor : t -> name:string -> string [@@js.call "anchor"]
@@ -340,7 +330,7 @@ module StringConstructor : sig
     include StringConstructor
   end
 
-  val fromCodePoint : t -> codePoints:(int list[@js.variadic]) -> string
+  val from_code_point : t -> codePoints:(int list[@js.variadic]) -> string
     [@@js.call "fromCodePoint"]
 
   val raw

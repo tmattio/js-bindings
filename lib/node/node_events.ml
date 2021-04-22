@@ -3,57 +3,11 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
 open Node_globals
-module Internal =
-  struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type events_DOMEventTarget = [ `Events_DOMEventTarget ] intf
-        and events_EventEmitter = [ `Events_EventEmitter ] intf
-        and events_EventEmitterOptions = [ `Events_EventEmitterOptions ] intf
-        and events_NodeEventTarget = [ `Events_NodeEventTarget ] intf
-        and events_global_NodeJS_EventEmitter =
-          [ `Events_global_NodeJS_EventEmitter ] intf
-        let rec events_DOMEventTarget_of_js : Ojs.t -> events_DOMEventTarget
-          = Obj.magic
-        and events_DOMEventTarget_to_js : events_DOMEventTarget -> Ojs.t =
-          Obj.magic
-        and events_EventEmitter_of_js : Ojs.t -> events_EventEmitter =
-          Obj.magic
-        and events_EventEmitter_to_js : events_EventEmitter -> Ojs.t =
-          Obj.magic
-        and events_EventEmitterOptions_of_js :
-          Ojs.t -> events_EventEmitterOptions = Obj.magic
-        and events_EventEmitterOptions_to_js :
-          events_EventEmitterOptions -> Ojs.t = Obj.magic
-        and events_NodeEventTarget_of_js : Ojs.t -> events_NodeEventTarget =
-          Obj.magic
-        and events_NodeEventTarget_to_js : events_NodeEventTarget -> Ojs.t =
-          Obj.magic
-        and events_global_NodeJS_EventEmitter_of_js :
-          Ojs.t -> events_global_NodeJS_EventEmitter = Obj.magic
-        and events_global_NodeJS_EventEmitter_to_js :
-          events_global_NodeJS_EventEmitter -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> anonymous_interface_0_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : anonymous_interface_0) -> anonymous_interface_0_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get_once : t -> bool) =
       fun (x3 : t) -> Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x3) "once")
     let (set_once : t -> bool -> unit) =
@@ -119,12 +73,12 @@ module Events =
           t ->
             event:string ->
               listener:(args:any list -> unit) ->
-                ?opts:anonymous_interface_0 -> unit -> any)
+                ?opts:AnonymousInterface0.t -> unit -> any)
           =
           fun (x28 : t) ->
             fun ~event:(x21 : string) ->
               fun ~listener:(x22 : args:any list -> unit) ->
-                fun ?opts:(x23 : anonymous_interface_0 option) ->
+                fun ?opts:(x23 : AnonymousInterface0.t option) ->
                   fun () ->
                     any_of_js
                       (let x29 = t_to_js x28 in
@@ -148,7 +102,7 @@ module Events =
                                   | Some x25 ->
                                       ignore
                                         (Ojs.call x24 "push"
-                                           [|(anonymous_interface_0_to_js x25)|])
+                                           [|(AnonymousInterface0.t_to_js x25)|])
                                   | None -> ());
                                  x24))|])
       end

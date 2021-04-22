@@ -7,44 +7,8 @@ open Node_globals
 open Node_http
 open Node_tls
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type https_Agent = [ `Https_Agent ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and https_AgentOptions = [ `Https_AgentOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and https_RequestOptions =
-      ( Http.RequestOptions.t
-      , Tls.SecureContextOptions.t
-      , anonymous_interface_0 )
-      intersection3
-
-    and https_Server = [ `Https_Server ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and https_ServerOptions =
-      ( Tls.SecureContextOptions.t
-      , Tls.TlsOptions.t
-      , Http.ServerOptions.t )
-      intersection3
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -64,7 +28,11 @@ module Https : sig
   open Node_http
 
   module ServerOptions : sig
-    type t = https_ServerOptions
+    type t =
+      ( Tls.SecureContextOptions.t
+      , Tls.TlsOptions.t
+      , Http.ServerOptions.t )
+      intersection3
 
     val t_to_js : t -> Ojs.t
 
@@ -72,7 +40,11 @@ module Https : sig
   end
 
   module RequestOptions : sig
-    type t = https_RequestOptions
+    type t =
+      ( Http.RequestOptions.t
+      , Tls.SecureContextOptions.t
+      , AnonymousInterface0.t )
+      intersection3
 
     val t_to_js : t -> Ojs.t
 

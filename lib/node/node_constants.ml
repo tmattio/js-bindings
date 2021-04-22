@@ -3,14 +3,6 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
 open Node_globals
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types = struct open AnonymousInterfaces end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module Constants =
   struct
     include struct include Node_os.Os.Constants.Errno end

@@ -5,7 +5,7 @@ open Es2019
 module String =
   struct
     include struct include String end
-    let (matchAll :
+    let (match_all :
       t -> regexp:regexp -> RegExpMatchArray.t IterableIterator.t) =
       fun (x2 : t) ->
         fun ~regexp:(x1 : regexp) ->

@@ -3,41 +3,12 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
 module Internal =
-  struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _Converter = [ `Converter ] intf
-        and _FileFormattingOptions = [ `FileFormattingOptions ] intf
-        and _URIConverter = [ `URIConverter ] intf
-        let rec _Converter_of_js : Ojs.t -> _Converter = Obj.magic
-        and _Converter_to_js : _Converter -> Ojs.t = Obj.magic
-        and _FileFormattingOptions_of_js : Ojs.t -> _FileFormattingOptions =
-          Obj.magic
-        and _FileFormattingOptions_to_js : _FileFormattingOptions -> Ojs.t =
-          Obj.magic
-        and _URIConverter_of_js : Ojs.t -> _URIConverter = Obj.magic
-        and _URIConverter_to_js : _URIConverter -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
+  struct module Types = struct open AnonymousInterfaces end end
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> anonymous_interface_0_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : anonymous_interface_0) -> anonymous_interface_0_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get_includeDeclaration : t -> bool) =
       fun (x3 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x3) "includeDeclaration")
@@ -449,16 +420,16 @@ module Converter =
       t ->
         textDocument:Code.TextDocument.t ->
           position:Code.Position.t ->
-            options:anonymous_interface_0 -> Proto.ReferenceParams.t)
+            options:AnonymousInterface0.t -> Proto.ReferenceParams.t)
       =
       fun (x142 : t) ->
         fun ~textDocument:(x139 : Code.TextDocument.t) ->
           fun ~position:(x140 : Code.Position.t) ->
-            fun ~options:(x141 : anonymous_interface_0) ->
+            fun ~options:(x141 : AnonymousInterface0.t) ->
               Proto.ReferenceParams.t_of_js
                 (Ojs.call (t_to_js x142) "asReferenceParams"
                    [|(Code.TextDocument.t_to_js x139);(Code.Position.t_to_js
-                                                         x140);(anonymous_interface_0_to_js
+                                                         x140);(AnonymousInterface0.t_to_js
                                                                   x141)|])
     let (asCodeAction : t -> item:Code.CodeAction.t -> Proto.CodeAction.t) =
       fun (x144 : t) ->

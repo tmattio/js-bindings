@@ -3,34 +3,7 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
 module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _AbstractCancellationTokenSource =
-          [ `AbstractCancellationTokenSource ] intf
-        and _CancellationToken = [ `CancellationToken ] intf
-        and _CancellationTokenSource =
-          [ `CancellationTokenSource  | `AbstractCancellationTokenSource ]
-            intf
-        let rec _AbstractCancellationTokenSource_of_js :
-          Ojs.t -> _AbstractCancellationTokenSource = Obj.magic
-        and _AbstractCancellationTokenSource_to_js :
-          _AbstractCancellationTokenSource -> Ojs.t = Obj.magic
-        and _CancellationToken_of_js : Ojs.t -> _CancellationToken =
-          Obj.magic
-        and _CancellationToken_to_js : _CancellationToken -> Ojs.t =
-          Obj.magic
-        and _CancellationTokenSource_of_js :
-          Ojs.t -> _CancellationTokenSource = Obj.magic
-        and _CancellationTokenSource_to_js :
-          _CancellationTokenSource -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
+  struct module Types = struct open AnonymousInterfaces end end
 module CancellationToken =
   struct
     type t = _CancellationToken

@@ -4,36 +4,13 @@
 
 open Es2020
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type ('K, 'V) _LRUCache =
-      [ `LRUCache of 'K * 'V | `LinkedMap of 'K * 'V ] intf
-    [@@js.custom
-      { of_js = (fun _K _V -> Obj.magic); to_js = (fun _K _V -> Obj.magic) }]
-
-    and ('K, 'V) _LinkedMap = [ `LinkedMap of 'K * 'V ] intf
-    [@@js.custom
-      { of_js = (fun _K _V -> Obj.magic); to_js = (fun _K _V -> Obj.magic) }]
-
-    and _Touch =
-      ([ `L_n_0 [@js 0]
-       | `L_n_1 [@js 1]
-       | `L_n_2 [@js 2]
-       ]
-      [@js.enum])
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module Touch : sig
-  type t = _Touch
+  type t =
+    ([ `L_n_0 [@js 0]
+     | `L_n_1 [@js 1]
+     | `L_n_2 [@js 2]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 

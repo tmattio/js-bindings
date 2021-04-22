@@ -5,15 +5,15 @@ open Es2018
 module String =
   struct
     include struct include String end
-    let (trimEnd : t -> string) =
+    let (trim_end : t -> string) =
       fun (x1 : t) -> Ojs.string_of_js (Ojs.call (t_to_js x1) "trimEnd" [||])
-    let (trimStart : t -> string) =
+    let (trim_start : t -> string) =
       fun (x2 : t) ->
         Ojs.string_of_js (Ojs.call (t_to_js x2) "trimStart" [||])
-    let (trimLeft : t -> string) =
+    let (trim_left : t -> string) =
       fun (x3 : t) ->
         Ojs.string_of_js (Ojs.call (t_to_js x3) "trimLeft" [||])
-    let (trimRight : t -> string) =
+    let (trim_right : t -> string) =
       fun (x4 : t) ->
         Ojs.string_of_js (Ojs.call (t_to_js x4) "trimRight" [||])
     let (to_ml : t -> string) = fun (x5 : t) -> Ojs.string_of_js (t_to_js x5)

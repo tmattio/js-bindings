@@ -5,112 +5,8 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type stream_internal = [ `Stream_internal ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and stream_internal_Duplex =
-      [ `Stream_internal_Duplex
-      | `Stream_internal_Readable
-      | `Stream_internal_Stream
-      | `Stream_internal_Writable
-      | `Stream_internal
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and stream_internal_DuplexOptions =
-      [ `Stream_internal_DuplexOptions
-      | `Stream_internal_ReadableOptions
-      | `Stream_internal_WritableOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and stream_internal_FinishedOptions =
-      [ `Stream_internal_FinishedOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and stream_internal_PassThrough =
-      [ `Stream_internal_PassThrough
-      | `Stream_internal_Duplex
-      | `Stream_internal_Readable
-      | `Stream_internal_Stream
-      | `Stream_internal_Transform
-      | `Stream_internal_Writable
-      | `Stream_internal
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and stream_internal_Pipe = [ `Stream_internal_Pipe ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and stream_internal_Readable =
-      [ `Stream_internal_Readable | `Stream_internal_Stream | `Stream_internal ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and stream_internal_ReadableOptions =
-      [ `Stream_internal_ReadableOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and stream_internal_Stream =
-      [ `Stream_internal_Stream | `Stream_internal ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and stream_internal_Transform =
-      [ `Stream_internal_Transform
-      | `Stream_internal_Duplex
-      | `Stream_internal_Readable
-      | `Stream_internal_Stream
-      | `Stream_internal_Writable
-      | `Stream_internal
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and stream_internal_TransformCallback =
-      [ `Stream_internal_TransformCallback ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and stream_internal_TransformOptions =
-      [ `Stream_internal_TransformOptions
-      | `Stream_internal_DuplexOptions
-      | `Stream_internal_ReadableOptions
-      | `Stream_internal_WritableOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and stream_internal_Writable =
-      [ `Stream_internal_Writable | `Stream_internal_Stream | `Stream_internal ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and stream_internal_WritableOptions =
-      [ `Stream_internal_WritableOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -126,7 +22,7 @@ module AnonymousInterface0 : sig
 end
 
 module AnonymousInterface1 : sig
-  type t = anonymous_interface_1
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -144,7 +40,7 @@ module Stream : sig
         include Node_events.Events.EventEmitter
       end
 
-      val pipe : t -> 'T -> ?options:anonymous_interface_1 -> unit -> 'T
+      val pipe : t -> 'T -> ?options:AnonymousInterface1.t -> unit -> 'T
         [@@js.call "pipe"]
     end
 
@@ -671,7 +567,7 @@ module Stream : sig
       val writev
         :  t
         -> this:stream_internal_Writable
-        -> chunks:anonymous_interface_0 list
+        -> chunks:AnonymousInterface0.t list
         -> callback:(?error:Error.t or_null -> unit -> unit)
         -> unit
         [@@js.call "writev"]
@@ -734,7 +630,7 @@ module Stream : sig
 
       val _writev
         :  t
-        -> chunks:anonymous_interface_0 list
+        -> chunks:AnonymousInterface0.t list
         -> callback:(?error:Error.t or_null -> unit -> unit)
         -> unit
         [@@js.call "_writev"]
@@ -1171,7 +1067,7 @@ module Stream : sig
       val writev
         :  t
         -> this:stream_internal_Duplex
-        -> chunks:anonymous_interface_0 list
+        -> chunks:AnonymousInterface0.t list
         -> callback:(?error:Error.t or_null -> unit -> unit)
         -> unit
         [@@js.call "writev"]
@@ -1230,7 +1126,7 @@ module Stream : sig
 
       val _writev
         :  t
-        -> chunks:anonymous_interface_0 list
+        -> chunks:AnonymousInterface0.t list
         -> callback:(?error:Error.t or_null -> unit -> unit)
         -> unit
         [@@js.call "_writev"]
@@ -1324,7 +1220,7 @@ module Stream : sig
       val writev
         :  t
         -> this:stream_internal_Transform
-        -> chunks:anonymous_interface_0 list
+        -> chunks:AnonymousInterface0.t list
         -> callback:(?error:Error.t or_null -> unit -> unit)
         -> unit
         [@@js.call "writev"]

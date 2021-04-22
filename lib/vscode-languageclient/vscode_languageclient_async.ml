@@ -3,26 +3,7 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
 module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type 'T _Delayer = [ `Delayer of 'T ] intf
-        and 'T _ITask = [ `ITask of 'T ] intf
-        let rec _Delayer_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _Delayer =
-          fun _T -> Obj.magic
-        and _Delayer_to_js : 'T . ('T -> Ojs.t) -> 'T _Delayer -> Ojs.t =
-          fun _T -> Obj.magic
-        and _ITask_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _ITask =
-          fun _T -> Obj.magic
-        and _ITask_to_js : 'T . ('T -> Ojs.t) -> 'T _ITask -> Ojs.t =
-          fun _T -> Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
+  struct module Types = struct open AnonymousInterfaces end end
 module ITask =
   struct
     type 'T t = 'T _ITask

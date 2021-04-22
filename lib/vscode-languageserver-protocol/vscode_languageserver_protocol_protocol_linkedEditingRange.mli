@@ -4,42 +4,6 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _LinkedEditingRangeClientCapabilities =
-      [ `LinkedEditingRangeClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _LinkedEditingRangeOptions = [ `LinkedEditingRangeOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _LinkedEditingRangeParams = [ `LinkedEditingRangeParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _LinkedEditingRangeRegistrationOptions =
-      [ `LinkedEditingRangeRegistrationOptions | `LinkedEditingRangeOptions ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _LinkedEditingRangeRequest_HandlerSignature =
-      ( _LinkedEditingRangeParams
-      , _LinkedEditingRanges or_null
-      , unit )
-      RequestHandler.t
-
-    and _LinkedEditingRanges = [ `LinkedEditingRanges ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 (* import { RequestHandler } from 'vscode-jsonrpc'; *)
 (* import { Range } from 'vscode-languageserver-types'; *)
 (* import { ProtocolRequestType } from './messages'; *)
@@ -134,7 +98,11 @@ module LinkedEditingRangeRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _LinkedEditingRangeRequest_HandlerSignature
+    type t =
+      ( _LinkedEditingRangeParams
+      , _LinkedEditingRanges or_null
+      , unit )
+      RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 

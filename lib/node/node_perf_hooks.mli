@@ -5,68 +5,8 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type perf_hooks_EntryType =
-      ([ `function_ [@js "function"]
-       | `gc [@js "gc"]
-       | `http [@js "http"]
-       | `http2 [@js "http2"]
-       | `mark [@js "mark"]
-       | `measure [@js "measure"]
-       | `node [@js "node"]
-       ]
-      [@js.enum])
-
-    and perf_hooks_EventLoopDelayMonitor =
-      [ `Perf_hooks_EventLoopDelayMonitor ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and perf_hooks_EventLoopMonitorOptions =
-      [ `Perf_hooks_EventLoopMonitorOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and perf_hooks_EventLoopUtilization =
-      [ `Perf_hooks_EventLoopUtilization ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and perf_hooks_Performance = [ `Perf_hooks_Performance ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and perf_hooks_PerformanceEntry = [ `Perf_hooks_PerformanceEntry ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and perf_hooks_PerformanceNodeTiming =
-      [ `Perf_hooks_PerformanceNodeTiming | `Perf_hooks_PerformanceEntry ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and perf_hooks_PerformanceObserver =
-      [ `Perf_hooks_PerformanceObserver ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and perf_hooks_PerformanceObserverCallback =
-      [ `Perf_hooks_PerformanceObserverCallback ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and perf_hooks_PerformanceObserverEntryList =
-      [ `Perf_hooks_PerformanceObserverEntryList ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -84,7 +24,16 @@ end
 
 module Perf_hooks : sig
   module EntryType : sig
-    type t = perf_hooks_EntryType
+    type t =
+      ([ `function_ [@js "function"]
+       | `gc [@js "gc"]
+       | `http [@js "http"]
+       | `http2 [@js "http2"]
+       | `mark [@js "mark"]
+       | `measure [@js "measure"]
+       | `node [@js "node"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -243,7 +192,7 @@ module Perf_hooks : sig
 
     val disconnect : t -> unit [@@js.call "disconnect"]
 
-    val observe : t -> options:anonymous_interface_0 -> unit
+    val observe : t -> options:AnonymousInterface0.t -> unit
       [@@js.call "observe"]
 
     val cast : t -> Node_async_hooks.Async_hooks.AsyncResource.t [@@js.cast]

@@ -47,7 +47,7 @@ module RegExpExecArray =
 module RegExp =
   struct
     include struct include RegExp end
-    let (get_dotAll : t -> bool) =
+    let (get_dot_all : t -> bool) =
       fun (x14 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x14) "dotAll")
   end

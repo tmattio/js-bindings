@@ -5,285 +5,8 @@
 open Es2020
 open Vscode_jsonrpc_messages
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _CancellationId = string or_number
-
-    and _CancellationReceiverStrategy = [ `CancellationReceiverStrategy ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CancellationSenderStrategy = [ `CancellationSenderStrategy ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CancellationStrategy = [ `CancellationStrategy ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ConnectionError = [ `ConnectionError ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ConnectionErrors =
-      ([ `Closed [@js 1]
-       | `Disposed [@js 2]
-       | `AlreadyListening [@js 3]
-       ]
-      [@js.enum])
-
-    and _ConnectionErrors_Closed = ([ `Closed [@js 1] ][@js.enum])
-
-    and _ConnectionErrors_Disposed = ([ `Disposed [@js 2] ][@js.enum])
-
-    and _ConnectionErrors_AlreadyListening =
-      ([ `AlreadyListening [@js 3] ][@js.enum])
-
-    and _ConnectionOptions = [ `ConnectionOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ConnectionStrategy = anonymous_interface_0
-
-    and _GenericNotificationHandler = [ `GenericNotificationHandler ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and ('R, 'E) _GenericRequestHandler =
-      [ `GenericRequestHandler of 'R * 'E ] intf
-    [@@js.custom
-      { of_js = (fun _R _E -> Obj.magic); to_js = (fun _R _E -> Obj.magic) }]
-
-    and ('R, 'E) _HandlerResult =
-      ( 'R
-      , 'E ResponseError.t
-      , 'R Promise.t
-      , ('R, 'E ResponseError.t) union2 Promise.t
-      , 'E ResponseError.t Promise.t )
-      union5
-
-    and _LogTraceParams = [ `LogTraceParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _Logger = [ `Logger ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _MessageConnection = [ `MessageConnection ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and 'P _NotificationHandler = [ `NotificationHandler of 'P ] intf
-    [@@js.custom
-      { of_js = (fun _P -> Obj.magic); to_js = (fun _P -> Obj.magic) }]
-
-    and _NotificationHandler0 = [ `NotificationHandler0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and 'P1 _NotificationHandler1 = [ `NotificationHandler1 of 'P1 ] intf
-    [@@js.custom
-      { of_js = (fun _P1 -> Obj.magic); to_js = (fun _P1 -> Obj.magic) }]
-
-    and ('P1, 'P2) _NotificationHandler2 =
-      [ `NotificationHandler2 of 'P1 * 'P2 ] intf
-    [@@js.custom
-      { of_js = (fun _P1 _P2 -> Obj.magic); to_js = (fun _P1 _P2 -> Obj.magic) }]
-
-    and ('P1, 'P2, 'P3) _NotificationHandler3 =
-      [ `NotificationHandler3 of 'P1 * 'P2 * 'P3 ] intf
-    [@@js.custom
-      { of_js = (fun _P1 _P2 _P3 -> Obj.magic)
-      ; to_js = (fun _P1 _P2 _P3 -> Obj.magic)
-      }]
-
-    and ('P1, 'P2, 'P3, 'P4) _NotificationHandler4 =
-      [ `NotificationHandler4 of 'P1 * 'P2 * 'P3 * 'P4 ] intf
-    [@@js.custom
-      { of_js = (fun _P1 _P2 _P3 _P4 -> Obj.magic)
-      ; to_js = (fun _P1 _P2 _P3 _P4 -> Obj.magic)
-      }]
-
-    and ('P1, 'P2, 'P3, 'P4, 'P5) _NotificationHandler5 =
-      [ `NotificationHandler5 of 'P1 * 'P2 * 'P3 * 'P4 * 'P5 ] intf
-    [@@js.custom
-      { of_js = (fun _P1 _P2 _P3 _P4 _P5 -> Obj.magic)
-      ; to_js = (fun _P1 _P2 _P3 _P4 _P5 -> Obj.magic)
-      }]
-
-    and ('P1, 'P2, 'P3, 'P4, 'P5, 'P6) _NotificationHandler6 =
-      [ `NotificationHandler6 of 'P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 ] intf
-    [@@js.custom
-      { of_js = (fun _P1 _P2 _P3 _P4 _P5 _P6 -> Obj.magic)
-      ; to_js = (fun _P1 _P2 _P3 _P4 _P5 _P6 -> Obj.magic)
-      }]
-
-    and ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) _NotificationHandler7 =
-      [ `NotificationHandler7 of 'P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 ] intf
-    [@@js.custom
-      { of_js = (fun _P1 _P2 _P3 _P4 _P5 _P6 _P7 -> Obj.magic)
-      ; to_js = (fun _P1 _P2 _P3 _P4 _P5 _P6 _P7 -> Obj.magic)
-      }]
-
-    and ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) _NotificationHandler8 =
-      [ `NotificationHandler8 of 'P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * 'P8 ]
-      intf
-    [@@js.custom
-      { of_js = (fun _P1 _P2 _P3 _P4 _P5 _P6 _P7 _P8 -> Obj.magic)
-      ; to_js = (fun _P1 _P2 _P3 _P4 _P5 _P6 _P7 _P8 -> Obj.magic)
-      }]
-
-    and ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) _NotificationHandler9 =
-      [ `NotificationHandler9 of
-        'P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * 'P8 * 'P9
-      ]
-      intf
-    [@@js.custom
-      { of_js = (fun _P1 _P2 _P3 _P4 _P5 _P6 _P7 _P8 _P9 -> Obj.magic)
-      ; to_js = (fun _P1 _P2 _P3 _P4 _P5 _P6 _P7 _P8 _P9 -> Obj.magic)
-      }]
-
-    and 'T _ProgressParams = [ `ProgressParams of 'T ] intf
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-
-    and _ProgressToken = string or_number
-
-    and 'PR _ProgressType = [ `ProgressType of 'PR ] intf
-    [@@js.custom
-      { of_js = (fun _PR -> Obj.magic); to_js = (fun _PR -> Obj.magic) }]
-
-    and ('P, 'R, 'E) _RequestHandler = [ `RequestHandler of 'P * 'R * 'E ] intf
-    [@@js.custom
-      { of_js = (fun _P _R _E -> Obj.magic)
-      ; to_js = (fun _P _R _E -> Obj.magic)
-      }]
-
-    and ('R, 'E) _RequestHandler0 = [ `RequestHandler0 of 'R * 'E ] intf
-    [@@js.custom
-      { of_js = (fun _R _E -> Obj.magic); to_js = (fun _R _E -> Obj.magic) }]
-
-    and ('P1, 'R, 'E) _RequestHandler1 =
-      [ `RequestHandler1 of 'P1 * 'R * 'E ] intf
-    [@@js.custom
-      { of_js = (fun _P1 _R _E -> Obj.magic)
-      ; to_js = (fun _P1 _R _E -> Obj.magic)
-      }]
-
-    and ('P1, 'P2, 'R, 'E) _RequestHandler2 =
-      [ `RequestHandler2 of 'P1 * 'P2 * 'R * 'E ] intf
-    [@@js.custom
-      { of_js = (fun _P1 _P2 _R _E -> Obj.magic)
-      ; to_js = (fun _P1 _P2 _R _E -> Obj.magic)
-      }]
-
-    and ('P1, 'P2, 'P3, 'R, 'E) _RequestHandler3 =
-      [ `RequestHandler3 of 'P1 * 'P2 * 'P3 * 'R * 'E ] intf
-    [@@js.custom
-      { of_js = (fun _P1 _P2 _P3 _R _E -> Obj.magic)
-      ; to_js = (fun _P1 _P2 _P3 _R _E -> Obj.magic)
-      }]
-
-    and ('P1, 'P2, 'P3, 'P4, 'R, 'E) _RequestHandler4 =
-      [ `RequestHandler4 of 'P1 * 'P2 * 'P3 * 'P4 * 'R * 'E ] intf
-    [@@js.custom
-      { of_js = (fun _P1 _P2 _P3 _P4 _R _E -> Obj.magic)
-      ; to_js = (fun _P1 _P2 _P3 _P4 _R _E -> Obj.magic)
-      }]
-
-    and ('P1, 'P2, 'P3, 'P4, 'P5, 'R, 'E) _RequestHandler5 =
-      [ `RequestHandler5 of 'P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'R * 'E ] intf
-    [@@js.custom
-      { of_js = (fun _P1 _P2 _P3 _P4 _P5 _R _E -> Obj.magic)
-      ; to_js = (fun _P1 _P2 _P3 _P4 _P5 _R _E -> Obj.magic)
-      }]
-
-    and ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'R, 'E) _RequestHandler6 =
-      [ `RequestHandler6 of 'P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'R * 'E ] intf
-    [@@js.custom
-      { of_js = (fun _P1 _P2 _P3 _P4 _P5 _P6 _R _E -> Obj.magic)
-      ; to_js = (fun _P1 _P2 _P3 _P4 _P5 _P6 _R _E -> Obj.magic)
-      }]
-
-    and ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'R, 'E) _RequestHandler7 =
-      [ `RequestHandler7 of 'P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * 'R * 'E ]
-      intf
-    [@@js.custom
-      { of_js = (fun _P1 _P2 _P3 _P4 _P5 _P6 _P7 _R _E -> Obj.magic)
-      ; to_js = (fun _P1 _P2 _P3 _P4 _P5 _P6 _P7 _R _E -> Obj.magic)
-      }]
-
-    and ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'R, 'E) _RequestHandler8 =
-      [ `RequestHandler8 of
-        'P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * 'P8 * 'R * 'E
-      ]
-      intf
-    [@@js.custom
-      { of_js = (fun _P1 _P2 _P3 _P4 _P5 _P6 _P7 _P8 _R _E -> Obj.magic)
-      ; to_js = (fun _P1 _P2 _P3 _P4 _P5 _P6 _P7 _P8 _R _E -> Obj.magic)
-      }]
-
-    and ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9, 'R, 'E) _RequestHandler9 =
-      [ `RequestHandler9 of
-        'P1 * 'P2 * 'P3 * 'P4 * 'P5 * 'P6 * 'P7 * 'P8 * 'P9 * 'R * 'E
-      ]
-      intf
-    [@@js.custom
-      { of_js = (fun _P1 _P2 _P3 _P4 _P5 _P6 _P7 _P8 _P9 _R _E -> Obj.magic)
-      ; to_js = (fun _P1 _P2 _P3 _P4 _P5 _P6 _P7 _P8 _P9 _R _E -> Obj.magic)
-      }]
-
-    and _SetTraceParams = [ `SetTraceParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _StarNotificationHandler = [ `StarNotificationHandler ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _StarRequestHandler = [ `StarRequestHandler ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _Trace =
-      ([ `Off [@js 0]
-       | `Messages [@js 1]
-       | `Verbose [@js 2]
-       ]
-      [@js.enum])
-
-    and _Trace_Off = ([ `Off [@js 0] ][@js.enum])
-
-    and _Trace_Messages = ([ `Messages [@js 1] ][@js.enum])
-
-    and _Trace_Verbose = ([ `Verbose [@js 2] ][@js.enum])
-
-    and _TraceFormat =
-      ([ `Text [@js "text"]
-       | `JSON [@js "json"]
-       ]
-      [@js.enum])
-
-    and _TraceFormat_Text = ([ `Text [@js "text"] ][@js.enum])
-
-    and _TraceFormat_JSON = ([ `JSON [@js "json"] ][@js.enum])
-
-    and _TraceOptions = [ `TraceOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _TraceValues =
-      ([ `L_s1_messages [@js "messages"]
-       | `L_s2_off [@js "off"]
-       | `L_s4_verbose [@js "verbose"]
-       ]
-      [@js.enum])
-
-    and _Tracer = [ `Tracer ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -298,7 +21,7 @@ module AnonymousInterface0 : sig
 end
 
 module ProgressToken : sig
-  type t = _ProgressToken
+  type t = string or_number
 
   val t_to_js : t -> Ojs.t
 
@@ -338,7 +61,13 @@ end
 [@@js.scope "ProgressType"]
 
 module HandlerResult : sig
-  type ('R, 'E) t = ('R, 'E) _HandlerResult
+  type ('R, 'E) t =
+    ( 'R
+    , 'E ResponseError.t
+    , 'R Promise.t
+    , ('R, 'E ResponseError.t) union2 Promise.t
+    , 'E ResponseError.t Promise.t )
+    union5
 
   val t_to_js : ('R -> Ojs.t) -> ('E -> Ojs.t) -> ('R, 'E) t -> Ojs.t
 
@@ -1109,7 +838,12 @@ end
 val nullLogger : _Logger [@@js.global "NullLogger"]
 
 module TraceValues : sig
-  type t = _TraceValues
+  type t =
+    ([ `L_s1_messages [@js "messages"]
+     | `L_s2_off [@js "off"]
+     | `L_s4_verbose [@js "verbose"]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -1117,7 +851,12 @@ module TraceValues : sig
 end
 
 module Trace : sig
-  type t = _Trace
+  type t =
+    ([ `Off [@js 0]
+     | `Messages [@js 1]
+     | `Verbose [@js 2]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -1130,7 +869,11 @@ end
 [@@js.scope "Trace"]
 
 module TraceFormat : sig
-  type t = _TraceFormat
+  type t =
+    ([ `Text [@js "text"]
+     | `JSON [@js "json"]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -1212,7 +955,12 @@ end
 [@@js.scope "Tracer"]
 
 module ConnectionErrors : sig
-  type t = _ConnectionErrors
+  type t =
+    ([ `Closed [@js 1]
+     | `Disposed [@js 2]
+     | `AlreadyListening [@js 3]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -1235,7 +983,7 @@ end
 [@@js.scope "ConnectionError"]
 
 module ConnectionStrategy : sig
-  type t = _ConnectionStrategy
+  type t = AnonymousInterface0.t
 
   val t_to_js : t -> Ojs.t
 
@@ -1246,7 +994,7 @@ end
 [@@js.scope "ConnectionStrategy"]
 
 module CancellationId : sig
-  type t = _CancellationId
+  type t = string or_number
 
   val t_to_js : t -> Ojs.t
 

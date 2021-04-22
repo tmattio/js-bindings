@@ -4,38 +4,13 @@
 open Es5
 module Internal =
   struct
-    module AnonymousInterfaces = struct  end
     module Types =
       struct
-        open AnonymousInterfaces
-        type _ImplementationClientCapabilities =
-          [ `ImplementationClientCapabilities ] intf
-        and _ImplementationOptions = [ `ImplementationOptions ] intf
-        and _ImplementationParams = [ `ImplementationParams ] intf
-        and _ImplementationRegistrationOptions =
-          [ `ImplementationRegistrationOptions  | `ImplementationOptions ]
-            intf
-        and _ImplementationRequest_HandlerSignature =
+        type _ImplementationRequest_HandlerSignature =
           (_ImplementationParams,
             (Definition.t, DefinitionLink.t) or_array or_null, unit)
             RequestHandler.t
-        let rec _ImplementationClientCapabilities_of_js :
-          Ojs.t -> _ImplementationClientCapabilities = Obj.magic
-        and _ImplementationClientCapabilities_to_js :
-          _ImplementationClientCapabilities -> Ojs.t = Obj.magic
-        and _ImplementationOptions_of_js : Ojs.t -> _ImplementationOptions =
-          Obj.magic
-        and _ImplementationOptions_to_js : _ImplementationOptions -> Ojs.t =
-          Obj.magic
-        and _ImplementationParams_of_js : Ojs.t -> _ImplementationParams =
-          Obj.magic
-        and _ImplementationParams_to_js : _ImplementationParams -> Ojs.t =
-          Obj.magic
-        and _ImplementationRegistrationOptions_of_js :
-          Ojs.t -> _ImplementationRegistrationOptions = Obj.magic
-        and _ImplementationRegistrationOptions_to_js :
-          _ImplementationRegistrationOptions -> Ojs.t = Obj.magic
-        and _ImplementationRequest_HandlerSignature_of_js :
+        let rec _ImplementationRequest_HandlerSignature_of_js :
           Ojs.t -> _ImplementationRequest_HandlerSignature =
           fun (x8 : Ojs.t) ->
             RequestHandler.t_of_js _ImplementationParams_of_js
@@ -61,9 +36,6 @@ module Internal =
                         DefinitionLink.t_to_js x4) x3) Ojs.unit_to_js x1
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module ImplementationClientCapabilities =
   struct
     type t = _ImplementationClientCapabilities

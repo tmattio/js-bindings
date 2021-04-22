@@ -21,12 +21,12 @@ module Object : sig
     include Object
   end
 
-  val fromEntries
+  val from_entries
     :  entries:(PropertyKey.t * 'T) Iterable.t
     -> AnonymousInterface0.t
     [@@js.global "Object.fromEntries"]
 
-  val fromEntries' : entries:any list Iterable.t -> any
+  val from_entries' : entries:any list Iterable.t -> any
     [@@js.global "Object.fromEntries"]
 end
 
@@ -35,13 +35,13 @@ module ObjectConstructor : sig
     include ObjectConstructor
   end
 
-  val fromEntries
+  val from_entries
     :  t
     -> entries:(PropertyKey.t * 'T) Iterable.t
     -> AnonymousInterface0.t
     [@@js.call "fromEntries"]
 
-  val fromEntries' : t -> entries:any list Iterable.t -> any
+  val from_entries' : t -> entries:any list Iterable.t -> any
     [@@js.call "fromEntries"]
 end
 [@@js.scope "ObjectConstructor"]

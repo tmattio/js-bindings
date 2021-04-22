@@ -4,24 +4,7 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
 
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _WorkspaceFolderWorkspaceMiddleware =
-      [ `WorkspaceFolderWorkspaceMiddleware ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkspaceFoldersFeature = [ `WorkspaceFoldersFeature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
 
 (* import { WorkspaceFolder as VWorkspaceFolder, WorkspaceFoldersChangeEvent as
    VWorkspaceFoldersChangeEvent } from 'vscode'; *)

@@ -2,22 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _ProtocolCompletionItem = [ `ProtocolCompletionItem ] intf
-        let rec _ProtocolCompletionItem_of_js :
-          Ojs.t -> _ProtocolCompletionItem = Obj.magic
-        and _ProtocolCompletionItem_to_js : _ProtocolCompletionItem -> Ojs.t
-          = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module ProtocolCompletionItem =
   struct
     type t = _ProtocolCompletionItem

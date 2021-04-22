@@ -5,51 +5,19 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type console_global_Console = [ `Console_global_Console ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and console_global_NodeJS_ConsoleConstructor =
-      [ `Console_global_NodeJS_ConsoleConstructor ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and console_global_NodeJS_ConsoleConstructorOptions =
-      [ `Console_global_NodeJS_ConsoleConstructorOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and console_global_NodeJS_Global = [ `Console_global_NodeJS_Global ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module Console : sig
   module Console : sig
-    type t = console_global_Console
+    type t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
 
-    val get_Console : t -> console_global_NodeJS_ConsoleConstructor
-      [@@js.get "Console"]
-
-    val set_Console : t -> console_global_NodeJS_ConsoleConstructor -> unit
-      [@@js.set "Console"]
-
     val assert_
       :  t
       -> value:any
       -> ?message:string
-      -> optionalParams:(any list[@js.variadic])
+      -> ?params:(any list[@js.variadic])
       -> unit
       [@@js.call "assert"]
 
@@ -57,13 +25,10 @@ module Console : sig
 
     val count : t -> ?label:string -> unit -> unit [@@js.call "count"]
 
-    val countReset : t -> ?label:string -> unit -> unit [@@js.call "countReset"]
+    val count_reset : t -> ?label:string -> unit -> unit
+      [@@js.call "countReset"]
 
-    val debug
-      :  t
-      -> ?message:any
-      -> optionalParams:(any list[@js.variadic])
-      -> unit
+    val debug : t -> ?message:any -> ?params:(any list[@js.variadic]) -> unit
       [@@js.call "debug"]
 
     val dir
@@ -76,32 +41,20 @@ module Console : sig
 
     val dirxml : t -> data:(any list[@js.variadic]) -> unit [@@js.call "dirxml"]
 
-    val error
-      :  t
-      -> ?message:any
-      -> optionalParams:(any list[@js.variadic])
-      -> unit
+    val error : t -> ?message:any -> ?params:(any list[@js.variadic]) -> unit
       [@@js.call "error"]
 
     val group : t -> label:(any list[@js.variadic]) -> unit [@@js.call "group"]
 
-    val groupCollapsed : t -> label:(any list[@js.variadic]) -> unit
+    val group_collapsed : t -> label:(any list[@js.variadic]) -> unit
       [@@js.call "groupCollapsed"]
 
-    val groupEnd : t -> unit [@@js.call "groupEnd"]
+    val group_end : t -> unit [@@js.call "groupEnd"]
 
-    val info
-      :  t
-      -> ?message:any
-      -> optionalParams:(any list[@js.variadic])
-      -> unit
+    val info : t -> ?message:any -> ?params:(any list[@js.variadic]) -> unit
       [@@js.call "info"]
 
-    val log
-      :  t
-      -> ?message:any
-      -> optionalParams:(any list[@js.variadic])
-      -> unit
+    val log : t -> ?message:any -> ?params:(any list[@js.variadic]) -> unit
       [@@js.call "log"]
 
     val table : t -> tabularData:any -> ?properties:string list -> unit -> unit
@@ -109,33 +62,26 @@ module Console : sig
 
     val time : t -> ?label:string -> unit -> unit [@@js.call "time"]
 
-    val timeEnd : t -> ?label:string -> unit -> unit [@@js.call "timeEnd"]
+    val time_end : t -> ?label:string -> unit -> unit [@@js.call "timeEnd"]
 
-    val timeLog : t -> ?label:string -> data:(any list[@js.variadic]) -> unit
+    val time_log : t -> ?label:string -> data:(any list[@js.variadic]) -> unit
       [@@js.call "timeLog"]
 
-    val trace
-      :  t
-      -> ?message:any
-      -> optionalParams:(any list[@js.variadic])
-      -> unit
+    val trace : t -> ?message:any -> ?params:(any list[@js.variadic]) -> unit
       [@@js.call "trace"]
 
-    val warn
-      :  t
-      -> ?message:any
-      -> optionalParams:(any list[@js.variadic])
-      -> unit
+    val warn : t -> ?message:any -> ?params:(any list[@js.variadic]) -> unit
       [@@js.call "warn"]
 
     val profile : t -> ?label:string -> unit -> unit [@@js.call "profile"]
 
-    val profileEnd : t -> ?label:string -> unit -> unit [@@js.call "profileEnd"]
+    val profile_end : t -> ?label:string -> unit -> unit
+      [@@js.call "profileEnd"]
 
-    val timeStamp : t -> ?label:string -> unit -> unit [@@js.call "timeStamp"]
+    val time_stamp : t -> ?label:string -> unit -> unit [@@js.call "timeStamp"]
 
     module ConsoleConstructorOptions : sig
-      type t = console_global_NodeJS_ConsoleConstructorOptions
+      type t
 
       val t_to_js : t -> Ojs.t
 
@@ -149,35 +95,34 @@ module Console : sig
 
       val set_stderr : t -> WritableStream.t -> unit [@@js.set "stderr"]
 
-      val get_ignoreErrors : t -> bool [@@js.get "ignoreErrors"]
+      val get_ignore_errors : t -> bool [@@js.get "ignoreErrors"]
 
-      val set_ignoreErrors : t -> bool -> unit [@@js.set "ignoreErrors"]
+      val set_ignore_errors : t -> bool -> unit [@@js.set "ignoreErrors"]
 
-      val get_colorMode : t -> ([ `auto [@js "auto"] ][@js.enum]) or_boolean
+      val get_color_mode : t -> ([ `auto [@js "auto"] ][@js.enum]) or_boolean
         [@@js.get "colorMode"]
 
-      val set_colorMode : t -> ([ `auto ][@js.enum]) or_boolean -> unit
+      val set_color_mode : t -> ([ `auto ][@js.enum]) or_boolean -> unit
         [@@js.set "colorMode"]
 
-      val get_inspectOptions : t -> Node_util.Util.InspectOptions.t
+      val get_inspect_options : t -> Node_util.Util.InspectOptions.t
         [@@js.get "inspectOptions"]
 
-      val set_inspectOptions : t -> Node_util.Util.InspectOptions.t -> unit
+      val set_inspect_options : t -> Node_util.Util.InspectOptions.t -> unit
         [@@js.set "inspectOptions"]
     end
     [@@js.scope "ConsoleConstructorOptions"]
 
     module ConsoleConstructor : sig
-      type t = console_global_NodeJS_ConsoleConstructor
+      type t
 
       val t_to_js : t -> Ojs.t
 
       val t_of_js : Ojs.t -> t
 
-      val get_prototype : t -> console_global_Console [@@js.get "prototype"]
+      val get_prototype : t -> t [@@js.get "prototype"]
 
-      val set_prototype : t -> console_global_Console -> unit
-        [@@js.set "prototype"]
+      val set_prototype : t -> t -> unit [@@js.set "prototype"]
 
       val create
         :  t
@@ -185,32 +130,77 @@ module Console : sig
         -> ?stderr:WritableStream.t
         -> ?ignoreErrors:bool
         -> unit
-        -> console_global_Console
+        -> t
         [@@js.apply_newable]
 
-      val create'
-        :  t
-        -> options:console_global_NodeJS_ConsoleConstructorOptions
-        -> console_global_Console
+      val create' : t -> options:ConsoleConstructorOptions.t -> t
         [@@js.apply_newable]
     end
     [@@js.scope "ConsoleConstructor"]
 
-    module Global : sig
-      type t = console_global_NodeJS_Global
+    val get_console : t -> ConsoleConstructor.t [@@js.get "Console"]
 
-      val t_to_js : t -> Ojs.t
-
-      val t_of_js : Ojs.t -> t
-
-      val get_console : t -> console_global_Console [@@js.get "console"]
-
-      val set_console : t -> console_global_Console -> unit [@@js.set "console"]
-    end
-    [@@js.scope "Global"]
+    val set_console : t -> ConsoleConstructor.t -> unit [@@js.set "Console"]
   end
   [@@js.scope "Console"]
+
+  val assert_
+    :  bool
+    -> ?message:string
+    -> ?params:(any list[@js.variadic])
+    -> unit
+    [@@js.global "assert"]
+
+  val clear : unit [@@js.global "clear"]
+
+  val count : ?label:string -> unit -> unit [@@js.global "count"]
+
+  val count_reset : ?label:string -> unit -> unit [@@js.global "countReset"]
+
+  val debug : string -> ?params:(any list[@js.variadic]) -> unit
+    [@@js.global "debug"]
+
+  val dir : any -> ?options:Node_util.Util.InspectOptions.t -> unit -> unit
+    [@@js.global "dir"]
+
+  val dirxml : (any list[@js.variadic]) -> unit [@@js.global "dirxml"]
+
+  val error : string -> ?params:(any list[@js.variadic]) -> unit
+    [@@js.global "error"]
+
+  val group : (any list[@js.variadic]) -> unit [@@js.global "group"]
+
+  val group_collapsed : (any list[@js.variadic]) -> unit
+    [@@js.global "groupCollapsed"]
+
+  val group_end : unit [@@js.global "groupEnd"]
+
+  val info : string -> ?params:(any list[@js.variadic]) -> unit
+    [@@js.global "info"]
+
+  val log : string -> ?params:(any list[@js.variadic]) -> unit
+    [@@js.global "log"]
+
+  val table : tabularData:any -> ?properties:string list -> unit -> unit
+    [@@js.global "table"]
+
+  val time : ?label:string -> unit -> unit [@@js.global "time"]
+
+  val time_end : ?label:string -> unit -> unit [@@js.global "timeEnd"]
+
+  val time_log : ?label:string -> data:(any list[@js.variadic]) -> unit
+    [@@js.global "timeLog"]
+
+  val trace : string -> ?params:(any list[@js.variadic]) -> unit
+    [@@js.global "trace"]
+
+  val warn : string -> ?params:(any list[@js.variadic]) -> unit
+    [@@js.global "warn"]
+
+  val profile : ?label:string -> unit -> unit [@@js.global "profile"]
+
+  val profile_end : ?label:string -> unit -> unit [@@js.global "profileEnd"]
+
+  val time_stamp : ?label:string -> unit -> unit [@@js.global "timeStamp"]
 end
 [@@js.scope Import.console]
-
-val console : console_global_Console [@@js.global "console"]

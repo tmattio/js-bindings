@@ -4,35 +4,13 @@
 open Es5
 module Internal =
   struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
     module Types =
       struct
-        open AnonymousInterfaces
-        type _WorkDoneProgressBegin = [ `WorkDoneProgressBegin ] intf
-        and _WorkDoneProgressCancelNotification_HandlerSignature =
+        type _WorkDoneProgressCancelNotification_HandlerSignature =
           _WorkDoneProgressCancelParams NotificationHandler.t
-        and _WorkDoneProgressCancelParams =
-          [ `WorkDoneProgressCancelParams ] intf
-        and _WorkDoneProgressClientCapabilities =
-          [ `WorkDoneProgressClientCapabilities ] intf
-        and _WorkDoneProgressCreateParams =
-          [ `WorkDoneProgressCreateParams ] intf
         and _WorkDoneProgressCreateRequest_HandlerSignature =
           (_WorkDoneProgressCreateParams, unit, unit) RequestHandler.t
-        and _WorkDoneProgressEnd = [ `WorkDoneProgressEnd ] intf
-        and _WorkDoneProgressReport = [ `WorkDoneProgressReport ] intf
-        let rec _WorkDoneProgressBegin_of_js :
-          Ojs.t -> _WorkDoneProgressBegin = Obj.magic
-        and _WorkDoneProgressBegin_to_js : _WorkDoneProgressBegin -> Ojs.t =
-          Obj.magic
-        and _WorkDoneProgressCancelNotification_HandlerSignature_of_js :
+        let rec _WorkDoneProgressCancelNotification_HandlerSignature_of_js :
           Ojs.t -> _WorkDoneProgressCancelNotification_HandlerSignature =
           fun (x3 : Ojs.t) ->
             NotificationHandler.t_of_js _WorkDoneProgressCancelParams_of_js
@@ -42,18 +20,6 @@ module Internal =
           fun (x1 : _WorkDoneProgressCancelParams NotificationHandler.t) ->
             NotificationHandler.t_to_js _WorkDoneProgressCancelParams_to_js
               x1
-        and _WorkDoneProgressCancelParams_of_js :
-          Ojs.t -> _WorkDoneProgressCancelParams = Obj.magic
-        and _WorkDoneProgressCancelParams_to_js :
-          _WorkDoneProgressCancelParams -> Ojs.t = Obj.magic
-        and _WorkDoneProgressClientCapabilities_of_js :
-          Ojs.t -> _WorkDoneProgressClientCapabilities = Obj.magic
-        and _WorkDoneProgressClientCapabilities_to_js :
-          _WorkDoneProgressClientCapabilities -> Ojs.t = Obj.magic
-        and _WorkDoneProgressCreateParams_of_js :
-          Ojs.t -> _WorkDoneProgressCreateParams = Obj.magic
-        and _WorkDoneProgressCreateParams_to_js :
-          _WorkDoneProgressCreateParams -> Ojs.t = Obj.magic
         and _WorkDoneProgressCreateRequest_HandlerSignature_of_js :
           Ojs.t -> _WorkDoneProgressCreateRequest_HandlerSignature =
           fun (x9 : Ojs.t) ->
@@ -67,26 +33,13 @@ module Internal =
             ->
             RequestHandler.t_to_js _WorkDoneProgressCreateParams_to_js
               Ojs.unit_to_js Ojs.unit_to_js x5
-        and _WorkDoneProgressEnd_of_js : Ojs.t -> _WorkDoneProgressEnd =
-          Obj.magic
-        and _WorkDoneProgressEnd_to_js : _WorkDoneProgressEnd -> Ojs.t =
-          Obj.magic
-        and _WorkDoneProgressReport_of_js : Ojs.t -> _WorkDoneProgressReport
-          = Obj.magic
-        and _WorkDoneProgressReport_to_js : _WorkDoneProgressReport -> Ojs.t
-          = Obj.magic
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x14 : Ojs.t) -> anonymous_interface_0_of_js x14
-    and t_to_js : t -> Ojs.t =
-      fun (x13 : anonymous_interface_0) -> anonymous_interface_0_to_js x13
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x14 : Ojs.t) -> x14
+    and t_to_js : t -> Ojs.t = fun (x13 : Ojs.t) -> x13
     let (get_workDoneProgress : t -> bool) =
       fun (x15 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x15) "workDoneProgress")
@@ -104,15 +57,15 @@ module WorkDoneProgressClientCapabilities =
     and t_to_js : t -> Ojs.t =
       fun (x18 : _WorkDoneProgressClientCapabilities) ->
         _WorkDoneProgressClientCapabilities_to_js x18
-    let (get_window : t -> anonymous_interface_0) =
+    let (get_window : t -> AnonymousInterface0.t) =
       fun (x20 : t) ->
-        anonymous_interface_0_of_js
+        AnonymousInterface0.t_of_js
           (Ojs.get_prop_ascii (t_to_js x20) "window")
-    let (set_window : t -> anonymous_interface_0 -> unit) =
+    let (set_window : t -> AnonymousInterface0.t -> unit) =
       fun (x21 : t) ->
-        fun (x22 : anonymous_interface_0) ->
+        fun (x22 : AnonymousInterface0.t) ->
           Ojs.set_prop_ascii (t_to_js x21) "window"
-            (anonymous_interface_0_to_js x22)
+            (AnonymousInterface0.t_to_js x22)
   end
 module WorkDoneProgressBegin =
   struct

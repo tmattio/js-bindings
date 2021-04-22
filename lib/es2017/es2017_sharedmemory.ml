@@ -7,7 +7,7 @@ module SharedArrayBuffer =
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
     and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
-    let (get_byteLength : t -> int) =
+    let (get_byte_length : t -> int) =
       fun (x3 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x3) "byteLength")
     let (slice : t -> begin_:int -> ?end_:int -> unit -> t) =
@@ -50,7 +50,7 @@ module SharedArrayBufferConstructor =
           SharedArrayBuffer.t_of_js
             (Ojs.new_obj (t_to_js x15) [|(Ojs.int_to_js x14)|])
   end
-let (sharedArrayBuffer : SharedArrayBufferConstructor.t) =
+let (shared_array_buffer : SharedArrayBufferConstructor.t) =
   SharedArrayBufferConstructor.t_of_js
     (Ojs.get_prop_ascii Ojs.global "SharedArrayBuffer")
 module ArrayBufferTypes =
@@ -58,11 +58,11 @@ module ArrayBufferTypes =
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x17 : Ojs.t) -> x17
     and t_to_js : t -> Ojs.t = fun (x16 : Ojs.t) -> x16
-    let (get_SharedArrayBuffer : t -> SharedArrayBuffer.t) =
+    let (get_shared_array_buffer : t -> SharedArrayBuffer.t) =
       fun (x18 : t) ->
         SharedArrayBuffer.t_of_js
           (Ojs.get_prop_ascii (t_to_js x18) "SharedArrayBuffer")
-    let (set_SharedArrayBuffer : t -> SharedArrayBuffer.t -> unit) =
+    let (set_shared_array_buffer : t -> SharedArrayBuffer.t -> unit) =
       fun (x19 : t) ->
         fun (x20 : SharedArrayBuffer.t) ->
           Ojs.set_prop_ascii (t_to_js x19) "SharedArrayBuffer"
@@ -113,7 +113,7 @@ module Atomics =
                         Int8Array.t_to_js Uint16Array.t_to_js
                         Uint32Array.t_to_js Uint8Array.t_to_js x33);(
                      Ojs.int_to_js x40);(Ojs.int_to_js x41)|])
-    let (compareExchange :
+    let (compare_exchange :
       t ->
         typedArray:(Int16Array.t, Int32Array.t, Int8Array.t, Uint16Array.t,
           Uint32Array.t, Uint8Array.t) union6 ->
@@ -155,7 +155,7 @@ module Atomics =
                         Int8Array.t_to_js Uint16Array.t_to_js
                         Uint32Array.t_to_js Uint8Array.t_to_js x54);(
                      Ojs.int_to_js x61);(Ojs.int_to_js x62)|])
-    let (isLockFree : t -> size:int -> bool) =
+    let (is_lock_free : t -> size:int -> bool) =
       fun (x65 : t) ->
         fun ~size:(x64 : int) ->
           Ojs.bool_of_js

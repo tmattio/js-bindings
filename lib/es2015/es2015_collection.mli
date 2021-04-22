@@ -15,7 +15,7 @@ module Map : sig
 
   val delete : ('K, 'V) t -> key:'K -> bool [@@js.call "delete"]
 
-  val forEach
+  val for_each
     :  ('K, 'V) t
     -> callbackfn:(value:'V -> key:'K -> map:('K, 'V) t -> unit)
     -> ?thisArg:any
@@ -23,11 +23,11 @@ module Map : sig
     -> unit
     [@@js.call "forEach"]
 
-  val get_ : ('K, 'V) t -> key:'K -> 'V or_undefined [@@js.call "get"]
+  val get : ('K, 'V) t -> key:'K -> 'V or_undefined [@@js.call "get"]
 
   val has : ('K, 'V) t -> key:'K -> bool [@@js.call "has"]
 
-  val set_ : ('K, 'V) t -> key:'K -> value:'V -> ('K, 'V) t [@@js.call "set"]
+  val set : ('K, 'V) t -> key:'K -> value:'V -> ('K, 'V) t [@@js.call "set"]
 
   val get_size : ('K, 'V) t -> int [@@js.get "size"]
 
@@ -64,7 +64,7 @@ module ReadonlyMap : sig
 
   val t_of_js : (Ojs.t -> 'K) -> (Ojs.t -> 'V) -> Ojs.t -> ('K, 'V) t
 
-  val forEach
+  val for_each
     :  ('K, 'V) t
     -> callbackfn:(value:'V -> key:'K -> map:('K, 'V) t -> unit)
     -> ?thisArg:any
@@ -72,7 +72,7 @@ module ReadonlyMap : sig
     -> unit
     [@@js.call "forEach"]
 
-  val get_ : ('K, 'V) t -> key:'K -> 'V or_undefined [@@js.call "get"]
+  val get : ('K, 'V) t -> key:'K -> 'V or_undefined [@@js.call "get"]
 
   val has : ('K, 'V) t -> key:'K -> bool [@@js.call "has"]
 
@@ -89,11 +89,11 @@ module WeakMap : sig
 
   val delete : ('K, 'V) t -> key:'K -> bool [@@js.call "delete"]
 
-  val get_ : ('K, 'V) t -> key:'K -> 'V or_undefined [@@js.call "get"]
+  val get : ('K, 'V) t -> key:'K -> 'V or_undefined [@@js.call "get"]
 
   val has : ('K, 'V) t -> key:'K -> bool [@@js.call "has"]
 
-  val set_ : ('K, 'V) t -> key:'K -> value:'V -> ('K, 'V) t [@@js.call "set"]
+  val set : ('K, 'V) t -> key:'K -> value:'V -> ('K, 'V) t [@@js.call "set"]
 
   (* Constructor *)
 
@@ -120,7 +120,7 @@ module WeakMapConstructor : sig
 end
 [@@js.scope "WeakMapConstructor"]
 
-val weakMap : WeakMapConstructor.t [@@js.global "WeakMap"]
+val weak_map : WeakMapConstructor.t [@@js.global "WeakMap"]
 
 module Set : sig
   type 'T t
@@ -135,7 +135,7 @@ module Set : sig
 
   val delete : 'T t -> value:'T -> bool [@@js.call "delete"]
 
-  val forEach
+  val for_each
     :  'T t
     -> callbackfn:(value:'T -> value2:'T -> set_:'T t -> unit)
     -> ?thisArg:any
@@ -166,7 +166,7 @@ module SetConstructor : sig
 end
 [@@js.scope "SetConstructor"]
 
-val set_ : SetConstructor.t [@@js.global "Set"]
+val set : SetConstructor.t [@@js.global "Set"]
 
 module ReadonlySet : sig
   type 'T t
@@ -175,7 +175,7 @@ module ReadonlySet : sig
 
   val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
 
-  val forEach
+  val for_each
     :  'T t
     -> callbackfn:(value:'T -> value2:'T -> set_:'T t -> unit)
     -> ?thisArg:any
@@ -221,4 +221,4 @@ module WeakSetConstructor : sig
 end
 [@@js.scope "WeakSetConstructor"]
 
-val weakSet : WeakSetConstructor.t [@@js.global "WeakSet"]
+val weak_set : WeakSetConstructor.t [@@js.global "WeakSet"]

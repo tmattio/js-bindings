@@ -5,27 +5,9 @@ open Es2020
 open Node_globals
 module Internal =
   struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
     module Types =
       struct
-        open AnonymousInterfaces
-        type dns_AnyARecord = [ `Dns_AnyARecord  | `Dns_RecordWithTtl ] intf
-        and dns_AnyAaaaRecord =
-          [ `Dns_AnyAaaaRecord  | `Dns_RecordWithTtl ] intf
-        and dns_AnyCnameRecord = [ `Dns_AnyCnameRecord ] intf
-        and dns_AnyMxRecord = [ `Dns_AnyMxRecord  | `Dns_MxRecord ] intf
-        and dns_AnyNaptrRecord =
-          [ `Dns_AnyNaptrRecord  | `Dns_NaptrRecord ] intf
-        and dns_AnyNsRecord = [ `Dns_AnyNsRecord ] intf
-        and dns_AnyPtrRecord = [ `Dns_AnyPtrRecord ] intf
-        and dns_AnyRecord =
+        type dns_AnyRecord =
           [ `U_s0_A of dns_AnyARecord  | `U_s1_AAAA of dns_AnyAaaaRecord 
           | `U_s3_CNAME of dns_AnyCnameRecord  | `U_s4_MX of dns_AnyMxRecord 
           | `U_s5_NAPTR of dns_AnyNaptrRecord  | `U_s6_NS of dns_AnyNsRecord 
@@ -33,45 +15,7 @@ module Internal =
           | `U_s9_SRV of dns_AnySrvRecord  | `U_s10_TXT of dns_AnyTxtRecord ]
         and dns_AnyRecordWithTtl =
           [ `U_s0_A of dns_AnyARecord  | `U_s1_AAAA of dns_AnyAaaaRecord ]
-        and dns_AnySoaRecord = [ `Dns_AnySoaRecord  | `Dns_SoaRecord ] intf
-        and dns_AnySrvRecord = [ `Dns_AnySrvRecord  | `Dns_SrvRecord ] intf
-        and dns_AnyTxtRecord = [ `Dns_AnyTxtRecord ] intf
-        and dns_LookupAddress = [ `Dns_LookupAddress ] intf
-        and dns_LookupAllOptions =
-          [ `Dns_LookupAllOptions  | `Dns_LookupOptions ] intf
-        and dns_LookupOneOptions =
-          [ `Dns_LookupOneOptions  | `Dns_LookupOptions ] intf
-        and dns_LookupOptions = [ `Dns_LookupOptions ] intf
-        and dns_MxRecord = [ `Dns_MxRecord ] intf
-        and dns_NaptrRecord = [ `Dns_NaptrRecord ] intf
-        and dns_RecordWithTtl = [ `Dns_RecordWithTtl ] intf
-        and dns_ResolveOptions = [ `Dns_ResolveOptions ] intf
-        and dns_ResolveWithTtlOptions =
-          [ `Dns_ResolveWithTtlOptions  | `Dns_ResolveOptions ] intf
-        and dns_Resolver = [ `Dns_Resolver ] intf
-        and dns_ResolverOptions = [ `Dns_ResolverOptions ] intf
-        and dns_SoaRecord = [ `Dns_SoaRecord ] intf
-        and dns_SrvRecord = [ `Dns_SrvRecord ] intf
-        and dns_promises_Resolver = [ `Dns_promises_Resolver ] intf
-        let rec dns_AnyARecord_of_js : Ojs.t -> dns_AnyARecord = Obj.magic
-        and dns_AnyARecord_to_js : dns_AnyARecord -> Ojs.t = Obj.magic
-        and dns_AnyAaaaRecord_of_js : Ojs.t -> dns_AnyAaaaRecord = Obj.magic
-        and dns_AnyAaaaRecord_to_js : dns_AnyAaaaRecord -> Ojs.t = Obj.magic
-        and dns_AnyCnameRecord_of_js : Ojs.t -> dns_AnyCnameRecord =
-          Obj.magic
-        and dns_AnyCnameRecord_to_js : dns_AnyCnameRecord -> Ojs.t =
-          Obj.magic
-        and dns_AnyMxRecord_of_js : Ojs.t -> dns_AnyMxRecord = Obj.magic
-        and dns_AnyMxRecord_to_js : dns_AnyMxRecord -> Ojs.t = Obj.magic
-        and dns_AnyNaptrRecord_of_js : Ojs.t -> dns_AnyNaptrRecord =
-          Obj.magic
-        and dns_AnyNaptrRecord_to_js : dns_AnyNaptrRecord -> Ojs.t =
-          Obj.magic
-        and dns_AnyNsRecord_of_js : Ojs.t -> dns_AnyNsRecord = Obj.magic
-        and dns_AnyNsRecord_to_js : dns_AnyNsRecord -> Ojs.t = Obj.magic
-        and dns_AnyPtrRecord_of_js : Ojs.t -> dns_AnyPtrRecord = Obj.magic
-        and dns_AnyPtrRecord_to_js : dns_AnyPtrRecord -> Ojs.t = Obj.magic
-        and dns_AnyRecord_of_js : Ojs.t -> dns_AnyRecord =
+        let rec dns_AnyRecord_of_js : Ojs.t -> dns_AnyRecord =
           fun (x12 : Ojs.t) ->
             let x13 = x12 in
             match Ojs.string_of_js (Ojs.get_prop_ascii x13 "type") with
@@ -125,64 +69,13 @@ module Internal =
             match x14 with
             | `U_s0_A x15 -> dns_AnyARecord_to_js x15
             | `U_s1_AAAA x16 -> dns_AnyAaaaRecord_to_js x16
-        and dns_AnySoaRecord_of_js : Ojs.t -> dns_AnySoaRecord = Obj.magic
-        and dns_AnySoaRecord_to_js : dns_AnySoaRecord -> Ojs.t = Obj.magic
-        and dns_AnySrvRecord_of_js : Ojs.t -> dns_AnySrvRecord = Obj.magic
-        and dns_AnySrvRecord_to_js : dns_AnySrvRecord -> Ojs.t = Obj.magic
-        and dns_AnyTxtRecord_of_js : Ojs.t -> dns_AnyTxtRecord = Obj.magic
-        and dns_AnyTxtRecord_to_js : dns_AnyTxtRecord -> Ojs.t = Obj.magic
-        and dns_LookupAddress_of_js : Ojs.t -> dns_LookupAddress = Obj.magic
-        and dns_LookupAddress_to_js : dns_LookupAddress -> Ojs.t = Obj.magic
-        and dns_LookupAllOptions_of_js : Ojs.t -> dns_LookupAllOptions =
-          Obj.magic
-        and dns_LookupAllOptions_to_js : dns_LookupAllOptions -> Ojs.t =
-          Obj.magic
-        and dns_LookupOneOptions_of_js : Ojs.t -> dns_LookupOneOptions =
-          Obj.magic
-        and dns_LookupOneOptions_to_js : dns_LookupOneOptions -> Ojs.t =
-          Obj.magic
-        and dns_LookupOptions_of_js : Ojs.t -> dns_LookupOptions = Obj.magic
-        and dns_LookupOptions_to_js : dns_LookupOptions -> Ojs.t = Obj.magic
-        and dns_MxRecord_of_js : Ojs.t -> dns_MxRecord = Obj.magic
-        and dns_MxRecord_to_js : dns_MxRecord -> Ojs.t = Obj.magic
-        and dns_NaptrRecord_of_js : Ojs.t -> dns_NaptrRecord = Obj.magic
-        and dns_NaptrRecord_to_js : dns_NaptrRecord -> Ojs.t = Obj.magic
-        and dns_RecordWithTtl_of_js : Ojs.t -> dns_RecordWithTtl = Obj.magic
-        and dns_RecordWithTtl_to_js : dns_RecordWithTtl -> Ojs.t = Obj.magic
-        and dns_ResolveOptions_of_js : Ojs.t -> dns_ResolveOptions =
-          Obj.magic
-        and dns_ResolveOptions_to_js : dns_ResolveOptions -> Ojs.t =
-          Obj.magic
-        and dns_ResolveWithTtlOptions_of_js :
-          Ojs.t -> dns_ResolveWithTtlOptions = Obj.magic
-        and dns_ResolveWithTtlOptions_to_js :
-          dns_ResolveWithTtlOptions -> Ojs.t = Obj.magic
-        and dns_Resolver_of_js : Ojs.t -> dns_Resolver = Obj.magic
-        and dns_Resolver_to_js : dns_Resolver -> Ojs.t = Obj.magic
-        and dns_ResolverOptions_of_js : Ojs.t -> dns_ResolverOptions =
-          Obj.magic
-        and dns_ResolverOptions_to_js : dns_ResolverOptions -> Ojs.t =
-          Obj.magic
-        and dns_SoaRecord_of_js : Ojs.t -> dns_SoaRecord = Obj.magic
-        and dns_SoaRecord_to_js : dns_SoaRecord -> Ojs.t = Obj.magic
-        and dns_SrvRecord_of_js : Ojs.t -> dns_SrvRecord = Obj.magic
-        and dns_SrvRecord_to_js : dns_SrvRecord -> Ojs.t = Obj.magic
-        and dns_promises_Resolver_of_js : Ojs.t -> dns_promises_Resolver =
-          Obj.magic
-        and dns_promises_Resolver_to_js : dns_promises_Resolver -> Ojs.t =
-          Obj.magic
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x20 : Ojs.t) -> anonymous_interface_0_of_js x20
-    and t_to_js : t -> Ojs.t =
-      fun (x19 : anonymous_interface_0) -> anonymous_interface_0_to_js x19
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x20 : Ojs.t) -> x20
+    and t_to_js : t -> Ojs.t = fun (x19 : Ojs.t) -> x19
     let (get_hostname : t -> string) =
       fun (x21 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x21) "hostname")
@@ -545,10 +438,10 @@ module Dns =
     module LookupService =
       struct
         let (__promisify__ :
-          address:string -> port:int -> anonymous_interface_0 Promise.t) =
+          address:string -> port:int -> AnonymousInterface0.t Promise.t) =
           fun ~address:(x122 : string) ->
             fun ~port:(x123 : int) ->
-              Promise.t_of_js anonymous_interface_0_of_js
+              Promise.t_of_js AnonymousInterface0.t_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "lookupService")
                    "__promisify__"
                    [|(Ojs.string_to_js x122);(Ojs.int_to_js x123)|])
@@ -2676,10 +2569,10 @@ module Dns =
               (Ojs.call (Ojs.get_prop_ascii Import.dns "promises") "lookup"
                  [|(Ojs.string_to_js x727)|])
         let (lookupService :
-          address:string -> port:int -> anonymous_interface_0 Promise.t) =
+          address:string -> port:int -> AnonymousInterface0.t Promise.t) =
           fun ~address:(x729 : string) ->
             fun ~port:(x730 : int) ->
-              Promise.t_of_js anonymous_interface_0_of_js
+              Promise.t_of_js AnonymousInterface0.t_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
                    "lookupService"
                    [|(Ojs.string_to_js x729);(Ojs.int_to_js x730)|])

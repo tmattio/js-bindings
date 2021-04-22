@@ -3,19 +3,7 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
 module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type punycode_ucs2 = [ `Punycode_ucs2 ] intf
-        let rec punycode_ucs2_of_js : Ojs.t -> punycode_ucs2 = Obj.magic
-        and punycode_ucs2_to_js : punycode_ucs2 -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
+  struct module Types = struct open AnonymousInterfaces end end
 module Punycode =
   struct
     let (decode : string:string -> string) =

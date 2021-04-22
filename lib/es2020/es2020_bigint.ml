@@ -7,10 +7,10 @@ module BigIntToLocaleStringOptions =
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
     and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
-    let (get_localeMatcher : t -> string) =
+    let (get_locale_matcher : t -> string) =
       fun (x3 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x3) "localeMatcher")
-    let (set_localeMatcher : t -> string -> unit) =
+    let (set_locale_matcher : t -> string -> unit) =
       fun (x4 : t) ->
         fun (x5 : string) ->
           Ojs.set_prop_ascii (t_to_js x4) "localeMatcher"
@@ -22,10 +22,10 @@ module BigIntToLocaleStringOptions =
       fun (x7 : t) ->
         fun (x8 : string) ->
           Ojs.set_prop_ascii (t_to_js x7) "style" (Ojs.string_to_js x8)
-    let (get_numberingSystem : t -> string) =
+    let (get_numbering_system : t -> string) =
       fun (x9 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x9) "numberingSystem")
-    let (set_numberingSystem : t -> string -> unit) =
+    let (set_numbering_system : t -> string -> unit) =
       fun (x10 : t) ->
         fun (x11 : string) ->
           Ojs.set_prop_ascii (t_to_js x10) "numberingSystem"
@@ -37,10 +37,10 @@ module BigIntToLocaleStringOptions =
       fun (x13 : t) ->
         fun (x14 : string) ->
           Ojs.set_prop_ascii (t_to_js x13) "unit" (Ojs.string_to_js x14)
-    let (get_unitDisplay : t -> string) =
+    let (get_unit_display : t -> string) =
       fun (x15 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x15) "unitDisplay")
-    let (set_unitDisplay : t -> string -> unit) =
+    let (set_unit_display : t -> string -> unit) =
       fun (x16 : t) ->
         fun (x17 : string) ->
           Ojs.set_prop_ascii (t_to_js x16) "unitDisplay"
@@ -52,22 +52,22 @@ module BigIntToLocaleStringOptions =
       fun (x19 : t) ->
         fun (x20 : string) ->
           Ojs.set_prop_ascii (t_to_js x19) "currency" (Ojs.string_to_js x20)
-    let (get_currencyDisplay : t -> string) =
+    let (get_currency_display : t -> string) =
       fun (x21 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x21) "currencyDisplay")
-    let (set_currencyDisplay : t -> string -> unit) =
+    let (set_currency_display : t -> string -> unit) =
       fun (x22 : t) ->
         fun (x23 : string) ->
           Ojs.set_prop_ascii (t_to_js x22) "currencyDisplay"
             (Ojs.string_to_js x23)
-    let (get_useGrouping : t -> bool) =
+    let (get_use_grouping : t -> bool) =
       fun (x24 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x24) "useGrouping")
-    let (set_useGrouping : t -> bool -> unit) =
+    let (set_use_grouping : t -> bool -> unit) =
       fun (x25 : t) ->
         fun (x26 : bool) ->
           Ojs.set_prop_ascii (t_to_js x25) "useGrouping" (Ojs.bool_to_js x26)
-    let (get_minimumIntegerDigits :
+    let (get_minimum_integer_digits :
       t ->
         [ `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4  | `L_n_5  | `L_n_6  | 
           `L_n_7 
@@ -100,7 +100,7 @@ module BigIntToLocaleStringOptions =
         | 20 -> `L_n_20
         | 21 -> `L_n_21
         | _ -> assert false
-    let (set_minimumIntegerDigits :
+    let (set_minimum_integer_digits :
       t ->
         [ `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4  | `L_n_5  | `L_n_6  | 
           `L_n_7 
@@ -140,7 +140,7 @@ module BigIntToLocaleStringOptions =
              | `L_n_19 -> Ojs.string_to_js "LN19"
              | `L_n_20 -> Ojs.string_to_js "LN20"
              | `L_n_21 -> Ojs.string_to_js "LN21")
-    let (get_minimumFractionDigits :
+    let (get_minimum_fraction_digits :
       t ->
         [ `L_n_0  | `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4  | `L_n_5  | 
           `L_n_6 
@@ -173,7 +173,7 @@ module BigIntToLocaleStringOptions =
         | 19 -> `L_n_19
         | 20 -> `L_n_20
         | _ -> assert false
-    let (set_minimumFractionDigits :
+    let (set_minimum_fraction_digits :
       t ->
         [ `L_n_0  | `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4  | `L_n_5  | 
           `L_n_6 
@@ -213,7 +213,7 @@ module BigIntToLocaleStringOptions =
              | `L_n_18 -> Ojs.string_to_js "LN18"
              | `L_n_19 -> Ojs.string_to_js "LN19"
              | `L_n_20 -> Ojs.string_to_js "LN20")
-    let (get_maximumFractionDigits :
+    let (get_maximum_fraction_digits :
       t ->
         [ `L_n_0  | `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4  | `L_n_5  | 
           `L_n_6 
@@ -246,7 +246,7 @@ module BigIntToLocaleStringOptions =
         | 19 -> `L_n_19
         | 20 -> `L_n_20
         | _ -> assert false
-    let (set_maximumFractionDigits :
+    let (set_maximum_fraction_digits :
       t ->
         [ `L_n_0  | `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4  | `L_n_5  | 
           `L_n_6 
@@ -286,7 +286,7 @@ module BigIntToLocaleStringOptions =
              | `L_n_18 -> Ojs.string_to_js "LN18"
              | `L_n_19 -> Ojs.string_to_js "LN19"
              | `L_n_20 -> Ojs.string_to_js "LN20")
-    let (get_minimumSignificantDigits :
+    let (get_minimum_significant_digits :
       t ->
         [ `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4  | `L_n_5  | `L_n_6  | 
           `L_n_7 
@@ -319,7 +319,7 @@ module BigIntToLocaleStringOptions =
         | 20 -> `L_n_20
         | 21 -> `L_n_21
         | _ -> assert false
-    let (set_minimumSignificantDigits :
+    let (set_minimum_significant_digits :
       t ->
         [ `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4  | `L_n_5  | `L_n_6  | 
           `L_n_7 
@@ -359,7 +359,7 @@ module BigIntToLocaleStringOptions =
              | `L_n_19 -> Ojs.string_to_js "LN19"
              | `L_n_20 -> Ojs.string_to_js "LN20"
              | `L_n_21 -> Ojs.string_to_js "LN21")
-    let (get_maximumSignificantDigits :
+    let (get_maximum_significant_digits :
       t ->
         [ `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4  | `L_n_5  | `L_n_6  | 
           `L_n_7 
@@ -392,7 +392,7 @@ module BigIntToLocaleStringOptions =
         | 20 -> `L_n_20
         | 21 -> `L_n_21
         | _ -> assert false
-    let (set_maximumSignificantDigits :
+    let (set_maximum_significant_digits :
       t ->
         [ `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4  | `L_n_5  | `L_n_6  | 
           `L_n_7 
@@ -439,10 +439,10 @@ module BigIntToLocaleStringOptions =
       fun (x48 : t) ->
         fun (x49 : string) ->
           Ojs.set_prop_ascii (t_to_js x48) "notation" (Ojs.string_to_js x49)
-    let (get_compactDisplay : t -> string) =
+    let (get_compact_display : t -> string) =
       fun (x50 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x50) "compactDisplay")
-    let (set_compactDisplay : t -> string -> unit) =
+    let (set_compact_display : t -> string -> unit) =
       fun (x51 : t) ->
         fun (x52 : string) ->
           Ojs.set_prop_ascii (t_to_js x51) "compactDisplay"
@@ -453,7 +453,7 @@ module BigInt =
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x54 : Ojs.t) -> x54
     and t_to_js : t -> Ojs.t = fun (x53 : Ojs.t) -> x53
-    let (toString : t -> ?radix:int -> unit -> string) =
+    let (to_string : t -> ?radix:int -> unit -> string) =
       fun (x58 : t) ->
         fun ?radix:(x55 : int option) ->
           fun () ->
@@ -470,7 +470,7 @@ module BigInt =
                                 (Ojs.call x56 "push" [|(Ojs.int_to_js x57)|])
                           | None -> ());
                          x56))|])
-    let (toLocaleString :
+    let (to_locale_string :
       t ->
         ?locales:string ->
           ?options:BigIntToLocaleStringOptions.t -> unit -> string)
@@ -500,15 +500,15 @@ module BigInt =
                                           x63)|])
                             | None -> ());
                            x62))|])
-    let (valueOf : t -> bigint) =
+    let (value_of : t -> bigint) =
       fun (x67 : t) -> bigint_of_js (Ojs.call (t_to_js x67) "valueOf" [||])
-    let (asIntN : bits:int -> int:bigint -> bigint) =
+    let (as_int_n : bits:int -> int:bigint -> bigint) =
       fun ~bits:(x68 : int) ->
         fun ~int:(x69 : bigint) ->
           bigint_of_js
             (Ojs.call (Ojs.get_prop_ascii Ojs.global "BitInt") "asIntN"
                [|(Ojs.int_to_js x68);(bigint_to_js x69)|])
-    let (asUintN : bits:int -> int:bigint -> bigint) =
+    let (as_uint_n : bits:int -> int:bigint -> bigint) =
       fun ~bits:(x70 : int) ->
         fun ~int:(x71 : bigint) ->
           bigint_of_js
@@ -539,14 +539,14 @@ module BigIntConstructor =
     let (get_prototype : t -> BigInt.t) =
       fun (x78 : t) ->
         BigInt.t_of_js (Ojs.get_prop_ascii (t_to_js x78) "prototype")
-    let (asIntN : t -> bits:int -> int:bigint -> bigint) =
+    let (as_int_n : t -> bits:int -> int:bigint -> bigint) =
       fun (x81 : t) ->
         fun ~bits:(x79 : int) ->
           fun ~int:(x80 : bigint) ->
             bigint_of_js
               (Ojs.call (t_to_js x81) "asIntN"
                  [|(Ojs.int_to_js x79);(bigint_to_js x80)|])
-    let (asUintN : t -> bits:int -> int:bigint -> bigint) =
+    let (as_uint_n : t -> bits:int -> int:bigint -> bigint) =
       fun (x84 : t) ->
         fun ~bits:(x82 : int) ->
           fun ~int:(x83 : bigint) ->
@@ -554,27 +554,27 @@ module BigIntConstructor =
               (Ojs.call (t_to_js x84) "asUintN"
                  [|(Ojs.int_to_js x82);(bigint_to_js x83)|])
   end
-let (bigInt : BigIntConstructor.t) =
+let (big_int : BigIntConstructor.t) =
   BigIntConstructor.t_of_js (Ojs.get_prop_ascii Ojs.global "BigInt")
 module BigInt64Array =
   struct
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x86 : Ojs.t) -> x86
     and t_to_js : t -> Ojs.t = fun (x85 : Ojs.t) -> x85
-    let (get_BYTES_PER_ELEMENT : t -> int) =
+    let (get_bytes_per_element : t -> int) =
       fun (x87 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x87) "BYTES_PER_ELEMENT")
     let (get_buffer : t -> ArrayBuffer.t) =
       fun (x88 : t) ->
         ArrayBuffer.t_of_js (Ojs.get_prop_ascii (t_to_js x88) "buffer")
-    let (get_byteLength : t -> int) =
+    let (get_byte_length : t -> int) =
       fun (x89 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x89) "byteLength")
-    let (get_byteOffset : t -> int) =
+    let (get_byte_offset : t -> int) =
       fun (x90 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x90) "byteOffset")
-    let (copyWithin : t -> target:int -> start:int -> ?end_:int -> unit -> t)
-      =
+    let (copy_within :
+      t -> target:int -> start:int -> ?end_:int -> unit -> t) =
       fun (x96 : t) ->
         fun ~target:(x91 : int) ->
           fun ~start:(x92 : int) ->
@@ -736,7 +736,7 @@ module BigInt64Array =
                                    (Ojs.call x129 "push" [|(any_to_js x130)|])
                              | None -> ());
                             x129))|])
-    let (findIndex :
+    let (find_index :
       t ->
         predicate:(value:bigint -> index:int -> array:t -> bool) ->
           ?thisArg:any -> unit -> int)
@@ -770,7 +770,7 @@ module BigInt64Array =
                                    (Ojs.call x139 "push" [|(any_to_js x140)|])
                              | None -> ());
                             x139))|])
-    let (forEach :
+    let (for_each :
       t ->
         callbackfn:(value:bigint -> index:int -> array:t -> unit) ->
           ?thisArg:any -> unit -> unit)
@@ -824,7 +824,7 @@ module BigInt64Array =
                                       [|(Ojs.int_to_js x158)|])
                              | None -> ());
                             x157))|])
-    let (indexOf :
+    let (index_of :
       t -> searchElement:bigint -> ?fromIndex:int -> unit -> int) =
       fun (x165 : t) ->
         fun ~searchElement:(x161 : bigint) ->
@@ -868,7 +868,7 @@ module BigInt64Array =
       fun (x172 : t) ->
         IterableIterator.t_of_js Ojs.int_of_js
           (Ojs.call (t_to_js x172) "keys" [||])
-    let (lastIndexOf :
+    let (last_index_of :
       t -> searchElement:bigint -> ?fromIndex:int -> unit -> int) =
       fun (x178 : t) ->
         fun ~searchElement:(x174 : bigint) ->
@@ -981,7 +981,7 @@ module BigInt64Array =
                                     ~currentValue:(bigint_of_js x198)
                                     ~currentIndex:(Ojs.int_of_js x199)
                                     ~array:(t_of_js x200))));(Obj.magic x201)|])
-    let (reduceRight :
+    let (reduce_right :
       t ->
         callbackfn:(previousValue:bigint ->
                       currentValue:bigint ->
@@ -1007,7 +1007,7 @@ module BigInt64Array =
                                   ~currentValue:(bigint_of_js x205)
                                   ~currentIndex:(Ojs.int_of_js x206)
                                   ~array:(t_of_js x207))))|])
-    let (reduceRight' :
+    let (reduce_right' :
       t ->
         callbackfn:(previousValue:'U ->
                       currentValue:bigint ->
@@ -1036,7 +1036,7 @@ module BigInt64Array =
                                     ~array:(t_of_js x213))));(Obj.magic x214)|])
     let (reverse : t -> t) =
       fun (x216 : t) -> t_of_js (Ojs.call (t_to_js x216) "reverse" [||])
-    let (set_ : t -> array:bigint Array.t -> ?offset:int -> unit -> unit) =
+    let (set : t -> array:bigint Array.t -> ?offset:int -> unit -> unit) =
       fun (x222 : t) ->
         fun ~array:(x217 : bigint Array.t) ->
           fun ?offset:(x218 : int option) ->
@@ -1170,13 +1170,13 @@ module BigInt64Array =
                                       [|(Ojs.int_to_js x251)|])
                              | None -> ());
                             x250))|])
-    let (toLocaleString : t -> string) =
+    let (to_locale_string : t -> string) =
       fun (x255 : t) ->
         Ojs.string_of_js (Ojs.call (t_to_js x255) "toLocaleString" [||])
-    let (toString : t -> string) =
+    let (to_string : t -> string) =
       fun (x256 : t) ->
         Ojs.string_of_js (Ojs.call (t_to_js x256) "toString" [||])
-    let (valueOf : t -> t) =
+    let (value_of : t -> t) =
       fun (x257 : t) -> t_of_js (Ojs.call (t_to_js x257) "valueOf" [||])
     let (values : t -> bigint IterableIterator.t) =
       fun (x258 : t) ->
@@ -1343,7 +1343,7 @@ module BigInt64ArrayConstructor =
                              (Ojs.call x305 "push" [|(Ojs.int_to_js x306)|])
                        | None -> ());
                       x305))
-    let (get_BYTES_PER_ELEMENT : t -> int) =
+    let (get_bytes_per_element : t -> int) =
       fun (x309 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x309) "BYTES_PER_ELEMENT")
     let (of_ : t -> items:bigint list -> BigInt64Array.t) =
@@ -1404,7 +1404,7 @@ module BigInt64ArrayConstructor =
                                | None -> ());
                               x321))|])
   end
-let (bigInt64Array : BigInt64ArrayConstructor.t) =
+let (big_int64_array : BigInt64ArrayConstructor.t) =
   BigInt64ArrayConstructor.t_of_js
     (Ojs.get_prop_ascii Ojs.global "BigInt64Array")
 module BigUint64Array =
@@ -1412,20 +1412,20 @@ module BigUint64Array =
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x329 : Ojs.t) -> x329
     and t_to_js : t -> Ojs.t = fun (x328 : Ojs.t) -> x328
-    let (get_BYTES_PER_ELEMENT : t -> int) =
+    let (get_bytes_per_element : t -> int) =
       fun (x330 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x330) "BYTES_PER_ELEMENT")
     let (get_buffer : t -> ArrayBuffer.t) =
       fun (x331 : t) ->
         ArrayBuffer.t_of_js (Ojs.get_prop_ascii (t_to_js x331) "buffer")
-    let (get_byteLength : t -> int) =
+    let (get_byte_length : t -> int) =
       fun (x332 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x332) "byteLength")
-    let (get_byteOffset : t -> int) =
+    let (get_byte_offset : t -> int) =
       fun (x333 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x333) "byteOffset")
-    let (copyWithin : t -> target:int -> start:int -> ?end_:int -> unit -> t)
-      =
+    let (copy_within :
+      t -> target:int -> start:int -> ?end_:int -> unit -> t) =
       fun (x339 : t) ->
         fun ~target:(x334 : int) ->
           fun ~start:(x335 : int) ->
@@ -1589,7 +1589,7 @@ module BigUint64Array =
                                    (Ojs.call x372 "push" [|(any_to_js x373)|])
                              | None -> ());
                             x372))|])
-    let (findIndex :
+    let (find_index :
       t ->
         predicate:(value:bigint -> index:int -> array:t -> bool) ->
           ?thisArg:any -> unit -> int)
@@ -1623,7 +1623,7 @@ module BigUint64Array =
                                    (Ojs.call x382 "push" [|(any_to_js x383)|])
                              | None -> ());
                             x382))|])
-    let (forEach :
+    let (for_each :
       t ->
         callbackfn:(value:bigint -> index:int -> array:t -> unit) ->
           ?thisArg:any -> unit -> unit)
@@ -1677,7 +1677,7 @@ module BigUint64Array =
                                       [|(Ojs.int_to_js x401)|])
                              | None -> ());
                             x400))|])
-    let (indexOf :
+    let (index_of :
       t -> searchElement:bigint -> ?fromIndex:int -> unit -> int) =
       fun (x408 : t) ->
         fun ~searchElement:(x404 : bigint) ->
@@ -1721,7 +1721,7 @@ module BigUint64Array =
       fun (x415 : t) ->
         IterableIterator.t_of_js Ojs.int_of_js
           (Ojs.call (t_to_js x415) "keys" [||])
-    let (lastIndexOf :
+    let (last_index_of :
       t -> searchElement:bigint -> ?fromIndex:int -> unit -> int) =
       fun (x421 : t) ->
         fun ~searchElement:(x417 : bigint) ->
@@ -1834,7 +1834,7 @@ module BigUint64Array =
                                     ~currentValue:(bigint_of_js x441)
                                     ~currentIndex:(Ojs.int_of_js x442)
                                     ~array:(t_of_js x443))));(Obj.magic x444)|])
-    let (reduceRight :
+    let (reduce_right :
       t ->
         callbackfn:(previousValue:bigint ->
                       currentValue:bigint ->
@@ -1860,7 +1860,7 @@ module BigUint64Array =
                                   ~currentValue:(bigint_of_js x448)
                                   ~currentIndex:(Ojs.int_of_js x449)
                                   ~array:(t_of_js x450))))|])
-    let (reduceRight' :
+    let (reduce_right' :
       t ->
         callbackfn:(previousValue:'U ->
                       currentValue:bigint ->
@@ -1889,7 +1889,7 @@ module BigUint64Array =
                                     ~array:(t_of_js x456))));(Obj.magic x457)|])
     let (reverse : t -> t) =
       fun (x459 : t) -> t_of_js (Ojs.call (t_to_js x459) "reverse" [||])
-    let (set_ : t -> array:bigint Array.t -> ?offset:int -> unit -> unit) =
+    let (set : t -> array:bigint Array.t -> ?offset:int -> unit -> unit) =
       fun (x465 : t) ->
         fun ~array:(x460 : bigint Array.t) ->
           fun ?offset:(x461 : int option) ->
@@ -2023,13 +2023,13 @@ module BigUint64Array =
                                       [|(Ojs.int_to_js x494)|])
                              | None -> ());
                             x493))|])
-    let (toLocaleString : t -> string) =
+    let (to_locale_string : t -> string) =
       fun (x498 : t) ->
         Ojs.string_of_js (Ojs.call (t_to_js x498) "toLocaleString" [||])
-    let (toString : t -> string) =
+    let (to_string : t -> string) =
       fun (x499 : t) ->
         Ojs.string_of_js (Ojs.call (t_to_js x499) "toString" [||])
-    let (valueOf : t -> t) =
+    let (value_of : t -> t) =
       fun (x500 : t) -> t_of_js (Ojs.call (t_to_js x500) "valueOf" [||])
     let (values : t -> bigint IterableIterator.t) =
       fun (x501 : t) ->
@@ -2197,7 +2197,7 @@ module BigUint64ArrayConstructor =
                              (Ojs.call x548 "push" [|(Ojs.int_to_js x549)|])
                        | None -> ());
                       x548))
-    let (get_BYTES_PER_ELEMENT : t -> int) =
+    let (get_bytes_per_element : t -> int) =
       fun (x552 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x552) "BYTES_PER_ELEMENT")
     let (of_ : t -> items:bigint list -> BigUint64Array.t) =
@@ -2258,13 +2258,13 @@ module BigUint64ArrayConstructor =
                                | None -> ());
                               x564))|])
   end
-let (bigUint64Array : BigUint64ArrayConstructor.t) =
+let (big_uint64_array : BigUint64ArrayConstructor.t) =
   BigUint64ArrayConstructor.t_of_js
     (Ojs.get_prop_ascii Ojs.global "BigUint64Array")
 module DataView =
   struct
     include struct include DataView end
-    let (getBigInt64 :
+    let (get_big_int64 :
       t -> byteOffset:int -> ?littleEndian:bool -> unit -> bigint) =
       fun (x575 : t) ->
         fun ~byteOffset:(x571 : int) ->
@@ -2286,7 +2286,7 @@ module DataView =
                                       [|(Ojs.bool_to_js x574)|])
                              | None -> ());
                             x573))|])
-    let (getBigUint64 :
+    let (get_big_uint64 :
       t -> byteOffset:int -> ?littleEndian:bool -> unit -> bigint) =
       fun (x581 : t) ->
         fun ~byteOffset:(x577 : int) ->
@@ -2308,7 +2308,7 @@ module DataView =
                                       [|(Ojs.bool_to_js x580)|])
                              | None -> ());
                             x579))|])
-    let (setBigInt64 :
+    let (set_big_int64 :
       t ->
         byteOffset:int -> value:bigint -> ?littleEndian:bool -> unit -> unit)
       =
@@ -2336,7 +2336,7 @@ module DataView =
                                         [|(Ojs.bool_to_js x587)|])
                                | None -> ());
                               x586))|])
-    let (setBigUint64 :
+    let (set_big_uint64 :
       t ->
         byteOffset:int -> value:bigint -> ?littleEndian:bool -> unit -> unit)
       =
@@ -2367,6 +2367,7 @@ module DataView =
   end
 module Intl =
   struct
+    include struct include Intl end
     module NumberFormat =
       struct
         include struct include NumberFormat end
@@ -2376,10 +2377,9 @@ module Intl =
               Ojs.string_of_js
                 (Ojs.call (t_to_js x599) "format"
                    [|(or_number_to_js bigint_to_js x597)|])
-        let (resolvedOptions : t -> ResolvedNumberFormatOptions.t) =
+        let (resolved_options : t -> ResolvedNumberFormatOptions.t) =
           fun (x600 : t) ->
             ResolvedNumberFormatOptions.t_of_js
               (Ojs.call (t_to_js x600) "resolvedOptions" [||])
       end
   end
-include struct include Intl end

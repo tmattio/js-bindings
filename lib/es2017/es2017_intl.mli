@@ -5,6 +5,10 @@
 open Es2016
 
 module Intl : sig
+  include module type of struct
+    include Intl
+  end
+
   module DateTimeFormatPartTypes : sig
     type t =
       ([ `day [@js "day"]
@@ -48,7 +52,7 @@ module Intl : sig
       include DateTimeFormat
     end
 
-    val formatToParts
+    val format_to_parts
       :  t
       -> ?date:Date.t or_number
       -> unit
@@ -58,7 +62,3 @@ module Intl : sig
   [@@js.scope "DateTimeFormat"]
 end
 [@@js.scope "Intl"]
-
-include module type of struct
-  include Intl
-end

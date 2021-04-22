@@ -1,0 +1,494 @@
+[@@@ocaml.warning "-7-11-32-33-39"]
+
+[@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
+
+open Es2020
+
+module AnonymousInterface0 : sig
+  type t
+
+  val t_to_js : t -> Ojs.t
+
+  val t_of_js : Ojs.t -> t
+
+  val get_message : t -> string [@@js.get "message"]
+
+  val set_message : t -> string -> unit [@@js.set "message"]
+
+  val get_actual : t -> any [@@js.get "actual"]
+
+  val set_actual : t -> any -> unit [@@js.set "actual"]
+
+  val get_expected : t -> any [@@js.get "expected"]
+
+  val set_expected : t -> any -> unit [@@js.set "expected"]
+
+  val get_operator : t -> string [@@js.get "operator"]
+
+  val set_operator : t -> string -> unit [@@js.set "operator"]
+
+  val get_stackStartFn : t -> untyped_function [@@js.get "stackStartFn"]
+
+  val set_stackStartFn : t -> untyped_function -> unit [@@js.set "stackStartFn"]
+end
+
+module AnonymousInterface1 : sig
+  type t
+
+  val t_to_js : t -> Ojs.t
+
+  val t_of_js : Ojs.t -> t
+
+  val apply
+    :  t
+    -> actual:any
+    -> expected:'T
+    -> ?message:Error.t or_string
+    -> unit
+    -> bool
+    [@@js.apply]
+end
+
+module AnonymousInterface3 : sig
+  type t
+
+  val t_to_js : t -> Ojs.t
+
+  val t_of_js : Ojs.t -> t
+
+  val apply : t -> value:any -> ?message:Error.t or_string -> unit -> bool
+    [@@js.apply]
+
+  val get_equal : t -> AnonymousInterface1.t [@@js.get "equal"]
+
+  val set_equal : t -> AnonymousInterface1.t -> unit [@@js.set "equal"]
+
+  val notEqual
+    :  t
+    -> actual:any
+    -> expected:any
+    -> ?message:Error.t or_string
+    -> unit
+    -> unit
+    [@@js.call "notEqual"]
+
+  val get_deepEqual : t -> AnonymousInterface1.t [@@js.get "deepEqual"]
+
+  val set_deepEqual : t -> AnonymousInterface1.t -> unit [@@js.set "deepEqual"]
+
+  val notDeepEqual
+    :  t
+    -> actual:any
+    -> expected:any
+    -> ?message:Error.t or_string
+    -> unit
+    -> unit
+    [@@js.call "notDeepEqual"]
+
+  val ok : t -> value:any -> ?message:Error.t or_string -> unit -> bool
+    [@@js.call "ok"]
+
+  val get_strictEqual : t -> AnonymousInterface1.t [@@js.get "strictEqual"]
+
+  val set_strictEqual : t -> AnonymousInterface1.t -> unit
+    [@@js.set "strictEqual"]
+
+  val get_deepStrictEqual : t -> AnonymousInterface1.t
+    [@@js.get "deepStrictEqual"]
+
+  val set_deepStrictEqual : t -> AnonymousInterface1.t -> unit
+    [@@js.set "deepStrictEqual"]
+
+  val ifError : t -> value:any -> bool [@@js.call "ifError"]
+
+  val get_strict : t -> (* FIXME: unknown type 'typeof strict' *) any
+    [@@js.get "strict"]
+
+  val set_strict : t -> (* FIXME: unknown type 'typeof strict' *) any -> unit
+    [@@js.set "strict"]
+end
+
+module AnonymousInterface2 : sig
+  type t
+
+  val t_to_js : t -> Ojs.t
+
+  val t_of_js : Ojs.t -> t
+
+  val apply : t -> value:any -> ?message:Error.t or_string -> unit -> bool
+    [@@js.apply]
+
+  val get_equal : t -> AnonymousInterface1.t [@@js.get "equal"]
+
+  val set_equal : t -> AnonymousInterface1.t -> unit [@@js.set "equal"]
+
+  val notEqual
+    :  t
+    -> actual:any
+    -> expected:any
+    -> ?message:Error.t or_string
+    -> unit
+    -> unit
+    [@@js.call "notEqual"]
+
+  val get_deepEqual : t -> AnonymousInterface1.t [@@js.get "deepEqual"]
+
+  val set_deepEqual : t -> AnonymousInterface1.t -> unit [@@js.set "deepEqual"]
+
+  val notDeepEqual
+    :  t
+    -> actual:any
+    -> expected:any
+    -> ?message:Error.t or_string
+    -> unit
+    -> unit
+    [@@js.call "notDeepEqual"]
+
+  val ok : t -> value:any -> ?message:Error.t or_string -> unit -> bool
+    [@@js.call "ok"]
+
+  val get_strictEqual : t -> AnonymousInterface1.t [@@js.get "strictEqual"]
+
+  val set_strictEqual : t -> AnonymousInterface1.t -> unit
+    [@@js.set "strictEqual"]
+
+  val get_deepStrictEqual : t -> AnonymousInterface1.t
+    [@@js.get "deepStrictEqual"]
+
+  val set_deepStrictEqual : t -> AnonymousInterface1.t -> unit
+    [@@js.set "deepStrictEqual"]
+
+  val ifError : t -> value:any -> bool [@@js.call "ifError"]
+
+  val get_strict
+    :  t
+    -> ( ( value:any -> ?message:Error.t or_string -> unit -> bool
+         , ([ `L_s1_deepEqual [@js "deepEqual"]
+            | `L_s2_deepStrictEqual [@js "deepStrictEqual"]
+            | `L_s3_equal [@js "equal"]
+            | `L_s4_ifError [@js "ifError"]
+            | `L_s5_notDeepEqual [@js "notDeepEqual"]
+            | `L_s6_notEqual [@js "notEqual"]
+            | `L_s7_ok [@js "ok"]
+            | `L_s8_strict [@js "strict"]
+            | `L_s9_strictEqual [@js "strictEqual"]
+            ]
+           [@js.enum]) )
+         Omit.t
+       , AnonymousInterface3.t )
+       intersection2
+    [@@js.get "strict"]
+
+  val set_strict
+    :  t
+    -> ( ( value:any -> ?message:Error.t or_string -> unit -> bool
+         , ([ `L_s1_deepEqual
+            | `L_s2_deepStrictEqual
+            | `L_s3_equal
+            | `L_s4_ifError
+            | `L_s5_notDeepEqual
+            | `L_s6_notEqual
+            | `L_s7_ok
+            | `L_s8_strict
+            | `L_s9_strictEqual
+            ]
+           [@js.enum]) )
+         Omit.t
+       , AnonymousInterface3.t )
+       intersection2
+    -> unit
+    [@@js.set "strict"]
+end
+
+module AnonymousInterface4 : sig
+  type t
+
+  val t_to_js : t -> Ojs.t
+
+  val t_of_js : Ojs.t -> t
+
+  val create : t -> untyped_object [@@js.apply_newable]
+end
+
+module Assert : sig
+  val assert_ : value:any -> ?message:Error.t or_string -> unit -> bool
+    [@@js.global "assert"]
+
+  module Assert : sig
+    module AssertionError : sig
+      type t
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_actual : t -> any [@@js.get "actual"]
+
+      val set_actual : t -> any -> unit [@@js.set "actual"]
+
+      val get_expected : t -> any [@@js.get "expected"]
+
+      val set_expected : t -> any -> unit [@@js.set "expected"]
+
+      val get_operator : t -> string [@@js.get "operator"]
+
+      val set_operator : t -> string -> unit [@@js.set "operator"]
+
+      val get_generatedMessage : t -> bool [@@js.get "generatedMessage"]
+
+      val set_generatedMessage : t -> bool -> unit [@@js.set "generatedMessage"]
+
+      val get_code
+        :  t
+        -> ([ `L_s0_ERR_ASSERTION [@js "ERR_ASSERTION"] ][@js.enum])
+        [@@js.get "code"]
+
+      val set_code : t -> ([ `L_s0_ERR_ASSERTION ][@js.enum]) -> unit
+        [@@js.set "code"]
+
+      val create : ?options:AnonymousInterface0.t -> unit -> t [@@js.create]
+
+      val cast : t -> Error.t [@@js.cast]
+    end
+    [@@js.scope "AssertionError"]
+
+    module CallTrackerReportInformation : sig
+      type t
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val get_message : t -> string [@@js.get "message"]
+
+      val set_message : t -> string -> unit [@@js.set "message"]
+
+      val get_actual : t -> float [@@js.get "actual"]
+
+      val set_actual : t -> float -> unit [@@js.set "actual"]
+
+      val get_expected : t -> float [@@js.get "expected"]
+
+      val set_expected : t -> float -> unit [@@js.set "expected"]
+
+      val get_operator : t -> string [@@js.get "operator"]
+
+      val set_operator : t -> string -> unit [@@js.set "operator"]
+
+      val get_stack : t -> untyped_object [@@js.get "stack"]
+
+      val set_stack : t -> untyped_object -> unit [@@js.set "stack"]
+    end
+    [@@js.scope "CallTrackerReportInformation"]
+
+    module CallTracker : sig
+      type t
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val calls : t -> ?exact:float -> unit -> (unit -> unit[@js.dummy])
+        [@@js.call "calls"]
+
+      val calls' : t -> ?fn:'Func -> ?exact:float -> unit -> 'Func
+        [@@js.call "calls"]
+
+      val report : t -> CallTrackerReportInformation.t list [@@js.call "report"]
+
+      val verify : t -> unit [@@js.call "verify"]
+    end
+    [@@js.scope "CallTracker"]
+
+    module AssertPredicate : sig
+      type t =
+        ( Error.t
+        , regexp
+        , untyped_object
+        , AnonymousInterface4.t
+        , thrown:any -> bool )
+        union5
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    val fail : ?message:Error.t or_string -> unit -> never [@@js.global "fail"]
+
+    val fail
+      :  actual:any
+      -> expected:any
+      -> ?message:Error.t or_string
+      -> ?operator:string
+      -> ?stackStartFn:untyped_function
+      -> unit
+      -> never
+      [@@js.global "fail"]
+
+    val ok : value:any -> ?message:Error.t or_string -> unit -> bool
+      [@@js.global "ok"]
+
+    val equal
+      :  actual:any
+      -> expected:any
+      -> ?message:Error.t or_string
+      -> unit
+      -> unit
+      [@@js.global "equal"]
+
+    val notEqual
+      :  actual:any
+      -> expected:any
+      -> ?message:Error.t or_string
+      -> unit
+      -> unit
+      [@@js.global "notEqual"]
+
+    val deepEqual
+      :  actual:any
+      -> expected:any
+      -> ?message:Error.t or_string
+      -> unit
+      -> unit
+      [@@js.global "deepEqual"]
+
+    val notDeepEqual
+      :  actual:any
+      -> expected:any
+      -> ?message:Error.t or_string
+      -> unit
+      -> unit
+      [@@js.global "notDeepEqual"]
+
+    val strictEqual
+      :  actual:any
+      -> expected:'T
+      -> ?message:Error.t or_string
+      -> unit
+      -> bool
+      [@@js.global "strictEqual"]
+
+    val notStrictEqual
+      :  actual:any
+      -> expected:any
+      -> ?message:Error.t or_string
+      -> unit
+      -> unit
+      [@@js.global "notStrictEqual"]
+
+    val deepStrictEqual
+      :  actual:any
+      -> expected:'T
+      -> ?message:Error.t or_string
+      -> unit
+      -> bool
+      [@@js.global "deepStrictEqual"]
+
+    val notDeepStrictEqual
+      :  actual:any
+      -> expected:any
+      -> ?message:Error.t or_string
+      -> unit
+      -> unit
+      [@@js.global "notDeepStrictEqual"]
+
+    val throws
+      :  block:(unit -> any)
+      -> ?message:Error.t or_string
+      -> unit
+      -> unit
+      [@@js.global "throws"]
+
+    val throws
+      :  block:(unit -> any)
+      -> error:AssertPredicate.t
+      -> ?message:Error.t or_string
+      -> unit
+      -> unit
+      [@@js.global "throws"]
+
+    val doesNotThrow
+      :  block:(unit -> any)
+      -> ?message:Error.t or_string
+      -> unit
+      -> unit
+      [@@js.global "doesNotThrow"]
+
+    val doesNotThrow
+      :  block:(unit -> any)
+      -> error:AssertPredicate.t
+      -> ?message:Error.t or_string
+      -> unit
+      -> unit
+      [@@js.global "doesNotThrow"]
+
+    val ifError : value:any -> bool [@@js.global "ifError"]
+
+    val rejects
+      :  block:(unit -> any Promise.t, any Promise.t) union2
+      -> ?message:Error.t or_string
+      -> unit
+      -> unit Promise.t
+      [@@js.global "rejects"]
+
+    val rejects
+      :  block:(unit -> any Promise.t, any Promise.t) union2
+      -> error:AssertPredicate.t
+      -> ?message:Error.t or_string
+      -> unit
+      -> unit Promise.t
+      [@@js.global "rejects"]
+
+    val doesNotReject
+      :  block:(unit -> any Promise.t, any Promise.t) union2
+      -> ?message:Error.t or_string
+      -> unit
+      -> unit Promise.t
+      [@@js.global "doesNotReject"]
+
+    val doesNotReject
+      :  block:(unit -> any Promise.t, any Promise.t) union2
+      -> error:AssertPredicate.t
+      -> ?message:Error.t or_string
+      -> unit
+      -> unit Promise.t
+      [@@js.global "doesNotReject"]
+
+    val match_
+      :  value:string
+      -> regExp:regexp
+      -> ?message:Error.t or_string
+      -> unit
+      -> unit
+      [@@js.global "match"]
+
+    val doesNotMatch
+      :  value:string
+      -> regExp:regexp
+      -> ?message:Error.t or_string
+      -> unit
+      -> unit
+      [@@js.global "doesNotMatch"]
+
+    val strict
+      : ( ( value:any -> ?message:Error.t or_string -> unit -> bool
+          , ([ `L_s1_deepEqual [@js "deepEqual"]
+             | `L_s2_deepStrictEqual [@js "deepStrictEqual"]
+             | `L_s3_equal [@js "equal"]
+             | `L_s4_ifError [@js "ifError"]
+             | `L_s5_notDeepEqual [@js "notDeepEqual"]
+             | `L_s6_notEqual [@js "notEqual"]
+             | `L_s7_ok [@js "ok"]
+             | `L_s8_strict [@js "strict"]
+             | `L_s9_strictEqual [@js "strictEqual"]
+             ]
+            [@js.enum]) )
+          Omit.t
+        , AnonymousInterface2.t )
+        intersection2
+      [@@js.global "strict"]
+  end
+  [@@js.scope "assert"]
+end
+[@@js.scope Import.assert_]

@@ -3,49 +3,7 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
 module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _DocumentRangeSemanticTokensSignature =
-          [ `DocumentRangeSemanticTokensSignature ] intf
-        and _DocumentSemanticsTokensEditsSignature =
-          [ `DocumentSemanticsTokensEditsSignature ] intf
-        and _DocumentSemanticsTokensSignature =
-          [ `DocumentSemanticsTokensSignature ] intf
-        and _SemanticTokensFeature = [ `SemanticTokensFeature ] intf
-        and _SemanticTokensMiddleware = [ `SemanticTokensMiddleware ] intf
-        and _SemanticTokensProviders = [ `SemanticTokensProviders ] intf
-        let rec _DocumentRangeSemanticTokensSignature_of_js :
-          Ojs.t -> _DocumentRangeSemanticTokensSignature = Obj.magic
-        and _DocumentRangeSemanticTokensSignature_to_js :
-          _DocumentRangeSemanticTokensSignature -> Ojs.t = Obj.magic
-        and _DocumentSemanticsTokensEditsSignature_of_js :
-          Ojs.t -> _DocumentSemanticsTokensEditsSignature = Obj.magic
-        and _DocumentSemanticsTokensEditsSignature_to_js :
-          _DocumentSemanticsTokensEditsSignature -> Ojs.t = Obj.magic
-        and _DocumentSemanticsTokensSignature_of_js :
-          Ojs.t -> _DocumentSemanticsTokensSignature = Obj.magic
-        and _DocumentSemanticsTokensSignature_to_js :
-          _DocumentSemanticsTokensSignature -> Ojs.t = Obj.magic
-        and _SemanticTokensFeature_of_js : Ojs.t -> _SemanticTokensFeature =
-          Obj.magic
-        and _SemanticTokensFeature_to_js : _SemanticTokensFeature -> Ojs.t =
-          Obj.magic
-        and _SemanticTokensMiddleware_of_js :
-          Ojs.t -> _SemanticTokensMiddleware = Obj.magic
-        and _SemanticTokensMiddleware_to_js :
-          _SemanticTokensMiddleware -> Ojs.t = Obj.magic
-        and _SemanticTokensProviders_of_js :
-          Ojs.t -> _SemanticTokensProviders = Obj.magic
-        and _SemanticTokensProviders_to_js :
-          _SemanticTokensProviders -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
+  struct module Types = struct open AnonymousInterfaces end end
 module DocumentSemanticsTokensSignature =
   struct
     type t = _DocumentSemanticsTokensSignature

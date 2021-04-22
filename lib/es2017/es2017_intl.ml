@@ -4,6 +4,7 @@
 open Es2016
 module Intl =
   struct
+    include struct include Intl end
     module DateTimeFormatPartTypes =
       struct
         type t =
@@ -69,7 +70,7 @@ module Intl =
     module DateTimeFormat =
       struct
         include struct include DateTimeFormat end
-        let (formatToParts :
+        let (format_to_parts :
           t -> ?date:Date.t or_number -> unit -> DateTimeFormatPart.t list) =
           fun (x16 : t) ->
             fun ?date:(x12 : Date.t or_number option) ->
@@ -90,4 +91,3 @@ module Intl =
                              x13))|])
       end
   end
-include struct include Intl end

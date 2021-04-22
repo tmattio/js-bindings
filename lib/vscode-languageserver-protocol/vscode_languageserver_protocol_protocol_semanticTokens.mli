@@ -4,83 +4,8 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _SemanticTokensClientCapabilities =
-      [ `SemanticTokensClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SemanticTokensDeltaParams = [ `SemanticTokensDeltaParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SemanticTokensDeltaPartialResult =
-      [ `SemanticTokensDeltaPartialResult ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SemanticTokensDeltaRequest_HandlerSignature =
-      ( _SemanticTokensDeltaParams
-      , (SemanticTokens.t, SemanticTokensDelta.t) union2 or_null
-      , unit )
-      RequestHandler.t
-
-    and _SemanticTokensOptions = [ `SemanticTokensOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SemanticTokensParams = [ `SemanticTokensParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SemanticTokensPartialResult = [ `SemanticTokensPartialResult ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SemanticTokensRangeParams = [ `SemanticTokensRangeParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SemanticTokensRangeRequest_HandlerSignature =
-      ( _SemanticTokensRangeParams
-      , SemanticTokens.t or_null
-      , unit )
-      RequestHandler.t
-
-    and _SemanticTokensRefreshRequest_HandlerSignature =
-      (unit, unit) RequestHandler0.t
-
-    and _SemanticTokensRegistrationOptions =
-      [ `SemanticTokensRegistrationOptions | `SemanticTokensOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SemanticTokensRequest_HandlerSignature =
-      ( _SemanticTokensDeltaParams
-      , SemanticTokens.t or_null
-      , unit )
-      RequestHandler.t
-
-    and _SemanticTokensWorkspaceClientCapabilities =
-      [ `SemanticTokensWorkspaceClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _TokenFormat = ([ `L_s0_relative [@js "relative"] ][@js.enum])
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -88,7 +13,7 @@ module AnonymousInterface0 : sig
 end
 
 module AnonymousInterface1 : sig
-  type t = anonymous_interface_1
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -100,20 +25,20 @@ module AnonymousInterface1 : sig
 end
 
 module AnonymousInterface2 : sig
-  type t = anonymous_interface_2
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_range : t -> anonymous_interface_0 or_boolean [@@js.get "range"]
+  val get_range : t -> AnonymousInterface0.t or_boolean [@@js.get "range"]
 
-  val set_range : t -> anonymous_interface_0 or_boolean -> unit
+  val set_range : t -> AnonymousInterface0.t or_boolean -> unit
     [@@js.set "range"]
 
-  val get_full : t -> anonymous_interface_1 or_boolean [@@js.get "full"]
+  val get_full : t -> AnonymousInterface1.t or_boolean [@@js.get "full"]
 
-  val set_full : t -> anonymous_interface_1 or_boolean -> unit [@@js.set "full"]
+  val set_full : t -> AnonymousInterface1.t or_boolean -> unit [@@js.set "full"]
 end
 
 (* import { TextDocumentIdentifier, Range, uinteger, SemanticTokensEdit,
@@ -158,7 +83,7 @@ end
 [@@js.scope "TokenFormat"]
 
 module TokenFormat : sig
-  type t = _TokenFormat
+  type t = ([ `L_s0_relative [@js "relative"] ][@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -177,9 +102,9 @@ module SemanticTokensClientCapabilities : sig
   val set_dynamicRegistration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
-  val get_requests : t -> anonymous_interface_2 [@@js.get "requests"]
+  val get_requests : t -> AnonymousInterface2.t [@@js.get "requests"]
 
-  val set_requests : t -> anonymous_interface_2 -> unit [@@js.set "requests"]
+  val set_requests : t -> AnonymousInterface2.t -> unit [@@js.set "requests"]
 
   val get_tokenTypes : t -> string list [@@js.get "tokenTypes"]
 
@@ -217,14 +142,14 @@ module SemanticTokensOptions : sig
 
   val set_legend : t -> SemanticTokensLegend.t -> unit [@@js.set "legend"]
 
-  val get_range : t -> anonymous_interface_0 or_boolean [@@js.get "range"]
+  val get_range : t -> AnonymousInterface0.t or_boolean [@@js.get "range"]
 
-  val set_range : t -> anonymous_interface_0 or_boolean -> unit
+  val set_range : t -> AnonymousInterface0.t or_boolean -> unit
     [@@js.set "range"]
 
-  val get_full : t -> anonymous_interface_1 or_boolean [@@js.get "full"]
+  val get_full : t -> AnonymousInterface1.t or_boolean [@@js.get "full"]
 
-  val set_full : t -> anonymous_interface_1 or_boolean -> unit [@@js.set "full"]
+  val set_full : t -> AnonymousInterface1.t or_boolean -> unit [@@js.set "full"]
 
   val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
 end
@@ -292,7 +217,11 @@ module SemanticTokensRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _SemanticTokensRequest_HandlerSignature
+    type t =
+      ( _SemanticTokensDeltaParams
+      , SemanticTokens.t or_null
+      , unit )
+      RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -341,7 +270,11 @@ module SemanticTokensDeltaRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _SemanticTokensDeltaRequest_HandlerSignature
+    type t =
+      ( _SemanticTokensDeltaParams
+      , (SemanticTokens.t, SemanticTokensDelta.t) union2 or_null
+      , unit )
+      RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -390,7 +323,11 @@ module SemanticTokensRangeRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _SemanticTokensRangeRequest_HandlerSignature
+    type t =
+      ( _SemanticTokensRangeParams
+      , SemanticTokens.t or_null
+      , unit )
+      RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -421,7 +358,7 @@ module SemanticTokensRefreshRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _SemanticTokensRefreshRequest_HandlerSignature
+    type t = (unit, unit) RequestHandler0.t
 
     val t_to_js : t -> Ojs.t
 

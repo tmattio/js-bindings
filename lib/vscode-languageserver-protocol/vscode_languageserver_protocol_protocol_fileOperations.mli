@@ -4,89 +4,6 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _CreateFilesParams = [ `CreateFilesParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DeleteFilesParams = [ `DeleteFilesParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DidCreateFilesNotification_HandlerSignature =
-      _CreateFilesParams NotificationHandler.t
-
-    and _DidDeleteFilesNotification_HandlerSignature =
-      _DeleteFilesParams NotificationHandler.t
-
-    and _DidRenameFilesNotification_HandlerSignature =
-      _RenameFilesParams NotificationHandler.t
-
-    and _FileCreate = [ `FileCreate ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _FileDelete = [ `FileDelete ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _FileOperationClientCapabilities =
-      [ `FileOperationClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _FileOperationFilter = [ `FileOperationFilter ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _FileOperationOptions = [ `FileOperationOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _FileOperationPattern = [ `FileOperationPattern ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _FileOperationPatternKind =
-      ([ `L_s0_file [@js "file"]
-       | `L_s1_folder [@js "folder"]
-       ]
-      [@js.enum])
-
-    and _FileOperationPatternOptions = [ `FileOperationPatternOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _FileOperationRegistrationOptions =
-      [ `FileOperationRegistrationOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _FileRename = [ `FileRename ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _RenameFilesParams = [ `RenameFilesParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WillCreateFilesRequest_HandlerSignature =
-      ( _CreateFilesParams
-      , WorkspaceEdit.t or_null_or_undefined
-      , unit )
-      RequestHandler.t
-
-    and _WillDeleteFilesRequest_HandlerSignature =
-      ( _DeleteFilesParams
-      , WorkspaceEdit.t or_null_or_undefined
-      , unit )
-      RequestHandler.t
-
-    and _WillRenameFilesRequest_HandlerSignature =
-      ( _RenameFilesParams
-      , WorkspaceEdit.t or_null_or_undefined
-      , unit )
-      RequestHandler.t
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 (* import { NotificationHandler, RequestHandler } from 'vscode-jsonrpc'; *)
 (* import { WorkspaceEdit } from 'vscode-languageserver-types'; *)
 (* import { ProtocolNotificationType, ProtocolRequestType } from './messages'; *)
@@ -157,7 +74,11 @@ end
 [@@js.scope "FileOperationPatternKind"]
 
 module FileOperationPatternKind : sig
-  type t = _FileOperationPatternKind
+  type t =
+    ([ `L_s0_file [@js "file"]
+     | `L_s1_folder [@js "folder"]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -352,7 +273,11 @@ module WillCreateFilesRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _WillCreateFilesRequest_HandlerSignature
+    type t =
+      ( _CreateFilesParams
+      , WorkspaceEdit.t or_null_or_undefined
+      , unit )
+      RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -374,7 +299,7 @@ module DidCreateFilesNotification : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _DidCreateFilesNotification_HandlerSignature
+    type t = _CreateFilesParams NotificationHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -399,7 +324,11 @@ module WillRenameFilesRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _WillRenameFilesRequest_HandlerSignature
+    type t =
+      ( _RenameFilesParams
+      , WorkspaceEdit.t or_null_or_undefined
+      , unit )
+      RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -421,7 +350,7 @@ module DidRenameFilesNotification : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _DidRenameFilesNotification_HandlerSignature
+    type t = _RenameFilesParams NotificationHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -443,7 +372,7 @@ module DidDeleteFilesNotification : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _DidDeleteFilesNotification_HandlerSignature
+    type t = _DeleteFilesParams NotificationHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -468,7 +397,11 @@ module WillDeleteFilesRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _WillDeleteFilesRequest_HandlerSignature
+    type t =
+      ( _DeleteFilesParams
+      , WorkspaceEdit.t or_null_or_undefined
+      , unit )
+      RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 

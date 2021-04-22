@@ -5,36 +5,6 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type dgram_BindOptions = [ `Dgram_BindOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dgram_RemoteInfo = [ `Dgram_RemoteInfo ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dgram_Socket = [ `Dgram_Socket ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dgram_SocketOptions = [ `Dgram_SocketOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and dgram_SocketType =
-      ([ `udp4 [@js "udp4"]
-       | `udp6 [@js "udp6"]
-       ]
-      [@js.enum])
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module Dgram : sig
   open Node_dns
 
@@ -93,7 +63,11 @@ module Dgram : sig
   [@@js.scope "BindOptions"]
 
   module SocketType : sig
-    type t = dgram_SocketType
+    type t =
+      ([ `udp4 [@js "udp4"]
+       | `udp6 [@js "udp6"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 

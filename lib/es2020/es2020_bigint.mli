@@ -11,39 +11,39 @@ module BigIntToLocaleStringOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_localeMatcher : t -> string [@@js.get "localeMatcher"]
+  val get_locale_matcher : t -> string [@@js.get "localeMatcher"]
 
-  val set_localeMatcher : t -> string -> unit [@@js.set "localeMatcher"]
+  val set_locale_matcher : t -> string -> unit [@@js.set "localeMatcher"]
 
   val get_style : t -> string [@@js.get "style"]
 
   val set_style : t -> string -> unit [@@js.set "style"]
 
-  val get_numberingSystem : t -> string [@@js.get "numberingSystem"]
+  val get_numbering_system : t -> string [@@js.get "numberingSystem"]
 
-  val set_numberingSystem : t -> string -> unit [@@js.set "numberingSystem"]
+  val set_numbering_system : t -> string -> unit [@@js.set "numberingSystem"]
 
   val get_unit : t -> string [@@js.get "unit"]
 
   val set_unit : t -> string -> unit [@@js.set "unit"]
 
-  val get_unitDisplay : t -> string [@@js.get "unitDisplay"]
+  val get_unit_display : t -> string [@@js.get "unitDisplay"]
 
-  val set_unitDisplay : t -> string -> unit [@@js.set "unitDisplay"]
+  val set_unit_display : t -> string -> unit [@@js.set "unitDisplay"]
 
   val get_currency : t -> string [@@js.get "currency"]
 
   val set_currency : t -> string -> unit [@@js.set "currency"]
 
-  val get_currencyDisplay : t -> string [@@js.get "currencyDisplay"]
+  val get_currency_display : t -> string [@@js.get "currencyDisplay"]
 
-  val set_currencyDisplay : t -> string -> unit [@@js.set "currencyDisplay"]
+  val set_currency_display : t -> string -> unit [@@js.set "currencyDisplay"]
 
-  val get_useGrouping : t -> bool [@@js.get "useGrouping"]
+  val get_use_grouping : t -> bool [@@js.get "useGrouping"]
 
-  val set_useGrouping : t -> bool -> unit [@@js.set "useGrouping"]
+  val set_use_grouping : t -> bool -> unit [@@js.set "useGrouping"]
 
-  val get_minimumIntegerDigits
+  val get_minimum_integer_digits
     :  t
     -> ([ `L_n_1 [@js 1]
         | `L_n_2 [@js 2]
@@ -70,7 +70,7 @@ module BigIntToLocaleStringOptions : sig
        [@js.enum])
     [@@js.get "minimumIntegerDigits"]
 
-  val set_minimumIntegerDigits
+  val set_minimum_integer_digits
     :  t
     -> ([ `L_n_1
         | `L_n_2
@@ -98,7 +98,7 @@ module BigIntToLocaleStringOptions : sig
     -> unit
     [@@js.set "minimumIntegerDigits"]
 
-  val get_minimumFractionDigits
+  val get_minimum_fraction_digits
     :  t
     -> ([ `L_n_0 [@js 0]
         | `L_n_1 [@js 1]
@@ -125,7 +125,7 @@ module BigIntToLocaleStringOptions : sig
        [@js.enum])
     [@@js.get "minimumFractionDigits"]
 
-  val set_minimumFractionDigits
+  val set_minimum_fraction_digits
     :  t
     -> ([ `L_n_0
         | `L_n_1
@@ -153,7 +153,7 @@ module BigIntToLocaleStringOptions : sig
     -> unit
     [@@js.set "minimumFractionDigits"]
 
-  val get_maximumFractionDigits
+  val get_maximum_fraction_digits
     :  t
     -> ([ `L_n_0 [@js 0]
         | `L_n_1 [@js 1]
@@ -180,7 +180,7 @@ module BigIntToLocaleStringOptions : sig
        [@js.enum])
     [@@js.get "maximumFractionDigits"]
 
-  val set_maximumFractionDigits
+  val set_maximum_fraction_digits
     :  t
     -> ([ `L_n_0
         | `L_n_1
@@ -208,7 +208,7 @@ module BigIntToLocaleStringOptions : sig
     -> unit
     [@@js.set "maximumFractionDigits"]
 
-  val get_minimumSignificantDigits
+  val get_minimum_significant_digits
     :  t
     -> ([ `L_n_1 [@js 1]
         | `L_n_2 [@js 2]
@@ -235,7 +235,7 @@ module BigIntToLocaleStringOptions : sig
        [@js.enum])
     [@@js.get "minimumSignificantDigits"]
 
-  val set_minimumSignificantDigits
+  val set_minimum_significant_digits
     :  t
     -> ([ `L_n_1
         | `L_n_2
@@ -263,7 +263,7 @@ module BigIntToLocaleStringOptions : sig
     -> unit
     [@@js.set "minimumSignificantDigits"]
 
-  val get_maximumSignificantDigits
+  val get_maximum_significant_digits
     :  t
     -> ([ `L_n_1 [@js 1]
         | `L_n_2 [@js 2]
@@ -290,7 +290,7 @@ module BigIntToLocaleStringOptions : sig
        [@js.enum])
     [@@js.get "maximumSignificantDigits"]
 
-  val set_maximumSignificantDigits
+  val set_maximum_significant_digits
     :  t
     -> ([ `L_n_1
         | `L_n_2
@@ -322,9 +322,9 @@ module BigIntToLocaleStringOptions : sig
 
   val set_notation : t -> string -> unit [@@js.set "notation"]
 
-  val get_compactDisplay : t -> string [@@js.get "compactDisplay"]
+  val get_compact_display : t -> string [@@js.get "compactDisplay"]
 
-  val set_compactDisplay : t -> string -> unit [@@js.set "compactDisplay"]
+  val set_compact_display : t -> string -> unit [@@js.set "compactDisplay"]
 end
 [@@js.scope "BigIntToLocaleStringOptions"]
 
@@ -335,9 +335,9 @@ module BigInt : sig
 
   val t_of_js : Ojs.t -> t
 
-  val toString : t -> ?radix:int -> unit -> string [@@js.call "toString"]
+  val to_string : t -> ?radix:int -> unit -> string [@@js.call "toString"]
 
-  val toLocaleString
+  val to_locale_string
     :  t
     -> ?locales:string
     -> ?options:BigIntToLocaleStringOptions.t
@@ -345,13 +345,14 @@ module BigInt : sig
     -> string
     [@@js.call "toLocaleString"]
 
-  val valueOf : t -> bigint [@@js.call "valueOf"]
+  val value_of : t -> bigint [@@js.call "valueOf"]
 
   (* Constructor *)
 
-  val asIntN : bits:int -> int:bigint -> bigint [@@js.global "BitInt.asIntN"]
+  val as_int_n : bits:int -> int:bigint -> bigint [@@js.global "BitInt.asIntN"]
 
-  val asUintN : bits:int -> int:bigint -> bigint [@@js.global "BitInt.asUintN"]
+  val as_uint_n : bits:int -> int:bigint -> bigint
+    [@@js.global "BitInt.asUintN"]
 end
 
 module BigIntConstructor : sig
@@ -365,13 +366,13 @@ module BigIntConstructor : sig
 
   val get_prototype : t -> BigInt.t [@@js.get "prototype"]
 
-  val asIntN : t -> bits:int -> int:bigint -> bigint [@@js.call "asIntN"]
+  val as_int_n : t -> bits:int -> int:bigint -> bigint [@@js.call "asIntN"]
 
-  val asUintN : t -> bits:int -> int:bigint -> bigint [@@js.call "asUintN"]
+  val as_uint_n : t -> bits:int -> int:bigint -> bigint [@@js.call "asUintN"]
 end
 [@@js.scope "BigIntConstructor"]
 
-val bigInt : BigIntConstructor.t [@@js.global "BigInt"]
+val big_int : BigIntConstructor.t [@@js.global "BigInt"]
 
 module BigInt64Array : sig
   type t
@@ -380,15 +381,15 @@ module BigInt64Array : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val get_buffer : t -> ArrayBuffer.t [@@js.get "buffer"]
 
-  val get_byteLength : t -> int [@@js.get "byteLength"]
+  val get_byte_length : t -> int [@@js.get "byteLength"]
 
-  val get_byteOffset : t -> int [@@js.get "byteOffset"]
+  val get_byte_offset : t -> int [@@js.get "byteOffset"]
 
-  val copyWithin : t -> target:int -> start:int -> ?end_:int -> unit -> t
+  val copy_within : t -> target:int -> start:int -> ?end_:int -> unit -> t
     [@@js.call "copyWithin"]
 
   val entries : t -> (int * bigint) IterableIterator.t [@@js.call "entries"]
@@ -420,7 +421,7 @@ module BigInt64Array : sig
     -> bigint or_undefined
     [@@js.call "find"]
 
-  val findIndex
+  val find_index
     :  t
     -> predicate:(value:bigint -> index:int -> array:t -> bool)
     -> ?thisArg:any
@@ -428,7 +429,7 @@ module BigInt64Array : sig
     -> int
     [@@js.call "findIndex"]
 
-  val forEach
+  val for_each
     :  t
     -> callbackfn:(value:bigint -> index:int -> array:t -> unit)
     -> ?thisArg:any
@@ -439,14 +440,14 @@ module BigInt64Array : sig
   val includes : t -> searchElement:bigint -> ?fromIndex:int -> unit -> bool
     [@@js.call "includes"]
 
-  val indexOf : t -> searchElement:bigint -> ?fromIndex:int -> unit -> int
+  val index_of : t -> searchElement:bigint -> ?fromIndex:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
   val keys : t -> int IterableIterator.t [@@js.call "keys"]
 
-  val lastIndexOf : t -> searchElement:bigint -> ?fromIndex:int -> unit -> int
+  val last_index_of : t -> searchElement:bigint -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -482,7 +483,7 @@ module BigInt64Array : sig
     -> 'U
     [@@js.call "reduce"]
 
-  val reduceRight
+  val reduce_right
     :  t
     -> callbackfn:
          (previousValue:bigint
@@ -493,7 +494,7 @@ module BigInt64Array : sig
     -> bigint
     [@@js.call "reduceRight"]
 
-  val reduceRight'
+  val reduce_right'
     :  t
     -> callbackfn:
          (previousValue:'U
@@ -507,7 +508,7 @@ module BigInt64Array : sig
 
   val reverse : t -> t [@@js.call "reverse"]
 
-  val set_ : t -> array:bigint Array.t -> ?offset:int -> unit -> unit
+  val set : t -> array:bigint Array.t -> ?offset:int -> unit -> unit
     [@@js.call "set"]
 
   val slice : t -> ?start:int -> ?end_:int -> unit -> t [@@js.call "slice"]
@@ -530,11 +531,11 @@ module BigInt64Array : sig
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
     [@@js.call "subarray"]
 
-  val toLocaleString : t -> string [@@js.call "toLocaleString"]
+  val to_locale_string : t -> string [@@js.call "toLocaleString"]
 
-  val toString : t -> string [@@js.call "toString"]
+  val to_string : t -> string [@@js.call "toString"]
 
-  val valueOf : t -> t [@@js.call "valueOf"]
+  val value_of : t -> t [@@js.call "valueOf"]
 
   val values : t -> bigint IterableIterator.t [@@js.call "values"]
 
@@ -594,7 +595,7 @@ module BigInt64ArrayConstructor : sig
     -> BigInt64Array.t
     [@@js.apply_newable]
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val of_ : t -> items:(bigint list[@js.variadic]) -> BigInt64Array.t
     [@@js.call "of"]
@@ -612,7 +613,7 @@ module BigInt64ArrayConstructor : sig
 end
 [@@js.scope "BigInt64Array.Constructor"]
 
-val bigInt64Array : BigInt64ArrayConstructor.t [@@js.global "BigInt64Array"]
+val big_int64_array : BigInt64ArrayConstructor.t [@@js.global "BigInt64Array"]
 
 module BigUint64Array : sig
   type t
@@ -621,15 +622,15 @@ module BigUint64Array : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val get_buffer : t -> ArrayBuffer.t [@@js.get "buffer"]
 
-  val get_byteLength : t -> int [@@js.get "byteLength"]
+  val get_byte_length : t -> int [@@js.get "byteLength"]
 
-  val get_byteOffset : t -> int [@@js.get "byteOffset"]
+  val get_byte_offset : t -> int [@@js.get "byteOffset"]
 
-  val copyWithin : t -> target:int -> start:int -> ?end_:int -> unit -> t
+  val copy_within : t -> target:int -> start:int -> ?end_:int -> unit -> t
     [@@js.call "copyWithin"]
 
   val entries : t -> (int * bigint) IterableIterator.t [@@js.call "entries"]
@@ -661,7 +662,7 @@ module BigUint64Array : sig
     -> bigint or_undefined
     [@@js.call "find"]
 
-  val findIndex
+  val find_index
     :  t
     -> predicate:(value:bigint -> index:int -> array:t -> bool)
     -> ?thisArg:any
@@ -669,7 +670,7 @@ module BigUint64Array : sig
     -> int
     [@@js.call "findIndex"]
 
-  val forEach
+  val for_each
     :  t
     -> callbackfn:(value:bigint -> index:int -> array:t -> unit)
     -> ?thisArg:any
@@ -680,14 +681,14 @@ module BigUint64Array : sig
   val includes : t -> searchElement:bigint -> ?fromIndex:int -> unit -> bool
     [@@js.call "includes"]
 
-  val indexOf : t -> searchElement:bigint -> ?fromIndex:int -> unit -> int
+  val index_of : t -> searchElement:bigint -> ?fromIndex:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
   val keys : t -> int IterableIterator.t [@@js.call "keys"]
 
-  val lastIndexOf : t -> searchElement:bigint -> ?fromIndex:int -> unit -> int
+  val last_index_of : t -> searchElement:bigint -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -723,7 +724,7 @@ module BigUint64Array : sig
     -> 'U
     [@@js.call "reduce"]
 
-  val reduceRight
+  val reduce_right
     :  t
     -> callbackfn:
          (previousValue:bigint
@@ -734,7 +735,7 @@ module BigUint64Array : sig
     -> bigint
     [@@js.call "reduceRight"]
 
-  val reduceRight'
+  val reduce_right'
     :  t
     -> callbackfn:
          (previousValue:'U
@@ -748,7 +749,7 @@ module BigUint64Array : sig
 
   val reverse : t -> t [@@js.call "reverse"]
 
-  val set_ : t -> array:bigint Array.t -> ?offset:int -> unit -> unit
+  val set : t -> array:bigint Array.t -> ?offset:int -> unit -> unit
     [@@js.call "set"]
 
   val slice : t -> ?start:int -> ?end_:int -> unit -> t [@@js.call "slice"]
@@ -771,11 +772,11 @@ module BigUint64Array : sig
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
     [@@js.call "subarray"]
 
-  val toLocaleString : t -> string [@@js.call "toLocaleString"]
+  val to_locale_string : t -> string [@@js.call "toLocaleString"]
 
-  val toString : t -> string [@@js.call "toString"]
+  val to_string : t -> string [@@js.call "toString"]
 
-  val valueOf : t -> t [@@js.call "valueOf"]
+  val value_of : t -> t [@@js.call "valueOf"]
 
   val values : t -> bigint IterableIterator.t [@@js.call "values"]
 
@@ -835,7 +836,7 @@ module BigUint64ArrayConstructor : sig
     -> BigUint64Array.t
     [@@js.apply_newable]
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val of_ : t -> items:(bigint list[@js.variadic]) -> BigUint64Array.t
     [@@js.call "of"]
@@ -853,20 +854,31 @@ module BigUint64ArrayConstructor : sig
 end
 [@@js.scope "BigUint64ArrayConstructor"]
 
-val bigUint64Array : BigUint64ArrayConstructor.t [@@js.global "BigUint64Array"]
+val big_uint64_array : BigUint64ArrayConstructor.t
+  [@@js.global "BigUint64Array"]
 
 module DataView : sig
   include module type of struct
     include DataView
   end
 
-  val getBigInt64 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> bigint
+  val get_big_int64
+    :  t
+    -> byteOffset:int
+    -> ?littleEndian:bool
+    -> unit
+    -> bigint
     [@@js.call "getBigInt64"]
 
-  val getBigUint64 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> bigint
+  val get_big_uint64
+    :  t
+    -> byteOffset:int
+    -> ?littleEndian:bool
+    -> unit
+    -> bigint
     [@@js.call "getBigUint64"]
 
-  val setBigInt64
+  val set_big_int64
     :  t
     -> byteOffset:int
     -> value:bigint
@@ -875,7 +887,7 @@ module DataView : sig
     -> unit
     [@@js.call "setBigInt64"]
 
-  val setBigUint64
+  val set_big_uint64
     :  t
     -> byteOffset:int
     -> value:bigint
@@ -887,6 +899,10 @@ end
 [@@js.scope "DataView"]
 
 module Intl : sig
+  include module type of struct
+    include Intl
+  end
+
   module NumberFormat : sig
     include module type of struct
       include NumberFormat
@@ -894,13 +910,9 @@ module Intl : sig
 
     val format : t -> value:bigint or_number -> string [@@js.call "format"]
 
-    val resolvedOptions : t -> ResolvedNumberFormatOptions.t
+    val resolved_options : t -> ResolvedNumberFormatOptions.t
       [@@js.call "resolvedOptions"]
   end
   [@@js.scope "NumberFormat"]
 end
 [@@js.scope "Intl"]
-
-include module type of struct
-  include Intl
-end

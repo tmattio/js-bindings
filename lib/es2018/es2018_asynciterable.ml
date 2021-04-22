@@ -5,7 +5,7 @@ open Es2017
 module SymbolConstructor =
   struct
     include struct include SymbolConstructor end
-    let (get_asyncIterator : t -> symbol) =
+    let (get_async_iterator : t -> symbol) =
       fun (x1 : t) ->
         symbol_of_js (Ojs.get_prop_ascii (t_to_js x1) "asyncIterator")
   end

@@ -5,44 +5,10 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
 
-  module Types : sig
-    open AnonymousInterfaces
-
-    type repl_REPLCommand = [ `Repl_REPLCommand ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and repl_REPLCommandAction = [ `Repl_REPLCommandAction ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and repl_REPLEval = [ `Repl_REPLEval ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and repl_REPLServer = [ `Repl_REPLServer ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and repl_REPLWriter = [ `Repl_REPLWriter ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and repl_Recoverable = [ `Repl_Recoverable ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and repl_ReplOptions = [ `Repl_ReplOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
 
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -162,7 +128,7 @@ module Repl : sig
   end
   [@@js.scope "REPLWriter"]
 
-  val writer : (repl_REPLWriter, anonymous_interface_0) intersection2
+  val writer : (repl_REPLWriter, AnonymousInterface0.t) intersection2
     [@@js.global "writer"]
 
   module REPLCommandAction : sig

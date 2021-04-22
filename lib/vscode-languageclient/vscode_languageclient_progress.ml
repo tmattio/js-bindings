@@ -2,21 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _ProgressFeature = [ `ProgressFeature ] intf
-        let rec _ProgressFeature_of_js : Ojs.t -> _ProgressFeature =
-          Obj.magic
-        and _ProgressFeature_to_js : _ProgressFeature -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module ProgressFeature =
   struct
     type t = _ProgressFeature

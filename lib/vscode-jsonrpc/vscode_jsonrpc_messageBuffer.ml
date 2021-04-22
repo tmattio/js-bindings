@@ -2,22 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _AbstractMessageBuffer = [ `AbstractMessageBuffer ] intf
-        let rec _AbstractMessageBuffer_of_js :
-          Ojs.t -> _AbstractMessageBuffer = Obj.magic
-        and _AbstractMessageBuffer_to_js : _AbstractMessageBuffer -> Ojs.t =
-          Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module AbstractMessageBuffer =
   struct
     type t = _AbstractMessageBuffer

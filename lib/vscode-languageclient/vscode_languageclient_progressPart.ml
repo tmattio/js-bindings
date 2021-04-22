@@ -2,24 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _ProgressContext = [ `ProgressContext ] intf
-        and _ProgressPart = [ `ProgressPart ] intf
-        let rec _ProgressContext_of_js : Ojs.t -> _ProgressContext =
-          Obj.magic
-        and _ProgressContext_to_js : _ProgressContext -> Ojs.t = Obj.magic
-        and _ProgressPart_of_js : Ojs.t -> _ProgressPart = Obj.magic
-        and _ProgressPart_to_js : _ProgressPart -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module ProgressContext =
   struct
     type t = _ProgressContext

@@ -4,20 +4,7 @@
 
 open Es2020
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
 
-  module Types : sig
-    open AnonymousInterfaces
-
-    type punycode_ucs2 = [ `Punycode_ucs2 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
 
 module Punycode : sig
   val decode : string:string -> string [@@js.global "decode"]

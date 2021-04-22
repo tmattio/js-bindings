@@ -4,102 +4,11 @@
 open Es2020
 open Node_globals
 open Node_fs.Fs
-module Internal =
-  struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-        let rec anonymous_interface_1_of_js : Ojs.t -> anonymous_interface_1
-          = Obj.magic
-        and anonymous_interface_1_to_js : anonymous_interface_1 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-        let rec anonymous_interface_2_of_js : Ojs.t -> anonymous_interface_2
-          = Obj.magic
-        and anonymous_interface_2_to_js : anonymous_interface_2 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_3 = [ `anonymous_interface_3 ] intf
-        let rec anonymous_interface_3_of_js : Ojs.t -> anonymous_interface_3
-          = Obj.magic
-        and anonymous_interface_3_to_js : anonymous_interface_3 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_4 = [ `anonymous_interface_4 ] intf
-        let rec anonymous_interface_4_of_js : Ojs.t -> anonymous_interface_4
-          = Obj.magic
-        and anonymous_interface_4_to_js : anonymous_interface_4 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_5 = [ `anonymous_interface_5 ] intf
-        let rec anonymous_interface_5_of_js : Ojs.t -> anonymous_interface_5
-          = Obj.magic
-        and anonymous_interface_5_to_js : anonymous_interface_5 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_6 = [ `anonymous_interface_6 ] intf
-        let rec anonymous_interface_6_of_js : Ojs.t -> anonymous_interface_6
-          = Obj.magic
-        and anonymous_interface_6_to_js : anonymous_interface_6 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_7 = [ `anonymous_interface_7 ] intf
-        let rec anonymous_interface_7_of_js : Ojs.t -> anonymous_interface_7
-          = Obj.magic
-        and anonymous_interface_7_to_js : anonymous_interface_7 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_8 = [ `anonymous_interface_8 ] intf
-        let rec anonymous_interface_8_of_js : Ojs.t -> anonymous_interface_8
-          = Obj.magic
-        and anonymous_interface_8_to_js : anonymous_interface_8 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_9 = [ `anonymous_interface_9 ] intf
-        let rec anonymous_interface_9_of_js : Ojs.t -> anonymous_interface_9
-          = Obj.magic
-        and anonymous_interface_9_to_js : anonymous_interface_9 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_10 = [ `anonymous_interface_10 ] intf
-        let rec anonymous_interface_10_of_js :
-          Ojs.t -> anonymous_interface_10 = Obj.magic
-        and anonymous_interface_10_to_js : anonymous_interface_10 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_11 = [ `anonymous_interface_11 ] intf
-        let rec anonymous_interface_11_of_js :
-          Ojs.t -> anonymous_interface_11 = Obj.magic
-        and anonymous_interface_11_to_js : anonymous_interface_11 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_12 = [ `anonymous_interface_12 ] intf
-        let rec anonymous_interface_12_of_js :
-          Ojs.t -> anonymous_interface_12 = Obj.magic
-        and anonymous_interface_12_to_js : anonymous_interface_12 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_13 = [ `anonymous_interface_13 ] intf
-        let rec anonymous_interface_13_of_js :
-          Ojs.t -> anonymous_interface_13 = Obj.magic
-        and anonymous_interface_13_to_js : anonymous_interface_13 -> Ojs.t =
-          Obj.magic
-      end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type node_fs_promises_FileHandle =
-          [ `Node_fs_promises_FileHandle ] intf
-        let rec node_fs_promises_FileHandle_of_js :
-          Ojs.t -> node_fs_promises_FileHandle = Obj.magic
-        and node_fs_promises_FileHandle_to_js :
-          node_fs_promises_FileHandle -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> anonymous_interface_0_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : anonymous_interface_0) -> anonymous_interface_0_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get_bigint : t -> [ `L_b_false ]) =
       fun (x3 : t) ->
         let x4 = Ojs.get_prop_ascii (t_to_js x3) "bigint" in
@@ -114,11 +23,9 @@ module AnonymousInterface0 =
   end
 module AnonymousInterface1 =
   struct
-    type t = anonymous_interface_1
-    let rec t_of_js : Ojs.t -> t =
-      fun (x8 : Ojs.t) -> anonymous_interface_1_of_js x8
-    and t_to_js : t -> Ojs.t =
-      fun (x7 : anonymous_interface_1) -> anonymous_interface_1_to_js x7
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x8 : Ojs.t) -> x8
+    and t_to_js : t -> Ojs.t = fun (x7 : Ojs.t) -> x7
     let (get_bigint : t -> [ `L_b_true ]) =
       fun (x9 : t) ->
         let x10 = Ojs.get_prop_ascii (t_to_js x9) "bigint" in
@@ -131,11 +38,9 @@ module AnonymousInterface1 =
   end
 module AnonymousInterface2 =
   struct
-    type t = anonymous_interface_2
-    let rec t_of_js : Ojs.t -> t =
-      fun (x14 : Ojs.t) -> anonymous_interface_2_of_js x14
-    and t_to_js : t -> Ojs.t =
-      fun (x13 : anonymous_interface_2) -> anonymous_interface_2_to_js x13
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x14 : Ojs.t) -> x14
+    and t_to_js : t -> Ojs.t = fun (x13 : Ojs.t) -> x13
     let (get_bytesRead : t -> int) =
       fun (x15 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x15) "bytesRead")
@@ -152,11 +57,9 @@ module AnonymousInterface2 =
   end
 module AnonymousInterface3 =
   struct
-    type t = anonymous_interface_3
-    let rec t_of_js : Ojs.t -> t =
-      fun (x22 : Ojs.t) -> anonymous_interface_3_of_js x22
-    and t_to_js : t -> Ojs.t =
-      fun (x21 : anonymous_interface_3) -> anonymous_interface_3_to_js x21
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x22 : Ojs.t) -> x22
+    and t_to_js : t -> Ojs.t = fun (x21 : Ojs.t) -> x21
     let (get_bytesWritten : t -> int) =
       fun (x23 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x23) "bytesWritten")
@@ -173,11 +76,9 @@ module AnonymousInterface3 =
   end
 module AnonymousInterface4 =
   struct
-    type t = anonymous_interface_4
-    let rec t_of_js : Ojs.t -> t =
-      fun (x30 : Ojs.t) -> anonymous_interface_4_of_js x30
-    and t_to_js : t -> Ojs.t =
-      fun (x29 : anonymous_interface_4) -> anonymous_interface_4_to_js x29
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x30 : Ojs.t) -> x30
+    and t_to_js : t -> Ojs.t = fun (x29 : Ojs.t) -> x29
     let (get_bytesWritten : t -> int) =
       fun (x31 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x31) "bytesWritten")
@@ -195,11 +96,9 @@ module AnonymousInterface4 =
   end
 module AnonymousInterface5 =
   struct
-    type t = anonymous_interface_5
-    let rec t_of_js : Ojs.t -> t =
-      fun (x38 : Ojs.t) -> anonymous_interface_5_of_js x38
-    and t_to_js : t -> Ojs.t =
-      fun (x37 : anonymous_interface_5) -> anonymous_interface_5_to_js x37
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x38 : Ojs.t) -> x38
+    and t_to_js : t -> Ojs.t = fun (x37 : Ojs.t) -> x37
     let (get_encoding : t -> BufferEncoding.t) =
       fun (x39 : t) ->
         BufferEncoding.t_of_js (Ojs.get_prop_ascii (t_to_js x39) "encoding")
@@ -218,11 +117,9 @@ module AnonymousInterface5 =
   end
 module AnonymousInterface6 =
   struct
-    type t = anonymous_interface_6
-    let rec t_of_js : Ojs.t -> t =
-      fun (x46 : Ojs.t) -> anonymous_interface_6_of_js x46
-    and t_to_js : t -> Ojs.t =
-      fun (x45 : anonymous_interface_6) -> anonymous_interface_6_to_js x45
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x46 : Ojs.t) -> x46
+    and t_to_js : t -> Ojs.t = fun (x45 : Ojs.t) -> x45
     let (get_encoding : t -> never or_null) =
       fun (x47 : t) ->
         or_null_of_js never_of_js
@@ -242,11 +139,9 @@ module AnonymousInterface6 =
   end
 module AnonymousInterface7 =
   struct
-    type t = anonymous_interface_7
-    let rec t_of_js : Ojs.t -> t =
-      fun (x56 : Ojs.t) -> anonymous_interface_7_of_js x56
-    and t_to_js : t -> Ojs.t =
-      fun (x55 : anonymous_interface_7) -> anonymous_interface_7_to_js x55
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x56 : Ojs.t) -> x56
+    and t_to_js : t -> Ojs.t = fun (x55 : Ojs.t) -> x55
     let (get_encoding : t -> [ `buffer ]) =
       fun (x57 : t) ->
         let x58 = Ojs.get_prop_ascii (t_to_js x57) "encoding" in
@@ -272,11 +167,9 @@ module AnonymousInterface7 =
   end
 module AnonymousInterface8 =
   struct
-    type t = anonymous_interface_8
-    let rec t_of_js : Ojs.t -> t =
-      fun (x66 : Ojs.t) -> anonymous_interface_8_of_js x66
-    and t_to_js : t -> Ojs.t =
-      fun (x65 : anonymous_interface_8) -> anonymous_interface_8_to_js x65
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x66 : Ojs.t) -> x66
+    and t_to_js : t -> Ojs.t = fun (x65 : Ojs.t) -> x65
     let (get_flag : t -> OpenMode.t) =
       fun (x67 : t) ->
         OpenMode.t_of_js (Ojs.get_prop_ascii (t_to_js x67) "flag")
@@ -287,11 +180,9 @@ module AnonymousInterface8 =
   end
 module AnonymousInterface9 =
   struct
-    type t = anonymous_interface_9
-    let rec t_of_js : Ojs.t -> t =
-      fun (x71 : Ojs.t) -> anonymous_interface_9_of_js x71
-    and t_to_js : t -> Ojs.t =
-      fun (x70 : anonymous_interface_9) -> anonymous_interface_9_to_js x70
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x71 : Ojs.t) -> x71
+    and t_to_js : t -> Ojs.t = fun (x70 : Ojs.t) -> x70
     let (get_mode : t -> Mode.t) =
       fun (x72 : t) -> Mode.t_of_js (Ojs.get_prop_ascii (t_to_js x72) "mode")
     let (set_mode : t -> Mode.t -> unit) =
@@ -308,11 +199,9 @@ module AnonymousInterface9 =
   end
 module AnonymousInterface10 =
   struct
-    type t = anonymous_interface_10
-    let rec t_of_js : Ojs.t -> t =
-      fun (x79 : Ojs.t) -> anonymous_interface_10_of_js x79
-    and t_to_js : t -> Ojs.t =
-      fun (x78 : anonymous_interface_10) -> anonymous_interface_10_to_js x78
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x79 : Ojs.t) -> x79
+    and t_to_js : t -> Ojs.t = fun (x78 : Ojs.t) -> x78
     let (get_recursive : t -> [ `L_b_false ]) =
       fun (x80 : t) ->
         let x81 = Ojs.get_prop_ascii (t_to_js x80) "recursive" in
@@ -327,11 +216,9 @@ module AnonymousInterface10 =
   end
 module AnonymousInterface11 =
   struct
-    type t = anonymous_interface_11
-    let rec t_of_js : Ojs.t -> t =
-      fun (x85 : Ojs.t) -> anonymous_interface_11_of_js x85
-    and t_to_js : t -> Ojs.t =
-      fun (x84 : anonymous_interface_11) -> anonymous_interface_11_to_js x84
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x85 : Ojs.t) -> x85
+    and t_to_js : t -> Ojs.t = fun (x84 : Ojs.t) -> x84
     let (get_recursive : t -> [ `L_b_true ]) =
       fun (x86 : t) ->
         let x87 = Ojs.get_prop_ascii (t_to_js x86) "recursive" in
@@ -344,11 +231,9 @@ module AnonymousInterface11 =
   end
 module AnonymousInterface12 =
   struct
-    type t = anonymous_interface_12
-    let rec t_of_js : Ojs.t -> t =
-      fun (x91 : Ojs.t) -> anonymous_interface_12_of_js x91
-    and t_to_js : t -> Ojs.t =
-      fun (x90 : anonymous_interface_12) -> anonymous_interface_12_to_js x90
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x91 : Ojs.t) -> x91
+    and t_to_js : t -> Ojs.t = fun (x90 : Ojs.t) -> x90
     let (get_withFileTypes : t -> [ `L_b_false ]) =
       fun (x92 : t) ->
         let x93 = Ojs.get_prop_ascii (t_to_js x92) "withFileTypes" in
@@ -363,11 +248,9 @@ module AnonymousInterface12 =
   end
 module AnonymousInterface13 =
   struct
-    type t = anonymous_interface_13
-    let rec t_of_js : Ojs.t -> t =
-      fun (x97 : Ojs.t) -> anonymous_interface_13_of_js x97
-    and t_to_js : t -> Ojs.t =
-      fun (x96 : anonymous_interface_13) -> anonymous_interface_13_to_js x96
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x97 : Ojs.t) -> x97
+    and t_to_js : t -> Ojs.t = fun (x96 : Ojs.t) -> x96
     let (get_withFileTypes : t -> [ `L_b_true ]) =
       fun (x98 : t) ->
         let x99 = Ojs.get_prop_ascii (t_to_js x98) "withFileTypes" in
@@ -445,7 +328,7 @@ module Fs_promises =
               ?offset:int or_null ->
                 ?length:int or_null ->
                   ?position:int or_null ->
-                    unit -> anonymous_interface_2 Promise.t)
+                    unit -> AnonymousInterface2.t Promise.t)
           =
           fun (x136 : t) ->
             fun ~buffer:(x125 : 'TBuffer) ->
@@ -453,7 +336,7 @@ module Fs_promises =
                 fun ?length:(x127 : int or_null option) ->
                   fun ?position:(x128 : int or_null option) ->
                     fun () ->
-                      Promise.t_of_js anonymous_interface_2_of_js
+                      Promise.t_of_js AnonymousInterface2.t_of_js
                         (let x137 = t_to_js x136 in
                          Ojs.call (Ojs.get_prop_ascii x137 "read") "apply"
                            [|x137;((let x129 =
@@ -487,11 +370,11 @@ module Fs_promises =
                                     x129))|])
         let (readFile :
           t ->
-            ?options:anonymous_interface_6 or_null ->
+            ?options:AnonymousInterface6.t or_null ->
               unit -> Buffer.t Promise.t)
           =
           fun (x143 : t) ->
-            fun ?options:(x139 : anonymous_interface_6 or_null option) ->
+            fun ?options:(x139 : AnonymousInterface6.t or_null option) ->
               fun () ->
                 Promise.t_of_js Buffer.t_of_js
                   (let x144 = t_to_js x143 in
@@ -505,23 +388,23 @@ module Fs_promises =
                                    ignore
                                      (Ojs.call x140 "push"
                                         [|(or_null_to_js
-                                             anonymous_interface_6_to_js x141)|])
+                                             AnonymousInterface6.t_to_js x141)|])
                                | None -> ());
                               x140))|])
         let (readFile' :
           t ->
-            options:(BufferEncoding.t, anonymous_interface_5) union2 ->
+            options:(BufferEncoding.t, AnonymousInterface5.t) union2 ->
               string Promise.t)
           =
           fun (x149 : t) ->
             fun
               ~options:(x146 :
-                         (BufferEncoding.t, anonymous_interface_5) union2)
+                         (BufferEncoding.t, AnonymousInterface5.t) union2)
               ->
               Promise.t_of_js Ojs.string_of_js
                 (Ojs.call (t_to_js x149) "readFile"
                    [|(union2_to_js BufferEncoding.t_to_js
-                        anonymous_interface_5_to_js x146)|])
+                        AnonymousInterface5.t_to_js x146)|])
         let (readFile'' :
           t ->
             ?options:BufferEncoding.t or_null ->
@@ -548,13 +431,13 @@ module Fs_promises =
                               x152))|])
         let (stat :
           t ->
-            ?opts:(StatOptions.t, anonymous_interface_0) intersection2 ->
+            ?opts:(StatOptions.t, AnonymousInterface0.t) intersection2 ->
               unit -> Stats.t Promise.t)
           =
           fun (x164 : t) ->
             fun
               ?opts:(x159 :
-                      (StatOptions.t, anonymous_interface_0) intersection2
+                      (StatOptions.t, AnonymousInterface0.t) intersection2
                         option)
               ->
               fun () ->
@@ -571,23 +454,23 @@ module Fs_promises =
                                      (Ojs.call x160 "push"
                                         [|(intersection2_to_js
                                              StatOptions.t_to_js
-                                             anonymous_interface_0_to_js x161)|])
+                                             AnonymousInterface0.t_to_js x161)|])
                                | None -> ());
                               x160))|])
         let (stat' :
           t ->
-            opts:(StatOptions.t, anonymous_interface_1) intersection2 ->
+            opts:(StatOptions.t, AnonymousInterface1.t) intersection2 ->
               BigIntStats.t Promise.t)
           =
           fun (x170 : t) ->
             fun
               ~opts:(x167 :
-                      (StatOptions.t, anonymous_interface_1) intersection2)
+                      (StatOptions.t, AnonymousInterface1.t) intersection2)
               ->
               Promise.t_of_js BigIntStats.t_of_js
                 (Ojs.call (t_to_js x170) "stat"
                    [|(intersection2_to_js StatOptions.t_to_js
-                        anonymous_interface_1_to_js x167)|])
+                        AnonymousInterface1.t_to_js x167)|])
         let (stat'' :
           t ->
             ?opts:StatOptions.t ->
@@ -652,7 +535,7 @@ module Fs_promises =
               ?offset:int or_null ->
                 ?length:int or_null ->
                   ?position:int or_null ->
-                    unit -> anonymous_interface_3 Promise.t)
+                    unit -> AnonymousInterface3.t Promise.t)
           =
           fun (x205 : t) ->
             fun ~buffer:(x194 : 'TBuffer) ->
@@ -660,7 +543,7 @@ module Fs_promises =
                 fun ?length:(x196 : int or_null option) ->
                   fun ?position:(x197 : int or_null option) ->
                     fun () ->
-                      Promise.t_of_js anonymous_interface_3_of_js
+                      Promise.t_of_js AnonymousInterface3.t_of_js
                         (let x206 = t_to_js x205 in
                          Ojs.call (Ojs.get_prop_ascii x206 "write") "apply"
                            [|x206;((let x198 =
@@ -697,14 +580,14 @@ module Fs_promises =
             data:Uint8Array.t or_string ->
               ?position:int or_null ->
                 ?encoding:BufferEncoding.t or_null ->
-                  unit -> anonymous_interface_4 Promise.t)
+                  unit -> AnonymousInterface4.t Promise.t)
           =
           fun (x217 : t) ->
             fun ~data:(x208 : Uint8Array.t or_string) ->
               fun ?position:(x209 : int or_null option) ->
                 fun ?encoding:(x210 : BufferEncoding.t or_null option) ->
                   fun () ->
-                    Promise.t_of_js anonymous_interface_4_of_js
+                    Promise.t_of_js AnonymousInterface4.t_of_js
                       (let x218 = t_to_js x217 in
                        Ojs.call (Ojs.get_prop_ascii x218 "write") "apply"
                          [|x218;((let x211 =
@@ -898,7 +781,7 @@ module Fs_promises =
           ?offset:int or_null ->
             ?length:int or_null ->
               ?position:int or_null ->
-                unit -> anonymous_interface_2 Promise.t)
+                unit -> AnonymousInterface2.t Promise.t)
       =
       fun ~handle:(x268 : node_fs_promises_FileHandle) ->
         fun ~buffer:(x269 : 'TBuffer) ->
@@ -906,7 +789,7 @@ module Fs_promises =
             fun ?length:(x271 : int or_null option) ->
               fun ?position:(x272 : int or_null option) ->
                 fun () ->
-                  Promise.t_of_js anonymous_interface_2_of_js
+                  Promise.t_of_js AnonymousInterface2.t_of_js
                     (let x280 = Import.fs_promises in
                      Ojs.call (Ojs.get_prop_ascii x280 "read") "apply"
                        [|x280;((let x273 =
@@ -944,7 +827,7 @@ module Fs_promises =
           ?offset:int or_null ->
             ?length:int or_null ->
               ?position:int or_null ->
-                unit -> anonymous_interface_3 Promise.t)
+                unit -> AnonymousInterface3.t Promise.t)
       =
       fun ~handle:(x282 : node_fs_promises_FileHandle) ->
         fun ~buffer:(x283 : 'TBuffer) ->
@@ -952,7 +835,7 @@ module Fs_promises =
             fun ?length:(x285 : int or_null option) ->
               fun ?position:(x286 : int or_null option) ->
                 fun () ->
-                  Promise.t_of_js anonymous_interface_3_of_js
+                  Promise.t_of_js AnonymousInterface3.t_of_js
                     (let x294 = Import.fs_promises in
                      Ojs.call (Ojs.get_prop_ascii x294 "write") "apply"
                        [|x294;((let x287 =
@@ -989,14 +872,14 @@ module Fs_promises =
         string:string ->
           ?position:int or_null ->
             ?encoding:BufferEncoding.t or_null ->
-              unit -> anonymous_interface_4 Promise.t)
+              unit -> AnonymousInterface4.t Promise.t)
       =
       fun ~handle:(x296 : node_fs_promises_FileHandle) ->
         fun ~string:(x297 : string) ->
           fun ?position:(x298 : int or_null option) ->
             fun ?encoding:(x299 : BufferEncoding.t or_null option) ->
               fun () ->
-                Promise.t_of_js anonymous_interface_4_of_js
+                Promise.t_of_js AnonymousInterface4.t_of_js
                   (let x305 = Import.fs_promises in
                    Ojs.call (Ojs.get_prop_ascii x305 "write") "apply"
                      [|x305;((let x300 =
@@ -1127,13 +1010,13 @@ module Fs_promises =
              [|(node_fs_promises_FileHandle_to_js x336)|])
     let (mkdir :
       path:string ->
-        options:(MakeDirectoryOptions.t, anonymous_interface_11)
+        options:(MakeDirectoryOptions.t, AnonymousInterface11.t)
           intersection2 -> string or_undefined Promise.t)
       =
       fun ~path:(x338 : string) ->
         fun
           ~options:(x339 :
-                     (MakeDirectoryOptions.t, anonymous_interface_11)
+                     (MakeDirectoryOptions.t, AnonymousInterface11.t)
                        intersection2)
           ->
           Promise.t_of_js
@@ -1141,7 +1024,7 @@ module Fs_promises =
             (Ojs.call Import.fs_promises "mkdir"
                [|(Ojs.string_to_js x338);(intersection2_to_js
                                             MakeDirectoryOptions.t_to_js
-                                            anonymous_interface_11_to_js x339)|])
+                                            AnonymousInterface11.t_to_js x339)|])
     let (mkdir :
       path:string -> ?options:Mode.t or_null -> unit -> unit Promise.t) =
       fun ~path:(x344 : string) ->
@@ -1226,16 +1109,16 @@ module Fs_promises =
                           x363))|])
     let (readdir :
       path:string ->
-        options:(anonymous_interface_7, [ `buffer ]) or_enum ->
+        options:(AnonymousInterface7.t, [ `buffer ]) or_enum ->
           Buffer.t list Promise.t)
       =
       fun ~path:(x369 : string) ->
-        fun ~options:(x370 : (anonymous_interface_7, [ `buffer ]) or_enum) ->
+        fun ~options:(x370 : (AnonymousInterface7.t, [ `buffer ]) or_enum) ->
           Promise.t_of_js
             (fun (x373 : Ojs.t) -> Ojs.list_of_js Buffer.t_of_js x373)
             (Ojs.call Import.fs_promises "readdir"
                [|(Ojs.string_to_js x369);(or_enum_to_js
-                                            anonymous_interface_7_to_js
+                                            AnonymousInterface7.t_to_js
                                             (fun (x372 : [ `buffer ]) ->
                                                match x372 with
                                                | `buffer ->
@@ -1272,13 +1155,13 @@ module Fs_promises =
                           x377))|])
     let (readdir :
       path:string ->
-        options:(BaseEncodingOptions.t, anonymous_interface_13) intersection2
+        options:(BaseEncodingOptions.t, AnonymousInterface13.t) intersection2
           -> Dirent.t list Promise.t)
       =
       fun ~path:(x384 : string) ->
         fun
           ~options:(x385 :
-                     (BaseEncodingOptions.t, anonymous_interface_13)
+                     (BaseEncodingOptions.t, AnonymousInterface13.t)
                        intersection2)
           ->
           Promise.t_of_js
@@ -1286,7 +1169,7 @@ module Fs_promises =
             (Ojs.call Import.fs_promises "readdir"
                [|(Ojs.string_to_js x384);(intersection2_to_js
                                             BaseEncodingOptions.t_to_js
-                                            anonymous_interface_13_to_js x385)|])
+                                            AnonymousInterface13.t_to_js x385)|])
     let (readlink :
       path:string ->
         ?options:(BaseEncodingOptions.t, BufferEncoding.t) union2 or_null ->
@@ -1394,13 +1277,13 @@ module Fs_promises =
                             x414))|])
     let (lstat :
       path:string ->
-        ?opts:(StatOptions.t, anonymous_interface_0) intersection2 ->
+        ?opts:(StatOptions.t, AnonymousInterface0.t) intersection2 ->
           unit -> Stats.t Promise.t)
       =
       fun ~path:(x419 : string) ->
         fun
           ?opts:(x420 :
-                  (StatOptions.t, anonymous_interface_0) intersection2 option)
+                  (StatOptions.t, AnonymousInterface0.t) intersection2 option)
           ->
           fun () ->
             Promise.t_of_js Stats.t_of_js
@@ -1418,23 +1301,23 @@ module Fs_promises =
                                  (Ojs.call x421 "push"
                                     [|(intersection2_to_js
                                          StatOptions.t_to_js
-                                         anonymous_interface_0_to_js x422)|])
+                                         AnonymousInterface0.t_to_js x422)|])
                            | None -> ());
                           x421))|])
     let (lstat :
       path:string ->
-        opts:(StatOptions.t, anonymous_interface_1) intersection2 ->
+        opts:(StatOptions.t, AnonymousInterface1.t) intersection2 ->
           BigIntStats.t Promise.t)
       =
       fun ~path:(x427 : string) ->
         fun
-          ~opts:(x428 : (StatOptions.t, anonymous_interface_1) intersection2)
+          ~opts:(x428 : (StatOptions.t, AnonymousInterface1.t) intersection2)
           ->
           Promise.t_of_js BigIntStats.t_of_js
             (Ojs.call Import.fs_promises "lstat"
                [|(Ojs.string_to_js x427);(intersection2_to_js
                                             StatOptions.t_to_js
-                                            anonymous_interface_1_to_js x428)|])
+                                            AnonymousInterface1.t_to_js x428)|])
     let (lstat :
       path:string ->
         ?opts:StatOptions.t ->
@@ -1463,13 +1346,13 @@ module Fs_promises =
                           x434))|])
     let (stat :
       path:string ->
-        ?opts:(StatOptions.t, anonymous_interface_0) intersection2 ->
+        ?opts:(StatOptions.t, AnonymousInterface0.t) intersection2 ->
           unit -> Stats.t Promise.t)
       =
       fun ~path:(x440 : string) ->
         fun
           ?opts:(x441 :
-                  (StatOptions.t, anonymous_interface_0) intersection2 option)
+                  (StatOptions.t, AnonymousInterface0.t) intersection2 option)
           ->
           fun () ->
             Promise.t_of_js Stats.t_of_js
@@ -1487,23 +1370,23 @@ module Fs_promises =
                                  (Ojs.call x442 "push"
                                     [|(intersection2_to_js
                                          StatOptions.t_to_js
-                                         anonymous_interface_0_to_js x443)|])
+                                         AnonymousInterface0.t_to_js x443)|])
                            | None -> ());
                           x442))|])
     let (stat :
       path:string ->
-        opts:(StatOptions.t, anonymous_interface_1) intersection2 ->
+        opts:(StatOptions.t, AnonymousInterface1.t) intersection2 ->
           BigIntStats.t Promise.t)
       =
       fun ~path:(x448 : string) ->
         fun
-          ~opts:(x449 : (StatOptions.t, anonymous_interface_1) intersection2)
+          ~opts:(x449 : (StatOptions.t, AnonymousInterface1.t) intersection2)
           ->
           Promise.t_of_js BigIntStats.t_of_js
             (Ojs.call Import.fs_promises "stat"
                [|(Ojs.string_to_js x448);(intersection2_to_js
                                             StatOptions.t_to_js
-                                            anonymous_interface_1_to_js x449)|])
+                                            AnonymousInterface1.t_to_js x449)|])
     let (stat :
       path:string ->
         ?opts:StatOptions.t ->
@@ -1889,10 +1772,10 @@ module Fs_promises =
                             x569))|])
     let (readFile :
       path:(node_fs_promises_FileHandle, string) union2 ->
-        ?options:anonymous_interface_6 or_null -> unit -> Buffer.t Promise.t)
+        ?options:AnonymousInterface6.t or_null -> unit -> Buffer.t Promise.t)
       =
       fun ~path:(x577 : (node_fs_promises_FileHandle, string) union2) ->
-        fun ?options:(x578 : anonymous_interface_6 or_null option) ->
+        fun ?options:(x578 : AnonymousInterface6.t or_null option) ->
           fun () ->
             Promise.t_of_js Buffer.t_of_js
               (let x584 = Import.fs_promises in
@@ -1911,24 +1794,24 @@ module Fs_promises =
                                ignore
                                  (Ojs.call x579 "push"
                                     [|(or_null_to_js
-                                         anonymous_interface_6_to_js x580)|])
+                                         AnonymousInterface6.t_to_js x580)|])
                            | None -> ());
                           x579))|])
     let (readFile :
       path:(node_fs_promises_FileHandle, string) union2 ->
-        options:(BufferEncoding.t, anonymous_interface_5) union2 ->
+        options:(BufferEncoding.t, AnonymousInterface5.t) union2 ->
           string Promise.t)
       =
       fun ~path:(x586 : (node_fs_promises_FileHandle, string) union2) ->
         fun
-          ~options:(x589 : (BufferEncoding.t, anonymous_interface_5) union2)
+          ~options:(x589 : (BufferEncoding.t, AnonymousInterface5.t) union2)
           ->
           Promise.t_of_js Ojs.string_of_js
             (Ojs.call Import.fs_promises "readFile"
                [|(union2_to_js node_fs_promises_FileHandle_to_js
                     Ojs.string_to_js x586);(union2_to_js
                                               BufferEncoding.t_to_js
-                                              anonymous_interface_5_to_js
+                                              AnonymousInterface5.t_to_js
                                               x589)|])
     let (readFile :
       path:(node_fs_promises_FileHandle, string) union2 ->

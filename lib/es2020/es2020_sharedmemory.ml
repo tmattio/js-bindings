@@ -34,7 +34,7 @@ module Atomics =
                    [|(union2_to_js BigInt64Array.t_to_js
                         BigUint64Array.t_to_js x7);(Ojs.int_to_js x10);(
                      bigint_to_js x11)|])
-    let (compareExchange :
+    let (compare_exchange :
       t ->
         typedArray:(BigInt64Array.t, BigUint64Array.t) union2 ->
           index:int ->

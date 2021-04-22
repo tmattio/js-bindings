@@ -4,68 +4,22 @@
 open Es5
 module Internal =
   struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-        let rec anonymous_interface_1_of_js : Ojs.t -> anonymous_interface_1
-          = Obj.magic
-        and anonymous_interface_1_to_js : anonymous_interface_1 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-        let rec anonymous_interface_2_of_js : Ojs.t -> anonymous_interface_2
-          = Obj.magic
-        and anonymous_interface_2_to_js : anonymous_interface_2 -> Ojs.t =
-          Obj.magic
-      end
     module Types =
       struct
-        open AnonymousInterfaces
-        type _SemanticTokensClientCapabilities =
-          [ `SemanticTokensClientCapabilities ] intf
-        and _SemanticTokensDeltaParams = [ `SemanticTokensDeltaParams ] intf
-        and _SemanticTokensDeltaPartialResult =
-          [ `SemanticTokensDeltaPartialResult ] intf
-        and _SemanticTokensDeltaRequest_HandlerSignature =
+        type _SemanticTokensDeltaRequest_HandlerSignature =
           (_SemanticTokensDeltaParams,
             (SemanticTokens.t, SemanticTokensDelta.t) union2 or_null, 
             unit) RequestHandler.t
-        and _SemanticTokensOptions = [ `SemanticTokensOptions ] intf
-        and _SemanticTokensParams = [ `SemanticTokensParams ] intf
-        and _SemanticTokensPartialResult =
-          [ `SemanticTokensPartialResult ] intf
-        and _SemanticTokensRangeParams = [ `SemanticTokensRangeParams ] intf
         and _SemanticTokensRangeRequest_HandlerSignature =
           (_SemanticTokensRangeParams, SemanticTokens.t or_null, unit)
             RequestHandler.t
         and _SemanticTokensRefreshRequest_HandlerSignature =
           (unit, unit) RequestHandler0.t
-        and _SemanticTokensRegistrationOptions =
-          [ `SemanticTokensRegistrationOptions  | `SemanticTokensOptions ]
-            intf
         and _SemanticTokensRequest_HandlerSignature =
           (_SemanticTokensDeltaParams, SemanticTokens.t or_null, unit)
             RequestHandler.t
-        and _SemanticTokensWorkspaceClientCapabilities =
-          [ `SemanticTokensWorkspaceClientCapabilities ] intf
         and _TokenFormat = [ `L_s0_relative ]
-        let rec _SemanticTokensClientCapabilities_of_js :
-          Ojs.t -> _SemanticTokensClientCapabilities = Obj.magic
-        and _SemanticTokensClientCapabilities_to_js :
-          _SemanticTokensClientCapabilities -> Ojs.t = Obj.magic
-        and _SemanticTokensDeltaParams_of_js :
-          Ojs.t -> _SemanticTokensDeltaParams = Obj.magic
-        and _SemanticTokensDeltaParams_to_js :
-          _SemanticTokensDeltaParams -> Ojs.t = Obj.magic
-        and _SemanticTokensDeltaPartialResult_of_js :
-          Ojs.t -> _SemanticTokensDeltaPartialResult = Obj.magic
-        and _SemanticTokensDeltaPartialResult_to_js :
-          _SemanticTokensDeltaPartialResult -> Ojs.t = Obj.magic
-        and _SemanticTokensDeltaRequest_HandlerSignature_of_js :
+        let rec _SemanticTokensDeltaRequest_HandlerSignature_of_js :
           Ojs.t -> _SemanticTokensDeltaRequest_HandlerSignature =
           fun (x8 : Ojs.t) ->
             RequestHandler.t_of_js _SemanticTokensDeltaParams_of_js
@@ -94,22 +48,6 @@ module Internal =
                       ->
                       union2_to_js SemanticTokens.t_to_js
                         SemanticTokensDelta.t_to_js x4) x3) Ojs.unit_to_js x1
-        and _SemanticTokensOptions_of_js : Ojs.t -> _SemanticTokensOptions =
-          Obj.magic
-        and _SemanticTokensOptions_to_js : _SemanticTokensOptions -> Ojs.t =
-          Obj.magic
-        and _SemanticTokensParams_of_js : Ojs.t -> _SemanticTokensParams =
-          Obj.magic
-        and _SemanticTokensParams_to_js : _SemanticTokensParams -> Ojs.t =
-          Obj.magic
-        and _SemanticTokensPartialResult_of_js :
-          Ojs.t -> _SemanticTokensPartialResult = Obj.magic
-        and _SemanticTokensPartialResult_to_js :
-          _SemanticTokensPartialResult -> Ojs.t = Obj.magic
-        and _SemanticTokensRangeParams_of_js :
-          Ojs.t -> _SemanticTokensRangeParams = Obj.magic
-        and _SemanticTokensRangeParams_to_js :
-          _SemanticTokensRangeParams -> Ojs.t = Obj.magic
         and _SemanticTokensRangeRequest_HandlerSignature_of_js :
           Ojs.t -> _SemanticTokensRangeRequest_HandlerSignature =
           fun (x20 : Ojs.t) ->
@@ -134,10 +72,6 @@ module Internal =
           _SemanticTokensRefreshRequest_HandlerSignature -> Ojs.t =
           fun (x25 : (unit, unit) RequestHandler0.t) ->
             RequestHandler0.t_to_js Ojs.unit_to_js Ojs.unit_to_js x25
-        and _SemanticTokensRegistrationOptions_of_js :
-          Ojs.t -> _SemanticTokensRegistrationOptions = Obj.magic
-        and _SemanticTokensRegistrationOptions_to_js :
-          _SemanticTokensRegistrationOptions -> Ojs.t = Obj.magic
         and _SemanticTokensRequest_HandlerSignature_of_js :
           Ojs.t -> _SemanticTokensRequest_HandlerSignature =
           fun (x36 : Ojs.t) ->
@@ -154,10 +88,6 @@ module Internal =
             RequestHandler.t_to_js _SemanticTokensDeltaParams_to_js
               (fun (x33 : SemanticTokens.t or_null) ->
                  or_null_to_js SemanticTokens.t_to_js x33) Ojs.unit_to_js x31
-        and _SemanticTokensWorkspaceClientCapabilities_of_js :
-          Ojs.t -> _SemanticTokensWorkspaceClientCapabilities = Obj.magic
-        and _SemanticTokensWorkspaceClientCapabilities_to_js :
-          _SemanticTokensWorkspaceClientCapabilities -> Ojs.t = Obj.magic
         and _TokenFormat_of_js : Ojs.t -> _TokenFormat =
           fun (x42 : Ojs.t) ->
             let x43 = x42 in
@@ -169,24 +99,17 @@ module Internal =
             match x41 with | `L_s0_relative -> Ojs.string_to_js "relative"
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x45 : Ojs.t) -> anonymous_interface_0_of_js x45
-    and t_to_js : t -> Ojs.t =
-      fun (x44 : anonymous_interface_0) -> anonymous_interface_0_to_js x44
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x45 : Ojs.t) -> x45
+    and t_to_js : t -> Ojs.t = fun (x44 : Ojs.t) -> x44
   end
 module AnonymousInterface1 =
   struct
-    type t = anonymous_interface_1
-    let rec t_of_js : Ojs.t -> t =
-      fun (x47 : Ojs.t) -> anonymous_interface_1_of_js x47
-    and t_to_js : t -> Ojs.t =
-      fun (x46 : anonymous_interface_1) -> anonymous_interface_1_to_js x46
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x47 : Ojs.t) -> x47
+    and t_to_js : t -> Ojs.t = fun (x46 : Ojs.t) -> x46
     let (get_delta : t -> bool) =
       fun (x48 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x48) "delta")
@@ -197,29 +120,27 @@ module AnonymousInterface1 =
   end
 module AnonymousInterface2 =
   struct
-    type t = anonymous_interface_2
-    let rec t_of_js : Ojs.t -> t =
-      fun (x52 : Ojs.t) -> anonymous_interface_2_of_js x52
-    and t_to_js : t -> Ojs.t =
-      fun (x51 : anonymous_interface_2) -> anonymous_interface_2_to_js x51
-    let (get_range : t -> anonymous_interface_0 or_boolean) =
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x52 : Ojs.t) -> x52
+    and t_to_js : t -> Ojs.t = fun (x51 : Ojs.t) -> x51
+    let (get_range : t -> AnonymousInterface0.t or_boolean) =
       fun (x53 : t) ->
-        or_boolean_of_js anonymous_interface_0_of_js
+        or_boolean_of_js AnonymousInterface0.t_of_js
           (Ojs.get_prop_ascii (t_to_js x53) "range")
-    let (set_range : t -> anonymous_interface_0 or_boolean -> unit) =
+    let (set_range : t -> AnonymousInterface0.t or_boolean -> unit) =
       fun (x55 : t) ->
-        fun (x56 : anonymous_interface_0 or_boolean) ->
+        fun (x56 : AnonymousInterface0.t or_boolean) ->
           Ojs.set_prop_ascii (t_to_js x55) "range"
-            (or_boolean_to_js anonymous_interface_0_to_js x56)
-    let (get_full : t -> anonymous_interface_1 or_boolean) =
+            (or_boolean_to_js AnonymousInterface0.t_to_js x56)
+    let (get_full : t -> AnonymousInterface1.t or_boolean) =
       fun (x58 : t) ->
-        or_boolean_of_js anonymous_interface_1_of_js
+        or_boolean_of_js AnonymousInterface1.t_of_js
           (Ojs.get_prop_ascii (t_to_js x58) "full")
-    let (set_full : t -> anonymous_interface_1 or_boolean -> unit) =
+    let (set_full : t -> AnonymousInterface1.t or_boolean -> unit) =
       fun (x60 : t) ->
-        fun (x61 : anonymous_interface_1 or_boolean) ->
+        fun (x61 : AnonymousInterface1.t or_boolean) ->
           Ojs.set_prop_ascii (t_to_js x60) "full"
-            (or_boolean_to_js anonymous_interface_1_to_js x61)
+            (or_boolean_to_js AnonymousInterface1.t_to_js x61)
   end
 module SemanticTokensPartialResult =
   struct
@@ -292,15 +213,15 @@ module SemanticTokensClientCapabilities =
         fun (x84 : bool) ->
           Ojs.set_prop_ascii (t_to_js x83) "dynamicRegistration"
             (Ojs.bool_to_js x84)
-    let (get_requests : t -> anonymous_interface_2) =
+    let (get_requests : t -> AnonymousInterface2.t) =
       fun (x85 : t) ->
-        anonymous_interface_2_of_js
+        AnonymousInterface2.t_of_js
           (Ojs.get_prop_ascii (t_to_js x85) "requests")
-    let (set_requests : t -> anonymous_interface_2 -> unit) =
+    let (set_requests : t -> AnonymousInterface2.t -> unit) =
       fun (x86 : t) ->
-        fun (x87 : anonymous_interface_2) ->
+        fun (x87 : AnonymousInterface2.t) ->
           Ojs.set_prop_ascii (t_to_js x86) "requests"
-            (anonymous_interface_2_to_js x87)
+            (AnonymousInterface2.t_to_js x87)
     let (get_tokenTypes : t -> string list) =
       fun (x88 : t) ->
         Ojs.list_of_js Ojs.string_of_js
@@ -364,24 +285,24 @@ module SemanticTokensOptions =
         fun (x113 : SemanticTokensLegend.t) ->
           Ojs.set_prop_ascii (t_to_js x112) "legend"
             (SemanticTokensLegend.t_to_js x113)
-    let (get_range : t -> anonymous_interface_0 or_boolean) =
+    let (get_range : t -> AnonymousInterface0.t or_boolean) =
       fun (x114 : t) ->
-        or_boolean_of_js anonymous_interface_0_of_js
+        or_boolean_of_js AnonymousInterface0.t_of_js
           (Ojs.get_prop_ascii (t_to_js x114) "range")
-    let (set_range : t -> anonymous_interface_0 or_boolean -> unit) =
+    let (set_range : t -> AnonymousInterface0.t or_boolean -> unit) =
       fun (x116 : t) ->
-        fun (x117 : anonymous_interface_0 or_boolean) ->
+        fun (x117 : AnonymousInterface0.t or_boolean) ->
           Ojs.set_prop_ascii (t_to_js x116) "range"
-            (or_boolean_to_js anonymous_interface_0_to_js x117)
-    let (get_full : t -> anonymous_interface_1 or_boolean) =
+            (or_boolean_to_js AnonymousInterface0.t_to_js x117)
+    let (get_full : t -> AnonymousInterface1.t or_boolean) =
       fun (x119 : t) ->
-        or_boolean_of_js anonymous_interface_1_of_js
+        or_boolean_of_js AnonymousInterface1.t_of_js
           (Ojs.get_prop_ascii (t_to_js x119) "full")
-    let (set_full : t -> anonymous_interface_1 or_boolean -> unit) =
+    let (set_full : t -> AnonymousInterface1.t or_boolean -> unit) =
       fun (x121 : t) ->
-        fun (x122 : anonymous_interface_1 or_boolean) ->
+        fun (x122 : AnonymousInterface1.t or_boolean) ->
           Ojs.set_prop_ascii (t_to_js x121) "full"
-            (or_boolean_to_js anonymous_interface_1_to_js x122)
+            (or_boolean_to_js AnonymousInterface1.t_to_js x122)
     let (cast : t -> WorkDoneProgressOptions.t) =
       fun (x124 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x124)
   end

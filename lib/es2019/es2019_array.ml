@@ -21,7 +21,7 @@ module FlatArray =
 module ReadonlyArray =
   struct
     include struct include ReadonlyArray end
-    let (flatMap :
+    let (flat_map :
       'T t ->
         callback:(this:'This ->
                     value:'T ->
@@ -95,7 +95,7 @@ module ReadonlyArray =
 module Array =
   struct
     include struct include Array end
-    let (flatMap :
+    let (flat_map :
       'T t ->
         callback:(this:'This ->
                     value:'T ->

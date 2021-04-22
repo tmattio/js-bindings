@@ -3,23 +3,6 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
 open Node_globals
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type wasi_WASI = [ `Wasi_WASI ] intf
-        and wasi_WASIOptions = [ `Wasi_WASIOptions ] intf
-        let rec wasi_WASI_of_js : Ojs.t -> wasi_WASI = Obj.magic
-        and wasi_WASI_to_js : wasi_WASI -> Ojs.t = Obj.magic
-        and wasi_WASIOptions_of_js : Ojs.t -> wasi_WASIOptions = Obj.magic
-        and wasi_WASIOptions_to_js : wasi_WASIOptions -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module Wasi =
   struct
     module WASIOptions =

@@ -5,6 +5,10 @@
 open Es2017
 
 module Intl : sig
+  include module type of struct
+    include Intl
+  end
+
   module LDMLPluralRule : sig
     type t =
       ([ `few [@js "few"]
@@ -40,43 +44,45 @@ module Intl : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_localeMatcher
+    val get_locale_matcher
       :  t
       -> ([ `best_fit [@js "best fit"] | `lookup [@js "lookup"] ][@js.enum])
       [@@js.get "localeMatcher"]
 
-    val set_localeMatcher : t -> ([ `best_fit | `lookup ][@js.enum]) -> unit
+    val set_locale_matcher : t -> ([ `best_fit | `lookup ][@js.enum]) -> unit
       [@@js.set "localeMatcher"]
 
     val get_type : t -> PluralRuleType.t [@@js.get "type"]
 
     val set_type : t -> PluralRuleType.t -> unit [@@js.set "type"]
 
-    val get_minimumIntegerDigits : t -> int [@@js.get "minimumIntegerDigits"]
+    val get_minimum_integer_digits : t -> int [@@js.get "minimumIntegerDigits"]
 
-    val set_minimumIntegerDigits : t -> int -> unit
+    val set_minimum_integer_digits : t -> int -> unit
       [@@js.set "minimumIntegerDigits"]
 
-    val get_minimumFractionDigits : t -> int [@@js.get "minimumFractionDigits"]
+    val get_minimum_fraction_digits : t -> int
+      [@@js.get "minimumFractionDigits"]
 
-    val set_minimumFractionDigits : t -> int -> unit
+    val set_minimum_fraction_digits : t -> int -> unit
       [@@js.set "minimumFractionDigits"]
 
-    val get_maximumFractionDigits : t -> int [@@js.get "maximumFractionDigits"]
+    val get_maximum_fraction_digits : t -> int
+      [@@js.get "maximumFractionDigits"]
 
-    val set_maximumFractionDigits : t -> int -> unit
+    val set_maximum_fraction_digits : t -> int -> unit
       [@@js.set "maximumFractionDigits"]
 
-    val get_minimumSignificantDigits : t -> int
+    val get_minimum_significant_digits : t -> int
       [@@js.get "minimumSignificantDigits"]
 
-    val set_minimumSignificantDigits : t -> int -> unit
+    val set_minimum_significant_digits : t -> int -> unit
       [@@js.set "minimumSignificantDigits"]
 
-    val get_maximumSignificantDigits : t -> int
+    val get_maximum_significant_digits : t -> int
       [@@js.get "maximumSignificantDigits"]
 
-    val set_maximumSignificantDigits : t -> int -> unit
+    val set_maximum_significant_digits : t -> int -> unit
       [@@js.set "maximumSignificantDigits"]
   end
   [@@js.scope "PluralRulesOptions"]
@@ -92,41 +98,43 @@ module Intl : sig
 
     val set_locale : t -> string -> unit [@@js.set "locale"]
 
-    val get_pluralCategories : t -> LDMLPluralRule.t list
+    val get_plural_categories : t -> LDMLPluralRule.t list
       [@@js.get "pluralCategories"]
 
-    val set_pluralCategories : t -> LDMLPluralRule.t list -> unit
+    val set_plural_categories : t -> LDMLPluralRule.t list -> unit
       [@@js.set "pluralCategories"]
 
     val get_type : t -> PluralRuleType.t [@@js.get "type"]
 
     val set_type : t -> PluralRuleType.t -> unit [@@js.set "type"]
 
-    val get_minimumIntegerDigits : t -> int [@@js.get "minimumIntegerDigits"]
+    val get_minimum_integer_digits : t -> int [@@js.get "minimumIntegerDigits"]
 
-    val set_minimumIntegerDigits : t -> int -> unit
+    val set_minimum_integer_digits : t -> int -> unit
       [@@js.set "minimumIntegerDigits"]
 
-    val get_minimumFractionDigits : t -> int [@@js.get "minimumFractionDigits"]
+    val get_minimum_fraction_digits : t -> int
+      [@@js.get "minimumFractionDigits"]
 
-    val set_minimumFractionDigits : t -> int -> unit
+    val set_minimum_fraction_digits : t -> int -> unit
       [@@js.set "minimumFractionDigits"]
 
-    val get_maximumFractionDigits : t -> int [@@js.get "maximumFractionDigits"]
+    val get_maximum_fraction_digits : t -> int
+      [@@js.get "maximumFractionDigits"]
 
-    val set_maximumFractionDigits : t -> int -> unit
+    val set_maximum_fraction_digits : t -> int -> unit
       [@@js.set "maximumFractionDigits"]
 
-    val get_minimumSignificantDigits : t -> int
+    val get_minimum_significant_digits : t -> int
       [@@js.get "minimumSignificantDigits"]
 
-    val set_minimumSignificantDigits : t -> int -> unit
+    val set_minimum_significant_digits : t -> int -> unit
       [@@js.set "minimumSignificantDigits"]
 
-    val get_maximumSignificantDigits : t -> int
+    val get_maximum_significant_digits : t -> int
       [@@js.get "maximumSignificantDigits"]
 
-    val set_maximumSignificantDigits : t -> int -> unit
+    val set_maximum_significant_digits : t -> int -> unit
       [@@js.set "maximumSignificantDigits"]
   end
   [@@js.scope "ResolvedPluralRulesOptions"]
@@ -138,7 +146,7 @@ module Intl : sig
 
     val t_of_js : Ojs.t -> t
 
-    val resolvedOptions : t -> ResolvedPluralRulesOptions.t
+    val resolved_options : t -> ResolvedPluralRulesOptions.t
       [@@js.call "resolvedOptions"]
 
     val select : t -> n:int -> LDMLPluralRule.t [@@js.call "select"]
@@ -168,7 +176,7 @@ module Intl : sig
       -> PluralRules.t
       [@@js.apply]
 
-    val supportedLocalesOf
+    val supported_locales_of
       :  t
       -> locales:string list or_string
       -> ?options:PluralRulesOptions.t
@@ -177,10 +185,6 @@ module Intl : sig
       [@@js.call "supportedLocalesOf"]
   end
 
-  val pluralRules : AnonymousInterface0.t [@@js.global "PluralRules"]
+  val plural_rules : AnonymousInterface0.t [@@js.global "PluralRules"]
 end
 [@@js.scope "Intl"]
-
-include module type of struct
-  include Intl
-end

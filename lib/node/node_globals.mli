@@ -51,7 +51,7 @@ module AnonymousInterface3 : sig
 
   val t_of_js : Ojs.t -> t
 
-  val valueOf : t -> 'T [@@js.call "valueOf"]
+  val value_of : t -> 'T [@@js.call "valueOf"]
 end
 
 module CallSite : sig
@@ -61,31 +61,32 @@ module CallSite : sig
 
   val t_of_js : Ojs.t -> t
 
-  val getThis : t -> any [@@js.call "getThis"]
+  val get_this : t -> any [@@js.call "getThis"]
 
-  val getTypeName : t -> string or_null [@@js.call "getTypeName"]
+  val get_type_name : t -> string or_null [@@js.call "getTypeName"]
 
-  val getFunction : t -> untyped_function or_undefined [@@js.call "getFunction"]
+  val get_function : t -> untyped_function or_undefined
+    [@@js.call "getFunction"]
 
-  val getFunctionName : t -> string or_null [@@js.call "getFunctionName"]
+  val get_function_name : t -> string or_null [@@js.call "getFunctionName"]
 
-  val getMethodName : t -> string or_null [@@js.call "getMethodName"]
+  val get_method_name : t -> string or_null [@@js.call "getMethodName"]
 
-  val getFileName : t -> string or_null [@@js.call "getFileName"]
+  val get_file_name : t -> string or_null [@@js.call "getFileName"]
 
-  val getLineNumber : t -> int or_null [@@js.call "getLineNumber"]
+  val get_line_number : t -> int or_null [@@js.call "getLineNumber"]
 
-  val getColumnNumber : t -> int or_null [@@js.call "getColumnNumber"]
+  val get_column_number : t -> int or_null [@@js.call "getColumnNumber"]
 
-  val getEvalOrigin : t -> string or_undefined [@@js.call "getEvalOrigin"]
+  val get_eval_origin : t -> string or_undefined [@@js.call "getEvalOrigin"]
 
-  val isToplevel : t -> bool [@@js.call "isToplevel"]
+  val is_toplevel : t -> bool [@@js.call "isToplevel"]
 
-  val isEval : t -> bool [@@js.call "isEval"]
+  val is_eval : t -> bool [@@js.call "isEval"]
 
-  val isNative : t -> bool [@@js.call "isNative"]
+  val is_native : t -> bool [@@js.call "isNative"]
 
-  val isConstructor : t -> bool [@@js.call "isConstructor"]
+  val is_constructor : t -> bool [@@js.call "isConstructor"]
 end
 [@@js.scope "CallSite"]
 
@@ -96,7 +97,7 @@ module ErrorConstructor : sig
 
   val t_of_js : Ojs.t -> t
 
-  val captureStackTrace
+  val capture_stack_trace
     :  t
     -> targetObject:untyped_object
     -> ?constructorOpt:untyped_function
@@ -104,12 +105,16 @@ module ErrorConstructor : sig
     -> unit
     [@@js.call "captureStackTrace"]
 
-  val prepareStackTrace : t -> err:Error.t -> stackTraces:CallSite.t list -> any
+  val prepare_stack_trace
+    :  t
+    -> err:Error.t
+    -> stackTraces:CallSite.t list
+    -> any
     [@@js.call "prepareStackTrace"]
 
-  val get_stackTraceLimit : t -> int [@@js.get "stackTraceLimit"]
+  val get_stack_trace_limit : t -> int [@@js.get "stackTraceLimit"]
 
-  val set_stackTraceLimit : t -> int -> unit [@@js.set "stackTraceLimit"]
+  val set_stack_trace_limit : t -> int -> unit [@@js.set "stackTraceLimit"]
 end
 [@@js.scope "ErrorConstructor"]
 
@@ -120,13 +125,13 @@ module String : sig
 
   val t_of_js : Ojs.t -> t
 
-  val trimLeft : t -> string [@@js.call "trimLeft"]
+  val trim_left : t -> string [@@js.call "trimLeft"]
 
-  val trimRight : t -> string [@@js.call "trimRight"]
+  val trim_right : t -> string [@@js.call "trimRight"]
 
-  val trimStart : t -> string [@@js.call "trimStart"]
+  val trim_start : t -> string [@@js.call "trimStart"]
 
-  val trimEnd : t -> string [@@js.call "trimEnd"]
+  val trim_end : t -> string [@@js.call "trimEnd"]
 
   val to_ml : t -> string [@@js.cast]
 
@@ -146,108 +151,6 @@ module ImportMeta : sig
   val set_url : t -> string -> unit [@@js.set "url"]
 end
 [@@js.scope "ImportMeta"]
-
-module NodeRequire : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val cast : t -> Require.t [@@js.cast]
-end
-[@@js.scope "NodeRequire"]
-
-module RequireResolve : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val cast : t -> RequireResolve.t [@@js.cast]
-end
-[@@js.scope "RequireResolve"]
-
-module NodeModule : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val cast : t -> Module.t [@@js.cast]
-end
-[@@js.scope "NodeModule"]
-
-(* val process : Node_process.Process.t [@@js.global "process"] *)
-
-(* val console : Console.t [@@js.global "console"] *)
-
-[@@@js.stop]
-
-val __filename : unit -> string
-
-val __dirname : unit -> string
-
-[@@@js.start]
-
-[@@@js.implem
-let __filename () =
-  Ojs.get_prop_ascii Ojs.global "__filename" |> Ojs.string_of_js
-
-let __dirname () = Ojs.get_prop_ascii Ojs.global "__dirname" |> Ojs.string_of_js]
-
-val setTimeout
-  :  callback:(args:(any list[@js.variadic]) -> unit)
-  -> ?ms:int
-  -> args:(any list[@js.variadic])
-  -> Timeout.t
-  [@@js.global "setTimeout"]
-
-module SetTimeout : sig
-  val __promisify__ : ms:int -> unit Promise.t [@@js.global "__promisify__"]
-
-  val __promisify__ : ms:int -> value:'T -> 'T Promise.t
-    [@@js.global "__promisify__"]
-end
-[@@js.scope "setTimeout"]
-
-val clearTimeout : timeoutId:Timeout.t -> unit [@@js.global "clearTimeout"]
-
-val setInterval
-  :  callback:(args:(any list[@js.variadic]) -> unit)
-  -> ?ms:int
-  -> args:(any list[@js.variadic])
-  -> Timeout.t
-  [@@js.global "setInterval"]
-
-val clearInterval : intervalId:Timeout.t -> unit [@@js.global "clearInterval"]
-
-val setImmediate
-  :  callback:(args:(any list[@js.variadic]) -> unit)
-  -> args:(any list[@js.variadic])
-  -> Immediate.t
-  [@@js.global "setImmediate"]
-
-module SetImmediate : sig
-  val __promisify__ : unit -> unit Promise.t [@@js.global "__promisify__"]
-
-  val __promisify__ : value:'T -> 'T Promise.t [@@js.global "__promisify__"]
-end
-[@@js.scope "setImmediate"]
-
-val clearImmediate : immediateId:Immediate.t -> unit
-  [@@js.global "clearImmediate"]
-
-val queueMicrotask : callback:(unit -> unit) -> unit
-  [@@js.global "queueMicrotask"]
-
-val require : NodeRequire.t [@@js.global "require"]
-
-val module_ : NodeModule.t [@@js.global "module"]
-
-val exports : any [@@js.global "exports"]
 
 module BufferEncoding : sig
   type t =
@@ -317,11 +220,11 @@ module Buffer : sig
 
   val of_ : (int list[@js.variadic]) -> t [@@js.global "of"]
 
-  val isBuffer : obj:any -> bool [@@js.global "isBuffer"]
+  val is_buffer : obj:any -> bool [@@js.global "isBuffer"]
 
-  val isEncoding : encoding:string -> bool [@@js.global "isEncoding"]
+  val is_encoding : encoding:string -> bool [@@js.global "isEncoding"]
 
-  val byteLength
+  val byte_length
     :  string:
          (ArrayBuffer.t, ArrayBufferView.t, SharedArrayBuffer.t) union3
          or_string
@@ -344,13 +247,13 @@ module Buffer : sig
     -> t
     [@@js.global "alloc"]
 
-  val allocUnsafe : size:int -> t [@@js.global "allocUnsafe"]
+  val alloc_unsafe : size:int -> t [@@js.global "allocUnsafe"]
 
-  val allocUnsafeSlow : size:int -> t [@@js.global "allocUnsafeSlow"]
+  val alloc_unsafe_slow : size:int -> t [@@js.global "allocUnsafeSlow"]
 
-  val get_poolSize : unit -> int [@@js.get "poolSize"]
+  val get_pool_size : unit -> int [@@js.get "poolSize"]
 
-  val set_poolSize : int -> unit [@@js.set "poolSize"]
+  val set_pool_size : int -> unit [@@js.set "poolSize"]
 
   val write : t -> string:string -> ?encoding:BufferEncoding.t -> unit -> int
     [@@js.call "write"]
@@ -374,7 +277,7 @@ module Buffer : sig
     -> int
     [@@js.call "write"]
 
-  val toString
+  val to_string
     :  t
     -> ?encoding:BufferEncoding.t
     -> ?start:int
@@ -383,7 +286,7 @@ module Buffer : sig
     -> string
     [@@js.call "toString"]
 
-  val toJSON : t -> AnonymousInterface2.t [@@js.call "toJSON"]
+  val to_json : t -> AnonymousInterface2.t [@@js.call "toJSON"]
 
   val equals : t -> otherBuffer:Uint8Array.t -> bool [@@js.call "equals"]
 
@@ -413,81 +316,87 @@ module Buffer : sig
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
     [@@js.call "subarray"]
 
-  val writeBigInt64BE : t -> bigint -> ?offset:int -> unit -> int
+  val write_big_int64_be : t -> bigint -> ?offset:int -> unit -> int
     [@@js.call "writeBigInt64BE"]
 
-  val writeBigInt64LE : t -> bigint -> ?offset:int -> unit -> int
+  val write_big_int64_le : t -> bigint -> ?offset:int -> unit -> int
     [@@js.call "writeBigInt64LE"]
 
-  val writeBigUInt64BE : t -> bigint -> ?offset:int -> unit -> int
+  val write_big_u_int64_be : t -> bigint -> ?offset:int -> unit -> int
     [@@js.call "writeBigUInt64BE"]
 
-  val writeBigUInt64LE : t -> bigint -> ?offset:int -> unit -> int
+  val write_big_u_int64_le : t -> bigint -> ?offset:int -> unit -> int
     [@@js.call "writeBigUInt64LE"]
 
-  val writeUIntLE : t -> value:int -> offset:int -> byteLength:int -> int
+  val write_u_int_le : t -> value:int -> offset:int -> byteLength:int -> int
     [@@js.call "writeUIntLE"]
 
-  val writeUIntBE : t -> value:int -> offset:int -> byteLength:int -> int
+  val write_u_int_be : t -> value:int -> offset:int -> byteLength:int -> int
     [@@js.call "writeUIntBE"]
 
-  val writeIntLE : t -> value:int -> offset:int -> byteLength:int -> int
+  val write_int_le : t -> value:int -> offset:int -> byteLength:int -> int
     [@@js.call "writeIntLE"]
 
-  val writeIntBE : t -> value:int -> offset:int -> byteLength:int -> int
+  val write_int_be : t -> value:int -> offset:int -> byteLength:int -> int
     [@@js.call "writeIntBE"]
 
-  val readBigUInt64BE : t -> ?offset:int -> unit -> bigint
+  val read_big_u_int64_be : t -> ?offset:int -> unit -> bigint
     [@@js.call "readBigUInt64BE"]
 
-  val readBigUInt64LE : t -> ?offset:int -> unit -> bigint
+  val read_big_u_int64_le : t -> ?offset:int -> unit -> bigint
     [@@js.call "readBigUInt64LE"]
 
-  val readBigInt64BE : t -> ?offset:int -> unit -> bigint
+  val read_big_int64_be : t -> ?offset:int -> unit -> bigint
     [@@js.call "readBigInt64BE"]
 
-  val readBigInt64LE : t -> ?offset:int -> unit -> bigint
+  val read_big_int64_le : t -> ?offset:int -> unit -> bigint
     [@@js.call "readBigInt64LE"]
 
-  val readUIntLE : t -> offset:int -> byteLength:int -> int
+  val read_u_int_le : t -> offset:int -> byteLength:int -> int
     [@@js.call "readUIntLE"]
 
-  val readUIntBE : t -> offset:int -> byteLength:int -> int
+  val read_u_int_be : t -> offset:int -> byteLength:int -> int
     [@@js.call "readUIntBE"]
 
-  val readIntLE : t -> offset:int -> byteLength:int -> int
+  val read_int_le : t -> offset:int -> byteLength:int -> int
     [@@js.call "readIntLE"]
 
-  val readIntBE : t -> offset:int -> byteLength:int -> int
+  val read_int_be : t -> offset:int -> byteLength:int -> int
     [@@js.call "readIntBE"]
 
-  val readUInt8 : t -> ?offset:int -> unit -> int [@@js.call "readUInt8"]
+  val read_u_int8 : t -> ?offset:int -> unit -> int [@@js.call "readUInt8"]
 
-  val readUInt16LE : t -> ?offset:int -> unit -> int [@@js.call "readUInt16LE"]
+  val read_u_int16_le : t -> ?offset:int -> unit -> int
+    [@@js.call "readUInt16LE"]
 
-  val readUInt16BE : t -> ?offset:int -> unit -> int [@@js.call "readUInt16BE"]
+  val read_u_int16_be : t -> ?offset:int -> unit -> int
+    [@@js.call "readUInt16BE"]
 
-  val readUInt32LE : t -> ?offset:int -> unit -> int [@@js.call "readUInt32LE"]
+  val read_u_int32_le : t -> ?offset:int -> unit -> int
+    [@@js.call "readUInt32LE"]
 
-  val readUInt32BE : t -> ?offset:int -> unit -> int [@@js.call "readUInt32BE"]
+  val read_u_int32_be : t -> ?offset:int -> unit -> int
+    [@@js.call "readUInt32BE"]
 
-  val readInt8 : t -> ?offset:int -> unit -> int [@@js.call "readInt8"]
+  val read_int8 : t -> ?offset:int -> unit -> int [@@js.call "readInt8"]
 
-  val readInt16LE : t -> ?offset:int -> unit -> int [@@js.call "readInt16LE"]
+  val read_int16_le : t -> ?offset:int -> unit -> int [@@js.call "readInt16LE"]
 
-  val readInt16BE : t -> ?offset:int -> unit -> int [@@js.call "readInt16BE"]
+  val read_int16_be : t -> ?offset:int -> unit -> int [@@js.call "readInt16BE"]
 
-  val readInt32LE : t -> ?offset:int -> unit -> int [@@js.call "readInt32LE"]
+  val read_int32_le : t -> ?offset:int -> unit -> int [@@js.call "readInt32LE"]
 
-  val readInt32BE : t -> ?offset:int -> unit -> int [@@js.call "readInt32BE"]
+  val read_int32_be : t -> ?offset:int -> unit -> int [@@js.call "readInt32BE"]
 
-  val readFloatLE : t -> ?offset:int -> unit -> int [@@js.call "readFloatLE"]
+  val read_float_le : t -> ?offset:int -> unit -> int [@@js.call "readFloatLE"]
 
-  val readFloatBE : t -> ?offset:int -> unit -> int [@@js.call "readFloatBE"]
+  val read_float_be : t -> ?offset:int -> unit -> int [@@js.call "readFloatBE"]
 
-  val readDoubleLE : t -> ?offset:int -> unit -> int [@@js.call "readDoubleLE"]
+  val read_double_le : t -> ?offset:int -> unit -> int
+    [@@js.call "readDoubleLE"]
 
-  val readDoubleBE : t -> ?offset:int -> unit -> int [@@js.call "readDoubleBE"]
+  val read_double_be : t -> ?offset:int -> unit -> int
+    [@@js.call "readDoubleBE"]
 
   val reverse : t -> t [@@js.call "reverse"]
 
@@ -497,45 +406,46 @@ module Buffer : sig
 
   val swap64 : t -> t [@@js.call "swap64"]
 
-  val writeUInt8 : t -> int -> ?offset:int -> unit -> int
+  val write_u_int8 : t -> int -> ?offset:int -> unit -> int
     [@@js.call "writeUInt8"]
 
-  val writeUInt16LE : t -> int -> ?offset:int -> unit -> int
+  val write_u_int16_le : t -> int -> ?offset:int -> unit -> int
     [@@js.call "writeUInt16LE"]
 
-  val writeUInt16BE : t -> int -> ?offset:int -> unit -> int
+  val write_u_int16_be : t -> int -> ?offset:int -> unit -> int
     [@@js.call "writeUInt16BE"]
 
-  val writeUInt32LE : t -> int -> ?offset:int -> unit -> int
+  val write_u_int32_le : t -> int -> ?offset:int -> unit -> int
     [@@js.call "writeUInt32LE"]
 
-  val writeUInt32BE : t -> int -> ?offset:int -> unit -> int
+  val write_u_int32_be : t -> int -> ?offset:int -> unit -> int
     [@@js.call "writeUInt32BE"]
 
-  val writeInt8 : t -> int -> ?offset:int -> unit -> int [@@js.call "writeInt8"]
+  val write_int8 : t -> int -> ?offset:int -> unit -> int
+    [@@js.call "writeInt8"]
 
-  val writeInt16LE : t -> int -> ?offset:int -> unit -> int
+  val write_int16_le : t -> int -> ?offset:int -> unit -> int
     [@@js.call "writeInt16LE"]
 
-  val writeInt16BE : t -> int -> ?offset:int -> unit -> int
+  val write_int16_be : t -> int -> ?offset:int -> unit -> int
     [@@js.call "writeInt16BE"]
 
-  val writeInt32LE : t -> int -> ?offset:int -> unit -> int
+  val write_int32_le : t -> int -> ?offset:int -> unit -> int
     [@@js.call "writeInt32LE"]
 
-  val writeInt32BE : t -> int -> ?offset:int -> unit -> int
+  val write_int32_be : t -> int -> ?offset:int -> unit -> int
     [@@js.call "writeInt32BE"]
 
-  val writeFloatLE : t -> int -> ?offset:int -> unit -> int
+  val write_float_le : t -> int -> ?offset:int -> unit -> int
     [@@js.call "writeFloatLE"]
 
-  val writeFloatBE : t -> int -> ?offset:int -> unit -> int
+  val write_float_be : t -> int -> ?offset:int -> unit -> int
     [@@js.call "writeFloatBE"]
 
-  val writeDoubleLE : t -> int -> ?offset:int -> unit -> int
+  val write_double_le : t -> int -> ?offset:int -> unit -> int
     [@@js.call "writeDoubleLE"]
 
-  val writeDoubleBE : t -> int -> ?offset:int -> unit -> int
+  val write_double_be : t -> int -> ?offset:int -> unit -> int
     [@@js.call "writeDoubleBE"]
 
   val fill
@@ -548,7 +458,7 @@ module Buffer : sig
     -> t
     [@@js.call "fill"]
 
-  val indexOf
+  val index_of
     :  t
     -> value:Uint8Array.t or_string or_number
     -> ?byteOffset:int
@@ -557,7 +467,7 @@ module Buffer : sig
     -> int
     [@@js.call "indexOf"]
 
-  val lastIndexOf
+  val last_index_of
     :  t
     -> value:Uint8Array.t or_string or_number
     -> ?byteOffset:int
@@ -600,9 +510,9 @@ module InspectOptions : sig
   val set_getters : t -> ([ `get | `set ][@js.enum]) or_boolean -> unit
     [@@js.set "getters"]
 
-  val get_showHidden : t -> bool [@@js.get "showHidden"]
+  val get_show_hidden : t -> bool [@@js.get "showHidden"]
 
-  val set_showHidden : t -> bool -> unit [@@js.set "showHidden"]
+  val set_show_hidden : t -> bool -> unit [@@js.set "showHidden"]
 
   val get_depth : t -> int or_null [@@js.get "depth"]
 
@@ -612,26 +522,27 @@ module InspectOptions : sig
 
   val set_colors : t -> bool -> unit [@@js.set "colors"]
 
-  val get_customInspect : t -> bool [@@js.get "customInspect"]
+  val get_custom_inspect : t -> bool [@@js.get "customInspect"]
 
-  val set_customInspect : t -> bool -> unit [@@js.set "customInspect"]
+  val set_custom_inspect : t -> bool -> unit [@@js.set "customInspect"]
 
-  val get_showProxy : t -> bool [@@js.get "showProxy"]
+  val get_show_proxy : t -> bool [@@js.get "showProxy"]
 
-  val set_showProxy : t -> bool -> unit [@@js.set "showProxy"]
+  val set_show_proxy : t -> bool -> unit [@@js.set "showProxy"]
 
-  val get_maxArrayLength : t -> int or_null [@@js.get "maxArrayLength"]
+  val get_max_array_length : t -> int or_null [@@js.get "maxArrayLength"]
 
-  val set_maxArrayLength : t -> int or_null -> unit [@@js.set "maxArrayLength"]
+  val set_max_array_length : t -> int or_null -> unit
+    [@@js.set "maxArrayLength"]
 
-  val get_maxStringLength : t -> int or_null [@@js.get "maxStringLength"]
+  val get_max_string_length : t -> int or_null [@@js.get "maxStringLength"]
 
-  val set_maxStringLength : t -> int or_null -> unit
+  val set_max_string_length : t -> int or_null -> unit
     [@@js.set "maxStringLength"]
 
-  val get_breakLength : t -> int [@@js.get "breakLength"]
+  val get_break_length : t -> int [@@js.get "breakLength"]
 
-  val set_breakLength : t -> int -> unit [@@js.set "breakLength"]
+  val set_break_length : t -> int -> unit [@@js.set "breakLength"]
 
   val get_compact : t -> bool or_number [@@js.get "compact"]
 
@@ -676,48 +587,6 @@ module ErrnoException : sig
 end
 [@@js.scope "ErrnoException"]
 
-module ReadableStream : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val get_readable : t -> bool [@@js.get "readable"]
-
-  val set_readable : t -> bool -> unit [@@js.set "readable"]
-
-  val read : t -> ?size:int -> unit -> Buffer.t or_string [@@js.call "read"]
-
-  val setEncoding : t -> encoding:BufferEncoding.t -> t
-    [@@js.call "setEncoding"]
-
-  val pause : t -> t [@@js.call "pause"]
-
-  val resume : t -> t [@@js.call "resume"]
-
-  val isPaused : t -> bool [@@js.call "isPaused"]
-
-  val pipe : t -> destination:'T -> ?options:AnonymousInterface0.t -> unit -> 'T
-    [@@js.call "pipe"]
-
-  val unpipe : t -> ?destination:WritableStream.t -> unit -> t
-    [@@js.call "unpipe"]
-
-  val unshift
-    :  t
-    -> chunk:Uint8Array.t or_string
-    -> ?encoding:BufferEncoding.t
-    -> unit
-    -> unit
-    [@@js.call "unshift"]
-
-  val wrap : t -> oldStream:t -> t [@@js.call "wrap"]
-
-  (* val cast : t -> EventEmitter.t [@@js.cast] *)
-end
-[@@js.scope "ReadableStream"]
-
 module WritableStream : sig
   type t
 
@@ -748,7 +617,7 @@ module WritableStream : sig
 
   val end_ : t -> ?cb:(unit -> unit) -> unit -> unit [@@js.call "end"]
 
-  val end_'
+  val end'
     :  t
     -> data:Uint8Array.t or_string
     -> ?cb:(unit -> unit)
@@ -756,7 +625,7 @@ module WritableStream : sig
     -> unit
     [@@js.call "end"]
 
-  val end_''
+  val end''
     :  t
     -> str:string
     -> ?encoding:BufferEncoding.t
@@ -768,6 +637,48 @@ module WritableStream : sig
   (* val cast : t -> EventEmitter.t [@@js.cast] *)
 end
 [@@js.scope "WritableStream"]
+
+module ReadableStream : sig
+  type t
+
+  val t_to_js : t -> Ojs.t
+
+  val t_of_js : Ojs.t -> t
+
+  val get_readable : t -> bool [@@js.get "readable"]
+
+  val set_readable : t -> bool -> unit [@@js.set "readable"]
+
+  val read : t -> ?size:int -> unit -> Buffer.t or_string [@@js.call "read"]
+
+  val set_encoding : t -> encoding:BufferEncoding.t -> t
+    [@@js.call "setEncoding"]
+
+  val pause : t -> t [@@js.call "pause"]
+
+  val resume : t -> t [@@js.call "resume"]
+
+  val is_paused : t -> bool [@@js.call "isPaused"]
+
+  val pipe : t -> destination:'T -> ?options:AnonymousInterface0.t -> unit -> 'T
+    [@@js.call "pipe"]
+
+  val unpipe : t -> ?destination:WritableStream.t -> unit -> t
+    [@@js.call "unpipe"]
+
+  val unshift
+    :  t
+    -> chunk:Uint8Array.t or_string
+    -> ?encoding:BufferEncoding.t
+    -> unit
+    -> unit
+    [@@js.call "unshift"]
+
+  val wrap : t -> oldStream:t -> t [@@js.call "wrap"]
+
+  (* val cast : t -> EventEmitter.t [@@js.cast] *)
+end
+[@@js.scope "ReadableStream"]
 
 module ReadWriteStream : sig
   type t
@@ -781,433 +692,6 @@ module ReadWriteStream : sig
   val cast' : t -> WritableStream.t [@@js.cast]
 end
 [@@js.scope "ReadWriteStream"]
-
-module Global : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val get_Array : t -> (* FIXME: unknown type 'typeof Array' *) any
-    [@@js.get "Array"]
-
-  val set_Array : t -> (* FIXME: unknown type 'typeof Array' *) any -> unit
-    [@@js.set "Array"]
-
-  val get_ArrayBuffer : t -> (* FIXME: unknown type 'typeof ArrayBuffer' *) any
-    [@@js.get "ArrayBuffer"]
-
-  val set_ArrayBuffer
-    :  t
-    -> (* FIXME: unknown type 'typeof ArrayBuffer' *) any
-    -> unit
-    [@@js.set "ArrayBuffer"]
-
-  val get_Boolean : t -> (* FIXME: unknown type 'typeof Boolean' *) any
-    [@@js.get "Boolean"]
-
-  val set_Boolean : t -> (* FIXME: unknown type 'typeof Boolean' *) any -> unit
-    [@@js.set "Boolean"]
-
-  val get_Buffer : t -> (* FIXME: unknown type 'typeof Buffer' *) any
-    [@@js.get "Buffer"]
-
-  val set_Buffer : t -> (* FIXME: unknown type 'typeof Buffer' *) any -> unit
-    [@@js.set "Buffer"]
-
-  val get_DataView : t -> (* FIXME: unknown type 'typeof DataView' *) any
-    [@@js.get "DataView"]
-
-  val set_DataView
-    :  t
-    -> (* FIXME: unknown type 'typeof DataView' *) any
-    -> unit
-    [@@js.set "DataView"]
-
-  val get_Date : t -> (* FIXME: unknown type 'typeof Date' *) any
-    [@@js.get "Date"]
-
-  val set_Date : t -> (* FIXME: unknown type 'typeof Date' *) any -> unit
-    [@@js.set "Date"]
-
-  val get_Error : t -> (* FIXME: unknown type 'typeof Error' *) any
-    [@@js.get "Error"]
-
-  val set_Error : t -> (* FIXME: unknown type 'typeof Error' *) any -> unit
-    [@@js.set "Error"]
-
-  val get_EvalError : t -> (* FIXME: unknown type 'typeof EvalError' *) any
-    [@@js.get "EvalError"]
-
-  val set_EvalError
-    :  t
-    -> (* FIXME: unknown type 'typeof EvalError' *) any
-    -> unit
-    [@@js.set "EvalError"]
-
-  val get_Float32Array
-    :  t
-    -> (* FIXME: unknown type 'typeof Float32Array' *) any
-    [@@js.get "Float32Array"]
-
-  val set_Float32Array
-    :  t
-    -> (* FIXME: unknown type 'typeof Float32Array' *) any
-    -> unit
-    [@@js.set "Float32Array"]
-
-  val get_Float64Array
-    :  t
-    -> (* FIXME: unknown type 'typeof Float64Array' *) any
-    [@@js.get "Float64Array"]
-
-  val set_Float64Array
-    :  t
-    -> (* FIXME: unknown type 'typeof Float64Array' *) any
-    -> unit
-    [@@js.set "Float64Array"]
-
-  val get_Function : t -> (* FIXME: unknown type 'typeof Function' *) any
-    [@@js.get "Function"]
-
-  val set_Function
-    :  t
-    -> (* FIXME: unknown type 'typeof Function' *) any
-    -> unit
-    [@@js.set "Function"]
-
-  val get_Infinity : t -> (* FIXME: unknown type 'typeof Infinity' *) any
-    [@@js.get "Infinity"]
-
-  val set_Infinity
-    :  t
-    -> (* FIXME: unknown type 'typeof Infinity' *) any
-    -> unit
-    [@@js.set "Infinity"]
-
-  val get_Int16Array : t -> (* FIXME: unknown type 'typeof Int16Array' *) any
-    [@@js.get "Int16Array"]
-
-  val set_Int16Array
-    :  t
-    -> (* FIXME: unknown type 'typeof Int16Array' *) any
-    -> unit
-    [@@js.set "Int16Array"]
-
-  val get_Int32Array : t -> (* FIXME: unknown type 'typeof Int32Array' *) any
-    [@@js.get "Int32Array"]
-
-  val set_Int32Array
-    :  t
-    -> (* FIXME: unknown type 'typeof Int32Array' *) any
-    -> unit
-    [@@js.set "Int32Array"]
-
-  val get_Int8Array : t -> (* FIXME: unknown type 'typeof Int8Array' *) any
-    [@@js.get "Int8Array"]
-
-  val set_Int8Array
-    :  t
-    -> (* FIXME: unknown type 'typeof Int8Array' *) any
-    -> unit
-    [@@js.set "Int8Array"]
-
-  val get_Intl : t -> (* FIXME: unknown type 'typeof Intl' *) any
-    [@@js.get "Intl"]
-
-  val set_Intl : t -> (* FIXME: unknown type 'typeof Intl' *) any -> unit
-    [@@js.set "Intl"]
-
-  val get_JSON : t -> (* FIXME: unknown type 'typeof JSON' *) any
-    [@@js.get "JSON"]
-
-  val set_JSON : t -> (* FIXME: unknown type 'typeof JSON' *) any -> unit
-    [@@js.set "JSON"]
-
-  val get_Map : t -> MapConstructor.t [@@js.get "Map"]
-
-  val set_Map : t -> MapConstructor.t -> unit [@@js.set "Map"]
-
-  val get_Math : t -> (* FIXME: unknown type 'typeof Math' *) any
-    [@@js.get "Math"]
-
-  val set_Math : t -> (* FIXME: unknown type 'typeof Math' *) any -> unit
-    [@@js.set "Math"]
-
-  val get_NaN : t -> (* FIXME: unknown type 'typeof NaN' *) any [@@js.get "NaN"]
-
-  val set_NaN : t -> (* FIXME: unknown type 'typeof NaN' *) any -> unit
-    [@@js.set "NaN"]
-
-  val get_Number : t -> (* FIXME: unknown type 'typeof Number' *) any
-    [@@js.get "Number"]
-
-  val set_Number : t -> (* FIXME: unknown type 'typeof Number' *) any -> unit
-    [@@js.set "Number"]
-
-  val get_Object : t -> (* FIXME: unknown type 'typeof Object' *) any
-    [@@js.get "Object"]
-
-  val set_Object : t -> (* FIXME: unknown type 'typeof Object' *) any -> unit
-    [@@js.set "Object"]
-
-  val get_Promise : t -> (* FIXME: unknown type 'typeof Promise' *) any
-    [@@js.get "Promise"]
-
-  val set_Promise : t -> (* FIXME: unknown type 'typeof Promise' *) any -> unit
-    [@@js.set "Promise"]
-
-  val get_RangeError : t -> (* FIXME: unknown type 'typeof RangeError' *) any
-    [@@js.get "RangeError"]
-
-  val set_RangeError
-    :  t
-    -> (* FIXME: unknown type 'typeof RangeError' *) any
-    -> unit
-    [@@js.set "RangeError"]
-
-  val get_ReferenceError
-    :  t
-    -> (* FIXME: unknown type 'typeof ReferenceError' *) any
-    [@@js.get "ReferenceError"]
-
-  val set_ReferenceError
-    :  t
-    -> (* FIXME: unknown type 'typeof ReferenceError' *) any
-    -> unit
-    [@@js.set "ReferenceError"]
-
-  val get_RegExp : t -> (* FIXME: unknown type 'typeof RegExp' *) any
-    [@@js.get "RegExp"]
-
-  val set_RegExp : t -> (* FIXME: unknown type 'typeof RegExp' *) any -> unit
-    [@@js.set "RegExp"]
-
-  val get_Set : t -> SetConstructor.t [@@js.get "Set"]
-
-  val set_Set : t -> SetConstructor.t -> unit [@@js.set "Set"]
-
-  val get_String : t -> (* FIXME: unknown type 'typeof String' *) any
-    [@@js.get "String"]
-
-  val set_String : t -> (* FIXME: unknown type 'typeof String' *) any -> unit
-    [@@js.set "String"]
-
-  val get_Symbol : t -> untyped_function [@@js.get "Symbol"]
-
-  val set_Symbol : t -> untyped_function -> unit [@@js.set "Symbol"]
-
-  val get_SyntaxError : t -> (* FIXME: unknown type 'typeof SyntaxError' *) any
-    [@@js.get "SyntaxError"]
-
-  val set_SyntaxError
-    :  t
-    -> (* FIXME: unknown type 'typeof SyntaxError' *) any
-    -> unit
-    [@@js.set "SyntaxError"]
-
-  val get_TypeError : t -> (* FIXME: unknown type 'typeof TypeError' *) any
-    [@@js.get "TypeError"]
-
-  val set_TypeError
-    :  t
-    -> (* FIXME: unknown type 'typeof TypeError' *) any
-    -> unit
-    [@@js.set "TypeError"]
-
-  val get_URIError : t -> (* FIXME: unknown type 'typeof URIError' *) any
-    [@@js.get "URIError"]
-
-  val set_URIError
-    :  t
-    -> (* FIXME: unknown type 'typeof URIError' *) any
-    -> unit
-    [@@js.set "URIError"]
-
-  val get_Uint16Array : t -> (* FIXME: unknown type 'typeof Uint16Array' *) any
-    [@@js.get "Uint16Array"]
-
-  val set_Uint16Array
-    :  t
-    -> (* FIXME: unknown type 'typeof Uint16Array' *) any
-    -> unit
-    [@@js.set "Uint16Array"]
-
-  val get_Uint32Array : t -> (* FIXME: unknown type 'typeof Uint32Array' *) any
-    [@@js.get "Uint32Array"]
-
-  val set_Uint32Array
-    :  t
-    -> (* FIXME: unknown type 'typeof Uint32Array' *) any
-    -> unit
-    [@@js.set "Uint32Array"]
-
-  val get_Uint8Array : t -> (* FIXME: unknown type 'typeof Uint8Array' *) any
-    [@@js.get "Uint8Array"]
-
-  val set_Uint8Array
-    :  t
-    -> (* FIXME: unknown type 'typeof Uint8Array' *) any
-    -> unit
-    [@@js.set "Uint8Array"]
-
-  val get_Uint8ClampedArray
-    :  t
-    -> (* FIXME: unknown type 'typeof Uint8ClampedArray' *) any
-    [@@js.get "Uint8ClampedArray"]
-
-  val set_Uint8ClampedArray
-    :  t
-    -> (* FIXME: unknown type 'typeof Uint8ClampedArray' *) any
-    -> unit
-    [@@js.set "Uint8ClampedArray"]
-
-  val get_WeakMap : t -> WeakMapConstructor.t [@@js.get "WeakMap"]
-
-  val set_WeakMap : t -> WeakMapConstructor.t -> unit [@@js.set "WeakMap"]
-
-  val get_WeakSet : t -> WeakSetConstructor.t [@@js.get "WeakSet"]
-
-  val set_WeakSet : t -> WeakSetConstructor.t -> unit [@@js.set "WeakSet"]
-
-  val clearImmediate : t -> immediateId:Immediate.t -> unit
-    [@@js.call "clearImmediate"]
-
-  val clearInterval : t -> intervalId:Timeout.t -> unit
-    [@@js.call "clearInterval"]
-
-  val clearTimeout : t -> timeoutId:Timeout.t -> unit [@@js.call "clearTimeout"]
-
-  val get_decodeURI : t -> (* FIXME: unknown type 'typeof decodeURI' *) any
-    [@@js.get "decodeURI"]
-
-  val set_decodeURI
-    :  t
-    -> (* FIXME: unknown type 'typeof decodeURI' *) any
-    -> unit
-    [@@js.set "decodeURI"]
-
-  val get_decodeURIComponent
-    :  t
-    -> (* FIXME: unknown type 'typeof decodeURIComponent' *) any
-    [@@js.get "decodeURIComponent"]
-
-  val set_decodeURIComponent
-    :  t
-    -> (* FIXME: unknown type 'typeof decodeURIComponent' *) any
-    -> unit
-    [@@js.set "decodeURIComponent"]
-
-  val get_encodeURI : t -> (* FIXME: unknown type 'typeof encodeURI' *) any
-    [@@js.get "encodeURI"]
-
-  val set_encodeURI
-    :  t
-    -> (* FIXME: unknown type 'typeof encodeURI' *) any
-    -> unit
-    [@@js.set "encodeURI"]
-
-  val get_encodeURIComponent
-    :  t
-    -> (* FIXME: unknown type 'typeof encodeURIComponent' *) any
-    [@@js.get "encodeURIComponent"]
-
-  val set_encodeURIComponent
-    :  t
-    -> (* FIXME: unknown type 'typeof encodeURIComponent' *) any
-    -> unit
-    [@@js.set "encodeURIComponent"]
-
-  val escape : t -> str:string -> string [@@js.call "escape"]
-
-  val get_eval : t -> (* FIXME: unknown type 'typeof eval' *) any
-    [@@js.get "eval"]
-
-  val set_eval : t -> (* FIXME: unknown type 'typeof eval' *) any -> unit
-    [@@js.set "eval"]
-
-  val get_global : t -> t [@@js.get "global"]
-
-  val set_global : t -> t -> unit [@@js.set "global"]
-
-  val get_isFinite : t -> (* FIXME: unknown type 'typeof isFinite' *) any
-    [@@js.get "isFinite"]
-
-  val set_isFinite
-    :  t
-    -> (* FIXME: unknown type 'typeof isFinite' *) any
-    -> unit
-    [@@js.set "isFinite"]
-
-  val get_isNaN : t -> (* FIXME: unknown type 'typeof isNaN' *) any
-    [@@js.get "isNaN"]
-
-  val set_isNaN : t -> (* FIXME: unknown type 'typeof isNaN' *) any -> unit
-    [@@js.set "isNaN"]
-
-  val get_parseFloat : t -> (* FIXME: unknown type 'typeof parseFloat' *) any
-    [@@js.get "parseFloat"]
-
-  val set_parseFloat
-    :  t
-    -> (* FIXME: unknown type 'typeof parseFloat' *) any
-    -> unit
-    [@@js.set "parseFloat"]
-
-  val get_parseInt : t -> (* FIXME: unknown type 'typeof parseInt' *) any
-    [@@js.get "parseInt"]
-
-  val set_parseInt
-    :  t
-    -> (* FIXME: unknown type 'typeof parseInt' *) any
-    -> unit
-    [@@js.set "parseInt"]
-
-  val setImmediate
-    :  t
-    -> callback:(args:(any list[@js.variadic]) -> unit)
-    -> args:(any list[@js.variadic])
-    -> Immediate.t
-    [@@js.call "setImmediate"]
-
-  val setInterval
-    :  t
-    -> callback:(args:(any list[@js.variadic]) -> unit)
-    -> ?ms:int
-    -> args:(any list[@js.variadic])
-    -> Timeout.t
-    [@@js.call "setInterval"]
-
-  val setTimeout
-    :  t
-    -> callback:(args:(any list[@js.variadic]) -> unit)
-    -> ?ms:int
-    -> args:(any list[@js.variadic])
-    -> Timeout.t
-    [@@js.call "setTimeout"]
-
-  val queueMicrotask : t -> callback:(unit -> unit) -> unit
-    [@@js.call "queueMicrotask"]
-
-  val get_undefined : t -> (* FIXME: unknown type 'typeof undefined' *) any
-    [@@js.get "undefined"]
-
-  val set_undefined
-    :  t
-    -> (* FIXME: unknown type 'typeof undefined' *) any
-    -> unit
-    [@@js.set "undefined"]
-
-  val unescape : t -> str:string -> string [@@js.call "unescape"]
-
-  val gc : t -> unit [@@js.call "gc"]
-
-  val get_v8debug : t -> any [@@js.get "v8debug"]
-
-  val set_v8debug : t -> any -> unit [@@js.set "v8debug"]
-end
-[@@js.scope "Global"]
 
 module RefCounted : sig
   type t
@@ -1229,7 +713,7 @@ module Timer : sig
 
   val t_of_js : Ojs.t -> t
 
-  val hasRef : t -> bool [@@js.call "hasRef"]
+  val has_ref : t -> bool [@@js.call "hasRef"]
 
   val refresh : t -> t [@@js.call "refresh"]
 
@@ -1244,11 +728,11 @@ module Immediate : sig
 
   val t_of_js : Ojs.t -> t
 
-  val hasRef : t -> bool [@@js.call "hasRef"]
+  val has_ref : t -> bool [@@js.call "hasRef"]
 
-  val get__onImmediate : t -> untyped_function [@@js.get "_onImmediate"]
+  val get_on_immediate : t -> untyped_function [@@js.get "_onImmediate"]
 
-  val set__onImmediate : t -> untyped_function -> unit [@@js.set "_onImmediate"]
+  val set_on_immediate : t -> untyped_function -> unit [@@js.set "_onImmediate"]
 
   val cast : t -> RefCounted.t [@@js.cast]
 end
@@ -1261,13 +745,441 @@ module Timeout : sig
 
   val t_of_js : Ojs.t -> t
 
-  val hasRef : t -> bool [@@js.call "hasRef"]
+  val has_ref : t -> bool [@@js.call "hasRef"]
 
   val refresh : t -> t [@@js.call "refresh"]
 
   val cast : t -> Timer.t [@@js.cast]
 end
 [@@js.scope "Timeout"]
+
+module Global : sig
+  type t
+
+  val t_to_js : t -> Ojs.t
+
+  val t_of_js : Ojs.t -> t
+
+  val get_array : t -> (* FIXME: unknown type 'typeof Array' *) any
+    [@@js.get "Array"]
+
+  val set_array : t -> (* FIXME: unknown type 'typeof Array' *) any -> unit
+    [@@js.set "Array"]
+
+  val get_array_buffer : t -> (* FIXME: unknown type 'typeof ArrayBuffer' *) any
+    [@@js.get "ArrayBuffer"]
+
+  val set_array_buffer
+    :  t
+    -> (* FIXME: unknown type 'typeof ArrayBuffer' *) any
+    -> unit
+    [@@js.set "ArrayBuffer"]
+
+  val get_boolean : t -> (* FIXME: unknown type 'typeof Boolean' *) any
+    [@@js.get "Boolean"]
+
+  val set_boolean : t -> (* FIXME: unknown type 'typeof Boolean' *) any -> unit
+    [@@js.set "Boolean"]
+
+  val get_buffer : t -> (* FIXME: unknown type 'typeof Buffer' *) any
+    [@@js.get "Buffer"]
+
+  val set_buffer : t -> (* FIXME: unknown type 'typeof Buffer' *) any -> unit
+    [@@js.set "Buffer"]
+
+  val get_data_view : t -> (* FIXME: unknown type 'typeof DataView' *) any
+    [@@js.get "DataView"]
+
+  val set_data_view
+    :  t
+    -> (* FIXME: unknown type 'typeof DataView' *) any
+    -> unit
+    [@@js.set "DataView"]
+
+  val get_date : t -> (* FIXME: unknown type 'typeof Date' *) any
+    [@@js.get "Date"]
+
+  val set_date : t -> (* FIXME: unknown type 'typeof Date' *) any -> unit
+    [@@js.set "Date"]
+
+  val get_error : t -> (* FIXME: unknown type 'typeof Error' *) any
+    [@@js.get "Error"]
+
+  val set_error : t -> (* FIXME: unknown type 'typeof Error' *) any -> unit
+    [@@js.set "Error"]
+
+  val get_eval_error : t -> (* FIXME: unknown type 'typeof EvalError' *) any
+    [@@js.get "EvalError"]
+
+  val set_eval_error
+    :  t
+    -> (* FIXME: unknown type 'typeof EvalError' *) any
+    -> unit
+    [@@js.set "EvalError"]
+
+  val get_float32_array
+    :  t
+    -> (* FIXME: unknown type 'typeof Float32Array' *) any
+    [@@js.get "Float32Array"]
+
+  val set_float32_array
+    :  t
+    -> (* FIXME: unknown type 'typeof Float32Array' *) any
+    -> unit
+    [@@js.set "Float32Array"]
+
+  val get_float64_array
+    :  t
+    -> (* FIXME: unknown type 'typeof Float64Array' *) any
+    [@@js.get "Float64Array"]
+
+  val set_float64_array
+    :  t
+    -> (* FIXME: unknown type 'typeof Float64Array' *) any
+    -> unit
+    [@@js.set "Float64Array"]
+
+  val get_function : t -> (* FIXME: unknown type 'typeof Function' *) any
+    [@@js.get "Function"]
+
+  val set_function
+    :  t
+    -> (* FIXME: unknown type 'typeof Function' *) any
+    -> unit
+    [@@js.set "Function"]
+
+  val get_infinity : t -> (* FIXME: unknown type 'typeof Infinity' *) any
+    [@@js.get "Infinity"]
+
+  val set_infinity
+    :  t
+    -> (* FIXME: unknown type 'typeof Infinity' *) any
+    -> unit
+    [@@js.set "Infinity"]
+
+  val get_int16_array : t -> (* FIXME: unknown type 'typeof Int16Array' *) any
+    [@@js.get "Int16Array"]
+
+  val set_int16_array
+    :  t
+    -> (* FIXME: unknown type 'typeof Int16Array' *) any
+    -> unit
+    [@@js.set "Int16Array"]
+
+  val get_int32_array : t -> (* FIXME: unknown type 'typeof Int32Array' *) any
+    [@@js.get "Int32Array"]
+
+  val set_int32_array
+    :  t
+    -> (* FIXME: unknown type 'typeof Int32Array' *) any
+    -> unit
+    [@@js.set "Int32Array"]
+
+  val get_int8_array : t -> (* FIXME: unknown type 'typeof Int8Array' *) any
+    [@@js.get "Int8Array"]
+
+  val set_int8_array
+    :  t
+    -> (* FIXME: unknown type 'typeof Int8Array' *) any
+    -> unit
+    [@@js.set "Int8Array"]
+
+  val get_intl : t -> (* FIXME: unknown type 'typeof Intl' *) any
+    [@@js.get "Intl"]
+
+  val set_intl : t -> (* FIXME: unknown type 'typeof Intl' *) any -> unit
+    [@@js.set "Intl"]
+
+  val get_json : t -> (* FIXME: unknown type 'typeof JSON' *) any
+    [@@js.get "JSON"]
+
+  val set_json : t -> (* FIXME: unknown type 'typeof JSON' *) any -> unit
+    [@@js.set "JSON"]
+
+  val get_map : t -> MapConstructor.t [@@js.get "Map"]
+
+  val set_map : t -> MapConstructor.t -> unit [@@js.set "Map"]
+
+  val get_math : t -> (* FIXME: unknown type 'typeof Math' *) any
+    [@@js.get "Math"]
+
+  val set_math : t -> (* FIXME: unknown type 'typeof Math' *) any -> unit
+    [@@js.set "Math"]
+
+  val get_nan : t -> (* FIXME: unknown type 'typeof NaN' *) any [@@js.get "NaN"]
+
+  val set_nan : t -> (* FIXME: unknown type 'typeof NaN' *) any -> unit
+    [@@js.set "NaN"]
+
+  val get_number : t -> (* FIXME: unknown type 'typeof Number' *) any
+    [@@js.get "Number"]
+
+  val set_number : t -> (* FIXME: unknown type 'typeof Number' *) any -> unit
+    [@@js.set "Number"]
+
+  val get_object : t -> (* FIXME: unknown type 'typeof Object' *) any
+    [@@js.get "Object"]
+
+  val set_object : t -> (* FIXME: unknown type 'typeof Object' *) any -> unit
+    [@@js.set "Object"]
+
+  val get_promise : t -> (* FIXME: unknown type 'typeof Promise' *) any
+    [@@js.get "Promise"]
+
+  val set_promise : t -> (* FIXME: unknown type 'typeof Promise' *) any -> unit
+    [@@js.set "Promise"]
+
+  val get_range_error : t -> (* FIXME: unknown type 'typeof RangeError' *) any
+    [@@js.get "RangeError"]
+
+  val set_range_error
+    :  t
+    -> (* FIXME: unknown type 'typeof RangeError' *) any
+    -> unit
+    [@@js.set "RangeError"]
+
+  val get_reference_error
+    :  t
+    -> (* FIXME: unknown type 'typeof ReferenceError' *) any
+    [@@js.get "ReferenceError"]
+
+  val set_reference_error
+    :  t
+    -> (* FIXME: unknown type 'typeof ReferenceError' *) any
+    -> unit
+    [@@js.set "ReferenceError"]
+
+  val get_reg_exp : t -> (* FIXME: unknown type 'typeof RegExp' *) any
+    [@@js.get "RegExp"]
+
+  val set_reg_exp : t -> (* FIXME: unknown type 'typeof RegExp' *) any -> unit
+    [@@js.set "RegExp"]
+
+  val get_set : t -> SetConstructor.t [@@js.get "Set"]
+
+  val set_set : t -> SetConstructor.t -> unit [@@js.set "Set"]
+
+  val get_string : t -> (* FIXME: unknown type 'typeof String' *) any
+    [@@js.get "String"]
+
+  val set_string : t -> (* FIXME: unknown type 'typeof String' *) any -> unit
+    [@@js.set "String"]
+
+  val get_symbol : t -> untyped_function [@@js.get "Symbol"]
+
+  val set_symbol : t -> untyped_function -> unit [@@js.set "Symbol"]
+
+  val get_syntax_error : t -> (* FIXME: unknown type 'typeof SyntaxError' *) any
+    [@@js.get "SyntaxError"]
+
+  val set_syntax_error
+    :  t
+    -> (* FIXME: unknown type 'typeof SyntaxError' *) any
+    -> unit
+    [@@js.set "SyntaxError"]
+
+  val get_type_error : t -> (* FIXME: unknown type 'typeof TypeError' *) any
+    [@@js.get "TypeError"]
+
+  val set_type_error
+    :  t
+    -> (* FIXME: unknown type 'typeof TypeError' *) any
+    -> unit
+    [@@js.set "TypeError"]
+
+  val get_uri_error : t -> (* FIXME: unknown type 'typeof URIError' *) any
+    [@@js.get "URIError"]
+
+  val set_uri_error
+    :  t
+    -> (* FIXME: unknown type 'typeof URIError' *) any
+    -> unit
+    [@@js.set "URIError"]
+
+  val get_uint16_array : t -> (* FIXME: unknown type 'typeof Uint16Array' *) any
+    [@@js.get "Uint16Array"]
+
+  val set_uint16_array
+    :  t
+    -> (* FIXME: unknown type 'typeof Uint16Array' *) any
+    -> unit
+    [@@js.set "Uint16Array"]
+
+  val get_uint32_array : t -> (* FIXME: unknown type 'typeof Uint32Array' *) any
+    [@@js.get "Uint32Array"]
+
+  val set_uint32_array
+    :  t
+    -> (* FIXME: unknown type 'typeof Uint32Array' *) any
+    -> unit
+    [@@js.set "Uint32Array"]
+
+  val get_uint8_array : t -> (* FIXME: unknown type 'typeof Uint8Array' *) any
+    [@@js.get "Uint8Array"]
+
+  val set_uint8_array
+    :  t
+    -> (* FIXME: unknown type 'typeof Uint8Array' *) any
+    -> unit
+    [@@js.set "Uint8Array"]
+
+  val get_uint8_clamped_array
+    :  t
+    -> (* FIXME: unknown type 'typeof Uint8ClampedArray' *) any
+    [@@js.get "Uint8ClampedArray"]
+
+  val set_uint8_clamped_array
+    :  t
+    -> (* FIXME: unknown type 'typeof Uint8ClampedArray' *) any
+    -> unit
+    [@@js.set "Uint8ClampedArray"]
+
+  val get_weak_map : t -> WeakMapConstructor.t [@@js.get "WeakMap"]
+
+  val set_weak_map : t -> WeakMapConstructor.t -> unit [@@js.set "WeakMap"]
+
+  val get_weak_set : t -> WeakSetConstructor.t [@@js.get "WeakSet"]
+
+  val set_weak_set : t -> WeakSetConstructor.t -> unit [@@js.set "WeakSet"]
+
+  val clear_immediate : t -> immediateId:Immediate.t -> unit
+    [@@js.call "clearImmediate"]
+
+  val clear_interval : t -> intervalId:Timeout.t -> unit
+    [@@js.call "clearInterval"]
+
+  val clear_timeout : t -> timeoutId:Timeout.t -> unit
+    [@@js.call "clearTimeout"]
+
+  val get_decode_uri : t -> (* FIXME: unknown type 'typeof decodeURI' *) any
+    [@@js.get "decodeURI"]
+
+  val set_decode_uri
+    :  t
+    -> (* FIXME: unknown type 'typeof decodeURI' *) any
+    -> unit
+    [@@js.set "decodeURI"]
+
+  val get_decode_uri_component
+    :  t
+    -> (* FIXME: unknown type 'typeof decodeURIComponent' *) any
+    [@@js.get "decodeURIComponent"]
+
+  val set_decode_uri_component
+    :  t
+    -> (* FIXME: unknown type 'typeof decodeURIComponent' *) any
+    -> unit
+    [@@js.set "decodeURIComponent"]
+
+  val get_encode_uri : t -> (* FIXME: unknown type 'typeof encodeURI' *) any
+    [@@js.get "encodeURI"]
+
+  val set_encode_uri
+    :  t
+    -> (* FIXME: unknown type 'typeof encodeURI' *) any
+    -> unit
+    [@@js.set "encodeURI"]
+
+  val get_encode_uri_component
+    :  t
+    -> (* FIXME: unknown type 'typeof encodeURIComponent' *) any
+    [@@js.get "encodeURIComponent"]
+
+  val set_encode_uri_component
+    :  t
+    -> (* FIXME: unknown type 'typeof encodeURIComponent' *) any
+    -> unit
+    [@@js.set "encodeURIComponent"]
+
+  val escape : t -> str:string -> string [@@js.call "escape"]
+
+  val get_eval : t -> (* FIXME: unknown type 'typeof eval' *) any
+    [@@js.get "eval"]
+
+  val set_eval : t -> (* FIXME: unknown type 'typeof eval' *) any -> unit
+    [@@js.set "eval"]
+
+  val get_global : t -> t [@@js.get "global"]
+
+  val set_global : t -> t -> unit [@@js.set "global"]
+
+  val get_is_finite : t -> (* FIXME: unknown type 'typeof isFinite' *) any
+    [@@js.get "isFinite"]
+
+  val set_is_finite
+    :  t
+    -> (* FIXME: unknown type 'typeof isFinite' *) any
+    -> unit
+    [@@js.set "isFinite"]
+
+  val get_is_nan : t -> (* FIXME: unknown type 'typeof isNaN' *) any
+    [@@js.get "isNaN"]
+
+  val set_is_nan : t -> (* FIXME: unknown type 'typeof isNaN' *) any -> unit
+    [@@js.set "isNaN"]
+
+  val get_parse_float : t -> (* FIXME: unknown type 'typeof parseFloat' *) any
+    [@@js.get "parseFloat"]
+
+  val set_parse_float
+    :  t
+    -> (* FIXME: unknown type 'typeof parseFloat' *) any
+    -> unit
+    [@@js.set "parseFloat"]
+
+  val get_parse_int : t -> (* FIXME: unknown type 'typeof parseInt' *) any
+    [@@js.get "parseInt"]
+
+  val set_parse_int
+    :  t
+    -> (* FIXME: unknown type 'typeof parseInt' *) any
+    -> unit
+    [@@js.set "parseInt"]
+
+  val set_immediate
+    :  t
+    -> callback:(args:(any list[@js.variadic]) -> unit)
+    -> args:(any list[@js.variadic])
+    -> Immediate.t
+    [@@js.call "setImmediate"]
+
+  val set_interval
+    :  t
+    -> callback:(args:(any list[@js.variadic]) -> unit)
+    -> ?ms:int
+    -> args:(any list[@js.variadic])
+    -> Timeout.t
+    [@@js.call "setInterval"]
+
+  val set_timeout
+    :  t
+    -> callback:(args:(any list[@js.variadic]) -> unit)
+    -> ?ms:int
+    -> args:(any list[@js.variadic])
+    -> Timeout.t
+    [@@js.call "setTimeout"]
+
+  val queue_microtask : t -> callback:(unit -> unit) -> unit
+    [@@js.call "queueMicrotask"]
+
+  val get_undefined : t -> (* FIXME: unknown type 'typeof undefined' *) any
+    [@@js.get "undefined"]
+
+  val set_undefined
+    :  t
+    -> (* FIXME: unknown type 'typeof undefined' *) any
+    -> unit
+    [@@js.set "undefined"]
+
+  val unescape : t -> str:string -> string [@@js.call "unescape"]
+
+  val gc : t -> unit [@@js.call "gc"]
+
+  val get_v8debug : t -> any [@@js.get "v8debug"]
+
+  val set_v8debug : t -> any -> unit [@@js.set "v8debug"]
+end
+[@@js.scope "Global"]
 
 module TypedArray : sig
   type t =
@@ -1281,7 +1193,8 @@ module TypedArray : sig
     | Uint8ClampedArray of Uint8ClampedArray.t
     | Float32Array of Float32Array.t
     | BigUint64Array of BigUint64Array.t
-    | BigInt64Array of BigInt64Array.t [@js.enum]
+    | BigInt64Array of BigInt64Array.t
+  [@@js.union]
 
   [@@@js.stop]
 
@@ -1293,16 +1206,26 @@ module TypedArray : sig
 
   [@@@js.implem
   let t_to_js = function
-    | Float64Array x
-    | Int16Array x
-    | Int32Array x
-    | Int8Array x
-    | Uint16Array x
-    | Uint32Array x
-    | Uint8Array x
-    | Uint8ClampedArray x
-    | Float32Array x
-    | BigUint64Array x
+    | Float64Array x ->
+      Obj.magic x
+    | Int16Array x ->
+      Obj.magic x
+    | Int32Array x ->
+      Obj.magic x
+    | Int8Array x ->
+      Obj.magic x
+    | Uint16Array x ->
+      Obj.magic x
+    | Uint32Array x ->
+      Obj.magic x
+    | Uint8Array x ->
+      Obj.magic x
+    | Uint8ClampedArray x ->
+      Obj.magic x
+    | Float32Array x ->
+      Obj.magic x
+    | BigUint64Array x ->
+      Obj.magic x
     | BigInt64Array x ->
       Obj.magic x
 
@@ -1329,7 +1252,9 @@ module TypedArray : sig
     | "BigUint64Array" ->
       BigUint64Array (Obj.magic js)
     | "BigInt64Array" ->
-      BigInt64Array (Obj.magic js)]
+      BigInt64Array (Obj.magic js)
+    | _ ->
+      assert false]
 end
 
 module ArrayBufferView : sig
@@ -1340,32 +1265,74 @@ module ArrayBufferView : sig
   val t_of_js : Ojs.t -> t
 end
 
-module Require : sig
+module Dict : sig
+  type 'T t
+
+  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+
+  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+
+  val get : 'T t -> string -> 'T or_undefined [@@js.index_get]
+
+  val set : 'T t -> string -> 'T or_undefined -> unit [@@js.index_set]
+end
+[@@js.scope "Dict"]
+
+module ReadOnlyDict : sig
+  type 'T t
+
+  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+
+  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+
+  val get : 'T t -> string -> 'T or_undefined [@@js.index_get]
+end
+[@@js.scope "ReadOnlyDict"]
+
+module Module : sig
   type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val apply : t -> id:string -> any [@@js.apply]
+  val get_exports : t -> any [@@js.get "exports"]
 
-  val get_resolve : t -> RequireResolve.t [@@js.get "resolve"]
+  val set_exports : t -> any -> unit [@@js.set "exports"]
 
-  val set_resolve : t -> RequireResolve.t -> unit [@@js.set "resolve"]
+  (* val get_require : t -> Require.t [@@js.get "require"] *)
 
-  val get_cache : t -> NodeModule.t Dict.t [@@js.get "cache"]
+  (* val set_require : t -> Require.t -> unit [@@js.set "require"] *)
 
-  val set_cache : t -> NodeModule.t Dict.t -> unit [@@js.set "cache"]
+  val get_id : t -> string [@@js.get "id"]
 
-  val get_extensions : t -> RequireExtensions.t [@@js.get "extensions"]
+  val set_id : t -> string -> unit [@@js.set "id"]
 
-  val set_extensions : t -> RequireExtensions.t -> unit [@@js.set "extensions"]
+  val get_filename : t -> string [@@js.get "filename"]
 
-  val get_main : t -> Module.t or_undefined [@@js.get "main"]
+  val set_filename : t -> string -> unit [@@js.set "filename"]
 
-  val set_main : t -> Module.t or_undefined -> unit [@@js.set "main"]
+  val get_loaded : t -> bool [@@js.get "loaded"]
+
+  val set_loaded : t -> bool -> unit [@@js.set "loaded"]
+
+  val get_parent : t -> t or_null_or_undefined [@@js.get "parent"]
+
+  val set_parent : t -> t or_null_or_undefined -> unit [@@js.set "parent"]
+
+  val get_children : t -> t list [@@js.get "children"]
+
+  val set_children : t -> t list -> unit [@@js.set "children"]
+
+  val get_path : t -> string [@@js.get "path"]
+
+  val set_path : t -> string -> unit [@@js.set "path"]
+
+  val get_paths : t -> string list [@@js.get "paths"]
+
+  val set_paths : t -> string list -> unit [@@js.set "paths"]
 end
-[@@js.scope "Require"]
+[@@js.scope "Module"]
 
 module RequireResolve : sig
   type t
@@ -1398,71 +1365,120 @@ module RequireExtensions : sig
 end
 [@@js.scope "RequireExtensions"]
 
-module Module : sig
+module NodeModule : sig
   type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_exports : t -> any [@@js.get "exports"]
-
-  val set_exports : t -> any -> unit [@@js.set "exports"]
-
-  val get_require : t -> Require.t [@@js.get "require"]
-
-  val set_require : t -> Require.t -> unit [@@js.set "require"]
-
-  val get_id : t -> string [@@js.get "id"]
-
-  val set_id : t -> string -> unit [@@js.set "id"]
-
-  val get_filename : t -> string [@@js.get "filename"]
-
-  val set_filename : t -> string -> unit [@@js.set "filename"]
-
-  val get_loaded : t -> bool [@@js.get "loaded"]
-
-  val set_loaded : t -> bool -> unit [@@js.set "loaded"]
-
-  val get_parent : t -> t or_null_or_undefined [@@js.get "parent"]
-
-  val set_parent : t -> t or_null_or_undefined -> unit [@@js.set "parent"]
-
-  val get_children : t -> t list [@@js.get "children"]
-
-  val set_children : t -> t list -> unit [@@js.set "children"]
-
-  val get_path : t -> string [@@js.get "path"]
-
-  val set_path : t -> string -> unit [@@js.set "path"]
-
-  val get_paths : t -> string list [@@js.get "paths"]
-
-  val set_paths : t -> string list -> unit [@@js.set "paths"]
+  val cast : t -> Module.t [@@js.cast]
 end
-[@@js.scope "Module"]
+[@@js.scope "NodeModule"]
 
-module Dict : sig
-  type 'T t = 'T Dict.t
+module Require : sig
+  type t
 
-  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+  val t_to_js : t -> Ojs.t
 
-  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+  val t_of_js : Ojs.t -> t
 
-  val get : 'T t -> string -> 'T or_undefined [@@js.index_get]
+  val apply : t -> id:string -> any [@@js.apply]
 
-  val set : 'T t -> string -> 'T or_undefined -> unit [@@js.index_set]
+  val get_resolve : t -> RequireResolve.t [@@js.get "resolve"]
+
+  val set_resolve : t -> RequireResolve.t -> unit [@@js.set "resolve"]
+
+  val get_cache : t -> NodeModule.t Dict.t [@@js.get "cache"]
+
+  val set_cache : t -> NodeModule.t Dict.t -> unit [@@js.set "cache"]
+
+  val get_extensions : t -> RequireExtensions.t [@@js.get "extensions"]
+
+  val set_extensions : t -> RequireExtensions.t -> unit [@@js.set "extensions"]
+
+  val get_main : t -> Module.t or_undefined [@@js.get "main"]
+
+  val set_main : t -> Module.t or_undefined -> unit [@@js.set "main"]
 end
-[@@js.scope "Dict"]
+[@@js.scope "Require"]
 
-module ReadOnlyDict : sig
-  type 'T t = 'T ReadOnlyDict.t
+(* val process : Node_process.Process.t [@@js.global "process"] *)
 
-  val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
+(* val console : Console.t [@@js.global "console"] *)
 
-  val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+module NodeRequire : sig
+  type t
 
-  val get : 'T t -> string -> 'T or_undefined [@@js.index_get]
+  val t_to_js : t -> Ojs.t
+
+  val t_of_js : Ojs.t -> t
+
+  val cast : t -> Require.t [@@js.cast]
 end
-[@@js.scope "ReadOnlyDict"]
+[@@js.scope "NodeRequire"]
+
+[@@@js.stop]
+
+val __filename : unit -> string
+
+val __dirname : unit -> string
+
+[@@@js.start]
+
+[@@@js.implem
+let __filename () =
+  Ojs.get_prop_ascii Ojs.global "__filename" |> Ojs.string_of_js
+
+let __dirname () = Ojs.get_prop_ascii Ojs.global "__dirname" |> Ojs.string_of_js]
+
+val set_timeout
+  :  callback:(args:(any list[@js.variadic]) -> unit)
+  -> ?ms:int
+  -> args:(any list[@js.variadic])
+  -> Timeout.t
+  [@@js.global "setTimeout"]
+
+module SetTimeout : sig
+  val __promisify__ : ms:int -> unit Promise.t [@@js.global "__promisify__"]
+
+  val __promisify__ : ms:int -> value:'T -> 'T Promise.t
+    [@@js.global "__promisify__"]
+end
+[@@js.scope "setTimeout"]
+
+val clear_timeout : timeoutId:Timeout.t -> unit [@@js.global "clearTimeout"]
+
+val set_interval
+  :  callback:(args:(any list[@js.variadic]) -> unit)
+  -> ?ms:int
+  -> args:(any list[@js.variadic])
+  -> Timeout.t
+  [@@js.global "setInterval"]
+
+val clear_interval : intervalId:Timeout.t -> unit [@@js.global "clearInterval"]
+
+val set_immediate
+  :  callback:(args:(any list[@js.variadic]) -> unit)
+  -> args:(any list[@js.variadic])
+  -> Immediate.t
+  [@@js.global "setImmediate"]
+
+module SetImmediate : sig
+  val __promisify__ : unit -> unit Promise.t [@@js.global "__promisify__"]
+
+  val __promisify__ : value:'T -> 'T Promise.t [@@js.global "__promisify__"]
+end
+[@@js.scope "setImmediate"]
+
+val clear_immediate : immediateId:Immediate.t -> unit
+  [@@js.global "clearImmediate"]
+
+val queue_microtask : callback:(unit -> unit) -> unit
+  [@@js.global "queueMicrotask"]
+
+val require : NodeRequire.t [@@js.global "require"]
+
+val module_ : NodeModule.t [@@js.global "module"]
+
+val exports : any [@@js.global "exports"]

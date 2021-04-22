@@ -4,26 +4,10 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
 
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _TestOptions = [ `TestOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
 
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -66,10 +50,10 @@ module TestOptions : sig
   val set_extensionTestsPath : t -> string -> unit
     [@@js.set "extensionTestsPath"]
 
-  val get_extensionTestsEnv : t -> anonymous_interface_0
+  val get_extensionTestsEnv : t -> AnonymousInterface0.t
     [@@js.get "extensionTestsEnv"]
 
-  val set_extensionTestsEnv : t -> anonymous_interface_0 -> unit
+  val set_extensionTestsEnv : t -> AnonymousInterface0.t -> unit
     [@@js.set "extensionTestsEnv"]
 
   val get_launchArgs : t -> string list [@@js.get "launchArgs"]

@@ -5,41 +5,12 @@ open Es2020
 open Node_globals
 module Internal =
   struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
     module Types =
       struct
-        open AnonymousInterfaces
-        type worker_threads_MessageChannel =
-          [ `Worker_threads_MessageChannel ] intf
-        and worker_threads_MessagePort = [ `Worker_threads_MessagePort ] intf
-        and worker_threads_ResourceLimits =
-          [ `Worker_threads_ResourceLimits ] intf
-        and worker_threads_TransferListItem =
+        type worker_threads_TransferListItem =
           (ArrayBuffer.t, Node_fs_promises.Fs_promises.FileHandle.t,
             worker_threads_MessagePort) union3
-        and worker_threads_Worker = [ `Worker_threads_Worker ] intf
-        and worker_threads_WorkerOptions =
-          [ `Worker_threads_WorkerOptions ] intf
-        let rec worker_threads_MessageChannel_of_js :
-          Ojs.t -> worker_threads_MessageChannel = Obj.magic
-        and worker_threads_MessageChannel_to_js :
-          worker_threads_MessageChannel -> Ojs.t = Obj.magic
-        and worker_threads_MessagePort_of_js :
-          Ojs.t -> worker_threads_MessagePort = Obj.magic
-        and worker_threads_MessagePort_to_js :
-          worker_threads_MessagePort -> Ojs.t = Obj.magic
-        and worker_threads_ResourceLimits_of_js :
-          Ojs.t -> worker_threads_ResourceLimits = Obj.magic
-        and worker_threads_ResourceLimits_to_js :
-          worker_threads_ResourceLimits -> Ojs.t = Obj.magic
-        and worker_threads_TransferListItem_of_js :
+        let rec worker_threads_TransferListItem_of_js :
           Ojs.t -> worker_threads_TransferListItem =
           fun (x5 : Ojs.t) ->
             union3_of_js ArrayBuffer.t_of_js
@@ -55,26 +26,13 @@ module Internal =
             union3_to_js ArrayBuffer.t_to_js
               Node_fs_promises.Fs_promises.FileHandle.t_to_js
               worker_threads_MessagePort_to_js x1
-        and worker_threads_Worker_of_js : Ojs.t -> worker_threads_Worker =
-          Obj.magic
-        and worker_threads_Worker_to_js : worker_threads_Worker -> Ojs.t =
-          Obj.magic
-        and worker_threads_WorkerOptions_of_js :
-          Ojs.t -> worker_threads_WorkerOptions = Obj.magic
-        and worker_threads_WorkerOptions_to_js :
-          worker_threads_WorkerOptions -> Ojs.t = Obj.magic
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x10 : Ojs.t) -> anonymous_interface_0_of_js x10
-    and t_to_js : t -> Ojs.t =
-      fun (x9 : anonymous_interface_0) -> anonymous_interface_0_to_js x9
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x10 : Ojs.t) -> x10
+    and t_to_js : t -> Ojs.t = fun (x9 : Ojs.t) -> x9
     let (get_message : t -> any) =
       fun (x11 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x11) "message")
     let (set_message : t -> any -> unit) =
@@ -1430,10 +1388,10 @@ module Worker_threads =
                [|(worker_threads_MessagePort_to_js x454);(Node_vm.Vm.Context.t_to_js
                                                             x455)|])
     let (receiveMessageOnPort :
-      port:worker_threads_MessagePort -> anonymous_interface_0 or_undefined)
+      port:worker_threads_MessagePort -> AnonymousInterface0.t or_undefined)
       =
       fun ~port:(x456 : worker_threads_MessagePort) ->
-        or_undefined_of_js anonymous_interface_0_of_js
+        or_undefined_of_js AnonymousInterface0.t_of_js
           (Ojs.call Import.worker_threads "receiveMessageOnPort"
              [|(worker_threads_MessagePort_to_js x456)|])
   end

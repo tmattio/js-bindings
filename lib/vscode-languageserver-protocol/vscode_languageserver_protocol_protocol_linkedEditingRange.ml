@@ -2,156 +2,96 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _LinkedEditingRangeClientCapabilities =
-          [ `LinkedEditingRangeClientCapabilities ] intf
-        and _LinkedEditingRangeOptions = [ `LinkedEditingRangeOptions ] intf
-        and _LinkedEditingRangeParams = [ `LinkedEditingRangeParams ] intf
-        and _LinkedEditingRangeRegistrationOptions =
-          [ `LinkedEditingRangeRegistrationOptions 
-          | `LinkedEditingRangeOptions ] intf
-        and _LinkedEditingRangeRequest_HandlerSignature =
-          (_LinkedEditingRangeParams, _LinkedEditingRanges or_null, unit)
-            RequestHandler.t
-        and _LinkedEditingRanges = [ `LinkedEditingRanges ] intf
-        let rec _LinkedEditingRangeClientCapabilities_of_js :
-          Ojs.t -> _LinkedEditingRangeClientCapabilities = Obj.magic
-        and _LinkedEditingRangeClientCapabilities_to_js :
-          _LinkedEditingRangeClientCapabilities -> Ojs.t = Obj.magic
-        and _LinkedEditingRangeOptions_of_js :
-          Ojs.t -> _LinkedEditingRangeOptions = Obj.magic
-        and _LinkedEditingRangeOptions_to_js :
-          _LinkedEditingRangeOptions -> Ojs.t = Obj.magic
-        and _LinkedEditingRangeParams_of_js :
-          Ojs.t -> _LinkedEditingRangeParams = Obj.magic
-        and _LinkedEditingRangeParams_to_js :
-          _LinkedEditingRangeParams -> Ojs.t = Obj.magic
-        and _LinkedEditingRangeRegistrationOptions_of_js :
-          Ojs.t -> _LinkedEditingRangeRegistrationOptions = Obj.magic
-        and _LinkedEditingRangeRegistrationOptions_to_js :
-          _LinkedEditingRangeRegistrationOptions -> Ojs.t = Obj.magic
-        and _LinkedEditingRangeRequest_HandlerSignature_of_js :
-          Ojs.t -> _LinkedEditingRangeRequest_HandlerSignature =
-          fun (x6 : Ojs.t) ->
-            RequestHandler.t_of_js _LinkedEditingRangeParams_of_js
-              (fun (x8 : Ojs.t) ->
-                 or_null_of_js _LinkedEditingRanges_of_js x8) Ojs.unit_of_js
-              x6
-        and _LinkedEditingRangeRequest_HandlerSignature_to_js :
-          _LinkedEditingRangeRequest_HandlerSignature -> Ojs.t =
-          fun
-            (x1 :
-              (_LinkedEditingRangeParams, _LinkedEditingRanges or_null, 
-                unit) RequestHandler.t)
-            ->
-            RequestHandler.t_to_js _LinkedEditingRangeParams_to_js
-              (fun (x3 : _LinkedEditingRanges or_null) ->
-                 or_null_to_js _LinkedEditingRanges_to_js x3) Ojs.unit_to_js
-              x1
-        and _LinkedEditingRanges_of_js : Ojs.t -> _LinkedEditingRanges =
-          Obj.magic
-        and _LinkedEditingRanges_to_js : _LinkedEditingRanges -> Ojs.t =
-          Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module LinkedEditingRangeClientCapabilities =
   struct
     type t = _LinkedEditingRangeClientCapabilities
     let rec t_of_js : Ojs.t -> t =
-      fun (x12 : Ojs.t) -> _LinkedEditingRangeClientCapabilities_of_js x12
+      fun (x2 : Ojs.t) -> _LinkedEditingRangeClientCapabilities_of_js x2
     and t_to_js : t -> Ojs.t =
-      fun (x11 : _LinkedEditingRangeClientCapabilities) ->
-        _LinkedEditingRangeClientCapabilities_to_js x11
+      fun (x1 : _LinkedEditingRangeClientCapabilities) ->
+        _LinkedEditingRangeClientCapabilities_to_js x1
     let (get_dynamicRegistration : t -> bool) =
-      fun (x13 : t) ->
+      fun (x3 : t) ->
         Ojs.bool_of_js
-          (Ojs.get_prop_ascii (t_to_js x13) "dynamicRegistration")
+          (Ojs.get_prop_ascii (t_to_js x3) "dynamicRegistration")
     let (set_dynamicRegistration : t -> bool -> unit) =
-      fun (x14 : t) ->
-        fun (x15 : bool) ->
-          Ojs.set_prop_ascii (t_to_js x14) "dynamicRegistration"
-            (Ojs.bool_to_js x15)
+      fun (x4 : t) ->
+        fun (x5 : bool) ->
+          Ojs.set_prop_ascii (t_to_js x4) "dynamicRegistration"
+            (Ojs.bool_to_js x5)
   end
 module LinkedEditingRangeParams =
   struct
     type t = _LinkedEditingRangeParams
     let rec t_of_js : Ojs.t -> t =
-      fun (x17 : Ojs.t) -> _LinkedEditingRangeParams_of_js x17
+      fun (x7 : Ojs.t) -> _LinkedEditingRangeParams_of_js x7
     and t_to_js : t -> Ojs.t =
-      fun (x16 : _LinkedEditingRangeParams) ->
-        _LinkedEditingRangeParams_to_js x16
+      fun (x6 : _LinkedEditingRangeParams) ->
+        _LinkedEditingRangeParams_to_js x6
     let (cast : t -> TextDocumentPositionParams.t) =
-      fun (x18 : t) -> TextDocumentPositionParams.t_of_js (t_to_js x18)
+      fun (x8 : t) -> TextDocumentPositionParams.t_of_js (t_to_js x8)
     let (cast' : t -> WorkDoneProgressParams.t) =
-      fun (x19 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x19)
+      fun (x9 : t) -> WorkDoneProgressParams.t_of_js (t_to_js x9)
   end
 module LinkedEditingRangeOptions =
   struct
     type t = _LinkedEditingRangeOptions
     let rec t_of_js : Ojs.t -> t =
-      fun (x21 : Ojs.t) -> _LinkedEditingRangeOptions_of_js x21
+      fun (x11 : Ojs.t) -> _LinkedEditingRangeOptions_of_js x11
     and t_to_js : t -> Ojs.t =
-      fun (x20 : _LinkedEditingRangeOptions) ->
-        _LinkedEditingRangeOptions_to_js x20
+      fun (x10 : _LinkedEditingRangeOptions) ->
+        _LinkedEditingRangeOptions_to_js x10
     let (cast : t -> WorkDoneProgressOptions.t) =
-      fun (x22 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x22)
+      fun (x12 : t) -> WorkDoneProgressOptions.t_of_js (t_to_js x12)
   end
 module LinkedEditingRangeRegistrationOptions =
   struct
     type t = _LinkedEditingRangeRegistrationOptions
     let rec t_of_js : Ojs.t -> t =
-      fun (x24 : Ojs.t) -> _LinkedEditingRangeRegistrationOptions_of_js x24
+      fun (x14 : Ojs.t) -> _LinkedEditingRangeRegistrationOptions_of_js x14
     and t_to_js : t -> Ojs.t =
-      fun (x23 : _LinkedEditingRangeRegistrationOptions) ->
-        _LinkedEditingRangeRegistrationOptions_to_js x23
+      fun (x13 : _LinkedEditingRangeRegistrationOptions) ->
+        _LinkedEditingRangeRegistrationOptions_to_js x13
     let (cast : t -> TextDocumentRegistrationOptions.t) =
-      fun (x25 : t) -> TextDocumentRegistrationOptions.t_of_js (t_to_js x25)
+      fun (x15 : t) -> TextDocumentRegistrationOptions.t_of_js (t_to_js x15)
     let (cast' : t -> _LinkedEditingRangeOptions) =
-      fun (x26 : t) -> _LinkedEditingRangeOptions_of_js (t_to_js x26)
+      fun (x16 : t) -> _LinkedEditingRangeOptions_of_js (t_to_js x16)
     let (cast'' : t -> StaticRegistrationOptions.t) =
-      fun (x27 : t) -> StaticRegistrationOptions.t_of_js (t_to_js x27)
+      fun (x17 : t) -> StaticRegistrationOptions.t_of_js (t_to_js x17)
   end
 module LinkedEditingRanges =
   struct
     type t = _LinkedEditingRanges
     let rec t_of_js : Ojs.t -> t =
-      fun (x29 : Ojs.t) -> _LinkedEditingRanges_of_js x29
+      fun (x19 : Ojs.t) -> _LinkedEditingRanges_of_js x19
     and t_to_js : t -> Ojs.t =
-      fun (x28 : _LinkedEditingRanges) -> _LinkedEditingRanges_to_js x28
+      fun (x18 : _LinkedEditingRanges) -> _LinkedEditingRanges_to_js x18
     let (get_ranges : t -> Range.t list) =
-      fun (x30 : t) ->
+      fun (x20 : t) ->
         Ojs.list_of_js Range.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x30) "ranges")
+          (Ojs.get_prop_ascii (t_to_js x20) "ranges")
     let (set_ranges : t -> Range.t list -> unit) =
-      fun (x32 : t) ->
-        fun (x33 : Range.t list) ->
-          Ojs.set_prop_ascii (t_to_js x32) "ranges"
-            (Ojs.list_to_js Range.t_to_js x33)
+      fun (x22 : t) ->
+        fun (x23 : Range.t list) ->
+          Ojs.set_prop_ascii (t_to_js x22) "ranges"
+            (Ojs.list_to_js Range.t_to_js x23)
     let (get_wordPattern : t -> string) =
-      fun (x35 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x35) "wordPattern")
+      fun (x25 : t) ->
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x25) "wordPattern")
     let (set_wordPattern : t -> string -> unit) =
-      fun (x36 : t) ->
-        fun (x37 : string) ->
-          Ojs.set_prop_ascii (t_to_js x36) "wordPattern"
-            (Ojs.string_to_js x37)
+      fun (x26 : t) ->
+        fun (x27 : string) ->
+          Ojs.set_prop_ascii (t_to_js x26) "wordPattern"
+            (Ojs.string_to_js x27)
   end
 module LinkedEditingRangeRequest =
   struct
     let (method_ : [ `L_s0_textDocument_linkedEditingRange ]) =
-      let x38 =
+      let x28 =
         Ojs.get_prop_ascii
           (Ojs.get_prop_ascii Ojs.global "LinkedEditingRangeRequest")
           "method" in
-      match Ojs.string_of_js x38 with
+      match Ojs.string_of_js x28 with
       | "textDocument/linkedEditingRange" ->
           `L_s0_textDocument_linkedEditingRange
       | _ -> assert false
@@ -160,18 +100,30 @@ module LinkedEditingRangeRequest =
         any, _LinkedEditingRangeRegistrationOptions) ProtocolRequestType.t)
       =
       ProtocolRequestType.t_of_js _LinkedEditingRangeParams_of_js
-        (fun (x40 : Ojs.t) -> or_null_of_js _LinkedEditingRanges_of_js x40)
+        (fun (x30 : Ojs.t) -> or_null_of_js _LinkedEditingRanges_of_js x30)
         Ojs.unit_of_js any_of_js _LinkedEditingRangeRegistrationOptions_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "LinkedEditingRangeRequest") "type")
     module HandlerSignature =
       struct
-        type t = _LinkedEditingRangeRequest_HandlerSignature
+        type t =
+          (_LinkedEditingRangeParams, _LinkedEditingRanges or_null, unit)
+            RequestHandler.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x46 : Ojs.t) ->
-            _LinkedEditingRangeRequest_HandlerSignature_of_js x46
+          fun (x40 : Ojs.t) ->
+            RequestHandler.t_of_js _LinkedEditingRangeParams_of_js
+              (fun (x42 : Ojs.t) ->
+                 or_null_of_js _LinkedEditingRanges_of_js x42) Ojs.unit_of_js
+              x40
         and t_to_js : t -> Ojs.t =
-          fun (x45 : _LinkedEditingRangeRequest_HandlerSignature) ->
-            _LinkedEditingRangeRequest_HandlerSignature_to_js x45
+          fun
+            (x35 :
+              (_LinkedEditingRangeParams, _LinkedEditingRanges or_null, 
+                unit) RequestHandler.t)
+            ->
+            RequestHandler.t_to_js _LinkedEditingRangeParams_to_js
+              (fun (x37 : _LinkedEditingRanges or_null) ->
+                 or_null_to_js _LinkedEditingRanges_to_js x37) Ojs.unit_to_js
+              x35
       end
   end

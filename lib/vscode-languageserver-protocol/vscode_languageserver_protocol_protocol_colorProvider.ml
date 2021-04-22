@@ -4,28 +4,15 @@
 open Es5
 module Internal =
   struct
-    module AnonymousInterfaces = struct  end
     module Types =
       struct
-        open AnonymousInterfaces
-        type _ColorPresentationParams = [ `ColorPresentationParams ] intf
-        and _ColorPresentationRequest_HandlerSignature =
+        type _ColorPresentationRequest_HandlerSignature =
           (_ColorPresentationParams, ColorPresentation.t list, unit)
             RequestHandler.t
-        and _DocumentColorClientCapabilities =
-          [ `DocumentColorClientCapabilities ] intf
-        and _DocumentColorOptions = [ `DocumentColorOptions ] intf
-        and _DocumentColorParams = [ `DocumentColorParams ] intf
-        and _DocumentColorRegistrationOptions =
-          [ `DocumentColorRegistrationOptions  | `DocumentColorOptions ] intf
         and _DocumentColorRequest_HandlerSignature =
           (_DocumentColorParams, ColorInformation.t list, unit)
             RequestHandler.t
-        let rec _ColorPresentationParams_of_js :
-          Ojs.t -> _ColorPresentationParams = Obj.magic
-        and _ColorPresentationParams_to_js :
-          _ColorPresentationParams -> Ojs.t = Obj.magic
-        and _ColorPresentationRequest_HandlerSignature_of_js :
+        let rec _ColorPresentationRequest_HandlerSignature_of_js :
           Ojs.t -> _ColorPresentationRequest_HandlerSignature =
           fun (x6 : Ojs.t) ->
             RequestHandler.t_of_js _ColorPresentationParams_of_js
@@ -43,22 +30,6 @@ module Internal =
               (fun (x3 : ColorPresentation.t list) ->
                  Ojs.list_to_js ColorPresentation.t_to_js x3) Ojs.unit_to_js
               x1
-        and _DocumentColorClientCapabilities_of_js :
-          Ojs.t -> _DocumentColorClientCapabilities = Obj.magic
-        and _DocumentColorClientCapabilities_to_js :
-          _DocumentColorClientCapabilities -> Ojs.t = Obj.magic
-        and _DocumentColorOptions_of_js : Ojs.t -> _DocumentColorOptions =
-          Obj.magic
-        and _DocumentColorOptions_to_js : _DocumentColorOptions -> Ojs.t =
-          Obj.magic
-        and _DocumentColorParams_of_js : Ojs.t -> _DocumentColorParams =
-          Obj.magic
-        and _DocumentColorParams_to_js : _DocumentColorParams -> Ojs.t =
-          Obj.magic
-        and _DocumentColorRegistrationOptions_of_js :
-          Ojs.t -> _DocumentColorRegistrationOptions = Obj.magic
-        and _DocumentColorRegistrationOptions_to_js :
-          _DocumentColorRegistrationOptions -> Ojs.t = Obj.magic
         and _DocumentColorRequest_HandlerSignature_of_js :
           Ojs.t -> _DocumentColorRequest_HandlerSignature =
           fun (x16 : Ojs.t) ->
@@ -79,9 +50,6 @@ module Internal =
               x11
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module DocumentColorClientCapabilities =
   struct
     type t = _DocumentColorClientCapabilities

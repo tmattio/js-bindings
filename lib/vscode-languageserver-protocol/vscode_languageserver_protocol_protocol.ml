@@ -4,412 +4,35 @@
 open Es5
 module Internal =
   struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-        let rec anonymous_interface_1_of_js : Ojs.t -> anonymous_interface_1
-          = Obj.magic
-        and anonymous_interface_1_to_js : anonymous_interface_1 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-        let rec anonymous_interface_2_of_js : Ojs.t -> anonymous_interface_2
-          = Obj.magic
-        and anonymous_interface_2_to_js : anonymous_interface_2 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_3 = [ `anonymous_interface_3 ] intf
-        let rec anonymous_interface_3_of_js : Ojs.t -> anonymous_interface_3
-          = Obj.magic
-        and anonymous_interface_3_to_js : anonymous_interface_3 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_4 = [ `anonymous_interface_4 ] intf
-        let rec anonymous_interface_4_of_js : Ojs.t -> anonymous_interface_4
-          = Obj.magic
-        and anonymous_interface_4_to_js : anonymous_interface_4 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_5 = [ `anonymous_interface_5 ] intf
-        let rec anonymous_interface_5_of_js : Ojs.t -> anonymous_interface_5
-          = Obj.magic
-        and anonymous_interface_5_to_js : anonymous_interface_5 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_6 = [ `anonymous_interface_6 ] intf
-        let rec anonymous_interface_6_of_js : Ojs.t -> anonymous_interface_6
-          = Obj.magic
-        and anonymous_interface_6_to_js : anonymous_interface_6 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_7 = [ `anonymous_interface_7 ] intf
-        let rec anonymous_interface_7_of_js : Ojs.t -> anonymous_interface_7
-          = Obj.magic
-        and anonymous_interface_7_to_js : anonymous_interface_7 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_8 = [ `anonymous_interface_8 ] intf
-        let rec anonymous_interface_8_of_js : Ojs.t -> anonymous_interface_8
-          = Obj.magic
-        and anonymous_interface_8_to_js : anonymous_interface_8 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_9 = [ `anonymous_interface_9 ] intf
-        let rec anonymous_interface_9_of_js : Ojs.t -> anonymous_interface_9
-          = Obj.magic
-        and anonymous_interface_9_to_js : anonymous_interface_9 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_10 = [ `anonymous_interface_10 ] intf
-        let rec anonymous_interface_10_of_js :
-          Ojs.t -> anonymous_interface_10 = Obj.magic
-        and anonymous_interface_10_to_js : anonymous_interface_10 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_11 = [ `anonymous_interface_11 ] intf
-        let rec anonymous_interface_11_of_js :
-          Ojs.t -> anonymous_interface_11 = Obj.magic
-        and anonymous_interface_11_to_js : anonymous_interface_11 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_12 = [ `anonymous_interface_12 ] intf
-        let rec anonymous_interface_12_of_js :
-          Ojs.t -> anonymous_interface_12 = Obj.magic
-        and anonymous_interface_12_to_js : anonymous_interface_12 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_13 = [ `anonymous_interface_13 ] intf
-        let rec anonymous_interface_13_of_js :
-          Ojs.t -> anonymous_interface_13 = Obj.magic
-        and anonymous_interface_13_to_js : anonymous_interface_13 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_14 = [ `anonymous_interface_14 ] intf
-        let rec anonymous_interface_14_of_js :
-          Ojs.t -> anonymous_interface_14 = Obj.magic
-        and anonymous_interface_14_to_js : anonymous_interface_14 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_15 = [ `anonymous_interface_15 ] intf
-        let rec anonymous_interface_15_of_js :
-          Ojs.t -> anonymous_interface_15 = Obj.magic
-        and anonymous_interface_15_to_js : anonymous_interface_15 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_16 = [ `anonymous_interface_16 ] intf
-        let rec anonymous_interface_16_of_js :
-          Ojs.t -> anonymous_interface_16 = Obj.magic
-        and anonymous_interface_16_to_js : anonymous_interface_16 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_17 = [ `anonymous_interface_17 ] intf
-        let rec anonymous_interface_17_of_js :
-          Ojs.t -> anonymous_interface_17 = Obj.magic
-        and anonymous_interface_17_to_js : anonymous_interface_17 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_18 = [ `anonymous_interface_18 ] intf
-        let rec anonymous_interface_18_of_js :
-          Ojs.t -> anonymous_interface_18 = Obj.magic
-        and anonymous_interface_18_to_js : anonymous_interface_18 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_19 = [ `anonymous_interface_19 ] intf
-        let rec anonymous_interface_19_of_js :
-          Ojs.t -> anonymous_interface_19 = Obj.magic
-        and anonymous_interface_19_to_js : anonymous_interface_19 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_20 = [ `anonymous_interface_20 ] intf
-        let rec anonymous_interface_20_of_js :
-          Ojs.t -> anonymous_interface_20 = Obj.magic
-        and anonymous_interface_20_to_js : anonymous_interface_20 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_21 = [ `anonymous_interface_21 ] intf
-        let rec anonymous_interface_21_of_js :
-          Ojs.t -> anonymous_interface_21 = Obj.magic
-        and anonymous_interface_21_to_js : anonymous_interface_21 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_22 = [ `anonymous_interface_22 ] intf
-        let rec anonymous_interface_22_of_js :
-          Ojs.t -> anonymous_interface_22 = Obj.magic
-        and anonymous_interface_22_to_js : anonymous_interface_22 -> Ojs.t =
-          Obj.magic
-      end
     module Types =
       struct
-        open AnonymousInterfaces
-        type _ApplyWorkspaceEditParams = [ `ApplyWorkspaceEditParams ] intf
-        and _ApplyWorkspaceEditResponse =
-          [ `ApplyWorkspaceEditResponse ] intf
-        and _ClientCapabilities =
+        type _ClientCapabilities =
           (_ClientCapabilities, WorkspaceFoldersClientCapabilities.t,
             ConfigurationClientCapabilities.t,
             WorkDoneProgressClientCapabilities.t) intersection4
-        and _CodeActionClientCapabilities =
-          [ `CodeActionClientCapabilities ] intf
-        and _CodeActionOptions =
-          [ `CodeActionOptions  | `WorkDoneProgressOptions ] intf
-        and _CodeActionParams =
-          [ `CodeActionParams  | `PartialResultParams 
-          | `WorkDoneProgressParams ] intf
-        and _CodeActionRegistrationOptions =
-          [ `CodeActionRegistrationOptions  | `CodeActionOptions 
-          | `TextDocumentRegistrationOptions  | `WorkDoneProgressOptions ]
-            intf
-        and _CodeLensClientCapabilities =
-          [ `CodeLensClientCapabilities ] intf
-        and _CodeLensOptions =
-          [ `CodeLensOptions  | `WorkDoneProgressOptions ] intf
-        and _CodeLensParams =
-          [ `CodeLensParams  | `PartialResultParams 
-          | `WorkDoneProgressParams ] intf
-        and _CodeLensRegistrationOptions =
-          [ `CodeLensRegistrationOptions  | `CodeLensOptions 
-          | `TextDocumentRegistrationOptions  | `WorkDoneProgressOptions ]
-            intf
-        and _CodeLensWorkspaceClientCapabilities =
-          [ `CodeLensWorkspaceClientCapabilities ] intf
-        and _CompletionClientCapabilities =
-          [ `CompletionClientCapabilities ] intf
-        and _CompletionContext = [ `CompletionContext ] intf
-        and _CompletionOptions =
-          [ `CompletionOptions  | `WorkDoneProgressOptions ] intf
-        and _CompletionParams =
-          [ `CompletionParams  | `PartialResultParams 
-          | `TextDocumentPositionParams  | `WorkDoneProgressParams ] intf
-        and _CompletionRegistrationOptions =
-          [ `CompletionRegistrationOptions  | `CompletionOptions 
-          | `TextDocumentRegistrationOptions  | `WorkDoneProgressOptions ]
-            intf
         and _CompletionTriggerKind = [ `L_n_1  | `L_n_2  | `L_n_3 ]
-        and _DefinitionClientCapabilities =
-          [ `DefinitionClientCapabilities ] intf
-        and _DefinitionOptions =
-          [ `DefinitionOptions  | `WorkDoneProgressOptions ] intf
-        and _DefinitionParams =
-          [ `DefinitionParams  | `PartialResultParams 
-          | `TextDocumentPositionParams  | `WorkDoneProgressParams ] intf
-        and _DefinitionRegistrationOptions =
-          [ `DefinitionRegistrationOptions  | `DefinitionOptions 
-          | `TextDocumentRegistrationOptions  | `WorkDoneProgressOptions ]
-            intf
-        and _DidChangeConfigurationClientCapabilities =
-          [ `DidChangeConfigurationClientCapabilities ] intf
-        and _DidChangeConfigurationParams =
-          [ `DidChangeConfigurationParams ] intf
-        and _DidChangeConfigurationRegistrationOptions =
-          [ `DidChangeConfigurationRegistrationOptions ] intf
-        and _DidChangeTextDocumentParams =
-          [ `DidChangeTextDocumentParams ] intf
-        and _DidChangeWatchedFilesClientCapabilities =
-          [ `DidChangeWatchedFilesClientCapabilities ] intf
-        and _DidChangeWatchedFilesParams =
-          [ `DidChangeWatchedFilesParams ] intf
-        and _DidChangeWatchedFilesRegistrationOptions =
-          [ `DidChangeWatchedFilesRegistrationOptions ] intf
-        and _DidCloseTextDocumentParams =
-          [ `DidCloseTextDocumentParams ] intf
-        and _DidOpenTextDocumentParams = [ `DidOpenTextDocumentParams ] intf
-        and _DidSaveTextDocumentParams = [ `DidSaveTextDocumentParams ] intf
         and _DocumentFilter = anonymous_interface_9
-        and _DocumentFormattingClientCapabilities =
-          [ `DocumentFormattingClientCapabilities ] intf
-        and _DocumentFormattingOptions =
-          [ `DocumentFormattingOptions  | `WorkDoneProgressOptions ] intf
-        and _DocumentFormattingParams =
-          [ `DocumentFormattingParams  | `WorkDoneProgressParams ] intf
-        and _DocumentFormattingRegistrationOptions =
-          [ `DocumentFormattingRegistrationOptions 
-          | `DocumentFormattingOptions  | `TextDocumentRegistrationOptions 
-          | `WorkDoneProgressOptions ] intf
-        and _DocumentHighlightClientCapabilities =
-          [ `DocumentHighlightClientCapabilities ] intf
-        and _DocumentHighlightOptions =
-          [ `DocumentHighlightOptions  | `WorkDoneProgressOptions ] intf
-        and _DocumentHighlightParams =
-          [ `DocumentHighlightParams  | `PartialResultParams 
-          | `TextDocumentPositionParams  | `WorkDoneProgressParams ] intf
-        and _DocumentHighlightRegistrationOptions =
-          [ `DocumentHighlightRegistrationOptions 
-          | `DocumentHighlightOptions  | `TextDocumentRegistrationOptions 
-          | `WorkDoneProgressOptions ] intf
-        and _DocumentLinkClientCapabilities =
-          [ `DocumentLinkClientCapabilities ] intf
-        and _DocumentLinkOptions =
-          [ `DocumentLinkOptions  | `WorkDoneProgressOptions ] intf
-        and _DocumentLinkParams =
-          [ `DocumentLinkParams  | `PartialResultParams 
-          | `WorkDoneProgressParams ] intf
-        and _DocumentLinkRegistrationOptions =
-          [ `DocumentLinkRegistrationOptions  | `DocumentLinkOptions 
-          | `TextDocumentRegistrationOptions  | `WorkDoneProgressOptions ]
-            intf
-        and _DocumentOnTypeFormattingClientCapabilities =
-          [ `DocumentOnTypeFormattingClientCapabilities ] intf
-        and _DocumentOnTypeFormattingOptions =
-          [ `DocumentOnTypeFormattingOptions ] intf
-        and _DocumentOnTypeFormattingParams =
-          [ `DocumentOnTypeFormattingParams ] intf
-        and _DocumentOnTypeFormattingRegistrationOptions =
-          [ `DocumentOnTypeFormattingRegistrationOptions 
-          | `DocumentOnTypeFormattingOptions 
-          | `TextDocumentRegistrationOptions ] intf
-        and _DocumentRangeFormattingClientCapabilities =
-          [ `DocumentRangeFormattingClientCapabilities ] intf
-        and _DocumentRangeFormattingOptions =
-          [ `DocumentRangeFormattingOptions  | `WorkDoneProgressOptions ]
-            intf
-        and _DocumentRangeFormattingParams =
-          [ `DocumentRangeFormattingParams  | `WorkDoneProgressParams ] intf
-        and _DocumentRangeFormattingRegistrationOptions =
-          [ `DocumentRangeFormattingRegistrationOptions 
-          | `DocumentRangeFormattingOptions 
-          | `TextDocumentRegistrationOptions  | `WorkDoneProgressOptions ]
-            intf
         and _DocumentSelector = _DocumentFilter or_string list
-        and _DocumentSymbolClientCapabilities =
-          [ `DocumentSymbolClientCapabilities ] intf
-        and _DocumentSymbolOptions =
-          [ `DocumentSymbolOptions  | `WorkDoneProgressOptions ] intf
-        and _DocumentSymbolParams =
-          [ `DocumentSymbolParams  | `PartialResultParams 
-          | `WorkDoneProgressParams ] intf
-        and _DocumentSymbolRegistrationOptions =
-          [ `DocumentSymbolRegistrationOptions  | `DocumentSymbolOptions 
-          | `TextDocumentRegistrationOptions  | `WorkDoneProgressOptions ]
-            intf
-        and _ExecuteCommandClientCapabilities =
-          [ `ExecuteCommandClientCapabilities ] intf
-        and _ExecuteCommandOptions =
-          [ `ExecuteCommandOptions  | `WorkDoneProgressOptions ] intf
-        and _ExecuteCommandParams =
-          [ `ExecuteCommandParams  | `WorkDoneProgressParams ] intf
-        and _ExecuteCommandRegistrationOptions =
-          [ `ExecuteCommandRegistrationOptions  | `ExecuteCommandOptions 
-          | `WorkDoneProgressOptions ] intf
         and _FailureHandlingKind =
           [ `L_s0_abort  | `L_s31_textOnlyTransactional 
           | `L_s32_transactional  | `L_s33_undo ]
         and _FileChangeType = [ `L_n_1  | `L_n_2  | `L_n_3 ]
-        and _FileEvent = [ `FileEvent ] intf
-        and _FileSystemWatcher = [ `FileSystemWatcher ] intf
-        and _GeneralClientCapabilities = [ `GeneralClientCapabilities ] intf
-        and _HoverClientCapabilities = [ `HoverClientCapabilities ] intf
-        and _HoverOptions =
-          [ `HoverOptions  | `WorkDoneProgressOptions ] intf
-        and _HoverParams =
-          [ `HoverParams  | `TextDocumentPositionParams 
-          | `WorkDoneProgressParams ] intf
-        and _HoverRegistrationOptions =
-          [ `HoverRegistrationOptions  | `HoverOptions 
-          | `TextDocumentRegistrationOptions  | `WorkDoneProgressOptions ]
-            intf
-        and _InitializeError = [ `InitializeError ] intf
         and _InitializeParams =
           (_InitializeParams, WorkspaceFoldersInitializeParams.t)
             intersection2
-        and 'T _InitializeResult = [ `InitializeResult of 'T ] intf
-        and _InitializedParams = [ `InitializedParams ] intf
-        and _LogMessageParams = [ `LogMessageParams ] intf
-        and _MarkdownClientCapabilities =
-          [ `MarkdownClientCapabilities ] intf
-        and _MessageActionItem = [ `MessageActionItem ] intf
         and _MessageType = [ `L_n_1  | `L_n_2  | `L_n_3  | `L_n_4 ]
-        and _PartialResultParams = [ `PartialResultParams ] intf
-        and _PrepareRenameParams =
-          [ `PrepareRenameParams  | `TextDocumentPositionParams 
-          | `WorkDoneProgressParams ] intf
         and _PrepareSupportDefaultBehavior = [ `L_n_1 ]
-        and _PublishDiagnosticsClientCapabilities =
-          [ `PublishDiagnosticsClientCapabilities ] intf
-        and _PublishDiagnosticsParams = [ `PublishDiagnosticsParams ] intf
-        and _ReferenceClientCapabilities =
-          [ `ReferenceClientCapabilities ] intf
-        and _ReferenceOptions =
-          [ `ReferenceOptions  | `WorkDoneProgressOptions ] intf
-        and _ReferenceParams =
-          [ `ReferenceParams  | `PartialResultParams 
-          | `TextDocumentPositionParams  | `WorkDoneProgressParams ] intf
-        and _ReferenceRegistrationOptions =
-          [ `ReferenceRegistrationOptions  | `ReferenceOptions 
-          | `TextDocumentRegistrationOptions  | `WorkDoneProgressOptions ]
-            intf
-        and _Registration = [ `Registration ] intf
-        and _RegistrationParams = [ `RegistrationParams ] intf
-        and _RegularExpressionsClientCapabilities =
-          [ `RegularExpressionsClientCapabilities ] intf
-        and _RenameClientCapabilities = [ `RenameClientCapabilities ] intf
-        and _RenameOptions =
-          [ `RenameOptions  | `WorkDoneProgressOptions ] intf
-        and _RenameParams = [ `RenameParams  | `WorkDoneProgressParams ] intf
-        and _RenameRegistrationOptions =
-          [ `RenameRegistrationOptions  | `RenameOptions 
-          | `TextDocumentRegistrationOptions  | `WorkDoneProgressOptions ]
-            intf
         and _ResourceOperationKind =
           [ `L_s4_create  | `L_s5_delete  | `L_s9_rename ]
-        and _SaveOptions = [ `SaveOptions ] intf
         and 'T _ServerCapabilities =
           ('T _ServerCapabilities, WorkspaceFoldersServerCapabilities.t)
             intersection2
-        and _ShowMessageParams = [ `ShowMessageParams ] intf
-        and _ShowMessageRequestClientCapabilities =
-          [ `ShowMessageRequestClientCapabilities ] intf
-        and _ShowMessageRequestParams = [ `ShowMessageRequestParams ] intf
-        and _SignatureHelpClientCapabilities =
-          [ `SignatureHelpClientCapabilities ] intf
-        and _SignatureHelpContext = [ `SignatureHelpContext ] intf
-        and _SignatureHelpOptions =
-          [ `SignatureHelpOptions  | `WorkDoneProgressOptions ] intf
-        and _SignatureHelpParams =
-          [ `SignatureHelpParams  | `TextDocumentPositionParams 
-          | `WorkDoneProgressParams ] intf
-        and _SignatureHelpRegistrationOptions =
-          [ `SignatureHelpRegistrationOptions  | `SignatureHelpOptions 
-          | `TextDocumentRegistrationOptions  | `WorkDoneProgressOptions ]
-            intf
         and _SignatureHelpTriggerKind = [ `L_n_1  | `L_n_2  | `L_n_3 ]
-        and _StaticRegistrationOptions = [ `StaticRegistrationOptions ] intf
-        and _TextDocumentChangeRegistrationOptions =
-          [ `TextDocumentChangeRegistrationOptions 
-          | `TextDocumentRegistrationOptions ] intf
-        and _TextDocumentClientCapabilities =
-          [ `TextDocumentClientCapabilities ] intf
         and _TextDocumentContentChangeEvent =
-          (anonymous_interface_13, anonymous_interface_15) union2
-        and _TextDocumentPositionParams =
-          [ `TextDocumentPositionParams ] intf
-        and _TextDocumentRegistrationOptions =
-          [ `TextDocumentRegistrationOptions ] intf
+          (AnonymousInterface13.t, AnonymousInterface15.t) union2
         and _TextDocumentSaveReason = [ `L_n_1  | `L_n_2  | `L_n_3 ]
-        and _TextDocumentSaveRegistrationOptions =
-          [ `TextDocumentSaveRegistrationOptions  | `SaveOptions 
-          | `TextDocumentRegistrationOptions ] intf
-        and _TextDocumentSyncClientCapabilities =
-          [ `TextDocumentSyncClientCapabilities ] intf
         and _TextDocumentSyncKind = [ `L_n_0  | `L_n_1  | `L_n_2 ]
-        and _TextDocumentSyncOptions = [ `TextDocumentSyncOptions ] intf
-        and _Unregistration = [ `Unregistration ] intf
-        and _UnregistrationParams = [ `UnregistrationParams ] intf
-        and _WillSaveTextDocumentParams =
-          [ `WillSaveTextDocumentParams ] intf
-        and _WindowClientCapabilities = [ `WindowClientCapabilities ] intf
-        and _WorkDoneProgressOptions = [ `WorkDoneProgressOptions ] intf
-        and _WorkDoneProgressParams = [ `WorkDoneProgressParams ] intf
-        and _WorkspaceClientCapabilities =
-          [ `WorkspaceClientCapabilities ] intf
-        and _WorkspaceEditClientCapabilities =
-          [ `WorkspaceEditClientCapabilities ] intf
-        and _WorkspaceSymbolClientCapabilities =
-          [ `WorkspaceSymbolClientCapabilities ] intf
-        and _WorkspaceSymbolOptions =
-          [ `WorkspaceSymbolOptions  | `WorkDoneProgressOptions ] intf
-        and _WorkspaceSymbolParams =
-          [ `WorkspaceSymbolParams  | `PartialResultParams 
-          | `WorkDoneProgressParams ] intf
-        and _WorkspaceSymbolRegistrationOptions =
-          [ `WorkspaceSymbolRegistrationOptions  | `WorkDoneProgressOptions 
-          | `WorkspaceSymbolOptions ] intf
-        and _ClientCapabilities = [ `_ClientCapabilities ] intf
-        and _InitializeParams =
-          [ `_InitializeParams  | `WorkDoneProgressParams ] intf
-        and 'T _ServerCapabilities = [ `_ServerCapabilities of 'T ] intf
-        let rec _ApplyWorkspaceEditParams_of_js :
-          Ojs.t -> _ApplyWorkspaceEditParams = Obj.magic
-        and _ApplyWorkspaceEditParams_to_js :
-          _ApplyWorkspaceEditParams -> Ojs.t = Obj.magic
-        and _ApplyWorkspaceEditResponse_of_js :
-          Ojs.t -> _ApplyWorkspaceEditResponse = Obj.magic
-        and _ApplyWorkspaceEditResponse_to_js :
-          _ApplyWorkspaceEditResponse -> Ojs.t = Obj.magic
-        and _ClientCapabilities_of_js : Ojs.t -> _ClientCapabilities =
+        let rec _ClientCapabilities_of_js : Ojs.t -> _ClientCapabilities =
           fun (x6 : Ojs.t) ->
             intersection4_of_js _ClientCapabilities_of_js
               WorkspaceFoldersClientCapabilities.t_of_js
@@ -426,54 +49,6 @@ module Internal =
               WorkspaceFoldersClientCapabilities.t_to_js
               ConfigurationClientCapabilities.t_to_js
               WorkDoneProgressClientCapabilities.t_to_js x1
-        and _CodeActionClientCapabilities_of_js :
-          Ojs.t -> _CodeActionClientCapabilities = Obj.magic
-        and _CodeActionClientCapabilities_to_js :
-          _CodeActionClientCapabilities -> Ojs.t = Obj.magic
-        and _CodeActionOptions_of_js : Ojs.t -> _CodeActionOptions =
-          Obj.magic
-        and _CodeActionOptions_to_js : _CodeActionOptions -> Ojs.t =
-          Obj.magic
-        and _CodeActionParams_of_js : Ojs.t -> _CodeActionParams = Obj.magic
-        and _CodeActionParams_to_js : _CodeActionParams -> Ojs.t = Obj.magic
-        and _CodeActionRegistrationOptions_of_js :
-          Ojs.t -> _CodeActionRegistrationOptions = Obj.magic
-        and _CodeActionRegistrationOptions_to_js :
-          _CodeActionRegistrationOptions -> Ojs.t = Obj.magic
-        and _CodeLensClientCapabilities_of_js :
-          Ojs.t -> _CodeLensClientCapabilities = Obj.magic
-        and _CodeLensClientCapabilities_to_js :
-          _CodeLensClientCapabilities -> Ojs.t = Obj.magic
-        and _CodeLensOptions_of_js : Ojs.t -> _CodeLensOptions = Obj.magic
-        and _CodeLensOptions_to_js : _CodeLensOptions -> Ojs.t = Obj.magic
-        and _CodeLensParams_of_js : Ojs.t -> _CodeLensParams = Obj.magic
-        and _CodeLensParams_to_js : _CodeLensParams -> Ojs.t = Obj.magic
-        and _CodeLensRegistrationOptions_of_js :
-          Ojs.t -> _CodeLensRegistrationOptions = Obj.magic
-        and _CodeLensRegistrationOptions_to_js :
-          _CodeLensRegistrationOptions -> Ojs.t = Obj.magic
-        and _CodeLensWorkspaceClientCapabilities_of_js :
-          Ojs.t -> _CodeLensWorkspaceClientCapabilities = Obj.magic
-        and _CodeLensWorkspaceClientCapabilities_to_js :
-          _CodeLensWorkspaceClientCapabilities -> Ojs.t = Obj.magic
-        and _CompletionClientCapabilities_of_js :
-          Ojs.t -> _CompletionClientCapabilities = Obj.magic
-        and _CompletionClientCapabilities_to_js :
-          _CompletionClientCapabilities -> Ojs.t = Obj.magic
-        and _CompletionContext_of_js : Ojs.t -> _CompletionContext =
-          Obj.magic
-        and _CompletionContext_to_js : _CompletionContext -> Ojs.t =
-          Obj.magic
-        and _CompletionOptions_of_js : Ojs.t -> _CompletionOptions =
-          Obj.magic
-        and _CompletionOptions_to_js : _CompletionOptions -> Ojs.t =
-          Obj.magic
-        and _CompletionParams_of_js : Ojs.t -> _CompletionParams = Obj.magic
-        and _CompletionParams_to_js : _CompletionParams -> Ojs.t = Obj.magic
-        and _CompletionRegistrationOptions_of_js :
-          Ojs.t -> _CompletionRegistrationOptions = Obj.magic
-        and _CompletionRegistrationOptions_to_js :
-          _CompletionRegistrationOptions -> Ojs.t = Obj.magic
         and _CompletionTriggerKind_of_js : Ojs.t -> _CompletionTriggerKind =
           fun (x12 : Ojs.t) ->
             let x13 = x12 in
@@ -488,145 +63,11 @@ module Internal =
             | `L_n_1 -> Ojs.int_to_js 1
             | `L_n_2 -> Ojs.int_to_js 2
             | `L_n_3 -> Ojs.int_to_js 3
-        and _DefinitionClientCapabilities_of_js :
-          Ojs.t -> _DefinitionClientCapabilities = Obj.magic
-        and _DefinitionClientCapabilities_to_js :
-          _DefinitionClientCapabilities -> Ojs.t = Obj.magic
-        and _DefinitionOptions_of_js : Ojs.t -> _DefinitionOptions =
-          Obj.magic
-        and _DefinitionOptions_to_js : _DefinitionOptions -> Ojs.t =
-          Obj.magic
-        and _DefinitionParams_of_js : Ojs.t -> _DefinitionParams = Obj.magic
-        and _DefinitionParams_to_js : _DefinitionParams -> Ojs.t = Obj.magic
-        and _DefinitionRegistrationOptions_of_js :
-          Ojs.t -> _DefinitionRegistrationOptions = Obj.magic
-        and _DefinitionRegistrationOptions_to_js :
-          _DefinitionRegistrationOptions -> Ojs.t = Obj.magic
-        and _DidChangeConfigurationClientCapabilities_of_js :
-          Ojs.t -> _DidChangeConfigurationClientCapabilities = Obj.magic
-        and _DidChangeConfigurationClientCapabilities_to_js :
-          _DidChangeConfigurationClientCapabilities -> Ojs.t = Obj.magic
-        and _DidChangeConfigurationParams_of_js :
-          Ojs.t -> _DidChangeConfigurationParams = Obj.magic
-        and _DidChangeConfigurationParams_to_js :
-          _DidChangeConfigurationParams -> Ojs.t = Obj.magic
-        and _DidChangeConfigurationRegistrationOptions_of_js :
-          Ojs.t -> _DidChangeConfigurationRegistrationOptions = Obj.magic
-        and _DidChangeConfigurationRegistrationOptions_to_js :
-          _DidChangeConfigurationRegistrationOptions -> Ojs.t = Obj.magic
-        and _DidChangeTextDocumentParams_of_js :
-          Ojs.t -> _DidChangeTextDocumentParams = Obj.magic
-        and _DidChangeTextDocumentParams_to_js :
-          _DidChangeTextDocumentParams -> Ojs.t = Obj.magic
-        and _DidChangeWatchedFilesClientCapabilities_of_js :
-          Ojs.t -> _DidChangeWatchedFilesClientCapabilities = Obj.magic
-        and _DidChangeWatchedFilesClientCapabilities_to_js :
-          _DidChangeWatchedFilesClientCapabilities -> Ojs.t = Obj.magic
-        and _DidChangeWatchedFilesParams_of_js :
-          Ojs.t -> _DidChangeWatchedFilesParams = Obj.magic
-        and _DidChangeWatchedFilesParams_to_js :
-          _DidChangeWatchedFilesParams -> Ojs.t = Obj.magic
-        and _DidChangeWatchedFilesRegistrationOptions_of_js :
-          Ojs.t -> _DidChangeWatchedFilesRegistrationOptions = Obj.magic
-        and _DidChangeWatchedFilesRegistrationOptions_to_js :
-          _DidChangeWatchedFilesRegistrationOptions -> Ojs.t = Obj.magic
-        and _DidCloseTextDocumentParams_of_js :
-          Ojs.t -> _DidCloseTextDocumentParams = Obj.magic
-        and _DidCloseTextDocumentParams_to_js :
-          _DidCloseTextDocumentParams -> Ojs.t = Obj.magic
-        and _DidOpenTextDocumentParams_of_js :
-          Ojs.t -> _DidOpenTextDocumentParams = Obj.magic
-        and _DidOpenTextDocumentParams_to_js :
-          _DidOpenTextDocumentParams -> Ojs.t = Obj.magic
-        and _DidSaveTextDocumentParams_of_js :
-          Ojs.t -> _DidSaveTextDocumentParams = Obj.magic
-        and _DidSaveTextDocumentParams_to_js :
-          _DidSaveTextDocumentParams -> Ojs.t = Obj.magic
         and _DocumentFilter_of_js : Ojs.t -> _DocumentFilter =
           fun (x15 : Ojs.t) -> anonymous_interface_9_of_js x15
         and _DocumentFilter_to_js : _DocumentFilter -> Ojs.t =
           fun (x14 : anonymous_interface_9) ->
             anonymous_interface_9_to_js x14
-        and _DocumentFormattingClientCapabilities_of_js :
-          Ojs.t -> _DocumentFormattingClientCapabilities = Obj.magic
-        and _DocumentFormattingClientCapabilities_to_js :
-          _DocumentFormattingClientCapabilities -> Ojs.t = Obj.magic
-        and _DocumentFormattingOptions_of_js :
-          Ojs.t -> _DocumentFormattingOptions = Obj.magic
-        and _DocumentFormattingOptions_to_js :
-          _DocumentFormattingOptions -> Ojs.t = Obj.magic
-        and _DocumentFormattingParams_of_js :
-          Ojs.t -> _DocumentFormattingParams = Obj.magic
-        and _DocumentFormattingParams_to_js :
-          _DocumentFormattingParams -> Ojs.t = Obj.magic
-        and _DocumentFormattingRegistrationOptions_of_js :
-          Ojs.t -> _DocumentFormattingRegistrationOptions = Obj.magic
-        and _DocumentFormattingRegistrationOptions_to_js :
-          _DocumentFormattingRegistrationOptions -> Ojs.t = Obj.magic
-        and _DocumentHighlightClientCapabilities_of_js :
-          Ojs.t -> _DocumentHighlightClientCapabilities = Obj.magic
-        and _DocumentHighlightClientCapabilities_to_js :
-          _DocumentHighlightClientCapabilities -> Ojs.t = Obj.magic
-        and _DocumentHighlightOptions_of_js :
-          Ojs.t -> _DocumentHighlightOptions = Obj.magic
-        and _DocumentHighlightOptions_to_js :
-          _DocumentHighlightOptions -> Ojs.t = Obj.magic
-        and _DocumentHighlightParams_of_js :
-          Ojs.t -> _DocumentHighlightParams = Obj.magic
-        and _DocumentHighlightParams_to_js :
-          _DocumentHighlightParams -> Ojs.t = Obj.magic
-        and _DocumentHighlightRegistrationOptions_of_js :
-          Ojs.t -> _DocumentHighlightRegistrationOptions = Obj.magic
-        and _DocumentHighlightRegistrationOptions_to_js :
-          _DocumentHighlightRegistrationOptions -> Ojs.t = Obj.magic
-        and _DocumentLinkClientCapabilities_of_js :
-          Ojs.t -> _DocumentLinkClientCapabilities = Obj.magic
-        and _DocumentLinkClientCapabilities_to_js :
-          _DocumentLinkClientCapabilities -> Ojs.t = Obj.magic
-        and _DocumentLinkOptions_of_js : Ojs.t -> _DocumentLinkOptions =
-          Obj.magic
-        and _DocumentLinkOptions_to_js : _DocumentLinkOptions -> Ojs.t =
-          Obj.magic
-        and _DocumentLinkParams_of_js : Ojs.t -> _DocumentLinkParams =
-          Obj.magic
-        and _DocumentLinkParams_to_js : _DocumentLinkParams -> Ojs.t =
-          Obj.magic
-        and _DocumentLinkRegistrationOptions_of_js :
-          Ojs.t -> _DocumentLinkRegistrationOptions = Obj.magic
-        and _DocumentLinkRegistrationOptions_to_js :
-          _DocumentLinkRegistrationOptions -> Ojs.t = Obj.magic
-        and _DocumentOnTypeFormattingClientCapabilities_of_js :
-          Ojs.t -> _DocumentOnTypeFormattingClientCapabilities = Obj.magic
-        and _DocumentOnTypeFormattingClientCapabilities_to_js :
-          _DocumentOnTypeFormattingClientCapabilities -> Ojs.t = Obj.magic
-        and _DocumentOnTypeFormattingOptions_of_js :
-          Ojs.t -> _DocumentOnTypeFormattingOptions = Obj.magic
-        and _DocumentOnTypeFormattingOptions_to_js :
-          _DocumentOnTypeFormattingOptions -> Ojs.t = Obj.magic
-        and _DocumentOnTypeFormattingParams_of_js :
-          Ojs.t -> _DocumentOnTypeFormattingParams = Obj.magic
-        and _DocumentOnTypeFormattingParams_to_js :
-          _DocumentOnTypeFormattingParams -> Ojs.t = Obj.magic
-        and _DocumentOnTypeFormattingRegistrationOptions_of_js :
-          Ojs.t -> _DocumentOnTypeFormattingRegistrationOptions = Obj.magic
-        and _DocumentOnTypeFormattingRegistrationOptions_to_js :
-          _DocumentOnTypeFormattingRegistrationOptions -> Ojs.t = Obj.magic
-        and _DocumentRangeFormattingClientCapabilities_of_js :
-          Ojs.t -> _DocumentRangeFormattingClientCapabilities = Obj.magic
-        and _DocumentRangeFormattingClientCapabilities_to_js :
-          _DocumentRangeFormattingClientCapabilities -> Ojs.t = Obj.magic
-        and _DocumentRangeFormattingOptions_of_js :
-          Ojs.t -> _DocumentRangeFormattingOptions = Obj.magic
-        and _DocumentRangeFormattingOptions_to_js :
-          _DocumentRangeFormattingOptions -> Ojs.t = Obj.magic
-        and _DocumentRangeFormattingParams_of_js :
-          Ojs.t -> _DocumentRangeFormattingParams = Obj.magic
-        and _DocumentRangeFormattingParams_to_js :
-          _DocumentRangeFormattingParams -> Ojs.t = Obj.magic
-        and _DocumentRangeFormattingRegistrationOptions_of_js :
-          Ojs.t -> _DocumentRangeFormattingRegistrationOptions = Obj.magic
-        and _DocumentRangeFormattingRegistrationOptions_to_js :
-          _DocumentRangeFormattingRegistrationOptions -> Ojs.t = Obj.magic
         and _DocumentSelector_of_js : Ojs.t -> _DocumentSelector =
           fun (x19 : Ojs.t) ->
             Ojs.list_of_js
@@ -637,38 +78,6 @@ module Internal =
             Ojs.list_to_js
               (fun (x17 : _DocumentFilter or_string) ->
                  or_string_to_js _DocumentFilter_to_js x17) x16
-        and _DocumentSymbolClientCapabilities_of_js :
-          Ojs.t -> _DocumentSymbolClientCapabilities = Obj.magic
-        and _DocumentSymbolClientCapabilities_to_js :
-          _DocumentSymbolClientCapabilities -> Ojs.t = Obj.magic
-        and _DocumentSymbolOptions_of_js : Ojs.t -> _DocumentSymbolOptions =
-          Obj.magic
-        and _DocumentSymbolOptions_to_js : _DocumentSymbolOptions -> Ojs.t =
-          Obj.magic
-        and _DocumentSymbolParams_of_js : Ojs.t -> _DocumentSymbolParams =
-          Obj.magic
-        and _DocumentSymbolParams_to_js : _DocumentSymbolParams -> Ojs.t =
-          Obj.magic
-        and _DocumentSymbolRegistrationOptions_of_js :
-          Ojs.t -> _DocumentSymbolRegistrationOptions = Obj.magic
-        and _DocumentSymbolRegistrationOptions_to_js :
-          _DocumentSymbolRegistrationOptions -> Ojs.t = Obj.magic
-        and _ExecuteCommandClientCapabilities_of_js :
-          Ojs.t -> _ExecuteCommandClientCapabilities = Obj.magic
-        and _ExecuteCommandClientCapabilities_to_js :
-          _ExecuteCommandClientCapabilities -> Ojs.t = Obj.magic
-        and _ExecuteCommandOptions_of_js : Ojs.t -> _ExecuteCommandOptions =
-          Obj.magic
-        and _ExecuteCommandOptions_to_js : _ExecuteCommandOptions -> Ojs.t =
-          Obj.magic
-        and _ExecuteCommandParams_of_js : Ojs.t -> _ExecuteCommandParams =
-          Obj.magic
-        and _ExecuteCommandParams_to_js : _ExecuteCommandParams -> Ojs.t =
-          Obj.magic
-        and _ExecuteCommandRegistrationOptions_of_js :
-          Ojs.t -> _ExecuteCommandRegistrationOptions = Obj.magic
-        and _ExecuteCommandRegistrationOptions_to_js :
-          _ExecuteCommandRegistrationOptions -> Ojs.t = Obj.magic
         and _FailureHandlingKind_of_js : Ojs.t -> _FailureHandlingKind =
           fun (x23 : Ojs.t) ->
             let x24 = x23 in
@@ -704,30 +113,6 @@ module Internal =
             | `L_n_1 -> Ojs.int_to_js 1
             | `L_n_2 -> Ojs.int_to_js 2
             | `L_n_3 -> Ojs.int_to_js 3
-        and _FileEvent_of_js : Ojs.t -> _FileEvent = Obj.magic
-        and _FileEvent_to_js : _FileEvent -> Ojs.t = Obj.magic
-        and _FileSystemWatcher_of_js : Ojs.t -> _FileSystemWatcher =
-          Obj.magic
-        and _FileSystemWatcher_to_js : _FileSystemWatcher -> Ojs.t =
-          Obj.magic
-        and _GeneralClientCapabilities_of_js :
-          Ojs.t -> _GeneralClientCapabilities = Obj.magic
-        and _GeneralClientCapabilities_to_js :
-          _GeneralClientCapabilities -> Ojs.t = Obj.magic
-        and _HoverClientCapabilities_of_js :
-          Ojs.t -> _HoverClientCapabilities = Obj.magic
-        and _HoverClientCapabilities_to_js :
-          _HoverClientCapabilities -> Ojs.t = Obj.magic
-        and _HoverOptions_of_js : Ojs.t -> _HoverOptions = Obj.magic
-        and _HoverOptions_to_js : _HoverOptions -> Ojs.t = Obj.magic
-        and _HoverParams_of_js : Ojs.t -> _HoverParams = Obj.magic
-        and _HoverParams_to_js : _HoverParams -> Ojs.t = Obj.magic
-        and _HoverRegistrationOptions_of_js :
-          Ojs.t -> _HoverRegistrationOptions = Obj.magic
-        and _HoverRegistrationOptions_to_js :
-          _HoverRegistrationOptions -> Ojs.t = Obj.magic
-        and _InitializeError_of_js : Ojs.t -> _InitializeError = Obj.magic
-        and _InitializeError_to_js : _InitializeError -> Ojs.t = Obj.magic
         and _InitializeParams_of_js : Ojs.t -> _InitializeParams =
           fun (x31 : Ojs.t) ->
             intersection2_of_js _InitializeParams_of_js
@@ -740,26 +125,6 @@ module Internal =
             ->
             intersection2_to_js _InitializeParams_to_js
               WorkspaceFoldersInitializeParams.t_to_js x28
-        and _InitializeResult_of_js :
-          'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _InitializeResult =
-          fun _T -> Obj.magic
-        and _InitializeResult_to_js :
-          'T . ('T -> Ojs.t) -> 'T _InitializeResult -> Ojs.t =
-          fun _T -> Obj.magic
-        and _InitializedParams_of_js : Ojs.t -> _InitializedParams =
-          Obj.magic
-        and _InitializedParams_to_js : _InitializedParams -> Ojs.t =
-          Obj.magic
-        and _LogMessageParams_of_js : Ojs.t -> _LogMessageParams = Obj.magic
-        and _LogMessageParams_to_js : _LogMessageParams -> Ojs.t = Obj.magic
-        and _MarkdownClientCapabilities_of_js :
-          Ojs.t -> _MarkdownClientCapabilities = Obj.magic
-        and _MarkdownClientCapabilities_to_js :
-          _MarkdownClientCapabilities -> Ojs.t = Obj.magic
-        and _MessageActionItem_of_js : Ojs.t -> _MessageActionItem =
-          Obj.magic
-        and _MessageActionItem_to_js : _MessageActionItem -> Ojs.t =
-          Obj.magic
         and _MessageType_of_js : Ojs.t -> _MessageType =
           fun (x35 : Ojs.t) ->
             let x36 = x35 in
@@ -776,14 +141,6 @@ module Internal =
             | `L_n_2 -> Ojs.int_to_js 2
             | `L_n_3 -> Ojs.int_to_js 3
             | `L_n_4 -> Ojs.int_to_js 4
-        and _PartialResultParams_of_js : Ojs.t -> _PartialResultParams =
-          Obj.magic
-        and _PartialResultParams_to_js : _PartialResultParams -> Ojs.t =
-          Obj.magic
-        and _PrepareRenameParams_of_js : Ojs.t -> _PrepareRenameParams =
-          Obj.magic
-        and _PrepareRenameParams_to_js : _PrepareRenameParams -> Ojs.t =
-          Obj.magic
         and _PrepareSupportDefaultBehavior_of_js :
           Ojs.t -> _PrepareSupportDefaultBehavior =
           fun (x38 : Ojs.t) ->
@@ -793,48 +150,6 @@ module Internal =
           _PrepareSupportDefaultBehavior -> Ojs.t =
           fun (x37 : [ `L_n_1 ]) ->
             match x37 with | `L_n_1 -> Ojs.int_to_js 1
-        and _PublishDiagnosticsClientCapabilities_of_js :
-          Ojs.t -> _PublishDiagnosticsClientCapabilities = Obj.magic
-        and _PublishDiagnosticsClientCapabilities_to_js :
-          _PublishDiagnosticsClientCapabilities -> Ojs.t = Obj.magic
-        and _PublishDiagnosticsParams_of_js :
-          Ojs.t -> _PublishDiagnosticsParams = Obj.magic
-        and _PublishDiagnosticsParams_to_js :
-          _PublishDiagnosticsParams -> Ojs.t = Obj.magic
-        and _ReferenceClientCapabilities_of_js :
-          Ojs.t -> _ReferenceClientCapabilities = Obj.magic
-        and _ReferenceClientCapabilities_to_js :
-          _ReferenceClientCapabilities -> Ojs.t = Obj.magic
-        and _ReferenceOptions_of_js : Ojs.t -> _ReferenceOptions = Obj.magic
-        and _ReferenceOptions_to_js : _ReferenceOptions -> Ojs.t = Obj.magic
-        and _ReferenceParams_of_js : Ojs.t -> _ReferenceParams = Obj.magic
-        and _ReferenceParams_to_js : _ReferenceParams -> Ojs.t = Obj.magic
-        and _ReferenceRegistrationOptions_of_js :
-          Ojs.t -> _ReferenceRegistrationOptions = Obj.magic
-        and _ReferenceRegistrationOptions_to_js :
-          _ReferenceRegistrationOptions -> Ojs.t = Obj.magic
-        and _Registration_of_js : Ojs.t -> _Registration = Obj.magic
-        and _Registration_to_js : _Registration -> Ojs.t = Obj.magic
-        and _RegistrationParams_of_js : Ojs.t -> _RegistrationParams =
-          Obj.magic
-        and _RegistrationParams_to_js : _RegistrationParams -> Ojs.t =
-          Obj.magic
-        and _RegularExpressionsClientCapabilities_of_js :
-          Ojs.t -> _RegularExpressionsClientCapabilities = Obj.magic
-        and _RegularExpressionsClientCapabilities_to_js :
-          _RegularExpressionsClientCapabilities -> Ojs.t = Obj.magic
-        and _RenameClientCapabilities_of_js :
-          Ojs.t -> _RenameClientCapabilities = Obj.magic
-        and _RenameClientCapabilities_to_js :
-          _RenameClientCapabilities -> Ojs.t = Obj.magic
-        and _RenameOptions_of_js : Ojs.t -> _RenameOptions = Obj.magic
-        and _RenameOptions_to_js : _RenameOptions -> Ojs.t = Obj.magic
-        and _RenameParams_of_js : Ojs.t -> _RenameParams = Obj.magic
-        and _RenameParams_to_js : _RenameParams -> Ojs.t = Obj.magic
-        and _RenameRegistrationOptions_of_js :
-          Ojs.t -> _RenameRegistrationOptions = Obj.magic
-        and _RenameRegistrationOptions_to_js :
-          _RenameRegistrationOptions -> Ojs.t = Obj.magic
         and _ResourceOperationKind_of_js : Ojs.t -> _ResourceOperationKind =
           fun (x41 : Ojs.t) ->
             let x42 = x41 in
@@ -849,8 +164,6 @@ module Internal =
             | `L_s4_create -> Ojs.string_to_js "create"
             | `L_s5_delete -> Ojs.string_to_js "delete"
             | `L_s9_rename -> Ojs.string_to_js "rename"
-        and _SaveOptions_of_js : Ojs.t -> _SaveOptions = Obj.magic
-        and _SaveOptions_to_js : _SaveOptions -> Ojs.t = Obj.magic
         and _ServerCapabilities_of_js :
           'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _ServerCapabilities = fun (type
           __T) ->
@@ -872,38 +185,6 @@ module Internal =
                 (fun (x44 : __T _ServerCapabilities) ->
                    _ServerCapabilities_to_js __T_to_js x44)
                 WorkspaceFoldersServerCapabilities.t_to_js x43
-        and _ShowMessageParams_of_js : Ojs.t -> _ShowMessageParams =
-          Obj.magic
-        and _ShowMessageParams_to_js : _ShowMessageParams -> Ojs.t =
-          Obj.magic
-        and _ShowMessageRequestClientCapabilities_of_js :
-          Ojs.t -> _ShowMessageRequestClientCapabilities = Obj.magic
-        and _ShowMessageRequestClientCapabilities_to_js :
-          _ShowMessageRequestClientCapabilities -> Ojs.t = Obj.magic
-        and _ShowMessageRequestParams_of_js :
-          Ojs.t -> _ShowMessageRequestParams = Obj.magic
-        and _ShowMessageRequestParams_to_js :
-          _ShowMessageRequestParams -> Ojs.t = Obj.magic
-        and _SignatureHelpClientCapabilities_of_js :
-          Ojs.t -> _SignatureHelpClientCapabilities = Obj.magic
-        and _SignatureHelpClientCapabilities_to_js :
-          _SignatureHelpClientCapabilities -> Ojs.t = Obj.magic
-        and _SignatureHelpContext_of_js : Ojs.t -> _SignatureHelpContext =
-          Obj.magic
-        and _SignatureHelpContext_to_js : _SignatureHelpContext -> Ojs.t =
-          Obj.magic
-        and _SignatureHelpOptions_of_js : Ojs.t -> _SignatureHelpOptions =
-          Obj.magic
-        and _SignatureHelpOptions_to_js : _SignatureHelpOptions -> Ojs.t =
-          Obj.magic
-        and _SignatureHelpParams_of_js : Ojs.t -> _SignatureHelpParams =
-          Obj.magic
-        and _SignatureHelpParams_to_js : _SignatureHelpParams -> Ojs.t =
-          Obj.magic
-        and _SignatureHelpRegistrationOptions_of_js :
-          Ojs.t -> _SignatureHelpRegistrationOptions = Obj.magic
-        and _SignatureHelpRegistrationOptions_to_js :
-          _SignatureHelpRegistrationOptions -> Ojs.t = Obj.magic
         and _SignatureHelpTriggerKind_of_js :
           Ojs.t -> _SignatureHelpTriggerKind =
           fun (x52 : Ojs.t) ->
@@ -920,37 +201,17 @@ module Internal =
             | `L_n_1 -> Ojs.int_to_js 1
             | `L_n_2 -> Ojs.int_to_js 2
             | `L_n_3 -> Ojs.int_to_js 3
-        and _StaticRegistrationOptions_of_js :
-          Ojs.t -> _StaticRegistrationOptions = Obj.magic
-        and _StaticRegistrationOptions_to_js :
-          _StaticRegistrationOptions -> Ojs.t = Obj.magic
-        and _TextDocumentChangeRegistrationOptions_of_js :
-          Ojs.t -> _TextDocumentChangeRegistrationOptions = Obj.magic
-        and _TextDocumentChangeRegistrationOptions_to_js :
-          _TextDocumentChangeRegistrationOptions -> Ojs.t = Obj.magic
-        and _TextDocumentClientCapabilities_of_js :
-          Ojs.t -> _TextDocumentClientCapabilities = Obj.magic
-        and _TextDocumentClientCapabilities_to_js :
-          _TextDocumentClientCapabilities -> Ojs.t = Obj.magic
         and _TextDocumentContentChangeEvent_of_js :
           Ojs.t -> _TextDocumentContentChangeEvent =
           fun (x57 : Ojs.t) ->
-            union2_of_js anonymous_interface_13_of_js
-              anonymous_interface_15_of_js x57
+            union2_of_js AnonymousInterface13.t_of_js
+              AnonymousInterface15.t_of_js x57
         and _TextDocumentContentChangeEvent_to_js :
           _TextDocumentContentChangeEvent -> Ojs.t =
-          fun (x54 : (anonymous_interface_13, anonymous_interface_15) union2)
+          fun (x54 : (AnonymousInterface13.t, AnonymousInterface15.t) union2)
             ->
-            union2_to_js anonymous_interface_13_to_js
-              anonymous_interface_15_to_js x54
-        and _TextDocumentPositionParams_of_js :
-          Ojs.t -> _TextDocumentPositionParams = Obj.magic
-        and _TextDocumentPositionParams_to_js :
-          _TextDocumentPositionParams -> Ojs.t = Obj.magic
-        and _TextDocumentRegistrationOptions_of_js :
-          Ojs.t -> _TextDocumentRegistrationOptions = Obj.magic
-        and _TextDocumentRegistrationOptions_to_js :
-          _TextDocumentRegistrationOptions -> Ojs.t = Obj.magic
+            union2_to_js AnonymousInterface13.t_to_js
+              AnonymousInterface15.t_to_js x54
         and _TextDocumentSaveReason_of_js : Ojs.t -> _TextDocumentSaveReason
           =
           fun (x61 : Ojs.t) ->
@@ -967,14 +228,6 @@ module Internal =
             | `L_n_1 -> Ojs.int_to_js 1
             | `L_n_2 -> Ojs.int_to_js 2
             | `L_n_3 -> Ojs.int_to_js 3
-        and _TextDocumentSaveRegistrationOptions_of_js :
-          Ojs.t -> _TextDocumentSaveRegistrationOptions = Obj.magic
-        and _TextDocumentSaveRegistrationOptions_to_js :
-          _TextDocumentSaveRegistrationOptions -> Ojs.t = Obj.magic
-        and _TextDocumentSyncClientCapabilities_of_js :
-          Ojs.t -> _TextDocumentSyncClientCapabilities = Obj.magic
-        and _TextDocumentSyncClientCapabilities_to_js :
-          _TextDocumentSyncClientCapabilities -> Ojs.t = Obj.magic
         and _TextDocumentSyncKind_of_js : Ojs.t -> _TextDocumentSyncKind =
           fun (x64 : Ojs.t) ->
             let x65 = x64 in
@@ -989,80 +242,13 @@ module Internal =
             | `L_n_0 -> Ojs.int_to_js 0
             | `L_n_1 -> Ojs.int_to_js 1
             | `L_n_2 -> Ojs.int_to_js 2
-        and _TextDocumentSyncOptions_of_js :
-          Ojs.t -> _TextDocumentSyncOptions = Obj.magic
-        and _TextDocumentSyncOptions_to_js :
-          _TextDocumentSyncOptions -> Ojs.t = Obj.magic
-        and _Unregistration_of_js : Ojs.t -> _Unregistration = Obj.magic
-        and _Unregistration_to_js : _Unregistration -> Ojs.t = Obj.magic
-        and _UnregistrationParams_of_js : Ojs.t -> _UnregistrationParams =
-          Obj.magic
-        and _UnregistrationParams_to_js : _UnregistrationParams -> Ojs.t =
-          Obj.magic
-        and _WillSaveTextDocumentParams_of_js :
-          Ojs.t -> _WillSaveTextDocumentParams = Obj.magic
-        and _WillSaveTextDocumentParams_to_js :
-          _WillSaveTextDocumentParams -> Ojs.t = Obj.magic
-        and _WindowClientCapabilities_of_js :
-          Ojs.t -> _WindowClientCapabilities = Obj.magic
-        and _WindowClientCapabilities_to_js :
-          _WindowClientCapabilities -> Ojs.t = Obj.magic
-        and _WorkDoneProgressOptions_of_js :
-          Ojs.t -> _WorkDoneProgressOptions = Obj.magic
-        and _WorkDoneProgressOptions_to_js :
-          _WorkDoneProgressOptions -> Ojs.t = Obj.magic
-        and _WorkDoneProgressParams_of_js : Ojs.t -> _WorkDoneProgressParams
-          = Obj.magic
-        and _WorkDoneProgressParams_to_js : _WorkDoneProgressParams -> Ojs.t
-          = Obj.magic
-        and _WorkspaceClientCapabilities_of_js :
-          Ojs.t -> _WorkspaceClientCapabilities = Obj.magic
-        and _WorkspaceClientCapabilities_to_js :
-          _WorkspaceClientCapabilities -> Ojs.t = Obj.magic
-        and _WorkspaceEditClientCapabilities_of_js :
-          Ojs.t -> _WorkspaceEditClientCapabilities = Obj.magic
-        and _WorkspaceEditClientCapabilities_to_js :
-          _WorkspaceEditClientCapabilities -> Ojs.t = Obj.magic
-        and _WorkspaceSymbolClientCapabilities_of_js :
-          Ojs.t -> _WorkspaceSymbolClientCapabilities = Obj.magic
-        and _WorkspaceSymbolClientCapabilities_to_js :
-          _WorkspaceSymbolClientCapabilities -> Ojs.t = Obj.magic
-        and _WorkspaceSymbolOptions_of_js : Ojs.t -> _WorkspaceSymbolOptions
-          = Obj.magic
-        and _WorkspaceSymbolOptions_to_js : _WorkspaceSymbolOptions -> Ojs.t
-          = Obj.magic
-        and _WorkspaceSymbolParams_of_js : Ojs.t -> _WorkspaceSymbolParams =
-          Obj.magic
-        and _WorkspaceSymbolParams_to_js : _WorkspaceSymbolParams -> Ojs.t =
-          Obj.magic
-        and _WorkspaceSymbolRegistrationOptions_of_js :
-          Ojs.t -> _WorkspaceSymbolRegistrationOptions = Obj.magic
-        and _WorkspaceSymbolRegistrationOptions_to_js :
-          _WorkspaceSymbolRegistrationOptions -> Ojs.t = Obj.magic
-        and _ClientCapabilities_of_js : Ojs.t -> _ClientCapabilities =
-          Obj.magic
-        and _ClientCapabilities_to_js : _ClientCapabilities -> Ojs.t =
-          Obj.magic
-        and _InitializeParams_of_js : Ojs.t -> _InitializeParams = Obj.magic
-        and _InitializeParams_to_js : _InitializeParams -> Ojs.t = Obj.magic
-        and _ServerCapabilities_of_js :
-          'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _ServerCapabilities =
-          fun _T -> Obj.magic
-        and _ServerCapabilities_to_js :
-          'T . ('T -> Ojs.t) -> 'T _ServerCapabilities -> Ojs.t =
-          fun _T -> Obj.magic
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x67 : Ojs.t) -> anonymous_interface_0_of_js x67
-    and t_to_js : t -> Ojs.t =
-      fun (x66 : anonymous_interface_0) -> anonymous_interface_0_to_js x66
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x67 : Ojs.t) -> x67
+    and t_to_js : t -> Ojs.t = fun (x66 : Ojs.t) -> x66
     let (get_additionalPropertiesSupport : t -> bool) =
       fun (x68 : t) ->
         Ojs.bool_of_js
@@ -1075,11 +261,9 @@ module AnonymousInterface0 =
   end
 module AnonymousInterface1 =
   struct
-    type t = anonymous_interface_1
-    let rec t_of_js : Ojs.t -> t =
-      fun (x72 : Ojs.t) -> anonymous_interface_1_of_js x72
-    and t_to_js : t -> Ojs.t =
-      fun (x71 : anonymous_interface_1) -> anonymous_interface_1_to_js x71
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x72 : Ojs.t) -> x72
+    and t_to_js : t -> Ojs.t = fun (x71 : Ojs.t) -> x71
     let (get_cancel : t -> bool) =
       fun (x73 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x73) "cancel")
@@ -1099,28 +283,24 @@ module AnonymousInterface1 =
   end
 module AnonymousInterface2 =
   struct
-    type t = anonymous_interface_2
-    let rec t_of_js : Ojs.t -> t =
-      fun (x82 : Ojs.t) -> anonymous_interface_2_of_js x82
-    and t_to_js : t -> Ojs.t =
-      fun (x81 : anonymous_interface_2) -> anonymous_interface_2_to_js x81
-    let (get_codeActionKind : t -> anonymous_interface_16) =
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x82 : Ojs.t) -> x82
+    and t_to_js : t -> Ojs.t = fun (x81 : Ojs.t) -> x81
+    let (get_codeActionKind : t -> AnonymousInterface16.t) =
       fun (x83 : t) ->
-        anonymous_interface_16_of_js
+        AnonymousInterface16.t_of_js
           (Ojs.get_prop_ascii (t_to_js x83) "codeActionKind")
-    let (set_codeActionKind : t -> anonymous_interface_16 -> unit) =
+    let (set_codeActionKind : t -> AnonymousInterface16.t -> unit) =
       fun (x84 : t) ->
-        fun (x85 : anonymous_interface_16) ->
+        fun (x85 : AnonymousInterface16.t) ->
           Ojs.set_prop_ascii (t_to_js x84) "codeActionKind"
-            (anonymous_interface_16_to_js x85)
+            (AnonymousInterface16.t_to_js x85)
   end
 module AnonymousInterface3 =
   struct
-    type t = anonymous_interface_3
-    let rec t_of_js : Ojs.t -> t =
-      fun (x87 : Ojs.t) -> anonymous_interface_3_of_js x87
-    and t_to_js : t -> Ojs.t =
-      fun (x86 : anonymous_interface_3) -> anonymous_interface_3_to_js x86
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x87 : Ojs.t) -> x87
+    and t_to_js : t -> Ojs.t = fun (x86 : Ojs.t) -> x86
     let (get_defaultBehavior : t -> bool) =
       fun (x88 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x88) "defaultBehavior")
@@ -1132,11 +312,9 @@ module AnonymousInterface3 =
   end
 module AnonymousInterface4 =
   struct
-    type t = anonymous_interface_4
-    let rec t_of_js : Ojs.t -> t =
-      fun (x92 : Ojs.t) -> anonymous_interface_4_of_js x92
-    and t_to_js : t -> Ojs.t =
-      fun (x91 : anonymous_interface_4) -> anonymous_interface_4_to_js x91
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x92 : Ojs.t) -> x92
+    and t_to_js : t -> Ojs.t = fun (x91 : Ojs.t) -> x91
     let (get_documentationFormat : t -> MarkupKind.t list) =
       fun (x93 : t) ->
         Ojs.list_of_js MarkupKind.t_of_js
@@ -1146,15 +324,15 @@ module AnonymousInterface4 =
         fun (x96 : MarkupKind.t list) ->
           Ojs.set_prop_ascii (t_to_js x95) "documentationFormat"
             (Ojs.list_to_js MarkupKind.t_to_js x96)
-    let (get_parameterInformation : t -> anonymous_interface_8) =
+    let (get_parameterInformation : t -> AnonymousInterface8.t) =
       fun (x98 : t) ->
-        anonymous_interface_8_of_js
+        AnonymousInterface8.t_of_js
           (Ojs.get_prop_ascii (t_to_js x98) "parameterInformation")
-    let (set_parameterInformation : t -> anonymous_interface_8 -> unit) =
+    let (set_parameterInformation : t -> AnonymousInterface8.t -> unit) =
       fun (x99 : t) ->
-        fun (x100 : anonymous_interface_8) ->
+        fun (x100 : AnonymousInterface8.t) ->
           Ojs.set_prop_ascii (t_to_js x99) "parameterInformation"
-            (anonymous_interface_8_to_js x100)
+            (AnonymousInterface8.t_to_js x100)
     let (get_activeParameterSupport : t -> bool) =
       fun (x101 : t) ->
         Ojs.bool_of_js
@@ -1167,11 +345,9 @@ module AnonymousInterface4 =
   end
 module AnonymousInterface5 =
   struct
-    type t = anonymous_interface_5
-    let rec t_of_js : Ojs.t -> t =
-      fun (x105 : Ojs.t) -> anonymous_interface_5_of_js x105
-    and t_to_js : t -> Ojs.t =
-      fun (x104 : anonymous_interface_5) -> anonymous_interface_5_to_js x104
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x105 : Ojs.t) -> x105
+    and t_to_js : t -> Ojs.t = fun (x104 : Ojs.t) -> x104
     let (get_fileOperations : t -> FileOperationOptions.t) =
       fun (x106 : t) ->
         FileOperationOptions.t_of_js
@@ -1184,11 +360,9 @@ module AnonymousInterface5 =
   end
 module AnonymousInterface6 =
   struct
-    type t = anonymous_interface_6
-    let rec t_of_js : Ojs.t -> t =
-      fun (x110 : Ojs.t) -> anonymous_interface_6_of_js x110
-    and t_to_js : t -> Ojs.t =
-      fun (x109 : anonymous_interface_6) -> anonymous_interface_6_to_js x109
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x110 : Ojs.t) -> x110
+    and t_to_js : t -> Ojs.t = fun (x109 : Ojs.t) -> x109
     let (get_groupsOnLabel : t -> bool) =
       fun (x111 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x111) "groupsOnLabel")
@@ -1200,11 +374,9 @@ module AnonymousInterface6 =
   end
 module AnonymousInterface7 =
   struct
-    type t = anonymous_interface_7
-    let rec t_of_js : Ojs.t -> t =
-      fun (x115 : Ojs.t) -> anonymous_interface_7_of_js x115
-    and t_to_js : t -> Ojs.t =
-      fun (x114 : anonymous_interface_7) -> anonymous_interface_7_to_js x114
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x115 : Ojs.t) -> x115
+    and t_to_js : t -> Ojs.t = fun (x114 : Ojs.t) -> x114
     let (get_labelDetailsSupport : t -> bool) =
       fun (x116 : t) ->
         Ojs.bool_of_js
@@ -1217,11 +389,9 @@ module AnonymousInterface7 =
   end
 module AnonymousInterface8 =
   struct
-    type t = anonymous_interface_8
-    let rec t_of_js : Ojs.t -> t =
-      fun (x120 : Ojs.t) -> anonymous_interface_8_of_js x120
-    and t_to_js : t -> Ojs.t =
-      fun (x119 : anonymous_interface_8) -> anonymous_interface_8_to_js x119
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x120 : Ojs.t) -> x120
+    and t_to_js : t -> Ojs.t = fun (x119 : Ojs.t) -> x119
     let (get_labelOffsetSupport : t -> bool) =
       fun (x121 : t) ->
         Ojs.bool_of_js
@@ -1234,11 +404,9 @@ module AnonymousInterface8 =
   end
 module AnonymousInterface9 =
   struct
-    type t = anonymous_interface_9
-    let rec t_of_js : Ojs.t -> t =
-      fun (x125 : Ojs.t) -> anonymous_interface_9_of_js x125
-    and t_to_js : t -> Ojs.t =
-      fun (x124 : anonymous_interface_9) -> anonymous_interface_9_to_js x124
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x125 : Ojs.t) -> x125
+    and t_to_js : t -> Ojs.t = fun (x124 : Ojs.t) -> x124
     let (get_language : t -> string) =
       fun (x126 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x126) "language")
@@ -1264,12 +432,9 @@ module AnonymousInterface9 =
   end
 module AnonymousInterface10 =
   struct
-    type t = anonymous_interface_10
-    let rec t_of_js : Ojs.t -> t =
-      fun (x136 : Ojs.t) -> anonymous_interface_10_of_js x136
-    and t_to_js : t -> Ojs.t =
-      fun (x135 : anonymous_interface_10) ->
-        anonymous_interface_10_to_js x135
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x136 : Ojs.t) -> x136
+    and t_to_js : t -> Ojs.t = fun (x135 : Ojs.t) -> x135
     let (get_name : t -> string) =
       fun (x137 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x137) "name")
@@ -1287,12 +452,9 @@ module AnonymousInterface10 =
   end
 module AnonymousInterface11 =
   struct
-    type t = anonymous_interface_11
-    let rec t_of_js : Ojs.t -> t =
-      fun (x144 : Ojs.t) -> anonymous_interface_11_of_js x144
-    and t_to_js : t -> Ojs.t =
-      fun (x143 : anonymous_interface_11) ->
-        anonymous_interface_11_to_js x143
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x144 : Ojs.t) -> x144
+    and t_to_js : t -> Ojs.t = fun (x143 : Ojs.t) -> x143
     let (get_properties : t -> string list) =
       fun (x145 : t) ->
         Ojs.list_of_js Ojs.string_of_js
@@ -1305,12 +467,9 @@ module AnonymousInterface11 =
   end
 module AnonymousInterface12 =
   struct
-    type t = anonymous_interface_12
-    let rec t_of_js : Ojs.t -> t =
-      fun (x151 : Ojs.t) -> anonymous_interface_12_of_js x151
-    and t_to_js : t -> Ojs.t =
-      fun (x150 : anonymous_interface_12) ->
-        anonymous_interface_12_to_js x150
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x151 : Ojs.t) -> x151
+    and t_to_js : t -> Ojs.t = fun (x150 : Ojs.t) -> x150
     let (get_range : t -> Range.t) =
       fun (x152 : t) ->
         Range.t_of_js (Ojs.get_prop_ascii (t_to_js x152) "range")
@@ -1329,12 +488,9 @@ module AnonymousInterface12 =
   end
 module AnonymousInterface13 =
   struct
-    type t = anonymous_interface_13
-    let rec t_of_js : Ojs.t -> t =
-      fun (x159 : Ojs.t) -> anonymous_interface_13_of_js x159
-    and t_to_js : t -> Ojs.t =
-      fun (x158 : anonymous_interface_13) ->
-        anonymous_interface_13_to_js x158
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x159 : Ojs.t) -> x159
+    and t_to_js : t -> Ojs.t = fun (x158 : Ojs.t) -> x158
     let (get_range : t -> Range.t) =
       fun (x160 : t) ->
         Range.t_of_js (Ojs.get_prop_ascii (t_to_js x160) "range")
@@ -1360,12 +516,9 @@ module AnonymousInterface13 =
   end
 module AnonymousInterface14 =
   struct
-    type t = anonymous_interface_14
-    let rec t_of_js : Ojs.t -> t =
-      fun (x170 : Ojs.t) -> anonymous_interface_14_of_js x170
-    and t_to_js : t -> Ojs.t =
-      fun (x169 : anonymous_interface_14) ->
-        anonymous_interface_14_to_js x169
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x170 : Ojs.t) -> x170
+    and t_to_js : t -> Ojs.t = fun (x169 : Ojs.t) -> x169
     let (get_snippetSupport : t -> bool) =
       fun (x171 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x171) "snippetSupport")
@@ -1409,15 +562,15 @@ module AnonymousInterface14 =
         fun (x187 : bool) ->
           Ojs.set_prop_ascii (t_to_js x186) "preselectSupport"
             (Ojs.bool_to_js x187)
-    let (get_tagSupport : t -> anonymous_interface_18) =
+    let (get_tagSupport : t -> AnonymousInterface18.t) =
       fun (x188 : t) ->
-        anonymous_interface_18_of_js
+        AnonymousInterface18.t_of_js
           (Ojs.get_prop_ascii (t_to_js x188) "tagSupport")
-    let (set_tagSupport : t -> anonymous_interface_18 -> unit) =
+    let (set_tagSupport : t -> AnonymousInterface18.t -> unit) =
       fun (x189 : t) ->
-        fun (x190 : anonymous_interface_18) ->
+        fun (x190 : AnonymousInterface18.t) ->
           Ojs.set_prop_ascii (t_to_js x189) "tagSupport"
-            (anonymous_interface_18_to_js x190)
+            (AnonymousInterface18.t_to_js x190)
     let (get_insertReplaceSupport : t -> bool) =
       fun (x191 : t) ->
         Ojs.bool_of_js
@@ -1427,24 +580,24 @@ module AnonymousInterface14 =
         fun (x193 : bool) ->
           Ojs.set_prop_ascii (t_to_js x192) "insertReplaceSupport"
             (Ojs.bool_to_js x193)
-    let (get_resolveSupport : t -> anonymous_interface_11) =
+    let (get_resolveSupport : t -> AnonymousInterface11.t) =
       fun (x194 : t) ->
-        anonymous_interface_11_of_js
+        AnonymousInterface11.t_of_js
           (Ojs.get_prop_ascii (t_to_js x194) "resolveSupport")
-    let (set_resolveSupport : t -> anonymous_interface_11 -> unit) =
+    let (set_resolveSupport : t -> AnonymousInterface11.t -> unit) =
       fun (x195 : t) ->
-        fun (x196 : anonymous_interface_11) ->
+        fun (x196 : AnonymousInterface11.t) ->
           Ojs.set_prop_ascii (t_to_js x195) "resolveSupport"
-            (anonymous_interface_11_to_js x196)
-    let (get_insertTextModeSupport : t -> anonymous_interface_20) =
+            (AnonymousInterface11.t_to_js x196)
+    let (get_insertTextModeSupport : t -> AnonymousInterface20.t) =
       fun (x197 : t) ->
-        anonymous_interface_20_of_js
+        AnonymousInterface20.t_of_js
           (Ojs.get_prop_ascii (t_to_js x197) "insertTextModeSupport")
-    let (set_insertTextModeSupport : t -> anonymous_interface_20 -> unit) =
+    let (set_insertTextModeSupport : t -> AnonymousInterface20.t -> unit) =
       fun (x198 : t) ->
-        fun (x199 : anonymous_interface_20) ->
+        fun (x199 : AnonymousInterface20.t) ->
           Ojs.set_prop_ascii (t_to_js x198) "insertTextModeSupport"
-            (anonymous_interface_20_to_js x199)
+            (AnonymousInterface20.t_to_js x199)
     let (get_labelDetailsSupport : t -> bool) =
       fun (x200 : t) ->
         Ojs.bool_of_js
@@ -1457,12 +610,9 @@ module AnonymousInterface14 =
   end
 module AnonymousInterface15 =
   struct
-    type t = anonymous_interface_15
-    let rec t_of_js : Ojs.t -> t =
-      fun (x204 : Ojs.t) -> anonymous_interface_15_of_js x204
-    and t_to_js : t -> Ojs.t =
-      fun (x203 : anonymous_interface_15) ->
-        anonymous_interface_15_to_js x203
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x204 : Ojs.t) -> x204
+    and t_to_js : t -> Ojs.t = fun (x203 : Ojs.t) -> x203
     let (get_text : t -> string) =
       fun (x205 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x205) "text")
@@ -1473,12 +623,9 @@ module AnonymousInterface15 =
   end
 module AnonymousInterface16 =
   struct
-    type t = anonymous_interface_16
-    let rec t_of_js : Ojs.t -> t =
-      fun (x209 : Ojs.t) -> anonymous_interface_16_of_js x209
-    and t_to_js : t -> Ojs.t =
-      fun (x208 : anonymous_interface_16) ->
-        anonymous_interface_16_to_js x208
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x209 : Ojs.t) -> x209
+    and t_to_js : t -> Ojs.t = fun (x208 : Ojs.t) -> x208
     let (get_valueSet : t -> CodeActionKind.t list) =
       fun (x210 : t) ->
         Ojs.list_of_js CodeActionKind.t_of_js
@@ -1491,12 +638,9 @@ module AnonymousInterface16 =
   end
 module AnonymousInterface17 =
   struct
-    type t = anonymous_interface_17
-    let rec t_of_js : Ojs.t -> t =
-      fun (x216 : Ojs.t) -> anonymous_interface_17_of_js x216
-    and t_to_js : t -> Ojs.t =
-      fun (x215 : anonymous_interface_17) ->
-        anonymous_interface_17_to_js x215
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x216 : Ojs.t) -> x216
+    and t_to_js : t -> Ojs.t = fun (x215 : Ojs.t) -> x215
     let (get_valueSet : t -> CompletionItemKind.t list) =
       fun (x217 : t) ->
         Ojs.list_of_js CompletionItemKind.t_of_js
@@ -1509,12 +653,9 @@ module AnonymousInterface17 =
   end
 module AnonymousInterface18 =
   struct
-    type t = anonymous_interface_18
-    let rec t_of_js : Ojs.t -> t =
-      fun (x223 : Ojs.t) -> anonymous_interface_18_of_js x223
-    and t_to_js : t -> Ojs.t =
-      fun (x222 : anonymous_interface_18) ->
-        anonymous_interface_18_to_js x222
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x223 : Ojs.t) -> x223
+    and t_to_js : t -> Ojs.t = fun (x222 : Ojs.t) -> x222
     let (get_valueSet : t -> CompletionItemTag.t list) =
       fun (x224 : t) ->
         Ojs.list_of_js CompletionItemTag.t_of_js
@@ -1527,12 +668,9 @@ module AnonymousInterface18 =
   end
 module AnonymousInterface19 =
   struct
-    type t = anonymous_interface_19
-    let rec t_of_js : Ojs.t -> t =
-      fun (x230 : Ojs.t) -> anonymous_interface_19_of_js x230
-    and t_to_js : t -> Ojs.t =
-      fun (x229 : anonymous_interface_19) ->
-        anonymous_interface_19_to_js x229
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x230 : Ojs.t) -> x230
+    and t_to_js : t -> Ojs.t = fun (x229 : Ojs.t) -> x229
     let (get_valueSet : t -> DiagnosticTag.t list) =
       fun (x231 : t) ->
         Ojs.list_of_js DiagnosticTag.t_of_js
@@ -1545,12 +683,9 @@ module AnonymousInterface19 =
   end
 module AnonymousInterface20 =
   struct
-    type t = anonymous_interface_20
-    let rec t_of_js : Ojs.t -> t =
-      fun (x237 : Ojs.t) -> anonymous_interface_20_of_js x237
-    and t_to_js : t -> Ojs.t =
-      fun (x236 : anonymous_interface_20) ->
-        anonymous_interface_20_to_js x236
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x237 : Ojs.t) -> x237
+    and t_to_js : t -> Ojs.t = fun (x236 : Ojs.t) -> x236
     let (get_valueSet : t -> InsertTextMode.t list) =
       fun (x238 : t) ->
         Ojs.list_of_js InsertTextMode.t_of_js
@@ -1563,12 +698,9 @@ module AnonymousInterface20 =
   end
 module AnonymousInterface21 =
   struct
-    type t = anonymous_interface_21
-    let rec t_of_js : Ojs.t -> t =
-      fun (x244 : Ojs.t) -> anonymous_interface_21_of_js x244
-    and t_to_js : t -> Ojs.t =
-      fun (x243 : anonymous_interface_21) ->
-        anonymous_interface_21_to_js x243
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x244 : Ojs.t) -> x244
+    and t_to_js : t -> Ojs.t = fun (x243 : Ojs.t) -> x243
     let (get_valueSet : t -> SymbolKind.t list) =
       fun (x245 : t) ->
         Ojs.list_of_js SymbolKind.t_of_js
@@ -1581,12 +713,9 @@ module AnonymousInterface21 =
   end
 module AnonymousInterface22 =
   struct
-    type t = anonymous_interface_22
-    let rec t_of_js : Ojs.t -> t =
-      fun (x251 : Ojs.t) -> anonymous_interface_22_of_js x251
-    and t_to_js : t -> Ojs.t =
-      fun (x250 : anonymous_interface_22) ->
-        anonymous_interface_22_to_js x250
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x251 : Ojs.t) -> x251
+    and t_to_js : t -> Ojs.t = fun (x250 : Ojs.t) -> x250
     let (get_valueSet : t -> SymbolTag.t list) =
       fun (x252 : t) ->
         Ojs.list_of_js SymbolTag.t_of_js
@@ -2297,15 +1426,15 @@ module GeneralClientCapabilities =
     and t_to_js : t -> Ojs.t =
       fun (x466 : _GeneralClientCapabilities) ->
         _GeneralClientCapabilities_to_js x466
-    let (get_staleRequestSupport : t -> anonymous_interface_1) =
+    let (get_staleRequestSupport : t -> AnonymousInterface1.t) =
       fun (x468 : t) ->
-        anonymous_interface_1_of_js
+        AnonymousInterface1.t_of_js
           (Ojs.get_prop_ascii (t_to_js x468) "staleRequestSupport")
-    let (set_staleRequestSupport : t -> anonymous_interface_1 -> unit) =
+    let (set_staleRequestSupport : t -> AnonymousInterface1.t -> unit) =
       fun (x469 : t) ->
-        fun (x470 : anonymous_interface_1) ->
+        fun (x470 : AnonymousInterface1.t) ->
           Ojs.set_prop_ascii (t_to_js x469) "staleRequestSupport"
-            (anonymous_interface_1_to_js x470)
+            (AnonymousInterface1.t_to_js x470)
     let (get_regularExpressions : t -> _RegularExpressionsClientCapabilities)
       =
       fun (x471 : t) ->
@@ -2999,15 +2128,15 @@ module M_ServerCapabilities =
             "semanticTokensProvider"
             (union2_to_js SemanticTokensOptions.t_to_js
                SemanticTokensRegistrationOptions.t_to_js x737)
-    let (get_workspace : 'T t -> anonymous_interface_5) =
+    let (get_workspace : 'T t -> AnonymousInterface5.t) =
       fun (x741 : 'T t) ->
-        anonymous_interface_5_of_js
+        AnonymousInterface5.t_of_js
           (Ojs.get_prop_ascii (t_to_js Obj.magic x741) "workspace")
-    let (set_workspace : 'T t -> anonymous_interface_5 -> unit) =
+    let (set_workspace : 'T t -> AnonymousInterface5.t -> unit) =
       fun (x743 : 'T t) ->
-        fun (x744 : anonymous_interface_5) ->
+        fun (x744 : AnonymousInterface5.t) ->
           Ojs.set_prop_ascii (t_to_js Obj.magic x743) "workspace"
-            (anonymous_interface_5_to_js x744)
+            (AnonymousInterface5.t_to_js x744)
     let (get_monikerProvider :
       'T t ->
         (MonikerOptions.t, MonikerRegistrationOptions.t) union2 or_boolean)
@@ -3097,15 +2226,15 @@ module M_InitializeParams =
         fun (x784 : Integer.t or_null) ->
           Ojs.set_prop_ascii (t_to_js x783) "processId"
             (or_null_to_js Integer.t_to_js x784)
-    let (get_clientInfo : t -> anonymous_interface_10) =
+    let (get_clientInfo : t -> AnonymousInterface10.t) =
       fun (x786 : t) ->
-        anonymous_interface_10_of_js
+        AnonymousInterface10.t_of_js
           (Ojs.get_prop_ascii (t_to_js x786) "clientInfo")
-    let (set_clientInfo : t -> anonymous_interface_10 -> unit) =
+    let (set_clientInfo : t -> AnonymousInterface10.t -> unit) =
       fun (x787 : t) ->
-        fun (x788 : anonymous_interface_10) ->
+        fun (x788 : AnonymousInterface10.t) ->
           Ojs.set_prop_ascii (t_to_js x787) "clientInfo"
-            (anonymous_interface_10_to_js x788)
+            (AnonymousInterface10.t_to_js x788)
     let (get_locale : t -> string) =
       fun (x789 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x789) "locale")
@@ -3201,15 +2330,15 @@ module InitializeResult =
         fun (x827 : 'T _ServerCapabilities) ->
           Ojs.set_prop_ascii (t_to_js Obj.magic x826) "capabilities"
             (_ServerCapabilities_to_js Obj.magic x827)
-    let (get_serverInfo : 'T t -> anonymous_interface_10) =
+    let (get_serverInfo : 'T t -> AnonymousInterface10.t) =
       fun (x830 : 'T t) ->
-        anonymous_interface_10_of_js
+        AnonymousInterface10.t_of_js
           (Ojs.get_prop_ascii (t_to_js Obj.magic x830) "serverInfo")
-    let (set_serverInfo : 'T t -> anonymous_interface_10 -> unit) =
+    let (set_serverInfo : 'T t -> AnonymousInterface10.t -> unit) =
       fun (x832 : 'T t) ->
-        fun (x833 : anonymous_interface_10) ->
+        fun (x833 : AnonymousInterface10.t) ->
           Ojs.set_prop_ascii (t_to_js Obj.magic x832) "serverInfo"
-            (anonymous_interface_10_to_js x833)
+            (AnonymousInterface10.t_to_js x833)
     let (get : 'T t -> string -> any) =
       fun (x835 : 'T t) ->
         fun (x837 : string) ->
@@ -3411,15 +2540,15 @@ module ShowMessageRequestClientCapabilities =
     and t_to_js : t -> Ojs.t =
       fun (x890 : _ShowMessageRequestClientCapabilities) ->
         _ShowMessageRequestClientCapabilities_to_js x890
-    let (get_messageActionItem : t -> anonymous_interface_0) =
+    let (get_messageActionItem : t -> AnonymousInterface0.t) =
       fun (x892 : t) ->
-        anonymous_interface_0_of_js
+        AnonymousInterface0.t_of_js
           (Ojs.get_prop_ascii (t_to_js x892) "messageActionItem")
-    let (set_messageActionItem : t -> anonymous_interface_0 -> unit) =
+    let (set_messageActionItem : t -> AnonymousInterface0.t -> unit) =
       fun (x893 : t) ->
-        fun (x894 : anonymous_interface_0) ->
+        fun (x894 : AnonymousInterface0.t) ->
           Ojs.set_prop_ascii (t_to_js x893) "messageActionItem"
-            (anonymous_interface_0_to_js x894)
+            (AnonymousInterface0.t_to_js x894)
   end
 module MessageActionItem =
   struct
@@ -4161,15 +3290,15 @@ module PublishDiagnosticsClientCapabilities =
         fun (x1100 : bool) ->
           Ojs.set_prop_ascii (t_to_js x1099) "relatedInformation"
             (Ojs.bool_to_js x1100)
-    let (get_tagSupport : t -> anonymous_interface_19) =
+    let (get_tagSupport : t -> AnonymousInterface19.t) =
       fun (x1101 : t) ->
-        anonymous_interface_19_of_js
+        AnonymousInterface19.t_of_js
           (Ojs.get_prop_ascii (t_to_js x1101) "tagSupport")
-    let (set_tagSupport : t -> anonymous_interface_19 -> unit) =
+    let (set_tagSupport : t -> AnonymousInterface19.t -> unit) =
       fun (x1102 : t) ->
-        fun (x1103 : anonymous_interface_19) ->
+        fun (x1103 : AnonymousInterface19.t) ->
           Ojs.set_prop_ascii (t_to_js x1102) "tagSupport"
-            (anonymous_interface_19_to_js x1103)
+            (AnonymousInterface19.t_to_js x1103)
     let (get_versionSupport : t -> bool) =
       fun (x1104 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1104) "versionSupport")
@@ -4257,24 +3386,24 @@ module CompletionClientCapabilities =
         fun (x1132 : bool) ->
           Ojs.set_prop_ascii (t_to_js x1131) "dynamicRegistration"
             (Ojs.bool_to_js x1132)
-    let (get_completionItem : t -> anonymous_interface_14) =
+    let (get_completionItem : t -> AnonymousInterface14.t) =
       fun (x1133 : t) ->
-        anonymous_interface_14_of_js
+        AnonymousInterface14.t_of_js
           (Ojs.get_prop_ascii (t_to_js x1133) "completionItem")
-    let (set_completionItem : t -> anonymous_interface_14 -> unit) =
+    let (set_completionItem : t -> AnonymousInterface14.t -> unit) =
       fun (x1134 : t) ->
-        fun (x1135 : anonymous_interface_14) ->
+        fun (x1135 : AnonymousInterface14.t) ->
           Ojs.set_prop_ascii (t_to_js x1134) "completionItem"
-            (anonymous_interface_14_to_js x1135)
-    let (get_completionItemKind : t -> anonymous_interface_17) =
+            (AnonymousInterface14.t_to_js x1135)
+    let (get_completionItemKind : t -> AnonymousInterface17.t) =
       fun (x1136 : t) ->
-        anonymous_interface_17_of_js
+        AnonymousInterface17.t_of_js
           (Ojs.get_prop_ascii (t_to_js x1136) "completionItemKind")
-    let (set_completionItemKind : t -> anonymous_interface_17 -> unit) =
+    let (set_completionItemKind : t -> AnonymousInterface17.t -> unit) =
       fun (x1137 : t) ->
-        fun (x1138 : anonymous_interface_17) ->
+        fun (x1138 : AnonymousInterface17.t) ->
           Ojs.set_prop_ascii (t_to_js x1137) "completionItemKind"
-            (anonymous_interface_17_to_js x1138)
+            (AnonymousInterface17.t_to_js x1138)
     let (get_insertTextMode : t -> InsertTextMode.t) =
       fun (x1139 : t) ->
         InsertTextMode.t_of_js
@@ -4404,15 +3533,15 @@ module CompletionOptions =
         fun (x1180 : bool) ->
           Ojs.set_prop_ascii (t_to_js x1179) "resolveProvider"
             (Ojs.bool_to_js x1180)
-    let (get_completionItem : t -> anonymous_interface_7) =
+    let (get_completionItem : t -> AnonymousInterface7.t) =
       fun (x1181 : t) ->
-        anonymous_interface_7_of_js
+        AnonymousInterface7.t_of_js
           (Ojs.get_prop_ascii (t_to_js x1181) "completionItem")
-    let (set_completionItem : t -> anonymous_interface_7 -> unit) =
+    let (set_completionItem : t -> AnonymousInterface7.t -> unit) =
       fun (x1182 : t) ->
-        fun (x1183 : anonymous_interface_7) ->
+        fun (x1183 : AnonymousInterface7.t) ->
           Ojs.set_prop_ascii (t_to_js x1182) "completionItem"
-            (anonymous_interface_7_to_js x1183)
+            (AnonymousInterface7.t_to_js x1183)
     let (cast : t -> _WorkDoneProgressOptions) =
       fun (x1184 : t) -> _WorkDoneProgressOptions_of_js (t_to_js x1184)
   end
@@ -4573,15 +3702,15 @@ module SignatureHelpClientCapabilities =
         fun (x1237 : bool) ->
           Ojs.set_prop_ascii (t_to_js x1236) "dynamicRegistration"
             (Ojs.bool_to_js x1237)
-    let (get_signatureInformation : t -> anonymous_interface_4) =
+    let (get_signatureInformation : t -> AnonymousInterface4.t) =
       fun (x1238 : t) ->
-        anonymous_interface_4_of_js
+        AnonymousInterface4.t_of_js
           (Ojs.get_prop_ascii (t_to_js x1238) "signatureInformation")
-    let (set_signatureInformation : t -> anonymous_interface_4 -> unit) =
+    let (set_signatureInformation : t -> AnonymousInterface4.t -> unit) =
       fun (x1239 : t) ->
-        fun (x1240 : anonymous_interface_4) ->
+        fun (x1240 : AnonymousInterface4.t) ->
           Ojs.set_prop_ascii (t_to_js x1239) "signatureInformation"
-            (anonymous_interface_4_to_js x1240)
+            (AnonymousInterface4.t_to_js x1240)
     let (get_contextSupport : t -> bool) =
       fun (x1241 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1241) "contextSupport")
@@ -5033,15 +4162,15 @@ module DocumentSymbolClientCapabilities =
         fun (x1387 : bool) ->
           Ojs.set_prop_ascii (t_to_js x1386) "dynamicRegistration"
             (Ojs.bool_to_js x1387)
-    let (get_symbolKind : t -> anonymous_interface_21) =
+    let (get_symbolKind : t -> AnonymousInterface21.t) =
       fun (x1388 : t) ->
-        anonymous_interface_21_of_js
+        AnonymousInterface21.t_of_js
           (Ojs.get_prop_ascii (t_to_js x1388) "symbolKind")
-    let (set_symbolKind : t -> anonymous_interface_21 -> unit) =
+    let (set_symbolKind : t -> AnonymousInterface21.t -> unit) =
       fun (x1389 : t) ->
-        fun (x1390 : anonymous_interface_21) ->
+        fun (x1390 : AnonymousInterface21.t) ->
           Ojs.set_prop_ascii (t_to_js x1389) "symbolKind"
-            (anonymous_interface_21_to_js x1390)
+            (AnonymousInterface21.t_to_js x1390)
     let (get_hierarchicalDocumentSymbolSupport : t -> bool) =
       fun (x1391 : t) ->
         Ojs.bool_of_js
@@ -5052,15 +4181,15 @@ module DocumentSymbolClientCapabilities =
         fun (x1393 : bool) ->
           Ojs.set_prop_ascii (t_to_js x1392)
             "hierarchicalDocumentSymbolSupport" (Ojs.bool_to_js x1393)
-    let (get_tagSupport : t -> anonymous_interface_22) =
+    let (get_tagSupport : t -> AnonymousInterface22.t) =
       fun (x1394 : t) ->
-        anonymous_interface_22_of_js
+        AnonymousInterface22.t_of_js
           (Ojs.get_prop_ascii (t_to_js x1394) "tagSupport")
-    let (set_tagSupport : t -> anonymous_interface_22 -> unit) =
+    let (set_tagSupport : t -> AnonymousInterface22.t -> unit) =
       fun (x1395 : t) ->
-        fun (x1396 : anonymous_interface_22) ->
+        fun (x1396 : AnonymousInterface22.t) ->
           Ojs.set_prop_ascii (t_to_js x1395) "tagSupport"
-            (anonymous_interface_22_to_js x1396)
+            (AnonymousInterface22.t_to_js x1396)
     let (get_labelSupport : t -> bool) =
       fun (x1397 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1397) "labelSupport")
@@ -5173,15 +4302,15 @@ module CodeActionClientCapabilities =
         fun (x1434 : bool) ->
           Ojs.set_prop_ascii (t_to_js x1433) "dynamicRegistration"
             (Ojs.bool_to_js x1434)
-    let (get_codeActionLiteralSupport : t -> anonymous_interface_2) =
+    let (get_codeActionLiteralSupport : t -> AnonymousInterface2.t) =
       fun (x1435 : t) ->
-        anonymous_interface_2_of_js
+        AnonymousInterface2.t_of_js
           (Ojs.get_prop_ascii (t_to_js x1435) "codeActionLiteralSupport")
-    let (set_codeActionLiteralSupport : t -> anonymous_interface_2 -> unit) =
+    let (set_codeActionLiteralSupport : t -> AnonymousInterface2.t -> unit) =
       fun (x1436 : t) ->
-        fun (x1437 : anonymous_interface_2) ->
+        fun (x1437 : AnonymousInterface2.t) ->
           Ojs.set_prop_ascii (t_to_js x1436) "codeActionLiteralSupport"
-            (anonymous_interface_2_to_js x1437)
+            (AnonymousInterface2.t_to_js x1437)
     let (get_isPreferredSupport : t -> bool) =
       fun (x1438 : t) ->
         Ojs.bool_of_js
@@ -5207,15 +4336,15 @@ module CodeActionClientCapabilities =
         fun (x1446 : bool) ->
           Ojs.set_prop_ascii (t_to_js x1445) "dataSupport"
             (Ojs.bool_to_js x1446)
-    let (get_resolveSupport : t -> anonymous_interface_11) =
+    let (get_resolveSupport : t -> AnonymousInterface11.t) =
       fun (x1447 : t) ->
-        anonymous_interface_11_of_js
+        AnonymousInterface11.t_of_js
           (Ojs.get_prop_ascii (t_to_js x1447) "resolveSupport")
-    let (set_resolveSupport : t -> anonymous_interface_11 -> unit) =
+    let (set_resolveSupport : t -> AnonymousInterface11.t -> unit) =
       fun (x1448 : t) ->
-        fun (x1449 : anonymous_interface_11) ->
+        fun (x1449 : AnonymousInterface11.t) ->
           Ojs.set_prop_ascii (t_to_js x1448) "resolveSupport"
-            (anonymous_interface_11_to_js x1449)
+            (AnonymousInterface11.t_to_js x1449)
     let (get_honorsChangeAnnotations : t -> bool) =
       fun (x1450 : t) ->
         Ojs.bool_of_js
@@ -5368,24 +4497,24 @@ module WorkspaceSymbolClientCapabilities =
         fun (x1504 : bool) ->
           Ojs.set_prop_ascii (t_to_js x1503) "dynamicRegistration"
             (Ojs.bool_to_js x1504)
-    let (get_symbolKind : t -> anonymous_interface_21) =
+    let (get_symbolKind : t -> AnonymousInterface21.t) =
       fun (x1505 : t) ->
-        anonymous_interface_21_of_js
+        AnonymousInterface21.t_of_js
           (Ojs.get_prop_ascii (t_to_js x1505) "symbolKind")
-    let (set_symbolKind : t -> anonymous_interface_21 -> unit) =
+    let (set_symbolKind : t -> AnonymousInterface21.t -> unit) =
       fun (x1506 : t) ->
-        fun (x1507 : anonymous_interface_21) ->
+        fun (x1507 : AnonymousInterface21.t) ->
           Ojs.set_prop_ascii (t_to_js x1506) "symbolKind"
-            (anonymous_interface_21_to_js x1507)
-    let (get_tagSupport : t -> anonymous_interface_22) =
+            (AnonymousInterface21.t_to_js x1507)
+    let (get_tagSupport : t -> AnonymousInterface22.t) =
       fun (x1508 : t) ->
-        anonymous_interface_22_of_js
+        AnonymousInterface22.t_of_js
           (Ojs.get_prop_ascii (t_to_js x1508) "tagSupport")
-    let (set_tagSupport : t -> anonymous_interface_22 -> unit) =
+    let (set_tagSupport : t -> AnonymousInterface22.t -> unit) =
       fun (x1509 : t) ->
-        fun (x1510 : anonymous_interface_22) ->
+        fun (x1510 : AnonymousInterface22.t) ->
           Ojs.set_prop_ascii (t_to_js x1509) "tagSupport"
-            (anonymous_interface_22_to_js x1510)
+            (AnonymousInterface22.t_to_js x1510)
   end
 module WorkspaceSymbolParams =
   struct
@@ -6222,7 +5351,7 @@ module PrepareRenameRequest =
       | _ -> assert false
     let (type_ :
       (_PrepareRenameParams,
-        (Range.t, anonymous_interface_3, anonymous_interface_12) union3
+        (Range.t, AnonymousInterface3.t, AnonymousInterface12.t) union3
           or_null,
         never, unit, unit) ProtocolRequestType.t)
       =
@@ -6230,8 +5359,8 @@ module PrepareRenameRequest =
         (fun (x1773 : Ojs.t) ->
            or_null_of_js
              (fun (x1774 : Ojs.t) ->
-                union3_of_js Range.t_of_js anonymous_interface_3_of_js
-                  anonymous_interface_12_of_js x1774) x1773) never_of_js
+                union3_of_js Range.t_of_js AnonymousInterface3.t_of_js
+                  AnonymousInterface12.t_of_js x1774) x1773) never_of_js
         Ojs.unit_of_js Ojs.unit_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii Ojs.global "PrepareRenameRequest") "type")
@@ -6367,15 +5496,15 @@ module WorkspaceEditClientCapabilities =
         fun (x1828 : bool) ->
           Ojs.set_prop_ascii (t_to_js x1827) "normalizesLineEndings"
             (Ojs.bool_to_js x1828)
-    let (get_changeAnnotationSupport : t -> anonymous_interface_6) =
+    let (get_changeAnnotationSupport : t -> AnonymousInterface6.t) =
       fun (x1829 : t) ->
-        anonymous_interface_6_of_js
+        AnonymousInterface6.t_of_js
           (Ojs.get_prop_ascii (t_to_js x1829) "changeAnnotationSupport")
-    let (set_changeAnnotationSupport : t -> anonymous_interface_6 -> unit) =
+    let (set_changeAnnotationSupport : t -> AnonymousInterface6.t -> unit) =
       fun (x1830 : t) ->
-        fun (x1831 : anonymous_interface_6) ->
+        fun (x1831 : AnonymousInterface6.t) ->
           Ojs.set_prop_ascii (t_to_js x1830) "changeAnnotationSupport"
-            (anonymous_interface_6_to_js x1831)
+            (AnonymousInterface6.t_to_js x1831)
   end
 module ApplyWorkspaceEditParams =
   struct

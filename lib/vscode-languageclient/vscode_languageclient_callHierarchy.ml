@@ -2,50 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _CallHierarchyFeature = [ `CallHierarchyFeature ] intf
-        and _CallHierarchyIncomingCallsSignature =
-          [ `CallHierarchyIncomingCallsSignature ] intf
-        and _CallHierarchyMiddleware = [ `CallHierarchyMiddleware ] intf
-        and _CallHierarchyOutgoingCallsSignature =
-          [ `CallHierarchyOutgoingCallsSignature ] intf
-        and _CallHierarchyProvider = [ `CallHierarchyProvider ] intf
-        and _PrepareCallHierarchySignature =
-          [ `PrepareCallHierarchySignature ] intf
-        let rec _CallHierarchyFeature_of_js : Ojs.t -> _CallHierarchyFeature
-          = Obj.magic
-        and _CallHierarchyFeature_to_js : _CallHierarchyFeature -> Ojs.t =
-          Obj.magic
-        and _CallHierarchyIncomingCallsSignature_of_js :
-          Ojs.t -> _CallHierarchyIncomingCallsSignature = Obj.magic
-        and _CallHierarchyIncomingCallsSignature_to_js :
-          _CallHierarchyIncomingCallsSignature -> Ojs.t = Obj.magic
-        and _CallHierarchyMiddleware_of_js :
-          Ojs.t -> _CallHierarchyMiddleware = Obj.magic
-        and _CallHierarchyMiddleware_to_js :
-          _CallHierarchyMiddleware -> Ojs.t = Obj.magic
-        and _CallHierarchyOutgoingCallsSignature_of_js :
-          Ojs.t -> _CallHierarchyOutgoingCallsSignature = Obj.magic
-        and _CallHierarchyOutgoingCallsSignature_to_js :
-          _CallHierarchyOutgoingCallsSignature -> Ojs.t = Obj.magic
-        and _CallHierarchyProvider_of_js : Ojs.t -> _CallHierarchyProvider =
-          Obj.magic
-        and _CallHierarchyProvider_to_js : _CallHierarchyProvider -> Ojs.t =
-          Obj.magic
-        and _PrepareCallHierarchySignature_of_js :
-          Ojs.t -> _PrepareCallHierarchySignature = Obj.magic
-        and _PrepareCallHierarchySignature_to_js :
-          _PrepareCallHierarchySignature -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 open Vscode
 open Vscode_language_server_protocol
 open Client

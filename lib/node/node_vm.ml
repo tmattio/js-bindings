@@ -5,47 +5,10 @@ open Es2020
 open Node_globals
 module Internal =
   struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-        let rec anonymous_interface_1_of_js : Ojs.t -> anonymous_interface_1
-          = Obj.magic
-        and anonymous_interface_1_to_js : anonymous_interface_1 -> Ojs.t =
-          Obj.magic
-      end
     module Types =
       struct
-        open AnonymousInterfaces
-        type vm_BaseOptions = [ `Vm_BaseOptions ] intf
-        and vm_CompileFunctionOptions =
-          [ `Vm_CompileFunctionOptions  | `Vm_BaseOptions ] intf
-        and vm_Context = [ `Vm_Context ] intf
-        and vm_CreateContextOptions = [ `Vm_CreateContextOptions ] intf
-        and vm_MeasureMemoryMode = [ `detailed  | `summary ]
-        and vm_MeasureMemoryOptions = [ `Vm_MeasureMemoryOptions ] intf
-        and vm_MemoryMeasurement = [ `Vm_MemoryMeasurement ] intf
-        and vm_RunningScriptOptions =
-          [ `Vm_RunningScriptOptions  | `Vm_BaseOptions ] intf
-        and vm_Script = [ `Vm_Script ] intf
-        and vm_ScriptOptions = [ `Vm_ScriptOptions  | `Vm_BaseOptions ] intf
-        let rec vm_BaseOptions_of_js : Ojs.t -> vm_BaseOptions = Obj.magic
-        and vm_BaseOptions_to_js : vm_BaseOptions -> Ojs.t = Obj.magic
-        and vm_CompileFunctionOptions_of_js :
-          Ojs.t -> vm_CompileFunctionOptions = Obj.magic
-        and vm_CompileFunctionOptions_to_js :
-          vm_CompileFunctionOptions -> Ojs.t = Obj.magic
-        and vm_Context_of_js : Ojs.t -> vm_Context = Obj.magic
-        and vm_Context_to_js : vm_Context -> Ojs.t = Obj.magic
-        and vm_CreateContextOptions_of_js : Ojs.t -> vm_CreateContextOptions
-          = Obj.magic
-        and vm_CreateContextOptions_to_js : vm_CreateContextOptions -> Ojs.t
-          = Obj.magic
-        and vm_MeasureMemoryMode_of_js : Ojs.t -> vm_MeasureMemoryMode =
+        type vm_MeasureMemoryMode = [ `detailed  | `summary ]
+        let rec vm_MeasureMemoryMode_of_js : Ojs.t -> vm_MeasureMemoryMode =
           fun (x2 : Ojs.t) ->
             let x3 = x2 in
             match Ojs.string_of_js x3 with
@@ -57,34 +20,13 @@ module Internal =
             match x1 with
             | `detailed -> Ojs.string_to_js "detailed"
             | `summary -> Ojs.string_to_js "summary"
-        and vm_MeasureMemoryOptions_of_js : Ojs.t -> vm_MeasureMemoryOptions
-          = Obj.magic
-        and vm_MeasureMemoryOptions_to_js : vm_MeasureMemoryOptions -> Ojs.t
-          = Obj.magic
-        and vm_MemoryMeasurement_of_js : Ojs.t -> vm_MemoryMeasurement =
-          Obj.magic
-        and vm_MemoryMeasurement_to_js : vm_MemoryMeasurement -> Ojs.t =
-          Obj.magic
-        and vm_RunningScriptOptions_of_js : Ojs.t -> vm_RunningScriptOptions
-          = Obj.magic
-        and vm_RunningScriptOptions_to_js : vm_RunningScriptOptions -> Ojs.t
-          = Obj.magic
-        and vm_Script_of_js : Ojs.t -> vm_Script = Obj.magic
-        and vm_Script_to_js : vm_Script -> Ojs.t = Obj.magic
-        and vm_ScriptOptions_of_js : Ojs.t -> vm_ScriptOptions = Obj.magic
-        and vm_ScriptOptions_to_js : vm_ScriptOptions -> Ojs.t = Obj.magic
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x5 : Ojs.t) -> anonymous_interface_0_of_js x5
-    and t_to_js : t -> Ojs.t =
-      fun (x4 : anonymous_interface_0) -> anonymous_interface_0_to_js x4
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x5 : Ojs.t) -> x5
+    and t_to_js : t -> Ojs.t = fun (x4 : Ojs.t) -> x4
     let (get_jsMemoryEstimate : t -> int) =
       fun (x6 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x6) "jsMemoryEstimate")
@@ -110,11 +52,9 @@ module AnonymousInterface0 =
   end
 module AnonymousInterface1 =
   struct
-    type t = anonymous_interface_1
-    let rec t_of_js : Ojs.t -> t =
-      fun (x17 : Ojs.t) -> anonymous_interface_1_of_js x17
-    and t_to_js : t -> Ojs.t =
-      fun (x16 : anonymous_interface_1) -> anonymous_interface_1_to_js x16
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x17 : Ojs.t) -> x17
+    and t_to_js : t -> Ojs.t = fun (x16 : Ojs.t) -> x16
     let (get_strings : t -> bool) =
       fun (x18 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x18) "strings")
@@ -331,15 +271,15 @@ module Vm =
             fun (x94 : string) ->
               Ojs.set_prop_ascii (t_to_js x93) "origin"
                 (Ojs.string_to_js x94)
-        let (get_codeGeneration : t -> anonymous_interface_1) =
+        let (get_codeGeneration : t -> AnonymousInterface1.t) =
           fun (x95 : t) ->
-            anonymous_interface_1_of_js
+            AnonymousInterface1.t_of_js
               (Ojs.get_prop_ascii (t_to_js x95) "codeGeneration")
-        let (set_codeGeneration : t -> anonymous_interface_1 -> unit) =
+        let (set_codeGeneration : t -> AnonymousInterface1.t -> unit) =
           fun (x96 : t) ->
-            fun (x97 : anonymous_interface_1) ->
+            fun (x97 : AnonymousInterface1.t) ->
               Ojs.set_prop_ascii (t_to_js x96) "codeGeneration"
-                (anonymous_interface_1_to_js x97)
+                (AnonymousInterface1.t_to_js x97)
         let (get_microtaskMode : t -> [ `afterEvaluate ]) =
           fun (x98 : t) ->
             let x99 = Ojs.get_prop_ascii (t_to_js x98) "microtaskMode" in
@@ -396,15 +336,15 @@ module Vm =
         and t_to_js : t -> Ojs.t =
           fun (x112 : vm_MemoryMeasurement) ->
             vm_MemoryMeasurement_to_js x112
-        let (get_total : t -> anonymous_interface_0) =
+        let (get_total : t -> AnonymousInterface0.t) =
           fun (x114 : t) ->
-            anonymous_interface_0_of_js
+            AnonymousInterface0.t_of_js
               (Ojs.get_prop_ascii (t_to_js x114) "total")
-        let (set_total : t -> anonymous_interface_0 -> unit) =
+        let (set_total : t -> AnonymousInterface0.t -> unit) =
           fun (x115 : t) ->
-            fun (x116 : anonymous_interface_0) ->
+            fun (x116 : AnonymousInterface0.t) ->
               Ojs.set_prop_ascii (t_to_js x115) "total"
-                (anonymous_interface_0_to_js x116)
+                (AnonymousInterface0.t_to_js x116)
       end
     module Script =
       struct

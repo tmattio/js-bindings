@@ -4,51 +4,17 @@
 open Es2020
 module Internal =
   struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-        let rec anonymous_interface_1_of_js : Ojs.t -> anonymous_interface_1
-          = Obj.magic
-        and anonymous_interface_1_to_js : anonymous_interface_1 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-        let rec anonymous_interface_2_of_js : Ojs.t -> anonymous_interface_2
-          = Obj.magic
-        and anonymous_interface_2_to_js : anonymous_interface_2 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_3 = [ `anonymous_interface_3 ] intf
-        let rec anonymous_interface_3_of_js : Ojs.t -> anonymous_interface_3
-          = Obj.magic
-        and anonymous_interface_3_to_js : anonymous_interface_3 -> Ojs.t =
-          Obj.magic
-      end
     module Types =
       struct
-        open AnonymousInterfaces
-        type _RAL = [ `RAL ] intf
-        and _RAL_DuplexStream = _DuplexStream
+        type _RAL_DuplexStream = _DuplexStream
         and _RAL_ImmediateHandle = _ImmediateHandle
         and _RAL_MessageBuffer = _MessageBuffer
         and _RAL_MessageBufferEncoding = _MessageBufferEncoding
         and _RAL_ReadableStream = _ReadableStream
         and _RAL_TimeoutHandle = _TimeoutHandle
         and _RAL_WritableStream = _WritableStream
-        and _DuplexStream =
-          [ `_DuplexStream  | `_ReadableStream  | `_WritableStream ] intf
-        and _ImmediateHandle = [ `_ImmediateHandle ] intf
-        and _MessageBuffer = [ `_MessageBuffer ] intf
         and _MessageBufferEncoding = [ `L_s0_ascii  | `L_s1_utf_8 ]
-        and _ReadableStream = [ `_ReadableStream ] intf
-        and _TimeoutHandle = [ `_TimeoutHandle ] intf
-        and _WritableStream = [ `_WritableStream ] intf
-        let rec _RAL_of_js : Ojs.t -> _RAL = Obj.magic
-        and _RAL_to_js : _RAL -> Ojs.t = Obj.magic
-        and _RAL_DuplexStream_of_js : Ojs.t -> _RAL_DuplexStream =
+        let rec _RAL_DuplexStream_of_js : Ojs.t -> _RAL_DuplexStream =
           fun (x2 : Ojs.t) -> _DuplexStream_of_js x2
         and _RAL_DuplexStream_to_js : _RAL_DuplexStream -> Ojs.t =
           fun (x1 : _DuplexStream) -> _DuplexStream_to_js x1
@@ -79,12 +45,6 @@ module Internal =
           fun (x14 : Ojs.t) -> _WritableStream_of_js x14
         and _RAL_WritableStream_to_js : _RAL_WritableStream -> Ojs.t =
           fun (x13 : _WritableStream) -> _WritableStream_to_js x13
-        and _DuplexStream_of_js : Ojs.t -> _DuplexStream = Obj.magic
-        and _DuplexStream_to_js : _DuplexStream -> Ojs.t = Obj.magic
-        and _ImmediateHandle_of_js : Ojs.t -> _ImmediateHandle = Obj.magic
-        and _ImmediateHandle_to_js : _ImmediateHandle -> Ojs.t = Obj.magic
-        and _MessageBuffer_of_js : Ojs.t -> _MessageBuffer = Obj.magic
-        and _MessageBuffer_to_js : _MessageBuffer -> Ojs.t = Obj.magic
         and _MessageBufferEncoding_of_js : Ojs.t -> _MessageBufferEncoding =
           fun (x16 : Ojs.t) ->
             let x17 = x16 in
@@ -97,24 +57,13 @@ module Internal =
             match x15 with
             | `L_s0_ascii -> Ojs.string_to_js "ascii"
             | `L_s1_utf_8 -> Ojs.string_to_js "utf-8"
-        and _ReadableStream_of_js : Ojs.t -> _ReadableStream = Obj.magic
-        and _ReadableStream_to_js : _ReadableStream -> Ojs.t = Obj.magic
-        and _TimeoutHandle_of_js : Ojs.t -> _TimeoutHandle = Obj.magic
-        and _TimeoutHandle_to_js : _TimeoutHandle -> Ojs.t = Obj.magic
-        and _WritableStream_of_js : Ojs.t -> _WritableStream = Obj.magic
-        and _WritableStream_to_js : _WritableStream -> Ojs.t = Obj.magic
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x19 : Ojs.t) -> anonymous_interface_0_of_js x19
-    and t_to_js : t -> Ojs.t =
-      fun (x18 : anonymous_interface_0) -> anonymous_interface_0_to_js x18
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x19 : Ojs.t) -> x19
+    and t_to_js : t -> Ojs.t = fun (x18 : Ojs.t) -> x18
     let (get_encoder : t -> any) =
       fun (x20 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x20) "encoder")
     let (get_decoder : t -> any) =
@@ -122,11 +71,9 @@ module AnonymousInterface0 =
   end
 module AnonymousInterface1 =
   struct
-    type t = anonymous_interface_1
-    let rec t_of_js : Ojs.t -> t =
-      fun (x23 : Ojs.t) -> anonymous_interface_1_of_js x23
-    and t_to_js : t -> Ojs.t =
-      fun (x22 : anonymous_interface_1) -> anonymous_interface_1_to_js x22
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x23 : Ojs.t) -> x23
+    and t_to_js : t -> Ojs.t = fun (x22 : Ojs.t) -> x22
     let (create_ :
       t -> encoding:_RAL_MessageBufferEncoding -> _RAL_MessageBuffer) =
       fun (x25 : t) ->
@@ -137,11 +84,9 @@ module AnonymousInterface1 =
   end
 module AnonymousInterface2 =
   struct
-    type t = anonymous_interface_2
-    let rec t_of_js : Ojs.t -> t =
-      fun (x27 : Ojs.t) -> anonymous_interface_2_of_js x27
-    and t_to_js : t -> Ojs.t =
-      fun (x26 : anonymous_interface_2) -> anonymous_interface_2_to_js x26
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x27 : Ojs.t) -> x27
+    and t_to_js : t -> Ojs.t = fun (x26 : Ojs.t) -> x26
     let (info : t -> ?message:any -> optionalParams:any list -> unit) =
       fun (x33 : t) ->
         fun ?message:(x28 : any option) ->
@@ -233,11 +178,9 @@ module AnonymousInterface2 =
   end
 module AnonymousInterface3 =
   struct
-    type t = anonymous_interface_3
-    let rec t_of_js : Ojs.t -> t =
-      fun (x57 : Ojs.t) -> anonymous_interface_3_of_js x57
-    and t_to_js : t -> Ojs.t =
-      fun (x56 : anonymous_interface_3) -> anonymous_interface_3_to_js x56
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x57 : Ojs.t) -> x57
+    and t_to_js : t -> Ojs.t = fun (x56 : Ojs.t) -> x56
     let (setTimeout :
       t ->
         callback:(args:any list -> unit) ->
@@ -495,21 +438,21 @@ module RAL =
     type t = _RAL
     let rec t_of_js : Ojs.t -> t = fun (x142 : Ojs.t) -> _RAL_of_js x142
     and t_to_js : t -> Ojs.t = fun (x141 : _RAL) -> _RAL_to_js x141
-    let (get_applicationJson : t -> anonymous_interface_0) =
+    let (get_applicationJson : t -> AnonymousInterface0.t) =
       fun (x143 : t) ->
-        anonymous_interface_0_of_js
+        AnonymousInterface0.t_of_js
           (Ojs.get_prop_ascii (t_to_js x143) "applicationJson")
-    let (get_messageBuffer : t -> anonymous_interface_1) =
+    let (get_messageBuffer : t -> AnonymousInterface1.t) =
       fun (x144 : t) ->
-        anonymous_interface_1_of_js
+        AnonymousInterface1.t_of_js
           (Ojs.get_prop_ascii (t_to_js x144) "messageBuffer")
-    let (get_console : t -> anonymous_interface_2) =
+    let (get_console : t -> AnonymousInterface2.t) =
       fun (x145 : t) ->
-        anonymous_interface_2_of_js
+        AnonymousInterface2.t_of_js
           (Ojs.get_prop_ascii (t_to_js x145) "console")
-    let (get_timer : t -> anonymous_interface_3) =
+    let (get_timer : t -> AnonymousInterface3.t) =
       fun (x146 : t) ->
-        anonymous_interface_3_of_js
+        AnonymousInterface3.t_of_js
           (Ojs.get_prop_ascii (t_to_js x146) "timer")
     module MessageBuffer =
       struct

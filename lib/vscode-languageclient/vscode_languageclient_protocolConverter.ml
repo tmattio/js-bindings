@@ -2,23 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _Converter = [ `Converter ] intf
-        and _URIConverter = [ `URIConverter ] intf
-        let rec _Converter_of_js : Ojs.t -> _Converter = Obj.magic
-        and _Converter_to_js : _Converter -> Ojs.t = Obj.magic
-        and _URIConverter_of_js : Ojs.t -> _URIConverter = Obj.magic
-        and _URIConverter_to_js : _URIConverter -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module Converter =
   struct
     type t = _Converter

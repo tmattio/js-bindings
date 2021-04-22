@@ -5,74 +5,8 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type zlib_BrotliCompress = [ `Zlib_BrotliCompress | `Zlib_Zlib ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and zlib_BrotliDecompress = [ `Zlib_BrotliDecompress | `Zlib_Zlib ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and zlib_BrotliOptions = [ `Zlib_BrotliOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and zlib_CompressCallback = [ `Zlib_CompressCallback ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and zlib_Deflate =
-      [ `Zlib_Deflate | `Zlib_Zlib | `Zlib_ZlibParams | `Zlib_ZlibReset ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and zlib_DeflateRaw =
-      [ `Zlib_DeflateRaw | `Zlib_Zlib | `Zlib_ZlibParams | `Zlib_ZlibReset ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and zlib_Gunzip = [ `Zlib_Gunzip | `Zlib_Zlib ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and zlib_Gzip = [ `Zlib_Gzip | `Zlib_Zlib ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and zlib_Inflate = [ `Zlib_Inflate | `Zlib_Zlib | `Zlib_ZlibReset ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and zlib_InflateRaw =
-      [ `Zlib_InflateRaw | `Zlib_Zlib | `Zlib_ZlibReset ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and zlib_InputType = (ArrayBuffer.t, ArrayBufferView.t) union2 or_string
-
-    and zlib_Unzip = [ `Zlib_Unzip | `Zlib_Zlib ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and zlib_Zlib = [ `Zlib_Zlib ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and zlib_ZlibOptions = [ `Zlib_ZlibOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and zlib_ZlibParams = [ `Zlib_ZlibParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and zlib_ZlibReset = [ `Zlib_ZlibReset ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -156,9 +90,9 @@ module Zlib : sig
 
     val set_chunkSize : t -> int -> unit [@@js.set "chunkSize"]
 
-    val get_params : t -> anonymous_interface_0 [@@js.get "params"]
+    val get_params : t -> AnonymousInterface0.t [@@js.get "params"]
 
-    val set_params : t -> anonymous_interface_0 -> unit [@@js.set "params"]
+    val set_params : t -> AnonymousInterface0.t -> unit [@@js.set "params"]
 
     val get_maxOutputLength : t -> int [@@js.get "maxOutputLength"]
 
@@ -494,7 +428,7 @@ module Zlib : sig
     [@@js.global "createUnzip"]
 
   module InputType : sig
-    type t
+    type t = (ArrayBuffer.t, ArrayBufferView.t) union2 or_string
 
     val t_to_js : t -> Ojs.t
 

@@ -11,7 +11,7 @@ module SharedArrayBuffer : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_byteLength : t -> int [@@js.get "byteLength"]
+  val get_byte_length : t -> int [@@js.get "byteLength"]
 
   val slice : t -> begin_:int -> ?end_:int -> unit -> t [@@js.call "slice"]
 
@@ -33,7 +33,7 @@ module SharedArrayBufferConstructor : sig
 end
 [@@js.scope "SharedArrayBufferConstructor"]
 
-val sharedArrayBuffer : SharedArrayBufferConstructor.t
+val shared_array_buffer : SharedArrayBufferConstructor.t
   [@@js.global "SharedArrayBuffer"]
 
 module ArrayBufferTypes : sig
@@ -43,10 +43,10 @@ module ArrayBufferTypes : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_SharedArrayBuffer : t -> SharedArrayBuffer.t
+  val get_shared_array_buffer : t -> SharedArrayBuffer.t
     [@@js.get "SharedArrayBuffer"]
 
-  val set_SharedArrayBuffer : t -> SharedArrayBuffer.t -> unit
+  val set_shared_array_buffer : t -> SharedArrayBuffer.t -> unit
     [@@js.set "SharedArrayBuffer"]
 end
 [@@js.scope "ArrayBufferTypes"]
@@ -88,7 +88,7 @@ module Atomics : sig
     -> int
     [@@js.call "and"]
 
-  val compareExchange
+  val compare_exchange
     :  t
     -> typedArray:
          ( Int16Array.t
@@ -119,7 +119,7 @@ module Atomics : sig
     -> int
     [@@js.call "exchange"]
 
-  val isLockFree : t -> size:int -> bool [@@js.call "isLockFree"]
+  val is_lock_free : t -> size:int -> bool [@@js.call "isLockFree"]
 
   val load
     :  t

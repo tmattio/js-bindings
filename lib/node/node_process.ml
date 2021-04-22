@@ -5,100 +5,13 @@ open Es2020
 open Node_globals
 module Internal =
   struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-        let rec anonymous_interface_1_of_js : Ojs.t -> anonymous_interface_1
-          = Obj.magic
-        and anonymous_interface_1_to_js : anonymous_interface_1 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-        let rec anonymous_interface_2_of_js : Ojs.t -> anonymous_interface_2
-          = Obj.magic
-        and anonymous_interface_2_to_js : anonymous_interface_2 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_3 = [ `anonymous_interface_3 ] intf
-        let rec anonymous_interface_3_of_js : Ojs.t -> anonymous_interface_3
-          = Obj.magic
-        and anonymous_interface_3_to_js : anonymous_interface_3 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_4 = [ `anonymous_interface_4 ] intf
-        let rec anonymous_interface_4_of_js : Ojs.t -> anonymous_interface_4
-          = Obj.magic
-        and anonymous_interface_4_to_js : anonymous_interface_4 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_5 = [ `anonymous_interface_5 ] intf
-        let rec anonymous_interface_5_of_js : Ojs.t -> anonymous_interface_5
-          = Obj.magic
-        and anonymous_interface_5_to_js : anonymous_interface_5 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_6 = [ `anonymous_interface_6 ] intf
-        let rec anonymous_interface_6_of_js : Ojs.t -> anonymous_interface_6
-          = Obj.magic
-        and anonymous_interface_6_to_js : anonymous_interface_6 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_7 = [ `anonymous_interface_7 ] intf
-        let rec anonymous_interface_7_of_js : Ojs.t -> anonymous_interface_7
-          = Obj.magic
-        and anonymous_interface_7_to_js : anonymous_interface_7 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_8 = [ `anonymous_interface_8 ] intf
-        let rec anonymous_interface_8_of_js : Ojs.t -> anonymous_interface_8
-          = Obj.magic
-        and anonymous_interface_8_to_js : anonymous_interface_8 -> Ojs.t =
-          Obj.magic
-      end
     module Types =
       struct
-        open AnonymousInterfaces
-        type process_global_NodeJS_BeforeExitListener =
-          [ `Process_global_NodeJS_BeforeExitListener ] intf
-        and process_global_NodeJS_CpuUsage =
-          [ `Process_global_NodeJS_CpuUsage ] intf
-        and process_global_NodeJS_DisconnectListener =
-          [ `Process_global_NodeJS_DisconnectListener ] intf
-        and process_global_NodeJS_ExitListener =
-          [ `Process_global_NodeJS_ExitListener ] intf
-        and process_global_NodeJS_Global =
-          [ `Process_global_NodeJS_Global ] intf
-        and process_global_NodeJS_HRTime =
-          [ `Process_global_NodeJS_HRTime ] intf
-        and process_global_NodeJS_MemoryUsage =
-          [ `Process_global_NodeJS_MemoryUsage ] intf
-        and process_global_NodeJS_MessageListener =
-          [ `Process_global_NodeJS_MessageListener ] intf
-        and process_global_NodeJS_MultipleResolveListener =
-          [ `Process_global_NodeJS_MultipleResolveListener ] intf
-        and process_global_NodeJS_MultipleResolveType =
+        type process_global_NodeJS_MultipleResolveType =
           [ `reject  | `resolve ]
-        and process_global_NodeJS_NewListenerListener =
-          [ `Process_global_NodeJS_NewListenerListener ] intf
         and process_global_NodeJS_Platform =
           [ `aix  | `android  | `cygwin  | `darwin  | `freebsd  | `linux 
           | `netbsd  | `openbsd  | `sunos  | `win32 ]
-        and process_global_NodeJS_Process =
-          [ `Process_global_NodeJS_Process ] intf
-        and process_global_NodeJS_ProcessEnv =
-          [ `Process_global_NodeJS_ProcessEnv ] intf
-        and process_global_NodeJS_ProcessRelease =
-          [ `Process_global_NodeJS_ProcessRelease ] intf
-        and process_global_NodeJS_ProcessReport =
-          [ `Process_global_NodeJS_ProcessReport ] intf
-        and process_global_NodeJS_ProcessVersions =
-          [ `Process_global_NodeJS_ProcessVersions ] intf
-        and process_global_NodeJS_ReadStream =
-          [ `Process_global_NodeJS_ReadStream ] intf
-        and process_global_NodeJS_RejectionHandledListener =
-          [ `Process_global_NodeJS_RejectionHandledListener ] intf
-        and process_global_NodeJS_RemoveListenerListener =
-          [ `Process_global_NodeJS_RemoveListenerListener ] intf
-        and process_global_NodeJS_ResourceUsage =
-          [ `Process_global_NodeJS_ResourceUsage ] intf
         and process_global_NodeJS_Signals =
           [ `SIGABRT  | `SIGALRM  | `SIGBREAK  | `SIGBUS  | `SIGCHLD 
           | `SIGCONT  | `SIGFPE  | `SIGHUP  | `SIGILL  | `SIGINFO  | 
@@ -109,55 +22,7 @@ module Internal =
           | `SIGTSTP  | `SIGTTIN  | `SIGTTOU  | `SIGUNUSED  | `SIGURG 
           | `SIGUSR1  | `SIGUSR2  | `SIGVTALRM  | `SIGWINCH  | `SIGXCPU 
           | `SIGXFSZ ]
-        and process_global_NodeJS_SignalsListener =
-          [ `Process_global_NodeJS_SignalsListener ] intf
-        and process_global_NodeJS_Socket =
-          [ `Process_global_NodeJS_Socket ] intf
-        and process_global_NodeJS_UncaughtExceptionListener =
-          [ `Process_global_NodeJS_UncaughtExceptionListener ] intf
-        and process_global_NodeJS_UnhandledRejectionListener =
-          [ `Process_global_NodeJS_UnhandledRejectionListener ] intf
-        and process_global_NodeJS_WarningListener =
-          [ `Process_global_NodeJS_WarningListener ] intf
-        and process_global_NodeJS_WriteStream =
-          [ `Process_global_NodeJS_WriteStream ] intf
-        let rec process_global_NodeJS_BeforeExitListener_of_js :
-          Ojs.t -> process_global_NodeJS_BeforeExitListener = Obj.magic
-        and process_global_NodeJS_BeforeExitListener_to_js :
-          process_global_NodeJS_BeforeExitListener -> Ojs.t = Obj.magic
-        and process_global_NodeJS_CpuUsage_of_js :
-          Ojs.t -> process_global_NodeJS_CpuUsage = Obj.magic
-        and process_global_NodeJS_CpuUsage_to_js :
-          process_global_NodeJS_CpuUsage -> Ojs.t = Obj.magic
-        and process_global_NodeJS_DisconnectListener_of_js :
-          Ojs.t -> process_global_NodeJS_DisconnectListener = Obj.magic
-        and process_global_NodeJS_DisconnectListener_to_js :
-          process_global_NodeJS_DisconnectListener -> Ojs.t = Obj.magic
-        and process_global_NodeJS_ExitListener_of_js :
-          Ojs.t -> process_global_NodeJS_ExitListener = Obj.magic
-        and process_global_NodeJS_ExitListener_to_js :
-          process_global_NodeJS_ExitListener -> Ojs.t = Obj.magic
-        and process_global_NodeJS_Global_of_js :
-          Ojs.t -> process_global_NodeJS_Global = Obj.magic
-        and process_global_NodeJS_Global_to_js :
-          process_global_NodeJS_Global -> Ojs.t = Obj.magic
-        and process_global_NodeJS_HRTime_of_js :
-          Ojs.t -> process_global_NodeJS_HRTime = Obj.magic
-        and process_global_NodeJS_HRTime_to_js :
-          process_global_NodeJS_HRTime -> Ojs.t = Obj.magic
-        and process_global_NodeJS_MemoryUsage_of_js :
-          Ojs.t -> process_global_NodeJS_MemoryUsage = Obj.magic
-        and process_global_NodeJS_MemoryUsage_to_js :
-          process_global_NodeJS_MemoryUsage -> Ojs.t = Obj.magic
-        and process_global_NodeJS_MessageListener_of_js :
-          Ojs.t -> process_global_NodeJS_MessageListener = Obj.magic
-        and process_global_NodeJS_MessageListener_to_js :
-          process_global_NodeJS_MessageListener -> Ojs.t = Obj.magic
-        and process_global_NodeJS_MultipleResolveListener_of_js :
-          Ojs.t -> process_global_NodeJS_MultipleResolveListener = Obj.magic
-        and process_global_NodeJS_MultipleResolveListener_to_js :
-          process_global_NodeJS_MultipleResolveListener -> Ojs.t = Obj.magic
-        and process_global_NodeJS_MultipleResolveType_of_js :
+        let rec process_global_NodeJS_MultipleResolveType_of_js :
           Ojs.t -> process_global_NodeJS_MultipleResolveType =
           fun (x2 : Ojs.t) ->
             let x3 = x2 in
@@ -171,10 +36,6 @@ module Internal =
             match x1 with
             | `reject -> Ojs.string_to_js "reject"
             | `resolve -> Ojs.string_to_js "resolve"
-        and process_global_NodeJS_NewListenerListener_of_js :
-          Ojs.t -> process_global_NodeJS_NewListenerListener = Obj.magic
-        and process_global_NodeJS_NewListenerListener_to_js :
-          process_global_NodeJS_NewListenerListener -> Ojs.t = Obj.magic
         and process_global_NodeJS_Platform_of_js :
           Ojs.t -> process_global_NodeJS_Platform =
           fun (x5 : Ojs.t) ->
@@ -210,42 +71,6 @@ module Internal =
             | `openbsd -> Ojs.string_to_js "openbsd"
             | `sunos -> Ojs.string_to_js "sunos"
             | `win32 -> Ojs.string_to_js "win32"
-        and process_global_NodeJS_Process_of_js :
-          Ojs.t -> process_global_NodeJS_Process = Obj.magic
-        and process_global_NodeJS_Process_to_js :
-          process_global_NodeJS_Process -> Ojs.t = Obj.magic
-        and process_global_NodeJS_ProcessEnv_of_js :
-          Ojs.t -> process_global_NodeJS_ProcessEnv = Obj.magic
-        and process_global_NodeJS_ProcessEnv_to_js :
-          process_global_NodeJS_ProcessEnv -> Ojs.t = Obj.magic
-        and process_global_NodeJS_ProcessRelease_of_js :
-          Ojs.t -> process_global_NodeJS_ProcessRelease = Obj.magic
-        and process_global_NodeJS_ProcessRelease_to_js :
-          process_global_NodeJS_ProcessRelease -> Ojs.t = Obj.magic
-        and process_global_NodeJS_ProcessReport_of_js :
-          Ojs.t -> process_global_NodeJS_ProcessReport = Obj.magic
-        and process_global_NodeJS_ProcessReport_to_js :
-          process_global_NodeJS_ProcessReport -> Ojs.t = Obj.magic
-        and process_global_NodeJS_ProcessVersions_of_js :
-          Ojs.t -> process_global_NodeJS_ProcessVersions = Obj.magic
-        and process_global_NodeJS_ProcessVersions_to_js :
-          process_global_NodeJS_ProcessVersions -> Ojs.t = Obj.magic
-        and process_global_NodeJS_ReadStream_of_js :
-          Ojs.t -> process_global_NodeJS_ReadStream = Obj.magic
-        and process_global_NodeJS_ReadStream_to_js :
-          process_global_NodeJS_ReadStream -> Ojs.t = Obj.magic
-        and process_global_NodeJS_RejectionHandledListener_of_js :
-          Ojs.t -> process_global_NodeJS_RejectionHandledListener = Obj.magic
-        and process_global_NodeJS_RejectionHandledListener_to_js :
-          process_global_NodeJS_RejectionHandledListener -> Ojs.t = Obj.magic
-        and process_global_NodeJS_RemoveListenerListener_of_js :
-          Ojs.t -> process_global_NodeJS_RemoveListenerListener = Obj.magic
-        and process_global_NodeJS_RemoveListenerListener_to_js :
-          process_global_NodeJS_RemoveListenerListener -> Ojs.t = Obj.magic
-        and process_global_NodeJS_ResourceUsage_of_js :
-          Ojs.t -> process_global_NodeJS_ResourceUsage = Obj.magic
-        and process_global_NodeJS_ResourceUsage_to_js :
-          process_global_NodeJS_ResourceUsage -> Ojs.t = Obj.magic
         and process_global_NodeJS_Signals_of_js :
           Ojs.t -> process_global_NodeJS_Signals =
           fun (x8 : Ojs.t) ->
@@ -340,54 +165,19 @@ module Internal =
             | `SIGWINCH -> Ojs.string_to_js "SIGWINCH"
             | `SIGXCPU -> Ojs.string_to_js "SIGXCPU"
             | `SIGXFSZ -> Ojs.string_to_js "SIGXFSZ"
-        and process_global_NodeJS_SignalsListener_of_js :
-          Ojs.t -> process_global_NodeJS_SignalsListener = Obj.magic
-        and process_global_NodeJS_SignalsListener_to_js :
-          process_global_NodeJS_SignalsListener -> Ojs.t = Obj.magic
-        and process_global_NodeJS_Socket_of_js :
-          Ojs.t -> process_global_NodeJS_Socket = Obj.magic
-        and process_global_NodeJS_Socket_to_js :
-          process_global_NodeJS_Socket -> Ojs.t = Obj.magic
-        and process_global_NodeJS_UncaughtExceptionListener_of_js :
-          Ojs.t -> process_global_NodeJS_UncaughtExceptionListener =
-          Obj.magic
-        and process_global_NodeJS_UncaughtExceptionListener_to_js :
-          process_global_NodeJS_UncaughtExceptionListener -> Ojs.t =
-          Obj.magic
-        and process_global_NodeJS_UnhandledRejectionListener_of_js :
-          Ojs.t -> process_global_NodeJS_UnhandledRejectionListener =
-          Obj.magic
-        and process_global_NodeJS_UnhandledRejectionListener_to_js :
-          process_global_NodeJS_UnhandledRejectionListener -> Ojs.t =
-          Obj.magic
-        and process_global_NodeJS_WarningListener_of_js :
-          Ojs.t -> process_global_NodeJS_WarningListener = Obj.magic
-        and process_global_NodeJS_WarningListener_to_js :
-          process_global_NodeJS_WarningListener -> Ojs.t = Obj.magic
-        and process_global_NodeJS_WriteStream_of_js :
-          Ojs.t -> process_global_NodeJS_WriteStream = Obj.magic
-        and process_global_NodeJS_WriteStream_to_js :
-          process_global_NodeJS_WriteStream -> Ojs.t = Obj.magic
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x11 : Ojs.t) -> anonymous_interface_0_of_js x11
-    and t_to_js : t -> Ojs.t =
-      fun (x10 : anonymous_interface_0) -> anonymous_interface_0_to_js x10
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x11 : Ojs.t) -> x11
+    and t_to_js : t -> Ojs.t = fun (x10 : Ojs.t) -> x10
   end
 module AnonymousInterface1 =
   struct
-    type t = anonymous_interface_1
-    let rec t_of_js : Ojs.t -> t =
-      fun (x13 : Ojs.t) -> anonymous_interface_1_of_js x13
-    and t_to_js : t -> Ojs.t =
-      fun (x12 : anonymous_interface_1) -> anonymous_interface_1_to_js x12
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x13 : Ojs.t) -> x13
+    and t_to_js : t -> Ojs.t = fun (x12 : Ojs.t) -> x12
     let (get_cflags : t -> any list) =
       fun (x14 : t) ->
         Ojs.list_of_js any_of_js (Ojs.get_prop_ascii (t_to_js x14) "cflags")
@@ -435,11 +225,9 @@ module AnonymousInterface1 =
   end
 module AnonymousInterface2 =
   struct
-    type t = anonymous_interface_2
-    let rec t_of_js : Ojs.t -> t =
-      fun (x38 : Ojs.t) -> anonymous_interface_2_of_js x38
-    and t_to_js : t -> Ojs.t =
-      fun (x37 : anonymous_interface_2) -> anonymous_interface_2_to_js x37
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x38 : Ojs.t) -> x38
+    and t_to_js : t -> Ojs.t = fun (x37 : Ojs.t) -> x37
     let (get_clang : t -> int) =
       fun (x39 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x39) "clang")
@@ -563,11 +351,9 @@ module AnonymousInterface2 =
   end
 module AnonymousInterface3 =
   struct
-    type t = anonymous_interface_3
-    let rec t_of_js : Ojs.t -> t =
-      fun (x85 : Ojs.t) -> anonymous_interface_3_of_js x85
-    and t_to_js : t -> Ojs.t =
-      fun (x84 : anonymous_interface_3) -> anonymous_interface_3_to_js x84
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x85 : Ojs.t) -> x85
+    and t_to_js : t -> Ojs.t = fun (x84 : Ojs.t) -> x84
     let (get_fd : t -> [ `L_n_0 ]) =
       fun (x86 : t) ->
         let x87 = Ojs.get_prop_ascii (t_to_js x86) "fd" in
@@ -580,11 +366,9 @@ module AnonymousInterface3 =
   end
 module AnonymousInterface4 =
   struct
-    type t = anonymous_interface_4
-    let rec t_of_js : Ojs.t -> t =
-      fun (x91 : Ojs.t) -> anonymous_interface_4_of_js x91
-    and t_to_js : t -> Ojs.t =
-      fun (x90 : anonymous_interface_4) -> anonymous_interface_4_to_js x90
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x91 : Ojs.t) -> x91
+    and t_to_js : t -> Ojs.t = fun (x90 : Ojs.t) -> x90
     let (get_fd : t -> [ `L_n_1 ]) =
       fun (x92 : t) ->
         let x93 = Ojs.get_prop_ascii (t_to_js x92) "fd" in
@@ -597,11 +381,9 @@ module AnonymousInterface4 =
   end
 module AnonymousInterface5 =
   struct
-    type t = anonymous_interface_5
-    let rec t_of_js : Ojs.t -> t =
-      fun (x97 : Ojs.t) -> anonymous_interface_5_of_js x97
-    and t_to_js : t -> Ojs.t =
-      fun (x96 : anonymous_interface_5) -> anonymous_interface_5_to_js x96
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x97 : Ojs.t) -> x97
+    and t_to_js : t -> Ojs.t = fun (x96 : Ojs.t) -> x96
     let (get_fd : t -> [ `L_n_2 ]) =
       fun (x98 : t) ->
         let x99 = Ojs.get_prop_ascii (t_to_js x98) "fd" in
@@ -614,11 +396,9 @@ module AnonymousInterface5 =
   end
 module AnonymousInterface6 =
   struct
-    type t = anonymous_interface_6
-    let rec t_of_js : Ojs.t -> t =
-      fun (x103 : Ojs.t) -> anonymous_interface_6_of_js x103
-    and t_to_js : t -> Ojs.t =
-      fun (x102 : anonymous_interface_6) -> anonymous_interface_6_to_js x102
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x103 : Ojs.t) -> x103
+    and t_to_js : t -> Ojs.t = fun (x102 : Ojs.t) -> x102
     let (get_inspector : t -> bool) =
       fun (x104 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x104) "inspector")
@@ -678,11 +458,9 @@ module AnonymousInterface6 =
   end
 module AnonymousInterface7 =
   struct
-    type t = anonymous_interface_7
-    let rec t_of_js : Ojs.t -> t =
-      fun (x129 : Ojs.t) -> anonymous_interface_7_of_js x129
-    and t_to_js : t -> Ojs.t =
-      fun (x128 : anonymous_interface_7) -> anonymous_interface_7_to_js x128
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x129 : Ojs.t) -> x129
+    and t_to_js : t -> Ojs.t = fun (x128 : Ojs.t) -> x128
     let (get_swallowErrors : t -> bool) =
       fun (x130 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x130) "swallowErrors")
@@ -694,29 +472,27 @@ module AnonymousInterface7 =
   end
 module AnonymousInterface8 =
   struct
-    type t = anonymous_interface_8
-    let rec t_of_js : Ojs.t -> t =
-      fun (x134 : Ojs.t) -> anonymous_interface_8_of_js x134
-    and t_to_js : t -> Ojs.t =
-      fun (x133 : anonymous_interface_8) -> anonymous_interface_8_to_js x133
-    let (get_target_defaults : t -> anonymous_interface_1) =
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x134 : Ojs.t) -> x134
+    and t_to_js : t -> Ojs.t = fun (x133 : Ojs.t) -> x133
+    let (get_target_defaults : t -> AnonymousInterface1.t) =
       fun (x135 : t) ->
-        anonymous_interface_1_of_js
+        AnonymousInterface1.t_of_js
           (Ojs.get_prop_ascii (t_to_js x135) "target_defaults")
-    let (set_target_defaults : t -> anonymous_interface_1 -> unit) =
+    let (set_target_defaults : t -> AnonymousInterface1.t -> unit) =
       fun (x136 : t) ->
-        fun (x137 : anonymous_interface_1) ->
+        fun (x137 : AnonymousInterface1.t) ->
           Ojs.set_prop_ascii (t_to_js x136) "target_defaults"
-            (anonymous_interface_1_to_js x137)
-    let (get_variables : t -> anonymous_interface_2) =
+            (AnonymousInterface1.t_to_js x137)
+    let (get_variables : t -> AnonymousInterface2.t) =
       fun (x138 : t) ->
-        anonymous_interface_2_of_js
+        AnonymousInterface2.t_of_js
           (Ojs.get_prop_ascii (t_to_js x138) "variables")
-    let (set_variables : t -> anonymous_interface_2 -> unit) =
+    let (set_variables : t -> AnonymousInterface2.t -> unit) =
       fun (x139 : t) ->
-        fun (x140 : anonymous_interface_2) ->
+        fun (x140 : AnonymousInterface2.t) ->
           Ojs.set_prop_ascii (t_to_js x139) "variables"
-            (anonymous_interface_2_to_js x140)
+            (AnonymousInterface2.t_to_js x140)
   end
 let (process : process_global_NodeJS_Process) =
   process_global_NodeJS_Process_of_js
@@ -1049,17 +825,17 @@ module Process =
             process_global_NodeJS_UnhandledRejectionListener_to_js x243
         let (apply :
           t ->
-            reason:anonymous_interface_0 or_null_or_undefined ->
+            reason:AnonymousInterface0.t or_null_or_undefined ->
               promise:any Promise.t -> unit)
           =
           fun (x249 : t) ->
-            fun ~reason:(x245 : anonymous_interface_0 or_null_or_undefined)
+            fun ~reason:(x245 : AnonymousInterface0.t or_null_or_undefined)
               ->
               fun ~promise:(x247 : any Promise.t) ->
                 ignore
                   (Ojs.apply (t_to_js x249)
                      [|(or_null_or_undefined_to_js
-                          anonymous_interface_0_to_js x245);(Promise.t_to_js
+                          AnonymousInterface0.t_to_js x245);(Promise.t_to_js
                                                                any_to_js x247)|])
       end
     module WarningListener =
@@ -1554,73 +1330,73 @@ module Process =
             process_global_NodeJS_Process_to_js x400
         let (get_stdout :
           t ->
-            (process_global_NodeJS_WriteStream, anonymous_interface_4)
+            (process_global_NodeJS_WriteStream, AnonymousInterface4.t)
               intersection2)
           =
           fun (x402 : t) ->
             intersection2_of_js process_global_NodeJS_WriteStream_of_js
-              anonymous_interface_4_of_js
+              AnonymousInterface4.t_of_js
               (Ojs.get_prop_ascii (t_to_js x402) "stdout")
         let (set_stdout :
           t ->
-            (process_global_NodeJS_WriteStream, anonymous_interface_4)
+            (process_global_NodeJS_WriteStream, AnonymousInterface4.t)
               intersection2 -> unit)
           =
           fun (x405 : t) ->
             fun
               (x406 :
-                (process_global_NodeJS_WriteStream, anonymous_interface_4)
+                (process_global_NodeJS_WriteStream, AnonymousInterface4.t)
                   intersection2)
               ->
               Ojs.set_prop_ascii (t_to_js x405) "stdout"
                 (intersection2_to_js process_global_NodeJS_WriteStream_to_js
-                   anonymous_interface_4_to_js x406)
+                   AnonymousInterface4.t_to_js x406)
         let (get_stderr :
           t ->
-            (process_global_NodeJS_WriteStream, anonymous_interface_5)
+            (process_global_NodeJS_WriteStream, AnonymousInterface5.t)
               intersection2)
           =
           fun (x409 : t) ->
             intersection2_of_js process_global_NodeJS_WriteStream_of_js
-              anonymous_interface_5_of_js
+              AnonymousInterface5.t_of_js
               (Ojs.get_prop_ascii (t_to_js x409) "stderr")
         let (set_stderr :
           t ->
-            (process_global_NodeJS_WriteStream, anonymous_interface_5)
+            (process_global_NodeJS_WriteStream, AnonymousInterface5.t)
               intersection2 -> unit)
           =
           fun (x412 : t) ->
             fun
               (x413 :
-                (process_global_NodeJS_WriteStream, anonymous_interface_5)
+                (process_global_NodeJS_WriteStream, AnonymousInterface5.t)
                   intersection2)
               ->
               Ojs.set_prop_ascii (t_to_js x412) "stderr"
                 (intersection2_to_js process_global_NodeJS_WriteStream_to_js
-                   anonymous_interface_5_to_js x413)
+                   AnonymousInterface5.t_to_js x413)
         let (get_stdin :
           t ->
-            (process_global_NodeJS_ReadStream, anonymous_interface_3)
+            (process_global_NodeJS_ReadStream, AnonymousInterface3.t)
               intersection2)
           =
           fun (x416 : t) ->
             intersection2_of_js process_global_NodeJS_ReadStream_of_js
-              anonymous_interface_3_of_js
+              AnonymousInterface3.t_of_js
               (Ojs.get_prop_ascii (t_to_js x416) "stdin")
         let (set_stdin :
           t ->
-            (process_global_NodeJS_ReadStream, anonymous_interface_3)
+            (process_global_NodeJS_ReadStream, AnonymousInterface3.t)
               intersection2 -> unit)
           =
           fun (x419 : t) ->
             fun
               (x420 :
-                (process_global_NodeJS_ReadStream, anonymous_interface_3)
+                (process_global_NodeJS_ReadStream, AnonymousInterface3.t)
                   intersection2)
               ->
               Ojs.set_prop_ascii (t_to_js x419) "stdin"
                 (intersection2_to_js process_global_NodeJS_ReadStream_to_js
-                   anonymous_interface_3_to_js x420)
+                   AnonymousInterface3.t_to_js x420)
         let (openStdin : t -> process_global_NodeJS_Socket) =
           fun (x423 : t) ->
             process_global_NodeJS_Socket_of_js
@@ -1830,15 +1606,15 @@ module Process =
             fun (x499 : process_global_NodeJS_ProcessVersions) ->
               Ojs.set_prop_ascii (t_to_js x498) "versions"
                 (process_global_NodeJS_ProcessVersions_to_js x499)
-        let (get_config : t -> anonymous_interface_8) =
+        let (get_config : t -> AnonymousInterface8.t) =
           fun (x500 : t) ->
-            anonymous_interface_8_of_js
+            AnonymousInterface8.t_of_js
               (Ojs.get_prop_ascii (t_to_js x500) "config")
-        let (set_config : t -> anonymous_interface_8 -> unit) =
+        let (set_config : t -> AnonymousInterface8.t -> unit) =
           fun (x501 : t) ->
-            fun (x502 : anonymous_interface_8) ->
+            fun (x502 : AnonymousInterface8.t) ->
               Ojs.set_prop_ascii (t_to_js x501) "config"
-                (anonymous_interface_8_to_js x502)
+                (AnonymousInterface8.t_to_js x502)
         let (kill :
           t -> pid:int -> ?signal:string or_number -> unit -> [ `L_b_true ])
           =
@@ -1973,15 +1749,15 @@ module Process =
             fun (x543 : process_global_NodeJS_ProcessRelease) ->
               Ojs.set_prop_ascii (t_to_js x542) "release"
                 (process_global_NodeJS_ProcessRelease_to_js x543)
-        let (get_features : t -> anonymous_interface_6) =
+        let (get_features : t -> AnonymousInterface6.t) =
           fun (x544 : t) ->
-            anonymous_interface_6_of_js
+            AnonymousInterface6.t_of_js
               (Ojs.get_prop_ascii (t_to_js x544) "features")
-        let (set_features : t -> anonymous_interface_6 -> unit) =
+        let (set_features : t -> AnonymousInterface6.t -> unit) =
           fun (x545 : t) ->
-            fun (x546 : anonymous_interface_6) ->
+            fun (x546 : AnonymousInterface6.t) ->
               Ojs.set_prop_ascii (t_to_js x545) "features"
-                (anonymous_interface_6_to_js x546)
+                (AnonymousInterface6.t_to_js x546)
         let (umask : t -> int) =
           fun (x547 : t) ->
             Ojs.int_of_js (Ojs.call (t_to_js x547) "umask" [||])
@@ -2016,13 +1792,13 @@ module Process =
           t ->
             message:any ->
               ?sendHandle:any ->
-                ?options:anonymous_interface_7 ->
+                ?options:AnonymousInterface7.t ->
                   ?callback:(error:Error.t or_null -> unit) -> unit -> bool)
           =
           fun (x568 : t) ->
             fun ~message:(x558 : any) ->
               fun ?sendHandle:(x559 : any option) ->
-                fun ?options:(x560 : anonymous_interface_7 option) ->
+                fun ?options:(x560 : AnonymousInterface7.t option) ->
                   fun
                     ?callback:(x561 : (error:Error.t or_null -> unit) option)
                     ->
@@ -2047,7 +1823,7 @@ module Process =
                                      | Some x566 ->
                                          ignore
                                            (Ojs.call x562 "push"
-                                              [|(anonymous_interface_7_to_js
+                                              [|(AnonymousInterface7.t_to_js
                                                    x566)|])
                                      | None -> ());
                                     (match x561 with

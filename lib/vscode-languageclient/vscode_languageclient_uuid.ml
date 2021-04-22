@@ -2,20 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _UUID = [ `UUID ] intf
-        let rec _UUID_of_js : Ojs.t -> _UUID = Obj.magic
-        and _UUID_to_js : _UUID -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module UUID =
   struct
     type t = _UUID

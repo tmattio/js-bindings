@@ -6,26 +6,10 @@ open Es5
 open Node
 open Download
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
 
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _IUpdateMetadata = [ `IUpdateMetadata ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
 
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -60,7 +44,7 @@ val downloadDirToExecutablePath : dir:string -> string
 val insidersDownloadDirToExecutablePath : dir:string -> string
   [@@js.global "insidersDownloadDirToExecutablePath"]
 
-val insidersDownloadDirMetadata : dir:string -> anonymous_interface_0
+val insidersDownloadDirMetadata : dir:string -> AnonymousInterface0.t
   [@@js.global "insidersDownloadDirMetadata"]
 
 module IUpdateMetadata : sig

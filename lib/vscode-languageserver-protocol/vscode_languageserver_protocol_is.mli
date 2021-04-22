@@ -4,18 +4,6 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 val boolean : value:any -> bool [@@js.global "boolean"]
 
 val string : value:any -> bool [@@js.global "string"]

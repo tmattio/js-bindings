@@ -3,21 +3,7 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
 module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type 'T _Semaphore = [ `Semaphore of 'T ] intf
-        let rec _Semaphore_of_js :
-          'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _Semaphore = fun _T -> Obj.magic
-        and _Semaphore_to_js : 'T . ('T -> Ojs.t) -> 'T _Semaphore -> Ojs.t =
-          fun _T -> Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
+  struct module Types = struct open AnonymousInterfaces end end
 module Semaphore =
   struct
     type 'T t = 'T _Semaphore

@@ -4,75 +4,19 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _Moniker = [ `Moniker ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _MonikerClientCapabilities = [ `MonikerClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _MonikerKind =
-      ([ `import [@js "import"]
-       | `export [@js "export"]
-       | `local [@js "local"]
-       ]
-      [@js.enum])
-
-    and _MonikerKind_import = ([ `import [@js "import"] ][@js.enum])
-
-    and _MonikerKind_export = ([ `export [@js "export"] ][@js.enum])
-
-    and _MonikerKind_local = ([ `local [@js "local"] ][@js.enum])
-
-    and _MonikerOptions = [ `MonikerOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _MonikerParams = [ `MonikerParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _MonikerRegistrationOptions =
-      [ `MonikerRegistrationOptions | `MonikerOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _MonikerServerCapabilities = [ `MonikerServerCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _UniquenessLevel =
-      ([ `document [@js "document"]
-       | `project [@js "project"]
-       | `group [@js "group"]
-       | `scheme [@js "scheme"]
-       | `global [@js "global"]
-       ]
-      [@js.enum])
-
-    and _UniquenessLevel_document = ([ `document [@js "document"] ][@js.enum])
-
-    and _UniquenessLevel_project = ([ `project [@js "project"] ][@js.enum])
-
-    and _UniquenessLevel_group = ([ `group [@js "group"] ][@js.enum])
-
-    and _UniquenessLevel_scheme = ([ `scheme [@js "scheme"] ][@js.enum])
-
-    and _UniquenessLevel_global = ([ `global [@js "global"] ][@js.enum])
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 (* import { ProtocolRequestType } from './messages'; *)
 (* import { WorkDoneProgressOptions, WorkDoneProgressParams,
    PartialResultParams, TextDocumentRegistrationOptions,
    TextDocumentPositionParams } from './protocol'; *)
 module UniquenessLevel : sig
-  type t = _UniquenessLevel
+  type t =
+    ([ `document [@js "document"]
+     | `project [@js "project"]
+     | `group [@js "group"]
+     | `scheme [@js "scheme"]
+     | `global [@js "global"]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -80,7 +24,12 @@ module UniquenessLevel : sig
 end
 
 module MonikerKind : sig
-  type t = _MonikerKind
+  type t =
+    ([ `import [@js "import"]
+     | `export [@js "export"]
+     | `local [@js "local"]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 

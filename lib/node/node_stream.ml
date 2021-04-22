@@ -3,130 +3,11 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
 open Node_globals
-module Internal =
-  struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-        let rec anonymous_interface_1_of_js : Ojs.t -> anonymous_interface_1
-          = Obj.magic
-        and anonymous_interface_1_to_js : anonymous_interface_1 -> Ojs.t =
-          Obj.magic
-      end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type stream_internal = [ `Stream_internal ] intf
-        and stream_internal_Duplex =
-          [ `Stream_internal_Duplex  | `Stream_internal_Readable 
-          | `Stream_internal_Stream  | `Stream_internal_Writable 
-          | `Stream_internal ] intf
-        and stream_internal_DuplexOptions =
-          [ `Stream_internal_DuplexOptions 
-          | `Stream_internal_ReadableOptions 
-          | `Stream_internal_WritableOptions ] intf
-        and stream_internal_FinishedOptions =
-          [ `Stream_internal_FinishedOptions ] intf
-        and stream_internal_PassThrough =
-          [ `Stream_internal_PassThrough  | `Stream_internal_Duplex 
-          | `Stream_internal_Readable  | `Stream_internal_Stream 
-          | `Stream_internal_Transform  | `Stream_internal_Writable 
-          | `Stream_internal ] intf
-        and stream_internal_Pipe = [ `Stream_internal_Pipe ] intf
-        and stream_internal_Readable =
-          [ `Stream_internal_Readable  | `Stream_internal_Stream 
-          | `Stream_internal ] intf
-        and stream_internal_ReadableOptions =
-          [ `Stream_internal_ReadableOptions ] intf
-        and stream_internal_Stream =
-          [ `Stream_internal_Stream  | `Stream_internal ] intf
-        and stream_internal_Transform =
-          [ `Stream_internal_Transform  | `Stream_internal_Duplex 
-          | `Stream_internal_Readable  | `Stream_internal_Stream 
-          | `Stream_internal_Writable  | `Stream_internal ] intf
-        and stream_internal_TransformCallback =
-          [ `Stream_internal_TransformCallback ] intf
-        and stream_internal_TransformOptions =
-          [ `Stream_internal_TransformOptions 
-          | `Stream_internal_DuplexOptions 
-          | `Stream_internal_ReadableOptions 
-          | `Stream_internal_WritableOptions ] intf
-        and stream_internal_Writable =
-          [ `Stream_internal_Writable  | `Stream_internal_Stream 
-          | `Stream_internal ] intf
-        and stream_internal_WritableOptions =
-          [ `Stream_internal_WritableOptions ] intf
-        let rec stream_internal_of_js : Ojs.t -> stream_internal = Obj.magic
-        and stream_internal_to_js : stream_internal -> Ojs.t = Obj.magic
-        and stream_internal_Duplex_of_js : Ojs.t -> stream_internal_Duplex =
-          Obj.magic
-        and stream_internal_Duplex_to_js : stream_internal_Duplex -> Ojs.t =
-          Obj.magic
-        and stream_internal_DuplexOptions_of_js :
-          Ojs.t -> stream_internal_DuplexOptions = Obj.magic
-        and stream_internal_DuplexOptions_to_js :
-          stream_internal_DuplexOptions -> Ojs.t = Obj.magic
-        and stream_internal_FinishedOptions_of_js :
-          Ojs.t -> stream_internal_FinishedOptions = Obj.magic
-        and stream_internal_FinishedOptions_to_js :
-          stream_internal_FinishedOptions -> Ojs.t = Obj.magic
-        and stream_internal_PassThrough_of_js :
-          Ojs.t -> stream_internal_PassThrough = Obj.magic
-        and stream_internal_PassThrough_to_js :
-          stream_internal_PassThrough -> Ojs.t = Obj.magic
-        and stream_internal_Pipe_of_js : Ojs.t -> stream_internal_Pipe =
-          Obj.magic
-        and stream_internal_Pipe_to_js : stream_internal_Pipe -> Ojs.t =
-          Obj.magic
-        and stream_internal_Readable_of_js :
-          Ojs.t -> stream_internal_Readable = Obj.magic
-        and stream_internal_Readable_to_js :
-          stream_internal_Readable -> Ojs.t = Obj.magic
-        and stream_internal_ReadableOptions_of_js :
-          Ojs.t -> stream_internal_ReadableOptions = Obj.magic
-        and stream_internal_ReadableOptions_to_js :
-          stream_internal_ReadableOptions -> Ojs.t = Obj.magic
-        and stream_internal_Stream_of_js : Ojs.t -> stream_internal_Stream =
-          Obj.magic
-        and stream_internal_Stream_to_js : stream_internal_Stream -> Ojs.t =
-          Obj.magic
-        and stream_internal_Transform_of_js :
-          Ojs.t -> stream_internal_Transform = Obj.magic
-        and stream_internal_Transform_to_js :
-          stream_internal_Transform -> Ojs.t = Obj.magic
-        and stream_internal_TransformCallback_of_js :
-          Ojs.t -> stream_internal_TransformCallback = Obj.magic
-        and stream_internal_TransformCallback_to_js :
-          stream_internal_TransformCallback -> Ojs.t = Obj.magic
-        and stream_internal_TransformOptions_of_js :
-          Ojs.t -> stream_internal_TransformOptions = Obj.magic
-        and stream_internal_TransformOptions_to_js :
-          stream_internal_TransformOptions -> Ojs.t = Obj.magic
-        and stream_internal_Writable_of_js :
-          Ojs.t -> stream_internal_Writable = Obj.magic
-        and stream_internal_Writable_to_js :
-          stream_internal_Writable -> Ojs.t = Obj.magic
-        and stream_internal_WritableOptions_of_js :
-          Ojs.t -> stream_internal_WritableOptions = Obj.magic
-        and stream_internal_WritableOptions_to_js :
-          stream_internal_WritableOptions -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> anonymous_interface_0_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : anonymous_interface_0) -> anonymous_interface_0_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get_chunk : t -> any) =
       fun (x3 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x3) "chunk")
     let (set_chunk : t -> any -> unit) =
@@ -144,11 +25,9 @@ module AnonymousInterface0 =
   end
 module AnonymousInterface1 =
   struct
-    type t = anonymous_interface_1
-    let rec t_of_js : Ojs.t -> t =
-      fun (x10 : Ojs.t) -> anonymous_interface_1_of_js x10
-    and t_to_js : t -> Ojs.t =
-      fun (x9 : anonymous_interface_1) -> anonymous_interface_1_to_js x9
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x10 : Ojs.t) -> x10
+    and t_to_js : t -> Ojs.t = fun (x9 : Ojs.t) -> x9
     let (get_end : t -> bool) =
       fun (x11 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x11) "end")
@@ -165,10 +44,10 @@ module Stream =
           struct
             include struct include Node_events.Events.EventEmitter end
             let (pipe :
-              t -> 'T -> ?options:anonymous_interface_1 -> unit -> 'T) =
+              t -> 'T -> ?options:AnonymousInterface1.t -> unit -> 'T) =
               fun (x18 : t) ->
                 fun (x14 : 'T) ->
-                  fun ?options:(x15 : anonymous_interface_1 option) ->
+                  fun ?options:(x15 : AnonymousInterface1.t option) ->
                     fun () ->
                       Obj.magic
                         (let x19 = t_to_js x18 in
@@ -183,7 +62,7 @@ module Stream =
                                     | Some x17 ->
                                         ignore
                                           (Ojs.call x16 "push"
-                                             [|(anonymous_interface_1_to_js
+                                             [|(AnonymousInterface1.t_to_js
                                                   x17)|])
                                     | None -> ());
                                    x16))|])
@@ -1308,12 +1187,12 @@ module Stream =
             let (writev :
               t ->
                 this:stream_internal_Writable ->
-                  chunks:anonymous_interface_0 list ->
+                  chunks:AnonymousInterface0.t list ->
                     callback:(?error:Error.t or_null -> unit -> unit) -> unit)
               =
               fun (x348 : t) ->
                 fun ~this:(x341 : stream_internal_Writable) ->
-                  fun ~chunks:(x342 : anonymous_interface_0 list) ->
+                  fun ~chunks:(x342 : AnonymousInterface0.t list) ->
                     fun
                       ~callback:(x344 :
                                   ?error:Error.t or_null -> unit -> unit)
@@ -1321,7 +1200,7 @@ module Stream =
                       ignore
                         (Ojs.call (t_to_js x348) "writev"
                            [|(stream_internal_Writable_to_js x341);(Ojs.list_to_js
-                                                                    anonymous_interface_0_to_js
+                                                                    AnonymousInterface0.t_to_js
                                                                     x342);(
                              Ojs.fun_to_js 1
                                (fun (x345 : Ojs.t) ->
@@ -1471,17 +1350,17 @@ module Stream =
                                                    x382) x381) ()))|])
             let (_writev :
               t ->
-                chunks:anonymous_interface_0 list ->
+                chunks:AnonymousInterface0.t list ->
                   callback:(?error:Error.t or_null -> unit -> unit) -> unit)
               =
               fun (x391 : t) ->
-                fun ~chunks:(x385 : anonymous_interface_0 list) ->
+                fun ~chunks:(x385 : AnonymousInterface0.t list) ->
                   fun
                     ~callback:(x387 : ?error:Error.t or_null -> unit -> unit)
                     ->
                     ignore
                       (Ojs.call (t_to_js x391) "_writev"
-                         [|(Ojs.list_to_js anonymous_interface_0_to_js x385);(
+                         [|(Ojs.list_to_js AnonymousInterface0.t_to_js x385);(
                            Ojs.fun_to_js 1
                              (fun (x388 : Ojs.t) ->
                                 x387
@@ -2491,12 +2370,12 @@ module Stream =
             let (writev :
               t ->
                 this:stream_internal_Duplex ->
-                  chunks:anonymous_interface_0 list ->
+                  chunks:AnonymousInterface0.t list ->
                     callback:(?error:Error.t or_null -> unit -> unit) -> unit)
               =
               fun (x672 : t) ->
                 fun ~this:(x665 : stream_internal_Duplex) ->
-                  fun ~chunks:(x666 : anonymous_interface_0 list) ->
+                  fun ~chunks:(x666 : AnonymousInterface0.t list) ->
                     fun
                       ~callback:(x668 :
                                   ?error:Error.t or_null -> unit -> unit)
@@ -2504,7 +2383,7 @@ module Stream =
                       ignore
                         (Ojs.call (t_to_js x672) "writev"
                            [|(stream_internal_Duplex_to_js x665);(Ojs.list_to_js
-                                                                    anonymous_interface_0_to_js
+                                                                    AnonymousInterface0.t_to_js
                                                                     x666);(
                              Ojs.fun_to_js 1
                                (fun (x669 : Ojs.t) ->
@@ -2639,17 +2518,17 @@ module Stream =
                                                    x702) x701) ()))|])
             let (_writev :
               t ->
-                chunks:anonymous_interface_0 list ->
+                chunks:AnonymousInterface0.t list ->
                   callback:(?error:Error.t or_null -> unit -> unit) -> unit)
               =
               fun (x711 : t) ->
-                fun ~chunks:(x705 : anonymous_interface_0 list) ->
+                fun ~chunks:(x705 : AnonymousInterface0.t list) ->
                   fun
                     ~callback:(x707 : ?error:Error.t or_null -> unit -> unit)
                     ->
                     ignore
                       (Ojs.call (t_to_js x711) "_writev"
-                         [|(Ojs.list_to_js anonymous_interface_0_to_js x705);(
+                         [|(Ojs.list_to_js AnonymousInterface0.t_to_js x705);(
                            Ojs.fun_to_js 1
                              (fun (x708 : Ojs.t) ->
                                 x707
@@ -2946,12 +2825,12 @@ module Stream =
             let (writev :
               t ->
                 this:stream_internal_Transform ->
-                  chunks:anonymous_interface_0 list ->
+                  chunks:AnonymousInterface0.t list ->
                     callback:(?error:Error.t or_null -> unit -> unit) -> unit)
               =
               fun (x793 : t) ->
                 fun ~this:(x786 : stream_internal_Transform) ->
-                  fun ~chunks:(x787 : anonymous_interface_0 list) ->
+                  fun ~chunks:(x787 : AnonymousInterface0.t list) ->
                     fun
                       ~callback:(x789 :
                                   ?error:Error.t or_null -> unit -> unit)
@@ -2959,7 +2838,7 @@ module Stream =
                       ignore
                         (Ojs.call (t_to_js x793) "writev"
                            [|(stream_internal_Transform_to_js x786);(
-                             Ojs.list_to_js anonymous_interface_0_to_js x787);(
+                             Ojs.list_to_js AnonymousInterface0.t_to_js x787);(
                              Ojs.fun_to_js 1
                                (fun (x790 : Ojs.t) ->
                                   x789

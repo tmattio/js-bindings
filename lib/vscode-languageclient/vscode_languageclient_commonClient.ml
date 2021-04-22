@@ -2,22 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _CommonLanguageClient = [ `CommonLanguageClient ] intf
-        let rec _CommonLanguageClient_of_js : Ojs.t -> _CommonLanguageClient
-          = Obj.magic
-        and _CommonLanguageClient_to_js : _CommonLanguageClient -> Ojs.t =
-          Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module CommonLanguageClient =
   struct
     type t = _CommonLanguageClient

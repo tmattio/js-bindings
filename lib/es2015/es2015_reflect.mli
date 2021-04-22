@@ -5,7 +5,7 @@
 open Es5
 
 module Reflect : sig
-  val apply_
+  val apply
     :  target:untyped_function
     -> thisArgument:any
     -> argumentsList:any Array.t
@@ -20,20 +20,20 @@ module Reflect : sig
     -> any
     [@@js.global "construct"]
 
-  val defineProperty
+  val define_property
     :  target:untyped_object
     -> propertyKey:PropertyKey.t
     -> attributes:PropertyDescriptor.t
     -> bool
     [@@js.global "defineProperty"]
 
-  val deleteProperty
+  val delete_property
     :  target:untyped_object
     -> propertyKey:PropertyKey.t
     -> bool
     [@@js.global "deleteProperty"]
 
-  val get_
+  val get
     :  target:untyped_object
     -> propertyKey:PropertyKey.t
     -> ?receiver:any
@@ -41,27 +41,27 @@ module Reflect : sig
     -> any
     [@@js.global "get"]
 
-  val getOwnPropertyDescriptor
+  val get_own_property_descriptor
     :  target:untyped_object
     -> propertyKey:PropertyKey.t
     -> PropertyDescriptor.t or_undefined
     [@@js.global "getOwnPropertyDescriptor"]
 
-  val getPrototypeOf : target:untyped_object -> untyped_object or_null
+  val get_prototype_of : target:untyped_object -> untyped_object or_null
     [@@js.global "getPrototypeOf"]
 
   val has : target:untyped_object -> propertyKey:PropertyKey.t -> bool
     [@@js.global "has"]
 
-  val isExtensible : target:untyped_object -> bool [@@js.global "isExtensible"]
+  val is_extensible : target:untyped_object -> bool [@@js.global "isExtensible"]
 
-  val ownKeys : target:untyped_object -> symbol or_string list
+  val own_keys : target:untyped_object -> symbol or_string list
     [@@js.global "ownKeys"]
 
-  val preventExtensions : target:untyped_object -> bool
+  val prevent_extensions : target:untyped_object -> bool
     [@@js.global "preventExtensions"]
 
-  val set_
+  val set
     :  target:untyped_object
     -> propertyKey:PropertyKey.t
     -> value:any
@@ -70,7 +70,7 @@ module Reflect : sig
     -> bool
     [@@js.global "set"]
 
-  val setPrototypeOf
+  val set_prototype_of
     :  target:untyped_object
     -> proto:untyped_object or_null
     -> bool

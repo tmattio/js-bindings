@@ -4,27 +4,7 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
 
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _ProvideTypeDefinitionSignature =
-      [ `ProvideTypeDefinitionSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _TypeDefinitionFeature = [ `TypeDefinitionFeature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _TypeDefinitionMiddleware = [ `TypeDefinitionMiddleware ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
 
 (* import { Disposable, TextDocument, ProviderResult, Position as VPosition,
    Definition as VDefinition, DefinitionLink as VDefinitionLink,

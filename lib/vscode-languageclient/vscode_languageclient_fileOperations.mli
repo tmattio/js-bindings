@@ -4,121 +4,8 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _DidCreateFilesFeature =
-      [ `DidCreateFilesFeature
-      | `FileOperationFeature of Code.Uri.t * Code.FileCreateEvent.t
-      | `NotificationFileOperationFeature of
-        Code.Uri.t * Code.FileCreateEvent.t * Proto.CreateFilesParams.t
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DidDeleteFilesFeature =
-      [ `DidDeleteFilesFeature
-      | `FileOperationFeature of Code.Uri.t * Code.FileDeleteEvent.t
-      | `NotificationFileOperationFeature of
-        Code.Uri.t * Code.FileDeleteEvent.t * Proto.DeleteFilesParams.t
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DidRenameFilesFeature =
-      [ `DidRenameFilesFeature
-      | `FileOperationFeature of anonymous_interface_1 * Code.FileRenameEvent.t
-      | `NotificationFileOperationFeature of
-        anonymous_interface_1
-        * Code.FileRenameEvent.t
-        * Proto.RenameFilesParams.t
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and 'I _Event = [ `Event of 'I ] intf
-    [@@js.custom
-      { of_js = (fun _I -> Obj.magic); to_js = (fun _I -> Obj.magic) }]
-
-    and ('I, 'E) _FileOperationFeature =
-      [ `FileOperationFeature of 'I * 'E ] intf
-    [@@js.custom
-      { of_js = (fun _I _E -> Obj.magic); to_js = (fun _I _E -> Obj.magic) }]
-
-    and _FileOperationsMiddleware = [ `FileOperationsMiddleware ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and ('I, 'E, 'P) _NotificationFileOperationFeature =
-      [ `NotificationFileOperationFeature of 'I * 'E * 'P
-      | `FileOperationFeature of 'I * 'E
-      ]
-      intf
-    [@@js.custom
-      { of_js = (fun _I _E _P -> Obj.magic)
-      ; to_js = (fun _I _E _P -> Obj.magic)
-      }]
-
-    and 'I _RequestEvent = [ `RequestEvent of 'I ] intf
-    [@@js.custom
-      { of_js = (fun _I -> Obj.magic); to_js = (fun _I -> Obj.magic) }]
-
-    and ('I, 'E, 'P) _RequestFileOperationFeature =
-      [ `RequestFileOperationFeature of 'I * 'E * 'P
-      | `FileOperationFeature of 'I * 'E
-      ]
-      intf
-    [@@js.custom
-      { of_js = (fun _I _E _P -> Obj.magic)
-      ; to_js = (fun _I _E _P -> Obj.magic)
-      }]
-
-    and _WillCreateFilesFeature =
-      [ `WillCreateFilesFeature
-      | `FileOperationFeature of Code.Uri.t * Code.FileWillCreateEvent.t
-      | `RequestFileOperationFeature of
-        Code.Uri.t * Code.FileWillCreateEvent.t * Proto.CreateFilesParams.t
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WillDeleteFilesFeature =
-      [ `WillDeleteFilesFeature
-      | `FileOperationFeature of Code.Uri.t * Code.FileWillDeleteEvent.t
-      | `RequestFileOperationFeature of
-        Code.Uri.t * Code.FileWillDeleteEvent.t * Proto.DeleteFilesParams.t
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WillRenameFilesFeature =
-      [ `WillRenameFilesFeature
-      | `FileOperationFeature of
-        anonymous_interface_1 * Code.FileWillRenameEvent.t
-      | `RequestFileOperationFeature of
-        anonymous_interface_1
-        * Code.FileWillRenameEvent.t
-        * Proto.RenameFilesParams.t
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -128,7 +15,7 @@ module AnonymousInterface0 : sig
 end
 
 module AnonymousInterface1 : sig
-  type t = anonymous_interface_1
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -471,7 +358,7 @@ module DidRenameFilesFeature : sig
 
   val cast
     :  t
-    -> ( anonymous_interface_1
+    -> ( AnonymousInterface1.t
        , Code.FileRenameEvent.t
        , Proto.RenameFilesParams.t )
        _NotificationFileOperationFeature
@@ -652,7 +539,7 @@ module WillRenameFilesFeature : sig
 
   val cast
     :  t
-    -> ( anonymous_interface_1
+    -> ( AnonymousInterface1.t
        , Code.FileWillRenameEvent.t
        , Proto.RenameFilesParams.t )
        _RequestFileOperationFeature

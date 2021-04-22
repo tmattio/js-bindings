@@ -4,38 +4,11 @@
 open Es5
 module Internal =
   struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
     module Types =
       struct
-        open AnonymousInterfaces
-        type _ConfigurationClientCapabilities =
-          [ `ConfigurationClientCapabilities ] intf
-        and _ConfigurationItem = [ `ConfigurationItem ] intf
-        and _ConfigurationParams = [ `ConfigurationParams ] intf
-        and _ConfigurationRequest_HandlerSignature =
+        type _ConfigurationRequest_HandlerSignature =
           (_ConfigurationParams, any list, unit) RequestHandler.t
-        and _ConfigurationRequest_MiddlewareSignature =
-          [ `ConfigurationRequest_MiddlewareSignature ] intf
-        let rec _ConfigurationClientCapabilities_of_js :
-          Ojs.t -> _ConfigurationClientCapabilities = Obj.magic
-        and _ConfigurationClientCapabilities_to_js :
-          _ConfigurationClientCapabilities -> Ojs.t = Obj.magic
-        and _ConfigurationItem_of_js : Ojs.t -> _ConfigurationItem =
-          Obj.magic
-        and _ConfigurationItem_to_js : _ConfigurationItem -> Ojs.t =
-          Obj.magic
-        and _ConfigurationParams_of_js : Ojs.t -> _ConfigurationParams =
-          Obj.magic
-        and _ConfigurationParams_to_js : _ConfigurationParams -> Ojs.t =
-          Obj.magic
-        and _ConfigurationRequest_HandlerSignature_of_js :
+        let rec _ConfigurationRequest_HandlerSignature_of_js :
           Ojs.t -> _ConfigurationRequest_HandlerSignature =
           fun (x6 : Ojs.t) ->
             RequestHandler.t_of_js _ConfigurationParams_of_js
@@ -48,22 +21,13 @@ module Internal =
             RequestHandler.t_to_js _ConfigurationParams_to_js
               (fun (x3 : any list) -> Ojs.list_to_js any_to_js x3)
               Ojs.unit_to_js x1
-        and _ConfigurationRequest_MiddlewareSignature_of_js :
-          Ojs.t -> _ConfigurationRequest_MiddlewareSignature = Obj.magic
-        and _ConfigurationRequest_MiddlewareSignature_to_js :
-          _ConfigurationRequest_MiddlewareSignature -> Ojs.t = Obj.magic
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x12 : Ojs.t) -> anonymous_interface_0_of_js x12
-    and t_to_js : t -> Ojs.t =
-      fun (x11 : anonymous_interface_0) -> anonymous_interface_0_to_js x11
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x12 : Ojs.t) -> x12
+    and t_to_js : t -> Ojs.t = fun (x11 : Ojs.t) -> x11
     let (get_configuration : t -> bool) =
       fun (x13 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x13) "configuration")
@@ -81,15 +45,15 @@ module ConfigurationClientCapabilities =
     and t_to_js : t -> Ojs.t =
       fun (x16 : _ConfigurationClientCapabilities) ->
         _ConfigurationClientCapabilities_to_js x16
-    let (get_workspace : t -> anonymous_interface_0) =
+    let (get_workspace : t -> AnonymousInterface0.t) =
       fun (x18 : t) ->
-        anonymous_interface_0_of_js
+        AnonymousInterface0.t_of_js
           (Ojs.get_prop_ascii (t_to_js x18) "workspace")
-    let (set_workspace : t -> anonymous_interface_0 -> unit) =
+    let (set_workspace : t -> AnonymousInterface0.t -> unit) =
       fun (x19 : t) ->
-        fun (x20 : anonymous_interface_0) ->
+        fun (x20 : AnonymousInterface0.t) ->
           Ojs.set_prop_ascii (t_to_js x19) "workspace"
-            (anonymous_interface_0_to_js x20)
+            (AnonymousInterface0.t_to_js x20)
   end
 module ConfigurationRequest =
   struct

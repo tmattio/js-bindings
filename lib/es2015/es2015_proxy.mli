@@ -25,7 +25,7 @@ module ProxyHandler : sig
 
   val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
 
-  val apply_ : 'T t -> target:'T -> thisArg:any -> argArray:any list -> any
+  val apply : 'T t -> target:'T -> thisArg:any -> argArray:any list -> any
     [@@js.call "apply"]
 
   val construct
@@ -36,7 +36,7 @@ module ProxyHandler : sig
     -> untyped_object
     [@@js.call "construct"]
 
-  val defineProperty
+  val define_property
     :  'T t
     -> target:'T
     -> p:symbol or_string
@@ -44,33 +44,33 @@ module ProxyHandler : sig
     -> bool
     [@@js.call "defineProperty"]
 
-  val deleteProperty : 'T t -> target:'T -> p:symbol or_string -> bool
+  val delete_property : 'T t -> target:'T -> p:symbol or_string -> bool
     [@@js.call "deleteProperty"]
 
-  val get_ : 'T t -> target:'T -> p:symbol or_string -> receiver:any -> any
+  val get : 'T t -> target:'T -> p:symbol or_string -> receiver:any -> any
     [@@js.call "get"]
 
-  val getOwnPropertyDescriptor
+  val get_own_property_descriptor
     :  'T t
     -> target:'T
     -> p:symbol or_string
     -> PropertyDescriptor.t or_undefined
     [@@js.call "getOwnPropertyDescriptor"]
 
-  val getPrototypeOf : 'T t -> target:'T -> untyped_object or_null
+  val get_prototype_of : 'T t -> target:'T -> untyped_object or_null
     [@@js.call "getPrototypeOf"]
 
   val has : 'T t -> target:'T -> p:symbol or_string -> bool [@@js.call "has"]
 
-  val isExtensible : 'T t -> target:'T -> bool [@@js.call "isExtensible"]
+  val is_extensible : 'T t -> target:'T -> bool [@@js.call "isExtensible"]
 
-  val ownKeys : 'T t -> target:'T -> symbol or_string Array.t
+  val own_keys : 'T t -> target:'T -> symbol or_string Array.t
     [@@js.call "ownKeys"]
 
-  val preventExtensions : 'T t -> target:'T -> bool
+  val prevent_extensions : 'T t -> target:'T -> bool
     [@@js.call "preventExtensions"]
 
-  val set_
+  val set
     :  'T t
     -> target:'T
     -> p:symbol or_string
@@ -79,7 +79,7 @@ module ProxyHandler : sig
     -> bool
     [@@js.call "set"]
 
-  val setPrototypeOf : 'T t -> target:'T -> v:untyped_object or_null -> bool
+  val set_prototype_of : 'T t -> target:'T -> v:untyped_object or_null -> bool
     [@@js.call "setPrototypeOf"]
 end
 [@@js.scope "ProxyHandler"]

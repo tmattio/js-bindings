@@ -2,19 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = Ojs.t
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
 module Array =
   struct
     include struct include Array end
@@ -87,7 +74,7 @@ module Array =
                                   (Ojs.call x16 "push" [|(any_to_js x17)|])
                             | None -> ());
                            x16))|])
-    let (findIndex :
+    let (find_index :
       'T t ->
         (value:'T -> index:int -> obj:'T list -> unknown) ->
           ?thisArg:any -> unit -> int)
@@ -148,7 +135,7 @@ module Array =
                                        [|(Ojs.int_to_js x41)|])
                               | None -> ());
                              x40))|])
-    let (copyWithin :
+    let (copy_within :
       'T t -> target:int -> start:int -> ?end_:int -> unit -> 'T t) =
       fun (x52 : 'T t) ->
         fun ~target:(x47 : int) ->
@@ -356,41 +343,41 @@ module Math =
 module NumberConstructor =
   struct
     include struct include NumberConstructor end
-    let (get_EPSILON : t -> int) =
+    let (get_epsilon : t -> int) =
       fun (x109 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x109) "EPSILON")
-    let (isFinite : t -> number:unknown -> bool) =
+    let (is_finite : t -> number:unknown -> bool) =
       fun (x111 : t) ->
         fun ~number:(x110 : unknown) ->
           Ojs.bool_of_js
             (Ojs.call (t_to_js x111) "isFinite" [|(unknown_to_js x110)|])
-    let (isInteger : t -> number:unknown -> bool) =
+    let (is_integer : t -> number:unknown -> bool) =
       fun (x113 : t) ->
         fun ~number:(x112 : unknown) ->
           Ojs.bool_of_js
             (Ojs.call (t_to_js x113) "isInteger" [|(unknown_to_js x112)|])
-    let (isNaN : t -> number:unknown -> bool) =
+    let (is_na_n : t -> number:unknown -> bool) =
       fun (x115 : t) ->
         fun ~number:(x114 : unknown) ->
           Ojs.bool_of_js
             (Ojs.call (t_to_js x115) "isNaN" [|(unknown_to_js x114)|])
-    let (isSafeInteger : t -> number:unknown -> bool) =
+    let (is_safe_integer : t -> number:unknown -> bool) =
       fun (x117 : t) ->
         fun ~number:(x116 : unknown) ->
           Ojs.bool_of_js
             (Ojs.call (t_to_js x117) "isSafeInteger" [|(unknown_to_js x116)|])
-    let (get_MAX_SAFE_INTEGER : t -> int) =
+    let (get_max_safe_integer : t -> int) =
       fun (x118 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x118) "MAX_SAFE_INTEGER")
-    let (get_MIN_SAFE_INTEGER : t -> int) =
+    let (get_min_safe_integer : t -> int) =
       fun (x119 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x119) "MIN_SAFE_INTEGER")
-    let (parseFloat : t -> string:string -> int) =
+    let (parse_float : t -> string:string -> int) =
       fun (x121 : t) ->
         fun ~string:(x120 : string) ->
           Ojs.int_of_js
             (Ojs.call (t_to_js x121) "parseFloat" [|(Ojs.string_to_js x120)|])
-    let (parseInt : t -> string:string -> ?radix:int -> unit -> int) =
+    let (parse_int : t -> string:string -> ?radix:int -> unit -> int) =
       fun (x126 : t) ->
         fun ~string:(x122 : string) ->
           fun ?radix:(x123 : int option) ->
@@ -469,7 +456,7 @@ module ObjectConstructor =
                                  (Ojs.call x151 "push" [|(any_to_js x152)|]))
                             x150;
                           x151))|])
-    let (getOwnPropertySymbols : t -> any -> symbol list) =
+    let (get_own_property_symbols : t -> any -> symbol list) =
       fun (x156 : t) ->
         fun (x155 : any) ->
           Ojs.list_of_js symbol_of_js
@@ -487,7 +474,8 @@ module ObjectConstructor =
             Ojs.bool_of_js
               (Ojs.call (t_to_js x163) "is"
                  [|(any_to_js x161);(any_to_js x162)|])
-    let (setPrototypeOf : t -> any -> proto:untyped_object or_null -> any) =
+    let (set_prototype_of : t -> any -> proto:untyped_object or_null -> any)
+      =
       fun (x167 : t) ->
         fun (x164 : any) ->
           fun ~proto:(x165 : untyped_object or_null) ->
@@ -571,7 +559,7 @@ module ReadonlyArray =
                                    (Ojs.call x183 "push" [|(any_to_js x184)|])
                              | None -> ());
                             x183))|])
-    let (findIndex :
+    let (find_index :
       'T t ->
         (value:'T -> index:int -> obj:'T list -> unknown) ->
           ?thisArg:any -> unit -> int)
@@ -672,7 +660,7 @@ module RegExpConstructor =
 module String =
   struct
     include struct include String end
-    let (codePointAt : t -> pos:int -> int or_undefined) =
+    let (code_point_at : t -> pos:int -> int or_undefined) =
       fun (x226 : t) ->
         fun ~pos:(x225 : int) ->
           or_undefined_of_js Ojs.int_of_js
@@ -700,7 +688,7 @@ module String =
                                       [|(Ojs.int_to_js x231)|])
                              | None -> ());
                             x230))|])
-    let (endsWith :
+    let (ends_with :
       t -> searchString:string -> ?endPosition:int -> unit -> bool) =
       fun (x238 : t) ->
         fun ~searchString:(x234 : string) ->
@@ -757,7 +745,7 @@ module String =
         fun ~count:(x247 : int) ->
           Ojs.string_of_js
             (Ojs.call (t_to_js x248) "repeat" [|(Ojs.int_to_js x247)|])
-    let (startsWith :
+    let (starts_with :
       t -> searchString:string -> ?position:int -> unit -> bool) =
       fun (x253 : t) ->
         fun ~searchString:(x249 : string) ->
@@ -837,7 +825,7 @@ module String =
 module StringConstructor =
   struct
     include struct include StringConstructor end
-    let (fromCodePoint : t -> codePoints:int list -> string) =
+    let (from_code_point : t -> codePoints:int list -> string) =
       fun (x279 : t) ->
         fun ~codePoints:(x276 : int list) ->
           Ojs.string_of_js

@@ -5,56 +5,8 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type os_CpuInfo = [ `Os_CpuInfo ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and os_NetworkInterfaceBase = [ `Os_NetworkInterfaceBase ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and os_NetworkInterfaceInfo =
-      ([ `U_s1_IPv4 of os_NetworkInterfaceInfoIPv4 [@js "IPv4"]
-       | `U_s2_IPv6 of os_NetworkInterfaceInfoIPv6 [@js "IPv6"]
-       ]
-      [@js.union on_field "family"])
-
-    and os_NetworkInterfaceInfoIPv4 =
-      [ `Os_NetworkInterfaceInfoIPv4 | `Os_NetworkInterfaceBase ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and os_NetworkInterfaceInfoIPv6 =
-      [ `Os_NetworkInterfaceInfoIPv6 | `Os_NetworkInterfaceBase ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and os_SignalConstants =
-      (* FIXME: unknown type '{ [key in Signals]: number; }' *) any
-
-    and 'T os_UserInfo = [ `Os_UserInfo of 'T ] intf
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -66,7 +18,7 @@ module AnonymousInterface0 : sig
 end
 
 module AnonymousInterface1 : sig
-  type t = anonymous_interface_1
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -79,7 +31,7 @@ module AnonymousInterface1 : sig
 end
 
 module AnonymousInterface2 : sig
-  type t = anonymous_interface_2
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -122,9 +74,9 @@ module Os : sig
 
     val set_speed : t -> int -> unit [@@js.set "speed"]
 
-    val get_times : t -> anonymous_interface_2 [@@js.get "times"]
+    val get_times : t -> AnonymousInterface2.t [@@js.get "times"]
 
-    val set_times : t -> anonymous_interface_2 -> unit [@@js.set "times"]
+    val set_times : t -> AnonymousInterface2.t -> unit [@@js.set "times"]
   end
   [@@js.scope "CpuInfo"]
 
@@ -221,7 +173,11 @@ module Os : sig
   [@@js.scope "UserInfo"]
 
   module NetworkInterfaceInfo : sig
-    type t = os_NetworkInterfaceInfo
+    type t =
+      ([ `U_s1_IPv4 of os_NetworkInterfaceInfoIPv4 [@js "IPv4"]
+       | `U_s2_IPv6 of os_NetworkInterfaceInfoIPv6 [@js "IPv6"]
+       ]
+      [@js.union on_field "family"])
 
     val t_to_js : t -> Ojs.t
 
@@ -249,14 +205,14 @@ module Os : sig
 
   val homedir : unit -> string [@@js.global "homedir"]
 
-  val userInfo : options:anonymous_interface_1 -> Buffer.t os_UserInfo
+  val userInfo : options:AnonymousInterface1.t -> Buffer.t os_UserInfo
     [@@js.global "userInfo"]
 
-  val userInfo : ?options:anonymous_interface_0 -> unit -> string os_UserInfo
+  val userInfo : ?options:AnonymousInterface0.t -> unit -> string os_UserInfo
     [@@js.global "userInfo"]
 
   module SignalConstants : sig
-    type t = os_SignalConstants
+    type t = (* FIXME: unknown type '{ [key in Signals]: number; }' *) any
 
     val t_to_js : t -> Ojs.t
 

@@ -4,716 +4,8 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_3 = [ `anonymous_interface_3 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_4 = [ `anonymous_interface_4 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_5 = [ `anonymous_interface_5 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_6 = [ `anonymous_interface_6 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_7 = [ `anonymous_interface_7 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_8 = [ `anonymous_interface_8 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_9 = [ `anonymous_interface_9 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_10 = [ `anonymous_interface_10 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_11 = [ `anonymous_interface_11 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_12 = [ `anonymous_interface_12 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_13 = [ `anonymous_interface_13 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_14 = [ `anonymous_interface_14 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_15 = [ `anonymous_interface_15 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_16 = [ `anonymous_interface_16 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_17 = [ `anonymous_interface_17 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_18 = [ `anonymous_interface_18 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_19 = [ `anonymous_interface_19 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_20 = [ `anonymous_interface_20 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_21 = [ `anonymous_interface_21 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_22 = [ `anonymous_interface_22 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _ApplyWorkspaceEditParams = [ `ApplyWorkspaceEditParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ApplyWorkspaceEditResponse = [ `ApplyWorkspaceEditResponse ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ClientCapabilities =
-      ( _ClientCapabilities
-      , WorkspaceFoldersClientCapabilities.t
-      , ConfigurationClientCapabilities.t
-      , WorkDoneProgressClientCapabilities.t )
-      intersection4
-
-    and _CodeActionClientCapabilities = [ `CodeActionClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CodeActionOptions =
-      [ `CodeActionOptions | `WorkDoneProgressOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CodeActionParams =
-      [ `CodeActionParams | `PartialResultParams | `WorkDoneProgressParams ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CodeActionRegistrationOptions =
-      [ `CodeActionRegistrationOptions
-      | `CodeActionOptions
-      | `TextDocumentRegistrationOptions
-      | `WorkDoneProgressOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CodeLensClientCapabilities = [ `CodeLensClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CodeLensOptions = [ `CodeLensOptions | `WorkDoneProgressOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CodeLensParams =
-      [ `CodeLensParams | `PartialResultParams | `WorkDoneProgressParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CodeLensRegistrationOptions =
-      [ `CodeLensRegistrationOptions
-      | `CodeLensOptions
-      | `TextDocumentRegistrationOptions
-      | `WorkDoneProgressOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CodeLensWorkspaceClientCapabilities =
-      [ `CodeLensWorkspaceClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CompletionClientCapabilities = [ `CompletionClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CompletionContext = [ `CompletionContext ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CompletionOptions =
-      [ `CompletionOptions | `WorkDoneProgressOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CompletionParams =
-      [ `CompletionParams
-      | `PartialResultParams
-      | `TextDocumentPositionParams
-      | `WorkDoneProgressParams
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CompletionRegistrationOptions =
-      [ `CompletionRegistrationOptions
-      | `CompletionOptions
-      | `TextDocumentRegistrationOptions
-      | `WorkDoneProgressOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CompletionTriggerKind =
-      ([ `L_n_1 [@js 1]
-       | `L_n_2 [@js 2]
-       | `L_n_3 [@js 3]
-       ]
-      [@js.enum])
-
-    and _DefinitionClientCapabilities = [ `DefinitionClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DefinitionOptions =
-      [ `DefinitionOptions | `WorkDoneProgressOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DefinitionParams =
-      [ `DefinitionParams
-      | `PartialResultParams
-      | `TextDocumentPositionParams
-      | `WorkDoneProgressParams
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DefinitionRegistrationOptions =
-      [ `DefinitionRegistrationOptions
-      | `DefinitionOptions
-      | `TextDocumentRegistrationOptions
-      | `WorkDoneProgressOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DidChangeConfigurationClientCapabilities =
-      [ `DidChangeConfigurationClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DidChangeConfigurationParams = [ `DidChangeConfigurationParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DidChangeConfigurationRegistrationOptions =
-      [ `DidChangeConfigurationRegistrationOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DidChangeTextDocumentParams = [ `DidChangeTextDocumentParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DidChangeWatchedFilesClientCapabilities =
-      [ `DidChangeWatchedFilesClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DidChangeWatchedFilesParams = [ `DidChangeWatchedFilesParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DidChangeWatchedFilesRegistrationOptions =
-      [ `DidChangeWatchedFilesRegistrationOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DidCloseTextDocumentParams = [ `DidCloseTextDocumentParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DidOpenTextDocumentParams = [ `DidOpenTextDocumentParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DidSaveTextDocumentParams = [ `DidSaveTextDocumentParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentFilter = anonymous_interface_9
-
-    and _DocumentFormattingClientCapabilities =
-      [ `DocumentFormattingClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentFormattingOptions =
-      [ `DocumentFormattingOptions | `WorkDoneProgressOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentFormattingParams =
-      [ `DocumentFormattingParams | `WorkDoneProgressParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentFormattingRegistrationOptions =
-      [ `DocumentFormattingRegistrationOptions
-      | `DocumentFormattingOptions
-      | `TextDocumentRegistrationOptions
-      | `WorkDoneProgressOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentHighlightClientCapabilities =
-      [ `DocumentHighlightClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentHighlightOptions =
-      [ `DocumentHighlightOptions | `WorkDoneProgressOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentHighlightParams =
-      [ `DocumentHighlightParams
-      | `PartialResultParams
-      | `TextDocumentPositionParams
-      | `WorkDoneProgressParams
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentHighlightRegistrationOptions =
-      [ `DocumentHighlightRegistrationOptions
-      | `DocumentHighlightOptions
-      | `TextDocumentRegistrationOptions
-      | `WorkDoneProgressOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentLinkClientCapabilities =
-      [ `DocumentLinkClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentLinkOptions =
-      [ `DocumentLinkOptions | `WorkDoneProgressOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentLinkParams =
-      [ `DocumentLinkParams | `PartialResultParams | `WorkDoneProgressParams ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentLinkRegistrationOptions =
-      [ `DocumentLinkRegistrationOptions
-      | `DocumentLinkOptions
-      | `TextDocumentRegistrationOptions
-      | `WorkDoneProgressOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentOnTypeFormattingClientCapabilities =
-      [ `DocumentOnTypeFormattingClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentOnTypeFormattingOptions =
-      [ `DocumentOnTypeFormattingOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentOnTypeFormattingParams =
-      [ `DocumentOnTypeFormattingParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentOnTypeFormattingRegistrationOptions =
-      [ `DocumentOnTypeFormattingRegistrationOptions
-      | `DocumentOnTypeFormattingOptions
-      | `TextDocumentRegistrationOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentRangeFormattingClientCapabilities =
-      [ `DocumentRangeFormattingClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentRangeFormattingOptions =
-      [ `DocumentRangeFormattingOptions | `WorkDoneProgressOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentRangeFormattingParams =
-      [ `DocumentRangeFormattingParams | `WorkDoneProgressParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentRangeFormattingRegistrationOptions =
-      [ `DocumentRangeFormattingRegistrationOptions
-      | `DocumentRangeFormattingOptions
-      | `TextDocumentRegistrationOptions
-      | `WorkDoneProgressOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentSelector = _DocumentFilter or_string list
-
-    and _DocumentSymbolClientCapabilities =
-      [ `DocumentSymbolClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentSymbolOptions =
-      [ `DocumentSymbolOptions | `WorkDoneProgressOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentSymbolParams =
-      [ `DocumentSymbolParams | `PartialResultParams | `WorkDoneProgressParams ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentSymbolRegistrationOptions =
-      [ `DocumentSymbolRegistrationOptions
-      | `DocumentSymbolOptions
-      | `TextDocumentRegistrationOptions
-      | `WorkDoneProgressOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ExecuteCommandClientCapabilities =
-      [ `ExecuteCommandClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ExecuteCommandOptions =
-      [ `ExecuteCommandOptions | `WorkDoneProgressOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ExecuteCommandParams =
-      [ `ExecuteCommandParams | `WorkDoneProgressParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ExecuteCommandRegistrationOptions =
-      [ `ExecuteCommandRegistrationOptions
-      | `ExecuteCommandOptions
-      | `WorkDoneProgressOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _FailureHandlingKind =
-      ([ `L_s0_abort [@js "abort"]
-       | `L_s31_textOnlyTransactional [@js "textOnlyTransactional"]
-       | `L_s32_transactional [@js "transactional"]
-       | `L_s33_undo [@js "undo"]
-       ]
-      [@js.enum])
-
-    and _FileChangeType =
-      ([ `L_n_1 [@js 1]
-       | `L_n_2 [@js 2]
-       | `L_n_3 [@js 3]
-       ]
-      [@js.enum])
-
-    and _FileEvent = [ `FileEvent ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _FileSystemWatcher = [ `FileSystemWatcher ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _GeneralClientCapabilities = [ `GeneralClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _HoverClientCapabilities = [ `HoverClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _HoverOptions = [ `HoverOptions | `WorkDoneProgressOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _HoverParams =
-      [ `HoverParams | `TextDocumentPositionParams | `WorkDoneProgressParams ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _HoverRegistrationOptions =
-      [ `HoverRegistrationOptions
-      | `HoverOptions
-      | `TextDocumentRegistrationOptions
-      | `WorkDoneProgressOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _InitializeError = [ `InitializeError ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _InitializeParams =
-      (_InitializeParams, WorkspaceFoldersInitializeParams.t) intersection2
-
-    and 'T _InitializeResult = [ `InitializeResult of 'T ] intf
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-
-    and _InitializedParams = [ `InitializedParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _LogMessageParams = [ `LogMessageParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _MarkdownClientCapabilities = [ `MarkdownClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _MessageActionItem = [ `MessageActionItem ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _MessageType =
-      ([ `L_n_1 [@js 1]
-       | `L_n_2 [@js 2]
-       | `L_n_3 [@js 3]
-       | `L_n_4 [@js 4]
-       ]
-      [@js.enum])
-
-    and _PartialResultParams = [ `PartialResultParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _PrepareRenameParams =
-      [ `PrepareRenameParams
-      | `TextDocumentPositionParams
-      | `WorkDoneProgressParams
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _PrepareSupportDefaultBehavior = ([ `L_n_1 [@js 1] ][@js.enum])
-
-    and _PublishDiagnosticsClientCapabilities =
-      [ `PublishDiagnosticsClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _PublishDiagnosticsParams = [ `PublishDiagnosticsParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ReferenceClientCapabilities = [ `ReferenceClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ReferenceOptions =
-      [ `ReferenceOptions | `WorkDoneProgressOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ReferenceParams =
-      [ `ReferenceParams
-      | `PartialResultParams
-      | `TextDocumentPositionParams
-      | `WorkDoneProgressParams
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ReferenceRegistrationOptions =
-      [ `ReferenceRegistrationOptions
-      | `ReferenceOptions
-      | `TextDocumentRegistrationOptions
-      | `WorkDoneProgressOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _Registration = [ `Registration ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _RegistrationParams = [ `RegistrationParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _RegularExpressionsClientCapabilities =
-      [ `RegularExpressionsClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _RenameClientCapabilities = [ `RenameClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _RenameOptions = [ `RenameOptions | `WorkDoneProgressOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _RenameParams = [ `RenameParams | `WorkDoneProgressParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _RenameRegistrationOptions =
-      [ `RenameRegistrationOptions
-      | `RenameOptions
-      | `TextDocumentRegistrationOptions
-      | `WorkDoneProgressOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ResourceOperationKind =
-      ([ `L_s4_create [@js "create"]
-       | `L_s5_delete [@js "delete"]
-       | `L_s9_rename [@js "rename"]
-       ]
-      [@js.enum])
-
-    and _SaveOptions = [ `SaveOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and 'T _ServerCapabilities =
-      ( 'T _ServerCapabilities
-      , WorkspaceFoldersServerCapabilities.t )
-      intersection2
-
-    and _ShowMessageParams = [ `ShowMessageParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ShowMessageRequestClientCapabilities =
-      [ `ShowMessageRequestClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ShowMessageRequestParams = [ `ShowMessageRequestParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SignatureHelpClientCapabilities =
-      [ `SignatureHelpClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SignatureHelpContext = [ `SignatureHelpContext ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SignatureHelpOptions =
-      [ `SignatureHelpOptions | `WorkDoneProgressOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SignatureHelpParams =
-      [ `SignatureHelpParams
-      | `TextDocumentPositionParams
-      | `WorkDoneProgressParams
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SignatureHelpRegistrationOptions =
-      [ `SignatureHelpRegistrationOptions
-      | `SignatureHelpOptions
-      | `TextDocumentRegistrationOptions
-      | `WorkDoneProgressOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SignatureHelpTriggerKind =
-      ([ `L_n_1 [@js 1]
-       | `L_n_2 [@js 2]
-       | `L_n_3 [@js 3]
-       ]
-      [@js.enum])
-
-    and _StaticRegistrationOptions = [ `StaticRegistrationOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _TextDocumentChangeRegistrationOptions =
-      [ `TextDocumentChangeRegistrationOptions
-      | `TextDocumentRegistrationOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _TextDocumentClientCapabilities =
-      [ `TextDocumentClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _TextDocumentContentChangeEvent =
-      (anonymous_interface_13, anonymous_interface_15) union2
-
-    and _TextDocumentPositionParams = [ `TextDocumentPositionParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _TextDocumentRegistrationOptions =
-      [ `TextDocumentRegistrationOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _TextDocumentSaveReason =
-      ([ `L_n_1 [@js 1]
-       | `L_n_2 [@js 2]
-       | `L_n_3 [@js 3]
-       ]
-      [@js.enum])
-
-    and _TextDocumentSaveRegistrationOptions =
-      [ `TextDocumentSaveRegistrationOptions
-      | `SaveOptions
-      | `TextDocumentRegistrationOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _TextDocumentSyncClientCapabilities =
-      [ `TextDocumentSyncClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _TextDocumentSyncKind =
-      ([ `L_n_0 [@js 0]
-       | `L_n_1 [@js 1]
-       | `L_n_2 [@js 2]
-       ]
-      [@js.enum])
-
-    and _TextDocumentSyncOptions = [ `TextDocumentSyncOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _Unregistration = [ `Unregistration ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _UnregistrationParams = [ `UnregistrationParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WillSaveTextDocumentParams = [ `WillSaveTextDocumentParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WindowClientCapabilities = [ `WindowClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkDoneProgressOptions = [ `WorkDoneProgressOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkDoneProgressParams = [ `WorkDoneProgressParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkspaceClientCapabilities = [ `WorkspaceClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkspaceEditClientCapabilities =
-      [ `WorkspaceEditClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkspaceSymbolClientCapabilities =
-      [ `WorkspaceSymbolClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkspaceSymbolOptions =
-      [ `WorkspaceSymbolOptions | `WorkDoneProgressOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkspaceSymbolParams =
-      [ `WorkspaceSymbolParams
-      | `PartialResultParams
-      | `WorkDoneProgressParams
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkspaceSymbolRegistrationOptions =
-      [ `WorkspaceSymbolRegistrationOptions
-      | `WorkDoneProgressOptions
-      | `WorkspaceSymbolOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ClientCapabilities = [ `_ClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _InitializeParams =
-      [ `_InitializeParams | `WorkDoneProgressParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and 'T _ServerCapabilities = [ `_ServerCapabilities of 'T ] intf
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -727,7 +19,7 @@ module AnonymousInterface0 : sig
 end
 
 module AnonymousInterface1 : sig
-  type t = anonymous_interface_1
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -745,21 +37,21 @@ module AnonymousInterface1 : sig
 end
 
 module AnonymousInterface2 : sig
-  type t = anonymous_interface_2
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_codeActionKind : t -> anonymous_interface_16
+  val get_codeActionKind : t -> AnonymousInterface16.t
     [@@js.get "codeActionKind"]
 
-  val set_codeActionKind : t -> anonymous_interface_16 -> unit
+  val set_codeActionKind : t -> AnonymousInterface16.t -> unit
     [@@js.set "codeActionKind"]
 end
 
 module AnonymousInterface3 : sig
-  type t = anonymous_interface_3
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -771,7 +63,7 @@ module AnonymousInterface3 : sig
 end
 
 module AnonymousInterface4 : sig
-  type t = anonymous_interface_4
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -783,10 +75,10 @@ module AnonymousInterface4 : sig
   val set_documentationFormat : t -> MarkupKind.t list -> unit
     [@@js.set "documentationFormat"]
 
-  val get_parameterInformation : t -> anonymous_interface_8
+  val get_parameterInformation : t -> AnonymousInterface8.t
     [@@js.get "parameterInformation"]
 
-  val set_parameterInformation : t -> anonymous_interface_8 -> unit
+  val set_parameterInformation : t -> AnonymousInterface8.t -> unit
     [@@js.set "parameterInformation"]
 
   val get_activeParameterSupport : t -> bool [@@js.get "activeParameterSupport"]
@@ -796,7 +88,7 @@ module AnonymousInterface4 : sig
 end
 
 module AnonymousInterface5 : sig
-  type t = anonymous_interface_5
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -810,7 +102,7 @@ module AnonymousInterface5 : sig
 end
 
 module AnonymousInterface6 : sig
-  type t = anonymous_interface_6
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -822,7 +114,7 @@ module AnonymousInterface6 : sig
 end
 
 module AnonymousInterface7 : sig
-  type t = anonymous_interface_7
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -835,7 +127,7 @@ module AnonymousInterface7 : sig
 end
 
 module AnonymousInterface8 : sig
-  type t = anonymous_interface_8
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -847,7 +139,7 @@ module AnonymousInterface8 : sig
 end
 
 module AnonymousInterface9 : sig
-  type t = anonymous_interface_9
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -867,7 +159,7 @@ module AnonymousInterface9 : sig
 end
 
 module AnonymousInterface10 : sig
-  type t = anonymous_interface_10
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -883,7 +175,7 @@ module AnonymousInterface10 : sig
 end
 
 module AnonymousInterface11 : sig
-  type t = anonymous_interface_11
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -895,7 +187,7 @@ module AnonymousInterface11 : sig
 end
 
 module AnonymousInterface12 : sig
-  type t = anonymous_interface_12
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -911,7 +203,7 @@ module AnonymousInterface12 : sig
 end
 
 module AnonymousInterface13 : sig
-  type t = anonymous_interface_13
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -931,7 +223,7 @@ module AnonymousInterface13 : sig
 end
 
 module AnonymousInterface14 : sig
-  type t = anonymous_interface_14
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -961,9 +253,9 @@ module AnonymousInterface14 : sig
 
   val set_preselectSupport : t -> bool -> unit [@@js.set "preselectSupport"]
 
-  val get_tagSupport : t -> anonymous_interface_18 [@@js.get "tagSupport"]
+  val get_tagSupport : t -> AnonymousInterface18.t [@@js.get "tagSupport"]
 
-  val set_tagSupport : t -> anonymous_interface_18 -> unit
+  val set_tagSupport : t -> AnonymousInterface18.t -> unit
     [@@js.set "tagSupport"]
 
   val get_insertReplaceSupport : t -> bool [@@js.get "insertReplaceSupport"]
@@ -971,16 +263,16 @@ module AnonymousInterface14 : sig
   val set_insertReplaceSupport : t -> bool -> unit
     [@@js.set "insertReplaceSupport"]
 
-  val get_resolveSupport : t -> anonymous_interface_11
+  val get_resolveSupport : t -> AnonymousInterface11.t
     [@@js.get "resolveSupport"]
 
-  val set_resolveSupport : t -> anonymous_interface_11 -> unit
+  val set_resolveSupport : t -> AnonymousInterface11.t -> unit
     [@@js.set "resolveSupport"]
 
-  val get_insertTextModeSupport : t -> anonymous_interface_20
+  val get_insertTextModeSupport : t -> AnonymousInterface20.t
     [@@js.get "insertTextModeSupport"]
 
-  val set_insertTextModeSupport : t -> anonymous_interface_20 -> unit
+  val set_insertTextModeSupport : t -> AnonymousInterface20.t -> unit
     [@@js.set "insertTextModeSupport"]
 
   val get_labelDetailsSupport : t -> bool [@@js.get "labelDetailsSupport"]
@@ -990,7 +282,7 @@ module AnonymousInterface14 : sig
 end
 
 module AnonymousInterface15 : sig
-  type t = anonymous_interface_15
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1002,7 +294,7 @@ module AnonymousInterface15 : sig
 end
 
 module AnonymousInterface16 : sig
-  type t = anonymous_interface_16
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1014,7 +306,7 @@ module AnonymousInterface16 : sig
 end
 
 module AnonymousInterface17 : sig
-  type t = anonymous_interface_17
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1027,7 +319,7 @@ module AnonymousInterface17 : sig
 end
 
 module AnonymousInterface18 : sig
-  type t = anonymous_interface_18
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1039,7 +331,7 @@ module AnonymousInterface18 : sig
 end
 
 module AnonymousInterface19 : sig
-  type t = anonymous_interface_19
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1051,7 +343,7 @@ module AnonymousInterface19 : sig
 end
 
 module AnonymousInterface20 : sig
-  type t = anonymous_interface_20
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1063,7 +355,7 @@ module AnonymousInterface20 : sig
 end
 
 module AnonymousInterface21 : sig
-  type t = anonymous_interface_21
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1075,7 +367,7 @@ module AnonymousInterface21 : sig
 end
 
 module AnonymousInterface22 : sig
-  type t = anonymous_interface_22
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -1157,7 +449,7 @@ end
    MonikerOptions, MonikerRegistrationOptions, MonikerParams, MonikerRequest }
    from './protocol.moniker'; *)
 module DocumentFilter : sig
-  type t = _DocumentFilter
+  type t = AnonymousInterface9.t
 
   val t_to_js : t -> Ojs.t
 
@@ -1170,7 +462,7 @@ end
 [@@js.scope "DocumentFilter"]
 
 module DocumentSelector : sig
-  type t = _DocumentSelector
+  type t = _DocumentFilter or_string list
 
   val t_to_js : t -> Ojs.t
 
@@ -1311,7 +603,12 @@ end
 [@@js.scope "TextDocumentPositionParams"]
 
 module ResourceOperationKind : sig
-  type t = _ResourceOperationKind
+  type t =
+    ([ `L_s4_create [@js "create"]
+     | `L_s5_delete [@js "delete"]
+     | `L_s9_rename [@js "rename"]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -1328,7 +625,13 @@ end
 [@@js.scope "ResourceOperationKind"]
 
 module FailureHandlingKind : sig
-  type t = _FailureHandlingKind
+  type t =
+    ([ `L_s0_abort [@js "abort"]
+     | `L_s31_textOnlyTransactional [@js "textOnlyTransactional"]
+     | `L_s32_transactional [@js "transactional"]
+     | `L_s33_undo [@js "undo"]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -1654,10 +957,10 @@ module GeneralClientCapabilities : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_staleRequestSupport : t -> anonymous_interface_1
+  val get_staleRequestSupport : t -> AnonymousInterface1.t
     [@@js.get "staleRequestSupport"]
 
-  val set_staleRequestSupport : t -> anonymous_interface_1 -> unit
+  val set_staleRequestSupport : t -> AnonymousInterface1.t -> unit
     [@@js.set "staleRequestSupport"]
 
   val get_regularExpressions : t -> _RegularExpressionsClientCapabilities
@@ -1677,7 +980,12 @@ end
 [@@js.scope "GeneralClientCapabilities"]
 
 module M_ClientCapabilities : sig
-  type t = _ClientCapabilities
+  type t =
+    ( _ClientCapabilities
+    , WorkspaceFoldersClientCapabilities.t
+    , ConfigurationClientCapabilities.t
+    , WorkDoneProgressClientCapabilities.t )
+    intersection4
 
   val t_to_js : t -> Ojs.t
 
@@ -1789,7 +1097,8 @@ end
 [@@js.scope "WorkDoneProgressOptions"]
 
 module M_ServerCapabilities : sig
-  type 'T t = 'T _ServerCapabilities
+  type 'T t =
+    ('T _ServerCapabilities, WorkspaceFoldersServerCapabilities.t) intersection2
 
   val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
@@ -2057,9 +1366,9 @@ module M_ServerCapabilities : sig
     -> unit
     [@@js.set "semanticTokensProvider"]
 
-  val get_workspace : 'T t -> anonymous_interface_5 [@@js.get "workspace"]
+  val get_workspace : 'T t -> AnonymousInterface5.t [@@js.get "workspace"]
 
-  val set_workspace : 'T t -> anonymous_interface_5 -> unit
+  val set_workspace : 'T t -> AnonymousInterface5.t -> unit
     [@@js.set "workspace"]
 
   val get_monikerProvider
@@ -2109,7 +1418,7 @@ end
 [@@js.scope "InitializeRequest"]
 
 module M_InitializeParams : sig
-  type t = _InitializeParams
+  type t = (_InitializeParams, WorkspaceFoldersInitializeParams.t) intersection2
 
   val t_to_js : t -> Ojs.t
 
@@ -2119,9 +1428,9 @@ module M_InitializeParams : sig
 
   val set_processId : t -> Integer.t or_null -> unit [@@js.set "processId"]
 
-  val get_clientInfo : t -> anonymous_interface_10 [@@js.get "clientInfo"]
+  val get_clientInfo : t -> AnonymousInterface10.t [@@js.get "clientInfo"]
 
-  val set_clientInfo : t -> anonymous_interface_10 -> unit
+  val set_clientInfo : t -> AnonymousInterface10.t -> unit
     [@@js.set "clientInfo"]
 
   val get_locale : t -> string [@@js.get "locale"]
@@ -2192,9 +1501,9 @@ module InitializeResult : sig
   val set_capabilities : 'T t -> 'T _ServerCapabilities -> unit
     [@@js.set "capabilities"]
 
-  val get_serverInfo : 'T t -> anonymous_interface_10 [@@js.get "serverInfo"]
+  val get_serverInfo : 'T t -> AnonymousInterface10.t [@@js.get "serverInfo"]
 
-  val set_serverInfo : 'T t -> anonymous_interface_10 -> unit
+  val set_serverInfo : 'T t -> AnonymousInterface10.t -> unit
     [@@js.set "serverInfo"]
 
   val get : 'T t -> string -> any [@@js.index_get]
@@ -2308,7 +1617,13 @@ end
 [@@js.scope "MessageType"]
 
 module MessageType : sig
-  type t = _MessageType
+  type t =
+    ([ `L_n_1 [@js 1]
+     | `L_n_2 [@js 2]
+     | `L_n_3 [@js 3]
+     | `L_n_4 [@js 4]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -2345,10 +1660,10 @@ module ShowMessageRequestClientCapabilities : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_messageActionItem : t -> anonymous_interface_0
+  val get_messageActionItem : t -> AnonymousInterface0.t
     [@@js.get "messageActionItem"]
 
-  val set_messageActionItem : t -> anonymous_interface_0 -> unit
+  val set_messageActionItem : t -> AnonymousInterface0.t -> unit
     [@@js.set "messageActionItem"]
 end
 [@@js.scope "ShowMessageRequestClientCapabilities"]
@@ -2476,7 +1791,12 @@ end
 [@@js.scope "TextDocumentSyncKind"]
 
 module TextDocumentSyncKind : sig
-  type t = _TextDocumentSyncKind
+  type t =
+    ([ `L_n_0 [@js 0]
+     | `L_n_1 [@js 1]
+     | `L_n_2 [@js 2]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -2540,7 +1860,7 @@ end
 [@@js.scope "DidOpenTextDocumentNotification"]
 
 module TextDocumentContentChangeEvent : sig
-  type t = _TextDocumentContentChangeEvent
+  type t = (AnonymousInterface13.t, AnonymousInterface15.t) union2
 
   val t_to_js : t -> Ojs.t
 
@@ -2687,7 +2007,12 @@ end
 [@@js.scope "TextDocumentSaveReason"]
 
 module TextDocumentSaveReason : sig
-  type t = _TextDocumentSaveReason
+  type t =
+    ([ `L_n_1 [@js 1]
+     | `L_n_2 [@js 2]
+     | `L_n_3 [@js 3]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -2790,7 +2115,12 @@ end
 [@@js.scope "FileChangeType"]
 
 module FileChangeType : sig
-  type t = _FileChangeType
+  type t =
+    ([ `L_n_1 [@js 1]
+     | `L_n_2 [@js 2]
+     | `L_n_3 [@js 3]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -2864,9 +2194,9 @@ module PublishDiagnosticsClientCapabilities : sig
 
   val set_relatedInformation : t -> bool -> unit [@@js.set "relatedInformation"]
 
-  val get_tagSupport : t -> anonymous_interface_19 [@@js.get "tagSupport"]
+  val get_tagSupport : t -> AnonymousInterface19.t [@@js.get "tagSupport"]
 
-  val set_tagSupport : t -> anonymous_interface_19 -> unit
+  val set_tagSupport : t -> AnonymousInterface19.t -> unit
     [@@js.set "tagSupport"]
 
   val get_versionSupport : t -> bool [@@js.get "versionSupport"]
@@ -2923,16 +2253,16 @@ module CompletionClientCapabilities : sig
   val set_dynamicRegistration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
-  val get_completionItem : t -> anonymous_interface_14
+  val get_completionItem : t -> AnonymousInterface14.t
     [@@js.get "completionItem"]
 
-  val set_completionItem : t -> anonymous_interface_14 -> unit
+  val set_completionItem : t -> AnonymousInterface14.t -> unit
     [@@js.set "completionItem"]
 
-  val get_completionItemKind : t -> anonymous_interface_17
+  val get_completionItemKind : t -> AnonymousInterface17.t
     [@@js.get "completionItemKind"]
 
-  val set_completionItemKind : t -> anonymous_interface_17 -> unit
+  val set_completionItemKind : t -> AnonymousInterface17.t -> unit
     [@@js.set "completionItemKind"]
 
   val get_insertTextMode : t -> InsertTextMode.t [@@js.get "insertTextMode"]
@@ -2958,7 +2288,12 @@ end
 [@@js.scope "CompletionTriggerKind"]
 
 module CompletionTriggerKind : sig
-  type t = _CompletionTriggerKind
+  type t =
+    ([ `L_n_1 [@js 1]
+     | `L_n_2 [@js 2]
+     | `L_n_3 [@js 3]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -3024,10 +2359,10 @@ module CompletionOptions : sig
 
   val set_resolveProvider : t -> bool -> unit [@@js.set "resolveProvider"]
 
-  val get_completionItem : t -> anonymous_interface_7
+  val get_completionItem : t -> AnonymousInterface7.t
     [@@js.get "completionItem"]
 
-  val set_completionItem : t -> anonymous_interface_7 -> unit
+  val set_completionItem : t -> AnonymousInterface7.t -> unit
     [@@js.set "completionItem"]
 
   val cast : t -> _WorkDoneProgressOptions [@@js.cast]
@@ -3165,10 +2500,10 @@ module SignatureHelpClientCapabilities : sig
   val set_dynamicRegistration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
-  val get_signatureInformation : t -> anonymous_interface_4
+  val get_signatureInformation : t -> AnonymousInterface4.t
     [@@js.get "signatureInformation"]
 
-  val set_signatureInformation : t -> anonymous_interface_4 -> unit
+  val set_signatureInformation : t -> AnonymousInterface4.t -> unit
     [@@js.set "signatureInformation"]
 
   val get_contextSupport : t -> bool [@@js.get "contextSupport"]
@@ -3211,7 +2546,12 @@ end
 [@@js.scope "SignatureHelpTriggerKind"]
 
 module SignatureHelpTriggerKind : sig
-  type t = _SignatureHelpTriggerKind
+  type t =
+    ([ `L_n_1 [@js 1]
+     | `L_n_2 [@js 2]
+     | `L_n_3 [@js 3]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -3525,9 +2865,9 @@ module DocumentSymbolClientCapabilities : sig
   val set_dynamicRegistration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
-  val get_symbolKind : t -> anonymous_interface_21 [@@js.get "symbolKind"]
+  val get_symbolKind : t -> AnonymousInterface21.t [@@js.get "symbolKind"]
 
-  val set_symbolKind : t -> anonymous_interface_21 -> unit
+  val set_symbolKind : t -> AnonymousInterface21.t -> unit
     [@@js.set "symbolKind"]
 
   val get_hierarchicalDocumentSymbolSupport : t -> bool
@@ -3536,9 +2876,9 @@ module DocumentSymbolClientCapabilities : sig
   val set_hierarchicalDocumentSymbolSupport : t -> bool -> unit
     [@@js.set "hierarchicalDocumentSymbolSupport"]
 
-  val get_tagSupport : t -> anonymous_interface_22 [@@js.get "tagSupport"]
+  val get_tagSupport : t -> AnonymousInterface22.t [@@js.get "tagSupport"]
 
-  val set_tagSupport : t -> anonymous_interface_22 -> unit
+  val set_tagSupport : t -> AnonymousInterface22.t -> unit
     [@@js.set "tagSupport"]
 
   val get_labelSupport : t -> bool [@@js.get "labelSupport"]
@@ -3623,10 +2963,10 @@ module CodeActionClientCapabilities : sig
   val set_dynamicRegistration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
-  val get_codeActionLiteralSupport : t -> anonymous_interface_2
+  val get_codeActionLiteralSupport : t -> AnonymousInterface2.t
     [@@js.get "codeActionLiteralSupport"]
 
-  val set_codeActionLiteralSupport : t -> anonymous_interface_2 -> unit
+  val set_codeActionLiteralSupport : t -> AnonymousInterface2.t -> unit
     [@@js.set "codeActionLiteralSupport"]
 
   val get_isPreferredSupport : t -> bool [@@js.get "isPreferredSupport"]
@@ -3641,10 +2981,10 @@ module CodeActionClientCapabilities : sig
 
   val set_dataSupport : t -> bool -> unit [@@js.set "dataSupport"]
 
-  val get_resolveSupport : t -> anonymous_interface_11
+  val get_resolveSupport : t -> AnonymousInterface11.t
     [@@js.get "resolveSupport"]
 
-  val set_resolveSupport : t -> anonymous_interface_11 -> unit
+  val set_resolveSupport : t -> AnonymousInterface11.t -> unit
     [@@js.set "resolveSupport"]
 
   val get_honorsChangeAnnotations : t -> bool
@@ -3755,14 +3095,14 @@ module WorkspaceSymbolClientCapabilities : sig
   val set_dynamicRegistration : t -> bool -> unit
     [@@js.set "dynamicRegistration"]
 
-  val get_symbolKind : t -> anonymous_interface_21 [@@js.get "symbolKind"]
+  val get_symbolKind : t -> AnonymousInterface21.t [@@js.get "symbolKind"]
 
-  val set_symbolKind : t -> anonymous_interface_21 -> unit
+  val set_symbolKind : t -> AnonymousInterface21.t -> unit
     [@@js.set "symbolKind"]
 
-  val get_tagSupport : t -> anonymous_interface_22 [@@js.get "tagSupport"]
+  val get_tagSupport : t -> AnonymousInterface22.t [@@js.get "tagSupport"]
 
-  val set_tagSupport : t -> anonymous_interface_22 -> unit
+  val set_tagSupport : t -> AnonymousInterface22.t -> unit
     [@@js.set "tagSupport"]
 end
 [@@js.scope "WorkspaceSymbolClientCapabilities"]
@@ -4274,7 +3614,7 @@ end
 [@@js.scope "PrepareSupportDefaultBehavior"]
 
 module PrepareSupportDefaultBehavior : sig
-  type t = _PrepareSupportDefaultBehavior
+  type t = ([ `L_n_1 [@js 1] ][@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -4403,7 +3743,7 @@ module PrepareRenameRequest : sig
 
   val type_
     : ( _PrepareRenameParams
-      , (Range.t, anonymous_interface_3, anonymous_interface_12) union3 or_null
+      , (Range.t, AnonymousInterface3.t, AnonymousInterface12.t) union3 or_null
       , never
       , unit
       , unit )
@@ -4511,10 +3851,10 @@ module WorkspaceEditClientCapabilities : sig
   val set_normalizesLineEndings : t -> bool -> unit
     [@@js.set "normalizesLineEndings"]
 
-  val get_changeAnnotationSupport : t -> anonymous_interface_6
+  val get_changeAnnotationSupport : t -> AnonymousInterface6.t
     [@@js.get "changeAnnotationSupport"]
 
-  val set_changeAnnotationSupport : t -> anonymous_interface_6 -> unit
+  val set_changeAnnotationSupport : t -> AnonymousInterface6.t -> unit
     [@@js.set "changeAnnotationSupport"]
 end
 [@@js.scope "WorkspaceEditClientCapabilities"]

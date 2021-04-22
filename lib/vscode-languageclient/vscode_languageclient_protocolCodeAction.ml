@@ -2,22 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _ProtocolCodeAction = [ `ProtocolCodeAction ] intf
-        let rec _ProtocolCodeAction_of_js : Ojs.t -> _ProtocolCodeAction =
-          Obj.magic
-        and _ProtocolCodeAction_to_js : _ProtocolCodeAction -> Ojs.t =
-          Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module ProtocolCodeAction =
   struct
     type t = _ProtocolCodeAction

@@ -6,28 +6,7 @@
 
 open Es2020
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
 
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _AbstractCancellationTokenSource =
-      [ `AbstractCancellationTokenSource ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CancellationToken = [ `CancellationToken ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CancellationTokenSource =
-      [ `CancellationTokenSource | `AbstractCancellationTokenSource ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
 
 module CancellationToken : sig
   type t = _CancellationToken

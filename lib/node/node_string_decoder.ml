@@ -3,23 +3,6 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
 open Node_globals
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type string_decoder_StringDecoder =
-          [ `String_decoder_StringDecoder ] intf
-        let rec string_decoder_StringDecoder_of_js :
-          Ojs.t -> string_decoder_StringDecoder = Obj.magic
-        and string_decoder_StringDecoder_to_js :
-          string_decoder_StringDecoder -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module String_decoder =
   struct
     module StringDecoder =

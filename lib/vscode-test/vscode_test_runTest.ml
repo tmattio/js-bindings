@@ -3,33 +3,12 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
 module Internal =
-  struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _TestOptions = [ `TestOptions ] intf
-        let rec _TestOptions_of_js : Ojs.t -> _TestOptions = Obj.magic
-        and _TestOptions_to_js : _TestOptions -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
+  struct module Types = struct open AnonymousInterfaces end end
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> anonymous_interface_0_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : anonymous_interface_0) -> anonymous_interface_0_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get : t -> string -> string or_undefined) =
       fun (x3 : t) ->
         fun (x4 : string) ->
@@ -93,15 +72,15 @@ module TestOptions =
         fun (x26 : string) ->
           Ojs.set_prop_ascii (t_to_js x25) "extensionTestsPath"
             (Ojs.string_to_js x26)
-    let (get_extensionTestsEnv : t -> anonymous_interface_0) =
+    let (get_extensionTestsEnv : t -> AnonymousInterface0.t) =
       fun (x27 : t) ->
-        anonymous_interface_0_of_js
+        AnonymousInterface0.t_of_js
           (Ojs.get_prop_ascii (t_to_js x27) "extensionTestsEnv")
-    let (set_extensionTestsEnv : t -> anonymous_interface_0 -> unit) =
+    let (set_extensionTestsEnv : t -> AnonymousInterface0.t -> unit) =
       fun (x28 : t) ->
-        fun (x29 : anonymous_interface_0) ->
+        fun (x29 : AnonymousInterface0.t) ->
           Ojs.set_prop_ascii (t_to_js x28) "extensionTestsEnv"
-            (anonymous_interface_0_to_js x29)
+            (AnonymousInterface0.t_to_js x29)
     let (get_launchArgs : t -> string list) =
       fun (x30 : t) ->
         Ojs.list_of_js Ojs.string_of_js

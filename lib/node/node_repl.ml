@@ -4,54 +4,12 @@
 open Es2020
 open Node_globals
 module Internal =
-  struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type repl_REPLCommand = [ `Repl_REPLCommand ] intf
-        and repl_REPLCommandAction = [ `Repl_REPLCommandAction ] intf
-        and repl_REPLEval = [ `Repl_REPLEval ] intf
-        and repl_REPLServer = [ `Repl_REPLServer ] intf
-        and repl_REPLWriter = [ `Repl_REPLWriter ] intf
-        and repl_Recoverable = [ `Repl_Recoverable ] intf
-        and repl_ReplOptions = [ `Repl_ReplOptions ] intf
-        let rec repl_REPLCommand_of_js : Ojs.t -> repl_REPLCommand =
-          Obj.magic
-        and repl_REPLCommand_to_js : repl_REPLCommand -> Ojs.t = Obj.magic
-        and repl_REPLCommandAction_of_js : Ojs.t -> repl_REPLCommandAction =
-          Obj.magic
-        and repl_REPLCommandAction_to_js : repl_REPLCommandAction -> Ojs.t =
-          Obj.magic
-        and repl_REPLEval_of_js : Ojs.t -> repl_REPLEval = Obj.magic
-        and repl_REPLEval_to_js : repl_REPLEval -> Ojs.t = Obj.magic
-        and repl_REPLServer_of_js : Ojs.t -> repl_REPLServer = Obj.magic
-        and repl_REPLServer_to_js : repl_REPLServer -> Ojs.t = Obj.magic
-        and repl_REPLWriter_of_js : Ojs.t -> repl_REPLWriter = Obj.magic
-        and repl_REPLWriter_to_js : repl_REPLWriter -> Ojs.t = Obj.magic
-        and repl_Recoverable_of_js : Ojs.t -> repl_Recoverable = Obj.magic
-        and repl_Recoverable_to_js : repl_Recoverable -> Ojs.t = Obj.magic
-        and repl_ReplOptions_of_js : Ojs.t -> repl_ReplOptions = Obj.magic
-        and repl_ReplOptions_to_js : repl_ReplOptions -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
+  struct module Types = struct open AnonymousInterfaces end end
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> anonymous_interface_0_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : anonymous_interface_0) -> anonymous_interface_0_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get_options : t -> Node_util.Util.InspectOptions.t) =
       fun (x3 : t) ->
         Node_util.Util.InspectOptions.t_of_js
@@ -243,8 +201,8 @@ module Repl =
                   (Ojs.apply (t_to_js x66)
                      [|(repl_REPLServer_to_js x64);(any_to_js x65)|])
       end
-    let (writer : (repl_REPLWriter, anonymous_interface_0) intersection2) =
-      intersection2_of_js repl_REPLWriter_of_js anonymous_interface_0_of_js
+    let (writer : (repl_REPLWriter, AnonymousInterface0.t) intersection2) =
+      intersection2_of_js repl_REPLWriter_of_js AnonymousInterface0.t_of_js
         (Ojs.get_prop_ascii Import.repl "writer")
     module REPLCommandAction =
       struct

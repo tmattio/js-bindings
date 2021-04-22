@@ -5,82 +5,8 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type net_AddressInfo = [ `Net_AddressInfo ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and net_ConnectOpts = [ `Net_ConnectOpts ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and net_IpcNetConnectOpts =
-      [ `Net_IpcNetConnectOpts
-      | `Net_ConnectOpts
-      | `Net_IpcSocketConnectOpts
-      | `Net_SocketConstructorOpts
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and net_IpcSocketConnectOpts =
-      [ `Net_IpcSocketConnectOpts | `Net_ConnectOpts ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and net_ListenOptions = [ `Net_ListenOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and net_LookupFunction = [ `Net_LookupFunction ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and net_NetConnectOpts =
-      (net_IpcNetConnectOpts, net_TcpNetConnectOpts) union2
-
-    and net_OnReadOpts = [ `Net_OnReadOpts ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and net_Server = [ `Net_Server ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and net_ServerOpts = [ `Net_ServerOpts ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and net_Socket = [ `Net_Socket ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and net_SocketConnectOpts =
-      (net_IpcSocketConnectOpts, net_TcpSocketConnectOpts) union2
-
-    and net_SocketConstructorOpts = [ `Net_SocketConstructorOpts ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and net_TcpNetConnectOpts =
-      [ `Net_TcpNetConnectOpts
-      | `Net_ConnectOpts
-      | `Net_SocketConstructorOpts
-      | `Net_TcpSocketConnectOpts
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and net_TcpSocketConnectOpts =
-      [ `Net_TcpSocketConnectOpts | `Net_ConnectOpts ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -244,7 +170,7 @@ module Net : sig
   [@@js.scope "IpcSocketConnectOpts"]
 
   module SocketConnectOpts : sig
-    type t = net_SocketConnectOpts
+    type t = (net_IpcSocketConnectOpts, net_TcpSocketConnectOpts) union2
 
     val t_to_js : t -> Ojs.t
 
@@ -325,7 +251,7 @@ module Net : sig
     val setKeepAlive : t -> ?enable:bool -> ?initialDelay:int -> unit -> t
       [@@js.call "setKeepAlive"]
 
-    val address : t -> (net_AddressInfo, anonymous_interface_0) union2
+    val address : t -> (net_AddressInfo, AnonymousInterface0.t) union2
       [@@js.call "address"]
 
     val unref : t -> t [@@js.call "unref"]
@@ -1162,7 +1088,7 @@ module Net : sig
   [@@js.scope "IpcNetConnectOpts"]
 
   module NetConnectOpts : sig
-    type t = net_NetConnectOpts
+    type t = (net_IpcNetConnectOpts, net_TcpNetConnectOpts) union2
 
     val t_to_js : t -> Ojs.t
 

@@ -24,7 +24,7 @@ module Map =
           Ojs.bool_of_js
             (Ojs.call (t_to_js Obj.magic Obj.magic x7) "delete"
                [|(Obj.magic x6)|])
-    let (forEach :
+    let (for_each :
       ('K, 'V) t ->
         callbackfn:(value:'V -> key:'K -> map:('K, 'V) t -> unit) ->
           ?thisArg:any -> unit -> unit)
@@ -57,7 +57,7 @@ module Map =
                                   (Ojs.call x12 "push" [|(any_to_js x13)|])
                             | None -> ());
                            x12))|])
-    let (get_ : ('K, 'V) t -> key:'K -> 'V or_undefined) =
+    let (get : ('K, 'V) t -> key:'K -> 'V or_undefined) =
       fun (x24 : ('K, 'V) t) ->
         fun ~key:(x23 : 'K) ->
           or_undefined_of_js Obj.magic
@@ -69,7 +69,7 @@ module Map =
           Ojs.bool_of_js
             (Ojs.call (t_to_js Obj.magic Obj.magic x29) "has"
                [|(Obj.magic x28)|])
-    let (set_ : ('K, 'V) t -> key:'K -> value:'V -> ('K, 'V) t) =
+    let (set : ('K, 'V) t -> key:'K -> value:'V -> ('K, 'V) t) =
       fun (x34 : ('K, 'V) t) ->
         fun ~key:(x32 : 'K) ->
           fun ~value:(x33 : 'V) ->
@@ -159,7 +159,7 @@ module ReadonlyMap =
       (type __K) -> fun (type __V) ->
       fun (__K_to_js : __K -> Ojs.t) ->
         fun (__V_to_js : __V -> Ojs.t) -> fun (x73 : Ojs.t) -> x73
-    let (forEach :
+    let (for_each :
       ('K, 'V) t ->
         callbackfn:(value:'V -> key:'K -> map:('K, 'V) t -> unit) ->
           ?thisArg:any -> unit -> unit)
@@ -192,7 +192,7 @@ module ReadonlyMap =
                                   (Ojs.call x77 "push" [|(any_to_js x78)|])
                             | None -> ());
                            x77))|])
-    let (get_ : ('K, 'V) t -> key:'K -> 'V or_undefined) =
+    let (get : ('K, 'V) t -> key:'K -> 'V or_undefined) =
       fun (x89 : ('K, 'V) t) ->
         fun ~key:(x88 : 'K) ->
           or_undefined_of_js Obj.magic
@@ -228,7 +228,7 @@ module WeakMap =
           Ojs.bool_of_js
             (Ojs.call (t_to_js Obj.magic Obj.magic x103) "delete"
                [|(Obj.magic x102)|])
-    let (get_ : ('K, 'V) t -> key:'K -> 'V or_undefined) =
+    let (get : ('K, 'V) t -> key:'K -> 'V or_undefined) =
       fun (x107 : ('K, 'V) t) ->
         fun ~key:(x106 : 'K) ->
           or_undefined_of_js Obj.magic
@@ -240,7 +240,7 @@ module WeakMap =
           Ojs.bool_of_js
             (Ojs.call (t_to_js Obj.magic Obj.magic x112) "has"
                [|(Obj.magic x111)|])
-    let (set_ : ('K, 'V) t -> key:'K -> value:'V -> ('K, 'V) t) =
+    let (set : ('K, 'V) t -> key:'K -> value:'V -> ('K, 'V) t) =
       fun (x117 : ('K, 'V) t) ->
         fun ~key:(x115 : 'K) ->
           fun ~value:(x116 : 'V) ->
@@ -306,7 +306,7 @@ module WeakMapConstructor =
         WeakMap.t_of_js untyped_object_of_js any_of_js
           (Ojs.get_prop_ascii (t_to_js x145) "prototype")
   end
-let (weakMap : WeakMapConstructor.t) =
+let (weak_map : WeakMapConstructor.t) =
   WeakMapConstructor.t_of_js (Ojs.get_prop_ascii Ojs.global "WeakMap")
 module Set =
   struct
@@ -328,7 +328,7 @@ module Set =
         fun ~value:(x156 : 'T) ->
           Ojs.bool_of_js
             (Ojs.call (t_to_js Obj.magic x157) "delete" [|(Obj.magic x156)|])
-    let (forEach :
+    let (for_each :
       'T t ->
         callbackfn:(value:'T -> value2:'T -> set_:'T t -> unit) ->
           ?thisArg:any -> unit -> unit)
@@ -411,7 +411,7 @@ module SetConstructor =
       fun (x190 : t) ->
         Set.t_of_js any_of_js (Ojs.get_prop_ascii (t_to_js x190) "prototype")
   end
-let (set_ : SetConstructor.t) =
+let (set : SetConstructor.t) =
   SetConstructor.t_of_js (Ojs.get_prop_ascii Ojs.global "Set")
 module ReadonlySet =
   struct
@@ -420,7 +420,7 @@ module ReadonlySet =
       fun (__T_of_js : Ojs.t -> __T) -> fun (x193 : Ojs.t) -> x193
     and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
       fun (__T_to_js : __T -> Ojs.t) -> fun (x192 : Ojs.t) -> x192
-    let (forEach :
+    let (for_each :
       'T t ->
         callbackfn:(value:'T -> value2:'T -> set_:'T t -> unit) ->
           ?thisArg:any -> unit -> unit)
@@ -527,5 +527,5 @@ module WeakSetConstructor =
         WeakSet.t_of_js untyped_object_of_js
           (Ojs.get_prop_ascii (t_to_js x237) "prototype")
   end
-let (weakSet : WeakSetConstructor.t) =
+let (weak_set : WeakSetConstructor.t) =
   WeakSetConstructor.t_of_js (Ojs.get_prop_ascii Ojs.global "WeakSet")

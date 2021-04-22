@@ -9,13 +9,13 @@ module String : sig
     include String
   end
 
-  val trimEnd : t -> string [@@js.call "trimEnd"]
+  val trim_end : t -> string [@@js.call "trimEnd"]
 
-  val trimStart : t -> string [@@js.call "trimStart"]
+  val trim_start : t -> string [@@js.call "trimStart"]
 
-  val trimLeft : t -> string [@@js.call "trimLeft"]
+  val trim_left : t -> string [@@js.call "trimLeft"]
 
-  val trimRight : t -> string [@@js.call "trimRight"]
+  val trim_right : t -> string [@@js.call "trimRight"]
 
   val to_ml : t -> string [@@js.cast]
 

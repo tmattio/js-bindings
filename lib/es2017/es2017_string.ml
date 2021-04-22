@@ -5,7 +5,7 @@ open Es2016
 module String =
   struct
     include struct include String end
-    let (padStart :
+    let (pad_start :
       t -> maxLength:int -> ?fillString:string -> unit -> string) =
       fun (x5 : t) ->
         fun ~maxLength:(x1 : int) ->
@@ -26,8 +26,8 @@ module String =
                                     [|(Ojs.string_to_js x4)|])
                            | None -> ());
                           x3))|])
-    let (padEnd : t -> maxLength:int -> ?fillString:string -> unit -> string)
-      =
+    let (pad_end :
+      t -> maxLength:int -> ?fillString:string -> unit -> string) =
       fun (x11 : t) ->
         fun ~maxLength:(x7 : int) ->
           fun ?fillString:(x8 : string option) ->

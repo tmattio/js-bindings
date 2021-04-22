@@ -5,34 +5,12 @@ open Es5
 open Node
 open Download
 module Internal =
-  struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _IUpdateMetadata = [ `IUpdateMetadata ] intf
-        let rec _IUpdateMetadata_of_js : Ojs.t -> _IUpdateMetadata =
-          Obj.magic
-        and _IUpdateMetadata_to_js : _IUpdateMetadata -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
+  struct module Types = struct open AnonymousInterfaces end end
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> anonymous_interface_0_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : anonymous_interface_0) -> anonymous_interface_0_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get_version : t -> any) =
       fun (x3 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x3) "version")
     let (set_version : t -> any -> unit) =
@@ -81,9 +59,9 @@ let (insidersDownloadDirToExecutablePath : dir:string -> string) =
     Ojs.string_of_js
       (Ojs.call Ojs.global "insidersDownloadDirToExecutablePath"
          [|(Ojs.string_to_js x16)|])
-let (insidersDownloadDirMetadata : dir:string -> anonymous_interface_0) =
+let (insidersDownloadDirMetadata : dir:string -> AnonymousInterface0.t) =
   fun ~dir:(x17 : string) ->
-    anonymous_interface_0_of_js
+    AnonymousInterface0.t_of_js
       (Ojs.call Ojs.global "insidersDownloadDirMetadata"
          [|(Ojs.string_to_js x17)|])
 module IUpdateMetadata =

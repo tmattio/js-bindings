@@ -5,82 +5,8 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type util_CustomInspectFunction = [ `Util_CustomInspectFunction ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and 'TCustom util_CustomPromisify =
-      ( 'TCustom util_CustomPromisifyLegacy
-      , 'TCustom util_CustomPromisifySymbol )
-      union2
-
-    and 'TCustom util_CustomPromisifyLegacy =
-      [ `Util_CustomPromisifyLegacy of 'TCustom | `Function ] intf
-    [@@js.custom
-      { of_js = (fun _TCustom -> Obj.magic)
-      ; to_js = (fun _TCustom -> Obj.magic)
-      }]
-
-    and 'TCustom util_CustomPromisifySymbol =
-      [ `Util_CustomPromisifySymbol of 'TCustom | `Function ] intf
-    [@@js.custom
-      { of_js = (fun _TCustom -> Obj.magic)
-      ; to_js = (fun _TCustom -> Obj.magic)
-      }]
-
-    and util_EncodeIntoResult = [ `Util_EncodeIntoResult ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and util_InspectOptions = [ `Util_InspectOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and util_InspectOptionsStylized =
-      [ `Util_InspectOptionsStylized | `Util_InspectOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and util_Style =
-      ([ `bigint [@js "bigint"]
-       | `boolean [@js "boolean"]
-       | `date [@js "date"]
-       | `module_ [@js "module"]
-       | `null [@js "null"]
-       | `number [@js "number"]
-       | `regexp [@js "regexp"]
-       | `special [@js "special"]
-       | `string [@js "string"]
-       | `symbol [@js "symbol"]
-       | `undefined [@js "undefined"]
-       ]
-      [@js.enum])
-
-    and util_TextDecoder = [ `Util_TextDecoder ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and util_TextEncoder = [ `Util_TextEncoder ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -88,7 +14,7 @@ module AnonymousInterface0 : sig
 end
 
 module AnonymousInterface1 : sig
-  type t = anonymous_interface_1
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -104,7 +30,7 @@ module AnonymousInterface1 : sig
 end
 
 module AnonymousInterface2 : sig
-  type t = anonymous_interface_2
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -128,7 +54,20 @@ module Util : sig
   [@@js.scope "InspectOptions"]
 
   module Style : sig
-    type t = util_Style
+    type t =
+      ([ `bigint [@js "bigint"]
+       | `boolean [@js "boolean"]
+       | `date [@js "date"]
+       | `module_ [@js "module"]
+       | `null [@js "null"]
+       | `number [@js "number"]
+       | `regexp [@js "regexp"]
+       | `special [@js "special"]
+       | `string [@js "string"]
+       | `symbol [@js "symbol"]
+       | `undefined [@js "undefined"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -435,7 +374,10 @@ module Util : sig
   [@@js.scope "CustomPromisifySymbol"]
 
   module CustomPromisify : sig
-    type 'TCustom t = 'TCustom util_CustomPromisify
+    type 'TCustom t =
+      ( 'TCustom util_CustomPromisifyLegacy
+      , 'TCustom util_CustomPromisifySymbol )
+      union2
 
     val t_to_js : ('TCustom -> Ojs.t) -> 'TCustom t -> Ojs.t
 
@@ -611,7 +553,7 @@ module Util : sig
 
     val isInt32Array : object_:any -> bool [@@js.global "isInt32Array"]
 
-    val isMap : object_:('T, anonymous_interface_0) union2 -> bool
+    val isMap : object_:('T, AnonymousInterface0.t) union2 -> bool
       [@@js.global "isMap"]
 
     val isMapIterator : object_:any -> bool [@@js.global "isMapIterator"]
@@ -629,7 +571,7 @@ module Util : sig
 
     val isRegExp : object_:any -> bool [@@js.global "isRegExp"]
 
-    val isSet : object_:('T, anonymous_interface_0) union2 -> bool
+    val isSet : object_:('T, AnonymousInterface0.t) union2 -> bool
       [@@js.global "isSet"]
 
     val isSetIterator : object_:any -> bool [@@js.global "isSetIterator"]
@@ -671,13 +613,13 @@ module Util : sig
 
     val get_ignoreBOM : t -> bool [@@js.get "ignoreBOM"]
 
-    val create : ?encoding:string -> ?options:anonymous_interface_1 -> unit -> t
+    val create : ?encoding:string -> ?options:AnonymousInterface1.t -> unit -> t
       [@@js.create]
 
     val decode
       :  t
       -> ?input:(ArrayBuffer.t, ArrayBufferView.t) union2 or_null
-      -> ?options:anonymous_interface_2
+      -> ?options:AnonymousInterface2.t
       -> unit
       -> string
       [@@js.call "decode"]

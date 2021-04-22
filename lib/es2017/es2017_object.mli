@@ -54,7 +54,7 @@ module Object : sig
   val entries' : AnonymousInterface0.t -> (string * any) list
     [@@js.global "Object.entries"]
 
-  val getOwnPropertyDescriptors
+  val get_own_property_descriptors
     :  'T
     -> ( (* FIXME: unknown type '{[P in keyof T]: TypedPropertyDescriptor<T[P]>}' *)
          any
@@ -82,7 +82,7 @@ module ObjectConstructor : sig
   val entries' : t -> AnonymousInterface0.t -> (string * any) list
     [@@js.call "entries"]
 
-  val getOwnPropertyDescriptors
+  val get_own_property_descriptors
     :  t
     -> 'T
     -> ( (* FIXME: unknown type '{[P in keyof T]: TypedPropertyDescriptor<T[P]>}' *)

@@ -3,39 +3,6 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
 open Node_globals
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type querystring_ParseOptions = [ `Querystring_ParseOptions ] intf
-        and querystring_ParsedUrlQuery = [ `Querystring_ParsedUrlQuery ] intf
-        and querystring_ParsedUrlQueryInput =
-          [ `Querystring_ParsedUrlQueryInput ] intf
-        and querystring_StringifyOptions =
-          [ `Querystring_StringifyOptions ] intf
-        let rec querystring_ParseOptions_of_js :
-          Ojs.t -> querystring_ParseOptions = Obj.magic
-        and querystring_ParseOptions_to_js :
-          querystring_ParseOptions -> Ojs.t = Obj.magic
-        and querystring_ParsedUrlQuery_of_js :
-          Ojs.t -> querystring_ParsedUrlQuery = Obj.magic
-        and querystring_ParsedUrlQuery_to_js :
-          querystring_ParsedUrlQuery -> Ojs.t = Obj.magic
-        and querystring_ParsedUrlQueryInput_of_js :
-          Ojs.t -> querystring_ParsedUrlQueryInput = Obj.magic
-        and querystring_ParsedUrlQueryInput_to_js :
-          querystring_ParsedUrlQueryInput -> Ojs.t = Obj.magic
-        and querystring_StringifyOptions_of_js :
-          Ojs.t -> querystring_StringifyOptions = Obj.magic
-        and querystring_StringifyOptions_to_js :
-          querystring_StringifyOptions -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module Querystring =
   struct
     module StringifyOptions =

@@ -3,48 +3,6 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
 open Node_globals
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type url_URL = [ `Url_URL ] intf
-        and url_URLFormatOptions = [ `Url_URLFormatOptions ] intf
-        and url_URLSearchParams = [ `Url_URLSearchParams ] intf
-        and url_Url = [ `Url_Url ] intf
-        and url_UrlObject = [ `Url_UrlObject ] intf
-        and url_UrlWithParsedQuery =
-          [ `Url_UrlWithParsedQuery  | `Url_Url ] intf
-        and url_UrlWithStringQuery =
-          [ `Url_UrlWithStringQuery  | `Url_Url ] intf
-        let rec url_URL_of_js : Ojs.t -> url_URL = Obj.magic
-        and url_URL_to_js : url_URL -> Ojs.t = Obj.magic
-        and url_URLFormatOptions_of_js : Ojs.t -> url_URLFormatOptions =
-          Obj.magic
-        and url_URLFormatOptions_to_js : url_URLFormatOptions -> Ojs.t =
-          Obj.magic
-        and url_URLSearchParams_of_js : Ojs.t -> url_URLSearchParams =
-          Obj.magic
-        and url_URLSearchParams_to_js : url_URLSearchParams -> Ojs.t =
-          Obj.magic
-        and url_Url_of_js : Ojs.t -> url_Url = Obj.magic
-        and url_Url_to_js : url_Url -> Ojs.t = Obj.magic
-        and url_UrlObject_of_js : Ojs.t -> url_UrlObject = Obj.magic
-        and url_UrlObject_to_js : url_UrlObject -> Ojs.t = Obj.magic
-        and url_UrlWithParsedQuery_of_js : Ojs.t -> url_UrlWithParsedQuery =
-          Obj.magic
-        and url_UrlWithParsedQuery_to_js : url_UrlWithParsedQuery -> Ojs.t =
-          Obj.magic
-        and url_UrlWithStringQuery_of_js : Ojs.t -> url_UrlWithStringQuery =
-          Obj.magic
-        and url_UrlWithStringQuery_to_js : url_UrlWithStringQuery -> Ojs.t =
-          Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module Url =
   struct
     module UrlObject =

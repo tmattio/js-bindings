@@ -10,7 +10,7 @@ module Symbol =
         symbol_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Symbol") "for"
              [|(Ojs.string_to_js x1)|])
-    let (keyFor : sym:symbol -> string or_undefined) =
+    let (key_for : sym:symbol -> string or_undefined) =
       fun ~sym:(x2 : symbol) ->
         or_undefined_of_js Ojs.string_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Symbol") "keyFor"
@@ -47,7 +47,7 @@ module SymbolConstructor =
         fun ~key:(x12 : string) ->
           symbol_of_js
             (Ojs.call (t_to_js x13) "for" [|(Ojs.string_to_js x12)|])
-    let (keyFor : t -> sym:symbol -> string or_undefined) =
+    let (key_for : t -> sym:symbol -> string or_undefined) =
       fun (x15 : t) ->
         fun ~sym:(x14 : symbol) ->
           or_undefined_of_js Ojs.string_of_js

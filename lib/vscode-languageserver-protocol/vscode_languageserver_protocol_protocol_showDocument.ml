@@ -4,27 +4,11 @@
 open Es5
 module Internal =
   struct
-    module AnonymousInterfaces = struct  end
     module Types =
       struct
-        open AnonymousInterfaces
-        type _ShowDocumentClientCapabilities =
-          [ `ShowDocumentClientCapabilities ] intf
-        and _ShowDocumentParams = [ `ShowDocumentParams ] intf
-        and _ShowDocumentRequest_HandlerSignature =
+        type _ShowDocumentRequest_HandlerSignature =
           (_ShowDocumentParams, _ShowDocumentResult, unit) RequestHandler.t
-        and _ShowDocumentRequest_MiddlewareSignature =
-          [ `ShowDocumentRequest_MiddlewareSignature ] intf
-        and _ShowDocumentResult = [ `ShowDocumentResult ] intf
-        let rec _ShowDocumentClientCapabilities_of_js :
-          Ojs.t -> _ShowDocumentClientCapabilities = Obj.magic
-        and _ShowDocumentClientCapabilities_to_js :
-          _ShowDocumentClientCapabilities -> Ojs.t = Obj.magic
-        and _ShowDocumentParams_of_js : Ojs.t -> _ShowDocumentParams =
-          Obj.magic
-        and _ShowDocumentParams_to_js : _ShowDocumentParams -> Ojs.t =
-          Obj.magic
-        and _ShowDocumentRequest_HandlerSignature_of_js :
+        let rec _ShowDocumentRequest_HandlerSignature_of_js :
           Ojs.t -> _ShowDocumentRequest_HandlerSignature =
           fun (x5 : Ojs.t) ->
             RequestHandler.t_of_js _ShowDocumentParams_of_js
@@ -38,19 +22,8 @@ module Internal =
             ->
             RequestHandler.t_to_js _ShowDocumentParams_to_js
               _ShowDocumentResult_to_js Ojs.unit_to_js x1
-        and _ShowDocumentRequest_MiddlewareSignature_of_js :
-          Ojs.t -> _ShowDocumentRequest_MiddlewareSignature = Obj.magic
-        and _ShowDocumentRequest_MiddlewareSignature_to_js :
-          _ShowDocumentRequest_MiddlewareSignature -> Ojs.t = Obj.magic
-        and _ShowDocumentResult_of_js : Ojs.t -> _ShowDocumentResult =
-          Obj.magic
-        and _ShowDocumentResult_to_js : _ShowDocumentResult -> Ojs.t =
-          Obj.magic
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module ShowDocumentClientCapabilities =
   struct
     type t = _ShowDocumentClientCapabilities

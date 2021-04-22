@@ -96,31 +96,31 @@ module Enum : sig
   val get_value : ('t, 'a) t -> 'a [@@js.custom let get_value x = x]
 end
 
-type untyped_object [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+type untyped_object
 
 val untyped_object_of_js : Ojs.t -> untyped_object
 
 val untyped_object_to_js : untyped_object -> Ojs.t
 
-type untyped_function [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+type untyped_function
 
 val untyped_function_of_js : Ojs.t -> untyped_function
 
 val untyped_function_to_js : untyped_function -> Ojs.t
 
-type symbol [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+type symbol
 
 val symbol_of_js : Ojs.t -> symbol
 
 val symbol_to_js : symbol -> Ojs.t
 
-type regexp [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+type regexp
 
 val regexp_of_js : Ojs.t -> regexp
 
 val regexp_to_js : regexp -> Ojs.t
 
-type bigint [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
+type bigint
 
 val bigint_of_js : Ojs.t -> bigint
 
@@ -748,89 +748,27 @@ external pure_js_expr : string -> Ojs.t = "caml_pure_js_expr"
 
 (* lib_es5.d.ts *)
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_1
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_2
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_3
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_4
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type ('A, 'A0, 'A1, 'A2, 'A3, 'R) anonymous_interface_5
-    [@@js.custom
-      { of_js = (fun _A _A0 _A1 _A2 _A3 _R -> Obj.magic)
-      ; to_js = (fun _A _A0 _A1 _A2 _A3 _R -> Obj.magic)
-      }]
-
-    type ('A, 'A0, 'A1, 'A2, 'R) anonymous_interface_6
-    [@@js.custom
-      { of_js = (fun _A _A0 _A1 _A2 _R -> Obj.magic)
-      ; to_js = (fun _A _A0 _A1 _A2 _R -> Obj.magic)
-      }]
-
-    type ('A, 'A0, 'A1, 'R) anonymous_interface_7
-    [@@js.custom
-      { of_js = (fun _A _A0 _A1 _R -> Obj.magic)
-      ; to_js = (fun _A _A0 _A1 _R -> Obj.magic)
-      }]
-
-    type ('A, 'A0, 'R) anonymous_interface_8
-    [@@js.custom
-      { of_js = (fun _A _A0 _R -> Obj.magic)
-      ; to_js = (fun _A _A0 _R -> Obj.magic)
-      }]
-
-    type ('A, 'R) anonymous_interface_9
-    [@@js.custom
-      { of_js = (fun _A _R -> Obj.magic); to_js = (fun _A _R -> Obj.magic) }]
-
-    type ('A, 'T) anonymous_interface_10
-    [@@js.custom
-      { of_js = (fun _A _T -> Obj.magic); to_js = (fun _A _T -> Obj.magic) }]
-
-    type ('AX, 'R) anonymous_interface_11
-    [@@js.custom
-      { of_js = (fun _AX _R -> Obj.magic); to_js = (fun _AX _R -> Obj.magic) }]
-
-    type 'T anonymous_interface_12
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-
 val nan : int [@@js.global "NaN"]
 
 val infinity : int [@@js.global "Infinity"]
 
 val eval : string -> any [@@js.global "eval"]
 
-val parseInt : string -> ?radix:int -> unit -> int [@@js.global "parseInt"]
+val parse_int : string -> ?radix:int -> unit -> int [@@js.global "parseInt"]
 
-val parseFloat : string:string -> int [@@js.global "parseFloat"]
+val parse_float : string:string -> int [@@js.global "parseFloat"]
 
-val isNaN : int -> bool [@@js.global "isNaN"]
+val is_nan : int -> bool [@@js.global "isNaN"]
 
-val isFinite : int -> bool [@@js.global "isFinite"]
+val is_finite : int -> bool [@@js.global "isFinite"]
 
-val decodeURI : string -> string [@@js.global "decodeURI"]
+val decode_uri : string -> string [@@js.global "decodeURI"]
 
-val decodeURIComponent : string -> string [@@js.global "decodeURIComponent"]
+val decode_uri_component : string -> string [@@js.global "decodeURIComponent"]
 
-val encodeURI : string -> string [@@js.global "encodeURI"]
+val encode_uri : string -> string [@@js.global "encodeURI"]
 
-val encodeURIComponent : bool or_string or_number -> string
+val encode_uri_component : bool or_string or_number -> string
   [@@js.global "encodeURIComponent"]
 
 val escape : string -> string [@@js.global "escape"]
@@ -844,9 +782,9 @@ module Symbol : sig
 
   val t_of_js : Ojs.t -> t
 
-  val toString : t -> string [@@js.call "toString"]
+  val to_string : t -> string [@@js.call "toString"]
 
-  val valueOf : t -> symbol [@@js.call "valueOf"]
+  val value_of : t -> symbol [@@js.call "valueOf"]
 end
 [@@js.scope "Symbol"]
 
@@ -1038,7 +976,7 @@ module Function : sig
     -> any
     [@@js.call "bind"]
 
-  val toString : t -> string [@@js.call "toString"]
+  val to_string : t -> string [@@js.call "toString"]
 
   val get_prototype : t -> any [@@js.get "prototype"]
 
@@ -1088,43 +1026,43 @@ module Object : sig
 
   val set_constructor : t -> Function.t -> unit [@@js.set "constructor"]
 
-  val toString : t -> string [@@js.call "toString"]
+  val to_string : t -> string [@@js.call "toString"]
 
-  val toLocaleString : t -> string [@@js.call "toLocaleString"]
+  val to_locale_string : t -> string [@@js.call "toLocaleString"]
 
-  val valueOf : t -> t [@@js.call "valueOf"]
+  val value_of : t -> t [@@js.call "valueOf"]
 
-  val hasOwnProperty : t -> PropertyKey.t -> bool [@@js.call "hasOwnProperty"]
+  val has_own_property : t -> PropertyKey.t -> bool [@@js.call "hasOwnProperty"]
 
-  val isPrototypeOf : t -> t -> bool [@@js.call "isPrototypeOf"]
+  val is_prototype_of : t -> t -> bool [@@js.call "isPrototypeOf"]
 
-  val propertyIsEnumerable : t -> PropertyKey.t -> bool
+  val property_is_enumerable : t -> PropertyKey.t -> bool
     [@@js.call "propertyIsEnumerable"]
 
   (* Constructor *)
 
   val create : ?value:any -> unit -> t [@@js.new "Object"]
 
-  val getPrototypeOf : any -> any [@@js.global "Object.getPrototypeOf"]
+  val get_prototype_of : any -> any [@@js.global "Object.getPrototypeOf"]
 
-  val getOwnPropertyDescriptor
+  val get_own_property_descriptor
     :  any
     -> p:PropertyKey.t
     -> PropertyDescriptor.t or_undefined
     [@@js.global "Object.getOwnPropertyDescriptor"]
 
-  val getOwnPropertyNames : any -> string list
+  val get_own_property_names : any -> string list
     [@@js.global "Object.getOwnPropertyNames"]
 
   val create_ : untyped_object or_null -> any [@@js.new "Object"]
 
-  val create_'
+  val create'
     :  untyped_object or_null
     -> properties:(PropertyDescriptorMap.t, any ThisType.t) intersection2
     -> any
     [@@js.new "Object"]
 
-  val defineProperty
+  val define_property
     :  t
     -> any
     -> p:PropertyKey.t
@@ -1132,7 +1070,7 @@ module Object : sig
     -> any
     [@@js.global "Object.defineProperty"]
 
-  val defineProperties
+  val define_properties
     :  t
     -> any
     -> properties:(PropertyDescriptorMap.t, any ThisType.t) intersection2
@@ -1147,13 +1085,13 @@ module Object : sig
 
   val freeze'' : 'T -> 'T Readonly.t [@@js.global "Object.freeze"]
 
-  val preventExtensions : 'T -> 'T [@@js.global "Object.preventExtensions"]
+  val prevent_extensions : 'T -> 'T [@@js.global "Object.preventExtensions"]
 
-  val isSealed : any -> bool [@@js.global "Object.isSealed"]
+  val is_sealed : any -> bool [@@js.global "Object.isSealed"]
 
-  val isFrozen : any -> bool [@@js.global "Object.isFrozen"]
+  val is_frozen : any -> bool [@@js.global "Object.isFrozen"]
 
-  val isExtensible : any -> bool [@@js.global "Object.isExtensible"]
+  val is_extensible : any -> bool [@@js.global "Object.isExtensible"]
 
   val keys : untyped_object -> string list [@@js.global "Object.keys"]
 end
@@ -1173,28 +1111,28 @@ module ObjectConstructor : sig
 
   val get_prototype : t -> Object.t [@@js.get "prototype"]
 
-  val getPrototypeOf : t -> any -> any [@@js.call "getPrototypeOf"]
+  val get_prototype_of : t -> any -> any [@@js.call "getPrototypeOf"]
 
-  val getOwnPropertyDescriptor
+  val get_own_property_descriptor
     :  t
     -> any
     -> p:PropertyKey.t
     -> PropertyDescriptor.t or_undefined
     [@@js.call "getOwnPropertyDescriptor"]
 
-  val getOwnPropertyNames : t -> any -> string list
+  val get_own_property_names : t -> any -> string list
     [@@js.call "getOwnPropertyNames"]
 
   val create_ : t -> untyped_object or_null -> any [@@js.call "create"]
 
-  val create_'
+  val create'
     :  t
     -> untyped_object or_null
     -> properties:(PropertyDescriptorMap.t, any ThisType.t) intersection2
     -> any
     [@@js.call "create"]
 
-  val defineProperty
+  val define_property
     :  t
     -> any
     -> p:PropertyKey.t
@@ -1202,7 +1140,7 @@ module ObjectConstructor : sig
     -> any
     [@@js.call "defineProperty"]
 
-  val defineProperties
+  val define_properties
     :  t
     -> any
     -> properties:(PropertyDescriptorMap.t, any ThisType.t) intersection2
@@ -1217,13 +1155,13 @@ module ObjectConstructor : sig
 
   val freeze'' : t -> 'T -> 'T Readonly.t [@@js.call "freeze"]
 
-  val preventExtensions : t -> 'T -> 'T [@@js.call "preventExtensions"]
+  val prevent_extensions : t -> 'T -> 'T [@@js.call "preventExtensions"]
 
-  val isSealed : t -> any -> bool [@@js.call "isSealed"]
+  val is_sealed : t -> any -> bool [@@js.call "isSealed"]
 
-  val isFrozen : t -> any -> bool [@@js.call "isFrozen"]
+  val is_frozen : t -> any -> bool [@@js.call "isFrozen"]
 
-  val isExtensible : t -> any -> bool [@@js.call "isExtensible"]
+  val is_extensible : t -> any -> bool [@@js.call "isExtensible"]
 
   val keys : t -> untyped_object -> string list [@@js.call "keys"]
 end
@@ -1312,73 +1250,36 @@ module NewableFunction : sig
     include Function
   end
 
-  val apply_ : t -> this:'T anonymous_interface_12 -> thisArg:'T -> unit
-    [@@js.call "apply"]
+  (* val apply_ : t -> this:'T AnonymousInterface12.t -> thisArg:'T -> unit
+     [@@js.call "apply"] *)
 
-  val apply_'
-    :  t
-    -> this:('A, 'T) anonymous_interface_10
-    -> thisArg:'T
-    -> 'A
-    -> unit
-    [@@js.call "apply"]
+  (* val apply' : t -> this:('A, 'T) AnonymousInterface10.t -> thisArg:'T -> 'A
+     -> unit [@@js.call "apply"] *)
 
-  val call
-    :  t
-    -> this:('A, 'T) anonymous_interface_10
-    -> thisArg:'T
-    -> (* FIXME: type ''A' cannot be used for variadic argument *)
-       (any list[@js.variadic])
-    -> unit
-    [@@js.call "call"]
+  (* val call : t -> this:('A, 'T) AnonymousInterface10.t -> thisArg:'T -> (*
+     FIXME: type ''A' cannot be used for variadic argument *) (any
+     list[@js.variadic]) -> unit [@@js.call "call"] *)
 
   val bind : t -> this:'T -> thisArg:any -> 'T [@@js.call "bind"]
 
-  val bind'
-    :  t
-    -> this:('A, 'A0, 'R) anonymous_interface_8
-    -> thisArg:any
-    -> arg0:'A0
-    -> ('A, 'R) anonymous_interface_9
-    [@@js.call "bind"]
+  (* val bind' : t -> this:('A, 'A0, 'R) AnonymousInterface8.t -> thisArg:any ->
+     arg0:'A0 -> ('A, 'R) AnonymousInterface9.t [@@js.call "bind"] *)
 
-  val bind''
-    :  t
-    -> this:('A, 'A0, 'A1, 'R) anonymous_interface_7
-    -> thisArg:any
-    -> arg0:'A0
-    -> arg1:'A1
-    -> ('A, 'R) anonymous_interface_9
-    [@@js.call "bind"]
+  (* val bind'' : t -> this:('A, 'A0, 'A1, 'R) AnonymousInterface7.t ->
+     thisArg:any -> arg0:'A0 -> arg1:'A1 -> ('A, 'R) AnonymousInterface9.t
+     [@@js.call "bind"] *)
 
-  val bind'''
-    :  t
-    -> this:('A, 'A0, 'A1, 'A2, 'R) anonymous_interface_6
-    -> thisArg:any
-    -> arg0:'A0
-    -> arg1:'A1
-    -> arg2:'A2
-    -> ('A, 'R) anonymous_interface_9
-    [@@js.call "bind"]
+  (* val bind''' : t -> this:('A, 'A0, 'A1, 'A2, 'R) AnonymousInterface6.t ->
+     thisArg:any -> arg0:'A0 -> arg1:'A1 -> arg2:'A2 -> ('A, 'R)
+     AnonymousInterface9.t [@@js.call "bind"] *)
 
-  val bind''''
-    :  t
-    -> this:('A, 'A0, 'A1, 'A2, 'A3, 'R) anonymous_interface_5
-    -> thisArg:any
-    -> arg0:'A0
-    -> arg1:'A1
-    -> arg2:'A2
-    -> arg3:'A3
-    -> ('A, 'R) anonymous_interface_9
-    [@@js.call "bind"]
+  (* val bind'''' : t -> this:('A, 'A0, 'A1, 'A2, 'A3, 'R) AnonymousInterface5.t
+     -> thisArg:any -> arg0:'A0 -> arg1:'A1 -> arg2:'A2 -> arg3:'A3 -> ('A, 'R)
+     AnonymousInterface9.t [@@js.call "bind"] *)
 
-  val bind'''''
-    :  t
-    -> this:('AX, 'R) anonymous_interface_11
-    -> thisArg:any
-    -> ('AX list[@js.variadic])
-    -> ('AX, 'R) anonymous_interface_11
-    [@@js.call "bind"]
+  (* val bind''''' : t -> this:('AX, 'R) AnonymousInterface11.t -> thisArg:any
+     -> ('AX list[@js.variadic]) -> ('AX, 'R) AnonymousInterface11.t [@@js.call
+     "bind"] *)
 end
 
 module IArguments : sig
@@ -1414,25 +1315,26 @@ module Intl : sig
 
     val set_usage : t -> string -> unit [@@js.set "usage"]
 
-    val get_localeMatcher : t -> string [@@js.get "localeMatcher"]
+    val get_locale_matcher : t -> string [@@js.get "localeMatcher"]
 
-    val set_localeMatcher : t -> string -> unit [@@js.set "localeMatcher"]
+    val set_locale_matcher : t -> string -> unit [@@js.set "localeMatcher"]
 
     val get_numeric : t -> bool [@@js.get "numeric"]
 
     val set_numeric : t -> bool -> unit [@@js.set "numeric"]
 
-    val get_caseFirst : t -> string [@@js.get "caseFirst"]
+    val get_case_first : t -> string [@@js.get "caseFirst"]
 
-    val set_caseFirst : t -> string -> unit [@@js.set "caseFirst"]
+    val set_case_first : t -> string -> unit [@@js.set "caseFirst"]
 
     val get_sensitivity : t -> string [@@js.get "sensitivity"]
 
     val set_sensitivity : t -> string -> unit [@@js.set "sensitivity"]
 
-    val get_ignorePunctuation : t -> bool [@@js.get "ignorePunctuation"]
+    val get_ignore_punctuation : t -> bool [@@js.get "ignorePunctuation"]
 
-    val set_ignorePunctuation : t -> bool -> unit [@@js.set "ignorePunctuation"]
+    val set_ignore_punctuation : t -> bool -> unit
+      [@@js.set "ignorePunctuation"]
   end
   [@@js.scope "CollatorOptions"]
 
@@ -1455,17 +1357,18 @@ module Intl : sig
 
     val set_sensitivity : t -> string -> unit [@@js.set "sensitivity"]
 
-    val get_ignorePunctuation : t -> bool [@@js.get "ignorePunctuation"]
+    val get_ignore_punctuation : t -> bool [@@js.get "ignorePunctuation"]
 
-    val set_ignorePunctuation : t -> bool -> unit [@@js.set "ignorePunctuation"]
+    val set_ignore_punctuation : t -> bool -> unit
+      [@@js.set "ignorePunctuation"]
 
     val get_collation : t -> string [@@js.get "collation"]
 
     val set_collation : t -> string -> unit [@@js.set "collation"]
 
-    val get_caseFirst : t -> string [@@js.get "caseFirst"]
+    val get_case_first : t -> string [@@js.get "caseFirst"]
 
-    val set_caseFirst : t -> string -> unit [@@js.set "caseFirst"]
+    val set_case_first : t -> string -> unit [@@js.set "caseFirst"]
 
     val get_numeric : t -> bool [@@js.get "numeric"]
 
@@ -1482,12 +1385,44 @@ module Intl : sig
 
     val compare : t -> x:string -> y:string -> int [@@js.call "compare"]
 
-    val resolvedOptions : t -> ResolvedCollatorOptions.t
+    val resolved_options : t -> ResolvedCollatorOptions.t
       [@@js.call "resolvedOptions"]
   end
   [@@js.scope "Collator"]
 
-  val collator : anonymous_interface_2 [@@js.global "Collator"]
+  module CollatorConstructor : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val create
+      :  t
+      -> ?locales:string list or_string
+      -> ?options:CollatorOptions.t
+      -> unit
+      -> Collator.t
+      [@@js.apply_newable]
+
+    val apply
+      :  t
+      -> ?locales:string list or_string
+      -> ?options:CollatorOptions.t
+      -> unit
+      -> Collator.t
+      [@@js.apply]
+
+    val supported_locales_of
+      :  t
+      -> locales:string list or_string
+      -> ?options:CollatorOptions.t
+      -> unit
+      -> string list
+      [@@js.call "supportedLocalesOf"]
+  end
+
+  val collator : CollatorConstructor.t [@@js.global "Collator"]
 
   module NumberFormatOptions : sig
     type t
@@ -1496,9 +1431,9 @@ module Intl : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_localeMatcher : t -> string [@@js.get "localeMatcher"]
+    val get_locale_matcher : t -> string [@@js.get "localeMatcher"]
 
-    val set_localeMatcher : t -> string -> unit [@@js.set "localeMatcher"]
+    val set_locale_matcher : t -> string -> unit [@@js.set "localeMatcher"]
 
     val get_style : t -> string [@@js.get "style"]
 
@@ -1508,43 +1443,45 @@ module Intl : sig
 
     val set_currency : t -> string -> unit [@@js.set "currency"]
 
-    val get_currencyDisplay : t -> string [@@js.get "currencyDisplay"]
+    val get_currency_display : t -> string [@@js.get "currencyDisplay"]
 
-    val set_currencyDisplay : t -> string -> unit [@@js.set "currencyDisplay"]
+    val set_currency_display : t -> string -> unit [@@js.set "currencyDisplay"]
 
-    val get_currencySign : t -> string [@@js.get "currencySign"]
+    val get_currency_sign : t -> string [@@js.get "currencySign"]
 
-    val set_currencySign : t -> string -> unit [@@js.set "currencySign"]
+    val set_currency_sign : t -> string -> unit [@@js.set "currencySign"]
 
-    val get_useGrouping : t -> bool [@@js.get "useGrouping"]
+    val get_use_grouping : t -> bool [@@js.get "useGrouping"]
 
-    val set_useGrouping : t -> bool -> unit [@@js.set "useGrouping"]
+    val set_use_grouping : t -> bool -> unit [@@js.set "useGrouping"]
 
-    val get_minimumIntegerDigits : t -> int [@@js.get "minimumIntegerDigits"]
+    val get_minimum_integer_digits : t -> int [@@js.get "minimumIntegerDigits"]
 
-    val set_minimumIntegerDigits : t -> int -> unit
+    val set_minimum_integer_digits : t -> int -> unit
       [@@js.set "minimumIntegerDigits"]
 
-    val get_minimumFractionDigits : t -> int [@@js.get "minimumFractionDigits"]
+    val get_minimum_fraction_digits : t -> int
+      [@@js.get "minimumFractionDigits"]
 
-    val set_minimumFractionDigits : t -> int -> unit
+    val set_minimum_fraction_digits : t -> int -> unit
       [@@js.set "minimumFractionDigits"]
 
-    val get_maximumFractionDigits : t -> int [@@js.get "maximumFractionDigits"]
+    val get_maximum_fraction_digits : t -> int
+      [@@js.get "maximumFractionDigits"]
 
-    val set_maximumFractionDigits : t -> int -> unit
+    val set_maximum_fraction_digits : t -> int -> unit
       [@@js.set "maximumFractionDigits"]
 
-    val get_minimumSignificantDigits : t -> int
+    val get_minimum_significant_digits : t -> int
       [@@js.get "minimumSignificantDigits"]
 
-    val set_minimumSignificantDigits : t -> int -> unit
+    val set_minimum_significant_digits : t -> int -> unit
       [@@js.set "minimumSignificantDigits"]
 
-    val get_maximumSignificantDigits : t -> int
+    val get_maximum_significant_digits : t -> int
       [@@js.get "maximumSignificantDigits"]
 
-    val set_maximumSignificantDigits : t -> int -> unit
+    val set_maximum_significant_digits : t -> int -> unit
       [@@js.set "maximumSignificantDigits"]
   end
   [@@js.scope "NumberFormatOptions"]
@@ -1560,9 +1497,9 @@ module Intl : sig
 
     val set_locale : t -> string -> unit [@@js.set "locale"]
 
-    val get_numberingSystem : t -> string [@@js.get "numberingSystem"]
+    val get_numbering_system : t -> string [@@js.get "numberingSystem"]
 
-    val set_numberingSystem : t -> string -> unit [@@js.set "numberingSystem"]
+    val set_numbering_system : t -> string -> unit [@@js.set "numberingSystem"]
 
     val get_style : t -> string [@@js.get "style"]
 
@@ -1572,40 +1509,42 @@ module Intl : sig
 
     val set_currency : t -> string -> unit [@@js.set "currency"]
 
-    val get_currencyDisplay : t -> string [@@js.get "currencyDisplay"]
+    val get_currency_display : t -> string [@@js.get "currencyDisplay"]
 
-    val set_currencyDisplay : t -> string -> unit [@@js.set "currencyDisplay"]
+    val set_currency_display : t -> string -> unit [@@js.set "currencyDisplay"]
 
-    val get_minimumIntegerDigits : t -> int [@@js.get "minimumIntegerDigits"]
+    val get_minimum_integer_digits : t -> int [@@js.get "minimumIntegerDigits"]
 
-    val set_minimumIntegerDigits : t -> int -> unit
+    val set_minimum_integer_digits : t -> int -> unit
       [@@js.set "minimumIntegerDigits"]
 
-    val get_minimumFractionDigits : t -> int [@@js.get "minimumFractionDigits"]
+    val get_minimum_fraction_digits : t -> int
+      [@@js.get "minimumFractionDigits"]
 
-    val set_minimumFractionDigits : t -> int -> unit
+    val set_minimum_fraction_digits : t -> int -> unit
       [@@js.set "minimumFractionDigits"]
 
-    val get_maximumFractionDigits : t -> int [@@js.get "maximumFractionDigits"]
+    val get_maximum_fraction_digits : t -> int
+      [@@js.get "maximumFractionDigits"]
 
-    val set_maximumFractionDigits : t -> int -> unit
+    val set_maximum_fraction_digits : t -> int -> unit
       [@@js.set "maximumFractionDigits"]
 
-    val get_minimumSignificantDigits : t -> int
+    val get_minimum_significant_digits : t -> int
       [@@js.get "minimumSignificantDigits"]
 
-    val set_minimumSignificantDigits : t -> int -> unit
+    val set_minimum_significant_digits : t -> int -> unit
       [@@js.set "minimumSignificantDigits"]
 
-    val get_maximumSignificantDigits : t -> int
+    val get_maximum_significant_digits : t -> int
       [@@js.get "maximumSignificantDigits"]
 
-    val set_maximumSignificantDigits : t -> int -> unit
+    val set_maximum_significant_digits : t -> int -> unit
       [@@js.set "maximumSignificantDigits"]
 
-    val get_useGrouping : t -> bool [@@js.get "useGrouping"]
+    val get_use_grouping : t -> bool [@@js.get "useGrouping"]
 
-    val set_useGrouping : t -> bool -> unit [@@js.set "useGrouping"]
+    val set_use_grouping : t -> bool -> unit [@@js.set "useGrouping"]
   end
   [@@js.scope "ResolvedNumberFormatOptions"]
 
@@ -1618,12 +1557,44 @@ module Intl : sig
 
     val format : t -> value:int -> string [@@js.call "format"]
 
-    val resolvedOptions : t -> ResolvedNumberFormatOptions.t
+    val resolved_options : t -> ResolvedNumberFormatOptions.t
       [@@js.call "resolvedOptions"]
   end
   [@@js.scope "NumberFormat"]
 
-  val numberFormat : anonymous_interface_4 [@@js.global "NumberFormat"]
+  module NumberFormatConstructor : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val create
+      :  t
+      -> ?locales:string list or_string
+      -> ?options:NumberFormatOptions.t
+      -> unit
+      -> NumberFormat.t
+      [@@js.apply_newable]
+
+    val apply
+      :  t
+      -> ?locales:string list or_string
+      -> ?options:NumberFormatOptions.t
+      -> unit
+      -> NumberFormat.t
+      [@@js.apply]
+
+    val supported_locales_of
+      :  t
+      -> locales:string list or_string
+      -> ?options:NumberFormatOptions.t
+      -> unit
+      -> string list
+      [@@js.call "supportedLocalesOf"]
+  end
+
+  val number_format : NumberFormatConstructor.t [@@js.global "NumberFormat"]
 
   module DateTimeFormatOptions : sig
     type t
@@ -1632,12 +1603,12 @@ module Intl : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_localeMatcher
+    val get_locale_matcher
       :  t
       -> ([ `best_fit [@js "best fit"] | `lookup [@js "lookup"] ][@js.enum])
       [@@js.get "localeMatcher"]
 
-    val set_localeMatcher : t -> ([ `best_fit | `lookup ][@js.enum]) -> unit
+    val set_locale_matcher : t -> ([ `best_fit | `lookup ][@js.enum]) -> unit
       [@@js.set "localeMatcher"]
 
     val get_weekday
@@ -1715,29 +1686,29 @@ module Intl : sig
     val set_second : t -> ([ `two_digit | `numeric ][@js.enum]) -> unit
       [@@js.set "second"]
 
-    val get_timeZoneName
+    val get_time_zone_name
       :  t
       -> ([ `long [@js "long"] | `short [@js "short"] ][@js.enum])
       [@@js.get "timeZoneName"]
 
-    val set_timeZoneName : t -> ([ `long | `short ][@js.enum]) -> unit
+    val set_time_zone_name : t -> ([ `long | `short ][@js.enum]) -> unit
       [@@js.set "timeZoneName"]
 
-    val get_formatMatcher
+    val get_format_matcher
       :  t
       -> ([ `basic [@js "basic"] | `best_fit [@js "best fit"] ][@js.enum])
       [@@js.get "formatMatcher"]
 
-    val set_formatMatcher : t -> ([ `basic | `best_fit ][@js.enum]) -> unit
+    val set_format_matcher : t -> ([ `basic | `best_fit ][@js.enum]) -> unit
       [@@js.set "formatMatcher"]
 
     val get_hour12 : t -> bool [@@js.get "hour12"]
 
     val set_hour12 : t -> bool -> unit [@@js.set "hour12"]
 
-    val get_timeZone : t -> string [@@js.get "timeZone"]
+    val get_time_zone : t -> string [@@js.get "timeZone"]
 
-    val set_timeZone : t -> string -> unit [@@js.set "timeZone"]
+    val set_time_zone : t -> string -> unit [@@js.set "timeZone"]
   end
   [@@js.scope "DateTimeFormatOptions"]
 
@@ -1756,13 +1727,13 @@ module Intl : sig
 
     val set_calendar : t -> string -> unit [@@js.set "calendar"]
 
-    val get_numberingSystem : t -> string [@@js.get "numberingSystem"]
+    val get_numbering_system : t -> string [@@js.get "numberingSystem"]
 
-    val set_numberingSystem : t -> string -> unit [@@js.set "numberingSystem"]
+    val set_numbering_system : t -> string -> unit [@@js.set "numberingSystem"]
 
-    val get_timeZone : t -> string [@@js.get "timeZone"]
+    val get_time_zone : t -> string [@@js.get "timeZone"]
 
-    val set_timeZone : t -> string -> unit [@@js.set "timeZone"]
+    val set_time_zone : t -> string -> unit [@@js.set "timeZone"]
 
     val get_hour12 : t -> bool [@@js.get "hour12"]
 
@@ -1800,11 +1771,63 @@ module Intl : sig
 
     val set_second : t -> string -> unit [@@js.set "second"]
 
-    val get_timeZoneName : t -> string [@@js.get "timeZoneName"]
+    val get_time_zone_name : t -> string [@@js.get "timeZoneName"]
 
-    val set_timeZoneName : t -> string -> unit [@@js.set "timeZoneName"]
+    val set_time_zone_name : t -> string -> unit [@@js.set "timeZoneName"]
   end
   [@@js.scope "ResolvedDateTimeFormatOptions"]
+
+  module DateTimeFormat : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    (* val format : t -> ?date:Date.t or_number -> unit -> string [@@js.call
+       "format"] *)
+
+    val format : t -> string [@@js.call "format"]
+
+    val resolved_options : t -> ResolvedDateTimeFormatOptions.t
+      [@@js.call "resolvedOptions"]
+  end
+  [@@js.scope "DateTimeFormat"]
+
+  module DateTimeFormatConstructor : sig
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val create
+      :  t
+      -> ?locales:string list or_string
+      -> ?options:DateTimeFormatOptions.t
+      -> unit
+      -> DateTimeFormat.t
+      [@@js.apply_newable]
+
+    val apply
+      :  t
+      -> ?locales:string list or_string
+      -> ?options:DateTimeFormatOptions.t
+      -> unit
+      -> DateTimeFormat.t
+      [@@js.apply]
+
+    val supported_locales_of
+      :  t
+      -> locales:string list or_string
+      -> ?options:DateTimeFormatOptions.t
+      -> unit
+      -> string list
+      [@@js.call "supportedLocalesOf"]
+  end
+
+  val date_time_format : DateTimeFormatConstructor.t
+    [@@js.global "DateTimeFormat"]
 end
 [@@js.scope "Intl"]
 
@@ -1835,9 +1858,9 @@ module ReadonlyArray : sig
 
   val get_length : 'T t -> int [@@js.get "length"]
 
-  val toString : 'T t -> string [@@js.call "toString"]
+  val to_string : 'T t -> string [@@js.call "toString"]
 
-  val toLocaleString : 'T t -> string [@@js.call "toLocaleString"]
+  val to_locale_string : 'T t -> string [@@js.call "toLocaleString"]
 
   val concat : 'T t -> ('T ConcatArray.t list[@js.variadic]) -> 'T list
     [@@js.call "concat"]
@@ -1853,10 +1876,10 @@ module ReadonlyArray : sig
   val slice : 'T t -> ?start:int -> ?end_:int -> unit -> 'T list
     [@@js.call "slice"]
 
-  val indexOf : 'T t -> searchElement:'T -> ?fromIndex:int -> unit -> int
+  val index_of : 'T t -> searchElement:'T -> ?fromIndex:int -> unit -> int
     [@@js.call "indexOf"]
 
-  val lastIndexOf : 'T t -> searchElement:'T -> ?fromIndex:int -> unit -> int
+  val last_index_of : 'T t -> searchElement:'T -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val every
@@ -1883,7 +1906,7 @@ module ReadonlyArray : sig
     -> bool
     [@@js.call "some"]
 
-  val forEach
+  val for_each
     :  'T t
     -> callbackfn:(value:'T -> index:int -> array:'T list -> unit)
     -> ?thisArg:any
@@ -1950,7 +1973,7 @@ module ReadonlyArray : sig
     -> 'U
     [@@js.call "reduce"]
 
-  val reduceRight
+  val reduce_right
     :  'T t
     -> callbackfn:
          (previousValue:'T
@@ -1961,7 +1984,7 @@ module ReadonlyArray : sig
     -> 'T
     [@@js.call "reduceRight"]
 
-  val reduceRight'
+  val reduce_right'
     :  'T t
     -> callbackfn:
          (previousValue:'T
@@ -1973,7 +1996,7 @@ module ReadonlyArray : sig
     -> 'T
     [@@js.call "reduceRight"]
 
-  val reduceRight''
+  val reduce_right''
     :  'T t
     -> callbackfn:
          (previousValue:'U
@@ -2019,9 +2042,9 @@ module Array : sig
 
   val set_length : 'T t -> int -> unit [@@js.set "length"]
 
-  val toString : 'T t -> string [@@js.call "toString"]
+  val to_string : 'T t -> string [@@js.call "toString"]
 
-  val toLocaleString : 'T t -> string [@@js.call "toLocaleString"]
+  val to_locale_string : 'T t -> string [@@js.call "toLocaleString"]
 
   val pop : 'T t -> 'T or_undefined [@@js.call "pop"]
 
@@ -2061,10 +2084,10 @@ module Array : sig
 
   val unshift : 'T t -> ('T list[@js.variadic]) -> int [@@js.call "unshift"]
 
-  val indexOf : 'T t -> searchElement:'T -> ?fromIndex:int -> unit -> int
+  val index_of : 'T t -> searchElement:'T -> ?fromIndex:int -> unit -> int
     [@@js.call "indexOf"]
 
-  val lastIndexOf : 'T t -> searchElement:'T -> ?fromIndex:int -> unit -> int
+  val last_index_of : 'T t -> searchElement:'T -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val every
@@ -2091,7 +2114,7 @@ module Array : sig
     -> bool
     [@@js.call "some"]
 
-  val forEach
+  val for_each
     :  'T t
     -> callbackfn:(value:'T -> index:int -> array:'T list -> unit)
     -> ?thisArg:any
@@ -2158,7 +2181,7 @@ module Array : sig
     -> 'U
     [@@js.call "reduce"]
 
-  val reduceRight
+  val reduce_right
     :  'T t
     -> callbackfn:
          (previousValue:'T
@@ -2169,7 +2192,7 @@ module Array : sig
     -> 'T
     [@@js.call "reduceRight"]
 
-  val reduceRight'
+  val reduce_right'
     :  'T t
     -> callbackfn:
          (previousValue:'T
@@ -2181,7 +2204,7 @@ module Array : sig
     -> 'T
     [@@js.call "reduceRight"]
 
-  val reduceRight''
+  val reduce_right''
     :  'T t
     -> callbackfn:
          (previousValue:'U
@@ -2209,7 +2232,7 @@ module Array : sig
 
   val create'' : ('T list[@js.variadic]) -> 'T list [@@js.new "Array"]
 
-  val isArray : any -> bool [@@js.global "Array.isArray"]
+  val is_array : any -> bool [@@js.global "Array.isArray"]
 end
 
 module ArrayConstructor : sig
@@ -2231,7 +2254,7 @@ module ArrayConstructor : sig
 
   val apply'' : t -> ('T list[@js.variadic]) -> 'T list [@@js.apply]
 
-  val isArray : t -> any -> bool [@@js.call "isArray"]
+  val is_array : t -> any -> bool [@@js.call "isArray"]
 
   val get_prototype : t -> any list [@@js.get "prototype"]
 end
@@ -2296,13 +2319,13 @@ module RegExp : sig
 
   val get_global : t -> bool [@@js.get "global"]
 
-  val get_ignoreCase : t -> bool [@@js.get "ignoreCase"]
+  val get_ignore_case : t -> bool [@@js.get "ignoreCase"]
 
   val get_multiline : t -> bool [@@js.get "multiline"]
 
-  val get_lastIndex : t -> int [@@js.get "lastIndex"]
+  val get_last_index : t -> int [@@js.get "lastIndex"]
 
-  val set_lastIndex : t -> int -> unit [@@js.set "lastIndex"]
+  val set_last_index : t -> int -> unit [@@js.set "lastIndex"]
 
   val compile : t -> t [@@js.call "compile"]
 
@@ -2312,45 +2335,45 @@ module RegExp : sig
 
   val create' : pattern:string -> ?flags:string -> unit -> t [@@js.new "RegExp"]
 
-  val get__1 : unit -> string [@@js.global "RegExp.$1"]
+  val get_1 : unit -> string [@@js.global "RegExp.$1"]
 
-  val set__1 : string -> unit [@@js.global "RegExp.$1"]
+  val set_1 : string -> unit [@@js.global "RegExp.$1"]
 
-  val get__2 : unit -> string [@@js.global "RegExp.$2"]
+  val get_2 : unit -> string [@@js.global "RegExp.$2"]
 
-  val set__2 : string -> unit [@@js.global "RegExp.$2"]
+  val set_2 : string -> unit [@@js.global "RegExp.$2"]
 
-  val get__3 : unit -> string [@@js.global "RegExp.$3"]
+  val get_3 : unit -> string [@@js.global "RegExp.$3"]
 
-  val set__3 : string -> unit [@@js.global "RegExp.$3"]
+  val set_3 : string -> unit [@@js.global "RegExp.$3"]
 
-  val get__4 : unit -> string [@@js.global "RegExp.$4"]
+  val get_4 : unit -> string [@@js.global "RegExp.$4"]
 
-  val set__4 : string -> unit [@@js.global "RegExp.$4"]
+  val set_4 : string -> unit [@@js.global "RegExp.$4"]
 
-  val get__5 : unit -> string [@@js.global "RegExp.$5"]
+  val get_5 : unit -> string [@@js.global "RegExp.$5"]
 
-  val set__5 : string -> unit [@@js.global "RegExp.$5"]
+  val set_5 : string -> unit [@@js.global "RegExp.$5"]
 
-  val get__6 : unit -> string [@@js.global "RegExp.$6"]
+  val get_6 : unit -> string [@@js.global "RegExp.$6"]
 
-  val set__6 : string -> unit [@@js.global "RegExp.$6"]
+  val set_6 : string -> unit [@@js.global "RegExp.$6"]
 
-  val get__7 : unit -> string [@@js.global "RegExp.$7"]
+  val get_7 : unit -> string [@@js.global "RegExp.$7"]
 
-  val set__7 : string -> unit [@@js.global "RegExp.$7"]
+  val set_7 : string -> unit [@@js.global "RegExp.$7"]
 
-  val get__8 : unit -> string [@@js.global "RegExp.$8"]
+  val get_8 : unit -> string [@@js.global "RegExp.$8"]
 
-  val set__8 : string -> unit [@@js.global "RegExp.$8"]
+  val set_8 : string -> unit [@@js.global "RegExp.$8"]
 
-  val get__9 : unit -> string [@@js.global "RegExp.$9"]
+  val get_9 : unit -> string [@@js.global "RegExp.$9"]
 
-  val set__9 : string -> unit [@@js.global "RegExp.$9"]
+  val set_9 : string -> unit [@@js.global "RegExp.$9"]
 
-  val get_lastMatch : unit -> string [@@js.global "RegExp.lastMatch"]
+  val get_last_match : unit -> string [@@js.global "RegExp.lastMatch"]
 
-  val set_lastMatch : string -> unit [@@js.global "RegExp.lastMatch"]
+  val set_last_match : string -> unit [@@js.global "RegExp.lastMatch"]
 end
 
 module RegExpConstructor : sig
@@ -2372,49 +2395,49 @@ module RegExpConstructor : sig
 
   val get_prototype : t -> RegExp.t [@@js.get "prototype"]
 
-  val get__1 : t -> string [@@js.get "$1"]
+  val get_1 : t -> string [@@js.get "$1"]
 
-  val set__1 : t -> string -> unit [@@js.set "$1"]
+  val set_1 : t -> string -> unit [@@js.set "$1"]
 
-  val get__2 : t -> string [@@js.get "$2"]
+  val get_2 : t -> string [@@js.get "$2"]
 
-  val set__2 : t -> string -> unit [@@js.set "$2"]
+  val set_2 : t -> string -> unit [@@js.set "$2"]
 
-  val get__3 : t -> string [@@js.get "$3"]
+  val get_3 : t -> string [@@js.get "$3"]
 
-  val set__3 : t -> string -> unit [@@js.set "$3"]
+  val set_3 : t -> string -> unit [@@js.set "$3"]
 
-  val get__4 : t -> string [@@js.get "$4"]
+  val get_4 : t -> string [@@js.get "$4"]
 
-  val set__4 : t -> string -> unit [@@js.set "$4"]
+  val set_4 : t -> string -> unit [@@js.set "$4"]
 
-  val get__5 : t -> string [@@js.get "$5"]
+  val get_5 : t -> string [@@js.get "$5"]
 
-  val set__5 : t -> string -> unit [@@js.set "$5"]
+  val set_5 : t -> string -> unit [@@js.set "$5"]
 
-  val get__6 : t -> string [@@js.get "$6"]
+  val get_6 : t -> string [@@js.get "$6"]
 
-  val set__6 : t -> string -> unit [@@js.set "$6"]
+  val set_6 : t -> string -> unit [@@js.set "$6"]
 
-  val get__7 : t -> string [@@js.get "$7"]
+  val get_7 : t -> string [@@js.get "$7"]
 
-  val set__7 : t -> string -> unit [@@js.set "$7"]
+  val set_7 : t -> string -> unit [@@js.set "$7"]
 
-  val get__8 : t -> string [@@js.get "$8"]
+  val get_8 : t -> string [@@js.get "$8"]
 
-  val set__8 : t -> string -> unit [@@js.set "$8"]
+  val set_8 : t -> string -> unit [@@js.set "$8"]
 
-  val get__9 : t -> string [@@js.get "$9"]
+  val get_9 : t -> string [@@js.get "$9"]
 
-  val set__9 : t -> string -> unit [@@js.set "$9"]
+  val set_9 : t -> string -> unit [@@js.set "$9"]
 
-  val get_lastMatch : t -> string [@@js.get "lastMatch"]
+  val get_last_match : t -> string [@@js.get "lastMatch"]
 
-  val set_lastMatch : t -> string -> unit [@@js.set "lastMatch"]
+  val set_last_match : t -> string -> unit [@@js.set "lastMatch"]
 end
 [@@js.scope "RegExpConstructor"]
 
-val regExp : RegExpConstructor.t [@@js.global "RegExp"]
+val reg_exp : RegExpConstructor.t [@@js.global "RegExp"]
 
 module String : sig
   type t
@@ -2423,7 +2446,7 @@ module String : sig
 
   val t_of_js : Ojs.t -> t
 
-  val localeCompare
+  val locale_compare
     :  t
     -> that:string
     -> ?locales:string list or_string
@@ -2432,22 +2455,22 @@ module String : sig
     -> int
     [@@js.call "localeCompare"]
 
-  val toString : t -> string [@@js.call "toString"]
+  val to_string : t -> string [@@js.call "toString"]
 
-  val charAt : t -> pos:int -> string [@@js.call "charAt"]
+  val char_at : t -> pos:int -> string [@@js.call "charAt"]
 
-  val charCodeAt : t -> index:int -> int [@@js.call "charCodeAt"]
+  val char_code_at : t -> index:int -> int [@@js.call "charCodeAt"]
 
   val concat : t -> strings:(string list[@js.variadic]) -> string
     [@@js.call "concat"]
 
-  val indexOf : t -> searchString:string -> ?position:int -> unit -> int
+  val index_of : t -> searchString:string -> ?position:int -> unit -> int
     [@@js.call "indexOf"]
 
-  val lastIndexOf : t -> searchString:string -> ?position:int -> unit -> int
+  val last_index_of : t -> searchString:string -> ?position:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
-  val localeCompare' : t -> that:string -> int [@@js.call "localeCompare"]
+  val locale_compare' : t -> that:string -> int [@@js.call "localeCompare"]
 
   val match_ : t -> regexp:RegExp.t or_string -> RegExpMatchArray.t or_null
     [@@js.call "match"]
@@ -2481,14 +2504,22 @@ module String : sig
   val substring : t -> start:int -> ?end_:int -> unit -> string
     [@@js.call "substring"]
 
-  val toLowerCase : t -> string [@@js.call "toLowerCase"]
+  val to_lower_case : t -> string [@@js.call "toLowerCase"]
 
-  val toLocaleLowerCase : t -> ?locales:string list or_string -> unit -> string
+  val to_locale_lower_case
+    :  t
+    -> ?locales:string list or_string
+    -> unit
+    -> string
     [@@js.call "toLocaleLowerCase"]
 
-  val toUpperCase : t -> string [@@js.call "toUpperCase"]
+  val to_upper_case : t -> string [@@js.call "toUpperCase"]
 
-  val toLocaleUpperCase : t -> ?locales:string list or_string -> unit -> string
+  val to_locale_upper_case
+    :  t
+    -> ?locales:string list or_string
+    -> unit
+    -> string
     [@@js.call "toLocaleUpperCase"]
 
   val trim : t -> string [@@js.call "trim"]
@@ -2498,7 +2529,7 @@ module String : sig
   val substr : t -> from:int -> ?length:int -> unit -> string
     [@@js.call "substr"]
 
-  val valueOf : t -> string [@@js.call "valueOf"]
+  val value_of : t -> string [@@js.call "valueOf"]
 
   val get : t -> int -> string [@@js.index_get]
 
@@ -2510,7 +2541,7 @@ module String : sig
 
   val create : ?value:any -> unit -> t [@@js.new "String"]
 
-  val fromCharCode : codes:(int list[@js.variadic]) -> string
+  val from_char_code : codes:(int list[@js.variadic]) -> string
     [@@js.global "String.fromCharCode"]
 end
 
@@ -2527,7 +2558,7 @@ module StringConstructor : sig
 
   val get_prototype : t -> String.t [@@js.get "prototype"]
 
-  val fromCharCode : t -> codes:(int list[@js.variadic]) -> string
+  val from_char_code : t -> codes:(int list[@js.variadic]) -> string
     [@@js.call "fromCharCode"]
 end
 [@@js.scope "StringConstructor"]
@@ -2541,7 +2572,7 @@ module Boolean : sig
 
   val t_of_js : Ojs.t -> t
 
-  val valueOf : t -> bool [@@js.call "valueOf"]
+  val value_of : t -> bool [@@js.call "valueOf"]
 
   val to_ml : t -> bool [@@js.cast]
 
@@ -2576,7 +2607,7 @@ module Number : sig
 
   val t_of_js : Ojs.t -> t
 
-  val toLocaleString
+  val to_locale_string
     :  t
     -> ?locales:string list or_string
     -> ?options:Intl.NumberFormatOptions.t
@@ -2584,17 +2615,18 @@ module Number : sig
     -> string
     [@@js.call "toLocaleString"]
 
-  val toString : t -> ?radix:int -> unit -> string [@@js.call "toString"]
+  val to_string : t -> ?radix:int -> unit -> string [@@js.call "toString"]
 
-  val toFixed : t -> ?fractionDigits:int -> unit -> string [@@js.call "toFixed"]
+  val to_fixed : t -> ?fractionDigits:int -> unit -> string
+    [@@js.call "toFixed"]
 
-  val toExponential : t -> ?fractionDigits:int -> unit -> string
+  val to_exponential : t -> ?fractionDigits:int -> unit -> string
     [@@js.call "toExponential"]
 
-  val toPrecision : t -> ?precision:int -> unit -> string
+  val to_precision : t -> ?precision:int -> unit -> string
     [@@js.call "toPrecision"]
 
-  val valueOf : t -> int [@@js.call "valueOf"]
+  val value_of : t -> int [@@js.call "valueOf"]
 
   val to_ml : t -> int [@@js.cast]
 
@@ -2604,15 +2636,15 @@ module Number : sig
 
   val create : ?value:any -> unit -> t [@@js.new "Number"]
 
-  val get_MAX_VALUE : int [@@js.global "Number.MAX_VALUE"]
+  val get_max_value : int [@@js.global "Number.MAX_VALUE"]
 
-  val get_MIN_VALUE : int [@@js.global "Number.MIN_VALUE"]
+  val get_min_value : int [@@js.global "Number.MIN_VALUE"]
 
-  val get_NaN : int [@@js.global "Number.NaN"]
+  val get_nan : int [@@js.global "Number.NaN"]
 
-  val get_NEGATIVE_INFINITY : int [@@js.global "Number.NEGATIVE_INFINITY"]
+  val get_negative_infinity : int [@@js.global "Number.NEGATIVE_INFINITY"]
 
-  val get_POSITIVE_INFINITY : int [@@js.global "Number.POSITIVE_INFINITY"]
+  val get_positive_infinity : int [@@js.global "Number.POSITIVE_INFINITY"]
 end
 
 module NumberConstructor : sig
@@ -2628,15 +2660,15 @@ module NumberConstructor : sig
 
   val get_prototype : t -> Number.t [@@js.get "prototype"]
 
-  val get_MAX_VALUE : t -> int [@@js.get "MAX_VALUE"]
+  val get_max_value : t -> int [@@js.get "MAX_VALUE"]
 
-  val get_MIN_VALUE : t -> int [@@js.get "MIN_VALUE"]
+  val get_min_value : t -> int [@@js.get "MIN_VALUE"]
 
-  val get_NaN : t -> int [@@js.get "NaN"]
+  val get_nan : t -> int [@@js.get "NaN"]
 
-  val get_NEGATIVE_INFINITY : t -> int [@@js.get "NEGATIVE_INFINITY"]
+  val get_negative_infinity : t -> int [@@js.get "NEGATIVE_INFINITY"]
 
-  val get_POSITIVE_INFINITY : t -> int [@@js.get "POSITIVE_INFINITY"]
+  val get_positive_infinity : t -> int [@@js.get "POSITIVE_INFINITY"]
 end
 [@@js.scope "NumberConstructor"]
 
@@ -2651,21 +2683,21 @@ module ImportMeta : sig
 end
 
 module Math : sig
-  val get_E : int [@@js.global "Math.E"]
+  val get_e : int [@@js.global "Math.E"]
 
-  val get_LN10 : int [@@js.global "Math.LN10"]
+  val get_ln10 : int [@@js.global "Math.LN10"]
 
-  val get_LN2 : int [@@js.global "Math.LN2"]
+  val get_ln2 : int [@@js.global "Math.LN2"]
 
-  val get_LOG2E : int [@@js.global "Math.LOG2E"]
+  val get_log2_e : int [@@js.global "Math.LOG2E"]
 
-  val get_LOG10E : int [@@js.global "Math.LOG10E"]
+  val get_log10_e : int [@@js.global "Math.LOG10E"]
 
-  val get_PI : int [@@js.global "Math.PI"]
+  val get_pi : int [@@js.global "Math.PI"]
 
-  val get_SQRT1_2 : int [@@js.global "Math.SQRT1_2"]
+  val get_sqrt1_2 : int [@@js.global "Math.SQRT1_2"]
 
-  val get_SQRT2 : int [@@js.global "Math.SQRT2"]
+  val get_sqrt2 : int [@@js.global "Math.SQRT2"]
 
   val abs : int -> int [@@js.global "Math.abs"]
 
@@ -2711,7 +2743,7 @@ module Date : sig
 
   val t_of_js : Ojs.t -> t
 
-  val toLocaleString
+  val to_locale_string
     :  t
     -> ?locales:string list or_string
     -> ?options:Intl.DateTimeFormatOptions.t
@@ -2719,7 +2751,7 @@ module Date : sig
     -> string
     [@@js.call "toLocaleString"]
 
-  val toLocaleDateString
+  val to_locale_date_string
     :  t
     -> ?locales:string list or_string
     -> ?options:Intl.DateTimeFormatOptions.t
@@ -2727,7 +2759,7 @@ module Date : sig
     -> string
     [@@js.call "toLocaleDateString"]
 
-  val toLocaleTimeString
+  val to_locale_time_string
     :  t
     -> ?locales:string list or_string
     -> ?options:Intl.DateTimeFormatOptions.t
@@ -2735,75 +2767,75 @@ module Date : sig
     -> string
     [@@js.call "toLocaleTimeString"]
 
-  val toString : t -> string [@@js.call "toString"]
+  val to_string : t -> string [@@js.call "toString"]
 
-  val toDateString : t -> string [@@js.call "toDateString"]
+  val to_date_string : t -> string [@@js.call "toDateString"]
 
-  val toTimeString : t -> string [@@js.call "toTimeString"]
+  val to_time_string : t -> string [@@js.call "toTimeString"]
 
-  val toLocaleString' : t -> string [@@js.call "toLocaleString"]
+  val to_locale_string' : t -> string [@@js.call "toLocaleString"]
 
-  val toLocaleDateString' : t -> string [@@js.call "toLocaleDateString"]
+  val to_locale_date_string' : t -> string [@@js.call "toLocaleDateString"]
 
-  val toLocaleTimeString' : t -> string [@@js.call "toLocaleTimeString"]
+  val to_locale_time_string' : t -> string [@@js.call "toLocaleTimeString"]
 
-  val valueOf : t -> int [@@js.call "valueOf"]
+  val value_of : t -> int [@@js.call "valueOf"]
 
-  val getTime : t -> int [@@js.call "getTime"]
+  val get_time : t -> int [@@js.call "getTime"]
 
-  val getFullYear : t -> int [@@js.call "getFullYear"]
+  val get_full_year : t -> int [@@js.call "getFullYear"]
 
-  val getUTCFullYear : t -> int [@@js.call "getUTCFullYear"]
+  val get_utc_full_year : t -> int [@@js.call "getUTCFullYear"]
 
-  val getMonth : t -> int [@@js.call "getMonth"]
+  val get_month : t -> int [@@js.call "getMonth"]
 
-  val getUTCMonth : t -> int [@@js.call "getUTCMonth"]
+  val get_utc_month : t -> int [@@js.call "getUTCMonth"]
 
-  val getDate : t -> int [@@js.call "getDate"]
+  val get_date : t -> int [@@js.call "getDate"]
 
-  val getUTCDate : t -> int [@@js.call "getUTCDate"]
+  val get_utc_date : t -> int [@@js.call "getUTCDate"]
 
-  val getDay : t -> int [@@js.call "getDay"]
+  val get_day : t -> int [@@js.call "getDay"]
 
-  val getUTCDay : t -> int [@@js.call "getUTCDay"]
+  val get_utc_day : t -> int [@@js.call "getUTCDay"]
 
-  val getHours : t -> int [@@js.call "getHours"]
+  val get_hours : t -> int [@@js.call "getHours"]
 
-  val getUTCHours : t -> int [@@js.call "getUTCHours"]
+  val get_utc_hours : t -> int [@@js.call "getUTCHours"]
 
-  val getMinutes : t -> int [@@js.call "getMinutes"]
+  val get_minutes : t -> int [@@js.call "getMinutes"]
 
-  val getUTCMinutes : t -> int [@@js.call "getUTCMinutes"]
+  val get_utc_minutes : t -> int [@@js.call "getUTCMinutes"]
 
-  val getSeconds : t -> int [@@js.call "getSeconds"]
+  val get_seconds : t -> int [@@js.call "getSeconds"]
 
-  val getUTCSeconds : t -> int [@@js.call "getUTCSeconds"]
+  val get_utc_seconds : t -> int [@@js.call "getUTCSeconds"]
 
-  val getMilliseconds : t -> int [@@js.call "getMilliseconds"]
+  val get_milliseconds : t -> int [@@js.call "getMilliseconds"]
 
-  val getUTCMilliseconds : t -> int [@@js.call "getUTCMilliseconds"]
+  val get_utc_milliseconds : t -> int [@@js.call "getUTCMilliseconds"]
 
-  val getTimezoneOffset : t -> int [@@js.call "getTimezoneOffset"]
+  val get_timezone_offset : t -> int [@@js.call "getTimezoneOffset"]
 
-  val setTime : t -> time:int -> int [@@js.call "setTime"]
+  val set_time : t -> time:int -> int [@@js.call "setTime"]
 
-  val setMilliseconds : t -> ms:int -> int [@@js.call "setMilliseconds"]
+  val set_milliseconds : t -> ms:int -> int [@@js.call "setMilliseconds"]
 
-  val setUTCMilliseconds : t -> ms:int -> int [@@js.call "setUTCMilliseconds"]
+  val set_utc_milliseconds : t -> ms:int -> int [@@js.call "setUTCMilliseconds"]
 
-  val setSeconds : t -> sec:int -> ?ms:int -> unit -> int
+  val set_seconds : t -> sec:int -> ?ms:int -> unit -> int
     [@@js.call "setSeconds"]
 
-  val setUTCSeconds : t -> sec:int -> ?ms:int -> unit -> int
+  val set_utc_seconds : t -> sec:int -> ?ms:int -> unit -> int
     [@@js.call "setUTCSeconds"]
 
-  val setMinutes : t -> min:int -> ?sec:int -> ?ms:int -> unit -> int
+  val set_minutes : t -> min:int -> ?sec:int -> ?ms:int -> unit -> int
     [@@js.call "setMinutes"]
 
-  val setUTCMinutes : t -> min:int -> ?sec:int -> ?ms:int -> unit -> int
+  val set_utc_minutes : t -> min:int -> ?sec:int -> ?ms:int -> unit -> int
     [@@js.call "setUTCMinutes"]
 
-  val setHours
+  val set_hours
     :  t
     -> hours:int
     -> ?min:int
@@ -2813,7 +2845,7 @@ module Date : sig
     -> int
     [@@js.call "setHours"]
 
-  val setUTCHours
+  val set_utc_hours
     :  t
     -> hours:int
     -> ?min:int
@@ -2823,27 +2855,33 @@ module Date : sig
     -> int
     [@@js.call "setUTCHours"]
 
-  val setDate : t -> date:int -> int [@@js.call "setDate"]
+  val set_date : t -> date:int -> int [@@js.call "setDate"]
 
-  val setUTCDate : t -> date:int -> int [@@js.call "setUTCDate"]
+  val set_utc_date : t -> date:int -> int [@@js.call "setUTCDate"]
 
-  val setMonth : t -> month:int -> ?date:int -> unit -> int
+  val set_month : t -> month:int -> ?date:int -> unit -> int
     [@@js.call "setMonth"]
 
-  val setUTCMonth : t -> month:int -> ?date:int -> unit -> int
+  val set_utc_month : t -> month:int -> ?date:int -> unit -> int
     [@@js.call "setUTCMonth"]
 
-  val setFullYear : t -> year:int -> ?month:int -> ?date:int -> unit -> int
+  val set_full_year : t -> year:int -> ?month:int -> ?date:int -> unit -> int
     [@@js.call "setFullYear"]
 
-  val setUTCFullYear : t -> year:int -> ?month:int -> ?date:int -> unit -> int
+  val set_utc_full_year
+    :  t
+    -> year:int
+    -> ?month:int
+    -> ?date:int
+    -> unit
+    -> int
     [@@js.call "setUTCFullYear"]
 
-  val toUTCString : t -> string [@@js.call "toUTCString"]
+  val to_utc_string : t -> string [@@js.call "toUTCString"]
 
-  val toISOString : t -> string [@@js.call "toISOString"]
+  val to_iso_string : t -> string [@@js.call "toISOString"]
 
-  val toJSON : t -> ?key:any -> unit -> string [@@js.call "toJSON"]
+  val to_json : t -> ?key:any -> unit -> string [@@js.call "toJSON"]
 
   (* Constructor *)
 
@@ -2998,7 +3036,7 @@ module EvalErrorConstructor : sig
 end
 [@@js.scope "EvalErrorConstructor"]
 
-val evalError : EvalErrorConstructor.t [@@js.global "EvalError"]
+val eval_error : EvalErrorConstructor.t [@@js.global "EvalError"]
 
 module RangeError : sig
   include module type of struct
@@ -3027,7 +3065,7 @@ module RangeErrorConstructor : sig
 end
 [@@js.scope "RangeErrorConstructor"]
 
-val rangeError : RangeErrorConstructor.t [@@js.global "RangeError"]
+val range_error : RangeErrorConstructor.t [@@js.global "RangeError"]
 
 module ReferenceError : sig
   include module type of struct
@@ -3057,7 +3095,7 @@ module ReferenceErrorConstructor : sig
 end
 [@@js.scope "ReferenceErrorConstructor"]
 
-val referenceError : ReferenceErrorConstructor.t [@@js.global "ReferenceError"]
+val reference_error : ReferenceErrorConstructor.t [@@js.global "ReferenceError"]
 
 module SyntaxError : sig
   include module type of struct
@@ -3083,7 +3121,7 @@ module SyntaxErrorConstructor : sig
 end
 [@@js.scope "SyntaxErrorConstructor"]
 
-val syntaxError : SyntaxErrorConstructor.t [@@js.global "SyntaxError"]
+val syntax_error : SyntaxErrorConstructor.t [@@js.global "SyntaxError"]
 
 module TypeError : sig
   include module type of struct
@@ -3108,7 +3146,7 @@ module TypeErrorConstructor : sig
 end
 [@@js.scope "TypeErrorConstructor"]
 
-val typeError : TypeErrorConstructor.t [@@js.global "TypeError"]
+val type_error : TypeErrorConstructor.t [@@js.global "TypeError"]
 
 module URIError : sig
   include module type of struct
@@ -3133,7 +3171,7 @@ module URIErrorConstructor : sig
 end
 [@@js.scope "URIErrorConstructor"]
 
-val uriError : URIErrorConstructor.t [@@js.global "URIError"]
+val uri_error : URIErrorConstructor.t [@@js.global "URIError"]
 
 module JSON : sig
   type t
@@ -3190,9 +3228,9 @@ module TypedPropertyDescriptor : sig
 
   val set_value : 'T t -> 'T -> unit [@@js.set "value"]
 
-  val get_ : 'T t -> 'T [@@js.call "get"]
+  val get : 'T t -> 'T [@@js.call "get"]
 
-  val set_ : 'T t -> value:'T -> unit [@@js.call "set"]
+  val set : 'T t -> 'T -> unit [@@js.call "set"]
 end
 [@@js.scope "TypedPropertyDescriptor"]
 
@@ -3270,8 +3308,12 @@ module Promise : sig
 
   val catch : 'T t -> ?onrejected:(any -> 'T t) -> unit -> 'T t
     [@@js.call "catch"]
+
+  (* Constructor *)
+
+  val create : (resolve:('T -> unit) -> reject:('E -> unit) -> unit) -> 'T t
+    [@@js.new "Promise"]
 end
-[@@js.scope "Promise"]
 
 module ArrayBuffer : sig
   type t
@@ -3280,7 +3322,7 @@ module ArrayBuffer : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_byteLength : t -> int [@@js.get "byteLength"]
+  val get_byte_length : t -> int [@@js.get "byteLength"]
 
   val slice : t -> begin_:int -> ?end_:int -> unit -> t [@@js.call "slice"]
 
@@ -3288,7 +3330,7 @@ module ArrayBuffer : sig
 
   val create : byteLength:int -> t [@@js.new "ArrayBuffer"]
 
-  val isView : any -> bool [@@js.global "ArrayBuffer.isView"]
+  val is_view : any -> bool [@@js.global "ArrayBuffer.isView"]
 end
 
 module ArrayBufferTypes : sig
@@ -3298,9 +3340,9 @@ module ArrayBufferTypes : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_ArrayBuffer : t -> ArrayBuffer.t [@@js.get "ArrayBuffer"]
+  val get_array_buffer : t -> ArrayBuffer.t [@@js.get "ArrayBuffer"]
 
-  val set_ArrayBuffer : t -> ArrayBuffer.t -> unit [@@js.set "ArrayBuffer"]
+  val set_array_buffer : t -> ArrayBuffer.t -> unit [@@js.set "ArrayBuffer"]
 end
 [@@js.scope "ArrayBufferTypes"]
 
@@ -3315,11 +3357,11 @@ module ArrayBufferConstructor : sig
 
   val create : t -> byteLength:int -> ArrayBuffer.t [@@js.apply_newable]
 
-  val isView : t -> any -> bool [@@js.call "isView"]
+  val is_view : t -> any -> bool [@@js.call "isView"]
 end
 [@@js.scope "ArrayBufferConstructor"]
 
-val arrayBuffer : ArrayBufferConstructor.t [@@js.global "ArrayBuffer"]
+val array_buffer : ArrayBufferConstructor.t [@@js.global "ArrayBuffer"]
 
 module ArrayBufferView : sig
   type t
@@ -3332,13 +3374,13 @@ module ArrayBufferView : sig
 
   val set_buffer : t -> ArrayBuffer.t -> unit [@@js.set "buffer"]
 
-  val get_byteLength : t -> int [@@js.get "byteLength"]
+  val get_byte_length : t -> int [@@js.get "byteLength"]
 
-  val set_byteLength : t -> int -> unit [@@js.set "byteLength"]
+  val set_byte_length : t -> int -> unit [@@js.set "byteLength"]
 
-  val get_byteOffset : t -> int [@@js.get "byteOffset"]
+  val get_byte_offset : t -> int [@@js.get "byteOffset"]
 
-  val set_byteOffset : t -> int -> unit [@@js.set "byteOffset"]
+  val set_byte_offset : t -> int -> unit [@@js.set "byteOffset"]
 end
 [@@js.scope "ArrayBufferView"]
 
@@ -3351,33 +3393,33 @@ module DataView : sig
 
   val get_buffer : t -> ArrayBuffer.t [@@js.get "buffer"]
 
-  val get_byteLength : t -> int [@@js.get "byteLength"]
+  val get_byte_length : t -> int [@@js.get "byteLength"]
 
-  val get_byteOffset : t -> int [@@js.get "byteOffset"]
+  val get_byte_offset : t -> int [@@js.get "byteOffset"]
 
-  val getFloat32 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> int
+  val get_float32 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> int
     [@@js.call "getFloat32"]
 
-  val getFloat64 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> int
+  val get_float64 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> int
     [@@js.call "getFloat64"]
 
-  val getInt8 : t -> byteOffset:int -> int [@@js.call "getInt8"]
+  val get_int8 : t -> byteOffset:int -> int [@@js.call "getInt8"]
 
-  val getInt16 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> int
+  val get_int16 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> int
     [@@js.call "getInt16"]
 
-  val getInt32 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> int
+  val get_int32 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> int
     [@@js.call "getInt32"]
 
-  val getUint8 : t -> byteOffset:int -> int [@@js.call "getUint8"]
+  val get_uint8 : t -> byteOffset:int -> int [@@js.call "getUint8"]
 
-  val getUint16 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> int
+  val get_uint16 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> int
     [@@js.call "getUint16"]
 
-  val getUint32 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> int
+  val get_uint32 : t -> byteOffset:int -> ?littleEndian:bool -> unit -> int
     [@@js.call "getUint32"]
 
-  val setFloat32
+  val set_float32
     :  t
     -> byteOffset:int
     -> value:int
@@ -3386,7 +3428,7 @@ module DataView : sig
     -> unit
     [@@js.call "setFloat32"]
 
-  val setFloat64
+  val set_float64
     :  t
     -> byteOffset:int
     -> value:int
@@ -3395,9 +3437,9 @@ module DataView : sig
     -> unit
     [@@js.call "setFloat64"]
 
-  val setInt8 : t -> byteOffset:int -> value:int -> unit [@@js.call "setInt8"]
+  val set_int8 : t -> byteOffset:int -> value:int -> unit [@@js.call "setInt8"]
 
-  val setInt16
+  val set_int16
     :  t
     -> byteOffset:int
     -> value:int
@@ -3406,7 +3448,7 @@ module DataView : sig
     -> unit
     [@@js.call "setInt16"]
 
-  val setInt32
+  val set_int32
     :  t
     -> byteOffset:int
     -> value:int
@@ -3415,9 +3457,10 @@ module DataView : sig
     -> unit
     [@@js.call "setInt32"]
 
-  val setUint8 : t -> byteOffset:int -> value:int -> unit [@@js.call "setUint8"]
+  val set_uint8 : t -> byteOffset:int -> value:int -> unit
+    [@@js.call "setUint8"]
 
-  val setUint16
+  val set_uint16
     :  t
     -> byteOffset:int
     -> value:int
@@ -3426,7 +3469,7 @@ module DataView : sig
     -> unit
     [@@js.call "setUint16"]
 
-  val setUint32
+  val set_uint32
     :  t
     -> byteOffset:int
     -> value:int
@@ -3466,7 +3509,7 @@ module DataViewConstructor : sig
 end
 [@@js.scope "DataViewConstructor"]
 
-val dataView : DataViewConstructor.t [@@js.global "DataView"]
+val data_view : DataViewConstructor.t [@@js.global "DataView"]
 
 module Int8Array : sig
   type t
@@ -3475,15 +3518,15 @@ module Int8Array : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val get_buffer : t -> ArrayBuffer.t [@@js.get "buffer"]
 
-  val get_byteLength : t -> int [@@js.get "byteLength"]
+  val get_byte_length : t -> int [@@js.get "byteLength"]
 
-  val get_byteOffset : t -> int [@@js.get "byteOffset"]
+  val get_byte_offset : t -> int [@@js.get "byteOffset"]
 
-  val copyWithin : t -> target:int -> start:int -> ?end_:int -> unit -> t
+  val copy_within : t -> target:int -> start:int -> ?end_:int -> unit -> t
     [@@js.call "copyWithin"]
 
   val every
@@ -3512,7 +3555,7 @@ module Int8Array : sig
     -> int or_undefined
     [@@js.call "find"]
 
-  val findIndex
+  val find_index
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
     -> ?thisArg:any
@@ -3520,7 +3563,7 @@ module Int8Array : sig
     -> int
     [@@js.call "findIndex"]
 
-  val forEach
+  val for_each
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> unit)
     -> ?thisArg:any
@@ -3528,12 +3571,12 @@ module Int8Array : sig
     -> unit
     [@@js.call "forEach"]
 
-  val indexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val lastIndexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val last_index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -3581,7 +3624,7 @@ module Int8Array : sig
     -> 'U
     [@@js.call "reduce"]
 
-  val reduceRight
+  val reduce_right
     :  t
     -> callbackfn:
          (previousValue:int
@@ -3592,7 +3635,7 @@ module Int8Array : sig
     -> int
     [@@js.call "reduceRight"]
 
-  val reduceRight'
+  val reduce_right'
     :  t
     -> callbackfn:
          (previousValue:int
@@ -3604,7 +3647,7 @@ module Int8Array : sig
     -> int
     [@@js.call "reduceRight"]
 
-  val reduceRight''
+  val reduce_right''
     :  t
     -> callbackfn:
          (previousValue:'U
@@ -3637,11 +3680,11 @@ module Int8Array : sig
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
     [@@js.call "subarray"]
 
-  val toLocaleString : t -> string [@@js.call "toLocaleString"]
+  val to_locale_string : t -> string [@@js.call "toLocaleString"]
 
-  val toString : t -> string [@@js.call "toString"]
+  val to_string : t -> string [@@js.call "toString"]
 
-  val valueOf : t -> t [@@js.call "valueOf"]
+  val value_of : t -> t [@@js.call "valueOf"]
 
   val get : t -> int -> int [@@js.index_get]
 
@@ -3662,7 +3705,7 @@ module Int8Array : sig
     -> t
     [@@js.new "Int8Array"]
 
-  val get_BYTES_PER_ELEMENT : int [@@js.global "Int8Array.BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : int [@@js.global "Int8Array.BYTES_PER_ELEMENT"]
 
   val of_ : (int list[@js.variadic]) -> t [@@js.global "Int8Array.of"]
 
@@ -3700,7 +3743,7 @@ module Int8ArrayConstructor : sig
     -> Int8Array.t
     [@@js.apply_newable]
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val of_ : t -> (int list[@js.variadic]) -> Int8Array.t [@@js.call "of"]
 
@@ -3717,7 +3760,7 @@ module Int8ArrayConstructor : sig
 end
 [@@js.scope "Int8ArrayConstructor"]
 
-val int8Array : Int8ArrayConstructor.t [@@js.global "Int8Array"]
+val int8_array : Int8ArrayConstructor.t [@@js.global "Int8Array"]
 
 module Uint8Array : sig
   type t
@@ -3726,15 +3769,15 @@ module Uint8Array : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val get_buffer : t -> ArrayBuffer.t [@@js.get "buffer"]
 
-  val get_byteLength : t -> int [@@js.get "byteLength"]
+  val get_byte_length : t -> int [@@js.get "byteLength"]
 
-  val get_byteOffset : t -> int [@@js.get "byteOffset"]
+  val get_byte_offset : t -> int [@@js.get "byteOffset"]
 
-  val copyWithin : t -> target:int -> start:int -> ?end_:int -> unit -> t
+  val copy_within : t -> target:int -> start:int -> ?end_:int -> unit -> t
     [@@js.call "copyWithin"]
 
   val every
@@ -3764,7 +3807,7 @@ module Uint8Array : sig
     -> int or_undefined
     [@@js.call "find"]
 
-  val findIndex
+  val find_index
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
     -> ?thisArg:any
@@ -3772,7 +3815,7 @@ module Uint8Array : sig
     -> int
     [@@js.call "findIndex"]
 
-  val forEach
+  val for_each
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> unit)
     -> ?thisArg:any
@@ -3780,12 +3823,12 @@ module Uint8Array : sig
     -> unit
     [@@js.call "forEach"]
 
-  val indexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val lastIndexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val last_index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -3833,7 +3876,7 @@ module Uint8Array : sig
     -> 'U
     [@@js.call "reduce"]
 
-  val reduceRight
+  val reduce_right
     :  t
     -> callbackfn:
          (previousValue:int
@@ -3844,7 +3887,7 @@ module Uint8Array : sig
     -> int
     [@@js.call "reduceRight"]
 
-  val reduceRight'
+  val reduce_right'
     :  t
     -> callbackfn:
          (previousValue:int
@@ -3856,7 +3899,7 @@ module Uint8Array : sig
     -> int
     [@@js.call "reduceRight"]
 
-  val reduceRight''
+  val reduce_right''
     :  t
     -> callbackfn:
          (previousValue:'U
@@ -3889,11 +3932,11 @@ module Uint8Array : sig
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
     [@@js.call "subarray"]
 
-  val toLocaleString : t -> string [@@js.call "toLocaleString"]
+  val to_locale_string : t -> string [@@js.call "toLocaleString"]
 
-  val toString : t -> string [@@js.call "toString"]
+  val to_string : t -> string [@@js.call "toString"]
 
-  val valueOf : t -> t [@@js.call "valueOf"]
+  val value_of : t -> t [@@js.call "valueOf"]
 
   val get : t -> int -> int [@@js.index_get]
 
@@ -3914,7 +3957,7 @@ module Uint8Array : sig
     -> t
     [@@js.new "Uint8Array"]
 
-  val get_BYTES_PER_ELEMENT : int [@@js.global "Uint8Array.BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : int [@@js.global "Uint8Array.BYTES_PER_ELEMENT"]
 
   val of_ : (int list[@js.variadic]) -> t [@@js.global "Uint8Array.of"]
 
@@ -3952,7 +3995,7 @@ module Uint8ArrayConstructor : sig
     -> Uint8Array.t
     [@@js.apply_newable]
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val of_ : t -> (int list[@js.variadic]) -> Uint8Array.t [@@js.call "of"]
 
@@ -3969,7 +4012,7 @@ module Uint8ArrayConstructor : sig
 end
 [@@js.scope "Uint8ArrayConstructor"]
 
-val uint8Array : Uint8ArrayConstructor.t [@@js.global "Uint8Array"]
+val uint8_array : Uint8ArrayConstructor.t [@@js.global "Uint8Array"]
 
 module Uint8ClampedArray : sig
   type t
@@ -3978,15 +4021,15 @@ module Uint8ClampedArray : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val get_buffer : t -> ArrayBuffer.t [@@js.get "buffer"]
 
-  val get_byteLength : t -> int [@@js.get "byteLength"]
+  val get_byte_length : t -> int [@@js.get "byteLength"]
 
-  val get_byteOffset : t -> int [@@js.get "byteOffset"]
+  val get_byte_offset : t -> int [@@js.get "byteOffset"]
 
-  val copyWithin : t -> target:int -> start:int -> ?end_:int -> unit -> t
+  val copy_within : t -> target:int -> start:int -> ?end_:int -> unit -> t
     [@@js.call "copyWithin"]
 
   val every
@@ -4016,7 +4059,7 @@ module Uint8ClampedArray : sig
     -> int or_undefined
     [@@js.call "find"]
 
-  val findIndex
+  val find_index
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
     -> ?thisArg:any
@@ -4024,7 +4067,7 @@ module Uint8ClampedArray : sig
     -> int
     [@@js.call "findIndex"]
 
-  val forEach
+  val for_each
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> unit)
     -> ?thisArg:any
@@ -4032,12 +4075,12 @@ module Uint8ClampedArray : sig
     -> unit
     [@@js.call "forEach"]
 
-  val indexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val lastIndexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val last_index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -4085,7 +4128,7 @@ module Uint8ClampedArray : sig
     -> 'U
     [@@js.call "reduce"]
 
-  val reduceRight
+  val reduce_right
     :  t
     -> callbackfn:
          (previousValue:int
@@ -4096,7 +4139,7 @@ module Uint8ClampedArray : sig
     -> int
     [@@js.call "reduceRight"]
 
-  val reduceRight'
+  val reduce_right'
     :  t
     -> callbackfn:
          (previousValue:int
@@ -4108,7 +4151,7 @@ module Uint8ClampedArray : sig
     -> int
     [@@js.call "reduceRight"]
 
-  val reduceRight''
+  val reduce_right''
     :  t
     -> callbackfn:
          (previousValue:'U
@@ -4141,11 +4184,11 @@ module Uint8ClampedArray : sig
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
     [@@js.call "subarray"]
 
-  val toLocaleString : t -> string [@@js.call "toLocaleString"]
+  val to_locale_string : t -> string [@@js.call "toLocaleString"]
 
-  val toString : t -> string [@@js.call "toString"]
+  val to_string : t -> string [@@js.call "toString"]
 
-  val valueOf : t -> t [@@js.call "valueOf"]
+  val value_of : t -> t [@@js.call "valueOf"]
 
   val get : t -> int -> int [@@js.index_get]
 
@@ -4166,7 +4209,7 @@ module Uint8ClampedArray : sig
     -> t
     [@@js.new "Uint8ClampedArray"]
 
-  val get_BYTES_PER_ELEMENT : int
+  val get_bytes_per_element : int
     [@@js.global "Uint8ClampedArray.BYTES_PER_ELEMENT"]
 
   val of_ : (int list[@js.variadic]) -> t [@@js.global "Uint8ClampedArray.of"]
@@ -4208,7 +4251,7 @@ module Uint8ClampedArrayConstructor : sig
     -> Uint8ClampedArray.t
     [@@js.apply_newable]
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val of_ : t -> (int list[@js.variadic]) -> Uint8ClampedArray.t
     [@@js.call "of"]
@@ -4226,7 +4269,7 @@ module Uint8ClampedArrayConstructor : sig
 end
 [@@js.scope "Uint8ClampedArrayConstructor"]
 
-val uint8ClampedArray : Uint8ClampedArrayConstructor.t
+val uint8_clamped_array : Uint8ClampedArrayConstructor.t
   [@@js.global "Uint8ClampedArray"]
 
 module Int16Array : sig
@@ -4236,15 +4279,15 @@ module Int16Array : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val get_buffer : t -> ArrayBuffer.t [@@js.get "buffer"]
 
-  val get_byteLength : t -> int [@@js.get "byteLength"]
+  val get_byte_length : t -> int [@@js.get "byteLength"]
 
-  val get_byteOffset : t -> int [@@js.get "byteOffset"]
+  val get_byte_offset : t -> int [@@js.get "byteOffset"]
 
-  val copyWithin : t -> target:int -> start:int -> ?end_:int -> unit -> t
+  val copy_within : t -> target:int -> start:int -> ?end_:int -> unit -> t
     [@@js.call "copyWithin"]
 
   val every
@@ -4274,7 +4317,7 @@ module Int16Array : sig
     -> int or_undefined
     [@@js.call "find"]
 
-  val findIndex
+  val find_index
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
     -> ?thisArg:any
@@ -4282,7 +4325,7 @@ module Int16Array : sig
     -> int
     [@@js.call "findIndex"]
 
-  val forEach
+  val for_each
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> unit)
     -> ?thisArg:any
@@ -4290,12 +4333,12 @@ module Int16Array : sig
     -> unit
     [@@js.call "forEach"]
 
-  val indexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val lastIndexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val last_index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -4343,7 +4386,7 @@ module Int16Array : sig
     -> 'U
     [@@js.call "reduce"]
 
-  val reduceRight
+  val reduce_right
     :  t
     -> callbackfn:
          (previousValue:int
@@ -4354,7 +4397,7 @@ module Int16Array : sig
     -> int
     [@@js.call "reduceRight"]
 
-  val reduceRight'
+  val reduce_right'
     :  t
     -> callbackfn:
          (previousValue:int
@@ -4366,7 +4409,7 @@ module Int16Array : sig
     -> int
     [@@js.call "reduceRight"]
 
-  val reduceRight''
+  val reduce_right''
     :  t
     -> callbackfn:
          (previousValue:'U
@@ -4399,11 +4442,11 @@ module Int16Array : sig
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
     [@@js.call "subarray"]
 
-  val toLocaleString : t -> string [@@js.call "toLocaleString"]
+  val to_locale_string : t -> string [@@js.call "toLocaleString"]
 
-  val toString : t -> string [@@js.call "toString"]
+  val to_string : t -> string [@@js.call "toString"]
 
-  val valueOf : t -> t [@@js.call "valueOf"]
+  val value_of : t -> t [@@js.call "valueOf"]
 
   val get : t -> int -> int [@@js.index_get]
 
@@ -4424,7 +4467,7 @@ module Int16Array : sig
     -> t
     [@@js.new "Int16Array"]
 
-  val get_BYTES_PER_ELEMENT : int [@@js.global "Int16Array.BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : int [@@js.global "Int16Array.BYTES_PER_ELEMENT"]
 
   val of_ : (int list[@js.variadic]) -> t [@@js.global "Int16Array.of"]
 
@@ -4462,7 +4505,7 @@ module Int16ArrayConstructor : sig
     -> Int16Array.t
     [@@js.apply_newable]
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val of_ : t -> (int list[@js.variadic]) -> Int16Array.t [@@js.call "of"]
 
@@ -4479,7 +4522,7 @@ module Int16ArrayConstructor : sig
 end
 [@@js.scope "Int16ArrayConstructor"]
 
-val int16Array : Int16ArrayConstructor.t [@@js.global "Int16Array"]
+val int16_array : Int16ArrayConstructor.t [@@js.global "Int16Array"]
 
 module Uint16Array : sig
   type t
@@ -4488,15 +4531,15 @@ module Uint16Array : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val get_buffer : t -> ArrayBuffer.t [@@js.get "buffer"]
 
-  val get_byteLength : t -> int [@@js.get "byteLength"]
+  val get_byte_length : t -> int [@@js.get "byteLength"]
 
-  val get_byteOffset : t -> int [@@js.get "byteOffset"]
+  val get_byte_offset : t -> int [@@js.get "byteOffset"]
 
-  val copyWithin : t -> target:int -> start:int -> ?end_:int -> unit -> t
+  val copy_within : t -> target:int -> start:int -> ?end_:int -> unit -> t
     [@@js.call "copyWithin"]
 
   val every
@@ -4526,7 +4569,7 @@ module Uint16Array : sig
     -> int or_undefined
     [@@js.call "find"]
 
-  val findIndex
+  val find_index
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
     -> ?thisArg:any
@@ -4534,7 +4577,7 @@ module Uint16Array : sig
     -> int
     [@@js.call "findIndex"]
 
-  val forEach
+  val for_each
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> unit)
     -> ?thisArg:any
@@ -4542,12 +4585,12 @@ module Uint16Array : sig
     -> unit
     [@@js.call "forEach"]
 
-  val indexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val lastIndexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val last_index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -4595,7 +4638,7 @@ module Uint16Array : sig
     -> 'U
     [@@js.call "reduce"]
 
-  val reduceRight
+  val reduce_right
     :  t
     -> callbackfn:
          (previousValue:int
@@ -4606,7 +4649,7 @@ module Uint16Array : sig
     -> int
     [@@js.call "reduceRight"]
 
-  val reduceRight'
+  val reduce_right'
     :  t
     -> callbackfn:
          (previousValue:int
@@ -4618,7 +4661,7 @@ module Uint16Array : sig
     -> int
     [@@js.call "reduceRight"]
 
-  val reduceRight''
+  val reduce_right''
     :  t
     -> callbackfn:
          (previousValue:'U
@@ -4651,11 +4694,11 @@ module Uint16Array : sig
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
     [@@js.call "subarray"]
 
-  val toLocaleString : t -> string [@@js.call "toLocaleString"]
+  val to_locale_string : t -> string [@@js.call "toLocaleString"]
 
-  val toString : t -> string [@@js.call "toString"]
+  val to_string : t -> string [@@js.call "toString"]
 
-  val valueOf : t -> t [@@js.call "valueOf"]
+  val value_of : t -> t [@@js.call "valueOf"]
 
   val get : t -> int -> int [@@js.index_get]
 
@@ -4676,7 +4719,7 @@ module Uint16Array : sig
     -> t
     [@@js.new "Uint16Array"]
 
-  val get_BYTES_PER_ELEMENT : int [@@js.global "Uint16Array.BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : int [@@js.global "Uint16Array.BYTES_PER_ELEMENT"]
 
   val of_ : (int list[@js.variadic]) -> t [@@js.global "Uint16Array.of"]
 
@@ -4714,7 +4757,7 @@ module Uint16ArrayConstructor : sig
     -> Uint16Array.t
     [@@js.apply_newable]
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val of_ : t -> (int list[@js.variadic]) -> Uint16Array.t [@@js.call "of"]
 
@@ -4731,7 +4774,7 @@ module Uint16ArrayConstructor : sig
 end
 [@@js.scope "Uint16ArrayConstructor"]
 
-val uint16Array : Uint16ArrayConstructor.t [@@js.global "Uint16Array"]
+val uint16_array : Uint16ArrayConstructor.t [@@js.global "Uint16Array"]
 
 module Int32Array : sig
   type t
@@ -4740,15 +4783,15 @@ module Int32Array : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val get_buffer : t -> ArrayBuffer.t [@@js.get "buffer"]
 
-  val get_byteLength : t -> int [@@js.get "byteLength"]
+  val get_byte_length : t -> int [@@js.get "byteLength"]
 
-  val get_byteOffset : t -> int [@@js.get "byteOffset"]
+  val get_byte_offset : t -> int [@@js.get "byteOffset"]
 
-  val copyWithin : t -> target:int -> start:int -> ?end_:int -> unit -> t
+  val copy_within : t -> target:int -> start:int -> ?end_:int -> unit -> t
     [@@js.call "copyWithin"]
 
   val every
@@ -4778,7 +4821,7 @@ module Int32Array : sig
     -> int or_undefined
     [@@js.call "find"]
 
-  val findIndex
+  val find_index
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
     -> ?thisArg:any
@@ -4786,7 +4829,7 @@ module Int32Array : sig
     -> int
     [@@js.call "findIndex"]
 
-  val forEach
+  val for_each
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> unit)
     -> ?thisArg:any
@@ -4794,12 +4837,12 @@ module Int32Array : sig
     -> unit
     [@@js.call "forEach"]
 
-  val indexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val lastIndexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val last_index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -4847,7 +4890,7 @@ module Int32Array : sig
     -> 'U
     [@@js.call "reduce"]
 
-  val reduceRight
+  val reduce_right
     :  t
     -> callbackfn:
          (previousValue:int
@@ -4858,7 +4901,7 @@ module Int32Array : sig
     -> int
     [@@js.call "reduceRight"]
 
-  val reduceRight'
+  val reduce_right'
     :  t
     -> callbackfn:
          (previousValue:int
@@ -4870,7 +4913,7 @@ module Int32Array : sig
     -> int
     [@@js.call "reduceRight"]
 
-  val reduceRight''
+  val reduce_right''
     :  t
     -> callbackfn:
          (previousValue:'U
@@ -4903,11 +4946,11 @@ module Int32Array : sig
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
     [@@js.call "subarray"]
 
-  val toLocaleString : t -> string [@@js.call "toLocaleString"]
+  val to_locale_string : t -> string [@@js.call "toLocaleString"]
 
-  val toString : t -> string [@@js.call "toString"]
+  val to_string : t -> string [@@js.call "toString"]
 
-  val valueOf : t -> t [@@js.call "valueOf"]
+  val value_of : t -> t [@@js.call "valueOf"]
 
   val get : t -> int -> int [@@js.index_get]
 
@@ -4928,7 +4971,7 @@ module Int32Array : sig
     -> t
     [@@js.new "Int32Array"]
 
-  val get_BYTES_PER_ELEMENT : int [@@js.global "Int32Array.BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : int [@@js.global "Int32Array.BYTES_PER_ELEMENT"]
 
   val of_ : (int list[@js.variadic]) -> t [@@js.global "Int32Array.of"]
 
@@ -4966,7 +5009,7 @@ module Int32ArrayConstructor : sig
     -> Int32Array.t
     [@@js.apply_newable]
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val of_ : t -> (int list[@js.variadic]) -> Int32Array.t [@@js.call "of"]
 
@@ -4983,7 +5026,7 @@ module Int32ArrayConstructor : sig
 end
 [@@js.scope "Int32ArrayConstructor"]
 
-val int32Array : Int32ArrayConstructor.t [@@js.global "Int32Array"]
+val int32_array : Int32ArrayConstructor.t [@@js.global "Int32Array"]
 
 module Uint32Array : sig
   type t
@@ -4992,15 +5035,15 @@ module Uint32Array : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val get_buffer : t -> ArrayBuffer.t [@@js.get "buffer"]
 
-  val get_byteLength : t -> int [@@js.get "byteLength"]
+  val get_byte_length : t -> int [@@js.get "byteLength"]
 
-  val get_byteOffset : t -> int [@@js.get "byteOffset"]
+  val get_byte_offset : t -> int [@@js.get "byteOffset"]
 
-  val copyWithin : t -> target:int -> start:int -> ?end_:int -> unit -> t
+  val copy_within : t -> target:int -> start:int -> ?end_:int -> unit -> t
     [@@js.call "copyWithin"]
 
   val every
@@ -5030,7 +5073,7 @@ module Uint32Array : sig
     -> int or_undefined
     [@@js.call "find"]
 
-  val findIndex
+  val find_index
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
     -> ?thisArg:any
@@ -5038,7 +5081,7 @@ module Uint32Array : sig
     -> int
     [@@js.call "findIndex"]
 
-  val forEach
+  val for_each
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> unit)
     -> ?thisArg:any
@@ -5046,12 +5089,12 @@ module Uint32Array : sig
     -> unit
     [@@js.call "forEach"]
 
-  val indexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val lastIndexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val last_index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -5099,7 +5142,7 @@ module Uint32Array : sig
     -> 'U
     [@@js.call "reduce"]
 
-  val reduceRight
+  val reduce_right
     :  t
     -> callbackfn:
          (previousValue:int
@@ -5110,7 +5153,7 @@ module Uint32Array : sig
     -> int
     [@@js.call "reduceRight"]
 
-  val reduceRight'
+  val reduce_right'
     :  t
     -> callbackfn:
          (previousValue:int
@@ -5122,7 +5165,7 @@ module Uint32Array : sig
     -> int
     [@@js.call "reduceRight"]
 
-  val reduceRight''
+  val reduce_right''
     :  t
     -> callbackfn:
          (previousValue:'U
@@ -5155,11 +5198,11 @@ module Uint32Array : sig
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
     [@@js.call "subarray"]
 
-  val toLocaleString : t -> string [@@js.call "toLocaleString"]
+  val to_locale_string : t -> string [@@js.call "toLocaleString"]
 
-  val toString : t -> string [@@js.call "toString"]
+  val to_string : t -> string [@@js.call "toString"]
 
-  val valueOf : t -> t [@@js.call "valueOf"]
+  val value_of : t -> t [@@js.call "valueOf"]
 
   val get : t -> int -> int [@@js.index_get]
 
@@ -5180,7 +5223,7 @@ module Uint32Array : sig
     -> t
     [@@js.new "Uint32Array"]
 
-  val get_BYTES_PER_ELEMENT : int [@@js.global "Uint32Array.BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : int [@@js.global "Uint32Array.BYTES_PER_ELEMENT"]
 
   val of_ : (int list[@js.variadic]) -> t [@@js.global "Uint32Array.of"]
 
@@ -5218,7 +5261,7 @@ module Uint32ArrayConstructor : sig
     -> Uint32Array.t
     [@@js.apply_newable]
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val of_ : t -> (int list[@js.variadic]) -> Uint32Array.t [@@js.call "of"]
 
@@ -5235,7 +5278,7 @@ module Uint32ArrayConstructor : sig
 end
 [@@js.scope "Uint32ArrayConstructor"]
 
-val uint32Array : Uint32ArrayConstructor.t [@@js.global "Uint32Array"]
+val uint32_array : Uint32ArrayConstructor.t [@@js.global "Uint32Array"]
 
 module Float32Array : sig
   type t
@@ -5244,15 +5287,15 @@ module Float32Array : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val get_buffer : t -> ArrayBuffer.t [@@js.get "buffer"]
 
-  val get_byteLength : t -> int [@@js.get "byteLength"]
+  val get_byte_length : t -> int [@@js.get "byteLength"]
 
-  val get_byteOffset : t -> int [@@js.get "byteOffset"]
+  val get_byte_offset : t -> int [@@js.get "byteOffset"]
 
-  val copyWithin : t -> target:int -> start:int -> ?end_:int -> unit -> t
+  val copy_within : t -> target:int -> start:int -> ?end_:int -> unit -> t
     [@@js.call "copyWithin"]
 
   val every
@@ -5282,7 +5325,7 @@ module Float32Array : sig
     -> int or_undefined
     [@@js.call "find"]
 
-  val findIndex
+  val find_index
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
     -> ?thisArg:any
@@ -5290,7 +5333,7 @@ module Float32Array : sig
     -> int
     [@@js.call "findIndex"]
 
-  val forEach
+  val for_each
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> unit)
     -> ?thisArg:any
@@ -5298,12 +5341,12 @@ module Float32Array : sig
     -> unit
     [@@js.call "forEach"]
 
-  val indexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val lastIndexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val last_index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -5351,7 +5394,7 @@ module Float32Array : sig
     -> 'U
     [@@js.call "reduce"]
 
-  val reduceRight
+  val reduce_right
     :  t
     -> callbackfn:
          (previousValue:int
@@ -5362,7 +5405,7 @@ module Float32Array : sig
     -> int
     [@@js.call "reduceRight"]
 
-  val reduceRight'
+  val reduce_right'
     :  t
     -> callbackfn:
          (previousValue:int
@@ -5374,7 +5417,7 @@ module Float32Array : sig
     -> int
     [@@js.call "reduceRight"]
 
-  val reduceRight''
+  val reduce_right''
     :  t
     -> callbackfn:
          (previousValue:'U
@@ -5407,11 +5450,11 @@ module Float32Array : sig
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
     [@@js.call "subarray"]
 
-  val toLocaleString : t -> string [@@js.call "toLocaleString"]
+  val to_locale_string : t -> string [@@js.call "toLocaleString"]
 
-  val toString : t -> string [@@js.call "toString"]
+  val to_string : t -> string [@@js.call "toString"]
 
-  val valueOf : t -> t [@@js.call "valueOf"]
+  val value_of : t -> t [@@js.call "valueOf"]
 
   val get : t -> int -> int [@@js.index_get]
 
@@ -5432,7 +5475,7 @@ module Float32Array : sig
     -> t
     [@@js.new "Float32Array"]
 
-  val get_BYTES_PER_ELEMENT : int [@@js.global "Float32Array.BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : int [@@js.global "Float32Array.BYTES_PER_ELEMENT"]
 
   val of_ : (int list[@js.variadic]) -> t [@@js.global "Float32Array.of"]
 
@@ -5470,7 +5513,7 @@ module Float32ArrayConstructor : sig
     -> Float32Array.t
     [@@js.apply_newable]
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val of_ : t -> (int list[@js.variadic]) -> Float32Array.t [@@js.call "of"]
 
@@ -5487,7 +5530,7 @@ module Float32ArrayConstructor : sig
 end
 [@@js.scope "Float32ArrayConstructor"]
 
-val float32Array : Float32ArrayConstructor.t [@@js.global "Float32Array"]
+val float32_array : Float32ArrayConstructor.t [@@js.global "Float32Array"]
 
 module Float64Array : sig
   type t
@@ -5496,15 +5539,15 @@ module Float64Array : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val get_buffer : t -> ArrayBuffer.t [@@js.get "buffer"]
 
-  val get_byteLength : t -> int [@@js.get "byteLength"]
+  val get_byte_length : t -> int [@@js.get "byteLength"]
 
-  val get_byteOffset : t -> int [@@js.get "byteOffset"]
+  val get_byte_offset : t -> int [@@js.get "byteOffset"]
 
-  val copyWithin : t -> target:int -> start:int -> ?end_:int -> unit -> t
+  val copy_within : t -> target:int -> start:int -> ?end_:int -> unit -> t
     [@@js.call "copyWithin"]
 
   val every
@@ -5534,7 +5577,7 @@ module Float64Array : sig
     -> int or_undefined
     [@@js.call "find"]
 
-  val findIndex
+  val find_index
     :  t
     -> (value:int -> index:int -> obj:t -> bool)
     -> ?thisArg:any
@@ -5542,7 +5585,7 @@ module Float64Array : sig
     -> int
     [@@js.call "findIndex"]
 
-  val forEach
+  val for_each
     :  t
     -> callbackfn:(value:int -> index:int -> array:t -> unit)
     -> ?thisArg:any
@@ -5550,12 +5593,12 @@ module Float64Array : sig
     -> unit
     [@@js.call "forEach"]
 
-  val indexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "indexOf"]
 
   val join : t -> ?separator:string -> unit -> string [@@js.call "join"]
 
-  val lastIndexOf : t -> searchElement:int -> ?fromIndex:int -> unit -> int
+  val last_index_of : t -> searchElement:int -> ?fromIndex:int -> unit -> int
     [@@js.call "lastIndexOf"]
 
   val get_length : t -> int [@@js.get "length"]
@@ -5603,7 +5646,7 @@ module Float64Array : sig
     -> 'U
     [@@js.call "reduce"]
 
-  val reduceRight
+  val reduce_right
     :  t
     -> callbackfn:
          (previousValue:int
@@ -5614,7 +5657,7 @@ module Float64Array : sig
     -> int
     [@@js.call "reduceRight"]
 
-  val reduceRight'
+  val reduce_right'
     :  t
     -> callbackfn:
          (previousValue:int
@@ -5626,7 +5669,7 @@ module Float64Array : sig
     -> int
     [@@js.call "reduceRight"]
 
-  val reduceRight''
+  val reduce_right''
     :  t
     -> callbackfn:
          (previousValue:'U
@@ -5659,9 +5702,9 @@ module Float64Array : sig
   val subarray : t -> ?begin_:int -> ?end_:int -> unit -> t
     [@@js.call "subarray"]
 
-  val toString : t -> string [@@js.call "toString"]
+  val to_string : t -> string [@@js.call "toString"]
 
-  val valueOf : t -> t [@@js.call "valueOf"]
+  val value_of : t -> t [@@js.call "valueOf"]
 
   val get : t -> int -> int [@@js.index_get]
 
@@ -5682,7 +5725,7 @@ module Float64Array : sig
     -> t
     [@@js.new "Float64Array"]
 
-  val get_BYTES_PER_ELEMENT : int [@@js.global "Float64Array.BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : int [@@js.global "Float64Array.BYTES_PER_ELEMENT"]
 
   val of_ : (int list[@js.variadic]) -> t [@@js.global "Float64Array.of"]
 
@@ -5720,7 +5763,7 @@ module Float64ArrayConstructor : sig
     -> Float64Array.t
     [@@js.apply_newable]
 
-  val get_BYTES_PER_ELEMENT : t -> int [@@js.get "BYTES_PER_ELEMENT"]
+  val get_bytes_per_element : t -> int [@@js.get "BYTES_PER_ELEMENT"]
 
   val of_ : t -> (int list[@js.variadic]) -> Float64Array.t [@@js.call "of"]
 
@@ -5737,25 +5780,4 @@ module Float64ArrayConstructor : sig
 end
 [@@js.scope "Float64ArrayConstructor"]
 
-val float64Array : Float64ArrayConstructor.t [@@js.global "Float64Array"]
-
-include module type of struct
-  include Intl
-end
-
-module DateTimeFormat : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val format : t -> ?date:Date.t or_number -> unit -> string
-    [@@js.call "format"]
-
-  val resolvedOptions : t -> ResolvedDateTimeFormatOptions.t
-    [@@js.call "resolvedOptions"]
-end
-[@@js.scope "DateTimeFormat"]
-
-val dateTimeFormat : anonymous_interface_3 [@@js.global "DateTimeFormat"]
+val float64_array : Float64ArrayConstructor.t [@@js.global "Float64Array"]

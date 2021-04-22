@@ -5,149 +5,8 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type http2_AlternativeServiceOptions =
-      [ `Http2_AlternativeServiceOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_ClientHttp2Session =
-      [ `Http2_ClientHttp2Session | `Http2_Http2Session ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_ClientHttp2Stream =
-      [ `Http2_ClientHttp2Stream | `Http2_Http2Stream ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_ClientSessionOptions =
-      [ `Http2_ClientSessionOptions | `Http2_SessionOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_ClientSessionRequestOptions =
-      [ `Http2_ClientSessionRequestOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_Http2SecureServer = [ `Http2_Http2SecureServer ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_Http2Server = [ `Http2_Http2Server ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_Http2ServerRequest = [ `Http2_Http2ServerRequest ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_Http2ServerResponse = [ `Http2_Http2ServerResponse ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_Http2Session = [ `Http2_Http2Session ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_Http2Stream = [ `Http2_Http2Stream ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_IncomingHttpHeaders = [ `Http2_IncomingHttpHeaders ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_IncomingHttpStatusHeader =
-      [ `Http2_IncomingHttpStatusHeader ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_SecureClientSessionOptions =
-      [ `Http2_SecureClientSessionOptions
-      | `Http2_ClientSessionOptions
-      | `Http2_SessionOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_SecureServerOptions =
-      [ `Http2_SecureServerOptions
-      | `Http2_SecureServerSessionOptions
-      | `Http2_ServerSessionOptions
-      | `Http2_SessionOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_SecureServerSessionOptions =
-      [ `Http2_SecureServerSessionOptions
-      | `Http2_ServerSessionOptions
-      | `Http2_SessionOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_ServerHttp2Session =
-      [ `Http2_ServerHttp2Session | `Http2_Http2Session ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_ServerHttp2Stream =
-      [ `Http2_ServerHttp2Stream | `Http2_Http2Stream ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_ServerOptions =
-      [ `Http2_ServerOptions
-      | `Http2_ServerSessionOptions
-      | `Http2_SessionOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_ServerSessionOptions =
-      [ `Http2_ServerSessionOptions | `Http2_SessionOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_ServerStreamFileResponseOptions =
-      [ `Http2_ServerStreamFileResponseOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_ServerStreamFileResponseOptionsWithError =
-      [ `Http2_ServerStreamFileResponseOptionsWithError
-      | `Http2_ServerStreamFileResponseOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_ServerStreamResponseOptions =
-      [ `Http2_ServerStreamResponseOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_SessionOptions = [ `Http2_SessionOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_SessionState = [ `Http2_SessionState ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_Settings = [ `Http2_Settings ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_StatOptions = [ `Http2_StatOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_StreamPriorityOptions = [ `Http2_StreamPriorityOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http2_StreamState = [ `Http2_StreamState ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -155,7 +14,7 @@ module AnonymousInterface0 : sig
 end
 
 module AnonymousInterface1 : sig
-  type t = anonymous_interface_1
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -999,7 +858,7 @@ module Http2 : sig
     val addListener
       :  t
       -> event:([ `continue ][@js.enum])
-      -> listener:(unit -> anonymous_interface_0)
+      -> listener:(unit -> AnonymousInterface0.t)
       -> t
       [@@js.call "addListener"]
 
@@ -1085,7 +944,7 @@ module Http2 : sig
     val on
       :  t
       -> event:([ `continue ][@js.enum])
-      -> listener:(unit -> anonymous_interface_0)
+      -> listener:(unit -> AnonymousInterface0.t)
       -> t
       [@@js.call "on"]
 
@@ -1132,7 +991,7 @@ module Http2 : sig
     val once
       :  t
       -> event:([ `continue ][@js.enum])
-      -> listener:(unit -> anonymous_interface_0)
+      -> listener:(unit -> AnonymousInterface0.t)
       -> t
       [@@js.call "once"]
 
@@ -1179,7 +1038,7 @@ module Http2 : sig
     val prependListener
       :  t
       -> event:([ `continue ][@js.enum])
-      -> listener:(unit -> anonymous_interface_0)
+      -> listener:(unit -> AnonymousInterface0.t)
       -> t
       [@@js.call "prependListener"]
 
@@ -1226,7 +1085,7 @@ module Http2 : sig
     val prependOnceListener
       :  t
       -> event:([ `continue ][@js.enum])
-      -> listener:(unit -> anonymous_interface_0)
+      -> listener:(unit -> AnonymousInterface0.t)
       -> t
       [@@js.call "prependOnceListener"]
 

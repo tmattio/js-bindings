@@ -4,21 +4,12 @@
 open Es5
 module Internal =
   struct
-    module AnonymousInterfaces = struct  end
     module Types =
       struct
-        open AnonymousInterfaces
-        type _Moniker = [ `Moniker ] intf
-        and _MonikerClientCapabilities = [ `MonikerClientCapabilities ] intf
-        and _MonikerKind = [ `import  | `export  | `local ]
+        type _MonikerKind = [ `import  | `export  | `local ]
         and _MonikerKind_import = [ `import ]
         and _MonikerKind_export = [ `export ]
         and _MonikerKind_local = [ `local ]
-        and _MonikerOptions = [ `MonikerOptions ] intf
-        and _MonikerParams = [ `MonikerParams ] intf
-        and _MonikerRegistrationOptions =
-          [ `MonikerRegistrationOptions  | `MonikerOptions ] intf
-        and _MonikerServerCapabilities = [ `MonikerServerCapabilities ] intf
         and _UniquenessLevel =
           [ `document  | `project  | `group  | `scheme  | `global ]
         and _UniquenessLevel_document = [ `document ]
@@ -26,13 +17,7 @@ module Internal =
         and _UniquenessLevel_group = [ `group ]
         and _UniquenessLevel_scheme = [ `scheme ]
         and _UniquenessLevel_global = [ `global ]
-        let rec _Moniker_of_js : Ojs.t -> _Moniker = Obj.magic
-        and _Moniker_to_js : _Moniker -> Ojs.t = Obj.magic
-        and _MonikerClientCapabilities_of_js :
-          Ojs.t -> _MonikerClientCapabilities = Obj.magic
-        and _MonikerClientCapabilities_to_js :
-          _MonikerClientCapabilities -> Ojs.t = Obj.magic
-        and _MonikerKind_of_js : Ojs.t -> _MonikerKind =
+        let rec _MonikerKind_of_js : Ojs.t -> _MonikerKind =
           fun (x2 : Ojs.t) ->
             let x3 = x2 in
             match Ojs.string_of_js x3 with
@@ -73,18 +58,6 @@ module Internal =
         and _MonikerKind_local_to_js : _MonikerKind_local -> Ojs.t =
           fun (x10 : [ `local ]) ->
             match x10 with | `local -> Ojs.string_to_js "local"
-        and _MonikerOptions_of_js : Ojs.t -> _MonikerOptions = Obj.magic
-        and _MonikerOptions_to_js : _MonikerOptions -> Ojs.t = Obj.magic
-        and _MonikerParams_of_js : Ojs.t -> _MonikerParams = Obj.magic
-        and _MonikerParams_to_js : _MonikerParams -> Ojs.t = Obj.magic
-        and _MonikerRegistrationOptions_of_js :
-          Ojs.t -> _MonikerRegistrationOptions = Obj.magic
-        and _MonikerRegistrationOptions_to_js :
-          _MonikerRegistrationOptions -> Ojs.t = Obj.magic
-        and _MonikerServerCapabilities_of_js :
-          Ojs.t -> _MonikerServerCapabilities = Obj.magic
-        and _MonikerServerCapabilities_to_js :
-          _MonikerServerCapabilities -> Ojs.t = Obj.magic
         and _UniquenessLevel_of_js : Ojs.t -> _UniquenessLevel =
           fun (x14 : Ojs.t) ->
             let x15 = x14 in
@@ -160,9 +133,6 @@ module Internal =
             match x28 with | `global -> Ojs.string_to_js "global"
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module UniquenessLevel =
   struct
     type t = _UniquenessLevel

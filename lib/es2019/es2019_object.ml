@@ -20,7 +20,7 @@ module AnonymousInterface0 =
 module Object =
   struct
     include struct include Object end
-    let (fromEntries :
+    let (from_entries :
       entries:(PropertyKey.t * 'T) Iterable.t -> AnonymousInterface0.t) =
       fun ~entries:(x8 : (PropertyKey.t * 'T) Iterable.t) ->
         AnonymousInterface0.t_of_js
@@ -32,7 +32,7 @@ module Object =
                      Ojs.array_set x12 0 (PropertyKey.t_to_js x10);
                      Ojs.array_set x12 1 (Obj.magic x11);
                      x12) x8)|])
-    let (fromEntries' : entries:any list Iterable.t -> any) =
+    let (from_entries' : entries:any list Iterable.t -> any) =
       fun ~entries:(x13 : any list Iterable.t) ->
         any_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Object") "fromEntries"
@@ -42,7 +42,7 @@ module Object =
 module ObjectConstructor =
   struct
     include struct include ObjectConstructor end
-    let (fromEntries :
+    let (from_entries :
       t -> entries:(PropertyKey.t * 'T) Iterable.t -> AnonymousInterface0.t)
       =
       fun (x21 : t) ->
@@ -56,7 +56,7 @@ module ObjectConstructor =
                        Ojs.array_set x20 0 (PropertyKey.t_to_js x18);
                        Ojs.array_set x20 1 (Obj.magic x19);
                        x20) x16)|])
-    let (fromEntries' : t -> entries:any list Iterable.t -> any) =
+    let (from_entries' : t -> entries:any list Iterable.t -> any) =
       fun (x25 : t) ->
         fun ~entries:(x22 : any list Iterable.t) ->
           any_of_js

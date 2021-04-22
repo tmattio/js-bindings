@@ -4,73 +4,32 @@
 open Es5
 module Internal =
   struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-        let rec anonymous_interface_1_of_js : Ojs.t -> anonymous_interface_1
-          = Obj.magic
-        and anonymous_interface_1_to_js : anonymous_interface_1 -> Ojs.t =
-          Obj.magic
-      end
     module Types =
       struct
-        open AnonymousInterfaces
-        type _DiagnosticFeature = [ `DiagnosticFeature ] intf
-        and _DiagnosticFeatureProvider = [ `DiagnosticFeatureProvider ] intf
-        and _DiagnosticProvider = [ `DiagnosticProvider ] intf
-        and _DiagnosticProviderMiddleware =
-          [ `DiagnosticProviderMiddleware ] intf
-        and _ProvideDiagnosticSignature =
-          [ `ProvideDiagnosticSignature ] intf
-        and _VDocumentDiagnosticReport =
-          [ `U_s0_new of anonymous_interface_0 
-          | `U_s1_unChanged of anonymous_interface_1 ]
+        type _VDocumentDiagnosticReport =
+          [ `U_s0_new of AnonymousInterface0.t 
+          | `U_s1_unChanged of AnonymousInterface1.t ]
         and _VDocumentDiagnosticReportKind = [ `new_  | `unChanged ]
         and _VDocumentDiagnosticReportKind_new = [ `new_ ]
         and _VDocumentDiagnosticReportKind_unChanged = [ `unChanged ]
-        let rec _DiagnosticFeature_of_js : Ojs.t -> _DiagnosticFeature =
-          Obj.magic
-        and _DiagnosticFeature_to_js : _DiagnosticFeature -> Ojs.t =
-          Obj.magic
-        and _DiagnosticFeatureProvider_of_js :
-          Ojs.t -> _DiagnosticFeatureProvider = Obj.magic
-        and _DiagnosticFeatureProvider_to_js :
-          _DiagnosticFeatureProvider -> Ojs.t = Obj.magic
-        and _DiagnosticProvider_of_js : Ojs.t -> _DiagnosticProvider =
-          Obj.magic
-        and _DiagnosticProvider_to_js : _DiagnosticProvider -> Ojs.t =
-          Obj.magic
-        and _DiagnosticProviderMiddleware_of_js :
-          Ojs.t -> _DiagnosticProviderMiddleware = Obj.magic
-        and _DiagnosticProviderMiddleware_to_js :
-          _DiagnosticProviderMiddleware -> Ojs.t = Obj.magic
-        and _ProvideDiagnosticSignature_of_js :
-          Ojs.t -> _ProvideDiagnosticSignature = Obj.magic
-        and _ProvideDiagnosticSignature_to_js :
-          _ProvideDiagnosticSignature -> Ojs.t = Obj.magic
-        and _VDocumentDiagnosticReport_of_js :
+        let rec _VDocumentDiagnosticReport_of_js :
           Ojs.t -> _VDocumentDiagnosticReport =
           fun (x4 : Ojs.t) ->
             let x5 = x4 in
             match Ojs.string_of_js (Ojs.get_prop_ascii x5 "kind") with
-            | "new" -> `U_s0_new (anonymous_interface_0_of_js x5)
-            | "unChanged" -> `U_s1_unChanged (anonymous_interface_1_of_js x5)
+            | "new" -> `U_s0_new (AnonymousInterface0.t_of_js x5)
+            | "unChanged" -> `U_s1_unChanged (AnonymousInterface1.t_of_js x5)
             | _ -> assert false
         and _VDocumentDiagnosticReport_to_js :
           _VDocumentDiagnosticReport -> Ojs.t =
           fun
             (x1 :
-              [ `U_s0_new of anonymous_interface_0 
-              | `U_s1_unChanged of anonymous_interface_1 ])
+              [ `U_s0_new of AnonymousInterface0.t 
+              | `U_s1_unChanged of AnonymousInterface1.t ])
             ->
             match x1 with
-            | `U_s0_new x2 -> anonymous_interface_0_to_js x2
-            | `U_s1_unChanged x3 -> anonymous_interface_1_to_js x3
+            | `U_s0_new x2 -> AnonymousInterface0.t_to_js x2
+            | `U_s1_unChanged x3 -> AnonymousInterface1.t_to_js x3
         and _VDocumentDiagnosticReportKind_of_js :
           Ojs.t -> _VDocumentDiagnosticReportKind =
           fun (x7 : Ojs.t) ->
@@ -109,16 +68,11 @@ module Internal =
             match x12 with | `unChanged -> Ojs.string_to_js "unChanged"
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x16 : Ojs.t) -> anonymous_interface_0_of_js x16
-    and t_to_js : t -> Ojs.t =
-      fun (x15 : anonymous_interface_0) -> anonymous_interface_0_to_js x15
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x16 : Ojs.t) -> x16
+    and t_to_js : t -> Ojs.t = fun (x15 : Ojs.t) -> x15
     let (get_kind : t -> _VDocumentDiagnosticReportKind_new) =
       fun (x17 : t) ->
         _VDocumentDiagnosticReportKind_new_of_js
@@ -147,11 +101,9 @@ module AnonymousInterface0 =
   end
 module AnonymousInterface1 =
   struct
-    type t = anonymous_interface_1
-    let rec t_of_js : Ojs.t -> t =
-      fun (x29 : Ojs.t) -> anonymous_interface_1_of_js x29
-    and t_to_js : t -> Ojs.t =
-      fun (x28 : anonymous_interface_1) -> anonymous_interface_1_to_js x28
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x29 : Ojs.t) -> x29
+    and t_to_js : t -> Ojs.t = fun (x28 : Ojs.t) -> x28
     let (get_kind : t -> _VDocumentDiagnosticReportKind_unChanged) =
       fun (x30 : t) ->
         _VDocumentDiagnosticReportKind_unChanged_of_js

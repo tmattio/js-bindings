@@ -5,46 +5,6 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type v8_DefaultDeserializer =
-      [ `V8_DefaultDeserializer | `V8_Deserializer ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and v8_DefaultSerializer = [ `V8_DefaultSerializer | `V8_Serializer ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and v8_Deserializer = [ `V8_Deserializer ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and v8_DoesZapCodeSpaceFlag =
-      ([ `L_n_0 [@js 0]
-       | `L_n_1 [@js 1]
-       ]
-      [@js.enum])
-
-    and v8_HeapCodeStatistics = [ `V8_HeapCodeStatistics ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and v8_HeapInfo = [ `V8_HeapInfo ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and v8_HeapSpaceInfo = [ `V8_HeapSpaceInfo ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and v8_Serializer = [ `V8_Serializer ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module V8 : sig
   open Node_stream
 
@@ -80,7 +40,11 @@ module V8 : sig
   [@@js.scope "HeapSpaceInfo"]
 
   module DoesZapCodeSpaceFlag : sig
-    type t = v8_DoesZapCodeSpaceFlag
+    type t =
+      ([ `L_n_0 [@js 0]
+       | `L_n_1 [@js 1]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 

@@ -4,46 +4,13 @@
 open Es5
 module Internal =
   struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-        let rec anonymous_interface_1_of_js : Ojs.t -> anonymous_interface_1
-          = Obj.magic
-        and anonymous_interface_1_to_js : anonymous_interface_1 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-        let rec anonymous_interface_2_of_js : Ojs.t -> anonymous_interface_2
-          = Obj.magic
-        and anonymous_interface_2_to_js : anonymous_interface_2 -> Ojs.t =
-          Obj.magic
-      end
     module Types =
       struct
         open AnonymousInterfaces
         type _DidChangeWorkspaceFoldersNotification_HandlerSignature =
           _DidChangeWorkspaceFoldersParams NotificationHandler.t
-        and _DidChangeWorkspaceFoldersNotification_MiddlewareSignature =
-          [ `DidChangeWorkspaceFoldersNotification_MiddlewareSignature ] intf
-        and _DidChangeWorkspaceFoldersParams =
-          [ `DidChangeWorkspaceFoldersParams ] intf
-        and _WorkspaceFolder = [ `WorkspaceFolder ] intf
-        and _WorkspaceFoldersChangeEvent =
-          [ `WorkspaceFoldersChangeEvent ] intf
-        and _WorkspaceFoldersClientCapabilities =
-          [ `WorkspaceFoldersClientCapabilities ] intf
-        and _WorkspaceFoldersInitializeParams =
-          [ `WorkspaceFoldersInitializeParams ] intf
         and _WorkspaceFoldersRequest_HandlerSignature =
           (_WorkspaceFolder list or_null, unit) RequestHandler0.t
-        and _WorkspaceFoldersRequest_MiddlewareSignature =
-          [ `WorkspaceFoldersRequest_MiddlewareSignature ] intf
-        and _WorkspaceFoldersServerCapabilities =
-          [ `WorkspaceFoldersServerCapabilities ] intf
         let rec _DidChangeWorkspaceFoldersNotification_HandlerSignature_of_js
           : Ojs.t -> _DidChangeWorkspaceFoldersNotification_HandlerSignature
           =
@@ -56,32 +23,6 @@ module Internal =
             ->
             NotificationHandler.t_to_js
               _DidChangeWorkspaceFoldersParams_to_js x1
-        and _DidChangeWorkspaceFoldersNotification_MiddlewareSignature_of_js
-          :
-          Ojs.t -> _DidChangeWorkspaceFoldersNotification_MiddlewareSignature
-          = Obj.magic
-        and _DidChangeWorkspaceFoldersNotification_MiddlewareSignature_to_js
-          :
-          _DidChangeWorkspaceFoldersNotification_MiddlewareSignature -> Ojs.t
-          = Obj.magic
-        and _DidChangeWorkspaceFoldersParams_of_js :
-          Ojs.t -> _DidChangeWorkspaceFoldersParams = Obj.magic
-        and _DidChangeWorkspaceFoldersParams_to_js :
-          _DidChangeWorkspaceFoldersParams -> Ojs.t = Obj.magic
-        and _WorkspaceFolder_of_js : Ojs.t -> _WorkspaceFolder = Obj.magic
-        and _WorkspaceFolder_to_js : _WorkspaceFolder -> Ojs.t = Obj.magic
-        and _WorkspaceFoldersChangeEvent_of_js :
-          Ojs.t -> _WorkspaceFoldersChangeEvent = Obj.magic
-        and _WorkspaceFoldersChangeEvent_to_js :
-          _WorkspaceFoldersChangeEvent -> Ojs.t = Obj.magic
-        and _WorkspaceFoldersClientCapabilities_of_js :
-          Ojs.t -> _WorkspaceFoldersClientCapabilities = Obj.magic
-        and _WorkspaceFoldersClientCapabilities_to_js :
-          _WorkspaceFoldersClientCapabilities -> Ojs.t = Obj.magic
-        and _WorkspaceFoldersInitializeParams_of_js :
-          Ojs.t -> _WorkspaceFoldersInitializeParams = Obj.magic
-        and _WorkspaceFoldersInitializeParams_to_js :
-          _WorkspaceFoldersInitializeParams -> Ojs.t = Obj.magic
         and _WorkspaceFoldersRequest_HandlerSignature_of_js :
           Ojs.t -> _WorkspaceFoldersRequest_HandlerSignature =
           fun (x10 : Ojs.t) ->
@@ -101,26 +42,13 @@ module Internal =
                    (fun (x7 : _WorkspaceFolder list) ->
                       Ojs.list_to_js _WorkspaceFolder_to_js x7) x6)
               Ojs.unit_to_js x5
-        and _WorkspaceFoldersRequest_MiddlewareSignature_of_js :
-          Ojs.t -> _WorkspaceFoldersRequest_MiddlewareSignature = Obj.magic
-        and _WorkspaceFoldersRequest_MiddlewareSignature_to_js :
-          _WorkspaceFoldersRequest_MiddlewareSignature -> Ojs.t = Obj.magic
-        and _WorkspaceFoldersServerCapabilities_of_js :
-          Ojs.t -> _WorkspaceFoldersServerCapabilities = Obj.magic
-        and _WorkspaceFoldersServerCapabilities_to_js :
-          _WorkspaceFoldersServerCapabilities -> Ojs.t = Obj.magic
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x16 : Ojs.t) -> anonymous_interface_0_of_js x16
-    and t_to_js : t -> Ojs.t =
-      fun (x15 : anonymous_interface_0) -> anonymous_interface_0_to_js x15
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x16 : Ojs.t) -> x16
+    and t_to_js : t -> Ojs.t = fun (x15 : Ojs.t) -> x15
     let (get_supported : t -> bool) =
       fun (x17 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x17) "supported")
@@ -140,11 +68,9 @@ module AnonymousInterface0 =
   end
 module AnonymousInterface1 =
   struct
-    type t = anonymous_interface_1
-    let rec t_of_js : Ojs.t -> t =
-      fun (x26 : Ojs.t) -> anonymous_interface_1_of_js x26
-    and t_to_js : t -> Ojs.t =
-      fun (x25 : anonymous_interface_1) -> anonymous_interface_1_to_js x25
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x26 : Ojs.t) -> x26
+    and t_to_js : t -> Ojs.t = fun (x25 : Ojs.t) -> x25
     let (get_workspaceFolders : t -> bool) =
       fun (x27 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x27) "workspaceFolders")
@@ -156,20 +82,18 @@ module AnonymousInterface1 =
   end
 module AnonymousInterface2 =
   struct
-    type t = anonymous_interface_2
-    let rec t_of_js : Ojs.t -> t =
-      fun (x31 : Ojs.t) -> anonymous_interface_2_of_js x31
-    and t_to_js : t -> Ojs.t =
-      fun (x30 : anonymous_interface_2) -> anonymous_interface_2_to_js x30
-    let (get_workspaceFolders : t -> anonymous_interface_0) =
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x31 : Ojs.t) -> x31
+    and t_to_js : t -> Ojs.t = fun (x30 : Ojs.t) -> x30
+    let (get_workspaceFolders : t -> AnonymousInterface0.t) =
       fun (x32 : t) ->
-        anonymous_interface_0_of_js
+        AnonymousInterface0.t_of_js
           (Ojs.get_prop_ascii (t_to_js x32) "workspaceFolders")
-    let (set_workspaceFolders : t -> anonymous_interface_0 -> unit) =
+    let (set_workspaceFolders : t -> AnonymousInterface0.t -> unit) =
       fun (x33 : t) ->
-        fun (x34 : anonymous_interface_0) ->
+        fun (x34 : AnonymousInterface0.t) ->
           Ojs.set_prop_ascii (t_to_js x33) "workspaceFolders"
-            (anonymous_interface_0_to_js x34)
+            (AnonymousInterface0.t_to_js x34)
   end
 module WorkspaceFoldersInitializeParams =
   struct
@@ -200,15 +124,15 @@ module WorkspaceFoldersClientCapabilities =
     and t_to_js : t -> Ojs.t =
       fun (x44 : _WorkspaceFoldersClientCapabilities) ->
         _WorkspaceFoldersClientCapabilities_to_js x44
-    let (get_workspace : t -> anonymous_interface_1) =
+    let (get_workspace : t -> AnonymousInterface1.t) =
       fun (x46 : t) ->
-        anonymous_interface_1_of_js
+        AnonymousInterface1.t_of_js
           (Ojs.get_prop_ascii (t_to_js x46) "workspace")
-    let (set_workspace : t -> anonymous_interface_1 -> unit) =
+    let (set_workspace : t -> AnonymousInterface1.t -> unit) =
       fun (x47 : t) ->
-        fun (x48 : anonymous_interface_1) ->
+        fun (x48 : AnonymousInterface1.t) ->
           Ojs.set_prop_ascii (t_to_js x47) "workspace"
-            (anonymous_interface_1_to_js x48)
+            (AnonymousInterface1.t_to_js x48)
   end
 module WorkspaceFoldersServerCapabilities =
   struct
@@ -218,15 +142,15 @@ module WorkspaceFoldersServerCapabilities =
     and t_to_js : t -> Ojs.t =
       fun (x49 : _WorkspaceFoldersServerCapabilities) ->
         _WorkspaceFoldersServerCapabilities_to_js x49
-    let (get_workspace : t -> anonymous_interface_2) =
+    let (get_workspace : t -> AnonymousInterface2.t) =
       fun (x51 : t) ->
-        anonymous_interface_2_of_js
+        AnonymousInterface2.t_of_js
           (Ojs.get_prop_ascii (t_to_js x51) "workspace")
-    let (set_workspace : t -> anonymous_interface_2 -> unit) =
+    let (set_workspace : t -> AnonymousInterface2.t -> unit) =
       fun (x52 : t) ->
-        fun (x53 : anonymous_interface_2) ->
+        fun (x53 : AnonymousInterface2.t) ->
           Ojs.set_prop_ascii (t_to_js x52) "workspace"
-            (anonymous_interface_2_to_js x53)
+            (AnonymousInterface2.t_to_js x53)
   end
 module WorkspaceFolder =
   struct

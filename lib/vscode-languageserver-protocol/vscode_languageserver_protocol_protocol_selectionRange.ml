@@ -4,37 +4,12 @@
 open Es5
 module Internal =
   struct
-    module AnonymousInterfaces = struct  end
     module Types =
       struct
-        open AnonymousInterfaces
-        type _SelectionRangeClientCapabilities =
-          [ `SelectionRangeClientCapabilities ] intf
-        and _SelectionRangeOptions = [ `SelectionRangeOptions ] intf
-        and _SelectionRangeParams = [ `SelectionRangeParams ] intf
-        and _SelectionRangeRegistrationOptions =
-          [ `SelectionRangeRegistrationOptions  | `SelectionRangeOptions ]
-            intf
-        and _SelectionRangeRequest_HandlerSignature =
+        type _SelectionRangeRequest_HandlerSignature =
           (_SelectionRangeParams, SelectionRange.t list or_null, unit)
             RequestHandler.t
-        let rec _SelectionRangeClientCapabilities_of_js :
-          Ojs.t -> _SelectionRangeClientCapabilities = Obj.magic
-        and _SelectionRangeClientCapabilities_to_js :
-          _SelectionRangeClientCapabilities -> Ojs.t = Obj.magic
-        and _SelectionRangeOptions_of_js : Ojs.t -> _SelectionRangeOptions =
-          Obj.magic
-        and _SelectionRangeOptions_to_js : _SelectionRangeOptions -> Ojs.t =
-          Obj.magic
-        and _SelectionRangeParams_of_js : Ojs.t -> _SelectionRangeParams =
-          Obj.magic
-        and _SelectionRangeParams_to_js : _SelectionRangeParams -> Ojs.t =
-          Obj.magic
-        and _SelectionRangeRegistrationOptions_of_js :
-          Ojs.t -> _SelectionRangeRegistrationOptions = Obj.magic
-        and _SelectionRangeRegistrationOptions_to_js :
-          _SelectionRangeRegistrationOptions -> Ojs.t = Obj.magic
-        and _SelectionRangeRequest_HandlerSignature_of_js :
+        let rec _SelectionRangeRequest_HandlerSignature_of_js :
           Ojs.t -> _SelectionRangeRequest_HandlerSignature =
           fun (x7 : Ojs.t) ->
             RequestHandler.t_of_js _SelectionRangeParams_of_js
@@ -58,9 +33,6 @@ module Internal =
               Ojs.unit_to_js x1
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module SelectionRangeClientCapabilities =
   struct
     type t = _SelectionRangeClientCapabilities

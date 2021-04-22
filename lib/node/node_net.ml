@@ -5,59 +5,13 @@ open Es2020
 open Node_globals
 module Internal =
   struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
     module Types =
       struct
-        open AnonymousInterfaces
-        type net_AddressInfo = [ `Net_AddressInfo ] intf
-        and net_ConnectOpts = [ `Net_ConnectOpts ] intf
-        and net_IpcNetConnectOpts =
-          [ `Net_IpcNetConnectOpts  | `Net_ConnectOpts 
-          | `Net_IpcSocketConnectOpts  | `Net_SocketConstructorOpts ] intf
-        and net_IpcSocketConnectOpts =
-          [ `Net_IpcSocketConnectOpts  | `Net_ConnectOpts ] intf
-        and net_ListenOptions = [ `Net_ListenOptions ] intf
-        and net_LookupFunction = [ `Net_LookupFunction ] intf
-        and net_NetConnectOpts =
+        type net_NetConnectOpts =
           (net_IpcNetConnectOpts, net_TcpNetConnectOpts) union2
-        and net_OnReadOpts = [ `Net_OnReadOpts ] intf
-        and net_Server = [ `Net_Server ] intf
-        and net_ServerOpts = [ `Net_ServerOpts ] intf
-        and net_Socket = [ `Net_Socket ] intf
         and net_SocketConnectOpts =
           (net_IpcSocketConnectOpts, net_TcpSocketConnectOpts) union2
-        and net_SocketConstructorOpts = [ `Net_SocketConstructorOpts ] intf
-        and net_TcpNetConnectOpts =
-          [ `Net_TcpNetConnectOpts  | `Net_ConnectOpts 
-          | `Net_SocketConstructorOpts  | `Net_TcpSocketConnectOpts ] intf
-        and net_TcpSocketConnectOpts =
-          [ `Net_TcpSocketConnectOpts  | `Net_ConnectOpts ] intf
-        let rec net_AddressInfo_of_js : Ojs.t -> net_AddressInfo = Obj.magic
-        and net_AddressInfo_to_js : net_AddressInfo -> Ojs.t = Obj.magic
-        and net_ConnectOpts_of_js : Ojs.t -> net_ConnectOpts = Obj.magic
-        and net_ConnectOpts_to_js : net_ConnectOpts -> Ojs.t = Obj.magic
-        and net_IpcNetConnectOpts_of_js : Ojs.t -> net_IpcNetConnectOpts =
-          Obj.magic
-        and net_IpcNetConnectOpts_to_js : net_IpcNetConnectOpts -> Ojs.t =
-          Obj.magic
-        and net_IpcSocketConnectOpts_of_js :
-          Ojs.t -> net_IpcSocketConnectOpts = Obj.magic
-        and net_IpcSocketConnectOpts_to_js :
-          net_IpcSocketConnectOpts -> Ojs.t = Obj.magic
-        and net_ListenOptions_of_js : Ojs.t -> net_ListenOptions = Obj.magic
-        and net_ListenOptions_to_js : net_ListenOptions -> Ojs.t = Obj.magic
-        and net_LookupFunction_of_js : Ojs.t -> net_LookupFunction =
-          Obj.magic
-        and net_LookupFunction_to_js : net_LookupFunction -> Ojs.t =
-          Obj.magic
-        and net_NetConnectOpts_of_js : Ojs.t -> net_NetConnectOpts =
+        let rec net_NetConnectOpts_of_js : Ojs.t -> net_NetConnectOpts =
           fun (x4 : Ojs.t) ->
             union2_of_js net_IpcNetConnectOpts_of_js
               net_TcpNetConnectOpts_of_js x4
@@ -65,14 +19,6 @@ module Internal =
           fun (x1 : (net_IpcNetConnectOpts, net_TcpNetConnectOpts) union2) ->
             union2_to_js net_IpcNetConnectOpts_to_js
               net_TcpNetConnectOpts_to_js x1
-        and net_OnReadOpts_of_js : Ojs.t -> net_OnReadOpts = Obj.magic
-        and net_OnReadOpts_to_js : net_OnReadOpts -> Ojs.t = Obj.magic
-        and net_Server_of_js : Ojs.t -> net_Server = Obj.magic
-        and net_Server_to_js : net_Server -> Ojs.t = Obj.magic
-        and net_ServerOpts_of_js : Ojs.t -> net_ServerOpts = Obj.magic
-        and net_ServerOpts_to_js : net_ServerOpts -> Ojs.t = Obj.magic
-        and net_Socket_of_js : Ojs.t -> net_Socket = Obj.magic
-        and net_Socket_to_js : net_Socket -> Ojs.t = Obj.magic
         and net_SocketConnectOpts_of_js : Ojs.t -> net_SocketConnectOpts =
           fun (x10 : Ojs.t) ->
             union2_of_js net_IpcSocketConnectOpts_of_js
@@ -84,30 +30,13 @@ module Internal =
             ->
             union2_to_js net_IpcSocketConnectOpts_to_js
               net_TcpSocketConnectOpts_to_js x7
-        and net_SocketConstructorOpts_of_js :
-          Ojs.t -> net_SocketConstructorOpts = Obj.magic
-        and net_SocketConstructorOpts_to_js :
-          net_SocketConstructorOpts -> Ojs.t = Obj.magic
-        and net_TcpNetConnectOpts_of_js : Ojs.t -> net_TcpNetConnectOpts =
-          Obj.magic
-        and net_TcpNetConnectOpts_to_js : net_TcpNetConnectOpts -> Ojs.t =
-          Obj.magic
-        and net_TcpSocketConnectOpts_of_js :
-          Ojs.t -> net_TcpSocketConnectOpts = Obj.magic
-        and net_TcpSocketConnectOpts_to_js :
-          net_TcpSocketConnectOpts -> Ojs.t = Obj.magic
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x14 : Ojs.t) -> anonymous_interface_0_of_js x14
-    and t_to_js : t -> Ojs.t =
-      fun (x13 : anonymous_interface_0) -> anonymous_interface_0_to_js x13
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x14 : Ojs.t) -> x14
+    and t_to_js : t -> Ojs.t = fun (x13 : Ojs.t) -> x13
   end
 module Net =
   struct
@@ -662,10 +591,10 @@ module Net =
                                           [|(Ojs.int_to_js x170)|])
                                  | None -> ());
                                 x169))|])
-        let (address : t -> (net_AddressInfo, anonymous_interface_0) union2)
+        let (address : t -> (net_AddressInfo, AnonymousInterface0.t) union2)
           =
           fun (x174 : t) ->
-            union2_of_js net_AddressInfo_of_js anonymous_interface_0_of_js
+            union2_of_js net_AddressInfo_of_js AnonymousInterface0.t_of_js
               (Ojs.call (t_to_js x174) "address" [||])
         let (unref : t -> t) =
           fun (x177 : t) -> t_of_js (Ojs.call (t_to_js x177) "unref" [||])

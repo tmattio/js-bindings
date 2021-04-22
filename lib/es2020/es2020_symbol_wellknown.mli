@@ -9,7 +9,7 @@ module SymbolConstructor : sig
     include SymbolConstructor
   end
 
-  val get_matchAll : t -> symbol [@@js.get "matchAll"]
+  val get_match_all : t -> symbol [@@js.get "matchAll"]
 end
 [@@js.scope "SymbolConstructor"]
 

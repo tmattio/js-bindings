@@ -5,31 +5,6 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type module_Module = [ `Module_Module ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and module_Module_SourceMap = [ `Module_Module_SourceMap ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and module_Module_SourceMapPayload =
-      [ `Module_Module_SourceMapPayload ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and module_Module_SourceMapping = [ `Module_Module_SourceMapping ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module Module : sig
   module Module : sig
     val syncBuiltinESMExports : unit -> unit

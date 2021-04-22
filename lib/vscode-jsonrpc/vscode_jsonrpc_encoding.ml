@@ -4,27 +4,13 @@
 open Es2020
 module Internal =
   struct
-    module AnonymousInterfaces = struct  end
     module Types =
       struct
         open AnonymousInterfaces
         type _ContentDecoder = _FunctionContentDecoder
         and _ContentEncoder = _FunctionContentEncoder
         and _ContentTypeDecoder = _FunctionContentTypeDecoder
-        and _ContentTypeDecoderOptions = [ `ContentTypeDecoderOptions ] intf
         and _ContentTypeEncoder = _FunctionContentTypeEncoder
-        and _ContentTypeEncoderOptions = [ `ContentTypeEncoderOptions ] intf
-        and _FunctionContentDecoder = [ `FunctionContentDecoder ] intf
-        and _FunctionContentEncoder = [ `FunctionContentEncoder ] intf
-        and _FunctionContentTypeDecoder =
-          [ `FunctionContentTypeDecoder ] intf
-        and _FunctionContentTypeEncoder =
-          [ `FunctionContentTypeEncoder ] intf
-        and _Named = [ `Named ] intf
-        and _StreamContentDecoder = [ `StreamContentDecoder ] intf
-        and _StreamContentEncoder = [ `StreamContentEncoder ] intf
-        and _StreamContentTypeDecoder = [ `StreamContentTypeDecoder ] intf
-        and _StreamContentTypeEncoder = [ `StreamContentTypeEncoder ] intf
         let rec _ContentDecoder_of_js : Ojs.t -> _ContentDecoder =
           fun (x2 : Ojs.t) -> _FunctionContentDecoder_of_js x2
         and _ContentDecoder_to_js : _ContentDecoder -> Ojs.t =
@@ -40,58 +26,13 @@ module Internal =
         and _ContentTypeDecoder_to_js : _ContentTypeDecoder -> Ojs.t =
           fun (x5 : _FunctionContentTypeDecoder) ->
             _FunctionContentTypeDecoder_to_js x5
-        and _ContentTypeDecoderOptions_of_js :
-          Ojs.t -> _ContentTypeDecoderOptions = Obj.magic
-        and _ContentTypeDecoderOptions_to_js :
-          _ContentTypeDecoderOptions -> Ojs.t = Obj.magic
         and _ContentTypeEncoder_of_js : Ojs.t -> _ContentTypeEncoder =
           fun (x8 : Ojs.t) -> _FunctionContentTypeEncoder_of_js x8
         and _ContentTypeEncoder_to_js : _ContentTypeEncoder -> Ojs.t =
           fun (x7 : _FunctionContentTypeEncoder) ->
             _FunctionContentTypeEncoder_to_js x7
-        and _ContentTypeEncoderOptions_of_js :
-          Ojs.t -> _ContentTypeEncoderOptions = Obj.magic
-        and _ContentTypeEncoderOptions_to_js :
-          _ContentTypeEncoderOptions -> Ojs.t = Obj.magic
-        and _FunctionContentDecoder_of_js : Ojs.t -> _FunctionContentDecoder
-          = Obj.magic
-        and _FunctionContentDecoder_to_js : _FunctionContentDecoder -> Ojs.t
-          = Obj.magic
-        and _FunctionContentEncoder_of_js : Ojs.t -> _FunctionContentEncoder
-          = Obj.magic
-        and _FunctionContentEncoder_to_js : _FunctionContentEncoder -> Ojs.t
-          = Obj.magic
-        and _FunctionContentTypeDecoder_of_js :
-          Ojs.t -> _FunctionContentTypeDecoder = Obj.magic
-        and _FunctionContentTypeDecoder_to_js :
-          _FunctionContentTypeDecoder -> Ojs.t = Obj.magic
-        and _FunctionContentTypeEncoder_of_js :
-          Ojs.t -> _FunctionContentTypeEncoder = Obj.magic
-        and _FunctionContentTypeEncoder_to_js :
-          _FunctionContentTypeEncoder -> Ojs.t = Obj.magic
-        and _Named_of_js : Ojs.t -> _Named = Obj.magic
-        and _Named_to_js : _Named -> Ojs.t = Obj.magic
-        and _StreamContentDecoder_of_js : Ojs.t -> _StreamContentDecoder =
-          Obj.magic
-        and _StreamContentDecoder_to_js : _StreamContentDecoder -> Ojs.t =
-          Obj.magic
-        and _StreamContentEncoder_of_js : Ojs.t -> _StreamContentEncoder =
-          Obj.magic
-        and _StreamContentEncoder_to_js : _StreamContentEncoder -> Ojs.t =
-          Obj.magic
-        and _StreamContentTypeDecoder_of_js :
-          Ojs.t -> _StreamContentTypeDecoder = Obj.magic
-        and _StreamContentTypeDecoder_to_js :
-          _StreamContentTypeDecoder -> Ojs.t = Obj.magic
-        and _StreamContentTypeEncoder_of_js :
-          Ojs.t -> _StreamContentTypeEncoder = Obj.magic
-        and _StreamContentTypeEncoder_to_js :
-          _StreamContentTypeEncoder -> Ojs.t = Obj.magic
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module FunctionContentEncoder =
   struct
     type t = _FunctionContentEncoder

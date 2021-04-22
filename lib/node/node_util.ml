@@ -5,50 +5,15 @@ open Es2020
 open Node_globals
 module Internal =
   struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-        let rec anonymous_interface_1_of_js : Ojs.t -> anonymous_interface_1
-          = Obj.magic
-        and anonymous_interface_1_to_js : anonymous_interface_1 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-        let rec anonymous_interface_2_of_js : Ojs.t -> anonymous_interface_2
-          = Obj.magic
-        and anonymous_interface_2_to_js : anonymous_interface_2 -> Ojs.t =
-          Obj.magic
-      end
     module Types =
       struct
-        open AnonymousInterfaces
-        type util_CustomInspectFunction =
-          [ `Util_CustomInspectFunction ] intf
-        and 'TCustom util_CustomPromisify =
+        type 'TCustom util_CustomPromisify =
           ('TCustom util_CustomPromisifyLegacy,
             'TCustom util_CustomPromisifySymbol) union2
-        and 'TCustom util_CustomPromisifyLegacy =
-          [ `Util_CustomPromisifyLegacy of 'TCustom  | `Function ] intf
-        and 'TCustom util_CustomPromisifySymbol =
-          [ `Util_CustomPromisifySymbol of 'TCustom  | `Function ] intf
-        and util_EncodeIntoResult = [ `Util_EncodeIntoResult ] intf
-        and util_InspectOptions = [ `Util_InspectOptions ] intf
-        and util_InspectOptionsStylized =
-          [ `Util_InspectOptionsStylized  | `Util_InspectOptions ] intf
         and util_Style =
           [ `bigint  | `boolean  | `date  | `module_  | `null  | `number 
           | `regexp  | `special  | `string  | `symbol  | `undefined ]
-        and util_TextDecoder = [ `Util_TextDecoder ] intf
-        and util_TextEncoder = [ `Util_TextEncoder ] intf
-        let rec util_CustomInspectFunction_of_js :
-          Ojs.t -> util_CustomInspectFunction = Obj.magic
-        and util_CustomInspectFunction_to_js :
-          util_CustomInspectFunction -> Ojs.t = Obj.magic
-        and util_CustomPromisify_of_js :
+        let rec util_CustomPromisify_of_js :
           'TCustom .
             (Ojs.t -> 'TCustom) -> Ojs.t -> 'TCustom util_CustomPromisify
           = fun (type __TCustom) ->
@@ -74,38 +39,6 @@ module Internal =
                    util_CustomPromisifyLegacy_to_js __TCustom_to_js x2)
                 (fun (x4 : __TCustom util_CustomPromisifySymbol) ->
                    util_CustomPromisifySymbol_to_js __TCustom_to_js x4) x1
-        and util_CustomPromisifyLegacy_of_js :
-          'TCustom .
-            (Ojs.t -> 'TCustom) ->
-              Ojs.t -> 'TCustom util_CustomPromisifyLegacy
-          = fun _TCustom -> Obj.magic
-        and util_CustomPromisifyLegacy_to_js :
-          'TCustom .
-            ('TCustom -> Ojs.t) ->
-              'TCustom util_CustomPromisifyLegacy -> Ojs.t
-          = fun _TCustom -> Obj.magic
-        and util_CustomPromisifySymbol_of_js :
-          'TCustom .
-            (Ojs.t -> 'TCustom) ->
-              Ojs.t -> 'TCustom util_CustomPromisifySymbol
-          = fun _TCustom -> Obj.magic
-        and util_CustomPromisifySymbol_to_js :
-          'TCustom .
-            ('TCustom -> Ojs.t) ->
-              'TCustom util_CustomPromisifySymbol -> Ojs.t
-          = fun _TCustom -> Obj.magic
-        and util_EncodeIntoResult_of_js : Ojs.t -> util_EncodeIntoResult =
-          Obj.magic
-        and util_EncodeIntoResult_to_js : util_EncodeIntoResult -> Ojs.t =
-          Obj.magic
-        and util_InspectOptions_of_js : Ojs.t -> util_InspectOptions =
-          Obj.magic
-        and util_InspectOptions_to_js : util_InspectOptions -> Ojs.t =
-          Obj.magic
-        and util_InspectOptionsStylized_of_js :
-          Ojs.t -> util_InspectOptionsStylized = Obj.magic
-        and util_InspectOptionsStylized_to_js :
-          util_InspectOptionsStylized -> Ojs.t = Obj.magic
         and util_Style_of_js : Ojs.t -> util_Style =
           fun (x12 : Ojs.t) ->
             let x13 = x12 in
@@ -141,30 +74,19 @@ module Internal =
             | `string -> Ojs.string_to_js "string"
             | `symbol -> Ojs.string_to_js "symbol"
             | `undefined -> Ojs.string_to_js "undefined"
-        and util_TextDecoder_of_js : Ojs.t -> util_TextDecoder = Obj.magic
-        and util_TextDecoder_to_js : util_TextDecoder -> Ojs.t = Obj.magic
-        and util_TextEncoder_of_js : Ojs.t -> util_TextEncoder = Obj.magic
-        and util_TextEncoder_to_js : util_TextEncoder -> Ojs.t = Obj.magic
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x15 : Ojs.t) -> anonymous_interface_0_of_js x15
-    and t_to_js : t -> Ojs.t =
-      fun (x14 : anonymous_interface_0) -> anonymous_interface_0_to_js x14
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x15 : Ojs.t) -> x15
+    and t_to_js : t -> Ojs.t = fun (x14 : Ojs.t) -> x14
   end
 module AnonymousInterface1 =
   struct
-    type t = anonymous_interface_1
-    let rec t_of_js : Ojs.t -> t =
-      fun (x17 : Ojs.t) -> anonymous_interface_1_of_js x17
-    and t_to_js : t -> Ojs.t =
-      fun (x16 : anonymous_interface_1) -> anonymous_interface_1_to_js x16
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x17 : Ojs.t) -> x17
+    and t_to_js : t -> Ojs.t = fun (x16 : Ojs.t) -> x16
     let (get_fatal : t -> bool) =
       fun (x18 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x18) "fatal")
@@ -182,11 +104,9 @@ module AnonymousInterface1 =
   end
 module AnonymousInterface2 =
   struct
-    type t = anonymous_interface_2
-    let rec t_of_js : Ojs.t -> t =
-      fun (x25 : Ojs.t) -> anonymous_interface_2_of_js x25
-    and t_to_js : t -> Ojs.t =
-      fun (x24 : anonymous_interface_2) -> anonymous_interface_2_to_js x24
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x25 : Ojs.t) -> x25
+    and t_to_js : t -> Ojs.t = fun (x24 : Ojs.t) -> x24
     let (get_stream : t -> bool) =
       fun (x26 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x26) "stream")
@@ -1684,11 +1604,11 @@ module Util =
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types")
                  "isInt32Array" [|(any_to_js x428)|])
-        let (isMap : object_:('T, anonymous_interface_0) union2 -> bool) =
-          fun ~object_:(x429 : ('T, anonymous_interface_0) union2) ->
+        let (isMap : object_:('T, AnonymousInterface0.t) union2 -> bool) =
+          fun ~object_:(x429 : ('T, AnonymousInterface0.t) union2) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types") "isMap"
-                 [|(union2_to_js Obj.magic anonymous_interface_0_to_js x429)|])
+                 [|(union2_to_js Obj.magic AnonymousInterface0.t_to_js x429)|])
         let (isMapIterator : object_:any -> bool) =
           fun ~object_:(x432 : any) ->
             Ojs.bool_of_js
@@ -1724,11 +1644,11 @@ module Util =
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types") "isRegExp"
                  [|(any_to_js x438)|])
-        let (isSet : object_:('T, anonymous_interface_0) union2 -> bool) =
-          fun ~object_:(x439 : ('T, anonymous_interface_0) union2) ->
+        let (isSet : object_:('T, AnonymousInterface0.t) union2 -> bool) =
+          fun ~object_:(x439 : ('T, AnonymousInterface0.t) union2) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types") "isSet"
-                 [|(union2_to_js Obj.magic anonymous_interface_0_to_js x439)|])
+                 [|(union2_to_js Obj.magic AnonymousInterface0.t_to_js x439)|])
         let (isSetIterator : object_:any -> bool) =
           fun ~object_:(x442 : any) ->
             Ojs.bool_of_js
@@ -1802,9 +1722,9 @@ module Util =
           fun (x457 : t) ->
             Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x457) "ignoreBOM")
         let (create :
-          ?encoding:string -> ?options:anonymous_interface_1 -> unit -> t) =
+          ?encoding:string -> ?options:AnonymousInterface1.t -> unit -> t) =
           fun ?encoding:(x458 : string option) ->
-            fun ?options:(x459 : anonymous_interface_1 option) ->
+            fun ?options:(x459 : AnonymousInterface1.t option) ->
               fun () ->
                 t_of_js
                   (Ojs.new_obj_arr
@@ -1822,13 +1742,13 @@ module Util =
                        | Some x461 ->
                            ignore
                              (Ojs.call x460 "push"
-                                [|(anonymous_interface_1_to_js x461)|])
+                                [|(AnonymousInterface1.t_to_js x461)|])
                        | None -> ());
                       x460))
         let (decode :
           t ->
             ?input:(ArrayBuffer.t, ArrayBufferView.t) union2 or_null ->
-              ?options:anonymous_interface_2 -> unit -> string)
+              ?options:AnonymousInterface2.t -> unit -> string)
           =
           fun (x471 : t) ->
             fun
@@ -1836,7 +1756,7 @@ module Util =
                        (ArrayBuffer.t, ArrayBufferView.t) union2 or_null
                          option)
               ->
-              fun ?options:(x464 : anonymous_interface_2 option) ->
+              fun ?options:(x464 : AnonymousInterface2.t option) ->
                 fun () ->
                   Ojs.string_of_js
                     (let x472 = t_to_js x471 in
@@ -1865,7 +1785,7 @@ module Util =
                                  | Some x466 ->
                                      ignore
                                        (Ojs.call x465 "push"
-                                          [|(anonymous_interface_2_to_js x466)|])
+                                          [|(AnonymousInterface2.t_to_js x466)|])
                                  | None -> ());
                                 x465))|])
       end

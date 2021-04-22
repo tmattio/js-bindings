@@ -3,33 +3,7 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
 module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _ProvideSelectionRangeSignature =
-          [ `ProvideSelectionRangeSignature ] intf
-        and _SelectionRangeFeature = [ `SelectionRangeFeature ] intf
-        and _SelectionRangeProviderMiddleware =
-          [ `SelectionRangeProviderMiddleware ] intf
-        let rec _ProvideSelectionRangeSignature_of_js :
-          Ojs.t -> _ProvideSelectionRangeSignature = Obj.magic
-        and _ProvideSelectionRangeSignature_to_js :
-          _ProvideSelectionRangeSignature -> Ojs.t = Obj.magic
-        and _SelectionRangeFeature_of_js : Ojs.t -> _SelectionRangeFeature =
-          Obj.magic
-        and _SelectionRangeFeature_to_js : _SelectionRangeFeature -> Ojs.t =
-          Obj.magic
-        and _SelectionRangeProviderMiddleware_of_js :
-          Ojs.t -> _SelectionRangeProviderMiddleware = Obj.magic
-        and _SelectionRangeProviderMiddleware_to_js :
-          _SelectionRangeProviderMiddleware -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
+  struct module Types = struct open AnonymousInterfaces end end
 module ProvideSelectionRangeSignature =
   struct
     type t = _ProvideSelectionRangeSignature

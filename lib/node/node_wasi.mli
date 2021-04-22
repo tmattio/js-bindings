@@ -5,24 +5,6 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type wasi_WASI = [ `Wasi_WASI ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and wasi_WASIOptions = [ `Wasi_WASIOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module Wasi : sig
   module WASIOptions : sig
     type t = wasi_WASIOptions

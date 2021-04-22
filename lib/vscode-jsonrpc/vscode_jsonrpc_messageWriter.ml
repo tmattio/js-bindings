@@ -2,37 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _AbstractMessageWriter = [ `AbstractMessageWriter ] intf
-        and _MessageWriter = [ `MessageWriter ] intf
-        and _MessageWriterOptions = [ `MessageWriterOptions ] intf
-        and _WriteableStreamMessageWriter =
-          [ `WriteableStreamMessageWriter  | `AbstractMessageWriter 
-          | `MessageWriter ] intf
-        let rec _AbstractMessageWriter_of_js :
-          Ojs.t -> _AbstractMessageWriter = Obj.magic
-        and _AbstractMessageWriter_to_js : _AbstractMessageWriter -> Ojs.t =
-          Obj.magic
-        and _MessageWriter_of_js : Ojs.t -> _MessageWriter = Obj.magic
-        and _MessageWriter_to_js : _MessageWriter -> Ojs.t = Obj.magic
-        and _MessageWriterOptions_of_js : Ojs.t -> _MessageWriterOptions =
-          Obj.magic
-        and _MessageWriterOptions_to_js : _MessageWriterOptions -> Ojs.t =
-          Obj.magic
-        and _WriteableStreamMessageWriter_of_js :
-          Ojs.t -> _WriteableStreamMessageWriter = Obj.magic
-        and _WriteableStreamMessageWriter_to_js :
-          _WriteableStreamMessageWriter -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module MessageWriter =
   struct
     type t = _MessageWriter

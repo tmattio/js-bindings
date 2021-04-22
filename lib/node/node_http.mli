@@ -5,73 +5,8 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type http_Agent = [ `Http_Agent ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http_AgentOptions = [ `Http_AgentOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http_ClientRequest =
-      [ `Http_ClientRequest | `Http_OutgoingMessage ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http_ClientRequestArgs = [ `Http_ClientRequestArgs ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http_HttpBase = [ `Http_HttpBase ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http_IncomingHttpHeaders = [ `Http_IncomingHttpHeaders ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http_IncomingMessage = [ `Http_IncomingMessage ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http_InformationEvent = [ `Http_InformationEvent ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http_OutgoingHttpHeader = string list or_string or_number
-
-    and http_OutgoingHttpHeaders = [ `Http_OutgoingHttpHeaders ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http_OutgoingMessage = [ `Http_OutgoingMessage ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http_RequestListener = [ `Http_RequestListener ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http_RequestOptions =
-      [ `Http_RequestOptions | `Http_ClientRequestArgs ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http_Server = [ `Http_Server | `Http_HttpBase ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http_ServerOptions = [ `Http_ServerOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and http_ServerResponse =
-      [ `Http_ServerResponse | `Http_OutgoingMessage ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -381,7 +316,7 @@ module Http : sig
   [@@js.scope "IncomingHttpHeaders"]
 
   module OutgoingHttpHeader : sig
-    type t = http_OutgoingHttpHeader
+    type t = string list or_string or_number
 
     val t_to_js : t -> Ojs.t
 
@@ -1530,7 +1465,7 @@ module Http : sig
 
   val mETHODS : string list [@@js.global "METHODS"]
 
-  val sTATUS_CODES : anonymous_interface_0 [@@js.global "STATUS_CODES"]
+  val sTATUS_CODES : AnonymousInterface0.t [@@js.global "STATUS_CODES"]
 
   val createServer
     :  ?requestListener:http_RequestListener

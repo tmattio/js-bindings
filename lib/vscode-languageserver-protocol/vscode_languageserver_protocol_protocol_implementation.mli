@@ -4,38 +4,6 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _ImplementationClientCapabilities =
-      [ `ImplementationClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ImplementationOptions = [ `ImplementationOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ImplementationParams = [ `ImplementationParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ImplementationRegistrationOptions =
-      [ `ImplementationRegistrationOptions | `ImplementationOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ImplementationRequest_HandlerSignature =
-      ( _ImplementationParams
-      , (Definition.t, DefinitionLink.t) or_array or_null
-      , unit )
-      RequestHandler.t
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 (* import { RequestHandler } from 'vscode-jsonrpc'; *)
 (* import { Definition, DefinitionLink, Location, LocationLink } from
    'vscode-languageserver-types'; *)
@@ -118,7 +86,11 @@ module ImplementationRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _ImplementationRequest_HandlerSignature
+    type t =
+      ( _ImplementationParams
+      , (Definition.t, DefinitionLink.t) or_array or_null
+      , unit )
+      RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 

@@ -5,36 +5,8 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type tty_Direction =
-      ([ `L_n_minus1 [@js -1]
-       | `L_n_0 [@js 0]
-       | `L_n_1 [@js 1]
-       ]
-      [@js.enum])
-
-    and tty_ReadStream = [ `Tty_ReadStream ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and tty_WriteStream = [ `Tty_WriteStream ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -71,7 +43,12 @@ module Tty : sig
   [@@js.scope "ReadStream"]
 
   module Direction : sig
-    type t = tty_Direction
+    type t =
+      ([ `L_n_minus1 [@js -1]
+       | `L_n_0 [@js 0]
+       | `L_n_1 [@js 1]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -194,18 +171,18 @@ module Tty : sig
       -> bool
       [@@js.call "moveCursor"]
 
-    val getColorDepth : t -> ?env:anonymous_interface_0 -> unit -> int
+    val getColorDepth : t -> ?env:AnonymousInterface0.t -> unit -> int
       [@@js.call "getColorDepth"]
 
     val hasColors : t -> ?depth:int -> unit -> bool [@@js.call "hasColors"]
 
-    val hasColors' : t -> ?env:anonymous_interface_0 -> unit -> bool
+    val hasColors' : t -> ?env:AnonymousInterface0.t -> unit -> bool
       [@@js.call "hasColors"]
 
     val hasColors''
       :  t
       -> depth:int
-      -> ?env:anonymous_interface_0
+      -> ?env:AnonymousInterface0.t
       -> unit
       -> bool
       [@@js.call "hasColors"]

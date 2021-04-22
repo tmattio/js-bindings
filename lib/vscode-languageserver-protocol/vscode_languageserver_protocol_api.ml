@@ -4,7 +4,6 @@
 open Es5
 module Internal =
   struct
-    module AnonymousInterfaces = struct  end
     module Types =
       struct
         open AnonymousInterfaces
@@ -205,9 +204,6 @@ module Internal =
               x25
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 open Vscode_jsonrpc
 open Vscode_languageserver_types
 open Vscode_languageserver_protocol_messages

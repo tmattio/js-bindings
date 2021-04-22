@@ -2,14 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types = struct open AnonymousInterfaces end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 let (rmdir : dir:string -> unit Promise.t) =
   fun ~dir:(x1 : string) ->
     Promise.t_of_js Ojs.unit_of_js

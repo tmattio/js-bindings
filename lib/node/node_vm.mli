@@ -5,61 +5,8 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type vm_BaseOptions = [ `Vm_BaseOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and vm_CompileFunctionOptions =
-      [ `Vm_CompileFunctionOptions | `Vm_BaseOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and vm_Context = [ `Vm_Context ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and vm_CreateContextOptions = [ `Vm_CreateContextOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and vm_MeasureMemoryMode =
-      ([ `detailed [@js "detailed"]
-       | `summary [@js "summary"]
-       ]
-      [@js.enum])
-
-    and vm_MeasureMemoryOptions = [ `Vm_MeasureMemoryOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and vm_MemoryMeasurement = [ `Vm_MemoryMeasurement ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and vm_RunningScriptOptions =
-      [ `Vm_RunningScriptOptions | `Vm_BaseOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and vm_Script = [ `Vm_Script ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and vm_ScriptOptions = [ `Vm_ScriptOptions | `Vm_BaseOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -75,7 +22,7 @@ module AnonymousInterface0 : sig
 end
 
 module AnonymousInterface1 : sig
-  type t = anonymous_interface_1
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -225,10 +172,10 @@ module Vm : sig
 
     val set_origin : t -> string -> unit [@@js.set "origin"]
 
-    val get_codeGeneration : t -> anonymous_interface_1
+    val get_codeGeneration : t -> AnonymousInterface1.t
       [@@js.get "codeGeneration"]
 
-    val set_codeGeneration : t -> anonymous_interface_1 -> unit
+    val set_codeGeneration : t -> AnonymousInterface1.t -> unit
       [@@js.set "codeGeneration"]
 
     val get_microtaskMode
@@ -242,7 +189,11 @@ module Vm : sig
   [@@js.scope "CreateContextOptions"]
 
   module MeasureMemoryMode : sig
-    type t = vm_MeasureMemoryMode
+    type t =
+      ([ `detailed [@js "detailed"]
+       | `summary [@js "summary"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -273,9 +224,9 @@ module Vm : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_total : t -> anonymous_interface_0 [@@js.get "total"]
+    val get_total : t -> AnonymousInterface0.t [@@js.get "total"]
 
-    val set_total : t -> anonymous_interface_0 -> unit [@@js.set "total"]
+    val set_total : t -> AnonymousInterface0.t -> unit [@@js.set "total"]
   end
   [@@js.scope "MemoryMeasurement"]
 

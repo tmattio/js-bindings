@@ -2,28 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _ConfigurationFeature = [ `ConfigurationFeature ] intf
-        and _ConfigurationWorkspaceMiddleware =
-          [ `ConfigurationWorkspaceMiddleware ] intf
-        let rec _ConfigurationFeature_of_js : Ojs.t -> _ConfigurationFeature
-          = Obj.magic
-        and _ConfigurationFeature_to_js : _ConfigurationFeature -> Ojs.t =
-          Obj.magic
-        and _ConfigurationWorkspaceMiddleware_of_js :
-          Ojs.t -> _ConfigurationWorkspaceMiddleware = Obj.magic
-        and _ConfigurationWorkspaceMiddleware_to_js :
-          _ConfigurationWorkspaceMiddleware -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module ConfigurationWorkspaceMiddleware =
   struct
     type t = _ConfigurationWorkspaceMiddleware

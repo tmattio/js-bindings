@@ -59,14 +59,14 @@ module Promise : sig
   end
 
   (* Constructor *)
-  val allSettled
+  val all_settled
     :  'T
     -> (* FIXME: unknown type '{ -readonly [P in keyof T]:
           PromiseSettledResult<T[P] extends Promise<infer U> ? U : T[P]> }' *)
        any Promise.t
     [@@js.global "Promise.allSettled"]
 
-  val allSettled'
+  val all_settled'
     :  'T Iterable.t
     -> (* FIXME: unknown type 'T extends Promise<infer U> ? U : T' *)
        any PromiseSettledResult.t list Promise.t
@@ -78,7 +78,7 @@ module PromiseConstructor : sig
     include PromiseConstructor
   end
 
-  val allSettled
+  val all_settled
     :  t
     -> 'T
     -> (* FIXME: unknown type '{ -readonly [P in keyof T]:
@@ -86,7 +86,7 @@ module PromiseConstructor : sig
        any Promise.t
     [@@js.call "allSettled"]
 
-  val allSettled'
+  val all_settled'
     :  t
     -> 'T Iterable.t
     -> (* FIXME: unknown type 'T extends Promise<infer U> ? U : T' *)

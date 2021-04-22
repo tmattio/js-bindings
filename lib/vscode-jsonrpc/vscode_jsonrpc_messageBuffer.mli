@@ -4,21 +4,6 @@
 
 open Es2020
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _AbstractMessageBuffer = [ `AbstractMessageBuffer ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AbstractMessageBuffer : sig
   type t = _AbstractMessageBuffer
 

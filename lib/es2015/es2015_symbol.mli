@@ -11,7 +11,7 @@ module Symbol : sig
 
   val for_ : key:string -> symbol [@@js.global "for"]
 
-  val keyFor : sym:symbol -> string or_undefined [@@js.global "keyFor"]
+  val key_for : sym:symbol -> string or_undefined [@@js.global "keyFor"]
 end
 [@@js.scope "Symbol"]
 
@@ -28,7 +28,7 @@ module SymbolConstructor : sig
 
   val for_ : t -> key:string -> symbol [@@js.call "for"]
 
-  val keyFor : t -> sym:symbol -> string or_undefined [@@js.call "keyFor"]
+  val key_for : t -> sym:symbol -> string or_undefined [@@js.call "keyFor"]
 end
 [@@js.scope "SymbolConstructor"]
 

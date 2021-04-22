@@ -2,34 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _FoldingRangeFeature = [ `FoldingRangeFeature ] intf
-        and _FoldingRangeProviderMiddleware =
-          [ `FoldingRangeProviderMiddleware ] intf
-        and _ProvideFoldingRangeSignature =
-          [ `ProvideFoldingRangeSignature ] intf
-        let rec _FoldingRangeFeature_of_js : Ojs.t -> _FoldingRangeFeature =
-          Obj.magic
-        and _FoldingRangeFeature_to_js : _FoldingRangeFeature -> Ojs.t =
-          Obj.magic
-        and _FoldingRangeProviderMiddleware_of_js :
-          Ojs.t -> _FoldingRangeProviderMiddleware = Obj.magic
-        and _FoldingRangeProviderMiddleware_to_js :
-          _FoldingRangeProviderMiddleware -> Ojs.t = Obj.magic
-        and _ProvideFoldingRangeSignature_of_js :
-          Ojs.t -> _ProvideFoldingRangeSignature = Obj.magic
-        and _ProvideFoldingRangeSignature_to_js :
-          _ProvideFoldingRangeSignature -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module ProvideFoldingRangeSignature =
   struct
     type t = _ProvideFoldingRangeSignature

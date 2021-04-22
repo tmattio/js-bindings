@@ -26,7 +26,7 @@ module Atomics : sig
     -> bigint
     [@@js.call "and"]
 
-  val compareExchange
+  val compare_exchange
     :  t
     -> typedArray:(BigInt64Array.t, BigUint64Array.t) union2
     -> index:int

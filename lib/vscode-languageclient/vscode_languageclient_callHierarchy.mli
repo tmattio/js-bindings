@@ -3,38 +3,6 @@
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
 open Es5
-
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _CallHierarchyFeature = [ `CallHierarchyFeature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CallHierarchyIncomingCallsSignature =
-      [ `CallHierarchyIncomingCallsSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CallHierarchyMiddleware = [ `CallHierarchyMiddleware ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CallHierarchyOutgoingCallsSignature =
-      [ `CallHierarchyOutgoingCallsSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CallHierarchyProvider = [ `CallHierarchyProvider ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _PrepareCallHierarchySignature = [ `PrepareCallHierarchySignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
 open Vscode
 open Vscode_language_server_protocol
 open Client

@@ -5,38 +5,12 @@ open Es2020
 open Node_globals
 module Internal =
   struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
     module Types =
       struct
         open AnonymousInterfaces
         type perf_hooks_EntryType =
           [ `function_  | `gc  | `http  | `http2  | `mark  | `measure 
           | `node ]
-        and perf_hooks_EventLoopDelayMonitor =
-          [ `Perf_hooks_EventLoopDelayMonitor ] intf
-        and perf_hooks_EventLoopMonitorOptions =
-          [ `Perf_hooks_EventLoopMonitorOptions ] intf
-        and perf_hooks_EventLoopUtilization =
-          [ `Perf_hooks_EventLoopUtilization ] intf
-        and perf_hooks_Performance = [ `Perf_hooks_Performance ] intf
-        and perf_hooks_PerformanceEntry =
-          [ `Perf_hooks_PerformanceEntry ] intf
-        and perf_hooks_PerformanceNodeTiming =
-          [ `Perf_hooks_PerformanceNodeTiming 
-          | `Perf_hooks_PerformanceEntry ] intf
-        and perf_hooks_PerformanceObserver =
-          [ `Perf_hooks_PerformanceObserver ] intf
-        and perf_hooks_PerformanceObserverCallback =
-          [ `Perf_hooks_PerformanceObserverCallback ] intf
-        and perf_hooks_PerformanceObserverEntryList =
-          [ `Perf_hooks_PerformanceObserverEntryList ] intf
         let rec perf_hooks_EntryType_of_js : Ojs.t -> perf_hooks_EntryType =
           fun (x2 : Ojs.t) ->
             let x3 = x2 in
@@ -63,54 +37,13 @@ module Internal =
             | `mark -> Ojs.string_to_js "mark"
             | `measure -> Ojs.string_to_js "measure"
             | `node -> Ojs.string_to_js "node"
-        and perf_hooks_EventLoopDelayMonitor_of_js :
-          Ojs.t -> perf_hooks_EventLoopDelayMonitor = Obj.magic
-        and perf_hooks_EventLoopDelayMonitor_to_js :
-          perf_hooks_EventLoopDelayMonitor -> Ojs.t = Obj.magic
-        and perf_hooks_EventLoopMonitorOptions_of_js :
-          Ojs.t -> perf_hooks_EventLoopMonitorOptions = Obj.magic
-        and perf_hooks_EventLoopMonitorOptions_to_js :
-          perf_hooks_EventLoopMonitorOptions -> Ojs.t = Obj.magic
-        and perf_hooks_EventLoopUtilization_of_js :
-          Ojs.t -> perf_hooks_EventLoopUtilization = Obj.magic
-        and perf_hooks_EventLoopUtilization_to_js :
-          perf_hooks_EventLoopUtilization -> Ojs.t = Obj.magic
-        and perf_hooks_Performance_of_js : Ojs.t -> perf_hooks_Performance =
-          Obj.magic
-        and perf_hooks_Performance_to_js : perf_hooks_Performance -> Ojs.t =
-          Obj.magic
-        and perf_hooks_PerformanceEntry_of_js :
-          Ojs.t -> perf_hooks_PerformanceEntry = Obj.magic
-        and perf_hooks_PerformanceEntry_to_js :
-          perf_hooks_PerformanceEntry -> Ojs.t = Obj.magic
-        and perf_hooks_PerformanceNodeTiming_of_js :
-          Ojs.t -> perf_hooks_PerformanceNodeTiming = Obj.magic
-        and perf_hooks_PerformanceNodeTiming_to_js :
-          perf_hooks_PerformanceNodeTiming -> Ojs.t = Obj.magic
-        and perf_hooks_PerformanceObserver_of_js :
-          Ojs.t -> perf_hooks_PerformanceObserver = Obj.magic
-        and perf_hooks_PerformanceObserver_to_js :
-          perf_hooks_PerformanceObserver -> Ojs.t = Obj.magic
-        and perf_hooks_PerformanceObserverCallback_of_js :
-          Ojs.t -> perf_hooks_PerformanceObserverCallback = Obj.magic
-        and perf_hooks_PerformanceObserverCallback_to_js :
-          perf_hooks_PerformanceObserverCallback -> Ojs.t = Obj.magic
-        and perf_hooks_PerformanceObserverEntryList_of_js :
-          Ojs.t -> perf_hooks_PerformanceObserverEntryList = Obj.magic
-        and perf_hooks_PerformanceObserverEntryList_to_js :
-          perf_hooks_PerformanceObserverEntryList -> Ojs.t = Obj.magic
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x5 : Ojs.t) -> anonymous_interface_0_of_js x5
-    and t_to_js : t -> Ojs.t =
-      fun (x4 : anonymous_interface_0) -> anonymous_interface_0_to_js x4
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x5 : Ojs.t) -> x5
+    and t_to_js : t -> Ojs.t = fun (x4 : Ojs.t) -> x4
     let (get_entryTypes : t -> perf_hooks_EntryType list) =
       fun (x6 : t) ->
         Ojs.list_of_js perf_hooks_EntryType_of_js
@@ -417,12 +350,12 @@ module Perf_hooks =
                  [|(perf_hooks_PerformanceObserverCallback_to_js x93)|])
         let (disconnect : t -> unit) =
           fun (x94 : t) -> ignore (Ojs.call (t_to_js x94) "disconnect" [||])
-        let (observe : t -> options:anonymous_interface_0 -> unit) =
+        let (observe : t -> options:AnonymousInterface0.t -> unit) =
           fun (x96 : t) ->
-            fun ~options:(x95 : anonymous_interface_0) ->
+            fun ~options:(x95 : AnonymousInterface0.t) ->
               ignore
                 (Ojs.call (t_to_js x96) "observe"
-                   [|(anonymous_interface_0_to_js x95)|])
+                   [|(AnonymousInterface0.t_to_js x95)|])
         let (cast : t -> Node_async_hooks.Async_hooks.AsyncResource.t) =
           fun (x97 : t) ->
             Node_async_hooks.Async_hooks.AsyncResource.t_of_js (t_to_js x97)

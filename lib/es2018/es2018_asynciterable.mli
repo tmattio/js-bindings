@@ -9,7 +9,7 @@ module SymbolConstructor : sig
     include SymbolConstructor
   end
 
-  val get_asyncIterator : t -> symbol [@@js.get "asyncIterator"]
+  val get_async_iterator : t -> symbol [@@js.get "asyncIterator"]
 end
 [@@js.scope "SymbolConstructor"]
 

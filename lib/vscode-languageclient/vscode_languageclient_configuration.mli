@@ -4,25 +4,6 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _ConfigurationFeature = [ `ConfigurationFeature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ConfigurationWorkspaceMiddleware =
-      [ `ConfigurationWorkspaceMiddleware ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 (* import { StaticFeature, BaseLanguageClient } from './client'; *)
 (* import { ClientCapabilities, ConfigurationRequest } from
    'vscode-languageserver-protocol'; *)

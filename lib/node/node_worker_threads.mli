@@ -5,44 +5,8 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type worker_threads_MessageChannel = [ `Worker_threads_MessageChannel ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and worker_threads_MessagePort = [ `Worker_threads_MessagePort ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and worker_threads_ResourceLimits = [ `Worker_threads_ResourceLimits ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and worker_threads_TransferListItem =
-      ( ArrayBuffer.t
-      , Node_fs_promises.Fs_promises.FileHandle.t
-      , worker_threads_MessagePort )
-      union3
-
-    and worker_threads_Worker = [ `Worker_threads_Worker ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and worker_threads_WorkerOptions = [ `Worker_threads_WorkerOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -82,7 +46,11 @@ module Worker_threads : sig
   [@@js.scope "MessageChannel"]
 
   module TransferListItem : sig
-    type t = worker_threads_TransferListItem
+    type t =
+      ( ArrayBuffer.t
+      , Node_fs_promises.Fs_promises.FileHandle.t
+      , worker_threads_MessagePort )
+      union3
 
     val t_to_js : t -> Ojs.t
 
@@ -789,7 +757,7 @@ module Worker_threads : sig
 
   val receiveMessageOnPort
     :  port:worker_threads_MessagePort
-    -> anonymous_interface_0 or_undefined
+    -> AnonymousInterface0.t or_undefined
     [@@js.global "receiveMessageOnPort"]
 end
 [@@js.scope Import.worker_threads]

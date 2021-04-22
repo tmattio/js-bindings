@@ -2,14 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types = struct open AnonymousInterfaces end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 let (terminate : process:ChildProcess.t -> ?cwd:string -> unit -> bool) =
   fun ~process:(x1 : ChildProcess.t) ->
     fun ?cwd:(x2 : string option) ->

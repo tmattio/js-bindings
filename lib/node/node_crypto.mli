@@ -5,342 +5,8 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_3 = [ `anonymous_interface_3 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_4 = [ `anonymous_interface_4 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_5 = [ `anonymous_interface_5 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_6 = [ `anonymous_interface_6 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_7 = [ `anonymous_interface_7 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_8 = [ `anonymous_interface_8 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_9 = [ `anonymous_interface_9 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_10 = [ `anonymous_interface_10 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_11 = [ `anonymous_interface_11 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type 'T crypto_BasePrivateKeyEncodingOptions =
-      [ `Crypto_BasePrivateKeyEncodingOptions of 'T ] intf
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-
-    and crypto_BinaryLike = ArrayBufferView.t or_string
-
-    and crypto_BinaryToTextEncoding =
-      ([ `base64 [@js "base64"]
-       | `hex [@js "hex"]
-       ]
-      [@js.enum])
-
-    and crypto_Certificate = [ `Crypto_Certificate ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_CharacterEncoding =
-      ([ `latin1 [@js "latin1"]
-       | `utf_8 [@js "utf-8"]
-       | `utf16le [@js "utf16le"]
-       | `utf8 [@js "utf8"]
-       ]
-      [@js.enum])
-
-    and crypto_Cipher = [ `Crypto_Cipher ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_CipherCCM = [ `Crypto_CipherCCM | `Crypto_Cipher ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_CipherCCMOptions = [ `Crypto_CipherCCMOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_CipherCCMTypes =
-      ([ `aes_128_ccm [@js "aes-128-ccm"]
-       | `aes_192_ccm [@js "aes-192-ccm"]
-       | `aes_256_ccm [@js "aes-256-ccm"]
-       | `chacha20_poly1305 [@js "chacha20-poly1305"]
-       ]
-      [@js.enum])
-
-    and crypto_CipherGCM = [ `Crypto_CipherGCM | `Crypto_Cipher ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_CipherGCMOptions = [ `Crypto_CipherGCMOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_CipherGCMTypes =
-      ([ `aes_128_gcm [@js "aes-128-gcm"]
-       | `aes_192_gcm [@js "aes-192-gcm"]
-       | `aes_256_gcm [@js "aes-256-gcm"]
-       ]
-      [@js.enum])
-
-    and crypto_CipherKey = (crypto_BinaryLike, crypto_KeyObject) union2
-
-    and crypto_DSAEncoding =
-      ([ `der [@js "der"]
-       | `ieee_p1363 [@js "ieee-p1363"]
-       ]
-      [@js.enum])
-
-    and crypto_DSAKeyPairKeyObjectOptions =
-      [ `Crypto_DSAKeyPairKeyObjectOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and ('PubF, 'PrivF) crypto_DSAKeyPairOptions =
-      [ `Crypto_DSAKeyPairOptions of 'PubF * 'PrivF ] intf
-    [@@js.custom
-      { of_js = (fun _PubF _PrivF -> Obj.magic)
-      ; to_js = (fun _PubF _PrivF -> Obj.magic)
-      }]
-
-    and crypto_Decipher = [ `Crypto_Decipher ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_DecipherCCM = [ `Crypto_DecipherCCM | `Crypto_Decipher ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_DecipherGCM = [ `Crypto_DecipherGCM | `Crypto_Decipher ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_DiffieHellman = [ `Crypto_DiffieHellman ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_ECDH = [ `Crypto_ECDH ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_ECDHKeyFormat =
-      ([ `compressed [@js "compressed"]
-       | `hybrid [@js "hybrid"]
-       | `uncompressed [@js "uncompressed"]
-       ]
-      [@js.enum])
-
-    and crypto_ECKeyPairKeyObjectOptions =
-      [ `Crypto_ECKeyPairKeyObjectOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and ('PubF, 'PrivF) crypto_ECKeyPairOptions =
-      [ `Crypto_ECKeyPairOptions of 'PubF * 'PrivF ] intf
-    [@@js.custom
-      { of_js = (fun _PubF _PrivF -> Obj.magic)
-      ; to_js = (fun _PubF _PrivF -> Obj.magic)
-      }]
-
-    and crypto_ED25519KeyPairKeyObjectOptions =
-      [ `Crypto_ED25519KeyPairKeyObjectOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and ('PubF, 'PrivF) crypto_ED25519KeyPairOptions =
-      [ `Crypto_ED25519KeyPairOptions of 'PubF * 'PrivF ] intf
-    [@@js.custom
-      { of_js = (fun _PubF _PrivF -> Obj.magic)
-      ; to_js = (fun _PubF _PrivF -> Obj.magic)
-      }]
-
-    and crypto_ED448KeyPairKeyObjectOptions =
-      [ `Crypto_ED448KeyPairKeyObjectOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and ('PubF, 'PrivF) crypto_ED448KeyPairOptions =
-      [ `Crypto_ED448KeyPairOptions of 'PubF * 'PrivF ] intf
-    [@@js.custom
-      { of_js = (fun _PubF _PrivF -> Obj.magic)
-      ; to_js = (fun _PubF _PrivF -> Obj.magic)
-      }]
-
-    and crypto_Encoding =
-      ( ( crypto_BinaryToTextEncoding
-        , crypto_CharacterEncoding
-        , crypto_LegacyCharacterEncoding )
-        union3
-      , ([ `ascii [@js "ascii"]
-         | `base64 [@js "base64"]
-         | `binary [@js "binary"]
-         | `hex [@js "hex"]
-         | `latin1 [@js "latin1"]
-         | `ucs_2 [@js "ucs-2"]
-         | `ucs2 [@js "ucs2"]
-         | `utf_8 [@js "utf-8"]
-         | `utf16le [@js "utf16le"]
-         | `utf8 [@js "utf8"]
-         ]
-        [@js.enum]) )
-      or_enum
-
-    and crypto_Hash = [ `Crypto_Hash ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_HashOptions = [ `Crypto_HashOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_Hmac = [ `Crypto_Hmac ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and 'T crypto_KeyExportOptions = [ `Crypto_KeyExportOptions of 'T ] intf
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-
-    and crypto_KeyFormat =
-      ([ `der [@js "der"]
-       | `pem [@js "pem"]
-       ]
-      [@js.enum])
-
-    and crypto_KeyLike = (Buffer.t, crypto_KeyObject) union2 or_string
-
-    and crypto_KeyObject = [ `Crypto_KeyObject ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_KeyObjectType =
-      ([ `private_ [@js "private"]
-       | `public [@js "public"]
-       | `secret [@js "secret"]
-       ]
-      [@js.enum])
-
-    and crypto_KeyPairKeyObjectResult = [ `Crypto_KeyPairKeyObjectResult ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and ('T1, 'T2) crypto_KeyPairSyncResult =
-      [ `Crypto_KeyPairSyncResult of 'T1 * 'T2 ] intf
-    [@@js.custom
-      { of_js = (fun _T1 _T2 -> Obj.magic); to_js = (fun _T1 _T2 -> Obj.magic) }]
-
-    and crypto_KeyType =
-      ([ `dsa [@js "dsa"]
-       | `ec [@js "ec"]
-       | `ed25519 [@js "ed25519"]
-       | `ed448 [@js "ed448"]
-       | `rsa [@js "rsa"]
-       | `x25519 [@js "x25519"]
-       | `x448 [@js "x448"]
-       ]
-      [@js.enum])
-
-    and crypto_LegacyCharacterEncoding =
-      ([ `ascii [@js "ascii"]
-       | `binary [@js "binary"]
-       | `ucs_2 [@js "ucs-2"]
-       | `ucs2 [@js "ucs2"]
-       ]
-      [@js.enum])
-
-    and crypto_PrivateKeyInput = [ `Crypto_PrivateKeyInput ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_PublicKeyInput = [ `Crypto_PublicKeyInput ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_RSAKeyPairKeyObjectOptions =
-      [ `Crypto_RSAKeyPairKeyObjectOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and ('PubF, 'PrivF) crypto_RSAKeyPairOptions =
-      [ `Crypto_RSAKeyPairOptions of 'PubF * 'PrivF ] intf
-    [@@js.custom
-      { of_js = (fun _PubF _PrivF -> Obj.magic)
-      ; to_js = (fun _PubF _PrivF -> Obj.magic)
-      }]
-
-    and crypto_RsaPrivateKey = [ `Crypto_RsaPrivateKey ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_RsaPublicKey = [ `Crypto_RsaPublicKey ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_ScryptOptions = [ `Crypto_ScryptOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_SignKeyObjectInput =
-      [ `Crypto_SignKeyObjectInput | `Crypto_SigningOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_SignPrivateKeyInput =
-      [ `Crypto_SignPrivateKeyInput
-      | `Crypto_PrivateKeyInput
-      | `Crypto_SigningOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_Signer = [ `Crypto_Signer ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_SigningOptions = [ `Crypto_SigningOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_Verify = [ `Crypto_Verify ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_VerifyKeyObjectInput =
-      [ `Crypto_VerifyKeyObjectInput | `Crypto_SigningOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_VerifyPublicKeyInput =
-      [ `Crypto_VerifyPublicKeyInput
-      | `Crypto_PublicKeyInput
-      | `Crypto_SigningOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and crypto_X25519KeyPairKeyObjectOptions =
-      [ `Crypto_X25519KeyPairKeyObjectOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and ('PubF, 'PrivF) crypto_X25519KeyPairOptions =
-      [ `Crypto_X25519KeyPairOptions of 'PubF * 'PrivF ] intf
-    [@@js.custom
-      { of_js = (fun _PubF _PrivF -> Obj.magic)
-      ; to_js = (fun _PubF _PrivF -> Obj.magic)
-      }]
-
-    and crypto_X448KeyPairKeyObjectOptions =
-      [ `Crypto_X448KeyPairKeyObjectOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and ('PubF, 'PrivF) crypto_X448KeyPairOptions =
-      [ `Crypto_X448KeyPairOptions of 'PubF * 'PrivF ] intf
-    [@@js.custom
-      { of_js = (fun _PubF _PrivF -> Obj.magic)
-      ; to_js = (fun _PubF _PrivF -> Obj.magic)
-      }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -352,7 +18,7 @@ module AnonymousInterface0 : sig
 end
 
 module AnonymousInterface1 : sig
-  type t = anonymous_interface_1
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -368,7 +34,7 @@ module AnonymousInterface1 : sig
 end
 
 module AnonymousInterface2 : sig
-  type t = anonymous_interface_2
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -384,7 +50,7 @@ module AnonymousInterface2 : sig
 end
 
 module AnonymousInterface3 : sig
-  type t = anonymous_interface_3
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -400,7 +66,7 @@ module AnonymousInterface3 : sig
 end
 
 module AnonymousInterface4 : sig
-  type t = anonymous_interface_4
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -416,7 +82,7 @@ module AnonymousInterface4 : sig
 end
 
 module AnonymousInterface5 : sig
-  type t = anonymous_interface_5
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -432,7 +98,7 @@ module AnonymousInterface5 : sig
 end
 
 module AnonymousInterface6 : sig
-  type t = anonymous_interface_6
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -444,7 +110,7 @@ module AnonymousInterface6 : sig
 end
 
 module AnonymousInterface7 : sig
-  type t = anonymous_interface_7
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -460,7 +126,7 @@ module AnonymousInterface7 : sig
 end
 
 module AnonymousInterface8 : sig
-  type t = anonymous_interface_8
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -475,7 +141,7 @@ module AnonymousInterface8 : sig
 end
 
 module AnonymousInterface9 : sig
-  type t = anonymous_interface_9
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -492,7 +158,7 @@ module AnonymousInterface9 : sig
 end
 
 module AnonymousInterface10 : sig
-  type t = anonymous_interface_10
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -505,7 +171,7 @@ module AnonymousInterface10 : sig
 end
 
 module AnonymousInterface11 : sig
-  type t = anonymous_interface_11
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -542,7 +208,7 @@ module Crypto : sig
   end
   [@@js.scope "Certificate"]
 
-  val certificate : (crypto_Certificate, anonymous_interface_11) intersection2
+  val certificate : (crypto_Certificate, AnonymousInterface11.t) intersection2
     [@@js.global "Certificate"]
 
   module Constants : sig
@@ -733,7 +399,11 @@ module Crypto : sig
     [@@js.global "createHmac"]
 
   module BinaryToTextEncoding : sig
-    type t = crypto_BinaryToTextEncoding
+    type t =
+      ([ `base64 [@js "base64"]
+       | `hex [@js "hex"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -741,7 +411,13 @@ module Crypto : sig
   end
 
   module CharacterEncoding : sig
-    type t = crypto_CharacterEncoding
+    type t =
+      ([ `latin1 [@js "latin1"]
+       | `utf_8 [@js "utf-8"]
+       | `utf16le [@js "utf16le"]
+       | `utf8 [@js "utf8"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -749,7 +425,13 @@ module Crypto : sig
   end
 
   module LegacyCharacterEncoding : sig
-    type t = crypto_LegacyCharacterEncoding
+    type t =
+      ([ `ascii [@js "ascii"]
+       | `binary [@js "binary"]
+       | `ucs_2 [@js "ucs-2"]
+       | `ucs2 [@js "ucs2"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -757,7 +439,24 @@ module Crypto : sig
   end
 
   module Encoding : sig
-    type t = crypto_Encoding
+    type t =
+      ( ( crypto_BinaryToTextEncoding
+        , crypto_CharacterEncoding
+        , crypto_LegacyCharacterEncoding )
+        union3
+      , ([ `ascii [@js "ascii"]
+         | `base64 [@js "base64"]
+         | `binary [@js "binary"]
+         | `hex [@js "hex"]
+         | `latin1 [@js "latin1"]
+         | `ucs_2 [@js "ucs-2"]
+         | `ucs2 [@js "ucs2"]
+         | `utf_8 [@js "utf-8"]
+         | `utf16le [@js "utf16le"]
+         | `utf8 [@js "utf8"]
+         ]
+        [@js.enum]) )
+      or_enum
 
     val t_to_js : t -> Ojs.t
 
@@ -765,7 +464,12 @@ module Crypto : sig
   end
 
   module ECDHKeyFormat : sig
-    type t = crypto_ECDHKeyFormat
+    type t =
+      ([ `compressed [@js "compressed"]
+       | `hybrid [@js "hybrid"]
+       | `uncompressed [@js "uncompressed"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -821,7 +525,12 @@ module Crypto : sig
   [@@js.scope "Hmac"]
 
   module KeyObjectType : sig
-    type t = crypto_KeyObjectType
+    type t =
+      ([ `private_ [@js "private"]
+       | `public [@js "public"]
+       | `secret [@js "secret"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -909,7 +618,13 @@ module Crypto : sig
   [@@js.scope "KeyObject"]
 
   module CipherCCMTypes : sig
-    type t = crypto_CipherCCMTypes
+    type t =
+      ([ `aes_128_ccm [@js "aes-128-ccm"]
+       | `aes_192_ccm [@js "aes-192-ccm"]
+       | `aes_256_ccm [@js "aes-256-ccm"]
+       | `chacha20_poly1305 [@js "chacha20-poly1305"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -917,7 +632,12 @@ module Crypto : sig
   end
 
   module CipherGCMTypes : sig
-    type t = crypto_CipherGCMTypes
+    type t =
+      ([ `aes_128_gcm [@js "aes-128-gcm"]
+       | `aes_192_gcm [@js "aes-192-gcm"]
+       | `aes_256_gcm [@js "aes-256-gcm"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -933,7 +653,7 @@ module Crypto : sig
   end
 
   module CipherKey : sig
-    type t = crypto_CipherKey
+    type t = (crypto_BinaryLike, crypto_KeyObject) union2
 
     val t_to_js : t -> Ojs.t
 
@@ -1071,7 +791,7 @@ module Crypto : sig
     val setAAD
       :  t
       -> buffer:ArrayBufferView.t
-      -> options:anonymous_interface_0
+      -> options:AnonymousInterface0.t
       -> t
       [@@js.call "setAAD"]
 
@@ -1091,7 +811,7 @@ module Crypto : sig
     val setAAD
       :  t
       -> buffer:ArrayBufferView.t
-      -> ?options:anonymous_interface_0
+      -> ?options:AnonymousInterface0.t
       -> unit
       -> t
       [@@js.call "setAAD"]
@@ -1205,7 +925,7 @@ module Crypto : sig
     val setAAD
       :  t
       -> buffer:ArrayBufferView.t
-      -> options:anonymous_interface_0
+      -> options:AnonymousInterface0.t
       -> t
       [@@js.call "setAAD"]
 
@@ -1225,7 +945,7 @@ module Crypto : sig
     val setAAD
       :  t
       -> buffer:ArrayBufferView.t
-      -> ?options:anonymous_interface_0
+      -> ?options:AnonymousInterface0.t
       -> unit
       -> t
       [@@js.call "setAAD"]
@@ -1319,7 +1039,11 @@ module Crypto : sig
     [@@js.global "createSign"]
 
   module DSAEncoding : sig
-    type t = crypto_DSAEncoding
+    type t =
+      ([ `der [@js "der"]
+       | `ieee_p1363 [@js "ieee-p1363"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -1405,7 +1129,7 @@ module Crypto : sig
   [@@js.scope "VerifyKeyObjectInput"]
 
   module KeyLike : sig
-    type t = crypto_KeyLike
+    type t = (Buffer.t, crypto_KeyObject) union2 or_string
 
     val t_to_js : t -> Ojs.t
 
@@ -1960,7 +1684,16 @@ module Crypto : sig
   val dEFAULT_ENCODING : BufferEncoding.t [@@js.global "DEFAULT_ENCODING"]
 
   module KeyType : sig
-    type t = crypto_KeyType
+    type t =
+      ([ `dsa [@js "dsa"]
+       | `ec [@js "ec"]
+       | `ed25519 [@js "ed25519"]
+       | `ed448 [@js "ed448"]
+       | `rsa [@js "rsa"]
+       | `x25519 [@js "x25519"]
+       | `x448 [@js "x448"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -1968,7 +1701,11 @@ module Crypto : sig
   end
 
   module KeyFormat : sig
-    type t = crypto_KeyFormat
+    type t =
+      ([ `der [@js "der"]
+       | `pem [@js "pem"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 
@@ -2118,26 +1855,26 @@ module Crypto : sig
     val set_publicExponent : ('PubF, 'PrivF) t -> int -> unit
       [@@js.set "publicExponent"]
 
-    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> anonymous_interface_9
+    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> AnonymousInterface9.t
       [@@js.get "publicKeyEncoding"]
 
     val set_publicKeyEncoding
       :  ('PubF, 'PrivF) t
-      -> anonymous_interface_9
+      -> AnonymousInterface9.t
       -> unit
       [@@js.set "publicKeyEncoding"]
 
     val get_privateKeyEncoding
       :  ('PubF, 'PrivF) t
       -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
-         , anonymous_interface_8 )
+         , AnonymousInterface8.t )
          intersection2
       [@@js.get "privateKeyEncoding"]
 
     val set_privateKeyEncoding
       :  ('PubF, 'PrivF) t
       -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
-         , anonymous_interface_8 )
+         , AnonymousInterface8.t )
          intersection2
       -> unit
       [@@js.set "privateKeyEncoding"]
@@ -2169,26 +1906,26 @@ module Crypto : sig
     val set_divisorLength : ('PubF, 'PrivF) t -> int -> unit
       [@@js.set "divisorLength"]
 
-    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> anonymous_interface_7
+    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> AnonymousInterface7.t
       [@@js.get "publicKeyEncoding"]
 
     val set_publicKeyEncoding
       :  ('PubF, 'PrivF) t
-      -> anonymous_interface_7
+      -> AnonymousInterface7.t
       -> unit
       [@@js.set "publicKeyEncoding"]
 
     val get_privateKeyEncoding
       :  ('PubF, 'PrivF) t
       -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
-         , anonymous_interface_6 )
+         , AnonymousInterface6.t )
          intersection2
       [@@js.get "privateKeyEncoding"]
 
     val set_privateKeyEncoding
       :  ('PubF, 'PrivF) t
       -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
-         , anonymous_interface_6 )
+         , AnonymousInterface6.t )
          intersection2
       -> unit
       [@@js.set "privateKeyEncoding"]
@@ -2215,26 +1952,26 @@ module Crypto : sig
     val set_namedCurve : ('PubF, 'PrivF) t -> string -> unit
       [@@js.set "namedCurve"]
 
-    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> anonymous_interface_9
+    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> AnonymousInterface9.t
       [@@js.get "publicKeyEncoding"]
 
     val set_publicKeyEncoding
       :  ('PubF, 'PrivF) t
-      -> anonymous_interface_9
+      -> AnonymousInterface9.t
       -> unit
       [@@js.set "publicKeyEncoding"]
 
     val get_privateKeyEncoding
       :  ('PubF, 'PrivF) t
       -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
-         , anonymous_interface_10 )
+         , AnonymousInterface10.t )
          intersection2
       [@@js.get "privateKeyEncoding"]
 
     val set_privateKeyEncoding
       :  ('PubF, 'PrivF) t
       -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
-         , anonymous_interface_10 )
+         , AnonymousInterface10.t )
          intersection2
       -> unit
       [@@js.set "privateKeyEncoding"]
@@ -2256,26 +1993,26 @@ module Crypto : sig
       -> Ojs.t
       -> ('PubF, 'PrivF) t
 
-    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> anonymous_interface_7
+    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> AnonymousInterface7.t
       [@@js.get "publicKeyEncoding"]
 
     val set_publicKeyEncoding
       :  ('PubF, 'PrivF) t
-      -> anonymous_interface_7
+      -> AnonymousInterface7.t
       -> unit
       [@@js.set "publicKeyEncoding"]
 
     val get_privateKeyEncoding
       :  ('PubF, 'PrivF) t
       -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
-         , anonymous_interface_6 )
+         , AnonymousInterface6.t )
          intersection2
       [@@js.get "privateKeyEncoding"]
 
     val set_privateKeyEncoding
       :  ('PubF, 'PrivF) t
       -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
-         , anonymous_interface_6 )
+         , AnonymousInterface6.t )
          intersection2
       -> unit
       [@@js.set "privateKeyEncoding"]
@@ -2297,26 +2034,26 @@ module Crypto : sig
       -> Ojs.t
       -> ('PubF, 'PrivF) t
 
-    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> anonymous_interface_7
+    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> AnonymousInterface7.t
       [@@js.get "publicKeyEncoding"]
 
     val set_publicKeyEncoding
       :  ('PubF, 'PrivF) t
-      -> anonymous_interface_7
+      -> AnonymousInterface7.t
       -> unit
       [@@js.set "publicKeyEncoding"]
 
     val get_privateKeyEncoding
       :  ('PubF, 'PrivF) t
       -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
-         , anonymous_interface_6 )
+         , AnonymousInterface6.t )
          intersection2
       [@@js.get "privateKeyEncoding"]
 
     val set_privateKeyEncoding
       :  ('PubF, 'PrivF) t
       -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
-         , anonymous_interface_6 )
+         , AnonymousInterface6.t )
          intersection2
       -> unit
       [@@js.set "privateKeyEncoding"]
@@ -2338,26 +2075,26 @@ module Crypto : sig
       -> Ojs.t
       -> ('PubF, 'PrivF) t
 
-    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> anonymous_interface_7
+    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> AnonymousInterface7.t
       [@@js.get "publicKeyEncoding"]
 
     val set_publicKeyEncoding
       :  ('PubF, 'PrivF) t
-      -> anonymous_interface_7
+      -> AnonymousInterface7.t
       -> unit
       [@@js.set "publicKeyEncoding"]
 
     val get_privateKeyEncoding
       :  ('PubF, 'PrivF) t
       -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
-         , anonymous_interface_6 )
+         , AnonymousInterface6.t )
          intersection2
       [@@js.get "privateKeyEncoding"]
 
     val set_privateKeyEncoding
       :  ('PubF, 'PrivF) t
       -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
-         , anonymous_interface_6 )
+         , AnonymousInterface6.t )
          intersection2
       -> unit
       [@@js.set "privateKeyEncoding"]
@@ -2379,26 +2116,26 @@ module Crypto : sig
       -> Ojs.t
       -> ('PubF, 'PrivF) t
 
-    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> anonymous_interface_7
+    val get_publicKeyEncoding : ('PubF, 'PrivF) t -> AnonymousInterface7.t
       [@@js.get "publicKeyEncoding"]
 
     val set_publicKeyEncoding
       :  ('PubF, 'PrivF) t
-      -> anonymous_interface_7
+      -> AnonymousInterface7.t
       -> unit
       [@@js.set "publicKeyEncoding"]
 
     val get_privateKeyEncoding
       :  ('PubF, 'PrivF) t
       -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
-         , anonymous_interface_6 )
+         , AnonymousInterface6.t )
          intersection2
       [@@js.get "privateKeyEncoding"]
 
     val set_privateKeyEncoding
       :  ('PubF, 'PrivF) t
       -> ( 'PrivF crypto_BasePrivateKeyEncodingOptions
-         , anonymous_interface_6 )
+         , AnonymousInterface6.t )
          intersection2
       -> unit
       [@@js.set "privateKeyEncoding"]
@@ -3093,28 +2830,28 @@ module Crypto : sig
       :  type_:([ `rsa ][@js.enum])
       -> options:
            (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_RSAKeyPairOptions
-      -> anonymous_interface_5 Promise.t
+      -> AnonymousInterface5.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `rsa ][@js.enum])
       -> options:
            (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_RSAKeyPairOptions
-      -> anonymous_interface_4 Promise.t
+      -> AnonymousInterface4.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `rsa ][@js.enum])
       -> options:
            (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_RSAKeyPairOptions
-      -> anonymous_interface_3 Promise.t
+      -> AnonymousInterface3.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `rsa ][@js.enum])
       -> options:
            (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_RSAKeyPairOptions
-      -> anonymous_interface_2 Promise.t
+      -> AnonymousInterface2.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -3127,28 +2864,28 @@ module Crypto : sig
       :  type_:([ `dsa ][@js.enum])
       -> options:
            (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_DSAKeyPairOptions
-      -> anonymous_interface_5 Promise.t
+      -> AnonymousInterface5.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `dsa ][@js.enum])
       -> options:
            (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_DSAKeyPairOptions
-      -> anonymous_interface_4 Promise.t
+      -> AnonymousInterface4.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `dsa ][@js.enum])
       -> options:
            (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_DSAKeyPairOptions
-      -> anonymous_interface_3 Promise.t
+      -> AnonymousInterface3.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `dsa ][@js.enum])
       -> options:
            (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_DSAKeyPairOptions
-      -> anonymous_interface_2 Promise.t
+      -> AnonymousInterface2.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -3161,28 +2898,28 @@ module Crypto : sig
       :  type_:([ `ec ][@js.enum])
       -> options:
            (([ `pem ][@js.enum]), ([ `pem ][@js.enum])) crypto_ECKeyPairOptions
-      -> anonymous_interface_5 Promise.t
+      -> AnonymousInterface5.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ec ][@js.enum])
       -> options:
            (([ `pem ][@js.enum]), ([ `der ][@js.enum])) crypto_ECKeyPairOptions
-      -> anonymous_interface_4 Promise.t
+      -> AnonymousInterface4.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ec ][@js.enum])
       -> options:
            (([ `der ][@js.enum]), ([ `pem ][@js.enum])) crypto_ECKeyPairOptions
-      -> anonymous_interface_3 Promise.t
+      -> AnonymousInterface3.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  type_:([ `ec ][@js.enum])
       -> options:
            (([ `der ][@js.enum]), ([ `der ][@js.enum])) crypto_ECKeyPairOptions
-      -> anonymous_interface_2 Promise.t
+      -> AnonymousInterface2.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -3197,7 +2934,7 @@ module Crypto : sig
            ( ([ `pem ][@js.enum])
            , ([ `pem ][@js.enum]) )
            crypto_ED25519KeyPairOptions
-      -> anonymous_interface_5 Promise.t
+      -> AnonymousInterface5.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -3206,7 +2943,7 @@ module Crypto : sig
            ( ([ `pem ][@js.enum])
            , ([ `der ][@js.enum]) )
            crypto_ED25519KeyPairOptions
-      -> anonymous_interface_4 Promise.t
+      -> AnonymousInterface4.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -3215,7 +2952,7 @@ module Crypto : sig
            ( ([ `der ][@js.enum])
            , ([ `pem ][@js.enum]) )
            crypto_ED25519KeyPairOptions
-      -> anonymous_interface_3 Promise.t
+      -> AnonymousInterface3.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -3224,7 +2961,7 @@ module Crypto : sig
            ( ([ `der ][@js.enum])
            , ([ `der ][@js.enum]) )
            crypto_ED25519KeyPairOptions
-      -> anonymous_interface_2 Promise.t
+      -> AnonymousInterface2.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -3240,7 +2977,7 @@ module Crypto : sig
            ( ([ `pem ][@js.enum])
            , ([ `pem ][@js.enum]) )
            crypto_ED448KeyPairOptions
-      -> anonymous_interface_5 Promise.t
+      -> AnonymousInterface5.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -3249,7 +2986,7 @@ module Crypto : sig
            ( ([ `pem ][@js.enum])
            , ([ `der ][@js.enum]) )
            crypto_ED448KeyPairOptions
-      -> anonymous_interface_4 Promise.t
+      -> AnonymousInterface4.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -3258,7 +2995,7 @@ module Crypto : sig
            ( ([ `der ][@js.enum])
            , ([ `pem ][@js.enum]) )
            crypto_ED448KeyPairOptions
-      -> anonymous_interface_3 Promise.t
+      -> AnonymousInterface3.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -3267,7 +3004,7 @@ module Crypto : sig
            ( ([ `der ][@js.enum])
            , ([ `der ][@js.enum]) )
            crypto_ED448KeyPairOptions
-      -> anonymous_interface_2 Promise.t
+      -> AnonymousInterface2.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -3283,7 +3020,7 @@ module Crypto : sig
            ( ([ `pem ][@js.enum])
            , ([ `pem ][@js.enum]) )
            crypto_X25519KeyPairOptions
-      -> anonymous_interface_5 Promise.t
+      -> AnonymousInterface5.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -3292,7 +3029,7 @@ module Crypto : sig
            ( ([ `pem ][@js.enum])
            , ([ `der ][@js.enum]) )
            crypto_X25519KeyPairOptions
-      -> anonymous_interface_4 Promise.t
+      -> AnonymousInterface4.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -3301,7 +3038,7 @@ module Crypto : sig
            ( ([ `der ][@js.enum])
            , ([ `pem ][@js.enum]) )
            crypto_X25519KeyPairOptions
-      -> anonymous_interface_3 Promise.t
+      -> AnonymousInterface3.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -3310,7 +3047,7 @@ module Crypto : sig
            ( ([ `der ][@js.enum])
            , ([ `der ][@js.enum]) )
            crypto_X25519KeyPairOptions
-      -> anonymous_interface_2 Promise.t
+      -> AnonymousInterface2.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -3326,7 +3063,7 @@ module Crypto : sig
            ( ([ `pem ][@js.enum])
            , ([ `pem ][@js.enum]) )
            crypto_X448KeyPairOptions
-      -> anonymous_interface_5 Promise.t
+      -> AnonymousInterface5.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -3335,7 +3072,7 @@ module Crypto : sig
            ( ([ `pem ][@js.enum])
            , ([ `der ][@js.enum]) )
            crypto_X448KeyPairOptions
-      -> anonymous_interface_4 Promise.t
+      -> AnonymousInterface4.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -3344,7 +3081,7 @@ module Crypto : sig
            ( ([ `der ][@js.enum])
            , ([ `pem ][@js.enum]) )
            crypto_X448KeyPairOptions
-      -> anonymous_interface_3 Promise.t
+      -> AnonymousInterface3.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -3353,7 +3090,7 @@ module Crypto : sig
            ( ([ `der ][@js.enum])
            , ([ `der ][@js.enum]) )
            crypto_X448KeyPairOptions
-      -> anonymous_interface_2 Promise.t
+      -> AnonymousInterface2.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -3405,7 +3142,7 @@ module Crypto : sig
     -> bool
     [@@js.global "verify"]
 
-  val diffieHellman : options:anonymous_interface_1 -> Buffer.t
+  val diffieHellman : options:AnonymousInterface1.t -> Buffer.t
     [@@js.global "diffieHellman"]
 end
 [@@js.scope Import.crypto]

@@ -4,38 +4,13 @@
 open Es5
 module Internal =
   struct
-    module AnonymousInterfaces = struct  end
     module Types =
       struct
-        open AnonymousInterfaces
-        type _TypeDefinitionClientCapabilities =
-          [ `TypeDefinitionClientCapabilities ] intf
-        and _TypeDefinitionOptions = [ `TypeDefinitionOptions ] intf
-        and _TypeDefinitionParams = [ `TypeDefinitionParams ] intf
-        and _TypeDefinitionRegistrationOptions =
-          [ `TypeDefinitionRegistrationOptions  | `TypeDefinitionOptions ]
-            intf
-        and _TypeDefinitionRequest_HandlerSignature =
+        type _TypeDefinitionRequest_HandlerSignature =
           (_TypeDefinitionParams,
             (Definition.t, DefinitionLink.t) or_array or_null, unit)
             RequestHandler.t
-        let rec _TypeDefinitionClientCapabilities_of_js :
-          Ojs.t -> _TypeDefinitionClientCapabilities = Obj.magic
-        and _TypeDefinitionClientCapabilities_to_js :
-          _TypeDefinitionClientCapabilities -> Ojs.t = Obj.magic
-        and _TypeDefinitionOptions_of_js : Ojs.t -> _TypeDefinitionOptions =
-          Obj.magic
-        and _TypeDefinitionOptions_to_js : _TypeDefinitionOptions -> Ojs.t =
-          Obj.magic
-        and _TypeDefinitionParams_of_js : Ojs.t -> _TypeDefinitionParams =
-          Obj.magic
-        and _TypeDefinitionParams_to_js : _TypeDefinitionParams -> Ojs.t =
-          Obj.magic
-        and _TypeDefinitionRegistrationOptions_of_js :
-          Ojs.t -> _TypeDefinitionRegistrationOptions = Obj.magic
-        and _TypeDefinitionRegistrationOptions_to_js :
-          _TypeDefinitionRegistrationOptions -> Ojs.t = Obj.magic
-        and _TypeDefinitionRequest_HandlerSignature_of_js :
+        let rec _TypeDefinitionRequest_HandlerSignature_of_js :
           Ojs.t -> _TypeDefinitionRequest_HandlerSignature =
           fun (x8 : Ojs.t) ->
             RequestHandler.t_of_js _TypeDefinitionParams_of_js
@@ -61,9 +36,6 @@ module Internal =
                         DefinitionLink.t_to_js x4) x3) Ojs.unit_to_js x1
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module TypeDefinitionClientCapabilities =
   struct
     type t = _TypeDefinitionClientCapabilities

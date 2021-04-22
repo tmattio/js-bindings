@@ -6,76 +6,6 @@ open Es2020
 open Node_globals
 open Node_stream
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_3 = [ `anonymous_interface_3 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_4 = [ `anonymous_interface_4 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_5 = [ `anonymous_interface_5 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_6 = [ `anonymous_interface_6 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_7 = [ `anonymous_interface_7 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_8 = [ `anonymous_interface_8 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_9 = [ `anonymous_interface_9 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_10 = [ `anonymous_interface_10 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_11 = [ `anonymous_interface_11 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_12 = [ `anonymous_interface_12 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_13 = [ `anonymous_interface_13 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_14 = [ `anonymous_interface_14 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_15 = [ `anonymous_interface_15 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_16 = [ `anonymous_interface_16 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_17 = [ `anonymous_interface_17 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_18 = [ `anonymous_interface_18 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_19 = [ `anonymous_interface_19 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_20 = [ `anonymous_interface_20 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-
 module Fs : sig
   module OpenMode : sig
     type t
@@ -201,7 +131,7 @@ module Fs : sig
   end
 
   module AnonymousInterface0 : sig
-    type t = anonymous_interface_0
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -214,7 +144,7 @@ module Fs : sig
   end
 
   module AnonymousInterface1 : sig
-    type t = anonymous_interface_1
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -227,7 +157,7 @@ module Fs : sig
   end
 
   module AnonymousInterface2 : sig
-    type t = anonymous_interface_2
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -243,7 +173,7 @@ module Fs : sig
   end
 
   module AnonymousInterface3 : sig
-    type t = anonymous_interface_3
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -259,7 +189,7 @@ module Fs : sig
   end
 
   module AnonymousInterface4 : sig
-    type t = anonymous_interface_4
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -275,7 +205,7 @@ module Fs : sig
   end
 
   module AnonymousInterface5 : sig
-    type t = anonymous_interface_5
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -291,7 +221,7 @@ module Fs : sig
   end
 
   module AnonymousInterface6 : sig
-    type t = anonymous_interface_6
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -307,7 +237,7 @@ module Fs : sig
   end
 
   module AnonymousInterface7 : sig
-    type t = anonymous_interface_7
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -321,7 +251,7 @@ module Fs : sig
   end
 
   module AnonymousInterface8 : sig
-    type t = anonymous_interface_8
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -343,7 +273,7 @@ module Fs : sig
   end
 
   module AnonymousInterface9 : sig
-    type t = anonymous_interface_9
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -363,7 +293,7 @@ module Fs : sig
   end
 
   module AnonymousInterface10 : sig
-    type t = anonymous_interface_10
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -384,7 +314,7 @@ module Fs : sig
   end
 
   module AnonymousInterface11 : sig
-    type t = anonymous_interface_11
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -403,7 +333,7 @@ module Fs : sig
   end
 
   module AnonymousInterface12 : sig
-    type t = anonymous_interface_12
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -415,7 +345,7 @@ module Fs : sig
   end
 
   module AnonymousInterface13 : sig
-    type t = anonymous_interface_13
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -459,7 +389,7 @@ module Fs : sig
   end
 
   module AnonymousInterface14 : sig
-    type t = anonymous_interface_14
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -499,7 +429,7 @@ module Fs : sig
   end
 
   module AnonymousInterface15 : sig
-    type t = anonymous_interface_15
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -515,7 +445,7 @@ module Fs : sig
   end
 
   module AnonymousInterface16 : sig
-    type t = anonymous_interface_16
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -531,7 +461,7 @@ module Fs : sig
   end
 
   module AnonymousInterface17 : sig
-    type t = anonymous_interface_17
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -545,7 +475,7 @@ module Fs : sig
   end
 
   module AnonymousInterface18 : sig
-    type t = anonymous_interface_18
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -559,7 +489,7 @@ module Fs : sig
   end
 
   module AnonymousInterface19 : sig
-    type t = anonymous_interface_19
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -573,7 +503,7 @@ module Fs : sig
   end
 
   module AnonymousInterface20 : sig
-    type t = anonymous_interface_20
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -1714,7 +1644,7 @@ module Fs : sig
 
   val stat
     :  path:PathLike.t
-    -> options:(StatOptions.t, anonymous_interface_0) intersection2 or_undefined
+    -> options:(StatOptions.t, AnonymousInterface0.t) intersection2 or_undefined
     -> callback:(err:ErrnoException.t or_null -> stats:Stats.t -> unit)
     -> unit
     [@@js.global "stat"]
@@ -1748,7 +1678,7 @@ module Fs : sig
 
   val stat
     :  path:PathLike.t
-    -> options:(StatOptions.t, anonymous_interface_1) intersection2
+    -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
     -> callback:(err:ErrnoException.t or_null -> stats:BigIntStats.t -> unit)
     -> unit
     [@@js.global "stat"]
@@ -1766,14 +1696,14 @@ module Fs : sig
   module Stat : sig
     val __promisify__
       :  path:PathLike.t
-      -> ?options:(StatOptions.t, anonymous_interface_0) intersection2
+      -> ?options:(StatOptions.t, AnonymousInterface0.t) intersection2
       -> unit
       -> Stats.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  path:PathLike.t
-      -> options:(StatOptions.t, anonymous_interface_1) intersection2
+      -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
       -> BigIntStats.t Promise.t
       [@@js.global "__promisify__"]
 
@@ -1788,14 +1718,14 @@ module Fs : sig
 
   val statSync
     :  path:PathLike.t
-    -> ?options:(StatOptions.t, anonymous_interface_0) intersection2
+    -> ?options:(StatOptions.t, AnonymousInterface0.t) intersection2
     -> unit
     -> Stats.t
     [@@js.global "statSync"]
 
   val statSync
     :  path:PathLike.t
-    -> options:(StatOptions.t, anonymous_interface_1) intersection2
+    -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
     -> BigIntStats.t
     [@@js.global "statSync"]
 
@@ -1814,14 +1744,14 @@ module Fs : sig
 
   val fstat
     :  fd:int
-    -> options:(StatOptions.t, anonymous_interface_0) intersection2 or_undefined
+    -> options:(StatOptions.t, AnonymousInterface0.t) intersection2 or_undefined
     -> callback:(err:ErrnoException.t or_null -> stats:Stats.t -> unit)
     -> unit
     [@@js.global "fstat"]
 
   val fstat
     :  fd:int
-    -> options:(StatOptions.t, anonymous_interface_1) intersection2
+    -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
     -> callback:(err:ErrnoException.t or_null -> stats:BigIntStats.t -> unit)
     -> unit
     [@@js.global "fstat"]
@@ -1839,14 +1769,14 @@ module Fs : sig
   module Fstat : sig
     val __promisify__
       :  fd:int
-      -> ?options:(StatOptions.t, anonymous_interface_0) intersection2
+      -> ?options:(StatOptions.t, AnonymousInterface0.t) intersection2
       -> unit
       -> Stats.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  fd:int
-      -> options:(StatOptions.t, anonymous_interface_1) intersection2
+      -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
       -> BigIntStats.t Promise.t
       [@@js.global "__promisify__"]
 
@@ -1861,14 +1791,14 @@ module Fs : sig
 
   val fstatSync
     :  fd:int
-    -> ?options:(StatOptions.t, anonymous_interface_0) intersection2
+    -> ?options:(StatOptions.t, AnonymousInterface0.t) intersection2
     -> unit
     -> Stats.t
     [@@js.global "fstatSync"]
 
   val fstatSync
     :  fd:int
-    -> options:(StatOptions.t, anonymous_interface_1) intersection2
+    -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
     -> BigIntStats.t
     [@@js.global "fstatSync"]
 
@@ -1887,14 +1817,14 @@ module Fs : sig
 
   val lstat
     :  path:PathLike.t
-    -> options:(StatOptions.t, anonymous_interface_0) intersection2 or_undefined
+    -> options:(StatOptions.t, AnonymousInterface0.t) intersection2 or_undefined
     -> callback:(err:ErrnoException.t or_null -> stats:Stats.t -> unit)
     -> unit
     [@@js.global "lstat"]
 
   val lstat
     :  path:PathLike.t
-    -> options:(StatOptions.t, anonymous_interface_1) intersection2
+    -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
     -> callback:(err:ErrnoException.t or_null -> stats:BigIntStats.t -> unit)
     -> unit
     [@@js.global "lstat"]
@@ -1912,14 +1842,14 @@ module Fs : sig
   module Lstat : sig
     val __promisify__
       :  path:PathLike.t
-      -> ?options:(StatOptions.t, anonymous_interface_0) intersection2
+      -> ?options:(StatOptions.t, AnonymousInterface0.t) intersection2
       -> unit
       -> Stats.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  path:PathLike.t
-      -> options:(StatOptions.t, anonymous_interface_1) intersection2
+      -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
       -> BigIntStats.t Promise.t
       [@@js.global "__promisify__"]
 
@@ -1934,14 +1864,14 @@ module Fs : sig
 
   val lstatSync
     :  path:PathLike.t
-    -> ?options:(StatOptions.t, anonymous_interface_0) intersection2
+    -> ?options:(StatOptions.t, AnonymousInterface0.t) intersection2
     -> unit
     -> Stats.t
     [@@js.global "lstatSync"]
 
   val lstatSync
     :  path:PathLike.t
-    -> options:(StatOptions.t, anonymous_interface_1) intersection2
+    -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
     -> BigIntStats.t
     [@@js.global "lstatSync"]
 
@@ -2348,7 +2278,7 @@ module Fs : sig
 
   val mkdir
     :  path:PathLike.t
-    -> options:(MakeDirectoryOptions.t, anonymous_interface_18) intersection2
+    -> options:(MakeDirectoryOptions.t, AnonymousInterface18.t) intersection2
     -> callback:
          (err:ErrnoException.t or_null -> ?path:PathLike.t -> unit -> unit)
     -> unit
@@ -2375,7 +2305,7 @@ module Fs : sig
   module Mkdir : sig
     val __promisify__
       :  path:PathLike.t
-      -> options:(MakeDirectoryOptions.t, anonymous_interface_18) intersection2
+      -> options:(MakeDirectoryOptions.t, AnonymousInterface18.t) intersection2
       -> string or_undefined Promise.t
       [@@js.global "__promisify__"]
 
@@ -2397,7 +2327,7 @@ module Fs : sig
 
   val mkdirSync
     :  path:PathLike.t
-    -> options:(MakeDirectoryOptions.t, anonymous_interface_18) intersection2
+    -> options:(MakeDirectoryOptions.t, AnonymousInterface18.t) intersection2
     -> string or_undefined
     [@@js.global "mkdirSync"]
 
@@ -2421,7 +2351,7 @@ module Fs : sig
 
   val mkdtemp
     :  prefix:string
-    -> options:(anonymous_interface_7, ([ `buffer ][@js.enum])) or_enum
+    -> options:(AnonymousInterface7.t, ([ `buffer ][@js.enum])) or_enum
     -> callback:(err:ErrnoException.t or_null -> folder:Buffer.t -> unit)
     -> unit
     [@@js.global "mkdtemp"]
@@ -2483,14 +2413,14 @@ module Fs : sig
   val readdir
     :  path:PathLike.t
     -> options:
-         (BufferEncoding.t, anonymous_interface_11) union2 or_null_or_undefined
+         (BufferEncoding.t, AnonymousInterface11.t) union2 or_null_or_undefined
     -> callback:(err:ErrnoException.t or_null -> files:string list -> unit)
     -> unit
     [@@js.global "readdir"]
 
   val readdir
     :  path:PathLike.t
-    -> options:(anonymous_interface_9, ([ `buffer ][@js.enum])) or_enum
+    -> options:(AnonymousInterface9.t, ([ `buffer ][@js.enum])) or_enum
     -> callback:(err:ErrnoException.t or_null -> files:Buffer.t list -> unit)
     -> unit
     [@@js.global "readdir"]
@@ -2511,7 +2441,7 @@ module Fs : sig
 
   val readdir
     :  path:PathLike.t
-    -> options:(BaseEncodingOptions.t, anonymous_interface_20) intersection2
+    -> options:(BaseEncodingOptions.t, AnonymousInterface20.t) intersection2
     -> callback:(err:ErrnoException.t or_null -> files:Dirent.t list -> unit)
     -> unit
     [@@js.global "readdir"]
@@ -2519,14 +2449,14 @@ module Fs : sig
   module Readdir : sig
     val __promisify__
       :  path:PathLike.t
-      -> ?options:(BufferEncoding.t, anonymous_interface_11) union2 or_null
+      -> ?options:(BufferEncoding.t, AnonymousInterface11.t) union2 or_null
       -> unit
       -> string list Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  path:PathLike.t
-      -> options:(anonymous_interface_9, ([ `buffer ][@js.enum])) or_enum
+      -> options:(AnonymousInterface9.t, ([ `buffer ][@js.enum])) or_enum
       -> Buffer.t list Promise.t
       [@@js.global "__promisify__"]
 
@@ -2539,7 +2469,7 @@ module Fs : sig
 
     val __promisify__
       :  path:PathLike.t
-      -> options:(BaseEncodingOptions.t, anonymous_interface_20) intersection2
+      -> options:(BaseEncodingOptions.t, AnonymousInterface20.t) intersection2
       -> Dirent.t list Promise.t
       [@@js.global "__promisify__"]
   end
@@ -2547,14 +2477,14 @@ module Fs : sig
 
   val readdirSync
     :  path:PathLike.t
-    -> ?options:(BufferEncoding.t, anonymous_interface_11) union2 or_null
+    -> ?options:(BufferEncoding.t, AnonymousInterface11.t) union2 or_null
     -> unit
     -> string list
     [@@js.global "readdirSync"]
 
   val readdirSync
     :  path:PathLike.t
-    -> options:(anonymous_interface_9, ([ `buffer ][@js.enum])) or_enum
+    -> options:(AnonymousInterface9.t, ([ `buffer ][@js.enum])) or_enum
     -> Buffer.t list
     [@@js.global "readdirSync"]
 
@@ -2567,7 +2497,7 @@ module Fs : sig
 
   val readdirSync
     :  path:PathLike.t
-    -> options:(BaseEncodingOptions.t, anonymous_interface_20) intersection2
+    -> options:(BaseEncodingOptions.t, AnonymousInterface20.t) intersection2
     -> Dirent.t list
     [@@js.global "readdirSync"]
 
@@ -2758,7 +2688,7 @@ module Fs : sig
       -> ?length:int
       -> ?position:int or_null
       -> unit
-      -> anonymous_interface_3 Promise.t
+      -> AnonymousInterface3.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
@@ -2767,7 +2697,7 @@ module Fs : sig
       -> ?position:int or_null
       -> ?encoding:BufferEncoding.t or_null
       -> unit
-      -> anonymous_interface_4 Promise.t
+      -> AnonymousInterface4.t Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "write"]
@@ -2812,7 +2742,7 @@ module Fs : sig
       -> offset:int
       -> length:int
       -> position:int or_null
-      -> anonymous_interface_2 Promise.t
+      -> AnonymousInterface2.t Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "read"]
@@ -2857,14 +2787,14 @@ module Fs : sig
 
   val readFile
     :  path:PathLike.t or_number
-    -> options:anonymous_interface_6 or_null_or_undefined
+    -> options:AnonymousInterface6.t or_null_or_undefined
     -> callback:(err:ErrnoException.t or_null -> data:Buffer.t -> unit)
     -> unit
     [@@js.global "readFile"]
 
   val readFile
     :  path:PathLike.t or_number
-    -> options:anonymous_interface_5 or_string
+    -> options:AnonymousInterface5.t or_string
     -> callback:(err:ErrnoException.t or_null -> data:string -> unit)
     -> unit
     [@@js.global "readFile"]
@@ -2872,7 +2802,7 @@ module Fs : sig
   val readFile
     :  path:PathLike.t or_number
     -> options:
-         (BaseEncodingOptions.t, anonymous_interface_12) intersection2 or_string
+         (BaseEncodingOptions.t, AnonymousInterface12.t) intersection2 or_string
          or_null_or_undefined
     -> callback:
          (err:ErrnoException.t or_null -> data:Buffer.t or_string -> unit)
@@ -2888,21 +2818,21 @@ module Fs : sig
   module ReadFile : sig
     val __promisify__
       :  path:PathLike.t or_number
-      -> ?options:anonymous_interface_6 or_null
+      -> ?options:AnonymousInterface6.t or_null
       -> unit
       -> Buffer.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  path:PathLike.t or_number
-      -> options:anonymous_interface_5 or_string
+      -> options:AnonymousInterface5.t or_string
       -> string Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
       :  path:PathLike.t or_number
       -> ?options:
-           (BaseEncodingOptions.t, anonymous_interface_12) intersection2
+           (BaseEncodingOptions.t, AnonymousInterface12.t) intersection2
            or_string
            or_null
       -> unit
@@ -2913,14 +2843,14 @@ module Fs : sig
 
   val readFileSync
     :  path:PathLike.t or_number
-    -> ?options:anonymous_interface_6 or_null
+    -> ?options:AnonymousInterface6.t or_null
     -> unit
     -> Buffer.t
     [@@js.global "readFileSync"]
 
   val readFileSync
     :  path:PathLike.t or_number
-    -> options:(BufferEncoding.t, anonymous_interface_5) union2
+    -> options:(BufferEncoding.t, AnonymousInterface5.t) union2
     -> string
     [@@js.global "readFileSync"]
 
@@ -3009,7 +2939,7 @@ module Fs : sig
 
   val watchFile
     :  filename:string
-    -> options:anonymous_interface_16 or_undefined
+    -> options:AnonymousInterface16.t or_undefined
     -> listener:(curr:Stats.t -> prev:Stats.t -> unit)
     -> unit
     [@@js.global "watchFile"]
@@ -3030,7 +2960,7 @@ module Fs : sig
   val watch
     :  filename:string
     -> options:
-         (BufferEncoding.t, anonymous_interface_10) union2 or_null_or_undefined
+         (BufferEncoding.t, AnonymousInterface10.t) union2 or_null_or_undefined
     -> ?listener:
          (event:([ `change [@js "change"] | `rename [@js "rename"] ][@js.enum])
           -> filename:string
@@ -3041,7 +2971,7 @@ module Fs : sig
 
   val watch
     :  filename:string
-    -> options:(anonymous_interface_8, ([ `buffer ][@js.enum])) or_enum
+    -> options:(AnonymousInterface8.t, ([ `buffer ][@js.enum])) or_enum
     -> ?listener:
          (event:([ `change [@js "change"] | `rename [@js "rename"] ][@js.enum])
           -> filename:Buffer.t
@@ -3052,7 +2982,7 @@ module Fs : sig
 
   val watch
     :  filename:string
-    -> options:anonymous_interface_10 or_string or_null
+    -> options:AnonymousInterface10.t or_string or_null
     -> ?listener:
          (event:([ `change [@js "change"] | `rename [@js "rename"] ][@js.enum])
           -> filename:Buffer.t or_string
@@ -3194,14 +3124,14 @@ module Fs : sig
 
   val createReadStream
     :  path:PathLike.t
-    -> ?options:anonymous_interface_13 or_string
+    -> ?options:AnonymousInterface13.t or_string
     -> unit
     -> ReadStream.t
     [@@js.global "createReadStream"]
 
   val createWriteStream
     :  path:PathLike.t
-    -> ?options:anonymous_interface_14 or_string
+    -> ?options:AnonymousInterface14.t or_string
     -> unit
     -> WriteStream.t
     [@@js.global "createWriteStream"]

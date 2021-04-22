@@ -4,65 +4,8 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _DidChangeWorkspaceFoldersNotification_HandlerSignature =
-      _DidChangeWorkspaceFoldersParams NotificationHandler.t
-
-    and _DidChangeWorkspaceFoldersNotification_MiddlewareSignature =
-      [ `DidChangeWorkspaceFoldersNotification_MiddlewareSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DidChangeWorkspaceFoldersParams =
-      [ `DidChangeWorkspaceFoldersParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkspaceFolder = [ `WorkspaceFolder ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkspaceFoldersChangeEvent = [ `WorkspaceFoldersChangeEvent ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkspaceFoldersClientCapabilities =
-      [ `WorkspaceFoldersClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkspaceFoldersInitializeParams =
-      [ `WorkspaceFoldersInitializeParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkspaceFoldersRequest_HandlerSignature =
-      (_WorkspaceFolder list or_null, unit) RequestHandler0.t
-
-    and _WorkspaceFoldersRequest_MiddlewareSignature =
-      [ `WorkspaceFoldersRequest_MiddlewareSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkspaceFoldersServerCapabilities =
-      [ `WorkspaceFoldersServerCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -80,7 +23,7 @@ module AnonymousInterface0 : sig
 end
 
 module AnonymousInterface1 : sig
-  type t = anonymous_interface_1
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -92,16 +35,16 @@ module AnonymousInterface1 : sig
 end
 
 module AnonymousInterface2 : sig
-  type t = anonymous_interface_2
+  type t
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 
-  val get_workspaceFolders : t -> anonymous_interface_0
+  val get_workspaceFolders : t -> AnonymousInterface0.t
     [@@js.get "workspaceFolders"]
 
-  val set_workspaceFolders : t -> anonymous_interface_0 -> unit
+  val set_workspaceFolders : t -> AnonymousInterface0.t -> unit
     [@@js.set "workspaceFolders"]
 end
 
@@ -130,9 +73,9 @@ module WorkspaceFoldersClientCapabilities : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_workspace : t -> anonymous_interface_1 [@@js.get "workspace"]
+  val get_workspace : t -> AnonymousInterface1.t [@@js.get "workspace"]
 
-  val set_workspace : t -> anonymous_interface_1 -> unit [@@js.set "workspace"]
+  val set_workspace : t -> AnonymousInterface1.t -> unit [@@js.set "workspace"]
 end
 [@@js.scope "WorkspaceFoldersClientCapabilities"]
 
@@ -143,9 +86,9 @@ module WorkspaceFoldersServerCapabilities : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_workspace : t -> anonymous_interface_2 [@@js.get "workspace"]
+  val get_workspace : t -> AnonymousInterface2.t [@@js.get "workspace"]
 
-  val set_workspace : t -> anonymous_interface_2 -> unit [@@js.set "workspace"]
+  val set_workspace : t -> AnonymousInterface2.t -> unit [@@js.set "workspace"]
 end
 [@@js.scope "WorkspaceFoldersServerCapabilities"]
 
@@ -172,7 +115,7 @@ module WorkspaceFoldersRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _WorkspaceFoldersRequest_HandlerSignature
+    type t = (_WorkspaceFolder list or_null, unit) RequestHandler0.t
 
     val t_to_js : t -> Ojs.t
 
@@ -203,7 +146,7 @@ module DidChangeWorkspaceFoldersNotification : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _DidChangeWorkspaceFoldersNotification_HandlerSignature
+    type t = _DidChangeWorkspaceFoldersParams NotificationHandler.t
 
     val t_to_js : t -> Ojs.t
 

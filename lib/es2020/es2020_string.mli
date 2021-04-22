@@ -9,7 +9,7 @@ module String : sig
     include String
   end
 
-  val matchAll : t -> regexp:regexp -> RegExpMatchArray.t IterableIterator.t
+  val match_all : t -> regexp:regexp -> RegExpMatchArray.t IterableIterator.t
     [@@js.call "matchAll"]
 
   val to_ml : t -> string [@@js.cast]

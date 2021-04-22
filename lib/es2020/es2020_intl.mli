@@ -5,6 +5,10 @@
 open Es2019
 
 module Intl : sig
+  include module type of struct
+    include Intl
+  end
+
   module BCP47LanguageTag : sig
     type t = string
 
@@ -212,10 +216,10 @@ module Intl : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_localeMatcher : t -> RelativeTimeFormatLocaleMatcher.t
+    val get_locale_matcher : t -> RelativeTimeFormatLocaleMatcher.t
       [@@js.get "localeMatcher"]
 
-    val set_localeMatcher : t -> RelativeTimeFormatLocaleMatcher.t -> unit
+    val set_locale_matcher : t -> RelativeTimeFormatLocaleMatcher.t -> unit
       [@@js.set "localeMatcher"]
 
     val get_numeric : t -> RelativeTimeFormatNumeric.t [@@js.get "numeric"]
@@ -249,9 +253,9 @@ module Intl : sig
     val set_numeric : t -> RelativeTimeFormatNumeric.t -> unit
       [@@js.set "numeric"]
 
-    val get_numberingSystem : t -> string [@@js.get "numberingSystem"]
+    val get_numbering_system : t -> string [@@js.get "numberingSystem"]
 
-    val set_numberingSystem : t -> string -> unit [@@js.set "numberingSystem"]
+    val set_numbering_system : t -> string -> unit [@@js.set "numberingSystem"]
   end
   [@@js.scope "ResolvedRelativeTimeFormatOptions"]
 
@@ -286,14 +290,14 @@ module Intl : sig
     val format : t -> value:int -> unit:RelativeTimeFormatUnit.t -> string
       [@@js.call "format"]
 
-    val formatToParts
+    val format_to_parts
       :  t
       -> value:int
       -> unit:RelativeTimeFormatUnit.t
       -> RelativeTimeFormatPart.t list
       [@@js.call "formatToParts"]
 
-    val resolvedOptions : t -> ResolvedRelativeTimeFormatOptions.t
+    val resolved_options : t -> ResolvedRelativeTimeFormatOptions.t
       [@@js.call "resolvedOptions"]
   end
   [@@js.scope "RelativeTimeFormat"]
@@ -313,7 +317,7 @@ module Intl : sig
       -> RelativeTimeFormat.t
       [@@js.apply_newable]
 
-    val supportedLocalesOf
+    val supported_locales_of
       :  t
       -> locales:(string, string) or_array
       -> ?options:RelativeTimeFormatOptions.t
@@ -322,7 +326,7 @@ module Intl : sig
       [@@js.call "supportedLocalesOf"]
   end
 
-  val relativeTimeFormat : AnonymousInterface0.t
+  val relative_time_format : AnonymousInterface0.t
     [@@js.global "RelativeTimeFormat"]
 
   module NumberFormatOptions : sig
@@ -330,25 +334,25 @@ module Intl : sig
       include NumberFormatOptions
     end
 
-    val get_compactDisplay : t -> string [@@js.get "compactDisplay"]
+    val get_compact_display : t -> string [@@js.get "compactDisplay"]
 
-    val set_compactDisplay : t -> string -> unit [@@js.set "compactDisplay"]
+    val set_compact_display : t -> string -> unit [@@js.set "compactDisplay"]
 
     val get_notation : t -> string [@@js.get "notation"]
 
     val set_notation : t -> string -> unit [@@js.set "notation"]
 
-    val get_signDisplay : t -> string [@@js.get "signDisplay"]
+    val get_sign_display : t -> string [@@js.get "signDisplay"]
 
-    val set_signDisplay : t -> string -> unit [@@js.set "signDisplay"]
+    val set_sign_display : t -> string -> unit [@@js.set "signDisplay"]
 
     val get_unit : t -> string [@@js.get "unit"]
 
     val set_unit : t -> string -> unit [@@js.set "unit"]
 
-    val get_unitDisplay : t -> string [@@js.get "unitDisplay"]
+    val get_unit_display : t -> string [@@js.get "unitDisplay"]
 
-    val set_unitDisplay : t -> string -> unit [@@js.set "unitDisplay"]
+    val set_unit_display : t -> string -> unit [@@js.set "unitDisplay"]
   end
   [@@js.scope "NumberFormatOptions"]
 
@@ -359,25 +363,25 @@ module Intl : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_compactDisplay : t -> string [@@js.get "compactDisplay"]
+    val get_compact_display : t -> string [@@js.get "compactDisplay"]
 
-    val set_compactDisplay : t -> string -> unit [@@js.set "compactDisplay"]
+    val set_compact_display : t -> string -> unit [@@js.set "compactDisplay"]
 
     val get_notation : t -> string [@@js.get "notation"]
 
     val set_notation : t -> string -> unit [@@js.set "notation"]
 
-    val get_signDisplay : t -> string [@@js.get "signDisplay"]
+    val get_sign_display : t -> string [@@js.get "signDisplay"]
 
-    val set_signDisplay : t -> string -> unit [@@js.set "signDisplay"]
+    val set_sign_display : t -> string -> unit [@@js.set "signDisplay"]
 
     val get_unit : t -> string [@@js.get "unit"]
 
     val set_unit : t -> string -> unit [@@js.set "unit"]
 
-    val get_unitDisplay : t -> string [@@js.get "unitDisplay"]
+    val get_unit_display : t -> string [@@js.get "unitDisplay"]
 
-    val set_unitDisplay : t -> string -> unit [@@js.set "unitDisplay"]
+    val set_unit_display : t -> string -> unit [@@js.set "unitDisplay"]
   end
   [@@js.scope "ResolvedNumberFormatOptions"]
 
@@ -386,7 +390,7 @@ module Intl : sig
       include DateTimeFormatOptions
     end
 
-    val get_dateStyle
+    val get_date_style
       :  t
       -> ([ `full [@js "full"]
           | `long [@js "long"]
@@ -396,13 +400,13 @@ module Intl : sig
          [@js.enum])
       [@@js.get "dateStyle"]
 
-    val set_dateStyle
+    val set_date_style
       :  t
       -> ([ `full | `long | `medium | `short ][@js.enum])
       -> unit
       [@@js.set "dateStyle"]
 
-    val get_timeStyle
+    val get_time_style
       :  t
       -> ([ `full [@js "full"]
           | `long [@js "long"]
@@ -412,7 +416,7 @@ module Intl : sig
          [@js.enum])
       [@@js.get "timeStyle"]
 
-    val set_timeStyle
+    val set_time_style
       :  t
       -> ([ `full | `long | `medium | `short ][@js.enum])
       -> unit
@@ -422,22 +426,22 @@ module Intl : sig
 
     val set_calendar : t -> Calendar.t -> unit [@@js.set "calendar"]
 
-    val get_dayPeriod
+    val get_day_period
       :  t
       -> ([ `long [@js "long"] | `narrow [@js "narrow"] | `short [@js "short"] ]
          [@js.enum])
       [@@js.get "dayPeriod"]
 
-    val set_dayPeriod : t -> ([ `long | `narrow | `short ][@js.enum]) -> unit
+    val set_day_period : t -> ([ `long | `narrow | `short ][@js.enum]) -> unit
       [@@js.set "dayPeriod"]
 
-    val get_numberingSystem : t -> NumberingSystem.t
+    val get_numbering_system : t -> NumberingSystem.t
       [@@js.get "numberingSystem"]
 
-    val set_numberingSystem : t -> NumberingSystem.t -> unit
+    val set_numbering_system : t -> NumberingSystem.t -> unit
       [@@js.set "numberingSystem"]
 
-    val get_hourCycle
+    val get_hour_cycle
       :  t
       -> ([ `h11 [@js "h11"]
           | `h12 [@js "h12"]
@@ -447,16 +451,16 @@ module Intl : sig
          [@js.enum])
       [@@js.get "hourCycle"]
 
-    val set_hourCycle : t -> ([ `h11 | `h12 | `h23 | `h24 ][@js.enum]) -> unit
+    val set_hour_cycle : t -> ([ `h11 | `h12 | `h23 | `h24 ][@js.enum]) -> unit
       [@@js.set "hourCycle"]
 
-    val get_fractionalSecondDigits
+    val get_fractional_second_digits
       :  t
       -> ([ `L_n_0 [@js 0] | `L_n_1 [@js 1] | `L_n_2 [@js 2] | `L_n_3 [@js 3] ]
          [@js.enum])
       [@@js.get "fractionalSecondDigits"]
 
-    val set_fractionalSecondDigits
+    val set_fractional_second_digits
       :  t
       -> ([ `L_n_0 | `L_n_1 | `L_n_2 | `L_n_3 ][@js.enum])
       -> unit
@@ -465,7 +469,3 @@ module Intl : sig
   [@@js.scope "DateTimeFormatOptions"]
 end
 [@@js.scope "Intl"]
-
-include module type of struct
-  include Intl
-end

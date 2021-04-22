@@ -4,467 +4,8 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_3 = [ `anonymous_interface_3 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _AnnotatedTextEdit = [ `AnnotatedTextEdit | `TextEdit ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CallHierarchyIncomingCall = [ `CallHierarchyIncomingCall ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CallHierarchyItem = [ `CallHierarchyItem ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CallHierarchyOutgoingCall = [ `CallHierarchyOutgoingCall ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ChangeAnnotation = [ `ChangeAnnotation ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ChangeAnnotationIdentifier = string
-
-    and _CodeAction = [ `CodeAction ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CodeActionContext = [ `CodeActionContext ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CodeActionKind = string
-
-    and _CodeDescription = [ `CodeDescription ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CodeLens = [ `CodeLens ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _Color = [ `Color ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ColorInformation = [ `ColorInformation ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ColorPresentation = [ `ColorPresentation ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _Command = [ `Command ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CompletionItem = [ `CompletionItem ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CompletionItemKind =
-      ([ `L_n_1 [@js 1]
-       | `L_n_2 [@js 2]
-       | `L_n_3 [@js 3]
-       | `L_n_4 [@js 4]
-       | `L_n_5 [@js 5]
-       | `L_n_6 [@js 6]
-       | `L_n_7 [@js 7]
-       | `L_n_8 [@js 8]
-       | `L_n_9 [@js 9]
-       | `L_n_10 [@js 10]
-       | `L_n_11 [@js 11]
-       | `L_n_12 [@js 12]
-       | `L_n_13 [@js 13]
-       | `L_n_14 [@js 14]
-       | `L_n_15 [@js 15]
-       | `L_n_16 [@js 16]
-       | `L_n_17 [@js 17]
-       | `L_n_18 [@js 18]
-       | `L_n_19 [@js 19]
-       | `L_n_20 [@js 20]
-       | `L_n_21 [@js 21]
-       | `L_n_22 [@js 22]
-       | `L_n_23 [@js 23]
-       | `L_n_24 [@js 24]
-       | `L_n_25 [@js 25]
-       ]
-      [@js.enum])
-
-    and _CompletionItemLabelDetails = [ `CompletionItemLabelDetails ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CompletionItemTag = ([ `L_n_1 [@js 1] ][@js.enum])
-
-    and _CompletionList = [ `CompletionList ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CreateFile = [ `CreateFile | `ResourceOperation ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CreateFileOptions = [ `CreateFileOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _Declaration = (_Location, _Location) or_array
-
-    and _DeclarationLink = _LocationLink
-
-    and _Definition = (_Location, _Location) or_array
-
-    and _DefinitionLink = _LocationLink
-
-    and _DeleteFile = [ `DeleteFile | `ResourceOperation ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DeleteFileOptions = [ `DeleteFileOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _Diagnostic = [ `Diagnostic ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DiagnosticRelatedInformation = [ `DiagnosticRelatedInformation ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DiagnosticSeverity =
-      ([ `L_n_1 [@js 1]
-       | `L_n_2 [@js 2]
-       | `L_n_3 [@js 3]
-       | `L_n_4 [@js 4]
-       ]
-      [@js.enum])
-
-    and _DiagnosticTag =
-      ([ `L_n_1 [@js 1]
-       | `L_n_2 [@js 2]
-       ]
-      [@js.enum])
-
-    and _DocumentHighlight = [ `DocumentHighlight ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentHighlightKind =
-      ([ `L_n_1 [@js 1]
-       | `L_n_2 [@js 2]
-       | `L_n_3 [@js 3]
-       ]
-      [@js.enum])
-
-    and _DocumentLink = [ `DocumentLink ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentSymbol = [ `DocumentSymbol ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentUri = string
-
-    and _FoldingRange = [ `FoldingRange ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _FoldingRangeKind =
-      ([ `Comment [@js "comment"]
-       | `Imports [@js "imports"]
-       | `Region [@js "region"]
-       ]
-      [@js.enum])
-
-    and _FoldingRangeKind_Comment = ([ `Comment [@js "comment"] ][@js.enum])
-
-    and _FoldingRangeKind_Imports = ([ `Imports [@js "imports"] ][@js.enum])
-
-    and _FoldingRangeKind_Region = ([ `Region [@js "region"] ][@js.enum])
-
-    and _FormattingOptions = [ `FormattingOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _Hover = [ `Hover ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _InsertReplaceEdit = [ `InsertReplaceEdit ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _InsertTextFormat =
-      ([ `L_n_1 [@js 1]
-       | `L_n_2 [@js 2]
-       ]
-      [@js.enum])
-
-    and _InsertTextMode =
-      ([ `L_n_1 [@js 1]
-       | `L_n_2 [@js 2]
-       ]
-      [@js.enum])
-
-    and _Location = [ `Location ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _LocationLink = [ `LocationLink ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _MarkedString = anonymous_interface_0 or_string
-
-    and _MarkupContent = [ `MarkupContent ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _MarkupKind =
-      ([ `L_s19_markdown [@js "markdown"]
-       | `L_s27_plaintext [@js "plaintext"]
-       ]
-      [@js.enum])
-
-    and _OptionalVersionedTextDocumentIdentifier =
-      [ `OptionalVersionedTextDocumentIdentifier | `TextDocumentIdentifier ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ParameterInformation = [ `ParameterInformation ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _Position = [ `Position ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _Range = [ `Range ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ReferenceContext = [ `ReferenceContext ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _RenameFile = [ `RenameFile | `ResourceOperation ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _RenameFileOptions = [ `RenameFileOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ResourceOperation = [ `ResourceOperation ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SelectionRange = [ `SelectionRange ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SemanticTokenModifiers =
-      ([ `declaration [@js "declaration"]
-       | `definition [@js "definition"]
-       | `readonly [@js "readonly"]
-       | `static [@js "static"]
-       | `deprecated [@js "deprecated"]
-       | `abstract [@js "abstract"]
-       | `async [@js "async"]
-       | `modification [@js "modification"]
-       | `documentation [@js "documentation"]
-       | `defaultLibrary [@js "defaultLibrary"]
-       ]
-      [@js.enum])
-
-    and _SemanticTokenModifiers_declaration =
-      ([ `declaration [@js "declaration"] ][@js.enum])
-
-    and _SemanticTokenModifiers_definition =
-      ([ `definition [@js "definition"] ][@js.enum])
-
-    and _SemanticTokenModifiers_readonly =
-      ([ `readonly [@js "readonly"] ][@js.enum])
-
-    and _SemanticTokenModifiers_static = ([ `static [@js "static"] ][@js.enum])
-
-    and _SemanticTokenModifiers_deprecated =
-      ([ `deprecated [@js "deprecated"] ][@js.enum])
-
-    and _SemanticTokenModifiers_abstract =
-      ([ `abstract [@js "abstract"] ][@js.enum])
-
-    and _SemanticTokenModifiers_async = ([ `async [@js "async"] ][@js.enum])
-
-    and _SemanticTokenModifiers_modification =
-      ([ `modification [@js "modification"] ][@js.enum])
-
-    and _SemanticTokenModifiers_documentation =
-      ([ `documentation [@js "documentation"] ][@js.enum])
-
-    and _SemanticTokenModifiers_defaultLibrary =
-      ([ `defaultLibrary [@js "defaultLibrary"] ][@js.enum])
-
-    and _SemanticTokenTypes =
-      ([ `namespace [@js "namespace"]
-       | `type_ [@js "type"]
-       | `class_ [@js "class"]
-       | `enum [@js "enum"]
-       | `interface [@js "interface"]
-       | `struct_ [@js "struct"]
-       | `typeParameter [@js "typeParameter"]
-       | `parameter [@js "parameter"]
-       | `variable [@js "variable"]
-       | `property [@js "property"]
-       | `enumMember [@js "enumMember"]
-       | `event [@js "event"]
-       | `function_ [@js "function"]
-       | `method_ [@js "method"]
-       | `macro [@js "macro"]
-       | `keyword [@js "keyword"]
-       | `modifier [@js "modifier"]
-       | `comment [@js "comment"]
-       | `string [@js "string"]
-       | `number [@js "number"]
-       | `regexp [@js "regexp"]
-       | `operator [@js "operator"]
-       ]
-      [@js.enum])
-
-    and _SemanticTokenTypes_namespace =
-      ([ `namespace [@js "namespace"] ][@js.enum])
-
-    and _SemanticTokenTypes_type = ([ `type_ [@js "type"] ][@js.enum])
-
-    and _SemanticTokenTypes_class = ([ `class_ [@js "class"] ][@js.enum])
-
-    and _SemanticTokenTypes_enum = ([ `enum [@js "enum"] ][@js.enum])
-
-    and _SemanticTokenTypes_interface =
-      ([ `interface [@js "interface"] ][@js.enum])
-
-    and _SemanticTokenTypes_struct = ([ `struct_ [@js "struct"] ][@js.enum])
-
-    and _SemanticTokenTypes_typeParameter =
-      ([ `typeParameter [@js "typeParameter"] ][@js.enum])
-
-    and _SemanticTokenTypes_parameter =
-      ([ `parameter [@js "parameter"] ][@js.enum])
-
-    and _SemanticTokenTypes_variable =
-      ([ `variable [@js "variable"] ][@js.enum])
-
-    and _SemanticTokenTypes_property =
-      ([ `property [@js "property"] ][@js.enum])
-
-    and _SemanticTokenTypes_enumMember =
-      ([ `enumMember [@js "enumMember"] ][@js.enum])
-
-    and _SemanticTokenTypes_event = ([ `event [@js "event"] ][@js.enum])
-
-    and _SemanticTokenTypes_function =
-      ([ `function_ [@js "function"] ][@js.enum])
-
-    and _SemanticTokenTypes_method = ([ `method_ [@js "method"] ][@js.enum])
-
-    and _SemanticTokenTypes_macro = ([ `macro [@js "macro"] ][@js.enum])
-
-    and _SemanticTokenTypes_keyword = ([ `keyword [@js "keyword"] ][@js.enum])
-
-    and _SemanticTokenTypes_modifier =
-      ([ `modifier [@js "modifier"] ][@js.enum])
-
-    and _SemanticTokenTypes_comment = ([ `comment [@js "comment"] ][@js.enum])
-
-    and _SemanticTokenTypes_string = ([ `string [@js "string"] ][@js.enum])
-
-    and _SemanticTokenTypes_number = ([ `number [@js "number"] ][@js.enum])
-
-    and _SemanticTokenTypes_regexp = ([ `regexp [@js "regexp"] ][@js.enum])
-
-    and _SemanticTokenTypes_operator =
-      ([ `operator [@js "operator"] ][@js.enum])
-
-    and _SemanticTokens = [ `SemanticTokens ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SemanticTokensDelta = [ `SemanticTokensDelta ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SemanticTokensEdit = [ `SemanticTokensEdit ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SemanticTokensLegend = [ `SemanticTokensLegend ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SignatureHelp = [ `SignatureHelp ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SignatureInformation = [ `SignatureInformation ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SymbolInformation = [ `SymbolInformation ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SymbolKind =
-      ([ `L_n_1 [@js 1]
-       | `L_n_2 [@js 2]
-       | `L_n_3 [@js 3]
-       | `L_n_4 [@js 4]
-       | `L_n_5 [@js 5]
-       | `L_n_6 [@js 6]
-       | `L_n_7 [@js 7]
-       | `L_n_8 [@js 8]
-       | `L_n_9 [@js 9]
-       | `L_n_10 [@js 10]
-       | `L_n_11 [@js 11]
-       | `L_n_12 [@js 12]
-       | `L_n_13 [@js 13]
-       | `L_n_14 [@js 14]
-       | `L_n_15 [@js 15]
-       | `L_n_16 [@js 16]
-       | `L_n_17 [@js 17]
-       | `L_n_18 [@js 18]
-       | `L_n_19 [@js 19]
-       | `L_n_20 [@js 20]
-       | `L_n_21 [@js 21]
-       | `L_n_22 [@js 22]
-       | `L_n_23 [@js 23]
-       | `L_n_24 [@js 24]
-       | `L_n_25 [@js 25]
-       | `L_n_26 [@js 26]
-       ]
-      [@js.enum])
-
-    and _SymbolTag = ([ `L_n_1 [@js 1] ][@js.enum])
-
-    and _TextDocument = [ `TextDocument ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _TextDocumentEdit = [ `TextDocumentEdit ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _TextDocumentIdentifier = [ `TextDocumentIdentifier ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _TextDocumentItem = [ `TextDocumentItem ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _TextEdit = [ `TextEdit ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _TextEditChange = [ `TextEditChange ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _URI = string
-
-    and _VersionedTextDocumentIdentifier =
-      [ `VersionedTextDocumentIdentifier | `TextDocumentIdentifier ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkspaceChange = [ `WorkspaceChange ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkspaceEdit = [ `WorkspaceEdit ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and decimal = int
-
-    and integer = int
-
-    and uinteger = int
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -480,7 +21,7 @@ module AnonymousInterface0 : sig
 end
 
 module AnonymousInterface1 : sig
-  type t = anonymous_interface_1
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -492,7 +33,7 @@ module AnonymousInterface1 : sig
 end
 
 module AnonymousInterface2 : sig
-  type t = anonymous_interface_2
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -504,7 +45,7 @@ module AnonymousInterface2 : sig
 end
 
 module AnonymousInterface3 : sig
-  type t = anonymous_interface_3
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -516,7 +57,7 @@ module AnonymousInterface3 : sig
 end
 
 module DocumentUri : sig
-  type t = _DocumentUri
+  type t = string
 
   val t_to_js : t -> Ojs.t
 
@@ -524,7 +65,7 @@ module DocumentUri : sig
 end
 
 module URI : sig
-  type t = _URI
+  type t = string
 
   val t_to_js : t -> Ojs.t
 
@@ -532,7 +73,7 @@ module URI : sig
 end
 
 module Integer : sig
-  type t = integer
+  type t = int
 
   val t_to_js : t -> Ojs.t
 
@@ -543,7 +84,7 @@ end
 [@@js.scope "integer"]
 
 module Uinteger : sig
-  type t = uinteger
+  type t = int
 
   val t_to_js : t -> Ojs.t
 
@@ -556,7 +97,7 @@ end
 [@@js.scope "uinteger"]
 
 module Decimal : sig
-  type t = decimal
+  type t = int
 
   val t_to_js : t -> Ojs.t
 
@@ -758,7 +299,12 @@ end
 [@@js.scope "ColorPresentation"]
 
 module FoldingRangeKind : sig
-  type t = _FoldingRangeKind
+  type t =
+    ([ `Comment [@js "comment"]
+     | `Imports [@js "imports"]
+     | `Region [@js "region"]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -832,7 +378,13 @@ end
 [@@js.scope "DiagnosticRelatedInformation"]
 
 module DiagnosticSeverity : sig
-  type t = _DiagnosticSeverity
+  type t =
+    ([ `L_n_1 [@js 1]
+     | `L_n_2 [@js 2]
+     | `L_n_3 [@js 3]
+     | `L_n_4 [@js 4]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -849,7 +401,11 @@ end
 [@@js.scope "DiagnosticSeverity"]
 
 module DiagnosticTag : sig
-  type t = _DiagnosticTag
+  type t =
+    ([ `L_n_1 [@js 1]
+     | `L_n_2 [@js 2]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -1027,7 +583,7 @@ end
 [@@js.scope "ChangeAnnotation"]
 
 module ChangeAnnotationIdentifier : sig
-  type t = _ChangeAnnotationIdentifier
+  type t = string
 
   val t_to_js : t -> Ojs.t
 
@@ -1289,9 +845,9 @@ module WorkspaceEdit : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_changes : t -> anonymous_interface_3 [@@js.get "changes"]
+  val get_changes : t -> AnonymousInterface3.t [@@js.get "changes"]
 
-  val set_changes : t -> anonymous_interface_3 -> unit [@@js.set "changes"]
+  val set_changes : t -> AnonymousInterface3.t -> unit [@@js.set "changes"]
 
   val get_documentChanges
     :  t
@@ -1318,10 +874,10 @@ module WorkspaceEdit : sig
     -> unit
     [@@js.set "documentChanges"]
 
-  val get_changeAnnotations : t -> anonymous_interface_2
+  val get_changeAnnotations : t -> AnonymousInterface2.t
     [@@js.get "changeAnnotations"]
 
-  val set_changeAnnotations : t -> anonymous_interface_2 -> unit
+  val set_changeAnnotations : t -> AnonymousInterface2.t -> unit
     [@@js.set "changeAnnotations"]
 
   val is : value:any -> bool [@@js.global "is"]
@@ -1582,7 +1138,11 @@ end
 [@@js.scope "TextDocumentItem"]
 
 module MarkupKind : sig
-  type t = _MarkupKind
+  type t =
+    ([ `L_s19_markdown [@js "markdown"]
+     | `L_s27_plaintext [@js "plaintext"]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -1618,7 +1178,34 @@ end
 [@@js.scope "MarkupContent"]
 
 module CompletionItemKind : sig
-  type t = _CompletionItemKind
+  type t =
+    ([ `L_n_1 [@js 1]
+     | `L_n_2 [@js 2]
+     | `L_n_3 [@js 3]
+     | `L_n_4 [@js 4]
+     | `L_n_5 [@js 5]
+     | `L_n_6 [@js 6]
+     | `L_n_7 [@js 7]
+     | `L_n_8 [@js 8]
+     | `L_n_9 [@js 9]
+     | `L_n_10 [@js 10]
+     | `L_n_11 [@js 11]
+     | `L_n_12 [@js 12]
+     | `L_n_13 [@js 13]
+     | `L_n_14 [@js 14]
+     | `L_n_15 [@js 15]
+     | `L_n_16 [@js 16]
+     | `L_n_17 [@js 17]
+     | `L_n_18 [@js 18]
+     | `L_n_19 [@js 19]
+     | `L_n_20 [@js 20]
+     | `L_n_21 [@js 21]
+     | `L_n_22 [@js 22]
+     | `L_n_23 [@js 23]
+     | `L_n_24 [@js 24]
+     | `L_n_25 [@js 25]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -1678,7 +1265,11 @@ end
 [@@js.scope "CompletionItemKind"]
 
 module InsertTextFormat : sig
-  type t = _InsertTextFormat
+  type t =
+    ([ `L_n_1 [@js 1]
+     | `L_n_2 [@js 2]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -1691,7 +1282,7 @@ end
 [@@js.scope "InsertTextFormat"]
 
 module CompletionItemTag : sig
-  type t = _CompletionItemTag
+  type t = ([ `L_n_1 [@js 1] ][@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -1733,7 +1324,11 @@ end
 [@@js.scope "InsertReplaceEdit"]
 
 module InsertTextMode : sig
-  type t = _InsertTextMode
+  type t =
+    ([ `L_n_1 [@js 1]
+     | `L_n_2 [@js 2]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -1889,7 +1484,7 @@ end
 [@@js.scope "CompletionList"]
 
 module MarkedString : sig
-  type t = _MarkedString
+  type t = AnonymousInterface0.t or_string
 
   val t_to_js : t -> Ojs.t
 
@@ -2013,7 +1608,7 @@ end
 [@@js.scope "SignatureHelp"]
 
 module Definition : sig
-  type t = _Definition
+  type t = (_Location, _Location) or_array
 
   val t_to_js : t -> Ojs.t
 
@@ -2021,7 +1616,7 @@ module Definition : sig
 end
 
 module DefinitionLink : sig
-  type t = _DefinitionLink
+  type t = _LocationLink
 
   val t_to_js : t -> Ojs.t
 
@@ -2029,7 +1624,7 @@ module DefinitionLink : sig
 end
 
 module Declaration : sig
-  type t = _Declaration
+  type t = (_Location, _Location) or_array
 
   val t_to_js : t -> Ojs.t
 
@@ -2037,7 +1632,7 @@ module Declaration : sig
 end
 
 module DeclarationLink : sig
-  type t = _DeclarationLink
+  type t = _LocationLink
 
   val t_to_js : t -> Ojs.t
 
@@ -2058,7 +1653,12 @@ end
 [@@js.scope "ReferenceContext"]
 
 module DocumentHighlightKind : sig
-  type t = _DocumentHighlightKind
+  type t =
+    ([ `L_n_1 [@js 1]
+     | `L_n_2 [@js 2]
+     | `L_n_3 [@js 3]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -2097,7 +1697,35 @@ end
 [@@js.scope "DocumentHighlight"]
 
 module SymbolKind : sig
-  type t = _SymbolKind
+  type t =
+    ([ `L_n_1 [@js 1]
+     | `L_n_2 [@js 2]
+     | `L_n_3 [@js 3]
+     | `L_n_4 [@js 4]
+     | `L_n_5 [@js 5]
+     | `L_n_6 [@js 6]
+     | `L_n_7 [@js 7]
+     | `L_n_8 [@js 8]
+     | `L_n_9 [@js 9]
+     | `L_n_10 [@js 10]
+     | `L_n_11 [@js 11]
+     | `L_n_12 [@js 12]
+     | `L_n_13 [@js 13]
+     | `L_n_14 [@js 14]
+     | `L_n_15 [@js 15]
+     | `L_n_16 [@js 16]
+     | `L_n_17 [@js 17]
+     | `L_n_18 [@js 18]
+     | `L_n_19 [@js 19]
+     | `L_n_20 [@js 20]
+     | `L_n_21 [@js 21]
+     | `L_n_22 [@js 22]
+     | `L_n_23 [@js 23]
+     | `L_n_24 [@js 24]
+     | `L_n_25 [@js 25]
+     | `L_n_26 [@js 26]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -2159,7 +1787,7 @@ end
 [@@js.scope "SymbolKind"]
 
 module SymbolTag : sig
-  type t = _SymbolTag
+  type t = ([ `L_n_1 [@js 1] ][@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -2267,7 +1895,7 @@ end
 [@@js.scope "DocumentSymbol"]
 
 module CodeActionKind : sig
-  type t = _CodeActionKind
+  type t = string
 
   val t_to_js : t -> Ojs.t
 
@@ -2343,9 +1971,9 @@ module CodeAction : sig
 
   val set_isPreferred : t -> bool -> unit [@@js.set "isPreferred"]
 
-  val get_disabled : t -> anonymous_interface_1 [@@js.get "disabled"]
+  val get_disabled : t -> AnonymousInterface1.t [@@js.get "disabled"]
 
-  val set_disabled : t -> anonymous_interface_1 -> unit [@@js.set "disabled"]
+  val set_disabled : t -> AnonymousInterface1.t -> unit [@@js.set "disabled"]
 
   val get_edit : t -> _WorkspaceEdit [@@js.get "edit"]
 
@@ -2586,7 +2214,31 @@ end
 [@@js.scope "CallHierarchyOutgoingCall"]
 
 module SemanticTokenTypes : sig
-  type t = _SemanticTokenTypes
+  type t =
+    ([ `namespace [@js "namespace"]
+     | `type_ [@js "type"]
+     | `class_ [@js "class"]
+     | `enum [@js "enum"]
+     | `interface [@js "interface"]
+     | `struct_ [@js "struct"]
+     | `typeParameter [@js "typeParameter"]
+     | `parameter [@js "parameter"]
+     | `variable [@js "variable"]
+     | `property [@js "property"]
+     | `enumMember [@js "enumMember"]
+     | `event [@js "event"]
+     | `function_ [@js "function"]
+     | `method_ [@js "method"]
+     | `macro [@js "macro"]
+     | `keyword [@js "keyword"]
+     | `modifier [@js "modifier"]
+     | `comment [@js "comment"]
+     | `string [@js "string"]
+     | `number [@js "number"]
+     | `regexp [@js "regexp"]
+     | `operator [@js "operator"]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -2594,7 +2246,19 @@ module SemanticTokenTypes : sig
 end
 
 module SemanticTokenModifiers : sig
-  type t = _SemanticTokenModifiers
+  type t =
+    ([ `declaration [@js "declaration"]
+     | `definition [@js "definition"]
+     | `readonly [@js "readonly"]
+     | `static [@js "static"]
+     | `deprecated [@js "deprecated"]
+     | `abstract [@js "abstract"]
+     | `async [@js "async"]
+     | `modification [@js "modification"]
+     | `documentation [@js "documentation"]
+     | `defaultLibrary [@js "defaultLibrary"]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 

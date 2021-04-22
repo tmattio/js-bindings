@@ -3,27 +3,7 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
 module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type trace_events_CreateTracingOptions =
-          [ `Trace_events_CreateTracingOptions ] intf
-        and trace_events_Tracing = [ `Trace_events_Tracing ] intf
-        let rec trace_events_CreateTracingOptions_of_js :
-          Ojs.t -> trace_events_CreateTracingOptions = Obj.magic
-        and trace_events_CreateTracingOptions_to_js :
-          trace_events_CreateTracingOptions -> Ojs.t = Obj.magic
-        and trace_events_Tracing_of_js : Ojs.t -> trace_events_Tracing =
-          Obj.magic
-        and trace_events_Tracing_to_js : trace_events_Tracing -> Ojs.t =
-          Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
+  struct module Types = struct open AnonymousInterfaces end end
 module Trace_events =
   struct
     module Tracing =

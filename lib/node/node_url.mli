@@ -5,39 +5,6 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type url_URL = [ `Url_URL ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and url_URLFormatOptions = [ `Url_URLFormatOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and url_URLSearchParams = [ `Url_URLSearchParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and url_Url = [ `Url_Url ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and url_UrlObject = [ `Url_UrlObject ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and url_UrlWithParsedQuery = [ `Url_UrlWithParsedQuery | `Url_Url ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and url_UrlWithStringQuery = [ `Url_UrlWithStringQuery | `Url_Url ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module Url : sig
   module UrlObject : sig
     type t = url_UrlObject

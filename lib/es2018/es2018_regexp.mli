@@ -43,6 +43,6 @@ module RegExp : sig
     include RegExp
   end
 
-  val get_dotAll : t -> bool [@@js.get "dotAll"]
+  val get_dot_all : t -> bool [@@js.get "dotAll"]
 end
 [@@js.scope "RegExp"]

@@ -3,52 +3,12 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
 module Internal =
-  struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _ColorProviderFeature = [ `ColorProviderFeature ] intf
-        and _ColorProviderMiddleware = [ `ColorProviderMiddleware ] intf
-        and _ProvideColorPresentationSignature =
-          [ `ProvideColorPresentationSignature ] intf
-        and _ProvideDocumentColorsSignature =
-          [ `ProvideDocumentColorsSignature ] intf
-        let rec _ColorProviderFeature_of_js : Ojs.t -> _ColorProviderFeature
-          = Obj.magic
-        and _ColorProviderFeature_to_js : _ColorProviderFeature -> Ojs.t =
-          Obj.magic
-        and _ColorProviderMiddleware_of_js :
-          Ojs.t -> _ColorProviderMiddleware = Obj.magic
-        and _ColorProviderMiddleware_to_js :
-          _ColorProviderMiddleware -> Ojs.t = Obj.magic
-        and _ProvideColorPresentationSignature_of_js :
-          Ojs.t -> _ProvideColorPresentationSignature = Obj.magic
-        and _ProvideColorPresentationSignature_to_js :
-          _ProvideColorPresentationSignature -> Ojs.t = Obj.magic
-        and _ProvideDocumentColorsSignature_of_js :
-          Ojs.t -> _ProvideDocumentColorsSignature = Obj.magic
-        and _ProvideDocumentColorsSignature_to_js :
-          _ProvideDocumentColorsSignature -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
+  struct module Types = struct open AnonymousInterfaces end end
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> anonymous_interface_0_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : anonymous_interface_0) -> anonymous_interface_0_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get_document : t -> TextDocument.t) =
       fun (x3 : t) ->
         TextDocument.t_of_js (Ojs.get_prop_ascii (t_to_js x3) "document")
@@ -99,19 +59,19 @@ module ProvideColorPresentationSignature =
     let (apply :
       t ->
         color:VColor.t ->
-          context:anonymous_interface_0 ->
+          context:AnonymousInterface0.t ->
             token:CancellationToken.t ->
               VColorPresentation.t list ProviderResult.t)
       =
       fun (x21 : t) ->
         fun ~color:(x18 : VColor.t) ->
-          fun ~context:(x19 : anonymous_interface_0) ->
+          fun ~context:(x19 : AnonymousInterface0.t) ->
             fun ~token:(x20 : CancellationToken.t) ->
               ProviderResult.t_of_js
                 (fun (x22 : Ojs.t) ->
                    Ojs.list_of_js VColorPresentation.t_of_js x22)
                 (Ojs.apply (t_to_js x21)
-                   [|(VColor.t_to_js x18);(anonymous_interface_0_to_js x19);(
+                   [|(VColor.t_to_js x18);(AnonymousInterface0.t_to_js x19);(
                      CancellationToken.t_to_js x20)|])
   end
 module ColorProviderMiddleware =
@@ -146,7 +106,7 @@ module ColorProviderMiddleware =
       t ->
         this:unit ->
           color:VColor.t ->
-            context:anonymous_interface_0 ->
+            context:AnonymousInterface0.t ->
               token:CancellationToken.t ->
                 next:_ProvideColorPresentationSignature ->
                   VColorPresentation.t list ProviderResult.t)
@@ -154,14 +114,14 @@ module ColorProviderMiddleware =
       fun (x38 : t) ->
         fun ~this:(x33 : unit) ->
           fun ~color:(x34 : VColor.t) ->
-            fun ~context:(x35 : anonymous_interface_0) ->
+            fun ~context:(x35 : AnonymousInterface0.t) ->
               fun ~token:(x36 : CancellationToken.t) ->
                 fun ~next:(x37 : _ProvideColorPresentationSignature) ->
                   ProviderResult.t_of_js
                     (fun (x39 : Ojs.t) ->
                        Ojs.list_of_js VColorPresentation.t_of_js x39)
                     (Ojs.call (t_to_js x38) "provideColorPresentations"
-                       [|(Ojs.unit_to_js x33);(VColor.t_to_js x34);(anonymous_interface_0_to_js
+                       [|(Ojs.unit_to_js x33);(VColor.t_to_js x34);(AnonymousInterface0.t_to_js
                                                                     x35);(
                          CancellationToken.t_to_js x36);(_ProvideColorPresentationSignature_to_js
                                                            x37)|])

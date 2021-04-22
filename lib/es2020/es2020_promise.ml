@@ -79,12 +79,12 @@ module PromiseSettledResult =
 module Promise =
   struct
     include struct include Promise end
-    let (allSettled : 'T -> any Promise.t) =
+    let (all_settled : 'T -> any Promise.t) =
       fun (x30 : 'T) ->
         Promise.t_of_js any_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Promise") "allSettled"
              [|(Obj.magic x30)|])
-    let (allSettled' :
+    let (all_settled' :
       'T Iterable.t -> any PromiseSettledResult.t list Promise.t) =
       fun (x32 : 'T Iterable.t) ->
         Promise.t_of_js
@@ -98,12 +98,12 @@ module Promise =
 module PromiseConstructor =
   struct
     include struct include PromiseConstructor end
-    let (allSettled : t -> 'T -> any Promise.t) =
+    let (all_settled : t -> 'T -> any Promise.t) =
       fun (x38 : t) ->
         fun (x37 : 'T) ->
           Promise.t_of_js any_of_js
             (Ojs.call (t_to_js x38) "allSettled" [|(Obj.magic x37)|])
-    let (allSettled' :
+    let (all_settled' :
       t -> 'T Iterable.t -> any PromiseSettledResult.t list Promise.t) =
       fun (x42 : t) ->
         fun (x40 : 'T Iterable.t) ->

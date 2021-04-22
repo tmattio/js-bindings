@@ -4,48 +4,8 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _WorkDoneProgressBegin = [ `WorkDoneProgressBegin ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkDoneProgressCancelNotification_HandlerSignature =
-      _WorkDoneProgressCancelParams NotificationHandler.t
-
-    and _WorkDoneProgressCancelParams = [ `WorkDoneProgressCancelParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkDoneProgressClientCapabilities =
-      [ `WorkDoneProgressClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkDoneProgressCreateParams = [ `WorkDoneProgressCreateParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkDoneProgressCreateRequest_HandlerSignature =
-      (_WorkDoneProgressCreateParams, unit, unit) RequestHandler.t
-
-    and _WorkDoneProgressEnd = [ `WorkDoneProgressEnd ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkDoneProgressReport = [ `WorkDoneProgressReport ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -67,9 +27,9 @@ module WorkDoneProgressClientCapabilities : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_window : t -> anonymous_interface_0 [@@js.get "window"]
+  val get_window : t -> AnonymousInterface0.t [@@js.get "window"]
 
-  val set_window : t -> anonymous_interface_0 -> unit [@@js.set "window"]
+  val set_window : t -> AnonymousInterface0.t -> unit [@@js.set "window"]
 end
 [@@js.scope "WorkDoneProgressClientCapabilities"]
 
@@ -184,7 +144,7 @@ module WorkDoneProgressCreateRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _WorkDoneProgressCreateRequest_HandlerSignature
+    type t = (_WorkDoneProgressCreateParams, unit, unit) RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -211,7 +171,7 @@ module WorkDoneProgressCancelNotification : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _WorkDoneProgressCancelNotification_HandlerSignature
+    type t = _WorkDoneProgressCancelParams NotificationHandler.t
 
     val t_to_js : t -> Ojs.t
 

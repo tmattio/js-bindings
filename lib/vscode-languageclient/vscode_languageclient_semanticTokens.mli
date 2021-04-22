@@ -4,38 +4,7 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
 
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _DocumentRangeSemanticTokensSignature =
-      [ `DocumentRangeSemanticTokensSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentSemanticsTokensEditsSignature =
-      [ `DocumentSemanticsTokensEditsSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentSemanticsTokensSignature =
-      [ `DocumentSemanticsTokensSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SemanticTokensFeature = [ `SemanticTokensFeature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SemanticTokensMiddleware = [ `SemanticTokensMiddleware ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SemanticTokensProviders = [ `SemanticTokensProviders ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
 
 (* import * as vscode from 'vscode'; *)
 (* import { BaseLanguageClient, TextDocumentFeature } from './client'; *)

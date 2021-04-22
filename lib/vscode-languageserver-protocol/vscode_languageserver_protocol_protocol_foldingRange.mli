@@ -4,48 +4,6 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _FoldingRangeClientCapabilities =
-      [ `FoldingRangeClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _FoldingRangeKind =
-      ([ `Comment [@js "comment"]
-       | `Imports [@js "imports"]
-       | `Region [@js "region"]
-       ]
-      [@js.enum])
-
-    and _FoldingRangeKind_Comment = ([ `Comment [@js "comment"] ][@js.enum])
-
-    and _FoldingRangeKind_Imports = ([ `Imports [@js "imports"] ][@js.enum])
-
-    and _FoldingRangeKind_Region = ([ `Region [@js "region"] ][@js.enum])
-
-    and _FoldingRangeOptions = [ `FoldingRangeOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _FoldingRangeParams = [ `FoldingRangeParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _FoldingRangeRegistrationOptions =
-      [ `FoldingRangeRegistrationOptions | `FoldingRangeOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _FoldingRangeRequest_HandlerSignature =
-      (_FoldingRangeParams, FoldingRange.t list or_null, unit) RequestHandler.t
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 (* import { RequestHandler } from 'vscode-jsonrpc'; *)
 (* import { TextDocumentIdentifier, uinteger, FoldingRange } from
    'vscode-languageserver-types'; *)
@@ -102,7 +60,12 @@ end
 [@@js.scope "FoldingRangeRegistrationOptions"]
 
 module FoldingRangeKind : sig
-  type t = _FoldingRangeKind
+  type t =
+    ([ `Comment [@js "comment"]
+     | `Imports [@js "imports"]
+     | `Region [@js "region"]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -143,7 +106,8 @@ module FoldingRangeRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _FoldingRangeRequest_HandlerSignature
+    type t =
+      (_FoldingRangeParams, FoldingRange.t list or_null, unit) RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 

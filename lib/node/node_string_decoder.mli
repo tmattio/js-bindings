@@ -5,21 +5,6 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type string_decoder_StringDecoder = [ `String_decoder_StringDecoder ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module String_decoder : sig
   module StringDecoder : sig
     type t = string_decoder_StringDecoder

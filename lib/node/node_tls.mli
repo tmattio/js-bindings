@@ -5,98 +5,8 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type tls_Certificate = [ `Tls_Certificate ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and tls_CipherNameAndProtocol = [ `Tls_CipherNameAndProtocol ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and tls_CommonConnectionOptions = [ `Tls_CommonConnectionOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and tls_ConnectionOptions =
-      [ `Tls_ConnectionOptions
-      | `Tls_CommonConnectionOptions
-      | `Tls_SecureContextOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and tls_DetailedPeerCertificate =
-      [ `Tls_DetailedPeerCertificate | `Tls_PeerCertificate ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and tls_EphemeralKeyInfo = [ `Tls_EphemeralKeyInfo ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and tls_KeyObject = [ `Tls_KeyObject ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and tls_PSKCallbackNegotation = [ `Tls_PSKCallbackNegotation ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and tls_PeerCertificate = [ `Tls_PeerCertificate ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and tls_PxfObject = [ `Tls_PxfObject ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and tls_SecureContext = [ `Tls_SecureContext ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and tls_SecureContextOptions = [ `Tls_SecureContextOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and tls_SecurePair = [ `Tls_SecurePair ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and tls_SecureVersion =
-      ([ `TLSv1 [@js "TLSv1"]
-       | `TLSv1_1 [@js "TLSv1.1"]
-       | `TLSv1_2 [@js "TLSv1.2"]
-       | `TLSv1_3 [@js "TLSv1.3"]
-       ]
-      [@js.enum])
-
-    and tls_Server = [ `Tls_Server ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and tls_TLSSocket = [ `Tls_TLSSocket ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and tls_TLSSocketOptions =
-      [ `Tls_TLSSocketOptions
-      | `Tls_CommonConnectionOptions
-      | `Tls_SecureContextOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and tls_TlsOptions =
-      [ `Tls_TlsOptions
-      | `Tls_CommonConnectionOptions
-      | `Tls_SecureContextOptions
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -412,7 +322,7 @@ module Tls : sig
 
     val renegotiate
       :  t
-      -> options:anonymous_interface_0
+      -> options:AnonymousInterface0.t
       -> callback:(err:Error.t or_null -> unit)
       -> bool or_undefined
       [@@js.call "renegotiate"]
@@ -1211,7 +1121,13 @@ module Tls : sig
   [@@js.scope "SecurePair"]
 
   module SecureVersion : sig
-    type t = tls_SecureVersion
+    type t =
+      ([ `TLSv1 [@js "TLSv1"]
+       | `TLSv1_1 [@js "TLSv1.1"]
+       | `TLSv1_2 [@js "TLSv1.2"]
+       | `TLSv1_3 [@js "TLSv1.3"]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 

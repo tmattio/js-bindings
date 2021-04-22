@@ -4,58 +4,8 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _DiagnosticFeature = [ `DiagnosticFeature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DiagnosticFeatureProvider = [ `DiagnosticFeatureProvider ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DiagnosticProvider = [ `DiagnosticProvider ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DiagnosticProviderMiddleware = [ `DiagnosticProviderMiddleware ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ProvideDiagnosticSignature = [ `ProvideDiagnosticSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _VDocumentDiagnosticReport =
-      ([ `U_s0_new of anonymous_interface_0 [@js "new"]
-       | `U_s1_unChanged of anonymous_interface_1 [@js "unChanged"]
-       ]
-      [@js.union on_field "kind"])
-
-    and _VDocumentDiagnosticReportKind =
-      ([ `new_ [@js "new"]
-       | `unChanged [@js "unChanged"]
-       ]
-      [@js.enum])
-
-    and _VDocumentDiagnosticReportKind_new = ([ `new_ [@js "new"] ][@js.enum])
-
-    and _VDocumentDiagnosticReportKind_unChanged =
-      ([ `unChanged [@js "unChanged"] ][@js.enum])
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -76,7 +26,7 @@ module AnonymousInterface0 : sig
 end
 
 module AnonymousInterface1 : sig
-  type t = anonymous_interface_1
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -98,7 +48,11 @@ end
    from 'vscode-languageserver-protocol'; *)
 (* import { TextDocumentFeature, BaseLanguageClient } from './client'; *)
 module VDocumentDiagnosticReportKind : sig
-  type t = _VDocumentDiagnosticReportKind
+  type t =
+    ([ `new_ [@js "new"]
+     | `unChanged [@js "unChanged"]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -106,7 +60,11 @@ module VDocumentDiagnosticReportKind : sig
 end
 
 module VDocumentDiagnosticReport : sig
-  type t = _VDocumentDiagnosticReport
+  type t =
+    ([ `U_s0_new of AnonymousInterface0.t [@js "new"]
+     | `U_s1_unChanged of AnonymousInterface1.t [@js "unChanged"]
+     ]
+    [@js.union on_field "kind"])
 
   val t_to_js : t -> Ojs.t
 

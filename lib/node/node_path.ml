@@ -3,32 +3,7 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
 module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type path_path_FormatInputPathObject =
-          [ `Path_path_FormatInputPathObject ] intf
-        and path_path_ParsedPath = [ `Path_path_ParsedPath ] intf
-        and path_path_PlatformPath = [ `Path_path_PlatformPath ] intf
-        let rec path_path_FormatInputPathObject_of_js :
-          Ojs.t -> path_path_FormatInputPathObject = Obj.magic
-        and path_path_FormatInputPathObject_to_js :
-          path_path_FormatInputPathObject -> Ojs.t = Obj.magic
-        and path_path_ParsedPath_of_js : Ojs.t -> path_path_ParsedPath =
-          Obj.magic
-        and path_path_ParsedPath_to_js : path_path_ParsedPath -> Ojs.t =
-          Obj.magic
-        and path_path_PlatformPath_of_js : Ojs.t -> path_path_PlatformPath =
-          Obj.magic
-        and path_path_PlatformPath_to_js : path_path_PlatformPath -> Ojs.t =
-          Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
+  struct module Types = struct open AnonymousInterfaces end end
 module Path =
   struct
     module Path =

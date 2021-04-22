@@ -3,81 +3,7 @@
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
 open Es5
-
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _Proposed__DiagnosticClientCapabilities =
-      Vscode_languageserver_protocol_proposed_diagnostic
-      .DiagnosticClientCapabilities
-      .t
-
-    and _Proposed__DiagnosticServerCapabilities =
-      Vscode_languageserver_protocol_proposed_diagnostic
-      .DiagnosticServerCapabilities
-      .t
-
-    and _Proposed_DiagnosticClientCapabilities =
-      Vscode_languageserver_protocol_proposed_diagnostic
-      .DiagnosticClientCapabilities
-      .t
-
-    and _Proposed_DiagnosticOptions =
-      Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticOptions.t
-
-    and _Proposed_DiagnosticRegistrationOptions =
-      Vscode_languageserver_protocol_proposed_diagnostic
-      .DiagnosticRegistrationOptions
-      .t
-
-    and _Proposed_DiagnosticServerCancellationData =
-      Vscode_languageserver_protocol_proposed_diagnostic
-      .DiagnosticServerCancellationData
-      .t
-
-    and _Proposed_DocumentDiagnosticParams =
-      Vscode_languageserver_protocol_proposed_diagnostic
-      .DocumentDiagnosticParams
-      .t
-
-    and _Proposed_DocumentDiagnosticReport =
-      Vscode_languageserver_protocol_proposed_diagnostic
-      .DocumentDiagnosticReport
-      .t
-
-    and _Proposed_DocumentDiagnosticReportKind =
-      Vscode_languageserver_protocol_proposed_diagnostic
-      .DocumentDiagnosticReportKind
-      .t
-
-    and _Proposed_DocumentDiagnosticReportPartialResult =
-      Vscode_languageserver_protocol_proposed_diagnostic
-      .DocumentDiagnosticReportPartialResult
-      .t
-
-    and _Proposed_WorkspaceDiagnosticParams =
-      Vscode_languageserver_protocol_proposed_diagnostic
-      .WorkspaceDiagnosticParams
-      .t
-
-    and _Proposed_WorkspaceDiagnosticReport =
-      Vscode_languageserver_protocol_proposed_diagnostic
-      .WorkspaceDiagnosticReport
-      .t
-
-    and _Proposed_WorkspaceDiagnosticReportPartialResult =
-      Vscode_languageserver_protocol_proposed_diagnostic
-      .WorkspaceDiagnosticReportPartialResult
-      .t
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
+open Vscode_languageserver_protocol_proposed_diagnostic
 open Vscode_jsonrpc
 open Vscode_languageserver_types
 open Vscode_languageserver_protocol_messages
@@ -108,7 +34,7 @@ end
 (* import * as diag from './proposed.diagnostic'; *)
 module Proposed : sig
   module DiagnosticClientCapabilities : sig
-    type t = _Proposed_DiagnosticClientCapabilities
+    type t = DiagnosticClientCapabilities.t
 
     val t_to_js : t -> Ojs.t
 
@@ -116,7 +42,7 @@ module Proposed : sig
   end
 
   module M_DiagnosticClientCapabilities : sig
-    type t = _Proposed__DiagnosticClientCapabilities
+    type t = DiagnosticClientCapabilities.t
 
     val t_to_js : t -> Ojs.t
 
@@ -124,7 +50,7 @@ module Proposed : sig
   end
 
   module DiagnosticOptions : sig
-    type t = _Proposed_DiagnosticOptions
+    type t = DiagnosticOptions.t
 
     val t_to_js : t -> Ojs.t
 
@@ -132,7 +58,7 @@ module Proposed : sig
   end
 
   module DiagnosticRegistrationOptions : sig
-    type t = _Proposed_DiagnosticRegistrationOptions
+    type t = DiagnosticRegistrationOptions.t
 
     val t_to_js : t -> Ojs.t
 
@@ -140,7 +66,7 @@ module Proposed : sig
   end
 
   module M_DiagnosticServerCapabilities : sig
-    type t = _Proposed__DiagnosticServerCapabilities
+    type t = DiagnosticServerCapabilities.t
 
     val t_to_js : t -> Ojs.t
 
@@ -148,7 +74,7 @@ module Proposed : sig
   end
 
   module DocumentDiagnosticParams : sig
-    type t = _Proposed_DocumentDiagnosticParams
+    type t = DocumentDiagnosticParams.t
 
     val t_to_js : t -> Ojs.t
 
@@ -156,7 +82,7 @@ module Proposed : sig
   end
 
   module DiagnosticServerCancellationData : sig
-    type t = _Proposed_DiagnosticServerCancellationData
+    type t = DiagnosticServerCancellationData.t
 
     val t_to_js : t -> Ojs.t
 
@@ -164,13 +90,12 @@ module Proposed : sig
   end
 
   val diagnosticServerCancellationData
-    : (* FIXME: unknown type 'typeof
-         Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticServerCancellationData' *)
+    : (* FIXME: unknown type 'typeof DiagnosticServerCancellationData' *)
       any
     [@@js.global "DiagnosticServerCancellationData"]
 
   module DocumentDiagnosticReport : sig
-    type t = _Proposed_DocumentDiagnosticReport
+    type t = DocumentDiagnosticReport.t
 
     val t_to_js : t -> Ojs.t
 
@@ -178,7 +103,7 @@ module Proposed : sig
   end
 
   module DocumentDiagnosticReportKind : sig
-    type t = _Proposed_DocumentDiagnosticReportKind
+    type t = DocumentDiagnosticReportKind.t
 
     val t_to_js : t -> Ojs.t
 
@@ -186,13 +111,12 @@ module Proposed : sig
   end
 
   val documentDiagnosticReportKind
-    : (* FIXME: unknown type 'typeof
-         Vscode_languageserver_protocol_proposed_diagnostic.DocumentDiagnosticReportKind' *)
+    : (* FIXME: unknown type 'typeof DocumentDiagnosticReportKind' *)
       any
     [@@js.global "DocumentDiagnosticReportKind"]
 
   module DocumentDiagnosticReportPartialResult : sig
-    type t = _Proposed_DocumentDiagnosticReportPartialResult
+    type t = DocumentDiagnosticReportPartialResult.t
 
     val t_to_js : t -> Ojs.t
 
@@ -200,13 +124,12 @@ module Proposed : sig
   end
 
   val documentDiagnosticRequest
-    : (* FIXME: unknown type 'typeof
-         Vscode_languageserver_protocol_proposed_diagnostic.DocumentDiagnosticRequest' *)
+    : (* FIXME: unknown type 'typeof DocumentDiagnosticRequest' *)
       any
     [@@js.global "DocumentDiagnosticRequest"]
 
   module WorkspaceDiagnosticParams : sig
-    type t = _Proposed_WorkspaceDiagnosticParams
+    type t = WorkspaceDiagnosticParams.t
 
     val t_to_js : t -> Ojs.t
 
@@ -214,7 +137,7 @@ module Proposed : sig
   end
 
   module WorkspaceDiagnosticReport : sig
-    type t = _Proposed_WorkspaceDiagnosticReport
+    type t = WorkspaceDiagnosticReport.t
 
     val t_to_js : t -> Ojs.t
 
@@ -222,7 +145,7 @@ module Proposed : sig
   end
 
   module WorkspaceDiagnosticReportPartialResult : sig
-    type t = _Proposed_WorkspaceDiagnosticReportPartialResult
+    type t = WorkspaceDiagnosticReportPartialResult.t
 
     val t_to_js : t -> Ojs.t
 
@@ -230,8 +153,7 @@ module Proposed : sig
   end
 
   val diagnosticRefreshRequest
-    : (* FIXME: unknown type 'typeof
-         Vscode_languageserver_protocol_proposed_diagnostic.DiagnosticRefreshRequest' *)
+    : (* FIXME: unknown type 'typeof DiagnosticRefreshRequest' *)
       any
     [@@js.global "DiagnosticRefreshRequest"]
 end

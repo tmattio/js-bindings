@@ -4,21 +4,6 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _CommonLanguageClient = [ `CommonLanguageClient ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 (* import { BaseLanguageClient, LanguageClientOptions, StaticFeature,
    DynamicFeature } from './client'; *)
 module CommonLanguageClient : sig

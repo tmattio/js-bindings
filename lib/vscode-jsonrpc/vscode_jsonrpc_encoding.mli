@@ -4,59 +4,6 @@
 
 open Es2020
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _ContentDecoder = _FunctionContentDecoder
-
-    and _ContentEncoder = _FunctionContentEncoder
-
-    and _ContentTypeDecoder = _FunctionContentTypeDecoder
-
-    and _ContentTypeDecoderOptions = [ `ContentTypeDecoderOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ContentTypeEncoder = _FunctionContentTypeEncoder
-
-    and _ContentTypeEncoderOptions = [ `ContentTypeEncoderOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _FunctionContentDecoder = [ `FunctionContentDecoder ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _FunctionContentEncoder = [ `FunctionContentEncoder ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _FunctionContentTypeDecoder = [ `FunctionContentTypeDecoder ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _FunctionContentTypeEncoder = [ `FunctionContentTypeEncoder ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _Named = [ `Named ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _StreamContentDecoder = [ `StreamContentDecoder ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _StreamContentEncoder = [ `StreamContentEncoder ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _StreamContentTypeDecoder = [ `StreamContentTypeDecoder ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _StreamContentTypeEncoder = [ `StreamContentTypeEncoder ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module FunctionContentEncoder : sig
   type t = _FunctionContentEncoder
 
@@ -90,7 +37,7 @@ end
 [@@js.scope "StreamContentEncoder"]
 
 module ContentEncoder : sig
-  type t = _ContentEncoder
+  type t = FunctionContentEncoder.t
 
   val t_to_js : t -> Ojs.t
 
@@ -130,7 +77,7 @@ end
 [@@js.scope "StreamContentDecoder"]
 
 module ContentDecoder : sig
-  type t = _ContentDecoder
+  type t = FunctionContentDecoder.t
 
   val t_to_js : t -> Ojs.t
 
@@ -192,7 +139,7 @@ end
 [@@js.scope "StreamContentTypeEncoder"]
 
 module ContentTypeEncoder : sig
-  type t = _ContentTypeEncoder
+  type t = FunctionContentTypeEncoder.t
 
   val t_to_js : t -> Ojs.t
 
@@ -254,7 +201,7 @@ end
 [@@js.scope "StreamContentTypeDecoder"]
 
 module ContentTypeDecoder : sig
-  type t = _ContentTypeDecoder
+  type t = FunctionContentTypeDecoder.t
 
   val t_to_js : t -> Ojs.t
 

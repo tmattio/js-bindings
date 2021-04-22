@@ -4,35 +4,6 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _ShowDocumentClientCapabilities =
-      [ `ShowDocumentClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ShowDocumentParams = [ `ShowDocumentParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ShowDocumentRequest_HandlerSignature =
-      (_ShowDocumentParams, _ShowDocumentResult, unit) RequestHandler.t
-
-    and _ShowDocumentRequest_MiddlewareSignature =
-      [ `ShowDocumentRequest_MiddlewareSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ShowDocumentResult = [ `ShowDocumentResult ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 (* import { HandlerResult, RequestHandler } from 'vscode-jsonrpc'; *)
 (* import { Range, URI } from 'vscode-languageserver-types'; *)
 (* import { ProtocolRequestType } from './messages'; *)
@@ -102,7 +73,7 @@ module ShowDocumentRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _ShowDocumentRequest_HandlerSignature
+    type t = (_ShowDocumentParams, _ShowDocumentResult, unit) RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 

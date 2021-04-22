@@ -4,24 +4,7 @@
 
 open Es2020
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
 
-  module Types : sig
-    open AnonymousInterfaces
-
-    type trace_events_CreateTracingOptions =
-      [ `Trace_events_CreateTracingOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and trace_events_Tracing = [ `Trace_events_Tracing ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
 
 module Trace_events : sig
   module Tracing : sig

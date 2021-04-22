@@ -2,22 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _ProtocolCallHierarchyItem = [ `ProtocolCallHierarchyItem ] intf
-        let rec _ProtocolCallHierarchyItem_of_js :
-          Ojs.t -> _ProtocolCallHierarchyItem = Obj.magic
-        and _ProtocolCallHierarchyItem_to_js :
-          _ProtocolCallHierarchyItem -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module ProtocolCallHierarchyItem =
   struct
     type t = _ProtocolCallHierarchyItem

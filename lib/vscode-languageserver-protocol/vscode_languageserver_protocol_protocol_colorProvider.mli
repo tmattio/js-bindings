@@ -4,44 +4,6 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _ColorPresentationParams = [ `ColorPresentationParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ColorPresentationRequest_HandlerSignature =
-      ( _ColorPresentationParams
-      , ColorPresentation.t list
-      , unit )
-      RequestHandler.t
-
-    and _DocumentColorClientCapabilities =
-      [ `DocumentColorClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentColorOptions = [ `DocumentColorOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentColorParams = [ `DocumentColorParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentColorRegistrationOptions =
-      [ `DocumentColorRegistrationOptions | `DocumentColorOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentColorRequest_HandlerSignature =
-      (_DocumentColorParams, ColorInformation.t list, unit) RequestHandler.t
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 (* import { RequestHandler } from 'vscode-jsonrpc'; *)
 (* import { TextDocumentIdentifier, Range, Color, ColorInformation,
    ColorPresentation } from 'vscode-languageserver-types'; *)
@@ -123,7 +85,8 @@ module DocumentColorRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _DocumentColorRequest_HandlerSignature
+    type t =
+      (_DocumentColorParams, ColorInformation.t list, unit) RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -171,7 +134,11 @@ module ColorPresentationRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _ColorPresentationRequest_HandlerSignature
+    type t =
+      ( _ColorPresentationParams
+      , ColorPresentation.t list
+      , unit )
+      RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 

@@ -5,24 +5,6 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type domain_Domain = [ `Domain_Domain ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and domain_global_NodeJS_Domain = [ `Domain_global_NodeJS_Domain ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module Domain : sig
   module Global : sig
     type t = domain_global_NodeJS_Domain

@@ -2,46 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _AbstractMessageReader =
-          [ `AbstractMessageReader  | `MessageReader ] intf
-        and _DataCallback = [ `DataCallback ] intf
-        and _MessageReader = [ `MessageReader ] intf
-        and _MessageReaderOptions = [ `MessageReaderOptions ] intf
-        and _PartialMessageInfo = [ `PartialMessageInfo ] intf
-        and _ReadableStreamMessageReader =
-          [ `ReadableStreamMessageReader  | `AbstractMessageReader 
-          | `MessageReader ] intf
-        let rec _AbstractMessageReader_of_js :
-          Ojs.t -> _AbstractMessageReader = Obj.magic
-        and _AbstractMessageReader_to_js : _AbstractMessageReader -> Ojs.t =
-          Obj.magic
-        and _DataCallback_of_js : Ojs.t -> _DataCallback = Obj.magic
-        and _DataCallback_to_js : _DataCallback -> Ojs.t = Obj.magic
-        and _MessageReader_of_js : Ojs.t -> _MessageReader = Obj.magic
-        and _MessageReader_to_js : _MessageReader -> Ojs.t = Obj.magic
-        and _MessageReaderOptions_of_js : Ojs.t -> _MessageReaderOptions =
-          Obj.magic
-        and _MessageReaderOptions_to_js : _MessageReaderOptions -> Ojs.t =
-          Obj.magic
-        and _PartialMessageInfo_of_js : Ojs.t -> _PartialMessageInfo =
-          Obj.magic
-        and _PartialMessageInfo_to_js : _PartialMessageInfo -> Ojs.t =
-          Obj.magic
-        and _ReadableStreamMessageReader_of_js :
-          Ojs.t -> _ReadableStreamMessageReader = Obj.magic
-        and _ReadableStreamMessageReader_to_js :
-          _ReadableStreamMessageReader -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module DataCallback =
   struct
     type t = _DataCallback

@@ -4,74 +4,8 @@
 
 open Es2020
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_3 = [ `anonymous_interface_3 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _RAL = [ `RAL ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _RAL_DuplexStream = _DuplexStream
-
-    and _RAL_ImmediateHandle = _ImmediateHandle
-
-    and _RAL_MessageBuffer = _MessageBuffer
-
-    and _RAL_MessageBufferEncoding = _MessageBufferEncoding
-
-    and _RAL_ReadableStream = _ReadableStream
-
-    and _RAL_TimeoutHandle = _TimeoutHandle
-
-    and _RAL_WritableStream = _WritableStream
-
-    and _DuplexStream =
-      [ `_DuplexStream | `_ReadableStream | `_WritableStream ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ImmediateHandle = [ `_ImmediateHandle ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _MessageBuffer = [ `_MessageBuffer ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _MessageBufferEncoding =
-      ([ `L_s0_ascii [@js "ascii"]
-       | `L_s1_utf_8 [@js "utf-8"]
-       ]
-      [@js.enum])
-
-    and _ReadableStream = [ `_ReadableStream ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _TimeoutHandle = [ `_TimeoutHandle ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WritableStream = [ `_WritableStream ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -83,7 +17,7 @@ module AnonymousInterface0 : sig
 end
 
 module AnonymousInterface1 : sig
-  type t = anonymous_interface_1
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -94,7 +28,7 @@ module AnonymousInterface1 : sig
 end
 
 module AnonymousInterface2 : sig
-  type t = anonymous_interface_2
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -126,7 +60,7 @@ module AnonymousInterface2 : sig
 end
 
 module AnonymousInterface3 : sig
-  type t = anonymous_interface_3
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -154,7 +88,7 @@ module AnonymousInterface3 : sig
     [@@js.call "clearImmediate"]
 end
 
-module M_MessageBuffer : sig
+module MessageBuffer : sig
   type t = _MessageBuffer
 
   val t_to_js : t -> Ojs.t
@@ -173,15 +107,19 @@ module M_MessageBuffer : sig
 end
 [@@js.scope "_MessageBuffer"]
 
-module M_MessageBufferEncoding : sig
-  type t = _MessageBufferEncoding
+module MessageBufferEncoding : sig
+  type t =
+    ([ `L_s0_ascii [@js "ascii"]
+     | `L_s1_utf_8 [@js "utf-8"]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
   val t_of_js : Ojs.t -> t
 end
 
-module M_ReadableStream : sig
+module ReadableStream : sig
   type t = _ReadableStream
 
   val t_to_js : t -> Ojs.t
@@ -214,7 +152,7 @@ module M_ReadableStream : sig
 end
 [@@js.scope "_ReadableStream"]
 
-module M_WritableStream : sig
+module WritableStream : sig
   type t = _WritableStream
 
   val t_to_js : t -> Ojs.t
@@ -252,7 +190,7 @@ module M_WritableStream : sig
 end
 [@@js.scope "_WritableStream"]
 
-module M_DuplexStream : sig
+module DuplexStream : sig
   type t = _DuplexStream
 
   val t_to_js : t -> Ojs.t
@@ -265,7 +203,7 @@ module M_DuplexStream : sig
 end
 [@@js.scope "_DuplexStream"]
 
-module M_TimeoutHandle : sig
+module TimeoutHandle : sig
   type t = _TimeoutHandle
 
   val t_to_js : t -> Ojs.t
@@ -278,7 +216,7 @@ module M_TimeoutHandle : sig
 end
 [@@js.scope "_TimeoutHandle"]
 
-module M_ImmediateHandle : sig
+module ImmediateHandle : sig
   type t = _ImmediateHandle
 
   val t_to_js : t -> Ojs.t
@@ -299,17 +237,17 @@ module RAL : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_applicationJson : t -> anonymous_interface_0
+  val get_applicationJson : t -> AnonymousInterface0.t
     [@@js.get "applicationJson"]
 
-  val get_messageBuffer : t -> anonymous_interface_1 [@@js.get "messageBuffer"]
+  val get_messageBuffer : t -> AnonymousInterface1.t [@@js.get "messageBuffer"]
 
-  val get_console : t -> anonymous_interface_2 [@@js.get "console"]
+  val get_console : t -> AnonymousInterface2.t [@@js.get "console"]
 
-  val get_timer : t -> anonymous_interface_3 [@@js.get "timer"]
+  val get_timer : t -> AnonymousInterface3.t [@@js.get "timer"]
 
   module MessageBuffer : sig
-    type t = _RAL_MessageBuffer
+    type t = MessageBuffer.t
 
     val t_to_js : t -> Ojs.t
 
@@ -317,7 +255,7 @@ module RAL : sig
   end
 
   module MessageBufferEncoding : sig
-    type t = _RAL_MessageBufferEncoding
+    type t = MessageBufferEncoding.t
 
     val t_to_js : t -> Ojs.t
 
@@ -325,7 +263,7 @@ module RAL : sig
   end
 
   module ReadableStream : sig
-    type t = _RAL_ReadableStream
+    type t = ReadableStream.t
 
     val t_to_js : t -> Ojs.t
 
@@ -333,7 +271,7 @@ module RAL : sig
   end
 
   module WritableStream : sig
-    type t = _RAL_WritableStream
+    type t = WritableStream.t
 
     val t_to_js : t -> Ojs.t
 
@@ -341,7 +279,7 @@ module RAL : sig
   end
 
   module DuplexStream : sig
-    type t = _RAL_DuplexStream
+    type t = DuplexStream.t
 
     val t_to_js : t -> Ojs.t
 
@@ -349,7 +287,7 @@ module RAL : sig
   end
 
   module TimeoutHandle : sig
-    type t = _RAL_TimeoutHandle
+    type t = TimeoutHandle.t
 
     val t_to_js : t -> Ojs.t
 
@@ -357,7 +295,7 @@ module RAL : sig
   end
 
   module ImmediateHandle : sig
-    type t = _RAL_ImmediateHandle
+    type t = ImmediateHandle.t
 
     val t_to_js : t -> Ojs.t
 

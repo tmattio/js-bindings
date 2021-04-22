@@ -17,8 +17,6 @@ The bindings don't depend on any PPX (and in particular, they don't depend on `g
 
 ## To do
 
-- [ ] Move `intf/.mli` and `*.ml` to `lib/`
-- [ ] Inline all types
 - [ ] Replace `cast` with `include module type of`
 - [ ] Create the `on` functions
 - [ ] investigate long function variants (`'''''`)

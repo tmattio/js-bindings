@@ -3,29 +3,7 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
 module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type 'T _Emitter = [ `Emitter of 'T ] intf
-        and _EmitterOptions = [ `EmitterOptions ] intf
-        and 'T _Event = [ `Event of 'T ] intf
-        let rec _Emitter_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _Emitter =
-          fun _T -> Obj.magic
-        and _Emitter_to_js : 'T . ('T -> Ojs.t) -> 'T _Emitter -> Ojs.t =
-          fun _T -> Obj.magic
-        and _EmitterOptions_of_js : Ojs.t -> _EmitterOptions = Obj.magic
-        and _EmitterOptions_to_js : _EmitterOptions -> Ojs.t = Obj.magic
-        and _Event_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T _Event =
-          fun _T -> Obj.magic
-        and _Event_to_js : 'T . ('T -> Ojs.t) -> 'T _Event -> Ojs.t =
-          fun _T -> Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
+  struct module Types = struct open AnonymousInterfaces end end
 module Event =
   struct
     type 'T t = 'T _Event

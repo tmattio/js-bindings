@@ -4,26 +4,10 @@
 
 open Es2020
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
 
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _RIL = [ `RIL ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
 
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -49,7 +33,7 @@ module RIL : sig
 
   val t_of_js : Ojs.t -> t
 
-  val get_stream : t -> anonymous_interface_0 [@@js.get "stream"]
+  val get_stream : t -> AnonymousInterface0.t [@@js.get "stream"]
 
   val cast : t -> Vscode_jsonrpc_ral.RAL.t [@@js.cast]
 

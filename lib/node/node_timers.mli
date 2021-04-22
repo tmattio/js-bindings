@@ -5,18 +5,6 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module Timers : sig
   val setTimeout
     :  callback:(args:(any list[@js.variadic]) -> unit)

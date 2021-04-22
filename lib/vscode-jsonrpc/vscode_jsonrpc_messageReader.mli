@@ -4,39 +4,6 @@
 
 open Es2020
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _AbstractMessageReader =
-      [ `AbstractMessageReader | `MessageReader ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DataCallback = [ `DataCallback ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _MessageReader = [ `MessageReader ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _MessageReaderOptions = [ `MessageReaderOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _PartialMessageInfo = [ `PartialMessageInfo ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ReadableStreamMessageReader =
-      [ `ReadableStreamMessageReader | `AbstractMessageReader | `MessageReader ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module DataCallback : sig
   type t = _DataCallback
 

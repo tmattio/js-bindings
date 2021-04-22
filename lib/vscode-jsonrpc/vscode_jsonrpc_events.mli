@@ -4,28 +4,7 @@
 
 open Es2020
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
 
-  module Types : sig
-    open AnonymousInterfaces
-
-    type 'T _Emitter = [ `Emitter of 'T ] intf
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-
-    and _EmitterOptions = [ `EmitterOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and 'T _Event = [ `Event of 'T ] intf
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
 
 module Event : sig
   type 'T t = 'T _Event

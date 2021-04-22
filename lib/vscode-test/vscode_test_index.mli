@@ -4,17 +4,6 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
 (* export { downloadAndUnzipVSCode } from './download'; *)
 (* export { runTests } from './runTest'; *)
 (* export { resolveCliPathFromVSCodeExecutablePath } from './util'; *)

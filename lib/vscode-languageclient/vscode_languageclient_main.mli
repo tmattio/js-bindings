@@ -4,89 +4,8 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _ChildProcessInfo = [ `ChildProcessInfo ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _Executable = [ `Executable ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ExecutableOptions = [ `ExecutableOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ForkOptions = [ `ForkOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _LanguageClient = [ `LanguageClient ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _NodeModule = [ `NodeModule ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ServerOptions =
-      ( _Executable
-      , _NodeModule
-      , anonymous_interface_0
-      , anonymous_interface_1
-      , unit
-        -> ( ChildProcess.t
-           , _ChildProcessInfo
-           , MessageTransports.t
-           , _StreamInfo )
-           union4
-           Promise.t )
-      union5
-
-    and _SettingMonitor = [ `SettingMonitor ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SocketTransport = [ `SocketTransport ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _StreamInfo = [ `StreamInfo ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _Transport =
-      ( _SocketTransport
-      , ([ `ipc [@js 1] | `pipe [@js 2] | `socket [@js 3] | `stdio [@js 0] ]
-        [@js.enum]) )
-      or_enum
-
-    and _TransportKind =
-      ([ `stdio [@js 0]
-       | `ipc [@js 1]
-       | `pipe [@js 2]
-       | `socket [@js 3]
-       ]
-      [@js.enum])
-
-    and _TransportKind_stdio = ([ `stdio [@js 0] ][@js.enum])
-
-    and _TransportKind_ipc = ([ `ipc [@js 1] ][@js.enum])
-
-    and _TransportKind_pipe = ([ `pipe [@js 2] ][@js.enum])
-
-    and _TransportKind_socket = ([ `socket [@js 3] ][@js.enum])
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -102,7 +21,7 @@ module AnonymousInterface0 : sig
 end
 
 module AnonymousInterface1 : sig
-  type t = anonymous_interface_1
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -197,7 +116,13 @@ end
 [@@js.scope "ForkOptions"]
 
 module TransportKind : sig
-  type t = _TransportKind
+  type t =
+    ([ `stdio [@js 0]
+     | `ipc [@js 1]
+     | `pipe [@js 2]
+     | `socket [@js 3]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -222,7 +147,11 @@ end
 [@@js.scope "SocketTransport"]
 
 module Transport : sig
-  type t = _Transport
+  type t =
+    ( _SocketTransport
+    , ([ `ipc [@js 1] | `pipe [@js 2] | `socket [@js 3] | `stdio [@js 0] ]
+      [@js.enum]) )
+    or_enum
 
   val t_to_js : t -> Ojs.t
 
@@ -297,7 +226,19 @@ end
 [@@js.scope "ChildProcessInfo"]
 
 module ServerOptions : sig
-  type t = _ServerOptions
+  type t =
+    ( _Executable
+    , _NodeModule
+    , AnonymousInterface0.t
+    , AnonymousInterface1.t
+    , unit
+      -> ( ChildProcess.t
+         , _ChildProcessInfo
+         , MessageTransports.t
+         , _StreamInfo )
+         union4
+         Promise.t )
+    union5
 
   val t_to_js : t -> Ojs.t
 

@@ -4,18 +4,6 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 (* import { MessageReader, MessageWriter, Logger, ConnectionStrategy,
    ConnectionOptions, ProtocolConnection } from '../common/api'; *)
 (* export * from 'vscode-jsonrpc/node'; *)

@@ -3,116 +3,20 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
 open Node_globals
-module Internal =
-  struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-      end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type zlib_BrotliCompress =
-          [ `Zlib_BrotliCompress  | `Zlib_Zlib ] intf
-        and zlib_BrotliDecompress =
-          [ `Zlib_BrotliDecompress  | `Zlib_Zlib ] intf
-        and zlib_BrotliOptions = [ `Zlib_BrotliOptions ] intf
-        and zlib_CompressCallback = [ `Zlib_CompressCallback ] intf
-        and zlib_Deflate =
-          [ `Zlib_Deflate  | `Zlib_Zlib  | `Zlib_ZlibParams 
-          | `Zlib_ZlibReset ] intf
-        and zlib_DeflateRaw =
-          [ `Zlib_DeflateRaw  | `Zlib_Zlib  | `Zlib_ZlibParams 
-          | `Zlib_ZlibReset ] intf
-        and zlib_Gunzip = [ `Zlib_Gunzip  | `Zlib_Zlib ] intf
-        and zlib_Gzip = [ `Zlib_Gzip  | `Zlib_Zlib ] intf
-        and zlib_Inflate =
-          [ `Zlib_Inflate  | `Zlib_Zlib  | `Zlib_ZlibReset ] intf
-        and zlib_InflateRaw =
-          [ `Zlib_InflateRaw  | `Zlib_Zlib  | `Zlib_ZlibReset ] intf
-        and zlib_InputType =
-          (ArrayBuffer.t, ArrayBufferView.t) union2 or_string
-        and zlib_Unzip = [ `Zlib_Unzip  | `Zlib_Zlib ] intf
-        and zlib_Zlib = [ `Zlib_Zlib ] intf
-        and zlib_ZlibOptions = [ `Zlib_ZlibOptions ] intf
-        and zlib_ZlibParams = [ `Zlib_ZlibParams ] intf
-        and zlib_ZlibReset = [ `Zlib_ZlibReset ] intf
-        let rec zlib_BrotliCompress_of_js : Ojs.t -> zlib_BrotliCompress =
-          Obj.magic
-        and zlib_BrotliCompress_to_js : zlib_BrotliCompress -> Ojs.t =
-          Obj.magic
-        and zlib_BrotliDecompress_of_js : Ojs.t -> zlib_BrotliDecompress =
-          Obj.magic
-        and zlib_BrotliDecompress_to_js : zlib_BrotliDecompress -> Ojs.t =
-          Obj.magic
-        and zlib_BrotliOptions_of_js : Ojs.t -> zlib_BrotliOptions =
-          Obj.magic
-        and zlib_BrotliOptions_to_js : zlib_BrotliOptions -> Ojs.t =
-          Obj.magic
-        and zlib_CompressCallback_of_js : Ojs.t -> zlib_CompressCallback =
-          Obj.magic
-        and zlib_CompressCallback_to_js : zlib_CompressCallback -> Ojs.t =
-          Obj.magic
-        and zlib_Deflate_of_js : Ojs.t -> zlib_Deflate = Obj.magic
-        and zlib_Deflate_to_js : zlib_Deflate -> Ojs.t = Obj.magic
-        and zlib_DeflateRaw_of_js : Ojs.t -> zlib_DeflateRaw = Obj.magic
-        and zlib_DeflateRaw_to_js : zlib_DeflateRaw -> Ojs.t = Obj.magic
-        and zlib_Gunzip_of_js : Ojs.t -> zlib_Gunzip = Obj.magic
-        and zlib_Gunzip_to_js : zlib_Gunzip -> Ojs.t = Obj.magic
-        and zlib_Gzip_of_js : Ojs.t -> zlib_Gzip = Obj.magic
-        and zlib_Gzip_to_js : zlib_Gzip -> Ojs.t = Obj.magic
-        and zlib_Inflate_of_js : Ojs.t -> zlib_Inflate = Obj.magic
-        and zlib_Inflate_to_js : zlib_Inflate -> Ojs.t = Obj.magic
-        and zlib_InflateRaw_of_js : Ojs.t -> zlib_InflateRaw = Obj.magic
-        and zlib_InflateRaw_to_js : zlib_InflateRaw -> Ojs.t = Obj.magic
-        and zlib_InputType_of_js : Ojs.t -> zlib_InputType =
-          fun (x5 : Ojs.t) ->
-            or_string_of_js
-              (fun (x6 : Ojs.t) ->
-                 union2_of_js ArrayBuffer.t_of_js ArrayBufferView.t_of_js x6)
-              x5
-        and zlib_InputType_to_js : zlib_InputType -> Ojs.t =
-          fun (x1 : (ArrayBuffer.t, ArrayBufferView.t) union2 or_string) ->
-            or_string_to_js
-              (fun (x2 : (ArrayBuffer.t, ArrayBufferView.t) union2) ->
-                 union2_to_js ArrayBuffer.t_to_js ArrayBufferView.t_to_js x2)
-              x1
-        and zlib_Unzip_of_js : Ojs.t -> zlib_Unzip = Obj.magic
-        and zlib_Unzip_to_js : zlib_Unzip -> Ojs.t = Obj.magic
-        and zlib_Zlib_of_js : Ojs.t -> zlib_Zlib = Obj.magic
-        and zlib_Zlib_to_js : zlib_Zlib -> Ojs.t = Obj.magic
-        and zlib_ZlibOptions_of_js : Ojs.t -> zlib_ZlibOptions = Obj.magic
-        and zlib_ZlibOptions_to_js : zlib_ZlibOptions -> Ojs.t = Obj.magic
-        and zlib_ZlibParams_of_js : Ojs.t -> zlib_ZlibParams = Obj.magic
-        and zlib_ZlibParams_to_js : zlib_ZlibParams -> Ojs.t = Obj.magic
-        and zlib_ZlibReset_of_js : Ojs.t -> zlib_ZlibReset = Obj.magic
-        and zlib_ZlibReset_to_js : zlib_ZlibReset -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x10 : Ojs.t) -> anonymous_interface_0_of_js x10
-    and t_to_js : t -> Ojs.t =
-      fun (x9 : anonymous_interface_0) -> anonymous_interface_0_to_js x9
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get : t -> int -> bool or_number) =
-      fun (x11 : t) ->
-        fun (x12 : int) ->
-          or_number_of_js Ojs.bool_of_js (Ojs.array_get (t_to_js x11) x12)
+      fun (x3 : t) ->
+        fun (x4 : int) ->
+          or_number_of_js Ojs.bool_of_js (Ojs.array_get (t_to_js x3) x4)
     let (set : t -> int -> bool or_number -> unit) =
-      fun (x14 : t) ->
-        fun (x15 : int) ->
-          fun (x16 : bool or_number) ->
-            Ojs.array_set (t_to_js x14) x15
-              (or_number_to_js Ojs.bool_to_js x16)
+      fun (x6 : t) ->
+        fun (x7 : int) ->
+          fun (x8 : bool or_number) ->
+            Ojs.array_set (t_to_js x6) x7 (or_number_to_js Ojs.bool_to_js x8)
   end
 module Zlib =
   struct
@@ -120,1025 +24,1060 @@ module Zlib =
     module ZlibOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x19 : Ojs.t) -> x19
-        and t_to_js : t -> Ojs.t = fun (x18 : Ojs.t) -> x18
+        let rec t_of_js : Ojs.t -> t = fun (x11 : Ojs.t) -> x11
+        and t_to_js : t -> Ojs.t = fun (x10 : Ojs.t) -> x10
         let (get_flush : t -> int) =
-          fun (x20 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x20) "flush")
+          fun (x12 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x12) "flush")
         let (set_flush : t -> int -> unit) =
-          fun (x21 : t) ->
-            fun (x22 : int) ->
-              Ojs.set_prop_ascii (t_to_js x21) "flush" (Ojs.int_to_js x22)
+          fun (x13 : t) ->
+            fun (x14 : int) ->
+              Ojs.set_prop_ascii (t_to_js x13) "flush" (Ojs.int_to_js x14)
         let (get_finishFlush : t -> int) =
-          fun (x23 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x23) "finishFlush")
+          fun (x15 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x15) "finishFlush")
         let (set_finishFlush : t -> int -> unit) =
-          fun (x24 : t) ->
-            fun (x25 : int) ->
-              Ojs.set_prop_ascii (t_to_js x24) "finishFlush"
-                (Ojs.int_to_js x25)
+          fun (x16 : t) ->
+            fun (x17 : int) ->
+              Ojs.set_prop_ascii (t_to_js x16) "finishFlush"
+                (Ojs.int_to_js x17)
         let (get_chunkSize : t -> int) =
-          fun (x26 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x26) "chunkSize")
+          fun (x18 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x18) "chunkSize")
         let (set_chunkSize : t -> int -> unit) =
-          fun (x27 : t) ->
-            fun (x28 : int) ->
-              Ojs.set_prop_ascii (t_to_js x27) "chunkSize"
-                (Ojs.int_to_js x28)
+          fun (x19 : t) ->
+            fun (x20 : int) ->
+              Ojs.set_prop_ascii (t_to_js x19) "chunkSize"
+                (Ojs.int_to_js x20)
         let (get_windowBits : t -> int) =
-          fun (x29 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x29) "windowBits")
+          fun (x21 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x21) "windowBits")
         let (set_windowBits : t -> int -> unit) =
-          fun (x30 : t) ->
-            fun (x31 : int) ->
-              Ojs.set_prop_ascii (t_to_js x30) "windowBits"
-                (Ojs.int_to_js x31)
+          fun (x22 : t) ->
+            fun (x23 : int) ->
+              Ojs.set_prop_ascii (t_to_js x22) "windowBits"
+                (Ojs.int_to_js x23)
         let (get_level : t -> int) =
-          fun (x32 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x32) "level")
+          fun (x24 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x24) "level")
         let (set_level : t -> int -> unit) =
-          fun (x33 : t) ->
-            fun (x34 : int) ->
-              Ojs.set_prop_ascii (t_to_js x33) "level" (Ojs.int_to_js x34)
+          fun (x25 : t) ->
+            fun (x26 : int) ->
+              Ojs.set_prop_ascii (t_to_js x25) "level" (Ojs.int_to_js x26)
         let (get_memLevel : t -> int) =
-          fun (x35 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x35) "memLevel")
+          fun (x27 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x27) "memLevel")
         let (set_memLevel : t -> int -> unit) =
-          fun (x36 : t) ->
-            fun (x37 : int) ->
-              Ojs.set_prop_ascii (t_to_js x36) "memLevel" (Ojs.int_to_js x37)
+          fun (x28 : t) ->
+            fun (x29 : int) ->
+              Ojs.set_prop_ascii (t_to_js x28) "memLevel" (Ojs.int_to_js x29)
         let (get_strategy : t -> int) =
-          fun (x38 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x38) "strategy")
+          fun (x30 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x30) "strategy")
         let (set_strategy : t -> int -> unit) =
-          fun (x39 : t) ->
-            fun (x40 : int) ->
-              Ojs.set_prop_ascii (t_to_js x39) "strategy" (Ojs.int_to_js x40)
+          fun (x31 : t) ->
+            fun (x32 : int) ->
+              Ojs.set_prop_ascii (t_to_js x31) "strategy" (Ojs.int_to_js x32)
         let (get_dictionary : t -> (ArrayBuffer.t, ArrayBufferView.t) union2)
           =
-          fun (x41 : t) ->
+          fun (x33 : t) ->
             union2_of_js ArrayBuffer.t_of_js ArrayBufferView.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x41) "dictionary")
+              (Ojs.get_prop_ascii (t_to_js x33) "dictionary")
         let (set_dictionary :
           t -> (ArrayBuffer.t, ArrayBufferView.t) union2 -> unit) =
-          fun (x44 : t) ->
-            fun (x45 : (ArrayBuffer.t, ArrayBufferView.t) union2) ->
-              Ojs.set_prop_ascii (t_to_js x44) "dictionary"
-                (union2_to_js ArrayBuffer.t_to_js ArrayBufferView.t_to_js x45)
+          fun (x36 : t) ->
+            fun (x37 : (ArrayBuffer.t, ArrayBufferView.t) union2) ->
+              Ojs.set_prop_ascii (t_to_js x36) "dictionary"
+                (union2_to_js ArrayBuffer.t_to_js ArrayBufferView.t_to_js x37)
         let (get_info : t -> bool) =
-          fun (x48 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x48) "info")
+          fun (x40 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x40) "info")
         let (set_info : t -> bool -> unit) =
-          fun (x49 : t) ->
-            fun (x50 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x49) "info" (Ojs.bool_to_js x50)
+          fun (x41 : t) ->
+            fun (x42 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x41) "info" (Ojs.bool_to_js x42)
         let (get_maxOutputLength : t -> int) =
-          fun (x51 : t) ->
+          fun (x43 : t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x51) "maxOutputLength")
+              (Ojs.get_prop_ascii (t_to_js x43) "maxOutputLength")
         let (set_maxOutputLength : t -> int -> unit) =
-          fun (x52 : t) ->
-            fun (x53 : int) ->
-              Ojs.set_prop_ascii (t_to_js x52) "maxOutputLength"
-                (Ojs.int_to_js x53)
+          fun (x44 : t) ->
+            fun (x45 : int) ->
+              Ojs.set_prop_ascii (t_to_js x44) "maxOutputLength"
+                (Ojs.int_to_js x45)
       end
     module BrotliOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x55 : Ojs.t) -> x55
-        and t_to_js : t -> Ojs.t = fun (x54 : Ojs.t) -> x54
+        let rec t_of_js : Ojs.t -> t = fun (x47 : Ojs.t) -> x47
+        and t_to_js : t -> Ojs.t = fun (x46 : Ojs.t) -> x46
         let (get_flush : t -> int) =
-          fun (x56 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x56) "flush")
+          fun (x48 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x48) "flush")
         let (set_flush : t -> int -> unit) =
-          fun (x57 : t) ->
-            fun (x58 : int) ->
-              Ojs.set_prop_ascii (t_to_js x57) "flush" (Ojs.int_to_js x58)
+          fun (x49 : t) ->
+            fun (x50 : int) ->
+              Ojs.set_prop_ascii (t_to_js x49) "flush" (Ojs.int_to_js x50)
         let (get_finishFlush : t -> int) =
-          fun (x59 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x59) "finishFlush")
+          fun (x51 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x51) "finishFlush")
         let (set_finishFlush : t -> int -> unit) =
-          fun (x60 : t) ->
-            fun (x61 : int) ->
-              Ojs.set_prop_ascii (t_to_js x60) "finishFlush"
-                (Ojs.int_to_js x61)
+          fun (x52 : t) ->
+            fun (x53 : int) ->
+              Ojs.set_prop_ascii (t_to_js x52) "finishFlush"
+                (Ojs.int_to_js x53)
         let (get_chunkSize : t -> int) =
-          fun (x62 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x62) "chunkSize")
+          fun (x54 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x54) "chunkSize")
         let (set_chunkSize : t -> int -> unit) =
-          fun (x63 : t) ->
-            fun (x64 : int) ->
-              Ojs.set_prop_ascii (t_to_js x63) "chunkSize"
-                (Ojs.int_to_js x64)
-        let (get_params : t -> anonymous_interface_0) =
-          fun (x65 : t) ->
-            anonymous_interface_0_of_js
-              (Ojs.get_prop_ascii (t_to_js x65) "params")
-        let (set_params : t -> anonymous_interface_0 -> unit) =
-          fun (x66 : t) ->
-            fun (x67 : anonymous_interface_0) ->
-              Ojs.set_prop_ascii (t_to_js x66) "params"
-                (anonymous_interface_0_to_js x67)
+          fun (x55 : t) ->
+            fun (x56 : int) ->
+              Ojs.set_prop_ascii (t_to_js x55) "chunkSize"
+                (Ojs.int_to_js x56)
+        let (get_params : t -> AnonymousInterface0.t) =
+          fun (x57 : t) ->
+            AnonymousInterface0.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x57) "params")
+        let (set_params : t -> AnonymousInterface0.t -> unit) =
+          fun (x58 : t) ->
+            fun (x59 : AnonymousInterface0.t) ->
+              Ojs.set_prop_ascii (t_to_js x58) "params"
+                (AnonymousInterface0.t_to_js x59)
         let (get_maxOutputLength : t -> int) =
-          fun (x68 : t) ->
+          fun (x60 : t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x68) "maxOutputLength")
+              (Ojs.get_prop_ascii (t_to_js x60) "maxOutputLength")
         let (set_maxOutputLength : t -> int -> unit) =
-          fun (x69 : t) ->
-            fun (x70 : int) ->
-              Ojs.set_prop_ascii (t_to_js x69) "maxOutputLength"
-                (Ojs.int_to_js x70)
+          fun (x61 : t) ->
+            fun (x62 : int) ->
+              Ojs.set_prop_ascii (t_to_js x61) "maxOutputLength"
+                (Ojs.int_to_js x62)
       end
     module Zlib =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x72 : Ojs.t) -> x72
-        and t_to_js : t -> Ojs.t = fun (x71 : Ojs.t) -> x71
+        let rec t_of_js : Ojs.t -> t = fun (x64 : Ojs.t) -> x64
+        and t_to_js : t -> Ojs.t = fun (x63 : Ojs.t) -> x63
         let (get_bytesRead : t -> int) =
-          fun (x73 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x73) "bytesRead")
+          fun (x65 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x65) "bytesRead")
         let (get_bytesWritten : t -> int) =
-          fun (x74 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x74) "bytesWritten")
+          fun (x66 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x66) "bytesWritten")
         let (get_shell : t -> bool or_string) =
-          fun (x75 : t) ->
+          fun (x67 : t) ->
             or_string_of_js Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x75) "shell")
+              (Ojs.get_prop_ascii (t_to_js x67) "shell")
         let (set_shell : t -> bool or_string -> unit) =
-          fun (x77 : t) ->
-            fun (x78 : bool or_string) ->
-              Ojs.set_prop_ascii (t_to_js x77) "shell"
-                (or_string_to_js Ojs.bool_to_js x78)
+          fun (x69 : t) ->
+            fun (x70 : bool or_string) ->
+              Ojs.set_prop_ascii (t_to_js x69) "shell"
+                (or_string_to_js Ojs.bool_to_js x70)
         let (close : t -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x83 : t) ->
-            fun ?callback:(x80 : (unit -> unit) option) ->
+          fun (x75 : t) ->
+            fun ?callback:(x72 : (unit -> unit) option) ->
               fun () ->
                 ignore
-                  (let x84 = t_to_js x83 in
-                   Ojs.call (Ojs.get_prop_ascii x84 "close") "apply"
-                     [|x84;((let x81 =
+                  (let x76 = t_to_js x75 in
+                   Ojs.call (Ojs.get_prop_ascii x76 "close") "apply"
+                     [|x76;((let x73 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
-                             (match x80 with
-                              | Some x82 ->
+                             (match x72 with
+                              | Some x74 ->
                                   ignore
-                                    (Ojs.call x81 "push"
-                                       [|(Ojs.fun_to_js 1 (fun _ -> x82 ()))|])
+                                    (Ojs.call x73 "push"
+                                       [|(Ojs.fun_to_js 1 (fun _ -> x74 ()))|])
                               | None -> ());
-                             x81))|])
+                             x73))|])
         let (flush :
           t -> ?kind:int -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x90 : t) ->
-            fun ?kind:(x85 : int option) ->
-              fun ?callback:(x86 : (unit -> unit) option) ->
+          fun (x82 : t) ->
+            fun ?kind:(x77 : int option) ->
+              fun ?callback:(x78 : (unit -> unit) option) ->
                 fun () ->
                   ignore
-                    (let x91 = t_to_js x90 in
-                     Ojs.call (Ojs.get_prop_ascii x91 "flush") "apply"
-                       [|x91;((let x87 =
+                    (let x83 = t_to_js x82 in
+                     Ojs.call (Ojs.get_prop_ascii x83 "flush") "apply"
+                       [|x83;((let x79 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
-                               (match x85 with
-                                | Some x89 ->
+                               (match x77 with
+                                | Some x81 ->
                                     ignore
-                                      (Ojs.call x87 "push"
-                                         [|(Ojs.int_to_js x89)|])
+                                      (Ojs.call x79 "push"
+                                         [|(Ojs.int_to_js x81)|])
                                 | None -> ());
-                               (match x86 with
-                                | Some x88 ->
+                               (match x78 with
+                                | Some x80 ->
                                     ignore
-                                      (Ojs.call x87 "push"
-                                         [|(Ojs.fun_to_js 1 (fun _ -> x88 ()))|])
+                                      (Ojs.call x79 "push"
+                                         [|(Ojs.fun_to_js 1 (fun _ -> x80 ()))|])
                                 | None -> ());
-                               x87))|])
+                               x79))|])
         let (flush' : t -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x95 : t) ->
-            fun ?callback:(x92 : (unit -> unit) option) ->
+          fun (x87 : t) ->
+            fun ?callback:(x84 : (unit -> unit) option) ->
               fun () ->
                 ignore
-                  (let x96 = t_to_js x95 in
-                   Ojs.call (Ojs.get_prop_ascii x96 "flush") "apply"
-                     [|x96;((let x93 =
+                  (let x88 = t_to_js x87 in
+                   Ojs.call (Ojs.get_prop_ascii x88 "flush") "apply"
+                     [|x88;((let x85 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
-                             (match x92 with
-                              | Some x94 ->
+                             (match x84 with
+                              | Some x86 ->
                                   ignore
-                                    (Ojs.call x93 "push"
-                                       [|(Ojs.fun_to_js 1 (fun _ -> x94 ()))|])
+                                    (Ojs.call x85 "push"
+                                       [|(Ojs.fun_to_js 1 (fun _ -> x86 ()))|])
                               | None -> ());
-                             x93))|])
+                             x85))|])
       end
     module ZlibParams =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x98 : Ojs.t) -> x98
-        and t_to_js : t -> Ojs.t = fun (x97 : Ojs.t) -> x97
+        let rec t_of_js : Ojs.t -> t = fun (x90 : Ojs.t) -> x90
+        and t_to_js : t -> Ojs.t = fun (x89 : Ojs.t) -> x89
         let (params :
           t -> level:int -> strategy:int -> callback:(unit -> unit) -> unit)
           =
-          fun (x102 : t) ->
-            fun ~level:(x99 : int) ->
-              fun ~strategy:(x100 : int) ->
-                fun ~callback:(x101 : unit -> unit) ->
+          fun (x94 : t) ->
+            fun ~level:(x91 : int) ->
+              fun ~strategy:(x92 : int) ->
+                fun ~callback:(x93 : unit -> unit) ->
                   ignore
-                    (Ojs.call (t_to_js x102) "params"
-                       [|(Ojs.int_to_js x99);(Ojs.int_to_js x100);(Ojs.fun_to_js
+                    (Ojs.call (t_to_js x94) "params"
+                       [|(Ojs.int_to_js x91);(Ojs.int_to_js x92);(Ojs.fun_to_js
                                                                     1
-                                                                    (fun _ ->
-                                                                    x101 ()))|])
+                                                                    (
+                                                                    fun _ ->
+                                                                    x93 ()))|])
       end
     module ZlibReset =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x104 : Ojs.t) -> x104
-        and t_to_js : t -> Ojs.t = fun (x103 : Ojs.t) -> x103
+        let rec t_of_js : Ojs.t -> t = fun (x96 : Ojs.t) -> x96
+        and t_to_js : t -> Ojs.t = fun (x95 : Ojs.t) -> x95
         let (reset : t -> unit) =
-          fun (x105 : t) -> ignore (Ojs.call (t_to_js x105) "reset" [||])
+          fun (x97 : t) -> ignore (Ojs.call (t_to_js x97) "reset" [||])
       end
     module BrotliCompress =
       struct
         include struct include Stream.Transform end
         let (get_bytesRead : t -> int) =
-          fun (x106 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x106) "bytesRead")
+          fun (x98 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x98) "bytesRead")
         let (get_bytesWritten : t -> int) =
-          fun (x107 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x107) "bytesWritten")
+          fun (x99 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x99) "bytesWritten")
         let (get_shell : t -> bool or_string) =
-          fun (x108 : t) ->
+          fun (x100 : t) ->
             or_string_of_js Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x108) "shell")
+              (Ojs.get_prop_ascii (t_to_js x100) "shell")
         let (set_shell : t -> bool or_string -> unit) =
-          fun (x110 : t) ->
-            fun (x111 : bool or_string) ->
-              Ojs.set_prop_ascii (t_to_js x110) "shell"
-                (or_string_to_js Ojs.bool_to_js x111)
+          fun (x102 : t) ->
+            fun (x103 : bool or_string) ->
+              Ojs.set_prop_ascii (t_to_js x102) "shell"
+                (or_string_to_js Ojs.bool_to_js x103)
         let (close : t -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x116 : t) ->
-            fun ?callback:(x113 : (unit -> unit) option) ->
+          fun (x108 : t) ->
+            fun ?callback:(x105 : (unit -> unit) option) ->
               fun () ->
                 ignore
-                  (let x117 = t_to_js x116 in
-                   Ojs.call (Ojs.get_prop_ascii x117 "close") "apply"
-                     [|x117;((let x114 =
+                  (let x109 = t_to_js x108 in
+                   Ojs.call (Ojs.get_prop_ascii x109 "close") "apply"
+                     [|x109;((let x106 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x113 with
-                               | Some x115 ->
+                              (match x105 with
+                               | Some x107 ->
                                    ignore
-                                     (Ojs.call x114 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x115 ()))|])
+                                     (Ojs.call x106 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x107 ()))|])
                                | None -> ());
-                              x114))|])
+                              x106))|])
         let (flush :
           t -> ?kind:int -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x123 : t) ->
-            fun ?kind:(x118 : int option) ->
-              fun ?callback:(x119 : (unit -> unit) option) ->
+          fun (x115 : t) ->
+            fun ?kind:(x110 : int option) ->
+              fun ?callback:(x111 : (unit -> unit) option) ->
                 fun () ->
                   ignore
-                    (let x124 = t_to_js x123 in
-                     Ojs.call (Ojs.get_prop_ascii x124 "flush") "apply"
-                       [|x124;((let x120 =
+                    (let x116 = t_to_js x115 in
+                     Ojs.call (Ojs.get_prop_ascii x116 "flush") "apply"
+                       [|x116;((let x112 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
-                                (match x118 with
-                                 | Some x122 ->
+                                (match x110 with
+                                 | Some x114 ->
                                      ignore
-                                       (Ojs.call x120 "push"
-                                          [|(Ojs.int_to_js x122)|])
+                                       (Ojs.call x112 "push"
+                                          [|(Ojs.int_to_js x114)|])
                                  | None -> ());
-                                (match x119 with
-                                 | Some x121 ->
+                                (match x111 with
+                                 | Some x113 ->
                                      ignore
-                                       (Ojs.call x120 "push"
+                                       (Ojs.call x112 "push"
                                           [|(Ojs.fun_to_js 1
-                                               (fun _ -> x121 ()))|])
+                                               (fun _ -> x113 ()))|])
                                  | None -> ());
-                                x120))|])
+                                x112))|])
         let (flush' : t -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x128 : t) ->
-            fun ?callback:(x125 : (unit -> unit) option) ->
+          fun (x120 : t) ->
+            fun ?callback:(x117 : (unit -> unit) option) ->
               fun () ->
                 ignore
-                  (let x129 = t_to_js x128 in
-                   Ojs.call (Ojs.get_prop_ascii x129 "flush") "apply"
-                     [|x129;((let x126 =
+                  (let x121 = t_to_js x120 in
+                   Ojs.call (Ojs.get_prop_ascii x121 "flush") "apply"
+                     [|x121;((let x118 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x125 with
-                               | Some x127 ->
+                              (match x117 with
+                               | Some x119 ->
                                    ignore
-                                     (Ojs.call x126 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x127 ()))|])
+                                     (Ojs.call x118 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x119 ()))|])
                                | None -> ());
-                              x126))|])
+                              x118))|])
       end
     module BrotliDecompress =
       struct
         include struct include Stream.Transform end
         let (get_bytesRead : t -> int) =
-          fun (x130 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x130) "bytesRead")
+          fun (x122 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x122) "bytesRead")
         let (get_bytesWritten : t -> int) =
-          fun (x131 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x131) "bytesWritten")
+          fun (x123 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x123) "bytesWritten")
         let (get_shell : t -> bool or_string) =
-          fun (x132 : t) ->
+          fun (x124 : t) ->
             or_string_of_js Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x132) "shell")
+              (Ojs.get_prop_ascii (t_to_js x124) "shell")
         let (set_shell : t -> bool or_string -> unit) =
-          fun (x134 : t) ->
-            fun (x135 : bool or_string) ->
-              Ojs.set_prop_ascii (t_to_js x134) "shell"
-                (or_string_to_js Ojs.bool_to_js x135)
+          fun (x126 : t) ->
+            fun (x127 : bool or_string) ->
+              Ojs.set_prop_ascii (t_to_js x126) "shell"
+                (or_string_to_js Ojs.bool_to_js x127)
         let (close : t -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x140 : t) ->
-            fun ?callback:(x137 : (unit -> unit) option) ->
+          fun (x132 : t) ->
+            fun ?callback:(x129 : (unit -> unit) option) ->
               fun () ->
                 ignore
-                  (let x141 = t_to_js x140 in
-                   Ojs.call (Ojs.get_prop_ascii x141 "close") "apply"
-                     [|x141;((let x138 =
+                  (let x133 = t_to_js x132 in
+                   Ojs.call (Ojs.get_prop_ascii x133 "close") "apply"
+                     [|x133;((let x130 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x137 with
-                               | Some x139 ->
+                              (match x129 with
+                               | Some x131 ->
                                    ignore
-                                     (Ojs.call x138 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x139 ()))|])
+                                     (Ojs.call x130 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x131 ()))|])
                                | None -> ());
-                              x138))|])
+                              x130))|])
         let (flush :
           t -> ?kind:int -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x147 : t) ->
-            fun ?kind:(x142 : int option) ->
-              fun ?callback:(x143 : (unit -> unit) option) ->
+          fun (x139 : t) ->
+            fun ?kind:(x134 : int option) ->
+              fun ?callback:(x135 : (unit -> unit) option) ->
                 fun () ->
                   ignore
-                    (let x148 = t_to_js x147 in
-                     Ojs.call (Ojs.get_prop_ascii x148 "flush") "apply"
-                       [|x148;((let x144 =
+                    (let x140 = t_to_js x139 in
+                     Ojs.call (Ojs.get_prop_ascii x140 "flush") "apply"
+                       [|x140;((let x136 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
-                                (match x142 with
-                                 | Some x146 ->
+                                (match x134 with
+                                 | Some x138 ->
                                      ignore
-                                       (Ojs.call x144 "push"
-                                          [|(Ojs.int_to_js x146)|])
+                                       (Ojs.call x136 "push"
+                                          [|(Ojs.int_to_js x138)|])
                                  | None -> ());
-                                (match x143 with
-                                 | Some x145 ->
+                                (match x135 with
+                                 | Some x137 ->
                                      ignore
-                                       (Ojs.call x144 "push"
+                                       (Ojs.call x136 "push"
                                           [|(Ojs.fun_to_js 1
-                                               (fun _ -> x145 ()))|])
+                                               (fun _ -> x137 ()))|])
                                  | None -> ());
-                                x144))|])
+                                x136))|])
         let (flush' : t -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x152 : t) ->
-            fun ?callback:(x149 : (unit -> unit) option) ->
+          fun (x144 : t) ->
+            fun ?callback:(x141 : (unit -> unit) option) ->
               fun () ->
                 ignore
-                  (let x153 = t_to_js x152 in
-                   Ojs.call (Ojs.get_prop_ascii x153 "flush") "apply"
-                     [|x153;((let x150 =
+                  (let x145 = t_to_js x144 in
+                   Ojs.call (Ojs.get_prop_ascii x145 "flush") "apply"
+                     [|x145;((let x142 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x149 with
-                               | Some x151 ->
+                              (match x141 with
+                               | Some x143 ->
                                    ignore
-                                     (Ojs.call x150 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x151 ()))|])
+                                     (Ojs.call x142 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x143 ()))|])
                                | None -> ());
-                              x150))|])
+                              x142))|])
       end
     module Gzip =
       struct
         include struct include Stream.Transform end
         let (get_bytesRead : t -> int) =
-          fun (x154 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x154) "bytesRead")
+          fun (x146 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x146) "bytesRead")
         let (get_bytesWritten : t -> int) =
-          fun (x155 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x155) "bytesWritten")
+          fun (x147 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x147) "bytesWritten")
         let (get_shell : t -> bool or_string) =
-          fun (x156 : t) ->
+          fun (x148 : t) ->
             or_string_of_js Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x156) "shell")
+              (Ojs.get_prop_ascii (t_to_js x148) "shell")
         let (set_shell : t -> bool or_string -> unit) =
-          fun (x158 : t) ->
-            fun (x159 : bool or_string) ->
-              Ojs.set_prop_ascii (t_to_js x158) "shell"
-                (or_string_to_js Ojs.bool_to_js x159)
+          fun (x150 : t) ->
+            fun (x151 : bool or_string) ->
+              Ojs.set_prop_ascii (t_to_js x150) "shell"
+                (or_string_to_js Ojs.bool_to_js x151)
         let (close : t -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x164 : t) ->
-            fun ?callback:(x161 : (unit -> unit) option) ->
+          fun (x156 : t) ->
+            fun ?callback:(x153 : (unit -> unit) option) ->
               fun () ->
                 ignore
-                  (let x165 = t_to_js x164 in
-                   Ojs.call (Ojs.get_prop_ascii x165 "close") "apply"
-                     [|x165;((let x162 =
+                  (let x157 = t_to_js x156 in
+                   Ojs.call (Ojs.get_prop_ascii x157 "close") "apply"
+                     [|x157;((let x154 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x161 with
-                               | Some x163 ->
+                              (match x153 with
+                               | Some x155 ->
                                    ignore
-                                     (Ojs.call x162 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x163 ()))|])
+                                     (Ojs.call x154 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x155 ()))|])
                                | None -> ());
-                              x162))|])
+                              x154))|])
         let (flush :
           t -> ?kind:int -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x171 : t) ->
-            fun ?kind:(x166 : int option) ->
-              fun ?callback:(x167 : (unit -> unit) option) ->
+          fun (x163 : t) ->
+            fun ?kind:(x158 : int option) ->
+              fun ?callback:(x159 : (unit -> unit) option) ->
                 fun () ->
                   ignore
-                    (let x172 = t_to_js x171 in
-                     Ojs.call (Ojs.get_prop_ascii x172 "flush") "apply"
-                       [|x172;((let x168 =
+                    (let x164 = t_to_js x163 in
+                     Ojs.call (Ojs.get_prop_ascii x164 "flush") "apply"
+                       [|x164;((let x160 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
-                                (match x166 with
-                                 | Some x170 ->
+                                (match x158 with
+                                 | Some x162 ->
                                      ignore
-                                       (Ojs.call x168 "push"
-                                          [|(Ojs.int_to_js x170)|])
+                                       (Ojs.call x160 "push"
+                                          [|(Ojs.int_to_js x162)|])
                                  | None -> ());
-                                (match x167 with
-                                 | Some x169 ->
+                                (match x159 with
+                                 | Some x161 ->
                                      ignore
-                                       (Ojs.call x168 "push"
+                                       (Ojs.call x160 "push"
                                           [|(Ojs.fun_to_js 1
-                                               (fun _ -> x169 ()))|])
+                                               (fun _ -> x161 ()))|])
                                  | None -> ());
-                                x168))|])
+                                x160))|])
         let (flush' : t -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x176 : t) ->
-            fun ?callback:(x173 : (unit -> unit) option) ->
+          fun (x168 : t) ->
+            fun ?callback:(x165 : (unit -> unit) option) ->
               fun () ->
                 ignore
-                  (let x177 = t_to_js x176 in
-                   Ojs.call (Ojs.get_prop_ascii x177 "flush") "apply"
-                     [|x177;((let x174 =
+                  (let x169 = t_to_js x168 in
+                   Ojs.call (Ojs.get_prop_ascii x169 "flush") "apply"
+                     [|x169;((let x166 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x173 with
-                               | Some x175 ->
+                              (match x165 with
+                               | Some x167 ->
                                    ignore
-                                     (Ojs.call x174 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x175 ()))|])
+                                     (Ojs.call x166 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x167 ()))|])
                                | None -> ());
-                              x174))|])
+                              x166))|])
       end
     module Gunzip =
       struct
         include struct include Stream.Transform end
         let (get_bytesRead : t -> int) =
-          fun (x178 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x178) "bytesRead")
+          fun (x170 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x170) "bytesRead")
         let (get_bytesWritten : t -> int) =
-          fun (x179 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x179) "bytesWritten")
+          fun (x171 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x171) "bytesWritten")
         let (get_shell : t -> bool or_string) =
-          fun (x180 : t) ->
+          fun (x172 : t) ->
             or_string_of_js Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x180) "shell")
+              (Ojs.get_prop_ascii (t_to_js x172) "shell")
         let (set_shell : t -> bool or_string -> unit) =
-          fun (x182 : t) ->
-            fun (x183 : bool or_string) ->
-              Ojs.set_prop_ascii (t_to_js x182) "shell"
-                (or_string_to_js Ojs.bool_to_js x183)
+          fun (x174 : t) ->
+            fun (x175 : bool or_string) ->
+              Ojs.set_prop_ascii (t_to_js x174) "shell"
+                (or_string_to_js Ojs.bool_to_js x175)
         let (close : t -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x188 : t) ->
-            fun ?callback:(x185 : (unit -> unit) option) ->
+          fun (x180 : t) ->
+            fun ?callback:(x177 : (unit -> unit) option) ->
               fun () ->
                 ignore
-                  (let x189 = t_to_js x188 in
-                   Ojs.call (Ojs.get_prop_ascii x189 "close") "apply"
-                     [|x189;((let x186 =
+                  (let x181 = t_to_js x180 in
+                   Ojs.call (Ojs.get_prop_ascii x181 "close") "apply"
+                     [|x181;((let x178 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x185 with
-                               | Some x187 ->
+                              (match x177 with
+                               | Some x179 ->
                                    ignore
-                                     (Ojs.call x186 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x187 ()))|])
+                                     (Ojs.call x178 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x179 ()))|])
                                | None -> ());
-                              x186))|])
+                              x178))|])
         let (flush :
           t -> ?kind:int -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x195 : t) ->
-            fun ?kind:(x190 : int option) ->
-              fun ?callback:(x191 : (unit -> unit) option) ->
+          fun (x187 : t) ->
+            fun ?kind:(x182 : int option) ->
+              fun ?callback:(x183 : (unit -> unit) option) ->
                 fun () ->
                   ignore
-                    (let x196 = t_to_js x195 in
-                     Ojs.call (Ojs.get_prop_ascii x196 "flush") "apply"
-                       [|x196;((let x192 =
+                    (let x188 = t_to_js x187 in
+                     Ojs.call (Ojs.get_prop_ascii x188 "flush") "apply"
+                       [|x188;((let x184 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
-                                (match x190 with
-                                 | Some x194 ->
+                                (match x182 with
+                                 | Some x186 ->
                                      ignore
-                                       (Ojs.call x192 "push"
-                                          [|(Ojs.int_to_js x194)|])
+                                       (Ojs.call x184 "push"
+                                          [|(Ojs.int_to_js x186)|])
                                  | None -> ());
-                                (match x191 with
-                                 | Some x193 ->
+                                (match x183 with
+                                 | Some x185 ->
                                      ignore
-                                       (Ojs.call x192 "push"
+                                       (Ojs.call x184 "push"
                                           [|(Ojs.fun_to_js 1
-                                               (fun _ -> x193 ()))|])
+                                               (fun _ -> x185 ()))|])
                                  | None -> ());
-                                x192))|])
+                                x184))|])
         let (flush' : t -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x200 : t) ->
-            fun ?callback:(x197 : (unit -> unit) option) ->
+          fun (x192 : t) ->
+            fun ?callback:(x189 : (unit -> unit) option) ->
               fun () ->
                 ignore
-                  (let x201 = t_to_js x200 in
-                   Ojs.call (Ojs.get_prop_ascii x201 "flush") "apply"
-                     [|x201;((let x198 =
+                  (let x193 = t_to_js x192 in
+                   Ojs.call (Ojs.get_prop_ascii x193 "flush") "apply"
+                     [|x193;((let x190 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x197 with
-                               | Some x199 ->
+                              (match x189 with
+                               | Some x191 ->
                                    ignore
-                                     (Ojs.call x198 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x199 ()))|])
+                                     (Ojs.call x190 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x191 ()))|])
                                | None -> ());
-                              x198))|])
+                              x190))|])
       end
     module Deflate =
       struct
         include struct include Stream.Transform end
         let (get_bytesRead : t -> int) =
-          fun (x202 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x202) "bytesRead")
+          fun (x194 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x194) "bytesRead")
         let (get_bytesWritten : t -> int) =
-          fun (x203 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x203) "bytesWritten")
+          fun (x195 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x195) "bytesWritten")
         let (get_shell : t -> bool or_string) =
-          fun (x204 : t) ->
+          fun (x196 : t) ->
             or_string_of_js Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x204) "shell")
+              (Ojs.get_prop_ascii (t_to_js x196) "shell")
         let (set_shell : t -> bool or_string -> unit) =
-          fun (x206 : t) ->
-            fun (x207 : bool or_string) ->
-              Ojs.set_prop_ascii (t_to_js x206) "shell"
-                (or_string_to_js Ojs.bool_to_js x207)
+          fun (x198 : t) ->
+            fun (x199 : bool or_string) ->
+              Ojs.set_prop_ascii (t_to_js x198) "shell"
+                (or_string_to_js Ojs.bool_to_js x199)
         let (close : t -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x212 : t) ->
-            fun ?callback:(x209 : (unit -> unit) option) ->
+          fun (x204 : t) ->
+            fun ?callback:(x201 : (unit -> unit) option) ->
               fun () ->
                 ignore
-                  (let x213 = t_to_js x212 in
-                   Ojs.call (Ojs.get_prop_ascii x213 "close") "apply"
-                     [|x213;((let x210 =
+                  (let x205 = t_to_js x204 in
+                   Ojs.call (Ojs.get_prop_ascii x205 "close") "apply"
+                     [|x205;((let x202 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x209 with
-                               | Some x211 ->
+                              (match x201 with
+                               | Some x203 ->
                                    ignore
-                                     (Ojs.call x210 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x211 ()))|])
+                                     (Ojs.call x202 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x203 ()))|])
                                | None -> ());
-                              x210))|])
+                              x202))|])
         let (flush :
           t -> ?kind:int -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x219 : t) ->
-            fun ?kind:(x214 : int option) ->
-              fun ?callback:(x215 : (unit -> unit) option) ->
+          fun (x211 : t) ->
+            fun ?kind:(x206 : int option) ->
+              fun ?callback:(x207 : (unit -> unit) option) ->
                 fun () ->
                   ignore
-                    (let x220 = t_to_js x219 in
-                     Ojs.call (Ojs.get_prop_ascii x220 "flush") "apply"
-                       [|x220;((let x216 =
+                    (let x212 = t_to_js x211 in
+                     Ojs.call (Ojs.get_prop_ascii x212 "flush") "apply"
+                       [|x212;((let x208 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
-                                (match x214 with
-                                 | Some x218 ->
+                                (match x206 with
+                                 | Some x210 ->
                                      ignore
-                                       (Ojs.call x216 "push"
-                                          [|(Ojs.int_to_js x218)|])
+                                       (Ojs.call x208 "push"
+                                          [|(Ojs.int_to_js x210)|])
                                  | None -> ());
-                                (match x215 with
-                                 | Some x217 ->
+                                (match x207 with
+                                 | Some x209 ->
                                      ignore
-                                       (Ojs.call x216 "push"
+                                       (Ojs.call x208 "push"
                                           [|(Ojs.fun_to_js 1
-                                               (fun _ -> x217 ()))|])
+                                               (fun _ -> x209 ()))|])
                                  | None -> ());
-                                x216))|])
+                                x208))|])
         let (flush' : t -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x224 : t) ->
-            fun ?callback:(x221 : (unit -> unit) option) ->
+          fun (x216 : t) ->
+            fun ?callback:(x213 : (unit -> unit) option) ->
               fun () ->
                 ignore
-                  (let x225 = t_to_js x224 in
-                   Ojs.call (Ojs.get_prop_ascii x225 "flush") "apply"
-                     [|x225;((let x222 =
+                  (let x217 = t_to_js x216 in
+                   Ojs.call (Ojs.get_prop_ascii x217 "flush") "apply"
+                     [|x217;((let x214 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x221 with
-                               | Some x223 ->
+                              (match x213 with
+                               | Some x215 ->
                                    ignore
-                                     (Ojs.call x222 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x223 ()))|])
+                                     (Ojs.call x214 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x215 ()))|])
                                | None -> ());
-                              x222))|])
+                              x214))|])
         let (reset : t -> unit) =
-          fun (x226 : t) -> ignore (Ojs.call (t_to_js x226) "reset" [||])
+          fun (x218 : t) -> ignore (Ojs.call (t_to_js x218) "reset" [||])
         let (params :
           t -> level:int -> strategy:int -> callback:(unit -> unit) -> unit)
           =
-          fun (x230 : t) ->
-            fun ~level:(x227 : int) ->
-              fun ~strategy:(x228 : int) ->
-                fun ~callback:(x229 : unit -> unit) ->
+          fun (x222 : t) ->
+            fun ~level:(x219 : int) ->
+              fun ~strategy:(x220 : int) ->
+                fun ~callback:(x221 : unit -> unit) ->
                   ignore
-                    (Ojs.call (t_to_js x230) "params"
-                       [|(Ojs.int_to_js x227);(Ojs.int_to_js x228);(Ojs.fun_to_js
+                    (Ojs.call (t_to_js x222) "params"
+                       [|(Ojs.int_to_js x219);(Ojs.int_to_js x220);(Ojs.fun_to_js
                                                                     1
                                                                     (fun _ ->
-                                                                    x229 ()))|])
+                                                                    x221 ()))|])
       end
     module Inflate =
       struct
         include struct include Stream.Transform end
         let (get_bytesRead : t -> int) =
-          fun (x231 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x231) "bytesRead")
+          fun (x223 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x223) "bytesRead")
         let (get_bytesWritten : t -> int) =
-          fun (x232 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x232) "bytesWritten")
+          fun (x224 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x224) "bytesWritten")
         let (get_shell : t -> bool or_string) =
-          fun (x233 : t) ->
+          fun (x225 : t) ->
             or_string_of_js Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x233) "shell")
+              (Ojs.get_prop_ascii (t_to_js x225) "shell")
         let (set_shell : t -> bool or_string -> unit) =
-          fun (x235 : t) ->
-            fun (x236 : bool or_string) ->
-              Ojs.set_prop_ascii (t_to_js x235) "shell"
-                (or_string_to_js Ojs.bool_to_js x236)
+          fun (x227 : t) ->
+            fun (x228 : bool or_string) ->
+              Ojs.set_prop_ascii (t_to_js x227) "shell"
+                (or_string_to_js Ojs.bool_to_js x228)
         let (close : t -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x241 : t) ->
-            fun ?callback:(x238 : (unit -> unit) option) ->
+          fun (x233 : t) ->
+            fun ?callback:(x230 : (unit -> unit) option) ->
               fun () ->
                 ignore
-                  (let x242 = t_to_js x241 in
-                   Ojs.call (Ojs.get_prop_ascii x242 "close") "apply"
-                     [|x242;((let x239 =
+                  (let x234 = t_to_js x233 in
+                   Ojs.call (Ojs.get_prop_ascii x234 "close") "apply"
+                     [|x234;((let x231 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x238 with
-                               | Some x240 ->
+                              (match x230 with
+                               | Some x232 ->
                                    ignore
-                                     (Ojs.call x239 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x240 ()))|])
+                                     (Ojs.call x231 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x232 ()))|])
                                | None -> ());
-                              x239))|])
+                              x231))|])
         let (flush :
           t -> ?kind:int -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x248 : t) ->
-            fun ?kind:(x243 : int option) ->
-              fun ?callback:(x244 : (unit -> unit) option) ->
+          fun (x240 : t) ->
+            fun ?kind:(x235 : int option) ->
+              fun ?callback:(x236 : (unit -> unit) option) ->
                 fun () ->
                   ignore
-                    (let x249 = t_to_js x248 in
-                     Ojs.call (Ojs.get_prop_ascii x249 "flush") "apply"
-                       [|x249;((let x245 =
+                    (let x241 = t_to_js x240 in
+                     Ojs.call (Ojs.get_prop_ascii x241 "flush") "apply"
+                       [|x241;((let x237 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
-                                (match x243 with
-                                 | Some x247 ->
+                                (match x235 with
+                                 | Some x239 ->
                                      ignore
-                                       (Ojs.call x245 "push"
-                                          [|(Ojs.int_to_js x247)|])
+                                       (Ojs.call x237 "push"
+                                          [|(Ojs.int_to_js x239)|])
                                  | None -> ());
-                                (match x244 with
-                                 | Some x246 ->
+                                (match x236 with
+                                 | Some x238 ->
                                      ignore
-                                       (Ojs.call x245 "push"
+                                       (Ojs.call x237 "push"
                                           [|(Ojs.fun_to_js 1
-                                               (fun _ -> x246 ()))|])
+                                               (fun _ -> x238 ()))|])
                                  | None -> ());
-                                x245))|])
+                                x237))|])
         let (flush' : t -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x253 : t) ->
-            fun ?callback:(x250 : (unit -> unit) option) ->
+          fun (x245 : t) ->
+            fun ?callback:(x242 : (unit -> unit) option) ->
               fun () ->
                 ignore
-                  (let x254 = t_to_js x253 in
-                   Ojs.call (Ojs.get_prop_ascii x254 "flush") "apply"
-                     [|x254;((let x251 =
+                  (let x246 = t_to_js x245 in
+                   Ojs.call (Ojs.get_prop_ascii x246 "flush") "apply"
+                     [|x246;((let x243 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x250 with
-                               | Some x252 ->
+                              (match x242 with
+                               | Some x244 ->
                                    ignore
-                                     (Ojs.call x251 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x252 ()))|])
+                                     (Ojs.call x243 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x244 ()))|])
                                | None -> ());
-                              x251))|])
+                              x243))|])
         let (reset : t -> unit) =
-          fun (x255 : t) -> ignore (Ojs.call (t_to_js x255) "reset" [||])
+          fun (x247 : t) -> ignore (Ojs.call (t_to_js x247) "reset" [||])
       end
     module DeflateRaw =
       struct
         include struct include Stream.Transform end
         let (get_bytesRead : t -> int) =
-          fun (x256 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x256) "bytesRead")
+          fun (x248 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x248) "bytesRead")
         let (get_bytesWritten : t -> int) =
-          fun (x257 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x257) "bytesWritten")
+          fun (x249 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x249) "bytesWritten")
         let (get_shell : t -> bool or_string) =
-          fun (x258 : t) ->
+          fun (x250 : t) ->
             or_string_of_js Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x258) "shell")
+              (Ojs.get_prop_ascii (t_to_js x250) "shell")
         let (set_shell : t -> bool or_string -> unit) =
-          fun (x260 : t) ->
-            fun (x261 : bool or_string) ->
-              Ojs.set_prop_ascii (t_to_js x260) "shell"
-                (or_string_to_js Ojs.bool_to_js x261)
+          fun (x252 : t) ->
+            fun (x253 : bool or_string) ->
+              Ojs.set_prop_ascii (t_to_js x252) "shell"
+                (or_string_to_js Ojs.bool_to_js x253)
         let (close : t -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x266 : t) ->
-            fun ?callback:(x263 : (unit -> unit) option) ->
+          fun (x258 : t) ->
+            fun ?callback:(x255 : (unit -> unit) option) ->
               fun () ->
                 ignore
-                  (let x267 = t_to_js x266 in
-                   Ojs.call (Ojs.get_prop_ascii x267 "close") "apply"
-                     [|x267;((let x264 =
+                  (let x259 = t_to_js x258 in
+                   Ojs.call (Ojs.get_prop_ascii x259 "close") "apply"
+                     [|x259;((let x256 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x263 with
-                               | Some x265 ->
+                              (match x255 with
+                               | Some x257 ->
                                    ignore
-                                     (Ojs.call x264 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x265 ()))|])
+                                     (Ojs.call x256 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x257 ()))|])
                                | None -> ());
-                              x264))|])
+                              x256))|])
         let (flush :
           t -> ?kind:int -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x273 : t) ->
-            fun ?kind:(x268 : int option) ->
-              fun ?callback:(x269 : (unit -> unit) option) ->
+          fun (x265 : t) ->
+            fun ?kind:(x260 : int option) ->
+              fun ?callback:(x261 : (unit -> unit) option) ->
                 fun () ->
                   ignore
-                    (let x274 = t_to_js x273 in
-                     Ojs.call (Ojs.get_prop_ascii x274 "flush") "apply"
-                       [|x274;((let x270 =
+                    (let x266 = t_to_js x265 in
+                     Ojs.call (Ojs.get_prop_ascii x266 "flush") "apply"
+                       [|x266;((let x262 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
-                                (match x268 with
-                                 | Some x272 ->
+                                (match x260 with
+                                 | Some x264 ->
                                      ignore
-                                       (Ojs.call x270 "push"
-                                          [|(Ojs.int_to_js x272)|])
+                                       (Ojs.call x262 "push"
+                                          [|(Ojs.int_to_js x264)|])
                                  | None -> ());
-                                (match x269 with
-                                 | Some x271 ->
+                                (match x261 with
+                                 | Some x263 ->
                                      ignore
-                                       (Ojs.call x270 "push"
+                                       (Ojs.call x262 "push"
                                           [|(Ojs.fun_to_js 1
-                                               (fun _ -> x271 ()))|])
+                                               (fun _ -> x263 ()))|])
                                  | None -> ());
-                                x270))|])
+                                x262))|])
         let (flush' : t -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x278 : t) ->
-            fun ?callback:(x275 : (unit -> unit) option) ->
+          fun (x270 : t) ->
+            fun ?callback:(x267 : (unit -> unit) option) ->
               fun () ->
                 ignore
-                  (let x279 = t_to_js x278 in
-                   Ojs.call (Ojs.get_prop_ascii x279 "flush") "apply"
-                     [|x279;((let x276 =
+                  (let x271 = t_to_js x270 in
+                   Ojs.call (Ojs.get_prop_ascii x271 "flush") "apply"
+                     [|x271;((let x268 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x275 with
-                               | Some x277 ->
+                              (match x267 with
+                               | Some x269 ->
                                    ignore
-                                     (Ojs.call x276 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x277 ()))|])
+                                     (Ojs.call x268 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x269 ()))|])
                                | None -> ());
-                              x276))|])
+                              x268))|])
         let (reset : t -> unit) =
-          fun (x280 : t) -> ignore (Ojs.call (t_to_js x280) "reset" [||])
+          fun (x272 : t) -> ignore (Ojs.call (t_to_js x272) "reset" [||])
         let (params :
           t -> level:int -> strategy:int -> callback:(unit -> unit) -> unit)
           =
-          fun (x284 : t) ->
-            fun ~level:(x281 : int) ->
-              fun ~strategy:(x282 : int) ->
-                fun ~callback:(x283 : unit -> unit) ->
+          fun (x276 : t) ->
+            fun ~level:(x273 : int) ->
+              fun ~strategy:(x274 : int) ->
+                fun ~callback:(x275 : unit -> unit) ->
                   ignore
-                    (Ojs.call (t_to_js x284) "params"
-                       [|(Ojs.int_to_js x281);(Ojs.int_to_js x282);(Ojs.fun_to_js
+                    (Ojs.call (t_to_js x276) "params"
+                       [|(Ojs.int_to_js x273);(Ojs.int_to_js x274);(Ojs.fun_to_js
                                                                     1
                                                                     (fun _ ->
-                                                                    x283 ()))|])
+                                                                    x275 ()))|])
       end
     module InflateRaw =
       struct
         include struct include Stream.Transform end
         let (get_bytesRead : t -> int) =
-          fun (x285 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x285) "bytesRead")
+          fun (x277 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x277) "bytesRead")
         let (get_bytesWritten : t -> int) =
-          fun (x286 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x286) "bytesWritten")
+          fun (x278 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x278) "bytesWritten")
         let (get_shell : t -> bool or_string) =
-          fun (x287 : t) ->
+          fun (x279 : t) ->
             or_string_of_js Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x287) "shell")
+              (Ojs.get_prop_ascii (t_to_js x279) "shell")
         let (set_shell : t -> bool or_string -> unit) =
-          fun (x289 : t) ->
-            fun (x290 : bool or_string) ->
-              Ojs.set_prop_ascii (t_to_js x289) "shell"
-                (or_string_to_js Ojs.bool_to_js x290)
+          fun (x281 : t) ->
+            fun (x282 : bool or_string) ->
+              Ojs.set_prop_ascii (t_to_js x281) "shell"
+                (or_string_to_js Ojs.bool_to_js x282)
         let (close : t -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x295 : t) ->
-            fun ?callback:(x292 : (unit -> unit) option) ->
+          fun (x287 : t) ->
+            fun ?callback:(x284 : (unit -> unit) option) ->
               fun () ->
                 ignore
-                  (let x296 = t_to_js x295 in
-                   Ojs.call (Ojs.get_prop_ascii x296 "close") "apply"
-                     [|x296;((let x293 =
+                  (let x288 = t_to_js x287 in
+                   Ojs.call (Ojs.get_prop_ascii x288 "close") "apply"
+                     [|x288;((let x285 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x292 with
-                               | Some x294 ->
+                              (match x284 with
+                               | Some x286 ->
                                    ignore
-                                     (Ojs.call x293 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x294 ()))|])
+                                     (Ojs.call x285 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x286 ()))|])
                                | None -> ());
-                              x293))|])
+                              x285))|])
         let (flush :
           t -> ?kind:int -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x302 : t) ->
-            fun ?kind:(x297 : int option) ->
-              fun ?callback:(x298 : (unit -> unit) option) ->
+          fun (x294 : t) ->
+            fun ?kind:(x289 : int option) ->
+              fun ?callback:(x290 : (unit -> unit) option) ->
                 fun () ->
                   ignore
-                    (let x303 = t_to_js x302 in
-                     Ojs.call (Ojs.get_prop_ascii x303 "flush") "apply"
-                       [|x303;((let x299 =
+                    (let x295 = t_to_js x294 in
+                     Ojs.call (Ojs.get_prop_ascii x295 "flush") "apply"
+                       [|x295;((let x291 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
-                                (match x297 with
-                                 | Some x301 ->
+                                (match x289 with
+                                 | Some x293 ->
                                      ignore
-                                       (Ojs.call x299 "push"
-                                          [|(Ojs.int_to_js x301)|])
+                                       (Ojs.call x291 "push"
+                                          [|(Ojs.int_to_js x293)|])
                                  | None -> ());
-                                (match x298 with
-                                 | Some x300 ->
+                                (match x290 with
+                                 | Some x292 ->
                                      ignore
-                                       (Ojs.call x299 "push"
+                                       (Ojs.call x291 "push"
                                           [|(Ojs.fun_to_js 1
-                                               (fun _ -> x300 ()))|])
+                                               (fun _ -> x292 ()))|])
                                  | None -> ());
-                                x299))|])
+                                x291))|])
         let (flush' : t -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x307 : t) ->
-            fun ?callback:(x304 : (unit -> unit) option) ->
+          fun (x299 : t) ->
+            fun ?callback:(x296 : (unit -> unit) option) ->
               fun () ->
                 ignore
-                  (let x308 = t_to_js x307 in
-                   Ojs.call (Ojs.get_prop_ascii x308 "flush") "apply"
-                     [|x308;((let x305 =
+                  (let x300 = t_to_js x299 in
+                   Ojs.call (Ojs.get_prop_ascii x300 "flush") "apply"
+                     [|x300;((let x297 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x304 with
-                               | Some x306 ->
+                              (match x296 with
+                               | Some x298 ->
                                    ignore
-                                     (Ojs.call x305 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x306 ()))|])
+                                     (Ojs.call x297 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x298 ()))|])
                                | None -> ());
-                              x305))|])
+                              x297))|])
         let (reset : t -> unit) =
-          fun (x309 : t) -> ignore (Ojs.call (t_to_js x309) "reset" [||])
+          fun (x301 : t) -> ignore (Ojs.call (t_to_js x301) "reset" [||])
       end
     module Unzip =
       struct
         include struct include Stream.Transform end
         let (get_bytesRead : t -> int) =
-          fun (x310 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x310) "bytesRead")
+          fun (x302 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x302) "bytesRead")
         let (get_bytesWritten : t -> int) =
-          fun (x311 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x311) "bytesWritten")
+          fun (x303 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x303) "bytesWritten")
         let (get_shell : t -> bool or_string) =
-          fun (x312 : t) ->
+          fun (x304 : t) ->
             or_string_of_js Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x312) "shell")
+              (Ojs.get_prop_ascii (t_to_js x304) "shell")
         let (set_shell : t -> bool or_string -> unit) =
-          fun (x314 : t) ->
-            fun (x315 : bool or_string) ->
-              Ojs.set_prop_ascii (t_to_js x314) "shell"
-                (or_string_to_js Ojs.bool_to_js x315)
+          fun (x306 : t) ->
+            fun (x307 : bool or_string) ->
+              Ojs.set_prop_ascii (t_to_js x306) "shell"
+                (or_string_to_js Ojs.bool_to_js x307)
         let (close : t -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x320 : t) ->
-            fun ?callback:(x317 : (unit -> unit) option) ->
+          fun (x312 : t) ->
+            fun ?callback:(x309 : (unit -> unit) option) ->
               fun () ->
                 ignore
-                  (let x321 = t_to_js x320 in
-                   Ojs.call (Ojs.get_prop_ascii x321 "close") "apply"
-                     [|x321;((let x318 =
+                  (let x313 = t_to_js x312 in
+                   Ojs.call (Ojs.get_prop_ascii x313 "close") "apply"
+                     [|x313;((let x310 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x317 with
-                               | Some x319 ->
+                              (match x309 with
+                               | Some x311 ->
                                    ignore
-                                     (Ojs.call x318 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x319 ()))|])
+                                     (Ojs.call x310 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x311 ()))|])
                                | None -> ());
-                              x318))|])
+                              x310))|])
         let (flush :
           t -> ?kind:int -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x327 : t) ->
-            fun ?kind:(x322 : int option) ->
-              fun ?callback:(x323 : (unit -> unit) option) ->
+          fun (x319 : t) ->
+            fun ?kind:(x314 : int option) ->
+              fun ?callback:(x315 : (unit -> unit) option) ->
                 fun () ->
                   ignore
-                    (let x328 = t_to_js x327 in
-                     Ojs.call (Ojs.get_prop_ascii x328 "flush") "apply"
-                       [|x328;((let x324 =
+                    (let x320 = t_to_js x319 in
+                     Ojs.call (Ojs.get_prop_ascii x320 "flush") "apply"
+                       [|x320;((let x316 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
-                                (match x322 with
-                                 | Some x326 ->
+                                (match x314 with
+                                 | Some x318 ->
                                      ignore
-                                       (Ojs.call x324 "push"
-                                          [|(Ojs.int_to_js x326)|])
+                                       (Ojs.call x316 "push"
+                                          [|(Ojs.int_to_js x318)|])
                                  | None -> ());
-                                (match x323 with
-                                 | Some x325 ->
+                                (match x315 with
+                                 | Some x317 ->
                                      ignore
-                                       (Ojs.call x324 "push"
+                                       (Ojs.call x316 "push"
                                           [|(Ojs.fun_to_js 1
-                                               (fun _ -> x325 ()))|])
+                                               (fun _ -> x317 ()))|])
                                  | None -> ());
-                                x324))|])
+                                x316))|])
         let (flush' : t -> ?callback:(unit -> unit) -> unit -> unit) =
-          fun (x332 : t) ->
-            fun ?callback:(x329 : (unit -> unit) option) ->
+          fun (x324 : t) ->
+            fun ?callback:(x321 : (unit -> unit) option) ->
               fun () ->
                 ignore
-                  (let x333 = t_to_js x332 in
-                   Ojs.call (Ojs.get_prop_ascii x333 "flush") "apply"
-                     [|x333;((let x330 =
+                  (let x325 = t_to_js x324 in
+                   Ojs.call (Ojs.get_prop_ascii x325 "flush") "apply"
+                     [|x325;((let x322 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x329 with
-                               | Some x331 ->
+                              (match x321 with
+                               | Some x323 ->
                                    ignore
-                                     (Ojs.call x330 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x331 ()))|])
+                                     (Ojs.call x322 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x323 ()))|])
                                | None -> ());
-                              x330))|])
+                              x322))|])
       end
     let (createBrotliCompress :
       ?options:zlib_BrotliOptions -> unit -> zlib_BrotliCompress) =
-      fun ?options:(x334 : zlib_BrotliOptions option) ->
+      fun ?options:(x326 : zlib_BrotliOptions option) ->
         fun () ->
           zlib_BrotliCompress_of_js
-            (let x337 = Import.zlib in
-             Ojs.call (Ojs.get_prop_ascii x337 "createBrotliCompress")
+            (let x329 = Import.zlib in
+             Ojs.call (Ojs.get_prop_ascii x329 "createBrotliCompress")
                "apply"
+               [|x329;((let x327 =
+                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
+                            [||] in
+                        (match x326 with
+                         | Some x328 ->
+                             ignore
+                               (Ojs.call x327 "push"
+                                  [|(zlib_BrotliOptions_to_js x328)|])
+                         | None -> ());
+                        x327))|])
+    let (createBrotliDecompress :
+      ?options:zlib_BrotliOptions -> unit -> zlib_BrotliDecompress) =
+      fun ?options:(x330 : zlib_BrotliOptions option) ->
+        fun () ->
+          zlib_BrotliDecompress_of_js
+            (let x333 = Import.zlib in
+             Ojs.call (Ojs.get_prop_ascii x333 "createBrotliDecompress")
+               "apply"
+               [|x333;((let x331 =
+                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
+                            [||] in
+                        (match x330 with
+                         | Some x332 ->
+                             ignore
+                               (Ojs.call x331 "push"
+                                  [|(zlib_BrotliOptions_to_js x332)|])
+                         | None -> ());
+                        x331))|])
+    let (createGzip : ?options:zlib_ZlibOptions -> unit -> zlib_Gzip) =
+      fun ?options:(x334 : zlib_ZlibOptions option) ->
+        fun () ->
+          zlib_Gzip_of_js
+            (let x337 = Import.zlib in
+             Ojs.call (Ojs.get_prop_ascii x337 "createGzip") "apply"
                [|x337;((let x335 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
@@ -1146,17 +1085,15 @@ module Zlib =
                          | Some x336 ->
                              ignore
                                (Ojs.call x335 "push"
-                                  [|(zlib_BrotliOptions_to_js x336)|])
+                                  [|(zlib_ZlibOptions_to_js x336)|])
                          | None -> ());
                         x335))|])
-    let (createBrotliDecompress :
-      ?options:zlib_BrotliOptions -> unit -> zlib_BrotliDecompress) =
-      fun ?options:(x338 : zlib_BrotliOptions option) ->
+    let (createGunzip : ?options:zlib_ZlibOptions -> unit -> zlib_Gunzip) =
+      fun ?options:(x338 : zlib_ZlibOptions option) ->
         fun () ->
-          zlib_BrotliDecompress_of_js
+          zlib_Gunzip_of_js
             (let x341 = Import.zlib in
-             Ojs.call (Ojs.get_prop_ascii x341 "createBrotliDecompress")
-               "apply"
+             Ojs.call (Ojs.get_prop_ascii x341 "createGunzip") "apply"
                [|x341;((let x339 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
@@ -1164,15 +1101,15 @@ module Zlib =
                          | Some x340 ->
                              ignore
                                (Ojs.call x339 "push"
-                                  [|(zlib_BrotliOptions_to_js x340)|])
+                                  [|(zlib_ZlibOptions_to_js x340)|])
                          | None -> ());
                         x339))|])
-    let (createGzip : ?options:zlib_ZlibOptions -> unit -> zlib_Gzip) =
+    let (createDeflate : ?options:zlib_ZlibOptions -> unit -> zlib_Deflate) =
       fun ?options:(x342 : zlib_ZlibOptions option) ->
         fun () ->
-          zlib_Gzip_of_js
+          zlib_Deflate_of_js
             (let x345 = Import.zlib in
-             Ojs.call (Ojs.get_prop_ascii x345 "createGzip") "apply"
+             Ojs.call (Ojs.get_prop_ascii x345 "createDeflate") "apply"
                [|x345;((let x343 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
@@ -1183,12 +1120,12 @@ module Zlib =
                                   [|(zlib_ZlibOptions_to_js x344)|])
                          | None -> ());
                         x343))|])
-    let (createGunzip : ?options:zlib_ZlibOptions -> unit -> zlib_Gunzip) =
+    let (createInflate : ?options:zlib_ZlibOptions -> unit -> zlib_Inflate) =
       fun ?options:(x346 : zlib_ZlibOptions option) ->
         fun () ->
-          zlib_Gunzip_of_js
+          zlib_Inflate_of_js
             (let x349 = Import.zlib in
-             Ojs.call (Ojs.get_prop_ascii x349 "createGunzip") "apply"
+             Ojs.call (Ojs.get_prop_ascii x349 "createInflate") "apply"
                [|x349;((let x347 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
@@ -1199,12 +1136,13 @@ module Zlib =
                                   [|(zlib_ZlibOptions_to_js x348)|])
                          | None -> ());
                         x347))|])
-    let (createDeflate : ?options:zlib_ZlibOptions -> unit -> zlib_Deflate) =
+    let (createDeflateRaw :
+      ?options:zlib_ZlibOptions -> unit -> zlib_DeflateRaw) =
       fun ?options:(x350 : zlib_ZlibOptions option) ->
         fun () ->
-          zlib_Deflate_of_js
+          zlib_DeflateRaw_of_js
             (let x353 = Import.zlib in
-             Ojs.call (Ojs.get_prop_ascii x353 "createDeflate") "apply"
+             Ojs.call (Ojs.get_prop_ascii x353 "createDeflateRaw") "apply"
                [|x353;((let x351 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
@@ -1215,12 +1153,13 @@ module Zlib =
                                   [|(zlib_ZlibOptions_to_js x352)|])
                          | None -> ());
                         x351))|])
-    let (createInflate : ?options:zlib_ZlibOptions -> unit -> zlib_Inflate) =
+    let (createInflateRaw :
+      ?options:zlib_ZlibOptions -> unit -> zlib_InflateRaw) =
       fun ?options:(x354 : zlib_ZlibOptions option) ->
         fun () ->
-          zlib_Inflate_of_js
+          zlib_InflateRaw_of_js
             (let x357 = Import.zlib in
-             Ojs.call (Ojs.get_prop_ascii x357 "createInflate") "apply"
+             Ojs.call (Ojs.get_prop_ascii x357 "createInflateRaw") "apply"
                [|x357;((let x355 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
@@ -1231,13 +1170,12 @@ module Zlib =
                                   [|(zlib_ZlibOptions_to_js x356)|])
                          | None -> ());
                         x355))|])
-    let (createDeflateRaw :
-      ?options:zlib_ZlibOptions -> unit -> zlib_DeflateRaw) =
+    let (createUnzip : ?options:zlib_ZlibOptions -> unit -> zlib_Unzip) =
       fun ?options:(x358 : zlib_ZlibOptions option) ->
         fun () ->
-          zlib_DeflateRaw_of_js
+          zlib_Unzip_of_js
             (let x361 = Import.zlib in
-             Ojs.call (Ojs.get_prop_ascii x361 "createDeflateRaw") "apply"
+             Ojs.call (Ojs.get_prop_ascii x361 "createUnzip") "apply"
                [|x361;((let x359 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
@@ -1248,640 +1186,617 @@ module Zlib =
                                   [|(zlib_ZlibOptions_to_js x360)|])
                          | None -> ());
                         x359))|])
-    let (createInflateRaw :
-      ?options:zlib_ZlibOptions -> unit -> zlib_InflateRaw) =
-      fun ?options:(x362 : zlib_ZlibOptions option) ->
-        fun () ->
-          zlib_InflateRaw_of_js
-            (let x365 = Import.zlib in
-             Ojs.call (Ojs.get_prop_ascii x365 "createInflateRaw") "apply"
-               [|x365;((let x363 =
-                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
-                            [||] in
-                        (match x362 with
-                         | Some x364 ->
-                             ignore
-                               (Ojs.call x363 "push"
-                                  [|(zlib_ZlibOptions_to_js x364)|])
-                         | None -> ());
-                        x363))|])
-    let (createUnzip : ?options:zlib_ZlibOptions -> unit -> zlib_Unzip) =
-      fun ?options:(x366 : zlib_ZlibOptions option) ->
-        fun () ->
-          zlib_Unzip_of_js
-            (let x369 = Import.zlib in
-             Ojs.call (Ojs.get_prop_ascii x369 "createUnzip") "apply"
-               [|x369;((let x367 =
-                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
-                            [||] in
-                        (match x366 with
-                         | Some x368 ->
-                             ignore
-                               (Ojs.call x367 "push"
-                                  [|(zlib_ZlibOptions_to_js x368)|])
-                         | None -> ());
-                        x367))|])
     module InputType =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x371 : Ojs.t) -> x371
-        and t_to_js : t -> Ojs.t = fun (x370 : Ojs.t) -> x370
+        type t = (ArrayBuffer.t, ArrayBufferView.t) union2 or_string
+        let rec t_of_js : Ojs.t -> t =
+          fun (x366 : Ojs.t) ->
+            or_string_of_js
+              (fun (x367 : Ojs.t) ->
+                 union2_of_js ArrayBuffer.t_of_js ArrayBufferView.t_of_js
+                   x367) x366
+        and t_to_js : t -> Ojs.t =
+          fun (x362 : (ArrayBuffer.t, ArrayBufferView.t) union2 or_string) ->
+            or_string_to_js
+              (fun (x363 : (ArrayBuffer.t, ArrayBufferView.t) union2) ->
+                 union2_to_js ArrayBuffer.t_to_js ArrayBufferView.t_to_js
+                   x363) x362
       end
     module CompressCallback =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x373 : Ojs.t) -> x373
-        and t_to_js : t -> Ojs.t = fun (x372 : Ojs.t) -> x372
+        let rec t_of_js : Ojs.t -> t = fun (x371 : Ojs.t) -> x371
+        and t_to_js : t -> Ojs.t = fun (x370 : Ojs.t) -> x370
         let (apply : t -> error:Error.t or_null -> result:Buffer.t -> unit) =
-          fun (x377 : t) ->
-            fun ~error:(x374 : Error.t or_null) ->
-              fun ~result:(x376 : Buffer.t) ->
+          fun (x375 : t) ->
+            fun ~error:(x372 : Error.t or_null) ->
+              fun ~result:(x374 : Buffer.t) ->
                 ignore
-                  (Ojs.apply (t_to_js x377)
-                     [|(or_null_to_js Error.t_to_js x374);(Buffer.t_to_js
-                                                             x376)|])
+                  (Ojs.apply (t_to_js x375)
+                     [|(or_null_to_js Error.t_to_js x372);(Buffer.t_to_js
+                                                             x374)|])
       end
     let (brotliCompress :
       buf:zlib_InputType ->
         options:zlib_BrotliOptions -> callback:zlib_CompressCallback -> unit)
       =
-      fun ~buf:(x378 : zlib_InputType) ->
-        fun ~options:(x379 : zlib_BrotliOptions) ->
-          fun ~callback:(x380 : zlib_CompressCallback) ->
+      fun ~buf:(x376 : zlib_InputType) ->
+        fun ~options:(x377 : zlib_BrotliOptions) ->
+          fun ~callback:(x378 : zlib_CompressCallback) ->
             ignore
               (Ojs.call Import.zlib "brotliCompress"
-                 [|(zlib_InputType_to_js x378);(zlib_BrotliOptions_to_js x379);(
-                   zlib_CompressCallback_to_js x380)|])
+                 [|(zlib_InputType_to_js x376);(zlib_BrotliOptions_to_js x377);(
+                   zlib_CompressCallback_to_js x378)|])
     let (brotliCompress__promisify__ :
       buffer:zlib_InputType ->
         ?options:zlib_BrotliOptions -> unit -> Buffer.t Promise.t)
       =
-      fun ~buffer:(x381 : zlib_InputType) ->
-        fun ?options:(x382 : zlib_BrotliOptions option) ->
+      fun ~buffer:(x379 : zlib_InputType) ->
+        fun ?options:(x380 : zlib_BrotliOptions option) ->
           fun () ->
             Promise.t_of_js Buffer.t_of_js
-              (let x385 = Ojs.get_prop_ascii Import.zlib "brotliCompress" in
-               Ojs.call (Ojs.get_prop_ascii x385 "__promisify__") "apply"
-                 [|x385;((let x383 =
+              (let x383 = Ojs.get_prop_ascii Import.zlib "brotliCompress" in
+               Ojs.call (Ojs.get_prop_ascii x383 "__promisify__") "apply"
+                 [|x383;((let x381 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x383 "push"
-                               [|(zlib_InputType_to_js x381)|]);
-                          (match x382 with
-                           | Some x384 ->
+                            (Ojs.call x381 "push"
+                               [|(zlib_InputType_to_js x379)|]);
+                          (match x380 with
+                           | Some x382 ->
                                ignore
-                                 (Ojs.call x383 "push"
-                                    [|(zlib_BrotliOptions_to_js x384)|])
+                                 (Ojs.call x381 "push"
+                                    [|(zlib_BrotliOptions_to_js x382)|])
                            | None -> ());
-                          x383))|])
+                          x381))|])
     let (brotliCompressSync :
       buf:zlib_InputType -> ?options:zlib_BrotliOptions -> unit -> Buffer.t)
       =
-      fun ~buf:(x387 : zlib_InputType) ->
-        fun ?options:(x388 : zlib_BrotliOptions option) ->
+      fun ~buf:(x385 : zlib_InputType) ->
+        fun ?options:(x386 : zlib_BrotliOptions option) ->
           fun () ->
             Buffer.t_of_js
-              (let x391 = Import.zlib in
-               Ojs.call (Ojs.get_prop_ascii x391 "brotliCompressSync")
+              (let x389 = Import.zlib in
+               Ojs.call (Ojs.get_prop_ascii x389 "brotliCompressSync")
                  "apply"
-                 [|x391;((let x389 =
+                 [|x389;((let x387 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x389 "push"
-                               [|(zlib_InputType_to_js x387)|]);
-                          (match x388 with
-                           | Some x390 ->
+                            (Ojs.call x387 "push"
+                               [|(zlib_InputType_to_js x385)|]);
+                          (match x386 with
+                           | Some x388 ->
                                ignore
-                                 (Ojs.call x389 "push"
-                                    [|(zlib_BrotliOptions_to_js x390)|])
+                                 (Ojs.call x387 "push"
+                                    [|(zlib_BrotliOptions_to_js x388)|])
                            | None -> ());
-                          x389))|])
+                          x387))|])
     let (brotliDecompress :
       buf:zlib_InputType ->
         options:zlib_BrotliOptions -> callback:zlib_CompressCallback -> unit)
       =
-      fun ~buf:(x392 : zlib_InputType) ->
-        fun ~options:(x393 : zlib_BrotliOptions) ->
-          fun ~callback:(x394 : zlib_CompressCallback) ->
+      fun ~buf:(x390 : zlib_InputType) ->
+        fun ~options:(x391 : zlib_BrotliOptions) ->
+          fun ~callback:(x392 : zlib_CompressCallback) ->
             ignore
               (Ojs.call Import.zlib "brotliDecompress"
-                 [|(zlib_InputType_to_js x392);(zlib_BrotliOptions_to_js x393);(
-                   zlib_CompressCallback_to_js x394)|])
+                 [|(zlib_InputType_to_js x390);(zlib_BrotliOptions_to_js x391);(
+                   zlib_CompressCallback_to_js x392)|])
     let (brotliDecompress :
       buf:zlib_InputType -> callback:zlib_CompressCallback -> unit) =
-      fun ~buf:(x395 : zlib_InputType) ->
-        fun ~callback:(x396 : zlib_CompressCallback) ->
+      fun ~buf:(x393 : zlib_InputType) ->
+        fun ~callback:(x394 : zlib_CompressCallback) ->
           ignore
             (Ojs.call Import.zlib "brotliDecompress"
-               [|(zlib_InputType_to_js x395);(zlib_CompressCallback_to_js
-                                                x396)|])
+               [|(zlib_InputType_to_js x393);(zlib_CompressCallback_to_js
+                                                x394)|])
     let (brotliDecompress__promisify__ :
       buffer:zlib_InputType ->
         ?options:zlib_BrotliOptions -> unit -> Buffer.t Promise.t)
       =
-      fun ~buffer:(x397 : zlib_InputType) ->
-        fun ?options:(x398 : zlib_BrotliOptions option) ->
+      fun ~buffer:(x395 : zlib_InputType) ->
+        fun ?options:(x396 : zlib_BrotliOptions option) ->
           fun () ->
             Promise.t_of_js Buffer.t_of_js
-              (let x401 = Ojs.get_prop_ascii Import.zlib "brotliDecompress" in
-               Ojs.call (Ojs.get_prop_ascii x401 "__promisify__") "apply"
-                 [|x401;((let x399 =
+              (let x399 = Ojs.get_prop_ascii Import.zlib "brotliDecompress" in
+               Ojs.call (Ojs.get_prop_ascii x399 "__promisify__") "apply"
+                 [|x399;((let x397 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x399 "push"
-                               [|(zlib_InputType_to_js x397)|]);
-                          (match x398 with
-                           | Some x400 ->
+                            (Ojs.call x397 "push"
+                               [|(zlib_InputType_to_js x395)|]);
+                          (match x396 with
+                           | Some x398 ->
                                ignore
-                                 (Ojs.call x399 "push"
-                                    [|(zlib_BrotliOptions_to_js x400)|])
+                                 (Ojs.call x397 "push"
+                                    [|(zlib_BrotliOptions_to_js x398)|])
                            | None -> ());
-                          x399))|])
+                          x397))|])
     let (brotliDecompressSync :
       buf:zlib_InputType -> ?options:zlib_BrotliOptions -> unit -> Buffer.t)
       =
-      fun ~buf:(x403 : zlib_InputType) ->
-        fun ?options:(x404 : zlib_BrotliOptions option) ->
+      fun ~buf:(x401 : zlib_InputType) ->
+        fun ?options:(x402 : zlib_BrotliOptions option) ->
           fun () ->
             Buffer.t_of_js
-              (let x407 = Import.zlib in
-               Ojs.call (Ojs.get_prop_ascii x407 "brotliDecompressSync")
+              (let x405 = Import.zlib in
+               Ojs.call (Ojs.get_prop_ascii x405 "brotliDecompressSync")
                  "apply"
-                 [|x407;((let x405 =
+                 [|x405;((let x403 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x405 "push"
-                               [|(zlib_InputType_to_js x403)|]);
-                          (match x404 with
-                           | Some x406 ->
+                            (Ojs.call x403 "push"
+                               [|(zlib_InputType_to_js x401)|]);
+                          (match x402 with
+                           | Some x404 ->
                                ignore
-                                 (Ojs.call x405 "push"
-                                    [|(zlib_BrotliOptions_to_js x406)|])
+                                 (Ojs.call x403 "push"
+                                    [|(zlib_BrotliOptions_to_js x404)|])
                            | None -> ());
-                          x405))|])
+                          x403))|])
     let (deflate :
       buf:zlib_InputType -> callback:zlib_CompressCallback -> unit) =
-      fun ~buf:(x408 : zlib_InputType) ->
-        fun ~callback:(x409 : zlib_CompressCallback) ->
+      fun ~buf:(x406 : zlib_InputType) ->
+        fun ~callback:(x407 : zlib_CompressCallback) ->
           ignore
             (Ojs.call Import.zlib "deflate"
-               [|(zlib_InputType_to_js x408);(zlib_CompressCallback_to_js
-                                                x409)|])
+               [|(zlib_InputType_to_js x406);(zlib_CompressCallback_to_js
+                                                x407)|])
     let (deflate :
       buf:zlib_InputType ->
         options:zlib_ZlibOptions -> callback:zlib_CompressCallback -> unit)
       =
-      fun ~buf:(x410 : zlib_InputType) ->
-        fun ~options:(x411 : zlib_ZlibOptions) ->
-          fun ~callback:(x412 : zlib_CompressCallback) ->
+      fun ~buf:(x408 : zlib_InputType) ->
+        fun ~options:(x409 : zlib_ZlibOptions) ->
+          fun ~callback:(x410 : zlib_CompressCallback) ->
             ignore
               (Ojs.call Import.zlib "deflate"
-                 [|(zlib_InputType_to_js x410);(zlib_ZlibOptions_to_js x411);(
-                   zlib_CompressCallback_to_js x412)|])
+                 [|(zlib_InputType_to_js x408);(zlib_ZlibOptions_to_js x409);(
+                   zlib_CompressCallback_to_js x410)|])
     let (deflate__promisify__ :
       buffer:zlib_InputType ->
         ?options:zlib_ZlibOptions -> unit -> Buffer.t Promise.t)
       =
-      fun ~buffer:(x413 : zlib_InputType) ->
-        fun ?options:(x414 : zlib_ZlibOptions option) ->
+      fun ~buffer:(x411 : zlib_InputType) ->
+        fun ?options:(x412 : zlib_ZlibOptions option) ->
           fun () ->
             Promise.t_of_js Buffer.t_of_js
-              (let x417 = Ojs.get_prop_ascii Import.zlib "deflate" in
-               Ojs.call (Ojs.get_prop_ascii x417 "__promisify__") "apply"
-                 [|x417;((let x415 =
+              (let x415 = Ojs.get_prop_ascii Import.zlib "deflate" in
+               Ojs.call (Ojs.get_prop_ascii x415 "__promisify__") "apply"
+                 [|x415;((let x413 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x415 "push"
-                               [|(zlib_InputType_to_js x413)|]);
-                          (match x414 with
-                           | Some x416 ->
+                            (Ojs.call x413 "push"
+                               [|(zlib_InputType_to_js x411)|]);
+                          (match x412 with
+                           | Some x414 ->
                                ignore
-                                 (Ojs.call x415 "push"
-                                    [|(zlib_ZlibOptions_to_js x416)|])
+                                 (Ojs.call x413 "push"
+                                    [|(zlib_ZlibOptions_to_js x414)|])
                            | None -> ());
-                          x415))|])
+                          x413))|])
     let (deflateSync :
       buf:zlib_InputType -> ?options:zlib_ZlibOptions -> unit -> Buffer.t) =
-      fun ~buf:(x419 : zlib_InputType) ->
-        fun ?options:(x420 : zlib_ZlibOptions option) ->
+      fun ~buf:(x417 : zlib_InputType) ->
+        fun ?options:(x418 : zlib_ZlibOptions option) ->
           fun () ->
             Buffer.t_of_js
-              (let x423 = Import.zlib in
-               Ojs.call (Ojs.get_prop_ascii x423 "deflateSync") "apply"
-                 [|x423;((let x421 =
+              (let x421 = Import.zlib in
+               Ojs.call (Ojs.get_prop_ascii x421 "deflateSync") "apply"
+                 [|x421;((let x419 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x421 "push"
-                               [|(zlib_InputType_to_js x419)|]);
-                          (match x420 with
-                           | Some x422 ->
+                            (Ojs.call x419 "push"
+                               [|(zlib_InputType_to_js x417)|]);
+                          (match x418 with
+                           | Some x420 ->
                                ignore
-                                 (Ojs.call x421 "push"
-                                    [|(zlib_ZlibOptions_to_js x422)|])
+                                 (Ojs.call x419 "push"
+                                    [|(zlib_ZlibOptions_to_js x420)|])
                            | None -> ());
-                          x421))|])
+                          x419))|])
     let (deflateRaw :
       buf:zlib_InputType -> callback:zlib_CompressCallback -> unit) =
-      fun ~buf:(x424 : zlib_InputType) ->
-        fun ~callback:(x425 : zlib_CompressCallback) ->
+      fun ~buf:(x422 : zlib_InputType) ->
+        fun ~callback:(x423 : zlib_CompressCallback) ->
           ignore
             (Ojs.call Import.zlib "deflateRaw"
-               [|(zlib_InputType_to_js x424);(zlib_CompressCallback_to_js
-                                                x425)|])
+               [|(zlib_InputType_to_js x422);(zlib_CompressCallback_to_js
+                                                x423)|])
     let (deflateRaw :
       buf:zlib_InputType ->
         options:zlib_ZlibOptions -> callback:zlib_CompressCallback -> unit)
       =
-      fun ~buf:(x426 : zlib_InputType) ->
-        fun ~options:(x427 : zlib_ZlibOptions) ->
-          fun ~callback:(x428 : zlib_CompressCallback) ->
+      fun ~buf:(x424 : zlib_InputType) ->
+        fun ~options:(x425 : zlib_ZlibOptions) ->
+          fun ~callback:(x426 : zlib_CompressCallback) ->
             ignore
               (Ojs.call Import.zlib "deflateRaw"
-                 [|(zlib_InputType_to_js x426);(zlib_ZlibOptions_to_js x427);(
-                   zlib_CompressCallback_to_js x428)|])
+                 [|(zlib_InputType_to_js x424);(zlib_ZlibOptions_to_js x425);(
+                   zlib_CompressCallback_to_js x426)|])
     let (deflateRaw__promisify__ :
       buffer:zlib_InputType ->
         ?options:zlib_ZlibOptions -> unit -> Buffer.t Promise.t)
       =
-      fun ~buffer:(x429 : zlib_InputType) ->
-        fun ?options:(x430 : zlib_ZlibOptions option) ->
+      fun ~buffer:(x427 : zlib_InputType) ->
+        fun ?options:(x428 : zlib_ZlibOptions option) ->
           fun () ->
             Promise.t_of_js Buffer.t_of_js
-              (let x433 = Ojs.get_prop_ascii Import.zlib "deflateRaw" in
-               Ojs.call (Ojs.get_prop_ascii x433 "__promisify__") "apply"
-                 [|x433;((let x431 =
+              (let x431 = Ojs.get_prop_ascii Import.zlib "deflateRaw" in
+               Ojs.call (Ojs.get_prop_ascii x431 "__promisify__") "apply"
+                 [|x431;((let x429 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x431 "push"
-                               [|(zlib_InputType_to_js x429)|]);
-                          (match x430 with
-                           | Some x432 ->
+                            (Ojs.call x429 "push"
+                               [|(zlib_InputType_to_js x427)|]);
+                          (match x428 with
+                           | Some x430 ->
                                ignore
-                                 (Ojs.call x431 "push"
-                                    [|(zlib_ZlibOptions_to_js x432)|])
+                                 (Ojs.call x429 "push"
+                                    [|(zlib_ZlibOptions_to_js x430)|])
                            | None -> ());
-                          x431))|])
+                          x429))|])
     let (deflateRawSync :
       buf:zlib_InputType -> ?options:zlib_ZlibOptions -> unit -> Buffer.t) =
-      fun ~buf:(x435 : zlib_InputType) ->
-        fun ?options:(x436 : zlib_ZlibOptions option) ->
+      fun ~buf:(x433 : zlib_InputType) ->
+        fun ?options:(x434 : zlib_ZlibOptions option) ->
           fun () ->
             Buffer.t_of_js
-              (let x439 = Import.zlib in
-               Ojs.call (Ojs.get_prop_ascii x439 "deflateRawSync") "apply"
-                 [|x439;((let x437 =
+              (let x437 = Import.zlib in
+               Ojs.call (Ojs.get_prop_ascii x437 "deflateRawSync") "apply"
+                 [|x437;((let x435 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x437 "push"
-                               [|(zlib_InputType_to_js x435)|]);
-                          (match x436 with
-                           | Some x438 ->
+                            (Ojs.call x435 "push"
+                               [|(zlib_InputType_to_js x433)|]);
+                          (match x434 with
+                           | Some x436 ->
                                ignore
-                                 (Ojs.call x437 "push"
-                                    [|(zlib_ZlibOptions_to_js x438)|])
+                                 (Ojs.call x435 "push"
+                                    [|(zlib_ZlibOptions_to_js x436)|])
                            | None -> ());
-                          x437))|])
+                          x435))|])
     let (gzip : buf:zlib_InputType -> callback:zlib_CompressCallback -> unit)
       =
-      fun ~buf:(x440 : zlib_InputType) ->
-        fun ~callback:(x441 : zlib_CompressCallback) ->
+      fun ~buf:(x438 : zlib_InputType) ->
+        fun ~callback:(x439 : zlib_CompressCallback) ->
           ignore
             (Ojs.call Import.zlib "gzip"
-               [|(zlib_InputType_to_js x440);(zlib_CompressCallback_to_js
-                                                x441)|])
+               [|(zlib_InputType_to_js x438);(zlib_CompressCallback_to_js
+                                                x439)|])
     let (gzip :
       buf:zlib_InputType ->
         options:zlib_ZlibOptions -> callback:zlib_CompressCallback -> unit)
       =
-      fun ~buf:(x442 : zlib_InputType) ->
-        fun ~options:(x443 : zlib_ZlibOptions) ->
-          fun ~callback:(x444 : zlib_CompressCallback) ->
+      fun ~buf:(x440 : zlib_InputType) ->
+        fun ~options:(x441 : zlib_ZlibOptions) ->
+          fun ~callback:(x442 : zlib_CompressCallback) ->
             ignore
               (Ojs.call Import.zlib "gzip"
-                 [|(zlib_InputType_to_js x442);(zlib_ZlibOptions_to_js x443);(
-                   zlib_CompressCallback_to_js x444)|])
+                 [|(zlib_InputType_to_js x440);(zlib_ZlibOptions_to_js x441);(
+                   zlib_CompressCallback_to_js x442)|])
     let (gzip__promisify__ :
       buffer:zlib_InputType ->
         ?options:zlib_ZlibOptions -> unit -> Buffer.t Promise.t)
       =
-      fun ~buffer:(x445 : zlib_InputType) ->
-        fun ?options:(x446 : zlib_ZlibOptions option) ->
+      fun ~buffer:(x443 : zlib_InputType) ->
+        fun ?options:(x444 : zlib_ZlibOptions option) ->
           fun () ->
             Promise.t_of_js Buffer.t_of_js
-              (let x449 = Ojs.get_prop_ascii Import.zlib "gzip" in
-               Ojs.call (Ojs.get_prop_ascii x449 "__promisify__") "apply"
-                 [|x449;((let x447 =
+              (let x447 = Ojs.get_prop_ascii Import.zlib "gzip" in
+               Ojs.call (Ojs.get_prop_ascii x447 "__promisify__") "apply"
+                 [|x447;((let x445 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x447 "push"
-                               [|(zlib_InputType_to_js x445)|]);
-                          (match x446 with
-                           | Some x448 ->
+                            (Ojs.call x445 "push"
+                               [|(zlib_InputType_to_js x443)|]);
+                          (match x444 with
+                           | Some x446 ->
                                ignore
-                                 (Ojs.call x447 "push"
-                                    [|(zlib_ZlibOptions_to_js x448)|])
+                                 (Ojs.call x445 "push"
+                                    [|(zlib_ZlibOptions_to_js x446)|])
                            | None -> ());
-                          x447))|])
+                          x445))|])
     let (gzipSync :
       buf:zlib_InputType -> ?options:zlib_ZlibOptions -> unit -> Buffer.t) =
-      fun ~buf:(x451 : zlib_InputType) ->
-        fun ?options:(x452 : zlib_ZlibOptions option) ->
+      fun ~buf:(x449 : zlib_InputType) ->
+        fun ?options:(x450 : zlib_ZlibOptions option) ->
           fun () ->
             Buffer.t_of_js
-              (let x455 = Import.zlib in
-               Ojs.call (Ojs.get_prop_ascii x455 "gzipSync") "apply"
-                 [|x455;((let x453 =
+              (let x453 = Import.zlib in
+               Ojs.call (Ojs.get_prop_ascii x453 "gzipSync") "apply"
+                 [|x453;((let x451 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x453 "push"
-                               [|(zlib_InputType_to_js x451)|]);
-                          (match x452 with
-                           | Some x454 ->
+                            (Ojs.call x451 "push"
+                               [|(zlib_InputType_to_js x449)|]);
+                          (match x450 with
+                           | Some x452 ->
                                ignore
-                                 (Ojs.call x453 "push"
-                                    [|(zlib_ZlibOptions_to_js x454)|])
+                                 (Ojs.call x451 "push"
+                                    [|(zlib_ZlibOptions_to_js x452)|])
                            | None -> ());
-                          x453))|])
+                          x451))|])
     let (gunzip :
       buf:zlib_InputType -> callback:zlib_CompressCallback -> unit) =
-      fun ~buf:(x456 : zlib_InputType) ->
-        fun ~callback:(x457 : zlib_CompressCallback) ->
+      fun ~buf:(x454 : zlib_InputType) ->
+        fun ~callback:(x455 : zlib_CompressCallback) ->
           ignore
             (Ojs.call Import.zlib "gunzip"
-               [|(zlib_InputType_to_js x456);(zlib_CompressCallback_to_js
-                                                x457)|])
+               [|(zlib_InputType_to_js x454);(zlib_CompressCallback_to_js
+                                                x455)|])
     let (gunzip :
       buf:zlib_InputType ->
         options:zlib_ZlibOptions -> callback:zlib_CompressCallback -> unit)
       =
-      fun ~buf:(x458 : zlib_InputType) ->
-        fun ~options:(x459 : zlib_ZlibOptions) ->
-          fun ~callback:(x460 : zlib_CompressCallback) ->
+      fun ~buf:(x456 : zlib_InputType) ->
+        fun ~options:(x457 : zlib_ZlibOptions) ->
+          fun ~callback:(x458 : zlib_CompressCallback) ->
             ignore
               (Ojs.call Import.zlib "gunzip"
-                 [|(zlib_InputType_to_js x458);(zlib_ZlibOptions_to_js x459);(
-                   zlib_CompressCallback_to_js x460)|])
+                 [|(zlib_InputType_to_js x456);(zlib_ZlibOptions_to_js x457);(
+                   zlib_CompressCallback_to_js x458)|])
     let (gunzip__promisify__ :
       buffer:zlib_InputType ->
         ?options:zlib_ZlibOptions -> unit -> Buffer.t Promise.t)
       =
-      fun ~buffer:(x461 : zlib_InputType) ->
-        fun ?options:(x462 : zlib_ZlibOptions option) ->
+      fun ~buffer:(x459 : zlib_InputType) ->
+        fun ?options:(x460 : zlib_ZlibOptions option) ->
           fun () ->
             Promise.t_of_js Buffer.t_of_js
-              (let x465 = Ojs.get_prop_ascii Import.zlib "gunzip" in
-               Ojs.call (Ojs.get_prop_ascii x465 "__promisify__") "apply"
-                 [|x465;((let x463 =
+              (let x463 = Ojs.get_prop_ascii Import.zlib "gunzip" in
+               Ojs.call (Ojs.get_prop_ascii x463 "__promisify__") "apply"
+                 [|x463;((let x461 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x463 "push"
-                               [|(zlib_InputType_to_js x461)|]);
-                          (match x462 with
-                           | Some x464 ->
+                            (Ojs.call x461 "push"
+                               [|(zlib_InputType_to_js x459)|]);
+                          (match x460 with
+                           | Some x462 ->
                                ignore
-                                 (Ojs.call x463 "push"
-                                    [|(zlib_ZlibOptions_to_js x464)|])
+                                 (Ojs.call x461 "push"
+                                    [|(zlib_ZlibOptions_to_js x462)|])
                            | None -> ());
-                          x463))|])
+                          x461))|])
     let (gunzipSync :
       buf:zlib_InputType -> ?options:zlib_ZlibOptions -> unit -> Buffer.t) =
-      fun ~buf:(x467 : zlib_InputType) ->
-        fun ?options:(x468 : zlib_ZlibOptions option) ->
+      fun ~buf:(x465 : zlib_InputType) ->
+        fun ?options:(x466 : zlib_ZlibOptions option) ->
           fun () ->
             Buffer.t_of_js
-              (let x471 = Import.zlib in
-               Ojs.call (Ojs.get_prop_ascii x471 "gunzipSync") "apply"
-                 [|x471;((let x469 =
+              (let x469 = Import.zlib in
+               Ojs.call (Ojs.get_prop_ascii x469 "gunzipSync") "apply"
+                 [|x469;((let x467 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x469 "push"
-                               [|(zlib_InputType_to_js x467)|]);
-                          (match x468 with
-                           | Some x470 ->
+                            (Ojs.call x467 "push"
+                               [|(zlib_InputType_to_js x465)|]);
+                          (match x466 with
+                           | Some x468 ->
                                ignore
-                                 (Ojs.call x469 "push"
-                                    [|(zlib_ZlibOptions_to_js x470)|])
+                                 (Ojs.call x467 "push"
+                                    [|(zlib_ZlibOptions_to_js x468)|])
                            | None -> ());
-                          x469))|])
+                          x467))|])
     let (inflate :
       buf:zlib_InputType -> callback:zlib_CompressCallback -> unit) =
-      fun ~buf:(x472 : zlib_InputType) ->
-        fun ~callback:(x473 : zlib_CompressCallback) ->
+      fun ~buf:(x470 : zlib_InputType) ->
+        fun ~callback:(x471 : zlib_CompressCallback) ->
           ignore
             (Ojs.call Import.zlib "inflate"
-               [|(zlib_InputType_to_js x472);(zlib_CompressCallback_to_js
-                                                x473)|])
+               [|(zlib_InputType_to_js x470);(zlib_CompressCallback_to_js
+                                                x471)|])
     let (inflate :
       buf:zlib_InputType ->
         options:zlib_ZlibOptions -> callback:zlib_CompressCallback -> unit)
       =
-      fun ~buf:(x474 : zlib_InputType) ->
-        fun ~options:(x475 : zlib_ZlibOptions) ->
-          fun ~callback:(x476 : zlib_CompressCallback) ->
+      fun ~buf:(x472 : zlib_InputType) ->
+        fun ~options:(x473 : zlib_ZlibOptions) ->
+          fun ~callback:(x474 : zlib_CompressCallback) ->
             ignore
               (Ojs.call Import.zlib "inflate"
-                 [|(zlib_InputType_to_js x474);(zlib_ZlibOptions_to_js x475);(
-                   zlib_CompressCallback_to_js x476)|])
+                 [|(zlib_InputType_to_js x472);(zlib_ZlibOptions_to_js x473);(
+                   zlib_CompressCallback_to_js x474)|])
     let (inflate__promisify__ :
       buffer:zlib_InputType ->
         ?options:zlib_ZlibOptions -> unit -> Buffer.t Promise.t)
       =
-      fun ~buffer:(x477 : zlib_InputType) ->
-        fun ?options:(x478 : zlib_ZlibOptions option) ->
+      fun ~buffer:(x475 : zlib_InputType) ->
+        fun ?options:(x476 : zlib_ZlibOptions option) ->
           fun () ->
             Promise.t_of_js Buffer.t_of_js
-              (let x481 = Ojs.get_prop_ascii Import.zlib "inflate" in
-               Ojs.call (Ojs.get_prop_ascii x481 "__promisify__") "apply"
-                 [|x481;((let x479 =
+              (let x479 = Ojs.get_prop_ascii Import.zlib "inflate" in
+               Ojs.call (Ojs.get_prop_ascii x479 "__promisify__") "apply"
+                 [|x479;((let x477 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x479 "push"
-                               [|(zlib_InputType_to_js x477)|]);
-                          (match x478 with
-                           | Some x480 ->
+                            (Ojs.call x477 "push"
+                               [|(zlib_InputType_to_js x475)|]);
+                          (match x476 with
+                           | Some x478 ->
                                ignore
-                                 (Ojs.call x479 "push"
-                                    [|(zlib_ZlibOptions_to_js x480)|])
+                                 (Ojs.call x477 "push"
+                                    [|(zlib_ZlibOptions_to_js x478)|])
                            | None -> ());
-                          x479))|])
+                          x477))|])
     let (inflateSync :
       buf:zlib_InputType -> ?options:zlib_ZlibOptions -> unit -> Buffer.t) =
-      fun ~buf:(x483 : zlib_InputType) ->
-        fun ?options:(x484 : zlib_ZlibOptions option) ->
+      fun ~buf:(x481 : zlib_InputType) ->
+        fun ?options:(x482 : zlib_ZlibOptions option) ->
           fun () ->
             Buffer.t_of_js
-              (let x487 = Import.zlib in
-               Ojs.call (Ojs.get_prop_ascii x487 "inflateSync") "apply"
-                 [|x487;((let x485 =
+              (let x485 = Import.zlib in
+               Ojs.call (Ojs.get_prop_ascii x485 "inflateSync") "apply"
+                 [|x485;((let x483 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x485 "push"
-                               [|(zlib_InputType_to_js x483)|]);
-                          (match x484 with
-                           | Some x486 ->
+                            (Ojs.call x483 "push"
+                               [|(zlib_InputType_to_js x481)|]);
+                          (match x482 with
+                           | Some x484 ->
                                ignore
-                                 (Ojs.call x485 "push"
-                                    [|(zlib_ZlibOptions_to_js x486)|])
+                                 (Ojs.call x483 "push"
+                                    [|(zlib_ZlibOptions_to_js x484)|])
                            | None -> ());
-                          x485))|])
+                          x483))|])
     let (inflateRaw :
       buf:zlib_InputType -> callback:zlib_CompressCallback -> unit) =
-      fun ~buf:(x488 : zlib_InputType) ->
-        fun ~callback:(x489 : zlib_CompressCallback) ->
+      fun ~buf:(x486 : zlib_InputType) ->
+        fun ~callback:(x487 : zlib_CompressCallback) ->
           ignore
             (Ojs.call Import.zlib "inflateRaw"
-               [|(zlib_InputType_to_js x488);(zlib_CompressCallback_to_js
-                                                x489)|])
+               [|(zlib_InputType_to_js x486);(zlib_CompressCallback_to_js
+                                                x487)|])
     let (inflateRaw :
       buf:zlib_InputType ->
         options:zlib_ZlibOptions -> callback:zlib_CompressCallback -> unit)
       =
-      fun ~buf:(x490 : zlib_InputType) ->
-        fun ~options:(x491 : zlib_ZlibOptions) ->
-          fun ~callback:(x492 : zlib_CompressCallback) ->
+      fun ~buf:(x488 : zlib_InputType) ->
+        fun ~options:(x489 : zlib_ZlibOptions) ->
+          fun ~callback:(x490 : zlib_CompressCallback) ->
             ignore
               (Ojs.call Import.zlib "inflateRaw"
-                 [|(zlib_InputType_to_js x490);(zlib_ZlibOptions_to_js x491);(
-                   zlib_CompressCallback_to_js x492)|])
+                 [|(zlib_InputType_to_js x488);(zlib_ZlibOptions_to_js x489);(
+                   zlib_CompressCallback_to_js x490)|])
     let (inflateRaw__promisify__ :
       buffer:zlib_InputType ->
         ?options:zlib_ZlibOptions -> unit -> Buffer.t Promise.t)
       =
-      fun ~buffer:(x493 : zlib_InputType) ->
-        fun ?options:(x494 : zlib_ZlibOptions option) ->
+      fun ~buffer:(x491 : zlib_InputType) ->
+        fun ?options:(x492 : zlib_ZlibOptions option) ->
           fun () ->
             Promise.t_of_js Buffer.t_of_js
-              (let x497 = Ojs.get_prop_ascii Import.zlib "inflateRaw" in
-               Ojs.call (Ojs.get_prop_ascii x497 "__promisify__") "apply"
-                 [|x497;((let x495 =
+              (let x495 = Ojs.get_prop_ascii Import.zlib "inflateRaw" in
+               Ojs.call (Ojs.get_prop_ascii x495 "__promisify__") "apply"
+                 [|x495;((let x493 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x495 "push"
-                               [|(zlib_InputType_to_js x493)|]);
-                          (match x494 with
-                           | Some x496 ->
+                            (Ojs.call x493 "push"
+                               [|(zlib_InputType_to_js x491)|]);
+                          (match x492 with
+                           | Some x494 ->
                                ignore
-                                 (Ojs.call x495 "push"
-                                    [|(zlib_ZlibOptions_to_js x496)|])
+                                 (Ojs.call x493 "push"
+                                    [|(zlib_ZlibOptions_to_js x494)|])
                            | None -> ());
-                          x495))|])
+                          x493))|])
     let (inflateRawSync :
       buf:zlib_InputType -> ?options:zlib_ZlibOptions -> unit -> Buffer.t) =
-      fun ~buf:(x499 : zlib_InputType) ->
-        fun ?options:(x500 : zlib_ZlibOptions option) ->
+      fun ~buf:(x497 : zlib_InputType) ->
+        fun ?options:(x498 : zlib_ZlibOptions option) ->
           fun () ->
             Buffer.t_of_js
-              (let x503 = Import.zlib in
-               Ojs.call (Ojs.get_prop_ascii x503 "inflateRawSync") "apply"
-                 [|x503;((let x501 =
+              (let x501 = Import.zlib in
+               Ojs.call (Ojs.get_prop_ascii x501 "inflateRawSync") "apply"
+                 [|x501;((let x499 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x501 "push"
-                               [|(zlib_InputType_to_js x499)|]);
-                          (match x500 with
-                           | Some x502 ->
+                            (Ojs.call x499 "push"
+                               [|(zlib_InputType_to_js x497)|]);
+                          (match x498 with
+                           | Some x500 ->
                                ignore
-                                 (Ojs.call x501 "push"
-                                    [|(zlib_ZlibOptions_to_js x502)|])
+                                 (Ojs.call x499 "push"
+                                    [|(zlib_ZlibOptions_to_js x500)|])
                            | None -> ());
-                          x501))|])
+                          x499))|])
     let (unzip :
       buf:zlib_InputType -> callback:zlib_CompressCallback -> unit) =
-      fun ~buf:(x504 : zlib_InputType) ->
-        fun ~callback:(x505 : zlib_CompressCallback) ->
+      fun ~buf:(x502 : zlib_InputType) ->
+        fun ~callback:(x503 : zlib_CompressCallback) ->
           ignore
             (Ojs.call Import.zlib "unzip"
-               [|(zlib_InputType_to_js x504);(zlib_CompressCallback_to_js
-                                                x505)|])
+               [|(zlib_InputType_to_js x502);(zlib_CompressCallback_to_js
+                                                x503)|])
     let (unzip :
       buf:zlib_InputType ->
         options:zlib_ZlibOptions -> callback:zlib_CompressCallback -> unit)
       =
-      fun ~buf:(x506 : zlib_InputType) ->
-        fun ~options:(x507 : zlib_ZlibOptions) ->
-          fun ~callback:(x508 : zlib_CompressCallback) ->
+      fun ~buf:(x504 : zlib_InputType) ->
+        fun ~options:(x505 : zlib_ZlibOptions) ->
+          fun ~callback:(x506 : zlib_CompressCallback) ->
             ignore
               (Ojs.call Import.zlib "unzip"
-                 [|(zlib_InputType_to_js x506);(zlib_ZlibOptions_to_js x507);(
-                   zlib_CompressCallback_to_js x508)|])
+                 [|(zlib_InputType_to_js x504);(zlib_ZlibOptions_to_js x505);(
+                   zlib_CompressCallback_to_js x506)|])
     let (unzip__promisify__ :
       buffer:zlib_InputType ->
         ?options:zlib_ZlibOptions -> unit -> Buffer.t Promise.t)
       =
-      fun ~buffer:(x509 : zlib_InputType) ->
-        fun ?options:(x510 : zlib_ZlibOptions option) ->
+      fun ~buffer:(x507 : zlib_InputType) ->
+        fun ?options:(x508 : zlib_ZlibOptions option) ->
           fun () ->
             Promise.t_of_js Buffer.t_of_js
-              (let x513 = Ojs.get_prop_ascii Import.zlib "unzip" in
-               Ojs.call (Ojs.get_prop_ascii x513 "__promisify__") "apply"
-                 [|x513;((let x511 =
+              (let x511 = Ojs.get_prop_ascii Import.zlib "unzip" in
+               Ojs.call (Ojs.get_prop_ascii x511 "__promisify__") "apply"
+                 [|x511;((let x509 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x511 "push"
-                               [|(zlib_InputType_to_js x509)|]);
-                          (match x510 with
-                           | Some x512 ->
+                            (Ojs.call x509 "push"
+                               [|(zlib_InputType_to_js x507)|]);
+                          (match x508 with
+                           | Some x510 ->
                                ignore
-                                 (Ojs.call x511 "push"
-                                    [|(zlib_ZlibOptions_to_js x512)|])
+                                 (Ojs.call x509 "push"
+                                    [|(zlib_ZlibOptions_to_js x510)|])
                            | None -> ());
-                          x511))|])
+                          x509))|])
     let (unzipSync :
       buf:zlib_InputType -> ?options:zlib_ZlibOptions -> unit -> Buffer.t) =
-      fun ~buf:(x515 : zlib_InputType) ->
-        fun ?options:(x516 : zlib_ZlibOptions option) ->
+      fun ~buf:(x513 : zlib_InputType) ->
+        fun ?options:(x514 : zlib_ZlibOptions option) ->
           fun () ->
             Buffer.t_of_js
-              (let x519 = Import.zlib in
-               Ojs.call (Ojs.get_prop_ascii x519 "unzipSync") "apply"
-                 [|x519;((let x517 =
+              (let x517 = Import.zlib in
+               Ojs.call (Ojs.get_prop_ascii x517 "unzipSync") "apply"
+                 [|x517;((let x515 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x517 "push"
-                               [|(zlib_InputType_to_js x515)|]);
-                          (match x516 with
-                           | Some x518 ->
+                            (Ojs.call x515 "push"
+                               [|(zlib_InputType_to_js x513)|]);
+                          (match x514 with
+                           | Some x516 ->
                                ignore
-                                 (Ojs.call x517 "push"
-                                    [|(zlib_ZlibOptions_to_js x518)|])
+                                 (Ojs.call x515 "push"
+                                    [|(zlib_ZlibOptions_to_js x516)|])
                            | None -> ());
-                          x517))|])
+                          x515))|])
     module Constants =
       struct
         let (bROTLI_DECODE : int) =

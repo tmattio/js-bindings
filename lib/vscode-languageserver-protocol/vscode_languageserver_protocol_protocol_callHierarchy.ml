@@ -4,39 +4,18 @@
 open Es5
 module Internal =
   struct
-    module AnonymousInterfaces = struct  end
     module Types =
       struct
-        open AnonymousInterfaces
-        type _CallHierarchyClientCapabilities =
-          [ `CallHierarchyClientCapabilities ] intf
-        and _CallHierarchyIncomingCallsParams =
-          [ `CallHierarchyIncomingCallsParams ] intf
-        and _CallHierarchyIncomingCallsRequest_HandlerSignature =
+        type _CallHierarchyIncomingCallsRequest_HandlerSignature =
           (_CallHierarchyIncomingCallsParams,
             CallHierarchyIncomingCall.t list or_null, unit) RequestHandler.t
-        and _CallHierarchyOptions = [ `CallHierarchyOptions ] intf
-        and _CallHierarchyOutgoingCallsParams =
-          [ `CallHierarchyOutgoingCallsParams ] intf
         and _CallHierarchyOutgoingCallsRequest_HandlerSignature =
           (_CallHierarchyOutgoingCallsParams,
             CallHierarchyOutgoingCall.t list or_null, unit) RequestHandler.t
-        and _CallHierarchyPrepareParams =
-          [ `CallHierarchyPrepareParams ] intf
         and _CallHierarchyPrepareRequest_HandlerSignature =
           (_CallHierarchyPrepareParams, CallHierarchyItem.t list or_null,
             unit) RequestHandler.t
-        and _CallHierarchyRegistrationOptions =
-          [ `CallHierarchyRegistrationOptions  | `CallHierarchyOptions ] intf
-        let rec _CallHierarchyClientCapabilities_of_js :
-          Ojs.t -> _CallHierarchyClientCapabilities = Obj.magic
-        and _CallHierarchyClientCapabilities_to_js :
-          _CallHierarchyClientCapabilities -> Ojs.t = Obj.magic
-        and _CallHierarchyIncomingCallsParams_of_js :
-          Ojs.t -> _CallHierarchyIncomingCallsParams = Obj.magic
-        and _CallHierarchyIncomingCallsParams_to_js :
-          _CallHierarchyIncomingCallsParams -> Ojs.t = Obj.magic
-        and _CallHierarchyIncomingCallsRequest_HandlerSignature_of_js :
+        let rec _CallHierarchyIncomingCallsRequest_HandlerSignature_of_js :
           Ojs.t -> _CallHierarchyIncomingCallsRequest_HandlerSignature =
           fun (x7 : Ojs.t) ->
             RequestHandler.t_of_js _CallHierarchyIncomingCallsParams_of_js
@@ -59,14 +38,6 @@ module Internal =
                    (fun (x4 : CallHierarchyIncomingCall.t list) ->
                       Ojs.list_to_js CallHierarchyIncomingCall.t_to_js x4) x3)
               Ojs.unit_to_js x1
-        and _CallHierarchyOptions_of_js : Ojs.t -> _CallHierarchyOptions =
-          Obj.magic
-        and _CallHierarchyOptions_to_js : _CallHierarchyOptions -> Ojs.t =
-          Obj.magic
-        and _CallHierarchyOutgoingCallsParams_of_js :
-          Ojs.t -> _CallHierarchyOutgoingCallsParams = Obj.magic
-        and _CallHierarchyOutgoingCallsParams_to_js :
-          _CallHierarchyOutgoingCallsParams -> Ojs.t = Obj.magic
         and _CallHierarchyOutgoingCallsRequest_HandlerSignature_of_js :
           Ojs.t -> _CallHierarchyOutgoingCallsRequest_HandlerSignature =
           fun (x19 : Ojs.t) ->
@@ -90,10 +61,6 @@ module Internal =
                    (fun (x16 : CallHierarchyOutgoingCall.t list) ->
                       Ojs.list_to_js CallHierarchyOutgoingCall.t_to_js x16)
                    x15) Ojs.unit_to_js x13
-        and _CallHierarchyPrepareParams_of_js :
-          Ojs.t -> _CallHierarchyPrepareParams = Obj.magic
-        and _CallHierarchyPrepareParams_to_js :
-          _CallHierarchyPrepareParams -> Ojs.t = Obj.magic
         and _CallHierarchyPrepareRequest_HandlerSignature_of_js :
           Ojs.t -> _CallHierarchyPrepareRequest_HandlerSignature =
           fun (x31 : Ojs.t) ->
@@ -116,15 +83,8 @@ module Internal =
                    (fun (x28 : CallHierarchyItem.t list) ->
                       Ojs.list_to_js CallHierarchyItem.t_to_js x28) x27)
               Ojs.unit_to_js x25
-        and _CallHierarchyRegistrationOptions_of_js :
-          Ojs.t -> _CallHierarchyRegistrationOptions = Obj.magic
-        and _CallHierarchyRegistrationOptions_to_js :
-          _CallHierarchyRegistrationOptions -> Ojs.t = Obj.magic
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module CallHierarchyClientCapabilities =
   struct
     type t = _CallHierarchyClientCapabilities

@@ -4,58 +4,6 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _CallHierarchyClientCapabilities =
-      [ `CallHierarchyClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CallHierarchyIncomingCallsParams =
-      [ `CallHierarchyIncomingCallsParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CallHierarchyIncomingCallsRequest_HandlerSignature =
-      ( _CallHierarchyIncomingCallsParams
-      , CallHierarchyIncomingCall.t list or_null
-      , unit )
-      RequestHandler.t
-
-    and _CallHierarchyOptions = [ `CallHierarchyOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CallHierarchyOutgoingCallsParams =
-      [ `CallHierarchyOutgoingCallsParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CallHierarchyOutgoingCallsRequest_HandlerSignature =
-      ( _CallHierarchyOutgoingCallsParams
-      , CallHierarchyOutgoingCall.t list or_null
-      , unit )
-      RequestHandler.t
-
-    and _CallHierarchyPrepareParams = [ `CallHierarchyPrepareParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _CallHierarchyPrepareRequest_HandlerSignature =
-      ( _CallHierarchyPrepareParams
-      , CallHierarchyItem.t list or_null
-      , unit )
-      RequestHandler.t
-
-    and _CallHierarchyRegistrationOptions =
-      [ `CallHierarchyRegistrationOptions | `CallHierarchyOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 (* import { RequestHandler } from 'vscode-jsonrpc'; *)
 (* import { CallHierarchyItem, CallHierarchyIncomingCall,
    CallHierarchyOutgoingCall } from 'vscode-languageserver-types'; *)
@@ -134,7 +82,11 @@ module CallHierarchyPrepareRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _CallHierarchyPrepareRequest_HandlerSignature
+    type t =
+      ( _CallHierarchyPrepareParams
+      , CallHierarchyItem.t list or_null
+      , unit )
+      RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -176,7 +128,11 @@ module CallHierarchyIncomingCallsRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _CallHierarchyIncomingCallsRequest_HandlerSignature
+    type t =
+      ( _CallHierarchyIncomingCallsParams
+      , CallHierarchyIncomingCall.t list or_null
+      , unit )
+      RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -218,7 +174,11 @@ module CallHierarchyOutgoingCallsRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _CallHierarchyOutgoingCallsRequest_HandlerSignature
+    type t =
+      ( _CallHierarchyOutgoingCallsParams
+      , CallHierarchyOutgoingCall.t list or_null
+      , unit )
+      RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 

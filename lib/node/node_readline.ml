@@ -5,28 +5,12 @@ open Es2020
 open Node_globals
 module Internal =
   struct
-    module AnonymousInterfaces = struct  end
     module Types =
       struct
-        open AnonymousInterfaces
-        type readline_AsyncCompleter = [ `Readline_AsyncCompleter ] intf
-        and readline_Completer = [ `Readline_Completer ] intf
-        and readline_CompleterResult = (string list * string)
-        and readline_CursorPos = [ `Readline_CursorPos ] intf
+        type readline_CompleterResult = (string list * string)
         and readline_Direction = [ `L_n_minus1  | `L_n_0  | `L_n_1 ]
-        and readline_Interface = [ `Readline_Interface ] intf
-        and readline_Key = [ `Readline_Key ] intf
         and readline_ReadLine = readline_Interface
-        and readline_ReadLineOptions = [ `Readline_ReadLineOptions ] intf
-        let rec readline_AsyncCompleter_of_js :
-          Ojs.t -> readline_AsyncCompleter = Obj.magic
-        and readline_AsyncCompleter_to_js : readline_AsyncCompleter -> Ojs.t
-          = Obj.magic
-        and readline_Completer_of_js : Ojs.t -> readline_Completer =
-          Obj.magic
-        and readline_Completer_to_js : readline_Completer -> Ojs.t =
-          Obj.magic
-        and readline_CompleterResult_of_js :
+        let rec readline_CompleterResult_of_js :
           Ojs.t -> readline_CompleterResult =
           fun (x6 : Ojs.t) ->
             let x7 = x6 in
@@ -40,10 +24,6 @@ module Internal =
             Ojs.array_set x4 0 (Ojs.list_to_js Ojs.string_to_js x2);
             Ojs.array_set x4 1 (Ojs.string_to_js x3);
             x4
-        and readline_CursorPos_of_js : Ojs.t -> readline_CursorPos =
-          Obj.magic
-        and readline_CursorPos_to_js : readline_CursorPos -> Ojs.t =
-          Obj.magic
         and readline_Direction_of_js : Ojs.t -> readline_Direction =
           fun (x10 : Ojs.t) ->
             let x11 = x10 in
@@ -58,25 +38,12 @@ module Internal =
             | `L_n_minus1 -> Ojs.int_to_js (-1)
             | `L_n_0 -> Ojs.int_to_js 0
             | `L_n_1 -> Ojs.int_to_js 1
-        and readline_Interface_of_js : Ojs.t -> readline_Interface =
-          Obj.magic
-        and readline_Interface_to_js : readline_Interface -> Ojs.t =
-          Obj.magic
-        and readline_Key_of_js : Ojs.t -> readline_Key = Obj.magic
-        and readline_Key_to_js : readline_Key -> Ojs.t = Obj.magic
         and readline_ReadLine_of_js : Ojs.t -> readline_ReadLine =
           fun (x13 : Ojs.t) -> readline_Interface_of_js x13
         and readline_ReadLine_to_js : readline_ReadLine -> Ojs.t =
           fun (x12 : readline_Interface) -> readline_Interface_to_js x12
-        and readline_ReadLineOptions_of_js :
-          Ojs.t -> readline_ReadLineOptions = Obj.magic
-        and readline_ReadLineOptions_to_js :
-          readline_ReadLineOptions -> Ojs.t = Obj.magic
       end
   end
-open Internal
-open AnonymousInterfaces
-open Types
 module Readline =
   struct
     module Key =

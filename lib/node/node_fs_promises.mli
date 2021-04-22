@@ -6,65 +6,8 @@ open Es2020
 open Node_globals
 open Node_fs.Fs
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_3 = [ `anonymous_interface_3 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_4 = [ `anonymous_interface_4 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_5 = [ `anonymous_interface_5 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_6 = [ `anonymous_interface_6 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_7 = [ `anonymous_interface_7 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_8 = [ `anonymous_interface_8 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_9 = [ `anonymous_interface_9 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_10 = [ `anonymous_interface_10 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_11 = [ `anonymous_interface_11 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_12 = [ `anonymous_interface_12 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_13 = [ `anonymous_interface_13 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type node_fs_promises_FileHandle = [ `Node_fs_promises_FileHandle ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -77,7 +20,7 @@ module AnonymousInterface0 : sig
 end
 
 module AnonymousInterface1 : sig
-  type t = anonymous_interface_1
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -89,7 +32,7 @@ module AnonymousInterface1 : sig
 end
 
 module AnonymousInterface2 : sig
-  type t = anonymous_interface_2
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -105,7 +48,7 @@ module AnonymousInterface2 : sig
 end
 
 module AnonymousInterface3 : sig
-  type t = anonymous_interface_3
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -121,7 +64,7 @@ module AnonymousInterface3 : sig
 end
 
 module AnonymousInterface4 : sig
-  type t = anonymous_interface_4
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -137,7 +80,7 @@ module AnonymousInterface4 : sig
 end
 
 module AnonymousInterface5 : sig
-  type t = anonymous_interface_5
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -153,7 +96,7 @@ module AnonymousInterface5 : sig
 end
 
 module AnonymousInterface6 : sig
-  type t = anonymous_interface_6
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -169,7 +112,7 @@ module AnonymousInterface6 : sig
 end
 
 module AnonymousInterface7 : sig
-  type t = anonymous_interface_7
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -188,7 +131,7 @@ module AnonymousInterface7 : sig
 end
 
 module AnonymousInterface8 : sig
-  type t = anonymous_interface_8
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -200,7 +143,7 @@ module AnonymousInterface8 : sig
 end
 
 module AnonymousInterface9 : sig
-  type t = anonymous_interface_9
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -216,7 +159,7 @@ module AnonymousInterface9 : sig
 end
 
 module AnonymousInterface10 : sig
-  type t = anonymous_interface_10
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -230,7 +173,7 @@ module AnonymousInterface10 : sig
 end
 
 module AnonymousInterface11 : sig
-  type t = anonymous_interface_11
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -244,7 +187,7 @@ module AnonymousInterface11 : sig
 end
 
 module AnonymousInterface12 : sig
-  type t = anonymous_interface_12
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -258,7 +201,7 @@ module AnonymousInterface12 : sig
 end
 
 module AnonymousInterface13 : sig
-  type t = anonymous_interface_13
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -304,19 +247,19 @@ module Fs_promises : sig
       -> ?length:int or_null
       -> ?position:int or_null
       -> unit
-      -> anonymous_interface_2 Promise.t
+      -> AnonymousInterface2.t Promise.t
       [@@js.call "read"]
 
     val readFile
       :  t
-      -> ?options:anonymous_interface_6 or_null
+      -> ?options:AnonymousInterface6.t or_null
       -> unit
       -> Buffer.t Promise.t
       [@@js.call "readFile"]
 
     val readFile'
       :  t
-      -> options:(BufferEncoding.t, anonymous_interface_5) union2
+      -> options:(BufferEncoding.t, AnonymousInterface5.t) union2
       -> string Promise.t
       [@@js.call "readFile"]
 
@@ -329,14 +272,14 @@ module Fs_promises : sig
 
     val stat
       :  t
-      -> ?opts:(StatOptions.t, anonymous_interface_0) intersection2
+      -> ?opts:(StatOptions.t, AnonymousInterface0.t) intersection2
       -> unit
       -> Stats.t Promise.t
       [@@js.call "stat"]
 
     val stat'
       :  t
-      -> opts:(StatOptions.t, anonymous_interface_1) intersection2
+      -> opts:(StatOptions.t, AnonymousInterface1.t) intersection2
       -> BigIntStats.t Promise.t
       [@@js.call "stat"]
 
@@ -364,7 +307,7 @@ module Fs_promises : sig
       -> ?length:int or_null
       -> ?position:int or_null
       -> unit
-      -> anonymous_interface_3 Promise.t
+      -> AnonymousInterface3.t Promise.t
       [@@js.call "write"]
 
     val write'
@@ -373,7 +316,7 @@ module Fs_promises : sig
       -> ?position:int or_null
       -> ?encoding:BufferEncoding.t or_null
       -> unit
-      -> anonymous_interface_4 Promise.t
+      -> AnonymousInterface4.t Promise.t
       [@@js.call "write"]
 
     val writeFile
@@ -430,7 +373,7 @@ module Fs_promises : sig
     -> ?length:int or_null
     -> ?position:int or_null
     -> unit
-    -> anonymous_interface_2 Promise.t
+    -> AnonymousInterface2.t Promise.t
     [@@js.global "read"]
 
   val write
@@ -440,7 +383,7 @@ module Fs_promises : sig
     -> ?length:int or_null
     -> ?position:int or_null
     -> unit
-    -> anonymous_interface_3 Promise.t
+    -> AnonymousInterface3.t Promise.t
     [@@js.global "write"]
 
   val write
@@ -449,7 +392,7 @@ module Fs_promises : sig
     -> ?position:int or_null
     -> ?encoding:BufferEncoding.t or_null
     -> unit
-    -> anonymous_interface_4 Promise.t
+    -> AnonymousInterface4.t Promise.t
     [@@js.global "write"]
 
   val rename : oldPath:string -> newPath:string -> unit Promise.t
@@ -479,7 +422,7 @@ module Fs_promises : sig
 
   val mkdir
     :  path:string
-    -> options:(MakeDirectoryOptions.t, anonymous_interface_11) intersection2
+    -> options:(MakeDirectoryOptions.t, AnonymousInterface11.t) intersection2
     -> string or_undefined Promise.t
     [@@js.global "mkdir"]
 
@@ -502,7 +445,7 @@ module Fs_promises : sig
 
   val readdir
     :  path:string
-    -> options:(anonymous_interface_7, ([ `buffer ][@js.enum])) or_enum
+    -> options:(AnonymousInterface7.t, ([ `buffer ][@js.enum])) or_enum
     -> Buffer.t list Promise.t
     [@@js.global "readdir"]
 
@@ -515,7 +458,7 @@ module Fs_promises : sig
 
   val readdir
     :  path:string
-    -> options:(BaseEncodingOptions.t, anonymous_interface_13) intersection2
+    -> options:(BaseEncodingOptions.t, AnonymousInterface13.t) intersection2
     -> Dirent.t list Promise.t
     [@@js.global "readdir"]
 
@@ -549,14 +492,14 @@ module Fs_promises : sig
 
   val lstat
     :  path:string
-    -> ?opts:(StatOptions.t, anonymous_interface_0) intersection2
+    -> ?opts:(StatOptions.t, AnonymousInterface0.t) intersection2
     -> unit
     -> Stats.t Promise.t
     [@@js.global "lstat"]
 
   val lstat
     :  path:string
-    -> opts:(StatOptions.t, anonymous_interface_1) intersection2
+    -> opts:(StatOptions.t, AnonymousInterface1.t) intersection2
     -> BigIntStats.t Promise.t
     [@@js.global "lstat"]
 
@@ -569,14 +512,14 @@ module Fs_promises : sig
 
   val stat
     :  path:string
-    -> ?opts:(StatOptions.t, anonymous_interface_0) intersection2
+    -> ?opts:(StatOptions.t, AnonymousInterface0.t) intersection2
     -> unit
     -> Stats.t Promise.t
     [@@js.global "stat"]
 
   val stat
     :  path:string
-    -> opts:(StatOptions.t, anonymous_interface_1) intersection2
+    -> opts:(StatOptions.t, AnonymousInterface1.t) intersection2
     -> BigIntStats.t Promise.t
     [@@js.global "stat"]
 
@@ -695,14 +638,14 @@ module Fs_promises : sig
 
   val readFile
     :  path:(node_fs_promises_FileHandle, string) union2
-    -> ?options:anonymous_interface_6 or_null
+    -> ?options:AnonymousInterface6.t or_null
     -> unit
     -> Buffer.t Promise.t
     [@@js.global "readFile"]
 
   val readFile
     :  path:(node_fs_promises_FileHandle, string) union2
-    -> options:(BufferEncoding.t, anonymous_interface_5) union2
+    -> options:(BufferEncoding.t, AnonymousInterface5.t) union2
     -> string Promise.t
     [@@js.global "readFile"]
 

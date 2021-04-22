@@ -2,186 +2,20 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces =
-      struct
-        type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-        let rec anonymous_interface_0_of_js : Ojs.t -> anonymous_interface_0
-          = Obj.magic
-        and anonymous_interface_0_to_js : anonymous_interface_0 -> Ojs.t =
-          Obj.magic
-        type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-        let rec anonymous_interface_1_of_js : Ojs.t -> anonymous_interface_1
-          = Obj.magic
-        and anonymous_interface_1_to_js : anonymous_interface_1 -> Ojs.t =
-          Obj.magic
-      end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _DidCreateFilesFeature =
-          [ `DidCreateFilesFeature 
-          | `FileOperationFeature of (Code.Uri.t * Code.FileCreateEvent.t) 
-          | `NotificationFileOperationFeature of
-              (Code.Uri.t * Code.FileCreateEvent.t *
-                Proto.CreateFilesParams.t)
-              ]
-            intf
-        and _DidDeleteFilesFeature =
-          [ `DidDeleteFilesFeature 
-          | `FileOperationFeature of (Code.Uri.t * Code.FileDeleteEvent.t) 
-          | `NotificationFileOperationFeature of
-              (Code.Uri.t * Code.FileDeleteEvent.t *
-                Proto.DeleteFilesParams.t)
-              ]
-            intf
-        and _DidRenameFilesFeature =
-          [ `DidRenameFilesFeature 
-          | `FileOperationFeature of
-              (anonymous_interface_1 * Code.FileRenameEvent.t) 
-          | `NotificationFileOperationFeature of
-              (anonymous_interface_1 * Code.FileRenameEvent.t *
-                Proto.RenameFilesParams.t)
-              ]
-            intf
-        and 'I _Event = [ `Event of 'I ] intf
-        and ('I, 'E) _FileOperationFeature =
-          [ `FileOperationFeature of ('I * 'E) ] intf
-        and _FileOperationsMiddleware = [ `FileOperationsMiddleware ] intf
-        and ('I, 'E, 'P) _NotificationFileOperationFeature =
-          [ `NotificationFileOperationFeature of ('I * 'E * 'P) 
-          | `FileOperationFeature of ('I * 'E) ] intf
-        and 'I _RequestEvent = [ `RequestEvent of 'I ] intf
-        and ('I, 'E, 'P) _RequestFileOperationFeature =
-          [ `RequestFileOperationFeature of ('I * 'E * 'P) 
-          | `FileOperationFeature of ('I * 'E) ] intf
-        and _WillCreateFilesFeature =
-          [ `WillCreateFilesFeature 
-          | `FileOperationFeature of
-              (Code.Uri.t * Code.FileWillCreateEvent.t) 
-          | `RequestFileOperationFeature of
-              (Code.Uri.t * Code.FileWillCreateEvent.t *
-                Proto.CreateFilesParams.t)
-              ]
-            intf
-        and _WillDeleteFilesFeature =
-          [ `WillDeleteFilesFeature 
-          | `FileOperationFeature of
-              (Code.Uri.t * Code.FileWillDeleteEvent.t) 
-          | `RequestFileOperationFeature of
-              (Code.Uri.t * Code.FileWillDeleteEvent.t *
-                Proto.DeleteFilesParams.t)
-              ]
-            intf
-        and _WillRenameFilesFeature =
-          [ `WillRenameFilesFeature 
-          | `FileOperationFeature of
-              (anonymous_interface_1 * Code.FileWillRenameEvent.t) 
-          | `RequestFileOperationFeature of
-              (anonymous_interface_1 * Code.FileWillRenameEvent.t *
-                Proto.RenameFilesParams.t)
-              ]
-            intf
-        let rec _DidCreateFilesFeature_of_js :
-          Ojs.t -> _DidCreateFilesFeature = Obj.magic
-        and _DidCreateFilesFeature_to_js : _DidCreateFilesFeature -> Ojs.t =
-          Obj.magic
-        and _DidDeleteFilesFeature_of_js : Ojs.t -> _DidDeleteFilesFeature =
-          Obj.magic
-        and _DidDeleteFilesFeature_to_js : _DidDeleteFilesFeature -> Ojs.t =
-          Obj.magic
-        and _DidRenameFilesFeature_of_js : Ojs.t -> _DidRenameFilesFeature =
-          Obj.magic
-        and _DidRenameFilesFeature_to_js : _DidRenameFilesFeature -> Ojs.t =
-          Obj.magic
-        and _Event_of_js : 'I . (Ojs.t -> 'I) -> Ojs.t -> 'I _Event =
-          fun _I -> Obj.magic
-        and _Event_to_js : 'I . ('I -> Ojs.t) -> 'I _Event -> Ojs.t =
-          fun _I -> Obj.magic
-        and _FileOperationFeature_of_js :
-          'I 'E .
-            (Ojs.t -> 'I) ->
-              (Ojs.t -> 'E) -> Ojs.t -> ('I, 'E) _FileOperationFeature
-          = fun _I -> fun _E -> Obj.magic
-        and _FileOperationFeature_to_js :
-          'I 'E .
-            ('I -> Ojs.t) ->
-              ('E -> Ojs.t) -> ('I, 'E) _FileOperationFeature -> Ojs.t
-          = fun _I -> fun _E -> Obj.magic
-        and _FileOperationsMiddleware_of_js :
-          Ojs.t -> _FileOperationsMiddleware = Obj.magic
-        and _FileOperationsMiddleware_to_js :
-          _FileOperationsMiddleware -> Ojs.t = Obj.magic
-        and _NotificationFileOperationFeature_of_js :
-          'I 'E 'P .
-            (Ojs.t -> 'I) ->
-              (Ojs.t -> 'E) ->
-                (Ojs.t -> 'P) ->
-                  Ojs.t -> ('I, 'E, 'P) _NotificationFileOperationFeature
-          = fun _I -> fun _E -> fun _P -> Obj.magic
-        and _NotificationFileOperationFeature_to_js :
-          'I 'E 'P .
-            ('I -> Ojs.t) ->
-              ('E -> Ojs.t) ->
-                ('P -> Ojs.t) ->
-                  ('I, 'E, 'P) _NotificationFileOperationFeature -> Ojs.t
-          = fun _I -> fun _E -> fun _P -> Obj.magic
-        and _RequestEvent_of_js :
-          'I . (Ojs.t -> 'I) -> Ojs.t -> 'I _RequestEvent =
-          fun _I -> Obj.magic
-        and _RequestEvent_to_js :
-          'I . ('I -> Ojs.t) -> 'I _RequestEvent -> Ojs.t =
-          fun _I -> Obj.magic
-        and _RequestFileOperationFeature_of_js :
-          'I 'E 'P .
-            (Ojs.t -> 'I) ->
-              (Ojs.t -> 'E) ->
-                (Ojs.t -> 'P) ->
-                  Ojs.t -> ('I, 'E, 'P) _RequestFileOperationFeature
-          = fun _I -> fun _E -> fun _P -> Obj.magic
-        and _RequestFileOperationFeature_to_js :
-          'I 'E 'P .
-            ('I -> Ojs.t) ->
-              ('E -> Ojs.t) ->
-                ('P -> Ojs.t) ->
-                  ('I, 'E, 'P) _RequestFileOperationFeature -> Ojs.t
-          = fun _I -> fun _E -> fun _P -> Obj.magic
-        and _WillCreateFilesFeature_of_js : Ojs.t -> _WillCreateFilesFeature
-          = Obj.magic
-        and _WillCreateFilesFeature_to_js : _WillCreateFilesFeature -> Ojs.t
-          = Obj.magic
-        and _WillDeleteFilesFeature_of_js : Ojs.t -> _WillDeleteFilesFeature
-          = Obj.magic
-        and _WillDeleteFilesFeature_to_js : _WillDeleteFilesFeature -> Ojs.t
-          = Obj.magic
-        and _WillRenameFilesFeature_of_js : Ojs.t -> _WillRenameFilesFeature
-          = Obj.magic
-        and _WillRenameFilesFeature_to_js : _WillRenameFilesFeature -> Ojs.t
-          = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module AnonymousInterface0 =
   struct
-    type t = anonymous_interface_0
-    let rec t_of_js : Ojs.t -> t =
-      fun (x2 : Ojs.t) -> anonymous_interface_0_of_js x2
-    and t_to_js : t -> Ojs.t =
-      fun (x1 : anonymous_interface_0) -> anonymous_interface_0_to_js x1
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
+    and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
     let (get_files : t -> 'I list) =
       fun (x3 : t) ->
         Ojs.list_of_js Obj.magic (Ojs.get_prop_ascii (t_to_js x3) "files")
   end
 module AnonymousInterface1 =
   struct
-    type t = anonymous_interface_1
-    let rec t_of_js : Ojs.t -> t =
-      fun (x6 : Ojs.t) -> anonymous_interface_1_of_js x6
-    and t_to_js : t -> Ojs.t =
-      fun (x5 : anonymous_interface_1) -> anonymous_interface_1_to_js x5
+    type t = Ojs.t
+    let rec t_of_js : Ojs.t -> t = fun (x6 : Ojs.t) -> x6
+    and t_to_js : t -> Ojs.t = fun (x5 : Ojs.t) -> x5
     let (get_oldUri : t -> Code.Uri.t) =
       fun (x7 : t) ->
         Code.Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x7) "oldUri")
@@ -749,11 +583,11 @@ module DidRenameFilesFeature =
                                                                  x267)))|])
     let (cast :
       t ->
-        (anonymous_interface_1, Code.FileRenameEvent.t,
+        (AnonymousInterface1.t, Code.FileRenameEvent.t,
           Proto.RenameFilesParams.t) _NotificationFileOperationFeature)
       =
       fun (x269 : t) ->
-        _NotificationFileOperationFeature_of_js anonymous_interface_1_of_js
+        _NotificationFileOperationFeature_of_js AnonymousInterface1.t_of_js
           Code.FileRenameEvent.t_of_js Proto.RenameFilesParams.t_of_js
           (t_to_js x269)
   end
@@ -1114,11 +948,11 @@ module WillRenameFilesFeature =
                                                                     x418))))|])
     let (cast :
       t ->
-        (anonymous_interface_1, Code.FileWillRenameEvent.t,
+        (AnonymousInterface1.t, Code.FileWillRenameEvent.t,
           Proto.RenameFilesParams.t) _RequestFileOperationFeature)
       =
       fun (x428 : t) ->
-        _RequestFileOperationFeature_of_js anonymous_interface_1_of_js
+        _RequestFileOperationFeature_of_js AnonymousInterface1.t_of_js
           Code.FileWillRenameEvent.t_of_js Proto.RenameFilesParams.t_of_js
           (t_to_js x428)
   end

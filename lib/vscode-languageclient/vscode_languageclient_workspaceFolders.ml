@@ -3,27 +3,7 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
 module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _WorkspaceFolderWorkspaceMiddleware =
-          [ `WorkspaceFolderWorkspaceMiddleware ] intf
-        and _WorkspaceFoldersFeature = [ `WorkspaceFoldersFeature ] intf
-        let rec _WorkspaceFolderWorkspaceMiddleware_of_js :
-          Ojs.t -> _WorkspaceFolderWorkspaceMiddleware = Obj.magic
-        and _WorkspaceFolderWorkspaceMiddleware_to_js :
-          _WorkspaceFolderWorkspaceMiddleware -> Ojs.t = Obj.magic
-        and _WorkspaceFoldersFeature_of_js :
-          Ojs.t -> _WorkspaceFoldersFeature = Obj.magic
-        and _WorkspaceFoldersFeature_to_js :
-          _WorkspaceFoldersFeature -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
+  struct module Types = struct open AnonymousInterfaces end end
 let (arrayDiff : left:'T list -> right:'T list -> 'T list) =
   fun ~left:(x1 : 'T list) ->
     fun ~right:(x3 : 'T list) ->

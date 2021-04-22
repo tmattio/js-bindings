@@ -4,37 +4,10 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
 
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _ColorProviderFeature = [ `ColorProviderFeature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ColorProviderMiddleware = [ `ColorProviderMiddleware ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ProvideColorPresentationSignature =
-      [ `ProvideColorPresentationSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _ProvideDocumentColorsSignature =
-      [ `ProvideDocumentColorsSignature ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
 
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -82,7 +55,7 @@ module ProvideColorPresentationSignature : sig
   val apply
     :  t
     -> color:VColor.t
-    -> context:anonymous_interface_0
+    -> context:AnonymousInterface0.t
     -> token:CancellationToken.t
     -> VColorPresentation.t list ProviderResult.t
     [@@js.apply]
@@ -109,7 +82,7 @@ module ColorProviderMiddleware : sig
     :  t
     -> this:unit
     -> color:VColor.t
-    -> context:anonymous_interface_0
+    -> context:AnonymousInterface0.t
     -> token:CancellationToken.t
     -> next:_ProvideColorPresentationSignature
     -> VColorPresentation.t list ProviderResult.t

@@ -4,21 +4,6 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _ProtocolCallHierarchyItem = [ `ProtocolCallHierarchyItem ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 (* import * as code from 'vscode'; *)
 module ProtocolCallHierarchyItem : sig
   type t = _ProtocolCallHierarchyItem

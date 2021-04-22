@@ -2,20 +2,6 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type _Disposable = [ `Disposable ] intf
-        let rec _Disposable_of_js : Ojs.t -> _Disposable = Obj.magic
-        and _Disposable_to_js : _Disposable -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module Disposable =
   struct
     type t = _Disposable

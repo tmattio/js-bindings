@@ -4,107 +4,8 @@
 
 open Es5
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_1 = [ `anonymous_interface_1 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_2 = [ `anonymous_interface_2 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_3 = [ `anonymous_interface_3 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    type anonymous_interface_4 = [ `anonymous_interface_4 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _DiagnosticClientCapabilities = [ `_DiagnosticClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DiagnosticServerCapabilities = [ `_DiagnosticServerCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DiagnosticClientCapabilities = [ `DiagnosticClientCapabilities ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DiagnosticOptions = [ `DiagnosticOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DiagnosticRefreshRequest_HandlerSignature =
-      (unit, unit) RequestHandler0.t
-
-    and _DiagnosticRegistrationOptions =
-      [ `DiagnosticRegistrationOptions | `DiagnosticOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DiagnosticServerCancellationData =
-      [ `DiagnosticServerCancellationData ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentDiagnosticParams = [ `DocumentDiagnosticParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentDiagnosticReport =
-      ([ `U_s0_new of anonymous_interface_1 [@js "new"]
-       | `U_s2_unChanged of anonymous_interface_2 [@js "unChanged"]
-       ]
-      [@js.union on_field "kind"])
-
-    and _DocumentDiagnosticReportKind =
-      ([ `new_ [@js "new"]
-       | `unChanged [@js "unChanged"]
-       ]
-      [@js.enum])
-
-    and _DocumentDiagnosticReportKind_new = ([ `new_ [@js "new"] ][@js.enum])
-
-    and _DocumentDiagnosticReportKind_unChanged =
-      ([ `unChanged [@js "unChanged"] ][@js.enum])
-
-    and _DocumentDiagnosticReportPartialResult =
-      [ `DocumentDiagnosticReportPartialResult ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _DocumentDiagnosticRequest_HandlerSignature =
-      ( _DocumentDiagnosticParams
-      , _DocumentDiagnosticReport
-      , unit )
-      RequestHandler.t
-
-    and _WorkspaceDiagnosticParams = [ `WorkspaceDiagnosticParams ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkspaceDiagnosticReport = [ `WorkspaceDiagnosticReport ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkspaceDiagnosticReportPartialResult =
-      [ `WorkspaceDiagnosticReportPartialResult ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WorkspaceDiagnosticRequest_HandlerSignature =
-      ( _WorkspaceDiagnosticParams
-      , _WorkspaceDiagnosticReport or_null
-      , unit )
-      RequestHandler.t
-
-    and _WorkspaceDocumentDiagnosticReport =
-      (anonymous_interface_4, _DocumentDiagnosticReport) intersection2
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -118,7 +19,7 @@ module AnonymousInterface0 : sig
 end
 
 module AnonymousInterface1 : sig
-  type t = anonymous_interface_1
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -139,7 +40,7 @@ module AnonymousInterface1 : sig
 end
 
 module AnonymousInterface2 : sig
-  type t = anonymous_interface_2
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -156,7 +57,7 @@ module AnonymousInterface2 : sig
 end
 
 module AnonymousInterface3 : sig
-  type t = anonymous_interface_3
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -172,7 +73,7 @@ module AnonymousInterface3 : sig
 end
 
 module AnonymousInterface4 : sig
-  type t = anonymous_interface_4
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -217,12 +118,12 @@ module M_DiagnosticClientCapabilities : sig
 
   val get_textDocument
     :  t
-    -> (TextDocumentClientCapabilities.t, anonymous_interface_0) intersection2
+    -> (TextDocumentClientCapabilities.t, AnonymousInterface0.t) intersection2
     [@@js.get "textDocument"]
 
   val set_textDocument
     :  t
-    -> (TextDocumentClientCapabilities.t, anonymous_interface_0) intersection2
+    -> (TextDocumentClientCapabilities.t, AnonymousInterface0.t) intersection2
     -> unit
     [@@js.set "textDocument"]
 end
@@ -327,7 +228,11 @@ end
 [@@js.scope "DocumentDiagnosticParams"]
 
 module DocumentDiagnosticReportKind : sig
-  type t = _DocumentDiagnosticReportKind
+  type t =
+    ([ `new_ [@js "new"]
+     | `unChanged [@js "unChanged"]
+     ]
+    [@js.enum])
 
   val t_to_js : t -> Ojs.t
 
@@ -335,7 +240,11 @@ module DocumentDiagnosticReportKind : sig
 end
 
 module DocumentDiagnosticReport : sig
-  type t = _DocumentDiagnosticReport
+  type t =
+    ([ `U_s0_new of AnonymousInterface1.t [@js "new"]
+     | `U_s2_unChanged of AnonymousInterface2.t [@js "unChanged"]
+     ]
+    [@js.union on_field "kind"])
 
   val t_to_js : t -> Ojs.t
 
@@ -371,7 +280,11 @@ module DocumentDiagnosticRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _DocumentDiagnosticRequest_HandlerSignature
+    type t =
+      ( _DocumentDiagnosticParams
+      , _DocumentDiagnosticReport
+      , unit )
+      RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -391,10 +304,10 @@ module WorkspaceDiagnosticParams : sig
 
   val set_identifier : t -> string -> unit [@@js.set "identifier"]
 
-  val get_previousResultIds : t -> anonymous_interface_3 list
+  val get_previousResultIds : t -> AnonymousInterface3.t list
     [@@js.get "previousResultIds"]
 
-  val set_previousResultIds : t -> anonymous_interface_3 list -> unit
+  val set_previousResultIds : t -> AnonymousInterface3.t list -> unit
     [@@js.set "previousResultIds"]
 
   val cast : t -> WorkDoneProgressParams.t [@@js.cast]
@@ -404,7 +317,7 @@ end
 [@@js.scope "WorkspaceDiagnosticParams"]
 
 module WorkspaceDocumentDiagnosticReport : sig
-  type t = _WorkspaceDocumentDiagnosticReport
+  type t = (AnonymousInterface4.t, _DocumentDiagnosticReport) intersection2
 
   val t_to_js : t -> Ojs.t
 
@@ -456,7 +369,11 @@ module WorkspaceDiagnosticRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _WorkspaceDiagnosticRequest_HandlerSignature
+    type t =
+      ( _WorkspaceDiagnosticParams
+      , _WorkspaceDiagnosticReport or_null
+      , unit )
+      RequestHandler.t
 
     val t_to_js : t -> Ojs.t
 
@@ -473,7 +390,7 @@ module DiagnosticRefreshRequest : sig
     [@@js.global "type"]
 
   module HandlerSignature : sig
-    type t = _DiagnosticRefreshRequest_HandlerSignature
+    type t = (unit, unit) RequestHandler0.t
 
     val t_to_js : t -> Ojs.t
 

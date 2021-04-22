@@ -4,42 +4,6 @@
 
 open Es2020
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _IPCMessageReader = [ `IPCMessageReader ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _IPCMessageWriter = [ `IPCMessageWriter ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _PipeTransport = [ `PipeTransport ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SocketMessageReader = [ `SocketMessageReader ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SocketMessageWriter = [ `SocketMessageWriter ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _SocketTransport = [ `SocketTransport ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _StreamMessageReader = [ `StreamMessageReader ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _StreamMessageWriter = [ `StreamMessageWriter ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 include module type of struct
   include Vscode_jsonrpc_api
 end

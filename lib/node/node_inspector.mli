@@ -5,562 +5,8 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type inspector_Console_ConsoleMessage =
-      [ `Inspector_Console_ConsoleMessage ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Console_MessageAddedEventDataType =
-      [ `Inspector_Console_MessageAddedEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_BreakLocation =
-      [ `Inspector_Debugger_BreakLocation ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_BreakpointId = string
-
-    and inspector_Debugger_BreakpointResolvedEventDataType =
-      [ `Inspector_Debugger_BreakpointResolvedEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_CallFrame = [ `Inspector_Debugger_CallFrame ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_CallFrameId = string
-
-    and inspector_Debugger_ContinueToLocationParameterType =
-      [ `Inspector_Debugger_ContinueToLocationParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_EnableReturnType =
-      [ `Inspector_Debugger_EnableReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_EvaluateOnCallFrameParameterType =
-      [ `Inspector_Debugger_EvaluateOnCallFrameParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_EvaluateOnCallFrameReturnType =
-      [ `Inspector_Debugger_EvaluateOnCallFrameReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_GetPossibleBreakpointsParameterType =
-      [ `Inspector_Debugger_GetPossibleBreakpointsParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_GetPossibleBreakpointsReturnType =
-      [ `Inspector_Debugger_GetPossibleBreakpointsReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_GetScriptSourceParameterType =
-      [ `Inspector_Debugger_GetScriptSourceParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_GetScriptSourceReturnType =
-      [ `Inspector_Debugger_GetScriptSourceReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_GetStackTraceParameterType =
-      [ `Inspector_Debugger_GetStackTraceParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_GetStackTraceReturnType =
-      [ `Inspector_Debugger_GetStackTraceReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_Location = [ `Inspector_Debugger_Location ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_PauseOnAsyncCallParameterType =
-      [ `Inspector_Debugger_PauseOnAsyncCallParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_PausedEventDataType =
-      [ `Inspector_Debugger_PausedEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_RemoveBreakpointParameterType =
-      [ `Inspector_Debugger_RemoveBreakpointParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_RestartFrameParameterType =
-      [ `Inspector_Debugger_RestartFrameParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_RestartFrameReturnType =
-      [ `Inspector_Debugger_RestartFrameReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_Scope = [ `Inspector_Debugger_Scope ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_ScriptFailedToParseEventDataType =
-      [ `Inspector_Debugger_ScriptFailedToParseEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_ScriptParsedEventDataType =
-      [ `Inspector_Debugger_ScriptParsedEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_ScriptPosition =
-      [ `Inspector_Debugger_ScriptPosition ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_SearchInContentParameterType =
-      [ `Inspector_Debugger_SearchInContentParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_SearchInContentReturnType =
-      [ `Inspector_Debugger_SearchInContentReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_SearchMatch =
-      [ `Inspector_Debugger_SearchMatch ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_SetAsyncCallStackDepthParameterType =
-      [ `Inspector_Debugger_SetAsyncCallStackDepthParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_SetBlackboxPatternsParameterType =
-      [ `Inspector_Debugger_SetBlackboxPatternsParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_SetBlackboxedRangesParameterType =
-      [ `Inspector_Debugger_SetBlackboxedRangesParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_SetBreakpointByUrlParameterType =
-      [ `Inspector_Debugger_SetBreakpointByUrlParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_SetBreakpointByUrlReturnType =
-      [ `Inspector_Debugger_SetBreakpointByUrlReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_SetBreakpointParameterType =
-      [ `Inspector_Debugger_SetBreakpointParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_SetBreakpointReturnType =
-      [ `Inspector_Debugger_SetBreakpointReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_SetBreakpointsActiveParameterType =
-      [ `Inspector_Debugger_SetBreakpointsActiveParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_SetPauseOnExceptionsParameterType =
-      [ `Inspector_Debugger_SetPauseOnExceptionsParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_SetReturnValueParameterType =
-      [ `Inspector_Debugger_SetReturnValueParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_SetScriptSourceParameterType =
-      [ `Inspector_Debugger_SetScriptSourceParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_SetScriptSourceReturnType =
-      [ `Inspector_Debugger_SetScriptSourceReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_SetSkipAllPausesParameterType =
-      [ `Inspector_Debugger_SetSkipAllPausesParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_SetVariableValueParameterType =
-      [ `Inspector_Debugger_SetVariableValueParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Debugger_StepIntoParameterType =
-      [ `Inspector_Debugger_StepIntoParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_HeapProfiler_AddHeapSnapshotChunkEventDataType =
-      [ `Inspector_HeapProfiler_AddHeapSnapshotChunkEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_HeapProfiler_AddInspectedHeapObjectParameterType =
-      [ `Inspector_HeapProfiler_AddInspectedHeapObjectParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_HeapProfiler_GetHeapObjectIdParameterType =
-      [ `Inspector_HeapProfiler_GetHeapObjectIdParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_HeapProfiler_GetHeapObjectIdReturnType =
-      [ `Inspector_HeapProfiler_GetHeapObjectIdReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_HeapProfiler_GetObjectByHeapObjectIdParameterType =
-      [ `Inspector_HeapProfiler_GetObjectByHeapObjectIdParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_HeapProfiler_GetObjectByHeapObjectIdReturnType =
-      [ `Inspector_HeapProfiler_GetObjectByHeapObjectIdReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_HeapProfiler_GetSamplingProfileReturnType =
-      [ `Inspector_HeapProfiler_GetSamplingProfileReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_HeapProfiler_HeapSnapshotObjectId = string
-
-    and inspector_HeapProfiler_HeapStatsUpdateEventDataType =
-      [ `Inspector_HeapProfiler_HeapStatsUpdateEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_HeapProfiler_LastSeenObjectIdEventDataType =
-      [ `Inspector_HeapProfiler_LastSeenObjectIdEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_HeapProfiler_ReportHeapSnapshotProgressEventDataType =
-      [ `Inspector_HeapProfiler_ReportHeapSnapshotProgressEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_HeapProfiler_SamplingHeapProfile =
-      [ `Inspector_HeapProfiler_SamplingHeapProfile ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_HeapProfiler_SamplingHeapProfileNode =
-      [ `Inspector_HeapProfiler_SamplingHeapProfileNode ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_HeapProfiler_StartSamplingParameterType =
-      [ `Inspector_HeapProfiler_StartSamplingParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_HeapProfiler_StartTrackingHeapObjectsParameterType =
-      [ `Inspector_HeapProfiler_StartTrackingHeapObjectsParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_HeapProfiler_StopSamplingReturnType =
-      [ `Inspector_HeapProfiler_StopSamplingReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_HeapProfiler_StopTrackingHeapObjectsParameterType =
-      [ `Inspector_HeapProfiler_StopTrackingHeapObjectsParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_HeapProfiler_TakeHeapSnapshotParameterType =
-      [ `Inspector_HeapProfiler_TakeHeapSnapshotParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and 'T inspector_InspectorNotification =
-      [ `Inspector_InspectorNotification of 'T ] intf
-    [@@js.custom
-      { of_js = (fun _T -> Obj.magic); to_js = (fun _T -> Obj.magic) }]
-
-    and inspector_NodeRuntime_NotifyWhenWaitingForDisconnectParameterType =
-      [ `Inspector_NodeRuntime_NotifyWhenWaitingForDisconnectParameterType ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_NodeTracing_DataCollectedEventDataType =
-      [ `Inspector_NodeTracing_DataCollectedEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_NodeTracing_GetCategoriesReturnType =
-      [ `Inspector_NodeTracing_GetCategoriesReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_NodeTracing_StartParameterType =
-      [ `Inspector_NodeTracing_StartParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_NodeTracing_TraceConfig =
-      [ `Inspector_NodeTracing_TraceConfig ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_NodeWorker_AttachedToWorkerEventDataType =
-      [ `Inspector_NodeWorker_AttachedToWorkerEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_NodeWorker_DetachParameterType =
-      [ `Inspector_NodeWorker_DetachParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_NodeWorker_DetachedFromWorkerEventDataType =
-      [ `Inspector_NodeWorker_DetachedFromWorkerEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_NodeWorker_EnableParameterType =
-      [ `Inspector_NodeWorker_EnableParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_NodeWorker_ReceivedMessageFromWorkerEventDataType =
-      [ `Inspector_NodeWorker_ReceivedMessageFromWorkerEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_NodeWorker_SendMessageToWorkerParameterType =
-      [ `Inspector_NodeWorker_SendMessageToWorkerParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_NodeWorker_SessionID = string
-
-    and inspector_NodeWorker_WorkerID = string
-
-    and inspector_NodeWorker_WorkerInfo =
-      [ `Inspector_NodeWorker_WorkerInfo ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Profiler_ConsoleProfileFinishedEventDataType =
-      [ `Inspector_Profiler_ConsoleProfileFinishedEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Profiler_ConsoleProfileStartedEventDataType =
-      [ `Inspector_Profiler_ConsoleProfileStartedEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Profiler_CoverageRange =
-      [ `Inspector_Profiler_CoverageRange ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Profiler_FunctionCoverage =
-      [ `Inspector_Profiler_FunctionCoverage ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Profiler_GetBestEffortCoverageReturnType =
-      [ `Inspector_Profiler_GetBestEffortCoverageReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Profiler_PositionTickInfo =
-      [ `Inspector_Profiler_PositionTickInfo ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Profiler_Profile = [ `Inspector_Profiler_Profile ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Profiler_ProfileNode =
-      [ `Inspector_Profiler_ProfileNode ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Profiler_ScriptCoverage =
-      [ `Inspector_Profiler_ScriptCoverage ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Profiler_ScriptTypeProfile =
-      [ `Inspector_Profiler_ScriptTypeProfile ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Profiler_SetSamplingIntervalParameterType =
-      [ `Inspector_Profiler_SetSamplingIntervalParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Profiler_StartPreciseCoverageParameterType =
-      [ `Inspector_Profiler_StartPreciseCoverageParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Profiler_StopReturnType =
-      [ `Inspector_Profiler_StopReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Profiler_TakePreciseCoverageReturnType =
-      [ `Inspector_Profiler_TakePreciseCoverageReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Profiler_TakeTypeProfileReturnType =
-      [ `Inspector_Profiler_TakeTypeProfileReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Profiler_TypeObject = [ `Inspector_Profiler_TypeObject ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Profiler_TypeProfileEntry =
-      [ `Inspector_Profiler_TypeProfileEntry ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_AwaitPromiseParameterType =
-      [ `Inspector_Runtime_AwaitPromiseParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_AwaitPromiseReturnType =
-      [ `Inspector_Runtime_AwaitPromiseReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_CallArgument =
-      [ `Inspector_Runtime_CallArgument ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_CallFrame = [ `Inspector_Runtime_CallFrame ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_CallFunctionOnParameterType =
-      [ `Inspector_Runtime_CallFunctionOnParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_CallFunctionOnReturnType =
-      [ `Inspector_Runtime_CallFunctionOnReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_CompileScriptParameterType =
-      [ `Inspector_Runtime_CompileScriptParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_CompileScriptReturnType =
-      [ `Inspector_Runtime_CompileScriptReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_ConsoleAPICalledEventDataType =
-      [ `Inspector_Runtime_ConsoleAPICalledEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_CustomPreview =
-      [ `Inspector_Runtime_CustomPreview ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_EntryPreview =
-      [ `Inspector_Runtime_EntryPreview ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_EvaluateParameterType =
-      [ `Inspector_Runtime_EvaluateParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_EvaluateReturnType =
-      [ `Inspector_Runtime_EvaluateReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_ExceptionDetails =
-      [ `Inspector_Runtime_ExceptionDetails ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_ExceptionRevokedEventDataType =
-      [ `Inspector_Runtime_ExceptionRevokedEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_ExceptionThrownEventDataType =
-      [ `Inspector_Runtime_ExceptionThrownEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_ExecutionContextCreatedEventDataType =
-      [ `Inspector_Runtime_ExecutionContextCreatedEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_ExecutionContextDescription =
-      [ `Inspector_Runtime_ExecutionContextDescription ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_ExecutionContextDestroyedEventDataType =
-      [ `Inspector_Runtime_ExecutionContextDestroyedEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_ExecutionContextId = int
-
-    and inspector_Runtime_GetPropertiesParameterType =
-      [ `Inspector_Runtime_GetPropertiesParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_GetPropertiesReturnType =
-      [ `Inspector_Runtime_GetPropertiesReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_GlobalLexicalScopeNamesParameterType =
-      [ `Inspector_Runtime_GlobalLexicalScopeNamesParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_GlobalLexicalScopeNamesReturnType =
-      [ `Inspector_Runtime_GlobalLexicalScopeNamesReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_InspectRequestedEventDataType =
-      [ `Inspector_Runtime_InspectRequestedEventDataType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_InternalPropertyDescriptor =
-      [ `Inspector_Runtime_InternalPropertyDescriptor ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_ObjectPreview =
-      [ `Inspector_Runtime_ObjectPreview ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_PropertyDescriptor =
-      [ `Inspector_Runtime_PropertyDescriptor ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_PropertyPreview =
-      [ `Inspector_Runtime_PropertyPreview ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_QueryObjectsParameterType =
-      [ `Inspector_Runtime_QueryObjectsParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_QueryObjectsReturnType =
-      [ `Inspector_Runtime_QueryObjectsReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_ReleaseObjectGroupParameterType =
-      [ `Inspector_Runtime_ReleaseObjectGroupParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_ReleaseObjectParameterType =
-      [ `Inspector_Runtime_ReleaseObjectParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_RemoteObject =
-      [ `Inspector_Runtime_RemoteObject ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_RemoteObjectId = string
-
-    and inspector_Runtime_RunScriptParameterType =
-      [ `Inspector_Runtime_RunScriptParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_RunScriptReturnType =
-      [ `Inspector_Runtime_RunScriptReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_ScriptId = string
-
-    and inspector_Runtime_SetCustomObjectFormatterEnabledParameterType =
-      [ `Inspector_Runtime_SetCustomObjectFormatterEnabledParameterType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_StackTrace = [ `Inspector_Runtime_StackTrace ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_StackTraceId =
-      [ `Inspector_Runtime_StackTraceId ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Runtime_Timestamp = int
-
-    and inspector_Runtime_UniqueDebuggerId = string
-
-    and inspector_Runtime_UnserializableValue = string
-
-    and inspector_Schema_Domain = [ `Inspector_Schema_Domain ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Schema_GetDomainsReturnType =
-      [ `Inspector_Schema_GetDomainsReturnType ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and inspector_Session = [ `Inspector_Session ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -621,7 +67,7 @@ module Inspector : sig
 
   module Runtime : sig
     module ScriptId : sig
-      type t = inspector_Runtime_ScriptId
+      type t = string
 
       val t_to_js : t -> Ojs.t
 
@@ -629,7 +75,7 @@ module Inspector : sig
     end
 
     module RemoteObjectId : sig
-      type t = inspector_Runtime_RemoteObjectId
+      type t = string
 
       val t_to_js : t -> Ojs.t
 
@@ -637,7 +83,7 @@ module Inspector : sig
     end
 
     module UnserializableValue : sig
-      type t = inspector_Runtime_UnserializableValue
+      type t = string
 
       val t_to_js : t -> Ojs.t
 
@@ -923,7 +369,7 @@ module Inspector : sig
     [@@js.scope "CallArgument"]
 
     module ExecutionContextId : sig
-      type t = inspector_Runtime_ExecutionContextId
+      type t = int
 
       val t_to_js : t -> Ojs.t
 
@@ -950,9 +396,9 @@ module Inspector : sig
 
       val set_name : t -> string -> unit [@@js.set "name"]
 
-      val get_auxData : t -> anonymous_interface_0 [@@js.get "auxData"]
+      val get_auxData : t -> AnonymousInterface0.t [@@js.get "auxData"]
 
-      val set_auxData : t -> anonymous_interface_0 -> unit [@@js.set "auxData"]
+      val set_auxData : t -> AnonymousInterface0.t -> unit [@@js.set "auxData"]
     end
     [@@js.scope "ExecutionContextDescription"]
 
@@ -1012,7 +458,7 @@ module Inspector : sig
     [@@js.scope "ExceptionDetails"]
 
     module Timestamp : sig
-      type t = inspector_Runtime_Timestamp
+      type t = int
 
       val t_to_js : t -> Ojs.t
 
@@ -1079,7 +525,7 @@ module Inspector : sig
     [@@js.scope "StackTrace"]
 
     module UniqueDebuggerId : sig
-      type t = inspector_Runtime_UniqueDebuggerId
+      type t = string
 
       val t_to_js : t -> Ojs.t
 
@@ -1706,9 +1152,9 @@ module Inspector : sig
       val set_object : t -> inspector_Runtime_RemoteObject -> unit
         [@@js.set "object"]
 
-      val get_hints : t -> anonymous_interface_0 [@@js.get "hints"]
+      val get_hints : t -> AnonymousInterface0.t [@@js.get "hints"]
 
-      val set_hints : t -> anonymous_interface_0 -> unit [@@js.set "hints"]
+      val set_hints : t -> AnonymousInterface0.t -> unit [@@js.set "hints"]
     end
     [@@js.scope "InspectRequestedEventDataType"]
   end
@@ -1716,7 +1162,7 @@ module Inspector : sig
 
   module Debugger : sig
     module BreakpointId : sig
-      type t = inspector_Debugger_BreakpointId
+      type t = string
 
       val t_to_js : t -> Ojs.t
 
@@ -1724,7 +1170,7 @@ module Inspector : sig
     end
 
     module CallFrameId : sig
-      type t = inspector_Debugger_CallFrameId
+      type t = string
 
       val t_to_js : t -> Ojs.t
 
@@ -2545,10 +1991,10 @@ module Inspector : sig
 
       val set_hash : t -> string -> unit [@@js.set "hash"]
 
-      val get_executionContextAuxData : t -> anonymous_interface_0
+      val get_executionContextAuxData : t -> AnonymousInterface0.t
         [@@js.get "executionContextAuxData"]
 
-      val set_executionContextAuxData : t -> anonymous_interface_0 -> unit
+      val set_executionContextAuxData : t -> AnonymousInterface0.t -> unit
         [@@js.set "executionContextAuxData"]
 
       val get_isLiveEdit : t -> bool [@@js.get "isLiveEdit"]
@@ -2624,10 +2070,10 @@ module Inspector : sig
 
       val set_hash : t -> string -> unit [@@js.set "hash"]
 
-      val get_executionContextAuxData : t -> anonymous_interface_0
+      val get_executionContextAuxData : t -> AnonymousInterface0.t
         [@@js.get "executionContextAuxData"]
 
-      val set_executionContextAuxData : t -> anonymous_interface_0 -> unit
+      val set_executionContextAuxData : t -> AnonymousInterface0.t -> unit
         [@@js.set "executionContextAuxData"]
 
       val get_sourceMapURL : t -> string [@@js.get "sourceMapURL"]
@@ -2691,9 +2137,9 @@ module Inspector : sig
 
       val set_reason : t -> string -> unit [@@js.set "reason"]
 
-      val get_data : t -> anonymous_interface_0 [@@js.get "data"]
+      val get_data : t -> AnonymousInterface0.t [@@js.get "data"]
 
-      val set_data : t -> anonymous_interface_0 -> unit [@@js.set "data"]
+      val set_data : t -> AnonymousInterface0.t -> unit [@@js.set "data"]
 
       val get_hitBreakpoints : t -> string list [@@js.get "hitBreakpoints"]
 
@@ -3130,7 +2576,7 @@ module Inspector : sig
 
   module HeapProfiler : sig
     module HeapSnapshotObjectId : sig
-      type t = inspector_HeapProfiler_HeapSnapshotObjectId
+      type t = string
 
       val t_to_js : t -> Ojs.t
 
@@ -3467,9 +2913,9 @@ module Inspector : sig
 
       val t_of_js : Ojs.t -> t
 
-      val get_value : t -> anonymous_interface_0 list [@@js.get "value"]
+      val get_value : t -> AnonymousInterface0.t list [@@js.get "value"]
 
-      val set_value : t -> anonymous_interface_0 list -> unit [@@js.set "value"]
+      val set_value : t -> AnonymousInterface0.t list -> unit [@@js.set "value"]
     end
     [@@js.scope "DataCollectedEventDataType"]
   end
@@ -3477,7 +2923,7 @@ module Inspector : sig
 
   module NodeWorker : sig
     module WorkerID : sig
-      type t = inspector_NodeWorker_WorkerID
+      type t = string
 
       val t_to_js : t -> Ojs.t
 
@@ -3485,7 +2931,7 @@ module Inspector : sig
     end
 
     module SessionID : sig
-      type t = inspector_NodeWorker_SessionID
+      type t = string
 
       val t_to_js : t -> Ojs.t
 
@@ -3662,10 +3108,10 @@ module Inspector : sig
     val post
       :  t
       -> method_:string
-      -> ?params:anonymous_interface_0
+      -> ?params:AnonymousInterface0.t
       -> ?callback:
            (err:Error.t or_null
-            -> ?params:anonymous_interface_0
+            -> ?params:AnonymousInterface0.t
             -> unit
             -> unit)
       -> unit
@@ -3677,7 +3123,7 @@ module Inspector : sig
       -> method_:string
       -> ?callback:
            (err:Error.t or_null
-            -> ?params:anonymous_interface_0
+            -> ?params:AnonymousInterface0.t
             -> unit
             -> unit)
       -> unit
@@ -4883,7 +4329,7 @@ module Inspector : sig
       :  t
       -> event:([ `inspectorNotification ][@js.enum])
       -> listener:
-           (message:anonymous_interface_0 inspector_InspectorNotification
+           (message:AnonymousInterface0.t inspector_InspectorNotification
             -> unit)
       -> t
       [@@js.call "addListener"]
@@ -5164,7 +4610,7 @@ module Inspector : sig
     val emit'
       :  t
       -> event:([ `inspectorNotification ][@js.enum])
-      -> message:anonymous_interface_0 inspector_InspectorNotification
+      -> message:AnonymousInterface0.t inspector_InspectorNotification
       -> bool
       [@@js.call "emit"]
 
@@ -5395,7 +4841,7 @@ module Inspector : sig
       :  t
       -> event:([ `inspectorNotification ][@js.enum])
       -> listener:
-           (message:anonymous_interface_0 inspector_InspectorNotification
+           (message:AnonymousInterface0.t inspector_InspectorNotification
             -> unit)
       -> t
       [@@js.call "on"]
@@ -5677,7 +5123,7 @@ module Inspector : sig
       :  t
       -> event:([ `inspectorNotification ][@js.enum])
       -> listener:
-           (message:anonymous_interface_0 inspector_InspectorNotification
+           (message:AnonymousInterface0.t inspector_InspectorNotification
             -> unit)
       -> t
       [@@js.call "once"]
@@ -5959,7 +5405,7 @@ module Inspector : sig
       :  t
       -> event:([ `inspectorNotification ][@js.enum])
       -> listener:
-           (message:anonymous_interface_0 inspector_InspectorNotification
+           (message:AnonymousInterface0.t inspector_InspectorNotification
             -> unit)
       -> t
       [@@js.call "prependListener"]
@@ -6241,7 +5687,7 @@ module Inspector : sig
       :  t
       -> event:([ `inspectorNotification ][@js.enum])
       -> listener:
-           (message:anonymous_interface_0 inspector_InspectorNotification
+           (message:AnonymousInterface0.t inspector_InspectorNotification
             -> unit)
       -> t
       [@@js.call "prependOnceListener"]

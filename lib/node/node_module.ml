@@ -3,37 +3,6 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es2020
 open Node_globals
-module Internal =
-  struct
-    module AnonymousInterfaces = struct  end
-    module Types =
-      struct
-        open AnonymousInterfaces
-        type module_Module = [ `Module_Module ] intf
-        and module_Module_SourceMap = [ `Module_Module_SourceMap ] intf
-        and module_Module_SourceMapPayload =
-          [ `Module_Module_SourceMapPayload ] intf
-        and module_Module_SourceMapping =
-          [ `Module_Module_SourceMapping ] intf
-        let rec module_Module_of_js : Ojs.t -> module_Module = Obj.magic
-        and module_Module_to_js : module_Module -> Ojs.t = Obj.magic
-        and module_Module_SourceMap_of_js : Ojs.t -> module_Module_SourceMap
-          = Obj.magic
-        and module_Module_SourceMap_to_js : module_Module_SourceMap -> Ojs.t
-          = Obj.magic
-        and module_Module_SourceMapPayload_of_js :
-          Ojs.t -> module_Module_SourceMapPayload = Obj.magic
-        and module_Module_SourceMapPayload_to_js :
-          module_Module_SourceMapPayload -> Ojs.t = Obj.magic
-        and module_Module_SourceMapping_of_js :
-          Ojs.t -> module_Module_SourceMapping = Obj.magic
-        and module_Module_SourceMapping_to_js :
-          module_Module_SourceMapping -> Ojs.t = Obj.magic
-      end
-  end
-open Internal
-open AnonymousInterfaces
-open Types
 module Module =
   struct
     module Module =

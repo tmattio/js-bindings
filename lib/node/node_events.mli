@@ -5,39 +5,8 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig
-    type anonymous_interface_0 = [ `anonymous_interface_0 ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type events_DOMEventTarget = [ `Events_DOMEventTarget ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and events_EventEmitter = [ `Events_EventEmitter ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and events_EventEmitterOptions = [ `Events_EventEmitterOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and events_NodeEventTarget = [ `Events_NodeEventTarget ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and events_global_NodeJS_EventEmitter =
-      [ `Events_global_NodeJS_EventEmitter ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module AnonymousInterface0 : sig
-  type t = anonymous_interface_0
+  type t
 
   val t_to_js : t -> Ojs.t
 
@@ -89,7 +58,7 @@ module Events : sig
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> ?opts:anonymous_interface_0
+      -> ?opts:AnonymousInterface0.t
       -> unit
       -> any
       [@@js.call "addEventListener"]

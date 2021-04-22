@@ -4,7 +4,7 @@
 open Es5
 module Reflect =
   struct
-    let (apply_ :
+    let (apply :
       target:untyped_function ->
         thisArgument:any -> argumentsList:any Array.t -> any)
       =
@@ -44,7 +44,7 @@ module Reflect =
                                      [|(untyped_function_to_js x9)|])
                             | None -> ());
                            x8))|])
-    let (defineProperty :
+    let (define_property :
       target:untyped_object ->
         propertyKey:PropertyKey.t -> attributes:PropertyDescriptor.t -> bool)
       =
@@ -56,7 +56,7 @@ module Reflect =
                  "defineProperty"
                  [|(untyped_object_to_js x12);(PropertyKey.t_to_js x13);(
                    PropertyDescriptor.t_to_js x14)|])
-    let (deleteProperty :
+    let (delete_property :
       target:untyped_object -> propertyKey:PropertyKey.t -> bool) =
       fun ~target:(x15 : untyped_object) ->
         fun ~propertyKey:(x16 : PropertyKey.t) ->
@@ -64,7 +64,7 @@ module Reflect =
             (Ojs.call (Ojs.get_prop_ascii Ojs.global "Reflect")
                "deleteProperty"
                [|(untyped_object_to_js x15);(PropertyKey.t_to_js x16)|])
-    let (get_ :
+    let (get :
       target:untyped_object ->
         propertyKey:PropertyKey.t -> ?receiver:any -> unit -> any)
       =
@@ -91,7 +91,7 @@ module Reflect =
                                   (Ojs.call x20 "push" [|(any_to_js x21)|])
                             | None -> ());
                            x20))|])
-    let (getOwnPropertyDescriptor :
+    let (get_own_property_descriptor :
       target:untyped_object ->
         propertyKey:PropertyKey.t -> PropertyDescriptor.t or_undefined)
       =
@@ -101,7 +101,8 @@ module Reflect =
             (Ojs.call (Ojs.get_prop_ascii Ojs.global "Reflect")
                "getOwnPropertyDescriptor"
                [|(untyped_object_to_js x23);(PropertyKey.t_to_js x24)|])
-    let (getPrototypeOf : target:untyped_object -> untyped_object or_null) =
+    let (get_prototype_of : target:untyped_object -> untyped_object or_null)
+      =
       fun ~target:(x26 : untyped_object) ->
         or_null_of_js untyped_object_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Reflect")
@@ -112,23 +113,23 @@ module Reflect =
           Ojs.bool_of_js
             (Ojs.call (Ojs.get_prop_ascii Ojs.global "Reflect") "has"
                [|(untyped_object_to_js x28);(PropertyKey.t_to_js x29)|])
-    let (isExtensible : target:untyped_object -> bool) =
+    let (is_extensible : target:untyped_object -> bool) =
       fun ~target:(x30 : untyped_object) ->
         Ojs.bool_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Reflect") "isExtensible"
              [|(untyped_object_to_js x30)|])
-    let (ownKeys : target:untyped_object -> symbol or_string list) =
+    let (own_keys : target:untyped_object -> symbol or_string list) =
       fun ~target:(x31 : untyped_object) ->
         Ojs.list_of_js
           (fun (x32 : Ojs.t) -> or_string_of_js symbol_of_js x32)
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Reflect") "ownKeys"
              [|(untyped_object_to_js x31)|])
-    let (preventExtensions : target:untyped_object -> bool) =
+    let (prevent_extensions : target:untyped_object -> bool) =
       fun ~target:(x34 : untyped_object) ->
         Ojs.bool_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Reflect")
              "preventExtensions" [|(untyped_object_to_js x34)|])
-    let (set_ :
+    let (set :
       target:untyped_object ->
         propertyKey:PropertyKey.t ->
           value:any -> ?receiver:any -> unit -> bool)
@@ -158,7 +159,7 @@ module Reflect =
                                     (Ojs.call x39 "push" [|(any_to_js x40)|])
                               | None -> ());
                              x39))|])
-    let (setPrototypeOf :
+    let (set_prototype_of :
       target:untyped_object -> proto:untyped_object or_null -> bool) =
       fun ~target:(x42 : untyped_object) ->
         fun ~proto:(x43 : untyped_object or_null) ->

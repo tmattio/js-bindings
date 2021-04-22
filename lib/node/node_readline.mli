@@ -5,47 +5,6 @@
 open Es2020
 open Node_globals
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type readline_AsyncCompleter = [ `Readline_AsyncCompleter ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and readline_Completer = [ `Readline_Completer ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and readline_CompleterResult = string list * string
-
-    and readline_CursorPos = [ `Readline_CursorPos ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and readline_Direction =
-      ([ `L_n_minus1 [@js -1]
-       | `L_n_0 [@js 0]
-       | `L_n_1 [@js 1]
-       ]
-      [@js.enum])
-
-    and readline_Interface = [ `Readline_Interface ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and readline_Key = [ `Readline_Key ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and readline_ReadLine = readline_Interface
-
-    and readline_ReadLineOptions = [ `Readline_ReadLineOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module Readline : sig
   module Key : sig
     type t = readline_Key
@@ -77,7 +36,7 @@ module Readline : sig
   [@@js.scope "Key"]
 
   module Interface : sig
-    type t = readline_Interface
+    type t
 
     val t_to_js : t -> Ojs.t
 
@@ -429,7 +388,7 @@ module Readline : sig
   [@@js.scope "Interface"]
 
   module ReadLine : sig
-    type t = readline_ReadLine
+    type t = Interface.t
 
     val t_to_js : t -> Ojs.t
 
@@ -468,7 +427,7 @@ module Readline : sig
   [@@js.scope "AsyncCompleter"]
 
   module CompleterResult : sig
-    type t = readline_CompleterResult
+    type t = string list * string
 
     val t_to_js : t -> Ojs.t
 
@@ -553,7 +512,12 @@ module Readline : sig
     [@@js.global "emitKeypressEvents"]
 
   module Direction : sig
-    type t = readline_Direction
+    type t =
+      ([ `L_n_minus1 [@js -1]
+       | `L_n_0 [@js 0]
+       | `L_n_1 [@js 1]
+       ]
+      [@js.enum])
 
     val t_to_js : t -> Ojs.t
 

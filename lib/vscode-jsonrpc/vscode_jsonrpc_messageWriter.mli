@@ -4,35 +4,6 @@
 
 open Es2020
 
-module Internal : sig
-  module AnonymousInterfaces : sig end
-
-  module Types : sig
-    open AnonymousInterfaces
-
-    type _AbstractMessageWriter = [ `AbstractMessageWriter ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _MessageWriter = [ `MessageWriter ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _MessageWriterOptions = [ `MessageWriterOptions ] intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-
-    and _WriteableStreamMessageWriter =
-      [ `WriteableStreamMessageWriter
-      | `AbstractMessageWriter
-      | `MessageWriter
-      ]
-      intf
-    [@@js.custom { of_js = Obj.magic; to_js = Obj.magic }]
-  end
-end
-
-open Internal
-open AnonymousInterfaces
-open Types
-
 module MessageWriter : sig
   type t = _MessageWriter
 

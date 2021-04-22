@@ -74,7 +74,7 @@ module Object =
                (any_of_js (Ojs.array_get x32 1))))
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Object") "entries"
              [|(AnonymousInterface0.t_to_js x30)|])
-    let (getOwnPropertyDescriptors :
+    let (get_own_property_descriptors :
       'T -> (any, AnonymousInterface2.t) intersection2) =
       fun (x33 : 'T) ->
         intersection2_of_js any_of_js AnonymousInterface2.t_of_js
@@ -123,7 +123,7 @@ module ObjectConstructor =
                  (any_of_js (Ojs.array_get x55 1))))
             (Ojs.call (t_to_js x53) "entries"
                [|(AnonymousInterface0.t_to_js x52)|])
-    let (getOwnPropertyDescriptors :
+    let (get_own_property_descriptors :
       t -> 'T -> (any, AnonymousInterface2.t) intersection2) =
       fun (x57 : t) ->
         fun (x56 : 'T) ->
