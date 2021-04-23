@@ -2379,11 +2379,9 @@ module Fs =
                                                                     x836 0)))|])
       end
     let (rename :
-      old_path:PathLike.t ->
-        new_path:PathLike.t -> callback:NoParamCallback.t -> unit)
-      =
-      fun ~old_path:(x839 : PathLike.t) ->
-        fun ~new_path:(x840 : PathLike.t) ->
+      PathLike.t -> PathLike.t -> callback:NoParamCallback.t -> unit) =
+      fun (x839 : PathLike.t) ->
+        fun (x840 : PathLike.t) ->
           fun ~callback:(x841 : NoParamCallback.t) ->
             ignore
               (Ojs.call Import.fs "rename"
@@ -2391,26 +2389,25 @@ module Fs =
                                                                     x841)|])
     module Rename =
       struct
-        let (__promisify__ :
-          old_path:PathLike.t -> new_path:PathLike.t -> unit Promise.t) =
-          fun ~old_path:(x842 : PathLike.t) ->
-            fun ~new_path:(x843 : PathLike.t) ->
+        let (__promisify__ : PathLike.t -> PathLike.t -> unit Promise.t) =
+          fun (x842 : PathLike.t) ->
+            fun (x843 : PathLike.t) ->
               Promise.t_of_js Ojs.unit_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.fs "rename")
                    "__promisify__"
                    [|(PathLike.t_to_js x842);(PathLike.t_to_js x843)|])
       end
-    let (rename_sync : old_path:PathLike.t -> new_path:PathLike.t -> unit) =
-      fun ~old_path:(x845 : PathLike.t) ->
-        fun ~new_path:(x846 : PathLike.t) ->
+    let (rename_sync : PathLike.t -> PathLike.t -> unit) =
+      fun (x845 : PathLike.t) ->
+        fun (x846 : PathLike.t) ->
           ignore
             (Ojs.call Import.fs "renameSync"
                [|(PathLike.t_to_js x845);(PathLike.t_to_js x846)|])
     let (truncate :
-      path:PathLike.t ->
+      PathLike.t ->
         len:int or_null_or_undefined -> callback:NoParamCallback.t -> unit)
       =
-      fun ~path:(x847 : PathLike.t) ->
+      fun (x847 : PathLike.t) ->
         fun ~len:(x848 : int or_null_or_undefined) ->
           fun ~callback:(x850 : NoParamCallback.t) ->
             ignore
@@ -2418,8 +2415,8 @@ module Fs =
                  [|(PathLike.t_to_js x847);(or_null_or_undefined_to_js
                                               Ojs.int_to_js x848);(NoParamCallback.t_to_js
                                                                     x850)|])
-    let (truncate : path:PathLike.t -> callback:NoParamCallback.t -> unit) =
-      fun ~path:(x851 : PathLike.t) ->
+    let (truncate : PathLike.t -> callback:NoParamCallback.t -> unit) =
+      fun (x851 : PathLike.t) ->
         fun ~callback:(x852 : NoParamCallback.t) ->
           ignore
             (Ojs.call Import.fs "truncate"
@@ -2427,8 +2424,8 @@ module Fs =
     module Truncate =
       struct
         let (__promisify__ :
-          path:PathLike.t -> ?len:int or_null -> unit -> unit Promise.t) =
-          fun ~path:(x853 : PathLike.t) ->
+          PathLike.t -> ?len:int or_null -> unit -> unit Promise.t) =
+          fun (x853 : PathLike.t) ->
             fun ?len:(x854 : int or_null option) ->
               fun () ->
                 Promise.t_of_js Ojs.unit_of_js
@@ -2449,9 +2446,8 @@ module Fs =
                                | None -> ());
                               x855))|])
       end
-    let (truncate_sync : path:PathLike.t -> ?len:int or_null -> unit -> unit)
-      =
-      fun ~path:(x860 : PathLike.t) ->
+    let (truncate_sync : PathLike.t -> ?len:int or_null -> unit -> unit) =
+      fun (x860 : PathLike.t) ->
         fun ?len:(x861 : int or_null option) ->
           fun () ->
             ignore
@@ -2471,10 +2467,10 @@ module Fs =
                            | None -> ());
                           x862))|])
     let (ftruncate :
-      fd:int ->
+      int ->
         len:int or_null_or_undefined -> callback:NoParamCallback.t -> unit)
       =
-      fun ~fd:(x866 : int) ->
+      fun (x866 : int) ->
         fun ~len:(x867 : int or_null_or_undefined) ->
           fun ~callback:(x869 : NoParamCallback.t) ->
             ignore
@@ -2482,8 +2478,8 @@ module Fs =
                  [|(Ojs.int_to_js x866);(or_null_or_undefined_to_js
                                            Ojs.int_to_js x867);(NoParamCallback.t_to_js
                                                                   x869)|])
-    let (ftruncate : fd:int -> callback:NoParamCallback.t -> unit) =
-      fun ~fd:(x870 : int) ->
+    let (ftruncate : int -> callback:NoParamCallback.t -> unit) =
+      fun (x870 : int) ->
         fun ~callback:(x871 : NoParamCallback.t) ->
           ignore
             (Ojs.call Import.fs "ftruncate"
@@ -2491,8 +2487,8 @@ module Fs =
     module Ftruncate =
       struct
         let (__promisify__ :
-          fd:int -> ?len:int or_null -> unit -> unit Promise.t) =
-          fun ~fd:(x872 : int) ->
+          int -> ?len:int or_null -> unit -> unit Promise.t) =
+          fun (x872 : int) ->
             fun ?len:(x873 : int or_null option) ->
               fun () ->
                 Promise.t_of_js Ojs.unit_of_js
@@ -2513,8 +2509,8 @@ module Fs =
                                | None -> ());
                               x874))|])
       end
-    let (ftruncate_sync : fd:int -> ?len:int or_null -> unit -> unit) =
-      fun ~fd:(x879 : int) ->
+    let (ftruncate_sync : int -> ?len:int or_null -> unit -> unit) =
+      fun (x879 : int) ->
         fun ?len:(x880 : int or_null option) ->
           fun () ->
             ignore
@@ -2534,10 +2530,9 @@ module Fs =
                            | None -> ());
                           x881))|])
     let (chown :
-      path:PathLike.t ->
-        uid:int -> gid:int -> callback:NoParamCallback.t -> unit)
+      PathLike.t -> uid:int -> gid:int -> callback:NoParamCallback.t -> unit)
       =
-      fun ~path:(x885 : PathLike.t) ->
+      fun (x885 : PathLike.t) ->
         fun ~uid:(x886 : int) ->
           fun ~gid:(x887 : int) ->
             fun ~callback:(x888 : NoParamCallback.t) ->
@@ -2549,8 +2544,8 @@ module Fs =
     module Chown =
       struct
         let (__promisify__ :
-          path:PathLike.t -> uid:int -> gid:int -> unit Promise.t) =
-          fun ~path:(x889 : PathLike.t) ->
+          PathLike.t -> uid:int -> gid:int -> unit Promise.t) =
+          fun (x889 : PathLike.t) ->
             fun ~uid:(x890 : int) ->
               fun ~gid:(x891 : int) ->
                 Promise.t_of_js Ojs.unit_of_js
@@ -2559,8 +2554,8 @@ module Fs =
                      [|(PathLike.t_to_js x889);(Ojs.int_to_js x890);(
                        Ojs.int_to_js x891)|])
       end
-    let (chown_sync : path:PathLike.t -> uid:int -> gid:int -> unit) =
-      fun ~path:(x893 : PathLike.t) ->
+    let (chown_sync : PathLike.t -> uid:int -> gid:int -> unit) =
+      fun (x893 : PathLike.t) ->
         fun ~uid:(x894 : int) ->
           fun ~gid:(x895 : int) ->
             ignore
@@ -2568,8 +2563,8 @@ module Fs =
                  [|(PathLike.t_to_js x893);(Ojs.int_to_js x894);(Ojs.int_to_js
                                                                    x895)|])
     let (fchown :
-      fd:int -> uid:int -> gid:int -> callback:NoParamCallback.t -> unit) =
-      fun ~fd:(x896 : int) ->
+      int -> uid:int -> gid:int -> callback:NoParamCallback.t -> unit) =
+      fun (x896 : int) ->
         fun ~uid:(x897 : int) ->
           fun ~gid:(x898 : int) ->
             fun ~callback:(x899 : NoParamCallback.t) ->
@@ -2580,9 +2575,8 @@ module Fs =
                      NoParamCallback.t_to_js x899)|])
     module Fchown =
       struct
-        let (__promisify__ : fd:int -> uid:int -> gid:int -> unit Promise.t)
-          =
-          fun ~fd:(x900 : int) ->
+        let (__promisify__ : int -> uid:int -> gid:int -> unit Promise.t) =
+          fun (x900 : int) ->
             fun ~uid:(x901 : int) ->
               fun ~gid:(x902 : int) ->
                 Promise.t_of_js Ojs.unit_of_js
@@ -2591,8 +2585,8 @@ module Fs =
                      [|(Ojs.int_to_js x900);(Ojs.int_to_js x901);(Ojs.int_to_js
                                                                     x902)|])
       end
-    let (fchown_sync : fd:int -> uid:int -> gid:int -> unit) =
-      fun ~fd:(x904 : int) ->
+    let (fchown_sync : int -> uid:int -> gid:int -> unit) =
+      fun (x904 : int) ->
         fun ~uid:(x905 : int) ->
           fun ~gid:(x906 : int) ->
             ignore
@@ -2600,10 +2594,9 @@ module Fs =
                  [|(Ojs.int_to_js x904);(Ojs.int_to_js x905);(Ojs.int_to_js
                                                                 x906)|])
     let (lchown :
-      path:PathLike.t ->
-        uid:int -> gid:int -> callback:NoParamCallback.t -> unit)
+      PathLike.t -> uid:int -> gid:int -> callback:NoParamCallback.t -> unit)
       =
-      fun ~path:(x907 : PathLike.t) ->
+      fun (x907 : PathLike.t) ->
         fun ~uid:(x908 : int) ->
           fun ~gid:(x909 : int) ->
             fun ~callback:(x910 : NoParamCallback.t) ->
@@ -2615,8 +2608,8 @@ module Fs =
     module Lchown =
       struct
         let (__promisify__ :
-          path:PathLike.t -> uid:int -> gid:int -> unit Promise.t) =
-          fun ~path:(x911 : PathLike.t) ->
+          PathLike.t -> uid:int -> gid:int -> unit Promise.t) =
+          fun (x911 : PathLike.t) ->
             fun ~uid:(x912 : int) ->
               fun ~gid:(x913 : int) ->
                 Promise.t_of_js Ojs.unit_of_js
@@ -2625,8 +2618,8 @@ module Fs =
                      [|(PathLike.t_to_js x911);(Ojs.int_to_js x912);(
                        Ojs.int_to_js x913)|])
       end
-    let (lchown_sync : path:PathLike.t -> uid:int -> gid:int -> unit) =
-      fun ~path:(x915 : PathLike.t) ->
+    let (lchown_sync : PathLike.t -> uid:int -> gid:int -> unit) =
+      fun (x915 : PathLike.t) ->
         fun ~uid:(x916 : int) ->
           fun ~gid:(x917 : int) ->
             ignore
@@ -2634,12 +2627,12 @@ module Fs =
                  [|(PathLike.t_to_js x915);(Ojs.int_to_js x916);(Ojs.int_to_js
                                                                    x917)|])
     let (lutimes :
-      path:PathLike.t ->
+      PathLike.t ->
         atime:Date.t or_string or_number ->
           mtime:Date.t or_string or_number ->
             callback:NoParamCallback.t -> unit)
       =
-      fun ~path:(x918 : PathLike.t) ->
+      fun (x918 : PathLike.t) ->
         fun ~atime:(x919 : Date.t or_string or_number) ->
           fun ~mtime:(x922 : Date.t or_string or_number) ->
             fun ~callback:(x925 : NoParamCallback.t) ->
@@ -2658,11 +2651,11 @@ module Fs =
     module Lutimes =
       struct
         let (__promisify__ :
-          path:PathLike.t ->
+          PathLike.t ->
             atime:Date.t or_string or_number ->
               mtime:Date.t or_string or_number -> unit Promise.t)
           =
-          fun ~path:(x926 : PathLike.t) ->
+          fun (x926 : PathLike.t) ->
             fun ~atime:(x927 : Date.t or_string or_number) ->
               fun ~mtime:(x930 : Date.t or_string or_number) ->
                 Promise.t_of_js Ojs.unit_of_js
@@ -2686,11 +2679,11 @@ module Fs =
                                                                 x931) x930)|])
       end
     let (lutimes_sync :
-      path:PathLike.t ->
+      PathLike.t ->
         atime:Date.t or_string or_number ->
           mtime:Date.t or_string or_number -> unit)
       =
-      fun ~path:(x934 : PathLike.t) ->
+      fun (x934 : PathLike.t) ->
         fun ~atime:(x935 : Date.t or_string or_number) ->
           fun ~mtime:(x938 : Date.t or_string or_number) ->
             ignore
@@ -2710,8 +2703,8 @@ module Fs =
                                                                     x939)
                                                                   x938)|])
     let (chmod :
-      path:PathLike.t -> mode:Mode.t -> callback:NoParamCallback.t -> unit) =
-      fun ~path:(x941 : PathLike.t) ->
+      PathLike.t -> mode:Mode.t -> callback:NoParamCallback.t -> unit) =
+      fun (x941 : PathLike.t) ->
         fun ~mode:(x942 : Mode.t) ->
           fun ~callback:(x943 : NoParamCallback.t) ->
             ignore
@@ -2720,24 +2713,22 @@ module Fs =
                                                                   x943)|])
     module Chmod =
       struct
-        let (__promisify__ :
-          path:PathLike.t -> mode:Mode.t -> unit Promise.t) =
-          fun ~path:(x944 : PathLike.t) ->
+        let (__promisify__ : PathLike.t -> mode:Mode.t -> unit Promise.t) =
+          fun (x944 : PathLike.t) ->
             fun ~mode:(x945 : Mode.t) ->
               Promise.t_of_js Ojs.unit_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.fs "chmod")
                    "__promisify__"
                    [|(PathLike.t_to_js x944);(Mode.t_to_js x945)|])
       end
-    let (chmod_sync : path:PathLike.t -> mode:Mode.t -> unit) =
-      fun ~path:(x947 : PathLike.t) ->
+    let (chmod_sync : PathLike.t -> mode:Mode.t -> unit) =
+      fun (x947 : PathLike.t) ->
         fun ~mode:(x948 : Mode.t) ->
           ignore
             (Ojs.call Import.fs "chmodSync"
                [|(PathLike.t_to_js x947);(Mode.t_to_js x948)|])
-    let (fchmod :
-      fd:int -> mode:Mode.t -> callback:NoParamCallback.t -> unit) =
-      fun ~fd:(x949 : int) ->
+    let (fchmod : int -> mode:Mode.t -> callback:NoParamCallback.t -> unit) =
+      fun (x949 : int) ->
         fun ~mode:(x950 : Mode.t) ->
           fun ~callback:(x951 : NoParamCallback.t) ->
             ignore
@@ -2746,23 +2737,23 @@ module Fs =
                                                                x951)|])
     module Fchmod =
       struct
-        let (__promisify__ : fd:int -> mode:Mode.t -> unit Promise.t) =
-          fun ~fd:(x952 : int) ->
+        let (__promisify__ : int -> mode:Mode.t -> unit Promise.t) =
+          fun (x952 : int) ->
             fun ~mode:(x953 : Mode.t) ->
               Promise.t_of_js Ojs.unit_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.fs "fchmod")
                    "__promisify__"
                    [|(Ojs.int_to_js x952);(Mode.t_to_js x953)|])
       end
-    let (fchmod_sync : fd:int -> mode:Mode.t -> unit) =
-      fun ~fd:(x955 : int) ->
+    let (fchmod_sync : int -> mode:Mode.t -> unit) =
+      fun (x955 : int) ->
         fun ~mode:(x956 : Mode.t) ->
           ignore
             (Ojs.call Import.fs "fchmodSync"
                [|(Ojs.int_to_js x955);(Mode.t_to_js x956)|])
     let (lchmod :
-      path:PathLike.t -> mode:Mode.t -> callback:NoParamCallback.t -> unit) =
-      fun ~path:(x957 : PathLike.t) ->
+      PathLike.t -> mode:Mode.t -> callback:NoParamCallback.t -> unit) =
+      fun (x957 : PathLike.t) ->
         fun ~mode:(x958 : Mode.t) ->
           fun ~callback:(x959 : NoParamCallback.t) ->
             ignore
@@ -2771,27 +2762,26 @@ module Fs =
                                                                   x959)|])
     module Lchmod =
       struct
-        let (__promisify__ :
-          path:PathLike.t -> mode:Mode.t -> unit Promise.t) =
-          fun ~path:(x960 : PathLike.t) ->
+        let (__promisify__ : PathLike.t -> mode:Mode.t -> unit Promise.t) =
+          fun (x960 : PathLike.t) ->
             fun ~mode:(x961 : Mode.t) ->
               Promise.t_of_js Ojs.unit_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.fs "lchmod")
                    "__promisify__"
                    [|(PathLike.t_to_js x960);(Mode.t_to_js x961)|])
       end
-    let (lchmod_sync : path:PathLike.t -> mode:Mode.t -> unit) =
-      fun ~path:(x963 : PathLike.t) ->
+    let (lchmod_sync : PathLike.t -> mode:Mode.t -> unit) =
+      fun (x963 : PathLike.t) ->
         fun ~mode:(x964 : Mode.t) ->
           ignore
             (Ojs.call Import.fs "lchmodSync"
                [|(PathLike.t_to_js x963);(Mode.t_to_js x964)|])
     let (stat :
-      path:PathLike.t ->
+      PathLike.t ->
         callback:(err:ErrnoException.t or_null -> stats:Stats.t -> unit) ->
           unit)
       =
-      fun ~path:(x965 : PathLike.t) ->
+      fun (x965 : PathLike.t) ->
         fun
           ~callback:(x966 :
                       err:ErrnoException.t or_null -> stats:Stats.t -> unit)
@@ -2821,13 +2811,13 @@ module Fs =
                 (Ojs.bool_to_js x974)
       end
     let (stat :
-      path:PathLike.t ->
+      PathLike.t ->
         options:(StatOptions.t, AnonymousInterface0.t) intersection2
           or_undefined ->
           callback:(err:ErrnoException.t or_null -> stats:Stats.t -> unit) ->
             unit)
       =
-      fun ~path:(x975 : PathLike.t) ->
+      fun (x975 : PathLike.t) ->
         fun
           ~options:(x976 :
                      (StatOptions.t, AnonymousInterface0.t) intersection2
@@ -2903,13 +2893,13 @@ module Fs =
           fun (x998 : t) -> StatsBase.t_of_js bigint_of_js (t_to_js x998)
       end
     let (stat :
-      path:PathLike.t ->
+      PathLike.t ->
         options:(StatOptions.t, AnonymousInterface1.t) intersection2 ->
           callback:(err:ErrnoException.t or_null ->
                       stats:BigIntStats.t -> unit)
             -> unit)
       =
-      fun ~path:(x1000 : PathLike.t) ->
+      fun (x1000 : PathLike.t) ->
         fun
           ~options:(x1001 :
                      (StatOptions.t, AnonymousInterface1.t) intersection2)
@@ -2939,13 +2929,13 @@ module Fs =
                                                                 BigIntStats.t_of_js
                                                                   x1007)))|])
     let (stat :
-      path:PathLike.t ->
+      PathLike.t ->
         options:StatOptions.t or_undefined ->
           callback:(err:ErrnoException.t or_null ->
                       stats:(BigIntStats.t, Stats.t) union2 -> unit)
             -> unit)
       =
-      fun ~path:(x1008 : PathLike.t) ->
+      fun (x1008 : PathLike.t) ->
         fun ~options:(x1009 : StatOptions.t or_undefined) ->
           fun
             ~callback:(x1011 :
@@ -2966,11 +2956,11 @@ module Fs =
     module Stat =
       struct
         let (__promisify__ :
-          path:PathLike.t ->
+          PathLike.t ->
             ?options:(StatOptions.t, AnonymousInterface0.t) intersection2 ->
               unit -> Stats.t Promise.t)
           =
-          fun ~path:(x1017 : PathLike.t) ->
+          fun (x1017 : PathLike.t) ->
             fun
               ?options:(x1018 :
                          (StatOptions.t, AnonymousInterface0.t) intersection2
@@ -2999,11 +2989,11 @@ module Fs =
                                 | None -> ());
                                x1019))|])
         let (__promisify__ :
-          path:PathLike.t ->
+          PathLike.t ->
             options:(StatOptions.t, AnonymousInterface1.t) intersection2 ->
               BigIntStats.t Promise.t)
           =
-          fun ~path:(x1025 : PathLike.t) ->
+          fun (x1025 : PathLike.t) ->
             fun
               ~options:(x1026 :
                          (StatOptions.t, AnonymousInterface1.t) intersection2)
@@ -3016,11 +3006,11 @@ module Fs =
                                                  AnonymousInterface1.t_to_js
                                                  x1026)|])
         let (__promisify__ :
-          path:PathLike.t ->
+          PathLike.t ->
             ?options:StatOptions.t ->
               unit -> (BigIntStats.t, Stats.t) union2 Promise.t)
           =
-          fun ~path:(x1030 : PathLike.t) ->
+          fun (x1030 : PathLike.t) ->
             fun ?options:(x1031 : StatOptions.t option) ->
               fun () ->
                 Promise.t_of_js
@@ -3045,11 +3035,11 @@ module Fs =
                                x1032))|])
       end
     let (stat_sync :
-      path:PathLike.t ->
+      PathLike.t ->
         ?options:(StatOptions.t, AnonymousInterface0.t) intersection2 ->
           unit -> Stats.t)
       =
-      fun ~path:(x1038 : PathLike.t) ->
+      fun (x1038 : PathLike.t) ->
         fun
           ?options:(x1039 :
                      (StatOptions.t, AnonymousInterface0.t) intersection2
@@ -3076,11 +3066,11 @@ module Fs =
                             | None -> ());
                            x1040))|])
     let (stat_sync :
-      path:PathLike.t ->
+      PathLike.t ->
         options:(StatOptions.t, AnonymousInterface1.t) intersection2 ->
           BigIntStats.t)
       =
-      fun ~path:(x1045 : PathLike.t) ->
+      fun (x1045 : PathLike.t) ->
         fun
           ~options:(x1046 :
                      (StatOptions.t, AnonymousInterface1.t) intersection2)
@@ -3092,10 +3082,10 @@ module Fs =
                                              AnonymousInterface1.t_to_js
                                              x1046)|])
     let (stat_sync :
-      path:PathLike.t ->
+      PathLike.t ->
         ?options:StatOptions.t -> unit -> (BigIntStats.t, Stats.t) union2)
       =
-      fun ~path:(x1049 : PathLike.t) ->
+      fun (x1049 : PathLike.t) ->
         fun ?options:(x1050 : StatOptions.t option) ->
           fun () ->
             union2_of_js BigIntStats.t_of_js Stats.t_of_js
@@ -3116,11 +3106,11 @@ module Fs =
                             | None -> ());
                            x1051))|])
     let (fstat :
-      fd:int ->
+      int ->
         callback:(err:ErrnoException.t or_null -> stats:Stats.t -> unit) ->
           unit)
       =
-      fun ~fd:(x1056 : int) ->
+      fun (x1056 : int) ->
         fun
           ~callback:(x1057 :
                       err:ErrnoException.t or_null -> stats:Stats.t -> unit)
@@ -3136,13 +3126,13 @@ module Fs =
                                                          x1058)
                                                  ~stats:(Stats.t_of_js x1060)))|])
     let (fstat :
-      fd:int ->
+      int ->
         options:(StatOptions.t, AnonymousInterface0.t) intersection2
           or_undefined ->
           callback:(err:ErrnoException.t or_null -> stats:Stats.t -> unit) ->
             unit)
       =
-      fun ~fd:(x1061 : int) ->
+      fun (x1061 : int) ->
         fun
           ~options:(x1062 :
                      (StatOptions.t, AnonymousInterface0.t) intersection2
@@ -3181,13 +3171,13 @@ module Fs =
                                                                     Stats.t_of_js
                                                                     x1069)))|])
     let (fstat :
-      fd:int ->
+      int ->
         options:(StatOptions.t, AnonymousInterface1.t) intersection2 ->
           callback:(err:ErrnoException.t or_null ->
                       stats:BigIntStats.t -> unit)
             -> unit)
       =
-      fun ~fd:(x1070 : int) ->
+      fun (x1070 : int) ->
         fun
           ~options:(x1071 :
                      (StatOptions.t, AnonymousInterface1.t) intersection2)
@@ -3209,13 +3199,13 @@ module Fs =
                             ~err:(or_null_of_js ErrnoException.t_of_js x1075)
                             ~stats:(BigIntStats.t_of_js x1077)))|])
     let (fstat :
-      fd:int ->
+      int ->
         options:StatOptions.t or_undefined ->
           callback:(err:ErrnoException.t or_null ->
                       stats:(BigIntStats.t, Stats.t) union2 -> unit)
             -> unit)
       =
-      fun ~fd:(x1078 : int) ->
+      fun (x1078 : int) ->
         fun ~options:(x1079 : StatOptions.t or_undefined) ->
           fun
             ~callback:(x1081 :
@@ -3236,11 +3226,11 @@ module Fs =
     module Fstat =
       struct
         let (__promisify__ :
-          fd:int ->
+          int ->
             ?options:(StatOptions.t, AnonymousInterface0.t) intersection2 ->
               unit -> Stats.t Promise.t)
           =
-          fun ~fd:(x1087 : int) ->
+          fun (x1087 : int) ->
             fun
               ?options:(x1088 :
                          (StatOptions.t, AnonymousInterface0.t) intersection2
@@ -3269,11 +3259,11 @@ module Fs =
                                 | None -> ());
                                x1089))|])
         let (__promisify__ :
-          fd:int ->
+          int ->
             options:(StatOptions.t, AnonymousInterface1.t) intersection2 ->
               BigIntStats.t Promise.t)
           =
-          fun ~fd:(x1095 : int) ->
+          fun (x1095 : int) ->
             fun
               ~options:(x1096 :
                          (StatOptions.t, AnonymousInterface1.t) intersection2)
@@ -3286,11 +3276,11 @@ module Fs =
                                               AnonymousInterface1.t_to_js
                                               x1096)|])
         let (__promisify__ :
-          fd:int ->
+          int ->
             ?options:StatOptions.t ->
               unit -> (BigIntStats.t, Stats.t) union2 Promise.t)
           =
-          fun ~fd:(x1100 : int) ->
+          fun (x1100 : int) ->
             fun ?options:(x1101 : StatOptions.t option) ->
               fun () ->
                 Promise.t_of_js
@@ -3315,11 +3305,11 @@ module Fs =
                                x1102))|])
       end
     let (fstat_sync :
-      fd:int ->
+      int ->
         ?options:(StatOptions.t, AnonymousInterface0.t) intersection2 ->
           unit -> Stats.t)
       =
-      fun ~fd:(x1108 : int) ->
+      fun (x1108 : int) ->
         fun
           ?options:(x1109 :
                      (StatOptions.t, AnonymousInterface0.t) intersection2
@@ -3345,11 +3335,11 @@ module Fs =
                             | None -> ());
                            x1110))|])
     let (fstat_sync :
-      fd:int ->
+      int ->
         options:(StatOptions.t, AnonymousInterface1.t) intersection2 ->
           BigIntStats.t)
       =
-      fun ~fd:(x1115 : int) ->
+      fun (x1115 : int) ->
         fun
           ~options:(x1116 :
                      (StatOptions.t, AnonymousInterface1.t) intersection2)
@@ -3360,10 +3350,10 @@ module Fs =
                                           StatOptions.t_to_js
                                           AnonymousInterface1.t_to_js x1116)|])
     let (fstat_sync :
-      fd:int ->
+      int ->
         ?options:StatOptions.t -> unit -> (BigIntStats.t, Stats.t) union2)
       =
-      fun ~fd:(x1119 : int) ->
+      fun (x1119 : int) ->
         fun ?options:(x1120 : StatOptions.t option) ->
           fun () ->
             union2_of_js BigIntStats.t_of_js Stats.t_of_js
@@ -3383,11 +3373,11 @@ module Fs =
                             | None -> ());
                            x1121))|])
     let (lstat :
-      path:PathLike.t ->
+      PathLike.t ->
         callback:(err:ErrnoException.t or_null -> stats:Stats.t -> unit) ->
           unit)
       =
-      fun ~path:(x1126 : PathLike.t) ->
+      fun (x1126 : PathLike.t) ->
         fun
           ~callback:(x1127 :
                       err:ErrnoException.t or_null -> stats:Stats.t -> unit)
@@ -3404,13 +3394,13 @@ module Fs =
                                                     ~stats:(Stats.t_of_js
                                                               x1130)))|])
     let (lstat :
-      path:PathLike.t ->
+      PathLike.t ->
         options:(StatOptions.t, AnonymousInterface0.t) intersection2
           or_undefined ->
           callback:(err:ErrnoException.t or_null -> stats:Stats.t -> unit) ->
             unit)
       =
-      fun ~path:(x1131 : PathLike.t) ->
+      fun (x1131 : PathLike.t) ->
         fun
           ~options:(x1132 :
                      (StatOptions.t, AnonymousInterface0.t) intersection2
@@ -3449,13 +3439,13 @@ module Fs =
                                                                     Stats.t_of_js
                                                                     x1139)))|])
     let (lstat :
-      path:PathLike.t ->
+      PathLike.t ->
         options:(StatOptions.t, AnonymousInterface1.t) intersection2 ->
           callback:(err:ErrnoException.t or_null ->
                       stats:BigIntStats.t -> unit)
             -> unit)
       =
-      fun ~path:(x1140 : PathLike.t) ->
+      fun (x1140 : PathLike.t) ->
         fun
           ~options:(x1141 :
                      (StatOptions.t, AnonymousInterface1.t) intersection2)
@@ -3485,13 +3475,13 @@ module Fs =
                                                                 BigIntStats.t_of_js
                                                                   x1147)))|])
     let (lstat :
-      path:PathLike.t ->
+      PathLike.t ->
         options:StatOptions.t or_undefined ->
           callback:(err:ErrnoException.t or_null ->
                       stats:(BigIntStats.t, Stats.t) union2 -> unit)
             -> unit)
       =
-      fun ~path:(x1148 : PathLike.t) ->
+      fun (x1148 : PathLike.t) ->
         fun ~options:(x1149 : StatOptions.t or_undefined) ->
           fun
             ~callback:(x1151 :
@@ -3512,11 +3502,11 @@ module Fs =
     module Lstat =
       struct
         let (__promisify__ :
-          path:PathLike.t ->
+          PathLike.t ->
             ?options:(StatOptions.t, AnonymousInterface0.t) intersection2 ->
               unit -> Stats.t Promise.t)
           =
-          fun ~path:(x1157 : PathLike.t) ->
+          fun (x1157 : PathLike.t) ->
             fun
               ?options:(x1158 :
                          (StatOptions.t, AnonymousInterface0.t) intersection2
@@ -3545,11 +3535,11 @@ module Fs =
                                 | None -> ());
                                x1159))|])
         let (__promisify__ :
-          path:PathLike.t ->
+          PathLike.t ->
             options:(StatOptions.t, AnonymousInterface1.t) intersection2 ->
               BigIntStats.t Promise.t)
           =
-          fun ~path:(x1165 : PathLike.t) ->
+          fun (x1165 : PathLike.t) ->
             fun
               ~options:(x1166 :
                          (StatOptions.t, AnonymousInterface1.t) intersection2)
@@ -3562,11 +3552,11 @@ module Fs =
                                                  AnonymousInterface1.t_to_js
                                                  x1166)|])
         let (__promisify__ :
-          path:PathLike.t ->
+          PathLike.t ->
             ?options:StatOptions.t ->
               unit -> (BigIntStats.t, Stats.t) union2 Promise.t)
           =
-          fun ~path:(x1170 : PathLike.t) ->
+          fun (x1170 : PathLike.t) ->
             fun ?options:(x1171 : StatOptions.t option) ->
               fun () ->
                 Promise.t_of_js
@@ -3591,11 +3581,11 @@ module Fs =
                                x1172))|])
       end
     let (lstat_sync :
-      path:PathLike.t ->
+      PathLike.t ->
         ?options:(StatOptions.t, AnonymousInterface0.t) intersection2 ->
           unit -> Stats.t)
       =
-      fun ~path:(x1178 : PathLike.t) ->
+      fun (x1178 : PathLike.t) ->
         fun
           ?options:(x1179 :
                      (StatOptions.t, AnonymousInterface0.t) intersection2
@@ -3622,11 +3612,11 @@ module Fs =
                             | None -> ());
                            x1180))|])
     let (lstat_sync :
-      path:PathLike.t ->
+      PathLike.t ->
         options:(StatOptions.t, AnonymousInterface1.t) intersection2 ->
           BigIntStats.t)
       =
-      fun ~path:(x1185 : PathLike.t) ->
+      fun (x1185 : PathLike.t) ->
         fun
           ~options:(x1186 :
                      (StatOptions.t, AnonymousInterface1.t) intersection2)
@@ -3638,10 +3628,10 @@ module Fs =
                                              AnonymousInterface1.t_to_js
                                              x1186)|])
     let (lstat_sync :
-      path:PathLike.t ->
+      PathLike.t ->
         ?options:StatOptions.t -> unit -> (BigIntStats.t, Stats.t) union2)
       =
-      fun ~path:(x1189 : PathLike.t) ->
+      fun (x1189 : PathLike.t) ->
         fun ?options:(x1190 : StatOptions.t option) ->
           fun () ->
             union2_of_js BigIntStats.t_of_js Stats.t_of_js
@@ -3662,11 +3652,9 @@ module Fs =
                             | None -> ());
                            x1191))|])
     let (link :
-      existing_path:PathLike.t ->
-        new_path:PathLike.t -> callback:NoParamCallback.t -> unit)
-      =
-      fun ~existing_path:(x1196 : PathLike.t) ->
-        fun ~new_path:(x1197 : PathLike.t) ->
+      PathLike.t -> PathLike.t -> callback:NoParamCallback.t -> unit) =
+      fun (x1196 : PathLike.t) ->
+        fun (x1197 : PathLike.t) ->
           fun ~callback:(x1198 : NoParamCallback.t) ->
             ignore
               (Ojs.call Import.fs "link"
@@ -3674,31 +3662,28 @@ module Fs =
                    NoParamCallback.t_to_js x1198)|])
     module Link =
       struct
-        let (__promisify__ :
-          existing_path:PathLike.t -> new_path:PathLike.t -> unit Promise.t)
-          =
-          fun ~existing_path:(x1199 : PathLike.t) ->
-            fun ~new_path:(x1200 : PathLike.t) ->
+        let (__promisify__ : PathLike.t -> PathLike.t -> unit Promise.t) =
+          fun (x1199 : PathLike.t) ->
+            fun (x1200 : PathLike.t) ->
               Promise.t_of_js Ojs.unit_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.fs "link")
                    "__promisify__"
                    [|(PathLike.t_to_js x1199);(PathLike.t_to_js x1200)|])
       end
-    let (link_sync : existing_path:PathLike.t -> new_path:PathLike.t -> unit)
-      =
-      fun ~existing_path:(x1202 : PathLike.t) ->
-        fun ~new_path:(x1203 : PathLike.t) ->
+    let (link_sync : PathLike.t -> PathLike.t -> unit) =
+      fun (x1202 : PathLike.t) ->
+        fun (x1203 : PathLike.t) ->
           ignore
             (Ojs.call Import.fs "linkSync"
                [|(PathLike.t_to_js x1202);(PathLike.t_to_js x1203)|])
     let (symlink :
       target:string ->
-        path:PathLike.t ->
+        PathLike.t ->
           type_:[ `dir  | `file  | `junction ] or_null_or_undefined ->
             callback:NoParamCallback.t -> unit)
       =
       fun ~target:(x1204 : string) ->
-        fun ~path:(x1205 : PathLike.t) ->
+        fun (x1205 : PathLike.t) ->
           fun
             ~type_:(x1206 :
                      [ `dir  | `file  | `junction ] or_null_or_undefined)
@@ -3715,10 +3700,9 @@ module Fs =
                           | `junction -> Ojs.string_to_js "junction") x1206);(
                      NoParamCallback.t_to_js x1208)|])
     let (symlink :
-      target:string -> path:PathLike.t -> callback:NoParamCallback.t -> unit)
-      =
+      target:string -> PathLike.t -> callback:NoParamCallback.t -> unit) =
       fun ~target:(x1209 : string) ->
-        fun ~path:(x1210 : PathLike.t) ->
+        fun (x1210 : PathLike.t) ->
           fun ~callback:(x1211 : NoParamCallback.t) ->
             ignore
               (Ojs.call Import.fs "symlink"
@@ -3728,11 +3712,10 @@ module Fs =
       struct
         let (__promisify__ :
           target:string ->
-            path:PathLike.t ->
-              ?type_:string or_null -> unit -> unit Promise.t)
+            PathLike.t -> ?type_:string or_null -> unit -> unit Promise.t)
           =
           fun ~target:(x1212 : string) ->
-            fun ~path:(x1213 : PathLike.t) ->
+            fun (x1213 : PathLike.t) ->
               fun ?type_:(x1214 : string or_null option) ->
                 fun () ->
                   Promise.t_of_js Ojs.unit_of_js
@@ -3778,11 +3761,11 @@ module Fs =
       end
     let (symlink_sync :
       target:string ->
-        path:PathLike.t ->
+        PathLike.t ->
           ?type_:[ `dir  | `file  | `junction ] or_null -> unit -> unit)
       =
       fun ~target:(x1223 : string) ->
-        fun ~path:(x1224 : PathLike.t) ->
+        fun (x1224 : PathLike.t) ->
           fun ?type_:(x1225 : [ `dir  | `file  | `junction ] or_null option)
             ->
             fun () ->
@@ -3820,14 +3803,14 @@ module Fs =
                               | None -> ());
                              x1226))|])
     let (readlink :
-      path:PathLike.t ->
+      PathLike.t ->
         options:(BaseEncodingOptions.t, BufferEncoding.t) union2
           or_null_or_undefined ->
           callback:(err:ErrnoException.t or_null ->
                       link_string:string -> unit)
             -> unit)
       =
-      fun ~path:(x1230 : PathLike.t) ->
+      fun (x1230 : PathLike.t) ->
         fun
           ~options:(x1231 :
                      (BaseEncodingOptions.t, BufferEncoding.t) union2
@@ -3867,13 +3850,13 @@ module Fs =
                                                                     Ojs.string_of_js
                                                                     x1238)))|])
     let (readlink :
-      path:PathLike.t ->
+      PathLike.t ->
         options:BufferEncodingOption.t ->
           callback:(err:ErrnoException.t or_null ->
                       link_string:Buffer.t -> unit)
             -> unit)
       =
-      fun ~path:(x1239 : PathLike.t) ->
+      fun (x1239 : PathLike.t) ->
         fun ~options:(x1240 : BufferEncodingOption.t) ->
           fun
             ~callback:(x1241 :
@@ -3898,13 +3881,13 @@ module Fs =
                                                                 Buffer.t_of_js
                                                                   x1244)))|])
     let (readlink :
-      path:PathLike.t ->
+      PathLike.t ->
         options:BaseEncodingOptions.t or_string or_null_or_undefined ->
           callback:(err:ErrnoException.t or_null ->
                       link_string:Buffer.t or_string -> unit)
             -> unit)
       =
-      fun ~path:(x1245 : PathLike.t) ->
+      fun (x1245 : PathLike.t) ->
         fun
           ~options:(x1246 :
                      BaseEncodingOptions.t or_string or_null_or_undefined)
@@ -3942,11 +3925,11 @@ module Fs =
                                                                     Buffer.t_of_js
                                                                     x1252)))|])
     let (readlink :
-      path:PathLike.t ->
+      PathLike.t ->
         callback:(err:ErrnoException.t or_null -> link_string:string -> unit)
           -> unit)
       =
-      fun ~path:(x1254 : PathLike.t) ->
+      fun (x1254 : PathLike.t) ->
         fun
           ~callback:(x1255 :
                       err:ErrnoException.t or_null ->
@@ -3966,11 +3949,11 @@ module Fs =
     module Readlink =
       struct
         let (__promisify__ :
-          path:PathLike.t ->
+          PathLike.t ->
             ?options:(BaseEncodingOptions.t, BufferEncoding.t) union2 or_null
               -> unit -> string Promise.t)
           =
-          fun ~path:(x1259 : PathLike.t) ->
+          fun (x1259 : PathLike.t) ->
             fun
               ?options:(x1260 :
                          (BaseEncodingOptions.t, BufferEncoding.t) union2
@@ -4005,10 +3988,9 @@ module Fs =
                                 | None -> ());
                                x1261))|])
         let (__promisify__ :
-          path:PathLike.t ->
-            options:BufferEncodingOption.t -> Buffer.t Promise.t)
+          PathLike.t -> options:BufferEncodingOption.t -> Buffer.t Promise.t)
           =
-          fun ~path:(x1268 : PathLike.t) ->
+          fun (x1268 : PathLike.t) ->
             fun ~options:(x1269 : BufferEncodingOption.t) ->
               Promise.t_of_js Buffer.t_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.fs "readlink")
@@ -4016,11 +3998,11 @@ module Fs =
                    [|(PathLike.t_to_js x1268);(BufferEncodingOption.t_to_js
                                                  x1269)|])
         let (__promisify__ :
-          path:PathLike.t ->
+          PathLike.t ->
             ?options:BaseEncodingOptions.t or_string or_null ->
               unit -> Buffer.t or_string Promise.t)
           =
-          fun ~path:(x1271 : PathLike.t) ->
+          fun (x1271 : PathLike.t) ->
             fun
               ?options:(x1272 :
                          BaseEncodingOptions.t or_string or_null option)
@@ -4056,11 +4038,11 @@ module Fs =
                                x1273))|])
       end
     let (readlink_sync :
-      path:PathLike.t ->
+      PathLike.t ->
         ?options:(BaseEncodingOptions.t, BufferEncoding.t) union2 or_null ->
           unit -> string)
       =
-      fun ~path:(x1280 : PathLike.t) ->
+      fun (x1280 : PathLike.t) ->
         fun
           ?options:(x1281 :
                      (BaseEncodingOptions.t, BufferEncoding.t) union2 or_null
@@ -4094,18 +4076,18 @@ module Fs =
                             | None -> ());
                            x1282))|])
     let (readlink_sync :
-      path:PathLike.t -> options:BufferEncodingOption.t -> Buffer.t) =
-      fun ~path:(x1288 : PathLike.t) ->
+      PathLike.t -> options:BufferEncodingOption.t -> Buffer.t) =
+      fun (x1288 : PathLike.t) ->
         fun ~options:(x1289 : BufferEncodingOption.t) ->
           Buffer.t_of_js
             (Ojs.call Import.fs "readlinkSync"
                [|(PathLike.t_to_js x1288);(BufferEncodingOption.t_to_js x1289)|])
     let (readlink_sync :
-      path:PathLike.t ->
+      PathLike.t ->
         ?options:BaseEncodingOptions.t or_string or_null ->
           unit -> Buffer.t or_string)
       =
-      fun ~path:(x1290 : PathLike.t) ->
+      fun (x1290 : PathLike.t) ->
         fun ?options:(x1291 : BaseEncodingOptions.t or_string or_null option)
           ->
           fun () ->
@@ -4135,14 +4117,13 @@ module Fs =
                             | None -> ());
                            x1292))|])
     let (realpath :
-      path:PathLike.t ->
+      PathLike.t ->
         options:(BaseEncodingOptions.t, BufferEncoding.t) union2
           or_null_or_undefined ->
-          callback:(err:ErrnoException.t or_null ->
-                      resolved_path:PathLike.t -> unit)
-            -> unit)
+          callback:(err:ErrnoException.t or_null -> PathLike.t -> unit) ->
+            unit)
       =
-      fun ~path:(x1298 : PathLike.t) ->
+      fun (x1298 : PathLike.t) ->
         fun
           ~options:(x1299 :
                      (BaseEncodingOptions.t, BufferEncoding.t) union2
@@ -4150,8 +4131,7 @@ module Fs =
           ->
           fun
             ~callback:(x1303 :
-                        err:ErrnoException.t or_null ->
-                          resolved_path:PathLike.t -> unit)
+                        err:ErrnoException.t or_null -> PathLike.t -> unit)
             ->
             ignore
               (Ojs.call Import.fs "realpath"
@@ -4178,22 +4158,18 @@ module Fs =
                                                                     or_null_of_js
                                                                     ErrnoException.t_of_js
                                                                     x1304)
-                                                                    ~resolved_path:(
-                                                                    PathLike.t_of_js
+                                                                    (PathLike.t_of_js
                                                                     x1306)))|])
     let (realpath :
-      path:PathLike.t ->
+      PathLike.t ->
         options:BufferEncodingOption.t ->
-          callback:(err:ErrnoException.t or_null ->
-                      resolved_path:Buffer.t -> unit)
-            -> unit)
+          callback:(err:ErrnoException.t or_null -> Buffer.t -> unit) -> unit)
       =
-      fun ~path:(x1307 : PathLike.t) ->
+      fun (x1307 : PathLike.t) ->
         fun ~options:(x1308 : BufferEncodingOption.t) ->
           fun
             ~callback:(x1309 :
-                        err:ErrnoException.t or_null ->
-                          resolved_path:Buffer.t -> unit)
+                        err:ErrnoException.t or_null -> Buffer.t -> unit)
             ->
             ignore
               (Ojs.call Import.fs "realpath"
@@ -4209,17 +4185,16 @@ module Fs =
                                                                 or_null_of_js
                                                                   ErrnoException.t_of_js
                                                                   x1310)
-                                                                ~resolved_path:(
-                                                                Buffer.t_of_js
-                                                                  x1312)))|])
+                                                                (Buffer.t_of_js
+                                                                   x1312)))|])
     let (realpath :
-      path:PathLike.t ->
+      PathLike.t ->
         options:BaseEncodingOptions.t or_string or_null_or_undefined ->
           callback:(err:ErrnoException.t or_null ->
-                      resolved_path:Buffer.t or_string -> unit)
+                      Buffer.t or_string -> unit)
             -> unit)
       =
-      fun ~path:(x1313 : PathLike.t) ->
+      fun (x1313 : PathLike.t) ->
         fun
           ~options:(x1314 :
                      BaseEncodingOptions.t or_string or_null_or_undefined)
@@ -4227,7 +4202,7 @@ module Fs =
           fun
             ~callback:(x1317 :
                         err:ErrnoException.t or_null ->
-                          resolved_path:Buffer.t or_string -> unit)
+                          Buffer.t or_string -> unit)
             ->
             ignore
               (Ojs.call Import.fs "realpath"
@@ -4252,21 +4227,17 @@ module Fs =
                                                                     or_null_of_js
                                                                     ErrnoException.t_of_js
                                                                     x1318)
-                                                                    ~resolved_path:(
-                                                                    or_string_of_js
+                                                                    (or_string_of_js
                                                                     Buffer.t_of_js
                                                                     x1320)))|])
     let (realpath :
-      path:PathLike.t ->
-        callback:(err:ErrnoException.t or_null ->
-                    resolved_path:PathLike.t -> unit)
-          -> unit)
+      PathLike.t ->
+        callback:(err:ErrnoException.t or_null -> PathLike.t -> unit) -> unit)
       =
-      fun ~path:(x1322 : PathLike.t) ->
+      fun (x1322 : PathLike.t) ->
         fun
           ~callback:(x1323 :
-                      err:ErrnoException.t or_null ->
-                        resolved_path:PathLike.t -> unit)
+                      err:ErrnoException.t or_null -> PathLike.t -> unit)
           ->
           ignore
             (Ojs.call Import.fs "realpath"
@@ -4277,16 +4248,15 @@ module Fs =
                                                     ~err:(or_null_of_js
                                                             ErrnoException.t_of_js
                                                             x1324)
-                                                    ~resolved_path:(PathLike.t_of_js
-                                                                    x1326)))|])
+                                                    (PathLike.t_of_js x1326)))|])
     module Realpath =
       struct
         let (__promisify__ :
-          path:PathLike.t ->
+          PathLike.t ->
             ?options:(BaseEncodingOptions.t, BufferEncoding.t) union2 or_null
               -> unit -> string Promise.t)
           =
-          fun ~path:(x1327 : PathLike.t) ->
+          fun (x1327 : PathLike.t) ->
             fun
               ?options:(x1328 :
                          (BaseEncodingOptions.t, BufferEncoding.t) union2
@@ -4321,10 +4291,9 @@ module Fs =
                                 | None -> ());
                                x1329))|])
         let (__promisify__ :
-          path:PathLike.t ->
-            options:BufferEncodingOption.t -> Buffer.t Promise.t)
+          PathLike.t -> options:BufferEncodingOption.t -> Buffer.t Promise.t)
           =
-          fun ~path:(x1336 : PathLike.t) ->
+          fun (x1336 : PathLike.t) ->
             fun ~options:(x1337 : BufferEncodingOption.t) ->
               Promise.t_of_js Buffer.t_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.fs "realpath")
@@ -4332,11 +4301,11 @@ module Fs =
                    [|(PathLike.t_to_js x1336);(BufferEncodingOption.t_to_js
                                                  x1337)|])
         let (__promisify__ :
-          path:PathLike.t ->
+          PathLike.t ->
             ?options:BaseEncodingOptions.t or_string or_null ->
               unit -> Buffer.t or_string Promise.t)
           =
-          fun ~path:(x1339 : PathLike.t) ->
+          fun (x1339 : PathLike.t) ->
             fun
               ?options:(x1340 :
                          BaseEncodingOptions.t or_string or_null option)
@@ -4371,14 +4340,13 @@ module Fs =
                                 | None -> ());
                                x1341))|])
         let (native :
-          path:PathLike.t ->
+          PathLike.t ->
             options:(BaseEncodingOptions.t, BufferEncoding.t) union2
               or_null_or_undefined ->
-              callback:(err:ErrnoException.t or_null ->
-                          resolved_path:PathLike.t -> unit)
+              callback:(err:ErrnoException.t or_null -> PathLike.t -> unit)
                 -> unit)
           =
-          fun ~path:(x1348 : PathLike.t) ->
+          fun (x1348 : PathLike.t) ->
             fun
               ~options:(x1349 :
                          (BaseEncodingOptions.t, BufferEncoding.t) union2
@@ -4387,7 +4355,7 @@ module Fs =
               fun
                 ~callback:(x1353 :
                             err:ErrnoException.t or_null ->
-                              resolved_path:PathLike.t -> unit)
+                              PathLike.t -> unit)
                 ->
                 ignore
                   (Ojs.call (Ojs.get_prop_ascii Import.fs "realpath")
@@ -4408,21 +4376,18 @@ module Fs =
                             fun (x1356 : Ojs.t) ->
                               x1353
                                 ~err:(or_null_of_js ErrnoException.t_of_js
-                                        x1354)
-                                ~resolved_path:(PathLike.t_of_js x1356)))|])
+                                        x1354) (PathLike.t_of_js x1356)))|])
         let (native :
-          path:PathLike.t ->
+          PathLike.t ->
             options:BufferEncodingOption.t ->
-              callback:(err:ErrnoException.t or_null ->
-                          resolved_path:Buffer.t -> unit)
-                -> unit)
+              callback:(err:ErrnoException.t or_null -> Buffer.t -> unit) ->
+                unit)
           =
-          fun ~path:(x1357 : PathLike.t) ->
+          fun (x1357 : PathLike.t) ->
             fun ~options:(x1358 : BufferEncodingOption.t) ->
               fun
                 ~callback:(x1359 :
-                            err:ErrnoException.t or_null ->
-                              resolved_path:Buffer.t -> unit)
+                            err:ErrnoException.t or_null -> Buffer.t -> unit)
                 ->
                 ignore
                   (Ojs.call (Ojs.get_prop_ascii Import.fs "realpath")
@@ -4442,17 +4407,17 @@ module Fs =
                                                                     or_null_of_js
                                                                     ErrnoException.t_of_js
                                                                     x1360)
-                                                                    ~resolved_path:(
+                                                                    (
                                                                     Buffer.t_of_js
                                                                     x1362)))|])
         let (native :
-          path:PathLike.t ->
+          PathLike.t ->
             options:BaseEncodingOptions.t or_string or_null_or_undefined ->
               callback:(err:ErrnoException.t or_null ->
-                          resolved_path:Buffer.t or_string -> unit)
+                          Buffer.t or_string -> unit)
                 -> unit)
           =
-          fun ~path:(x1363 : PathLike.t) ->
+          fun (x1363 : PathLike.t) ->
             fun
               ~options:(x1364 :
                          BaseEncodingOptions.t or_string or_null_or_undefined)
@@ -4460,7 +4425,7 @@ module Fs =
               fun
                 ~callback:(x1367 :
                             err:ErrnoException.t or_null ->
-                              resolved_path:Buffer.t or_string -> unit)
+                              Buffer.t or_string -> unit)
                 ->
                 ignore
                   (Ojs.call (Ojs.get_prop_ascii Import.fs "realpath")
@@ -4480,19 +4445,16 @@ module Fs =
                               x1367
                                 ~err:(or_null_of_js ErrnoException.t_of_js
                                         x1368)
-                                ~resolved_path:(or_string_of_js
-                                                  Buffer.t_of_js x1370)))|])
+                                (or_string_of_js Buffer.t_of_js x1370)))|])
         let (native :
-          path:PathLike.t ->
-            callback:(err:ErrnoException.t or_null ->
-                        resolved_path:PathLike.t -> unit)
-              -> unit)
+          PathLike.t ->
+            callback:(err:ErrnoException.t or_null -> PathLike.t -> unit) ->
+              unit)
           =
-          fun ~path:(x1372 : PathLike.t) ->
+          fun (x1372 : PathLike.t) ->
             fun
               ~callback:(x1373 :
-                          err:ErrnoException.t or_null ->
-                            resolved_path:PathLike.t -> unit)
+                          err:ErrnoException.t or_null -> PathLike.t -> unit)
               ->
               ignore
                 (Ojs.call (Ojs.get_prop_ascii Import.fs "realpath") "native"
@@ -4503,16 +4465,15 @@ module Fs =
                                                         ~err:(or_null_of_js
                                                                 ErrnoException.t_of_js
                                                                 x1374)
-                                                        ~resolved_path:(
-                                                        PathLike.t_of_js
-                                                          x1376)))|])
+                                                        (PathLike.t_of_js
+                                                           x1376)))|])
       end
     let (realpath_sync :
-      path:PathLike.t ->
+      PathLike.t ->
         ?options:(BaseEncodingOptions.t, BufferEncoding.t) union2 or_null ->
           unit -> string)
       =
-      fun ~path:(x1377 : PathLike.t) ->
+      fun (x1377 : PathLike.t) ->
         fun
           ?options:(x1378 :
                      (BaseEncodingOptions.t, BufferEncoding.t) union2 or_null
@@ -4546,18 +4507,18 @@ module Fs =
                             | None -> ());
                            x1379))|])
     let (realpath_sync :
-      path:PathLike.t -> options:BufferEncodingOption.t -> Buffer.t) =
-      fun ~path:(x1385 : PathLike.t) ->
+      PathLike.t -> options:BufferEncodingOption.t -> Buffer.t) =
+      fun (x1385 : PathLike.t) ->
         fun ~options:(x1386 : BufferEncodingOption.t) ->
           Buffer.t_of_js
             (Ojs.call Import.fs "realpathSync"
                [|(PathLike.t_to_js x1385);(BufferEncodingOption.t_to_js x1386)|])
     let (realpath_sync :
-      path:PathLike.t ->
+      PathLike.t ->
         ?options:BaseEncodingOptions.t or_string or_null ->
           unit -> Buffer.t or_string)
       =
-      fun ~path:(x1387 : PathLike.t) ->
+      fun (x1387 : PathLike.t) ->
         fun ?options:(x1388 : BaseEncodingOptions.t or_string or_null option)
           ->
           fun () ->
@@ -4589,11 +4550,11 @@ module Fs =
     module RealpathSync =
       struct
         let (native :
-          path:PathLike.t ->
+          PathLike.t ->
             ?options:(BaseEncodingOptions.t, BufferEncoding.t) union2 or_null
               -> unit -> string)
           =
-          fun ~path:(x1395 : PathLike.t) ->
+          fun (x1395 : PathLike.t) ->
             fun
               ?options:(x1396 :
                          (BaseEncodingOptions.t, BufferEncoding.t) union2
@@ -4627,8 +4588,8 @@ module Fs =
                                 | None -> ());
                                x1397))|])
         let (native :
-          path:PathLike.t -> options:BufferEncodingOption.t -> Buffer.t) =
-          fun ~path:(x1403 : PathLike.t) ->
+          PathLike.t -> options:BufferEncodingOption.t -> Buffer.t) =
+          fun (x1403 : PathLike.t) ->
             fun ~options:(x1404 : BufferEncodingOption.t) ->
               Buffer.t_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.fs "realpathSync")
@@ -4636,11 +4597,11 @@ module Fs =
                    [|(PathLike.t_to_js x1403);(BufferEncodingOption.t_to_js
                                                  x1404)|])
         let (native :
-          path:PathLike.t ->
+          PathLike.t ->
             ?options:BaseEncodingOptions.t or_string or_null ->
               unit -> Buffer.t or_string)
           =
-          fun ~path:(x1405 : PathLike.t) ->
+          fun (x1405 : PathLike.t) ->
             fun
               ?options:(x1406 :
                          BaseEncodingOptions.t or_string or_null option)
@@ -4672,22 +4633,22 @@ module Fs =
                                 | None -> ());
                                x1407))|])
       end
-    let (unlink : path:PathLike.t -> callback:NoParamCallback.t -> unit) =
-      fun ~path:(x1413 : PathLike.t) ->
+    let (unlink : PathLike.t -> callback:NoParamCallback.t -> unit) =
+      fun (x1413 : PathLike.t) ->
         fun ~callback:(x1414 : NoParamCallback.t) ->
           ignore
             (Ojs.call Import.fs "unlink"
                [|(PathLike.t_to_js x1413);(NoParamCallback.t_to_js x1414)|])
     module Unlink =
       struct
-        let (__promisify__ : path:PathLike.t -> unit Promise.t) =
-          fun ~path:(x1415 : PathLike.t) ->
+        let (__promisify__ : PathLike.t -> unit Promise.t) =
+          fun (x1415 : PathLike.t) ->
             Promise.t_of_js Ojs.unit_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.fs "unlink")
                  "__promisify__" [|(PathLike.t_to_js x1415)|])
       end
-    let (unlink_sync : path:PathLike.t -> unit) =
-      fun ~path:(x1417 : PathLike.t) ->
+    let (unlink_sync : PathLike.t -> unit) =
+      fun (x1417 : PathLike.t) ->
         ignore (Ojs.call Import.fs "unlinkSync" [|(PathLike.t_to_js x1417)|])
     module RmDirOptions =
       struct
@@ -4719,17 +4680,17 @@ module Fs =
               Ojs.set_prop_ascii (t_to_js x1427) "retryDelay"
                 (Ojs.int_to_js x1428)
       end
-    let (rmdir : path:PathLike.t -> callback:NoParamCallback.t -> unit) =
-      fun ~path:(x1429 : PathLike.t) ->
+    let (rmdir : PathLike.t -> callback:NoParamCallback.t -> unit) =
+      fun (x1429 : PathLike.t) ->
         fun ~callback:(x1430 : NoParamCallback.t) ->
           ignore
             (Ojs.call Import.fs "rmdir"
                [|(PathLike.t_to_js x1429);(NoParamCallback.t_to_js x1430)|])
     let (rmdir :
-      path:PathLike.t ->
+      PathLike.t ->
         options:RmDirOptions.t -> callback:NoParamCallback.t -> unit)
       =
-      fun ~path:(x1431 : PathLike.t) ->
+      fun (x1431 : PathLike.t) ->
         fun ~options:(x1432 : RmDirOptions.t) ->
           fun ~callback:(x1433 : NoParamCallback.t) ->
             ignore
@@ -4739,10 +4700,8 @@ module Fs =
     module Rmdir =
       struct
         let (__promisify__ :
-          path:PathLike.t ->
-            ?options:RmDirOptions.t -> unit -> unit Promise.t)
-          =
-          fun ~path:(x1434 : PathLike.t) ->
+          PathLike.t -> ?options:RmDirOptions.t -> unit -> unit Promise.t) =
+          fun (x1434 : PathLike.t) ->
             fun ?options:(x1435 : RmDirOptions.t option) ->
               fun () ->
                 Promise.t_of_js Ojs.unit_of_js
@@ -4764,9 +4723,9 @@ module Fs =
                                 | None -> ());
                                x1436))|])
       end
-    let (rmdir_sync :
-      path:PathLike.t -> ?options:RmDirOptions.t -> unit -> unit) =
-      fun ~path:(x1440 : PathLike.t) ->
+    let (rmdir_sync : PathLike.t -> ?options:RmDirOptions.t -> unit -> unit)
+      =
+      fun (x1440 : PathLike.t) ->
         fun ?options:(x1441 : RmDirOptions.t option) ->
           fun () ->
             ignore
@@ -4824,350 +4783,355 @@ module Fs =
               Ojs.set_prop_ascii (t_to_js x1457) "retryDelay"
                 (Ojs.int_to_js x1458)
       end
-    let (rm : path:PathLike.t -> callback:NoParamCallback.t -> unit) =
-      fun ~path:(x1459 : PathLike.t) ->
-        fun ~callback:(x1460 : NoParamCallback.t) ->
-          ignore
-            (Ojs.call Import.fs "rm"
-               [|(PathLike.t_to_js x1459);(NoParamCallback.t_to_js x1460)|])
     let (rm :
-      path:PathLike.t ->
-        options:RmOptions.t -> callback:NoParamCallback.t -> unit)
-      =
-      fun ~path:(x1461 : PathLike.t) ->
-        fun ~options:(x1462 : RmOptions.t) ->
-          fun ~callback:(x1463 : NoParamCallback.t) ->
+      PathLike.t -> ?options:RmOptions.t -> NoParamCallback.t -> unit) =
+      fun (x1459 : PathLike.t) ->
+        fun ?options:(x1460 : RmOptions.t option) ->
+          fun (x1461 : NoParamCallback.t) ->
             ignore
-              (Ojs.call Import.fs "rm"
-                 [|(PathLike.t_to_js x1461);(RmOptions.t_to_js x1462);(
-                   NoParamCallback.t_to_js x1463)|])
-    module Rm =
-      struct
-        let (__promisify__ :
-          path:PathLike.t -> ?options:RmOptions.t -> unit -> unit Promise.t)
-          =
-          fun ~path:(x1464 : PathLike.t) ->
-            fun ?options:(x1465 : RmOptions.t option) ->
-              fun () ->
-                Promise.t_of_js Ojs.unit_of_js
-                  (let x1468 = Ojs.get_prop_ascii Import.fs "rm" in
-                   Ojs.call (Ojs.get_prop_ascii x1468 "__promisify__")
-                     "apply"
-                     [|x1468;((let x1466 =
-                                 Ojs.new_obj
-                                   (Ojs.get_prop_ascii Ojs.global "Array")
-                                   [||] in
-                               ignore
-                                 (Ojs.call x1466 "push"
-                                    [|(PathLike.t_to_js x1464)|]);
-                               (match x1465 with
-                                | Some x1467 ->
-                                    ignore
-                                      (Ojs.call x1466 "push"
-                                         [|(RmOptions.t_to_js x1467)|])
-                                | None -> ());
-                               x1466))|])
-      end
-    let (rm_sync : path:PathLike.t -> ?options:RmOptions.t -> unit -> unit) =
-      fun ~path:(x1470 : PathLike.t) ->
-        fun ?options:(x1471 : RmOptions.t option) ->
-          fun () ->
-            ignore
-              (let x1474 = Import.fs in
-               Ojs.call (Ojs.get_prop_ascii x1474 "rmSync") "apply"
-                 [|x1474;((let x1472 =
+              (let x1464 = Import.fs in
+               Ojs.call (Ojs.get_prop_ascii x1464 "rm") "apply"
+                 [|x1464;((let x1462 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1472 "push"
-                                [|(PathLike.t_to_js x1470)|]);
-                           (match x1471 with
-                            | Some x1473 ->
+                             (Ojs.call x1462 "push"
+                                [|(PathLike.t_to_js x1459)|]);
+                           (match x1460 with
+                            | Some x1463 ->
                                 ignore
-                                  (Ojs.call x1472 "push"
-                                     [|(RmOptions.t_to_js x1473)|])
+                                  (Ojs.call x1462 "push"
+                                     [|(RmOptions.t_to_js x1463)|])
                             | None -> ());
-                           x1472))|])
+                           ignore
+                             (Ojs.call x1462 "push"
+                                [|(NoParamCallback.t_to_js x1461)|]);
+                           x1462))|])
+    module Rm =
+      struct
+        let (__promisify__ :
+          PathLike.t -> ?options:RmOptions.t -> unit -> unit Promise.t) =
+          fun (x1465 : PathLike.t) ->
+            fun ?options:(x1466 : RmOptions.t option) ->
+              fun () ->
+                Promise.t_of_js Ojs.unit_of_js
+                  (let x1469 = Ojs.get_prop_ascii Import.fs "rm" in
+                   Ojs.call (Ojs.get_prop_ascii x1469 "__promisify__")
+                     "apply"
+                     [|x1469;((let x1467 =
+                                 Ojs.new_obj
+                                   (Ojs.get_prop_ascii Ojs.global "Array")
+                                   [||] in
+                               ignore
+                                 (Ojs.call x1467 "push"
+                                    [|(PathLike.t_to_js x1465)|]);
+                               (match x1466 with
+                                | Some x1468 ->
+                                    ignore
+                                      (Ojs.call x1467 "push"
+                                         [|(RmOptions.t_to_js x1468)|])
+                                | None -> ());
+                               x1467))|])
+      end
+    let (rm_sync : PathLike.t -> ?options:RmOptions.t -> unit -> unit) =
+      fun (x1471 : PathLike.t) ->
+        fun ?options:(x1472 : RmOptions.t option) ->
+          fun () ->
+            ignore
+              (let x1475 = Import.fs in
+               Ojs.call (Ojs.get_prop_ascii x1475 "rmSync") "apply"
+                 [|x1475;((let x1473 =
+                             Ojs.new_obj
+                               (Ojs.get_prop_ascii Ojs.global "Array") 
+                               [||] in
+                           ignore
+                             (Ojs.call x1473 "push"
+                                [|(PathLike.t_to_js x1471)|]);
+                           (match x1472 with
+                            | Some x1474 ->
+                                ignore
+                                  (Ojs.call x1473 "push"
+                                     [|(RmOptions.t_to_js x1474)|])
+                            | None -> ());
+                           x1473))|])
     module MakeDirectoryOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1476 : Ojs.t) -> x1476
-        and t_to_js : t -> Ojs.t = fun (x1475 : Ojs.t) -> x1475
+        let rec t_of_js : Ojs.t -> t = fun (x1477 : Ojs.t) -> x1477
+        and t_to_js : t -> Ojs.t = fun (x1476 : Ojs.t) -> x1476
         let (get_recursive : t -> bool) =
-          fun (x1477 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1477) "recursive")
-        let (set_recursive : t -> bool -> unit) =
           fun (x1478 : t) ->
-            fun (x1479 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x1478) "recursive"
-                (Ojs.bool_to_js x1479)
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1478) "recursive")
+        let (set_recursive : t -> bool -> unit) =
+          fun (x1479 : t) ->
+            fun (x1480 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x1479) "recursive"
+                (Ojs.bool_to_js x1480)
         let (get_mode : t -> Mode.t) =
-          fun (x1480 : t) ->
-            Mode.t_of_js (Ojs.get_prop_ascii (t_to_js x1480) "mode")
-        let (set_mode : t -> Mode.t -> unit) =
           fun (x1481 : t) ->
-            fun (x1482 : Mode.t) ->
-              Ojs.set_prop_ascii (t_to_js x1481) "mode" (Mode.t_to_js x1482)
+            Mode.t_of_js (Ojs.get_prop_ascii (t_to_js x1481) "mode")
+        let (set_mode : t -> Mode.t -> unit) =
+          fun (x1482 : t) ->
+            fun (x1483 : Mode.t) ->
+              Ojs.set_prop_ascii (t_to_js x1482) "mode" (Mode.t_to_js x1483)
       end
     let (mkdir :
-      path:PathLike.t ->
+      PathLike.t ->
         options:(MakeDirectoryOptions.t, AnonymousInterface18.t)
           intersection2 ->
           callback:(err:ErrnoException.t or_null ->
                       ?path:PathLike.t -> unit -> unit)
             -> unit)
       =
-      fun ~path:(x1483 : PathLike.t) ->
+      fun (x1484 : PathLike.t) ->
         fun
-          ~options:(x1484 :
+          ~options:(x1485 :
                      (MakeDirectoryOptions.t, AnonymousInterface18.t)
                        intersection2)
           ->
           fun
-            ~callback:(x1487 :
+            ~callback:(x1488 :
                         err:ErrnoException.t or_null ->
                           ?path:PathLike.t -> unit -> unit)
             ->
             ignore
               (Ojs.call Import.fs "mkdir"
-                 [|(PathLike.t_to_js x1483);(intersection2_to_js
+                 [|(PathLike.t_to_js x1484);(intersection2_to_js
                                                MakeDirectoryOptions.t_to_js
                                                AnonymousInterface18.t_to_js
-                                               x1484);(Ojs.fun_to_js 2
-                                                         (fun (x1488 : Ojs.t)
+                                               x1485);(Ojs.fun_to_js 2
+                                                         (fun (x1489 : Ojs.t)
                                                             ->
                                                             fun
-                                                              (x1490 : Ojs.t)
+                                                              (x1491 : Ojs.t)
                                                               ->
-                                                              x1487
+                                                              x1488
                                                                 ~err:(
                                                                 or_null_of_js
                                                                   ErrnoException.t_of_js
-                                                                  x1488)
+                                                                  x1489)
                                                                 ?path:(
                                                                 Ojs.option_of_js
                                                                   PathLike.t_of_js
-                                                                  x1490) ()))|])
+                                                                  x1491) ()))|])
     let (mkdir :
-      path:PathLike.t ->
+      PathLike.t ->
         options:Mode.t or_null_or_undefined ->
           callback:NoParamCallback.t -> unit)
       =
-      fun ~path:(x1492 : PathLike.t) ->
-        fun ~options:(x1493 : Mode.t or_null_or_undefined) ->
-          fun ~callback:(x1495 : NoParamCallback.t) ->
+      fun (x1493 : PathLike.t) ->
+        fun ~options:(x1494 : Mode.t or_null_or_undefined) ->
+          fun ~callback:(x1496 : NoParamCallback.t) ->
             ignore
               (Ojs.call Import.fs "mkdir"
-                 [|(PathLike.t_to_js x1492);(or_null_or_undefined_to_js
-                                               Mode.t_to_js x1493);(NoParamCallback.t_to_js
-                                                                    x1495)|])
+                 [|(PathLike.t_to_js x1493);(or_null_or_undefined_to_js
+                                               Mode.t_to_js x1494);(NoParamCallback.t_to_js
+                                                                    x1496)|])
     let (mkdir :
-      path:PathLike.t ->
+      PathLike.t ->
         options:(MakeDirectoryOptions.t, Mode.t) union2 or_null_or_undefined
           ->
           callback:(err:ErrnoException.t or_null ->
                       ?path:PathLike.t -> unit -> unit)
             -> unit)
       =
-      fun ~path:(x1496 : PathLike.t) ->
+      fun (x1497 : PathLike.t) ->
         fun
-          ~options:(x1497 :
+          ~options:(x1498 :
                      (MakeDirectoryOptions.t, Mode.t) union2
                        or_null_or_undefined)
           ->
           fun
-            ~callback:(x1501 :
+            ~callback:(x1502 :
                         err:ErrnoException.t or_null ->
                           ?path:PathLike.t -> unit -> unit)
             ->
             ignore
               (Ojs.call Import.fs "mkdir"
-                 [|(PathLike.t_to_js x1496);(or_null_or_undefined_to_js
+                 [|(PathLike.t_to_js x1497);(or_null_or_undefined_to_js
                                                (fun
-                                                  (x1498 :
+                                                  (x1499 :
                                                     (MakeDirectoryOptions.t,
                                                       Mode.t) union2)
                                                   ->
                                                   union2_to_js
                                                     MakeDirectoryOptions.t_to_js
-                                                    Mode.t_to_js x1498) x1497);(
+                                                    Mode.t_to_js x1499) x1498);(
                    Ojs.fun_to_js 2
-                     (fun (x1502 : Ojs.t) ->
-                        fun (x1504 : Ojs.t) ->
-                          x1501
-                            ~err:(or_null_of_js ErrnoException.t_of_js x1502)
-                            ?path:(Ojs.option_of_js PathLike.t_of_js x1504)
+                     (fun (x1503 : Ojs.t) ->
+                        fun (x1505 : Ojs.t) ->
+                          x1502
+                            ~err:(or_null_of_js ErrnoException.t_of_js x1503)
+                            ?path:(Ojs.option_of_js PathLike.t_of_js x1505)
                             ()))|])
-    let (mkdir : path:PathLike.t -> callback:NoParamCallback.t -> unit) =
-      fun ~path:(x1506 : PathLike.t) ->
-        fun ~callback:(x1507 : NoParamCallback.t) ->
+    let (mkdir : PathLike.t -> callback:NoParamCallback.t -> unit) =
+      fun (x1507 : PathLike.t) ->
+        fun ~callback:(x1508 : NoParamCallback.t) ->
           ignore
             (Ojs.call Import.fs "mkdir"
-               [|(PathLike.t_to_js x1506);(NoParamCallback.t_to_js x1507)|])
+               [|(PathLike.t_to_js x1507);(NoParamCallback.t_to_js x1508)|])
     module Mkdir =
       struct
         let (__promisify__ :
-          path:PathLike.t ->
+          PathLike.t ->
             options:(MakeDirectoryOptions.t, AnonymousInterface18.t)
               intersection2 -> string or_undefined Promise.t)
           =
-          fun ~path:(x1508 : PathLike.t) ->
+          fun (x1509 : PathLike.t) ->
             fun
-              ~options:(x1509 :
+              ~options:(x1510 :
                          (MakeDirectoryOptions.t, AnonymousInterface18.t)
                            intersection2)
               ->
               Promise.t_of_js
-                (fun (x1512 : Ojs.t) ->
-                   or_undefined_of_js Ojs.string_of_js x1512)
+                (fun (x1513 : Ojs.t) ->
+                   or_undefined_of_js Ojs.string_of_js x1513)
                 (Ojs.call (Ojs.get_prop_ascii Import.fs "mkdir")
                    "__promisify__"
-                   [|(PathLike.t_to_js x1508);(intersection2_to_js
+                   [|(PathLike.t_to_js x1509);(intersection2_to_js
                                                  MakeDirectoryOptions.t_to_js
                                                  AnonymousInterface18.t_to_js
-                                                 x1509)|])
+                                                 x1510)|])
         let (__promisify__ :
-          path:PathLike.t ->
-            ?options:Mode.t or_null -> unit -> unit Promise.t)
-          =
-          fun ~path:(x1514 : PathLike.t) ->
-            fun ?options:(x1515 : Mode.t or_null option) ->
+          PathLike.t -> ?options:Mode.t or_null -> unit -> unit Promise.t) =
+          fun (x1515 : PathLike.t) ->
+            fun ?options:(x1516 : Mode.t or_null option) ->
               fun () ->
                 Promise.t_of_js Ojs.unit_of_js
-                  (let x1519 = Ojs.get_prop_ascii Import.fs "mkdir" in
-                   Ojs.call (Ojs.get_prop_ascii x1519 "__promisify__")
+                  (let x1520 = Ojs.get_prop_ascii Import.fs "mkdir" in
+                   Ojs.call (Ojs.get_prop_ascii x1520 "__promisify__")
                      "apply"
-                     [|x1519;((let x1516 =
+                     [|x1520;((let x1517 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x1516 "push"
-                                    [|(PathLike.t_to_js x1514)|]);
-                               (match x1515 with
-                                | Some x1517 ->
+                                 (Ojs.call x1517 "push"
+                                    [|(PathLike.t_to_js x1515)|]);
+                               (match x1516 with
+                                | Some x1518 ->
                                     ignore
-                                      (Ojs.call x1516 "push"
-                                         [|(or_null_to_js Mode.t_to_js x1517)|])
+                                      (Ojs.call x1517 "push"
+                                         [|(or_null_to_js Mode.t_to_js x1518)|])
                                 | None -> ());
-                               x1516))|])
+                               x1517))|])
         let (__promisify__ :
-          path:PathLike.t ->
+          PathLike.t ->
             ?options:(MakeDirectoryOptions.t, Mode.t) union2 or_null ->
               unit -> string or_undefined Promise.t)
           =
-          fun ~path:(x1521 : PathLike.t) ->
+          fun (x1522 : PathLike.t) ->
             fun
-              ?options:(x1522 :
+              ?options:(x1523 :
                          (MakeDirectoryOptions.t, Mode.t) union2 or_null
                            option)
               ->
               fun () ->
                 Promise.t_of_js
-                  (fun (x1529 : Ojs.t) ->
-                     or_undefined_of_js Ojs.string_of_js x1529)
-                  (let x1528 = Ojs.get_prop_ascii Import.fs "mkdir" in
-                   Ojs.call (Ojs.get_prop_ascii x1528 "__promisify__")
+                  (fun (x1530 : Ojs.t) ->
+                     or_undefined_of_js Ojs.string_of_js x1530)
+                  (let x1529 = Ojs.get_prop_ascii Import.fs "mkdir" in
+                   Ojs.call (Ojs.get_prop_ascii x1529 "__promisify__")
                      "apply"
-                     [|x1528;((let x1523 =
+                     [|x1529;((let x1524 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x1523 "push"
-                                    [|(PathLike.t_to_js x1521)|]);
-                               (match x1522 with
-                                | Some x1524 ->
+                                 (Ojs.call x1524 "push"
+                                    [|(PathLike.t_to_js x1522)|]);
+                               (match x1523 with
+                                | Some x1525 ->
                                     ignore
-                                      (Ojs.call x1523 "push"
+                                      (Ojs.call x1524 "push"
                                          [|(or_null_to_js
                                               (fun
-                                                 (x1525 :
+                                                 (x1526 :
                                                    (MakeDirectoryOptions.t,
                                                      Mode.t) union2)
                                                  ->
                                                  union2_to_js
                                                    MakeDirectoryOptions.t_to_js
-                                                   Mode.t_to_js x1525) x1524)|])
+                                                   Mode.t_to_js x1526) x1525)|])
                                 | None -> ());
-                               x1523))|])
+                               x1524))|])
       end
     let (mkdir_sync :
-      path:PathLike.t ->
+      PathLike.t ->
         options:(MakeDirectoryOptions.t, AnonymousInterface18.t)
           intersection2 -> string or_undefined)
       =
-      fun ~path:(x1531 : PathLike.t) ->
+      fun (x1532 : PathLike.t) ->
         fun
-          ~options:(x1532 :
+          ~options:(x1533 :
                      (MakeDirectoryOptions.t, AnonymousInterface18.t)
                        intersection2)
           ->
           or_undefined_of_js Ojs.string_of_js
             (Ojs.call Import.fs "mkdirSync"
-               [|(PathLike.t_to_js x1531);(intersection2_to_js
+               [|(PathLike.t_to_js x1532);(intersection2_to_js
                                              MakeDirectoryOptions.t_to_js
                                              AnonymousInterface18.t_to_js
-                                             x1532)|])
-    let (mkdir_sync :
-      path:PathLike.t -> ?options:Mode.t or_null -> unit -> unit) =
-      fun ~path:(x1536 : PathLike.t) ->
-        fun ?options:(x1537 : Mode.t or_null option) ->
+                                             x1533)|])
+    let (mkdir_sync : PathLike.t -> ?options:Mode.t or_null -> unit -> unit)
+      =
+      fun (x1537 : PathLike.t) ->
+        fun ?options:(x1538 : Mode.t or_null option) ->
           fun () ->
             ignore
-              (let x1541 = Import.fs in
-               Ojs.call (Ojs.get_prop_ascii x1541 "mkdirSync") "apply"
-                 [|x1541;((let x1538 =
+              (let x1542 = Import.fs in
+               Ojs.call (Ojs.get_prop_ascii x1542 "mkdirSync") "apply"
+                 [|x1542;((let x1539 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1538 "push"
-                                [|(PathLike.t_to_js x1536)|]);
-                           (match x1537 with
-                            | Some x1539 ->
+                             (Ojs.call x1539 "push"
+                                [|(PathLike.t_to_js x1537)|]);
+                           (match x1538 with
+                            | Some x1540 ->
                                 ignore
-                                  (Ojs.call x1538 "push"
-                                     [|(or_null_to_js Mode.t_to_js x1539)|])
+                                  (Ojs.call x1539 "push"
+                                     [|(or_null_to_js Mode.t_to_js x1540)|])
                             | None -> ());
-                           x1538))|])
+                           x1539))|])
     let (mkdir_sync :
-      path:PathLike.t ->
+      PathLike.t ->
         ?options:(MakeDirectoryOptions.t, Mode.t) union2 or_null ->
           unit -> string or_undefined)
       =
-      fun ~path:(x1542 : PathLike.t) ->
+      fun (x1543 : PathLike.t) ->
         fun
-          ?options:(x1543 :
+          ?options:(x1544 :
                      (MakeDirectoryOptions.t, Mode.t) union2 or_null option)
           ->
           fun () ->
             or_undefined_of_js Ojs.string_of_js
-              (let x1549 = Import.fs in
-               Ojs.call (Ojs.get_prop_ascii x1549 "mkdirSync") "apply"
-                 [|x1549;((let x1544 =
+              (let x1550 = Import.fs in
+               Ojs.call (Ojs.get_prop_ascii x1550 "mkdirSync") "apply"
+                 [|x1550;((let x1545 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1544 "push"
-                                [|(PathLike.t_to_js x1542)|]);
-                           (match x1543 with
-                            | Some x1545 ->
+                             (Ojs.call x1545 "push"
+                                [|(PathLike.t_to_js x1543)|]);
+                           (match x1544 with
+                            | Some x1546 ->
                                 ignore
-                                  (Ojs.call x1544 "push"
+                                  (Ojs.call x1545 "push"
                                      [|(or_null_to_js
                                           (fun
-                                             (x1546 :
+                                             (x1547 :
                                                (MakeDirectoryOptions.t,
                                                  Mode.t) union2)
                                              ->
                                              union2_to_js
                                                MakeDirectoryOptions.t_to_js
-                                               Mode.t_to_js x1546) x1545)|])
+                                               Mode.t_to_js x1547) x1546)|])
                             | None -> ());
-                           x1544))|])
+                           x1545))|])
     let (mkdtemp :
       prefix:string ->
         options:(BaseEncodingOptions.t, BufferEncoding.t) union2
@@ -5175,21 +5139,21 @@ module Fs =
           callback:(err:ErrnoException.t or_null -> folder:string -> unit) ->
             unit)
       =
-      fun ~prefix:(x1551 : string) ->
+      fun ~prefix:(x1552 : string) ->
         fun
-          ~options:(x1552 :
+          ~options:(x1553 :
                      (BaseEncodingOptions.t, BufferEncoding.t) union2
                        or_null_or_undefined)
           ->
           fun
-            ~callback:(x1556 :
+            ~callback:(x1557 :
                         err:ErrnoException.t or_null -> folder:string -> unit)
             ->
             ignore
               (Ojs.call Import.fs "mkdtemp"
-                 [|(Ojs.string_to_js x1551);(or_null_or_undefined_to_js
+                 [|(Ojs.string_to_js x1552);(or_null_or_undefined_to_js
                                                (fun
-                                                  (x1553 :
+                                                  (x1554 :
                                                     (BaseEncodingOptions.t,
                                                       BufferEncoding.t)
                                                       union2)
@@ -5197,51 +5161,51 @@ module Fs =
                                                   union2_to_js
                                                     BaseEncodingOptions.t_to_js
                                                     BufferEncoding.t_to_js
-                                                    x1553) x1552);(Ojs.fun_to_js
+                                                    x1554) x1553);(Ojs.fun_to_js
                                                                     2
                                                                     (fun
-                                                                    (x1557 :
+                                                                    (x1558 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x1559 :
+                                                                    (x1560 :
                                                                     Ojs.t) ->
-                                                                    x1556
+                                                                    x1557
                                                                     ~err:(
                                                                     or_null_of_js
                                                                     ErrnoException.t_of_js
-                                                                    x1557)
+                                                                    x1558)
                                                                     ~folder:(
                                                                     Ojs.string_of_js
-                                                                    x1559)))|])
+                                                                    x1560)))|])
     let (mkdtemp :
       prefix:string ->
         options:(AnonymousInterface7.t, [ `buffer ]) or_enum ->
           callback:(err:ErrnoException.t or_null -> folder:Buffer.t -> unit)
             -> unit)
       =
-      fun ~prefix:(x1560 : string) ->
-        fun ~options:(x1561 : (AnonymousInterface7.t, [ `buffer ]) or_enum)
+      fun ~prefix:(x1561 : string) ->
+        fun ~options:(x1562 : (AnonymousInterface7.t, [ `buffer ]) or_enum)
           ->
           fun
-            ~callback:(x1564 :
+            ~callback:(x1565 :
                         err:ErrnoException.t or_null ->
                           folder:Buffer.t -> unit)
             ->
             ignore
               (Ojs.call Import.fs "mkdtemp"
-                 [|(Ojs.string_to_js x1560);(or_enum_to_js
+                 [|(Ojs.string_to_js x1561);(or_enum_to_js
                                                AnonymousInterface7.t_to_js
-                                               (fun (x1563 : [ `buffer ]) ->
-                                                  match x1563 with
+                                               (fun (x1564 : [ `buffer ]) ->
+                                                  match x1564 with
                                                   | `buffer ->
                                                       Ojs.string_to_js
-                                                        "buffer") x1561);(
+                                                        "buffer") x1562);(
                    Ojs.fun_to_js 2
-                     (fun (x1565 : Ojs.t) ->
-                        fun (x1567 : Ojs.t) ->
-                          x1564
-                            ~err:(or_null_of_js ErrnoException.t_of_js x1565)
-                            ~folder:(Buffer.t_of_js x1567)))|])
+                     (fun (x1566 : Ojs.t) ->
+                        fun (x1568 : Ojs.t) ->
+                          x1565
+                            ~err:(or_null_of_js ErrnoException.t_of_js x1566)
+                            ~folder:(Buffer.t_of_js x1568)))|])
     let (mkdtemp :
       prefix:string ->
         options:BaseEncodingOptions.t or_string or_null_or_undefined ->
@@ -5249,64 +5213,64 @@ module Fs =
                       folder:Buffer.t or_string -> unit)
             -> unit)
       =
-      fun ~prefix:(x1568 : string) ->
+      fun ~prefix:(x1569 : string) ->
         fun
-          ~options:(x1569 :
+          ~options:(x1570 :
                      BaseEncodingOptions.t or_string or_null_or_undefined)
           ->
           fun
-            ~callback:(x1572 :
+            ~callback:(x1573 :
                         err:ErrnoException.t or_null ->
                           folder:Buffer.t or_string -> unit)
             ->
             ignore
               (Ojs.call Import.fs "mkdtemp"
-                 [|(Ojs.string_to_js x1568);(or_null_or_undefined_to_js
+                 [|(Ojs.string_to_js x1569);(or_null_or_undefined_to_js
                                                (fun
-                                                  (x1570 :
+                                                  (x1571 :
                                                     BaseEncodingOptions.t
                                                       or_string)
                                                   ->
                                                   or_string_to_js
                                                     BaseEncodingOptions.t_to_js
-                                                    x1570) x1569);(Ojs.fun_to_js
+                                                    x1571) x1570);(Ojs.fun_to_js
                                                                     2
                                                                     (fun
-                                                                    (x1573 :
+                                                                    (x1574 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x1575 :
+                                                                    (x1576 :
                                                                     Ojs.t) ->
-                                                                    x1572
+                                                                    x1573
                                                                     ~err:(
                                                                     or_null_of_js
                                                                     ErrnoException.t_of_js
-                                                                    x1573)
+                                                                    x1574)
                                                                     ~folder:(
                                                                     or_string_of_js
                                                                     Buffer.t_of_js
-                                                                    x1575)))|])
+                                                                    x1576)))|])
     let (mkdtemp :
       prefix:string ->
         callback:(err:ErrnoException.t or_null -> folder:string -> unit) ->
           unit)
       =
-      fun ~prefix:(x1577 : string) ->
+      fun ~prefix:(x1578 : string) ->
         fun
-          ~callback:(x1578 :
+          ~callback:(x1579 :
                       err:ErrnoException.t or_null -> folder:string -> unit)
           ->
           ignore
             (Ojs.call Import.fs "mkdtemp"
-               [|(Ojs.string_to_js x1577);(Ojs.fun_to_js 2
-                                             (fun (x1579 : Ojs.t) ->
-                                                fun (x1581 : Ojs.t) ->
-                                                  x1578
+               [|(Ojs.string_to_js x1578);(Ojs.fun_to_js 2
+                                             (fun (x1580 : Ojs.t) ->
+                                                fun (x1582 : Ojs.t) ->
+                                                  x1579
                                                     ~err:(or_null_of_js
                                                             ErrnoException.t_of_js
-                                                            x1579)
+                                                            x1580)
                                                     ~folder:(Ojs.string_of_js
-                                                               x1581)))|])
+                                                               x1582)))|])
     module Mkdtemp =
       struct
         let (__promisify__ :
@@ -5314,193 +5278,193 @@ module Fs =
             ?options:(BaseEncodingOptions.t, BufferEncoding.t) union2 or_null
               -> unit -> string Promise.t)
           =
-          fun ~prefix:(x1582 : string) ->
+          fun ~prefix:(x1583 : string) ->
             fun
-              ?options:(x1583 :
+              ?options:(x1584 :
                          (BaseEncodingOptions.t, BufferEncoding.t) union2
                            or_null option)
               ->
               fun () ->
                 Promise.t_of_js Ojs.string_of_js
-                  (let x1589 = Ojs.get_prop_ascii Import.fs "mkdtemp" in
-                   Ojs.call (Ojs.get_prop_ascii x1589 "__promisify__")
+                  (let x1590 = Ojs.get_prop_ascii Import.fs "mkdtemp" in
+                   Ojs.call (Ojs.get_prop_ascii x1590 "__promisify__")
                      "apply"
-                     [|x1589;((let x1584 =
+                     [|x1590;((let x1585 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x1584 "push"
-                                    [|(Ojs.string_to_js x1582)|]);
-                               (match x1583 with
-                                | Some x1585 ->
+                                 (Ojs.call x1585 "push"
+                                    [|(Ojs.string_to_js x1583)|]);
+                               (match x1584 with
+                                | Some x1586 ->
                                     ignore
-                                      (Ojs.call x1584 "push"
+                                      (Ojs.call x1585 "push"
                                          [|(or_null_to_js
                                               (fun
-                                                 (x1586 :
+                                                 (x1587 :
                                                    (BaseEncodingOptions.t,
                                                      BufferEncoding.t) union2)
                                                  ->
                                                  union2_to_js
                                                    BaseEncodingOptions.t_to_js
                                                    BufferEncoding.t_to_js
-                                                   x1586) x1585)|])
+                                                   x1587) x1586)|])
                                 | None -> ());
-                               x1584))|])
+                               x1585))|])
         let (__promisify__ :
           prefix:string ->
             options:BufferEncodingOption.t -> Buffer.t Promise.t)
           =
-          fun ~prefix:(x1591 : string) ->
-            fun ~options:(x1592 : BufferEncodingOption.t) ->
+          fun ~prefix:(x1592 : string) ->
+            fun ~options:(x1593 : BufferEncodingOption.t) ->
               Promise.t_of_js Buffer.t_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.fs "mkdtemp")
                    "__promisify__"
-                   [|(Ojs.string_to_js x1591);(BufferEncodingOption.t_to_js
-                                                 x1592)|])
+                   [|(Ojs.string_to_js x1592);(BufferEncodingOption.t_to_js
+                                                 x1593)|])
         let (__promisify__ :
           prefix:string ->
             ?options:BaseEncodingOptions.t or_string or_null ->
               unit -> Buffer.t or_string Promise.t)
           =
-          fun ~prefix:(x1594 : string) ->
+          fun ~prefix:(x1595 : string) ->
             fun
-              ?options:(x1595 :
+              ?options:(x1596 :
                          BaseEncodingOptions.t or_string or_null option)
               ->
               fun () ->
                 Promise.t_of_js
-                  (fun (x1601 : Ojs.t) ->
-                     or_string_of_js Buffer.t_of_js x1601)
-                  (let x1600 = Ojs.get_prop_ascii Import.fs "mkdtemp" in
-                   Ojs.call (Ojs.get_prop_ascii x1600 "__promisify__")
+                  (fun (x1602 : Ojs.t) ->
+                     or_string_of_js Buffer.t_of_js x1602)
+                  (let x1601 = Ojs.get_prop_ascii Import.fs "mkdtemp" in
+                   Ojs.call (Ojs.get_prop_ascii x1601 "__promisify__")
                      "apply"
-                     [|x1600;((let x1596 =
+                     [|x1601;((let x1597 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x1596 "push"
-                                    [|(Ojs.string_to_js x1594)|]);
-                               (match x1595 with
-                                | Some x1597 ->
+                                 (Ojs.call x1597 "push"
+                                    [|(Ojs.string_to_js x1595)|]);
+                               (match x1596 with
+                                | Some x1598 ->
                                     ignore
-                                      (Ojs.call x1596 "push"
+                                      (Ojs.call x1597 "push"
                                          [|(or_null_to_js
                                               (fun
-                                                 (x1598 :
+                                                 (x1599 :
                                                    BaseEncodingOptions.t
                                                      or_string)
                                                  ->
                                                  or_string_to_js
                                                    BaseEncodingOptions.t_to_js
-                                                   x1598) x1597)|])
+                                                   x1599) x1598)|])
                                 | None -> ());
-                               x1596))|])
+                               x1597))|])
       end
     let (mkdtemp_sync :
       prefix:string ->
         ?options:(BaseEncodingOptions.t, BufferEncoding.t) union2 or_null ->
           unit -> string)
       =
-      fun ~prefix:(x1603 : string) ->
+      fun ~prefix:(x1604 : string) ->
         fun
-          ?options:(x1604 :
+          ?options:(x1605 :
                      (BaseEncodingOptions.t, BufferEncoding.t) union2 or_null
                        option)
           ->
           fun () ->
             Ojs.string_of_js
-              (let x1610 = Import.fs in
-               Ojs.call (Ojs.get_prop_ascii x1610 "mkdtempSync") "apply"
-                 [|x1610;((let x1605 =
+              (let x1611 = Import.fs in
+               Ojs.call (Ojs.get_prop_ascii x1611 "mkdtempSync") "apply"
+                 [|x1611;((let x1606 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1605 "push"
-                                [|(Ojs.string_to_js x1603)|]);
-                           (match x1604 with
-                            | Some x1606 ->
+                             (Ojs.call x1606 "push"
+                                [|(Ojs.string_to_js x1604)|]);
+                           (match x1605 with
+                            | Some x1607 ->
                                 ignore
-                                  (Ojs.call x1605 "push"
+                                  (Ojs.call x1606 "push"
                                      [|(or_null_to_js
                                           (fun
-                                             (x1607 :
+                                             (x1608 :
                                                (BaseEncodingOptions.t,
                                                  BufferEncoding.t) union2)
                                              ->
                                              union2_to_js
                                                BaseEncodingOptions.t_to_js
-                                               BufferEncoding.t_to_js x1607)
-                                          x1606)|])
+                                               BufferEncoding.t_to_js x1608)
+                                          x1607)|])
                             | None -> ());
-                           x1605))|])
+                           x1606))|])
     let (mkdtemp_sync :
       prefix:string -> options:BufferEncodingOption.t -> Buffer.t) =
-      fun ~prefix:(x1611 : string) ->
-        fun ~options:(x1612 : BufferEncodingOption.t) ->
+      fun ~prefix:(x1612 : string) ->
+        fun ~options:(x1613 : BufferEncodingOption.t) ->
           Buffer.t_of_js
             (Ojs.call Import.fs "mkdtempSync"
-               [|(Ojs.string_to_js x1611);(BufferEncodingOption.t_to_js x1612)|])
+               [|(Ojs.string_to_js x1612);(BufferEncodingOption.t_to_js x1613)|])
     let (mkdtemp_sync :
       prefix:string ->
         ?options:BaseEncodingOptions.t or_string or_null ->
           unit -> Buffer.t or_string)
       =
-      fun ~prefix:(x1613 : string) ->
-        fun ?options:(x1614 : BaseEncodingOptions.t or_string or_null option)
+      fun ~prefix:(x1614 : string) ->
+        fun ?options:(x1615 : BaseEncodingOptions.t or_string or_null option)
           ->
           fun () ->
             or_string_of_js Buffer.t_of_js
-              (let x1619 = Import.fs in
-               Ojs.call (Ojs.get_prop_ascii x1619 "mkdtempSync") "apply"
-                 [|x1619;((let x1615 =
+              (let x1620 = Import.fs in
+               Ojs.call (Ojs.get_prop_ascii x1620 "mkdtempSync") "apply"
+                 [|x1620;((let x1616 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1615 "push"
-                                [|(Ojs.string_to_js x1613)|]);
-                           (match x1614 with
-                            | Some x1616 ->
+                             (Ojs.call x1616 "push"
+                                [|(Ojs.string_to_js x1614)|]);
+                           (match x1615 with
+                            | Some x1617 ->
                                 ignore
-                                  (Ojs.call x1615 "push"
+                                  (Ojs.call x1616 "push"
                                      [|(or_null_to_js
                                           (fun
-                                             (x1617 :
+                                             (x1618 :
                                                BaseEncodingOptions.t
                                                  or_string)
                                              ->
                                              or_string_to_js
                                                BaseEncodingOptions.t_to_js
-                                               x1617) x1616)|])
+                                               x1618) x1617)|])
                             | None -> ());
-                           x1615))|])
+                           x1616))|])
     let (readdir :
-      path:PathLike.t ->
+      PathLike.t ->
         options:(BufferEncoding.t, AnonymousInterface11.t) union2
           or_null_or_undefined ->
           callback:(err:ErrnoException.t or_null -> files:string list -> unit)
             -> unit)
       =
-      fun ~path:(x1621 : PathLike.t) ->
+      fun (x1622 : PathLike.t) ->
         fun
-          ~options:(x1622 :
+          ~options:(x1623 :
                      (BufferEncoding.t, AnonymousInterface11.t) union2
                        or_null_or_undefined)
           ->
           fun
-            ~callback:(x1626 :
+            ~callback:(x1627 :
                         err:ErrnoException.t or_null ->
                           files:string list -> unit)
             ->
             ignore
               (Ojs.call Import.fs "readdir"
-                 [|(PathLike.t_to_js x1621);(or_null_or_undefined_to_js
+                 [|(PathLike.t_to_js x1622);(or_null_or_undefined_to_js
                                                (fun
-                                                  (x1623 :
+                                                  (x1624 :
                                                     (BufferEncoding.t,
                                                       AnonymousInterface11.t)
                                                       union2)
@@ -5508,176 +5472,176 @@ module Fs =
                                                   union2_to_js
                                                     BufferEncoding.t_to_js
                                                     AnonymousInterface11.t_to_js
-                                                    x1623) x1622);(Ojs.fun_to_js
+                                                    x1624) x1623);(Ojs.fun_to_js
                                                                     2
                                                                     (fun
-                                                                    (x1627 :
+                                                                    (x1628 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x1629 :
+                                                                    (x1630 :
                                                                     Ojs.t) ->
-                                                                    x1626
+                                                                    x1627
                                                                     ~err:(
                                                                     or_null_of_js
                                                                     ErrnoException.t_of_js
-                                                                    x1627)
+                                                                    x1628)
                                                                     ~files:(
                                                                     Ojs.list_of_js
                                                                     Ojs.string_of_js
-                                                                    x1629)))|])
+                                                                    x1630)))|])
     let (readdir :
-      path:PathLike.t ->
+      PathLike.t ->
         options:(AnonymousInterface9.t, [ `buffer ]) or_enum ->
           callback:(err:ErrnoException.t or_null ->
                       files:Buffer.t list -> unit)
             -> unit)
       =
-      fun ~path:(x1631 : PathLike.t) ->
-        fun ~options:(x1632 : (AnonymousInterface9.t, [ `buffer ]) or_enum)
+      fun (x1632 : PathLike.t) ->
+        fun ~options:(x1633 : (AnonymousInterface9.t, [ `buffer ]) or_enum)
           ->
           fun
-            ~callback:(x1635 :
+            ~callback:(x1636 :
                         err:ErrnoException.t or_null ->
                           files:Buffer.t list -> unit)
             ->
             ignore
               (Ojs.call Import.fs "readdir"
-                 [|(PathLike.t_to_js x1631);(or_enum_to_js
+                 [|(PathLike.t_to_js x1632);(or_enum_to_js
                                                AnonymousInterface9.t_to_js
-                                               (fun (x1634 : [ `buffer ]) ->
-                                                  match x1634 with
+                                               (fun (x1635 : [ `buffer ]) ->
+                                                  match x1635 with
                                                   | `buffer ->
                                                       Ojs.string_to_js
-                                                        "buffer") x1632);(
+                                                        "buffer") x1633);(
                    Ojs.fun_to_js 2
-                     (fun (x1636 : Ojs.t) ->
-                        fun (x1638 : Ojs.t) ->
-                          x1635
-                            ~err:(or_null_of_js ErrnoException.t_of_js x1636)
-                            ~files:(Ojs.list_of_js Buffer.t_of_js x1638)))|])
+                     (fun (x1637 : Ojs.t) ->
+                        fun (x1639 : Ojs.t) ->
+                          x1636
+                            ~err:(or_null_of_js ErrnoException.t_of_js x1637)
+                            ~files:(Ojs.list_of_js Buffer.t_of_js x1639)))|])
     let (readdir :
-      path:PathLike.t ->
+      PathLike.t ->
         options:BufferEncoding.t or_null_or_undefined ->
           callback:(err:ErrnoException.t or_null ->
                       files:Buffer.t or_string list -> unit)
             -> unit)
       =
-      fun ~path:(x1640 : PathLike.t) ->
-        fun ~options:(x1641 : BufferEncoding.t or_null_or_undefined) ->
+      fun (x1641 : PathLike.t) ->
+        fun ~options:(x1642 : BufferEncoding.t or_null_or_undefined) ->
           fun
-            ~callback:(x1643 :
+            ~callback:(x1644 :
                         err:ErrnoException.t or_null ->
                           files:Buffer.t or_string list -> unit)
             ->
             ignore
               (Ojs.call Import.fs "readdir"
-                 [|(PathLike.t_to_js x1640);(or_null_or_undefined_to_js
-                                               BufferEncoding.t_to_js x1641);(
+                 [|(PathLike.t_to_js x1641);(or_null_or_undefined_to_js
+                                               BufferEncoding.t_to_js x1642);(
                    Ojs.fun_to_js 2
-                     (fun (x1644 : Ojs.t) ->
-                        fun (x1646 : Ojs.t) ->
-                          x1643
-                            ~err:(or_null_of_js ErrnoException.t_of_js x1644)
+                     (fun (x1645 : Ojs.t) ->
+                        fun (x1647 : Ojs.t) ->
+                          x1644
+                            ~err:(or_null_of_js ErrnoException.t_of_js x1645)
                             ~files:(Ojs.list_of_js
-                                      (fun (x1647 : Ojs.t) ->
-                                         or_string_of_js Buffer.t_of_js x1647)
-                                      x1646)))|])
+                                      (fun (x1648 : Ojs.t) ->
+                                         or_string_of_js Buffer.t_of_js x1648)
+                                      x1647)))|])
     let (readdir :
-      path:PathLike.t ->
+      PathLike.t ->
         callback:(err:ErrnoException.t or_null -> files:string list -> unit)
           -> unit)
       =
-      fun ~path:(x1649 : PathLike.t) ->
+      fun (x1650 : PathLike.t) ->
         fun
-          ~callback:(x1650 :
+          ~callback:(x1651 :
                       err:ErrnoException.t or_null ->
                         files:string list -> unit)
           ->
           ignore
             (Ojs.call Import.fs "readdir"
-               [|(PathLike.t_to_js x1649);(Ojs.fun_to_js 2
-                                             (fun (x1651 : Ojs.t) ->
-                                                fun (x1653 : Ojs.t) ->
-                                                  x1650
+               [|(PathLike.t_to_js x1650);(Ojs.fun_to_js 2
+                                             (fun (x1652 : Ojs.t) ->
+                                                fun (x1654 : Ojs.t) ->
+                                                  x1651
                                                     ~err:(or_null_of_js
                                                             ErrnoException.t_of_js
-                                                            x1651)
+                                                            x1652)
                                                     ~files:(Ojs.list_of_js
                                                               Ojs.string_of_js
-                                                              x1653)))|])
+                                                              x1654)))|])
     let (readdir :
-      path:PathLike.t ->
+      PathLike.t ->
         options:(BaseEncodingOptions.t, AnonymousInterface20.t) intersection2
           ->
           callback:(err:ErrnoException.t or_null ->
                       files:Dirent.t list -> unit)
             -> unit)
       =
-      fun ~path:(x1655 : PathLike.t) ->
+      fun (x1656 : PathLike.t) ->
         fun
-          ~options:(x1656 :
+          ~options:(x1657 :
                      (BaseEncodingOptions.t, AnonymousInterface20.t)
                        intersection2)
           ->
           fun
-            ~callback:(x1659 :
+            ~callback:(x1660 :
                         err:ErrnoException.t or_null ->
                           files:Dirent.t list -> unit)
             ->
             ignore
               (Ojs.call Import.fs "readdir"
-                 [|(PathLike.t_to_js x1655);(intersection2_to_js
+                 [|(PathLike.t_to_js x1656);(intersection2_to_js
                                                BaseEncodingOptions.t_to_js
                                                AnonymousInterface20.t_to_js
-                                               x1656);(Ojs.fun_to_js 2
-                                                         (fun (x1660 : Ojs.t)
+                                               x1657);(Ojs.fun_to_js 2
+                                                         (fun (x1661 : Ojs.t)
                                                             ->
                                                             fun
-                                                              (x1662 : Ojs.t)
+                                                              (x1663 : Ojs.t)
                                                               ->
-                                                              x1659
+                                                              x1660
                                                                 ~err:(
                                                                 or_null_of_js
                                                                   ErrnoException.t_of_js
-                                                                  x1660)
+                                                                  x1661)
                                                                 ~files:(
                                                                 Ojs.list_of_js
                                                                   Dirent.t_of_js
-                                                                  x1662)))|])
+                                                                  x1663)))|])
     module Readdir =
       struct
         let (__promisify__ :
-          path:PathLike.t ->
+          PathLike.t ->
             ?options:(BufferEncoding.t, AnonymousInterface11.t) union2
               or_null -> unit -> string list Promise.t)
           =
-          fun ~path:(x1664 : PathLike.t) ->
+          fun (x1665 : PathLike.t) ->
             fun
-              ?options:(x1665 :
+              ?options:(x1666 :
                          (BufferEncoding.t, AnonymousInterface11.t) union2
                            or_null option)
               ->
               fun () ->
                 Promise.t_of_js
-                  (fun (x1672 : Ojs.t) ->
-                     Ojs.list_of_js Ojs.string_of_js x1672)
-                  (let x1671 = Ojs.get_prop_ascii Import.fs "readdir" in
-                   Ojs.call (Ojs.get_prop_ascii x1671 "__promisify__")
+                  (fun (x1673 : Ojs.t) ->
+                     Ojs.list_of_js Ojs.string_of_js x1673)
+                  (let x1672 = Ojs.get_prop_ascii Import.fs "readdir" in
+                   Ojs.call (Ojs.get_prop_ascii x1672 "__promisify__")
                      "apply"
-                     [|x1671;((let x1666 =
+                     [|x1672;((let x1667 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x1666 "push"
-                                    [|(PathLike.t_to_js x1664)|]);
-                               (match x1665 with
-                                | Some x1667 ->
+                                 (Ojs.call x1667 "push"
+                                    [|(PathLike.t_to_js x1665)|]);
+                               (match x1666 with
+                                | Some x1668 ->
                                     ignore
-                                      (Ojs.call x1666 "push"
+                                      (Ojs.call x1667 "push"
                                          [|(or_null_to_js
                                               (fun
-                                                 (x1668 :
+                                                 (x1669 :
                                                    (BufferEncoding.t,
                                                      AnonymousInterface11.t)
                                                      union2)
@@ -5685,110 +5649,110 @@ module Fs =
                                                  union2_to_js
                                                    BufferEncoding.t_to_js
                                                    AnonymousInterface11.t_to_js
-                                                   x1668) x1667)|])
+                                                   x1669) x1668)|])
                                 | None -> ());
-                               x1666))|])
+                               x1667))|])
         let (__promisify__ :
-          path:PathLike.t ->
+          PathLike.t ->
             options:(AnonymousInterface9.t, [ `buffer ]) or_enum ->
               Buffer.t list Promise.t)
           =
-          fun ~path:(x1674 : PathLike.t) ->
+          fun (x1675 : PathLike.t) ->
             fun
-              ~options:(x1675 : (AnonymousInterface9.t, [ `buffer ]) or_enum)
+              ~options:(x1676 : (AnonymousInterface9.t, [ `buffer ]) or_enum)
               ->
               Promise.t_of_js
-                (fun (x1678 : Ojs.t) -> Ojs.list_of_js Buffer.t_of_js x1678)
+                (fun (x1679 : Ojs.t) -> Ojs.list_of_js Buffer.t_of_js x1679)
                 (Ojs.call (Ojs.get_prop_ascii Import.fs "readdir")
                    "__promisify__"
-                   [|(PathLike.t_to_js x1674);(or_enum_to_js
+                   [|(PathLike.t_to_js x1675);(or_enum_to_js
                                                  AnonymousInterface9.t_to_js
-                                                 (fun (x1677 : [ `buffer ])
+                                                 (fun (x1678 : [ `buffer ])
                                                     ->
-                                                    match x1677 with
+                                                    match x1678 with
                                                     | `buffer ->
                                                         Ojs.string_to_js
-                                                          "buffer") x1675)|])
+                                                          "buffer") x1676)|])
         let (__promisify__ :
-          path:PathLike.t ->
+          PathLike.t ->
             ?options:BufferEncoding.t or_null ->
               unit -> Buffer.t or_string list Promise.t)
           =
-          fun ~path:(x1680 : PathLike.t) ->
-            fun ?options:(x1681 : BufferEncoding.t or_null option) ->
+          fun (x1681 : PathLike.t) ->
+            fun ?options:(x1682 : BufferEncoding.t or_null option) ->
               fun () ->
                 Promise.t_of_js
-                  (fun (x1686 : Ojs.t) ->
+                  (fun (x1687 : Ojs.t) ->
                      Ojs.list_of_js
-                       (fun (x1687 : Ojs.t) ->
-                          or_string_of_js Buffer.t_of_js x1687) x1686)
-                  (let x1685 = Ojs.get_prop_ascii Import.fs "readdir" in
-                   Ojs.call (Ojs.get_prop_ascii x1685 "__promisify__")
+                       (fun (x1688 : Ojs.t) ->
+                          or_string_of_js Buffer.t_of_js x1688) x1687)
+                  (let x1686 = Ojs.get_prop_ascii Import.fs "readdir" in
+                   Ojs.call (Ojs.get_prop_ascii x1686 "__promisify__")
                      "apply"
-                     [|x1685;((let x1682 =
+                     [|x1686;((let x1683 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x1682 "push"
-                                    [|(PathLike.t_to_js x1680)|]);
-                               (match x1681 with
-                                | Some x1683 ->
+                                 (Ojs.call x1683 "push"
+                                    [|(PathLike.t_to_js x1681)|]);
+                               (match x1682 with
+                                | Some x1684 ->
                                     ignore
-                                      (Ojs.call x1682 "push"
+                                      (Ojs.call x1683 "push"
                                          [|(or_null_to_js
-                                              BufferEncoding.t_to_js x1683)|])
+                                              BufferEncoding.t_to_js x1684)|])
                                 | None -> ());
-                               x1682))|])
+                               x1683))|])
         let (__promisify__ :
-          path:PathLike.t ->
+          PathLike.t ->
             options:(BaseEncodingOptions.t, AnonymousInterface20.t)
               intersection2 -> Dirent.t list Promise.t)
           =
-          fun ~path:(x1689 : PathLike.t) ->
+          fun (x1690 : PathLike.t) ->
             fun
-              ~options:(x1690 :
+              ~options:(x1691 :
                          (BaseEncodingOptions.t, AnonymousInterface20.t)
                            intersection2)
               ->
               Promise.t_of_js
-                (fun (x1693 : Ojs.t) -> Ojs.list_of_js Dirent.t_of_js x1693)
+                (fun (x1694 : Ojs.t) -> Ojs.list_of_js Dirent.t_of_js x1694)
                 (Ojs.call (Ojs.get_prop_ascii Import.fs "readdir")
                    "__promisify__"
-                   [|(PathLike.t_to_js x1689);(intersection2_to_js
+                   [|(PathLike.t_to_js x1690);(intersection2_to_js
                                                  BaseEncodingOptions.t_to_js
                                                  AnonymousInterface20.t_to_js
-                                                 x1690)|])
+                                                 x1691)|])
       end
     let (readdir_sync :
-      path:PathLike.t ->
+      PathLike.t ->
         ?options:(BufferEncoding.t, AnonymousInterface11.t) union2 or_null ->
           unit -> string list)
       =
-      fun ~path:(x1695 : PathLike.t) ->
+      fun (x1696 : PathLike.t) ->
         fun
-          ?options:(x1696 :
+          ?options:(x1697 :
                      (BufferEncoding.t, AnonymousInterface11.t) union2
                        or_null option)
           ->
           fun () ->
             Ojs.list_of_js Ojs.string_of_js
-              (let x1702 = Import.fs in
-               Ojs.call (Ojs.get_prop_ascii x1702 "readdirSync") "apply"
-                 [|x1702;((let x1697 =
+              (let x1703 = Import.fs in
+               Ojs.call (Ojs.get_prop_ascii x1703 "readdirSync") "apply"
+                 [|x1703;((let x1698 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1697 "push"
-                                [|(PathLike.t_to_js x1695)|]);
-                           (match x1696 with
-                            | Some x1698 ->
+                             (Ojs.call x1698 "push"
+                                [|(PathLike.t_to_js x1696)|]);
+                           (match x1697 with
+                            | Some x1699 ->
                                 ignore
-                                  (Ojs.call x1697 "push"
+                                  (Ojs.call x1698 "push"
                                      [|(or_null_to_js
                                           (fun
-                                             (x1699 :
+                                             (x1700 :
                                                (BufferEncoding.t,
                                                  AnonymousInterface11.t)
                                                  union2)
@@ -5796,368 +5760,367 @@ module Fs =
                                              union2_to_js
                                                BufferEncoding.t_to_js
                                                AnonymousInterface11.t_to_js
-                                               x1699) x1698)|])
+                                               x1700) x1699)|])
                             | None -> ());
-                           x1697))|])
+                           x1698))|])
     let (readdir_sync :
-      path:PathLike.t ->
+      PathLike.t ->
         options:(AnonymousInterface9.t, [ `buffer ]) or_enum -> Buffer.t list)
       =
-      fun ~path:(x1704 : PathLike.t) ->
-        fun ~options:(x1705 : (AnonymousInterface9.t, [ `buffer ]) or_enum)
+      fun (x1705 : PathLike.t) ->
+        fun ~options:(x1706 : (AnonymousInterface9.t, [ `buffer ]) or_enum)
           ->
           Ojs.list_of_js Buffer.t_of_js
             (Ojs.call Import.fs "readdirSync"
-               [|(PathLike.t_to_js x1704);(or_enum_to_js
+               [|(PathLike.t_to_js x1705);(or_enum_to_js
                                              AnonymousInterface9.t_to_js
-                                             (fun (x1707 : [ `buffer ]) ->
-                                                match x1707 with
+                                             (fun (x1708 : [ `buffer ]) ->
+                                                match x1708 with
                                                 | `buffer ->
                                                     Ojs.string_to_js "buffer")
-                                             x1705)|])
+                                             x1706)|])
     let (readdir_sync :
-      path:PathLike.t ->
+      PathLike.t ->
         ?options:BufferEncoding.t or_null -> unit -> Buffer.t or_string list)
       =
-      fun ~path:(x1709 : PathLike.t) ->
-        fun ?options:(x1710 : BufferEncoding.t or_null option) ->
+      fun (x1710 : PathLike.t) ->
+        fun ?options:(x1711 : BufferEncoding.t or_null option) ->
           fun () ->
             Ojs.list_of_js
-              (fun (x1715 : Ojs.t) -> or_string_of_js Buffer.t_of_js x1715)
-              (let x1714 = Import.fs in
-               Ojs.call (Ojs.get_prop_ascii x1714 "readdirSync") "apply"
-                 [|x1714;((let x1711 =
+              (fun (x1716 : Ojs.t) -> or_string_of_js Buffer.t_of_js x1716)
+              (let x1715 = Import.fs in
+               Ojs.call (Ojs.get_prop_ascii x1715 "readdirSync") "apply"
+                 [|x1715;((let x1712 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1711 "push"
-                                [|(PathLike.t_to_js x1709)|]);
-                           (match x1710 with
-                            | Some x1712 ->
+                             (Ojs.call x1712 "push"
+                                [|(PathLike.t_to_js x1710)|]);
+                           (match x1711 with
+                            | Some x1713 ->
                                 ignore
-                                  (Ojs.call x1711 "push"
+                                  (Ojs.call x1712 "push"
                                      [|(or_null_to_js BufferEncoding.t_to_js
-                                          x1712)|])
+                                          x1713)|])
                             | None -> ());
-                           x1711))|])
+                           x1712))|])
     let (readdir_sync :
-      path:PathLike.t ->
+      PathLike.t ->
         options:(BaseEncodingOptions.t, AnonymousInterface20.t) intersection2
           -> Dirent.t list)
       =
-      fun ~path:(x1717 : PathLike.t) ->
+      fun (x1718 : PathLike.t) ->
         fun
-          ~options:(x1718 :
+          ~options:(x1719 :
                      (BaseEncodingOptions.t, AnonymousInterface20.t)
                        intersection2)
           ->
           Ojs.list_of_js Dirent.t_of_js
             (Ojs.call Import.fs "readdirSync"
-               [|(PathLike.t_to_js x1717);(intersection2_to_js
+               [|(PathLike.t_to_js x1718);(intersection2_to_js
                                              BaseEncodingOptions.t_to_js
                                              AnonymousInterface20.t_to_js
-                                             x1718)|])
-    let (close : fd:int -> callback:NoParamCallback.t -> unit) =
-      fun ~fd:(x1722 : int) ->
-        fun ~callback:(x1723 : NoParamCallback.t) ->
+                                             x1719)|])
+    let (close : int -> callback:NoParamCallback.t -> unit) =
+      fun (x1723 : int) ->
+        fun ~callback:(x1724 : NoParamCallback.t) ->
           ignore
             (Ojs.call Import.fs "close"
-               [|(Ojs.int_to_js x1722);(NoParamCallback.t_to_js x1723)|])
+               [|(Ojs.int_to_js x1723);(NoParamCallback.t_to_js x1724)|])
     module Close =
       struct
-        let (__promisify__ : fd:int -> unit Promise.t) =
-          fun ~fd:(x1724 : int) ->
+        let (__promisify__ : int -> unit Promise.t) =
+          fun (x1725 : int) ->
             Promise.t_of_js Ojs.unit_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.fs "close")
-                 "__promisify__" [|(Ojs.int_to_js x1724)|])
+                 "__promisify__" [|(Ojs.int_to_js x1725)|])
       end
-    let (close_sync : fd:int -> unit) =
-      fun ~fd:(x1726 : int) ->
-        ignore (Ojs.call Import.fs "closeSync" [|(Ojs.int_to_js x1726)|])
+    let (close_sync : int -> unit) =
+      fun (x1727 : int) ->
+        ignore (Ojs.call Import.fs "closeSync" [|(Ojs.int_to_js x1727)|])
     let (open_ :
-      path:PathLike.t ->
+      PathLike.t ->
         flags:OpenMode.t ->
           mode:Mode.t or_null_or_undefined ->
             callback:(err:ErrnoException.t or_null -> fd:int -> unit) -> unit)
       =
-      fun ~path:(x1727 : PathLike.t) ->
-        fun ~flags:(x1728 : OpenMode.t) ->
-          fun ~mode:(x1729 : Mode.t or_null_or_undefined) ->
+      fun (x1728 : PathLike.t) ->
+        fun ~flags:(x1729 : OpenMode.t) ->
+          fun ~mode:(x1730 : Mode.t or_null_or_undefined) ->
             fun
-              ~callback:(x1731 :
+              ~callback:(x1732 :
                           err:ErrnoException.t or_null -> fd:int -> unit)
               ->
               ignore
                 (Ojs.call Import.fs "open"
-                   [|(PathLike.t_to_js x1727);(OpenMode.t_to_js x1728);(
-                     or_null_or_undefined_to_js Mode.t_to_js x1729);(
+                   [|(PathLike.t_to_js x1728);(OpenMode.t_to_js x1729);(
+                     or_null_or_undefined_to_js Mode.t_to_js x1730);(
                      Ojs.fun_to_js 2
-                       (fun (x1732 : Ojs.t) ->
-                          fun (x1734 : Ojs.t) ->
-                            x1731
+                       (fun (x1733 : Ojs.t) ->
+                          fun (x1735 : Ojs.t) ->
+                            x1732
                               ~err:(or_null_of_js ErrnoException.t_of_js
-                                      x1732) ~fd:(Ojs.int_of_js x1734)))|])
+                                      x1733) ~fd:(Ojs.int_of_js x1735)))|])
     let (open_ :
-      path:PathLike.t ->
+      PathLike.t ->
         flags:OpenMode.t ->
           callback:(err:ErrnoException.t or_null -> fd:int -> unit) -> unit)
       =
-      fun ~path:(x1735 : PathLike.t) ->
-        fun ~flags:(x1736 : OpenMode.t) ->
+      fun (x1736 : PathLike.t) ->
+        fun ~flags:(x1737 : OpenMode.t) ->
           fun
-            ~callback:(x1737 :
+            ~callback:(x1738 :
                         err:ErrnoException.t or_null -> fd:int -> unit)
             ->
             ignore
               (Ojs.call Import.fs "open"
-                 [|(PathLike.t_to_js x1735);(OpenMode.t_to_js x1736);(
+                 [|(PathLike.t_to_js x1736);(OpenMode.t_to_js x1737);(
                    Ojs.fun_to_js 2
-                     (fun (x1738 : Ojs.t) ->
-                        fun (x1740 : Ojs.t) ->
-                          x1737
-                            ~err:(or_null_of_js ErrnoException.t_of_js x1738)
-                            ~fd:(Ojs.int_of_js x1740)))|])
+                     (fun (x1739 : Ojs.t) ->
+                        fun (x1741 : Ojs.t) ->
+                          x1738
+                            ~err:(or_null_of_js ErrnoException.t_of_js x1739)
+                            ~fd:(Ojs.int_of_js x1741)))|])
     module Open =
       struct
         let (__promisify__ :
-          path:PathLike.t ->
+          PathLike.t ->
             flags:OpenMode.t -> ?mode:Mode.t or_null -> unit -> int Promise.t)
           =
-          fun ~path:(x1741 : PathLike.t) ->
-            fun ~flags:(x1742 : OpenMode.t) ->
-              fun ?mode:(x1743 : Mode.t or_null option) ->
+          fun (x1742 : PathLike.t) ->
+            fun ~flags:(x1743 : OpenMode.t) ->
+              fun ?mode:(x1744 : Mode.t or_null option) ->
                 fun () ->
                   Promise.t_of_js Ojs.int_of_js
-                    (let x1747 = Ojs.get_prop_ascii Import.fs "open" in
-                     Ojs.call (Ojs.get_prop_ascii x1747 "__promisify__")
+                    (let x1748 = Ojs.get_prop_ascii Import.fs "open" in
+                     Ojs.call (Ojs.get_prop_ascii x1748 "__promisify__")
                        "apply"
-                       [|x1747;((let x1744 =
+                       [|x1748;((let x1745 =
                                    Ojs.new_obj
                                      (Ojs.get_prop_ascii Ojs.global "Array")
                                      [||] in
                                  ignore
-                                   (Ojs.call x1744 "push"
-                                      [|(PathLike.t_to_js x1741)|]);
+                                   (Ojs.call x1745 "push"
+                                      [|(PathLike.t_to_js x1742)|]);
                                  ignore
-                                   (Ojs.call x1744 "push"
-                                      [|(OpenMode.t_to_js x1742)|]);
-                                 (match x1743 with
-                                  | Some x1745 ->
+                                   (Ojs.call x1745 "push"
+                                      [|(OpenMode.t_to_js x1743)|]);
+                                 (match x1744 with
+                                  | Some x1746 ->
                                       ignore
-                                        (Ojs.call x1744 "push"
+                                        (Ojs.call x1745 "push"
                                            [|(or_null_to_js Mode.t_to_js
-                                                x1745)|])
+                                                x1746)|])
                                   | None -> ());
-                                 x1744))|])
+                                 x1745))|])
       end
     let (open_sync :
-      path:PathLike.t ->
-        flags:OpenMode.t -> ?mode:Mode.t or_null -> unit -> int)
+      PathLike.t -> flags:OpenMode.t -> ?mode:Mode.t or_null -> unit -> int)
       =
-      fun ~path:(x1749 : PathLike.t) ->
-        fun ~flags:(x1750 : OpenMode.t) ->
-          fun ?mode:(x1751 : Mode.t or_null option) ->
+      fun (x1750 : PathLike.t) ->
+        fun ~flags:(x1751 : OpenMode.t) ->
+          fun ?mode:(x1752 : Mode.t or_null option) ->
             fun () ->
               Ojs.int_of_js
-                (let x1755 = Import.fs in
-                 Ojs.call (Ojs.get_prop_ascii x1755 "openSync") "apply"
-                   [|x1755;((let x1752 =
+                (let x1756 = Import.fs in
+                 Ojs.call (Ojs.get_prop_ascii x1756 "openSync") "apply"
+                   [|x1756;((let x1753 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x1752 "push"
-                                  [|(PathLike.t_to_js x1749)|]);
+                               (Ojs.call x1753 "push"
+                                  [|(PathLike.t_to_js x1750)|]);
                              ignore
-                               (Ojs.call x1752 "push"
-                                  [|(OpenMode.t_to_js x1750)|]);
-                             (match x1751 with
-                              | Some x1753 ->
+                               (Ojs.call x1753 "push"
+                                  [|(OpenMode.t_to_js x1751)|]);
+                             (match x1752 with
+                              | Some x1754 ->
                                   ignore
-                                    (Ojs.call x1752 "push"
-                                       [|(or_null_to_js Mode.t_to_js x1753)|])
+                                    (Ojs.call x1753 "push"
+                                       [|(or_null_to_js Mode.t_to_js x1754)|])
                               | None -> ());
-                             x1752))|])
+                             x1753))|])
     let (utimes :
-      path:PathLike.t ->
+      PathLike.t ->
         atime:Date.t or_string or_number ->
           mtime:Date.t or_string or_number ->
             callback:NoParamCallback.t -> unit)
       =
-      fun ~path:(x1756 : PathLike.t) ->
-        fun ~atime:(x1757 : Date.t or_string or_number) ->
-          fun ~mtime:(x1760 : Date.t or_string or_number) ->
-            fun ~callback:(x1763 : NoParamCallback.t) ->
+      fun (x1757 : PathLike.t) ->
+        fun ~atime:(x1758 : Date.t or_string or_number) ->
+          fun ~mtime:(x1761 : Date.t or_string or_number) ->
+            fun ~callback:(x1764 : NoParamCallback.t) ->
               ignore
                 (Ojs.call Import.fs "utimes"
-                   [|(PathLike.t_to_js x1756);(or_number_to_js
+                   [|(PathLike.t_to_js x1757);(or_number_to_js
                                                  (fun
-                                                    (x1758 :
+                                                    (x1759 :
                                                       Date.t or_string)
                                                     ->
                                                     or_string_to_js
-                                                      Date.t_to_js x1758)
-                                                 x1757);(or_number_to_js
+                                                      Date.t_to_js x1759)
+                                                 x1758);(or_number_to_js
                                                            (fun
-                                                              (x1761 :
+                                                              (x1762 :
                                                                 Date.t
                                                                   or_string)
                                                               ->
                                                               or_string_to_js
                                                                 Date.t_to_js
-                                                                x1761) x1760);(
-                     NoParamCallback.t_to_js x1763)|])
+                                                                x1762) x1761);(
+                     NoParamCallback.t_to_js x1764)|])
     module Utimes =
       struct
         let (__promisify__ :
-          path:PathLike.t ->
+          PathLike.t ->
             atime:Date.t or_string or_number ->
               mtime:Date.t or_string or_number -> unit Promise.t)
           =
-          fun ~path:(x1764 : PathLike.t) ->
-            fun ~atime:(x1765 : Date.t or_string or_number) ->
-              fun ~mtime:(x1768 : Date.t or_string or_number) ->
+          fun (x1765 : PathLike.t) ->
+            fun ~atime:(x1766 : Date.t or_string or_number) ->
+              fun ~mtime:(x1769 : Date.t or_string or_number) ->
                 Promise.t_of_js Ojs.unit_of_js
                   (Ojs.call (Ojs.get_prop_ascii Import.fs "utimes")
                      "__promisify__"
-                     [|(PathLike.t_to_js x1764);(or_number_to_js
+                     [|(PathLike.t_to_js x1765);(or_number_to_js
                                                    (fun
-                                                      (x1766 :
+                                                      (x1767 :
                                                         Date.t or_string)
                                                       ->
                                                       or_string_to_js
-                                                        Date.t_to_js x1766)
-                                                   x1765);(or_number_to_js
+                                                        Date.t_to_js x1767)
+                                                   x1766);(or_number_to_js
                                                              (fun
-                                                                (x1769 :
+                                                                (x1770 :
                                                                   Date.t
                                                                     or_string)
                                                                 ->
                                                                 or_string_to_js
                                                                   Date.t_to_js
-                                                                  x1769)
-                                                             x1768)|])
+                                                                  x1770)
+                                                             x1769)|])
       end
     let (utimes_sync :
-      path:PathLike.t ->
+      PathLike.t ->
         atime:Date.t or_string or_number ->
           mtime:Date.t or_string or_number -> unit)
       =
-      fun ~path:(x1772 : PathLike.t) ->
-        fun ~atime:(x1773 : Date.t or_string or_number) ->
-          fun ~mtime:(x1776 : Date.t or_string or_number) ->
+      fun (x1773 : PathLike.t) ->
+        fun ~atime:(x1774 : Date.t or_string or_number) ->
+          fun ~mtime:(x1777 : Date.t or_string or_number) ->
             ignore
               (Ojs.call Import.fs "utimesSync"
-                 [|(PathLike.t_to_js x1772);(or_number_to_js
+                 [|(PathLike.t_to_js x1773);(or_number_to_js
                                                (fun
-                                                  (x1774 : Date.t or_string)
+                                                  (x1775 : Date.t or_string)
                                                   ->
                                                   or_string_to_js
-                                                    Date.t_to_js x1774) x1773);(
+                                                    Date.t_to_js x1775) x1774);(
                    or_number_to_js
-                     (fun (x1777 : Date.t or_string) ->
-                        or_string_to_js Date.t_to_js x1777) x1776)|])
+                     (fun (x1778 : Date.t or_string) ->
+                        or_string_to_js Date.t_to_js x1778) x1777)|])
     let (futimes :
-      fd:int ->
+      int ->
         atime:Date.t or_string or_number ->
           mtime:Date.t or_string or_number ->
             callback:NoParamCallback.t -> unit)
       =
-      fun ~fd:(x1779 : int) ->
-        fun ~atime:(x1780 : Date.t or_string or_number) ->
-          fun ~mtime:(x1783 : Date.t or_string or_number) ->
-            fun ~callback:(x1786 : NoParamCallback.t) ->
+      fun (x1780 : int) ->
+        fun ~atime:(x1781 : Date.t or_string or_number) ->
+          fun ~mtime:(x1784 : Date.t or_string or_number) ->
+            fun ~callback:(x1787 : NoParamCallback.t) ->
               ignore
                 (Ojs.call Import.fs "futimes"
-                   [|(Ojs.int_to_js x1779);(or_number_to_js
-                                              (fun (x1781 : Date.t or_string)
+                   [|(Ojs.int_to_js x1780);(or_number_to_js
+                                              (fun (x1782 : Date.t or_string)
                                                  ->
                                                  or_string_to_js Date.t_to_js
-                                                   x1781) x1780);(or_number_to_js
+                                                   x1782) x1781);(or_number_to_js
                                                                     (
                                                                     fun
-                                                                    (x1784 :
+                                                                    (x1785 :
                                                                     Date.t
                                                                     or_string)
                                                                     ->
                                                                     or_string_to_js
                                                                     Date.t_to_js
-                                                                    x1784)
-                                                                    x1783);(
-                     NoParamCallback.t_to_js x1786)|])
+                                                                    x1785)
+                                                                    x1784);(
+                     NoParamCallback.t_to_js x1787)|])
     module Futimes =
       struct
         let (__promisify__ :
-          fd:int ->
+          int ->
             atime:Date.t or_string or_number ->
               mtime:Date.t or_string or_number -> unit Promise.t)
           =
-          fun ~fd:(x1787 : int) ->
-            fun ~atime:(x1788 : Date.t or_string or_number) ->
-              fun ~mtime:(x1791 : Date.t or_string or_number) ->
+          fun (x1788 : int) ->
+            fun ~atime:(x1789 : Date.t or_string or_number) ->
+              fun ~mtime:(x1792 : Date.t or_string or_number) ->
                 Promise.t_of_js Ojs.unit_of_js
                   (Ojs.call (Ojs.get_prop_ascii Import.fs "futimes")
                      "__promisify__"
-                     [|(Ojs.int_to_js x1787);(or_number_to_js
+                     [|(Ojs.int_to_js x1788);(or_number_to_js
                                                 (fun
-                                                   (x1789 : Date.t or_string)
+                                                   (x1790 : Date.t or_string)
                                                    ->
                                                    or_string_to_js
-                                                     Date.t_to_js x1789)
-                                                x1788);(or_number_to_js
+                                                     Date.t_to_js x1790)
+                                                x1789);(or_number_to_js
                                                           (fun
-                                                             (x1792 :
+                                                             (x1793 :
                                                                Date.t
                                                                  or_string)
                                                              ->
                                                              or_string_to_js
                                                                Date.t_to_js
-                                                               x1792) x1791)|])
+                                                               x1793) x1792)|])
       end
     let (futimes_sync :
-      fd:int ->
+      int ->
         atime:Date.t or_string or_number ->
           mtime:Date.t or_string or_number -> unit)
       =
-      fun ~fd:(x1795 : int) ->
-        fun ~atime:(x1796 : Date.t or_string or_number) ->
-          fun ~mtime:(x1799 : Date.t or_string or_number) ->
+      fun (x1796 : int) ->
+        fun ~atime:(x1797 : Date.t or_string or_number) ->
+          fun ~mtime:(x1800 : Date.t or_string or_number) ->
             ignore
               (Ojs.call Import.fs "futimesSync"
-                 [|(Ojs.int_to_js x1795);(or_number_to_js
-                                            (fun (x1797 : Date.t or_string)
+                 [|(Ojs.int_to_js x1796);(or_number_to_js
+                                            (fun (x1798 : Date.t or_string)
                                                ->
                                                or_string_to_js Date.t_to_js
-                                                 x1797) x1796);(or_number_to_js
+                                                 x1798) x1797);(or_number_to_js
                                                                   (fun
-                                                                    (x1800 :
+                                                                    (x1801 :
                                                                     Date.t
                                                                     or_string)
                                                                     ->
                                                                     or_string_to_js
                                                                     Date.t_to_js
-                                                                    x1800)
-                                                                  x1799)|])
-    let (fsync : fd:int -> callback:NoParamCallback.t -> unit) =
-      fun ~fd:(x1802 : int) ->
-        fun ~callback:(x1803 : NoParamCallback.t) ->
+                                                                    x1801)
+                                                                  x1800)|])
+    let (fsync : int -> callback:NoParamCallback.t -> unit) =
+      fun (x1803 : int) ->
+        fun ~callback:(x1804 : NoParamCallback.t) ->
           ignore
             (Ojs.call Import.fs "fsync"
-               [|(Ojs.int_to_js x1802);(NoParamCallback.t_to_js x1803)|])
+               [|(Ojs.int_to_js x1803);(NoParamCallback.t_to_js x1804)|])
     module Fsync =
       struct
-        let (__promisify__ : fd:int -> unit Promise.t) =
-          fun ~fd:(x1804 : int) ->
+        let (__promisify__ : int -> unit Promise.t) =
+          fun (x1805 : int) ->
             Promise.t_of_js Ojs.unit_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.fs "fsync")
-                 "__promisify__" [|(Ojs.int_to_js x1804)|])
+                 "__promisify__" [|(Ojs.int_to_js x1805)|])
       end
-    let (fsync_sync : fd:int -> unit) =
-      fun ~fd:(x1806 : int) ->
-        ignore (Ojs.call Import.fs "fsyncSync" [|(Ojs.int_to_js x1806)|])
+    let (fsync_sync : int -> unit) =
+      fun (x1807 : int) ->
+        ignore (Ojs.call Import.fs "fsyncSync" [|(Ojs.int_to_js x1807)|])
     let (write :
-      fd:int ->
+      int ->
         buffer:'TBuffer ->
           offset:int or_null_or_undefined ->
             length:int or_null_or_undefined ->
@@ -6166,34 +6129,34 @@ module Fs =
                             written:int -> buffer:'TBuffer -> unit)
                   -> unit)
       =
-      fun ~fd:(x1807 : int) ->
-        fun ~buffer:(x1808 : 'TBuffer) ->
-          fun ~offset:(x1809 : int or_null_or_undefined) ->
-            fun ~length:(x1811 : int or_null_or_undefined) ->
-              fun ~position:(x1813 : int or_null_or_undefined) ->
+      fun (x1808 : int) ->
+        fun ~buffer:(x1809 : 'TBuffer) ->
+          fun ~offset:(x1810 : int or_null_or_undefined) ->
+            fun ~length:(x1812 : int or_null_or_undefined) ->
+              fun ~position:(x1814 : int or_null_or_undefined) ->
                 fun
-                  ~callback:(x1815 :
+                  ~callback:(x1816 :
                               err:ErrnoException.t or_null ->
                                 written:int -> buffer:'TBuffer -> unit)
                   ->
                   ignore
                     (Ojs.call Import.fs "write"
-                       [|(Ojs.int_to_js x1807);(Obj.magic x1808);(or_null_or_undefined_to_js
+                       [|(Ojs.int_to_js x1808);(Obj.magic x1809);(or_null_or_undefined_to_js
                                                                     Ojs.int_to_js
-                                                                    x1809);(
-                         or_null_or_undefined_to_js Ojs.int_to_js x1811);(
-                         or_null_or_undefined_to_js Ojs.int_to_js x1813);(
+                                                                    x1810);(
+                         or_null_or_undefined_to_js Ojs.int_to_js x1812);(
+                         or_null_or_undefined_to_js Ojs.int_to_js x1814);(
                          Ojs.fun_to_js 3
-                           (fun (x1816 : Ojs.t) ->
-                              fun (x1818 : Ojs.t) ->
-                                fun (x1819 : Ojs.t) ->
-                                  x1815
+                           (fun (x1817 : Ojs.t) ->
+                              fun (x1819 : Ojs.t) ->
+                                fun (x1820 : Ojs.t) ->
+                                  x1816
                                     ~err:(or_null_of_js
-                                            ErrnoException.t_of_js x1816)
-                                    ~written:(Ojs.int_of_js x1818)
-                                    ~buffer:(Obj.magic x1819)))|])
+                                            ErrnoException.t_of_js x1817)
+                                    ~written:(Ojs.int_of_js x1819)
+                                    ~buffer:(Obj.magic x1820)))|])
     let (write :
-      fd:int ->
+      int ->
         buffer:'TBuffer ->
           offset:int or_null_or_undefined ->
             length:int or_null_or_undefined ->
@@ -6201,100 +6164,100 @@ module Fs =
                           written:int -> buffer:'TBuffer -> unit)
                 -> unit)
       =
-      fun ~fd:(x1820 : int) ->
-        fun ~buffer:(x1821 : 'TBuffer) ->
-          fun ~offset:(x1822 : int or_null_or_undefined) ->
-            fun ~length:(x1824 : int or_null_or_undefined) ->
+      fun (x1821 : int) ->
+        fun ~buffer:(x1822 : 'TBuffer) ->
+          fun ~offset:(x1823 : int or_null_or_undefined) ->
+            fun ~length:(x1825 : int or_null_or_undefined) ->
               fun
-                ~callback:(x1826 :
+                ~callback:(x1827 :
                             err:ErrnoException.t or_null ->
                               written:int -> buffer:'TBuffer -> unit)
                 ->
                 ignore
                   (Ojs.call Import.fs "write"
-                     [|(Ojs.int_to_js x1820);(Obj.magic x1821);(or_null_or_undefined_to_js
+                     [|(Ojs.int_to_js x1821);(Obj.magic x1822);(or_null_or_undefined_to_js
                                                                   Ojs.int_to_js
-                                                                  x1822);(
-                       or_null_or_undefined_to_js Ojs.int_to_js x1824);(
+                                                                  x1823);(
+                       or_null_or_undefined_to_js Ojs.int_to_js x1825);(
                        Ojs.fun_to_js 3
-                         (fun (x1827 : Ojs.t) ->
-                            fun (x1829 : Ojs.t) ->
-                              fun (x1830 : Ojs.t) ->
-                                x1826
+                         (fun (x1828 : Ojs.t) ->
+                            fun (x1830 : Ojs.t) ->
+                              fun (x1831 : Ojs.t) ->
+                                x1827
                                   ~err:(or_null_of_js ErrnoException.t_of_js
-                                          x1827)
-                                  ~written:(Ojs.int_of_js x1829)
-                                  ~buffer:(Obj.magic x1830)))|])
+                                          x1828)
+                                  ~written:(Ojs.int_of_js x1830)
+                                  ~buffer:(Obj.magic x1831)))|])
     let (write :
-      fd:int ->
+      int ->
         buffer:'TBuffer ->
           offset:int or_null_or_undefined ->
             callback:(err:ErrnoException.t or_null ->
                         written:int -> buffer:'TBuffer -> unit)
               -> unit)
       =
-      fun ~fd:(x1831 : int) ->
-        fun ~buffer:(x1832 : 'TBuffer) ->
-          fun ~offset:(x1833 : int or_null_or_undefined) ->
+      fun (x1832 : int) ->
+        fun ~buffer:(x1833 : 'TBuffer) ->
+          fun ~offset:(x1834 : int or_null_or_undefined) ->
             fun
-              ~callback:(x1835 :
+              ~callback:(x1836 :
                           err:ErrnoException.t or_null ->
                             written:int -> buffer:'TBuffer -> unit)
               ->
               ignore
                 (Ojs.call Import.fs "write"
-                   [|(Ojs.int_to_js x1831);(Obj.magic x1832);(or_null_or_undefined_to_js
+                   [|(Ojs.int_to_js x1832);(Obj.magic x1833);(or_null_or_undefined_to_js
                                                                 Ojs.int_to_js
-                                                                x1833);(
+                                                                x1834);(
                      Ojs.fun_to_js 3
-                       (fun (x1836 : Ojs.t) ->
-                          fun (x1838 : Ojs.t) ->
-                            fun (x1839 : Ojs.t) ->
-                              x1835
+                       (fun (x1837 : Ojs.t) ->
+                          fun (x1839 : Ojs.t) ->
+                            fun (x1840 : Ojs.t) ->
+                              x1836
                                 ~err:(or_null_of_js ErrnoException.t_of_js
-                                        x1836) ~written:(Ojs.int_of_js x1838)
-                                ~buffer:(Obj.magic x1839)))|])
+                                        x1837) ~written:(Ojs.int_of_js x1839)
+                                ~buffer:(Obj.magic x1840)))|])
     let (write :
-      fd:int ->
+      int ->
         buffer:'TBuffer ->
           callback:(err:ErrnoException.t or_null ->
                       written:int -> buffer:'TBuffer -> unit)
             -> unit)
       =
-      fun ~fd:(x1840 : int) ->
-        fun ~buffer:(x1841 : 'TBuffer) ->
+      fun (x1841 : int) ->
+        fun ~buffer:(x1842 : 'TBuffer) ->
           fun
-            ~callback:(x1842 :
+            ~callback:(x1843 :
                         err:ErrnoException.t or_null ->
                           written:int -> buffer:'TBuffer -> unit)
             ->
             ignore
               (Ojs.call Import.fs "write"
-                 [|(Ojs.int_to_js x1840);(Obj.magic x1841);(Ojs.fun_to_js 3
+                 [|(Ojs.int_to_js x1841);(Obj.magic x1842);(Ojs.fun_to_js 3
                                                               (fun
-                                                                 (x1843 :
+                                                                 (x1844 :
                                                                    Ojs.t)
                                                                  ->
                                                                  fun
-                                                                   (x1845 :
+                                                                   (x1846 :
                                                                     Ojs.t)
                                                                    ->
                                                                    fun
-                                                                    (x1846 :
+                                                                    (x1847 :
                                                                     Ojs.t) ->
-                                                                    x1842
+                                                                    x1843
                                                                     ~err:(
                                                                     or_null_of_js
                                                                     ErrnoException.t_of_js
-                                                                    x1843)
+                                                                    x1844)
                                                                     ~written:(
                                                                     Ojs.int_of_js
-                                                                    x1845)
+                                                                    x1846)
                                                                     ~buffer:(
                                                                     Obj.magic
-                                                                    x1846)))|])
+                                                                    x1847)))|])
     let (write :
-      fd:int ->
+      int ->
         string:string ->
           position:int or_null_or_undefined ->
             encoding:BufferEncoding.t or_null_or_undefined ->
@@ -6302,279 +6265,279 @@ module Fs =
                           written:int -> str:string -> unit)
                 -> unit)
       =
-      fun ~fd:(x1847 : int) ->
-        fun ~string:(x1848 : string) ->
-          fun ~position:(x1849 : int or_null_or_undefined) ->
-            fun ~encoding:(x1851 : BufferEncoding.t or_null_or_undefined) ->
+      fun (x1848 : int) ->
+        fun ~string:(x1849 : string) ->
+          fun ~position:(x1850 : int or_null_or_undefined) ->
+            fun ~encoding:(x1852 : BufferEncoding.t or_null_or_undefined) ->
               fun
-                ~callback:(x1853 :
+                ~callback:(x1854 :
                             err:ErrnoException.t or_null ->
                               written:int -> str:string -> unit)
                 ->
                 ignore
                   (Ojs.call Import.fs "write"
-                     [|(Ojs.int_to_js x1847);(Ojs.string_to_js x1848);(
-                       or_null_or_undefined_to_js Ojs.int_to_js x1849);(
+                     [|(Ojs.int_to_js x1848);(Ojs.string_to_js x1849);(
+                       or_null_or_undefined_to_js Ojs.int_to_js x1850);(
                        or_null_or_undefined_to_js BufferEncoding.t_to_js
-                         x1851);(Ojs.fun_to_js 3
-                                   (fun (x1854 : Ojs.t) ->
-                                      fun (x1856 : Ojs.t) ->
-                                        fun (x1857 : Ojs.t) ->
-                                          x1853
+                         x1852);(Ojs.fun_to_js 3
+                                   (fun (x1855 : Ojs.t) ->
+                                      fun (x1857 : Ojs.t) ->
+                                        fun (x1858 : Ojs.t) ->
+                                          x1854
                                             ~err:(or_null_of_js
                                                     ErrnoException.t_of_js
-                                                    x1854)
-                                            ~written:(Ojs.int_of_js x1856)
-                                            ~str:(Ojs.string_of_js x1857)))|])
+                                                    x1855)
+                                            ~written:(Ojs.int_of_js x1857)
+                                            ~str:(Ojs.string_of_js x1858)))|])
     let (write :
-      fd:int ->
+      int ->
         string:string ->
           position:int or_null_or_undefined ->
             callback:(err:ErrnoException.t or_null ->
                         written:int -> str:string -> unit)
               -> unit)
       =
-      fun ~fd:(x1858 : int) ->
-        fun ~string:(x1859 : string) ->
-          fun ~position:(x1860 : int or_null_or_undefined) ->
+      fun (x1859 : int) ->
+        fun ~string:(x1860 : string) ->
+          fun ~position:(x1861 : int or_null_or_undefined) ->
             fun
-              ~callback:(x1862 :
+              ~callback:(x1863 :
                           err:ErrnoException.t or_null ->
                             written:int -> str:string -> unit)
               ->
               ignore
                 (Ojs.call Import.fs "write"
-                   [|(Ojs.int_to_js x1858);(Ojs.string_to_js x1859);(
-                     or_null_or_undefined_to_js Ojs.int_to_js x1860);(
+                   [|(Ojs.int_to_js x1859);(Ojs.string_to_js x1860);(
+                     or_null_or_undefined_to_js Ojs.int_to_js x1861);(
                      Ojs.fun_to_js 3
-                       (fun (x1863 : Ojs.t) ->
-                          fun (x1865 : Ojs.t) ->
-                            fun (x1866 : Ojs.t) ->
-                              x1862
+                       (fun (x1864 : Ojs.t) ->
+                          fun (x1866 : Ojs.t) ->
+                            fun (x1867 : Ojs.t) ->
+                              x1863
                                 ~err:(or_null_of_js ErrnoException.t_of_js
-                                        x1863) ~written:(Ojs.int_of_js x1865)
-                                ~str:(Ojs.string_of_js x1866)))|])
+                                        x1864) ~written:(Ojs.int_of_js x1866)
+                                ~str:(Ojs.string_of_js x1867)))|])
     let (write :
-      fd:int ->
+      int ->
         string:string ->
           callback:(err:ErrnoException.t or_null ->
                       written:int -> str:string -> unit)
             -> unit)
       =
-      fun ~fd:(x1867 : int) ->
-        fun ~string:(x1868 : string) ->
+      fun (x1868 : int) ->
+        fun ~string:(x1869 : string) ->
           fun
-            ~callback:(x1869 :
+            ~callback:(x1870 :
                         err:ErrnoException.t or_null ->
                           written:int -> str:string -> unit)
             ->
             ignore
               (Ojs.call Import.fs "write"
-                 [|(Ojs.int_to_js x1867);(Ojs.string_to_js x1868);(Ojs.fun_to_js
+                 [|(Ojs.int_to_js x1868);(Ojs.string_to_js x1869);(Ojs.fun_to_js
                                                                     3
                                                                     (fun
-                                                                    (x1870 :
-                                                                    Ojs.t) ->
-                                                                    fun
-                                                                    (x1872 :
+                                                                    (x1871 :
                                                                     Ojs.t) ->
                                                                     fun
                                                                     (x1873 :
                                                                     Ojs.t) ->
-                                                                    x1869
+                                                                    fun
+                                                                    (x1874 :
+                                                                    Ojs.t) ->
+                                                                    x1870
                                                                     ~err:(
                                                                     or_null_of_js
                                                                     ErrnoException.t_of_js
-                                                                    x1870)
+                                                                    x1871)
                                                                     ~written:(
                                                                     Ojs.int_of_js
-                                                                    x1872)
+                                                                    x1873)
                                                                     ~str:(
                                                                     Ojs.string_of_js
-                                                                    x1873)))|])
+                                                                    x1874)))|])
     module Write =
       struct
         let (__promisify__ :
-          fd:int ->
+          int ->
             ?buffer:'TBuffer ->
               ?offset:int ->
                 ?length:int ->
                   ?position:int or_null ->
                     unit -> AnonymousInterface3.t Promise.t)
           =
-          fun ~fd:(x1874 : int) ->
-            fun ?buffer:(x1875 : 'TBuffer option) ->
-              fun ?offset:(x1876 : int option) ->
-                fun ?length:(x1877 : int option) ->
-                  fun ?position:(x1878 : int or_null option) ->
+          fun (x1875 : int) ->
+            fun ?buffer:(x1876 : 'TBuffer option) ->
+              fun ?offset:(x1877 : int option) ->
+                fun ?length:(x1878 : int option) ->
+                  fun ?position:(x1879 : int or_null option) ->
                     fun () ->
                       Promise.t_of_js AnonymousInterface3.t_of_js
-                        (let x1885 = Ojs.get_prop_ascii Import.fs "write" in
-                         Ojs.call (Ojs.get_prop_ascii x1885 "__promisify__")
+                        (let x1886 = Ojs.get_prop_ascii Import.fs "write" in
+                         Ojs.call (Ojs.get_prop_ascii x1886 "__promisify__")
                            "apply"
-                           [|x1885;((let x1879 =
+                           [|x1886;((let x1880 =
                                        Ojs.new_obj
                                          (Ojs.get_prop_ascii Ojs.global
                                             "Array") [||] in
                                      ignore
-                                       (Ojs.call x1879 "push"
-                                          [|(Ojs.int_to_js x1874)|]);
-                                     (match x1875 with
-                                      | Some x1884 ->
-                                          ignore
-                                            (Ojs.call x1879 "push"
-                                               [|(Obj.magic x1884)|])
-                                      | None -> ());
+                                       (Ojs.call x1880 "push"
+                                          [|(Ojs.int_to_js x1875)|]);
                                      (match x1876 with
-                                      | Some x1883 ->
+                                      | Some x1885 ->
                                           ignore
-                                            (Ojs.call x1879 "push"
-                                               [|(Ojs.int_to_js x1883)|])
+                                            (Ojs.call x1880 "push"
+                                               [|(Obj.magic x1885)|])
                                       | None -> ());
                                      (match x1877 with
-                                      | Some x1882 ->
+                                      | Some x1884 ->
                                           ignore
-                                            (Ojs.call x1879 "push"
-                                               [|(Ojs.int_to_js x1882)|])
+                                            (Ojs.call x1880 "push"
+                                               [|(Ojs.int_to_js x1884)|])
                                       | None -> ());
                                      (match x1878 with
-                                      | Some x1880 ->
+                                      | Some x1883 ->
                                           ignore
-                                            (Ojs.call x1879 "push"
-                                               [|(or_null_to_js Ojs.int_to_js
-                                                    x1880)|])
+                                            (Ojs.call x1880 "push"
+                                               [|(Ojs.int_to_js x1883)|])
                                       | None -> ());
-                                     x1879))|])
+                                     (match x1879 with
+                                      | Some x1881 ->
+                                          ignore
+                                            (Ojs.call x1880 "push"
+                                               [|(or_null_to_js Ojs.int_to_js
+                                                    x1881)|])
+                                      | None -> ());
+                                     x1880))|])
         let (__promisify__ :
-          fd:int ->
+          int ->
             string:string ->
               ?position:int or_null ->
                 ?encoding:BufferEncoding.t or_null ->
                   unit -> AnonymousInterface4.t Promise.t)
           =
-          fun ~fd:(x1887 : int) ->
-            fun ~string:(x1888 : string) ->
-              fun ?position:(x1889 : int or_null option) ->
-                fun ?encoding:(x1890 : BufferEncoding.t or_null option) ->
+          fun (x1888 : int) ->
+            fun ~string:(x1889 : string) ->
+              fun ?position:(x1890 : int or_null option) ->
+                fun ?encoding:(x1891 : BufferEncoding.t or_null option) ->
                   fun () ->
                     Promise.t_of_js AnonymousInterface4.t_of_js
-                      (let x1896 = Ojs.get_prop_ascii Import.fs "write" in
-                       Ojs.call (Ojs.get_prop_ascii x1896 "__promisify__")
+                      (let x1897 = Ojs.get_prop_ascii Import.fs "write" in
+                       Ojs.call (Ojs.get_prop_ascii x1897 "__promisify__")
                          "apply"
-                         [|x1896;((let x1891 =
+                         [|x1897;((let x1892 =
                                      Ojs.new_obj
                                        (Ojs.get_prop_ascii Ojs.global "Array")
                                        [||] in
                                    ignore
-                                     (Ojs.call x1891 "push"
-                                        [|(Ojs.int_to_js x1887)|]);
+                                     (Ojs.call x1892 "push"
+                                        [|(Ojs.int_to_js x1888)|]);
                                    ignore
-                                     (Ojs.call x1891 "push"
-                                        [|(Ojs.string_to_js x1888)|]);
-                                   (match x1889 with
-                                    | Some x1894 ->
-                                        ignore
-                                          (Ojs.call x1891 "push"
-                                             [|(or_null_to_js Ojs.int_to_js
-                                                  x1894)|])
-                                    | None -> ());
+                                     (Ojs.call x1892 "push"
+                                        [|(Ojs.string_to_js x1889)|]);
                                    (match x1890 with
-                                    | Some x1892 ->
+                                    | Some x1895 ->
                                         ignore
-                                          (Ojs.call x1891 "push"
+                                          (Ojs.call x1892 "push"
+                                             [|(or_null_to_js Ojs.int_to_js
+                                                  x1895)|])
+                                    | None -> ());
+                                   (match x1891 with
+                                    | Some x1893 ->
+                                        ignore
+                                          (Ojs.call x1892 "push"
                                              [|(or_null_to_js
                                                   BufferEncoding.t_to_js
-                                                  x1892)|])
+                                                  x1893)|])
                                     | None -> ());
-                                   x1891))|])
+                                   x1892))|])
       end
     let (write_sync :
-      fd:int ->
+      int ->
         buffer:ArrayBufferView.t ->
           ?offset:int or_null ->
             ?length:int or_null -> ?position:int or_null -> unit -> int)
       =
-      fun ~fd:(x1898 : int) ->
-        fun ~buffer:(x1899 : ArrayBufferView.t) ->
-          fun ?offset:(x1900 : int or_null option) ->
-            fun ?length:(x1901 : int or_null option) ->
-              fun ?position:(x1902 : int or_null option) ->
+      fun (x1899 : int) ->
+        fun ~buffer:(x1900 : ArrayBufferView.t) ->
+          fun ?offset:(x1901 : int or_null option) ->
+            fun ?length:(x1902 : int or_null option) ->
+              fun ?position:(x1903 : int or_null option) ->
                 fun () ->
                   Ojs.int_of_js
-                    (let x1910 = Import.fs in
-                     Ojs.call (Ojs.get_prop_ascii x1910 "writeSync") "apply"
-                       [|x1910;((let x1903 =
+                    (let x1911 = Import.fs in
+                     Ojs.call (Ojs.get_prop_ascii x1911 "writeSync") "apply"
+                       [|x1911;((let x1904 =
                                    Ojs.new_obj
                                      (Ojs.get_prop_ascii Ojs.global "Array")
                                      [||] in
                                  ignore
-                                   (Ojs.call x1903 "push"
-                                      [|(Ojs.int_to_js x1898)|]);
+                                   (Ojs.call x1904 "push"
+                                      [|(Ojs.int_to_js x1899)|]);
                                  ignore
-                                   (Ojs.call x1903 "push"
-                                      [|(ArrayBufferView.t_to_js x1899)|]);
-                                 (match x1900 with
-                                  | Some x1908 ->
-                                      ignore
-                                        (Ojs.call x1903 "push"
-                                           [|(or_null_to_js Ojs.int_to_js
-                                                x1908)|])
-                                  | None -> ());
+                                   (Ojs.call x1904 "push"
+                                      [|(ArrayBufferView.t_to_js x1900)|]);
                                  (match x1901 with
-                                  | Some x1906 ->
+                                  | Some x1909 ->
                                       ignore
-                                        (Ojs.call x1903 "push"
+                                        (Ojs.call x1904 "push"
                                            [|(or_null_to_js Ojs.int_to_js
-                                                x1906)|])
+                                                x1909)|])
                                   | None -> ());
                                  (match x1902 with
-                                  | Some x1904 ->
+                                  | Some x1907 ->
                                       ignore
-                                        (Ojs.call x1903 "push"
+                                        (Ojs.call x1904 "push"
                                            [|(or_null_to_js Ojs.int_to_js
-                                                x1904)|])
+                                                x1907)|])
                                   | None -> ());
-                                 x1903))|])
+                                 (match x1903 with
+                                  | Some x1905 ->
+                                      ignore
+                                        (Ojs.call x1904 "push"
+                                           [|(or_null_to_js Ojs.int_to_js
+                                                x1905)|])
+                                  | None -> ());
+                                 x1904))|])
     let (write_sync :
-      fd:int ->
+      int ->
         string:string ->
           ?position:int or_null ->
             ?encoding:BufferEncoding.t or_null -> unit -> int)
       =
-      fun ~fd:(x1911 : int) ->
-        fun ~string:(x1912 : string) ->
-          fun ?position:(x1913 : int or_null option) ->
-            fun ?encoding:(x1914 : BufferEncoding.t or_null option) ->
+      fun (x1912 : int) ->
+        fun ~string:(x1913 : string) ->
+          fun ?position:(x1914 : int or_null option) ->
+            fun ?encoding:(x1915 : BufferEncoding.t or_null option) ->
               fun () ->
                 Ojs.int_of_js
-                  (let x1920 = Import.fs in
-                   Ojs.call (Ojs.get_prop_ascii x1920 "writeSync") "apply"
-                     [|x1920;((let x1915 =
+                  (let x1921 = Import.fs in
+                   Ojs.call (Ojs.get_prop_ascii x1921 "writeSync") "apply"
+                     [|x1921;((let x1916 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x1915 "push"
-                                    [|(Ojs.int_to_js x1911)|]);
+                                 (Ojs.call x1916 "push"
+                                    [|(Ojs.int_to_js x1912)|]);
                                ignore
-                                 (Ojs.call x1915 "push"
-                                    [|(Ojs.string_to_js x1912)|]);
-                               (match x1913 with
-                                | Some x1918 ->
-                                    ignore
-                                      (Ojs.call x1915 "push"
-                                         [|(or_null_to_js Ojs.int_to_js x1918)|])
-                                | None -> ());
+                                 (Ojs.call x1916 "push"
+                                    [|(Ojs.string_to_js x1913)|]);
                                (match x1914 with
-                                | Some x1916 ->
+                                | Some x1919 ->
                                     ignore
-                                      (Ojs.call x1915 "push"
-                                         [|(or_null_to_js
-                                              BufferEncoding.t_to_js x1916)|])
+                                      (Ojs.call x1916 "push"
+                                         [|(or_null_to_js Ojs.int_to_js x1919)|])
                                 | None -> ());
-                               x1915))|])
+                               (match x1915 with
+                                | Some x1917 ->
+                                    ignore
+                                      (Ojs.call x1916 "push"
+                                         [|(or_null_to_js
+                                              BufferEncoding.t_to_js x1917)|])
+                                | None -> ());
+                               x1916))|])
     let (read :
-      fd:int ->
+      int ->
         buffer:'TBuffer ->
           offset:int ->
             length:int ->
@@ -6583,211 +6546,211 @@ module Fs =
                             bytes_read:int -> buffer:'TBuffer -> unit)
                   -> unit)
       =
-      fun ~fd:(x1921 : int) ->
-        fun ~buffer:(x1922 : 'TBuffer) ->
-          fun ~offset:(x1923 : int) ->
-            fun ~length:(x1924 : int) ->
-              fun ~position:(x1925 : int or_null) ->
+      fun (x1922 : int) ->
+        fun ~buffer:(x1923 : 'TBuffer) ->
+          fun ~offset:(x1924 : int) ->
+            fun ~length:(x1925 : int) ->
+              fun ~position:(x1926 : int or_null) ->
                 fun
-                  ~callback:(x1927 :
+                  ~callback:(x1928 :
                               err:ErrnoException.t or_null ->
                                 bytes_read:int -> buffer:'TBuffer -> unit)
                   ->
                   ignore
                     (Ojs.call Import.fs "read"
-                       [|(Ojs.int_to_js x1921);(Obj.magic x1922);(Ojs.int_to_js
-                                                                    x1923);(
-                         Ojs.int_to_js x1924);(or_null_to_js Ojs.int_to_js
-                                                 x1925);(Ojs.fun_to_js 3
+                       [|(Ojs.int_to_js x1922);(Obj.magic x1923);(Ojs.int_to_js
+                                                                    x1924);(
+                         Ojs.int_to_js x1925);(or_null_to_js Ojs.int_to_js
+                                                 x1926);(Ojs.fun_to_js 3
                                                            (fun
-                                                              (x1928 : Ojs.t)
+                                                              (x1929 : Ojs.t)
                                                               ->
                                                               fun
-                                                                (x1930 :
+                                                                (x1931 :
                                                                   Ojs.t)
                                                                 ->
                                                                 fun
-                                                                  (x1931 :
+                                                                  (x1932 :
                                                                     Ojs.t)
                                                                   ->
-                                                                  x1927
+                                                                  x1928
                                                                     ~err:(
                                                                     or_null_of_js
                                                                     ErrnoException.t_of_js
-                                                                    x1928)
+                                                                    x1929)
                                                                     ~bytes_read:(
                                                                     Ojs.int_of_js
-                                                                    x1930)
+                                                                    x1931)
                                                                     ~buffer:(
                                                                     Obj.magic
-                                                                    x1931)))|])
+                                                                    x1932)))|])
     module Read =
       struct
         let (__promisify__ :
-          fd:int ->
+          int ->
             buffer:'TBuffer ->
               offset:int ->
                 length:int ->
                   position:int or_null -> AnonymousInterface2.t Promise.t)
           =
-          fun ~fd:(x1932 : int) ->
-            fun ~buffer:(x1933 : 'TBuffer) ->
-              fun ~offset:(x1934 : int) ->
-                fun ~length:(x1935 : int) ->
-                  fun ~position:(x1936 : int or_null) ->
+          fun (x1933 : int) ->
+            fun ~buffer:(x1934 : 'TBuffer) ->
+              fun ~offset:(x1935 : int) ->
+                fun ~length:(x1936 : int) ->
+                  fun ~position:(x1937 : int or_null) ->
                     Promise.t_of_js AnonymousInterface2.t_of_js
                       (Ojs.call (Ojs.get_prop_ascii Import.fs "read")
                          "__promisify__"
-                         [|(Ojs.int_to_js x1932);(Obj.magic x1933);(Ojs.int_to_js
-                                                                    x1934);(
-                           Ojs.int_to_js x1935);(or_null_to_js Ojs.int_to_js
-                                                   x1936)|])
+                         [|(Ojs.int_to_js x1933);(Obj.magic x1934);(Ojs.int_to_js
+                                                                    x1935);(
+                           Ojs.int_to_js x1936);(or_null_to_js Ojs.int_to_js
+                                                   x1937)|])
       end
     module ReadSyncOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1940 : Ojs.t) -> x1940
-        and t_to_js : t -> Ojs.t = fun (x1939 : Ojs.t) -> x1939
+        let rec t_of_js : Ojs.t -> t = fun (x1941 : Ojs.t) -> x1941
+        and t_to_js : t -> Ojs.t = fun (x1940 : Ojs.t) -> x1940
         let (get_offset : t -> int) =
-          fun (x1941 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1941) "offset")
-        let (set_offset : t -> int -> unit) =
           fun (x1942 : t) ->
-            fun (x1943 : int) ->
-              Ojs.set_prop_ascii (t_to_js x1942) "offset"
-                (Ojs.int_to_js x1943)
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1942) "offset")
+        let (set_offset : t -> int -> unit) =
+          fun (x1943 : t) ->
+            fun (x1944 : int) ->
+              Ojs.set_prop_ascii (t_to_js x1943) "offset"
+                (Ojs.int_to_js x1944)
         let (get_length : t -> int) =
-          fun (x1944 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1944) "length")
-        let (set_length : t -> int -> unit) =
           fun (x1945 : t) ->
-            fun (x1946 : int) ->
-              Ojs.set_prop_ascii (t_to_js x1945) "length"
-                (Ojs.int_to_js x1946)
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1945) "length")
+        let (set_length : t -> int -> unit) =
+          fun (x1946 : t) ->
+            fun (x1947 : int) ->
+              Ojs.set_prop_ascii (t_to_js x1946) "length"
+                (Ojs.int_to_js x1947)
         let (get_position : t -> int or_null) =
-          fun (x1947 : t) ->
+          fun (x1948 : t) ->
             or_null_of_js Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x1947) "position")
+              (Ojs.get_prop_ascii (t_to_js x1948) "position")
         let (set_position : t -> int or_null -> unit) =
-          fun (x1949 : t) ->
-            fun (x1950 : int or_null) ->
-              Ojs.set_prop_ascii (t_to_js x1949) "position"
-                (or_null_to_js Ojs.int_to_js x1950)
+          fun (x1950 : t) ->
+            fun (x1951 : int or_null) ->
+              Ojs.set_prop_ascii (t_to_js x1950) "position"
+                (or_null_to_js Ojs.int_to_js x1951)
       end
     let (read_sync :
-      fd:int ->
+      int ->
         buffer:ArrayBufferView.t ->
           offset:int -> length:int -> position:int or_null -> int)
       =
-      fun ~fd:(x1952 : int) ->
-        fun ~buffer:(x1953 : ArrayBufferView.t) ->
-          fun ~offset:(x1954 : int) ->
-            fun ~length:(x1955 : int) ->
-              fun ~position:(x1956 : int or_null) ->
+      fun (x1953 : int) ->
+        fun ~buffer:(x1954 : ArrayBufferView.t) ->
+          fun ~offset:(x1955 : int) ->
+            fun ~length:(x1956 : int) ->
+              fun ~position:(x1957 : int or_null) ->
                 Ojs.int_of_js
                   (Ojs.call Import.fs "readSync"
-                     [|(Ojs.int_to_js x1952);(ArrayBufferView.t_to_js x1953);(
-                       Ojs.int_to_js x1954);(Ojs.int_to_js x1955);(or_null_to_js
+                     [|(Ojs.int_to_js x1953);(ArrayBufferView.t_to_js x1954);(
+                       Ojs.int_to_js x1955);(Ojs.int_to_js x1956);(or_null_to_js
                                                                     Ojs.int_to_js
-                                                                    x1956)|])
+                                                                    x1957)|])
     let (read_sync :
-      fd:int ->
+      int ->
         buffer:ArrayBufferView.t -> ?opts:ReadSyncOptions.t -> unit -> int)
       =
-      fun ~fd:(x1958 : int) ->
-        fun ~buffer:(x1959 : ArrayBufferView.t) ->
-          fun ?opts:(x1960 : ReadSyncOptions.t option) ->
+      fun (x1959 : int) ->
+        fun ~buffer:(x1960 : ArrayBufferView.t) ->
+          fun ?opts:(x1961 : ReadSyncOptions.t option) ->
             fun () ->
               Ojs.int_of_js
-                (let x1963 = Import.fs in
-                 Ojs.call (Ojs.get_prop_ascii x1963 "readSync") "apply"
-                   [|x1963;((let x1961 =
+                (let x1964 = Import.fs in
+                 Ojs.call (Ojs.get_prop_ascii x1964 "readSync") "apply"
+                   [|x1964;((let x1962 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x1961 "push"
-                                  [|(Ojs.int_to_js x1958)|]);
+                               (Ojs.call x1962 "push"
+                                  [|(Ojs.int_to_js x1959)|]);
                              ignore
-                               (Ojs.call x1961 "push"
-                                  [|(ArrayBufferView.t_to_js x1959)|]);
-                             (match x1960 with
-                              | Some x1962 ->
+                               (Ojs.call x1962 "push"
+                                  [|(ArrayBufferView.t_to_js x1960)|]);
+                             (match x1961 with
+                              | Some x1963 ->
                                   ignore
-                                    (Ojs.call x1961 "push"
-                                       [|(ReadSyncOptions.t_to_js x1962)|])
+                                    (Ojs.call x1962 "push"
+                                       [|(ReadSyncOptions.t_to_js x1963)|])
                               | None -> ());
-                             x1961))|])
+                             x1962))|])
     let (read_file :
-      path:PathLike.t or_number ->
+      PathLike.t or_number ->
         options:AnonymousInterface6.t or_null_or_undefined ->
           callback:(err:ErrnoException.t or_null -> data:Buffer.t -> unit) ->
             unit)
       =
-      fun ~path:(x1964 : PathLike.t or_number) ->
-        fun ~options:(x1966 : AnonymousInterface6.t or_null_or_undefined) ->
+      fun (x1965 : PathLike.t or_number) ->
+        fun ~options:(x1967 : AnonymousInterface6.t or_null_or_undefined) ->
           fun
-            ~callback:(x1968 :
+            ~callback:(x1969 :
                         err:ErrnoException.t or_null -> data:Buffer.t -> unit)
             ->
             ignore
               (Ojs.call Import.fs "readFile"
-                 [|(or_number_to_js PathLike.t_to_js x1964);(or_null_or_undefined_to_js
+                 [|(or_number_to_js PathLike.t_to_js x1965);(or_null_or_undefined_to_js
                                                                AnonymousInterface6.t_to_js
-                                                               x1966);(
+                                                               x1967);(
                    Ojs.fun_to_js 2
-                     (fun (x1969 : Ojs.t) ->
-                        fun (x1971 : Ojs.t) ->
-                          x1968
-                            ~err:(or_null_of_js ErrnoException.t_of_js x1969)
-                            ~data:(Buffer.t_of_js x1971)))|])
+                     (fun (x1970 : Ojs.t) ->
+                        fun (x1972 : Ojs.t) ->
+                          x1969
+                            ~err:(or_null_of_js ErrnoException.t_of_js x1970)
+                            ~data:(Buffer.t_of_js x1972)))|])
     let (read_file :
-      path:PathLike.t or_number ->
+      PathLike.t or_number ->
         options:AnonymousInterface5.t or_string ->
           callback:(err:ErrnoException.t or_null -> data:string -> unit) ->
             unit)
       =
-      fun ~path:(x1972 : PathLike.t or_number) ->
-        fun ~options:(x1974 : AnonymousInterface5.t or_string) ->
+      fun (x1973 : PathLike.t or_number) ->
+        fun ~options:(x1975 : AnonymousInterface5.t or_string) ->
           fun
-            ~callback:(x1976 :
+            ~callback:(x1977 :
                         err:ErrnoException.t or_null -> data:string -> unit)
             ->
             ignore
               (Ojs.call Import.fs "readFile"
-                 [|(or_number_to_js PathLike.t_to_js x1972);(or_string_to_js
+                 [|(or_number_to_js PathLike.t_to_js x1973);(or_string_to_js
                                                                AnonymousInterface5.t_to_js
-                                                               x1974);(
+                                                               x1975);(
                    Ojs.fun_to_js 2
-                     (fun (x1977 : Ojs.t) ->
-                        fun (x1979 : Ojs.t) ->
-                          x1976
-                            ~err:(or_null_of_js ErrnoException.t_of_js x1977)
-                            ~data:(Ojs.string_of_js x1979)))|])
+                     (fun (x1978 : Ojs.t) ->
+                        fun (x1980 : Ojs.t) ->
+                          x1977
+                            ~err:(or_null_of_js ErrnoException.t_of_js x1978)
+                            ~data:(Ojs.string_of_js x1980)))|])
     let (read_file :
-      path:PathLike.t or_number ->
+      PathLike.t or_number ->
         options:(BaseEncodingOptions.t, AnonymousInterface12.t) intersection2
           or_string or_null_or_undefined ->
           callback:(err:ErrnoException.t or_null ->
                       data:Buffer.t or_string -> unit)
             -> unit)
       =
-      fun ~path:(x1980 : PathLike.t or_number) ->
+      fun (x1981 : PathLike.t or_number) ->
         fun
-          ~options:(x1982 :
+          ~options:(x1983 :
                      (BaseEncodingOptions.t, AnonymousInterface12.t)
                        intersection2 or_string or_null_or_undefined)
           ->
           fun
-            ~callback:(x1987 :
+            ~callback:(x1988 :
                         err:ErrnoException.t or_null ->
                           data:Buffer.t or_string -> unit)
             ->
             ignore
               (Ojs.call Import.fs "readFile"
-                 [|(or_number_to_js PathLike.t_to_js x1980);(or_null_or_undefined_to_js
+                 [|(or_number_to_js PathLike.t_to_js x1981);(or_null_or_undefined_to_js
                                                                (fun
-                                                                  (x1983 :
+                                                                  (x1984 :
                                                                     (BaseEncodingOptions.t,
                                                                     AnonymousInterface12.t)
                                                                     intersection2
@@ -6796,7 +6759,7 @@ module Fs =
                                                                   or_string_to_js
                                                                     (
                                                                     fun
-                                                                    (x1984 :
+                                                                    (x1985 :
                                                                     (BaseEncodingOptions.t,
                                                                     AnonymousInterface12.t)
                                                                     intersection2)
@@ -6804,126 +6767,126 @@ module Fs =
                                                                     intersection2_to_js
                                                                     BaseEncodingOptions.t_to_js
                                                                     AnonymousInterface12.t_to_js
+                                                                    x1985)
                                                                     x1984)
-                                                                    x1983)
-                                                               x1982);(
+                                                               x1983);(
                    Ojs.fun_to_js 2
-                     (fun (x1988 : Ojs.t) ->
-                        fun (x1990 : Ojs.t) ->
-                          x1987
-                            ~err:(or_null_of_js ErrnoException.t_of_js x1988)
-                            ~data:(or_string_of_js Buffer.t_of_js x1990)))|])
+                     (fun (x1989 : Ojs.t) ->
+                        fun (x1991 : Ojs.t) ->
+                          x1988
+                            ~err:(or_null_of_js ErrnoException.t_of_js x1989)
+                            ~data:(or_string_of_js Buffer.t_of_js x1991)))|])
     let (read_file :
-      path:PathLike.t or_number ->
+      PathLike.t or_number ->
         callback:(err:ErrnoException.t or_null -> data:Buffer.t -> unit) ->
           unit)
       =
-      fun ~path:(x1992 : PathLike.t or_number) ->
+      fun (x1993 : PathLike.t or_number) ->
         fun
-          ~callback:(x1994 :
+          ~callback:(x1995 :
                       err:ErrnoException.t or_null -> data:Buffer.t -> unit)
           ->
           ignore
             (Ojs.call Import.fs "readFile"
-               [|(or_number_to_js PathLike.t_to_js x1992);(Ojs.fun_to_js 2
+               [|(or_number_to_js PathLike.t_to_js x1993);(Ojs.fun_to_js 2
                                                              (fun
-                                                                (x1995 :
+                                                                (x1996 :
                                                                   Ojs.t)
                                                                 ->
                                                                 fun
-                                                                  (x1997 :
+                                                                  (x1998 :
                                                                     Ojs.t)
                                                                   ->
-                                                                  x1994
+                                                                  x1995
                                                                     ~err:(
                                                                     or_null_of_js
                                                                     ErrnoException.t_of_js
-                                                                    x1995)
+                                                                    x1996)
                                                                     ~data:(
                                                                     Buffer.t_of_js
-                                                                    x1997)))|])
+                                                                    x1998)))|])
     module ReadFile =
       struct
         let (__promisify__ :
-          path:PathLike.t or_number ->
+          PathLike.t or_number ->
             ?options:AnonymousInterface6.t or_null ->
               unit -> Buffer.t Promise.t)
           =
-          fun ~path:(x1998 : PathLike.t or_number) ->
-            fun ?options:(x1999 : AnonymousInterface6.t or_null option) ->
+          fun (x1999 : PathLike.t or_number) ->
+            fun ?options:(x2000 : AnonymousInterface6.t or_null option) ->
               fun () ->
                 Promise.t_of_js Buffer.t_of_js
-                  (let x2004 = Ojs.get_prop_ascii Import.fs "readFile" in
-                   Ojs.call (Ojs.get_prop_ascii x2004 "__promisify__")
+                  (let x2005 = Ojs.get_prop_ascii Import.fs "readFile" in
+                   Ojs.call (Ojs.get_prop_ascii x2005 "__promisify__")
                      "apply"
-                     [|x2004;((let x2000 =
+                     [|x2005;((let x2001 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x2000 "push"
-                                    [|(or_number_to_js PathLike.t_to_js x1998)|]);
-                               (match x1999 with
-                                | Some x2001 ->
+                                 (Ojs.call x2001 "push"
+                                    [|(or_number_to_js PathLike.t_to_js x1999)|]);
+                               (match x2000 with
+                                | Some x2002 ->
                                     ignore
-                                      (Ojs.call x2000 "push"
+                                      (Ojs.call x2001 "push"
                                          [|(or_null_to_js
                                               AnonymousInterface6.t_to_js
-                                              x2001)|])
+                                              x2002)|])
                                 | None -> ());
-                               x2000))|])
+                               x2001))|])
         let (__promisify__ :
-          path:PathLike.t or_number ->
+          PathLike.t or_number ->
             options:AnonymousInterface5.t or_string -> string Promise.t)
           =
-          fun ~path:(x2006 : PathLike.t or_number) ->
-            fun ~options:(x2008 : AnonymousInterface5.t or_string) ->
+          fun (x2007 : PathLike.t or_number) ->
+            fun ~options:(x2009 : AnonymousInterface5.t or_string) ->
               Promise.t_of_js Ojs.string_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.fs "readFile")
                    "__promisify__"
-                   [|(or_number_to_js PathLike.t_to_js x2006);(or_string_to_js
+                   [|(or_number_to_js PathLike.t_to_js x2007);(or_string_to_js
                                                                  AnonymousInterface5.t_to_js
-                                                                 x2008)|])
+                                                                 x2009)|])
         let (__promisify__ :
-          path:PathLike.t or_number ->
+          PathLike.t or_number ->
             ?options:(BaseEncodingOptions.t, AnonymousInterface12.t)
               intersection2 or_string or_null ->
               unit -> Buffer.t or_string Promise.t)
           =
-          fun ~path:(x2011 : PathLike.t or_number) ->
+          fun (x2012 : PathLike.t or_number) ->
             fun
-              ?options:(x2012 :
+              ?options:(x2013 :
                          (BaseEncodingOptions.t, AnonymousInterface12.t)
                            intersection2 or_string or_null option)
               ->
               fun () ->
                 Promise.t_of_js
-                  (fun (x2021 : Ojs.t) ->
-                     or_string_of_js Buffer.t_of_js x2021)
-                  (let x2020 = Ojs.get_prop_ascii Import.fs "readFile" in
-                   Ojs.call (Ojs.get_prop_ascii x2020 "__promisify__")
+                  (fun (x2022 : Ojs.t) ->
+                     or_string_of_js Buffer.t_of_js x2022)
+                  (let x2021 = Ojs.get_prop_ascii Import.fs "readFile" in
+                   Ojs.call (Ojs.get_prop_ascii x2021 "__promisify__")
                      "apply"
-                     [|x2020;((let x2013 =
+                     [|x2021;((let x2014 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x2013 "push"
-                                    [|(or_number_to_js PathLike.t_to_js x2011)|]);
-                               (match x2012 with
-                                | Some x2014 ->
+                                 (Ojs.call x2014 "push"
+                                    [|(or_number_to_js PathLike.t_to_js x2012)|]);
+                               (match x2013 with
+                                | Some x2015 ->
                                     ignore
-                                      (Ojs.call x2013 "push"
+                                      (Ojs.call x2014 "push"
                                          [|(or_null_to_js
                                               (fun
-                                                 (x2015 :
+                                                 (x2016 :
                                                    (BaseEncodingOptions.t,
                                                      AnonymousInterface12.t)
                                                      intersection2 or_string)
                                                  ->
                                                  or_string_to_js
                                                    (fun
-                                                      (x2016 :
+                                                      (x2017 :
                                                         (BaseEncodingOptions.t,
                                                           AnonymousInterface12.t)
                                                           intersection2)
@@ -6931,40 +6894,39 @@ module Fs =
                                                       intersection2_to_js
                                                         BaseEncodingOptions.t_to_js
                                                         AnonymousInterface12.t_to_js
-                                                        x2016) x2015) x2014)|])
+                                                        x2017) x2016) x2015)|])
                                 | None -> ());
-                               x2013))|])
+                               x2014))|])
       end
     let (read_file_sync :
-      path:PathLike.t or_number ->
-        ?options:AnonymousInterface6.t or_null -> unit -> Buffer.t)
+      PathLike.t or_number ->
+        ?options:AnonymousInterface6.t -> unit -> Buffer.t)
       =
-      fun ~path:(x2023 : PathLike.t or_number) ->
-        fun ?options:(x2024 : AnonymousInterface6.t or_null option) ->
+      fun (x2024 : PathLike.t or_number) ->
+        fun ?options:(x2025 : AnonymousInterface6.t option) ->
           fun () ->
             Buffer.t_of_js
               (let x2029 = Import.fs in
                Ojs.call (Ojs.get_prop_ascii x2029 "readFileSync") "apply"
-                 [|x2029;((let x2025 =
+                 [|x2029;((let x2026 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x2025 "push"
-                                [|(or_number_to_js PathLike.t_to_js x2023)|]);
-                           (match x2024 with
-                            | Some x2026 ->
+                             (Ojs.call x2026 "push"
+                                [|(or_number_to_js PathLike.t_to_js x2024)|]);
+                           (match x2025 with
+                            | Some x2027 ->
                                 ignore
-                                  (Ojs.call x2025 "push"
-                                     [|(or_null_to_js
-                                          AnonymousInterface6.t_to_js x2026)|])
+                                  (Ojs.call x2026 "push"
+                                     [|(AnonymousInterface6.t_to_js x2027)|])
                             | None -> ());
-                           x2025))|])
+                           x2026))|])
     let (read_file_sync :
-      path:PathLike.t or_number ->
+      PathLike.t or_number ->
         options:(BufferEncoding.t, AnonymousInterface5.t) union2 -> string)
       =
-      fun ~path:(x2030 : PathLike.t or_number) ->
+      fun (x2030 : PathLike.t or_number) ->
         fun
           ~options:(x2032 : (BufferEncoding.t, AnonymousInterface5.t) union2)
           ->
@@ -6975,16 +6937,16 @@ module Fs =
                                                              AnonymousInterface5.t_to_js
                                                              x2032)|])
     let (read_file_sync :
-      path:PathLike.t or_number ->
-        ?options:BufferEncoding.t or_null -> unit -> Buffer.t or_string)
+      PathLike.t or_number ->
+        ?options:BufferEncoding.t -> unit -> Buffer.t or_string)
       =
-      fun ~path:(x2035 : PathLike.t or_number) ->
-        fun ?options:(x2036 : BufferEncoding.t or_null option) ->
+      fun (x2035 : PathLike.t or_number) ->
+        fun ?options:(x2036 : BufferEncoding.t option) ->
           fun () ->
             or_string_of_js Buffer.t_of_js
-              (let x2041 = Import.fs in
-               Ojs.call (Ojs.get_prop_ascii x2041 "readFileSync") "apply"
-                 [|x2041;((let x2037 =
+              (let x2040 = Import.fs in
+               Ojs.call (Ojs.get_prop_ascii x2040 "readFileSync") "apply"
+                 [|x2040;((let x2037 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
@@ -6995,140 +6957,161 @@ module Fs =
                             | Some x2038 ->
                                 ignore
                                   (Ojs.call x2037 "push"
-                                     [|(or_null_to_js BufferEncoding.t_to_js
-                                          x2038)|])
+                                     [|(BufferEncoding.t_to_js x2038)|])
                             | None -> ());
                            x2037))|])
+    let (read_file_sync :
+      PathLike.t -> ?options:BufferEncoding.t -> unit -> string) =
+      fun (x2042 : PathLike.t) ->
+        fun ?options:(x2043 : BufferEncoding.t option) ->
+          fun () ->
+            Ojs.string_of_js
+              (let x2046 = Import.fs in
+               Ojs.call (Ojs.get_prop_ascii x2046 "readFileSync") "apply"
+                 [|x2046;((let x2044 =
+                             Ojs.new_obj
+                               (Ojs.get_prop_ascii Ojs.global "Array") 
+                               [||] in
+                           ignore
+                             (Ojs.call x2044 "push"
+                                [|(PathLike.t_to_js x2042)|]);
+                           (match x2043 with
+                            | Some x2045 ->
+                                ignore
+                                  (Ojs.call x2044 "push"
+                                     [|(BufferEncoding.t_to_js x2045)|])
+                            | None -> ());
+                           x2044))|])
     module WriteFileOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x2044 : Ojs.t) -> x2044
-        and t_to_js : t -> Ojs.t = fun (x2043 : Ojs.t) -> x2043
+        let rec t_of_js : Ojs.t -> t = fun (x2048 : Ojs.t) -> x2048
+        and t_to_js : t -> Ojs.t = fun (x2047 : Ojs.t) -> x2047
       end
     let (write_file :
-      path:PathLike.t or_number ->
+      PathLike.t or_number ->
         data:ArrayBufferView.t or_string ->
           options:WriteFileOptions.t -> callback:NoParamCallback.t -> unit)
       =
-      fun ~path:(x2045 : PathLike.t or_number) ->
-        fun ~data:(x2047 : ArrayBufferView.t or_string) ->
-          fun ~options:(x2049 : WriteFileOptions.t) ->
-            fun ~callback:(x2050 : NoParamCallback.t) ->
+      fun (x2049 : PathLike.t or_number) ->
+        fun ~data:(x2051 : ArrayBufferView.t or_string) ->
+          fun ~options:(x2053 : WriteFileOptions.t) ->
+            fun ~callback:(x2054 : NoParamCallback.t) ->
               ignore
                 (Ojs.call Import.fs "writeFile"
-                   [|(or_number_to_js PathLike.t_to_js x2045);(or_string_to_js
+                   [|(or_number_to_js PathLike.t_to_js x2049);(or_string_to_js
                                                                  ArrayBufferView.t_to_js
-                                                                 x2047);(
-                     WriteFileOptions.t_to_js x2049);(NoParamCallback.t_to_js
-                                                        x2050)|])
+                                                                 x2051);(
+                     WriteFileOptions.t_to_js x2053);(NoParamCallback.t_to_js
+                                                        x2054)|])
     let (write_file :
-      path:PathLike.t or_number ->
+      PathLike.t or_number ->
         data:ArrayBufferView.t or_string ->
           callback:NoParamCallback.t -> unit)
       =
-      fun ~path:(x2051 : PathLike.t or_number) ->
-        fun ~data:(x2053 : ArrayBufferView.t or_string) ->
-          fun ~callback:(x2055 : NoParamCallback.t) ->
+      fun (x2055 : PathLike.t or_number) ->
+        fun ~data:(x2057 : ArrayBufferView.t or_string) ->
+          fun ~callback:(x2059 : NoParamCallback.t) ->
             ignore
               (Ojs.call Import.fs "writeFile"
-                 [|(or_number_to_js PathLike.t_to_js x2051);(or_string_to_js
+                 [|(or_number_to_js PathLike.t_to_js x2055);(or_string_to_js
                                                                ArrayBufferView.t_to_js
-                                                               x2053);(
-                   NoParamCallback.t_to_js x2055)|])
+                                                               x2057);(
+                   NoParamCallback.t_to_js x2059)|])
     module WriteFile =
       struct
         let (__promisify__ :
-          path:PathLike.t or_number ->
+          PathLike.t or_number ->
             data:ArrayBufferView.t or_string ->
               ?options:WriteFileOptions.t -> unit -> unit Promise.t)
           =
-          fun ~path:(x2056 : PathLike.t or_number) ->
-            fun ~data:(x2057 : ArrayBufferView.t or_string) ->
-              fun ?options:(x2058 : WriteFileOptions.t option) ->
+          fun (x2060 : PathLike.t or_number) ->
+            fun ~data:(x2061 : ArrayBufferView.t or_string) ->
+              fun ?options:(x2062 : WriteFileOptions.t option) ->
                 fun () ->
                   Promise.t_of_js Ojs.unit_of_js
-                    (let x2063 = Ojs.get_prop_ascii Import.fs "writeFile" in
-                     Ojs.call (Ojs.get_prop_ascii x2063 "__promisify__")
+                    (let x2067 = Ojs.get_prop_ascii Import.fs "writeFile" in
+                     Ojs.call (Ojs.get_prop_ascii x2067 "__promisify__")
                        "apply"
-                       [|x2063;((let x2059 =
+                       [|x2067;((let x2063 =
                                    Ojs.new_obj
                                      (Ojs.get_prop_ascii Ojs.global "Array")
                                      [||] in
                                  ignore
-                                   (Ojs.call x2059 "push"
+                                   (Ojs.call x2063 "push"
                                       [|(or_number_to_js PathLike.t_to_js
-                                           x2056)|]);
+                                           x2060)|]);
                                  ignore
-                                   (Ojs.call x2059 "push"
+                                   (Ojs.call x2063 "push"
                                       [|(or_string_to_js
-                                           ArrayBufferView.t_to_js x2057)|]);
-                                 (match x2058 with
-                                  | Some x2060 ->
+                                           ArrayBufferView.t_to_js x2061)|]);
+                                 (match x2062 with
+                                  | Some x2064 ->
                                       ignore
-                                        (Ojs.call x2059 "push"
-                                           [|(WriteFileOptions.t_to_js x2060)|])
+                                        (Ojs.call x2063 "push"
+                                           [|(WriteFileOptions.t_to_js x2064)|])
                                   | None -> ());
-                                 x2059))|])
+                                 x2063))|])
       end
     let (write_file_sync :
-      path:PathLike.t or_number ->
+      PathLike.t or_number ->
         data:ArrayBufferView.t or_string ->
           ?options:WriteFileOptions.t -> unit -> unit)
       =
-      fun ~path:(x2065 : PathLike.t or_number) ->
-        fun ~data:(x2066 : ArrayBufferView.t or_string) ->
-          fun ?options:(x2067 : WriteFileOptions.t option) ->
+      fun (x2069 : PathLike.t or_number) ->
+        fun ~data:(x2070 : ArrayBufferView.t or_string) ->
+          fun ?options:(x2071 : WriteFileOptions.t option) ->
             fun () ->
               ignore
-                (let x2072 = Import.fs in
-                 Ojs.call (Ojs.get_prop_ascii x2072 "writeFileSync") "apply"
-                   [|x2072;((let x2068 =
+                (let x2076 = Import.fs in
+                 Ojs.call (Ojs.get_prop_ascii x2076 "writeFileSync") "apply"
+                   [|x2076;((let x2072 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x2068 "push"
-                                  [|(or_number_to_js PathLike.t_to_js x2065)|]);
+                               (Ojs.call x2072 "push"
+                                  [|(or_number_to_js PathLike.t_to_js x2069)|]);
                              ignore
-                               (Ojs.call x2068 "push"
+                               (Ojs.call x2072 "push"
                                   [|(or_string_to_js ArrayBufferView.t_to_js
-                                       x2066)|]);
-                             (match x2067 with
-                              | Some x2069 ->
+                                       x2070)|]);
+                             (match x2071 with
+                              | Some x2073 ->
                                   ignore
-                                    (Ojs.call x2068 "push"
-                                       [|(WriteFileOptions.t_to_js x2069)|])
+                                    (Ojs.call x2072 "push"
+                                       [|(WriteFileOptions.t_to_js x2073)|])
                               | None -> ());
-                             x2068))|])
+                             x2072))|])
     let (append_file :
       file:string or_number ->
         data:Uint8Array.t or_string ->
           options:WriteFileOptions.t -> callback:NoParamCallback.t -> unit)
       =
-      fun ~file:(x2073 : string or_number) ->
-        fun ~data:(x2075 : Uint8Array.t or_string) ->
-          fun ~options:(x2077 : WriteFileOptions.t) ->
-            fun ~callback:(x2078 : NoParamCallback.t) ->
+      fun ~file:(x2077 : string or_number) ->
+        fun ~data:(x2079 : Uint8Array.t or_string) ->
+          fun ~options:(x2081 : WriteFileOptions.t) ->
+            fun ~callback:(x2082 : NoParamCallback.t) ->
               ignore
                 (Ojs.call Import.fs "appendFile"
-                   [|(or_number_to_js Ojs.string_to_js x2073);(or_string_to_js
+                   [|(or_number_to_js Ojs.string_to_js x2077);(or_string_to_js
                                                                  Uint8Array.t_to_js
-                                                                 x2075);(
-                     WriteFileOptions.t_to_js x2077);(NoParamCallback.t_to_js
-                                                        x2078)|])
+                                                                 x2079);(
+                     WriteFileOptions.t_to_js x2081);(NoParamCallback.t_to_js
+                                                        x2082)|])
     let (append_file :
       file:string or_number ->
         data:Uint8Array.t or_string -> callback:NoParamCallback.t -> unit)
       =
-      fun ~file:(x2079 : string or_number) ->
-        fun ~data:(x2081 : Uint8Array.t or_string) ->
-          fun ~callback:(x2083 : NoParamCallback.t) ->
+      fun ~file:(x2083 : string or_number) ->
+        fun ~data:(x2085 : Uint8Array.t or_string) ->
+          fun ~callback:(x2087 : NoParamCallback.t) ->
             ignore
               (Ojs.call Import.fs "appendFile"
-                 [|(or_number_to_js Ojs.string_to_js x2079);(or_string_to_js
+                 [|(or_number_to_js Ojs.string_to_js x2083);(or_string_to_js
                                                                Uint8Array.t_to_js
-                                                               x2081);(
-                   NoParamCallback.t_to_js x2083)|])
+                                                               x2085);(
+                   NoParamCallback.t_to_js x2087)|])
     module AppendFile =
       struct
         let (__promisify__ :
@@ -7136,134 +7119,134 @@ module Fs =
             data:Uint8Array.t or_string ->
               ?options:WriteFileOptions.t -> unit -> unit Promise.t)
           =
-          fun ~file:(x2084 : string or_number) ->
-            fun ~data:(x2085 : Uint8Array.t or_string) ->
-              fun ?options:(x2086 : WriteFileOptions.t option) ->
+          fun ~file:(x2088 : string or_number) ->
+            fun ~data:(x2089 : Uint8Array.t or_string) ->
+              fun ?options:(x2090 : WriteFileOptions.t option) ->
                 fun () ->
                   Promise.t_of_js Ojs.unit_of_js
-                    (let x2091 = Ojs.get_prop_ascii Import.fs "appendFile" in
-                     Ojs.call (Ojs.get_prop_ascii x2091 "__promisify__")
+                    (let x2095 = Ojs.get_prop_ascii Import.fs "appendFile" in
+                     Ojs.call (Ojs.get_prop_ascii x2095 "__promisify__")
                        "apply"
-                       [|x2091;((let x2087 =
+                       [|x2095;((let x2091 =
                                    Ojs.new_obj
                                      (Ojs.get_prop_ascii Ojs.global "Array")
                                      [||] in
                                  ignore
-                                   (Ojs.call x2087 "push"
+                                   (Ojs.call x2091 "push"
                                       [|(or_number_to_js Ojs.string_to_js
-                                           x2084)|]);
+                                           x2088)|]);
                                  ignore
-                                   (Ojs.call x2087 "push"
+                                   (Ojs.call x2091 "push"
                                       [|(or_string_to_js Uint8Array.t_to_js
-                                           x2085)|]);
-                                 (match x2086 with
-                                  | Some x2088 ->
+                                           x2089)|]);
+                                 (match x2090 with
+                                  | Some x2092 ->
                                       ignore
-                                        (Ojs.call x2087 "push"
-                                           [|(WriteFileOptions.t_to_js x2088)|])
+                                        (Ojs.call x2091 "push"
+                                           [|(WriteFileOptions.t_to_js x2092)|])
                                   | None -> ());
-                                 x2087))|])
+                                 x2091))|])
       end
     let (append_file_sync :
       file:string or_number ->
         data:Uint8Array.t or_string ->
           ?options:WriteFileOptions.t -> unit -> unit)
       =
-      fun ~file:(x2093 : string or_number) ->
-        fun ~data:(x2094 : Uint8Array.t or_string) ->
-          fun ?options:(x2095 : WriteFileOptions.t option) ->
+      fun ~file:(x2097 : string or_number) ->
+        fun ~data:(x2098 : Uint8Array.t or_string) ->
+          fun ?options:(x2099 : WriteFileOptions.t option) ->
             fun () ->
               ignore
-                (let x2100 = Import.fs in
-                 Ojs.call (Ojs.get_prop_ascii x2100 "appendFileSync") "apply"
-                   [|x2100;((let x2096 =
+                (let x2104 = Import.fs in
+                 Ojs.call (Ojs.get_prop_ascii x2104 "appendFileSync") "apply"
+                   [|x2104;((let x2100 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x2096 "push"
-                                  [|(or_number_to_js Ojs.string_to_js x2093)|]);
+                               (Ojs.call x2100 "push"
+                                  [|(or_number_to_js Ojs.string_to_js x2097)|]);
                              ignore
-                               (Ojs.call x2096 "push"
-                                  [|(or_string_to_js Uint8Array.t_to_js x2094)|]);
-                             (match x2095 with
-                              | Some x2097 ->
+                               (Ojs.call x2100 "push"
+                                  [|(or_string_to_js Uint8Array.t_to_js x2098)|]);
+                             (match x2099 with
+                              | Some x2101 ->
                                   ignore
-                                    (Ojs.call x2096 "push"
-                                       [|(WriteFileOptions.t_to_js x2097)|])
+                                    (Ojs.call x2100 "push"
+                                       [|(WriteFileOptions.t_to_js x2101)|])
                               | None -> ());
-                             x2096))|])
+                             x2100))|])
     let (watch_file :
       filename:string ->
         options:AnonymousInterface16.t or_undefined ->
           listener:(curr:Stats.t -> prev:Stats.t -> unit) -> unit)
       =
-      fun ~filename:(x2101 : string) ->
-        fun ~options:(x2102 : AnonymousInterface16.t or_undefined) ->
-          fun ~listener:(x2104 : curr:Stats.t -> prev:Stats.t -> unit) ->
+      fun ~filename:(x2105 : string) ->
+        fun ~options:(x2106 : AnonymousInterface16.t or_undefined) ->
+          fun ~listener:(x2108 : curr:Stats.t -> prev:Stats.t -> unit) ->
             ignore
               (Ojs.call Import.fs "watchFile"
-                 [|(Ojs.string_to_js x2101);(or_undefined_to_js
+                 [|(Ojs.string_to_js x2105);(or_undefined_to_js
                                                AnonymousInterface16.t_to_js
-                                               x2102);(Ojs.fun_to_js 2
-                                                         (fun (x2105 : Ojs.t)
+                                               x2106);(Ojs.fun_to_js 2
+                                                         (fun (x2109 : Ojs.t)
                                                             ->
                                                             fun
-                                                              (x2106 : Ojs.t)
+                                                              (x2110 : Ojs.t)
                                                               ->
-                                                              x2104
+                                                              x2108
                                                                 ~curr:(
                                                                 Stats.t_of_js
-                                                                  x2105)
+                                                                  x2109)
                                                                 ~prev:(
                                                                 Stats.t_of_js
-                                                                  x2106)))|])
+                                                                  x2110)))|])
     let (watch_file :
       filename:string ->
         listener:(curr:Stats.t -> prev:Stats.t -> unit) -> unit)
       =
-      fun ~filename:(x2107 : string) ->
-        fun ~listener:(x2108 : curr:Stats.t -> prev:Stats.t -> unit) ->
+      fun ~filename:(x2111 : string) ->
+        fun ~listener:(x2112 : curr:Stats.t -> prev:Stats.t -> unit) ->
           ignore
             (Ojs.call Import.fs "watchFile"
-               [|(Ojs.string_to_js x2107);(Ojs.fun_to_js 2
-                                             (fun (x2109 : Ojs.t) ->
-                                                fun (x2110 : Ojs.t) ->
-                                                  x2108
+               [|(Ojs.string_to_js x2111);(Ojs.fun_to_js 2
+                                             (fun (x2113 : Ojs.t) ->
+                                                fun (x2114 : Ojs.t) ->
+                                                  x2112
                                                     ~curr:(Stats.t_of_js
-                                                             x2109)
+                                                             x2113)
                                                     ~prev:(Stats.t_of_js
-                                                             x2110)))|])
+                                                             x2114)))|])
     let (unwatch_file :
       filename:string ->
         ?listener:(curr:Stats.t -> prev:Stats.t -> unit) -> unit -> unit)
       =
-      fun ~filename:(x2111 : string) ->
-        fun ?listener:(x2112 : (curr:Stats.t -> prev:Stats.t -> unit) option)
+      fun ~filename:(x2115 : string) ->
+        fun ?listener:(x2116 : (curr:Stats.t -> prev:Stats.t -> unit) option)
           ->
           fun () ->
             ignore
-              (let x2117 = Import.fs in
-               Ojs.call (Ojs.get_prop_ascii x2117 "unwatchFile") "apply"
-                 [|x2117;((let x2113 =
+              (let x2121 = Import.fs in
+               Ojs.call (Ojs.get_prop_ascii x2121 "unwatchFile") "apply"
+                 [|x2121;((let x2117 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x2113 "push"
-                                [|(Ojs.string_to_js x2111)|]);
-                           (match x2112 with
-                            | Some x2114 ->
+                             (Ojs.call x2117 "push"
+                                [|(Ojs.string_to_js x2115)|]);
+                           (match x2116 with
+                            | Some x2118 ->
                                 ignore
-                                  (Ojs.call x2113 "push"
+                                  (Ojs.call x2117 "push"
                                      [|(Ojs.fun_to_js 2
-                                          (fun (x2115 : Ojs.t) ->
-                                             fun (x2116 : Ojs.t) ->
-                                               x2114
-                                                 ~curr:(Stats.t_of_js x2115)
-                                                 ~prev:(Stats.t_of_js x2116)))|])
+                                          (fun (x2119 : Ojs.t) ->
+                                             fun (x2120 : Ojs.t) ->
+                                               x2118
+                                                 ~curr:(Stats.t_of_js x2119)
+                                                 ~prev:(Stats.t_of_js x2120)))|])
                             | None -> ());
-                           x2113))|])
+                           x2117))|])
     let (watch :
       filename:string ->
         options:(BufferEncoding.t, AnonymousInterface10.t) union2
@@ -7271,51 +7254,51 @@ module Fs =
           ?listener:(event:[ `change  | `rename ] -> filename:string -> unit)
             -> unit -> FSWatcher.t)
       =
-      fun ~filename:(x2118 : string) ->
+      fun ~filename:(x2122 : string) ->
         fun
-          ~options:(x2119 :
+          ~options:(x2123 :
                      (BufferEncoding.t, AnonymousInterface10.t) union2
                        or_null_or_undefined)
           ->
           fun
-            ?listener:(x2120 :
+            ?listener:(x2124 :
                         (event:[ `change  | `rename ] ->
                            filename:string -> unit)
                           option)
             ->
             fun () ->
               FSWatcher.t_of_js
-                (let x2129 = Import.fs in
-                 Ojs.call (Ojs.get_prop_ascii x2129 "watch") "apply"
-                   [|x2129;((let x2121 =
+                (let x2133 = Import.fs in
+                 Ojs.call (Ojs.get_prop_ascii x2133 "watch") "apply"
+                   [|x2133;((let x2125 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x2121 "push"
-                                  [|(Ojs.string_to_js x2118)|]);
+                               (Ojs.call x2125 "push"
+                                  [|(Ojs.string_to_js x2122)|]);
                              ignore
-                               (Ojs.call x2121 "push"
+                               (Ojs.call x2125 "push"
                                   [|(or_null_or_undefined_to_js
                                        (fun
-                                          (x2126 :
+                                          (x2130 :
                                             (BufferEncoding.t,
                                               AnonymousInterface10.t) union2)
                                           ->
                                           union2_to_js BufferEncoding.t_to_js
                                             AnonymousInterface10.t_to_js
-                                            x2126) x2119)|]);
-                             (match x2120 with
-                              | Some x2122 ->
+                                            x2130) x2123)|]);
+                             (match x2124 with
+                              | Some x2126 ->
                                   ignore
-                                    (Ojs.call x2121 "push"
+                                    (Ojs.call x2125 "push"
                                        [|(Ojs.fun_to_js 2
-                                            (fun (x2123 : Ojs.t) ->
-                                               fun (x2125 : Ojs.t) ->
-                                                 x2122
-                                                   ~event:(let x2124 = x2123 in
+                                            (fun (x2127 : Ojs.t) ->
+                                               fun (x2129 : Ojs.t) ->
+                                                 x2126
+                                                   ~event:(let x2128 = x2127 in
                                                            match Ojs.string_of_js
-                                                                   x2124
+                                                                   x2128
                                                            with
                                                            | "change" ->
                                                                `change
@@ -7324,9 +7307,9 @@ module Fs =
                                                            | _ ->
                                                                assert false)
                                                    ~filename:(Ojs.string_of_js
-                                                                x2125)))|])
+                                                                x2129)))|])
                               | None -> ());
-                             x2121))|])
+                             x2125))|])
     let (watch :
       filename:string ->
         options:(AnonymousInterface8.t, [ `buffer ]) or_enum ->
@@ -7334,46 +7317,46 @@ module Fs =
                        filename:Buffer.t -> unit)
             -> unit -> FSWatcher.t)
       =
-      fun ~filename:(x2130 : string) ->
-        fun ~options:(x2131 : (AnonymousInterface8.t, [ `buffer ]) or_enum)
+      fun ~filename:(x2134 : string) ->
+        fun ~options:(x2135 : (AnonymousInterface8.t, [ `buffer ]) or_enum)
           ->
           fun
-            ?listener:(x2132 :
+            ?listener:(x2136 :
                         (event:[ `change  | `rename ] ->
                            filename:Buffer.t -> unit)
                           option)
             ->
             fun () ->
               FSWatcher.t_of_js
-                (let x2140 = Import.fs in
-                 Ojs.call (Ojs.get_prop_ascii x2140 "watch") "apply"
-                   [|x2140;((let x2133 =
+                (let x2144 = Import.fs in
+                 Ojs.call (Ojs.get_prop_ascii x2144 "watch") "apply"
+                   [|x2144;((let x2137 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x2133 "push"
-                                  [|(Ojs.string_to_js x2130)|]);
+                               (Ojs.call x2137 "push"
+                                  [|(Ojs.string_to_js x2134)|]);
                              ignore
-                               (Ojs.call x2133 "push"
+                               (Ojs.call x2137 "push"
                                   [|(or_enum_to_js
                                        AnonymousInterface8.t_to_js
-                                       (fun (x2139 : [ `buffer ]) ->
-                                          match x2139 with
+                                       (fun (x2143 : [ `buffer ]) ->
+                                          match x2143 with
                                           | `buffer ->
                                               Ojs.string_to_js "buffer")
-                                       x2131)|]);
-                             (match x2132 with
-                              | Some x2134 ->
+                                       x2135)|]);
+                             (match x2136 with
+                              | Some x2138 ->
                                   ignore
-                                    (Ojs.call x2133 "push"
+                                    (Ojs.call x2137 "push"
                                        [|(Ojs.fun_to_js 2
-                                            (fun (x2135 : Ojs.t) ->
-                                               fun (x2137 : Ojs.t) ->
-                                                 x2134
-                                                   ~event:(let x2136 = x2135 in
+                                            (fun (x2139 : Ojs.t) ->
+                                               fun (x2141 : Ojs.t) ->
+                                                 x2138
+                                                   ~event:(let x2140 = x2139 in
                                                            match Ojs.string_of_js
-                                                                   x2136
+                                                                   x2140
                                                            with
                                                            | "change" ->
                                                                `change
@@ -7382,9 +7365,9 @@ module Fs =
                                                            | _ ->
                                                                assert false)
                                                    ~filename:(Buffer.t_of_js
-                                                                x2137)))|])
+                                                                x2141)))|])
                               | None -> ());
-                             x2133))|])
+                             x2137))|])
     let (watch :
       filename:string ->
         options:AnonymousInterface10.t or_string or_null ->
@@ -7392,46 +7375,46 @@ module Fs =
                        filename:Buffer.t or_string -> unit)
             -> unit -> FSWatcher.t)
       =
-      fun ~filename:(x2141 : string) ->
-        fun ~options:(x2142 : AnonymousInterface10.t or_string or_null) ->
+      fun ~filename:(x2145 : string) ->
+        fun ~options:(x2146 : AnonymousInterface10.t or_string or_null) ->
           fun
-            ?listener:(x2143 :
+            ?listener:(x2147 :
                         (event:[ `change  | `rename ] ->
                            filename:Buffer.t or_string -> unit)
                           option)
             ->
             fun () ->
               FSWatcher.t_of_js
-                (let x2152 = Import.fs in
-                 Ojs.call (Ojs.get_prop_ascii x2152 "watch") "apply"
-                   [|x2152;((let x2144 =
+                (let x2156 = Import.fs in
+                 Ojs.call (Ojs.get_prop_ascii x2156 "watch") "apply"
+                   [|x2156;((let x2148 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x2144 "push"
-                                  [|(Ojs.string_to_js x2141)|]);
+                               (Ojs.call x2148 "push"
+                                  [|(Ojs.string_to_js x2145)|]);
                              ignore
-                               (Ojs.call x2144 "push"
+                               (Ojs.call x2148 "push"
                                   [|(or_null_to_js
                                        (fun
-                                          (x2150 :
+                                          (x2154 :
                                             AnonymousInterface10.t or_string)
                                           ->
                                           or_string_to_js
                                             AnonymousInterface10.t_to_js
-                                            x2150) x2142)|]);
-                             (match x2143 with
-                              | Some x2145 ->
+                                            x2154) x2146)|]);
+                             (match x2147 with
+                              | Some x2149 ->
                                   ignore
-                                    (Ojs.call x2144 "push"
+                                    (Ojs.call x2148 "push"
                                        [|(Ojs.fun_to_js 2
-                                            (fun (x2146 : Ojs.t) ->
-                                               fun (x2148 : Ojs.t) ->
-                                                 x2145
-                                                   ~event:(let x2147 = x2146 in
+                                            (fun (x2150 : Ojs.t) ->
+                                               fun (x2152 : Ojs.t) ->
+                                                 x2149
+                                                   ~event:(let x2151 = x2150 in
                                                            match Ojs.string_of_js
-                                                                   x2147
+                                                                   x2151
                                                            with
                                                            | "change" ->
                                                                `change
@@ -7441,43 +7424,43 @@ module Fs =
                                                                assert false)
                                                    ~filename:(or_string_of_js
                                                                 Buffer.t_of_js
-                                                                x2148)))|])
+                                                                x2152)))|])
                               | None -> ());
-                             x2144))|])
+                             x2148))|])
     let (watch :
       filename:string ->
         ?listener:(event:[ `change  | `rename ] -> filename:string -> any) ->
           unit -> FSWatcher.t)
       =
-      fun ~filename:(x2153 : string) ->
+      fun ~filename:(x2157 : string) ->
         fun
-          ?listener:(x2154 :
+          ?listener:(x2158 :
                       (event:[ `change  | `rename ] -> filename:string -> any)
                         option)
           ->
           fun () ->
             FSWatcher.t_of_js
-              (let x2160 = Import.fs in
-               Ojs.call (Ojs.get_prop_ascii x2160 "watch") "apply"
-                 [|x2160;((let x2155 =
+              (let x2164 = Import.fs in
+               Ojs.call (Ojs.get_prop_ascii x2164 "watch") "apply"
+                 [|x2164;((let x2159 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x2155 "push"
-                                [|(Ojs.string_to_js x2153)|]);
-                           (match x2154 with
-                            | Some x2156 ->
+                             (Ojs.call x2159 "push"
+                                [|(Ojs.string_to_js x2157)|]);
+                           (match x2158 with
+                            | Some x2160 ->
                                 ignore
-                                  (Ojs.call x2155 "push"
+                                  (Ojs.call x2159 "push"
                                      [|(Ojs.fun_to_js 2
-                                          (fun (x2157 : Ojs.t) ->
-                                             fun (x2159 : Ojs.t) ->
+                                          (fun (x2161 : Ojs.t) ->
+                                             fun (x2163 : Ojs.t) ->
                                                any_to_js
-                                                 (x2156
-                                                    ~event:(let x2158 = x2157 in
+                                                 (x2160
+                                                    ~event:(let x2162 = x2161 in
                                                             match Ojs.string_of_js
-                                                                    x2158
+                                                                    x2162
                                                             with
                                                             | "change" ->
                                                                 `change
@@ -7486,32 +7469,31 @@ module Fs =
                                                             | _ ->
                                                                 assert false)
                                                     ~filename:(Ojs.string_of_js
-                                                                 x2159))))|])
+                                                                 x2163))))|])
                             | None -> ());
-                           x2155))|])
-    let (exists : path:PathLike.t -> callback:(exists:bool -> unit) -> unit)
-      =
-      fun ~path:(x2161 : PathLike.t) ->
-        fun ~callback:(x2162 : exists:bool -> unit) ->
+                           x2159))|])
+    let (exists : PathLike.t -> callback:(exists:bool -> unit) -> unit) =
+      fun (x2165 : PathLike.t) ->
+        fun ~callback:(x2166 : exists:bool -> unit) ->
           ignore
             (Ojs.call Import.fs "exists"
-               [|(PathLike.t_to_js x2161);(Ojs.fun_to_js 1
-                                             (fun (x2163 : Ojs.t) ->
-                                                x2162
+               [|(PathLike.t_to_js x2165);(Ojs.fun_to_js 1
+                                             (fun (x2167 : Ojs.t) ->
+                                                x2166
                                                   ~exists:(Ojs.bool_of_js
-                                                             x2163)))|])
+                                                             x2167)))|])
     module Exists =
       struct
-        let (__promisify__ : path:PathLike.t -> bool Promise.t) =
-          fun ~path:(x2164 : PathLike.t) ->
+        let (__promisify__ : PathLike.t -> bool Promise.t) =
+          fun (x2168 : PathLike.t) ->
             Promise.t_of_js Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.fs "exists")
-                 "__promisify__" [|(PathLike.t_to_js x2164)|])
+                 "__promisify__" [|(PathLike.t_to_js x2168)|])
       end
-    let (exists_sync : path:PathLike.t -> bool) =
-      fun ~path:(x2166 : PathLike.t) ->
+    let (exists_sync : PathLike.t -> bool) =
+      fun (x2170 : PathLike.t) ->
         Ojs.bool_of_js
-          (Ojs.call Import.fs "existsSync" [|(PathLike.t_to_js x2166)|])
+          (Ojs.call Import.fs "existsSync" [|(PathLike.t_to_js x2170)|])
     module Constants =
       struct
         let (f_ok : int) =
@@ -7692,635 +7674,632 @@ module Fs =
                "UV_O_FILEMAP_FS")
       end
     let (access :
-      path:PathLike.t ->
+      PathLike.t ->
         mode:int or_undefined -> callback:NoParamCallback.t -> unit)
       =
-      fun ~path:(x2167 : PathLike.t) ->
-        fun ~mode:(x2168 : int or_undefined) ->
-          fun ~callback:(x2170 : NoParamCallback.t) ->
+      fun (x2171 : PathLike.t) ->
+        fun ~mode:(x2172 : int or_undefined) ->
+          fun ~callback:(x2174 : NoParamCallback.t) ->
             ignore
               (Ojs.call Import.fs "access"
-                 [|(PathLike.t_to_js x2167);(or_undefined_to_js Ojs.int_to_js
-                                               x2168);(NoParamCallback.t_to_js
-                                                         x2170)|])
-    let (access : path:PathLike.t -> callback:NoParamCallback.t -> unit) =
-      fun ~path:(x2171 : PathLike.t) ->
-        fun ~callback:(x2172 : NoParamCallback.t) ->
+                 [|(PathLike.t_to_js x2171);(or_undefined_to_js Ojs.int_to_js
+                                               x2172);(NoParamCallback.t_to_js
+                                                         x2174)|])
+    let (access : PathLike.t -> NoParamCallback.t -> unit) =
+      fun (x2175 : PathLike.t) ->
+        fun (x2176 : NoParamCallback.t) ->
           ignore
             (Ojs.call Import.fs "access"
-               [|(PathLike.t_to_js x2171);(NoParamCallback.t_to_js x2172)|])
+               [|(PathLike.t_to_js x2175);(NoParamCallback.t_to_js x2176)|])
     module Access =
       struct
         let (__promisify__ :
-          path:PathLike.t -> ?mode:int -> unit -> unit Promise.t) =
-          fun ~path:(x2173 : PathLike.t) ->
-            fun ?mode:(x2174 : int option) ->
+          PathLike.t -> ?mode:int -> unit -> unit Promise.t) =
+          fun (x2177 : PathLike.t) ->
+            fun ?mode:(x2178 : int option) ->
               fun () ->
                 Promise.t_of_js Ojs.unit_of_js
-                  (let x2177 = Ojs.get_prop_ascii Import.fs "access" in
-                   Ojs.call (Ojs.get_prop_ascii x2177 "__promisify__")
+                  (let x2181 = Ojs.get_prop_ascii Import.fs "access" in
+                   Ojs.call (Ojs.get_prop_ascii x2181 "__promisify__")
                      "apply"
-                     [|x2177;((let x2175 =
+                     [|x2181;((let x2179 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x2175 "push"
-                                    [|(PathLike.t_to_js x2173)|]);
-                               (match x2174 with
-                                | Some x2176 ->
+                                 (Ojs.call x2179 "push"
+                                    [|(PathLike.t_to_js x2177)|]);
+                               (match x2178 with
+                                | Some x2180 ->
                                     ignore
-                                      (Ojs.call x2175 "push"
-                                         [|(Ojs.int_to_js x2176)|])
+                                      (Ojs.call x2179 "push"
+                                         [|(Ojs.int_to_js x2180)|])
                                 | None -> ());
-                               x2175))|])
+                               x2179))|])
       end
-    let (access_sync : path:PathLike.t -> ?mode:int -> unit -> unit) =
-      fun ~path:(x2179 : PathLike.t) ->
-        fun ?mode:(x2180 : int option) ->
+    let (access_sync : PathLike.t -> ?mode:int -> unit -> unit) =
+      fun (x2183 : PathLike.t) ->
+        fun ?mode:(x2184 : int option) ->
           fun () ->
             ignore
-              (let x2183 = Import.fs in
-               Ojs.call (Ojs.get_prop_ascii x2183 "accessSync") "apply"
-                 [|x2183;((let x2181 =
+              (let x2187 = Import.fs in
+               Ojs.call (Ojs.get_prop_ascii x2187 "accessSync") "apply"
+                 [|x2187;((let x2185 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x2181 "push"
-                                [|(PathLike.t_to_js x2179)|]);
-                           (match x2180 with
-                            | Some x2182 ->
+                             (Ojs.call x2185 "push"
+                                [|(PathLike.t_to_js x2183)|]);
+                           (match x2184 with
+                            | Some x2186 ->
                                 ignore
-                                  (Ojs.call x2181 "push"
-                                     [|(Ojs.int_to_js x2182)|])
+                                  (Ojs.call x2185 "push"
+                                     [|(Ojs.int_to_js x2186)|])
                             | None -> ());
-                           x2181))|])
+                           x2185))|])
     let (create_read_stream :
-      path:PathLike.t ->
+      PathLike.t ->
         ?options:AnonymousInterface13.t or_string -> unit -> ReadStream.t)
       =
-      fun ~path:(x2184 : PathLike.t) ->
-        fun ?options:(x2185 : AnonymousInterface13.t or_string option) ->
+      fun (x2188 : PathLike.t) ->
+        fun ?options:(x2189 : AnonymousInterface13.t or_string option) ->
           fun () ->
             ReadStream.t_of_js
-              (let x2189 = Import.fs in
-               Ojs.call (Ojs.get_prop_ascii x2189 "createReadStream") "apply"
-                 [|x2189;((let x2186 =
+              (let x2193 = Import.fs in
+               Ojs.call (Ojs.get_prop_ascii x2193 "createReadStream") "apply"
+                 [|x2193;((let x2190 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x2186 "push"
-                                [|(PathLike.t_to_js x2184)|]);
-                           (match x2185 with
-                            | Some x2187 ->
+                             (Ojs.call x2190 "push"
+                                [|(PathLike.t_to_js x2188)|]);
+                           (match x2189 with
+                            | Some x2191 ->
                                 ignore
-                                  (Ojs.call x2186 "push"
+                                  (Ojs.call x2190 "push"
                                      [|(or_string_to_js
-                                          AnonymousInterface13.t_to_js x2187)|])
+                                          AnonymousInterface13.t_to_js x2191)|])
                             | None -> ());
-                           x2186))|])
+                           x2190))|])
     let (create_write_stream :
-      path:PathLike.t ->
+      PathLike.t ->
         ?options:AnonymousInterface14.t or_string -> unit -> WriteStream.t)
       =
-      fun ~path:(x2190 : PathLike.t) ->
-        fun ?options:(x2191 : AnonymousInterface14.t or_string option) ->
+      fun (x2194 : PathLike.t) ->
+        fun ?options:(x2195 : AnonymousInterface14.t or_string option) ->
           fun () ->
             WriteStream.t_of_js
-              (let x2195 = Import.fs in
-               Ojs.call (Ojs.get_prop_ascii x2195 "createWriteStream")
+              (let x2199 = Import.fs in
+               Ojs.call (Ojs.get_prop_ascii x2199 "createWriteStream")
                  "apply"
-                 [|x2195;((let x2192 =
+                 [|x2199;((let x2196 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x2192 "push"
-                                [|(PathLike.t_to_js x2190)|]);
-                           (match x2191 with
-                            | Some x2193 ->
+                             (Ojs.call x2196 "push"
+                                [|(PathLike.t_to_js x2194)|]);
+                           (match x2195 with
+                            | Some x2197 ->
                                 ignore
-                                  (Ojs.call x2192 "push"
+                                  (Ojs.call x2196 "push"
                                      [|(or_string_to_js
-                                          AnonymousInterface14.t_to_js x2193)|])
+                                          AnonymousInterface14.t_to_js x2197)|])
                             | None -> ());
-                           x2192))|])
-    let (fdatasync : fd:int -> callback:NoParamCallback.t -> unit) =
-      fun ~fd:(x2196 : int) ->
-        fun ~callback:(x2197 : NoParamCallback.t) ->
+                           x2196))|])
+    let (fdatasync : int -> NoParamCallback.t -> unit) =
+      fun (x2200 : int) ->
+        fun (x2201 : NoParamCallback.t) ->
           ignore
             (Ojs.call Import.fs "fdatasync"
-               [|(Ojs.int_to_js x2196);(NoParamCallback.t_to_js x2197)|])
+               [|(Ojs.int_to_js x2200);(NoParamCallback.t_to_js x2201)|])
     module Fdatasync =
       struct
-        let (__promisify__ : fd:int -> unit Promise.t) =
-          fun ~fd:(x2198 : int) ->
+        let (__promisify__ : int -> unit Promise.t) =
+          fun (x2202 : int) ->
             Promise.t_of_js Ojs.unit_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.fs "fdatasync")
-                 "__promisify__" [|(Ojs.int_to_js x2198)|])
+                 "__promisify__" [|(Ojs.int_to_js x2202)|])
       end
-    let (fdatasync_sync : fd:int -> unit) =
-      fun ~fd:(x2200 : int) ->
-        ignore (Ojs.call Import.fs "fdatasyncSync" [|(Ojs.int_to_js x2200)|])
+    let (fdatasync_sync : int -> unit) =
+      fun (x2204 : int) ->
+        ignore (Ojs.call Import.fs "fdatasyncSync" [|(Ojs.int_to_js x2204)|])
     let (copy_file :
       src:string -> dest:string -> callback:NoParamCallback.t -> unit) =
-      fun ~src:(x2201 : string) ->
-        fun ~dest:(x2202 : string) ->
-          fun ~callback:(x2203 : NoParamCallback.t) ->
+      fun ~src:(x2205 : string) ->
+        fun ~dest:(x2206 : string) ->
+          fun ~callback:(x2207 : NoParamCallback.t) ->
             ignore
               (Ojs.call Import.fs "copyFile"
-                 [|(Ojs.string_to_js x2201);(Ojs.string_to_js x2202);(
-                   NoParamCallback.t_to_js x2203)|])
+                 [|(Ojs.string_to_js x2205);(Ojs.string_to_js x2206);(
+                   NoParamCallback.t_to_js x2207)|])
     let (copy_file :
       src:string ->
         dest:string -> flags:int -> callback:NoParamCallback.t -> unit)
       =
-      fun ~src:(x2204 : string) ->
-        fun ~dest:(x2205 : string) ->
-          fun ~flags:(x2206 : int) ->
-            fun ~callback:(x2207 : NoParamCallback.t) ->
+      fun ~src:(x2208 : string) ->
+        fun ~dest:(x2209 : string) ->
+          fun ~flags:(x2210 : int) ->
+            fun ~callback:(x2211 : NoParamCallback.t) ->
               ignore
                 (Ojs.call Import.fs "copyFile"
-                   [|(Ojs.string_to_js x2204);(Ojs.string_to_js x2205);(
-                     Ojs.int_to_js x2206);(NoParamCallback.t_to_js x2207)|])
+                   [|(Ojs.string_to_js x2208);(Ojs.string_to_js x2209);(
+                     Ojs.int_to_js x2210);(NoParamCallback.t_to_js x2211)|])
     module CopyFile =
       struct
         let (__promisify__ :
           src:string -> dst:string -> ?flags:int -> unit -> unit Promise.t) =
-          fun ~src:(x2208 : string) ->
-            fun ~dst:(x2209 : string) ->
-              fun ?flags:(x2210 : int option) ->
+          fun ~src:(x2212 : string) ->
+            fun ~dst:(x2213 : string) ->
+              fun ?flags:(x2214 : int option) ->
                 fun () ->
                   Promise.t_of_js Ojs.unit_of_js
-                    (let x2213 = Ojs.get_prop_ascii Import.fs "copyFile" in
-                     Ojs.call (Ojs.get_prop_ascii x2213 "__promisify__")
+                    (let x2217 = Ojs.get_prop_ascii Import.fs "copyFile" in
+                     Ojs.call (Ojs.get_prop_ascii x2217 "__promisify__")
                        "apply"
-                       [|x2213;((let x2211 =
+                       [|x2217;((let x2215 =
                                    Ojs.new_obj
                                      (Ojs.get_prop_ascii Ojs.global "Array")
                                      [||] in
                                  ignore
-                                   (Ojs.call x2211 "push"
-                                      [|(Ojs.string_to_js x2208)|]);
+                                   (Ojs.call x2215 "push"
+                                      [|(Ojs.string_to_js x2212)|]);
                                  ignore
-                                   (Ojs.call x2211 "push"
-                                      [|(Ojs.string_to_js x2209)|]);
-                                 (match x2210 with
-                                  | Some x2212 ->
+                                   (Ojs.call x2215 "push"
+                                      [|(Ojs.string_to_js x2213)|]);
+                                 (match x2214 with
+                                  | Some x2216 ->
                                       ignore
-                                        (Ojs.call x2211 "push"
-                                           [|(Ojs.int_to_js x2212)|])
+                                        (Ojs.call x2215 "push"
+                                           [|(Ojs.int_to_js x2216)|])
                                   | None -> ());
-                                 x2211))|])
+                                 x2215))|])
       end
     let (copy_file_sync :
       src:string -> dest:string -> ?flags:int -> unit -> unit) =
-      fun ~src:(x2215 : string) ->
-        fun ~dest:(x2216 : string) ->
-          fun ?flags:(x2217 : int option) ->
+      fun ~src:(x2219 : string) ->
+        fun ~dest:(x2220 : string) ->
+          fun ?flags:(x2221 : int option) ->
             fun () ->
               ignore
-                (let x2220 = Import.fs in
-                 Ojs.call (Ojs.get_prop_ascii x2220 "copyFileSync") "apply"
-                   [|x2220;((let x2218 =
+                (let x2224 = Import.fs in
+                 Ojs.call (Ojs.get_prop_ascii x2224 "copyFileSync") "apply"
+                   [|x2224;((let x2222 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x2218 "push"
-                                  [|(Ojs.string_to_js x2215)|]);
+                               (Ojs.call x2222 "push"
+                                  [|(Ojs.string_to_js x2219)|]);
                              ignore
-                               (Ojs.call x2218 "push"
-                                  [|(Ojs.string_to_js x2216)|]);
-                             (match x2217 with
-                              | Some x2219 ->
+                               (Ojs.call x2222 "push"
+                                  [|(Ojs.string_to_js x2220)|]);
+                             (match x2221 with
+                              | Some x2223 ->
                                   ignore
-                                    (Ojs.call x2218 "push"
-                                       [|(Ojs.int_to_js x2219)|])
+                                    (Ojs.call x2222 "push"
+                                       [|(Ojs.int_to_js x2223)|])
                               | None -> ());
-                             x2218))|])
+                             x2222))|])
     let (writev :
-      fd:int ->
+      int ->
         buffers:ArrayBufferView.t list ->
           cb:(err:ErrnoException.t or_null ->
                 bytes_written:int -> buffers:ArrayBufferView.t list -> unit)
             -> unit)
       =
-      fun ~fd:(x2221 : int) ->
-        fun ~buffers:(x2222 : ArrayBufferView.t list) ->
+      fun (x2225 : int) ->
+        fun ~buffers:(x2226 : ArrayBufferView.t list) ->
           fun
-            ~cb:(x2224 :
+            ~cb:(x2228 :
                   err:ErrnoException.t or_null ->
                     bytes_written:int ->
                       buffers:ArrayBufferView.t list -> unit)
             ->
             ignore
               (Ojs.call Import.fs "writev"
-                 [|(Ojs.int_to_js x2221);(Ojs.list_to_js
-                                            ArrayBufferView.t_to_js x2222);(
+                 [|(Ojs.int_to_js x2225);(Ojs.list_to_js
+                                            ArrayBufferView.t_to_js x2226);(
                    Ojs.fun_to_js 3
-                     (fun (x2225 : Ojs.t) ->
-                        fun (x2227 : Ojs.t) ->
-                          fun (x2228 : Ojs.t) ->
-                            x2224
+                     (fun (x2229 : Ojs.t) ->
+                        fun (x2231 : Ojs.t) ->
+                          fun (x2232 : Ojs.t) ->
+                            x2228
                               ~err:(or_null_of_js ErrnoException.t_of_js
-                                      x2225)
-                              ~bytes_written:(Ojs.int_of_js x2227)
+                                      x2229)
+                              ~bytes_written:(Ojs.int_of_js x2231)
                               ~buffers:(Ojs.list_of_js
-                                          ArrayBufferView.t_of_js x2228)))|])
+                                          ArrayBufferView.t_of_js x2232)))|])
     let (writev :
-      fd:int ->
+      int ->
         buffers:ArrayBufferView.t list ->
           position:int ->
             cb:(err:ErrnoException.t or_null ->
                   bytes_written:int -> buffers:ArrayBufferView.t list -> unit)
               -> unit)
       =
-      fun ~fd:(x2230 : int) ->
-        fun ~buffers:(x2231 : ArrayBufferView.t list) ->
-          fun ~position:(x2233 : int) ->
+      fun (x2234 : int) ->
+        fun ~buffers:(x2235 : ArrayBufferView.t list) ->
+          fun ~position:(x2237 : int) ->
             fun
-              ~cb:(x2234 :
+              ~cb:(x2238 :
                     err:ErrnoException.t or_null ->
                       bytes_written:int ->
                         buffers:ArrayBufferView.t list -> unit)
               ->
               ignore
                 (Ojs.call Import.fs "writev"
-                   [|(Ojs.int_to_js x2230);(Ojs.list_to_js
-                                              ArrayBufferView.t_to_js x2231);(
-                     Ojs.int_to_js x2233);(Ojs.fun_to_js 3
-                                             (fun (x2235 : Ojs.t) ->
-                                                fun (x2237 : Ojs.t) ->
-                                                  fun (x2238 : Ojs.t) ->
-                                                    x2234
+                   [|(Ojs.int_to_js x2234);(Ojs.list_to_js
+                                              ArrayBufferView.t_to_js x2235);(
+                     Ojs.int_to_js x2237);(Ojs.fun_to_js 3
+                                             (fun (x2239 : Ojs.t) ->
+                                                fun (x2241 : Ojs.t) ->
+                                                  fun (x2242 : Ojs.t) ->
+                                                    x2238
                                                       ~err:(or_null_of_js
                                                               ErrnoException.t_of_js
-                                                              x2235)
+                                                              x2239)
                                                       ~bytes_written:(
-                                                      Ojs.int_of_js x2237)
+                                                      Ojs.int_of_js x2241)
                                                       ~buffers:(Ojs.list_of_js
                                                                   ArrayBufferView.t_of_js
-                                                                  x2238)))|])
+                                                                  x2242)))|])
     module WriteVResult =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x2241 : Ojs.t) -> x2241
-        and t_to_js : t -> Ojs.t = fun (x2240 : Ojs.t) -> x2240
+        let rec t_of_js : Ojs.t -> t = fun (x2245 : Ojs.t) -> x2245
+        and t_to_js : t -> Ojs.t = fun (x2244 : Ojs.t) -> x2244
         let (get_bytes_written : t -> int) =
-          fun (x2242 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x2242) "bytesWritten")
+          fun (x2246 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x2246) "bytesWritten")
         let (set_bytes_written : t -> int -> unit) =
-          fun (x2243 : t) ->
-            fun (x2244 : int) ->
-              Ojs.set_prop_ascii (t_to_js x2243) "bytesWritten"
-                (Ojs.int_to_js x2244)
-        let (get_buffers : t -> ArrayBufferView.t list) =
-          fun (x2245 : t) ->
-            Ojs.list_of_js ArrayBufferView.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x2245) "buffers")
-        let (set_buffers : t -> ArrayBufferView.t list -> unit) =
           fun (x2247 : t) ->
-            fun (x2248 : ArrayBufferView.t list) ->
-              Ojs.set_prop_ascii (t_to_js x2247) "buffers"
-                (Ojs.list_to_js ArrayBufferView.t_to_js x2248)
+            fun (x2248 : int) ->
+              Ojs.set_prop_ascii (t_to_js x2247) "bytesWritten"
+                (Ojs.int_to_js x2248)
+        let (get_buffers : t -> ArrayBufferView.t list) =
+          fun (x2249 : t) ->
+            Ojs.list_of_js ArrayBufferView.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x2249) "buffers")
+        let (set_buffers : t -> ArrayBufferView.t list -> unit) =
+          fun (x2251 : t) ->
+            fun (x2252 : ArrayBufferView.t list) ->
+              Ojs.set_prop_ascii (t_to_js x2251) "buffers"
+                (Ojs.list_to_js ArrayBufferView.t_to_js x2252)
       end
     module Writev =
       struct
         let (__promisify__ :
-          fd:int ->
+          int ->
             buffers:ArrayBufferView.t list ->
               ?position:int -> unit -> WriteVResult.t Promise.t)
           =
-          fun ~fd:(x2250 : int) ->
-            fun ~buffers:(x2251 : ArrayBufferView.t list) ->
-              fun ?position:(x2252 : int option) ->
+          fun (x2254 : int) ->
+            fun ~buffers:(x2255 : ArrayBufferView.t list) ->
+              fun ?position:(x2256 : int option) ->
                 fun () ->
                   Promise.t_of_js WriteVResult.t_of_js
-                    (let x2256 = Ojs.get_prop_ascii Import.fs "writev" in
-                     Ojs.call (Ojs.get_prop_ascii x2256 "__promisify__")
+                    (let x2260 = Ojs.get_prop_ascii Import.fs "writev" in
+                     Ojs.call (Ojs.get_prop_ascii x2260 "__promisify__")
                        "apply"
-                       [|x2256;((let x2253 =
+                       [|x2260;((let x2257 =
                                    Ojs.new_obj
                                      (Ojs.get_prop_ascii Ojs.global "Array")
                                      [||] in
                                  ignore
-                                   (Ojs.call x2253 "push"
-                                      [|(Ojs.int_to_js x2250)|]);
+                                   (Ojs.call x2257 "push"
+                                      [|(Ojs.int_to_js x2254)|]);
                                  ignore
-                                   (Ojs.call x2253 "push"
+                                   (Ojs.call x2257 "push"
                                       [|(Ojs.list_to_js
-                                           ArrayBufferView.t_to_js x2251)|]);
-                                 (match x2252 with
-                                  | Some x2254 ->
+                                           ArrayBufferView.t_to_js x2255)|]);
+                                 (match x2256 with
+                                  | Some x2258 ->
                                       ignore
-                                        (Ojs.call x2253 "push"
-                                           [|(Ojs.int_to_js x2254)|])
+                                        (Ojs.call x2257 "push"
+                                           [|(Ojs.int_to_js x2258)|])
                                   | None -> ());
-                                 x2253))|])
+                                 x2257))|])
       end
     let (writev_sync :
-      fd:int ->
-        buffers:ArrayBufferView.t list -> ?position:int -> unit -> int)
+      int -> buffers:ArrayBufferView.t list -> ?position:int -> unit -> int)
       =
-      fun ~fd:(x2258 : int) ->
-        fun ~buffers:(x2259 : ArrayBufferView.t list) ->
-          fun ?position:(x2260 : int option) ->
+      fun (x2262 : int) ->
+        fun ~buffers:(x2263 : ArrayBufferView.t list) ->
+          fun ?position:(x2264 : int option) ->
             fun () ->
               Ojs.int_of_js
-                (let x2264 = Import.fs in
-                 Ojs.call (Ojs.get_prop_ascii x2264 "writevSync") "apply"
-                   [|x2264;((let x2261 =
+                (let x2268 = Import.fs in
+                 Ojs.call (Ojs.get_prop_ascii x2268 "writevSync") "apply"
+                   [|x2268;((let x2265 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x2261 "push"
-                                  [|(Ojs.int_to_js x2258)|]);
+                               (Ojs.call x2265 "push"
+                                  [|(Ojs.int_to_js x2262)|]);
                              ignore
-                               (Ojs.call x2261 "push"
+                               (Ojs.call x2265 "push"
                                   [|(Ojs.list_to_js ArrayBufferView.t_to_js
-                                       x2259)|]);
-                             (match x2260 with
-                              | Some x2262 ->
+                                       x2263)|]);
+                             (match x2264 with
+                              | Some x2266 ->
                                   ignore
-                                    (Ojs.call x2261 "push"
-                                       [|(Ojs.int_to_js x2262)|])
+                                    (Ojs.call x2265 "push"
+                                       [|(Ojs.int_to_js x2266)|])
                               | None -> ());
-                             x2261))|])
+                             x2265))|])
     let (readv :
-      fd:int ->
+      int ->
         buffers:ArrayBufferView.t list ->
           cb:(err:ErrnoException.t or_null ->
                 bytes_read:int -> buffers:ArrayBufferView.t list -> unit)
             -> unit)
       =
-      fun ~fd:(x2265 : int) ->
-        fun ~buffers:(x2266 : ArrayBufferView.t list) ->
+      fun (x2269 : int) ->
+        fun ~buffers:(x2270 : ArrayBufferView.t list) ->
           fun
-            ~cb:(x2268 :
+            ~cb:(x2272 :
                   err:ErrnoException.t or_null ->
                     bytes_read:int -> buffers:ArrayBufferView.t list -> unit)
             ->
             ignore
               (Ojs.call Import.fs "readv"
-                 [|(Ojs.int_to_js x2265);(Ojs.list_to_js
-                                            ArrayBufferView.t_to_js x2266);(
+                 [|(Ojs.int_to_js x2269);(Ojs.list_to_js
+                                            ArrayBufferView.t_to_js x2270);(
                    Ojs.fun_to_js 3
-                     (fun (x2269 : Ojs.t) ->
-                        fun (x2271 : Ojs.t) ->
-                          fun (x2272 : Ojs.t) ->
-                            x2268
+                     (fun (x2273 : Ojs.t) ->
+                        fun (x2275 : Ojs.t) ->
+                          fun (x2276 : Ojs.t) ->
+                            x2272
                               ~err:(or_null_of_js ErrnoException.t_of_js
-                                      x2269)
-                              ~bytes_read:(Ojs.int_of_js x2271)
+                                      x2273)
+                              ~bytes_read:(Ojs.int_of_js x2275)
                               ~buffers:(Ojs.list_of_js
-                                          ArrayBufferView.t_of_js x2272)))|])
+                                          ArrayBufferView.t_of_js x2276)))|])
     let (readv :
-      fd:int ->
+      int ->
         buffers:ArrayBufferView.t list ->
           position:int ->
             cb:(err:ErrnoException.t or_null ->
                   bytes_read:int -> buffers:ArrayBufferView.t list -> unit)
               -> unit)
       =
-      fun ~fd:(x2274 : int) ->
-        fun ~buffers:(x2275 : ArrayBufferView.t list) ->
-          fun ~position:(x2277 : int) ->
+      fun (x2278 : int) ->
+        fun ~buffers:(x2279 : ArrayBufferView.t list) ->
+          fun ~position:(x2281 : int) ->
             fun
-              ~cb:(x2278 :
+              ~cb:(x2282 :
                     err:ErrnoException.t or_null ->
                       bytes_read:int ->
                         buffers:ArrayBufferView.t list -> unit)
               ->
               ignore
                 (Ojs.call Import.fs "readv"
-                   [|(Ojs.int_to_js x2274);(Ojs.list_to_js
-                                              ArrayBufferView.t_to_js x2275);(
-                     Ojs.int_to_js x2277);(Ojs.fun_to_js 3
-                                             (fun (x2279 : Ojs.t) ->
-                                                fun (x2281 : Ojs.t) ->
-                                                  fun (x2282 : Ojs.t) ->
-                                                    x2278
+                   [|(Ojs.int_to_js x2278);(Ojs.list_to_js
+                                              ArrayBufferView.t_to_js x2279);(
+                     Ojs.int_to_js x2281);(Ojs.fun_to_js 3
+                                             (fun (x2283 : Ojs.t) ->
+                                                fun (x2285 : Ojs.t) ->
+                                                  fun (x2286 : Ojs.t) ->
+                                                    x2282
                                                       ~err:(or_null_of_js
                                                               ErrnoException.t_of_js
-                                                              x2279)
+                                                              x2283)
                                                       ~bytes_read:(Ojs.int_of_js
-                                                                    x2281)
+                                                                    x2285)
                                                       ~buffers:(Ojs.list_of_js
                                                                   ArrayBufferView.t_of_js
-                                                                  x2282)))|])
+                                                                  x2286)))|])
     module ReadVResult =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x2285 : Ojs.t) -> x2285
-        and t_to_js : t -> Ojs.t = fun (x2284 : Ojs.t) -> x2284
+        let rec t_of_js : Ojs.t -> t = fun (x2289 : Ojs.t) -> x2289
+        and t_to_js : t -> Ojs.t = fun (x2288 : Ojs.t) -> x2288
         let (get_bytes_read : t -> int) =
-          fun (x2286 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x2286) "bytesRead")
+          fun (x2290 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x2290) "bytesRead")
         let (set_bytes_read : t -> int -> unit) =
-          fun (x2287 : t) ->
-            fun (x2288 : int) ->
-              Ojs.set_prop_ascii (t_to_js x2287) "bytesRead"
-                (Ojs.int_to_js x2288)
-        let (get_buffers : t -> ArrayBufferView.t list) =
-          fun (x2289 : t) ->
-            Ojs.list_of_js ArrayBufferView.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x2289) "buffers")
-        let (set_buffers : t -> ArrayBufferView.t list -> unit) =
           fun (x2291 : t) ->
-            fun (x2292 : ArrayBufferView.t list) ->
-              Ojs.set_prop_ascii (t_to_js x2291) "buffers"
-                (Ojs.list_to_js ArrayBufferView.t_to_js x2292)
+            fun (x2292 : int) ->
+              Ojs.set_prop_ascii (t_to_js x2291) "bytesRead"
+                (Ojs.int_to_js x2292)
+        let (get_buffers : t -> ArrayBufferView.t list) =
+          fun (x2293 : t) ->
+            Ojs.list_of_js ArrayBufferView.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x2293) "buffers")
+        let (set_buffers : t -> ArrayBufferView.t list -> unit) =
+          fun (x2295 : t) ->
+            fun (x2296 : ArrayBufferView.t list) ->
+              Ojs.set_prop_ascii (t_to_js x2295) "buffers"
+                (Ojs.list_to_js ArrayBufferView.t_to_js x2296)
       end
     module Readv =
       struct
         let (__promisify__ :
-          fd:int ->
+          int ->
             buffers:ArrayBufferView.t list ->
               ?position:int -> unit -> ReadVResult.t Promise.t)
           =
-          fun ~fd:(x2294 : int) ->
-            fun ~buffers:(x2295 : ArrayBufferView.t list) ->
-              fun ?position:(x2296 : int option) ->
+          fun (x2298 : int) ->
+            fun ~buffers:(x2299 : ArrayBufferView.t list) ->
+              fun ?position:(x2300 : int option) ->
                 fun () ->
                   Promise.t_of_js ReadVResult.t_of_js
-                    (let x2300 = Ojs.get_prop_ascii Import.fs "readv" in
-                     Ojs.call (Ojs.get_prop_ascii x2300 "__promisify__")
+                    (let x2304 = Ojs.get_prop_ascii Import.fs "readv" in
+                     Ojs.call (Ojs.get_prop_ascii x2304 "__promisify__")
                        "apply"
-                       [|x2300;((let x2297 =
+                       [|x2304;((let x2301 =
                                    Ojs.new_obj
                                      (Ojs.get_prop_ascii Ojs.global "Array")
                                      [||] in
                                  ignore
-                                   (Ojs.call x2297 "push"
-                                      [|(Ojs.int_to_js x2294)|]);
+                                   (Ojs.call x2301 "push"
+                                      [|(Ojs.int_to_js x2298)|]);
                                  ignore
-                                   (Ojs.call x2297 "push"
+                                   (Ojs.call x2301 "push"
                                       [|(Ojs.list_to_js
-                                           ArrayBufferView.t_to_js x2295)|]);
-                                 (match x2296 with
-                                  | Some x2298 ->
+                                           ArrayBufferView.t_to_js x2299)|]);
+                                 (match x2300 with
+                                  | Some x2302 ->
                                       ignore
-                                        (Ojs.call x2297 "push"
-                                           [|(Ojs.int_to_js x2298)|])
+                                        (Ojs.call x2301 "push"
+                                           [|(Ojs.int_to_js x2302)|])
                                   | None -> ());
-                                 x2297))|])
+                                 x2301))|])
       end
     let (readv_sync :
-      fd:int ->
-        buffers:ArrayBufferView.t list -> ?position:int -> unit -> int)
+      int -> buffers:ArrayBufferView.t list -> ?position:int -> unit -> int)
       =
-      fun ~fd:(x2302 : int) ->
-        fun ~buffers:(x2303 : ArrayBufferView.t list) ->
-          fun ?position:(x2304 : int option) ->
+      fun (x2306 : int) ->
+        fun ~buffers:(x2307 : ArrayBufferView.t list) ->
+          fun ?position:(x2308 : int option) ->
             fun () ->
               Ojs.int_of_js
-                (let x2308 = Import.fs in
-                 Ojs.call (Ojs.get_prop_ascii x2308 "readvSync") "apply"
-                   [|x2308;((let x2305 =
+                (let x2312 = Import.fs in
+                 Ojs.call (Ojs.get_prop_ascii x2312 "readvSync") "apply"
+                   [|x2312;((let x2309 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x2305 "push"
-                                  [|(Ojs.int_to_js x2302)|]);
+                               (Ojs.call x2309 "push"
+                                  [|(Ojs.int_to_js x2306)|]);
                              ignore
-                               (Ojs.call x2305 "push"
+                               (Ojs.call x2309 "push"
                                   [|(Ojs.list_to_js ArrayBufferView.t_to_js
-                                       x2303)|]);
-                             (match x2304 with
-                              | Some x2306 ->
+                                       x2307)|]);
+                             (match x2308 with
+                              | Some x2310 ->
                                   ignore
-                                    (Ojs.call x2305 "push"
-                                       [|(Ojs.int_to_js x2306)|])
+                                    (Ojs.call x2309 "push"
+                                       [|(Ojs.int_to_js x2310)|])
                               | None -> ());
-                             x2305))|])
+                             x2309))|])
     module OpenDirOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x2310 : Ojs.t) -> x2310
-        and t_to_js : t -> Ojs.t = fun (x2309 : Ojs.t) -> x2309
+        let rec t_of_js : Ojs.t -> t = fun (x2314 : Ojs.t) -> x2314
+        and t_to_js : t -> Ojs.t = fun (x2313 : Ojs.t) -> x2313
         let (get_encoding : t -> BufferEncoding.t) =
-          fun (x2311 : t) ->
-            BufferEncoding.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x2311) "encoding")
-        let (set_encoding : t -> BufferEncoding.t -> unit) =
-          fun (x2312 : t) ->
-            fun (x2313 : BufferEncoding.t) ->
-              Ojs.set_prop_ascii (t_to_js x2312) "encoding"
-                (BufferEncoding.t_to_js x2313)
-        let (get_buffer_size : t -> int) =
-          fun (x2314 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x2314) "bufferSize")
-        let (set_buffer_size : t -> int -> unit) =
           fun (x2315 : t) ->
-            fun (x2316 : int) ->
-              Ojs.set_prop_ascii (t_to_js x2315) "bufferSize"
-                (Ojs.int_to_js x2316)
+            BufferEncoding.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x2315) "encoding")
+        let (set_encoding : t -> BufferEncoding.t -> unit) =
+          fun (x2316 : t) ->
+            fun (x2317 : BufferEncoding.t) ->
+              Ojs.set_prop_ascii (t_to_js x2316) "encoding"
+                (BufferEncoding.t_to_js x2317)
+        let (get_buffer_size : t -> int) =
+          fun (x2318 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x2318) "bufferSize")
+        let (set_buffer_size : t -> int -> unit) =
+          fun (x2319 : t) ->
+            fun (x2320 : int) ->
+              Ojs.set_prop_ascii (t_to_js x2319) "bufferSize"
+                (Ojs.int_to_js x2320)
       end
     let (opendir_sync :
-      path:PathLike.t -> ?options:OpenDirOptions.t -> unit -> Dir.t) =
-      fun ~path:(x2317 : PathLike.t) ->
-        fun ?options:(x2318 : OpenDirOptions.t option) ->
+      PathLike.t -> ?options:OpenDirOptions.t -> unit -> Dir.t) =
+      fun (x2321 : PathLike.t) ->
+        fun ?options:(x2322 : OpenDirOptions.t option) ->
           fun () ->
             Dir.t_of_js
-              (let x2321 = Import.fs in
-               Ojs.call (Ojs.get_prop_ascii x2321 "opendirSync") "apply"
-                 [|x2321;((let x2319 =
+              (let x2325 = Import.fs in
+               Ojs.call (Ojs.get_prop_ascii x2325 "opendirSync") "apply"
+                 [|x2325;((let x2323 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x2319 "push"
-                                [|(PathLike.t_to_js x2317)|]);
-                           (match x2318 with
-                            | Some x2320 ->
+                             (Ojs.call x2323 "push"
+                                [|(PathLike.t_to_js x2321)|]);
+                           (match x2322 with
+                            | Some x2324 ->
                                 ignore
-                                  (Ojs.call x2319 "push"
-                                     [|(OpenDirOptions.t_to_js x2320)|])
+                                  (Ojs.call x2323 "push"
+                                     [|(OpenDirOptions.t_to_js x2324)|])
                             | None -> ());
-                           x2319))|])
+                           x2323))|])
     let (opendir :
-      path:PathLike.t ->
+      PathLike.t ->
         cb:(err:ErrnoException.t or_null -> dir:Dir.t -> unit) -> unit)
       =
-      fun ~path:(x2322 : PathLike.t) ->
-        fun ~cb:(x2323 : err:ErrnoException.t or_null -> dir:Dir.t -> unit)
+      fun (x2326 : PathLike.t) ->
+        fun ~cb:(x2327 : err:ErrnoException.t or_null -> dir:Dir.t -> unit)
           ->
           ignore
             (Ojs.call Import.fs "opendir"
-               [|(PathLike.t_to_js x2322);(Ojs.fun_to_js 2
-                                             (fun (x2324 : Ojs.t) ->
-                                                fun (x2326 : Ojs.t) ->
-                                                  x2323
+               [|(PathLike.t_to_js x2326);(Ojs.fun_to_js 2
+                                             (fun (x2328 : Ojs.t) ->
+                                                fun (x2330 : Ojs.t) ->
+                                                  x2327
                                                     ~err:(or_null_of_js
                                                             ErrnoException.t_of_js
-                                                            x2324)
-                                                    ~dir:(Dir.t_of_js x2326)))|])
+                                                            x2328)
+                                                    ~dir:(Dir.t_of_js x2330)))|])
     let (opendir :
-      path:PathLike.t ->
+      PathLike.t ->
         options:OpenDirOptions.t ->
           cb:(err:ErrnoException.t or_null -> dir:Dir.t -> unit) -> unit)
       =
-      fun ~path:(x2327 : PathLike.t) ->
-        fun ~options:(x2328 : OpenDirOptions.t) ->
-          fun ~cb:(x2329 : err:ErrnoException.t or_null -> dir:Dir.t -> unit)
+      fun (x2331 : PathLike.t) ->
+        fun ~options:(x2332 : OpenDirOptions.t) ->
+          fun ~cb:(x2333 : err:ErrnoException.t or_null -> dir:Dir.t -> unit)
             ->
             ignore
               (Ojs.call Import.fs "opendir"
-                 [|(PathLike.t_to_js x2327);(OpenDirOptions.t_to_js x2328);(
+                 [|(PathLike.t_to_js x2331);(OpenDirOptions.t_to_js x2332);(
                    Ojs.fun_to_js 2
-                     (fun (x2330 : Ojs.t) ->
-                        fun (x2332 : Ojs.t) ->
-                          x2329
-                            ~err:(or_null_of_js ErrnoException.t_of_js x2330)
-                            ~dir:(Dir.t_of_js x2332)))|])
+                     (fun (x2334 : Ojs.t) ->
+                        fun (x2336 : Ojs.t) ->
+                          x2333
+                            ~err:(or_null_of_js ErrnoException.t_of_js x2334)
+                            ~dir:(Dir.t_of_js x2336)))|])
     module Opendir =
       struct
         let (__promisify__ :
-          path:PathLike.t ->
-            ?options:OpenDirOptions.t -> unit -> Dir.t Promise.t)
+          PathLike.t -> ?options:OpenDirOptions.t -> unit -> Dir.t Promise.t)
           =
-          fun ~path:(x2333 : PathLike.t) ->
-            fun ?options:(x2334 : OpenDirOptions.t option) ->
+          fun (x2337 : PathLike.t) ->
+            fun ?options:(x2338 : OpenDirOptions.t option) ->
               fun () ->
                 Promise.t_of_js Dir.t_of_js
-                  (let x2337 = Ojs.get_prop_ascii Import.fs "opendir" in
-                   Ojs.call (Ojs.get_prop_ascii x2337 "__promisify__")
+                  (let x2341 = Ojs.get_prop_ascii Import.fs "opendir" in
+                   Ojs.call (Ojs.get_prop_ascii x2341 "__promisify__")
                      "apply"
-                     [|x2337;((let x2335 =
+                     [|x2341;((let x2339 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x2335 "push"
-                                    [|(PathLike.t_to_js x2333)|]);
-                               (match x2334 with
-                                | Some x2336 ->
+                                 (Ojs.call x2339 "push"
+                                    [|(PathLike.t_to_js x2337)|]);
+                               (match x2338 with
+                                | Some x2340 ->
                                     ignore
-                                      (Ojs.call x2335 "push"
-                                         [|(OpenDirOptions.t_to_js x2336)|])
+                                      (Ojs.call x2339 "push"
+                                         [|(OpenDirOptions.t_to_js x2340)|])
                                 | None -> ());
-                               x2335))|])
+                               x2339))|])
       end
     module BigIntOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x2340 : Ojs.t) -> x2340
-        and t_to_js : t -> Ojs.t = fun (x2339 : Ojs.t) -> x2339
+        let rec t_of_js : Ojs.t -> t = fun (x2344 : Ojs.t) -> x2344
+        and t_to_js : t -> Ojs.t = fun (x2343 : Ojs.t) -> x2343
         let (get_bigint : t -> [ `L_b_true ]) =
-          fun (x2341 : t) ->
-            let x2342 = Ojs.get_prop_ascii (t_to_js x2341) "bigint" in
-            match Ojs.bool_of_js x2342 with
+          fun (x2345 : t) ->
+            let x2346 = Ojs.get_prop_ascii (t_to_js x2345) "bigint" in
+            match Ojs.bool_of_js x2346 with
             | true -> `L_b_true
             | _ -> assert false
         let (set_bigint : t -> [ `L_b_true ] -> unit) =
-          fun (x2343 : t) ->
-            fun (x2344 : [ `L_b_true ]) ->
-              Ojs.set_prop_ascii (t_to_js x2343) "bigint"
-                (match x2344 with | `L_b_true -> Ojs.string_to_js "LBTrue")
+          fun (x2347 : t) ->
+            fun (x2348 : [ `L_b_true ]) ->
+              Ojs.set_prop_ascii (t_to_js x2347) "bigint"
+                (match x2348 with | `L_b_true -> Ojs.string_to_js "LBTrue")
       end
   end

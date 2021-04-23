@@ -96,9 +96,6 @@ let (timers : Ojs.t) =
 let (tls : Ojs.t) =
   Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "__LIB__NODE__IMPORTS")
     "tls"
-let (trace_events : Ojs.t) =
-  Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "__LIB__NODE__IMPORTS")
-    "trace_events"
 let (tty : Ojs.t) =
   Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "__LIB__NODE__IMPORTS")
     "tty"

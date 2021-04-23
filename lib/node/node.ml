@@ -33,7 +33,6 @@ include struct include Node_stream end
 include struct include Node_string_decoder end
 include struct include Node_timers end
 include struct include Node_tls end
-include struct include Node_trace_events end
 include struct include Node_tty end
 include struct include Node_url end
 include struct include Node_util end

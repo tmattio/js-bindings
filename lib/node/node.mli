@@ -130,9 +130,7 @@ include module type of struct
   include Node_tls
 end
 
-include module type of struct
-  include Node_trace_events
-end
+(* include module type of struct include Node_trace_events end *)
 
 include module type of struct
   include Node_tty

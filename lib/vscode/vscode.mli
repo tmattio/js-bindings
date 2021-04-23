@@ -31,6 +31,15 @@ module Vscode : sig
     val arguments : t -> any list [@@js.get "arguments"]
 
     val set_arguments : t -> any list -> unit [@@js.set "arguments"]
+
+    val create
+      :  title:string
+      -> command:string
+      -> ?tooltip:string
+      -> ?arguments:any list
+      -> unit
+      -> t
+      [@@js.builder]
   end
   [@@js.scope "Command"]
 
@@ -1112,11 +1121,12 @@ module Vscode : sig
 
     val set_event : 'T t -> 'T Event.t -> unit [@@js.set "event"]
 
-    val fire : 'T t -> data:'T -> unit [@@js.call "fire"]
+    val fire : 'T t -> 'T -> unit [@@js.call "fire"]
 
     val dispose : 'T t -> unit [@@js.call "dispose"]
+
+    val create : unit -> 'T t [@@js.new "EventEmitter"]
   end
-  [@@js.scope "EventEmitter"]
 
   module FileSystemWatcher : sig
     include module type of struct
@@ -1153,11 +1163,32 @@ module Vscode : sig
   [@@js.scope "FileSystemWatcher"]
 
   module ProviderResult : sig
-    type 'T t
+    type 'T t =
+      ([ `Value of 'T or_null_or_undefined
+       | `Promise of 'T or_null_or_undefined Promise.t
+       ]
+      [@js.union])
+
+    [@@@js.stop]
 
     val t_to_js : ('T -> Ojs.t) -> 'T t -> Ojs.t
 
     val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
+
+    [@@@js.start]
+
+    [@@@js.implem
+    let t_to_js ml_to_js = function
+      | `Value v ->
+        or_undefined_to_js ml_to_js v
+      | `Promise p ->
+        Promise.t_to_js (or_undefined_to_js ml_to_js) p
+
+    let t_of_js ml_of_js js_val =
+      if Ojs.has_property js_val "then" then
+        `Promise (Promise.t_of_js (or_undefined_of_js ml_of_js) js_val)
+      else
+        `Value (or_undefined_of_js ml_of_js js_val)]
   end
 
   module TextDocumentContentProvider : sig
@@ -6316,7 +6347,8 @@ module Vscode : sig
 
   module TreeItemCollapsibleState : sig
     type t =
-      ([ `Collapsed [@js 1]
+      ([ `None [@js 0]
+       | `Collapsed [@js 1]
        | `Expanded [@js 2]
        ]
       [@js.enum])
@@ -6363,7 +6395,12 @@ module Vscode : sig
 
     val set_icon_path
       :  t
-      -> (ThemeIcon.t, Uri.t, IconPath.t) union3 or_string
+      -> ([ `ThemeIcon of ThemeIcon.t
+          | `Uri of Uri.t
+          | `IconPath of IconPath.t
+          | `String of string
+          ]
+         [@js.union])
       -> unit
       [@@js.set "iconPath"]
 
@@ -6402,20 +6439,16 @@ module Vscode : sig
       [@@js.set "accessibilityInformation"]
 
     val create
-      :  TreeItemLabel.t or_string
+      :  ([ `String of string
+          | `TreeItemLabel of TreeItemLabel.t
+          | `Uri of Uri.t
+          ]
+         [@js.union])
       -> ?collapsible_state:TreeItemCollapsibleState.t
       -> unit
       -> t
-      [@@js.create]
-
-    val create'
-      :  resource_uri:Uri.t
-      -> ?collapsible_state:TreeItemCollapsibleState.t
-      -> unit
-      -> t
-      [@@js.create]
+      [@@js.new "TreeItem"]
   end
-  [@@js.scope "TreeItem"]
 
   module TreeDataProvider : sig
     type 'T t
@@ -6425,7 +6458,7 @@ module Vscode : sig
     val t_of_js : (Ojs.t -> 'T) -> Ojs.t -> 'T t
 
     module OnDidChangeTreeData : sig
-      type 'T t = ('T, unit) union2 or_null_or_undefined Event.t
+      type 'T t = 'T or_null_or_undefined Event.t
     end
 
     val on_did_change_tree_data : 'T t -> 'T OnDidChangeTreeData.t
@@ -6457,7 +6490,7 @@ module Vscode : sig
             -> ([ `Value of TreeItem.t | `Promise of TreeItem.t Promise.t ]
                [@js.union]))
       -> get_children:(?element:'T -> unit -> 'T list ProviderResult.t)
-      -> ?get_parent:(element:'T -> 'T ProviderResult.t)
+      -> ?get_parent:('T -> 'T ProviderResult.t)
       -> ?resolve_tree_item:
            (item:TreeItem.t
             -> element:'T

@@ -69,9 +69,9 @@ module Converter =
           or_undefined_of_js Code.Range.t_of_js
             (Ojs.call (t_to_js x29) "asRange"
                [|(or_null_or_undefined_to_js Ls.Range.t_to_js x27)|])
-    let (as_ranges : t -> values:Ls.Range.t list -> Code.Range.t list) =
+    let (as_ranges : t -> Ls.Range.t list -> Code.Range.t list) =
       fun (x33 : t) ->
-        fun ~values:(x31 : Ls.Range.t list) ->
+        fun (x31 : Ls.Range.t list) ->
           Ojs.list_of_js Code.Range.t_of_js
             (Ojs.call (t_to_js x33) "asRanges"
                [|(Ojs.list_to_js Ls.Range.t_to_js x31)|])
@@ -381,31 +381,27 @@ module Converter =
                        ->
                        or_array_to_js Ls.Definition.t_to_js
                          Ls.DefinitionLink.t_to_js x156) x155)|])
-    let (as_references :
-      t -> values:Ls.Location.t list -> Code.Location.t list) =
+    let (as_references : t -> Ls.Location.t list -> Code.Location.t list) =
       fun (x165 : t) ->
-        fun ~values:(x163 : Ls.Location.t list) ->
+        fun (x163 : Ls.Location.t list) ->
           Ojs.list_of_js Code.Location.t_of_js
             (Ojs.call (t_to_js x165) "asReferences"
                [|(Ojs.list_to_js Ls.Location.t_to_js x163)|])
     let (as_references' :
-      t ->
-        values:never or_null_or_undefined ->
-          Code.Location.t list or_undefined)
-      =
+      t -> never or_null_or_undefined -> Code.Location.t list or_undefined) =
       fun (x169 : t) ->
-        fun ~values:(x167 : never or_null_or_undefined) ->
+        fun (x167 : never or_null_or_undefined) ->
           or_undefined_of_js
             (fun (x170 : Ojs.t) -> Ojs.list_of_js Code.Location.t_of_js x170)
             (Ojs.call (t_to_js x169) "asReferences"
                [|(or_null_or_undefined_to_js never_to_js x167)|])
     let (as_references'' :
       t ->
-        values:Ls.Location.t list or_null_or_undefined ->
+        Ls.Location.t list or_null_or_undefined ->
           Code.Location.t list or_undefined)
       =
       fun (x175 : t) ->
-        fun ~values:(x172 : Ls.Location.t list or_null_or_undefined) ->
+        fun (x172 : Ls.Location.t list or_null_or_undefined) ->
           or_undefined_of_js
             (fun (x176 : Ojs.t) -> Ojs.list_of_js Code.Location.t_of_js x176)
             (Ojs.call (t_to_js x175) "asReferences"
@@ -427,29 +423,26 @@ module Converter =
             (Ojs.call (t_to_js x181) "asDocumentHighlight"
                [|(Ls.DocumentHighlight.t_to_js x180)|])
     let (as_document_highlights :
-      t ->
-        values:Ls.DocumentHighlight.t list -> Code.DocumentHighlight.t list)
-      =
+      t -> Ls.DocumentHighlight.t list -> Code.DocumentHighlight.t list) =
       fun (x184 : t) ->
-        fun ~values:(x182 : Ls.DocumentHighlight.t list) ->
+        fun (x182 : Ls.DocumentHighlight.t list) ->
           Ojs.list_of_js Code.DocumentHighlight.t_of_js
             (Ojs.call (t_to_js x184) "asDocumentHighlights"
                [|(Ojs.list_to_js Ls.DocumentHighlight.t_to_js x182)|])
     let (as_document_highlights' :
-      t -> values:never or_null_or_undefined -> never or_undefined) =
+      t -> never or_null_or_undefined -> never or_undefined) =
       fun (x188 : t) ->
-        fun ~values:(x186 : never or_null_or_undefined) ->
+        fun (x186 : never or_null_or_undefined) ->
           or_undefined_of_js never_of_js
             (Ojs.call (t_to_js x188) "asDocumentHighlights"
                [|(or_null_or_undefined_to_js never_to_js x186)|])
     let (as_document_highlights'' :
       t ->
-        values:Ls.DocumentHighlight.t list or_null_or_undefined ->
+        Ls.DocumentHighlight.t list or_null_or_undefined ->
           Code.DocumentHighlight.t list or_undefined)
       =
       fun (x193 : t) ->
-        fun ~values:(x190 : Ls.DocumentHighlight.t list or_null_or_undefined)
-          ->
+        fun (x190 : Ls.DocumentHighlight.t list or_null_or_undefined) ->
           or_undefined_of_js
             (fun (x194 : Ojs.t) ->
                Ojs.list_of_js Code.DocumentHighlight.t_of_js x194)
@@ -526,11 +519,11 @@ module Converter =
                             x217))|])
     let (as_symbol_informations :
       t ->
-        values:Ls.SymbolInformation.t list ->
+        Ls.SymbolInformation.t list ->
           ?uri:Code.Uri.t -> unit -> Code.SymbolInformation.t list)
       =
       fun (x226 : t) ->
-        fun ~values:(x221 : Ls.SymbolInformation.t list) ->
+        fun (x221 : Ls.SymbolInformation.t list) ->
           fun ?uri:(x222 : Code.Uri.t option) ->
             fun () ->
               Ojs.list_of_js Code.SymbolInformation.t_of_js
@@ -554,11 +547,11 @@ module Converter =
                             x223))|])
     let (as_symbol_informations' :
       t ->
-        values:never or_null_or_undefined ->
+        never or_null_or_undefined ->
           ?uri:Code.Uri.t -> unit -> never or_undefined)
       =
       fun (x234 : t) ->
-        fun ~values:(x229 : never or_null_or_undefined) ->
+        fun (x229 : never or_null_or_undefined) ->
           fun ?uri:(x230 : Code.Uri.t option) ->
             fun () ->
               or_undefined_of_js never_of_js
@@ -582,13 +575,12 @@ module Converter =
                             x231))|])
     let (as_symbol_informations'' :
       t ->
-        values:Ls.SymbolInformation.t list or_null_or_undefined ->
+        Ls.SymbolInformation.t list or_null_or_undefined ->
           ?uri:Code.Uri.t ->
             unit -> Code.SymbolInformation.t list or_undefined)
       =
       fun (x243 : t) ->
-        fun ~values:(x237 : Ls.SymbolInformation.t list or_null_or_undefined)
-          ->
+        fun (x237 : Ls.SymbolInformation.t list or_null_or_undefined) ->
           fun ?uri:(x238 : Code.Uri.t option) ->
             fun () ->
               or_undefined_of_js

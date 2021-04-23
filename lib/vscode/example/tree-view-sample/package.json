@@ -6,7 +6,7 @@
   "publisher": "vscode-samples",
   "enableProposedApi": true,
   "engines": {
-    "vscode": "^1.52.0"
+    "vscode": "^1.54.0"
   },
   "categories": [
     "Other"
@@ -21,7 +21,7 @@
     "onLanguage:jsonc",
     "onCommand:testView.reveal"
   ],
-  "main": "./out/extension.js",
+  "main": "./dist/extension.js",
   "contributes": {
     "viewsContainers": {
       "activitybar": [

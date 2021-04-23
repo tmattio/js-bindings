@@ -1,4 +1,4 @@
 (executable
  (name extension)
- (libraries vscode)
+ (libraries vscode node)
  (modes js))

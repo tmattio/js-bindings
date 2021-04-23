@@ -72,8 +72,7 @@ module Path : sig
 
     val normalize : t -> string -> string [@@js.call "normalize"]
 
-    val join : t -> paths:(string list[@js.variadic]) -> string
-      [@@js.call "join"]
+    val join : t -> (string list[@js.variadic]) -> string [@@js.call "join"]
 
     val resolve : t -> (string list[@js.variadic]) -> string
       [@@js.call "resolve"]
@@ -107,8 +106,31 @@ module Path : sig
   end
   [@@js.scope "PlatformPath"]
 
-  include module type of struct
-    include PlatformPath
-  end
+  val normalize : string -> string [@@js.global "normalize"]
+
+  val join : (string list[@js.variadic]) -> string [@@js.global "join"]
+
+  val resolve : (string list[@js.variadic]) -> string [@@js.global "resolve"]
+
+  val is_absolute : string -> bool [@@js.global "isAbsolute"]
+
+  val relative : from:string -> to_:string -> string [@@js.global "relative"]
+
+  val dirname : string -> string [@@js.global "dirname"]
+
+  val basename : string -> ?ext:string -> unit -> string
+    [@@js.global "basename"]
+
+  val extname : string -> string [@@js.global "extname"]
+
+  val get_sep : string [@@js.global "sep"]
+
+  val get_delimiter : string [@@js.global "delimiter"]
+
+  val parse : string -> ParsedPath.t [@@js.global "parse"]
+
+  val format : FormatInputPathObject.t -> string [@@js.global "format"]
+
+  val to_namespaced_path : string -> string [@@js.call "toNamespacedPath"]
 end
 [@@js.scope Import.path]

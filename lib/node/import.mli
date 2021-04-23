@@ -64,7 +64,7 @@ val timers : Ojs.t [@@js.global "timers"]
 
 val tls : Ojs.t [@@js.global "tls"]
 
-val trace_events : Ojs.t [@@js.global "trace_events"]
+(* val trace_events : Ojs.t [@@js.global "trace_events"] *)
 
 val tty : Ojs.t [@@js.global "tty"]
 

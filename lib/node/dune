@@ -2,6 +2,8 @@
  (name node)
  (public_name node)
  (libraries js_of_ocaml ojs es2020)
+ (modules
+  (:standard \ node_trace_events))
  (modes byte)
  (js_of_ocaml
   (javascript_files stub.js)))

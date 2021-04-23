@@ -3010,9 +3010,10 @@ module NodeRequire =
       fun (x986 : t) -> Require.t_of_js (t_to_js x986)
   end
 let __filename () =
-  (Ojs.get_prop_ascii Ojs.global "__filename") |> Ojs.string_of_js
+  (Js_of_ocaml.Js.Unsafe.eval_string "__filename") |>
+    Js_of_ocaml.Js.to_string
 let __dirname () =
-  (Ojs.get_prop_ascii Ojs.global "__dirname") |> Ojs.string_of_js
+  (Js_of_ocaml.Js.Unsafe.eval_string "__dirname") |> Js_of_ocaml.Js.to_string
 let (set_timeout :
   callback:(args:any list -> unit) -> ?ms:int -> args:any list -> Timeout.t)
   =

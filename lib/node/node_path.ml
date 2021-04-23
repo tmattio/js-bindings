@@ -97,9 +97,9 @@ module Path =
               Ojs.string_of_js
                 (Ojs.call (t_to_js x38) "normalize"
                    [|(Ojs.string_to_js x37)|])
-        let (join : t -> paths:string list -> string) =
+        let (join : t -> string list -> string) =
           fun (x42 : t) ->
-            fun ~paths:(x39 : string list) ->
+            fun (x39 : string list) ->
               Ojs.string_of_js
                 (let x43 = t_to_js x42 in
                  Ojs.call (Ojs.get_prop_ascii x43 "join") "apply"
@@ -202,5 +202,91 @@ module Path =
         let (get_win32 : t -> t) =
           fun (x73 : t) -> t_of_js (Ojs.get_prop_ascii (t_to_js x73) "win32")
       end
-    include struct include PlatformPath end
+    let (normalize : string -> string) =
+      fun (x74 : string) ->
+        Ojs.string_of_js
+          (Ojs.call Import.path "normalize" [|(Ojs.string_to_js x74)|])
+    let (join : string list -> string) =
+      fun (x75 : string list) ->
+        Ojs.string_of_js
+          (let x78 = Import.path in
+           Ojs.call (Ojs.get_prop_ascii x78 "join") "apply"
+             [|x78;((let x76 =
+                       Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
+                         [||] in
+                     List.iter
+                       (fun (x77 : string) ->
+                          ignore
+                            (Ojs.call x76 "push" [|(Ojs.string_to_js x77)|]))
+                       x75;
+                     x76))|])
+    let (resolve : string list -> string) =
+      fun (x79 : string list) ->
+        Ojs.string_of_js
+          (let x82 = Import.path in
+           Ojs.call (Ojs.get_prop_ascii x82 "resolve") "apply"
+             [|x82;((let x80 =
+                       Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
+                         [||] in
+                     List.iter
+                       (fun (x81 : string) ->
+                          ignore
+                            (Ojs.call x80 "push" [|(Ojs.string_to_js x81)|]))
+                       x79;
+                     x80))|])
+    let (is_absolute : string -> bool) =
+      fun (x83 : string) ->
+        Ojs.bool_of_js
+          (Ojs.call Import.path "isAbsolute" [|(Ojs.string_to_js x83)|])
+    let (relative : from:string -> to_:string -> string) =
+      fun ~from:(x84 : string) ->
+        fun ~to_:(x85 : string) ->
+          Ojs.string_of_js
+            (Ojs.call Import.path "relative"
+               [|(Ojs.string_to_js x84);(Ojs.string_to_js x85)|])
+    let (dirname : string -> string) =
+      fun (x86 : string) ->
+        Ojs.string_of_js
+          (Ojs.call Import.path "dirname" [|(Ojs.string_to_js x86)|])
+    let (basename : string -> ?ext:string -> unit -> string) =
+      fun (x87 : string) ->
+        fun ?ext:(x88 : string option) ->
+          fun () ->
+            Ojs.string_of_js
+              (let x91 = Import.path in
+               Ojs.call (Ojs.get_prop_ascii x91 "basename") "apply"
+                 [|x91;((let x89 =
+                           Ojs.new_obj
+                             (Ojs.get_prop_ascii Ojs.global "Array") 
+                             [||] in
+                         ignore
+                           (Ojs.call x89 "push" [|(Ojs.string_to_js x87)|]);
+                         (match x88 with
+                          | Some x90 ->
+                              ignore
+                                (Ojs.call x89 "push"
+                                   [|(Ojs.string_to_js x90)|])
+                          | None -> ());
+                         x89))|])
+    let (extname : string -> string) =
+      fun (x92 : string) ->
+        Ojs.string_of_js
+          (Ojs.call Import.path "extname" [|(Ojs.string_to_js x92)|])
+    let (get_sep : string) =
+      Ojs.string_of_js (Ojs.get_prop_ascii Import.path "sep")
+    let (get_delimiter : string) =
+      Ojs.string_of_js (Ojs.get_prop_ascii Import.path "delimiter")
+    let (parse : string -> ParsedPath.t) =
+      fun (x93 : string) ->
+        ParsedPath.t_of_js
+          (Ojs.call Import.path "parse" [|(Ojs.string_to_js x93)|])
+    let (format : FormatInputPathObject.t -> string) =
+      fun (x94 : FormatInputPathObject.t) ->
+        Ojs.string_of_js
+          (Ojs.call Import.path "format"
+             [|(FormatInputPathObject.t_to_js x94)|])
+    let (to_namespaced_path : string -> string) =
+      fun (x95 : string) ->
+        Ojs.string_of_js
+          (Ojs.call (Ojs.string_to_js x95) "toNamespacedPath" [||])
   end

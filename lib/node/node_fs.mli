@@ -1443,69 +1443,57 @@ module Fs : sig
   end
   [@@js.scope "WriteStream"]
 
-  val rename
-    :  old_path:PathLike.t
-    -> new_path:PathLike.t
-    -> callback:NoParamCallback.t
-    -> unit
+  val rename : PathLike.t -> PathLike.t -> callback:NoParamCallback.t -> unit
     [@@js.global "rename"]
 
   module Rename : sig
-    val __promisify__
-      :  old_path:PathLike.t
-      -> new_path:PathLike.t
-      -> unit Promise.t
+    val __promisify__ : PathLike.t -> PathLike.t -> unit Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "rename"]
 
-  val rename_sync : old_path:PathLike.t -> new_path:PathLike.t -> unit
-    [@@js.global "renameSync"]
+  val rename_sync : PathLike.t -> PathLike.t -> unit [@@js.global "renameSync"]
 
   val truncate
-    :  path:PathLike.t
+    :  PathLike.t
     -> len:int or_null_or_undefined
     -> callback:NoParamCallback.t
     -> unit
     [@@js.global "truncate"]
 
-  val truncate : path:PathLike.t -> callback:NoParamCallback.t -> unit
+  val truncate : PathLike.t -> callback:NoParamCallback.t -> unit
     [@@js.global "truncate"]
 
   module Truncate : sig
-    val __promisify__
-      :  path:PathLike.t
-      -> ?len:int or_null
-      -> unit
-      -> unit Promise.t
+    val __promisify__ : PathLike.t -> ?len:int or_null -> unit -> unit Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "truncate"]
 
-  val truncate_sync : path:PathLike.t -> ?len:int or_null -> unit -> unit
+  val truncate_sync : PathLike.t -> ?len:int or_null -> unit -> unit
     [@@js.global "truncateSync"]
 
   val ftruncate
-    :  fd:int
+    :  int
     -> len:int or_null_or_undefined
     -> callback:NoParamCallback.t
     -> unit
     [@@js.global "ftruncate"]
 
-  val ftruncate : fd:int -> callback:NoParamCallback.t -> unit
+  val ftruncate : int -> callback:NoParamCallback.t -> unit
     [@@js.global "ftruncate"]
 
   module Ftruncate : sig
-    val __promisify__ : fd:int -> ?len:int or_null -> unit -> unit Promise.t
+    val __promisify__ : int -> ?len:int or_null -> unit -> unit Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "ftruncate"]
 
-  val ftruncate_sync : fd:int -> ?len:int or_null -> unit -> unit
+  val ftruncate_sync : int -> ?len:int or_null -> unit -> unit
     [@@js.global "ftruncateSync"]
 
   val chown
-    :  path:PathLike.t
+    :  PathLike.t
     -> uid:int
     -> gid:int
     -> callback:NoParamCallback.t
@@ -1513,33 +1501,27 @@ module Fs : sig
     [@@js.global "chown"]
 
   module Chown : sig
-    val __promisify__ : path:PathLike.t -> uid:int -> gid:int -> unit Promise.t
+    val __promisify__ : PathLike.t -> uid:int -> gid:int -> unit Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "chown"]
 
-  val chown_sync : path:PathLike.t -> uid:int -> gid:int -> unit
+  val chown_sync : PathLike.t -> uid:int -> gid:int -> unit
     [@@js.global "chownSync"]
 
-  val fchown
-    :  fd:int
-    -> uid:int
-    -> gid:int
-    -> callback:NoParamCallback.t
-    -> unit
+  val fchown : int -> uid:int -> gid:int -> callback:NoParamCallback.t -> unit
     [@@js.global "fchown"]
 
   module Fchown : sig
-    val __promisify__ : fd:int -> uid:int -> gid:int -> unit Promise.t
+    val __promisify__ : int -> uid:int -> gid:int -> unit Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "fchown"]
 
-  val fchown_sync : fd:int -> uid:int -> gid:int -> unit
-    [@@js.global "fchownSync"]
+  val fchown_sync : int -> uid:int -> gid:int -> unit [@@js.global "fchownSync"]
 
   val lchown
-    :  path:PathLike.t
+    :  PathLike.t
     -> uid:int
     -> gid:int
     -> callback:NoParamCallback.t
@@ -1547,16 +1529,16 @@ module Fs : sig
     [@@js.global "lchown"]
 
   module Lchown : sig
-    val __promisify__ : path:PathLike.t -> uid:int -> gid:int -> unit Promise.t
+    val __promisify__ : PathLike.t -> uid:int -> gid:int -> unit Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "lchown"]
 
-  val lchown_sync : path:PathLike.t -> uid:int -> gid:int -> unit
+  val lchown_sync : PathLike.t -> uid:int -> gid:int -> unit
     [@@js.global "lchownSync"]
 
   val lutimes
-    :  path:PathLike.t
+    :  PathLike.t
     -> atime:Date.t or_string or_number
     -> mtime:Date.t or_string or_number
     -> callback:NoParamCallback.t
@@ -1565,7 +1547,7 @@ module Fs : sig
 
   module Lutimes : sig
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> atime:Date.t or_string or_number
       -> mtime:Date.t or_string or_number
       -> unit Promise.t
@@ -1574,57 +1556,47 @@ module Fs : sig
   [@@js.scope "lutimes"]
 
   val lutimes_sync
-    :  path:PathLike.t
+    :  PathLike.t
     -> atime:Date.t or_string or_number
     -> mtime:Date.t or_string or_number
     -> unit
     [@@js.global "lutimesSync"]
 
-  val chmod
-    :  path:PathLike.t
-    -> mode:Mode.t
-    -> callback:NoParamCallback.t
-    -> unit
+  val chmod : PathLike.t -> mode:Mode.t -> callback:NoParamCallback.t -> unit
     [@@js.global "chmod"]
 
   module Chmod : sig
-    val __promisify__ : path:PathLike.t -> mode:Mode.t -> unit Promise.t
+    val __promisify__ : PathLike.t -> mode:Mode.t -> unit Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "chmod"]
 
-  val chmod_sync : path:PathLike.t -> mode:Mode.t -> unit
-    [@@js.global "chmodSync"]
+  val chmod_sync : PathLike.t -> mode:Mode.t -> unit [@@js.global "chmodSync"]
 
-  val fchmod : fd:int -> mode:Mode.t -> callback:NoParamCallback.t -> unit
+  val fchmod : int -> mode:Mode.t -> callback:NoParamCallback.t -> unit
     [@@js.global "fchmod"]
 
   module Fchmod : sig
-    val __promisify__ : fd:int -> mode:Mode.t -> unit Promise.t
+    val __promisify__ : int -> mode:Mode.t -> unit Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "fchmod"]
 
-  val fchmod_sync : fd:int -> mode:Mode.t -> unit [@@js.global "fchmodSync"]
+  val fchmod_sync : int -> mode:Mode.t -> unit [@@js.global "fchmodSync"]
 
-  val lchmod
-    :  path:PathLike.t
-    -> mode:Mode.t
-    -> callback:NoParamCallback.t
-    -> unit
+  val lchmod : PathLike.t -> mode:Mode.t -> callback:NoParamCallback.t -> unit
     [@@js.global "lchmod"]
 
   module Lchmod : sig
-    val __promisify__ : path:PathLike.t -> mode:Mode.t -> unit Promise.t
+    val __promisify__ : PathLike.t -> mode:Mode.t -> unit Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "lchmod"]
 
-  val lchmod_sync : path:PathLike.t -> mode:Mode.t -> unit
-    [@@js.global "lchmodSync"]
+  val lchmod_sync : PathLike.t -> mode:Mode.t -> unit [@@js.global "lchmodSync"]
 
   val stat
-    :  path:PathLike.t
+    :  PathLike.t
     -> callback:(err:ErrnoException.t or_null -> stats:Stats.t -> unit)
     -> unit
     [@@js.global "stat"]
@@ -1643,7 +1615,7 @@ module Fs : sig
   [@@js.scope "StatOptions"]
 
   val stat
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:(StatOptions.t, AnonymousInterface0.t) intersection2 or_undefined
     -> callback:(err:ErrnoException.t or_null -> stats:Stats.t -> unit)
     -> unit
@@ -1677,14 +1649,14 @@ module Fs : sig
   [@@js.scope "BigIntStats"]
 
   val stat
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
     -> callback:(err:ErrnoException.t or_null -> stats:BigIntStats.t -> unit)
     -> unit
     [@@js.global "stat"]
 
   val stat
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:StatOptions.t or_undefined
     -> callback:
          (err:ErrnoException.t or_null
@@ -1695,20 +1667,20 @@ module Fs : sig
 
   module Stat : sig
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> ?options:(StatOptions.t, AnonymousInterface0.t) intersection2
       -> unit
       -> Stats.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
       -> BigIntStats.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> ?options:StatOptions.t
       -> unit
       -> (BigIntStats.t, Stats.t) union2 Promise.t
@@ -1717,47 +1689,47 @@ module Fs : sig
   [@@js.scope "stat"]
 
   val stat_sync
-    :  path:PathLike.t
+    :  PathLike.t
     -> ?options:(StatOptions.t, AnonymousInterface0.t) intersection2
     -> unit
     -> Stats.t
     [@@js.global "statSync"]
 
   val stat_sync
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
     -> BigIntStats.t
     [@@js.global "statSync"]
 
   val stat_sync
-    :  path:PathLike.t
+    :  PathLike.t
     -> ?options:StatOptions.t
     -> unit
     -> (BigIntStats.t, Stats.t) union2
     [@@js.global "statSync"]
 
   val fstat
-    :  fd:int
+    :  int
     -> callback:(err:ErrnoException.t or_null -> stats:Stats.t -> unit)
     -> unit
     [@@js.global "fstat"]
 
   val fstat
-    :  fd:int
+    :  int
     -> options:(StatOptions.t, AnonymousInterface0.t) intersection2 or_undefined
     -> callback:(err:ErrnoException.t or_null -> stats:Stats.t -> unit)
     -> unit
     [@@js.global "fstat"]
 
   val fstat
-    :  fd:int
+    :  int
     -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
     -> callback:(err:ErrnoException.t or_null -> stats:BigIntStats.t -> unit)
     -> unit
     [@@js.global "fstat"]
 
   val fstat
-    :  fd:int
+    :  int
     -> options:StatOptions.t or_undefined
     -> callback:
          (err:ErrnoException.t or_null
@@ -1768,20 +1740,20 @@ module Fs : sig
 
   module Fstat : sig
     val __promisify__
-      :  fd:int
+      :  int
       -> ?options:(StatOptions.t, AnonymousInterface0.t) intersection2
       -> unit
       -> Stats.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
-      :  fd:int
+      :  int
       -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
       -> BigIntStats.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
-      :  fd:int
+      :  int
       -> ?options:StatOptions.t
       -> unit
       -> (BigIntStats.t, Stats.t) union2 Promise.t
@@ -1790,47 +1762,47 @@ module Fs : sig
   [@@js.scope "fstat"]
 
   val fstat_sync
-    :  fd:int
+    :  int
     -> ?options:(StatOptions.t, AnonymousInterface0.t) intersection2
     -> unit
     -> Stats.t
     [@@js.global "fstatSync"]
 
   val fstat_sync
-    :  fd:int
+    :  int
     -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
     -> BigIntStats.t
     [@@js.global "fstatSync"]
 
   val fstat_sync
-    :  fd:int
+    :  int
     -> ?options:StatOptions.t
     -> unit
     -> (BigIntStats.t, Stats.t) union2
     [@@js.global "fstatSync"]
 
   val lstat
-    :  path:PathLike.t
+    :  PathLike.t
     -> callback:(err:ErrnoException.t or_null -> stats:Stats.t -> unit)
     -> unit
     [@@js.global "lstat"]
 
   val lstat
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:(StatOptions.t, AnonymousInterface0.t) intersection2 or_undefined
     -> callback:(err:ErrnoException.t or_null -> stats:Stats.t -> unit)
     -> unit
     [@@js.global "lstat"]
 
   val lstat
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
     -> callback:(err:ErrnoException.t or_null -> stats:BigIntStats.t -> unit)
     -> unit
     [@@js.global "lstat"]
 
   val lstat
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:StatOptions.t or_undefined
     -> callback:
          (err:ErrnoException.t or_null
@@ -1841,20 +1813,20 @@ module Fs : sig
 
   module Lstat : sig
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> ?options:(StatOptions.t, AnonymousInterface0.t) intersection2
       -> unit
       -> Stats.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
       -> BigIntStats.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> ?options:StatOptions.t
       -> unit
       -> (BigIntStats.t, Stats.t) union2 Promise.t
@@ -1863,47 +1835,39 @@ module Fs : sig
   [@@js.scope "lstat"]
 
   val lstat_sync
-    :  path:PathLike.t
+    :  PathLike.t
     -> ?options:(StatOptions.t, AnonymousInterface0.t) intersection2
     -> unit
     -> Stats.t
     [@@js.global "lstatSync"]
 
   val lstat_sync
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:(StatOptions.t, AnonymousInterface1.t) intersection2
     -> BigIntStats.t
     [@@js.global "lstatSync"]
 
   val lstat_sync
-    :  path:PathLike.t
+    :  PathLike.t
     -> ?options:StatOptions.t
     -> unit
     -> (BigIntStats.t, Stats.t) union2
     [@@js.global "lstatSync"]
 
-  val link
-    :  existing_path:PathLike.t
-    -> new_path:PathLike.t
-    -> callback:NoParamCallback.t
-    -> unit
+  val link : PathLike.t -> PathLike.t -> callback:NoParamCallback.t -> unit
     [@@js.global "link"]
 
   module Link : sig
-    val __promisify__
-      :  existing_path:PathLike.t
-      -> new_path:PathLike.t
-      -> unit Promise.t
+    val __promisify__ : PathLike.t -> PathLike.t -> unit Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "link"]
 
-  val link_sync : existing_path:PathLike.t -> new_path:PathLike.t -> unit
-    [@@js.global "linkSync"]
+  val link_sync : PathLike.t -> PathLike.t -> unit [@@js.global "linkSync"]
 
   val symlink
     :  target:string
-    -> path:PathLike.t
+    -> PathLike.t
     -> type_:
          ([ `dir [@js "dir"] | `file [@js "file"] | `junction [@js "junction"] ]
          [@js.enum])
@@ -1914,7 +1878,7 @@ module Fs : sig
 
   val symlink
     :  target:string
-    -> path:PathLike.t
+    -> PathLike.t
     -> callback:NoParamCallback.t
     -> unit
     [@@js.global "symlink"]
@@ -1922,7 +1886,7 @@ module Fs : sig
   module Symlink : sig
     val __promisify__
       :  target:string
-      -> path:PathLike.t
+      -> PathLike.t
       -> ?type_:string or_null
       -> unit
       -> unit Promise.t
@@ -1945,7 +1909,7 @@ module Fs : sig
 
   val symlink_sync
     :  target:string
-    -> path:PathLike.t
+    -> PathLike.t
     -> ?type_:
          ([ `dir [@js "dir"] | `file [@js "file"] | `junction [@js "junction"] ]
          [@js.enum])
@@ -1955,7 +1919,7 @@ module Fs : sig
     [@@js.global "symlinkSync"]
 
   val readlink
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:
          (BaseEncodingOptions.t, BufferEncoding.t) union2 or_null_or_undefined
     -> callback:(err:ErrnoException.t or_null -> link_string:string -> unit)
@@ -1963,14 +1927,14 @@ module Fs : sig
     [@@js.global "readlink"]
 
   val readlink
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:BufferEncodingOption.t
     -> callback:(err:ErrnoException.t or_null -> link_string:Buffer.t -> unit)
     -> unit
     [@@js.global "readlink"]
 
   val readlink
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:BaseEncodingOptions.t or_string or_null_or_undefined
     -> callback:
          (err:ErrnoException.t or_null
@@ -1980,27 +1944,27 @@ module Fs : sig
     [@@js.global "readlink"]
 
   val readlink
-    :  path:PathLike.t
+    :  PathLike.t
     -> callback:(err:ErrnoException.t or_null -> link_string:string -> unit)
     -> unit
     [@@js.global "readlink"]
 
   module Readlink : sig
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> ?options:(BaseEncodingOptions.t, BufferEncoding.t) union2 or_null
       -> unit
       -> string Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> options:BufferEncodingOption.t
       -> Buffer.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> ?options:BaseEncodingOptions.t or_string or_null
       -> unit
       -> Buffer.t or_string Promise.t
@@ -2009,130 +1973,113 @@ module Fs : sig
   [@@js.scope "readlink"]
 
   val readlink_sync
-    :  path:PathLike.t
+    :  PathLike.t
     -> ?options:(BaseEncodingOptions.t, BufferEncoding.t) union2 or_null
     -> unit
     -> string
     [@@js.global "readlinkSync"]
 
-  val readlink_sync
-    :  path:PathLike.t
-    -> options:BufferEncodingOption.t
-    -> Buffer.t
+  val readlink_sync : PathLike.t -> options:BufferEncodingOption.t -> Buffer.t
     [@@js.global "readlinkSync"]
 
   val readlink_sync
-    :  path:PathLike.t
+    :  PathLike.t
     -> ?options:BaseEncodingOptions.t or_string or_null
     -> unit
     -> Buffer.t or_string
     [@@js.global "readlinkSync"]
 
   val realpath
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:
          (BaseEncodingOptions.t, BufferEncoding.t) union2 or_null_or_undefined
-    -> callback:
-         (err:ErrnoException.t or_null -> resolved_path:PathLike.t -> unit)
+    -> callback:(err:ErrnoException.t or_null -> PathLike.t -> unit)
     -> unit
     [@@js.global "realpath"]
 
   val realpath
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:BufferEncodingOption.t
-    -> callback:(err:ErrnoException.t or_null -> resolved_path:Buffer.t -> unit)
+    -> callback:(err:ErrnoException.t or_null -> Buffer.t -> unit)
     -> unit
     [@@js.global "realpath"]
 
   val realpath
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:BaseEncodingOptions.t or_string or_null_or_undefined
-    -> callback:
-         (err:ErrnoException.t or_null
-          -> resolved_path:Buffer.t or_string
-          -> unit)
+    -> callback:(err:ErrnoException.t or_null -> Buffer.t or_string -> unit)
     -> unit
     [@@js.global "realpath"]
 
   val realpath
-    :  path:PathLike.t
-    -> callback:
-         (err:ErrnoException.t or_null -> resolved_path:PathLike.t -> unit)
+    :  PathLike.t
+    -> callback:(err:ErrnoException.t or_null -> PathLike.t -> unit)
     -> unit
     [@@js.global "realpath"]
 
   module Realpath : sig
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> ?options:(BaseEncodingOptions.t, BufferEncoding.t) union2 or_null
       -> unit
       -> string Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> options:BufferEncodingOption.t
       -> Buffer.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> ?options:BaseEncodingOptions.t or_string or_null
       -> unit
       -> Buffer.t or_string Promise.t
       [@@js.global "__promisify__"]
 
     val native
-      :  path:PathLike.t
+      :  PathLike.t
       -> options:
            (BaseEncodingOptions.t, BufferEncoding.t) union2 or_null_or_undefined
-      -> callback:
-           (err:ErrnoException.t or_null -> resolved_path:PathLike.t -> unit)
+      -> callback:(err:ErrnoException.t or_null -> PathLike.t -> unit)
       -> unit
       [@@js.global "native"]
 
     val native
-      :  path:PathLike.t
+      :  PathLike.t
       -> options:BufferEncodingOption.t
-      -> callback:
-           (err:ErrnoException.t or_null -> resolved_path:Buffer.t -> unit)
+      -> callback:(err:ErrnoException.t or_null -> Buffer.t -> unit)
       -> unit
       [@@js.global "native"]
 
     val native
-      :  path:PathLike.t
+      :  PathLike.t
       -> options:BaseEncodingOptions.t or_string or_null_or_undefined
-      -> callback:
-           (err:ErrnoException.t or_null
-            -> resolved_path:Buffer.t or_string
-            -> unit)
+      -> callback:(err:ErrnoException.t or_null -> Buffer.t or_string -> unit)
       -> unit
       [@@js.global "native"]
 
     val native
-      :  path:PathLike.t
-      -> callback:
-           (err:ErrnoException.t or_null -> resolved_path:PathLike.t -> unit)
+      :  PathLike.t
+      -> callback:(err:ErrnoException.t or_null -> PathLike.t -> unit)
       -> unit
       [@@js.global "native"]
   end
   [@@js.scope "realpath"]
 
   val realpath_sync
-    :  path:PathLike.t
+    :  PathLike.t
     -> ?options:(BaseEncodingOptions.t, BufferEncoding.t) union2 or_null
     -> unit
     -> string
     [@@js.global "realpathSync"]
 
-  val realpath_sync
-    :  path:PathLike.t
-    -> options:BufferEncodingOption.t
-    -> Buffer.t
+  val realpath_sync : PathLike.t -> options:BufferEncodingOption.t -> Buffer.t
     [@@js.global "realpathSync"]
 
   val realpath_sync
-    :  path:PathLike.t
+    :  PathLike.t
     -> ?options:BaseEncodingOptions.t or_string or_null
     -> unit
     -> Buffer.t or_string
@@ -2140,17 +2087,17 @@ module Fs : sig
 
   module RealpathSync : sig
     val native
-      :  path:PathLike.t
+      :  PathLike.t
       -> ?options:(BaseEncodingOptions.t, BufferEncoding.t) union2 or_null
       -> unit
       -> string
       [@@js.global "native"]
 
-    val native : path:PathLike.t -> options:BufferEncodingOption.t -> Buffer.t
+    val native : PathLike.t -> options:BufferEncodingOption.t -> Buffer.t
       [@@js.global "native"]
 
     val native
-      :  path:PathLike.t
+      :  PathLike.t
       -> ?options:BaseEncodingOptions.t or_string or_null
       -> unit
       -> Buffer.t or_string
@@ -2158,16 +2105,16 @@ module Fs : sig
   end
   [@@js.scope "realpathSync"]
 
-  val unlink : path:PathLike.t -> callback:NoParamCallback.t -> unit
+  val unlink : PathLike.t -> callback:NoParamCallback.t -> unit
     [@@js.global "unlink"]
 
   module Unlink : sig
-    val __promisify__ : path:PathLike.t -> unit Promise.t
+    val __promisify__ : PathLike.t -> unit Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "unlink"]
 
-  val unlink_sync : path:PathLike.t -> unit [@@js.global "unlinkSync"]
+  val unlink_sync : PathLike.t -> unit [@@js.global "unlinkSync"]
 
   module RmDirOptions : sig
     type t
@@ -2190,11 +2137,11 @@ module Fs : sig
   end
   [@@js.scope "RmDirOptions"]
 
-  val rmdir : path:PathLike.t -> callback:NoParamCallback.t -> unit
+  val rmdir : PathLike.t -> callback:NoParamCallback.t -> unit
     [@@js.global "rmdir"]
 
   val rmdir
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:RmDirOptions.t
     -> callback:NoParamCallback.t
     -> unit
@@ -2202,7 +2149,7 @@ module Fs : sig
 
   module Rmdir : sig
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> ?options:RmDirOptions.t
       -> unit
       -> unit Promise.t
@@ -2210,7 +2157,7 @@ module Fs : sig
   end
   [@@js.scope "rmdir"]
 
-  val rmdir_sync : path:PathLike.t -> ?options:RmDirOptions.t -> unit -> unit
+  val rmdir_sync : PathLike.t -> ?options:RmDirOptions.t -> unit -> unit
     [@@js.global "rmdirSync"]
 
   module RmOptions : sig
@@ -2238,19 +2185,12 @@ module Fs : sig
   end
   [@@js.scope "RmOptions"]
 
-  val rm : path:PathLike.t -> callback:NoParamCallback.t -> unit
-    [@@js.global "rm"]
-
-  val rm
-    :  path:PathLike.t
-    -> options:RmOptions.t
-    -> callback:NoParamCallback.t
-    -> unit
+  val rm : PathLike.t -> ?options:RmOptions.t -> NoParamCallback.t -> unit
     [@@js.global "rm"]
 
   module Rm : sig
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> ?options:RmOptions.t
       -> unit
       -> unit Promise.t
@@ -2258,7 +2198,7 @@ module Fs : sig
   end
   [@@js.scope "rm"]
 
-  val rm_sync : path:PathLike.t -> ?options:RmOptions.t -> unit -> unit
+  val rm_sync : PathLike.t -> ?options:RmOptions.t -> unit -> unit
     [@@js.global "rmSync"]
 
   module MakeDirectoryOptions : sig
@@ -2279,7 +2219,7 @@ module Fs : sig
   [@@js.scope "MakeDirectoryOptions"]
 
   val mkdir
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:(MakeDirectoryOptions.t, AnonymousInterface18.t) intersection2
     -> callback:
          (err:ErrnoException.t or_null -> ?path:PathLike.t -> unit -> unit)
@@ -2287,39 +2227,39 @@ module Fs : sig
     [@@js.global "mkdir"]
 
   val mkdir
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:Mode.t or_null_or_undefined
     -> callback:NoParamCallback.t
     -> unit
     [@@js.global "mkdir"]
 
   val mkdir
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:(MakeDirectoryOptions.t, Mode.t) union2 or_null_or_undefined
     -> callback:
          (err:ErrnoException.t or_null -> ?path:PathLike.t -> unit -> unit)
     -> unit
     [@@js.global "mkdir"]
 
-  val mkdir : path:PathLike.t -> callback:NoParamCallback.t -> unit
+  val mkdir : PathLike.t -> callback:NoParamCallback.t -> unit
     [@@js.global "mkdir"]
 
   module Mkdir : sig
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> options:(MakeDirectoryOptions.t, AnonymousInterface18.t) intersection2
       -> string or_undefined Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> ?options:Mode.t or_null
       -> unit
       -> unit Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> ?options:(MakeDirectoryOptions.t, Mode.t) union2 or_null
       -> unit
       -> string or_undefined Promise.t
@@ -2328,16 +2268,16 @@ module Fs : sig
   [@@js.scope "mkdir"]
 
   val mkdir_sync
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:(MakeDirectoryOptions.t, AnonymousInterface18.t) intersection2
     -> string or_undefined
     [@@js.global "mkdirSync"]
 
-  val mkdir_sync : path:PathLike.t -> ?options:Mode.t or_null -> unit -> unit
+  val mkdir_sync : PathLike.t -> ?options:Mode.t or_null -> unit -> unit
     [@@js.global "mkdirSync"]
 
   val mkdir_sync
-    :  path:PathLike.t
+    :  PathLike.t
     -> ?options:(MakeDirectoryOptions.t, Mode.t) union2 or_null
     -> unit
     -> string or_undefined
@@ -2413,7 +2353,7 @@ module Fs : sig
     [@@js.global "mkdtempSync"]
 
   val readdir
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:
          (BufferEncoding.t, AnonymousInterface11.t) union2 or_null_or_undefined
     -> callback:(err:ErrnoException.t or_null -> files:string list -> unit)
@@ -2421,14 +2361,14 @@ module Fs : sig
     [@@js.global "readdir"]
 
   val readdir
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:(AnonymousInterface9.t, ([ `buffer ][@js.enum])) or_enum
     -> callback:(err:ErrnoException.t or_null -> files:Buffer.t list -> unit)
     -> unit
     [@@js.global "readdir"]
 
   val readdir
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:BufferEncoding.t or_null_or_undefined
     -> callback:
          (err:ErrnoException.t or_null -> files:Buffer.t or_string list -> unit)
@@ -2436,13 +2376,13 @@ module Fs : sig
     [@@js.global "readdir"]
 
   val readdir
-    :  path:PathLike.t
+    :  PathLike.t
     -> callback:(err:ErrnoException.t or_null -> files:string list -> unit)
     -> unit
     [@@js.global "readdir"]
 
   val readdir
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:(BaseEncodingOptions.t, AnonymousInterface20.t) intersection2
     -> callback:(err:ErrnoException.t or_null -> files:Dirent.t list -> unit)
     -> unit
@@ -2450,27 +2390,27 @@ module Fs : sig
 
   module Readdir : sig
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> ?options:(BufferEncoding.t, AnonymousInterface11.t) union2 or_null
       -> unit
       -> string list Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> options:(AnonymousInterface9.t, ([ `buffer ][@js.enum])) or_enum
       -> Buffer.t list Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> ?options:BufferEncoding.t or_null
       -> unit
       -> Buffer.t or_string list Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> options:(BaseEncodingOptions.t, AnonymousInterface20.t) intersection2
       -> Dirent.t list Promise.t
       [@@js.global "__promisify__"]
@@ -2478,42 +2418,42 @@ module Fs : sig
   [@@js.scope "readdir"]
 
   val readdir_sync
-    :  path:PathLike.t
+    :  PathLike.t
     -> ?options:(BufferEncoding.t, AnonymousInterface11.t) union2 or_null
     -> unit
     -> string list
     [@@js.global "readdirSync"]
 
   val readdir_sync
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:(AnonymousInterface9.t, ([ `buffer ][@js.enum])) or_enum
     -> Buffer.t list
     [@@js.global "readdirSync"]
 
   val readdir_sync
-    :  path:PathLike.t
+    :  PathLike.t
     -> ?options:BufferEncoding.t or_null
     -> unit
     -> Buffer.t or_string list
     [@@js.global "readdirSync"]
 
   val readdir_sync
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:(BaseEncodingOptions.t, AnonymousInterface20.t) intersection2
     -> Dirent.t list
     [@@js.global "readdirSync"]
 
-  val close : fd:int -> callback:NoParamCallback.t -> unit [@@js.global "close"]
+  val close : int -> callback:NoParamCallback.t -> unit [@@js.global "close"]
 
   module Close : sig
-    val __promisify__ : fd:int -> unit Promise.t [@@js.global "__promisify__"]
+    val __promisify__ : int -> unit Promise.t [@@js.global "__promisify__"]
   end
   [@@js.scope "close"]
 
-  val close_sync : fd:int -> unit [@@js.global "closeSync"]
+  val close_sync : int -> unit [@@js.global "closeSync"]
 
   val open_
-    :  path:PathLike.t
+    :  PathLike.t
     -> flags:OpenMode.t
     -> mode:Mode.t or_null_or_undefined
     -> callback:(err:ErrnoException.t or_null -> fd:int -> unit)
@@ -2521,7 +2461,7 @@ module Fs : sig
     [@@js.global "open"]
 
   val open_
-    :  path:PathLike.t
+    :  PathLike.t
     -> flags:OpenMode.t
     -> callback:(err:ErrnoException.t or_null -> fd:int -> unit)
     -> unit
@@ -2529,7 +2469,7 @@ module Fs : sig
 
   module Open : sig
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> flags:OpenMode.t
       -> ?mode:Mode.t or_null
       -> unit
@@ -2539,7 +2479,7 @@ module Fs : sig
   [@@js.scope "open"]
 
   val open_sync
-    :  path:PathLike.t
+    :  PathLike.t
     -> flags:OpenMode.t
     -> ?mode:Mode.t or_null
     -> unit
@@ -2547,7 +2487,7 @@ module Fs : sig
     [@@js.global "openSync"]
 
   val utimes
-    :  path:PathLike.t
+    :  PathLike.t
     -> atime:Date.t or_string or_number
     -> mtime:Date.t or_string or_number
     -> callback:NoParamCallback.t
@@ -2556,7 +2496,7 @@ module Fs : sig
 
   module Utimes : sig
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> atime:Date.t or_string or_number
       -> mtime:Date.t or_string or_number
       -> unit Promise.t
@@ -2565,14 +2505,14 @@ module Fs : sig
   [@@js.scope "utimes"]
 
   val utimes_sync
-    :  path:PathLike.t
+    :  PathLike.t
     -> atime:Date.t or_string or_number
     -> mtime:Date.t or_string or_number
     -> unit
     [@@js.global "utimesSync"]
 
   val futimes
-    :  fd:int
+    :  int
     -> atime:Date.t or_string or_number
     -> mtime:Date.t or_string or_number
     -> callback:NoParamCallback.t
@@ -2581,7 +2521,7 @@ module Fs : sig
 
   module Futimes : sig
     val __promisify__
-      :  fd:int
+      :  int
       -> atime:Date.t or_string or_number
       -> mtime:Date.t or_string or_number
       -> unit Promise.t
@@ -2590,23 +2530,23 @@ module Fs : sig
   [@@js.scope "futimes"]
 
   val futimes_sync
-    :  fd:int
+    :  int
     -> atime:Date.t or_string or_number
     -> mtime:Date.t or_string or_number
     -> unit
     [@@js.global "futimesSync"]
 
-  val fsync : fd:int -> callback:NoParamCallback.t -> unit [@@js.global "fsync"]
+  val fsync : int -> callback:NoParamCallback.t -> unit [@@js.global "fsync"]
 
   module Fsync : sig
-    val __promisify__ : fd:int -> unit Promise.t [@@js.global "__promisify__"]
+    val __promisify__ : int -> unit Promise.t [@@js.global "__promisify__"]
   end
   [@@js.scope "fsync"]
 
-  val fsync_sync : fd:int -> unit [@@js.global "fsyncSync"]
+  val fsync_sync : int -> unit [@@js.global "fsyncSync"]
 
   val write
-    :  fd:int
+    :  int
     -> buffer:'TBuffer
     -> offset:int or_null_or_undefined
     -> length:int or_null_or_undefined
@@ -2620,7 +2560,7 @@ module Fs : sig
     [@@js.global "write"]
 
   val write
-    :  fd:int
+    :  int
     -> buffer:'TBuffer
     -> offset:int or_null_or_undefined
     -> length:int or_null_or_undefined
@@ -2633,7 +2573,7 @@ module Fs : sig
     [@@js.global "write"]
 
   val write
-    :  fd:int
+    :  int
     -> buffer:'TBuffer
     -> offset:int or_null_or_undefined
     -> callback:
@@ -2645,7 +2585,7 @@ module Fs : sig
     [@@js.global "write"]
 
   val write
-    :  fd:int
+    :  int
     -> buffer:'TBuffer
     -> callback:
          (err:ErrnoException.t or_null
@@ -2656,7 +2596,7 @@ module Fs : sig
     [@@js.global "write"]
 
   val write
-    :  fd:int
+    :  int
     -> string:string
     -> position:int or_null_or_undefined
     -> encoding:BufferEncoding.t or_null_or_undefined
@@ -2666,7 +2606,7 @@ module Fs : sig
     [@@js.global "write"]
 
   val write
-    :  fd:int
+    :  int
     -> string:string
     -> position:int or_null_or_undefined
     -> callback:
@@ -2675,7 +2615,7 @@ module Fs : sig
     [@@js.global "write"]
 
   val write
-    :  fd:int
+    :  int
     -> string:string
     -> callback:
          (err:ErrnoException.t or_null -> written:int -> str:string -> unit)
@@ -2684,7 +2624,7 @@ module Fs : sig
 
   module Write : sig
     val __promisify__
-      :  fd:int
+      :  int
       -> ?buffer:'TBuffer
       -> ?offset:int
       -> ?length:int
@@ -2694,7 +2634,7 @@ module Fs : sig
       [@@js.global "__promisify__"]
 
     val __promisify__
-      :  fd:int
+      :  int
       -> string:string
       -> ?position:int or_null
       -> ?encoding:BufferEncoding.t or_null
@@ -2705,7 +2645,7 @@ module Fs : sig
   [@@js.scope "write"]
 
   val write_sync
-    :  fd:int
+    :  int
     -> buffer:ArrayBufferView.t
     -> ?offset:int or_null
     -> ?length:int or_null
@@ -2715,7 +2655,7 @@ module Fs : sig
     [@@js.global "writeSync"]
 
   val write_sync
-    :  fd:int
+    :  int
     -> string:string
     -> ?position:int or_null
     -> ?encoding:BufferEncoding.t or_null
@@ -2724,7 +2664,7 @@ module Fs : sig
     [@@js.global "writeSync"]
 
   val read
-    :  fd:int
+    :  int
     -> buffer:'TBuffer
     -> offset:int
     -> length:int
@@ -2739,7 +2679,7 @@ module Fs : sig
 
   module Read : sig
     val __promisify__
-      :  fd:int
+      :  int
       -> buffer:'TBuffer
       -> offset:int
       -> length:int
@@ -2771,7 +2711,7 @@ module Fs : sig
   [@@js.scope "ReadSyncOptions"]
 
   val read_sync
-    :  fd:int
+    :  int
     -> buffer:ArrayBufferView.t
     -> offset:int
     -> length:int
@@ -2780,7 +2720,7 @@ module Fs : sig
     [@@js.global "readSync"]
 
   val read_sync
-    :  fd:int
+    :  int
     -> buffer:ArrayBufferView.t
     -> ?opts:ReadSyncOptions.t
     -> unit
@@ -2788,21 +2728,21 @@ module Fs : sig
     [@@js.global "readSync"]
 
   val read_file
-    :  path:PathLike.t or_number
+    :  PathLike.t or_number
     -> options:AnonymousInterface6.t or_null_or_undefined
     -> callback:(err:ErrnoException.t or_null -> data:Buffer.t -> unit)
     -> unit
     [@@js.global "readFile"]
 
   val read_file
-    :  path:PathLike.t or_number
+    :  PathLike.t or_number
     -> options:AnonymousInterface5.t or_string
     -> callback:(err:ErrnoException.t or_null -> data:string -> unit)
     -> unit
     [@@js.global "readFile"]
 
   val read_file
-    :  path:PathLike.t or_number
+    :  PathLike.t or_number
     -> options:
          (BaseEncodingOptions.t, AnonymousInterface12.t) intersection2 or_string
          or_null_or_undefined
@@ -2812,27 +2752,27 @@ module Fs : sig
     [@@js.global "readFile"]
 
   val read_file
-    :  path:PathLike.t or_number
+    :  PathLike.t or_number
     -> callback:(err:ErrnoException.t or_null -> data:Buffer.t -> unit)
     -> unit
     [@@js.global "readFile"]
 
   module ReadFile : sig
     val __promisify__
-      :  path:PathLike.t or_number
+      :  PathLike.t or_number
       -> ?options:AnonymousInterface6.t or_null
       -> unit
       -> Buffer.t Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
-      :  path:PathLike.t or_number
+      :  PathLike.t or_number
       -> options:AnonymousInterface5.t or_string
       -> string Promise.t
       [@@js.global "__promisify__"]
 
     val __promisify__
-      :  path:PathLike.t or_number
+      :  PathLike.t or_number
       -> ?options:
            (BaseEncodingOptions.t, AnonymousInterface12.t) intersection2
            or_string
@@ -2844,23 +2784,26 @@ module Fs : sig
   [@@js.scope "readFile"]
 
   val read_file_sync
-    :  path:PathLike.t or_number
-    -> ?options:AnonymousInterface6.t or_null
+    :  PathLike.t or_number
+    -> ?options:AnonymousInterface6.t
     -> unit
     -> Buffer.t
     [@@js.global "readFileSync"]
 
   val read_file_sync
-    :  path:PathLike.t or_number
+    :  PathLike.t or_number
     -> options:(BufferEncoding.t, AnonymousInterface5.t) union2
     -> string
     [@@js.global "readFileSync"]
 
   val read_file_sync
-    :  path:PathLike.t or_number
-    -> ?options:BufferEncoding.t or_null
+    :  PathLike.t or_number
+    -> ?options:BufferEncoding.t
     -> unit
     -> Buffer.t or_string
+    [@@js.global "readFileSync"]
+
+  val read_file_sync : PathLike.t -> ?options:BufferEncoding.t -> unit -> string
     [@@js.global "readFileSync"]
 
   module WriteFileOptions : sig
@@ -2872,7 +2815,7 @@ module Fs : sig
   end
 
   val write_file
-    :  path:PathLike.t or_number
+    :  PathLike.t or_number
     -> data:ArrayBufferView.t or_string
     -> options:WriteFileOptions.t
     -> callback:NoParamCallback.t
@@ -2880,7 +2823,7 @@ module Fs : sig
     [@@js.global "writeFile"]
 
   val write_file
-    :  path:PathLike.t or_number
+    :  PathLike.t or_number
     -> data:ArrayBufferView.t or_string
     -> callback:NoParamCallback.t
     -> unit
@@ -2888,7 +2831,7 @@ module Fs : sig
 
   module WriteFile : sig
     val __promisify__
-      :  path:PathLike.t or_number
+      :  PathLike.t or_number
       -> data:ArrayBufferView.t or_string
       -> ?options:WriteFileOptions.t
       -> unit
@@ -2898,7 +2841,7 @@ module Fs : sig
   [@@js.scope "writeFile"]
 
   val write_file_sync
-    :  path:PathLike.t or_number
+    :  PathLike.t or_number
     -> data:ArrayBufferView.t or_string
     -> ?options:WriteFileOptions.t
     -> unit
@@ -3003,16 +2946,16 @@ module Fs : sig
     -> FSWatcher.t
     [@@js.global "watch"]
 
-  val exists : path:PathLike.t -> callback:(exists:bool -> unit) -> unit
+  val exists : PathLike.t -> callback:(exists:bool -> unit) -> unit
     [@@js.global "exists"]
 
   module Exists : sig
-    val __promisify__ : path:PathLike.t -> bool Promise.t
+    val __promisify__ : PathLike.t -> bool Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "exists"]
 
-  val exists_sync : path:PathLike.t -> bool [@@js.global "existsSync"]
+  val exists_sync : PathLike.t -> bool [@@js.global "existsSync"]
 
   module Constants : sig
     val f_ok : int [@@js.global "F_OK"]
@@ -3106,47 +3049,45 @@ module Fs : sig
   [@@js.scope "constants"]
 
   val access
-    :  path:PathLike.t
+    :  PathLike.t
     -> mode:int or_undefined
     -> callback:NoParamCallback.t
     -> unit
     [@@js.global "access"]
 
-  val access : path:PathLike.t -> callback:NoParamCallback.t -> unit
-    [@@js.global "access"]
+  val access : PathLike.t -> NoParamCallback.t -> unit [@@js.global "access"]
 
   module Access : sig
-    val __promisify__ : path:PathLike.t -> ?mode:int -> unit -> unit Promise.t
+    val __promisify__ : PathLike.t -> ?mode:int -> unit -> unit Promise.t
       [@@js.global "__promisify__"]
   end
   [@@js.scope "access"]
 
-  val access_sync : path:PathLike.t -> ?mode:int -> unit -> unit
+  val access_sync : PathLike.t -> ?mode:int -> unit -> unit
     [@@js.global "accessSync"]
 
   val create_read_stream
-    :  path:PathLike.t
+    :  PathLike.t
     -> ?options:AnonymousInterface13.t or_string
     -> unit
     -> ReadStream.t
     [@@js.global "createReadStream"]
 
   val create_write_stream
-    :  path:PathLike.t
+    :  PathLike.t
     -> ?options:AnonymousInterface14.t or_string
     -> unit
     -> WriteStream.t
     [@@js.global "createWriteStream"]
 
-  val fdatasync : fd:int -> callback:NoParamCallback.t -> unit
-    [@@js.global "fdatasync"]
+  val fdatasync : int -> NoParamCallback.t -> unit [@@js.global "fdatasync"]
 
   module Fdatasync : sig
-    val __promisify__ : fd:int -> unit Promise.t [@@js.global "__promisify__"]
+    val __promisify__ : int -> unit Promise.t [@@js.global "__promisify__"]
   end
   [@@js.scope "fdatasync"]
 
-  val fdatasync_sync : fd:int -> unit [@@js.global "fdatasyncSync"]
+  val fdatasync_sync : int -> unit [@@js.global "fdatasyncSync"]
 
   val copy_file
     :  src:string
@@ -3178,7 +3119,7 @@ module Fs : sig
     [@@js.global "copyFileSync"]
 
   val writev
-    :  fd:int
+    :  int
     -> buffers:ArrayBufferView.t list
     -> cb:
          (err:ErrnoException.t or_null
@@ -3189,7 +3130,7 @@ module Fs : sig
     [@@js.global "writev"]
 
   val writev
-    :  fd:int
+    :  int
     -> buffers:ArrayBufferView.t list
     -> position:int
     -> cb:
@@ -3219,7 +3160,7 @@ module Fs : sig
 
   module Writev : sig
     val __promisify__
-      :  fd:int
+      :  int
       -> buffers:ArrayBufferView.t list
       -> ?position:int
       -> unit
@@ -3229,7 +3170,7 @@ module Fs : sig
   [@@js.scope "writev"]
 
   val writev_sync
-    :  fd:int
+    :  int
     -> buffers:ArrayBufferView.t list
     -> ?position:int
     -> unit
@@ -3237,7 +3178,7 @@ module Fs : sig
     [@@js.global "writevSync"]
 
   val readv
-    :  fd:int
+    :  int
     -> buffers:ArrayBufferView.t list
     -> cb:
          (err:ErrnoException.t or_null
@@ -3248,7 +3189,7 @@ module Fs : sig
     [@@js.global "readv"]
 
   val readv
-    :  fd:int
+    :  int
     -> buffers:ArrayBufferView.t list
     -> position:int
     -> cb:
@@ -3278,7 +3219,7 @@ module Fs : sig
 
   module Readv : sig
     val __promisify__
-      :  fd:int
+      :  int
       -> buffers:ArrayBufferView.t list
       -> ?position:int
       -> unit
@@ -3288,7 +3229,7 @@ module Fs : sig
   [@@js.scope "readv"]
 
   val readv_sync
-    :  fd:int
+    :  int
     -> buffers:ArrayBufferView.t list
     -> ?position:int
     -> unit
@@ -3312,21 +3253,17 @@ module Fs : sig
   end
   [@@js.scope "OpenDirOptions"]
 
-  val opendir_sync
-    :  path:PathLike.t
-    -> ?options:OpenDirOptions.t
-    -> unit
-    -> Dir.t
+  val opendir_sync : PathLike.t -> ?options:OpenDirOptions.t -> unit -> Dir.t
     [@@js.global "opendirSync"]
 
   val opendir
-    :  path:PathLike.t
+    :  PathLike.t
     -> cb:(err:ErrnoException.t or_null -> dir:Dir.t -> unit)
     -> unit
     [@@js.global "opendir"]
 
   val opendir
-    :  path:PathLike.t
+    :  PathLike.t
     -> options:OpenDirOptions.t
     -> cb:(err:ErrnoException.t or_null -> dir:Dir.t -> unit)
     -> unit
@@ -3334,7 +3271,7 @@ module Fs : sig
 
   module Opendir : sig
     val __promisify__
-      :  path:PathLike.t
+      :  PathLike.t
       -> ?options:OpenDirOptions.t
       -> unit
       -> Dir.t Promise.t
